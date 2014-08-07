@@ -79,6 +79,5 @@ void ribi::VigenereCipherMainDialog::Test() noexcept
     const std::string deencrypted = d.GetPlainText();
     assert(s == deencrypted);
   }
-  TRACE("Finished ribi::VigenereCipherMainDialog::Test successfully");
 }
 #endif

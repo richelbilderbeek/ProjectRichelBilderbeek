@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "graycodermaindialog.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -156,8 +157,7 @@ void ribi::GrayCoderMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::GrayCoderMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   GrayCoderMainDialog(0);
-  TRACE("Finished ribi::GrayCoderMenuDialog::Test successfully");
 }
 #endif

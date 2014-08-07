@@ -93,6 +93,5 @@ void ribi::TestQtRoundedEditRectItemMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestQtRoundedEditRectItemMenuDialog::Test");
-  TRACE("Finished ribi::TestQtRoundedEditRectItemMenuDialog::Test successfully");
 }
 #endif

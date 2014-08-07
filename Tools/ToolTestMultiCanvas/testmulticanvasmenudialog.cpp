@@ -170,6 +170,5 @@ void ribi::TestMultiCanvasMenuDialog::Test() noexcept
   std::stringstream s;
   s << (*multi_canvas);
   TRACE(*multi_canvas);
-  TRACE("Finished ribi::TestMultiCanvasMenuDialog::Test successfully");
 }
 #endif

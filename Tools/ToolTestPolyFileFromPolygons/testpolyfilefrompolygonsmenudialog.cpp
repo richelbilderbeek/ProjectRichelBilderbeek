@@ -237,6 +237,5 @@ void ribi::TestPolyFileFromPolygonsMenuDialog::Test() noexcept
       }
     );
   }
-  TRACE("Finished ribi::TestPolyFileFromPolygonsMenuDialog::Test successfully");
 }
 #endif

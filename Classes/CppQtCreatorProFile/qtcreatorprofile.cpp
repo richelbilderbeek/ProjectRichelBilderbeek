@@ -293,7 +293,6 @@ void ribi::QtCreatorProFile::Test() noexcept
     //Check the project file
     const QtCreatorProFile p(mypath);
     assert(p.GetPriFiles().size() == 1);
-    TRACE(*p.GetPriFiles().begin());
     assert(p.GetPriFiles().count("something.pri"));
     fileio::FileIo().DeleteFile(mypath.c_str());
   }
@@ -306,7 +305,6 @@ void ribi::QtCreatorProFile::Test() noexcept
     //Check the project file
     const QtCreatorProFile p(mypath);
     assert(p.GetPriFiles().size() == 1);
-    TRACE(*p.GetPriFiles().begin());
     assert(p.GetPriFiles().count("something.pri"));
     fileio::FileIo().DeleteFile(mypath.c_str());
   }
@@ -345,7 +343,6 @@ void ribi::QtCreatorProFile::Test() noexcept
     }
     //Check the project file
     const QtCreatorProFile p(mypath);
-    TRACE(p.GetConfig().size());
     assert(p.GetConfig().size() == 2);
     assert(p.GetConfig().count("console"));
     assert(p.GetConfig().count("-app_bundle"));

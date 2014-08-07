@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "encranger.h"
 #include "encrangermaindialog.h"
 #include "loopreader.h"
+#include "testtimer.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -177,12 +178,11 @@ void ribi::ToolEncrangerMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolEncrangerMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     ToolEncrangerMenuDialog d;
     d.Execute( {"Encranger", "-k", "123", "--text", "Hello World", "-s" } );
     d.Execute( {"Encranger", "-k", "123", "--cipher", "bc30h3g8h287g", "--silent" } );
   }
-  TRACE("Finished ribi::ToolEncrangerMenuDialog::Test successfully");
 }
 #endif

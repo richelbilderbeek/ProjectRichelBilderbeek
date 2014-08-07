@@ -20,6 +20,7 @@
 #include "questiondialog.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -247,7 +248,11 @@ void ribi::HometrainerMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::HometrainerMainDialog::Test");
+  {
+    OpenQuestionFactory();
+    MultipleChoiceQuestion::GetValidMultipleChoiceQuestions();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   for(const std::string& s: OpenQuestionFactory().GetValidOpenQuestionStrings())
   {
     assert(CreateQuestion(s));
@@ -258,6 +263,6 @@ void ribi::HometrainerMainDialog::Test() noexcept
     assert(CreateQuestion(s));
     assert(CreateQuestionDialog(CreateQuestion(s)));
   }
-  TRACE("Finished ribi::HometrainerMainDialog::Test successfully");
+
 }
 #endif

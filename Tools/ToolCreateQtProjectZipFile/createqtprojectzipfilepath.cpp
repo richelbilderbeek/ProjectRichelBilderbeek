@@ -147,7 +147,6 @@ void ribi::CreateQtProjectZipFile::Path::Test() noexcept
     assert(p.GetFilename() == "z.txt");
     assert(p.ToStr() == "x/y/z.txt");
   }
-  TRACE("Finished ribi::CreateQtProjectZipFile::Path::Test() successfully");
 }
 
 std::string ribi::CreateQtProjectZipFile::Path::ToStr() const

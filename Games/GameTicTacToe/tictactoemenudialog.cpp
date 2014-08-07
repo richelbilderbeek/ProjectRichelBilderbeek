@@ -168,6 +168,7 @@ void ribi::tictactoe::TicTacToeMenuDialog::Test() noexcept
   tictactoe::Game();
   tictactoe::Board();
   tictactoe::Widget();
+  TextCanvas();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog","--1h","--2h" } );

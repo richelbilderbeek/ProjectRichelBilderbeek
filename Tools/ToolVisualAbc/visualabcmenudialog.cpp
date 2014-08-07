@@ -82,6 +82,5 @@ void ribi::VisualAbcMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::VisualAbcMenuDialog::Test");
-  TRACE("Finished ribi::VisualAbcMenuDialog::Test successfully");
 }
 #endif

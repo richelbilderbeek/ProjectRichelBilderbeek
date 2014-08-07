@@ -85,7 +85,7 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(
 
     //const std::string s = p->GetScreenName(); //Set the screen name
     //item->SetText(s);
-    item->SetPos(x,y);
+    item->SetOuterPos(x,y);
 
     const double left = x;
     const double top = y;

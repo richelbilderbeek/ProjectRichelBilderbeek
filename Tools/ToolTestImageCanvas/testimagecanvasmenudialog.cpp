@@ -15,6 +15,7 @@
 #include "imagecanvas.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 int ribi::TestImageCanvasMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -143,7 +144,7 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TooTestImageCanvasMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const std::string temp_filename { fileio::FileIo().GetTempFileName() };
     {
@@ -174,6 +175,5 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
     }
     fileio::FileIo().DeleteFile(temp_filename);
   }
-  TRACE("Finished ribi::TooTestImageCanvasMenuDialog::Test successfully");
 }
 #endif

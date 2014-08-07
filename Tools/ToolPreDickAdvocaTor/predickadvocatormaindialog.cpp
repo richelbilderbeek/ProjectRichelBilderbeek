@@ -4,6 +4,7 @@
 #include <cassert>
 #include <cstdlib>
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::PreDickAdvocaTorMainDialog::PreDickAdvocaTorMainDialog(const int seed)
@@ -104,7 +105,6 @@ void ribi::PreDickAdvocaTorMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PreDickAdvocaTorMainDialog::Test");
-  TRACE("Finished ribi::PreDickAdvocaTorMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

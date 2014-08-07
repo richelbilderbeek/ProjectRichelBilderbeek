@@ -131,8 +131,8 @@ ribi::cmap::QtNewArrow::QtNewArrow(
   QtNode * const from,
   const QPointF& current_to)
   : QtArrowItem(
-      from->GetPos().x(),
-      from->GetPos().y(),
+      from->GetOuterPos().x(),
+      from->GetOuterPos().y(),
       false,
       current_to.x(),
       current_to.y(),
@@ -164,12 +164,12 @@ void ribi::cmap::QtNewArrow::paint(QPainter* painter, const QStyleOptionGraphics
   const Line line = CreateLine(
     std::vector<Point>(
       {
-        Point(m_from->GetPos().x(),m_from->GetPos().y()),
+        Point(m_from->GetOuterPos().x(),m_from->GetOuterPos().y()),
         Point(this->line().p2().x(),this->line().p2().y())
       }
     )
   );
-  const QRectF qr1 = m_from->boundingRect().translated(m_from->GetPos());
+  const QRectF qr1 = m_from->boundingRect().translated(m_from->GetOuterPos());
 
   const Rect r1(
     Point(qr1.topLeft().x()    ,qr1.topLeft().y()    ),
@@ -181,7 +181,7 @@ void ribi::cmap::QtNewArrow::paint(QPainter* painter, const QStyleOptionGraphics
   {
     //Yes,it happens, when the line does not leave the rectangle
     //this happens when the two node rectanges overlap
-    p1.push_back(Point(m_from->GetPos().x(),m_from->GetPos().y()));
+    p1.push_back(Point(m_from->GetOuterPos().x(),m_from->GetOuterPos().y()));
   }
   assert(!p1.empty());
   assert(p1.size() == 1);

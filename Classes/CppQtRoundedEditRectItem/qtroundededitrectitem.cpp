@@ -223,7 +223,7 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
   //Possibly adapt the rounded rect border here
   {
     const QRectF text_rect = GetTextRect(m_text,m_font);
-    this->SetRoundedRect(
+    this->SetInnerRoundedRect(
       text_rect.adjusted(
         -m_padding.left   - border_width,
         -m_padding.top    - border_width,
@@ -248,7 +248,7 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
     const std::string& s = m_text[i];
     //Set the padded text rectangle
     QRectF padded_rect = GetPaddedTextRect(s,m_font);
-    const QRectF current_rect = GetRect();
+    const QRectF current_rect = GetInnerRect();
 
     padded_rect.translate(
       0.0
@@ -270,12 +270,12 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
     );
 
     #ifndef NDEBUG
-    if (r.left() < this->GetRect().left())
+    if (r.left() < this->GetInnerRect().left())
     {
-      TRACE(GetRect().left());
-      TRACE(GetRect().right());
-      TRACE(GetRect().top());
-      TRACE(GetRect().bottom());
+      TRACE(GetInnerRect().left());
+      TRACE(GetInnerRect().right());
+      TRACE(GetInnerRect().top());
+      TRACE(GetInnerRect().bottom());
       TRACE(r.left());
       TRACE(r.top());
       TRACE("BREAK");

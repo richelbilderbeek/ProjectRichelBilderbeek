@@ -87,6 +87,5 @@ void ribi::ToolTestSimpleLinearRegressionMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ToolTestSimpleLinearRegressionMenuDialog::Test");
-  TRACE("Finished ribi::ToolTestSimpleLinearRegressionMenuDialog::Test successfully");
 }
 #endif

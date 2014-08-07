@@ -157,43 +157,43 @@ void ribi::cmap::QtEdge::Test() noexcept
   if (verbose) { TRACE("X of QtEdge and QtRoundedEditRectItem must match at creation"); }
   {
     const double edge_x{edge->GetNode()->GetX()};
-    const double qtedge_x{qtitem->GetX()};
+    const double qtedge_x{qtitem->GetOuterX()};
     assert(edge_x == qtedge_x);
   }
   if (verbose) { TRACE("If X is set via QtEdge, QtRoundedEditRectItem must sync"); }
   {
-    const double old_x{qtedge->m_qtnode->GetX()};
+    const double old_x{qtedge->m_qtnode->GetOuterX()};
     const double new_x{old_x + 10.0};
-    qtedge->m_qtnode->SetX(new_x);
-    assert(std::abs(qtitem->GetX() - new_x) < 2.0);
+    qtedge->m_qtnode->SetOuterX(new_x);
+    assert(std::abs(qtitem->GetOuterX() - new_x) < 2.0);
   }
   if (verbose) { TRACE("If X is set via QtRoundedEditRectItem, QtEdge must sync"); }
   {
-    const double old_x{qtitem->GetX()};
+    const double old_x{qtitem->GetOuterX()};
     const double new_x{old_x + 10.0};
-    qtitem->SetX(new_x);
-    assert(std::abs(qtedge->m_qtnode->GetX() - new_x) < 2.0);
+    qtitem->SetOuterX(new_x);
+    assert(std::abs(qtedge->m_qtnode->GetOuterX() - new_x) < 2.0);
   }
   //Y
   if (verbose) { TRACE("Y of QtEdge and QtRoundedEditRectItem must match at creation"); }
   {
     const double edge_y{edge->GetNode()->GetY()};
-    const double qtedge_y{qtitem->GetY()};
+    const double qtedge_y{qtitem->GetOuterY()};
     assert(edge_y == qtedge_y);
   }
   if (verbose) { TRACE("If Y is set via QtEdge, QtRoundedEditRectItem must sync"); }
   {
-    const double old_y{qtedge->m_qtnode->GetY()};
+    const double old_y{qtedge->m_qtnode->GetOuterY()};
     const double new_y{old_y + 10.0};
-    qtedge->m_qtnode->SetY(new_y);
-    assert(std::abs(qtitem->GetY() - new_y) < 2.0);
+    qtedge->m_qtnode->SetOuterY(new_y);
+    assert(std::abs(qtitem->GetOuterY() - new_y) < 2.0);
   }
   if (verbose) { TRACE("If Y is set via QtRoundedEditRectItem, QtEdge must sync"); }
   {
-    const double old_y{qtitem->GetY()};
+    const double old_y{qtitem->GetOuterY()};
     const double new_y{old_y + 10.0};
-    qtitem->SetY(new_y);
-    assert(std::abs(qtedge->m_qtnode->GetY() - new_y) < 2.0);
+    qtitem->SetOuterY(new_y);
+    assert(std::abs(qtedge->m_qtnode->GetOuterY() - new_y) < 2.0);
   }
   if (verbose) { TRACE("QtEdge must accept hover events"); }
   {

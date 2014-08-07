@@ -106,6 +106,5 @@ void ribi::ToolTestQtModelsMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ToolTestQtModelsMenuDialog::Test");
-  TRACE("Finished ribi::ToolTestQtModelsMenuDialog::Test successfully");
 }
 #endif

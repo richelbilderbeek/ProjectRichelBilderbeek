@@ -104,6 +104,5 @@ void ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::Test");
-  TRACE("Finished ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::Test successfully");
 }
 #endif

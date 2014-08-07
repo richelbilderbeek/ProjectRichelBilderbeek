@@ -463,6 +463,5 @@ void ribi::TestNewickVectorDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestNewickVectorDialog::Test");
-  TRACE("Finished ribi::TestNewickVectorDialog::Test successfully");
 }
 #endif

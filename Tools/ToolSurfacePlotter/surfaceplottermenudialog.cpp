@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "drawcanvas.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::SurfacePlotterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -144,7 +145,6 @@ void ribi::SurfacePlotterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::SurfacePlotterMenuDialog::Test");
-  TRACE("Finished ribi::SurfacePlotterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

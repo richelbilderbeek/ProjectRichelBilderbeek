@@ -62,7 +62,6 @@ void ribi::ValentineCardDecrypterMainDialog::Test() noexcept
     };
     assert(*canvas == *expected);
   }
-  TRACE("Finished ribi::ValentineCardDecrypterMainDialog::Test successfully");
 }
 #endif
 

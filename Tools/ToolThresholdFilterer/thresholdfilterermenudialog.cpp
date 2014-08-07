@@ -81,6 +81,5 @@ void ribi::ThresholdFiltererMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ThresholdFiltererMenuDialog::Test");
-  TRACE("Finished ribi::ThresholdFiltererMenuDialog::Test successfully");
 }
 #endif

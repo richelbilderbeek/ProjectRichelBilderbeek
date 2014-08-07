@@ -112,7 +112,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
-      item->SetPos(x,y);
+      item->SetOuterPos(x,y);
       scene()->addItem(item);
     }
   }

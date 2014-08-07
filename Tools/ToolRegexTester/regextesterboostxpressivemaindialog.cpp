@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/xpressive/detail/dynamic/parse_charset.hpp>
 
 #include "ribi_regex.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -143,7 +144,7 @@ void ribi::RegexTesterBoostXpressiveMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::RegexTesterBoostXpressiveMainDialog::Test")
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   RegexTesterBoostXpressiveMainDialog d;
   assert(!d.GetExampleRegex().empty());
   for (const auto& v: d.GetTestRegexes() )
@@ -173,6 +174,5 @@ void ribi::RegexTesterBoostXpressiveMainDialog::Test() noexcept
       TRACE_FUNC();
     }
   }
-  TRACE("Finished ribi::RegexTesterBoostXpressiveMainDialog::Test successfully")
 }
 #endif

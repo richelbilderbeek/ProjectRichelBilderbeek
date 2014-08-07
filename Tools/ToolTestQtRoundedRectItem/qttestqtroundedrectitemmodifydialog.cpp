@@ -30,9 +30,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QTimer>
 
-#include "qtroundedrectitem.h"
 #include "qtroundedrectitemdialog.h"
+#include "qtroundedrectitem.h"
 #include "ribi_random.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestqtroundedrectitemmodifydialog.h"
 #pragma GCC diagnostic pop
@@ -84,11 +85,11 @@ ribi::QtTestQtRoundedRectItemModifyDialog::QtTestQtRoundedRectItemModifyDialog(Q
       );
       item->SetFocusPen(pen);
     }
-    item->SetHeight(32.0);
-    item->SetPos(0.0,0.0);
+    item->SetOuterHeight(32.0);
+    item->SetOuterPos(0.0,0.0);
     item->SetRadiusX(5.0);
     item->SetRadiusY(6.0);
-    item->SetWidth(48.0);
+    item->SetOuterWidth(48.0);
     SetItem(item);
   }
 
@@ -130,14 +131,14 @@ boost::shared_ptr<ribi::QtRoundedRectItem> ribi::QtTestQtRoundedRectItemModifyDi
     );
     item->SetFocusPen(pen);
   }
-  item->SetHeight(200.0 * Random().GetFraction());
-  item->SetPos(
+  item->SetInnerHeight(200.0 * Random().GetFraction());
+  item->SetOuterPos(
     -50.0 + (100.0 * Random().GetFraction()),
     -50.0 + (100.0 * Random().GetFraction())
   );
   item->SetRadiusX(100.0 * Random().GetFraction());
   item->SetRadiusY(100.0 * Random().GetFraction());
-  item->SetWidth(200.0 * Random().GetFraction());
+  item->SetInnerWidth(200.0 * Random().GetFraction());
   return item;
 }
 
@@ -177,7 +178,6 @@ void ribi::QtTestQtRoundedRectItemModifyDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtRoundedRectItemModifyDialog::Test");
-  TRACE("Finished ribi::QtTestQtRoundedRectItemModifyDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

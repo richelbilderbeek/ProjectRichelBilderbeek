@@ -5,6 +5,7 @@
 
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::PixelatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -80,7 +81,6 @@ void ribi::PixelatorMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PixelatorMenuDialog::Test");
-  TRACE("Finished ribi::PixelatorMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

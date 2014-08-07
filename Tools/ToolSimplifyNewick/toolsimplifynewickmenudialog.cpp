@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "newickvector.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 
 int ribi::ToolSimplifyNewickMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -104,7 +105,6 @@ void ribi::ToolSimplifyNewickMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolSimplifyNewickMenuDialog::Test");
-  TRACE("Finished ribi::ToolSimplifyNewickMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -6,6 +6,7 @@
 #include "drawcanvas.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::TestDrawCanvasMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -129,8 +130,7 @@ void ribi::TestDrawCanvasMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestDrawCanvasMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ribi::DrawCanvas();
-  TRACE("Finished ribi::TestDrawCanvasMenuDialog::Test successfully");
 }
 #endif

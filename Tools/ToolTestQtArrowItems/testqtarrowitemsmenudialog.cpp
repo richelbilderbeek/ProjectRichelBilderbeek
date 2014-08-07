@@ -104,6 +104,5 @@ void ribi::TestQtArrowItemsMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestQtArrowItemsMenuDialog::Test");
-  TRACE("Finished ribi::TestQtArrowItemsMenuDialog::Test successfully");
 }
 #endif

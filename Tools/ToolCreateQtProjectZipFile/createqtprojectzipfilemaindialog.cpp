@@ -55,6 +55,5 @@ void ribi::CreateQtProjectZipFileMainDialog::Test() noexcept
   #ifdef TODO_FIX_ISSUE_177
   assert(1==2 && "Yay, fixed issue 177");
   #endif //~#ifdef TODO_FIX_ISSUE_177
-  TRACE("Finished ribi::CreateQtProjectZipFileMainDialog::Test successfully");
 }
 #endif

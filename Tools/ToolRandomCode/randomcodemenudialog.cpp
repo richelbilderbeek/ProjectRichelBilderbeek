@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "randomcodemenudialog.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::RandomCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& /*argv*/) noexcept
@@ -116,10 +117,8 @@ void ribi::RandomCodeMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::RandomCodeMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   RandomCodeMenuDialog d;
   d.Execute( { "RandomCode" } );
-
-  TRACE("Finished ribi::RandomCodeMenuDialog::Test successfully");
 }
 #endif

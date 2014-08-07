@@ -157,6 +157,5 @@ void ribi::ValentineCardDecrypterMenuDialog::Test() noexcept
     fileio::FileIo().DeleteFile(filename);
     assert(!fileio::FileIo().IsRegularFile(filename));
   }
-  TRACE("Finished ribi::ValentineCardDecrypterMenuDialog::Test successfully");
 }
 #endif

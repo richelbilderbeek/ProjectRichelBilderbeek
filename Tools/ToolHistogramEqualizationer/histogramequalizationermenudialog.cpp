@@ -12,6 +12,7 @@
 #include "imagecanvas.h"
 #include "histogramequalizationermaindialog.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -115,13 +116,16 @@ void ribi::HistogramEqualizationerMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::HistogramEqualizationerMenuDialog::Test");
+  {
+    fileio::FileIo();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+
   HistogramEqualizationerMenuDialog d;
   const std::string filename { fileio::FileIo().GetTempFileName(".png") };
   QFile file(":/histogramequalizationer/images/ToolHistogramEqualizationerMenu.png");
   file.copy(filename.c_str());
   d.Execute( { "HistogramEqualizationerMenuDialog", "-f", filename } );
   fileio::FileIo().DeleteFile(filename);
-  TRACE("Finished ribi::HistogramEqualizationerMenuDialog::Test successfully");
 }
 #endif

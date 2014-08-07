@@ -54,7 +54,6 @@ void ribi::WktToSvgMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::WktToSvgMainDialog::Test");
-  TRACE("Finished ribi::WktToSvgMainDialog::Test successfully");
 }
 #endif
 

@@ -160,8 +160,8 @@ void ribi::QtRoundedRectItemDialog::OnFocusPenChanged(QtRoundedRectItem * const 
 
 void ribi::QtRoundedRectItemDialog::OnPosChanged(QtRoundedRectItem * const qtitem) noexcept
 {
-  const double new_x = qtitem->GetPos().x();
-  const double new_y = qtitem->GetPos().y();
+  const double new_x = qtitem->GetOuterPos().x();
+  const double new_y = qtitem->GetOuterPos().y();
   ui->box_x->setValue(new_x);
   ui->box_y->setValue(new_y);
 }
@@ -178,13 +178,13 @@ void ribi::QtRoundedRectItemDialog::OnRadiusYchanged(QtRoundedRectItem * const q
 
 void ribi::QtRoundedRectItemDialog::OnRectChanged(QtRoundedRectItem * const qtitem) noexcept
 {
-  const double new_width = qtitem->GetRect().width();
-  const double new_height = qtitem->GetRect().height();
+  const double new_width = qtitem->GetInnerRect().width();
+  const double new_height = qtitem->GetInnerRect().height();
   ui->box_width->setValue(new_width);
   ui->box_height->setValue(new_height);
 
-  const double new_width_including_pen = qtitem->GetRectIncludingPen().width();
-  const double new_height_including_pen = qtitem->GetRectIncludingPen().height();
+  const double new_width_including_pen = qtitem->GetOuterRect().width();
+  const double new_height_including_pen = qtitem->GetOuterRect().height();
   ui->box_width_including_pen->setValue(new_width_including_pen);
   ui->box_height_including_pen->setValue(new_height_including_pen);
 }
@@ -210,12 +210,12 @@ void ribi::QtRoundedRectItemDialog::on_box_focus_pen_width_valueChanged(double a
 
 void ribi::QtRoundedRectItemDialog::on_box_height_valueChanged(double arg1)
 {
-  m_item->SetHeight(arg1);
+  m_item->SetInnerHeight(arg1);
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_height_including_pen_valueChanged(double arg1)
 {
-  m_item->SetHeightIncludingPen(arg1);
+  m_item->SetOuterHeight(arg1);
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_radius_x_valueChanged(double arg1)
@@ -230,22 +230,22 @@ void ribi::QtRoundedRectItemDialog::on_box_radius_y_valueChanged(double arg1)
 
 void ribi::QtRoundedRectItemDialog::on_box_width_valueChanged(double arg1)
 {
-  m_item->SetWidth(arg1);
+  m_item->SetInnerWidth(arg1);
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_width_including_pen_valueChanged(double arg1)
 {
-  m_item->SetWidthIncludingPen(arg1);
+  m_item->SetOuterWidth(arg1);
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_x_valueChanged(double arg1)
 {
-  m_item->SetPos(arg1,m_item->GetPos().y());
+  m_item->SetOuterPos(arg1,m_item->GetOuterPos().y());
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_y_valueChanged(double arg1)
 {
-  m_item->SetPos(m_item->GetPos().x(),arg1);
+  m_item->SetOuterPos(m_item->GetOuterPos().x(),arg1);
 }
 
 void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRectItem>& item) noexcept
@@ -258,14 +258,14 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
     //Let the GUI follow
     ui->box_contour_pen_width->setValue(GetItem()->GetContourPen().widthF());
     ui->box_focus_pen_width->setValue(GetItem()->GetFocusPen().widthF());
-    ui->box_height->setValue(GetItem()->GetHeight());
-    ui->box_height_including_pen->setValue(GetItem()->GetHeightIncludingPen());
+    ui->box_height->setValue(GetItem()->GetInnerHeight());
+    ui->box_height_including_pen->setValue(GetItem()->GetOuterHeight());
     ui->box_radius_x->setValue(GetItem()->GetRadiusX());
     ui->box_radius_y->setValue(GetItem()->GetRadiusY());
-    ui->box_width->setValue(GetItem()->GetWidth());
-    ui->box_width_including_pen->setValue(GetItem()->GetWidthIncludingPen());
-    ui->box_x->setValue(GetItem()->GetX());
-    ui->box_y->setValue(GetItem()->GetY());
+    ui->box_width->setValue(GetItem()->GetInnerWidth());
+    ui->box_width_including_pen->setValue(GetItem()->GetOuterWidth());
+    ui->box_x->setValue(GetItem()->GetOuterX());
+    ui->box_y->setValue(GetItem()->GetOuterY());
     return;
   }
   if (verbose)
@@ -276,10 +276,10 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
 
   const auto contour_pen_after = item->GetContourPen();
   const auto focus_pen_after = item->GetFocusPen();
-  const auto pos_after = item->GetPos();
+  const auto pos_after = item->GetOuterPos();
   const auto radius_x_after = item->GetRadiusX();
   const auto radius_y_after = item->GetRadiusY();
-  const auto rect_after = item->GetRect();
+  const auto rect_after = item->GetInnerRect();
 
 
   bool contour_pen_changed  = true;
@@ -293,10 +293,10 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
   {
     const auto contour_pen_before = m_item->GetContourPen();
     const auto focus_pen_before = m_item->GetFocusPen();
-    const auto pos_before = m_item->GetPos();
+    const auto pos_before = m_item->GetOuterPos();
     const auto radius_x_before = m_item->GetRadiusX();
     const auto radius_y_before = m_item->GetRadiusY();
-    const auto rect_before = m_item->GetRect();
+    const auto rect_before = m_item->GetInnerRect();
 
     contour_pen_changed  = contour_pen_before != contour_pen_after;
     focus_pen_changed  = focus_pen_before != focus_pen_after;
@@ -384,10 +384,10 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
 
   assert(m_item->GetContourPen() == contour_pen_after);
   assert(m_item->GetFocusPen()   == focus_pen_after  );
-  assert(m_item->GetPos()        == pos_after        );
+  assert(m_item->GetOuterPos()        == pos_after        );
   assert(m_item->GetRadiusX()    == radius_x_after   );
   assert(m_item->GetRadiusY()    == radius_y_after   );
-  assert(m_item->GetRect()       == rect_after       );
+  assert(m_item->GetInnerRect()       == rect_after       );
 
   m_item->m_signal_contour_pen_changed.connect(
     boost::bind(&ribi::QtRoundedRectItemDialog::OnContourPenChanged,this,boost::lambda::_1)
@@ -478,15 +478,15 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
   }
   //Height
   {
-    dialog.ui->box_height->setValue(item->GetHeight() + 10.0);
+    dialog.ui->box_height->setValue(item->GetInnerHeight() + 10.0);
     const auto new_height = dialog.ui->box_height->value() + 10.0;
-    item->SetHeight(new_height);
+    item->SetInnerHeight(new_height);
   }
   //Height including pen
   {
-    dialog.ui->box_height_including_pen->setValue(item->GetHeightIncludingPen() + 10.0);
+    dialog.ui->box_height_including_pen->setValue(item->GetOuterHeight() + 10.0);
     const auto new_height = dialog.ui->box_height_including_pen->value() + 10.0;
-    item->SetHeightIncludingPen(new_height);
+    item->SetOuterHeight(new_height);
   }
   //Radius X
   {
@@ -502,27 +502,27 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
   }
   //Width
   {
-    dialog.ui->box_width->setValue(item->GetWidth() + 10.0);
+    dialog.ui->box_width->setValue(item->GetInnerWidth() + 10.0);
     const auto new_width = dialog.ui->box_width->value() + 10.0;
-    item->SetWidth(new_width);
+    item->SetInnerWidth(new_width);
   }
   //Width including pen
   {
-    dialog.ui->box_width_including_pen->setValue(item->GetWidthIncludingPen() + 10.0);
+    dialog.ui->box_width_including_pen->setValue(item->GetOuterWidth() + 10.0);
     const auto new_width = dialog.ui->box_width_including_pen->value() + 10.0;
-    item->SetWidthIncludingPen(new_width);
+    item->SetOuterWidth(new_width);
   }
   // X
   {
-    dialog.ui->box_x->setValue(item->GetPos().x() + 10.0);
+    dialog.ui->box_x->setValue(item->GetOuterPos().x() + 10.0);
     const auto new_x = dialog.ui->box_x->value() + 10.0;
-    item->SetX(new_x);
+    item->SetOuterX(new_x);
   }
   // Y
   {
-    dialog.ui->box_y->setValue(item->GetPos().y() + 10.0);
+    dialog.ui->box_y->setValue(item->GetOuterPos().y() + 10.0);
     const auto new_y = dialog.ui->box_y->value() + 10.0;
-    item->SetY(new_y);
+    item->SetOuterY(new_y);
   }
   /*
   if(std::abs(ui->box_contour_pen_width->value() - GetItem()->GetContourPen().widthF()) >= 1.0)

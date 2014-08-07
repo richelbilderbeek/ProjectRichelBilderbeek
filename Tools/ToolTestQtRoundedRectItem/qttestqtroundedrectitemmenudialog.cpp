@@ -33,6 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qttestqtroundedrectitemcomparedialog.h"
 #include "qttestqtroundedrectitemmodifydialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestqtroundedrectitemmenudialog.h"
 
@@ -89,10 +90,9 @@ void ribi::QtTestQtRoundedRectItemMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtRoundedRectItemMenuDialog::Test");
   QtTestQtRoundedRectItemCompareDialog();
   QtTestQtRoundedRectItemModifyDialog();
-  TRACE("Finished ribi::QtTestQtRoundedRectItemMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

@@ -59,9 +59,9 @@ ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
     | QGraphicsItem::ItemIsSelectable);
   this->SetContourPen(QPen(QColor(0,0,0),2.0));
   this->SetFocusPen(QPen(QColor(0,0,0),3.0,Qt::DashLine));
-  const double height = 24.48;
-  const double width = 32.64;
-  this->SetRoundedRect(QRectF(-width/2.0,-height/2.0,width,height),m_radius_x,m_radius_y);
+  const double height = 32.0;
+  const double width = 64.0;
+  this->SetInnerRoundedRect(QRectF(-width/2.0,-height/2.0,width,height),m_radius_x,m_radius_y);
 
 }
 
@@ -70,53 +70,17 @@ ribi::QtRoundedRectItem::~QtRoundedRectItem() noexcept
   //OK
 }
 
-
-const QPen& ribi::QtRoundedRectItem::GetContourPen() const noexcept
-{
-  return m_contour_pen;
-}
-
-const QPen& ribi::QtRoundedRectItem::GetFocusPen() const noexcept
-{
-  return m_focus_pen;
-}
-
-double ribi::QtRoundedRectItem::GetHeight() const noexcept
-{
-  return GetRect().height();
-}
-
-double ribi::QtRoundedRectItem::GetHeightIncludingPen() const noexcept
-{
-  return GetRectIncludingPen().height();
-}
-
-QPointF ribi::QtRoundedRectItem::GetPos() const noexcept
-{
-  return QGraphicsRectItem::pos();
-}
-
-double ribi::QtRoundedRectItem::GetRadiusX() const noexcept
-{
-  return m_radius_x;
-}
-
-double ribi::QtRoundedRectItem::GetRadiusY() const noexcept
-{
-  return m_radius_y;
-}
-
-QRectF ribi::QtRoundedRectItem::GetRect() const noexcept
+QRectF ribi::QtRoundedRectItem::GetInnerRect() const noexcept
 {
   const double pen_width
     = std::max(m_contour_pen.widthF(),m_focus_pen.widthF())
   ;
   //QGraphicsRectItem::rect() is the entire rect
-  return GetRectIncludingPen().adjusted(
+  return GetOuterRect().adjusted(
      pen_width, pen_width,-pen_width,-pen_width);
 }
 
-QRectF ribi::QtRoundedRectItem::GetRectIncludingPen() const noexcept
+QRectF ribi::QtRoundedRectItem::GetOuterRect() const noexcept
 {
   const QRectF r = QGraphicsRectItem::rect();
   return r;
@@ -124,7 +88,7 @@ QRectF ribi::QtRoundedRectItem::GetRectIncludingPen() const noexcept
 
 std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
@@ -137,18 +101,10 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2014-06-14: version 1.4: fixed issue #219",
     "2014-06-16: version 1.5: disallow setRect and setPos (use SetRoundedRect and SetPos instead), cooperation with QtRoundedRectItemDialog",
     "2014-06-22: version 1.6: allow setting the inner and outer rectangle"
+    "2014-08-07: version 1.7: renamed IncludingPen member functions to Outer"
   };
 }
 
-double ribi::QtRoundedRectItem::GetWidth() const noexcept
-{
-  return GetRect().width();
-}
-
-double ribi::QtRoundedRectItem::GetWidthIncludingPen() const noexcept
-{
-  return GetRectIncludingPen().width();
-}
 
 void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) noexcept
 {
@@ -160,7 +116,7 @@ void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) no
 void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept
 {
   #ifndef NDEBUG
-  const auto rect_before = GetRectIncludingPen();
+  const auto rect_before = GetOuterRect();
   #endif // NDEBUG
 
   painter->setBrush(brush());
@@ -171,7 +127,7 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
     painter->setPen(m_focus_pen);
     const double width_diff = width - m_focus_pen.widthF();
     painter->drawRoundedRect(
-      GetRectIncludingPen().adjusted( //Adjust to stay within rect
+      GetOuterRect().adjusted( //Adjust to stay within rect
         ( 1.0 * width) - width_diff, //+ 1.0,
         ( 1.0 * width) - width_diff, //+ 1.0,
         (-1.0 * width) + width_diff, //- 1.0,
@@ -186,7 +142,7 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
     painter->setPen(m_contour_pen);
     const double width_diff = width - m_contour_pen.widthF();
     painter->drawRoundedRect(
-      this->GetRectIncludingPen().adjusted( //Adjust to stay within rect
+      this->GetOuterRect().adjusted( //Adjust to stay within rect
         ( 1.0 * width) - width_diff, //+ 1.0,
         ( 1.0 * width) - width_diff, //+ 1.0,
         (-1.0 * width) + width_diff, //- 1.0,
@@ -197,7 +153,7 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
   }
 
   #ifndef NDEBUG
-  const auto rect_after = GetRectIncludingPen();
+  const auto rect_after = GetOuterRect();
   assert(rect_before == rect_after);
   #endif
 }
@@ -205,17 +161,17 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
 void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen) noexcept
 {
   #ifndef NDEBUG
-  const double inner_height_before = GetHeight();
-  const double inner_width_before = GetWidth();
+  const double inner_height_before = GetInnerHeight();
+  const double inner_width_before = GetInnerWidth();
   #endif
   //if (m_contour_pen.widthF() != pen.widthF())
   if (m_contour_pen != pen)
   {
-    const double height = GetHeight();
-    const double width = GetWidth();
+    const double height = GetInnerHeight();
+    const double width = GetInnerWidth();
     m_contour_pen = pen;
-    this->SetHeight(height);
-    this->SetWidth(width);
+    this->SetInnerHeight(height);
+    this->SetInnerWidth(width);
 
     this->update();
     m_signal_contour_pen_changed(this);
@@ -223,8 +179,8 @@ void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen) noexcept
   #ifndef NDEBUG
   else
   {
-    const double inner_height_after = GetHeight();
-    const double inner_width_after = GetWidth();
+    const double inner_height_after = GetInnerHeight();
+    const double inner_width_after = GetInnerWidth();
     assert(std::abs(inner_height_before - inner_height_after) < 0.001);
     assert(std::abs(inner_width_before  - inner_width_after ) < 0.001);
   }
@@ -235,16 +191,16 @@ void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen) noexcept
 void ribi::QtRoundedRectItem::SetFocusPen(const QPen& pen) noexcept
 {
   #ifndef NDEBUG
-  const double inner_height_before = GetHeight();
-  const double inner_width_before = GetWidth();
+  const double inner_height_before = GetInnerHeight();
+  const double inner_width_before = GetInnerWidth();
   #endif
   if (m_focus_pen != pen)
   {
-    const double height = GetHeight();
-    const double width = GetWidth();
+    const double height = GetInnerHeight();
+    const double width = GetInnerWidth();
     m_focus_pen = pen;
-    this->SetHeight(height);
-    this->SetWidth(width);
+    this->SetInnerHeight(height);
+    this->SetInnerWidth(width);
 
     this->update();
     m_signal_focus_pen_changed(this);
@@ -252,8 +208,8 @@ void ribi::QtRoundedRectItem::SetFocusPen(const QPen& pen) noexcept
   #ifndef NDEBUG
   else
   {
-    const double inner_height_after = GetHeight();
-    const double inner_width_after = GetWidth();
+    const double inner_height_after = GetInnerHeight();
+    const double inner_width_after = GetInnerWidth();
     assert(std::abs(inner_height_before - inner_height_after) < 0.001);
     assert(std::abs(inner_width_before  - inner_width_after ) < 0.001);
   }
@@ -262,59 +218,148 @@ void ribi::QtRoundedRectItem::SetFocusPen(const QPen& pen) noexcept
   assert(std::abs(pen.widthF() - GetFocusPen().widthF()) < 0.01);
 }
 
-void ribi::QtRoundedRectItem::SetHeight(const double height) noexcept
+void ribi::QtRoundedRectItem::SetInnerHeight(const double height) noexcept
 {
-  SetHeightIncludingPen(
+  SetOuterHeight(
     height + (2.0 * std::max(m_contour_pen.widthF(),m_focus_pen.widthF()))
   );
-  assert(std::abs(height - GetHeight()) < 2.0);
+  assert(std::abs(height - GetInnerHeight()) < 2.0);
 }
 
-void ribi::QtRoundedRectItem::SetHeightIncludingPen(const double height) noexcept
+void ribi::QtRoundedRectItem::SetInnerPos(
+  const double x,const double y
+) noexcept
 {
-  const auto current = this->GetRectIncludingPen();
+  const double w{std::max(m_contour_pen.widthF(),m_focus_pen.widthF())};
+  SetOuterPos(x-w,y-w);
+}
+
+void ribi::QtRoundedRectItem::SetInnerRect(
+  const QRectF& new_rect
+) noexcept
+{
+  SetInnerWidth(new_rect.height());
+  SetInnerHeight(new_rect.height());
+  SetInnerPos(new_rect.topLeft());
+}
+
+void ribi::QtRoundedRectItem::SetInnerRoundedRect(
+  const QRectF new_rect,
+  const double radius_x,
+  const double radius_y
+) noexcept
+{
+  const auto pen_width = std::max(m_contour_pen.widthF(),m_focus_pen.widthF());
+  SetOuterRoundedRect(
+    new_rect.adjusted(-pen_width,-pen_width,pen_width,pen_width),
+    radius_x,
+    radius_y
+  );
+}
+
+void ribi::QtRoundedRectItem::SetInnerWidth(const double width) noexcept
+{
+  SetOuterWidth(
+    width + (2.0 * std::max(m_contour_pen.widthF(),m_focus_pen.widthF()))
+  );
+  assert(std::abs(width - GetInnerWidth()) < 2.0);
+}
+
+void ribi::QtRoundedRectItem::SetOuterHeight(const double height) noexcept
+{
+  const auto current = this->GetOuterRect();
   const double current_height = current.height();
   if (current_height != height)
   {
-
-    SetRoundedRectIncludingPen(
+    QGraphicsRectItem::setRect(
       QRectF(
         current.left(),
         current.top(),
         current.width(),
         height
-      ),
-      this->GetRadiusX(),
-      this->GetRadiusY()
+      )
     );
-    //this->update();
-    //m_signal_rect_changed(this);
+    this->update();
+    m_signal_rect_changed(this);
   }
-  assert(std::abs(height - GetHeightIncludingPen()) < 2.0);
+  assert(std::abs(height - GetOuterHeight()) < 2.0);
 }
 
-void ribi::QtRoundedRectItem::SetPos(const double x,const double y) noexcept
+
+void ribi::QtRoundedRectItem::SetOuterRect(
+  const QRectF& new_rect
+) noexcept
 {
-  const double current_x = this->GetPos().x();
-  const double current_y = this->GetPos().y();
-  if (current_x != x || current_y != y)
+  SetOuterWidth(new_rect.height());
+  SetOuterHeight(new_rect.height());
+  SetOuterPos(new_rect.topLeft());
+}
+
+void ribi::QtRoundedRectItem::SetOuterRoundedRect(
+  const QRectF& new_rect,
+  const double radius_x,
+  const double radius_y
+) noexcept
+{
+  SetOuterRect(new_rect);
+  this->SetRadiusX(radius_x);
+  this->SetRadiusY(radius_y);
+
+}
+
+void ribi::QtRoundedRectItem::SetOuterWidth(const double width) noexcept
+{
+  const auto current = this->GetOuterRect();
+  const double current_width = current.width();
+  if (current_width != width)
   {
-    QGraphicsRectItem::setPos(x,y);
+    QGraphicsRectItem::setRect(
+      QRectF(
+        current.left(),
+        current.top(),
+        width,
+        current.height()
+      )
+    );
+    //Signals and update at SetRoundedRectIncludingPen
+    m_signal_rect_changed(this);
+    this->update();
+  }
+}
+
+void ribi::QtRoundedRectItem::SetOuterX(const double x) noexcept
+{
+  const double current_x = this->GetOuterX();
+  if (current_x != x)
+  {
+    const auto current_rect = this->GetOuterRect();
+    QGraphicsRectItem::setRect(
+      x,
+      current_rect.y(),
+      current_rect.width(),
+      current_rect.height()
+    );
+
     this->update();
     m_signal_pos_changed(this);
   }
-  #ifndef NDEBUG
-  if(std::abs(y - GetPos().y()) >= 0.01)
-  {
-    TRACE("ERROR");
-    TRACE(y);
-    TRACE(GetPos().y());
-    TRACE("BREAK");
-  }
-  #endif
+}
 
-  assert(std::abs(x - GetPos().x()) < 0.01);
-  assert(std::abs(y - GetPos().y()) < 0.01);
+void ribi::QtRoundedRectItem::SetOuterY(const double y) noexcept
+{
+  const double current_y = this->GetOuterY();
+  if (current_y != y)
+  {
+    const auto current_rect = this->GetOuterRect();
+    QGraphicsRectItem::setRect(
+      current_rect.x(),
+      y,
+      current_rect.width(),
+      current_rect.height()
+    );
+    this->update();
+    m_signal_pos_changed(this);
+  }
 }
 
 void ribi::QtRoundedRectItem::SetRadiusX(const double radius_x) noexcept
@@ -340,129 +385,7 @@ void ribi::QtRoundedRectItem::SetRadiusY(const double radius_y) noexcept
 }
 
 
-void ribi::QtRoundedRectItem::SetRoundedRect(
-  const QRectF new_rect,
-  const double radius_x,
-  const double radius_y
-) noexcept
-{
-  const auto pen_width = std::max(m_contour_pen.widthF(),m_focus_pen.widthF());
-  SetRoundedRectIncludingPen(
-    new_rect.adjusted(-pen_width,-pen_width,pen_width,pen_width),
-    radius_x,
-    radius_y
-  );
-  #ifndef NDEBUG
-  const double e = 2.0;
-  if (std::abs(new_rect.height() - GetRect().height()) >= e)
-  {
-    TRACE("ERROR");
-    TRACE(new_rect.height());
-    TRACE(GetRect().height());
-    TRACE(m_contour_pen.widthF());
-    TRACE(m_focus_pen.widthF());
-    TRACE(pen_width);
-    TRACE("BREAK");
-  }
-  #endif
-  assert(std::abs(new_rect.left() - GetRect().left()) < e);
-  assert(std::abs(new_rect.top() - GetRect().top()) < e);
-  assert(std::abs(new_rect.width() - GetRect().width()) < e);
-  assert(std::abs(new_rect.height() - GetRect().height()) < e);
-  assert(radius_x == GetRadiusX());
-  assert(radius_y == GetRadiusY());
-}
 
-void ribi::QtRoundedRectItem::SetRoundedRectIncludingPen(
-  const QRectF new_rect,
-  const double radius_x,
-  const double radius_y
-) noexcept
-{
-  if (GetRectIncludingPen() != new_rect)
-  {
-    QGraphicsRectItem::setRect(new_rect);
-    this->update();
-    m_signal_pos_changed(this);
-    m_signal_rect_changed(this);
-  }
-  this->SetRadiusX(radius_x);
-  this->SetRadiusY(radius_y);
-
-  #ifndef NDEBUG
-  const auto current = GetRectIncludingPen();
-  const double e = 2.0;
-  if (
-       (std::abs(new_rect.width() - current.width()) >= e)
-    || (std::abs(new_rect.height() - current.height()) >= e)
-    || (std::abs(new_rect.top() - current.top()) >= e)
-    || (std::abs(new_rect.left() - current.left()) >= e)
-  )
-  {
-    TRACE("ERROR");
-    TRACE(new_rect.left());
-    TRACE(current.left());
-    TRACE(new_rect.top());
-    TRACE(current.top());
-    TRACE(new_rect.width());
-    TRACE(current.width());
-    TRACE(new_rect.height());
-    TRACE(current.height());
-    TRACE("BREAK");
-  }
-  #endif
-
-  assert(std::abs(new_rect.width() - current.width()) < e);
-  assert(std::abs(new_rect.height() - current.height()) < e);
-  assert(std::abs(new_rect.top() - current.top()) < e);
-  assert(std::abs(new_rect.left() - current.left()) < e);
-
-  //assert(new_rect == GetRectIncludingPen());
-  assert(radius_x == GetRadiusX());
-  assert(radius_y == GetRadiusY());
-}
-
-
-void ribi::QtRoundedRectItem::SetWidth(const double width) noexcept
-{
-  SetWidthIncludingPen(
-    width + (2.0 * std::max(m_contour_pen.widthF(),m_focus_pen.widthF()))
-  );
-  assert(std::abs(width - GetWidth()) < 2.0);
-}
-
-void ribi::QtRoundedRectItem::SetWidthIncludingPen(const double width) noexcept
-{
-  const auto current = this->GetRectIncludingPen();
-  const double current_width = current.width();
-  if (current_width != width)
-  {
-    SetRoundedRectIncludingPen(
-      QRectF(
-        current.left(),
-        current.top(),
-        width,
-        current.height()
-      ),
-      this->GetRadiusX(),
-      this->GetRadiusY()
-    );
-    //Signals and update at SetRoundedRectIncludingPen
-    //m_signal_rect_changed(this);
-    //this->update();
-  }
-  #ifndef NDEBUG
-  const double e = 2.0;
-  if(std::abs(width - GetWidthIncludingPen()) >= e)
-  {
-    TRACE("ERROR");
-    TRACE(width);
-    TRACE(GetWidthIncludingPen());
-    TRACE("BREAK");
-  }
-  #endif
-  assert(std::abs(width - GetWidthIncludingPen()) < e);
-}
 
 #ifndef NDEBUG
 void ribi::QtRoundedRectItem::Test() noexcept
@@ -473,12 +396,136 @@ void ribi::QtRoundedRectItem::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{true};
+  if (verbose) { TRACE("Construction"); }
+  {
+    QtRoundedRectItem();
+  }
   QtRoundedRectItem i;
-  i.SetPos(345.67,456.78);
-  i.SetHeightIncludingPen(123.45);
-  i.SetWidthIncludingPen(234.56);
-  i.SetHeight(123.45);
-  i.SetWidth(234.56);
+  if (verbose) { TRACE("SetOuterX and GetOuterX must be symmetric"); }
+  {
+    const auto old_x = i.GetOuterX();
+    const auto new_x = old_x + 10.0;
+    i.SetOuterX(new_x);
+    assert(std::abs(i.GetOuterX() - new_x) < 2.0);
+  }
+  if (verbose) { TRACE("SetOuterY and GetOuterY must be symmetric"); }
+  {
+    const auto old_y = i.GetOuterY();
+    const auto new_y = old_y + 10.0;
+    i.SetOuterY(new_y);
+    assert(std::abs(i.GetOuterY() - new_y) < 2.0);
+  }
+  if (verbose) { TRACE("SetOuterPos and GetOuterPos must be symmetric"); }
+  {
+    const auto old_pos = i.GetOuterPos();
+    const auto new_pos = old_pos + QPointF(10.0,10.0);
+    i.SetOuterPos(new_pos);
+    assert(std::abs(i.GetOuterPos().x() - new_pos.x()) < 2.0);
+    assert(std::abs(i.GetOuterPos().y() - new_pos.y()) < 2.0);
+  }
+  if (verbose) { TRACE("SetOuterWidth and GetOuterWidth must be symmetric"); }
+  {
+    const auto old_width = i.GetOuterWidth();
+    const auto new_width = old_width + 10.0;
+    i.SetOuterWidth(new_width);
+    assert(std::abs(i.GetOuterWidth() - new_width) < 2.0);
+  }
+  if (verbose) { TRACE("SetOuterHeight and GetOuterHeight must be symmetric"); }
+  {
+    const auto old_height = i.GetOuterHeight();
+    const auto new_height = old_height + 10.0;
+    i.SetOuterHeight(new_height);
+    assert(std::abs(i.GetOuterHeight() - new_height) < 2.0);
+  }
+  if (verbose) { TRACE("SetOuterRect and GetOuterRect must be symmetric"); }
+  {
+    const auto old_rect = i.GetOuterRect();
+    const auto new_rect = old_rect.adjusted(-10.0,-10.0,10.0,10.0);
+    i.SetOuterRect(new_rect);
+    assert(std::abs(i.GetOuterRect().width() - new_rect.width()) < 2.0);
+    assert(std::abs(i.GetOuterRect().height() - new_rect.height()) < 2.0);
+    assert(std::abs(i.GetOuterRect().left() - new_rect.left()) < 2.0);
+    assert(std::abs(i.GetOuterRect().top() - new_rect.top()) < 2.0);
+  }
+  if (verbose) { TRACE("SetOuterRoundedRect and GetOuterRect must be symmetric"); }
+  {
+    const auto old_radius_x = i.GetRadiusX();
+    const auto old_radius_y = i.GetRadiusY();
+    const auto old_rect = i.GetOuterRect();
+    const auto new_radius_x = old_radius_x + 5.0;
+    const auto new_radius_y = old_radius_y + 5.0;
+    const auto new_rect = old_rect.adjusted(-10.0,-10.0,10.0,10.0);
+    i.SetOuterRoundedRect(new_rect,new_radius_x, new_radius_y);
+    assert(std::abs(i.GetOuterRect().width() - new_rect.width()) < 2.0);
+    assert(std::abs(i.GetOuterRect().height() - new_rect.height()) < 2.0);
+    assert(std::abs(i.GetOuterRect().left() - new_rect.left()) < 2.0);
+    assert(std::abs(i.GetOuterRect().top() - new_rect.top()) < 2.0);
+    assert(std::abs(i.GetRadiusX() - new_radius_x) < 2.0);
+    assert(std::abs(i.GetRadiusY() - new_radius_y) < 2.0);
+  }
+  if (verbose) { TRACE("SetInnerX and GetInnerX must be symmetric"); }
+  {
+    const auto old_x = i.GetInnerX();
+    const auto new_x = old_x + 10.0;
+    i.SetInnerX(new_x);
+    assert(std::abs(i.GetInnerX() - new_x) < 2.0);
+  }
+  if (verbose) { TRACE("SetInnerY and GetInnerY must be symmetric"); }
+  {
+    const auto old_y = i.GetInnerY();
+    const auto new_y = old_y + 10.0;
+    i.SetInnerY(new_y);
+    assert(std::abs(i.GetInnerY() - new_y) < 2.0);
+  }
+  if (verbose) { TRACE("SetInnerPos and GetInnerPos must be symmetric"); }
+  {
+    const auto old_pos = i.GetInnerPos();
+    const auto new_pos = old_pos + QPointF(10.0,10.0);
+    i.SetInnerPos(new_pos);
+    assert(std::abs(i.GetInnerPos().x() - new_pos.x()) < 2.0);
+    assert(std::abs(i.GetInnerPos().y() - new_pos.y()) < 2.0);
+  }
+  if (verbose) { TRACE("SetInnerHeight and GetInnerHeight must be symmetric"); }
+  {
+    const auto old_height = i.GetInnerHeight();
+    const auto new_height = old_height + 10.0;
+    i.SetInnerHeight(new_height);
+    assert(std::abs(i.GetInnerHeight() - new_height) < 2.0);
+  }
+  if (verbose) { TRACE("SetInnerWidth and GetInnerWidth must be symmetric"); }
+  {
+    const auto old_width = i.GetInnerWidth();
+    const auto new_width = old_width + 10.0;
+    i.SetInnerWidth(new_width);
+    assert(std::abs(i.GetInnerWidth() - new_width) < 2.0);
+  }
+  if (verbose) { TRACE("SetInnerRect and GetInnerRect must be symmetric"); }
+  {
+    const auto old_rect = i.GetInnerRect();
+    const auto new_rect = old_rect.adjusted(-10.0,-10.0,10.0,10.0);
+    i.SetInnerRect(new_rect);
+    assert(std::abs(i.GetInnerRect().width() - new_rect.width()) < 2.0);
+    assert(std::abs(i.GetInnerRect().height() - new_rect.height()) < 2.0);
+    assert(std::abs(i.GetInnerRect().left() - new_rect.left()) < 2.0);
+    assert(std::abs(i.GetInnerRect().top() - new_rect.top()) < 2.0);
+  }
+  if (verbose) { TRACE("SetInnerRoundedRect and GetInnerRect must be symmetric"); }
+  {
+    const auto old_radius_x = i.GetRadiusX();
+    const auto old_radius_y = i.GetRadiusY();
+    const auto old_rect = i.GetInnerRect();
+    const auto new_radius_x = old_radius_x + 5.0;
+    const auto new_radius_y = old_radius_y + 5.0;
+    const auto new_rect = old_rect.adjusted(-10.0,-10.0,10.0,10.0);
+    i.SetInnerRoundedRect(new_rect,new_radius_x, new_radius_y);
+    assert(std::abs(i.GetInnerRect().width() - new_rect.width()) < 2.0);
+    assert(std::abs(i.GetInnerRect().height() - new_rect.height()) < 2.0);
+    assert(std::abs(i.GetInnerRect().left() - new_rect.left()) < 2.0);
+    assert(std::abs(i.GetInnerRect().top() - new_rect.top()) < 2.0);
+    assert(std::abs(i.GetRadiusX() - new_radius_x) < 2.0);
+    assert(std::abs(i.GetRadiusY() - new_radius_y) < 2.0);
+  }
 }
 #endif
 
@@ -489,7 +536,7 @@ bool ribi::operator==(const QtRoundedRectItem& lhs, const QtRoundedRectItem& rhs
     && lhs.GetFocusPen() == lhs.GetFocusPen()
     && lhs.GetRadiusX() == lhs.GetRadiusX()
     && lhs.GetRadiusY() == lhs.GetRadiusY()
-    && lhs.GetRect() == lhs.GetRect()
+    && lhs.GetInnerRect() == lhs.GetInnerRect()
   ;
 }
 

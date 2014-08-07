@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "question.h"
 #include "questiondialog.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #include <QFile>
@@ -164,10 +165,12 @@ void ribi::HometrainerMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::HometrainerMenuDialog::Test()");
+  HometrainerResources();
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+
   HometrainerMenuDialog().Execute( { "Hometrainer", "-e" } );
   const HometrainerMainDialog d(HometrainerResources().GetExerciseClouds());
   assert(d.GetNumberCorrect() == 0);
-  TRACE("Finished ribi::HometrainerMenuDialog::Test()");
 }
 #endif

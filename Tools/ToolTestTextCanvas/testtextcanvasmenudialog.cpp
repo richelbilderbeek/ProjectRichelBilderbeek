@@ -109,6 +109,5 @@ void ribi::TestTextCanvasMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::TestTextCanvasMenuDialog::Test");
   ribi::TextCanvas();
-  TRACE("Finished ribi::TestTextCanvasMenuDialog::Test successfully");
 }
 #endif

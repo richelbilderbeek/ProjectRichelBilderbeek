@@ -75,11 +75,11 @@ void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGrap
   this->SetExamples(this->m_item->GetNode()->GetConcept()->GetExamples());
   #endif // NOT_NOW_20140801
 
-  const QPointF p = m_item->GetPos();
-  const QRectF r = m_item->GetRect();
-  this->SetPos(
-    p.x() + (0.5 * r.width() ) + 4.0 + (0.5 * this->GetRect().width() ),
-    p.y() + (0.5 * r.height()) + 4.0 + (0.5 * GetRect().height())
+  const QPointF p = m_item->GetOuterPos();
+  const QRectF r = m_item->GetInnerRect();
+  this->SetOuterPos(
+    p.x() + (0.5 * r.width() ) + 4.0 + (0.5 * this->GetInnerRect().width() ),
+    p.y() + (0.5 * r.height()) + 4.0 + (0.5 * GetInnerRect().height())
   );
 
   QtRoundedEditRectItem::paint(painter,option,widget);

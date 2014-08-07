@@ -166,6 +166,5 @@ void ribi::VigenereCipherMenuDialog::Test() noexcept
     d.Execute( {"VigenereCipher", "-k", "ABC", "--text", "HELLOWORLD", "-s" } );
     d.Execute( {"VigenereCipher", "-k", "ABCDEF", "--cipher", "HELLOWORLD", "-s" } );
   }
-  TRACE("Finished ribi::ToolVigenereCipherMenuDialog::Test successfully");
 }
 #endif

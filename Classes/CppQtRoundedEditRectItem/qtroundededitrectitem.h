@@ -127,8 +127,8 @@ private:
   ///Called whenever a base class item is changed
   void OnBaseChanged(QtRoundedRectItem * const) noexcept;
 
-  void SetHeight(const double) = delete;
-  void SetWidth(const double) = delete;
+  void SetInnerHeight(const double) = delete;
+  void SetInnerWidth(const double) = delete;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -35,6 +35,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 ///Rounded rectangle item
+/*
+
+     _______
+  A /       \        A  ______
+   /  _____  \        X/ _____ \
+  |  |B    |  |       | |B    | |
+  |  |     |  |       | |     | |
+  |  |_____|  |       | |_____| |
+   \         /         \_______/
+    \_______/
+
+A: Outer rectangle, includes thickest pen width
+B: Inner rectangle, excluded thickest pen width
+X: If the rectangle is displayed with a thinner pen, A remains at the same place
+*/
 class QtRoundedRectItem : public QGraphicsRectItem
 {
   //Q_OBJECT //Cannot make this a QObject???
@@ -45,34 +60,30 @@ class QtRoundedRectItem : public QGraphicsRectItem
   virtual ~QtRoundedRectItem() noexcept;
 
   ///Get the pen by which the contour is drawn
-  const QPen& GetContourPen() const noexcept;
+  const QPen& GetContourPen() const noexcept { return m_contour_pen; }
 
   ///Get the pen by which focus is indicated
-  const QPen& GetFocusPen() const noexcept;
+  const QPen& GetFocusPen() const noexcept { return m_focus_pen; }
 
-  ///Get the height of the area within the rounded rectangle
-  /*
-    ___
-   / _ \  GetHeight/GetWidth = 1
-   ||_||  GetHeightIncludingPen/GetWidthIncludingPen = 3
-   \___/
+  double GetInnerHeight() const noexcept { return GetInnerRect().height(); }
+  QPointF GetInnerPos() const noexcept { return GetInnerRect().topLeft(); }
+  QRectF GetInnerRect() const noexcept;
+  double GetInnerWidth() const noexcept { return GetInnerRect().width(); }
+  double GetInnerX() const noexcept { return GetInnerPos().x(); }
+  double GetInnerY() const noexcept { return GetInnerPos().y(); }
 
-  */
-  double GetHeight() const noexcept;
-  ///Get the height of the area including the rounded rectangle itself
-  double GetHeightIncludingPen() const noexcept;
-
-  QPointF GetPos() const noexcept;
+  double GetOuterHeight() const noexcept { return GetOuterRect().height(); }
+  QPointF GetOuterPos() const noexcept { return GetOuterRect().topLeft(); }
+  QRectF GetOuterRect() const noexcept;
+  double GetOuterWidth() const noexcept { return GetOuterRect().width(); }
+  double GetOuterX() const noexcept { return GetOuterPos().x(); }
+  double GetOuterY() const noexcept { return GetOuterPos().y(); }
 
   ///Get the rounded rect corner x radius
-  double GetRadiusX() const noexcept;
+  double GetRadiusX() const noexcept{ return m_radius_x; }
 
   ///Get the rounded rect corner y radius
-  double GetRadiusY() const noexcept;
-
-  ///Get the rectangle of the inner area
-  QRectF GetRect() const noexcept;
-  QRectF GetRectIncludingPen() const noexcept;
+  double GetRadiusY() const noexcept{ return m_radius_y; }
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -80,50 +91,29 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Get the width of the area within the rounded rectangle
-  /*
-    ___
-   / _ \  GetHeight/GetWidth = 1
-   ||_||  GetHeightIncludingPen/GetWidthIncludingPen = 3
-   \___/
+  void SetContourPen(const QPen& pen) noexcept; ///Set the pen by which the contours are normally drawn, default value: QPen(Qt::DashLine)
+  void SetFocusPen(const QPen& pen) noexcept; ///Set the pen by which focus is indicated, default value: QPen(Qt::DashLine)
 
-  */
-  double GetWidth() const noexcept;
-  ///Get the width of the area including the rounded rectangle itself
-  double GetWidthIncludingPen() const noexcept;
+  void SetInnerHeight(const double width) noexcept;
+  void SetInnerPos(const double x,const double y) noexcept;
+  void SetInnerPos(const QPointF& pos) noexcept { SetInnerPos(pos.x(),pos.y()); }
+  void SetInnerRect(const QRectF& rect) noexcept;
+  void SetInnerRoundedRect(const QRectF rect, const double radius_x, const double radius_y) noexcept;
+  void SetInnerWidth(const double width) noexcept;
+  void SetInnerX(const double x) noexcept { SetInnerPos(x,GetInnerY()); }
+  void SetInnerY(const double y) noexcept { SetInnerPos(GetInnerX(),y); }
 
-  double GetX() const noexcept { return GetPos().x(); }
-  double GetY() const noexcept { return GetPos().y(); }
+  void SetOuterHeight(const double width) noexcept;
+  void SetOuterPos(const double x,const double y) noexcept { SetOuterX(x); SetOuterY(y); }
+  void SetOuterPos(const QPointF& pos) noexcept { SetOuterPos(pos.x(),pos.y()); }
+  void SetOuterRect(const QRectF& rect) noexcept;
+  void SetOuterRoundedRect(const QRectF& rect, const double radius_x, const double radius_y) noexcept;
+  void SetOuterWidth(const double width) noexcept;
+  void SetOuterX(const double x) noexcept;
+  void SetOuterY(const double y) noexcept;
 
-  ///Set the pen by which the contours are normally drawn
-  ///Default value: QPen(Qt::DashLine)
-  void SetContourPen(const QPen& pen) noexcept;
-
-  ///Set the pen by which focus is indicated
-  ///Default value: QPen(Qt::DashLine)
-  void SetFocusPen(const QPen& pen) noexcept;
-
-  void SetHeight(const double width) noexcept;
-  void SetHeightIncludingPen(const double width) noexcept;
-
-  void SetPos(const double x,const double y) noexcept;
-
-  ///Set the rounded rect corner x radius
   void SetRadiusX(const double radius_x) noexcept;
-
-  ///Set the rounded rect corner y radius
   void SetRadiusY(const double radius_y) noexcept;
-
-  ///Set the rounded rect of the inner area
-  void SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y) noexcept;
-  void SetRoundedRectIncludingPen(const QRectF rect, const double radius_x, const double radius_y) noexcept;
-
-  void SetWidth(const double width) noexcept;
-  void SetWidthIncludingPen(const double width) noexcept;
-
-  void SetX(const double x) noexcept { SetPos(x,GetY()); }
-  void SetY(const double y) noexcept { SetPos(GetX(),y); }
-
 
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;

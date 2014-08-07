@@ -107,6 +107,5 @@ void ribi::TestPylosMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestPylosMenuDialog::Test");
-  TRACE("Finished ribi::TestPylosMenuDialog::Test successfully");
 }
 #endif

@@ -115,6 +115,5 @@ void ribi::TestQuestionMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestQuestionMainDialog::Test");
-  TRACE("Finished ribi::TestQuestionMainDialog::Test successfully");
 }
 #endif

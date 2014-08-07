@@ -198,6 +198,5 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
 
     fileio::FileIo().DeleteFile(filename);
   }
-  TRACE("Finished ribi::TestQtCreatorProFileMenuDialog::Test successfully");
 }
 #endif

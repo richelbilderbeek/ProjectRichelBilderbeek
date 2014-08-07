@@ -54,8 +54,8 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
   #endif
 
   ui->setupUi(this);
-  m_from->SetPos(0.0,0.0);
-  m_to->SetPos(10.0,100.0);
+  m_from->SetOuterPos(0.0,0.0);
+  m_to->SetOuterPos(10.0,100.0);
   {
     QGraphicsScene * const my_scene = new QGraphicsScene(this);
     m_view_left->setScene(my_scene);
@@ -216,7 +216,7 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
   if (verbose) { TRACE("X of QtTestQtEdgeDialog and QtEdge must match at creation"); }
   {
     const double ui_x{dialog.m_dialog_left->GetUiX()};
-    const double qtedge_x{qtedge->GetQtNode()->GetX()};
+    const double qtedge_x{qtedge->GetQtNode()->GetOuterX()};
     assert(std::abs(ui_x - qtedge_x) < 2.0);
   }
   if (verbose) { TRACE("If X is set via QtTestQtEdgeDialog, QtEdge must sync"); }
@@ -224,13 +224,13 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     const double old_x{dialog.m_dialog_left->GetUiX()};
     const double new_x{old_x + 10.0};
     dialog.m_dialog_left->SetUiX(new_x);
-    assert(std::abs(new_x - qtedge->GetQtNode()->GetX()) < 2.0);
+    assert(std::abs(new_x - qtedge->GetQtNode()->GetOuterX()) < 2.0);
   }
   if (verbose) { TRACE("If X is set via QtEdge, QtTestQtEdgeDialog must sync"); }
   {
     const double old_x{dialog.m_dialog_left->GetUiX()};
     const double new_x{old_x + 10.0};
-    qtedge->GetQtNode()->SetX(new_x);
+    qtedge->GetQtNode()->SetOuterX(new_x);
     assert(std::abs(new_x - dialog.m_dialog_left->GetUiX()) < 2.0);
   }
   if (verbose) { TRACE("Grabbing QtEdge of QGraphicsView twice, results in an identical picture"); }

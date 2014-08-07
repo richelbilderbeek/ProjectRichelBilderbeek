@@ -133,6 +133,5 @@ void ribi::TestToggleButtonMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestToggleButtonMenuDialog::Test");
-  TRACE("Finished ribi::TestToggleButtonMenuDialog::Test successfully");
 }
 #endif

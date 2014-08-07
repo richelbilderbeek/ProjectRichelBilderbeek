@@ -182,6 +182,5 @@ void ribi::DotMatrixMenuDialog::Test() noexcept
 
     fileio::FileIo().DeleteFile(filename);
   }
-  TRACE("Finished ribi::ToolDotMatrixMenuDialog::Test successfully");
 }
 #endif

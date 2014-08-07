@@ -8,6 +8,7 @@
 #include "plane.h"
 #include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::TestQtRoundedRectItemMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -93,7 +94,6 @@ void ribi::TestQtRoundedRectItemMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestQtRoundedRectItemMenuDialog::Test");
-  TRACE("Finished ribi::TestQtRoundedRectItemMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

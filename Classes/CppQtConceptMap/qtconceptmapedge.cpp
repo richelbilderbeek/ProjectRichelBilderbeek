@@ -210,7 +210,7 @@ QRectF ribi::cmap::QtEdge::boundingRect() const
   //  && "so this must be checked on a higher level");
 
   return m_qtnode->boundingRect() //Bypassed going via m_concept_item
-    .united(m_arrow->boundingRect().translated(-m_qtnode->GetPos()));
+    .united(m_arrow->boundingRect().translated(-m_qtnode->GetOuterPos()));
   //return m_concept_item->boundingRect()
   //  .united(m_arrow->boundingRect().translated(-this->pos()));
 }
@@ -301,14 +301,14 @@ void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event)
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
   if (event->modifiers() & Qt::ShiftModifier)
   {
-    if ((event->pos() - this->m_arrow->GetTail() + m_qtnode->GetPos()).manhattanLength() < 20.0)
+    if ((event->pos() - this->m_arrow->GetTail() + m_qtnode->GetOuterPos()).manhattanLength() < 20.0)
     {
       this->SetHasTailArrow( !m_arrow->HasTail() ); //FIX 2013-02-10
       //this->m_arrow->SetHasTail( !m_arrow->HasTail() ); //BUG 2013-02-10
       //this->update(); //Don't!
       //m_signal_item_updated(this); //Don't!
     }
-    else if ((event->pos() - this->m_arrow->GetHead() + m_qtnode->GetPos()).manhattanLength() < 20.0)
+    else if ((event->pos() - this->m_arrow->GetHead() + m_qtnode->GetOuterPos()).manhattanLength() < 20.0)
     {
       this->SetHasHeadArrow( !m_arrow->HasHead() );
       //this->update(); //Don't!
@@ -318,15 +318,15 @@ void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
   //What is clicked on: the concept or the arrow? Assume concept
   m_arrow->SetPen(QPen(QColor(0,0,0)));
-  if (!m_qtnode->GetRect().contains(event->pos()))
+  if (!m_qtnode->GetInnerRect().contains(event->pos()))
   {
     //If the concept is not clicked...
     //but the arrow is...
     QPointF pos_on_arrow = event->pos();
-    pos_on_arrow += (m_qtnode->GetPos());
+    pos_on_arrow += (m_qtnode->GetOuterPos());
     if (m_arrow->shape().contains(pos_on_arrow)
-      || (event->pos() - this->m_arrow->GetTail() + m_qtnode->GetPos()).manhattanLength() < 20.0
-      || (event->pos() - this->m_arrow->GetHead() + m_qtnode->GetPos()).manhattanLength() < 20.0
+      || (event->pos() - this->m_arrow->GetTail() + m_qtnode->GetOuterPos()).manhattanLength() < 20.0
+      || (event->pos() - this->m_arrow->GetHead() + m_qtnode->GetOuterPos()).manhattanLength() < 20.0
       )
     {
       //give focus to the arrow
@@ -375,8 +375,8 @@ void ribi::cmap::QtEdge::OnHeadArrowChanged(Edge * const edge) noexcept
 void ribi::cmap::QtEdge::OnNodeChanged(Edge * const edge) noexcept
 {
   //TRACE_FUNC();
-  m_qtnode->SetX(edge->GetNode()->GetX());
-  m_qtnode->SetY(edge->GetNode()->GetY());
+  m_qtnode->SetOuterX(edge->GetNode()->GetX());
+  m_qtnode->SetOuterY(edge->GetNode()->GetY());
   m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
   //this->update();
   //if (this->scene()) { this->scene()->update(); }
@@ -436,9 +436,9 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
   assert(m_arrow);
   //TODO: Add again
   //assert(!m_arrow->GetMidItem() || m_qtnode->GetPos() == m_arrow->GetMidItem()->pos());
-  painter->translate(-m_qtnode->GetPos());
+  painter->translate(-m_qtnode->GetOuterPos());
   m_arrow->paint(painter,option,widget);
-  painter->translate(m_qtnode->GetPos());
+  painter->translate(m_qtnode->GetOuterPos());
   m_qtnode->paint(painter,option,widget);
 
   //assert(m_display_strategy);
@@ -590,8 +590,8 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
   m_edge = edge;
 
   //Sync
-  m_qtnode->SetX(edge->GetNode()->GetX());
-  m_qtnode->SetY(edge->GetNode()->GetY());
+  m_qtnode->SetOuterX(edge->GetNode()->GetX());
+  m_qtnode->SetOuterY(edge->GetNode()->GetY());
   m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
 
   assert(m_edge->GetFrom() == from_after );
@@ -683,7 +683,7 @@ QPainterPath ribi::cmap::QtEdge::shape() const
 {
   return
     m_qtnode->shape()
-    .united(m_arrow->shape().translated(-m_qtnode->GetPos()));
+    .united(m_arrow->shape().translated(-m_qtnode->GetOuterPos()));
 }
 
 

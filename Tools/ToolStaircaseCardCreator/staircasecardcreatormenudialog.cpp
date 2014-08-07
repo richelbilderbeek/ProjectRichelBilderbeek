@@ -39,6 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogram.h"
 #include "staircasecard.h"
 #include "textcanvas.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -124,7 +125,6 @@ void ribi::scc::MenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::scc::StaircaseCardCreatorMenuDialog::Test()");
-  TRACE("Finished ribi::scc::StaircaseCardCreatorMenuDialog::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

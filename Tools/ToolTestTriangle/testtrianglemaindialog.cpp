@@ -99,7 +99,6 @@ void ribi::TestTriangleMainDialog::Test() noexcept
   {
     assert(!"Should not get here");
   }
-  TRACE("Finished ribi::TestTriangleMainDialog::Test successfully");
 }
 #endif
 

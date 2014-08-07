@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 int ribi::TestDialMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -158,13 +159,12 @@ void ribi::TestDialMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestDialMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<DialWidget> dial(
       new DialWidget
     );
     assert(dial->GetDial());
   }
-  TRACE("Finished ribi::TestDialMenuDialog::Test successfully");
 }
 #endif

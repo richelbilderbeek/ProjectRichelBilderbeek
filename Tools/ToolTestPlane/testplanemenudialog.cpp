@@ -241,7 +241,6 @@ void ribi::TestPlaneMenuDialog::Test() noexcept
       "2.0","1.0","12.0"
     }
   );
-  TRACE("Finished ribi::TestPlaneMenuDialog::Test successfully");
 }
 
 

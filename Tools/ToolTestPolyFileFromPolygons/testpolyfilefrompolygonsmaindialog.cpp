@@ -61,7 +61,6 @@ void ribi::TestPolyFileFromPolygonsMainDialog::Test() noexcept
   std::stringstream s;
   s << d;
   assert(!s.str().empty());
-  TRACE("Finished ribi::TestPolyFileFromPolygonsMainDialog::Test successfully");
 }
 #endif
 

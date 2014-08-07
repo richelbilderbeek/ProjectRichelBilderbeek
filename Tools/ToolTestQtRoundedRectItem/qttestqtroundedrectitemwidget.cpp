@@ -15,6 +15,7 @@
 #include <QGraphicsSimpleTextItem>
 
 #include "qtroundedrectitem.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *parent)
@@ -31,8 +32,8 @@ ribi::QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *pare
       const double y = -std::cos(angle) * ray;
       QtRoundedRectItem * const item = new QtRoundedRectItem;
       assert(item);
-      item->SetPos(x,y);
-      item->SetRoundedRect(QRectF(-32.0,-32.0,64.0,64.0),16.0,16.0);
+      item->SetOuterPos(x,y);
+      item->SetOuterRoundedRect(QRectF(-32.0,-32.0,64.0,64.0),16.0,16.0);
       assert(scene());
       scene()->addItem(item);
     }
@@ -45,7 +46,8 @@ ribi::QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *pare
       item->setFlags(
           QGraphicsItem::ItemIsFocusable
         | QGraphicsItem::ItemIsMovable
-        | QGraphicsItem::ItemIsSelectable);
+        | QGraphicsItem::ItemIsSelectable
+      );
       item->setPos(x,y);
       item->setRect(-16.0,-16.0,32.0,32.0);
       assert(scene());

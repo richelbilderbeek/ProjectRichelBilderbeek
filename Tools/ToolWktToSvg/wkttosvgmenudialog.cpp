@@ -246,6 +246,5 @@ void ribi::WktToSvgMenuDialog::Test() noexcept
       }
     );
   }
-  TRACE("Finished ribi::WktToSvgMenuDialog::Test successfully");
 }
 #endif

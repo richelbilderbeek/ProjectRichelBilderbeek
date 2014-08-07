@@ -89,6 +89,5 @@ void ribi::ToolTestMultiApproximatorMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ToolTestMultiApproximatorMenuDialog::Test");
-  TRACE("Finished ribi::ToolTestMultiApproximatorMenuDialog::Test successfully");
 }
 #endif

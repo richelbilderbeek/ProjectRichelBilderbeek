@@ -80,6 +80,5 @@ void ribi::TestShapeMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestShapeMainDialog::Test");
-  TRACE("Finished ribi::TestShapeMainDialog::Test successfully");
 }
 #endif

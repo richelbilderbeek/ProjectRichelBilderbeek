@@ -14,6 +14,7 @@
 #include "imagecanvas.h"
 #include "imagerotatermaindialog.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -136,13 +137,14 @@ void ribi::ImageRotaterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ImageRotaterMenuDialog::Test");
+  fileio::FileIo();
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ImageRotaterMenuDialog d;
   const std::string filename { fileio::FileIo().GetTempFileName(".png") };
   QFile file(":/imagerotater/images/R.png");
   file.copy(filename.c_str());
   d.Execute( { "ImageRotaterMenuDialog", "-f", filename, "-r", "30.0" } );
   fileio::FileIo().DeleteFile(filename);
-  TRACE("Finished ribi::ImageRotaterMenuDialog::Test successfully");
 }
 #endif

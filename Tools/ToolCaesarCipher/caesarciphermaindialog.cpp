@@ -80,6 +80,5 @@ void ribi::CaesarCipherMainDialog::Test() noexcept
     const std::string deencrypted = d.GetPlainText();
     assert(s == deencrypted);
   }
-  TRACE("Finished ribi::CaesarCipherMainDialog::Test successfully");
 }
 #endif

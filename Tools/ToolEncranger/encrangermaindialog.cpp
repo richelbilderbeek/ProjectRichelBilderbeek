@@ -80,6 +80,5 @@ void ribi::ToolEncrangerMainDialog::Test() noexcept
     const std::string deencrypted = d.GetPlainText();
     assert(s == deencrypted);
   }
-  TRACE("Finished ribi::ToolEncrangerMainDialog::Test successfully");
 }
 #endif

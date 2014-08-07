@@ -537,17 +537,12 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
     assert(ribi::fileio::FileIo().IsUnixPath(filename));
 
     std::string s = ribi::fileio::FileIo().GetPath(filename);
-    TRACE(s);
+
+    //Foldernames like '../../Classes/CppQrcFile' must be ignored or not occur here.
+    if (!(s[ s.size() - 1] != '.' || s[ s.size() - 2] != '.')) continue;
     while (!s.empty())
     {
       const std::size_t old_len = s.size();
-      if (!(s[ s.size() - 1] != '.' || s[ s.size() - 2] != '.'))
-      {
-        TRACE(s);
-        TRACE(filename);
-        TRACE("ERROR");
-      }
-      //assert(s[ s.size() - 1] != '.' || s[ s.size() - 2] != '.');
       const std::string t = fileio::FileIo().SimplifyPath(s);
       folder_names.insert(t);
       s = ribi::fileio::FileIo().GetPath(s);

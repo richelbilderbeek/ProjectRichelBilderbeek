@@ -132,6 +132,5 @@ void ribi::TestShapeMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestShapeMenuDialog::Test");
-  TRACE("Finished ribi::TestShapeMenuDialog::Test successfully");
 }
 #endif

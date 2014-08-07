@@ -137,6 +137,5 @@ void ribi::TestTwoDigitNewickMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestTwoDigitNewickMenuDialog::Test");
-  TRACE("Finished ribi::TestTwoDigitNewickMenuDialog::Test successfully");
 }
 #endif

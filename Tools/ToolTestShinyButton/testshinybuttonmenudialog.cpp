@@ -111,6 +111,5 @@ void ribi::TestShinyButtonMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestShinyButtonMenuDialog::Test");
-  TRACE("Finished ribi::TestShinyButtonMenuDialog::Test successfully");
 }
 #endif

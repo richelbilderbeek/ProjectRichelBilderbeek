@@ -132,7 +132,6 @@ void ribi::ValentineCardSymbol::Test() noexcept
       boost::lexical_cast<std::string>(i) + ".png");
     ValentineCardSymbol(i).ToImage()->save(filename.c_str());
   }
-  TRACE("Finished ribi::ValentineCardSymbol::Test successfully");
 }
 #endif
 

@@ -124,14 +124,14 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       if ((i%3)!=1)
       {
         rect = new QtRoundedRectItem;
-        rect->SetRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
+        rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       }
       else
       {
         rect = new QtRoundedEditRectItem( {boost::lexical_cast<std::string>(i)} );
       }
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
-      rect->SetPos(x1,y1);
+      rect->SetOuterPos(x1,y1);
       assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
@@ -168,14 +168,14 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       //if ((i%3)!=1)
       {
         rect = new QtRoundedRectItem;
-        rect->SetRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
+        rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       }
       //else
       {
         rect = new QtRoundedEditRectItem( { boost::lexical_cast<std::string>(i) } );
       }
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
-      rect->SetPos(x1,y1);
+      rect->SetOuterPos(x1,y1);
       assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
@@ -208,9 +208,9 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       const double y1 = -std::cos(angle) * ray;
       QtRoundedRectItem * rect = new QtRoundedRectItem;
       assert(rect);
-      rect->SetRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
+      rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
-      rect->SetPos(x1,y1);
+      rect->SetOuterPos(x1,y1);
       assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
@@ -259,6 +259,5 @@ void ribi::QtTestQtArrowItemsCompareDialog::Test() noexcept
   }
   TRACE("Starting ribi::QtTestQtArrowItemsCompareDialog::Test");
   QtTestQtArrowItemsCompareDialog();
-  TRACE("Finished ribi::QtTestQtArrowItemsCompareDialog::Test successfully");
 }
 #endif

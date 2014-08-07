@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dialwidget.h"
 #include "led.h"
 #include "ledwidget.h"
+#include "testtimer.h"
 #include "mysterymachine.h"
 #include "mysterymachinewidget.h"
 #include "richelbilderbeekprogram.h"
@@ -122,8 +123,6 @@ void ribi::SimMysteryMachineMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::SimMysteryMachineMenuDialog::Test");
-  //::shared_ptr<MysteryMachineWidget> w { std::make_shared<MysteryMachineWidget>() };
-  TRACE("Finished ribi::SimMysteryMachineMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

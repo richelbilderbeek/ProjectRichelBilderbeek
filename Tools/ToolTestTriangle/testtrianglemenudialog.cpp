@@ -355,6 +355,5 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
       }
     );
   }
-  TRACE("Finished ribi::TestTriangleMenuDialog::Test successfully");
 }
 #endif
