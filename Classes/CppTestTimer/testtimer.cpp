@@ -34,20 +34,23 @@ struct TestTimerImpl
     assert(m_function_name.find('\n') == std::string::npos);
     assert(m_function_name.find('\r') == std::string::npos);
     assert(m_function_name.find('\t') == std::string::npos);
-    ++cnt;
+    ++m_cnt;
   }
   ~TestTimerImpl() noexcept
   {
-    --cnt;
+    --m_cnt;
   }
-  static int cnt;
+
+  static int m_cnt;
+  static int m_max_cnt;
   const std::string m_file_name;
   const std::string m_function_name;
   const double m_max_time_sec;
   boost::timer m_timer;
 };
 
-int TestTimerImpl::cnt = 0;
+int TestTimerImpl::m_cnt = 0;
+int TestTimerImpl::m_max_cnt = 2;
 
 } //~namespace ribi
 
@@ -59,7 +62,7 @@ ribi::TestTimer::TestTimer(
 ) : m_impl(new TestTimerImpl(function_name,file_name,max_time_sec))
 {
   std::clog
-    << std::string(m_impl->cnt - 1,' ')
+    << std::string(m_impl->m_cnt - 1,' ')
     << "\\ START: "
     << ExtractFilename(m_impl->m_file_name)
     << ','
@@ -67,18 +70,18 @@ ribi::TestTimer::TestTimer(
     << std::endl
   ;
 
-  if (m_impl->cnt > 1)
+  if (m_impl->m_cnt == m_impl->m_max_cnt)
   {
     std::clog
       << "WARNING: "
       << m_impl->m_file_name
       << ','
       << m_impl->m_function_name
-      << ": count equals " << m_impl->cnt
+      << ": count equals " << m_impl->m_cnt
       << std::endl
     ;
   }
-  assert(m_impl->cnt == 1 && "TestTimer can only have one TestTimer instance active");
+  assert(m_impl->m_cnt < m_impl->m_max_cnt && "TestTimer can only have max_cnt TestTimer instances active");
 }
 
 ribi::TestTimer::~TestTimer() noexcept
@@ -87,7 +90,7 @@ ribi::TestTimer::~TestTimer() noexcept
   if (elapsed_secs > m_impl->m_max_time_sec)
   {
     std::clog
-      << std::string(m_impl->cnt - 1,' ')
+      << std::string(m_impl->m_cnt - 1,' ')
       << " | FUNCTION '"
       << m_impl->m_function_name
       << "' IN FILE '"
@@ -97,7 +100,7 @@ ribi::TestTimer::~TestTimer() noexcept
     ;
   }
   std::clog
-    << std::string(m_impl->cnt - 1,' ')
+    << std::string(m_impl->m_cnt - 1,' ')
     << "/ DONE : "
     << ExtractFilename(m_impl->m_file_name)
     << ','
@@ -124,4 +127,9 @@ std::vector<std::string> ribi::TestTimer::GetVersionHistory() noexcept
   return {
     "2014-08-02: version 1.0: initial version"
   };
+}
+
+void ribi::TestTimer::SetMaxCnt(const int max_cnt) noexcept
+{
+  TestTimerImpl::m_max_cnt = max_cnt + 1;
 }

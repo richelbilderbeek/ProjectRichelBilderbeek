@@ -40,6 +40,7 @@ struct TestTimer
   ~TestTimer() noexcept; //But might terminate the program instead
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
+  static void SetMaxCnt(const int max_cnt) noexcept;
 
   private:
   TestTimerImpl * const m_impl;

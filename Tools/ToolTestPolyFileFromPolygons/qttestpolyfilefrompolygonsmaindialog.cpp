@@ -151,20 +151,6 @@ void ribi::QtTestPolyFileFromPolygonsMainDialog::on_edit_shapes_textChanged()
   DisplayPolygons();
 }
 
-/*
-std::vector<std::string> ribi::QtTestPolyFileFromPolygonsMainDialog::SeperateString(
-  const std::string& input,
-  const char seperator
-) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/
-
 #ifndef NDEBUG
 void ribi::QtTestPolyFileFromPolygonsMainDialog::Test() noexcept
 {

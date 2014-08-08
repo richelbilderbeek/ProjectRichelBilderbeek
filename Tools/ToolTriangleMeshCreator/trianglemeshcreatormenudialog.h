@@ -34,6 +34,7 @@ namespace ribi {
 ///GUI independent TriangleMeshCreator menu dialog
 struct TriangleMeshCreatorMenuDialog final : public MenuDialog
 {
+  TriangleMeshCreatorMenuDialog();
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;
   boost::shared_ptr<const Program> GetProgram() const noexcept override;
@@ -46,6 +47,8 @@ struct TriangleMeshCreatorMenuDialog final : public MenuDialog
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  static void TestDeep() noexcept;
 };
 
 } //namespace ribi

@@ -24,11 +24,21 @@ namespace trim {
 ///The next step will be
 /// - freely delete the Cells that are not in the final mesh
 /// - pass the desired cells to TriangleMeshBuilder to create the OpenFOAM files
-class CellsCreator
+struct CellsCreator
 {
 
-  friend class CellFactory;
-  friend class Dialog;
+  //friend class CellFactory;
+  //friend class Dialog;
+
+  //n_face_layers - 1 == n_cell_layers
+  explicit CellsCreator(
+    const boost::shared_ptr<const Template> t,
+    const int n_cell_layers,
+    const boost::units::quantity<boost::units::si::length> layer_height,
+    const CreateVerticalFacesStrategy strategy,
+    const bool verbose,
+    const CellsCreatorFactory& lock //to force creation by CellsCreatorFactory
+  );
 
   CellsCreator(const CellsCreator&) = delete;
   CellsCreator(CellsCreator&&) = delete;
@@ -42,15 +52,6 @@ class CellsCreator
   private:
   friend class CellsCreatorFactory;
 
-  //n_face_layers - 1 == n_cell_layers
-  explicit CellsCreator(
-    const boost::shared_ptr<const Template> t,
-    const int n_cell_layers,
-    const boost::units::quantity<boost::units::si::length> layer_height,
-    const CreateVerticalFacesStrategy strategy,
-    const bool verbose,
-    const CellsCreatorFactory& lock //to force creation by CellsCreatorFactory
-  );
   ~CellsCreator() noexcept {}
 
   std::vector<boost::shared_ptr<Cell>> m_cells;

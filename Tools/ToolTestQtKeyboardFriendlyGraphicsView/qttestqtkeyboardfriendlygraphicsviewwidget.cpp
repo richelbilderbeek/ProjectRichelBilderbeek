@@ -212,8 +212,10 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
         const double x = midx + std::sin(sub_angle) * sub_ray;
         const double y = midy - std::cos(sub_angle) * sub_ray;
         QtRoundedRectItem * const item = new QtRoundedRectItem;
+        item->SetOuterWidth(16.0);
+        item->SetOuterHeight(8.0);
+        //item->SetOuterRoundedRect(QRectF(-4.0,-4.0,8.0,8.0),1.0,1.0);
         item->SetOuterPos(x,y);
-        item->SetOuterRoundedRect(QRectF(-4.0,-4.0,8.0,8.0),1.0,1.0);
         scene()->addItem(item);
         v[j] = item;
       }

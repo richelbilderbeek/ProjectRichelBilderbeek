@@ -68,34 +68,41 @@ ribi::QtRoundedRectItem::~QtRoundedRectItem() noexcept
 double ribi::QtRoundedRectItem::GetInnerHeight() const noexcept
 {
   const double pen_width = GetCurrentPen().widthF();
-  return GetOuterHeight() -pen_width;
+  return GetOuterHeight() - (2.0 * pen_width);
 }
 
-/*
 QRectF ribi::QtRoundedRectItem::GetInnerRect() const noexcept
 {
-  const double pen_width
-    = GetCurrentPen().widthF()
-  ;
-  //QGraphicsRectItem::rect() is the entire rect
+  /*
+  const double pen_width = GetCurrentPen().widthF();
+  const auto x = GetInnerX();
+  const auto y = GetInnerX();
+  const auto w = GetInnerWidth();
+  const auto h = GetInnerHeight();
   return GetOuterRect().adjusted(
      pen_width, pen_width,-pen_width,-pen_width);
+  */
+  return QRectF(
+    GetInnerX(),
+    GetInnerY(),
+    GetInnerWidth(),
+    GetInnerHeight()
+  );
 }
-*/
 
 double ribi::QtRoundedRectItem::GetInnerWidth() const noexcept
 {
   const double pen_width = GetCurrentPen().widthF();
-  return GetOuterWidth() -pen_width;
+  return GetOuterWidth() - pen_width;
 }
 
-/*
+
 QRectF ribi::QtRoundedRectItem::GetOuterRect() const noexcept
 {
-  const QRectF r = QGraphicsRectItem::rect();
-  return r;
+  const QRectF r{QGraphicsRectItem::rect()};
+  return r.translated(GetOuterX(),GetOuterY());
 }
-*/
+
 
 std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
@@ -127,10 +134,12 @@ void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) no
 
 void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept
 {
+  /*
   #ifndef NDEBUG
   const auto width_before = GetOuterWidth();
   const auto height_before = GetOuterWidth();
   #endif // NDEBUG
+  */
 
   painter->setBrush(brush());
   //The item can be selected by clicking on it, or can have focus by moving towards it
@@ -177,12 +186,14 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
     );
   }
 
+  /*
   #ifndef NDEBUG
   const auto width_after = GetOuterWidth();
   const auto height_after = GetOuterHeight();
   assert(width_before == width_after);
   assert(height_before == height_after);
   #endif
+  */
 }
 
 void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen) noexcept
@@ -250,8 +261,8 @@ void ribi::QtRoundedRectItem::SetInnerHeight(const double height) noexcept
   SetOuterHeight(
     height + (2.0 * GetCurrentPen().widthF())
   );
-  //assert(std::abs(height - GetInnerHeight()) < 2.0);
 }
+
 
 void ribi::QtRoundedRectItem::SetInnerPos(
   const double x,const double y
@@ -286,12 +297,34 @@ void ribi::QtRoundedRectItem::SetInnerRoundedRect(
 }
 */
 
+/*
+void ribi::QtRoundedRectItem::SetInnerWidth(const double width) noexcept
+{
+  if (width != GetInnerWidth())
+  {
+    const auto w = GetOuterWidth();
+    const auto h = GetOuterHeight();
+    const auto h = height;
+    const auto p = GetCurrentPen().widthF();
+    QGraphicsRectItem::setRect(
+      QRectF(
+        (-0.5 * w) + p,
+        (-0.5 * h) + p,
+        ( 0.5 * w) - p,
+        ( 0.5 * h) - p
+      )
+    );
+    this->update();
+    m_signal_width_changed(this);
+  }
+}
+*/
 void ribi::QtRoundedRectItem::SetInnerWidth(const double width) noexcept
 {
   SetOuterWidth(
     width + (2.0 * GetCurrentPen().widthF())
   );
-  //assert(std::abs(width - GetInnerWidth()) < 2.0);
+  //assert(std::abs(height - GetInnerHeight()) < 2.0);
 }
 
 
@@ -301,13 +334,10 @@ void ribi::QtRoundedRectItem::SetOuterHeight(const double height) noexcept
   {
     const auto w = GetOuterWidth();
     const auto h = height;
-    const auto p = GetCurrentPen().widthF();
     QGraphicsRectItem::setRect(
       QRectF(
-        (-0.5 * w) - p,
-        (-0.5 * h) - p,
-        ( 0.5 * w) + p,
-        ( 0.5 * h) + p
+        QPointF(-0.5 * w,-0.5 * h),
+        QPointF( 0.5 * w, 0.5 * h)
       )
     );
     this->update();
@@ -346,19 +376,15 @@ void ribi::QtRoundedRectItem::SetOuterWidth(const double width) noexcept
   {
     const auto w = width;
     const auto h = GetOuterHeight();
-    const auto p = GetCurrentPen().widthF();
     QGraphicsRectItem::setRect(
       QRectF(
-        (-0.5 * w) - p,
-        (-0.5 * h) - p,
-        ( 0.5 * w) + p,
-        ( 0.5 * h) + p
+        QPointF(-0.5 * w,-0.5 * h),
+        QPointF( 0.5 * w, 0.5 * h)
       )
     );
     this->update();
     m_signal_width_changed(this);
   }
-  //assert(std::abs(width - GetOuterWidth()) < 2.0);
 }
 
 /*
@@ -445,7 +471,6 @@ bool ribi::operator==(const QtRoundedRectItem& lhs, const QtRoundedRectItem& rhs
     && lhs.GetRadiusY() == lhs.GetRadiusY()
     && lhs.GetInnerWidth() == lhs.GetInnerWidth()
     && lhs.GetInnerHeight() == lhs.GetInnerHeight()
-    //&& lhs.GetInnerRect() == lhs.GetInnerRect()
   ;
 }
 

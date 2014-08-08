@@ -4,7 +4,8 @@ INCLUDEPATH += \
 SOURCES += \
     ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitem.cpp \
     ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitemdialog.cpp \
-    ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitempadding.cpp
+    ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitempadding.cpp \
+    ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitem_test.cpp
 
 HEADERS  += \
     ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitem.h \

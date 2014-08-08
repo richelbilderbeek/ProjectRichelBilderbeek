@@ -548,40 +548,27 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
     const auto new_y = dialog.ui->box_y->value() + 10.0;
     item->SetOuterY(new_y);
   }
+  //SetItem with other item
+  {
+    boost::shared_ptr<QtRoundedRectItem> new_item{new QtRoundedRectItem};
+    dialog.SetItem(new_item);
+    assert(dialog.GetItem() == new_item);
+  }
+  //SetItem with original item
+  {
+    dialog.SetItem(item);
+    assert(dialog.GetItem() == item);
+  }
   /*
-  if(std::abs(ui->box_contour_pen_width->value() - GetItem()->GetContourPen().widthF()) >= 1.0)
-  {
-    TRACE("ERROR");
-    TRACE(ui->box_focus_pen_width->value());
-    TRACE(GetItem()->GetFocusPen().widthF());
-    TRACE("BREAK");
-  }
-  assert(std::abs(ui->box_contour_pen_width->value() - GetItem()->GetContourPen().widthF()) < 1.0);
-  if(std::abs(ui->box_focus_pen_width->value() - GetItem()->GetFocusPen().widthF()) >= 1.0)
-  {
-    TRACE("ERROR");
-    TRACE(ui->box_focus_pen_width->value());
-    TRACE(GetItem()->GetFocusPen().widthF());
-    TRACE("BREAK");
-  }
-  assert(std::abs(ui->box_focus_pen_width->value() - GetItem()->GetFocusPen().widthF()) < 1.0);
-  assert(std::abs(ui->box_height->value() - GetItem()->GetHeight()) < 1.0);
-  assert(std::abs(ui->box_height_including_pen->value() - GetItem()->GetHeightIncludingPen()) < 1.0);
-  assert(std::abs(ui->box_radius_x->value() - GetItem()->GetRadiusX()) < 1.0);
-  assert(std::abs(ui->box_radius_y->value() - GetItem()->GetRadiusY()) < 1.0);
-  if(std::abs(ui->box_width->value() - GetItem()->GetWidth()) >= 1.0)
-  {
-    TRACE("ERROR");
-    TRACE(ui->box_width->value());
-    TRACE(GetItem()->GetWidth());
-    TRACE("BREAK");
-  }
-
-  assert(std::abs(ui->box_width->value() - GetItem()->GetWidth()) < 1.0);
-  assert(std::abs(ui->box_width_including_pen->value() - GetItem()->GetWidthIncludingPen()) < 1.0);
-  assert(std::abs(ui->box_x->value() - GetItem()->GetPos().x()) < 1.0);
-  assert(std::abs(ui->box_y->value() - GetItem()->GetPos().y()) < 1.0);
+    const auto contour_pen_before = item->GetContourPen();
+    const auto focus_pen_before = item->GetFocusPen();
+    const auto pos_before = item->GetOuterPos();
+    const auto radius_x_before = item->GetRadiusX();
+    const auto radius_y_before = item->GetRadiusY();
+    const auto width_before = item->GetInnerWidth();
+    const auto height_before = item->GetInnerHeight();
   */
+  assert(!"Refactor");
 }
 #endif
 

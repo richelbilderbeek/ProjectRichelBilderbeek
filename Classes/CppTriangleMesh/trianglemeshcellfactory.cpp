@@ -114,7 +114,7 @@ void ribi::trim::CellFactory::Test() noexcept
   FaceFactory();
   CellFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);
   CellsCreatorFactory();
-  CellsCreator(Template::CreateTest(0),1,1.0 * meter,CreateVerticalFacesStrategy::one_face_per_square,false,CellsCreatorFactory());
+  CellsCreatorFactory().Create(Template::CreateTest(0),1,1.0 * meter,CreateVerticalFacesStrategy::one_face_per_square,false);
 
 
   const TestTimer test_timer(__func__,__FILE__,1.0);

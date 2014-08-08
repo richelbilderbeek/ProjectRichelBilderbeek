@@ -48,14 +48,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "trianglefile.h"
 #include "trianglemeshdialog.h"
+#include "trianglemeshcreateverticalfacesstrategies.h"
+#include "trianglemeshcellscreator.h"
+#include "trianglemeshcellscreatorfactory.h"
+#include "trianglemeshtemplate.h"
 #pragma GCC diagnostic pop
+
+ribi::TriangleMeshCreatorMenuDialog::TriangleMeshCreatorMenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
 {
   START_TRACE();
-  #ifndef NDEBUG
-  Test();
-  #endif
   typedef boost::units::quantity<boost::units::si::area> Area;
   typedef boost::units::quantity<boost::units::si::length> Length;
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
@@ -481,6 +489,7 @@ ribi::Help ribi::TriangleMeshCreatorMenuDialog::GetHelp() const noexcept
       Help::Option('q',"triangle_min_angle","Triangle min angle"),
       Help::Option('r',"triangle_max_area","Triangle max area"),
       Help::Option('s',"strategy","how to create vertical faces, '1' or '2'"),
+      Help::Option('t',"test","tests the program extensively"),
       Help::Option('w',"wkt","WKT of the shapes used as a base"),
       Help::Option('z',"layer_height","the height of a layer, in meters")
     },
@@ -539,7 +548,6 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
   const int testing_depth = 1;
   {
     TriangleMeshCreatorMenuDialog d;
-    d.Execute( {"TriangleMeshCreator", "--help" } );
     d.Execute(
       {
         "TriangleMeshCreator",
@@ -624,3 +632,122 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
   }
 }
 #endif
+
+void ribi::TriangleMeshCreatorMenuDialog::TestDeep() noexcept
+{
+  const bool verbose{false};
+
+  if (verbose) { TRACE("Trying out to build cells from the hardest testing templates"); }
+  {
+    using ribi::trim::Cell;
+    using ribi::trim::CellsCreator;
+    using ribi::trim::CellsCreatorFactory;
+    using ribi::trim::CreateVerticalFacesStrategy;
+    using ribi::trim::CreateVerticalFacesStrategies;
+    using ribi::trim::Dialog;
+    using ribi::trim::Template;
+    //This is the longest test by far
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
+    for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
+    {
+      const boost::shared_ptr<Template> my_template {
+        Template::CreateTest(3)
+      };
+
+      const int n_cell_layers = 2;
+      const boost::shared_ptr<CellsCreator> cells_creator{
+        CellsCreatorFactory().Create(
+          my_template,
+          n_cell_layers,
+          1.0 * boost::units::si::meter,
+          strategy,
+          verbose
+        )
+      };
+      const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
+      assert(cells.size() > 0);
+    }
+  }
+
+  if (verbose) { TRACE("Testing case 1"); }
+  TriangleMeshCreatorMenuDialog().Execute(
+    {
+      "TriangleMeshCreator",
+      "--layer_height", "1",
+      "--WKT", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
+      "--strategy", "1",
+      "--n_layers", "1",
+      "--fraction", "0.75",
+      //"--show_mesh",
+      //"--verbose",
+      "--triangle_max_area", "10.0",
+      "--triangle_min_angle", "20.0",
+      "--profile"
+    }
+  );
+  if (verbose) { TRACE("Testing case 2"); }
+  TriangleMeshCreatorMenuDialog().Execute(
+    {
+      "TriangleMeshCreator",
+      "-z", "1",
+      "-w", "POLYGON((0 0,0 3,3 0)),POLYGON((1 1,0 2,2 0))",
+      "-s", "1",
+      "-n", "1",
+      "-f", "0.75",
+      //"-m",
+      //"-b",
+      "--triangle_area", "10.0",
+      "--triangle_quality", "20.0",
+      "--profile"
+    }
+  );
+  if (verbose) { TRACE("Testing case 3"); }
+  TriangleMeshCreatorMenuDialog().Execute(
+    {
+      "TriangleMeshCreator",
+      "-z", "1",
+      "-w", "POLYGON((10 10,10 -10,-10 -10,-10 10)),LINESTRING(5 5,5 -5,-5 -5,-5 5)",
+      "-s", "1",
+      "-n", "1",
+      "-f", "0.75",
+      //"-m",
+      //"-b",
+      "-r", "10.0",
+      "-q", "20.0",
+      "--profile"
+    }
+  );
+  if (verbose) { TRACE("Testing case 4"); }
+  TriangleMeshCreatorMenuDialog().Execute(
+    {
+      "TriangleMeshCreator",
+      "-z", "1",
+      "-w", "LINESTRING(5 5,5 -5,-5 -5,-5 5)",
+      "-s", "1",
+      "-n", "1",
+      "-f", "0.75",
+      //"-m",
+      //"-b",
+      "-r", "10.0",
+      "-q", "20.0",
+      "--profile"
+    }
+  );
+  if (verbose) { TRACE("Testing mesh of issue #221"); }
+
+  TriangleMeshCreatorMenuDialog().Execute(
+    {
+      "TriangleMeshCreator",
+      "--layer_height","1",
+      "--WKT", "POLYGON((10 10,10 -10,-10 -10,-10 10))",
+      "--strategy", "1",
+      "--n_layers", "10",
+      "--fraction", "0.9",
+      "--triangle_max_area", "0.1",
+      "--triangle_min_angle", "20.0",
+      "--show_mesh",
+      "--profile"
+    }
+  );
+  if (verbose) { TRACE("Tested all cases"); }
+}

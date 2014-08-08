@@ -125,7 +125,9 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       if ((i%3)!=1)
       {
         rect = new QtRoundedRectItem;
-        rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
+        rect->SetOuterWidth(16.0);
+        rect->SetOuterHeight(8.0);
+        rect->SetOuterPos(0.0,0.0);
       }
       else
       {
@@ -169,7 +171,10 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       //if ((i%3)!=1)
       {
         rect = new QtRoundedRectItem;
-        rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
+        rect->SetOuterWidth(16.0);
+        rect->SetOuterHeight(8.0);
+        rect->SetOuterPos(0.0,0.0);
+        //rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       }
       //else
       {
@@ -209,7 +214,9 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       const double y1 = -std::cos(angle) * ray;
       QtRoundedRectItem * rect = new QtRoundedRectItem;
       assert(rect);
-      rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
+      rect->SetOuterWidth(16.0);
+      rect->SetOuterHeight(8.0);
+      //rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
       rect->SetOuterPos(x1,y1);
       assert(!rect->scene());

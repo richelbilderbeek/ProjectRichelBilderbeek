@@ -25,20 +25,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundededitrectitem.h"
 
 #include <cassert>
-#include <sstream>
 
 #include <boost/lambda/lambda.hpp>
 
-#include <QBrush>
-#include <QFont>
-#include <QGraphicsScene>
+#include <QFontMetrics>
 #include <QKeyEvent>
-
-#include <QInputDialog>
 #include <QPainter>
 
 #include "container.h"
-#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -220,22 +214,21 @@ void ribi::QtRoundedEditRectItem::OnBaseChanged(QtRoundedRectItem * const) noexc
 
 void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
-  const double border_width
-    = std::max(GetContourPen().width(),GetFocusPen().width());
+  const double border_width{GetCurrentPen().widthF()};
+  //  = std::max(GetContourPen().width(),GetFocusPen().width());
 
   //Possibly adapt the rounded rect border here
+  if (1==2)
   {
     const QRectF text_rect = GetTextRect(m_text,m_font);
-    this->SetInnerRoundedRect(
-      text_rect.adjusted(
-        -m_padding.left   - border_width,
-        -m_padding.top    - border_width,
-         m_padding.right  + border_width,
-         m_padding.bottom + border_width
-      ),
-      this->GetRadiusX(),
-      this->GetRadiusY()
+    this->SetInnerWidth(
+      text_rect.width() + m_padding.left + m_padding.right
     );
+    this->SetInnerHeight(
+      text_rect.height() + m_padding.top + m_padding.bottom
+    );
+    SetRadiusX(GetRadiusX());
+    SetRadiusY(GetRadiusY());
   }
 
   //Draws the rounded rectangle
@@ -352,6 +345,16 @@ void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text) 
       TRACE(s.str());
     }
     m_text = text;
+
+    //Adapt the size
+    const QRectF text_rect = GetTextRect(m_text,m_font);
+    this->SetInnerWidth(
+      text_rect.width() + m_padding.left + m_padding.right
+    );
+    this->SetInnerHeight(
+      text_rect.height() + m_padding.top + m_padding.bottom
+    );
+
     m_signal_text_changed(this);
     this->update();
   }
@@ -374,34 +377,6 @@ void ribi::QtRoundedEditRectItem::SetTextPen(const QPen& pen) noexcept
   {
     m_text_pen = pen;
     this->update();
-    //this->m_signal_item_has_updated(this);
     m_signal_text_pen_changed(this);
   }
 }
-
-#ifndef NDEBUG
-void ribi::QtRoundedEditRectItem::Test() noexcept
-{
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  QtRoundedRectItem();
-
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-  for (const std::string& s: { "X" })
-  {
-    const QFont font;
-    assert(GetTextRect(s,font).width() > 0.0);
-    assert(GetPaddedTextRect(s,font).width() >= GetTextRect(s,font).width());
-  }
-}
-#endif
-
-/*
-std::ostream& ribi::operator<<(std::ostream& os, const QtRoundedEditRectItem& item) noexcept
-{
-
-}
-*/

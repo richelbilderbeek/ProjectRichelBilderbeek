@@ -699,29 +699,35 @@ void ribi::trim::CellsCreator::Test() noexcept
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
 
-  if (verbose) { TRACE("Trying out to build cells from the hardest testing templates"); }
+  /*
+  if (testing_depth > 1)
   {
-    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
-    for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
+    if (verbose) { TRACE("Trying out to build cells from the hardest testing templates"); }
     {
-      const boost::shared_ptr<Template> my_template {
-        Template::CreateTest(3)
-      };
+      //This is the longest test by far
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
+      for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
+      {
+        const boost::shared_ptr<Template> my_template {
+          Template::CreateTest(3)
+        };
 
-      const int n_cell_layers = 2;
-      const boost::shared_ptr<CellsCreator> cells_creator {
-        CellsCreatorFactory().Create(
-          my_template,
-          n_cell_layers,
-          1.0 * boost::units::si::meter,
-          strategy,
-          verbose
-        )
-      };
-      const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
-      assert(cells.size() > 0);
+        const int n_cell_layers = 2;
+        const boost::shared_ptr<CellsCreator> cells_creator {
+          CellsCreatorFactory().Create(
+            my_template,
+            n_cell_layers,
+            1.0 * boost::units::si::meter,
+            strategy,
+            verbose
+          )
+        };
+        const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
+        assert(cells.size() > 0);
+      }
     }
   }
+  */
   if (verbose) { TRACE("Specific: check if a Face really loses its neighbour: remove a prism from a cube"); }
   {
     //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);

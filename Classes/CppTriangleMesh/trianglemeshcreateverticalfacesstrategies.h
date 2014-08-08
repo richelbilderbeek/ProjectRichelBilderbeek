@@ -9,17 +9,17 @@
 namespace ribi {
 namespace trim {
 
-class CreateVerticalFacesStrategies
+struct CreateVerticalFacesStrategies
 {
-  friend class Cell;
-  friend class CellFactory;
-  friend class CellsCreator;
-  friend class CellsCreatorFactory;
-  friend class Dialog;
-  friend class Face;
-  friend class FaceFactory;
-  friend class TriangleMeshBuilder;
-  friend class TriangleMeshBuilderImpl;
+  //friend class Cell;
+  //friend class CellFactory;
+  //friend class CellsCreator;
+  //friend class CellsCreatorFactory;
+  //friend class Dialog;
+  //friend class Face;
+  //friend class FaceFactory;
+  //friend class TriangleMeshBuilder;
+  //friend class TriangleMeshBuilderImpl;
 
   CreateVerticalFacesStrategies() noexcept {}
 
