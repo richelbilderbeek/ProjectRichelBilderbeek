@@ -9,6 +9,7 @@
 #include "qtaboutdialog.h"
 #include "qtmultiencrangermaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtmultiencrangermenudialog.h"
 #pragma GCC diagnostic pop
@@ -62,8 +63,7 @@ void ribi::QtMultiEncrangerMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtToolMultiEncrangerMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtToolMultiEncrangerMainDialog();
-  TRACE("Finished QtToolMultiEncrangerMenuDialog::Test successfully");
 }
 #endif

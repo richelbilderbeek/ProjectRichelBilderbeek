@@ -10,6 +10,7 @@
 #include "testhideandshowdialogmenudialog.h"
 #include "qtaboutdialog.h"
 #include "qttesthideandshowdialogmaindialog.h"
+#include "testtimer.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
 #include "ui_qttesthideandshowdialogmenudialog.h"
@@ -67,9 +68,8 @@ void ribi::QtTestHideAndShowDialogMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestHideAndShowDialogMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestHideAndShowMainDialog();
   assert(!QtTestHideAndShowDialogMenuDialog().GetVersion().empty());
-  TRACE("Finished ribi::QtTestHideAndShowDialogMenuDialog::Test successfully");
 }
 #endif

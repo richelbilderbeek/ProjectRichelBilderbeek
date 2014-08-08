@@ -5,6 +5,7 @@
 #include "about.h"
 #include "trace.h"
 #include "qtaboutdialog.h"
+#include "testtimer.h"
 #include "qtstaircasecardcreatormaindialog.h"
 #include "staircasecardcreatormenudialog.h"
 #include "ui_qtstaircasecardcreatormenudialog.h"
@@ -55,9 +56,8 @@ void ribi::scc::QtStaircaseCardCreatorMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtStaircaseCardCreatorMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ribi::scc::MenuDialog();
   QtStaircaseCardCreatorMainDialog();
-  TRACE("Finished QtStaircaseCardCreatorMenuDialog::Test successfully");
 }
 #endif

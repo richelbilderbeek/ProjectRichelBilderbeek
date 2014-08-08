@@ -12,6 +12,7 @@
 #include "qtaboutdialog.h"
 #include "qttestsimplelinearregressionmaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestsimplelinearregressionmenudialog.h"
 
@@ -70,7 +71,7 @@ void ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtToolTestSimpleLinearRegressionMainDialog();
   //Let Boost.Units check for compiling
   {
@@ -105,7 +106,5 @@ void ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test() noexcept
       < Distance(0.0001 * boost::units::si::meter).value() );
 
   }
-
-  TRACE("Finished ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test successfully");
 }
 #endif

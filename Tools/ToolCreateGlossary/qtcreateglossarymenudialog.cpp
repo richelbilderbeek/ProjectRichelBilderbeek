@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "createglossarymenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtcreateglossarymaindialog.h"
+#include "testtimer.h"
 #include "ui_qtcreateglossarymenudialog.h"
 #include "createglossarymaindialog.h"
 #include "trace.h"
@@ -73,9 +74,8 @@ void ribi::QtCreateGlossaryMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtCreateGlossaryMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtCreateGlossaryMainDialog();
   CreateGlossaryMenuDialog();
-  TRACE("Finished QtCreateGlossaryMenuDialog::Test successfully");
 }
 #endif

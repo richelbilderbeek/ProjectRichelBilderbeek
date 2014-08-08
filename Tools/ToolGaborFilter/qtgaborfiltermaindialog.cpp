@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 #include <boost/math/constants/constants.hpp>
 
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtgaborfiltermaindialog.h"
 
@@ -87,7 +88,6 @@ void ribi::QtToolGaborFilterMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolGaborFilterMainDialog::Test");
-  TRACE("Finished ribi::QtToolGaborFilterMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -6,6 +6,7 @@
 #include "tronmenudialog.h"
 #include "qttrongamedialog.h"
 #include "ui_qttronmenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -49,8 +50,7 @@ void ribi::tron::QtTronMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tron::QtTronMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTronGameDialog();
-  TRACE("Finished ribi::tron::QtTronMenuDialog::Test successfully");
 }
 #endif

@@ -13,6 +13,7 @@
 #include "trace.h"
 #include "qtaminoacidfightermaindialog.h"
 #include "ui_qtaminoacidfightermaindialog.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::aaf::QtAafMainDialog::QtAafMainDialog(QWidget *parent)
@@ -128,7 +129,6 @@ void ribi::aaf::QtAafMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::aaf::QtAafMainDialog::Test()");
-  TRACE("Finished ribi::aaf::QtAafMainDialog::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

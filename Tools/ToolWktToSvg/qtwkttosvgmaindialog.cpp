@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "fileio.h"
 #include "qtnavigationablegraphicsview.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "wkttosvgmaindialog.h"
 #include "ui_qtwkttosvgmaindialog.h"
@@ -81,10 +82,9 @@ void ribi::QtWktToSvgMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtWktToSvgMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   WktToSvgMainDialog("POLYGON((0 0,0 1,1 1))",1.0);
   QtWktToSvgMainDialog();
-  TRACE("Finished QtWktToSvgMainDialog::Test successfully");
 }
 #endif
 

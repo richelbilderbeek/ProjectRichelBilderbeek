@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthreeresources.h"
 #include "qtconnectthreeresources.h"
 #include "ui_qtconnectthreegamedialog.h"
+#include "testtimer.h"
 #include "qtconnectthreegamedialog.h"
 #include "qtconnectthreewidget.h"
 #include "qtshowwinnerdialog.h"
@@ -158,13 +159,12 @@ void ribi::con3::QtConnectThreeGameDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::con3::QtConnectThreeGameDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
   assert(resources);
   const boost::shared_ptr<const QtConnectThreeGameDialog> d {
     new QtConnectThreeGameDialog(resources,nullptr,std::bitset<3>(false))
   };
   assert(d);
-  TRACE("Finished ribi::con3::QtConnectThreeGameDialog::Test successfully");
 }
 #endif

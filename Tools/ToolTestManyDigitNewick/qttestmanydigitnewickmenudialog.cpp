@@ -11,6 +11,7 @@
 #include "testmanydigitnewickmenudialog.h"
 #include "qtaboutdialog.h"
 #include "qttestmanydigitnewickmaindialog.h"
+#include "testtimer.h"
 #include "testmanydigitnewickmenudialog.h"
 #include "ui_qttestmanydigitnewickmenudialog.h"
 #include "trace.h"
@@ -63,8 +64,7 @@ void ribi::QtTestManyDigitNewickMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestManyDigitNewickMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestManyDigitNewickMainDialog();
-  TRACE("Finished ribi::QtTestManyDigitNewickMenuDialog::Test successfully");
 }
 #endif

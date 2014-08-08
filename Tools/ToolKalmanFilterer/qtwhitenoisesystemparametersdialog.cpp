@@ -19,6 +19,7 @@
 #include "laggedwhitenoisesystemfactory.h"
 #include "laggedwhitenoisesystemparameters.h"
 #include "matrix.h"
+#include "testtimer.h"
 #include "qtkalmanfiltererparameterdialog.h"
 #include "qtmatrix.h"
 #include "qtublasvectorintmodel.h"
@@ -213,7 +214,7 @@ void ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model(new QtKalmanFilterExperimentModel);
     assert(model);
@@ -241,6 +242,5 @@ void ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test() noexcept
     assert(model->CreateWhiteNoiseSystemParameters());
     assert(model->CreateWhiteNoiseSystemParameters()->GetType() == WhiteNoiseSystemType::gaps_filled);
   }
-  TRACE("Finished ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test successfully");
 }
 #endif

@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "qtshinybuttonwidget.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestshinybuttonmaindialog.h"
 #pragma GCC diagnostic pop
@@ -125,7 +126,6 @@ void ribi::QtTestShinyButtonMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestShinyButtonMainDialog::Test");
-  TRACE("Finished ribi::QtTestShinyButtonMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestpylosgametestsdialog.h"
 #include "qttestpylosrandomplaydialog.h"
 #include "testpylosmenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestpylosmenudialog.h"
 #pragma GCC diagnostic pop
@@ -92,7 +93,6 @@ void ribi::pylos::QtTestPylosMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::pylos::QtTestPylosMenuDialog::Test");
-  TRACE("Finished ribi::pylos::QtTestPylosMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

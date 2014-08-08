@@ -14,6 +14,7 @@
 #include "about.h"
 #include "trace.h"
 #include "qtaboutdialog.h"
+#include "testtimer.h"
 #include "quadraticsolvermaindialog.h"
 #include "quadraticsolvermenudialog.h"
 #include "ui_qtquadraticsolvermaindialog.h"
@@ -81,7 +82,6 @@ void ribi::QtQuadraticSolverMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtQuadraticSolverMainDialog::Test");
-  TRACE("Finished ribi::QtQuadraticSolverMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

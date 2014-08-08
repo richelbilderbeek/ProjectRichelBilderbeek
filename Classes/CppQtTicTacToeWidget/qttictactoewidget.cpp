@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "tictactoeai.h"
 #include "tictactoeais.h"
+#include "testtimer.h"
 #include "tictactoeboard.h"
 #include "tictactoegame.h"
 #include "tictactoewidget.h"
@@ -201,7 +202,7 @@ void ribi::tictactoe::QtTicTacToeWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTicTacToeWidget::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   for (auto ai: Ais().GetAll())
   {
     QtTicTacToeWidget w(ai,nullptr);
@@ -211,6 +212,5 @@ void ribi::tictactoe::QtTicTacToeWidget::Test() noexcept
     Widget w;
     assert(!w.GetVersion().empty());
   }
-  TRACE("Finished ribi::tictactoe::QtTicTacToeWidget::Test successfully");
 }
 #endif

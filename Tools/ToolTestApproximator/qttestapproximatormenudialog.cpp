@@ -9,6 +9,7 @@
 #include "qtaboutdialog.h"
 #include "qttestapproximatorxymaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestapproximatormenudialog.h"
 
@@ -69,9 +70,8 @@ void ribi::QtToolTestApproximatorMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolTestApproximatorMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtToolTestApproximatorXyMainDialog();
   //QtToolTestApproximatorMainXyzDialog();
-  TRACE("Finished ribi::QtToolTestApproximatorMenuDialog::Test successfully");
 }
 #endif

@@ -5,6 +5,7 @@
 #include "qtaboutdialog.h"
 #include "predickadvocatormenudialog.h"
 #include "qtpredickadvocatormaindialog.h"
+#include "testtimer.h"
 #include "ui_qtpredickadvocatormenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -56,8 +57,7 @@ void ribi::QtPreDickAdvocaTorMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtPreDickAdvocaTorMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtPreDickAdvocaTorMainDialog(123);
-  TRACE("Finished ribi::QtPreDickAdvocaTorMenuDialog::Test successfully");
 }
 #endif

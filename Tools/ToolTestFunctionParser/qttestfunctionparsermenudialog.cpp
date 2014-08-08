@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qttestfunctionparsermaindialog.h"
 #include "testfunctionparsermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestfunctionparsermenudialog.h"
 #pragma GCC diagnostic pop
@@ -74,7 +75,6 @@ void ribi::QtTestFunctionParserMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestFunctionParserMenuDialog::Test");
-  TRACE("Finished ribi::QtTestFunctionParserMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

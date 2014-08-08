@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtqmakewatchermaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtqmakewatchermenudialog.h"
 #pragma GCC diagnostic pop
@@ -82,8 +83,7 @@ void ribi::QtQmakeWatcherMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtQmakeWatcherMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtQmakeWatcherMainDialog();
-  TRACE("Finished QtQmakeWatcherMenuDialog::Test successfully");
 }
 #endif

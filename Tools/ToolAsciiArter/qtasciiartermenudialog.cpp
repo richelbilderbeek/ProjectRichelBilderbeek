@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "asciiartermenudialog.h"
 #include "qtasciiartermaindialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qtasciiartermenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -80,8 +81,7 @@ void ribi::QtAsciiArterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtAsciiArterMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtAsciiArterMenuDialog();
-  TRACE("Finished ribi::QtAsciiArterMenuDialog::Test successfully");
 }
 #endif

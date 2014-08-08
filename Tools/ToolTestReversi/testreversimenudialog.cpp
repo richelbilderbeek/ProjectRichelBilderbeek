@@ -13,6 +13,7 @@
 #include "reversiboard.h"
 #include "richelbilderbeekprogram.h"
 #include "testreversimaindialog.h"
+#include "testtimer.h"
 #include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -92,7 +93,6 @@ void ribi::TestReversiMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestReversiMenuDialog::Test()");
-  TRACE("Finished ribi::TestReversiMenuDialog::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "asciiartermaindialog.h"
 #include "fileio.h"
+#include "testtimer.h"
 #include "qtaboutdialog.h"
 #include "trace.h"
 #include "ui_qtasciiartermaindialog.h"
@@ -107,7 +108,7 @@ void ribi::QtAsciiArterMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtAsciiArterMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
   assert(!fileio::FileIo().IsRegularFile(tmp_filename));
   //Load image from resources, save to file
@@ -128,7 +129,6 @@ void ribi::QtAsciiArterMainDialog::Test() noexcept
   assert(!v.empty());
   fileio::FileIo().DeleteFile(tmp_filename);
   assert(!fileio::FileIo().IsRegularFile(tmp_filename));
-  TRACE("Finished ribi::QtAsciiArterMainDialog::Test successfully");
 }
 #endif
 

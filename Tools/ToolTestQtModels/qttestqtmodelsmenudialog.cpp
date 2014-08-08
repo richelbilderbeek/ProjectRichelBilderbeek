@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtmodelsmenudialog.h"
 #include "qtublasvectorintmodel.h"
 #include "qtublasmatrixdoublemodel.h"
+#include "testtimer.h"
 #include "qtublasvectordoublemodel.h"
 #include "testqtmodelsmenudialog.h"
 #include "trace.h"
@@ -93,10 +94,9 @@ void ribi::QtToolTestQtModelsMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Start of ribi::QtToolTestQtModelsMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     QtToolTestQtModelsMainDialog d;
   }
-  TRACE("Finished ribi::QtToolTestQtModelsMenuDialog::Test successfully");
 }
 #endif

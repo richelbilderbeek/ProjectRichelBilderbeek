@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtcaesarciphermaindialog.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qtcaesarciphermenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -82,8 +83,7 @@ void ribi::QtCaesarCipherMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtCaesarCipherMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtCaesarCipherMainDialog();
-  TRACE("Finished QtCaesarCipherMenuDialog::Test successfully");
 }
 #endif

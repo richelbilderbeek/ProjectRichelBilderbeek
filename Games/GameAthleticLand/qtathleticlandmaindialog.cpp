@@ -9,6 +9,7 @@
 #include <QGridLayout>
 
 #include "qtathleticlandmainwidget.h"
+#include "testtimer.h"
 #include "ui_qtathleticlandmaindialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -58,8 +59,7 @@ void ribi::athl::QtAthleticLandMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::athl::QtAthleticLandMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtAthleticLandMainWidget();
-  TRACE("Finished ribi::athl::QtAthleticLandMainDialog::Test successfully");
 }
 #endif

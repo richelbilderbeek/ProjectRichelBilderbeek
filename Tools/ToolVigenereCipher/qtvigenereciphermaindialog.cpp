@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "vigenerecipher.h"
 #include "loopreader.h"
+#include "testtimer.h"
 #include "qtaboutdialog.h"
 #include "trace.h"
 #include "ui_qtvigenereciphermaindialog.h"
@@ -112,8 +113,7 @@ void ribi::QtVigenereCipherMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtVigenereCipherMainDialog::Test");
-  TRACE("Finished ribi::QtVigenereCipherMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

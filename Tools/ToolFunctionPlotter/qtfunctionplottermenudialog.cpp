@@ -7,6 +7,7 @@
 #include "qtfunctionplotterplot2ddialog.h"
 #include "qtfunctionplottermenudialog.h"
 #include "ui_qtfunctionplottermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -52,7 +53,6 @@ void ribi::QtFunctionPlotterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtFunctionPlotterMenuDialog::Test");
-  TRACE("Finished ribi::QtFunctionPlotterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

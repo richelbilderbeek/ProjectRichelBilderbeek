@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtbeerwantermaindialog.h"
 #include "ui_qtbeerwantermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -75,8 +76,7 @@ void ribi::QtBeerWanterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtBeerWanterMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtBeerWanterMainDialog();
-  TRACE("Finished ribi::QtBeerWanterMenuDialog::Test successfully");
 }
 #endif

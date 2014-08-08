@@ -10,6 +10,7 @@
 
 #include "geometry.h"
 #include "plane.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "qwttestplaneplot.h"
 #include "ui_qttestplaneinvestigateaccuracyqwtdialog.h"
@@ -155,9 +156,8 @@ void ribi::QtTestPlaneInvestigateAccuracyQwtDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestPlaneInvestigateAccuracyQwtDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestPlaneInvestigateAccuracyQwtDialog d;
   assert(!d.GetVersion().empty());
-  TRACE("Finished ribi::QtTestPlaneInvestigateAccuracyQwtDialog::Test successfully");
 }
 #endif

@@ -10,6 +10,7 @@
 #include "qtaboutdialog.h"
 #include "qttestmulticanvasmaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestmulticanvasmenudialog.h"
 #pragma GCC diagnostic pop
@@ -66,8 +67,7 @@ void ribi::QtTestMultiCanvasMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestMultiCanvasMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestMultiCanvasMainDialog();
-  TRACE("Finished ribi::QtTestMultiCanvasMenuDialog::Test successfully");
 }
 #endif

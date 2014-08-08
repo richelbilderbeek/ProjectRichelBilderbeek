@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "geometry.h"
 #include "polyfilefrompolygons.h"
 #include "qtnavigationablegraphicsview.h"
+#include "testtimer.h"
 #include "testpolyfilefrompolygonsmaindialog.h"
 #include "trace.h"
 #include "ui_qttestpolyfilefrompolygonsmaindialog.h"
@@ -172,10 +173,9 @@ void ribi::QtTestPolyFileFromPolygonsMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtTestPolyFileFromPolygonsMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestPolyFileFromPolygonsMainDialog d;
   d.on_edit_shapes_textChanged();
-  TRACE("Finished QtTestPolyFileFromPolygonsMainDialog::Test successfully");
 }
 #endif
 

@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 #include "ui_qttictactoewinnerdialog.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::tictactoe::QtTicTacToeWinnerDialog::QtTicTacToeWinnerDialog(QWidget *parent) :
@@ -71,7 +72,6 @@ void ribi::tictactoe::QtTicTacToeWinnerDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTicTacToeWinnerDialog::Test");
-  TRACE("Finished ribi::tictactoe::QtTicTacToeWinnerDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

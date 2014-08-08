@@ -3,6 +3,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "graycodermaindialog.h"
 #include "qtgraycodermaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtgraycodermaindialog.h"
 #pragma GCC diagnostic pop
@@ -50,7 +51,6 @@ void ribi::QtGrayCoderMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtGrayCoderMainDialog::Test");
-  TRACE("Finished ribi::QtGrayCoderMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

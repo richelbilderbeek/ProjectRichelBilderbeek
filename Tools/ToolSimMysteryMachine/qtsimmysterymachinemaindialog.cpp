@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "mysterymachine.h"
 #include "mysterymachinewidget.h"
 #include "qtmysterymachinewidget.h"
+#include "testtimer.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
@@ -65,7 +66,6 @@ void ribi::QtSimMysteryMachineMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtSimMysteryMachineMainDialog::Test");
-  TRACE("Finished ribi::QtSimMysteryMachineMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

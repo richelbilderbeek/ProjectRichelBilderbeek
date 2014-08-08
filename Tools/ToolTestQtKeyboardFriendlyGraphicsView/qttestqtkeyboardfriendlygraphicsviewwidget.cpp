@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtleftrightrectitem.h"
 #include "qtroundedrectitem.h"
 #include "qtpatharrowitem.h"
+#include "testtimer.h"
 #include "qtroundededitrectitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
@@ -341,7 +342,6 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test");
-  TRACE("Finished ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

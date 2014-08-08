@@ -24,16 +24,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttestledcomparedialog.h"
 
-//#include <boost/numeric/conversion/cast.hpp>
 #include <QGridLayout>
 
-//#include "qtaboutdialog.h"
-//#include "qtledwidget.h"
 #include "led.h"
 #include "qtled.h"
-//#include "testledmenudialog.h"
-//#include "textcanvas.h"
 #include "trace.h"
+#include "testtimer.h"
+
 #include "ui_qttestledcomparedialog.h"
 #pragma GCC diagnostic pop
 
@@ -104,8 +101,7 @@ void ribi::QtTestLedCompareDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestLedCompareDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestLedCompareDialog();
-  TRACE("Finished ribi::QtTestLedCompareDialog::Test successfully");
 }
 #endif

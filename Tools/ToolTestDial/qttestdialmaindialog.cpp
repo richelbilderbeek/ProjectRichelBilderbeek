@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtdialwidget.h"
 #include "rainbow.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 #include "ui_qttestdialmaindialog.h"
@@ -130,8 +131,7 @@ void ribi::QtTestDialMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestDialMainDialog::Test");
-  TRACE("Finished ribi::QtTestDialMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

@@ -21,6 +21,7 @@
 #include "multiintegerstateobserver.h"
 #include "noisefunctionparser.h"
 #include "slidingmodeobserver.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtstateobservermaindialog.h"
 
@@ -419,7 +420,6 @@ void ribi::QtStateObserverMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtStateObserverMainDialog::Test");
-  TRACE("Finished ribi::QtStateObserverMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

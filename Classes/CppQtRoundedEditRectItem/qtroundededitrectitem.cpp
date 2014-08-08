@@ -86,7 +86,10 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
   this->m_signal_radius_y_changed.connect(
     boost::bind(&ribi::QtRoundedEditRectItem::OnBaseChanged,this,boost::lambda::_1)
   );
-  this->m_signal_rect_changed.connect(
+  this->m_signal_width_changed.connect(
+    boost::bind(&ribi::QtRoundedEditRectItem::OnBaseChanged,this,boost::lambda::_1)
+  );
+  this->m_signal_height_changed.connect(
     boost::bind(&ribi::QtRoundedEditRectItem::OnBaseChanged,this,boost::lambda::_1)
   );
 

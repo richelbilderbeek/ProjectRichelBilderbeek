@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QPainter>
 
+#include "testtimer.h"
 #include "qtsurfaceplotwidget.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -204,8 +205,7 @@ void ribi::QtSurfacePlotWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtSurfacePlotWidget::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   assert(Rescale(2.0,1.0,5.0,0.0,100.0) >= 24.9999 && Rescale(2.0,1.0,5.0,0.0,100.0) < 25.0001);
-  TRACE("Finished ribi::QtSurfacePlotWidget::Test successfully");
 }
 #endif

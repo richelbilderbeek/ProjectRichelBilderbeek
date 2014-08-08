@@ -10,6 +10,7 @@
 
 #include "reversimenudialog.h"
 #include "qtaboutdialog.h"
+#include "testtimer.h"
 #include "qtreversimaindialog.h"
 #include "reversimenudialog.h"
 #include "ui_qtreversimenudialog.h"
@@ -63,8 +64,7 @@ void ribi::reversi::QtReversiMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::reversi::QtReversiMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtReversiMainDialog();
-  TRACE("Finished ribi::reversi::QtReversiMenuDialog::Test successfully");
 }
 #endif

@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsurfaceplotterqwtdialog.h"
 #include "qtsurfaceplotterribidialog.h"
 #include "qtsurfaceplottermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtsurfaceplottermenudialog.h"
 #pragma GCC diagnostic pop
@@ -82,10 +83,9 @@ void ribi::QtSurfacePlotterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtSurfacePlotterMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtSurfacePlotterRibiDialog();
   QtSurfacePlotterQwtDialog();
-  TRACE("Finished ribi::QtSurfacePlotterMenuDialog::Test successfully");
 }
 #endif
 

@@ -12,6 +12,7 @@
 #include "fileio.h"
 #include "imagecanvas.h"
 #include "qtcanvas.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestimagecanvasmaindialog.h"
 #pragma GCC diagnostic pop
@@ -95,10 +96,9 @@ void ribi::QtTestImageCanvasMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestImageCanvasMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestImageCanvasMainDialog d;
   d.on_button_image_clicked();
-  TRACE("Finished ribi::QtTestImageCanvasMainDialog::Test successfully");
 }
 #endif
 

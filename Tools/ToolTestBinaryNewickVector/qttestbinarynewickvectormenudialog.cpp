@@ -7,6 +7,7 @@
 #include "testbinarynewickvectormenudialog.h"
 #include "qtaboutdialog.h"
 #include "qttestbinarynewickvectormaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestbinarynewickvectormenudialog.h"
 #pragma GCC diagnostic pop
@@ -51,8 +52,7 @@ void ribi::QtTestBinaryNewickVectorMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestBinaryNewickVectorMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestBinaryNewickVectorMainDialog();
-  TRACE("Successfully finished ribi::QtTestBinaryNewickVectorMenuDialog::Test");
 }
 #endif

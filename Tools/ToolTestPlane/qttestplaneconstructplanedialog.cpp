@@ -13,6 +13,7 @@
 #include "geometry.h"
 #include "plane.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qttestplaneconstructplanedialog.h"
 #pragma GCC diagnostic pop
 
@@ -178,9 +179,8 @@ void ribi::QtTestPlaneConstructPlaneDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestPlaneConstructPlaneDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestPlaneConstructPlaneDialog d;
   assert(!d.GetVersion().empty());
-  TRACE("Finished ribi::QtTestPlaneConstructPlaneDialog::Test successfully");
 }
 #endif

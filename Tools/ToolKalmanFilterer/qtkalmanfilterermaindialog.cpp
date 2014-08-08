@@ -36,6 +36,7 @@
 
 #include "kalmanfilter.h"
 #include "kalmanfilterexample.h"
+#include "testtimer.h"
 #include "kalmanfilterexperiment.h"
 #include "kalmanfilterexperimentparametertype.h"
 #include "kalmanfilterparameters.h"
@@ -722,8 +723,8 @@ void ribi::kalman::QtKalmanFiltererMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
-    TRACE("Starting ribi::kalman::QtKalmanFiltererMainDialog::Test()")
     TRACE("ribi::kalman::QtKalmanFiltererMainDialog::Test: Create self")
     {
       const boost::shared_ptr<QtKalmanFiltererMainDialog> d
@@ -767,7 +768,6 @@ void ribi::kalman::QtKalmanFiltererMainDialog::Test() noexcept
       //Delete file
       std::remove(filename.c_str());
     }
-    TRACE("Finished ribi::kalman::QtKalmanFiltererMainDialog::Test()")
   }
 
 }

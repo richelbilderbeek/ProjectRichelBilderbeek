@@ -6,6 +6,7 @@
 #include "aafmenudialog.h"
 #include "qtaminoacidfightermaindialog.h"
 #include "ui_qtaminoacidfightermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -49,9 +50,8 @@ void ribi::aaf::QtAafMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::aaf::QtAafMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtAafMainDialog();
   aaf::MenuDialog();
-  TRACE("Finished ribi::aaf::QtAafMenuDialog::Test successfully");
 }
 #endif

@@ -307,7 +307,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 27th of Febrruary 2014",
+    "the 8th of August 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersionStatic(),
@@ -3284,7 +3284,7 @@ boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDialog::
 
 std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersionStatic() noexcept
 {
-  return "1.14";
+  return "1.16";
 }
 
 std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistoryStatic() noexcept
@@ -3343,7 +3343,8 @@ std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHist
     "2013-11-15: Version 1.12: improved console application interface, use of .pri files, added Brainweaver",
     "2013-11-29: Version 1.13: added HistogramEqualizationer, ImageOperationer, ImageRotater, StyleSheetSetter, ThresholdFilterer",
     "2014-02-27: Version 1.14: added PreDickAdvocaTor and ValentineCardDecrypter, added retro versions to some games",
-    "2014-04-22: Version 1.15: added CaesarCipher, CodeBreaker and VigenereCipher"
+    "2014-04-22: Version 1.15: added CaesarCipher, CodeBreaker and VigenereCipher",
+    "2014-08-08: Version 1.16: increased use of TDD in console version"
   };
 }
 
@@ -3405,9 +3406,6 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   ProjectRichelBilderbeekMenuDialog d;
-  //d.Execute( { "ProjectRichelBilderbeek" } );
-  //d.Execute( { "ProjectRichelBilderbeek", "--program" } );
-  //d.Execute( { "ProjectRichelBilderbeek", "--status"  } );
   //Create all menus
   for (const auto& m: CreateMenus())
   {
@@ -3418,13 +3416,11 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
   }
   //Test all menus
   {
-    std::vector<boost::shared_ptr<ribi::MenuDialog>> menus{d.CreateMenus()};
-    for (const auto& p: menus)
+    for (const auto& p: d.CreateMenus())
     {
       assert(p);
       assert(p->GetProgram());
     }
   }
-  assert(!"Refactor");
 }
 #endif

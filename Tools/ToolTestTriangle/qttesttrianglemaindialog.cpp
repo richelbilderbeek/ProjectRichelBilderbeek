@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "fileio.h"
 #include "geometry.h"
+#include "testtimer.h"
 #include "qtnavigationablegraphicsview.h"
 #include "trace.h"
 #include "trianglemeshdialog.h"
@@ -268,7 +269,7 @@ void ribi::QtTestTriangleMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtTestTriangleMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ribi::trim::Dialog();
   QtTestTriangleMainDialog d;
   //Test if an empty result will be accepted
@@ -277,6 +278,5 @@ void ribi::QtTestTriangleMainDialog::Test() noexcept
   d.SetWkt("POLYGON((0 0 0 1 1 0)),POLYGON((0 0 0 2 2 0))");
 
   //d.on_edit_shapes_textChanged();
-  TRACE("Finished QtTestTriangleMainDialog::Test successfully");
 }
 #endif

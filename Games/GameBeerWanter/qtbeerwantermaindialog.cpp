@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "beerwantermaindialog.h"
 #include "qtbeerwanterwidget.h"
+#include "testtimer.h"
 #include "ui_qtbeerwantermaindialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -86,7 +87,7 @@ void ribi::QtBeerWanterMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtBeerWanterMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const int screen_width = 640;
   const int screen_height = 400;
   const int sprite_width = 32;
@@ -102,6 +103,5 @@ void ribi::QtBeerWanterMainDialog::Test() noexcept
     window_width,
     window_height
   );
-  TRACE("Finished ribi::QtBeerWanterMainDialog::Test successfully");
 }
 #endif

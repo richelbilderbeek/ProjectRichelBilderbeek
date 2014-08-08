@@ -38,6 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtcanvas.h"
 #include "qtcanvasdialog.h"
+#include "testtimer.h"
 #include "qtmaziakcanvas.h"
 #include "qtmaziakinstructionsdialog.h"
 #include "qtmaziakmaindialog.h"
@@ -312,7 +313,7 @@ void ribi::maziak::QtMaziakMenuDialog2::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::QtMaziakMenuDialog2::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(99));
     assert(d);
@@ -326,6 +327,5 @@ void ribi::maziak::QtMaziakMenuDialog2::Test() noexcept
     boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
     assert(d);
   }
-  TRACE("Finished ribi::maziak::QtMaziakMenuDialog2::Test successfully");
 }
 #endif

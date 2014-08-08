@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtcanvasdialog.h"
 #include "qtdaswahreschlagerfestcanvas.h"
+#include "testtimer.h"
 #include "qtdaswahreschlagerfestmaindialog.h"
 #include "ui_qtdaswahreschlagerfestmenudialog.h"
 #include "trace.h"
@@ -86,7 +87,7 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtDasWahreSchlagerfestMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtDasWahreSchlagerfestMainDialog();
   {
     const boost::shared_ptr<QtDasWahreSchlagerfestCanvas> c {
@@ -94,7 +95,6 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
     };
     assert(c);
   }
-  TRACE("Finished ribi::QtDasWahreSchlagerfestMenuDialog::Test successfully");
 }
 #endif
 

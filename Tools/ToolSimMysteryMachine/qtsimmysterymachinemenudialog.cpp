@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtsimmysterymachinerealmachinedialog.h"
 #include "qttogglebuttonwidget.h"
 #include "simmysterymachinemenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtsimmysterymachinemenudialog.h"
 
@@ -115,7 +116,7 @@ void ribi::QtSimMysteryMachineMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtSimMysteryMachineMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtMysteryMachineWidget();
   const boost::shared_ptr<MysteryMachineWidget> p { new MysteryMachineWidget };
   /*
@@ -131,6 +132,5 @@ void ribi::QtSimMysteryMachineMenuDialog::Test() noexcept
   }
   */
   assert(p);
-  TRACE("Finished ribi::QtSimMysteryMachineMenuDialog::Test successfully");
 }
 #endif

@@ -8,6 +8,7 @@
 #include "qtvisualabcmenudialog.h"
 #include "trace.h"
 #include "ui_qtvisualabcmenudialog.h"
+#include "testtimer.h"
 #include "visualabcmenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -52,7 +53,6 @@ void ribi::QtVisualAbcMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtVisualAbcMenuDialog::Test");
-  TRACE("Finished ribi::QtVisualAbcMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

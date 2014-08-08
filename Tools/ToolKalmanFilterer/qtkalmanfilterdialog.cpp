@@ -16,6 +16,7 @@
 
 #include "matrix.h"
 #include "qtmatrix.h"
+#include "testtimer.h"
 #include "standardkalmanfilter.h"
 #include "standardkalmanfilterfactory.h"
 #include "steadystatekalmanfilter.h"
@@ -218,7 +219,6 @@ void ribi::kalman::QtKalmanFilterDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::QtKalmanFilterDialog::Test");
-  TRACE("Finished ribi::kalman::QtKalmanFilterDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

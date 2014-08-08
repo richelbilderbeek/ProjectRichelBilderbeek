@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtpylosboardwidget.h"
 #include "qtpylosinstructionsdialog.h"
+#include "testtimer.h"
 #include "qtpylosmaindialog.h"
 #include "qtpylossprites.h"
 #include "qtpyloswidget.h"
@@ -192,7 +193,7 @@ void ribi::pylos::QtPylosMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::pylos::QtPylosMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
   //QtPylosGameWidget * const p = new QtPylosGameWidget();
   assert(p);
@@ -202,6 +203,5 @@ void ribi::pylos::QtPylosMenuDialog::Test() noexcept
   const boost::shared_ptr<QtPylosMainDialog> d{new QtPylosMainDialog(p)};
   //const QtPylosMainDialog d(p);
   assert(!d->GetVersion().empty());
-  TRACE("Finished ribi::pylos::QtPylosMenuDialog::Test successfully");
 }
 #endif

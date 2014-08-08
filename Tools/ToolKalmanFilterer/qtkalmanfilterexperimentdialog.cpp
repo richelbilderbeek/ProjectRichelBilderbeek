@@ -22,6 +22,7 @@
 
 #include "kalmanfilter.h"
 #include "kalmanfilterexample.h"
+#include "testtimer.h"
 #include "kalmanfilterexperiment.h"
 #include "kalmanfilterexperimentparameter.h"
 #include "kalmanfilterexperimentparametertype.h"
@@ -424,7 +425,7 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::QtKalmanFilterExperimentDialog::Test()")
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //TRACE("Test QtWhiteNoiseSystemParametersDialog");
   {
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model(
@@ -521,7 +522,6 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::kalman::QtKalmanFilterExperimentDialog::Test()")
 }
 #endif
 

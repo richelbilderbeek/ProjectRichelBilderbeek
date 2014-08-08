@@ -16,6 +16,7 @@
 #endif
 
 #include "simplelinearregression.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestsimplelinearregressionmaindialog.h"
 
@@ -179,7 +180,6 @@ void ribi::QtToolTestSimpleLinearRegressionMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolTestSimpleLinearRegressionMainDialog::Test");
-  TRACE("Finished ribi::QtToolTestSimpleLinearRegressionMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

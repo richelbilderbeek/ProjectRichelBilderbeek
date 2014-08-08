@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
+#include "testtimer.h"
 #include "fparser.hh"
 #include "trace.h"
 #include "ui_qtsurfaceplotterribidialog.h"
@@ -220,7 +221,6 @@ void ribi::QtSurfacePlotterRibiDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtSurfacePlotterRibiDialog::Test");
-  TRACE("Finished ribi::QtSurfacePlotterRibiDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

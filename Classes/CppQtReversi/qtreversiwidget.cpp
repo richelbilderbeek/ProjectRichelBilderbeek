@@ -11,6 +11,7 @@
 
 #include "reversiboard.h"
 #include "reversiwidget.h"
+#include "testtimer.h"
 #include "reversimove.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -84,7 +85,6 @@ void ribi::reversi::QtWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::reversi::QtWidget::Test()");
-  TRACE("Finished ribi::reversi::QtWidget::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

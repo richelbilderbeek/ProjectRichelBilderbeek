@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "trace.h"
+#include "testtimer.h"
 
 boost::bimap<ribi::athl::PlayerState,std::string> ribi::athl::PlayerStates::m_map;
 
@@ -39,7 +40,7 @@ void ribi::athl::PlayerStates::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::athl::PlayerStates::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::vector<PlayerState> v = GetAll();
   const std::size_t sz = v.size();
   for (std::size_t i=0; i!=sz; ++i)
@@ -51,7 +52,6 @@ void ribi::athl::PlayerStates::Test() noexcept
     const PlayerState u = ToType(s);
     assert(u == t);
   }
-  TRACE("Finished ribi::athl::PlayerStates::Test successfully");
 }
 #endif
 

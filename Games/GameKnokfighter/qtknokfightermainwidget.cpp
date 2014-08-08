@@ -8,6 +8,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QTimer>
+#include "testtimer.h"
 #include "qtknokfighterbackground.h"
 #include "qtknokfighterplayer.h"
 #include "trace.h"
@@ -122,7 +123,7 @@ void ribi::QtKnokfighterMainWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtKnokfighterMainWidget::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtKnokfighterBackground(800,600);
   {
     boost::shared_ptr<QtKnokfighterPlayer> p(new QtKnokfighterPlayer(QtKnokfighterPlayer::Name::richel));
@@ -133,6 +134,5 @@ void ribi::QtKnokfighterMainWidget::Test() noexcept
     assert(p);
   }
 
-  TRACE("Finished ribi::QtKnokfighterMainWidget::Test successfully");
 }
 #endif

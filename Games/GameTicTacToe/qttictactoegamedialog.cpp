@@ -33,6 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 
 #include "tictactoegame.h"
+#include "testtimer.h"
 #include "tictactoewidget.h"
 #include "qttictactoewidget.h"
 #include "qttictactoewinnerdialog.h"
@@ -102,7 +103,6 @@ void ribi::tictactoe::QtTicTacToeGameDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTicTacToeGameDialog::Test");
-  TRACE("Finished ribi::tictactoe::QtTicTacToeGameDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

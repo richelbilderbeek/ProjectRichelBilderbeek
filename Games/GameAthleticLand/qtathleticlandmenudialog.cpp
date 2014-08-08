@@ -5,6 +5,7 @@
 #include "qtaboutdialog.h"
 #include "athleticlandmenudialog.h"
 #include "qtathleticlandmaindialog.h"
+#include "testtimer.h"
 #include "ui_qtathleticlandmenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -49,9 +50,8 @@ void ribi::athl::QtAthleticLandMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::athl::QtAthleticLandMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtAthleticLandMainDialog();
   AthleticLandMenuDialog();
-  TRACE("Finished ribi::athl::QtAthleticLandMenuDialog::Test successfully");
 }
 #endif

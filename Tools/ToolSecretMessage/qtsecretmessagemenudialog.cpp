@@ -7,6 +7,7 @@
 #include "qtsecretmessageextractdialog2.h"
 #include "qtsecretmessagemenudialog.h"
 #include "secretmessagemenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtsecretmessagemenudialog.h"
 #pragma GCC diagnostic pop
@@ -64,7 +65,6 @@ void ribi::sema::QtMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::sema::QtMenuDialog::Test");
-  TRACE("Finished ribi::sema::QtMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

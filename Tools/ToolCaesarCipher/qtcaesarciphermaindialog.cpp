@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qtcaesarciphermaindialog.h"
 #include "caesarciphermaindialog.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::QtCaesarCipherMainDialog::QtCaesarCipherMainDialog(QWidget *parent) noexcept
@@ -103,8 +104,7 @@ void ribi::QtCaesarCipherMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtCaesarCipherMainDialog::Test");
-  TRACE("Finished ribi::QtCaesarCipherMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

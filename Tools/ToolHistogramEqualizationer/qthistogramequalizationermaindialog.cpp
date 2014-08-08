@@ -9,6 +9,7 @@
 #include <QLabel>
 
 #include "histogramequalizationermaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qthistogramequalizationermaindialog.h"
 #pragma GCC diagnostic pop
@@ -86,7 +87,7 @@ void ribi::QtHistogramEqualizationerMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtHistogramEqualizationerMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const QImage source(":/histogramequalizationer/images/ToolHistogramEqualizationerTest.png");
   assert(!source.isNull());
   const QImage target {
@@ -101,6 +102,5 @@ void ribi::QtHistogramEqualizationerMainDialog::Test() noexcept
   assert(!target_again.isNull());
   assert(target == target_again
     && "A second histogram equalization will result in the original");
-  TRACE("Finished ribi::QtHistogramEqualizationerMainDialog::Test successfully");
 }
 #endif

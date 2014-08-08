@@ -11,7 +11,8 @@
 
 #include "drawcanvas.h"
 #include "imagecanvas.h"
-#include  "textcanvas.h"
+#include "textcanvas.h"
+#include "testtimer.h"
 #include "multicanvas.h"
 #include "trace.h"
 #include "ui_qttestmulticanvasmaindialog.h"
@@ -159,8 +160,7 @@ void ribi::QtTestMultiCanvasMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestMultiCanvasMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //MultiCanvas is tested in TestMultiCanvasMenuDialog
-  TRACE("Finished ribi::QtTestMultiCanvasMainDialog::Test successfully");
 }
 #endif

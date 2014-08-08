@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtcreatorprofile.h"
 #include "testqtcreatorprofilemenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestqtcreatorprofilemaindialog.h"
 #pragma GCC diagnostic pop
@@ -82,8 +83,6 @@ void ribi::QtTestQtCreatorProFileMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtCreatorProFileMainDialog::Test");
-
-  TRACE("Finished ribi::QtTestQtCreatorProFileMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

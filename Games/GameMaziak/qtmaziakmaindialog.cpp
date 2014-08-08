@@ -43,6 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "maziakmaze.h"
 #include "maziaksprites.h"
 #include "qtmaziakgameoverdialog.h"
+#include "testtimer.h"
 #include "qtmaziakgamewondialog.h"
 #include "maziaksolutionmaze.h"
 #include "maziakmaindialog.h"
@@ -296,8 +297,7 @@ void ribi::maziak::QtMaziakMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::QtMaziakMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtMaziakMainDialog(99);
-  TRACE("Finished ribi::maziak::QtMaziakMainDialog::Test successfully");
 }
 #endif

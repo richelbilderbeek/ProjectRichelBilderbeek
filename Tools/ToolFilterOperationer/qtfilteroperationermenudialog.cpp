@@ -6,6 +6,7 @@
 #include "filteroperationermenudialog.h"
 #include "qtfilteroperationermaindialog.h"
 #include "ui_qtfilteroperationermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -49,8 +50,7 @@ void ribi::QtFilterOperationerMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtFilterOperationerMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtFilterOperationerMainDialog();
-  TRACE("Finished ribi::QtFilterOperationerMenuDialog::Test successfully");
 }
 #endif

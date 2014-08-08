@@ -37,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "createqtprojectzipfilemaindialog.h"
 #include "fileio.h"
 #include "qtcreatorprofilezipscript.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtcreateqtprojectzipfilemaindialog.h"
 
@@ -92,7 +93,7 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtCreateQtProjectZipFileMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test basic functions on this project with going two folders down
   const std::vector<std::string> pro_filenames
     =
@@ -135,7 +136,6 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
     s << (*script);
     assert(!s.str().empty());
   }
-  TRACE("Finished ribi::QtCreateQtProjectZipFileMainDialog::Test successfully");
 }
 #endif
 

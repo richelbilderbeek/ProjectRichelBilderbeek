@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtcanvas.h"
 #include "qttictactoewidget.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "tictactoeais.h"
 #include "tictactoewidget.h"
@@ -165,7 +166,7 @@ void ribi::tictactoe::QtTestTicTacToeMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTestTicTacToeMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   for (const auto& ai: Ais().GetAll())
   {
     QtTestTicTacToeMainDialog d(ai,nullptr);
@@ -176,7 +177,6 @@ void ribi::tictactoe::QtTestTicTacToeMainDialog::Test() noexcept
     QtTicTacToeWidget w(nullptr,ai);
     assert(!w.GetVersion().empty());
   }
-  TRACE("Finished ribi::tictactoe::QtTestTicTacToeMainDialog::Test successfully");
 }
 #endif
 

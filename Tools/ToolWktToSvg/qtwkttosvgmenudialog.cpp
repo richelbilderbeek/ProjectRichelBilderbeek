@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 
 #include "wkttosvgmenudialog.h"
+#include "testtimer.h"
 #include "qtaboutdialog.h"
 #include "qtwkttosvgmaindialog.h"
 #include "qthideandshowdialog.h"
@@ -84,9 +85,8 @@ void ribi::QtWktToSvgMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtWktToSvgMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   WktToSvgMenuDialog();
   QtWktToSvgMainDialog();
-  TRACE("Finished QtWktToSvgMenuDialog::Test successfully");
 }
 #endif

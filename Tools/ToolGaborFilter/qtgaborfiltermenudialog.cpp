@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "gaborfiltermenudialog.h"
 #include "qtgaborfiltermaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtgaborfiltermenudialog.h"
 #pragma GCC diagnostic pop
@@ -71,7 +72,6 @@ void ribi::QtToolGaborFilterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolGaborFilterMenuDialog::Test");
-  TRACE("Finished ribi::QtToolGaborFilterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

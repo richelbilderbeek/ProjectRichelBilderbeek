@@ -14,6 +14,7 @@
 #include "qttestplaneinvestigateaccuracyqwtdialog.h"
 #include "qttestplaneinvestigateaccuracyribidialog.h"
 #include "testplanemenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestplanemenudialog.h"
 #pragma GCC diagnostic pop
@@ -64,7 +65,7 @@ void ribi::QtTestPlaneMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestPlaneMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const QtTestPlaneMenuDialog d;
     assert(!d.GetVersion().empty());
@@ -85,7 +86,6 @@ void ribi::QtTestPlaneMenuDialog::Test() noexcept
     const QtTestPlaneInvestigateAccuracyRibiDialog d;
     assert(!d.GetVersion().empty());
   }
-  TRACE("Finished ribi::QtTestPlaneMenuDialog::Test successfully");
 }
 #endif
 

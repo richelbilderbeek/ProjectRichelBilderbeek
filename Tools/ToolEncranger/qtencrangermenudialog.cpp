@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtencrangermaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtencrangermenudialog.h"
 #pragma GCC diagnostic pop
@@ -82,8 +83,7 @@ void ribi::QtToolEncrangerMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtToolEncrangerMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtToolEncrangerMainDialog();
-  TRACE("Finished QtToolEncrangerMenuDialog::Test successfully");
 }
 #endif

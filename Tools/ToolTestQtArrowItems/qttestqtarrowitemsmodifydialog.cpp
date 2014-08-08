@@ -13,6 +13,7 @@
 #include "qtquadbezierarrowitem.h"
 #include "qtquadbezierarrowdialog.h"
 #include "ribi_random.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestqtarrowitemsmodifydialog.h"
 #pragma GCC diagnostic pop
@@ -134,7 +135,7 @@ void ribi::QtTestQtArrowItemsModifyDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtArrowItemsModifyDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   QtTestQtArrowItemsModifyDialog d;
   if (verbose) { TRACE("Must get after set"); }
@@ -164,6 +165,5 @@ void ribi::QtTestQtArrowItemsModifyDialog::Test() noexcept
     assert(std::abs(d.m_dialog_left->GetUiMidX() - new_x) < 2.0);
   }
   assert(!"Refactor");
-  TRACE("Finished ribi::QtTestQtArrowItemsModifyDialog::Test successfully");
 }
 #endif

@@ -11,6 +11,7 @@
 #include "qttesttictactoemaindialog.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qttesttictactoemenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -65,12 +66,11 @@ void ribi::tictactoe::QtTestTicTacToeMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTestTicTacToeMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   for (const auto& ai: Ais().GetAll())
   {
     QtTestTicTacToeMainDialog(nullptr,ai);
   }
   assert(TestTicTacToeMenuDialog().GetVersion().empty());
-  TRACE("Finished ribi::tictactoe::QtTestTicTacToeMenuDialog::Test successfully");
 }
 #endif

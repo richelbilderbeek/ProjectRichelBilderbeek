@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 #include "qttestbinarynewickvectormaindialog.h"
+#include "testtimer.h"
 #include "testbinarynewickvectormenudialog.h"
 #include "newick.h"
 #include "newickstorage.h"
@@ -360,7 +361,6 @@ void ribi::QtTestBinaryNewickVectorMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestBinaryNewickVectorMainDialog::Test");
-  TRACE("Finished ribi::QtTestBinaryNewickVectorMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

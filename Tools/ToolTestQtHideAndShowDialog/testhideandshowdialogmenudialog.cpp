@@ -9,9 +9,7 @@
 #include <boost/lexical_cast.hpp>
 
 #include "fileio.h"
-//#include "fparser.hh"
-//#include "geometry.h"
-//#include "plane.h"
+#include "testtimer.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -94,7 +92,6 @@ void ribi::TestHideAndShowDialogMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestHideAndShowDialogMenuDialog::Test");
-  TRACE("Finished ribi::TestHideAndShowDialogMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

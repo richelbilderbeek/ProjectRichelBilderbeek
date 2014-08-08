@@ -8,6 +8,7 @@
 #include "ui_qtxenonzeromaindialog.h"
 #include "textcanvas.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::QtXeNonZeroMainDialog::QtXeNonZeroMainDialog(QWidget *parent)
@@ -80,7 +81,6 @@ void ribi::QtXeNonZeroMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtXeNonZeroMainDialog::Test");
-  TRACE("Finished ribi::QtXeNonZeroMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
