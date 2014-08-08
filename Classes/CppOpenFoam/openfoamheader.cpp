@@ -94,11 +94,15 @@ void ribi::foam::Header::Test() noexcept
 
 bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs) noexcept
 {
+  const bool verbose{false};
   if (lhs.GetClass() != rhs.GetClass())
   {
-    //TRACE("Classes differ:");
-    //TRACE(lhs.GetClass());
-    //TRACE(rhs.GetClass());
+    if (verbose)
+    {
+      TRACE("Classes differ:");
+      TRACE(lhs.GetClass());
+      TRACE(rhs.GetClass());
+    }
     return false;
   }
   //Compare location independent of OS path seperator
@@ -109,17 +113,23 @@ bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Hea
     std::replace(rhs_location.begin(),rhs_location.end(),'\\','/');
     if (lhs_location != rhs_location)
     {
-      //TRACE("Locations differ:");
-      //TRACE(lhs.GetLocation());
-      //TRACE(rhs.GetLocation());
+      if (verbose)
+      {
+        TRACE("Locations differ:");
+        TRACE(lhs.GetLocation());
+        TRACE(rhs.GetLocation());
+      }
       return false;
     }
   }
   if (lhs.GetObject() != rhs.GetObject())
   {
-    //TRACE("Object differ:");
-    //TRACE(lhs.GetObject());
-    //TRACE(rhs.GetObject());
+    if (verbose)
+    {
+      TRACE("Object differ:");
+      TRACE(lhs.GetObject());
+      TRACE(rhs.GetObject());
+    }
     return false;
   }
   return true;

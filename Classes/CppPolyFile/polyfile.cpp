@@ -58,6 +58,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     }
     std::stringstream s;
     s
+      << __FILE__ << "(" <<  (__LINE__) <<  "): "
       << "ribi::PolyFile::Parse: " << filename
       << " does not contain any vertices"
     ;
@@ -71,6 +72,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     {
       std::stringstream s;
       s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
         << "ribi::PolyFile::Parse: " << filename
         << " its first line does not indicate the number of vertices"
       ;
@@ -88,6 +90,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     {
       std::stringstream s;
       s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
         << "ribi::PolyFile::Parse: " << filename
         << " its edges header is missing"
       ;
@@ -101,6 +104,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     {
       std::stringstream s;
       s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
         << "ribi::PolyFile::Parse: " << filename
         << " its edge header does not indicate the number of edges"
       ;
@@ -118,6 +122,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     {
       std::stringstream s;
       s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
         << "ribi::PolyFile::Parse: " << filename
         << " its holes header is missing"
       ;
@@ -130,6 +135,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     {
       std::stringstream s;
       s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
         << "ribi::PolyFile::Parse: " << filename
         << " its holes header does not indicate the number of holes"
       ;
@@ -139,6 +145,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     {
       std::stringstream s;
       s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
         << "ribi::PolyFile::Parse: " << filename
         << " its holes header contains too much element"
       ;
@@ -149,6 +156,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     {
       std::stringstream s;
       s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
         << "ribi::PolyFile::Parse: " << filename
         << " no support for holes"
       ;
@@ -172,7 +180,9 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     if (w.size() != 4)
     {
       std::stringstream s;
-      s << "File '" << filename << "' cannot be parsed: "
+      s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
+        << "File '" << filename << "' cannot be parsed: "
         << "vertex line does not contain four strings. "
         << "line #" << i << ": '"
         << line << "'"
@@ -194,7 +204,9 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     if (w.size() != 3)
     {
       std::stringstream s;
-      s << "File '" << filename << "' cannot be parsed: "
+      s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
+        << "File '" << filename << "' cannot be parsed: "
         << "edge line does not contain three strings. "
         << "line #" << i << ": '"
         << line << "'"
@@ -208,7 +220,9 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     if (from_index == to_index)
     {
       std::stringstream s;
-      s << "File '" << filename << "' cannot be parsed: "
+      s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
+        << "File '" << filename << "' cannot be parsed: "
         << "edge line 'from' is equal to 'to'. "
         << "line #" << i << ": '"
         << line << "'"
@@ -219,7 +233,9 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     if (from_index < 0)
     {
       std::stringstream s;
-      s << "File '" << filename << "' cannot be parsed: "
+      s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
+        << "File '" << filename << "' cannot be parsed: "
         << "edge line 'from' is an invalid index (" << from_index
         << "), as it is lower than zero. "
         << "line #" << i << ": '"
@@ -231,7 +247,9 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     if (from_index >= static_cast<int>(vertices.size()))
     {
       std::stringstream s;
-      s << "File '" << filename << "' cannot be parsed: "
+      s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
+        << "File '" << filename << "' cannot be parsed: "
         << "edge line 'from' is an invalid index (" << from_index
         << "), as it is height than the number of vertices ("
         << vertices.size() << "). "
@@ -244,19 +262,23 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     if (to_index < 0)
     {
       std::stringstream s;
-      s << "File '" << filename << "' cannot be parsed: "
+      s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
+        << "File '" << filename << "' cannot be parsed: "
         << "edge line 'to' is an invalid index (" << to_index
         << "), as it is lower than zero. "
         << "line #" << i << ": '"
         << line << "'"
       ;
-      if (verbose) { TRACE(s.str()) };
+      if (verbose) { TRACE(s.str()); };
       throw std::runtime_error(s.str());
     }
     if (to_index >= static_cast<int>(vertices.size()))
     {
       std::stringstream s;
-      s << "File '" << filename << "' cannot be parsed: "
+      s
+        << __FILE__ << "(" <<  (__LINE__) <<  "): "
+        << "File '" << filename << "' cannot be parsed: "
         << "edge line 'to' is an invalid index (" << to_index
         << "), as it is height than the number of vertices ("
         << vertices.size() << "). "

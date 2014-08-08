@@ -147,6 +147,7 @@ struct FileIo
   /// - GetTempFileName("") -> tmp01234567
   /// - GetTempFileName(".txt") -> tmp01234567.txt
   std::string GetTempFileName(const std::string& post = "") const;
+  std::string GetTempFileNameSimple(const std::string& post = "") const;
 
   ///Obtain the name of a folder that does not exist
   ///Will throw a std::runtime_error in the unlikely

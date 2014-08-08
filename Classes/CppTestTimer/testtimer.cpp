@@ -67,7 +67,6 @@ ribi::TestTimer::TestTimer(
     << std::endl
   ;
 
-
   if (m_impl->cnt > 1)
   {
     std::clog
@@ -80,7 +79,6 @@ ribi::TestTimer::TestTimer(
     ;
   }
   assert(m_impl->cnt == 1 && "TestTimer can only have one TestTimer instance active");
-
 }
 
 ribi::TestTimer::~TestTimer() noexcept

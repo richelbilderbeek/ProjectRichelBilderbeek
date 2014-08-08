@@ -276,7 +276,7 @@ ribi::About ribi::TestTriangleMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestTriangle",
     "compare Triangle to its C++ equivalent",
-    "the 26th of June 2014",
+    "the 8th of August 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTestTriangle.htm",
     GetVersion(),
@@ -326,7 +326,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestTriangleMenuDialog::GetProgram(
 
 std::string ribi::TestTriangleMenuDialog::GetVersion() const noexcept
 {
-  return "1.8";
+  return "1.9";
 }
 
 std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const noexcept
@@ -340,7 +340,8 @@ std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const
     "2014-06-12: version 1.5: support linestrings",
     "2014-06-17: version 1.6: don't crash desktop version if final result is empty",
     "2014-06-24: version 1.7: use of trim::Dialog in desktop version",
-    "2014-06-26: version 1.8: use of trim::Dialog in console version"
+    "2014-06-26: version 1.8: use of trim::Dialog in console version",
+    "2014-08-08: version 1.9: increased use of TDD"
   };
 }
 
@@ -352,6 +353,8 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  const bool verbose{false};
+  if (verbose) { TRACE("Test classes used by this one"); }
   {
     fileio::FileIo();
     Geometry();
@@ -361,7 +364,6 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
     trim::Dialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  const bool verbose{true};
   if (verbose) { TRACE("Construction"); }
   {
     TestTriangleMenuDialog d;

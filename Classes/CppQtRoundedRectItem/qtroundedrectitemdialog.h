@@ -101,7 +101,8 @@ private:
   void OnPosChanged(QtRoundedRectItem * const qtitem) noexcept;
   void OnRadiusXchanged(QtRoundedRectItem * const qtitem) noexcept;
   void OnRadiusYchanged(QtRoundedRectItem * const qtitem) noexcept;
-  void OnRectChanged(QtRoundedRectItem * const qtitem) noexcept;
+  void OnWidthChanged(QtRoundedRectItem * const qtitem) noexcept;
+  void OnHeightChanged(QtRoundedRectItem * const qtitem) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

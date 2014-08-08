@@ -611,7 +611,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
   {
     const int n = static_cast<int>(m_faces.size());
-    const int p = n / 100;
+    const int p = n / 100 == 0 ? 1 : n / 100;
     for (int i=0; i!=n; ++i)
     //const auto j = std::end(m_faces);
     //for (const boost::shared_ptr<Face>& face: m_faces)
@@ -619,7 +619,8 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     {
       assert(m_faces[i]);
       m_faces[i]->SetCorrectWinding();
-      if (i % p == 0) { std::clog << "%"; }
+      assert(p != 0);
+      if (verbose) { if (i % p == 0) { std::clog << "%"; } }
     }
   }
 
@@ -671,8 +672,6 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     for (const auto& cell: m_cells)
     {
       assert(cell);
-      //TRACE(cell_usecount);
-      //TRACE(cell.use_count());
       assert(cell.use_count() == cell_usecount && "Every Cell must have an equal use_count");
       //All Cells must have existing indices
       assert(cell->GetIndex() >= 0);

@@ -21,7 +21,7 @@ namespace trim {
 //It has no state, so Pimpl is unnecessary
 class CellFactory
 {
-  //friend class Dialog;
+  friend class Dialog;
   friend class Cell;
   friend class CellsCreator;
 

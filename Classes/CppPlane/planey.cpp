@@ -100,9 +100,7 @@ ribi::PlaneY::Double ribi::PlaneY::CalcMinErrorPerC() noexcept
   {
     for (double y = min_y; y < max_y; y*=10.0)
     {
-      //TRACE(y);
       for (double x = min_x; x < max_x; x*=10.0)
-      //const double x = y;
       {
         const Coordinat3D p1(0.0,  y,0.0);
         const Coordinat3D p2(  x,  y,0.0);

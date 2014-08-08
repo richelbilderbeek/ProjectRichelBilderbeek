@@ -53,7 +53,7 @@ ribi::cmap::QtNode::QtNode(
   const boost::shared_ptr<Node> node
   //const boost::shared_ptr<QtItemDisplayStrategy> concept_item
 )
-  : QtConceptMapElement(),
+  : QtRoundedEditRectItem(),
     //m_signal_display_changed{},
     m_signal_base_changed{},
     m_signal_node_changed{},
@@ -269,7 +269,7 @@ void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event) noexcept
     case Qt::Key_F2:
     return;
   }
-  QtConceptMapElement::keyPressEvent(event);
+  Base::keyPressEvent(event);
 }
 
 void ribi::cmap::QtNode::OnItemHasUpdated()

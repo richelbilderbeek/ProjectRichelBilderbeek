@@ -187,8 +187,8 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   const Area triangle_max_area,   //Triangle calls this the 'area' parameter
   const bool verbose) const
 {
-  const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
-  const bool delete_poly_file = true; //True does not leave files scattered around
+  const std::string filename { fileio::FileIo().GetTempFileNameSimple(".poly") };
+  const bool delete_poly_file{false}; //True does not leave files scattered around
   node_filename = "";
   ele_filename = "";
   poly_filename = "";
@@ -230,7 +230,6 @@ void ribi::TriangleFile::ExecuteTriangleExe(
       << triangle_max_area.value()
     ;
     area_str = s.str();
-    TRACE(area_str);
   }
 
   assert(quality_str.find(',') == std::string::npos && "No Dutch please");
@@ -242,8 +241,35 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   }
   assert(fileio::FileIo().IsRegularFile(exe_filename));
 
+  #ifndef _WIN32
+  {
+    //Do chmod +x in Linux
+    std::stringstream chmod;
+    chmod
+      << "chmod +x "
+      << exe_filename;
+    if (verbose) { std::cout << "Starting command '" << chmod.str() << "'" << std::endl; }
+    const bool error = std::system(chmod.str().c_str());
+    if (error)
+    {
+      if (verbose)
+      {
+        std::cout << "Finished command with an error (" << __FILE__ << "," << __LINE__ << ")" << std::endl
+          << *m_polyfile << std::endl;
+      }
+      std::stringstream s;
+      s << "Error: '" << chmod.str() << "' failed (" << __FILE__ << "," << __LINE__ << "), with error code " << error;
+      throw std::runtime_error(s.str());
+    }
+
+  }
+  #endif
+
   std::stringstream command;
   command
+  #ifndef _WIN32
+    << "./"
+  #endif
     << exe_filename
     << " -j -z -q"
     << quality_str
@@ -275,12 +301,11 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   {
     if (verbose)
     {
-      std::cout << "Finished command with an error" << std::endl;
-      TRACE(*m_polyfile);
+      std::cout << "Finished command with an error (" << __FILE__ << "," << __LINE__ << ")" << std::endl
+        << *m_polyfile << std::endl;
     }
     std::stringstream s;
-    s << "Error: '" << command.str() << "' failed, with error code " << error;
-    TRACE(s.str());
+    s << "Error: '" << command.str() << "' failed (" << __FILE__ << "," << __LINE__ << "), with error code " << error;
     throw std::runtime_error(s.str());
   }
   if (verbose) { std::cout << "Finished command without errors" << std::endl; }
@@ -362,7 +387,6 @@ void ribi::TriangleFile::Test() noexcept
     try
     {
       TriangleFile f(shapes);
-      //TRACE(f.ToStr());
       std::string filename_node;
       std::string filename_ele;
       std::string filename_poly;

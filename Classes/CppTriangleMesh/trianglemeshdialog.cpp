@@ -48,6 +48,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trianglefile.h"
 #include "trianglemeshbuilder.h"
 #include "trianglemeshcell.h"
+#include "trianglemeshcellfactory.h"
 #include "trianglemeshcellscreator.h"
 #include "trianglemeshcellscreatorfactory.h"
 #include "trianglemeshface.h"
@@ -83,8 +84,8 @@ ribi::trim::Dialog::Dialog()
   Test();
   #endif
 
-  CreateTriangleMesh();
-  Create3dMesh();
+  //CreateTriangleMesh();
+  //Create3dMesh();
 }
 
 void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
@@ -418,13 +419,10 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
     ;
   }
 
-  //m_triangle_input_poly = "";
   m_triangle_shapes = Shapes();
   m_triangle_output_ele = "";
   m_triangle_output_node = "";
   m_triangle_output_poly = "";
-  //m_triangle_input_edges = 0;
-  //m_triangle_input_vertices = 0;
 
   try
   {
@@ -437,9 +435,6 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
 
     //const auto file = boost::make_shared<TriangleFile>(m_shapes);
     m_triangle_file = boost::make_shared<TriangleFile>(m_shapes);
-
-    //m_triangle_input_vertices = file->GetNumberOfVertices();
-    //m_triangle_input_edges = file->GetNumberOfEdges();
 
     if (verbose)
     {
@@ -531,10 +526,9 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
   catch (std::exception& e)
   {
     std::stringstream s;
-    s << "ribi::trim::Dialog::Dialog: "
+    s << "ribi::trim::Dialog::Dialog(" << __LINE__ << "): "
       << "Triangle.exe failed: " << e.what();
-    TRACE(s.str());
-    //throw std::runtime_error(s.str());
+    throw std::runtime_error(s.str());
   }
 }
 
@@ -834,13 +828,34 @@ void ribi::trim::Dialog::Test() noexcept
     TriangleFile( {} );
     CellsCreatorFactory();
     Template::CreateTest(0);
-    { Dialog d; d.CreateTriangleMesh(); d.Create3dMesh(); } //TriangleMeshBuilder
+    CellFactory();
+    TriangleMeshBuilder(
+      { CellFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square) },
+      "",
+      Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
+      CreateVerticalFacesStrategy::one_face_per_square,
+      false
+    );
+    //foam::BoundaryFile():
+    foam::ControlDictFile();
+    //foam::FacesFile();
+    foam::FvSchemesFile();
+    foam::FvSolutionFile();
+    //foam::NeighbourFile();
+    //foam::OwnerFile();
+    //foam::PointsFile();
+    foam::PressureFile();
+    foam::TemperatureFile();
+    foam::ThermophysicalPropertiesFile();
+    foam::VelocityFieldFile();
+    //{ Dialog d; d.CreateTriangleMesh(); d.Create3dMesh(); } //TriangleMeshBuilder
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   //Flow of Dialog
   {
     Dialog d;
+    d.SetShapes( Geometry().WktToShapes("POLYGON((1 1,-1 1,-1 -1,1 -1))") );
     d.CreateTriangleMesh();
     d.Create3dMesh();
     assert(!d.Get3dMesh().empty());

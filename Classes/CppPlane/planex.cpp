@@ -102,7 +102,6 @@ ribi::PlaneX::Double ribi::PlaneX::CalcMinErrorPerC() noexcept
   {
     for (double y = min_y; y < max_y; y*=10.0)
     {
-      //TRACE(y);
       for (double x = min_x; x < max_x; x*=10.0)
       //const double x = y;
       {

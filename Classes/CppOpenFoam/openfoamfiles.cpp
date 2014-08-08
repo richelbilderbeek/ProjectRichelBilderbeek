@@ -802,39 +802,55 @@ void ribi::foam::Files::Test() noexcept
 bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs) noexcept
 {
   //Split function for ease in debugging
+  const bool verbose{false};
   if (*lhs.GetBoundary()!= *rhs.GetBoundary())
   {
-    //TRACE("Boundaries differ:");
-    //TRACE(*lhs.GetBoundary());
-    //TRACE(*rhs.GetBoundary());
+    if (verbose)
+    {
+      TRACE("Boundaries differ:");
+      TRACE(*lhs.GetBoundary());
+      TRACE(*rhs.GetBoundary());
+    }
     return false;
   }
   if (*lhs.GetFaces() != *rhs.GetFaces())
   {
-    //TRACE("Faces differ:");
-    //TRACE(*lhs.GetFaces());
-    //TRACE(*rhs.GetFaces());
+    if (verbose)
+    {
+      TRACE("Faces differ:");
+      TRACE(*lhs.GetFaces());
+      TRACE(*rhs.GetFaces());
+    }
     return false;
   }
   if (*lhs.GetNeighbour() != *rhs.GetNeighbour())
   {
-    //TRACE("Neighbours differ:");
-    //TRACE(*lhs.GetNeighbour());
-    //TRACE(*rhs.GetNeighbour());
+    if (verbose)
+    {
+      TRACE("Neighbours differ:");
+      TRACE(*lhs.GetNeighbour());
+      TRACE(*rhs.GetNeighbour());
+    }
     return false;
   }
   if (*lhs.GetOwner() != *rhs.GetOwner())
   {
-    //TRACE("Owners differ:");
-    //TRACE(*lhs.GetOwner());
-    //TRACE(*rhs.GetOwner());
+    if (verbose)
+    {
+      TRACE("Owners differ:");
+      TRACE(*lhs.GetOwner());
+      TRACE(*rhs.GetOwner());
+    }
     return false;
   }
   if (*lhs.GetPoints() != *rhs.GetPoints())
   {
-    //TRACE("Points differ:");
-    //TRACE(*lhs.GetPoints());
-    //TRACE(*rhs.GetPoints());
+    if (verbose)
+    {
+      TRACE("Points differ:");
+      TRACE(*lhs.GetPoints());
+      TRACE(*rhs.GetPoints());
+    }
     return false;
   }
   return true;

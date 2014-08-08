@@ -406,7 +406,6 @@ boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Mesh::CreateBoundary() c
     #endif
 
     const FaceIndex n_start_face = FaceIndex(indices[0]);
-    //TRACE(n_start_face);
     const BoundaryFileItem item(
       boundary->GetName(),
       boundary->GetType(),

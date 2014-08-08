@@ -132,6 +132,11 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   assert(a);
   assert(b);
   assert(c);
+  bottom->SetBoundaryType("bottom");
+  top->SetBoundaryType("top");
+  a->SetBoundaryType("back");
+  b->SetBoundaryType("left");
+  c->SetBoundaryType("right");
   const std::vector<boost::shared_ptr<Face>> prism {
     top,bottom,a,b,c
   };
@@ -178,6 +183,15 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   assert(d);
   assert(e);
   assert(f);
+  bottom->SetBoundaryType("bottom");
+  top->SetBoundaryType("top");
+  a->SetBoundaryType("back");
+  b->SetBoundaryType("back");
+  c->SetBoundaryType("left");
+  d->SetBoundaryType("left");
+  e->SetBoundaryType("right");
+  f->SetBoundaryType("right");
+
   const std::vector<boost::shared_ptr<Face>> prism {
     top,bottom,a,b,c,d,e,f
   };

@@ -458,7 +458,6 @@ bool ribi::Geometry::IsConvex(const Coordinats2D& points) const noexcept
   Polygon polygon;
   for (const auto& point: points)
   {
-    //TRACE(ToStr(point));
     boost::geometry::append(polygon,point);
   };
   assert(boost::geometry::num_points(polygon) == points.size());
@@ -635,8 +634,6 @@ bool ribi::Geometry::IsPlane(const std::vector<ApCoordinat3D>& v) const noexcept
   {
     const std::unique_ptr<Plane> plane(new Plane(v[0],v[1],v[2]));
     assert(plane);
-    //TRACE(plane->CalcMaxError(v[3]));
-    //TRACE(plane->CalcError(v[3]));
     assert(plane->IsInPlane(v[3]) == (plane->CalcError(v[3]) <= plane->CalcMaxError(v[3])));
     return plane->IsInPlane(v[3]);
   }
@@ -859,7 +856,6 @@ double ribi::Geometry::ToDouble(const apfloat& a) const
   std::stringstream s;
   s << std::fixed << std::setprecision(99) << a;
   //s << pretty << a;
-  //TRACE(s.str());
   const double x = boost::lexical_cast<double>(s.str());
   return x;
 }

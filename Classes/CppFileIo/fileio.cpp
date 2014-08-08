@@ -540,6 +540,26 @@ std::string ribi::fileio::FileIo::GetTempFileName(const std::string& post) const
   throw std::runtime_error(s.str());
 }
 
+std::string ribi::fileio::FileIo::GetTempFileNameSimple(const std::string& post) const
+{
+  //Limit the number of searches, to prevent the program from freezing
+  for (auto i = 0; i!=1000; ++i)
+  {
+    std::stringstream s;
+    s << "tmp"
+      << i
+      << post;
+    if (!IsRegularFile(s.str())) return s.str();
+  }
+
+  std::stringstream s;
+  s << "ribi::fileio::FileIo::GetTempFileNameSimple: "
+    << "Could not find a temporary file name"
+  ;
+  TRACE(s.str());
+  throw std::runtime_error(s.str());
+}
+
 
 std::string ribi::fileio::FileIo::GetTempFolderName() const
 {
