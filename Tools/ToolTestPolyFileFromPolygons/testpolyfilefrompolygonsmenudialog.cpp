@@ -89,7 +89,6 @@ int ribi::TestPolyFileFromPolygonsMenuDialog::ExecuteSpecific(const std::vector<
       const std::string text = args[i+1];
       if (verbose) { std::cout << "Parsing polygons '" << text << "'" << std::endl; }
       const auto regex = Regex().GetRegexPolygon();
-      //const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(GetPolygonRegex());
       const auto lines = Regex().GetRegexMatches(text,regex);
       for (const std::string& line: lines)
       {
