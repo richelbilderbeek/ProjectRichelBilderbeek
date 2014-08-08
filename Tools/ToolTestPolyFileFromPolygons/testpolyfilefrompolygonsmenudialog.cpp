@@ -38,16 +38,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "testtimer.h"
+#include "plane.h"
 #include "polyfile.h"
 #include "polyfilefrompolygons.h"
 #include "testpolyfilefrompolygonsmaindialog.h"
 #pragma GCC diagnostic pop
 
-int ribi::TestPolyFileFromPolygonsMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
+ribi::TestPolyFileFromPolygonsMenuDialog::TestPolyFileFromPolygonsMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+int ribi::TestPolyFileFromPolygonsMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
+{
+  bool silent{false};
+  if (std::count(args.begin(),args.end(),"-s") || std::count(args.begin(),args.end(),"--silent"))
+  {
+    silent = true;
+  }
 
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
@@ -59,7 +68,7 @@ int ribi::TestPolyFileFromPolygonsMenuDialog::ExecuteSpecific(const std::vector<
   if (std::count(args.begin(),args.end(),"-b") || std::count(args.begin(),args.end(),"--verbose"))
   {
     verbose = true;
-    std::cout << "Verbose mode" << std::endl;
+    if (!silent) { std::cout << "Verbose mode" << std::endl; }
   }
 
   //Polygons
@@ -68,7 +77,7 @@ int ribi::TestPolyFileFromPolygonsMenuDialog::ExecuteSpecific(const std::vector<
     && !std::count(args.begin(),args.end(),"--polygons")
   )
   {
-    std::cerr << "Parameter for polygons missing" << '\n';
+    if (!silent) { std::cerr << "Parameter for polygons missing" << '\n'; }
     return 1;
   }
 
@@ -100,30 +109,32 @@ int ribi::TestPolyFileFromPolygonsMenuDialog::ExecuteSpecific(const std::vector<
   }
   if (polygons.empty())
   {
-    std::cerr << "Please supply a value for polygon, e.g. 'POLYGON((1 1,1 -1,1 -1))" << std::endl;
+    if (!silent) { std::cerr << "Please supply a value for polygon, e.g. 'POLYGON((1 1,1 -1,1 -1))" << std::endl; }
     return 1;
 
   }
   if (verbose)
   {
-    std::cout << "Number of polygons: " << polygons.size() << std::endl;
-    std::cout << "Polygons (as SVG text): " << Geometry().ToSvg(polygons) << std::endl;
+    if (!silent) {
+      std::cout << "Number of polygons: " << polygons.size() << std::endl
+        << "Polygons (as SVG text): " << Geometry().ToSvg(polygons) << std::endl;
+    }
   }
 
   try
   {
     const TestPolyFileFromPolygonsMainDialog d(polygons);
-    std::cout << d << std::endl;
+    if (!silent) {std::cout << d << std::endl;}
     return 0;
   }
   catch (std::exception& e)
   {
-    std::cerr << "ERROR: Exception caught: " << e.what() << std::endl;
+    if (!silent) { std::cerr << "ERROR: Exception caught: " << e.what() << std::endl; }
     return 1;
   }
   catch (...)
   {
-    std::cerr << "ERROR: Unknown exception caught!" << std::endl;
+    if (!silent) { std::cerr << "ERROR: Unknown exception caught!" << std::endl; }
     return 1;
   }
 }
@@ -144,6 +155,7 @@ ribi::About ribi::TestPolyFileFromPolygonsMenuDialog::GetAbout() const noexcept
   a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
   a.AddLibrary("PolyFileFromPolygons version: " + PolyFileFromPolygons::GetVersion());
   return a;
@@ -155,8 +167,9 @@ ribi::Help ribi::TestPolyFileFromPolygonsMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
+      Help::Option('b',"verbose","generate more output"),
       Help::Option('p',"polygons","the shapes used as a base"),
-      Help::Option('b',"verbose","generate more output")
+      Help::Option('s',"silent","produce no output")
     },
     {
       GetAbout().GetFileTitle() + " --polygons POLYGON((1 1,-1 1,-1 -1,1 -1)) --verbose",
@@ -174,32 +187,10 @@ boost::shared_ptr<const ribi::Program> ribi::TestPolyFileFromPolygonsMenuDialog:
   return p;
 }
 
-//From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-/*
-std::vector<std::string> ribi::TestPolyFileFromPolygonsMenuDialog::GetRegexMatches(
-  const std::string& s,
-  const QRegExp& r_original
-) noexcept
-{
-  QRegExp r(r_original);
-  r.setMinimal(true); //QRegExp must be non-greedy
-  std::vector<std::string> v;
-  int pos = 0;
-  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
-  {
-    const QString q = r.cap(1);
-    if (q.isEmpty()) break;
-    v.push_back(q.toStdString());
-    pos += r.matchedLength();
-  }
-
-  return v;
-}
-*/
 
 std::string ribi::TestPolyFileFromPolygonsMenuDialog::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::TestPolyFileFromPolygonsMenuDialog::GetVersionHistory() const noexcept
@@ -207,6 +198,7 @@ std::vector<std::string> ribi::TestPolyFileFromPolygonsMenuDialog::GetVersionHis
   return {
     "2014-06-02: version 1.0: initial version, supported polygons only",
     "2014-06-12: version 1.1: added support for linestring",
+    "2014-08-08: version 1.2: added silent flag to console version"
   };
 }
 
@@ -218,23 +210,38 @@ void ribi::TestPolyFileFromPolygonsMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    Container();
+    fileio::FileIo();
+    boost::shared_ptr<Plane> plane{
+      new Plane(
+        Plane::Coordinat3D(1.0,0.0,0.0),
+        Plane::Coordinat3D(0.0,1.0,0.0),
+        Plane::Coordinat3D(0.0,0.0,1.0)
+      )
+    };
+    TestPolyFileFromPolygonsMainDialog( {} );
+  }
+  const bool verbose{false};
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     TestPolyFileFromPolygonsMenuDialog d;
-    TRACE("Show help");
-    d.Execute( {"TestPolyFileFromPolygonsMenuDialog", "--help" } );
-    TRACE("Create triangle with long notation");
+    if (verbose) { TRACE("Create triangle with long notation"); }
     d.Execute(
       {
         "TestPolyFileFromPolygonsMenuDialog",
-        "--polygons", "POLYGON((0 0,0 1,1 0))"
+        "--polygons",
+        "POLYGON((0 0,0 1,1 0))",
+        "--silent"
       }
     );
-    TRACE("Create two triangles with short notation");
+    if (verbose) { TRACE("Create two triangles with short notation"); }
     d.Execute(
       {
         "TestPolyFileFromPolygonsMenuDialog",
-        "-p", "POLYGON((0 0,0 1,1 0)),POLYGON((1 1,1 2,2 1))"
+        "-p",
+        "POLYGON((0 0,0 1,1 0)),POLYGON((1 1,1 2,2 1))",
+        "--silent"
       }
     );
   }

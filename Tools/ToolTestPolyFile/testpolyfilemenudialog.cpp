@@ -27,11 +27,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
+#include "container.h"
 #include "fileio.h"
 #include "polyfile.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
-
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::TestPolyFileMenuDialog::TestPolyFileMenuDialog()
@@ -41,37 +42,47 @@ ribi::TestPolyFileMenuDialog::TestPolyFileMenuDialog()
   #endif
 }
 
-int ribi::TestPolyFileMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::TestPolyFileMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
 {
-  const int argc = static_cast<int>(argv.size());
-  if (argc == 3 && (argv[1] == "-f" || argv[1] == "--filename"))
+  const int argc = static_cast<int>(args.size());
+
+  bool silent{false};
+  if (std::count(args.begin(),args.end(),"-s") || std::count(args.begin(),args.end(),"--silent"))
   {
-    const std::string filename = argv[2];
+    silent = true;
+  }
+
+  std::stringstream s;
+  if (argc >= 3 && (args[1] == "-f" || args[1] == "--filename"))
+  {
+    const std::string filename = args[2];
     if (filename.empty())
     {
-      std::cout << "Please specify a filename.\n";
+      s << "Please specify a filename.\n";
     }
     else if (filename.size() < 5)
     {
-      std::cout << "Please specify a full poly (.poly) filename.\n";
+      s << "Please specify a full poly (.poly) filename.\n";
     }
     else if (filename.substr(filename.size() - 5,5) != ".poly")
     {
-      std::cout << "Please specify a filename ending on .poly.\n";
+      s << "Please specify a filename ending on .poly.\n";
     }
     else if (!fileio::FileIo().IsRegularFile(filename))
     {
-      std::cout << "Please specify a poly (.poly) filename that exists.\n";
+      s << "Please specify a poly (.poly) filename that exists.\n";
     }
     else
     {
       PolyFile p(filename);
-      std::cout << p << '\n';
+      s << p << '\n';
+      if (!silent) { std::cout << s.str(); }
       return 0;
     }
+    if (!silent) { std::cout << s.str(); }
     return 1;
   }
-  std::cout << GetHelp() << '\n';
+  if (!silent) { std::cout << GetHelp() << '\n'; }
   return 1;
 }
 
@@ -86,6 +97,8 @@ ribi::About ribi::TestPolyFileMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestPolyFile.htm",
     GetVersion(),
     GetVersionHistory());
+  a.AddLibrary("Container version: " + Container::GetVersion());
+  a.AddLibrary("ribi::fileio::FileIo version: " + fileio::FileIo::GetVersion());
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
 
@@ -98,7 +111,8 @@ ribi::Help ribi::TestPolyFileMenuDialog::GetHelp() const noexcept
     GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-      Help::Option('f',"filename","filename of the poly (.poly) file")
+      Help::Option('f',"filename","filename of the poly (.poly) file"),
+      Help::Option('s',"silent","produce no output")
     },
     {
       GetAbout().GetFileTitle() + " -f somefile.poly",
@@ -118,13 +132,14 @@ boost::shared_ptr<const ribi::Program> ribi::TestPolyFileMenuDialog::GetProgram(
 
 std::string ribi::TestPolyFileMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::TestPolyFileMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2016-06-02: version 1.0: initial version"
+    "2014-06-02: version 1.0: initial version"
+    "2014-08-08: version 1.1: added silent flag to console version"
   };
 }
 
@@ -137,6 +152,12 @@ void ribi::TestPolyFileMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    Container();
+    fileio::FileIo();
+    PolyFile( {}, {} );
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Load a .poly file
   {
     const std::string filename = fileio::FileIo().GetTempFileName(".poly");
@@ -148,7 +169,11 @@ void ribi::TestPolyFileMenuDialog::Test() noexcept
     }
     assert(fileio::FileIo().IsRegularFile(filename));
     TestPolyFileMenuDialog d;
-    d.ExecuteSpecific( {"TestPolyFile", "-f", filename} );
+    d.ExecuteSpecific(
+      {
+        "TestPolyFile", "-f", filename, "--silent"
+      }
+    );
     fileio::FileIo().DeleteFile(filename);
   }
 }

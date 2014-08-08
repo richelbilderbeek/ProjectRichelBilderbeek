@@ -51,12 +51,12 @@ std::string ribi::Container::Concatenate(const std::vector<std::string>& v, cons
 }
 
 
-std::string ribi::Container::GetVersion() const noexcept
+std::string ribi::Container::GetVersion() noexcept
 {
   return "1.2";
 }
 
-std::vector<std::string> ribi::Container::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::Container::GetVersionHistory() noexcept
 {
   return {
     "2014-xx-xx: Version 1.0: initial version",

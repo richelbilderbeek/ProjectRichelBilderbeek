@@ -18,7 +18,7 @@ void ribi::Geometry::Test() noexcept
     is_tested = true;
   }
   {
-    boost::shared_ptr<Plane> plane{
+    const boost::shared_ptr<Plane> plane{
       new Plane(
         Plane::Coordinat3D(0.0,0.0,0.0),
         Plane::Coordinat3D(0.0,1.0,0.0),

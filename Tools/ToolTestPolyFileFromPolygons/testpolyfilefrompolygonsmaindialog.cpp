@@ -55,6 +55,11 @@ void ribi::TestPolyFileFromPolygonsMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    PolyFile( {}, {} );
+    PolyFileFromPolygons( {}, {} );
+    Geometry();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const auto polygon = Geometry().CreateShapeTriangle();
   const Polygons polygons = { polygon };

@@ -51,10 +51,10 @@ struct Container
   }
 
   ///Obtain the version
-  std::string GetVersion() const noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   std::vector<std::string> SeperateString(
     const std::string& input,

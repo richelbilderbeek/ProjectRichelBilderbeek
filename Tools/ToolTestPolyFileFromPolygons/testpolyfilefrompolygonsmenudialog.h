@@ -33,6 +33,7 @@ namespace ribi {
 ///GUI independent TestPolyFileFromPolygons menu dialog
 struct TestPolyFileFromPolygonsMenuDialog final : public MenuDialog
 {
+  TestPolyFileFromPolygonsMenuDialog();
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;
   boost::shared_ptr<const Program> GetProgram() const noexcept override;
