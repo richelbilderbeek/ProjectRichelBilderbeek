@@ -112,7 +112,8 @@ void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
   //const auto verbose = m_3dmesh_verbose;
   const auto verbose = true;
   const std::string checkMesh_command(
-    std::string(
+    #ifdef _WIN32
+      std::string(
       R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
     + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" )"
       // Changing to drive D is important...
@@ -122,6 +123,9 @@ void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
     + "&& cd .. "
     + (verbose ? "&& dir " : "")
     + "&& checkMesh"
+    #else
+      "checkMesh"
+    #endif
   );
 
   if (verbose) { TRACE(checkMesh_command); }

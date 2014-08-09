@@ -114,15 +114,74 @@ private:
   ///The pen by which the text is drawn
   QPen m_text_pen;
 
-  ///Obtain the unpadded text rectangle for a single line
-  static QRectF GetTextRect(const std::string& s, const QFont& font) noexcept;
+  ///Obtain the unpadded text rectangle for a single line,
+  ///where the center lies at the origin
+  /*
+          |
+          |
+       +-----+
+    ---|ABCDE|---
+       +-----+
+          |
+          |
+  */
+  static QRectF GetTextRectAtOrigin(const std::string& s, const QFont& font) noexcept;
 
-  ///Obtain the unpadded text rectangle for the whole text
+  ///Obtain the unpadded text rectangle for the whole text,
+  ///where the center lies at the origin
   ///Note: even this rectangle is enlarged by a pixel in both dimensions, so the text will be drawn in full
-  static QRectF GetTextRect(const std::vector<std::string>& text, const QFont& font) noexcept;
+  /*
+          |
+          |
+       +-----+
+       |ABCDE|
+    ---|ABCDE|---
+       |ABCDE|
+       +-----+
+          |
+          |
+  */
+  static QRectF GetTextRectAtOrigin(const std::vector<std::string>& text, const QFont& font) noexcept;
 
   ///Obtain the padded text rectangle for a single line
-  static QRectF GetPaddedTextRect(const std::string& s, const QFont& font) noexcept;
+  ///where the center lies at the origin
+  /*
+          |
+          |
+      +-------+
+      |       |
+   ---| ABCDE |---
+      |       |
+      +-------+
+          |
+          |
+  */
+  static QRectF GetPaddedTextRectAtOrigin(const std::string& s, const QFont& font) noexcept;
+
+  ///Obtain the padded text rectangle for a single line
+  ///where the center lies at the correct location
+  /*
+          |
+          |
+      +-------+
+      |       |
+      | ABCDE |
+      |       |
+      +-------+
+      |       |
+   ---|       |---
+      |       |
+      +-------+
+      |       |
+      |       |
+      |       |
+      +-------+
+          |
+          |
+
+      Line 0/3
+  */
+  static QRectF GetPaddedTextRectAtLine(const std::string& s, const QFont& font, const int line, const int n_lines) noexcept;
 
   ///Called whenever a base class item is changed
   void OnBaseChanged(QtRoundedRectItem * const) noexcept;

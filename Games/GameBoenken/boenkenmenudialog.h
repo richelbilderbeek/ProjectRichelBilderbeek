@@ -30,6 +30,7 @@ namespace Boenken {
 
 struct MenuDialog final : public ::ribi::MenuDialog
 {
+  MenuDialog();
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;
   boost::shared_ptr<const Program> GetProgram() const noexcept override;

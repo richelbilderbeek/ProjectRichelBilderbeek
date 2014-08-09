@@ -54,7 +54,6 @@ void ribi::QtBeerWanterMenuDialog::on_button_start_clicked() noexcept
 
 void ribi::QtBeerWanterMenuDialog::on_button_about_clicked() noexcept
 {
-  this->hide();
   About a = BeerWanterMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
@@ -76,7 +75,7 @@ void ribi::QtBeerWanterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtBeerWanterMainDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

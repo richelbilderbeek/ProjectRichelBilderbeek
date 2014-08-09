@@ -36,7 +36,7 @@ int ribi::SurfacePlotterMenuDialog::ExecuteSpecific(const std::vector<std::strin
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc < 1) //TEMP
+  if (argc < 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;

@@ -96,11 +96,11 @@ void ribi::con3::QtConnectThreeMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-  ConnectThreeMenuDialog();
+  {
+    ConnectThreeMenuDialog();
+  }
   const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
   QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
-  //Start retro
   {
     const std::bitset<3> is_player_human(false);
 
@@ -112,6 +112,7 @@ void ribi::con3::QtConnectThreeMenuDialog::Test() noexcept
     };
     assert(d);
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

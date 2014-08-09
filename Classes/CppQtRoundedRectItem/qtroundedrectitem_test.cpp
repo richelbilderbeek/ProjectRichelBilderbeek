@@ -81,25 +81,25 @@ void ribi::QtRoundedRectItem::Test() noexcept
   }
   if (verbose) { TRACE("SetInnerX and GetInnerX must be symmetric"); }
   {
-    const auto old_x = i.GetInnerX();
+    const auto old_x = i.GetCenterX();
     const auto new_x = old_x + 10.0;
     i.SetInnerX(new_x);
-    assert(std::abs(i.GetInnerX() - new_x) < 2.0);
+    assert(std::abs(i.GetCenterX() - new_x) < 2.0);
   }
   if (verbose) { TRACE("SetInnerY and GetInnerY must be symmetric"); }
   {
-    const auto old_y = i.GetInnerY();
+    const auto old_y = i.GetCenterY();
     const auto new_y = old_y + 10.0;
     i.SetInnerY(new_y);
-    assert(std::abs(i.GetInnerY() - new_y) < 2.0);
+    assert(std::abs(i.GetCenterY() - new_y) < 2.0);
   }
   if (verbose) { TRACE("SetInnerPos and GetInnerPos must be symmetric"); }
   {
-    const auto old_pos = i.GetInnerPos();
+    const auto old_pos = i.GetCenterPos();
     const auto new_pos = old_pos + QPointF(10.0,10.0);
     i.SetInnerPos(new_pos);
-    assert(std::abs(i.GetInnerPos().x() - new_pos.x()) < 2.0);
-    assert(std::abs(i.GetInnerPos().y() - new_pos.y()) < 2.0);
+    assert(std::abs(i.GetCenterPos().x() - new_pos.x()) < 2.0);
+    assert(std::abs(i.GetCenterPos().y() - new_pos.y()) < 2.0);
   }
   if (verbose) { TRACE("SetInnerHeight and GetInnerHeight must be symmetric"); }
   {
@@ -136,23 +136,23 @@ void ribi::QtRoundedRectItem::Test() noexcept
   }
   if (verbose) { TRACE("Position must be in GetInnerRect"); }
   {
-    assert(i.GetInnerRect().contains(i.GetInnerPos()));
+    assert(i.GetInnerRect().contains(i.GetCenterPos()));
   }
   if (verbose) { TRACE("After changing the outer width and position, the Position must be in GetOuterRect"); }
   {
     i.SetOuterWidth(3.0);
     i.SetOuterHeight(3.0);
-    i.SetOuterX(i.GetInnerX() + 10.0);
-    i.SetOuterY(i.GetInnerY() + 10.0);
+    i.SetOuterX(i.GetCenterX() + 10.0);
+    i.SetOuterY(i.GetCenterY() + 10.0);
     assert(i.GetOuterRect().contains(i.GetOuterPos()));
   }
   if (verbose) { TRACE("After changing the inner width and position, the Position must be in GetInnerRect"); }
   {
     i.SetInnerWidth(3.0);
     i.SetInnerHeight(3.0);
-    i.SetInnerX(i.GetInnerX() + 10.0);
-    i.SetInnerY(i.GetInnerY() + 10.0);
-    assert(i.GetInnerRect().contains(i.GetInnerPos()));
+    i.SetInnerX(i.GetCenterX() + 10.0);
+    i.SetInnerY(i.GetCenterY() + 10.0);
+    assert(i.GetInnerRect().contains(i.GetCenterPos()));
   }
 }
 #endif

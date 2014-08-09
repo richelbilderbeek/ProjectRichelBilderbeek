@@ -50,8 +50,8 @@ void ribi::aaf::QtAafMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtAafMainDialog();
   aaf::MenuDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

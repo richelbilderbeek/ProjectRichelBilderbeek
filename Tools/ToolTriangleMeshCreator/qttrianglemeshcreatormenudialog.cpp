@@ -77,6 +77,11 @@ void ribi::QtTriangleMeshCreatorMenuDialog::on_button_start_clicked() noexcept
   ShowChild(&d);
 }
 
+void ribi::QtTriangleMeshCreatorMenuDialog::on_button_test_clicked() noexcept
+{
+  TriangleMeshCreatorMenuDialog().TestDeep();
+}
+
 #ifndef NDEBUG
 void ribi::QtTriangleMeshCreatorMenuDialog::Test() noexcept
 {

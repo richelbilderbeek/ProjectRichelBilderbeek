@@ -38,8 +38,8 @@ namespace ribi {
 /*
 
      _______
-  A /       \        A  ______
-   /  _____  \        X/ _____ \
+  A /       \           ______
+   /  _____  \         / _____ \
   |  |B    |  |       | |B    | |
   |  |  C  |  |       | |  C  | |
   |  |_____|  |       | |_____| |
@@ -48,9 +48,8 @@ namespace ribi {
 
 A: Outer rectangle, includes thickest pen width
 B: Inner rectangle, excluded thickest pen width
-C: The position if the QtRoundedRectItem, thus rectangles A and B
-   must be of the form
-X: If the rectangle is displayed with a thinner pen, A and B remain at the same relative position
+C: The position if the QtRoundedRectItem
+If the rectangle is displayed with a thinner pen, A and B remain at the same relative position
 
 QGraphicsRectItem::rect must be of the form (-0.5*width,-0.5*height,0.5*width,0.5*height)
 so that (0.0,0.0) is its origin
@@ -93,14 +92,16 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Get the pen by which focus is indicated
   const QPen& GetFocusPen() const noexcept { return m_focus_pen; }
 
-  const QPen& GetCurrentPen() const noexcept { return isSelected() || hasFocus() ? m_contour_pen : m_focus_pen; }
+  const QPen& GetCurrentPen() const noexcept { return GetIsSelected() ? m_focus_pen : m_contour_pen; }
+
+  bool GetIsSelected() const noexcept { return isSelected() || hasFocus(); }
 
   double GetInnerHeight() const noexcept;
-  QPointF GetInnerPos() const noexcept { return QGraphicsRectItem::pos(); }
+  QPointF GetCenterPos() const noexcept { return QGraphicsRectItem::pos(); }
   QRectF GetInnerRect() const noexcept;
   double GetInnerWidth() const noexcept;
-  double GetInnerX() const noexcept { return GetInnerPos().x(); }
-  double GetInnerY() const noexcept { return GetInnerPos().y(); }
+  double GetCenterX() const noexcept { return GetCenterPos().x(); }
+  double GetCenterY() const noexcept { return GetCenterPos().y(); }
 
   double GetOuterHeight() const noexcept { return QGraphicsRectItem::rect().height(); }
   QPointF GetOuterPos() const noexcept { return QGraphicsRectItem::pos(); }
@@ -127,17 +128,13 @@ class QtRoundedRectItem : public QGraphicsRectItem
   void SetInnerHeight(const double width) noexcept;
   void SetInnerPos(const double x,const double y) noexcept;
   void SetInnerPos(const QPointF& pos) noexcept { SetInnerPos(pos.x(),pos.y()); }
-  //void SetInnerRect(const QRectF& rect) noexcept;
-  //void SetInnerRoundedRect(const QRectF rect, const double radius_x, const double radius_y) noexcept;
   void SetInnerWidth(const double width) noexcept;
-  void SetInnerX(const double x) noexcept { SetInnerPos(x,GetInnerY()); }
-  void SetInnerY(const double y) noexcept { SetInnerPos(GetInnerX(),y); }
+  void SetInnerX(const double x) noexcept { SetInnerPos(x,GetCenterY()); }
+  void SetInnerY(const double y) noexcept { SetInnerPos(GetCenterX(),y); }
 
   void SetOuterHeight(const double width) noexcept;
   void SetOuterPos(const double x,const double y) noexcept { SetOuterX(x); SetOuterY(y); }
   void SetOuterPos(const QPointF& pos) noexcept { SetOuterPos(pos.x(),pos.y()); }
-  //void SetOuterRect(const QRectF& rect) noexcept;
-  //void SetOuterRoundedRect(const QRectF& rect, const double radius_x, const double radius_y) noexcept;
   void SetOuterWidth(const double width) noexcept;
   void SetOuterX(const double x) noexcept;
   void SetOuterY(const double y) noexcept;

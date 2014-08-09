@@ -38,7 +38,8 @@ namespace ribi {
 ///QtCreatorProFile parses .pro files
 struct QtCreatorProFile
 {
-  ///Parse a .pro file
+  ///Parse a .pro file, throws a std::logic_error if
+  ///filename is not a regular file
   explicit QtCreatorProFile(const std::string& filename);
   QtCreatorProFile(const QtCreatorProFile&) = delete;
   QtCreatorProFile& operator=(const QtCreatorProFile&) = delete;

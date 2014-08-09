@@ -65,9 +65,26 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
 {
   #ifndef NDEBUG
   Test();
-  assert(ribi::fileio::FileIo().IsRegularFile(m_pro_filename));
-  assert(fileio::FileIo().IsUnixPath(m_pro_filename));
   #endif
+  if (!ribi::fileio::FileIo().IsRegularFile(m_pro_filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Filename '" << m_pro_filename << "' must be a regular file";
+    throw std::logic_error(s.str().c_str());
+  }
+  assert(fileio::FileIo().IsUnixPath(m_pro_filename));
+  if (!fileio::FileIo().IsUnixPath(m_pro_filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Filename '" << m_pro_filename << "' must have a Linux-styl path "
+      << " (this is, folders must be seperated by a slash, instead of a backslash)"
+    ;
+    throw std::logic_error(s.str().c_str());
+  }
+
+
 
   std::vector<std::string> v{ribi::fileio::FileIo().FileToVector(m_pro_filename)};
   RemoveComments(v);

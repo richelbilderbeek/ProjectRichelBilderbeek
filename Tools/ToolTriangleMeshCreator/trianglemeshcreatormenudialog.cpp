@@ -545,10 +545,13 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
-  const int testing_depth = 1;
+  if (verbose) { TRACE("Constructor"); }
   {
-    TriangleMeshCreatorMenuDialog d;
-    d.Execute(
+    TriangleMeshCreatorMenuDialog();
+  }
+  if (verbose) { TRACE("Simple run"); }
+  {
+    TriangleMeshCreatorMenuDialog().Execute(
       {
         "TriangleMeshCreator",
         "--layer_height", "1",
@@ -560,72 +563,6 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         //"--verbose",
         "--triangle_max_area", "10.0",
         "--triangle_min_angle", "20.0",
-        "--profile"
-      }
-    );
-    d.Execute(
-      {
-        "TriangleMeshCreator",
-        "-z", "1",
-        "-w", "POLYGON((0 0,0 3,3 0)),POLYGON((1 1,0 2,2 0))",
-        "-s", "1",
-        "-n", "1",
-        "-f", "0.75",
-        //"-m",
-        //"-b",
-        "--triangle_area", "10.0",
-        "--triangle_quality", "20.0",
-        "--profile"
-      }
-    );
-    d.Execute(
-      {
-        "TriangleMeshCreator",
-        "-z", "1",
-        "-w", "POLYGON((10 10,10 -10,-10 -10,-10 10)),LINESTRING(5 5,5 -5,-5 -5,-5 5)",
-        "-s", "1",
-        "-n", "1",
-        "-f", "0.75",
-        //"-m",
-        //"-b",
-        "-r", "10.0",
-        "-q", "20.0",
-        "--profile"
-      }
-    );
-    if (testing_depth < 2) return;
-
-    d.Execute(
-      {
-        "TriangleMeshCreator",
-        "-z", "1",
-        "-w", "LINESTRING(5 5,5 -5,-5 -5,-5 5)",
-        "-s", "1",
-        "-n", "1",
-        "-f", "0.75",
-        //"-m",
-        //"-b",
-        "-r", "10.0",
-        "-q", "20.0",
-        "--profile"
-      }
-    );
-
-    if (testing_depth < 3) return;
-
-    if (verbose) { TRACE("Testing mesh of issue #221"); }
-
-    d.Execute(
-      {
-        "TriangleMeshCreator",
-        "--layer_height","1",
-        "--WKT", "POLYGON((10 10,10 -10,-10 -10,-10 10))",
-        "--strategy", "1",
-        "--n_layers", "10",
-        "--fraction", "0.9",
-        "--triangle_max_area", "0.1",
-        "--triangle_min_angle", "20.0",
-        "--show_mesh",
         "--profile"
       }
     );

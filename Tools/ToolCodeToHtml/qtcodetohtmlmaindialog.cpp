@@ -231,8 +231,10 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  ribi::fileio::FileIo();
-  Dialog();
+  {
+    ribi::fileio::FileIo();
+    Dialog();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //IsRegularFile
   {
@@ -245,16 +247,16 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
       d.ui->tab_source->setCurrentIndex(index);
       for (const std::string& s:
         {
-          "/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml",
-          "D:/Projects/Tools/ToolCodeToHtml",
-          "D:\\Projects\\Tools\\ToolCodeToHtml",
-          "D:/Projects/Test/ToolOpenFoamExample1",
-          "D:\\Projects\\Test\\ToolOpenFoamExample1",
-          "../../Tools/ToolCodeToHtml",
-          "..\\..\\Tools\\ToolCodeToHtml",
-          "../../Test/ToolOpenFoamExample1",
-          "..\\..\\Test\\ToolOpenFoamExample1",
-          "/home/richel/ProjectRichelBilderbeek/Test/ToolOpenFoamExample1"
+          "/home/richel/ProjectRichelBilderbeek/Tools/ToolTestAbout",
+          "D:/Projects/Tools/ToolTestAbout",
+          "D:\\Projects\\Tools\\ToolTestAbout",
+          "D:/Projects/Test/ToolTestAbout",
+          "D:\\Projects\\Test\\ToolTestAbout",
+          //"../../Tools/ToolCodeToHtml",
+          "..\\..\\Tools\\ToolTestAbout",
+          "../../Tools/ToolTestAbout",
+          "..\\..\\Tools\\ToolTestAbout",
+          "/home/richel/ProjectRichelBilderbeek/Test/ToolTestAbout"
         }
       )
       {

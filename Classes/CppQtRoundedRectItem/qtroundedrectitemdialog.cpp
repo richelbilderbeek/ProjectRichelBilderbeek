@@ -401,7 +401,7 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
 
   assert(m_item->GetContourPen() == contour_pen_after);
   assert(m_item->GetFocusPen()   == focus_pen_after  );
-  assert(m_item->GetOuterPos()        == pos_after        );
+  assert(m_item->GetOuterPos()   == pos_after        );
   assert(m_item->GetRadiusX()    == radius_x_after   );
   assert(m_item->GetRadiusY()    == radius_y_after   );
   assert(m_item->GetInnerWidth() == width_after);
@@ -482,93 +482,142 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
   QtRoundedRectItem();
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
   QtRoundedRectItemDialog dialog;
   boost::shared_ptr<QtRoundedRectItem> item{new QtRoundedRectItem};
   dialog.SetItem(item);
   //Change all, sorted by UI component name
-  //Contour pen width
+  if (verbose) { TRACE("Set/Get Contour pen must be symmetric"); }
   {
     dialog.ui->box_contour_pen_width->setValue( item->GetContourPen().widthF() + 10.0 );
     QPen new_pen = item->GetContourPen();
     new_pen.setWidthF(dialog.ui->box_contour_pen_width->value() + 10.0);
     item->SetContourPen(new_pen);
+    assert(item->GetContourPen() == new_pen);
   }
-  //Focus pen width
+  if (verbose) { TRACE("Set/Get Focus pen width must be symmetric"); }
   {
     dialog.ui->box_focus_pen_width->setValue( item->GetFocusPen().widthF() + 10.0);
     QPen new_pen = item->GetFocusPen();
     new_pen.setWidthF(dialog.ui->box_focus_pen_width->value() + 10.0);
     item->SetFocusPen(new_pen);
+    assert(item->GetFocusPen() == new_pen);
   }
-  //Height
+  if (verbose) { TRACE("Set/Get InnerHeight must be symmetric"); }
   {
     dialog.ui->box_height->setValue(item->GetInnerHeight() + 10.0);
     const auto new_height = dialog.ui->box_height->value() + 10.0;
     item->SetInnerHeight(new_height);
+    assert(std::abs(item->GetInnerHeight() - new_height) < 2.0);
   }
-  //Height including pen
+  if (verbose) { TRACE("Set/Get OuterHeight must be symmetric"); }
   {
     dialog.ui->box_height_including_pen->setValue(item->GetOuterHeight() + 10.0);
     const auto new_height = dialog.ui->box_height_including_pen->value() + 10.0;
     item->SetOuterHeight(new_height);
+    assert(std::abs(item->GetOuterHeight() - new_height) < 2.0);
   }
-  //Radius X
+  if (verbose) { TRACE("Set/Get Radius X must be symmetric"); }
   {
     dialog.ui->box_radius_x->setValue(item->GetRadiusX() + 10.0);
     const auto new_x = dialog.ui->box_radius_x->value() + 10.0;
     item->SetRadiusX(new_x);
+    assert(std::abs(item->GetRadiusX() - new_x) < 2.0);
   }
-  //Radius Y
+  if (verbose) { TRACE("Set/Get Radius Y must be symmetric"); }
   {
     dialog.ui->box_radius_y->setValue(item->GetRadiusY() + 10.0);
     const auto new_y = dialog.ui->box_radius_y->value() + 10.0;
     item->SetRadiusY(new_y);
+    assert(std::abs(item->GetRadiusY() - new_y) < 2.0);
   }
-  //Width
+  if (verbose) { TRACE("Set/Get InnerWidth must be symmetric"); }
   {
-    dialog.ui->box_width->setValue(item->GetInnerWidth() + 10.0);
-    const auto new_width = dialog.ui->box_width->value() + 10.0;
+    const double old_width{item->GetInnerWidth()};
+    const double new_width{old_width + 10.0};
     item->SetInnerWidth(new_width);
+    assert(std::abs(item->GetInnerWidth() - new_width) < 2.0);
   }
-  //Width including pen
+  if (verbose) { TRACE("Set/Get OuterWidth must be symmetric"); }
   {
     dialog.ui->box_width_including_pen->setValue(item->GetOuterWidth() + 10.0);
     const auto new_width = dialog.ui->box_width_including_pen->value() + 10.0;
     item->SetOuterWidth(new_width);
+    assert(std::abs(item->GetOuterWidth() - new_width) < 2.0);
   }
-  // X
+  if (verbose) { TRACE("Set/Get X must be symmetric"); }
   {
-    dialog.ui->box_x->setValue(item->GetOuterPos().x() + 10.0);
+    dialog.ui->box_x->setValue(item->GetOuterX() + 10.0);
     const auto new_x = dialog.ui->box_x->value() + 10.0;
     item->SetOuterX(new_x);
+    assert(std::abs(item->GetOuterX() - new_x) < 2.0);
   }
-  // Y
+  if (verbose) { TRACE("Set/Get Y must be symmetric"); }
   {
-    dialog.ui->box_y->setValue(item->GetOuterPos().y() + 10.0);
+    dialog.ui->box_y->setValue(item->GetOuterY() + 10.0);
     const auto new_y = dialog.ui->box_y->value() + 10.0;
     item->SetOuterY(new_y);
+    assert(std::abs(item->GetOuterY() - new_y) < 2.0);
   }
-  //SetItem with other item
+  if (verbose) { TRACE("SetItem with other item"); }
   {
     boost::shared_ptr<QtRoundedRectItem> new_item{new QtRoundedRectItem};
     dialog.SetItem(new_item);
     assert(dialog.GetItem() == new_item);
   }
-  //SetItem with original item
+  if (verbose) { TRACE("SetItem with original item"); }
   {
     dialog.SetItem(item);
     assert(dialog.GetItem() == item);
   }
-  /*
-    const auto contour_pen_before = item->GetContourPen();
-    const auto focus_pen_before = item->GetFocusPen();
-    const auto pos_before = item->GetOuterPos();
-    const auto radius_x_before = item->GetRadiusX();
-    const auto radius_y_before = item->GetRadiusY();
-    const auto width_before = item->GetInnerWidth();
-    const auto height_before = item->GetInnerHeight();
-  */
-  assert(!"Refactor");
+  if (verbose) { TRACE("Changing a contour pen does not change the inner height"); }
+  {
+    assert(!item->GetIsSelected() && "Work with contour pen");
+    const double old_height{item->GetInnerHeight()};
+    const double new_height{old_height + 10.0};
+    item->SetInnerHeight(new_height);
+    QPen pen(item->GetContourPen());
+    pen.setWidthF(pen.widthF() + 5.0);
+    item->SetContourPen(pen);
+    assert(std::abs(item->GetInnerHeight() - new_height) < 4.0);
+  }
+  if (verbose) { TRACE("Changing a contour pen does not change the inner width"); }
+  {
+    assert(!item->GetIsSelected() && "Work with contour pen");
+    const double old_width{item->GetInnerWidth()};
+    const double new_width{old_width + 10.0};
+    item->SetInnerWidth(new_width);
+    QPen pen(item->GetContourPen());
+    pen.setWidthF(pen.widthF() + 5.0);
+    item->SetContourPen(pen);
+    assert(std::abs(item->GetInnerWidth() - new_width) < 4.0);
+  }
+  if (verbose) { TRACE("Changing a contour pen does change the outer height"); }
+  {
+    assert(!item->GetIsSelected() && "Work with contour pen");
+    const double old_height{item->GetInnerHeight()};
+    const double new_height{old_height + 10.0};
+    item->SetOuterHeight(new_height);
+    QPen pen(item->GetContourPen());
+    pen.setWidthF(pen.widthF() + 5.0);
+    item->SetContourPen(pen);
+    assert(std::abs(item->GetOuterHeight() - new_height) > 4.0);
+  }
+  if (verbose) { TRACE("Changing a contour pen does change the outer width"); }
+  {
+    assert(!item->GetIsSelected() && "Work with contour pen");
+    const double old_width{item->GetInnerWidth()};
+    const double new_width{old_width + 10.0};
+    item->SetOuterWidth(new_width);
+    QPen pen(item->GetContourPen());
+    pen.setWidthF(pen.widthF() + 5.0);
+    item->SetContourPen(pen);
+    assert(std::abs(item->GetOuterWidth() - new_width) > 4.0);
+  }
+  if (verbose) { TRACE("Brute-force some random items"); }
+  {
+    for (int i{0}; i!=10; ++i) { dialog.DoSomethingRandom(); }
+  }
 }
 #endif
 

@@ -140,6 +140,7 @@ void ribi::trim::Helper::Test() noexcept
     };
     assert(!Geometry().IsConvex(points));
   }
+  #ifdef FIX_ISSUE_228
   if (verbose) { TRACE("IsCounterClockwise, 3D, from #228"); }
   {
     //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
@@ -182,6 +183,7 @@ void ribi::trim::Helper::Test() noexcept
 
     assert(!h.IsConvex(points));
     assert(!h.IsConvex(AddConst(points)));
+    assert(!h.IsPlane(points));
 
     const Coordinat3D observer{-2.1871,3.74169,5};
     assert(!h.IsCounterClockwise(points,observer));
@@ -250,6 +252,7 @@ void ribi::trim::Helper::Test() noexcept
     assert(!h.IsClockwise(points,observer));
     assert(!h.IsClockwise(AddConst(points),observer));
   }
+  #endif // FIX_ISSUE_228
   #ifdef BRUTE_FORCE_TEST_MAKECOUNTERCLOCKWISE
   if (verbose) { TRACE("MakeCounterClockwise, make shuffled points counterclockwise, from #228"); }
   {

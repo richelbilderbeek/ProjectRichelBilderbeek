@@ -40,6 +40,7 @@ struct TriangleMeshCreatorMenuDialog final : public MenuDialog
   boost::shared_ptr<const Program> GetProgram() const noexcept override;
   std::string GetVersion() const noexcept override;
   std::vector<std::string> GetVersionHistory() const noexcept override;
+  static void TestDeep() noexcept;
 
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
@@ -48,7 +49,6 @@ struct TriangleMeshCreatorMenuDialog final : public MenuDialog
   static void Test() noexcept;
   #endif
 
-  static void TestDeep() noexcept;
 };
 
 } //namespace ribi

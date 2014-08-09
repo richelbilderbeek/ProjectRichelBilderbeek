@@ -354,6 +354,7 @@ void ribi::QtKeyboardFriendlyGraphicsView::SetRandomFocus()
     //Really lose focus
     item->setEnabled(false);
     item->clearFocus();
+    //item->setSelected(false); // #239
     item->setEnabled(true);
   }
   //Let a random item receive focus
@@ -371,5 +372,6 @@ void ribi::QtKeyboardFriendlyGraphicsView::SetRandomFocus()
   {
     const int i = std::rand() % items.size();
     items.at(i)->setFocus();
+    //items.at(i)->setSelected(true); // #239
   }
 }

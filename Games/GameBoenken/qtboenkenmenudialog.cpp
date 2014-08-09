@@ -321,7 +321,10 @@ void ribi::QtBoenkenMenuDialog::onTrainClick()
 void ribi::QtBoenkenMenuDialog::onAboutClick()
 {
   About a = Boenken::MenuDialog().GetAbout();
+  a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
+  d.setStyleSheet(this->styleSheet());
+  d.setWindowIcon(this->windowIcon());
   this->ShowChild(&d);
 }
 
@@ -333,6 +336,7 @@ void ribi::QtBoenkenMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  Boenken::MenuDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
 

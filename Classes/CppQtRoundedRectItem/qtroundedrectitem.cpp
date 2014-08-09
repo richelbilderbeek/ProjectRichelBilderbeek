@@ -73,18 +73,9 @@ double ribi::QtRoundedRectItem::GetInnerHeight() const noexcept
 
 QRectF ribi::QtRoundedRectItem::GetInnerRect() const noexcept
 {
-  /*
-  const double pen_width = GetCurrentPen().widthF();
-  const auto x = GetInnerX();
-  const auto y = GetInnerX();
-  const auto w = GetInnerWidth();
-  const auto h = GetInnerHeight();
-  return GetOuterRect().adjusted(
-     pen_width, pen_width,-pen_width,-pen_width);
-  */
   return QRectF(
-    GetInnerX(),
-    GetInnerY(),
+    GetCenterX(),
+    GetCenterY(),
     GetInnerWidth(),
     GetInnerHeight()
   );
@@ -93,7 +84,7 @@ QRectF ribi::QtRoundedRectItem::GetInnerRect() const noexcept
 double ribi::QtRoundedRectItem::GetInnerWidth() const noexcept
 {
   const double pen_width = GetCurrentPen().widthF();
-  return GetOuterWidth() - pen_width;
+  return GetOuterWidth() - (2.0 * pen_width);
 }
 
 
@@ -106,7 +97,7 @@ QRectF ribi::QtRoundedRectItem::GetOuterRect() const noexcept
 
 std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
-  return "1.8";
+  return "1.9";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
@@ -120,7 +111,8 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2014-06-16: version 1.5: disallow setRect and setPos (use SetRoundedRect and SetPos instead), cooperation with QtRoundedRectItemDialog",
     "2014-06-22: version 1.6: allow setting the inner and outer rectangle",
     "2014-08-07: version 1.7: renamed IncludingPen member functions to Outer",
-    "2014-08-08: version 1.8: removed using with rectangles from interface, as it led to incorrectness and confusion"
+    "2014-08-08: version 1.8: removed using with rectangles from interface, as it led to incorrectness and confusion",
+    "2014-08-09: version 1.9: increased use of TDD, fixed bug"
   };
 }
 
@@ -134,66 +126,31 @@ void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) no
 
 void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept
 {
-  /*
-  #ifndef NDEBUG
-  const auto width_before = GetOuterWidth();
-  const auto height_before = GetOuterWidth();
-  #endif // NDEBUG
-  */
-
   painter->setBrush(brush());
-  //The item can be selected by clicking on it, or can have focus by moving towards it
   const double width{GetOuterWidth()};
-  //const double width{GetCurrentPen().widthF()};
   if (this->isSelected() || this->hasFocus())
   {
     painter->setPen(m_focus_pen);
-    const double width_diff = width - m_focus_pen.widthF();
-    painter->drawRoundedRect(
-      QRectF(
-        -0.5 * GetOuterWidth(),
-        -0.5 * GetOuterHeight(),
-         0.5 * GetOuterWidth(),
-         0.5 * GetOuterHeight()
-      ).adjusted( //Adjust to stay within rect
-        ( 1.0 * width) - width_diff, //+ 1.0,
-        ( 1.0 * width) - width_diff, //+ 1.0,
-        (-1.0 * width) + width_diff, //- 1.0,
-        (-1.0 * width) + width_diff  //- 1.0
-      ),
-      m_radius_x,
-      m_radius_y
-    );
   }
   else
   {
     painter->setPen(m_contour_pen);
-    const double width_diff = width - m_contour_pen.widthF();
-    painter->drawRoundedRect(
-      QRectF(
-        -0.5 * GetOuterWidth(),
-        -0.5 * GetOuterHeight(),
-         0.5 * GetOuterWidth(),
-         0.5 * GetOuterHeight()
-      //this->GetOuterRect()
-      ).adjusted( //Adjust to stay within rect
-        ( 1.0 * width) - width_diff, //+ 1.0,
-        ( 1.0 * width) - width_diff, //+ 1.0,
-        (-1.0 * width) + width_diff, //- 1.0,
-        (-1.0 * width) + width_diff  //- 1.0
-      ),
-      m_radius_x,m_radius_y
-    );
   }
-
-  /*
-  #ifndef NDEBUG
-  const auto width_after = GetOuterWidth();
-  const auto height_after = GetOuterHeight();
-  assert(width_before == width_after);
-  assert(height_before == height_after);
-  #endif
-  */
+  const double width_diff = width - GetCurrentPen().widthF();
+  painter->drawRoundedRect(
+    QRectF(
+      -0.5 * GetOuterWidth(),
+      -0.5 * GetOuterHeight(),
+       1.0 * GetOuterWidth(), //Width
+       1.0 * GetOuterHeight() //Height
+    ).adjusted( //Adjust to stay within rect
+      ( 1.0 * width) - width_diff, //+ 1.0,
+      ( 1.0 * width) - width_diff, //+ 1.0,
+      (-1.0 * width) + width_diff, //- 1.0,
+      (-1.0 * width) + width_diff  //- 1.0
+    ),
+    m_radius_x,m_radius_y
+  );
 }
 
 void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen) noexcept
@@ -272,59 +229,12 @@ void ribi::QtRoundedRectItem::SetInnerPos(
   SetOuterPos(x,y);
 }
 
-/*
-void ribi::QtRoundedRectItem::SetInnerRect(
-  const QRectF& new_rect
-) noexcept
-{
-  SetInnerWidth(new_rect.height());
-  SetInnerHeight(new_rect.height());
-  SetInnerPos(new_rect.topLeft());
-}
 
-void ribi::QtRoundedRectItem::SetInnerRoundedRect(
-  const QRectF new_rect,
-  const double radius_x,
-  const double radius_y
-) noexcept
-{
-  const auto pen_width = GetCurrentPen().widthF();
-  SetOuterRoundedRect(
-    new_rect.adjusted(-pen_width,-pen_width,pen_width,pen_width),
-    radius_x,
-    radius_y
-  );
-}
-*/
-
-/*
-void ribi::QtRoundedRectItem::SetInnerWidth(const double width) noexcept
-{
-  if (width != GetInnerWidth())
-  {
-    const auto w = GetOuterWidth();
-    const auto h = GetOuterHeight();
-    const auto h = height;
-    const auto p = GetCurrentPen().widthF();
-    QGraphicsRectItem::setRect(
-      QRectF(
-        (-0.5 * w) + p,
-        (-0.5 * h) + p,
-        ( 0.5 * w) - p,
-        ( 0.5 * h) - p
-      )
-    );
-    this->update();
-    m_signal_width_changed(this);
-  }
-}
-*/
 void ribi::QtRoundedRectItem::SetInnerWidth(const double width) noexcept
 {
   SetOuterWidth(
     width + (2.0 * GetCurrentPen().widthF())
   );
-  //assert(std::abs(height - GetInnerHeight()) < 2.0);
 }
 
 
@@ -343,32 +253,7 @@ void ribi::QtRoundedRectItem::SetOuterHeight(const double height) noexcept
     this->update();
     m_signal_height_changed(this);
   }
-  //assert(std::abs(height - GetOuterHeight()) < 2.0);
 }
-
-/*
-void ribi::QtRoundedRectItem::SetOuterRect(
-  const QRectF& new_rect
-) noexcept
-{
-  SetOuterWidth(new_rect.height());
-  SetOuterHeight(new_rect.height());
-  SetOuterPos(new_rect.topLeft());
-}
-
-void ribi::QtRoundedRectItem::SetOuterRoundedRect(
-  const QRectF& new_rect,
-  const double radius_x,
-  const double radius_y
-) noexcept
-{
-  SetOuterRect(new_rect);
-  this->SetRadiusX(radius_x);
-  this->SetRadiusY(radius_y);
-
-}
-*/
-
 
 void ribi::QtRoundedRectItem::SetOuterWidth(const double width) noexcept
 {
@@ -386,28 +271,6 @@ void ribi::QtRoundedRectItem::SetOuterWidth(const double width) noexcept
     m_signal_width_changed(this);
   }
 }
-
-/*
-void ribi::QtRoundedRectItem::SetOuterWidth(const double width) noexcept
-{
-  const auto current = this->GetOuterRect();
-  const double current_width = current.width();
-  if (current_width != width)
-  {
-    QGraphicsRectItem::setRect(
-      QRectF(
-        current.left(),
-        current.top(),
-        width,
-        current.height()
-      )
-    );
-    //Signals and update at SetRoundedRectIncludingPen
-    m_signal_rect_changed(this);
-    this->update();
-  }
-}
-*/
 
 void ribi::QtRoundedRectItem::SetOuterX(const double x) noexcept
 {
