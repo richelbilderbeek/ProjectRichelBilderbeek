@@ -112,9 +112,11 @@ ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
     "2006-2014",
     "http://www.richelbilderbeek.nl/ToolAsciiArter.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("AsciiArter version: " + AsciiArter::GetVersion());
+    GetVersionHistory()
+  );
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

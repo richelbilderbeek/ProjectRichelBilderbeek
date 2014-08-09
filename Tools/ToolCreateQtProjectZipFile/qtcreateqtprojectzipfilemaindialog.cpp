@@ -93,6 +93,17 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    const std::string pro_filename{"../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro"};
+    const boost::shared_ptr<const QtCreatorProFile> pro_file(
+      new QtCreatorProFile(pro_filename));
+    assert(pro_file);
+    assert(fileio::FileIo().IsRegularFile(pro_filename));
+    const boost::shared_ptr<const QtCreatorProFileZipScript> script(
+      new QtCreatorProFileZipScript(pro_file));
+    assert(script);
+
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test basic functions on this project with going two folders down
   const std::vector<std::string> pro_filenames

@@ -54,10 +54,13 @@ ribi::About ribi::MusicTheoryMenuDialog::GetAbout() const noexcept
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolMusicTheory.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
   a.AddLibrary("Music::Chord version: " + Music::Chord::GetVersion());
   a.AddLibrary("Music::Note version: " + Music::Note::GetVersion());
   a.AddLibrary("Music::Scale version: " + Music::Scale::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

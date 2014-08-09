@@ -107,6 +107,7 @@ ribi::About ribi::ruco::MenuDialog::GetAbout() const noexcept
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("ToggleButton version: " + ToggleButton::GetVersion());
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;

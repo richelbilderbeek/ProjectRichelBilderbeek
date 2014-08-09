@@ -105,6 +105,7 @@ ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("ConnectThree version: " + con3::ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + con3::ConnectThreeWidget::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Special thanks to Mark Wiering for his excellent bug reports");
   return a;
 }

@@ -63,10 +63,12 @@ ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noexcept
     "2008-2014",
     "http://www.richelbilderbeek.nl/ToolHistogramEqualizationer.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
+    GetVersionHistory()
+  );
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

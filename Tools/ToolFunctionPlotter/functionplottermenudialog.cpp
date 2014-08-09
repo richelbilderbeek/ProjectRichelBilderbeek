@@ -76,6 +76,8 @@ ribi::About ribi::FunctionPlotterMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("DrawCanvas version: " + DrawCanvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
   return a;
 }

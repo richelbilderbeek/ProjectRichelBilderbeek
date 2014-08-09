@@ -113,6 +113,8 @@ ribi::About ribi::tictactoe::TicTacToeMenuDialog::GetAbout() const noexcept
   a.AddLibrary("tictactoe::Board version: " + tictactoe::Board::GetVersion());
   a.AddLibrary("tictactoe::Game version: " + tictactoe::Game::GetVersion());
   a.AddLibrary("tictactoe::Widget version: " + tictactoe::Widget::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

@@ -103,7 +103,9 @@ ribi::About ribi::GrayCoderMenuDialog::GetAbout() const noexcept
     "2009-2014",
     "http://www.richelbilderbeek.nl/ToolGrayCoder.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }

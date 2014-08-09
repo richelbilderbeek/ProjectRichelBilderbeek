@@ -33,8 +33,10 @@ ribi::About ribi::PreDickAdvocaTorMenuDialog::GetAbout() const noexcept
     "20010-2014",
     "http://www.richelbilderbeek.nl/ToolPreDickAdvocaTor.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

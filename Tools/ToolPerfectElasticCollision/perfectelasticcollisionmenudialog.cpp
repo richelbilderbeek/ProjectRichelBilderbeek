@@ -54,8 +54,10 @@ ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout() const noexcept
     "2010-2014",
     "http://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

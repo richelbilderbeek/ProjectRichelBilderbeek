@@ -70,8 +70,9 @@ ribi::About ribi::maziak::MenuDialog::GetAbout() const noexcept
     "2007-2014",
     "http://www.richelbilderbeek.nl/GameMaziak.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 

@@ -33,8 +33,9 @@ ribi::About ribi::FilterOperationerMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolFilterOperationer.htm",
     GetVersion(),
     GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
   a.AddLibrary("Test image from http://sipi.usc.edu");
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
 
   return a;
 }

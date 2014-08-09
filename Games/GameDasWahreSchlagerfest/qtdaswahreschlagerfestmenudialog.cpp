@@ -87,7 +87,6 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtDasWahreSchlagerfestMainDialog();
   {
     const boost::shared_ptr<QtDasWahreSchlagerfestCanvas> c {
@@ -95,6 +94,7 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
     };
     assert(c);
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

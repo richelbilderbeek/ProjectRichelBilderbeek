@@ -52,8 +52,12 @@ ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() const noexcept
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolCreateGlossary.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
+
   a.AddLibrary("HtmlPage version: " + HtmlPage::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

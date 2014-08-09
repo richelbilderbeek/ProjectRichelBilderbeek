@@ -84,9 +84,12 @@ ribi::About ribi::ImageRotaterMenuDialog::GetAbout() const noexcept
     "2007-2014",
     "http://www.richelbilderbeek.nl/ToolImageRotater.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

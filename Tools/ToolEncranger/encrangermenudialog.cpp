@@ -120,6 +120,8 @@ ribi::About ribi::ToolEncrangerMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("Encranger version: " + Encranger::GetVersion());
   a.AddLibrary("LoopReader version: " + LoopReader<int>::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

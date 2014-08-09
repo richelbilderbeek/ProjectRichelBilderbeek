@@ -56,6 +56,7 @@ ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexcept
   a.AddLibrary("StandardWhiteNoiseSystemParameters version: " + StandardWhiteNoiseSystemParameters::GetVersion());
   a.AddLibrary("SteadyStateKalmanFilter version: " + SteadyStateKalmanFilter::GetVersion());
   a.AddLibrary("SteadyStateKalmanFilterParameters version: " + SteadyStateKalmanFilterParameters::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("WhiteNoiseSystem version: " + WhiteNoiseSystem::GetVersion());
   return a;

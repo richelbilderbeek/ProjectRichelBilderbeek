@@ -135,14 +135,13 @@ void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
 
   if (error)
   {
-    TRACE("WARNING");
-    TRACE(path);
-    TRACE(ribi::fileio::FileIo().GetPath(path));
-    TRACE(checkMesh_command);
-    TRACE(error);
-    TRACE("BREAK");
+    TRACE("WARNING: cannot find checkMesh");
+    //TRACE(path);
+    //TRACE(ribi::fileio::FileIo().GetPath(path));
+    //TRACE(checkMesh_command);
+    //TRACE(error);
   }
-  assert(!error);
+  //assert(!error);
 }
 
 std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>

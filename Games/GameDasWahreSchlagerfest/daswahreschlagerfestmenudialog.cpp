@@ -91,7 +91,7 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
 
 ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
 {
-  return About(
+  About a(
     "Richel Bilderbeek",
     "Das Wahre Schlagerfest",
     "a truely fun game",
@@ -101,6 +101,8 @@ ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory()
   );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  return a;
 }
 
 ribi::Help ribi::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept

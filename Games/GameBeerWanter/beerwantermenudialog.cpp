@@ -95,6 +95,7 @@ ribi::About ribi::BeerWanterMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 

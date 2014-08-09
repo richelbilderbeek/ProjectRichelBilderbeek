@@ -52,8 +52,10 @@ ribi::About ribi::PicToCodeMenuDialog::GetAbout() const noexcept
     "2010-2014",
     "http://www.richelbilderbeek.nl/ToolPicToCode.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("PicToCode version: " + PicToCode::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

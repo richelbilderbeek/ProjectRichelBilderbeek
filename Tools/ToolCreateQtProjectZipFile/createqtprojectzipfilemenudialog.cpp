@@ -132,6 +132,7 @@ ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() const noexcept
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
   a.AddLibrary("QtCreatorProFileZipScript version: " + QtCreatorProFileZipScript::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }

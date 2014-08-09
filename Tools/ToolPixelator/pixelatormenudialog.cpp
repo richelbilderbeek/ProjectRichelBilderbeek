@@ -32,8 +32,10 @@ ribi::About ribi::PixelatorMenuDialog::GetAbout() const noexcept
     "2008-2014",
     "http://www.richelbilderbeek.nl/ToolPixelator.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

@@ -56,8 +56,7 @@ ribi::About ribi::QmakeWatcherMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory()
   };
-  //a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
-  //a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }

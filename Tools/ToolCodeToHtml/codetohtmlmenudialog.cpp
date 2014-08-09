@@ -168,6 +168,7 @@ ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("HTML Tidy for Linux/x86 released on 25 March 2009");
   return a;

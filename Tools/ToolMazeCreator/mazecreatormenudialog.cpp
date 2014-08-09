@@ -55,8 +55,10 @@ ribi::About ribi::MazeCreatorMenuDialog::GetAbout() const noexcept
     "2007-2014",
     "http://www.richelbilderbeek.nl/ToolMazeCreator.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

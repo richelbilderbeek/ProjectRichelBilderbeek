@@ -77,8 +77,9 @@ ribi::About ribi::reversi::MenuDialog::GetAbout() const noexcept
     "200x-2014",
     "http://www.richelbilderbeek.nl/GameReversi.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 

@@ -55,8 +55,10 @@ ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() const noexcept
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolGaborFilter.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

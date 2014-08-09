@@ -89,6 +89,7 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
  <tabstops>
   <tabstop>button_start</tabstop>
   <tabstop>button_about</tabstop>
+  <tabstop>button_test</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>
  <resources>

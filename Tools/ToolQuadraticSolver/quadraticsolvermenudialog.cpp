@@ -51,7 +51,9 @@ ribi::About ribi::QuadraticSolverMenuDialog::GetAbout() const noexcept
     "2008-2014",
     "http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }

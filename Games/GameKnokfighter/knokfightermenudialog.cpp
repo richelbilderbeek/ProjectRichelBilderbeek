@@ -38,7 +38,7 @@ ribi::About ribi::KnokfighterMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/GameKnokfighter.htm",
     GetVersion(),
     GetVersionHistory());
-  //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 

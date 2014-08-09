@@ -70,7 +70,7 @@ ribi::About ribi::Boenken::MenuDialog::GetAbout() const noexcept
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("Plane version: " + Plane::GetVersion());
-
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 

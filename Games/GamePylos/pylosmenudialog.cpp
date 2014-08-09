@@ -76,6 +76,7 @@ ribi::About ribi::pylos::MenuDialog::GetAbout() const noexcept
   a.AddLibrary("pylos::Game version: " + pylos::Game::GetVersion());
   a.AddLibrary("pylos::Move version: " + pylos::Move::GetVersion());
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   return a;
 }

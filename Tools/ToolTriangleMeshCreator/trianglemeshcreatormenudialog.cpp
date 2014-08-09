@@ -454,7 +454,7 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TriangleMeshCreator",
     "Create a 3D mesh using Triangle",
-    "the 24th of June 2014",
+    "the 9th of August 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm",
     GetVersion(),
@@ -468,6 +468,7 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
   a.AddLibrary("PolyFileFromPolygons version: " + PolyFileFromPolygons::GetVersion());
   a.AddLibrary("ribi::Regex version: " + ribi::Regex::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Triangle version 1.6, by Jonathan Richard Shewchuk (http://www.cs.cmu.edu/~quake/triangle.html)");
   a.AddLibrary("TriangleFile version: " + TriangleFile::GetVersion());
   a.AddLibrary("TriangleMesh version: " + trim::Dialog::GetVersion());
@@ -511,7 +512,7 @@ boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetP
 
 std::string ribi::TriangleMeshCreatorMenuDialog::GetVersion() const noexcept
 {
-  return "1.10";
+  return "1.11";
 }
 
 std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory() const noexcept
@@ -527,7 +528,8 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory(
     "2014-05-23: version 1.7: added command line interface",
     "2014-05-23: version 1.8: support linestring as shape",
     "2014-06-17: version 1.9: allow non-surface as valid input",
-    "2014-06-24: version 1.10: moved main dialog to TriangleMesh classes, changed GUI in desktop version to show all data in all steps"
+    "2014-06-24: version 1.10: moved main dialog to TriangleMesh classes, changed GUI in desktop version to show all data in all steps",
+    "2014-08-09: version 1.11: increased use of TDD"
   };
 }
 
