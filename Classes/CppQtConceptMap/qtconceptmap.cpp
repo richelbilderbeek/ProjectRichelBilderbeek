@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
+#ifdef NOT_NOW_20140810
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -313,7 +315,7 @@ void ribi::cmap::QtConceptMap::DeleteEdge(QtEdge * const qtedge)
   #endif
 }
 
-void ribi::cmap::QtConceptMap::DeleteNode(QtNode * const qtnode)
+void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<QtNode>& qtnode)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -337,7 +339,7 @@ void ribi::cmap::QtConceptMap::DeleteNode(QtNode * const qtnode)
   //Remove from non-GUI, which removes the left-overs
   GetConceptMap()->DeleteNode(qtnode->GetNode());
   //Remove node from GUI
-  this->scene()->removeItem(qtnode);
+  this->scene()->removeItem(qtnode.get());
 
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
@@ -855,3 +857,5 @@ void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr<const ribi::cmap::
 
 }
 #endif
+
+#endif // NOT_NOW_20140810

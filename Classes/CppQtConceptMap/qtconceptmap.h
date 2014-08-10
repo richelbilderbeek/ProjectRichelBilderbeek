@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPCONCEPTMAP_H
 #define QTCONCEPTMAPCONCEPTMAP_H
 
+#ifdef NOT_NOW_20140810
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -111,7 +113,7 @@ protected:
   void DeleteEdge(QtEdge * const edge);
 
   ///Delete a Node
-  void DeleteNode(QtNode * const node);
+  void DeleteNode(const boost::shared_ptr<QtNode>& node);
 
   ///Get all the edges connected to the concept
   std::vector<QtEdge*> FindEdges(const QtNode * const from) const noexcept;
@@ -202,5 +204,7 @@ public slots:
 
 } //~namespace cmap
 } //~namespace ribi
+
+#endif // NOT_NOW_20140810
 
 #endif // QTCONCEPTMAPCONCEPTMAP_H

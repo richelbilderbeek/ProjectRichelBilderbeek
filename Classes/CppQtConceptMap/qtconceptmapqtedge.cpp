@@ -141,16 +141,16 @@ ribi::cmap::QtEdge::~QtEdge() noexcept
 
   SetEdge(nullptr);
 
-  assert(m_from);
+  //assert(m_from);
   //assert(m_from->m_signal_node_changed.num_slots() > 0);
 
-  m_from->m_signal_node_changed.disconnect(
-    boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
-  );
-  assert(m_to);
-  m_to->m_signal_node_changed.disconnect(
-    boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
-  );
+  //m_from->m_signal_node_changed.disconnect(
+  //  boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
+  //);
+  //assert(m_to);
+  //m_to->m_signal_node_changed.disconnect(
+  //  boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
+  //);
 
 
   //Disconnect signals
@@ -644,11 +644,12 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
   assert(*edge == *m_edge);
 }
 
+/*
 void ribi::cmap::QtEdge::SetFrom(QtNode * const from) noexcept
 {
   m_from = from;
 }
-
+*/
 void ribi::cmap::QtEdge::SetHasHeadArrow(const bool has_head_arrow) noexcept
 {
   assert(m_arrow);
@@ -665,10 +666,12 @@ void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow) noexcept
   this->m_arrow->SetHasTail(has_tail_arrow);
 }
 
+/*
 void ribi::cmap::QtEdge::SetTo(QtNode * const to) noexcept
 {
   m_to = to;
 }
+*/
 
 QPainterPath ribi::cmap::QtEdge::shape() const noexcept
 {
