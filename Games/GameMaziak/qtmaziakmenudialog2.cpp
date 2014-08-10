@@ -313,19 +313,15 @@ void ribi::maziak::QtMaziakMenuDialog2::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  maziak::MenuDialog();
   {
-    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(99));
+    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(7));
     assert(d);
   }
   {
     const boost::scoped_ptr<QtMaziakInstructionsDialog> d(new QtMaziakInstructionsDialog);
     assert(d);
   }
-  {
-    const About a = MenuDialog().GetAbout();
-    boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
-    assert(d);
-  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

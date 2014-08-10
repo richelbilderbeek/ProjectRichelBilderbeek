@@ -62,8 +62,8 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
     m_view_left->setScene(my_scene);
     m_view_right->setScene(my_scene);
 
-    my_scene->addItem(m_from.get());
-    my_scene->addItem(m_to.get());
+    my_scene->addItem(m_from.get()); //Remove in destructor
+    my_scene->addItem(m_to.get()); //Remove in destructor
   }
 
   assert(!this->ui->here->layout());
@@ -97,6 +97,9 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
 
 ribi::cmap::QtTestQtEdgeDialog::~QtTestQtEdgeDialog() noexcept
 {
+  SetQtEdge(nullptr);
+  m_view_left->scene()->removeItem(m_from.get()); //Remove in destructor
+  m_view_left->scene()->removeItem(m_to.get()); //Remove in destructor
   delete ui;
 }
 
@@ -136,7 +139,6 @@ double ribi::cmap::QtTestQtEdgeDialog::GetUiY() const noexcept
 
 void ribi::cmap::QtTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qtedge) noexcept
 {
-  assert(qtedge);
   assert(m_view_left);
   assert(m_view_left->scene());
   assert(m_view_right);
@@ -149,13 +151,15 @@ void ribi::cmap::QtTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& 
   {
     m_view_left->scene()->removeItem(old_qtedge.get());
   }
-  m_dialog_left->SetQtEdge(qtedge);
-  m_dialog_right->SetQtEdge(qtedge);
-  this->m_view_left->scene()->addItem(qtedge.get());
+  if (qtedge)
+  {
+    m_dialog_left->SetQtEdge(qtedge);
+    m_dialog_right->SetQtEdge(qtedge);
+    this->m_view_left->scene()->addItem(qtedge.get());
 
-  m_dialog_left->setMinimumHeight(QtQtEdgeDialog::GetMinimumHeight(*qtedge));
-  m_dialog_right->setMinimumHeight(QtQtEdgeDialog::GetMinimumHeight(*qtedge));
-
+    m_dialog_left->setMinimumHeight(QtQtEdgeDialog::GetMinimumHeight(*qtedge));
+    m_dialog_right->setMinimumHeight(QtQtEdgeDialog::GetMinimumHeight(*qtedge));
+  }
 }
 
 void ribi::cmap::QtTestQtEdgeDialog::keyPressEvent(QKeyEvent *event) noexcept
@@ -194,7 +198,7 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
   }
   if (verbose) { TRACE("Setting all test edges"); }
   {
-    QtTestQtEdgeDialog dialog;
+    //QtTestQtEdgeDialog dialog;
     const int n{QtEdgeFactory().GetNumberOfTests()};
     for (int i=0; i!=n; ++i)
     {

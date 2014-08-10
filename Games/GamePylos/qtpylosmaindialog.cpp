@@ -46,9 +46,18 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
   #ifndef NDEBUG
   Test();
   #endif
-  ui->setupUi(this);
+  if (!m_pylos_widget)
+  {
+    std::stringstream s;
+    s << "(" << __FILE__ << "," << __LINE__ << ") "
+      << "pylos_widget must not be nullptr" << '\n';
+    throw std::logic_error(s.str().c_str());
+  }
 
   assert(m_pylos_widget);
+
+  ui->setupUi(this);
+
 
   //Connect
   QObject::connect(

@@ -130,7 +130,7 @@ ribi::cmap::QtEdge::QtEdge(
   #endif
 }
 
-ribi::cmap::QtEdge::~QtEdge()
+ribi::cmap::QtEdge::~QtEdge() noexcept
 {
   m_arrow->m_signal_item_updated.disconnect(
     boost::bind(&ribi::cmap::QtEdge::OnArrowChanged,this,boost::lambda::_1)
@@ -139,8 +139,10 @@ ribi::cmap::QtEdge::~QtEdge()
     boost::bind(&ribi::cmap::QtEdge::OnTextChanged,this,boost::lambda::_1)
   );
 
+  SetEdge(nullptr);
+
   assert(m_from);
-  assert(m_from->m_signal_node_changed.num_slots() > 0);
+  //assert(m_from->m_signal_node_changed.num_slots() > 0);
 
   m_from->m_signal_node_changed.disconnect(
     boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
@@ -150,20 +152,9 @@ ribi::cmap::QtEdge::~QtEdge()
     boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
   );
 
-  SetEdge(nullptr);
 
   //Disconnect signals
   /*
-  assert(m_from);
-  assert(m_to);
-  const bool is_connected_to_center_node
-    = dynamic_cast<QtCenterNode*>(m_from) || dynamic_cast<QtCenterNode*>(m_to);
-
-  m_arrow->m_signal_item_updated.disconnect(
-    boost::bind(&ribi::cmap::QtEdge::OnItemHasUpdated,this)
-  );
-
-
   #ifdef TODO_ISSUE_212
   if (!is_connected_to_center_node)
   {

@@ -51,8 +51,8 @@ ribi::cmap::QtQtEdgeDialog::QtQtEdgeDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
   ui(new Ui::QtQtEdgeDialog),
   m_qtedge{},
-  m_qtedgedialog{},
-  m_qtroundededitrectitem_dialog{}
+  m_qtedgedialog{new QtEdgeDialog},
+  m_qtroundededitrectitem_dialog{new QtRoundedEditRectItemDialog}
 {
   #ifndef NDEBUG
   Test();
@@ -65,15 +65,10 @@ ribi::cmap::QtQtEdgeDialog::QtQtEdgeDialog(QWidget *parent)
   }
   {
     assert(this->layout());
-    const boost::shared_ptr<QtEdgeDialog> d{new QtEdgeDialog};
-    assert(d);
-    m_qtedgedialog = d;
     this->layout()->addWidget(m_qtedgedialog.get());
   }
   {
     assert(this->layout());
-    const boost::shared_ptr<QtRoundedEditRectItemDialog> d{new QtRoundedEditRectItemDialog};
-    m_qtroundededitrectitem_dialog = d;
     this->layout()->addWidget(m_qtroundededitrectitem_dialog.get());
   }
 }
@@ -82,6 +77,7 @@ ribi::cmap::QtQtEdgeDialog::~QtQtEdgeDialog()
 {
   this->layout()->removeWidget(m_qtedgedialog.get());
   this->layout()->removeWidget(m_qtroundededitrectitem_dialog.get());
+  this->SetQtEdge(nullptr);
   delete ui;
 }
 
@@ -277,8 +273,13 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
   }
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  QtQtEdgeDialog dialog;
   const bool verbose{false};
+
+  if (verbose) { TRACE("Constructor"); }
+  {
+    QtQtEdgeDialog();
+  }
+  QtQtEdgeDialog dialog;
   const auto from = NodeFactory().GetTest(1);
   const auto to = NodeFactory().GetTest(1);
   const auto edge = EdgeFactory().GetTest(1,from,to);
@@ -286,6 +287,7 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
   const auto qtto = QtNodeFactory().Create(to);
   const boost::shared_ptr<QtEdge> qtedge(new QtEdge(edge,qtfrom.get(),qtto.get()));
   dialog.SetQtEdge(qtedge);
+
   if (verbose) { TRACE("SetX and GetX must be symmetric"); }
   {
     const double new_x{dialog.GetUiX() + 10.0};
@@ -368,5 +370,8 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
     assert(dialog.GetUiHasTailArrow() == qtedge->GetEdge()->HasTailArrow());
     assert(dialog.GetUiHasTailArrow() == qtedge->GetArrow()->HasTail());
   }
+  dialog.SetQtEdge(nullptr);
+  //dialog = QtQtEdgeDialog();
+  TRACE_FUNC();
 }
 #endif

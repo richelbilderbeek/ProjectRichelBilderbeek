@@ -18,11 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
 //---------------------------------------------------------------------------
-#ifndef QTMAZIAKMENUDIALOG_H
-#define QTMAZIAKMENUDIALOG_H
+#ifndef QTMAZIAKMENUDIALOG2_H
+#define QTMAZIAKMENUDIALOG2_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qthideandshowdialog.h"
 #include "maziakdifficulty.h"
 #pragma GCC diagnostic pop
@@ -68,4 +70,4 @@ private:
 } //~namespace maziak
 } //~namespace ribi
 
-#endif // QTMAZIAKMENUDIALOG_H
+#endif // QTMAZIAKMENUDIALOG2_H

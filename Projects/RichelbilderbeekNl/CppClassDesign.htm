@@ -38,10 +38,12 @@
     Be clear what <a href="CppClassType.htm">kind of class</a> you're writing [10]
   </li>
   <li>
-    Follow a good <a href="CppFunctionDesign.htm">function design</a>. Note: many points of <a href="CppAdvice.htm">advice</a>!
+    Follow a good <a href="CppFunctionDesign.htm">function design</a>. Note: many points of 
+    <a href="CppAdvice.htm">advice</a>!
   </li>
   <li>
-    Follow a good <a href="CppMemberFunctionDesign.htm">member function design</a>. Note: many points of <a href="CppAdvice.htm">advice</a>!
+    Follow a good <a href="CppMemberFunctionDesign.htm">member function design</a>. Note: 
+    many points of <a href="CppAdvice.htm">advice</a>!
   </li>
   <li>
     Treat <a href="CppClassDesign.htm">class design</a> as type design [2]
@@ -62,13 +64,17 @@
     Prefer minimal <a href="CppClass.htm">classes</a> to monolithic classes [11]
   </li>
   <li>
-    Prefer a concrete type over more complicated classes and over <a href="CppPod.htm">POD</a>s, as a concrete type is the simplest kind of class [31]
+    Prefer a <a href="CppConcreteType.htm">concrete type</a> over more complicated classes 
+    and over <a href="CppPod.htm">POD</a>s, as a <a href="CppConcreteType.htm">concrete type</a> 
+    is the simplest kind of class [31]
   </li>
   <li>
-    Use <a href="CppAbstractBaseClass.htm">abstract classes</a> to focus design on the provision of clean <a href="CppInterface.htm">interfaces</a> [32]
+    Use <a href="CppAbstractBaseClass.htm">abstract classes</a> to focus design on the provision 
+    of clean <a href="CppInterface.htm">interfaces</a> [32]
   </li>
   <li>
-    Use <a href="CppPod.htm">POD</a>s only when it really is just data and no <a href="CppInvariant.htm">invariant</a> is meaningful for the data members [30]
+    Use <a href="CppPod.htm">POD</a>s only when it really is just data and 
+    no <a href="CppInvariant.htm">invariant</a> is meaningful for the data members [30]
   </li>
 </ul>
 <p>&nbsp;</p>
@@ -80,26 +86,32 @@
 <p>&nbsp;</p>
 <ul>
   <li>
-    Seperate the <a href="CppInterface.htm">interface</a> of a <a href="CppClass.htm">class</a> from its <a href="CppImplementation.htm">implementation</a> [29]:
-	allow the user not to know what kind of <a href="CppDataType.htm">data types</a> you used in the <a href="CppPrivate.htm">private</a> section of your class
+    Seperate the <a href="CppInterface.htm">interface</a> of a <a href="CppClass.htm">class</a> from its 
+    <a href="CppImplementation.htm">implementation</a> [29]: allow the user not to know what 
+    kind of <a href="CppDataType.htm">data types</a> you used in the 
+    <a href="CppPrivate.htm">private</a> section of your class
   </li>
   <li>
     Make <a href="CppInterface.htm">interfaces</a> easy to use correctly and hard to use incorrectly [1]
   </li>
   <li>
-    Start with a minimal interface to a class, as small and simple as you need to solve the problem at hand [37]
+    Start with a minimal <a href="CppInterface.htm">interface</a> to a class, as small and simple 
+    as you need to solve the problem at hand [37]
   </li>
   <li>
     Don't try to anticipate all the ways that your class might be used [37]
   </li>
   <li>
-    Be aware that once a class is in use you cannot shrink the <a href="CppInterface.htm">interface</a> without disturbing client code [37]
+    Be aware that once a class is in use you cannot shrink the 
+    <a href="CppInterface.htm">interface</a> without disturbing client code [37]
   </li>
   <li>
-    <a href="CppDeclaration.htm">Declare</a> <a href="CppMemberVariable.htm">member variables</a> <a href="CppPrivate.htm">private</a> [5,9,19,27], except in <a href="CppPod.htm">POD</a>s [19]
+    <a href="CppDeclaration.htm">Declare</a> <a href="CppMemberVariable.htm">member variables</a> 
+    <a href="CppPrivate.htm">private</a> [5,9,19,27], except in <a href="CppPod.htm">POD</a>s [19]
   </li>
   <li>
-    Use <a href="CppHelperFunction.htm">helper functions</a> when type conversion should apply to all parameters [7]
+    Use <a href="CppHelperFunction.htm">helper functions</a> when type conversion should 
+    apply to all parameters [7]
   </li>
   <li>
     Consider support for a non-throwing <a href="CppSwap.htm">swap</a> [8]
@@ -142,7 +154,8 @@
     Keep the <a href="CppTest.htm">test</a> code with the <a href="CppClass.htm">class</a> to be tested [34]
   </li>
   <li>
-    Write the <a href="CppTest.htm">test</a> code to verify that your <a href="CppClassDesign.htm">class design</a> is complete [35]
+    Write the <a href="CppTest.htm">test</a> code to verify that 
+    your <a href="CppClassDesign.htm">class design</a> is complete [35]
   </li>
 
 <!-- Misc -->
@@ -158,7 +171,6 @@
   <li>
     Avoid providing implicit conversions [18]
   </li>
-
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

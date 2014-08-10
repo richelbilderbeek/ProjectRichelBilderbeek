@@ -35,22 +35,32 @@ struct TestTimerImpl
     assert(m_function_name.find('\r') == std::string::npos);
     assert(m_function_name.find('\t') == std::string::npos);
     ++m_cnt;
+    ++m_n_tests;
   }
   ~TestTimerImpl() noexcept
   {
     --m_cnt;
   }
 
+  ///Number of active tests
   static int m_cnt;
+  ///Maximum number of active tests
   static int m_max_cnt;
+  ///Filename where the most recent test is active
   const std::string m_file_name;
+  ///Function name where the most recent test is active
   const std::string m_function_name;
+  ///Maximum allowed time for a test
   const double m_max_time_sec;
+  ///Timer to measure the duration of a test
   boost::timer m_timer;
+  ///The number of tests started
+  static int m_n_tests;
 };
 
 int TestTimerImpl::m_cnt = 0;
 int TestTimerImpl::m_max_cnt = 2;
+int TestTimerImpl::m_n_tests = 0;
 
 } //~namespace ribi
 
@@ -67,6 +77,8 @@ ribi::TestTimer::TestTimer(
     << ExtractFilename(m_impl->m_file_name)
     << ','
     << m_impl->m_function_name
+    << " #"
+    << m_impl->m_n_tests
     << std::endl
   ;
 
@@ -119,13 +131,15 @@ ribi::TestTimer::~TestTimer() noexcept
 
 std::string ribi::TestTimer::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::TestTimer::GetVersionHistory() noexcept
 {
   return {
-    "2014-08-02: version 1.0: initial version"
+    "2014-08-02: version 1.0: initial version",
+    "2014-08-08: version 1.1: allow setting a maximum amount of TestTimers active",
+    "2014-08-10: version 1.2: count the number of constructed TestTimers"
   };
 }
 

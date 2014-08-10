@@ -193,9 +193,20 @@ void ribi::pylos::QtPylosMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    pylos::MenuDialog();
+    {
+      const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
+      try
+      {
+        const boost::shared_ptr<QtPylosMainDialog> d{new QtPylosMainDialog(nullptr)};
+      }
+      catch (std::logic_error&) { /* OK */ }
+    }
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  #ifdef FIX_ISSUE_234
   const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
-  //QtPylosGameWidget * const p = new QtPylosGameWidget();
   assert(p);
   //Set the game type
   p->StartBasic();
@@ -203,5 +214,6 @@ void ribi::pylos::QtPylosMenuDialog::Test() noexcept
   const boost::shared_ptr<QtPylosMainDialog> d{new QtPylosMainDialog(p)};
   //const QtPylosMainDialog d(p);
   assert(!d->GetVersion().empty());
+  #endif // FIX_ISSUE_234
 }
 #endif

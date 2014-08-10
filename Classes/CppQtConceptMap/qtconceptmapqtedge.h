@@ -40,9 +40,7 @@ namespace cmap {
 //struct QtEdge : public QtConceptMapElement
 struct QtEdge : public QGraphicsItem
 {
-  //typedef QtConceptMapElement Base;
   typedef QGraphicsItem Base;
-
 
   typedef boost::shared_ptr<QtQuadBezierArrowItem> Arrow;
   typedef boost::shared_ptr<const QtQuadBezierArrowItem> ReadOnlyArrow;

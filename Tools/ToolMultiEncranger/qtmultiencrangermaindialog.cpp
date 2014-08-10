@@ -62,6 +62,7 @@ void ribi::QtToolMultiEncrangerMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  ToolMultiEncrangerMainDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
