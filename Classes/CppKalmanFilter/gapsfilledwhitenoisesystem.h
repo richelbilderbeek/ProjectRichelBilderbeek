@@ -62,7 +62,6 @@ struct GapsFilledWhiteNoiseSystem : public WhiteNoiseSystem
   mutable int m_timestep;
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 };

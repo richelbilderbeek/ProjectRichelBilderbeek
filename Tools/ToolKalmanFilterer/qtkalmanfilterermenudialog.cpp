@@ -83,9 +83,9 @@ void ribi::kalman::QtKalmanFiltererMenuDialog::Test() noexcept
   {
     Matrix::Test();
     QtMatrix::Test();
-    const TestTimer test_timer(__func__,__FILE__,1.0);
-    const boost::shared_ptr<QtKalmanFiltererMainDialog> d = QtKalmanFiltererMainDialog::Create();
-    assert(d);
+    KalmanFiltererMenuDialog();
+    QtKalmanFiltererMainDialog::Create();
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

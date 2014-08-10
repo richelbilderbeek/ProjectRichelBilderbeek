@@ -50,6 +50,10 @@ public:
   boost::shared_ptr<Edge> GetEdge() const noexcept { return m_edge; }
   static int GetMinimumHeight(const Edge& edge) noexcept;
 
+  ///Get if there is an arrow at the head of the edge directly from the GUI
+  bool GetUiHasHeadArrow() const noexcept;
+  ///Get if there is an arrow at the tail of the edge directly from the GUI
+  bool GetUiHasTailArrow() const noexcept;
   ///Get the X coordinat directly from the GUI
   double GetUiX() const noexcept;
   ///Get the Y coordinat directly from the GUI
@@ -57,6 +61,10 @@ public:
 
   void SetEdge(const boost::shared_ptr<Edge>& edge);
 
+  ///Set if there is an arrow at the head of the edge directly to the GUI
+  void SetUiHasHeadArrow(const bool has_head) noexcept;
+  ///Set if there is an arrow at the tail of the edge directly to the GUI
+  void SetUiHasTailArrow(const bool has_tail) noexcept;
   ///Set the X coordinat directly to the GUI
   void SetUiX(const double x ) noexcept;
   ///Set the Y coordinat directly to the GUI

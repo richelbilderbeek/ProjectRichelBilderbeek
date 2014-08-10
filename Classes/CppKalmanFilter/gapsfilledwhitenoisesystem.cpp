@@ -129,7 +129,7 @@ void ribi::kalman::GapsFilledWhiteNoiseSystem::Test() noexcept
   {
     const int f = 5;
     const boost::shared_ptr<GapsFilledWhiteNoiseSystem> my_system
-      = GapsFilledWhiteNoiseSystemFactory::Create(
+      = GapsFilledWhiteNoiseSystemFactory().Create(
         Matrix::CreateMatrix(1,1, { 1.0 } ), //control
         Matrix::CreateVector(     { 0.0 } ), //initial_state,
         Matrix::CreateVector(     {   f } ), //measurement frequencies
@@ -164,3 +164,4 @@ void ribi::kalman::GapsFilledWhiteNoiseSystem::Test() noexcept
   }
 }
 #endif
+

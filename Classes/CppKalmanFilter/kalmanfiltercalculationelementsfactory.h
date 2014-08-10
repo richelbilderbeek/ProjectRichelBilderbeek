@@ -13,13 +13,22 @@ namespace kalman {
 
 struct KalmanFilterCalculationElementsFactory
 {
+  KalmanFilterCalculationElementsFactory();
+
   ///Create a KalmanFilterCalculationElements of a certain type
-  static boost::shared_ptr<KalmanFilterCalculationElements> Create(
-    const KalmanFilterType type);
+  boost::shared_ptr<KalmanFilterCalculationElements> Create(
+    const KalmanFilterType type
+  ) const noexcept;
 
   ///Deep copy
-  static boost::shared_ptr<KalmanFilterCalculationElements> DeepCopy(
-    const boost::shared_ptr<KalmanFilterCalculationElements>& elements);
+  boost::shared_ptr<KalmanFilterCalculationElements> DeepCopy(
+    const boost::shared_ptr<KalmanFilterCalculationElements>& elements
+  ) const noexcept;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

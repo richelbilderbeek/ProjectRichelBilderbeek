@@ -17,9 +17,10 @@ namespace kalman {
 
 struct WhiteNoiseSystemTypes
 {
-  static std::vector<WhiteNoiseSystemType> GetAllTypes() noexcept;
-  static std::string ToStr(const WhiteNoiseSystemType type) noexcept;
-  static WhiteNoiseSystemType ToType(const std::string& s);
+  WhiteNoiseSystemTypes();
+  std::vector<WhiteNoiseSystemType> GetAllTypes() const noexcept;
+  std::string ToStr(const WhiteNoiseSystemType type) const noexcept;
+  WhiteNoiseSystemType ToType(const std::string& s) const;
 
   private:
   static boost::bimap<WhiteNoiseSystemType,std::string> m_map;

@@ -14,8 +14,15 @@ namespace kalman {
 
 struct WhiteNoiseSystemFactory
 {
-  static boost::shared_ptr<WhiteNoiseSystem> Create(
-    const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
+  WhiteNoiseSystemFactory();
+
+  boost::shared_ptr<WhiteNoiseSystem> Create(
+    const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters) const noexcept;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

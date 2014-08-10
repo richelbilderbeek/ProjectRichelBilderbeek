@@ -3,7 +3,7 @@
 #include <cassert>
 
 #include "conceptmapnodefactory.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 
 #include "testtimer.h"
 #include "trace.h"

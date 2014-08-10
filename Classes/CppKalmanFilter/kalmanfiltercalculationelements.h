@@ -93,6 +93,10 @@ struct KalmanFilterCalculationElements
 
   ///The updated state ('x_n')
   boost::numeric::ublas::vector<double> m_updated_state;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

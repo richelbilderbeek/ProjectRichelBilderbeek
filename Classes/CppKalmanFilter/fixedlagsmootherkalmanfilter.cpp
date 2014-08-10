@@ -19,7 +19,7 @@ ribi::kalman::FixedLagSmootherKalmanFilter::FixedLagSmootherKalmanFilter(
   : KalmanFilter{},
     m_last_calculation{calculation},
     m_last_fixed_lag_smoother_calculation{boost::dynamic_pointer_cast<FixedLagSmootherKalmanFilterCalculationElements>(calculation)},
-    m_standard_filter{StandardKalmanFilterFactory::Create(DownCast(parameters)->GetStandardParameters())},
+    m_standard_filter{StandardKalmanFilterFactory().Create(DownCast(parameters)->GetStandardParameters())},
     m_parameters{DownCast(parameters)},
     m_state_estimates{CreateInitialStates(DownCast(parameters))}
 {

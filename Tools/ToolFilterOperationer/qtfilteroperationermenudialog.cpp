@@ -50,7 +50,7 @@ void ribi::QtFilterOperationerMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtFilterOperationerMainDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

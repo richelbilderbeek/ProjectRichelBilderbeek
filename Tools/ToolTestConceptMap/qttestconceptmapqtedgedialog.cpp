@@ -26,9 +26,9 @@
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapnodedialog.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapqtnodefactory.h"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 #include "qtconceptmapqtedgedialog.h"
 #include "qtconceptmapqtedgefactory.h"
 #include "qtconceptmapratestrategy.h"
@@ -56,6 +56,7 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
   ui->setupUi(this);
   m_from->SetOuterPos(0.0,0.0);
   m_to->SetOuterPos(10.0,100.0);
+
   {
     QGraphicsScene * const my_scene = new QGraphicsScene(this);
     m_view_left->setScene(my_scene);
@@ -170,7 +171,9 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  QtImage();
+  {
+    QtImage();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   QtTestQtEdgeDialog dialog;
@@ -235,33 +238,82 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
   }
   if (verbose) { TRACE("Grabbing QtEdge of QGraphicsView twice, results in an identical picture"); }
   {
-    const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    //If the line below is needed, update() is not called automatically
+    //const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     const QImage image_before{dialog.GetUiView()};
     const QImage image_after{dialog.GetUiView()};
     assert(image_before == image_after);
   }
   if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
   {
-    const std::string a{"QtTestQtEdgeDialogTest1_before.png"};
-    const std::string b{"QtTestQtEdgeDialogTest1_after.png"};
-    const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
-
+    //If the line below is needed, update() is not called automatically
+    //const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
+    const QImage image_before{dialog.GetUiView()};
+    dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
+    const QImage image_after{dialog.GetUiView()};
+    assert(image_before != image_after);
+  }
+  if (verbose) { TRACE("If the head arrow head of an QtEdge its Edge is changed, the Item must be updated"); }
+  {
+    dialog.GetQtEdge()->GetEdge()->SetHeadArrow(true);
+    const QImage image_before{dialog.GetUiView()};
+    dialog.GetQtEdge()->GetEdge()->SetHeadArrow(false);
+    const QImage image_after{dialog.GetUiView()};
+    assert(image_before != image_after);
+  }
+  if (verbose) { TRACE("If the tail arrow head of an QtEdge its Edge is changed, the Item must be updated"); }
+  {
+    dialog.GetQtEdge()->GetEdge()->SetTailArrow(true);
+    const QImage image_before{dialog.GetUiView()};
+    dialog.GetQtEdge()->GetEdge()->SetTailArrow(false);
+    const QImage image_after{dialog.GetUiView()};
+    assert(image_before != image_after);
+  }
+  if (verbose) { TRACE("If the source/'from' of an QtEdge is made invisible, this will show in a screenshot"); }
+  {
+    assert(dialog.m_from->isVisible());
+    const QImage image_before{dialog.GetUiView()};
+    dialog.m_from->setVisible(false);
+    const QImage image_after{dialog.GetUiView()};
+    assert(image_before != image_after);
+  }
+  if (verbose) { TRACE("If the target/'to' of an QtEdge is made invisible, this will show in a screenshot"); }
+  {
+    assert(dialog.m_to->isVisible());
+    const QImage image_before{dialog.GetUiView()};
+    dialog.m_to->setVisible(false);
+    const QImage image_after{dialog.GetUiView()};
+    assert(image_before != image_after);
+  }
+  if (verbose) { TRACE("If the QtNode an QtEdge is made invisible, this will show in a screenshot"); }
+  {
+    assert(dialog.m_dialog_left->GetQtEdge()->GetQtNode()->isVisible());
+    const QImage image_before{dialog.GetUiView()};
+    dialog.m_dialog_left->GetQtEdge()->GetQtNode()->setVisible(false);
+    const QImage image_after{dialog.GetUiView()};
+    assert(image_before != image_after);
+  }
+  if (verbose) { TRACE("If the source/'from' of an QtEdge its Edge is changed, the Item must be updated"); }
+  {
+    const boost::shared_ptr<QtRoundedEditRectItem> from{
+      boost::dynamic_pointer_cast<QtRoundedEditRectItem>(dialog.m_from)
+    };
 
     const QImage image_before{dialog.GetUiView()};
-
-    dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
-
+    from->setX(from->x() + 100.0);
     const QImage image_after{dialog.GetUiView()};
-    if (image_before == image_after)
+    assert(image_before != image_after);
+    //if (image_before != image_after)
     {
-      image_before.save(a.c_str());
-      image_after.save(b.c_str());
+      image_before.save("QtTestQtEdgeDialogTest1_before.png");
+      image_after.save("QtTestQtEdgeDialogTest1_after.png");
       const QImage result{QtImage().Difference(image_before,image_after)};
       result.save("QtTestQtEdgeDialogTest1_difference.png");
     }
-    assert(image_before != image_after);
   }
+
+  //assert(!"Refactor");
 }
 #endif
 

@@ -56,9 +56,9 @@ ribi::kalman::QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr
 
       QtKalmanFiltererParameterDialog * const dialog
         = new QtKalmanFiltererParameterDialog(
-          KalmanFilterParameter::ToName(type),
-          KalmanFilterParameter::ToDescription(type),
-          m_model->Find( KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(v[i]) )
+          KalmanFilterParameter().ToName(type),
+          KalmanFilterParameter().ToDescription(type),
+          m_model->Find( KalmanFilterExperimentParameter().ConvertToKalmanFilterExperimentParameter(v[i]) )
         );
       assert(dialog);
 
@@ -116,7 +116,7 @@ const std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::QtKalma
       KalmanFilterParameterType::estimated_process_noise_covariance, //Q
       KalmanFilterParameterType::estimated_measurement_noise         //R
     };
-  assert(v.size() == KalmanFilterParameter::GetAll().size());
+  assert(v.size() == KalmanFilterParameter().GetAll().size());
   return v;
 }
 
@@ -219,6 +219,8 @@ void ribi::kalman::QtKalmanFilterDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  KalmanFilterParameter();
+  KalmanFilterExperimentParameter();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

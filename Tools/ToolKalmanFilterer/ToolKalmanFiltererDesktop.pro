@@ -1,4 +1,4 @@
-include(../../DesktopApplication.pri)
+include(../../DesktopApplicationNoWeffcpp.pri) #Qwt does not go well with -Weffc++
 
 include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)
@@ -11,6 +11,7 @@ include(../../Classes/CppKalmanFilter/CppKalmanFilter.pri)
 include(../../Classes/CppMatrix/CppMatrix.pri)
 include(../../Classes/CppQtMatrix/CppQtMatrix.pri)
 include(../../Classes/CppQtModel/CppQtModel.pri)
+include(../../Classes/CppRibiRandom/CppRibiRandom.pri)
 include(ToolKalmanFiltererDesktop.pri)
 
 SOURCES += qtmain.cpp

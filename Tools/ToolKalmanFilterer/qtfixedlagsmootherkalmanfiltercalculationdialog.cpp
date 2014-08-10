@@ -158,10 +158,8 @@ void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetStateName
       table->resizeRowsToContents();
       table->update();
       table->setFixedHeight(
-        table->verticalHeader()->length()   + 2 + table->horizontalHeader()->height());
-      //table->setFixedSize(
-      //  table->horizontalHeader()->length() + 2 + table->verticalHeader()->width(),
-      //  table->verticalHeader()->length()   + 2 + table->horizontalHeader()->height());
+        table->verticalHeader()->length()   + 2 + table->horizontalHeader()->height()
+      );
     }
   }
   //Vectors
@@ -193,10 +191,8 @@ void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetStateName
       table->resizeColumnsToContents();
       table->resizeRowsToContents();
       table->setFixedHeight(
-        table->verticalHeader()->length()   + 2 + table->horizontalHeader()->height());
-      //table->setFixedSize(
-      //  table->horizontalHeader()->length() + 2 + table->verticalHeader()->width(),
-      //  table->verticalHeader()->length()   + 2 + table->horizontalHeader()->height());
+        table->verticalHeader()->length()   + 2 + table->horizontalHeader()->height()
+      );
     }
   }
 }
@@ -233,7 +229,6 @@ void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::ShowCalculat
   this->SetControl(parameters->GetControl());
   this->SetInput(experiment->GetInputs().at(i));
   this->SetObservation(parameters->GetObservation());
-  //this->SetEstimatedOptimalKalmanGain(parameters->GetEstimatedOptimalKalmanGain());
   this->SetStateNames(experiment->GetStateNames());
   this->SetStateTransition(parameters->GetStateTransition());
 }

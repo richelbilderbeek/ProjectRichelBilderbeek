@@ -37,7 +37,7 @@ namespace ribi {
 
 class QtDasWahreSchlagerfestWidget : public QWidget
 {
-    Q_OBJECT
+  Q_OBJECT
     
 public:
     explicit QtDasWahreSchlagerfestWidget(QWidget *parent = 0) noexcept;

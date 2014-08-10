@@ -17,7 +17,8 @@ struct StandardWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
     const boost::numeric::ublas::vector<double>& initial_state,
     const boost::numeric::ublas::vector<double>& real_measurement_noise,
     const boost::numeric::ublas::vector<double>& real_process_noise,
-    const boost::numeric::ublas::matrix<double>& state_transition);
+    const boost::numeric::ublas::matrix<double>& state_transition
+  );
 
   ///Obtain the type as an enum
   WhiteNoiseSystemType GetType() const noexcept { return WhiteNoiseSystemType::standard; }
@@ -35,6 +36,10 @@ struct StandardWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
   ///Can only be deleted by boost::checked_delete
   ~StandardWhiteNoiseSystemParameters() noexcept {}
   friend void boost::checked_delete<>(StandardWhiteNoiseSystemParameters*);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

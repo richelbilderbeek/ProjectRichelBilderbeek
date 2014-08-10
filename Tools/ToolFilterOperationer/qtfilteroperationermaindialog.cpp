@@ -144,7 +144,6 @@ void ribi::QtFilterOperationerMainDialog::Test() noexcept
 }
 #endif
 
-
 void ribi::QtFilterOperationerMainDialog::on_box_filter_cols_valueChanged(int arg1)
 {
   QAbstractTableModel * const abstract_model

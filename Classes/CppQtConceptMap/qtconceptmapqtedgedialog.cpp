@@ -35,9 +35,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapedge.h"
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapedgedialog.h"
-#include "qtconceptmapedge.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtedge.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapqtnodefactory.h"
+#include "qtquadbezierarrowitem.h"
 #include "qtitemdisplaystrategy.h"
 #include "qtroundededitrectitemdialog.h"
 #include "qtroundededitrectitem.h"
@@ -79,6 +80,8 @@ ribi::cmap::QtQtEdgeDialog::QtQtEdgeDialog(QWidget *parent)
 
 ribi::cmap::QtQtEdgeDialog::~QtQtEdgeDialog()
 {
+  this->layout()->removeWidget(m_qtedgedialog.get());
+  this->layout()->removeWidget(m_qtroundededitrectitem_dialog.get());
   delete ui;
 }
 
@@ -92,6 +95,16 @@ int ribi::cmap::QtQtEdgeDialog::GetMinimumHeight(const QtEdge& qtedge) noexcept
   ;
 }
 
+bool ribi::cmap::QtQtEdgeDialog::GetUiHasHeadArrow() const noexcept
+{
+  return this->m_qtedgedialog->GetUiHasHeadArrow();
+}
+
+bool ribi::cmap::QtQtEdgeDialog::GetUiHasTailArrow() const noexcept
+{
+  return this->m_qtedgedialog->GetUiHasTailArrow();
+}
+
 double ribi::cmap::QtQtEdgeDialog::GetUiX() const noexcept
 {
   return this->m_qtedgedialog->GetUiX();
@@ -102,7 +115,7 @@ double ribi::cmap::QtQtEdgeDialog::GetUiY() const noexcept
   return this->m_qtedgedialog->GetUiY();
 }
 
-void ribi::cmap::QtQtEdgeDialog::OnEdgeChanged(QtEdge * const
+void ribi::cmap::QtQtEdgeDialog::OnEdgeChanged(const QtEdge * const
 #ifndef NDEBUG
   qtedge
 #endif // NDEBUG
@@ -120,40 +133,12 @@ void ribi::cmap::QtQtEdgeDialog::OnEdgeChanged(QtEdge * const
 
 void ribi::cmap::QtQtEdgeDialog::OnQtRoundedRectItemChanged(QtEdge * const qtedge) noexcept
 {
-  //Emit
   m_qtedgedialog->SetEdge(qtedge->GetEdge());
-
-  /*
-  if (edge == m_edge) return;
-  if (*edge == *m_edge) return;
-  assert(std::abs(m_edge->GetX() - this->GetPos().x()) < 2.0); //Allow two maximal rounding off errors
-  assert(std::abs(m_edge->GetY() - this->GetPos().y()) < 2.0); //Allow two maximal rounding off errors
-  //if (edge->GetX() != m_edge->GetX())
-  {
-    //const double new_x = edge->GetX();
-    //m_edge->SetX(new_x);
-    this->SetPos(edge->GetX(),this->GetPos().y());
-  }
-  //if (edge->GetY() != m_edge->GetY())
-  {
-    //const double new_y = edge->GetY();
-    //m_edge->SetY(new_y);
-    this->SetPos(this->GetPos().x(),edge->GetY());
-  }
-  //if (edge->GetConcept()->GetName() != m_edge->GetConcept()->GetName())
-  {
-    //const auto new_text = edge->GetConcept()->GetName();
-    //m_edge->GetConcept()->SetName(new_text);
-    this->SetText(Container().SeperateString(edge->GetConcept()->GetName(),'\n'));
-  }
-  */
 }
 
 void ribi::cmap::QtQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qtedge) noexcept
 {
   const bool verbose{false};
-
-  assert(qtedge);
 
   if (m_qtedge == qtedge)
   {
@@ -166,14 +151,15 @@ void ribi::cmap::QtQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qted
     s << "Setting edge '" << qtedge->ToStr() << "'\n";
   }
 
-  const auto qtroundededitrectitem_after = qtedge.get();
-  const auto edge_after = qtedge->GetEdge();
 
-  bool qtroundededitrectitem_changed = true;
-  bool edge_changed = true;
+  bool qtroundededitrectitem_changed{true};
+  bool edge_changed{true};
 
-  if (m_qtedge)
+  if (m_qtedge && qtedge)
   {
+    const auto qtroundededitrectitem_after = qtedge.get();
+    const auto edge_after = qtedge->GetEdge();
+
     const auto qtroundededitrectitem_before = m_qtedge.get();
     const auto edge_before = m_qtedge->GetEdge();
 
@@ -203,7 +189,11 @@ void ribi::cmap::QtQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qted
         TRACE(s.str());
       }
     }
-    //Disconnect m_concept
+  }
+
+  if (m_qtedge)
+  {
+    //Disconnect old
     m_qtedge->m_signal_base_changed.disconnect(
       boost::bind(&ribi::cmap::QtQtEdgeDialog::OnQtRoundedRectItemChanged,this,boost::lambda::_1)
     );
@@ -212,10 +202,10 @@ void ribi::cmap::QtQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qted
     );
   }
 
-  //Replace m_example by the new one
+  //Replace by the new
   m_qtedge = qtedge;
 
-  assert(m_qtedge->GetEdge() == edge_after);
+  if (!m_qtedge) return;
 
   m_qtedge->m_signal_base_changed.connect(
     boost::bind(&ribi::cmap::QtQtEdgeDialog::OnQtRoundedRectItemChanged,this,boost::lambda::_1)
@@ -234,8 +224,6 @@ void ribi::cmap::QtQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qted
     m_qtedge->m_signal_edge_changed(m_qtedge.get());
   }
 
-
-
   this->setMinimumHeight(
     this->GetMinimumHeight(
       *m_qtedge
@@ -244,6 +232,16 @@ void ribi::cmap::QtQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qted
 
   assert( qtedge ==  m_qtedge);
   assert(*qtedge == *m_qtedge);
+}
+
+void ribi::cmap::QtQtEdgeDialog::SetUiHasHeadArrow(const bool has_head) noexcept
+{
+  this->m_qtedgedialog->SetUiHasHeadArrow(has_head);
+}
+
+void ribi::cmap::QtQtEdgeDialog::SetUiHasTailArrow(const bool has_tail) noexcept
+{
+  this->m_qtedgedialog->SetUiHasTailArrow(has_tail);
 }
 
 void ribi::cmap::QtQtEdgeDialog::SetUiX(const double x) const noexcept
@@ -320,6 +318,55 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
     const double new_x{old_x + 10.0};
     qtedge->GetQtNode()->SetOuterX(new_x);
     assert(std::abs(new_x - dialog.GetUiX()) < 2.0);
+  }
+
+  //HasHeadArrow
+  if (verbose) { TRACE("HasHeadArrow of QtQtEdgeDialog and QtEdge its Edge and QtEdge its Arrow must match at creation"); }
+  {
+    assert(dialog.GetUiHasHeadArrow() == qtedge->GetEdge()->HasHeadArrow());
+    assert(dialog.GetUiHasHeadArrow() == qtedge->GetArrow()->HasHead());
+  }
+  if (verbose) { TRACE("If HasHeadArrow is set via QtQtEdgeDialog, QtEdge its Edge and QtEdge its Arrow must sync"); }
+  {
+    dialog.SetUiHasHeadArrow(!dialog.GetUiHasHeadArrow());
+    assert(dialog.GetUiHasHeadArrow() == qtedge->GetEdge()->HasHeadArrow());
+    assert(dialog.GetUiHasHeadArrow() == qtedge->GetArrow()->HasHead());
+  }
+  if (verbose) { TRACE("If HasHeadArrow is set via QtEdge its Edge, QtEdge its Arrow and QtQtEdgeDialog must sync"); }
+  {
+    qtedge->GetEdge()->SetHeadArrow(!qtedge->GetEdge()->HasHeadArrow());
+    assert(dialog.GetUiHasHeadArrow() == qtedge->GetEdge()->HasHeadArrow());
+    assert(dialog.GetUiHasHeadArrow() == qtedge->GetArrow()->HasHead());
+  }
+  if (verbose) { TRACE("If HasHeadArrow is set via QtEdge its Arrow, QtEdge its Edge and QtQtEdgeDialog must sync"); }
+  {
+    qtedge->GetArrow()->SetHasHead(!qtedge->GetArrow()->HasHead());
+    assert(dialog.GetUiHasHeadArrow() == qtedge->GetEdge()->HasHeadArrow());
+    assert(dialog.GetUiHasHeadArrow() == qtedge->GetArrow()->HasHead());
+  }
+  //HasTailArrow
+  if (verbose) { TRACE("HasTailArrow of QtQtEdgeDialog and QtEdge its Edge and QtEdge its Arrow must match at creation"); }
+  {
+    assert(dialog.GetUiHasTailArrow() == qtedge->GetEdge()->HasTailArrow());
+    assert(dialog.GetUiHasTailArrow() == qtedge->GetArrow()->HasTail());
+  }
+  if (verbose) { TRACE("If HasTailArrow is set via QtQtEdgeDialog, QtEdge its Edge and QtEdge its Arrow must sync"); }
+  {
+    dialog.SetUiHasTailArrow(!dialog.GetUiHasTailArrow());
+    assert(dialog.GetUiHasTailArrow() == qtedge->GetEdge()->HasTailArrow());
+    assert(dialog.GetUiHasTailArrow() == qtedge->GetArrow()->HasTail());
+  }
+  if (verbose) { TRACE("If HasTailArrow is set via QtEdge its Edge, QtEdge its Arrow and QtQtEdgeDialog must sync"); }
+  {
+    qtedge->GetEdge()->SetTailArrow(!qtedge->GetEdge()->HasTailArrow());
+    assert(dialog.GetUiHasTailArrow() == qtedge->GetEdge()->HasTailArrow());
+    assert(dialog.GetUiHasTailArrow() == qtedge->GetArrow()->HasTail());
+  }
+  if (verbose) { TRACE("If HasTailArrow is set via QtEdge its Arrow, QtEdge its Edge and QtQtEdgeDialog must sync"); }
+  {
+    qtedge->GetArrow()->SetHasTail(!qtedge->GetArrow()->HasTail());
+    assert(dialog.GetUiHasTailArrow() == qtedge->GetEdge()->HasTailArrow());
+    assert(dialog.GetUiHasTailArrow() == qtedge->GetArrow()->HasTail());
   }
 }
 #endif

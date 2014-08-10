@@ -12,8 +12,16 @@ namespace kalman {
 ///Factory for FixedLagSmootherKalmanFilter
 struct FixedLagSmootherKalmanFilterFactory
 {
-  static boost::shared_ptr<FixedLagSmootherKalmanFilter> Create(
-    const boost::shared_ptr<const KalmanFilterParameters>& parameters);
+  FixedLagSmootherKalmanFilterFactory();
+
+  boost::shared_ptr<FixedLagSmootherKalmanFilter> Create(
+    const boost::shared_ptr<const KalmanFilterParameters>& parameters
+  ) const noexcept;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QCursor>
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

@@ -31,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 
 //#include "qtconceptmapconceptitem.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "trace.h"
 
 #include <boost/geometry.hpp>

@@ -195,7 +195,6 @@ void Approximator<Key,Value,Container>::Test() noexcept
     assert(m.Approximate(3.0) == 35);
     assert(m.GetMin() == 1.0);
     assert(m.GetMax() == 4.0);
-    TRACE("Completed Approximator::Test successfully");
   }
 }
 #endif

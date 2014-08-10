@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 
 #include <cassert>
 
@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "counter.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapqtedgefactory.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtroundededitrectitem.h"

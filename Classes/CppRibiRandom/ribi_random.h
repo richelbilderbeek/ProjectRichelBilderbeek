@@ -45,6 +45,10 @@ struct Random
   ///Obtain a random number from zero to (and not including) one
   double GetFraction() const noexcept;
 
+  ///Obtain a random number from a normal distribution
+  ///From http://www.richelbilderbeek.nl/CppGetRandomNormal.htm
+  double GetNormal(const double mean = 0.0, const double sigma = 1.0) const noexcept;
+
   ///Return a random string
   std::string GetString() const noexcept;
 

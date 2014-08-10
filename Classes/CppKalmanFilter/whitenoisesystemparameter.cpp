@@ -7,9 +7,18 @@
 #include <cassert>
 #include <stdexcept>
 #include <boost/numeric/conversion/cast.hpp>
+
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
-std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::WhiteNoiseSystemParameter::GetAll() noexcept
+ribi::kalman::WhiteNoiseSystemParameter::WhiteNoiseSystemParameter()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+std::vector<ribi::kalman::WhiteNoiseSystemParameterType>
+  ribi::kalman::WhiteNoiseSystemParameter::GetAll() const noexcept
 {
   const std::vector<WhiteNoiseSystemParameterType> v {
     WhiteNoiseSystemParameterType::control,
@@ -25,7 +34,8 @@ std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::WhiteNois
   return v;
 }
 
-bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type) noexcept
+bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(
+  const WhiteNoiseSystemParameterType type) const noexcept
 {
   switch (type)
   {
@@ -43,12 +53,14 @@ bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemPar
   throw std::logic_error(__func__);
 }
 
-bool ribi::kalman::WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type) noexcept
+bool ribi::kalman::WhiteNoiseSystemParameter::IsVector(
+  const WhiteNoiseSystemParameterType type) const noexcept
 {
   return !ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(type);
 }
 
-std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type) noexcept
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(
+  const WhiteNoiseSystemParameterType type) const noexcept
 {
   switch (type)
   {
@@ -72,7 +84,8 @@ std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNo
   throw std::logic_error(__func__);
 }
 
-std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type) noexcept
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(
+  const WhiteNoiseSystemParameterType type) const noexcept
 {
   switch (type)
   {
@@ -96,7 +109,8 @@ std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSyst
   throw std::logic_error(__func__);
 }
 
-std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type) noexcept
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(
+  const WhiteNoiseSystemParameterType type) const noexcept
 {
   switch (type)
   {
@@ -119,3 +133,27 @@ std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSy
   assert(!"Unimplemented type of WhiteNoiseSystemParameterType");
   throw std::logic_error(__func__);
 }
+
+#ifndef NDEBUG
+void ribi::kalman::WhiteNoiseSystemParameter::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    //Matrix();
+    //const boost::shared_ptr<LaggedWhiteNoiseSystem> my_system
+    //  = LaggedWhiteNoiseSystemFactory().Create(
+    //    Matrix::CreateMatrix(1,1, { 1.0 } ), //control
+    //    Matrix::CreateVector(     { 0.0 } ), //initial_state,
+    //    0,
+    //    Matrix::CreateVector(     { 0.0 } ), //real_measurement_noise
+    //    Matrix::CreateVector(     { 0.0 } ), //real_process_noise
+    //    Matrix::CreateMatrix(1,1, { 1.0 } )  //state_transition
+    //);
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif

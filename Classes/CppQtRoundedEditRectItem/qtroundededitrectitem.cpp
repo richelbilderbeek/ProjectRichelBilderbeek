@@ -242,7 +242,6 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
   painter->setFont(m_font);
   painter->setPen(m_text_pen);
   const int sz = static_cast<int>(m_text.size());
-  //const double line_height = rect().height() / static_cast<double>(sz);
   for (int i=0; i!=sz;++i)
   {
     // For this line, work down from
@@ -256,10 +255,10 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
     // (2) an (ordinary) text rectangle (where the text will be drawn), at the right location
     const QRectF text_rect(
       padded_rect.adjusted(
-         m_text_padding.left,  // + (border_width / 2.0),
-         m_text_padding.top,   //  + (border_width / 2.0),
-        -m_text_padding.right, // + (border_width / 2.0),
-        -m_text_padding.bottom //+ (border_width / 2.0)
+         m_text_padding.left,
+         m_text_padding.top,
+        -m_text_padding.right,
+        -m_text_padding.bottom
       )
     );
     painter->drawText(text_rect,s.c_str());

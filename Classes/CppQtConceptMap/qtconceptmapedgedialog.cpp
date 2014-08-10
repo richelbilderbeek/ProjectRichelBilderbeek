@@ -94,6 +94,16 @@ int ribi::cmap::QtEdgeDialog::GetMinimumHeight(const Edge& edge) noexcept
 }
 
 
+bool ribi::cmap::QtEdgeDialog::GetUiHasHeadArrow() const noexcept
+{
+  return ui->box_head_arrow->isChecked();
+}
+
+bool ribi::cmap::QtEdgeDialog::GetUiHasTailArrow() const noexcept
+{
+  return ui->box_tail_arrow->isChecked();
+}
+
 double ribi::cmap::QtEdgeDialog::GetUiX() const noexcept
 {
   return m_qtnodedialog->GetUiX();
@@ -396,6 +406,16 @@ void ribi::cmap::QtEdgeDialog::OnToChanged(Edge * const edge)
   assert(m_qtnodedialog_to->GetNode() == to_after);
 }
 
+void ribi::cmap::QtEdgeDialog::SetUiHasHeadArrow(const bool has_head) noexcept
+{
+  ui->box_head_arrow->setChecked(has_head);
+}
+
+void ribi::cmap::QtEdgeDialog::SetUiHasTailArrow(const bool has_tail) noexcept
+{
+  ui->box_tail_arrow->setChecked(has_tail);
+}
+
 void ribi::cmap::QtEdgeDialog::SetUiX(const double x) noexcept
 {
   m_qtnodedialog->SetUiX(x);
@@ -460,7 +480,20 @@ void ribi::cmap::QtEdgeDialog::Test() noexcept
     assert(std::abs(new_x - edge->GetNode()->GetX()) < 2.0);
   }
 
-
+  if (verbose) { TRACE("SetUiHasHeadArrow and GetUiHasHeadArrow must be symmetric"); }
+  {
+    dialog.SetUiHasHeadArrow(true);
+    assert(dialog.GetUiHasHeadArrow());
+    dialog.SetUiHasHeadArrow(false);
+    assert(!dialog.GetUiHasHeadArrow());
+  }
+  if (verbose) { TRACE("SetUiHasTailArrow and GetUiHasTailArrow must be symmetric"); }
+  {
+    dialog.SetUiHasHeadArrow(true);
+    assert(dialog.GetUiHasHeadArrow());
+    dialog.SetUiHasHeadArrow(false);
+    assert(!dialog.GetUiHasHeadArrow());
+  }
 }
 #endif
 

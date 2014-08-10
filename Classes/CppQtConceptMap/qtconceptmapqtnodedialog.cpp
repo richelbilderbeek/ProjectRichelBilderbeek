@@ -35,7 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapnodedialog.h"
 #include "qtconceptmapqtnodefactory.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtitemdisplaystrategy.h"
 #include "qtroundededitrectitemdialog.h"
 

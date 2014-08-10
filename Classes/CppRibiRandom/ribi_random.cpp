@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include <boost/random.hpp>
+
 #include "testtimer.h"
 #include "trace.h"
 
@@ -60,6 +62,14 @@ double ribi::Random::GetFraction() const noexcept
   assert(f >= 0.0);
   assert(f <  1.0);
   return f;
+}
+
+double ribi::Random::GetNormal(const double mean, const double sigma) const noexcept
+{
+  boost::normal_distribution<double> norm_dist(mean, sigma);
+  static boost::lagged_fibonacci19937 engine;
+  const double value = norm_dist.operator () <boost::lagged_fibonacci19937>((engine));
+  return value;
 }
 
 std::string ribi::Random::GetString() const noexcept

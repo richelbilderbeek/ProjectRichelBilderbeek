@@ -48,6 +48,10 @@ struct FixedLagSmootherKalmanFilterParameters : public KalmanFilterParameters
 
   ///The parameters from a standard Kalman filter
   const boost::shared_ptr<const StandardKalmanFilterParameters> m_standard_parameters;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

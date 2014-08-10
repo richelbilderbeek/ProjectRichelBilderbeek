@@ -40,6 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
 #include "codetohtmlreplacer.h"
+#include "testtimer.h"
 #include "codetohtmlsnippettype.h"
 #include "codetohtmltechinfo.h"
 #include "fileio.h"
@@ -133,7 +134,7 @@ void ribi::c2h::Test()
     if (is_tested) return;
     is_tested = true;
   }
-
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test SortedFiles
   {
     const std::vector<std::string> result

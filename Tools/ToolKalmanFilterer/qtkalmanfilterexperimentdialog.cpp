@@ -77,7 +77,7 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   //Create the map
   {
     const std::vector<KalmanFilterExperimentParameterType> v =
-       KalmanFilterExperimentParameter::GetAll();
+       KalmanFilterExperimentParameter().GetAll();
     const std::size_t sz = v.size();
     for (std::size_t i=0; i!=sz; ++i)
     {
@@ -86,19 +86,19 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
       const KalmanFilterExperimentParameterType type = v[i];
 
       //Skip the KalmanFilterParameterType instances (these are done by KalmanFilterDialog
-      if (KalmanFilterExperimentParameter::CanConvertToKalmanFilterParameter(type))
+      if (KalmanFilterExperimentParameter().CanConvertToKalmanFilterParameter(type))
       {
         continue;
       }
-      if (KalmanFilterExperimentParameter::CanConvertToWhiteNoiseSystemParameter(type))
+      if (KalmanFilterExperimentParameter().CanConvertToWhiteNoiseSystemParameter(type))
       {
         continue;
       }
 
       QtKalmanFiltererParameterDialog * const dialog
         = new QtKalmanFiltererParameterDialog(
-          KalmanFilterExperimentParameter::ToName(type),
-          KalmanFilterExperimentParameter::ToDescription(type),
+          KalmanFilterExperimentParameter().ToName(type),
+          KalmanFilterExperimentParameter().ToDescription(type),
           m_model->Find(type)
         );
       assert(dialog);
@@ -186,8 +186,8 @@ bool ribi::kalman::QtKalmanFilterExperimentDialog::IsValid() const
     != m_model->CreateKalmanFilter()->GetType())
   {
     TRACE("Different Kalman Filter types");
-    TRACE(KalmanFilterTypes::ToStr(GetFilterDialog()->GetKalmanFilterType()));
-    TRACE(KalmanFilterTypes::ToStr(m_model->CreateKalmanFilter()->GetType()));
+    TRACE(KalmanFilterTypes().ToStr(GetFilterDialog()->GetKalmanFilterType()));
+    TRACE(KalmanFilterTypes().ToStr(m_model->CreateKalmanFilter()->GetType()));
     return false;
   }
   return true;
@@ -425,6 +425,11 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    KalmanFilterExperimentParameter();
+    KalmanFilterTypes();
+    WhiteNoiseSystemTypes();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //TRACE("Test QtWhiteNoiseSystemParametersDialog");
   {
@@ -440,14 +445,14 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
       new QtKalmanFilterExperimentDialog(model)
     );
     //TRACE("Test DokuWiki conversion for all Kalman filter types with empty parameters")
-    const std::vector<KalmanFilterType> kalman_filter_types = KalmanFilterTypes::GetAllTypes();
+    const std::vector<KalmanFilterType> kalman_filter_types = KalmanFilterTypes().GetAllTypes();
     const std::size_t n_kalman_filter_types = kalman_filter_types.size();
     for (std::size_t i=0; i!=n_kalman_filter_types; ++i)
     {
       const KalmanFilterType kalman_filter_type = kalman_filter_types[i];
       if (kalman_filter_type == KalmanFilterType::fixed_lag_smoother)
       {
-        TRACE("Fixed lag smoother not supported yet");
+        //TRACE("Fixed lag smoother not supported yet");
         continue;
       }
 
@@ -461,7 +466,7 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
       assert(s == model->ToDokuWiki());
 
 
-      const std::vector<WhiteNoiseSystemType> white_noise_system_types = WhiteNoiseSystemTypes::GetAllTypes();
+      const std::vector<WhiteNoiseSystemType> white_noise_system_types = WhiteNoiseSystemTypes().GetAllTypes();
       const std::size_t n_white_noise_system_types = white_noise_system_types.size();
       for (std::size_t j=0; j!=n_white_noise_system_types; ++j)
       {
@@ -524,5 +529,6 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
   }
 }
 #endif
+
 
 

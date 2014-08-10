@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsItem>
 #include <QTimer>
 //#include "qtconceptmapconceptitem.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

@@ -4,7 +4,10 @@
 
 #include "container.h"
 #include "fixedlagsmootherkalmanfilter.h"
+#include "fixedlagsmootherkalmanfilterfactory.h"
 #include "gapsfilledwhitenoisesystem.h"
+#include "gapsfilledwhitenoisesystemfactory.h"
+#include "kalmanfilterfactory.h"
 #include "laggedwhitenoisesystem.h"
 #include "matrix.h"
 #include "standardkalmanfilter.h"
@@ -38,7 +41,7 @@ ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "KalmanFilterer",
     "tool to work with Kalman filters",
-    "the 17th of July 2013",
+    "the 10th of August 2014",
     "2013-2014",
     "http://www.richelbilderbeek.nl/ToolKalmanFilterer.htm",
     GetVersion(),
@@ -87,7 +90,7 @@ boost::shared_ptr<const ribi::Program> ribi::kalman::KalmanFiltererMenuDialog::G
 
 std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion() const noexcept
 {
-  return "1.15";
+  return "1.16";
 }
 
 std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory() const noexcept
@@ -108,7 +111,8 @@ std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHisto
     "2013-07-01: version 1.12: added the constants pi and tau to function parser, context can be saved to file, tables are displayed correctly",
     "2013-07-05: version 1.13: added simple statistics",
     "2013-07-08: version 1.14: display statistics and value tables correctly, allow editing of context, tables resize to the number of rows",
-    "2013-07-17: version 1.15: allow copying from and pasting to parameter tables, transitioned to Qt5, GCC 4.8.0 and Boost 1.54.0, able to crosscompile again"
+    "2013-07-17: version 1.15: allow copying from and pasting to parameter tables, transitioned to Qt5, GCC 4.8.0 and Boost 1.54.0, able to crosscompile again",
+    "2014-08-10: version 1.16: increased use of TDD"
   };
 }
 
@@ -120,6 +124,20 @@ void ribi::kalman::KalmanFiltererMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  Container();
+  FixedLagSmootherKalmanFilterFactory();
+  GapsFilledWhiteNoiseSystemFactory();
+  KalmanFilterFactory();
+  //LaggedWhiteNoiseSystem(parameters);
+  Matrix();
+  //StandardKalmanFilter(calculation,parameters);
+  //StandardWhiteNoiseSystem(parameters);
+  //StandardWhiteNoiseSystemParameters();
+  //SteadyStateKalmanFilter(calculation,parameters);
+  //SteadyStateKalmanFilterParameters();
+  //WhiteNoiseSystem(parameters);
+  //StandardKalmanFilterParameters()
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

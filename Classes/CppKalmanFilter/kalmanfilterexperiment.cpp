@@ -106,7 +106,7 @@ ribi::kalman::KalmanFilterExperiment::KalmanFilterExperiment(
 
     //Store
     const boost::shared_ptr<KalmanFilterCalculationElements> last_calculation
-      = KalmanFilterCalculationElementsFactory::DeepCopy(m_kalman_filter->GetLastCalculation());
+      = KalmanFilterCalculationElementsFactory().DeepCopy(m_kalman_filter->GetLastCalculation());
     m_calculation_elements.push_back(last_calculation);
   }
   assert(time == boost::numeric_cast<int>(m_calculation_elements.size()));

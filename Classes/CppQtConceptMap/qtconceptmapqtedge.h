@@ -93,7 +93,6 @@ struct QtEdge : public QGraphicsItem
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   void SetEdge(const EdgePtr& edge) noexcept;
-  //void SetNode(const boost::shared_ptr<Node>& node) noexcept;
 
   void SetFrom(QtNode * const from) noexcept; //TODO #215: Replace 'QtNode * const from' to 'boost::shared_ptr<QtNode> from'
 
@@ -108,12 +107,15 @@ struct QtEdge : public QGraphicsItem
   mutable boost::signals2::signal<void (QtEdge *)> m_signal_edge_changed;
 
 protected:
+  void dragEnterEvent(QGraphicsSceneDragDropEvent *event) noexcept override final;
+  void dragLeaveEvent(QGraphicsSceneDragDropEvent *event) noexcept override final;
+  void dragMoveEvent(QGraphicsSceneDragDropEvent *event) noexcept override final;
   void focusInEvent(QFocusEvent *event) noexcept override final;
   void focusOutEvent(QFocusEvent *event) noexcept override final;
   void keyPressEvent(QKeyEvent *event) noexcept override final;
-  void mousePressEvent(QGraphicsSceneMouseEvent *event) final;
+  void mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept override final;
   void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept override final;
-  QPainterPath shape() const override final;
+  QPainterPath shape() const noexcept override final;
 
 private:
   ///The arrow used for drawing
@@ -154,8 +156,9 @@ private:
   //void OnYchanged(Edge * const edge) noexcept;
 
   ///Called whenever the arrow updates
-  void OnArrowChanged();
+  void OnArrowChanged(const QtQuadBezierArrowItem* const item);
 
+  void OnMustUpdateScene();
   void OnRequestSceneUpdate();
 
   #ifndef NDEBUG

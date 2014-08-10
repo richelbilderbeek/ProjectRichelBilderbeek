@@ -37,13 +37,31 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2>Notes to self</h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Classes used in a <a href="CppDesktopApplication.htm">desktop application</a> 
+    take much longer to write tests for. Consider writing 'TestMyClass' applications to
+    see the class in isolation. If visual class has non-visual data members, these
+    non-visual data members must be tested for emitting signals (notifiying these
+    visual class to update) and being in sync with the visual class.
+    If you refrain from doing this, you will regret it eventually
+    and write these tests later.
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
   <li><!--  1 --><a href="CppJeffLangr.htm">Jeff Langr</a>. Modern C++ Programming with Test-Driven Development. 2013. ISBN: 978-1-937785-48-2. Introduction chapter, page xiv: 'Test-Driven Development (TDD), a software design technique devised in the late 1990s, [...]'</li>
   <li><!--  2 --><a href="CppJeffLangr.htm">Jeff Langr</a>. Modern C++ Programming with Test-Driven Development. 2013. ISBN: 978-1-937785-48-2. Chapter 3.4, page 59. </li>
   <li><!--  3 -->Robert C. Martin ('Uncle Bob'). http://butunclebob.com/ArticleS.UncleBob.TheThreeRulesOfTdd</li>
-  
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

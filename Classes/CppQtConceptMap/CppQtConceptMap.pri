@@ -6,7 +6,6 @@ OTHER_FILES += \
     ../../Classes/CppQtConceptMap/Licence.txt
 
 SOURCES += \
-    ../../Classes/CppQtConceptMap/conceptmapbrating.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapbrushfactory.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmapcompetency.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.cpp \
@@ -17,7 +16,6 @@ SOURCES += \
     ../../Classes/CppQtConceptMap/qtconceptmapexamplesitem.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapitemhighlighter.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapnewarrow.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapnode.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmapratestrategy.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmaptoolsitem.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmaprateconceptdialognewname.cpp \
@@ -40,11 +38,13 @@ SOURCES += \
     ../../Classes/CppQtConceptMap/qtconceptmapnodedialog.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapedgedialog.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtnodedialog.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapedge.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedgedialog.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtnodefactory.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedgefactory.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapedge_test.cpp
+    ../../Classes/CppQtConceptMap/qtconceptmapqtnode.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapbrating.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapqtedge.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapqtedge_test.cpp
 
 HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmapexamplesitem.h \
@@ -55,9 +55,6 @@ HEADERS += \
 #    ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.h \
     ../../Classes/CppQtConceptMap/qtconceptmapbrushfactory.h \
     ../../Classes/CppQtConceptMap/qtconceptmapcompetency.h \
-    ../../Classes/CppQtConceptMap/conceptmaprating.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapedge.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapnode.h \
 #    ../../Classes/CppQtConceptMap/qtconceptmapratestrategy.h \
 #    ../../Classes/CppQtConceptMap/qtconceptmapdisplaystrategy.h \
 #    ../../Classes/CppQtConceptMap/qtconceptmapeditstrategy.h \
@@ -82,7 +79,10 @@ HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmapedgefactory.h \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedgedialog.h \
     ../../Classes/CppQtConceptMap/qtconceptmapqtnodefactory.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapqtedgefactory.h
+    ../../Classes/CppQtConceptMap/qtconceptmapqtedgefactory.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapqtnode.h \
+    ../../Classes/CppQtConceptMap/qtconceptmaprating.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapqtedge.h
 
 FORMS += \
 #    ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.ui \

@@ -140,8 +140,8 @@ std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion() const noexcept
 std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2003-09-30: version 1.1: Windows-only version",
-    "2012-07-21: version 2.0: ported to cross-platform",
+    "2003-09-30: version 1.1: first VCL (Windows-only) version",
+    "2012-07-21: version 2.0: ported to Qt (cross-platform)",
     "2012-07-29: version 2.1: changed graphics to old-school",
     "2012-08-09: version 2.2: changed graphics, changed new tile selection (rendering the eat-it all tile) obsolete"
     "2014-01-30: version 2.3: added command-line demo and play mode",
@@ -158,7 +158,7 @@ void ribi::DasWahreSchlagerfestMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   DasWahreSchlagerfestWidget();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

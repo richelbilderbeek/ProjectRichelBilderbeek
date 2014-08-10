@@ -62,7 +62,6 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
   boost::shared_ptr<StandardWhiteNoiseSystem> m_system;
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 };

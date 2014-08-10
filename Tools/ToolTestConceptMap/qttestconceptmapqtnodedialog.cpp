@@ -21,7 +21,7 @@
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapnodedialog.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapqtnodedialog.h"
 #include "qtconceptmapratestrategy.h"
 #include "qtkeyboardfriendlygraphicsview.h"
@@ -212,16 +212,18 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
   }
   if (verbose) { TRACE("Grabbing QtNodeof QGraphicsView twice, results in an identical picture"); }
   {
-    const QImage image_tmp1{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
-    const QImage image_tmp2{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    //If the line below is needed, update() is not called automatically
+    //const QImage image_tmp1{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    //const QImage image_tmp2{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     const QImage image_before{dialog.GetUiView()};
     const QImage image_after{dialog.GetUiView()};
     assert(image_before == image_after);
   }
   if (verbose) { TRACE("If the text of an QtNode its center QtNode is changed, the Item must be updated"); }
   {
-    const QImage image_tmp1{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
-    const QImage image_tmp2{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    //If the line below is needed, update() is not called automatically
+    //const QImage image_tmp1{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    //const QImage image_tmp2{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     const QImage image_before{dialog.GetUiView()};
 
     dialog.GetQtNode()->GetNode()->GetConcept()->SetName("A");

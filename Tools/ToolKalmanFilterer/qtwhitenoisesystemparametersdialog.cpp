@@ -13,6 +13,7 @@
 #include <QKeyEvent>
 #include <QVBoxLayout>
 
+#include "gapsfilledwhitenoisesystemfactory.h"
 #include "laggedwhitenoisesystemfactory.h"
 #include "kalmanfilterexperimentparameter.h"
 #include "laggedwhitenoisesystem.h"
@@ -41,13 +42,13 @@ ribi::kalman::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDi
     m_model{model},
     m_parameters{}
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
   //Create the map
   {
-    const std::vector<WhiteNoiseSystemParameterType> v = WhiteNoiseSystemParameter::GetAll();
+    const std::vector<WhiteNoiseSystemParameterType> v = WhiteNoiseSystemParameter().GetAll();
     const std::size_t sz = v.size();
     for (std::size_t i=0; i!=sz; ++i)
     {
@@ -57,9 +58,9 @@ ribi::kalman::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDi
       assert(type != WhiteNoiseSystemParameterType::n_parameters);
       QtKalmanFiltererParameterDialog * const dialog
         = new QtKalmanFiltererParameterDialog(
-          WhiteNoiseSystemParameter::ToName(type),
-          WhiteNoiseSystemParameter::ToDescription(type),
-          m_model->Find( KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(v[i]) )
+          WhiteNoiseSystemParameter().ToName(type),
+          WhiteNoiseSystemParameter().ToDescription(type),
+          m_model->Find( KalmanFilterExperimentParameter().ConvertToKalmanFilterExperimentParameter(v[i]) )
         );
       assert(dialog);
 
@@ -153,21 +154,21 @@ void ribi::kalman::QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system
     case WhiteNoiseSystemType::gaps_filled:
       ui->box_lag->setVisible(false);
       ui->label_lag->setVisible(false);
-      assert(m_parameters.size() == WhiteNoiseSystemParameter::GetAll().size()
+      assert(m_parameters.size() == WhiteNoiseSystemParameter().GetAll().size()
         && "m_parameters must be initialized");
       this->Find(WhiteNoiseSystemParameterType::measurement_frequency)->setVisible(true);
       break;
     case WhiteNoiseSystemType::lagged:
       ui->box_lag->setVisible(true);
       ui->label_lag->setVisible(true);
-      assert(m_parameters.size() == WhiteNoiseSystemParameter::GetAll().size()
+      assert(m_parameters.size() == WhiteNoiseSystemParameter().GetAll().size()
         && "m_parameters must be initialized");
       this->Find(WhiteNoiseSystemParameterType::measurement_frequency)->setVisible(false);
       break;
     case WhiteNoiseSystemType::standard:
       ui->box_lag->setVisible(false);
       ui->label_lag->setVisible(false);
-      assert(m_parameters.size() == WhiteNoiseSystemParameter::GetAll().size()
+      assert(m_parameters.size() == WhiteNoiseSystemParameter().GetAll().size()
         && "m_parameters must be initialized");
       this->Find(WhiteNoiseSystemParameterType::measurement_frequency)->setVisible(false);
       break;
@@ -213,6 +214,15 @@ void ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    GapsFilledWhiteNoiseSystemFactory();
+    LaggedWhiteNoiseSystemFactory();
+    QtKalmanFilterExperimentModel();
+    WhiteNoiseSystemParameter();
+    const boost::shared_ptr<QtKalmanFilterExperimentModel> model(new QtKalmanFilterExperimentModel);
+    { QtWhiteNoiseSystemParametersDialog d(model); }
+    KalmanFilterExperimentParameter();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {

@@ -23,12 +23,14 @@ ribi::kalman::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   : WhiteNoiseSystem{parameters},
     m_measuments{},
     m_parameters{boost::dynamic_pointer_cast<const LaggedWhiteNoiseSystemParameters>(parameters)},
-    m_system{StandardWhiteNoiseSystemFactory::Create(
-      parameters->GetControl(),
-      parameters->GetInitialState(),
-      parameters->GetMeasurementNoise(),
-      parameters->GetProcessNoise(),
-      parameters->GetStateTransition())
+    m_system{
+      StandardWhiteNoiseSystemFactory().Create(
+        parameters->GetControl(),
+        parameters->GetInitialState(),
+        parameters->GetMeasurementNoise(),
+        parameters->GetProcessNoise(),
+        parameters->GetStateTransition()
+      )
     }
 {
   #ifndef NDEBUG
@@ -98,7 +100,7 @@ void ribi::kalman::LaggedWhiteNoiseSystem::Test() noexcept
   {
     const int lag = 5;
     const boost::shared_ptr<LaggedWhiteNoiseSystem> my_system
-      = LaggedWhiteNoiseSystemFactory::Create(
+      = LaggedWhiteNoiseSystemFactory().Create(
         Matrix::CreateMatrix(1,1, { 1.0 } ), //control
         Matrix::CreateVector(     { 0.0 } ), //initial_state,
         lag,

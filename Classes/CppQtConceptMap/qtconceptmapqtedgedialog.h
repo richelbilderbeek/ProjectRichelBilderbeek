@@ -32,12 +32,22 @@ public:
 
   static int GetMinimumHeight(const QtEdge& qtedge) noexcept;
   boost::shared_ptr<QtEdge> GetQtEdge() const noexcept { return m_qtedge; }
+
+  ///Get if there is an arrow at the head of the edge directly from the GUI
+  bool GetUiHasHeadArrow() const noexcept;
+  ///Get if there is an arrow at the tail of the edge directly from the GUI
+  bool GetUiHasTailArrow() const noexcept;
   //Obtain the X coordinat of the Node on the Edge from the GUI
   double GetUiX() const noexcept;
   //Obtain the Y coordinat of the Node on the Edge from the GUI
   double GetUiY() const noexcept;
 
   void SetQtEdge(const boost::shared_ptr<QtEdge>& qtedge) noexcept;
+
+  ///Set if there is an arrow at the head of the edge directly to the GUI
+  void SetUiHasHeadArrow(const bool has_head) noexcept;
+  ///Set if there is an arrow at the tail of the edge directly to the GUI
+  void SetUiHasTailArrow(const bool has_tail) noexcept;
   //Set the X coordinat of the Node on the Edge via the GUI
   void SetUiX(const double x) const noexcept;
   //Set the Y coordinat of the Node on the Edge via the GUI
@@ -62,7 +72,7 @@ private:
   boost::shared_ptr<QtRoundedEditRectItemDialog> m_qtroundededitrectitem_dialog;
 
   //void OnDisplayStrategyChanged(QtEdge * const qtedge) noexcept;
-  void OnEdgeChanged(QtEdge * const qtedge) noexcept;
+  void OnEdgeChanged(const QtEdge * const qtedge) noexcept;
   void OnQtRoundedRectItemChanged(QtEdge * const qtedge) noexcept;
 
   #ifndef NDEBUG

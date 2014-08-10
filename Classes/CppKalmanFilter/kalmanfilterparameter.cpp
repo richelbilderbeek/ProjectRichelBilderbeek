@@ -7,9 +7,18 @@
 #include <cassert>
 #include <stdexcept>
 #include <boost/numeric/conversion/cast.hpp>
+
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
-std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::KalmanFilterParameter::GetAll() noexcept
+ribi::kalman::KalmanFilterParameter::KalmanFilterParameter()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::KalmanFilterParameter::GetAll() const noexcept
 {
   const std::vector<KalmanFilterParameterType> v {
     KalmanFilterParameterType::control,
@@ -27,17 +36,17 @@ std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::KalmanFilterP
   return v;
 }
 
-bool ribi::kalman::KalmanFilterParameter::IsMatrix(const KalmanFilterParameterType type) noexcept
+bool ribi::kalman::KalmanFilterParameter::IsMatrix(const KalmanFilterParameterType type) const noexcept
 {
   return !ribi::kalman::KalmanFilterParameter::IsVector(type);
 }
 
-bool ribi::kalman::KalmanFilterParameter::IsVector(const KalmanFilterParameterType type) noexcept
+bool ribi::kalman::KalmanFilterParameter::IsVector(const KalmanFilterParameterType type) const noexcept
 {
   return type == KalmanFilterParameterType::initial_state_estimate;
 }
 
-std::string ribi::kalman::KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type) noexcept
+std::string ribi::kalman::KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type) const noexcept
 {
   switch (type)
   {
@@ -65,7 +74,7 @@ std::string ribi::kalman::KalmanFilterParameter::ToDescription(const KalmanFilte
   throw std::logic_error(__func__);
 }
 
-std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilterParameterType type) noexcept
+std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilterParameterType type) const noexcept
 {
   switch (type)
   {
@@ -93,7 +102,7 @@ std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilterParame
   throw std::logic_error(__func__);
 }
 
-std::string ribi::kalman::KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type) noexcept
+std::string ribi::kalman::KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type) const noexcept
 {
   switch (type)
   {
@@ -120,3 +129,27 @@ std::string ribi::kalman::KalmanFilterParameter::ToSymbol(const KalmanFilterPara
   assert(!"Unimplemented type of KalmanFilterParameterType");
   throw std::logic_error(__func__);
 }
+
+#ifndef NDEBUG
+void ribi::kalman::KalmanFilterParameter::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    //Matrix();
+    //const boost::shared_ptr<LaggedWhiteNoiseSystem> my_system
+    //  = LaggedWhiteNoiseSystemFactory().Create(
+    //    Matrix::CreateMatrix(1,1, { 1.0 } ), //control
+    //    Matrix::CreateVector(     { 0.0 } ), //initial_state,
+    //    0,
+    //    Matrix::CreateVector(     { 0.0 } ), //real_measurement_noise
+    //    Matrix::CreateVector(     { 0.0 } ), //real_process_noise
+    //    Matrix::CreateMatrix(1,1, { 1.0 } )  //state_transition
+    //);
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif

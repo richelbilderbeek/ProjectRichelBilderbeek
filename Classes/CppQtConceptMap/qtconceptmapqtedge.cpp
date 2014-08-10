@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 
 #include <cassert>
 
@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapedge.h"
 #include "conceptmapnode.h"
 #include "container.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -83,12 +83,23 @@ ribi::cmap::QtEdge::QtEdge(
   );
 
 
+  m_arrow->m_signal_item_updated.connect(
+    boost::bind(&ribi::cmap::QtEdge::OnArrowChanged,this,boost::lambda::_1)
+  );
+
+  m_qtnode->m_signal_text_changed.connect(
+    boost::bind(&ribi::cmap::QtEdge::OnTextChanged,this,boost::lambda::_1)
+  );
+
+  m_from->m_signal_node_changed.connect(
+    boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
+  );
+  m_to->m_signal_node_changed.connect(
+    boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
+  );
 
   SetEdge(edge);
 
-  //Bounding rectangle
-
-  //Signals
 
   #ifdef TODO_ISSUE_212
   if (!is_connected_to_center_node)
@@ -121,6 +132,26 @@ ribi::cmap::QtEdge::QtEdge(
 
 ribi::cmap::QtEdge::~QtEdge()
 {
+  m_arrow->m_signal_item_updated.disconnect(
+    boost::bind(&ribi::cmap::QtEdge::OnArrowChanged,this,boost::lambda::_1)
+  );
+  m_qtnode->m_signal_text_changed.disconnect(
+    boost::bind(&ribi::cmap::QtEdge::OnTextChanged,this,boost::lambda::_1)
+  );
+
+  assert(m_from);
+  assert(m_from->m_signal_node_changed.num_slots() > 0);
+
+  m_from->m_signal_node_changed.disconnect(
+    boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
+  );
+  assert(m_to);
+  m_to->m_signal_node_changed.disconnect(
+    boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
+  );
+
+  SetEdge(nullptr);
+
   //Disconnect signals
   /*
   assert(m_from);
@@ -132,48 +163,6 @@ ribi::cmap::QtEdge::~QtEdge()
     boost::bind(&ribi::cmap::QtEdge::OnItemHasUpdated,this)
   );
 
-  //Edge
-  m_edge->m_signal_from_changed.disconnect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnFromChanged,this,boost::lambda::_1)
-  );
-  m_edge->m_signal_head_arrow_changed.disconnect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnHeadArrowChanged,this,boost::lambda::_1)
-  );
-  m_edge->m_signal_node_changed.disconnect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnNodeChanged,this,boost::lambda::_1)
-  );
-  m_edge->m_signal_tail_arrow_changed.disconnect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnTailArrowChanged,this,boost::lambda::_1)
-  );
-  m_edge->m_signal_to_changed.disconnect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnToChanged,this,boost::lambda::_1)
-  );
-  //m_edge->m_signal_x_changed.disconnect(
-  //  boost::bind(
-  //    &ribi::cmap::QtEdge::OnXchanged,this,boost::lambda::_1)
-  //);
-  //m_edge->m_signal_y_changed.disconnect(
-  //  boost::bind(
-  //    &ribi::cmap::QtEdge::OnYchanged,this,boost::lambda::_1)
-  //);
-
-  //DisplayStrategy
-  m_display_strategy->m_signal_item_has_updated.disconnect(
-    boost::bind(&ribi::cmap::QtEdge::OnItemHasUpdated,this)
-  );
-
-  m_display_strategy->m_signal_request_scene_update.disconnect(
-    boost::bind(&ribi::cmap::QtEdge::OnRequestSceneUpdate,this)
-  );
-
-  m_display_strategy->m_signal_position_changed.disconnect(
-    boost::bind(&ribi::cmap::QtEdge::SetPos,this,boost::lambda::_1,boost::lambda::_2)
-  );
 
   #ifdef TODO_ISSUE_212
   if (!is_connected_to_center_node)
@@ -259,6 +248,22 @@ std::vector<std::string> ribi::cmap::QtEdge::GetVersionHistory() noexcept
   };
 }
 
+void ribi::cmap::QtEdge::dragEnterEvent(QGraphicsSceneDragDropEvent *) noexcept
+{
+  //update();
+}
+
+void ribi::cmap::QtEdge::dragLeaveEvent(QGraphicsSceneDragDropEvent *) noexcept
+{
+  //update();
+}
+
+void ribi::cmap::QtEdge::dragMoveEvent(QGraphicsSceneDragDropEvent *) noexcept
+{
+  //if (scene()) { scene()->update(); }
+  //update();
+}
+
 void ribi::cmap::QtEdge::focusInEvent(QFocusEvent*) noexcept
 {
   //Lose focus of arrow
@@ -295,7 +300,7 @@ void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event) noexcept
   //QtConceptMapElement::keyPressEvent(event);
 }
 
-void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept
 {  
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
@@ -377,7 +382,7 @@ void ribi::cmap::QtEdge::OnNodeChanged(Edge * const edge) noexcept
   m_qtnode->SetOuterX(edge->GetNode()->GetX());
   m_qtnode->SetOuterY(edge->GetNode()->GetY());
   m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
-  //this->update();
+  this->update();
   //if (this->scene()) { this->scene()->update(); }
   m_signal_edge_changed(this);
 }
@@ -408,17 +413,26 @@ void ribi::cmap::QtEdge::OnToChanged(Edge * const edge) noexcept
 }
 
 
-void ribi::cmap::QtEdge::OnArrowChanged()
+void ribi::cmap::QtEdge::OnArrowChanged(const QtQuadBezierArrowItem* const item)
 {
   GetEdge()->GetNode()->GetConcept()->SetName(
-    Container().ToStr(m_qtnode->GetText())
+    Container().Concatenate(m_qtnode->GetText())
   );
+  GetEdge()->SetHeadArrow(item->HasHead());
+  GetEdge()->SetTailArrow(item->HasTail());
   this->update();
+
   //this->m_signal_item_has_updated(this);
+}
+
+void ribi::cmap::QtEdge::OnMustUpdateScene()
+{
+  if (scene()) { scene()->update(); }
 }
 
 void ribi::cmap::QtEdge::OnRequestSceneUpdate()
 {
+
   //this->m_signal_request_scene_update();
 }
 
@@ -435,10 +449,16 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
   assert(m_arrow);
   //TODO: Add again
   //assert(!m_arrow->GetMidItem() || m_qtnode->GetPos() == m_arrow->GetMidItem()->pos());
+
   painter->translate(-m_qtnode->GetOuterPos());
   m_arrow->paint(painter,option,widget);
-  painter->translate(m_qtnode->GetOuterPos());
-  m_qtnode->paint(painter,option,widget);
+
+  //The QtNode might be hidden in debugging
+  if (m_qtnode->isVisible())
+  {
+    painter->translate(m_qtnode->GetOuterPos());
+    m_qtnode->paint(painter,option,widget);
+  }
 
   //assert(m_display_strategy);
   if (this->hasFocus() || this->isSelected())
@@ -468,7 +488,6 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
 {
   const bool verbose{false};
 
-  assert(edge);
   if (m_edge == edge)
   {
     return;
@@ -480,20 +499,20 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
     s << "Setting edge '" << edge->ToStr() << "'\n";
   }
 
-  const auto from_after = edge->GetFrom();
-  const auto has_head_after = edge->HasHeadArrow();
-  const auto has_tail_after = edge->HasTailArrow();
-  const auto node_after = edge->GetNode();
-  const auto to_after = edge->GetTo();
-
   bool from_changed{true};
   bool has_head_changed{true};
   bool has_tail_changed{true};
   bool node_changed{true};
   bool to_changed{true};
 
-  if (m_edge)
+  if (m_edge && edge)
   {
+    const auto from_after = edge->GetFrom();
+    const auto has_head_after = edge->HasHeadArrow();
+    const auto has_tail_after = edge->HasTailArrow();
+    const auto node_after = edge->GetNode();
+    const auto to_after = edge->GetTo();
+
     const auto from_before = m_edge->GetFrom();
     const auto has_head_before = m_edge->HasHeadArrow();
     const auto has_tail_before = m_edge->HasTailArrow();
@@ -560,6 +579,10 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
         TRACE(s.str());
       }
     }
+  }
+
+  if (m_edge)
+  {
     //Disconnect m_concept
     m_edge->m_signal_from_changed.disconnect(
       boost::bind(&ribi::cmap::QtEdge::OnFromChanged,this,boost::lambda::_1)
@@ -576,29 +599,17 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
     m_edge->m_signal_to_changed.disconnect(
       boost::bind(&ribi::cmap::QtEdge::OnToChanged,this,boost::lambda::_1)
     );
-
-    m_arrow->m_signal_item_updated.disconnect(
-      boost::bind(&ribi::cmap::QtEdge::OnArrowChanged,this)
-    );
-    m_qtnode->m_signal_text_changed.disconnect(
-      boost::bind(&ribi::cmap::QtEdge::OnTextChanged,this,boost::lambda::_1)
-    );
   }
 
   //Replace
   m_edge = edge;
 
+  if (!m_edge) { return; }
+
   //Sync
-  m_qtnode->SetOuterX(edge->GetNode()->GetX());
-  m_qtnode->SetOuterY(edge->GetNode()->GetY());
-  m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
-
-  assert(m_edge->GetFrom() == from_after );
-  assert(m_edge->HasHeadArrow() == has_head_after );
-  assert(m_edge->HasTailArrow() == has_tail_after );
-  assert(m_edge->GetNode() == node_after );
-  assert(m_edge->GetTo() == to_after);
-
+  m_qtnode->SetOuterX(m_edge->GetNode()->GetX());
+  m_qtnode->SetOuterY(m_edge->GetNode()->GetY());
+  m_qtnode->SetText( { m_edge->GetNode()->GetConcept()->GetName() } );
 
   m_edge->m_signal_from_changed.connect(
     boost::bind(&ribi::cmap::QtEdge::OnFromChanged,this,boost::lambda::_1)
@@ -614,14 +625,6 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
   );
   m_edge->m_signal_to_changed.connect(
     boost::bind(&ribi::cmap::QtEdge::OnToChanged,this,boost::lambda::_1)
-  );
-
-  m_arrow->m_signal_item_updated.connect(
-    boost::bind(&ribi::cmap::QtEdge::OnArrowChanged,this)
-  );
-
-  m_qtnode->m_signal_text_changed.connect(
-    boost::bind(&ribi::cmap::QtEdge::OnTextChanged,this,boost::lambda::_1)
   );
 
   //Emit everything that has changed
@@ -657,6 +660,8 @@ void ribi::cmap::QtEdge::SetFrom(QtNode * const from) noexcept
 
 void ribi::cmap::QtEdge::SetHasHeadArrow(const bool has_head_arrow) noexcept
 {
+  assert(m_arrow);
+  assert(m_edge);
   this->m_edge->SetHeadArrow(has_head_arrow);
   this->m_arrow->SetHasHead(has_head_arrow);
 }
@@ -665,12 +670,8 @@ void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow) noexcept
 {
   assert(m_arrow);
   assert(m_edge);
-  assert(m_arrow->HasTail() == m_edge->HasTailArrow() );
-
   this->m_edge->SetTailArrow(has_tail_arrow);
   this->m_arrow->SetHasTail(has_tail_arrow);
-
-  assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
 }
 
 void ribi::cmap::QtEdge::SetTo(QtNode * const to) noexcept
@@ -678,7 +679,7 @@ void ribi::cmap::QtEdge::SetTo(QtNode * const to) noexcept
   m_to = to;
 }
 
-QPainterPath ribi::cmap::QtEdge::shape() const
+QPainterPath ribi::cmap::QtEdge::shape() const noexcept
 {
   return
     m_qtnode->shape()

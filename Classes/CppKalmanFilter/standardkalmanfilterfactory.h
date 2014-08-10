@@ -14,8 +14,16 @@ namespace kalman {
 ///Factory for StandardKalmanFilter
 struct StandardKalmanFilterFactory
 {
-  static boost::shared_ptr<StandardKalmanFilter> Create(
-    const boost::shared_ptr<const KalmanFilterParameters>& parameters);
+  StandardKalmanFilterFactory();
+
+  boost::shared_ptr<StandardKalmanFilter> Create(
+    const boost::shared_ptr<const KalmanFilterParameters>& parameters
+  ) const noexcept;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

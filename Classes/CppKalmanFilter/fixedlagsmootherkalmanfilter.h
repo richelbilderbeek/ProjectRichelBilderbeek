@@ -260,7 +260,6 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   boost::shared_ptr<const StandardKalmanFilter> GetStandardKalmanFilter() const { return m_standard_filter; }
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 };

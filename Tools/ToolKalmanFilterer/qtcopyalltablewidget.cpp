@@ -113,16 +113,3 @@ void ribi::QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
     QTableWidget::keyPressEvent(event);
   }
 }
-
-/*
-std::vector<std::string> ribi::QtCopyAllTableWidget::SeperateString(
-  const std::string& input,
-  const char seperator)
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/
