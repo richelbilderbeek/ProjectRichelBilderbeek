@@ -97,7 +97,7 @@ struct QtEdge : public QGraphicsItem
 
   void SetEdge(const EdgePtr& edge) noexcept;
 
-  void SetFrom(const From& from) noexcept; //TODO #215: Replace 'QtNode * const from' to 'boost::shared_ptr<QtNode> from'
+  void SetFrom(const From& from) noexcept;
 
   void SetHasHeadArrow(const bool has_head_arrow) noexcept;
   void SetHasTailArrow(const bool has_tail_arrow) noexcept;

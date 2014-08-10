@@ -143,16 +143,16 @@ ribi::cmap::QtEdge::~QtEdge() noexcept
 
   SetEdge(nullptr);
 
-  assert(m_from);
+  //assert(m_from);
   //assert(m_from->m_signal_node_changed.num_slots() > 0);
 
-  m_from->m_signal_node_changed.disconnect(
-    boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
-  );
-  assert(m_to);
-  m_to->m_signal_node_changed.disconnect(
-    boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
-  );
+  //m_from->m_signal_node_changed.disconnect(
+  //  boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
+  //);
+  //assert(m_to);
+  //m_to->m_signal_node_changed.disconnect(
+  //  boost::bind(&ribi::cmap::QtEdge::OnMustUpdateScene,this)
+  //);
 
 
   //Disconnect signals
@@ -666,6 +666,7 @@ void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow) noexcept
   this->m_edge->SetTailArrow(has_tail_arrow);
   this->m_arrow->SetHasTail(has_tail_arrow);
 }
+
 
 void ribi::cmap::QtEdge::SetTo(const To& to) noexcept
 {
