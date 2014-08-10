@@ -43,12 +43,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtEdge::QtEdge(
-    const boost::shared_ptr<Edge>& edge,
-    QtNode* const from,
-    QtNode* const to)
+    const EdgePtr& edge,
+    const From& from,
+    const To& to
+)
   : m_signal_base_changed{},
     m_signal_edge_changed{},
-    m_arrow{new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to)},
+    m_arrow{new QtQuadBezierArrowItem(from.get(),edge->HasTailArrow(),this,edge->HasHeadArrow(),to.get())},
+    //m_arrow{new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to)},
     m_edge{}, //Will be initialized by setEdge
     m_from{from},
     m_qtnode{new QtNode(edge->GetNode())},
@@ -644,7 +646,7 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
   assert(*edge == *m_edge);
 }
 
-void ribi::cmap::QtEdge::SetFrom(QtNode * const from) noexcept
+void ribi::cmap::QtEdge::SetFrom(const From& from) noexcept
 {
   m_from = from;
 }
@@ -665,7 +667,7 @@ void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow) noexcept
   this->m_arrow->SetHasTail(has_tail_arrow);
 }
 
-void ribi::cmap::QtEdge::SetTo(QtNode * const to) noexcept
+void ribi::cmap::QtEdge::SetTo(const To& to) noexcept
 {
   m_to = to;
 }

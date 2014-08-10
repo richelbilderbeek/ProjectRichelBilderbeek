@@ -51,10 +51,15 @@ struct QtEdge : public QGraphicsItem
   typedef boost::shared_ptr<Edge> EdgePtr;
   typedef boost::shared_ptr<const Edge> ReadOnlyEdgePtr;
 
+  typedef QtNodePtr From;
+  typedef ReadOnlyQtNodePtr ReadOnlyFrom;
+  typedef QtNodePtr To;
+  typedef ReadOnlyQtNodePtr ReadOnlyTo;
+
   QtEdge(
     const EdgePtr& edge,
-    QtNode* const from,
-    QtNode* const to
+    const From& from,
+    const To& to
   );
   QtEdge(const QtEdge&) = delete;
   QtEdge& operator=(const QtEdge&) = delete;
@@ -77,12 +82,12 @@ struct QtEdge : public QGraphicsItem
   EdgePtr GetEdge() noexcept { return m_edge; }
 
   ///The node item the arrow originates from
-  const QtNode * GetFrom() const noexcept { return m_from; }
-        QtNode * GetFrom()       noexcept { return m_from; }
+  ReadOnlyFrom GetFrom() const noexcept { return m_from; }
+  From GetFrom() noexcept { return m_from; }
 
   ///The node item the arrow targets
-  const QtNode * GetTo() const noexcept { return m_to; }
-        QtNode * GetTo()       noexcept { return m_to; }
+  ReadOnlyTo GetTo() const noexcept { return m_to; }
+  To GetTo() noexcept { return m_to; }
 
   boost::shared_ptr<      QtNode> GetQtNode()       noexcept { return m_qtnode; }
   boost::shared_ptr<const QtNode> GetQtNode() const noexcept { return m_qtnode; }
@@ -92,12 +97,12 @@ struct QtEdge : public QGraphicsItem
 
   void SetEdge(const EdgePtr& edge) noexcept;
 
-  void SetFrom(QtNode * const from) noexcept; //TODO #215: Replace 'QtNode * const from' to 'boost::shared_ptr<QtNode> from'
+  void SetFrom(const From& from) noexcept; //TODO #215: Replace 'QtNode * const from' to 'boost::shared_ptr<QtNode> from'
 
   void SetHasHeadArrow(const bool has_head_arrow) noexcept;
   void SetHasTailArrow(const bool has_tail_arrow) noexcept;
 
-  void SetTo(QtNode * const to) noexcept;
+  void SetTo(const To& to) noexcept;
 
   std::string ToStr() const noexcept;
 
@@ -123,13 +128,13 @@ private:
   boost::shared_ptr<Edge> m_edge;
 
   ///The node item the arrow originates from
-  QtNode * m_from;
+  From m_from;
 
   ///The QtNode around Edge its Node
   const boost::shared_ptr<QtNode> m_qtnode;
 
   ///The node item the arrow targets
-  QtNode * m_to;
+  To m_to;
 
   /*
   double GetX() const noexcept { return Base::GetX(); }
