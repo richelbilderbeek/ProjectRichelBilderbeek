@@ -81,11 +81,11 @@ void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGrap
   //this->SetExamples(this->m_item->GetNode()->GetConcept()->GetExamples());
   const auto qtnode = m_qtedge ? m_qtedge->GetQtNode().get() : m_qtnode;
 
-  const QPointF p = qtnode->GetOuterPos();
+  const QPointF p = qtnode->GetCenterPos();
   const auto w = qtnode->GetOuterWidth();
   const auto h = qtnode->GetOuterHeight();
   const QRectF r(-0.5 * w,-0.5 * h,0.5 * w,0.5 * h);
-  this->SetOuterPos(
+  this->SetCenterPos(
     p.x() + (0.5 * r.width() ) + 4.0 + (0.5 * GetInnerWidth() ),
     p.y() + (0.5 * r.height()) + 4.0 + (0.5 * GetInnerHeight())
   );

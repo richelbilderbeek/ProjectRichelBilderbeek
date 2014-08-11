@@ -73,11 +73,6 @@ struct QtEdge : public QGraphicsItem
   ReadOnlyArrow GetArrow() const noexcept { return m_arrow; }
   const Arrow& GetArrow() noexcept { return m_arrow; }
 
-  ///Get the Node at the center of the Edge
-  //TODO: Remove, use GetQtNode stead
-  //ReadOnlyNodePtr GetNode() const noexcept;
-  //NodePtr GetNode() noexcept;
-
   ReadOnlyEdgePtr GetEdge() const noexcept { return m_edge; }
   EdgePtr GetEdge() noexcept { return m_edge; }
 
@@ -110,11 +105,6 @@ struct QtEdge : public QGraphicsItem
   mutable boost::signals2::signal<void (QtEdge *)> m_signal_edge_changed;
 
 protected:
-  void dragEnterEvent(QGraphicsSceneDragDropEvent *event) noexcept override final;
-  void dragLeaveEvent(QGraphicsSceneDragDropEvent *event) noexcept override final;
-  void dragMoveEvent(QGraphicsSceneDragDropEvent *event) noexcept override final;
-  void focusInEvent(QFocusEvent *event) noexcept override final;
-  void focusOutEvent(QFocusEvent *event) noexcept override final;
   void keyPressEvent(QKeyEvent *event) noexcept override final;
   void mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept override final;
   void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept override final;
@@ -136,15 +126,6 @@ private:
   ///The node item the arrow targets
   To m_to;
 
-  /*
-  double GetX() const noexcept { return Base::GetX(); }
-  double GetY() const noexcept { return Base::GetY(); }
-  QPointF GetPos() const noexcept { return Base::GetPos(); }
-  void SetPos(const double x,const double y) noexcept { Base::SetPos(x,y); }
-  void SetX(const double x) noexcept { Base::SetX(x); }
-  void SetY(const double y) noexcept { Base::SetY(y); }
-  void SetText(const std::vector<std::string>& text) noexcept { Base::SetText(text); }
-  */
   ///Called whenever the edge changes
   void OnEdgeChanged(Edge * const edge) noexcept;
   void OnConceptChanged(Node * const node) noexcept;
@@ -154,9 +135,6 @@ private:
   void OnTailArrowChanged(Edge * const edge) noexcept;
   void OnTextChanged(QtRoundedEditRectItem* item) noexcept;
   void OnToChanged(Edge * const edge) noexcept;
-
-  //void OnXchanged(Edge * const edge) noexcept;
-  //void OnYchanged(Edge * const edge) noexcept;
 
   ///Called whenever the arrow updates
   void OnArrowChanged(const QtQuadBezierArrowItem* const item);

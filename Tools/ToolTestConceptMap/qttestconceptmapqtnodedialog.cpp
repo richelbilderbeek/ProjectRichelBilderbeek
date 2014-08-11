@@ -254,7 +254,7 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     dialog.m_dialog_left->SetUiX(new_x);
     const QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
     const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
-    assert(std::abs(qtrectitem->GetOuterX() - new_x) < 2.0);
+    assert(std::abs(qtrectitem->GetCenterX() - new_x) < 2.0);
   }
   if (verbose) { TRACE("Setting Y via UI should result in an update of the QtRoundedEditRectItem in the QGraphicsScene"); }
   {
@@ -263,7 +263,7 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     dialog.m_dialog_left->SetUiY(new_y);
     const QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
     const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
-    assert(std::abs(qtrectitem->GetOuterY() - new_y) < 2.0);
+    assert(std::abs(qtrectitem->GetCenterY() - new_y) < 2.0);
   }
   if (verbose) { TRACE("Setting Name via UI should result in an update of the QtRoundedEditRectItem in the QGraphicsScene"); }
   {

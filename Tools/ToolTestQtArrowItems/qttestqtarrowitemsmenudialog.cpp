@@ -93,9 +93,10 @@ void ribi::QtTestQtArrowItemsMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  TestQtArrowItemsMenuDialog();
   QtTestQtArrowItemsModifyDialog();
   QtTestQtArrowItemsCompareDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

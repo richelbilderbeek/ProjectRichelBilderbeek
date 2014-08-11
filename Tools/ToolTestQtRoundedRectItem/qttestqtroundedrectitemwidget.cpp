@@ -32,7 +32,7 @@ ribi::QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *pare
       const double y = -std::cos(angle) * ray;
       QtRoundedRectItem * const item = new QtRoundedRectItem;
       assert(item);
-      item->SetOuterPos(x,y);
+      item->SetCenterPos(x,y);
       item->SetInnerWidth(64.0);
       item->SetInnerHeight(32.0);
       assert(scene());

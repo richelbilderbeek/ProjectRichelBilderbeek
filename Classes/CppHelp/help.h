@@ -22,7 +22,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define RIBI_HELP_H
 
 #include <iosfwd>
-#include <set>
 #include <string>
 #include <vector>
 

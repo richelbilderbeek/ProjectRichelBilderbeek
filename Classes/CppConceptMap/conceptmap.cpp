@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
+//#ifdef NOT_NOW_2014_08_11
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -60,8 +62,8 @@ ribi::cmap::ConceptMap::ConceptMap(const std::string& question) noexcept
 }
 
 ribi::cmap::ConceptMap::ConceptMap(
-    const std::vector<boost::shared_ptr<ribi::cmap::Node>>& nodes,
-    const std::vector<boost::shared_ptr<ribi::cmap::Edge>>& edges
+    const Nodes& nodes,
+    const Edges& edges
 )  noexcept
   : m_edges(edges),
     m_nodes(nodes)
@@ -86,7 +88,10 @@ ribi::cmap::ConceptMap::ConceptMap(
       const auto to_iter = std::find(nodes.begin(),nodes.end(),edge->GetTo());
       assert(from_iter != nodes.end());
       assert(to_iter != nodes.end());
-      std::cout << i << ": " << Edge::ToXml(edge,const_nodes) << '\n';
+      std::cout
+        << i << ": "
+        << Edge::ToXml(boost::const_pointer_cast<const Edge>(edge),const_nodes)
+        << '\n';
     }
   }
   assert(ConceptMap::CanConstruct(nodes,edges));
@@ -811,3 +816,5 @@ bool ribi::cmap::operator!=(const ribi::cmap::ConceptMap& lhs, const ribi::cmap:
 {
   return !(lhs == rhs);
 }
+
+//#endif // NOT_NOW_2014_08_11

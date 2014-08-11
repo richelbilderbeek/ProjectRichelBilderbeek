@@ -100,13 +100,13 @@ ribi::DrawCanvas::DrawCanvas(const std::string& filename)
   {
     const std::vector<std::string> v { Regex().GetRegexMatches(s,"(<color_system>.*</color_system>)") };
     assert(v.size() == 1);
-    m_color_system = CanvasColorSystems::ToType(ribi::xml::StripXmlTag(v[0]));
+    m_color_system = CanvasColorSystems().ToType(ribi::xml::StripXmlTag(v[0]));
   }
 
   {
     const std::vector<std::string> v { Regex().GetRegexMatches(s,"(<coordinat_system>.*</coordinat_system>)") };
     assert(v.size() == 1);
-    m_coordinat_system = CanvasCoordinatSystems::ToType(ribi::xml::StripXmlTag(v[0]));
+    m_coordinat_system = CanvasCoordinatSystems().ToType(ribi::xml::StripXmlTag(v[0]));
   }
   int n_cols = -1;
   {
@@ -331,26 +331,6 @@ void ribi::DrawCanvas::DrawText(const double top, const double left, const std::
   }
 }
 
-/*
-std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
-  const std::string& s,
-  const QRegExp& r_original)
-{
-  QRegExp r(r_original);
-  r.setMinimal(true); //QRegExp must be non-greedy
-  std::vector<std::string> v;
-  int pos = 0;
-  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
-  {
-    const QString q = r.cap(1);
-    if (q.isEmpty()) break;
-    v.push_back(q.toStdString());
-    pos += r.matchedLength();
-  }
-  return v;
-}
-*/
-
 std::string ribi::DrawCanvas::GetVersion() noexcept
 {
   return "3.1";
@@ -516,9 +496,9 @@ void ribi::DrawCanvas::Save(const std::string& filename) const noexcept
     s << xml::VectorToXml("data",v);
     s << xml::ToXml("n_cols",GetWidth());
     //color system
-    s << xml::ToXml("color_system",CanvasColorSystems::ToStr(m_color_system));
+    s << xml::ToXml("color_system",CanvasColorSystems().ToStr(m_color_system));
     //coordinat system
-    s << xml::ToXml("coordinat_system",CanvasCoordinatSystems::ToStr(m_coordinat_system));
+    s << xml::ToXml("coordinat_system",CanvasCoordinatSystems().ToStr(m_coordinat_system));
   }
   {
     const std::string t = xml::ToXml("canvas",s.str());
@@ -564,6 +544,13 @@ void ribi::DrawCanvas::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    Container();
+    DotMatrixString("X",1);
+    CanvasColorSystems();
+    CanvasCoordinatSystems();
+    Geometry();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Drawing text

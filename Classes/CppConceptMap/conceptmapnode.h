@@ -42,7 +42,7 @@ struct NodeFactory;
 /// - QtNodeDialog (as a QDialog, to be used in a QDialog)
 ///Node is used as a base class by:
 /// - CenterNode
-struct Node : public Element
+struct  Node : public Element
 {
   Node(const Node&) = delete;
   Node& operator=(const Node&) = delete;

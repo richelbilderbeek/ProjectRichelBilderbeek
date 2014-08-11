@@ -422,7 +422,7 @@ void ribi::cmap::Node::Test() noexcept
       }
     }
   }
-  if (verbose) { TRACE("When setting the name, a signal must be emitted"); }
+  if (verbose) { TRACE("When changing the name, a signal must be emitted"); }
   {
     const boost::shared_ptr<Node> node{NodeFactory().GetTest(0)};
     node->GetConcept()->SetName("A");
@@ -431,6 +431,28 @@ void ribi::cmap::Node::Test() noexcept
       boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
     );
     node->GetConcept()->SetName("B");
+    assert(c.Get() == 1);
+  }
+  if (verbose) { TRACE("When changing the x, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Node> node{NodeFactory().GetTest(0)};
+    node->SetX(0);
+    Counter c{0}; //For receiving the signal
+    node->m_signal_x_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    node->SetX(1);
+    assert(c.Get() == 1);
+  }
+  if (verbose) { TRACE("When changing the y, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Node> node{NodeFactory().GetTest(0)};
+    node->SetY(0);
+    Counter c{0}; //For receiving the signal
+    node->m_signal_y_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    node->SetY(1);
     assert(c.Get() == 1);
   }
 }

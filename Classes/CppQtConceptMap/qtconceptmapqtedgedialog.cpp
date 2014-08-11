@@ -306,7 +306,7 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
   if (verbose) { TRACE("X of QtQtEdgeDialog and QtEdge must match at creation"); }
   {
     const double ui_x{dialog.GetUiX()};
-    const double qtedge_x{qtedge->GetQtNode()->GetOuterX()};
+    const double qtedge_x{qtedge->GetQtNode()->GetCenterX()};
     assert(std::abs(ui_x - qtedge_x) < 2.0);
   }
   if (verbose) { TRACE("If X is set via QtQtEdgeDialog, QtEdge must sync"); }
@@ -314,13 +314,13 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
     const double old_x{dialog.GetUiX()};
     const double new_x{old_x + 10.0};
     dialog.SetUiX(new_x);
-    assert(std::abs(new_x - qtedge->GetQtNode()->GetOuterX()) < 2.0);
+    assert(std::abs(new_x - qtedge->GetQtNode()->GetCenterX()) < 2.0);
   }
   if (verbose) { TRACE("If X is set via QtEdge, QtQtEdgeDialog must sync"); }
   {
     const double old_x{dialog.GetUiX()};
     const double new_x{old_x + 10.0};
-    qtedge->GetQtNode()->SetOuterX(new_x);
+    qtedge->GetQtNode()->SetCenterX(new_x);
     assert(std::abs(new_x - dialog.GetUiX()) < 2.0);
   }
 

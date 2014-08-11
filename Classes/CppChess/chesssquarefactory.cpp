@@ -4,6 +4,7 @@
 
 #include "chesssquare.h"
 #include "trace.h"
+#include "testtimer.h"
 
 ribi::Chess::SquareFactory::SquareFactory() noexcept
 {
@@ -106,7 +107,8 @@ void ribi::Chess::SquareFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Chess::SquareFactory::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  //const bool verbose{false};
   const SquareFactory s;
   assert(s.Create("a3"));
   assert(!s.Create("Na3"));
@@ -114,6 +116,5 @@ void ribi::Chess::SquareFactory::Test() noexcept
   assert(s.CreateFromMove("Na3"));
   assert(s.CreateFromMove("a3"));
   assert(!s.CreateFromMove("O-O"));
-  TRACE("Finished ribi::Chess::SquareFactory::Test successfully");
 }
 #endif

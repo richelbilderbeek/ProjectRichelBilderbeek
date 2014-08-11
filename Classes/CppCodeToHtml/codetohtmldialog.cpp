@@ -491,7 +491,7 @@ void ribi::c2h::Dialog::Test() noexcept
     const auto file = boost::make_shared<File>(tmp);
     fileio::FileIo().DeleteFile(tmp);
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const TestTimer test_timer(__func__,__FILE__,2.0);
   const Dialog d;
 
   assert(d.ExtractPageName("X") == "X");
@@ -581,7 +581,19 @@ void ribi::c2h::Dialog::Test() noexcept
     const std::string filename = "../ToolCodeToHtml/qtmain.cpp";
     if (ribi::fileio::FileIo().IsRegularFile(filename))
     {
-      const std::vector<std::string> v { d.FileToHtml(filename) };
+      std::vector<std::string> v;
+      {
+        const auto w = Header::ToHtml(HeaderType::cpp,filename);
+        std::copy(std::begin(w),std::end(w),std::back_inserter(v));
+      }
+      {
+        const auto w = d.FileToHtml(filename);
+        std::copy(std::begin(w),std::end(w),std::back_inserter(v));
+      }
+      {
+        const auto w = Footer::ToHtml(FooterType::cpp);
+        std::copy(std::begin(w),std::end(w),std::back_inserter(v));
+      }
       if (!IsCleanHtml(v))
       {
         std::ofstream f("tmp_to_check.htm");
@@ -603,8 +615,25 @@ void ribi::c2h::Dialog::Test() noexcept
     const std::string path = "../ToolCodeToHtml";
     if (ribi::fileio::FileIo().IsFolder(path))
     {
-      const std::vector<std::string> v { d.FolderToHtml(path) };
-      assert(IsCleanHtml(v) && "Assume tidy HTML");
+      std::vector<std::string> v;
+      {
+        //const auto w = Header::ToHtml(HeaderType::cpp,path);
+        //std::copy(std::begin(w),std::end(w),std::back_inserter(v));
+      }
+      {
+        const auto w = d.FolderToHtml(path);
+        std::copy(std::begin(w),std::end(w),std::back_inserter(v));
+      }
+      {
+        //const auto w = Footer::ToHtml(FooterType::cpp);
+        //std::copy(std::begin(w),std::end(w),std::back_inserter(v));
+      }
+      if (!IsCleanHtml(v))
+      {
+        std::ofstream f("tmp_to_check.htm");
+        f << Container().Concatenate(v,"\n");
+      }
+      assert(IsCleanHtml(v) && "Assume tidy HTML, inspect tmp_to_check.htm");
     }
     else
     {

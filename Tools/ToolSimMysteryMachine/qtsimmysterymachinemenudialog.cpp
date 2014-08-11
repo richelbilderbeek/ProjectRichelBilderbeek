@@ -116,9 +116,13 @@ void ribi::QtSimMysteryMachineMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  SimMysteryMachineMenuDialog();
   QtMysteryMachineWidget();
-  const boost::shared_ptr<MysteryMachineWidget> p { new MysteryMachineWidget };
+  {
+    const boost::shared_ptr<MysteryMachineWidget> p { new MysteryMachineWidget };
+    assert(p);
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   /*
   {
     const boost::shared_ptr<QtMysteryMachineCanvas> canvas {
@@ -131,6 +135,5 @@ void ribi::QtSimMysteryMachineMenuDialog::Test() noexcept
     assert(dialog);
   }
   */
-  assert(p);
 }
 #endif

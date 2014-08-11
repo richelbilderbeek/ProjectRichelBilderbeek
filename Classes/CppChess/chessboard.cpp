@@ -126,9 +126,10 @@ bool ribi::Chess::Board::CanDoCastling(const Castling castling, const Player pla
 
 bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, const Player player) const
 {
+  const bool verbose{false};
   if (move->Score().get())
   {
-    FTRACE("Scores are always valid moves on a Board");
+    if (verbose) { TRACE("Scores are always valid moves on a Board"); }
     return true;
   }
   //Deduce from square if not a castling nor score
@@ -140,7 +141,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     std::vector<boost::shared_ptr<const Move>> moves = CompleteMove(move,player);
     if (moves.empty())
     {
-      FTRACE("No moves with this destination");
+      if (verbose) { TRACE("No moves with this destination"); }
       return false;
     }
     //The Move without a From is invalid if
@@ -156,12 +157,12 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     );
     if (valid.empty())
     {
-      FTRACE("No valid moves with this destination");
+      if (verbose) { TRACE("No valid moves with this destination"); }
       return false;
     }
     if (valid.size() > 1)
     {
-      FTRACE("Multiple moves possible to reach the destination square");
+      if (verbose) { TRACE("Multiple moves possible to reach the destination square"); }
       #ifndef NTRACE_BILDERBIKKEL
       std::for_each(valid.begin(),valid.end(),[](const boost::shared_ptr<const Move> m) { TRACE(m); } );
       #endif
@@ -180,17 +181,17 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     assert(*p->GetSquare() == *move->From());
     if (p->GetColor() != player)
     {
-      FTRACE("Cannot move opponent's pieces");
+      if (verbose) { TRACE("Cannot move opponent's pieces"); }
       return false;
     }
     if (!p->CanDoMove(move))
     {
-      FTRACE("Piece can never do this move");
+      if (verbose) { TRACE("Piece can never do this move"); }
       return false;
     }
     if (p->GetNameChar() != move->Piece()->GetNameChar())
     {
-      FTRACE("There is a different Piece on the square than as indicated by the Move");
+      if (verbose) { TRACE("There is a different Piece on the square than as indicated by the Move"); }
       return false;
     }
     #ifndef NDEBUG
@@ -216,7 +217,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     assert(move->Piece().get());
     if (move->Piece()->GetNameChar() != p->GetNameChar())
     {
-      FTRACE("Type of piece in move is different than in reality");
+      if (verbose) { TRACE("Type of piece in move is different than in reality"); }
       return false;
     }
     assert(move->From());
@@ -224,7 +225,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     //Check for pieces blocking moves that span multiple squares
     if (!dynamic_cast<const PieceKnight*>(p.get()) && !EmptyBetween(move->From(),move->To()))
     {
-      FTRACE("There are pieces blocking the move");
+      if (verbose) { TRACE("There are pieces blocking the move"); }
       return false;
     }
   }
@@ -245,7 +246,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
         //En-passant capture
         if (GetPiece(move->To()))
         {
-          FTRACE("Cannot en-passant capture an occupied square");
+          if (verbose) { TRACE("Cannot en-passant capture an occupied square"); }
           return false;
         }
         ///TODO
@@ -261,12 +262,12 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
         //Regular capture
         if (!GetPiece(move->To()))
         {
-          FTRACE("Cannot capture an empty square");
+          if (verbose) { TRACE("Cannot capture an empty square"); }
           return false;
         }
         if (GetPiece(move->To())->GetColor() == GetPiece(move->From())->GetColor())
         {
-          FTRACE("Cannot capture own piece");
+          if (verbose) { TRACE("Cannot capture own piece"); }
           return false;
         }
       }
@@ -276,12 +277,12 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
       //Move is not a capture
       if (GetPiece(move->To()))
       {
-        FTRACE("Cannot move to an occupied square");
+        if (verbose) { TRACE("Cannot move to an occupied square"); }
         return false;
       }
       if (move->IsEnPassant())
       {
-        FTRACE("Cannot perform an en passant capture without the move being a capture");
+        if (verbose) { TRACE("Cannot perform an en passant capture without the move being a capture"); }
         return false;
       }
     }
@@ -309,7 +310,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     {
       if (!move->IsCheck() && !move->IsCheckmate())
       {
-        FTRACE("The move does not indicate a check, but in reality it does put the opponent into check");
+        if (verbose) { TRACE("The move does not indicate a check, but in reality it does put the opponent into check"); }
         return false;
       }
     }
@@ -318,7 +319,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
       //No check in reality
       if (move->IsCheck())
       {
-        FTRACE("The move indicates a check, but it does not put opponent into check");
+        if (verbose) { TRACE("The move indicates a check, but it does not put opponent into check"); }
         return false;
       }
     }
@@ -357,7 +358,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     }
     if (b->IsCheck(player))
     {
-      FTRACE("Move is forbidden, because it puts the current player into check");
+      if (verbose) { TRACE("Move is forbidden, because it puts the current player into check"); }
       return false;
     }
 
@@ -386,11 +387,11 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     {
       if (checkmate_in_real)
       {
-        FTRACE("The move does not indicate a checkmate, but in reality it does put the opponent into checkmate");
+        if (verbose) { TRACE("The move does not indicate a checkmate, but in reality it does put the opponent into checkmate"); }
       }
       else
       {
-        FTRACE("The move indicates a checkmate, but it does not put opponent into checkmate");
+        if (verbose) { TRACE("The move indicates a checkmate, but it does not put opponent into checkmate"); }
       }
       return false;
     }
@@ -403,6 +404,7 @@ std::vector<boost::shared_ptr<const ribi::Chess::Move>>
     const boost::shared_ptr<const Move> move,
     const Player player) const
 {
+  const bool verbose{false};
   assert(!move->From());
   assert(move->To());
   assert(!move->Score());
@@ -426,7 +428,7 @@ std::vector<boost::shared_ptr<const ribi::Chess::Move>>
           //If the Move has a To, goes to the right To and is valid...
           if (n->To() && (*n->To() == *move->To()) && this->CanDoMove(n,player))
           {
-            FTRACE(n);
+            if (verbose) { TRACE(n); }
             //Store this Move
             moves.push_back(n);
           }
@@ -854,6 +856,7 @@ ribi::Chess::BitBoard ribi::Chess::Board::GetVisibleSquares(const Player player)
 
 bool ribi::Chess::Board::IsCheck(const Player player) const
 {
+  const bool verbose{false};
   //Find the king of the player
   const auto king_ptr = std::find_if(
     m_pieces.begin(),m_pieces.end(),
@@ -866,7 +869,7 @@ bool ribi::Chess::Board::IsCheck(const Player player) const
   //No King, so this player cannot be in check
   if (king_ptr == m_pieces.end())
   {
-    FTRACE("No king");
+    if (verbose) { TRACE("No king"); }
     return false;
   }
 
@@ -907,9 +910,10 @@ bool ribi::Chess::Board::IsCheck(const Player player) const
 
 bool ribi::Chess::Board::IsCheckmate(const Player player) const
 {
+  const bool verbose{false};
   if (!IsCheck(player))
   {
-    FTRACE("Move is no checkmate, because the king is not in check");
+    if (verbose) { TRACE("Move is no checkmate, because the king is not in check"); }
     return false;
   }
 
@@ -949,7 +953,7 @@ bool ribi::Chess::Board::IsCheckmate(const Player player) const
   //If there are no possible moves, player is in checkmate
   if (cnt > 0)
   {
-    FTRACE("Opponent can escape checkmate");
+    if (verbose) { TRACE("Opponent can escape checkmate"); }
   }
   return cnt == 0;
 }

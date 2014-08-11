@@ -183,6 +183,7 @@ void Approximator<Key,Value,Container>::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TestTimer::SetMaxCnt(2); //Due to templates, multiple Approximators get active
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     Approximator<double,int> m;
@@ -196,6 +197,7 @@ void Approximator<Key,Value,Container>::Test() noexcept
     assert(m.GetMin() == 1.0);
     assert(m.GetMax() == 4.0);
   }
+  TestTimer::SetMaxCnt(1); //Restore strictness
 }
 #endif
 

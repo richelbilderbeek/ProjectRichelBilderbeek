@@ -121,6 +121,7 @@ bool ribi::Chess::PieceBishop::CanDoMove(const Chess::Move * const move) const n
     //Not a Bishop move
     return false;
   }
+  /*
   #ifndef NDEBUG
   if(!
     (
@@ -138,7 +139,6 @@ bool ribi::Chess::PieceBishop::CanDoMove(const Chess::Move * const move) const n
     TRACE("BREAK");
   }
   #endif
-
   assert(
     (
          (!move->From() && !GetSquare())
@@ -146,6 +146,7 @@ bool ribi::Chess::PieceBishop::CanDoMove(const Chess::Move * const move) const n
       || (move->From() && GetSquare() && *move->From() == *this->GetSquare()  )
     )
     && "Assume Move and Bishop to have the same start position");
+  */
   assert(move->Piece() && dynamic_cast<PieceBishop*>(move->Piece().get())
     && "Assume this is a Bishop move");
   assert(move->To() && "All Bishop moves have a to field");

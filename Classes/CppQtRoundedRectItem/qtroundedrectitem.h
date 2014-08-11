@@ -96,19 +96,17 @@ class QtRoundedRectItem : public QGraphicsRectItem
 
   bool GetIsSelected() const noexcept { return isSelected() || hasFocus(); }
 
-  double GetInnerHeight() const noexcept;
   QPointF GetCenterPos() const noexcept { return QGraphicsRectItem::pos(); }
-  QRectF GetInnerRect() const noexcept;
-  double GetInnerWidth() const noexcept;
   double GetCenterX() const noexcept { return GetCenterPos().x(); }
   double GetCenterY() const noexcept { return GetCenterPos().y(); }
 
+  double GetInnerHeight() const noexcept;
+  QRectF GetInnerRect() const noexcept;
+  double GetInnerWidth() const noexcept;
+
   double GetOuterHeight() const noexcept { return QGraphicsRectItem::rect().height(); }
-  QPointF GetOuterPos() const noexcept { return QGraphicsRectItem::pos(); }
   QRectF GetOuterRect() const noexcept;
   double GetOuterWidth() const noexcept { return QGraphicsRectItem::rect().width(); }
-  double GetOuterX() const noexcept { return GetOuterPos().x(); }
-  double GetOuterY() const noexcept { return GetOuterPos().y(); }
 
   ///Get the rounded rect corner x radius
   double GetRadiusX() const noexcept{ return m_radius_x; }
@@ -122,22 +120,19 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  void SetCenterPos(const double x,const double y) noexcept { SetCenterX(x); SetCenterY(y); }
+  void SetCenterPos(const QPointF& pos) noexcept { SetCenterPos(pos.x(),pos.y()); }
+  void SetCenterX(const double x) noexcept;
+  void SetCenterY(const double y) noexcept;
+
   void SetContourPen(const QPen& pen) noexcept; ///Set the pen by which the contours are normally drawn, default value: QPen(Qt::DashLine)
   void SetFocusPen(const QPen& pen) noexcept; ///Set the pen by which focus is indicated, default value: QPen(Qt::DashLine)
 
   void SetInnerHeight(const double width) noexcept;
-  void SetInnerPos(const double x,const double y) noexcept;
-  void SetInnerPos(const QPointF& pos) noexcept { SetInnerPos(pos.x(),pos.y()); }
   void SetInnerWidth(const double width) noexcept;
-  void SetInnerX(const double x) noexcept { SetInnerPos(x,GetCenterY()); }
-  void SetInnerY(const double y) noexcept { SetInnerPos(GetCenterX(),y); }
 
   void SetOuterHeight(const double width) noexcept;
-  void SetOuterPos(const double x,const double y) noexcept { SetOuterX(x); SetOuterY(y); }
-  void SetOuterPos(const QPointF& pos) noexcept { SetOuterPos(pos.x(),pos.y()); }
   void SetOuterWidth(const double width) noexcept;
-  void SetOuterX(const double x) noexcept;
-  void SetOuterY(const double y) noexcept;
 
   void SetRadiusX(const double radius_x) noexcept;
   void SetRadiusY(const double radius_y) noexcept;

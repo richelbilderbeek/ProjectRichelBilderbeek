@@ -7,11 +7,15 @@
 
 boost::bimap<ribi::CanvasColorSystem,std::string> ribi::CanvasColorSystems::m_map;
 
-boost::bimap<ribi::CanvasColorSystem,std::string> ribi::CanvasColorSystems::CreateMap()
+ribi::CanvasColorSystems::CanvasColorSystems()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+boost::bimap<ribi::CanvasColorSystem,std::string> ribi::CanvasColorSystems::CreateMap()
+{
   boost::bimap<CanvasColorSystem,std::string> m;
   m.insert(boost::bimap<CanvasColorSystem,std::string>::value_type(
     CanvasColorSystem::invert,"invert"));
@@ -20,7 +24,7 @@ boost::bimap<ribi::CanvasColorSystem,std::string> ribi::CanvasColorSystems::Crea
   return m;
 }
 
-std::vector<ribi::CanvasColorSystem> ribi::CanvasColorSystems::GetAll() noexcept
+std::vector<ribi::CanvasColorSystem> ribi::CanvasColorSystems::GetAll() const noexcept
 {
   const std::vector<CanvasColorSystem> v {
     CanvasColorSystem::invert,
@@ -39,21 +43,21 @@ void ribi::CanvasColorSystems::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  const std::vector<CanvasColorSystem> v = GetAll();
+  const std::vector<CanvasColorSystem> v = CanvasColorSystems().GetAll();
   const std::size_t sz = v.size();
   for (std::size_t i=0; i!=sz; ++i)
   {
     assert(i < v.size());
     const CanvasColorSystem t = v[i];
-    const std::string s = ToStr(t);
+    const std::string s = CanvasColorSystems().ToStr(t);
     assert(!s.empty());
-    const CanvasColorSystem u = ToType(s);
+    const CanvasColorSystem u = CanvasColorSystems().ToType(s);
     assert(u == t);
   }
 }
 #endif
 
-std::string ribi::CanvasColorSystems::ToStr(const CanvasColorSystem type) noexcept
+std::string ribi::CanvasColorSystems::ToStr(const CanvasColorSystem type) const noexcept
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());
@@ -62,7 +66,7 @@ std::string ribi::CanvasColorSystems::ToStr(const CanvasColorSystem type) noexce
   return s;
 }
 
-ribi::CanvasColorSystem ribi::CanvasColorSystems::ToType(const std::string& s)
+ribi::CanvasColorSystem ribi::CanvasColorSystems::ToType(const std::string& s) const
 {
   if (m_map.right.empty()) m_map = CreateMap();
   assert(!m_map.right.empty());

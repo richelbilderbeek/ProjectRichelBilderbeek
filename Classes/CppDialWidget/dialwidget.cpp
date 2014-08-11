@@ -115,6 +115,11 @@ void ribi::DialWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    DrawCanvas();
+    TextCanvas();
+    Geometry();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<DialWidget> w(new DialWidget);

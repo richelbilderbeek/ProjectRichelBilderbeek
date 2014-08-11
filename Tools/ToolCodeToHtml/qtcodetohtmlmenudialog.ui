@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>334</width>
-    <height>654</height>
+    <width>276</width>
+    <height>559</height>
    </rect>
   </property>
   <property name="font">
@@ -30,133 +30,96 @@ QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
 QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>9</y>
-     <width>258</width>
-     <height>127</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="ToolCodeToHtml.qrc">:/images/ToolCodeToHtmlHelloWorld.png</pixmap>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_start">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>228</y>
-     <width>160</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Start</string>
-   </property>
-   <property name="flat">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_test_1">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>297</y>
-     <width>218</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>Test if all pages with added text are valid</string>
-   </property>
-   <property name="text">
-    <string>Test #1</string>
-   </property>
-   <property name="flat">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_test_2">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>366</y>
-     <width>218</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>Test if all pages with added text are valid</string>
-   </property>
-   <property name="text">
-    <string>Test #2</string>
-   </property>
-   <property name="flat">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_about">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>510</y>
-     <width>160</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>About</string>
-   </property>
-   <property name="flat">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_quit">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>579</y>
-     <width>132</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Quit</string>
-   </property>
-   <property name="flat">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_test_3">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>430</y>
-     <width>218</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>Test if all pages with added text are valid</string>
-   </property>
-   <property name="text">
-    <string>Test #3</string>
-   </property>
-   <property name="flat">
-    <bool>true</bool>
-   </property>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolCodeToHtml.qrc">:/images/ToolCodeToHtmlHelloWorld.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_start">
+     <property name="text">
+      <string>Start</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_test_1">
+     <property name="toolTip">
+      <string>Test if all pages with added text are valid</string>
+     </property>
+     <property name="text">
+      <string>Test #1</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_test_2">
+     <property name="toolTip">
+      <string>Test if all pages with added text are valid</string>
+     </property>
+     <property name="text">
+      <string>Test #2</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_test_3">
+     <property name="toolTip">
+      <string>Test if all pages with added text are valid</string>
+     </property>
+     <property name="text">
+      <string>Test #3</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_about">
+     <property name="text">
+      <string>About</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>Quit</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <tabstops>
   <tabstop>button_start</tabstop>
+  <tabstop>button_test_1</tabstop>
+  <tabstop>button_test_2</tabstop>
+  <tabstop>button_test_3</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>

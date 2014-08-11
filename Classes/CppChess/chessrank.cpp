@@ -10,6 +10,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -73,24 +74,22 @@ void ribi::Chess::Rank::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
     {
-      FTRACE("Test Chess::Rank");
+      if (verbose) { TRACE("Test Chess::Rank"); }
 
-      FTRACE("Test valid Ranks from std::string");
+      if (verbose) { TRACE("Test valid Ranks from std::string"); }
       {
         const std::vector<std::string> v = {"1","2","3","4","5","6","7","8"};
         std::for_each(v.begin(),v.end(),[](const std::string& s) { Rank tmp(s); } );
       }
-      FTRACE("Test valid Ranks from int");
+      if (verbose) { TRACE("Test valid Ranks from int"); }
       {
         const std::vector<int> v = {0,1,2,3,4,5,6,7};
         std::for_each(v.begin(),v.end(),[](const int& i) { Rank tmp(i); } );
       }
-      FTRACE("Test invalid Ranks from std::string");
+      if (verbose) { TRACE("Test invalid Ranks from std::string"); }
       {
         const std::vector<std::string> v = {"0","9","a","h"," ","A","I","aa","1a","a1","11" };
         std::for_each(v.begin(),v.end(),
@@ -109,7 +108,7 @@ void ribi::Chess::Rank::Test() noexcept
           }
         );
       }
-      FTRACE("Test invalid Ranks from int");
+      if (verbose) { TRACE("Test invalid Ranks from int"); }
       {
         const std::vector<int> v = {-1,8,10,11,100,111};
         std::for_each(v.begin(),v.end(),
@@ -128,7 +127,7 @@ void ribi::Chess::Rank::Test() noexcept
           }
         );
       }
-      FTRACE("Test individual ranks intimately");
+      if (verbose) { TRACE("Test individual ranks intimately"); }
       {
         Rank r("1");
         assert(r.ToStr() == "1");
@@ -150,10 +149,6 @@ void ribi::Chess::Rank::Test() noexcept
         assert(r.ToInt() == 7);
       }
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
 }
 
 int ribi::Chess::Rank::ToInt() const

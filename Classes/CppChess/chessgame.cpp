@@ -20,6 +20,7 @@
 #include "chessrank.h"
 #include "chessscore.h"
 #include "chesssquare.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -158,18 +159,12 @@ void ribi::Chess::Game::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
     {
-      FTRACE("Testing Game");
+      if (verbose) { TRACE("Testing Game"); }
       Chess::Game();
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
 }
 #endif
 

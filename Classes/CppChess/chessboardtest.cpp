@@ -12,6 +12,7 @@
 #include "chessplayer.h"
 #include "chesssquarefactory.h"
 #include "chessscore.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #ifndef NDEBUG
@@ -23,16 +24,14 @@ void ribi::Chess::Board::Test() noexcept
     if (tested) return;
     tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
     {
-      FTRACE("Test Chess::Board");
+      if (verbose) { TRACE("Test Chess::Board"); }
       //Chess::Bitribi::Chess::Board::Test();
       //Chess::Move::Test();
       {
-        FTRACE("Test Board operator=");
+        if (verbose) { TRACE("Test Board operator="); }
         const boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         assert(b);
         boost::shared_ptr<Chess::Board> c(BoardFactory::DeepCopy(*b));
@@ -45,7 +44,7 @@ void ribi::Chess::Board::Test() noexcept
         assert(*b != *d);
       }
       {
-        FTRACE("Test Board operator== with fresh boards");
+        if (verbose) { TRACE("Test Board operator== with fresh boards"); }
         const boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         boost::shared_ptr<Chess::Board> c(BoardFactory::Create());
         assert((*b == *c));
@@ -57,7 +56,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test Board operator== with fresh boards");
+        if (verbose) { TRACE("Test Board operator== with fresh boards"); }
         const boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         boost::shared_ptr<Chess::Board> c(BoardFactory::Create());
         assert((*b == *c));
@@ -69,7 +68,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test GetMoves from initial position squares");
+        if (verbose) { TRACE("Test GetMoves from initial position squares"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         assert(!b->CanDoMove(MoveFactory::Create("Ra8 a6"),Player::black));
         assert(!b->CanDoMove(MoveFactory::Create("Ra8 a6"),Player::white));
@@ -107,7 +106,7 @@ void ribi::Chess::Board::Test() noexcept
         assert(b->GetMoves(SquareFactory().Create("h7")).size() == 2);
       }
       {
-        FTRACE("Test GetVisibleSquares in the initial position");
+        if (verbose) { TRACE("Test GetVisibleSquares in the initial position"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         const BitBoard c = b->GetVisibleSquares(Player::white);
 
@@ -148,7 +147,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test valid moves in the initial position");
+        if (verbose) { TRACE("Test valid moves in the initial position"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         {
           const std::vector<std::string> v
@@ -212,7 +211,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test moves in the initial position (short notation)");
+        if (verbose) { TRACE("Test moves in the initial position (short notation)"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         {
           const std::vector<std::string> v
@@ -235,7 +234,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test a Pawn on the board at e2");
+        if (verbose) { TRACE("Test a Pawn on the board at e2"); }
         const ribi::Chess::Board::Pieces v =
         {
           PieceFactory().Create('.',Color::white,"e2"),
@@ -250,7 +249,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test a Pawn on the board at e2, blocked by an opponent");
+        if (verbose) { TRACE("Test a Pawn on the board at e2, blocked by an opponent"); }
         const ribi::Chess::Board::Pieces v =
         {
           PieceFactory().Create('.',Color::white,"e2"),
@@ -262,7 +261,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test a Pawn on the board at h4, blocked by an opponent");
+        if (verbose) { TRACE("Test a Pawn on the board at h4, blocked by an opponent"); }
         const ribi::Chess::Board::Pieces v =
         {
           PieceFactory().Create('.',Color::white,"h4"),
@@ -273,7 +272,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test a Knight on the board at d4");
+        if (verbose) { TRACE("Test a Knight on the board at d4"); }
         const ribi::Chess::Board::Pieces v =
         {
           PieceFactory().Create('N',Color::white,"d4"),
@@ -289,7 +288,7 @@ void ribi::Chess::Board::Test() noexcept
 
 
       {
-        FTRACE("Test valid moves for black after 1. e2 e4");
+        if (verbose) { TRACE("Test valid moves for black after 1. e2 e4"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         b->DoMove(MoveFactory::Create("e2 e4"),Player::white);
         {
@@ -333,7 +332,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test valid moves for white after 1. e2 e4 e7 e5");
+        if (verbose) { TRACE("Test valid moves for white after 1. e2 e4 e7 e5"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         b->DoMove(MoveFactory::Create("e2 e4"),Player::white);
         b->DoMove(MoveFactory::Create("e7 e5"),Player::black);
@@ -380,7 +379,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test Board copy constructor");
+        if (verbose) { TRACE("Test Board copy constructor"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         assert( b->GetPiece(SquareFactory().Create("e2")));
         assert(!b->GetPiece(SquareFactory().Create("e4")));
@@ -399,7 +398,7 @@ void ribi::Chess::Board::Test() noexcept
         assert( c->GetPiece(SquareFactory().Create("e7")));
       }
       {
-        FTRACE("Test EmptyBetween on single piece");
+        if (verbose) { TRACE("Test EmptyBetween on single piece"); }
         const Pieces pieces
           =
           {
@@ -425,7 +424,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test EmptyBetween after 3rd move of white in Kasparov against the World game");
+        if (verbose) { TRACE("Test EmptyBetween after 3rd move of white in Kasparov against the World game"); }
         const Pieces pieces
           =
           {
@@ -471,7 +470,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test IsCheck from setup 1");
+        if (verbose) { TRACE("Test IsCheck from setup 1"); }
         const Pieces pieces
           =
           {
@@ -485,21 +484,21 @@ void ribi::Chess::Board::Test() noexcept
         assert(b->IsCheck(Player::black));
       }
       {
-        FTRACE("Test IsCheck by playing");
+        if (verbose) { TRACE("Test IsCheck by playing"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         b->DoMove(MoveFactory::Create("e2 e4"),Player::white);
         b->DoMove(MoveFactory::Create("d7 d6"),Player::black);
-        FTRACE("Test that the move ending is check can be done");
+        if (verbose) { TRACE("Test that the move ending is check can be done"); }
         assert(b->CanDoMove(MoveFactory::Create("Bf1 b5+"),Player::white));
-        FTRACE("Do the move ending is check");
+        if (verbose) { TRACE("Do the move ending is check"); }
         b->DoMove(MoveFactory::Create("Bf1 b5+"),Player::white);
-        FTRACE("Test that the board detects check");
+        if (verbose) { TRACE("Test that the board detects check"); }
         assert(b->IsCheck(Player::black));
       }
 
 
       {
-        FTRACE("Test invalid moves in the initial position");
+        if (verbose) { TRACE("Test invalid moves in the initial position"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         {
           const std::vector<std::string> v
@@ -536,7 +535,7 @@ void ribi::Chess::Board::Test() noexcept
 
       /*
       {
-        FTRACE("Test Fools mate");
+        if (verbose) { TRACE("Test Fools mate"); }
         boost::shared_ptr<Chess::Board> b;
         {
           const std::vector<std::string> v = Moves::GetGameFoolsMate();
@@ -555,7 +554,7 @@ void ribi::Chess::Board::Test() noexcept
       */
 
       {
-        FTRACE("Test Shephards mate");
+        if (verbose) { TRACE("Test Shephards mate"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         Player player = Player::white;
         {
@@ -573,7 +572,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test Kasparov Versus The World match");
+        if (verbose) { TRACE("Test Kasparov Versus The World match"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         Player player = Player::white;
         {
@@ -591,9 +590,5 @@ void ribi::Chess::Board::Test() noexcept
         }
       }
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
 }
 #endif

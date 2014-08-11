@@ -45,25 +45,25 @@ void ribi::QtRoundedRectItem::Test() noexcept
   QtRoundedRectItem i;
   if (verbose) { TRACE("SetOuterX and GetOuterX must be symmetric"); }
   {
-    const auto old_x = i.GetOuterX();
+    const auto old_x = i.GetCenterX();
     const auto new_x = old_x + 10.0;
-    i.SetOuterX(new_x);
-    assert(std::abs(i.GetOuterX() - new_x) < 2.0);
+    i.SetCenterX(new_x);
+    assert(std::abs(i.GetCenterX() - new_x) < 4.0);
   }
   if (verbose) { TRACE("SetOuterY and GetOuterY must be symmetric"); }
   {
-    const auto old_y = i.GetOuterY();
+    const auto old_y = i.GetCenterY();
     const auto new_y = old_y + 10.0;
-    i.SetOuterY(new_y);
-    assert(std::abs(i.GetOuterY() - new_y) < 2.0);
+    i.SetCenterY(new_y);
+    assert(std::abs(i.GetCenterY() - new_y) < 4.0);
   }
   if (verbose) { TRACE("SetOuterPos and GetOuterPos must be symmetric"); }
   {
-    const auto old_pos = i.GetOuterPos();
+    const auto old_pos = i.GetCenterPos();
     const auto new_pos = old_pos + QPointF(10.0,10.0);
-    i.SetOuterPos(new_pos);
-    assert(std::abs(i.GetOuterPos().x() - new_pos.x()) < 2.0);
-    assert(std::abs(i.GetOuterPos().y() - new_pos.y()) < 2.0);
+    i.SetCenterPos(new_pos);
+    assert(std::abs(i.GetCenterPos().x() - new_pos.x()) < 2.0);
+    assert(std::abs(i.GetCenterPos().y() - new_pos.y()) < 2.0);
   }
   if (verbose) { TRACE("SetOuterWidth and GetOuterWidth must be symmetric"); }
   {
@@ -83,21 +83,21 @@ void ribi::QtRoundedRectItem::Test() noexcept
   {
     const auto old_x = i.GetCenterX();
     const auto new_x = old_x + 10.0;
-    i.SetInnerX(new_x);
+    i.SetCenterX(new_x);
     assert(std::abs(i.GetCenterX() - new_x) < 2.0);
   }
   if (verbose) { TRACE("SetInnerY and GetInnerY must be symmetric"); }
   {
     const auto old_y = i.GetCenterY();
     const auto new_y = old_y + 10.0;
-    i.SetInnerY(new_y);
+    i.SetCenterY(new_y);
     assert(std::abs(i.GetCenterY() - new_y) < 2.0);
   }
   if (verbose) { TRACE("SetInnerPos and GetInnerPos must be symmetric"); }
   {
     const auto old_pos = i.GetCenterPos();
     const auto new_pos = old_pos + QPointF(10.0,10.0);
-    i.SetInnerPos(new_pos);
+    i.SetCenterPos(new_pos);
     assert(std::abs(i.GetCenterPos().x() - new_pos.x()) < 2.0);
     assert(std::abs(i.GetCenterPos().y() - new_pos.y()) < 2.0);
   }
@@ -132,7 +132,7 @@ void ribi::QtRoundedRectItem::Test() noexcept
   }
   if (verbose) { TRACE("Position must be in GetOuterRect"); }
   {
-    assert(i.GetOuterRect().contains(i.GetOuterPos()));
+    assert(i.GetOuterRect().contains(i.GetCenterPos()));
   }
   if (verbose) { TRACE("Position must be in GetInnerRect"); }
   {
@@ -142,16 +142,16 @@ void ribi::QtRoundedRectItem::Test() noexcept
   {
     i.SetOuterWidth(3.0);
     i.SetOuterHeight(3.0);
-    i.SetOuterX(i.GetCenterX() + 10.0);
-    i.SetOuterY(i.GetCenterY() + 10.0);
-    assert(i.GetOuterRect().contains(i.GetOuterPos()));
+    i.SetCenterX(i.GetCenterX() + 10.0);
+    i.SetCenterY(i.GetCenterY() + 10.0);
+    assert(i.GetOuterRect().contains(i.GetCenterPos()));
   }
   if (verbose) { TRACE("After changing the inner width and position, the Position must be in GetInnerRect"); }
   {
     i.SetInnerWidth(3.0);
     i.SetInnerHeight(3.0);
-    i.SetInnerX(i.GetCenterX() + 10.0);
-    i.SetInnerY(i.GetCenterY() + 10.0);
+    i.SetCenterX(i.GetCenterX() + 10.0);
+    i.SetCenterY(i.GetCenterY() + 10.0);
     assert(i.GetInnerRect().contains(i.GetCenterPos()));
   }
 }

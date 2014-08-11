@@ -350,16 +350,16 @@ void ribi::ImageCanvas::Test() noexcept
   }
   assert(fileio::FileIo().IsRegularFile(temp_filename));
   const int n
-    = static_cast<int>(CanvasColorSystems::GetAll().size())
-    * static_cast<int>(CanvasCoordinatSystems::GetAll().size());
+    = static_cast<int>(CanvasColorSystems().GetAll().size())
+    * static_cast<int>(CanvasCoordinatSystems().GetAll().size());
   for (int i=0; i!=n; ++i)
   {
-    const int ncs = static_cast<int>(CanvasColorSystems::GetAll().size());
+    const int ncs = static_cast<int>(CanvasColorSystems().GetAll().size());
     const int a = i % ncs;
-    const CanvasColorSystem color_system = CanvasColorSystems::GetAll()[a];
+    const CanvasColorSystem color_system = CanvasColorSystems().GetAll()[a];
     const int b = i / ncs;
     const CanvasCoordinatSystem coordinat_system
-      = CanvasCoordinatSystems::GetAll()[b];
+      = CanvasCoordinatSystems().GetAll()[b];
     const ImageCanvas c(temp_filename,20,color_system,coordinat_system);
     std::stringstream s;
     s << c;

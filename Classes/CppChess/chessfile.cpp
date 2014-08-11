@@ -4,16 +4,13 @@
 #include <cassert>
 #include <stdexcept>
 
-#ifdef MXE_SUPPORTS_THREADS
-#include <thread>
-#endif
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -72,24 +69,22 @@ void ribi::Chess::File::Test() noexcept
     if (tested) return;
     tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
     {
-      FTRACE("Test Chess::File");
+      if (verbose) { TRACE("Test Chess::File"); }
 
-      FTRACE("Test valid Files from std::string");
+      if (verbose) { TRACE("Test valid Files from std::string"); }
       {
         const std::vector<std::string> v = {"a","b","c","d","e","f","g","h"};
         std::for_each(v.begin(),v.end(),[](const std::string& s) { Chess::File tmp(s); } );
       }
-      FTRACE("Test valid Files from int");
+      if (verbose) { TRACE("Test valid Files from int"); }
       {
         const std::vector<int> v = {0,1,2,3,4,5,6,7};
         std::for_each(v.begin(),v.end(),[](const int& i) { File tmp(i); } );
       }
-      FTRACE("Test invalid Files from std::string");
+      if (verbose) { TRACE("Test invalid Files from std::string"); }
       {
         const std::vector<std::string> v = {"A","i"," ","H","I","1","7","aa","1a","a1" };
         std::for_each(v.begin(),v.end(),
@@ -108,7 +103,7 @@ void ribi::Chess::File::Test() noexcept
           }
         );
       }
-      FTRACE("Test invalid Files from int");
+      if (verbose) { TRACE("Test invalid Files from int"); }
       {
         const std::vector<int> v = {-1,8,10,11,100,111};
         std::for_each(v.begin(),v.end(),
@@ -127,7 +122,7 @@ void ribi::Chess::File::Test() noexcept
           }
         );
       }
-      FTRACE("Test individual files intimately");
+      if (verbose) { TRACE("Test individual files intimately"); }
       {
         File f("a");
         assert(f.ToStr() == "a");
@@ -149,10 +144,6 @@ void ribi::Chess::File::Test() noexcept
         assert(f.ToInt() == 7);
       }
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
 }
 
 int ribi::Chess::File::ToInt() const

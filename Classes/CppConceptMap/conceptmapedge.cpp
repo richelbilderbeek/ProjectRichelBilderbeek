@@ -38,10 +38,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::Edge::Edge(
-  const boost::shared_ptr<Node>& node,
-  const boost::shared_ptr<Node> from,
+  const NodePtr& node,
+  const NodePtr& from,
   const bool tail_arrow,
-  const boost::shared_ptr<Node> to,
+  const NodePtr& to,
   const bool head_arrow)
   : m_signal_from_changed{},
     m_signal_head_arrow_changed{},
@@ -66,6 +66,27 @@ ribi::cmap::Edge::Edge(
   this->m_node->m_signal_concept_changed.connect(
     boost::bind(&ribi::cmap::Edge::OnConceptChanged,this,_1)
   );
+
+  this->m_from->m_signal_x_changed.connect(
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+  );
+  this->m_from->m_signal_y_changed.connect(
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+  );
+  this->m_from->m_signal_concept_changed.connect(
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+  );
+
+  this->m_to->m_signal_x_changed.connect(
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+  );
+  this->m_to->m_signal_y_changed.connect(
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+  );
+  this->m_to->m_signal_concept_changed.connect(
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+  );
+
 }
 
 ribi::cmap::Edge::~Edge() noexcept
@@ -73,6 +94,27 @@ ribi::cmap::Edge::~Edge() noexcept
   this->m_node->m_signal_concept_changed.disconnect(
     boost::bind(&ribi::cmap::Edge::OnConceptChanged,this)
   );
+
+  this->m_from->m_signal_x_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+  );
+  this->m_from->m_signal_y_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+  );
+  this->m_from->m_signal_concept_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+  );
+
+  this->m_to->m_signal_x_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+  );
+  this->m_to->m_signal_y_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+  );
+  this->m_to->m_signal_concept_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+  );
+
 }
 
 std::string ribi::cmap::Edge::GetVersion() noexcept
@@ -99,7 +141,27 @@ void ribi::cmap::Edge::OnConceptChanged(Node * const
   this->m_signal_node_changed(this);
 }
 
-void ribi::cmap::Edge::SetNode(const boost::shared_ptr<Node>& node) noexcept
+void ribi::cmap::Edge::OnFromChanged(Node * const
+#ifndef NDEBUG
+  node
+#endif
+) noexcept
+{
+  assert(node == this->GetFrom().get());
+  this->m_signal_from_changed(this);
+}
+
+void ribi::cmap::Edge::OnToChanged(Node * const
+#ifndef NDEBUG
+  node
+#endif
+) noexcept
+{
+  assert(node == this->GetTo().get());
+  this->m_signal_from_changed(this);
+}
+
+void ribi::cmap::Edge::SetNode(const NodePtr& node) noexcept
 {
   assert(node);
   if (m_node != node)
@@ -109,7 +171,8 @@ void ribi::cmap::Edge::SetNode(const boost::shared_ptr<Node>& node) noexcept
   }
 }
 
-void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from) noexcept
+/*
+void ribi::cmap::Edge::SetFrom(const NodePtr& from) noexcept
 {
   assert(from);
   if (m_from != from)
@@ -118,6 +181,7 @@ void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from) n
     m_signal_from_changed(this);
   }
 }
+*/
 
 void ribi::cmap::Edge::SetHeadArrow(const bool has_head_arrow) noexcept
 {
@@ -137,7 +201,8 @@ void ribi::cmap::Edge::SetTailArrow(const bool has_tail_arrow) noexcept
   }
 }
 
-void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to) noexcept
+/*
+void ribi::cmap::Edge::SetTo(const NodePtr& to) noexcept
 {
   assert(to);
   if (m_to != to)
@@ -146,6 +211,7 @@ void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to) noexc
     m_signal_to_changed(this);
   }
 }
+*/
 
 #ifndef NDEBUG
 void ribi::cmap::Edge::Test() noexcept
@@ -157,8 +223,8 @@ void ribi::cmap::Edge::Test() noexcept
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
-  const auto from = NodeFactory().GetTest(0);
-  const auto to = NodeFactory().GetTest(1);
+  const boost::shared_ptr<Node> from{NodeFactory().GetTest(0)};
+  const boost::shared_ptr<Node> to{NodeFactory().GetTest(1)};
   const std::vector<boost::shared_ptr<Node>> nodes = {from,to};
   if (verbose) { TRACE("Operator=="); }
   {
@@ -181,7 +247,7 @@ void ribi::cmap::Edge::Test() noexcept
     const auto node_from = nodes[0];
     const auto node_to   = nodes[1];
     const boost::shared_ptr<const Edge> edge{EdgeFactory().GetTest(0,node_from,node_to)};
-    const boost::shared_ptr<const Edge> copy = EdgeFactory().DeepCopy(edge,node_from,node_to);
+    const boost::shared_ptr<const Edge> copy{EdgeFactory().DeepCopy(edge,node_from,node_to)};
     assert( edge !=  copy);
     assert(*edge == *copy);
   }
@@ -214,6 +280,18 @@ void ribi::cmap::Edge::Test() noexcept
     edge->SetHeadArrow(!edge->HasHeadArrow());
     assert(c.Get()==1);
   }
+  //From
+  if (verbose) { TRACE("If Edge its source/from is moved, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Edge> edge{EdgeFactory().GetTest(0,from,to)};
+    Counter c{0}; //For receiving the signal
+    edge->m_signal_from_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    from->SetX(from->GetX() + 10.0);
+    assert(c.Get() > 1);
+  }
+  assert(!"Refactor");
 }
 #endif
 
@@ -226,8 +304,8 @@ std::string ribi::cmap::Edge::ToStr() const noexcept
 }
 
 std::string ribi::cmap::Edge::ToXml(
-  const boost::shared_ptr<const cmap::Edge>& edge,
-  const std::vector<boost::shared_ptr<const cmap::Node> >& nodes
+  const ReadOnlyEdgePtr& edge,
+  const ReadOnlyNodes& nodes
 ) noexcept
 {
   std::stringstream s;

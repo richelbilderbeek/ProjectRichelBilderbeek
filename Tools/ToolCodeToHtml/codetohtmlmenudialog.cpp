@@ -158,7 +158,7 @@ ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
-    "the 16th of July 2014",
+    "the 11th of August 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
@@ -197,7 +197,7 @@ boost::shared_ptr<const ribi::Program> ribi::c2h::CodeToHtmlMenuDialog::GetProgr
 
 std::string ribi::c2h::CodeToHtmlMenuDialog::GetVersion() const noexcept
 {
-  return "3.2";
+  return "3.3";
 }
 
 std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
@@ -241,7 +241,8 @@ std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() co
     "2013-10-25: version 2.10: console application callable from ProjectRichelBilderbeek",
     "2013-11-26: version 3.0: improved interface and architecture, support for OpenFOAM projects",
     "2014-04-27: version 3.1: prevents huge HTML file creation",
-    "2014-07-16: version 3.2: 4000 replacements, increased use of C++11, link std::x to CppStdX.htm"
+    "2014-07-16: version 3.2: 4000 replacements, increased use of C++11, link std::x to CppStdX.htm",
+    "2014-08-11: version 3.3: increased use of TDD"
   };
   return v;
 }
@@ -259,6 +260,7 @@ void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
     { boost::shared_ptr<c2h::Info> info(new c2h::Info); }
     try { QrcFile(""); } catch(std::logic_error&) { /* OK */ };
     try {  boost::shared_ptr<QtCreatorProFile> p{new QtCreatorProFile("")}; } catch(std::logic_error&) { /* OK */ };
+    ribi::c2h::Dialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {

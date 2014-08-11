@@ -192,7 +192,7 @@ QRectF ribi::cmap::QtEdge::boundingRect() const
   //  && "so this must be checked on a higher level");
 
   return m_qtnode->boundingRect() //Bypassed going via m_concept_item
-    .united(m_arrow->boundingRect().translated(-m_qtnode->GetOuterPos()));
+    .united(m_arrow->boundingRect().translated(-m_qtnode->GetCenterPos()));
   //return m_concept_item->boundingRect()
   //  .united(m_arrow->boundingRect().translated(-this->pos()));
 }
@@ -241,6 +241,7 @@ std::vector<std::string> ribi::cmap::QtEdge::GetVersionHistory() noexcept
   };
 }
 
+/*
 void ribi::cmap::QtEdge::dragEnterEvent(QGraphicsSceneDragDropEvent *) noexcept
 {
   //update();
@@ -269,6 +270,7 @@ void ribi::cmap::QtEdge::focusOutEvent(QFocusEvent*) noexcept
   m_arrow->SetPen(QPen(QColor(0,0,0)));
   //m_display_strategy->SetContourPen(m_display_strategy->GetContourPen()); //Updates itself
 }
+*/
 
 void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event) noexcept
 {
@@ -299,14 +301,14 @@ void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event) noexce
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
   if (event->modifiers() & Qt::ShiftModifier)
   {
-    if ((event->pos() - this->m_arrow->GetTail() + m_qtnode->GetOuterPos()).manhattanLength() < 20.0)
+    if ((event->pos() - this->m_arrow->GetTail() + m_qtnode->GetCenterPos()).manhattanLength() < 20.0)
     {
       this->SetHasTailArrow( !m_arrow->HasTail() ); //FIX 2013-02-10
       //this->m_arrow->SetHasTail( !m_arrow->HasTail() ); //BUG 2013-02-10
       //this->update(); //Don't!
       //m_signal_item_updated(this); //Don't!
     }
-    else if ((event->pos() - this->m_arrow->GetHead() + m_qtnode->GetOuterPos()).manhattanLength() < 20.0)
+    else if ((event->pos() - this->m_arrow->GetHead() + m_qtnode->GetCenterPos()).manhattanLength() < 20.0)
     {
       this->SetHasHeadArrow( !m_arrow->HasHead() );
       //this->update(); //Don't!
@@ -321,10 +323,10 @@ void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event) noexce
     //If the concept is not clicked...
     //but the arrow is...
     QPointF pos_on_arrow = event->pos();
-    pos_on_arrow += (m_qtnode->GetOuterPos());
+    pos_on_arrow += (m_qtnode->GetCenterPos());
     if (m_arrow->shape().contains(pos_on_arrow)
-      || (event->pos() - this->m_arrow->GetTail() + m_qtnode->GetOuterPos()).manhattanLength() < 20.0
-      || (event->pos() - this->m_arrow->GetHead() + m_qtnode->GetOuterPos()).manhattanLength() < 20.0
+      || (event->pos() - this->m_arrow->GetTail() + m_qtnode->GetCenterPos()).manhattanLength() < 20.0
+      || (event->pos() - this->m_arrow->GetHead() + m_qtnode->GetCenterPos()).manhattanLength() < 20.0
       )
     {
       //give focus to the arrow
@@ -362,6 +364,9 @@ void ribi::cmap::QtEdge::OnFromChanged(Edge * const edge) noexcept
   this->GetFrom()->SetNode(edge->GetFrom());
   assert(edge->GetFrom() == this->GetFrom()->GetNode());
   m_signal_edge_changed(this);
+  TRACE_FUNC();
+  this->update();
+  if (this->scene()) { this->scene()->update(); }
 }
 
 void ribi::cmap::QtEdge::OnHeadArrowChanged(Edge * const edge) noexcept
@@ -372,8 +377,8 @@ void ribi::cmap::QtEdge::OnHeadArrowChanged(Edge * const edge) noexcept
 
 void ribi::cmap::QtEdge::OnNodeChanged(Edge * const edge) noexcept
 {
-  m_qtnode->SetOuterX(edge->GetNode()->GetX());
-  m_qtnode->SetOuterY(edge->GetNode()->GetY());
+  m_qtnode->SetCenterX(edge->GetNode()->GetX());
+  m_qtnode->SetCenterY(edge->GetNode()->GetY());
   m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
   this->update();
   //if (this->scene()) { this->scene()->update(); }
@@ -443,13 +448,13 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
   //TODO: Add again
   //assert(!m_arrow->GetMidItem() || m_qtnode->GetPos() == m_arrow->GetMidItem()->pos());
 
-  painter->translate(-m_qtnode->GetOuterPos());
+  painter->translate(-m_qtnode->GetCenterPos());
   m_arrow->paint(painter,option,widget);
 
   //The QtNode might be hidden in debugging
   if (m_qtnode->isVisible())
   {
-    painter->translate(m_qtnode->GetOuterPos());
+    painter->translate(m_qtnode->GetCenterPos());
     m_qtnode->paint(painter,option,widget);
   }
 
@@ -600,8 +605,8 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
   if (!m_edge) { return; }
 
   //Sync
-  m_qtnode->SetOuterX(m_edge->GetNode()->GetX());
-  m_qtnode->SetOuterY(m_edge->GetNode()->GetY());
+  m_qtnode->SetCenterX(m_edge->GetNode()->GetX());
+  m_qtnode->SetCenterY(m_edge->GetNode()->GetY());
   m_qtnode->SetText( { m_edge->GetNode()->GetConcept()->GetName() } );
 
   m_edge->m_signal_from_changed.connect(
@@ -677,7 +682,7 @@ QPainterPath ribi::cmap::QtEdge::shape() const noexcept
 {
   return
     m_qtnode->shape()
-    .united(m_arrow->shape().translated(-m_qtnode->GetOuterPos()));
+    .united(m_arrow->shape().translated(-m_qtnode->GetCenterPos()));
 }
 
 

@@ -122,6 +122,7 @@ void ribi::QtTestOpenQuestionMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TestOpenQuestionMainDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestOpenQuestionMainDialog d;
   d.SetQuestion("-,1+1=,2");

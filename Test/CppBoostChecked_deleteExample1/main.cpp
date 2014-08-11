@@ -73,6 +73,5 @@ boost::scoped_ptr
 custom deleter
 std::unique_ptr with custom deleter
 boost::shared_ptr
-Press <RETURN> to close this window...
 
 */

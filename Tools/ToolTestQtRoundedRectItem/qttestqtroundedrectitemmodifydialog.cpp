@@ -86,7 +86,7 @@ ribi::QtTestQtRoundedRectItemModifyDialog::QtTestQtRoundedRectItemModifyDialog(Q
       item->SetFocusPen(pen);
     }
     item->SetOuterHeight(32.0);
-    item->SetOuterPos(0.0,0.0);
+    item->SetCenterPos(0.0,0.0);
     item->SetRadiusX(5.0);
     item->SetRadiusY(6.0);
     item->SetOuterWidth(48.0);
@@ -132,7 +132,7 @@ boost::shared_ptr<ribi::QtRoundedRectItem> ribi::QtTestQtRoundedRectItemModifyDi
     item->SetFocusPen(pen);
   }
   item->SetInnerHeight(200.0 * Random().GetFraction());
-  item->SetOuterPos(
+  item->SetCenterPos(
     -50.0 + (100.0 * Random().GetFraction()),
     -50.0 + (100.0 * Random().GetFraction())
   );

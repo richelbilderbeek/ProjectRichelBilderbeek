@@ -21,6 +21,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONCEPTMAPCONCEPTMAP_H
 #define CONCEPTMAPCONCEPTMAP_H
 
+//#ifdef NOT_NOW_2014_08_11
+
 #include <string>
 #include <vector>
 
@@ -182,3 +184,5 @@ bool operator!=(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;
 } //~namespace ribi
 
 #endif // CONCEPTMAPCONCEPTMAP_H
+
+//#endif // NOT_NOW_2014_08_11

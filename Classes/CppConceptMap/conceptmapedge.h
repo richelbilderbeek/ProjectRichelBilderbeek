@@ -42,18 +42,25 @@ struct EdgeFactory;
 /// at the center of the Edge is a Node
 struct Edge : public Element
 {
+  typedef boost::shared_ptr<const Edge> ReadOnlyEdgePtr;
+  typedef boost::shared_ptr<Edge> EdgePtr;
+  typedef boost::shared_ptr<const Node> ReadOnlyNodePtr;
+  typedef boost::shared_ptr<Node> NodePtr;
+  typedef std::vector<ReadOnlyNodePtr> ReadOnlyNodes;
+  typedef std::vector<NodePtr> Nodes;
+
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
-  boost::shared_ptr<const Node> GetNode() const noexcept { return m_node; }
-  boost::shared_ptr<      Node> GetNode()       noexcept { return m_node; }
+  ReadOnlyNodePtr GetNode() const noexcept { return m_node; }
+  NodePtr GetNode()       noexcept { return m_node; }
 
   ///Get the Node this edge originates from
-  boost::shared_ptr<const Node> GetFrom() const noexcept { return m_from; }
-  boost::shared_ptr<      Node> GetFrom()       noexcept { return m_from; }
+  ReadOnlyNodePtr GetFrom() const noexcept { return m_from; }
+  NodePtr GetFrom()       noexcept { return m_from; }
 
   ///Get the Node index this edge goes to
-  boost::shared_ptr<const Node> GetTo() const noexcept { return m_to; }
-  boost::shared_ptr<      Node> GetTo()       noexcept { return m_to; }
+  ReadOnlyNodePtr GetTo() const noexcept { return m_to; }
+  NodePtr GetTo()       noexcept { return m_to; }
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -65,19 +72,19 @@ struct Edge : public Element
   bool HasTailArrow() const noexcept { return m_tail_arrow; }
 
   ///Set the Node index this edge originates from
-  void SetFrom(const boost::shared_ptr<Node> from) noexcept;
+  //void SetFrom(const NodePtr& from) noexcept;
 
   ///Set if the head has an arrow
   void SetHeadArrow(const bool has_head_arrow) noexcept;
 
   ///Set the center Node
-  void SetNode(const boost::shared_ptr<Node>& node) noexcept;
+  void SetNode(const NodePtr& node) noexcept;
 
   ///Set if the tail has an arrow
   void SetTailArrow(const bool has_tail_arrow) noexcept;
 
   ///Set the Node index this edge goes to
-  void SetTo(const boost::shared_ptr<Node> to) noexcept;
+  //void SetTo(const NodePtr& to) noexcept;
 
   std::string ToStr() const noexcept;
 
@@ -85,8 +92,8 @@ struct Edge : public Element
   ///The container of nodes is needed to convert the 'to' and 'from'
   ///field to indices
   static std::string ToXml(
-    const boost::shared_ptr<const Edge>& c,
-    const std::vector<boost::shared_ptr<const Node>>& nodes
+    const ReadOnlyEdgePtr& c,
+    const ReadOnlyNodes& nodes
     ) noexcept;
 
   ///Emitted when an Edge attribute has changed
@@ -98,22 +105,21 @@ struct Edge : public Element
 
   private:
   ///The Node this edge originates from
-  boost::shared_ptr<Node> m_from;
+  const NodePtr m_from;
 
   ///Is there an arrowhead at the 'to' node?
   bool m_head_arrow;
 
   ///The Node on the Edge
-  boost::shared_ptr<Node> m_node;
+  NodePtr m_node;
 
   ///Is there an arrowhead at the 'from' node?
   bool m_tail_arrow;
 
   ///The Node this edge goes to
-  boost::shared_ptr<Node> m_to;
+  const NodePtr m_to;
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 
@@ -125,17 +131,19 @@ struct Edge : public Element
   friend void boost::checked_delete<>(const Edge*);
 
   ///Block constructor, except for EdgeFactory
-  friend EdgeFactory;
+  friend class EdgeFactory;
   explicit Edge(
-    const boost::shared_ptr<Node>& node,
-    const boost::shared_ptr<Node> from,
+    const NodePtr& node,
+    const NodePtr& from,
     const bool tail_arrow,
-    const boost::shared_ptr<Node> to,
+    const NodePtr& to,
     const bool head_arrow
   );
 
   ///Bundles Node its signals into emitting a signal that the node has changed
   void OnConceptChanged(Node * const node) noexcept;
+  void OnFromChanged(Node * const node) noexcept;
+  void OnToChanged(Node * const node) noexcept;
 };
 
 bool IsConnectedToCenterNode(const boost::shared_ptr<const Edge> edge) noexcept;

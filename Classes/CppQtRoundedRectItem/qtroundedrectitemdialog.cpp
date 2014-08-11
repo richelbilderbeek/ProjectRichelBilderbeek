@@ -160,8 +160,8 @@ void ribi::QtRoundedRectItemDialog::OnFocusPenChanged(QtRoundedRectItem * const 
 
 void ribi::QtRoundedRectItemDialog::OnPosChanged(QtRoundedRectItem * const qtitem) noexcept
 {
-  const double new_x = qtitem->GetOuterPos().x();
-  const double new_y = qtitem->GetOuterPos().y();
+  const double new_x = qtitem->GetCenterPos().x();
+  const double new_y = qtitem->GetCenterPos().y();
   ui->box_x->setValue(new_x);
   ui->box_y->setValue(new_y);
 }
@@ -243,12 +243,12 @@ void ribi::QtRoundedRectItemDialog::on_box_width_including_pen_valueChanged(doub
 
 void ribi::QtRoundedRectItemDialog::on_box_x_valueChanged(double arg1)
 {
-  m_item->SetOuterPos(arg1,m_item->GetOuterPos().y());
+  m_item->SetCenterPos(arg1,m_item->GetCenterPos().y());
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_y_valueChanged(double arg1)
 {
-  m_item->SetOuterPos(m_item->GetOuterPos().x(),arg1);
+  m_item->SetCenterPos(m_item->GetCenterPos().x(),arg1);
 }
 
 void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRectItem>& item) noexcept
@@ -267,8 +267,8 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
     ui->box_radius_y->setValue(GetItem()->GetRadiusY());
     ui->box_width->setValue(GetItem()->GetInnerWidth());
     ui->box_width_including_pen->setValue(GetItem()->GetOuterWidth());
-    ui->box_x->setValue(GetItem()->GetOuterX());
-    ui->box_y->setValue(GetItem()->GetOuterY());
+    ui->box_x->setValue(GetItem()->GetCenterX());
+    ui->box_y->setValue(GetItem()->GetCenterY());
     return;
   }
   if (verbose)
@@ -279,7 +279,7 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
 
   const auto contour_pen_after = item->GetContourPen();
   const auto focus_pen_after = item->GetFocusPen();
-  const auto pos_after = item->GetOuterPos();
+  const auto pos_after = item->GetCenterPos();
   const auto radius_x_after = item->GetRadiusX();
   const auto radius_y_after = item->GetRadiusY();
   const auto width_after = item->GetInnerWidth();
@@ -298,7 +298,7 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
   {
     const auto contour_pen_before = m_item->GetContourPen();
     const auto focus_pen_before = m_item->GetFocusPen();
-    const auto pos_before = m_item->GetOuterPos();
+    const auto pos_before = m_item->GetCenterPos();
     const auto radius_x_before = m_item->GetRadiusX();
     const auto radius_y_before = m_item->GetRadiusY();
     const auto width_before = m_item->GetInnerWidth();
@@ -401,7 +401,7 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
 
   assert(m_item->GetContourPen() == contour_pen_after);
   assert(m_item->GetFocusPen()   == focus_pen_after  );
-  assert(m_item->GetOuterPos()   == pos_after        );
+  assert(m_item->GetCenterPos()   == pos_after        );
   assert(m_item->GetRadiusX()    == radius_x_after   );
   assert(m_item->GetRadiusY()    == radius_y_after   );
   assert(m_item->GetInnerWidth() == width_after);
@@ -547,17 +547,17 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
   }
   if (verbose) { TRACE("Set/Get X must be symmetric"); }
   {
-    dialog.ui->box_x->setValue(item->GetOuterX() + 10.0);
+    dialog.ui->box_x->setValue(item->GetCenterX() + 10.0);
     const auto new_x = dialog.ui->box_x->value() + 10.0;
-    item->SetOuterX(new_x);
-    assert(std::abs(item->GetOuterX() - new_x) < 2.0);
+    item->SetCenterX(new_x);
+    assert(std::abs(item->GetCenterX() - new_x) < 2.0);
   }
   if (verbose) { TRACE("Set/Get Y must be symmetric"); }
   {
-    dialog.ui->box_y->setValue(item->GetOuterY() + 10.0);
+    dialog.ui->box_y->setValue(item->GetCenterY() + 10.0);
     const auto new_y = dialog.ui->box_y->value() + 10.0;
-    item->SetOuterY(new_y);
-    assert(std::abs(item->GetOuterY() - new_y) < 2.0);
+    item->SetCenterY(new_y);
+    assert(std::abs(item->GetCenterY() - new_y) < 2.0);
   }
   if (verbose) { TRACE("SetItem with other item"); }
   {

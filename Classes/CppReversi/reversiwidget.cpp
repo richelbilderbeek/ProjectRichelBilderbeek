@@ -254,12 +254,14 @@ void ribi::reversi::Widget::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
   {
     ribi::reversi::Widget r(4);
     assert(r.GetCurrentPlayer() == Player::player1);
     assert(r.GetValidMoves().size() == 5); //4 place moves and one pass
   }
-  TRACE("Play random games")
+  /*
+  if (verbose) { TRACE("Play random games") }
   for (int sz = 4; sz != 6; ++sz)
   {
     ribi::reversi::Widget r(sz);
@@ -276,7 +278,8 @@ void ribi::reversi::Widget::Test() noexcept
       r.DoMove(move);
     }
   }
-  TRACE("Test copy constructor and operator== and operator!=");
+  */
+  if (verbose) { TRACE("Test copy constructor and operator== and operator!="); }
   {
     const int sz = 4;
     ribi::reversi::Widget r(sz);
@@ -305,7 +308,7 @@ void ribi::reversi::Widget::Test() noexcept
       assert(before == r);
     }
   }
-  TRACE("Test undo functionality in a single game");
+  if (verbose) { TRACE("Test undo functionality in a single game"); }
   {
     const int sz = 4;
     ribi::reversi::Widget r(sz);

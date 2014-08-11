@@ -311,7 +311,7 @@ void ribi::cmap::QtNode::OnPosChanged(const QtRoundedRectItem * const item) noex
 {
   //QtRoundedRectItem changed, sync Node
   assert(item);
-  const auto new_pos = item->GetOuterPos();
+  const auto new_pos = item->GetCenterPos();
   m_node->SetPos(new_pos.x(),new_pos.y());
 }
 
@@ -338,14 +338,14 @@ void ribi::cmap::QtNode::OnXchanged(Node * const node) noexcept
 {
   //Node changed, sync QtRoundedRectItem
   assert(node);
-  SetOuterX(node->GetX());
+  SetCenterX(node->GetX());
 }
 
 void ribi::cmap::QtNode::OnYchanged(Node * const node) noexcept
 {
   //Node changed, sync QtRoundedRectItem
   assert(node);
-  SetOuterY(node->GetY());
+  SetCenterY(node->GetY());
 }
 
 
@@ -571,7 +571,7 @@ void ribi::cmap::QtNode::Test() noexcept
     const boost::shared_ptr<QtRoundedEditRectItem> edit_rect{boost::dynamic_pointer_cast<QtRoundedEditRectItem>(qtnode)};
     const auto node = qtnode->GetNode();
     const double node_x = node->GetX();
-    const double edit_rect_x = edit_rect->GetOuterX();
+    const double edit_rect_x = edit_rect->GetCenterX();
     assert(std::abs(node_x - edit_rect_x) < max_error);
   }
   if (verbose) { TRACE("Test Y coordinat in Node and QtRoundedEditRectItem being equal at creation") }
@@ -580,7 +580,7 @@ void ribi::cmap::QtNode::Test() noexcept
     const boost::shared_ptr<QtRoundedEditRectItem> edit_rect{boost::dynamic_pointer_cast<QtRoundedEditRectItem>(qtnode)};
     const auto node = qtnode->GetNode();
     const double node_y = node->GetY();
-    const double edit_rect_y = edit_rect->GetOuterY();
+    const double edit_rect_y = edit_rect->GetCenterY();
     assert(std::abs(node_y - edit_rect_y) < max_error);
   }
   if (verbose) { TRACE("Test text in Node and QtRoundedEditRectItem being equal at creation") }

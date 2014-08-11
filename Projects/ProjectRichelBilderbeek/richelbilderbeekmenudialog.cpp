@@ -46,8 +46,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #endif // INCLUDE_CHESS_20140617
 #include "codebreakermenudialog.h"
 #include "codetohtmlmenudialog.h"
+#ifdef INCLUDE_CONCEPTMAP_20140811
 #include "conceptmap.h"
 #include "conceptmapwidget.h"
+#endif // INCLUDE_CONCEPTMAP_20140811
 #include "connectthree.h"
 #include "connectthreemenudialog.h"
 #include "connectthreewidget.h"
@@ -194,7 +196,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifdef INCLUDE_TESTCHESS_20140617
 #include "testchessmenudialog.h"
 #endif // INCLUDE_TESTCHESS_20140617
+#ifdef INCLUDE_CONCEPTMAP_20140811
 #include "testconceptmapmenudialog.h"
+#endif // INCLUDE_CONCEPTMAP_20140811
 #include "testdialmenudialog.h"
 #include "testdrawcanvasmenudialog.h"
 #include "testentrancemenudialog.h"
@@ -337,9 +341,10 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("Chess::Game version: " + Chess::Game::GetVersion());
   a.AddLibrary("Chess::Widget version: " + Chess::ChessWidget::GetVersion());
 #endif
-
+#ifdef INCLUDE_CONCEPTMAP_20140811
   a.AddLibrary("cmap::ConceptMap version: " + cmap::ConceptMap::GetVersion());
   a.AddLibrary("cmap::ConceptMapWidget version: " + cmap::Widget::GetVersion());
+#endif // INCLUDE_CONCEPTMAP_20140811
   a.AddLibrary("CodeToHtml version: " + c2h::CodeToHtmlMenuDialog().GetVersion());
   a.AddLibrary("ConnectThree version: " + con3::ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + con3::ConnectThreeWidget::GetVersion());
@@ -2359,7 +2364,21 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
 #endif // INCLUDE_CHESS_20140617
       break;
-      case ProgramType::testConceptMap: p.reset(new TestConceptMapMenuDialog); break;
+      case ProgramType::testConceptMap:
+      {
+        #ifdef INCLUDE_CONCEPTMAP_20140811
+        p.reset(new TestConceptMapMenuDialog);
+        #else
+        const std::string version = "x.x"; const std::vector<std::string> version_history { "20xx-xx-xx: version x.x: something" };
+        const About about(About::GetDefaultAuthor(),"somename","description","someday","20xx-20xx","http://www.richelbilderbeek.nl/Somewhere.htm",version,version_history);
+        p.reset(new PlaceholderMenuDialog(about,
+            boost::shared_ptr<Program>(new ProgramTestChess),
+            version,version_history
+          )
+        );
+        #endif // INCLUDE_CONCEPTMAP_20140811
+      }
+      break;
       case ProgramType::testDial: p.reset(new TestDialMenuDialog); break;
       case ProgramType::testDrawCanvas: p.reset(new TestDrawCanvasMenuDialog); break;
       case ProgramType::testEntrance: p.reset(new ToolTestEntrance::MenuDialog); break;

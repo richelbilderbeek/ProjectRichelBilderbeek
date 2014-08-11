@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <vector>
 #include "trace.h"
+#include "testtimer.h"
 
 
 ribi::Chess::Score::Score(const std::string& s)
@@ -48,12 +49,10 @@ void ribi::Chess::Score::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
     {
-      FTRACE("Test Chess::Score");
+      if (verbose) { TRACE("Test Chess::Score"); }
       //Test valid scores being valid
       {
         const std::vector<std::string> v = { "0-1", "1/2-1/2", "1-0" } ;
@@ -92,10 +91,6 @@ void ribi::Chess::Score::Test() noexcept
         );
       }
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
 }
 #endif
 

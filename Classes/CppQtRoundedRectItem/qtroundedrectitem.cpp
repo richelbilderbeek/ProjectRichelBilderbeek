@@ -91,7 +91,7 @@ double ribi::QtRoundedRectItem::GetInnerWidth() const noexcept
 QRectF ribi::QtRoundedRectItem::GetOuterRect() const noexcept
 {
   const QRectF r{QGraphicsRectItem::rect()};
-  return r.translated(GetOuterX(),GetOuterY());
+  return r.translated(GetCenterX(),GetCenterY());
 }
 
 
@@ -151,6 +151,37 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
     ),
     m_radius_x,m_radius_y
   );
+}
+
+void ribi::QtRoundedRectItem::SetCenterX(const double x) noexcept
+{
+  const double current_x = this->GetCenterX();
+  if (current_x != x)
+  {
+    const auto current_pos = this->GetCenterPos();
+    QGraphicsRectItem::setPos(
+      x,
+      current_pos.y()
+    );
+
+    this->update();
+    m_signal_pos_changed(this);
+  }
+}
+
+void ribi::QtRoundedRectItem::SetCenterY(const double y) noexcept
+{
+  const double current_y = this->GetCenterY();
+  if (current_y != y)
+  {
+    const auto current_pos = this->GetCenterPos();
+    QGraphicsRectItem::setPos(
+      current_pos.x(),
+      y
+    );
+    this->update();
+    m_signal_pos_changed(this);
+  }
 }
 
 void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen) noexcept
@@ -220,16 +251,6 @@ void ribi::QtRoundedRectItem::SetInnerHeight(const double height) noexcept
   );
 }
 
-
-void ribi::QtRoundedRectItem::SetInnerPos(
-  const double x,const double y
-) noexcept
-{
-  //const double w{GetCurrentPen().widthF()};
-  SetOuterPos(x,y);
-}
-
-
 void ribi::QtRoundedRectItem::SetInnerWidth(const double width) noexcept
 {
   SetOuterWidth(
@@ -269,37 +290,6 @@ void ribi::QtRoundedRectItem::SetOuterWidth(const double width) noexcept
     );
     this->update();
     m_signal_width_changed(this);
-  }
-}
-
-void ribi::QtRoundedRectItem::SetOuterX(const double x) noexcept
-{
-  const double current_x = this->GetOuterX();
-  if (current_x != x)
-  {
-    const auto current_pos = this->GetOuterPos();
-    QGraphicsRectItem::setPos(
-      x,
-      current_pos.y()
-    );
-
-    this->update();
-    m_signal_pos_changed(this);
-  }
-}
-
-void ribi::QtRoundedRectItem::SetOuterY(const double y) noexcept
-{
-  const double current_y = this->GetOuterY();
-  if (current_y != y)
-  {
-    const auto current_pos = this->GetOuterPos();
-    QGraphicsRectItem::setPos(
-      current_pos.x(),
-      y
-    );
-    this->update();
-    m_signal_pos_changed(this);
   }
 }
 

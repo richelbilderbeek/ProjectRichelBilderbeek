@@ -149,29 +149,18 @@ void ribi::RegexTesterBoostXpressiveMainDialog::Test() noexcept
   assert(!d.GetExampleRegex().empty());
   for (const auto& v: d.GetTestRegexes() )
   {
-    TRACE(v);
     d.GetRegexValid(v);
     for (const auto& w: d.GetTestStrings() )
     {
-      TRACE(w);
       d.GetRegexMatches(v,w);
-      TRACE_FUNC();
       d.GetRegexMatches(w,v);
-      TRACE_FUNC();
       d.GetRegexMatchLine(v,w);
-      TRACE_FUNC();
       d.GetRegexMatchLine(w,v);
-      TRACE_FUNC();
       d.GetRegexReplace(v,w,v);
-      TRACE_FUNC();
       d.GetRegexReplace(w,v,v);
-      TRACE_FUNC();
       d.GetRegexReplace(v,w,w);
-      TRACE_FUNC();
       d.GetRegexReplace(w,v,w);
-      TRACE_FUNC();
       d.GetRegexValid(w);
-      TRACE_FUNC();
     }
   }
 }

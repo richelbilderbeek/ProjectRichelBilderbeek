@@ -127,14 +127,14 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
         rect = new QtRoundedRectItem;
         rect->SetOuterWidth(16.0);
         rect->SetOuterHeight(8.0);
-        rect->SetOuterPos(0.0,0.0);
+        rect->SetCenterPos(0.0,0.0);
       }
       else
       {
         rect = new QtRoundedEditRectItem( {boost::lexical_cast<std::string>(i)} );
       }
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
-      rect->SetOuterPos(x1,y1);
+      rect->SetCenterPos(x1,y1);
       assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
@@ -173,7 +173,7 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
         rect = new QtRoundedRectItem;
         rect->SetOuterWidth(16.0);
         rect->SetOuterHeight(8.0);
-        rect->SetOuterPos(0.0,0.0);
+        rect->SetCenterPos(0.0,0.0);
         //rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       }
       //else
@@ -181,7 +181,7 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
         rect = new QtRoundedEditRectItem( { boost::lexical_cast<std::string>(i) } );
       }
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
-      rect->SetOuterPos(x1,y1);
+      rect->SetCenterPos(x1,y1);
       assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
@@ -218,7 +218,7 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       rect->SetOuterHeight(8.0);
       //rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
-      rect->SetOuterPos(x1,y1);
+      rect->SetCenterPos(x1,y1);
       assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);

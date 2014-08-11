@@ -26,6 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include <boost/lambda/lambda.hpp>
+
 #include "conceptmapconcept.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmapedge.h"
@@ -59,7 +61,6 @@ void ribi::cmap::QtEdge::Test() noexcept
     const boost::shared_ptr<QtNode> qtnode_from{new QtNode(node_from)};
     const boost::shared_ptr<QtNode> qtnode_to{new QtNode(node_to)};
     const boost::shared_ptr<Edge> edge{EdgeFactory().GetTest(0,node_from,node_to)};
-    //const boost::shared_ptr<QtEdge> qtedge{QtEdgeFactory().Create(edge,qtnode_from.get(),qtnode_to.get())};
     const boost::shared_ptr<QtEdge> qtedge{QtEdgeFactory().Create(edge,qtnode_from,qtnode_to)};
   }
 
@@ -73,9 +74,17 @@ void ribi::cmap::QtEdge::Test() noexcept
   const boost::shared_ptr<QtNode> qtnode_to{new QtNode(node_to)};
   const boost::shared_ptr<Edge> edge{EdgeFactory().GetTest(edge_test_index,node_from,node_to)};
   const boost::shared_ptr<QtEdge> qtedge{new QtEdge(edge,qtnode_from,qtnode_to)};
-  //const boost::shared_ptr<QtEdge> qtedge{new QtEdge(edge,qtnode_from.get(),qtnode_to.get())};
   const boost::shared_ptr<QtRoundedEditRectItem> qtitem{boost::dynamic_pointer_cast<QtRoundedEditRectItem>(qtedge->GetQtNode())};
   assert(qtitem);
+
+  if (verbose) { TRACE("QtEdge must accept hover events"); }
+  {
+    assert(qtedge->acceptHoverEvents()); //Must remove the 's' in Qt5?
+  }
+  if (verbose) { TRACE("QtEdge its arrow must accept hover events"); }
+  {
+    assert(qtedge->GetArrow()->acceptHoverEvents()); //Must remove the 's' in Qt5?
+  }
   //Head arrow
   if (verbose) { TRACE("An Edge's head arrow and it QtQuadBezierArrowItem must match at creation"); }
   {
@@ -159,52 +168,64 @@ void ribi::cmap::QtEdge::Test() noexcept
   if (verbose) { TRACE("X of QtEdge and QtRoundedEditRectItem must match at creation"); }
   {
     const double edge_x{edge->GetNode()->GetX()};
-    const double qtedge_x{qtitem->GetOuterX()};
+    const double qtedge_x{qtitem->GetCenterX()};
     assert(edge_x == qtedge_x);
   }
   if (verbose) { TRACE("If X is set via QtEdge, QtRoundedEditRectItem must sync"); }
   {
-    const double old_x{qtedge->m_qtnode->GetOuterX()};
+    const double old_x{qtedge->m_qtnode->GetCenterX()};
     const double new_x{old_x + 10.0};
-    qtedge->m_qtnode->SetOuterX(new_x);
-    assert(std::abs(qtitem->GetOuterX() - new_x) < 2.0);
+    qtedge->m_qtnode->SetCenterX(new_x);
+    assert(std::abs(qtitem->GetCenterX() - new_x) < 2.0);
   }
   if (verbose) { TRACE("If X is set via QtRoundedEditRectItem, QtEdge must sync"); }
   {
-    const double old_x{qtitem->GetOuterX()};
+    const double old_x{qtitem->GetCenterX()};
     const double new_x{old_x + 10.0};
-    qtitem->SetOuterX(new_x);
-    assert(std::abs(qtedge->m_qtnode->GetOuterX() - new_x) < 2.0);
+    qtitem->SetCenterX(new_x);
+    assert(std::abs(qtedge->m_qtnode->GetCenterX() - new_x) < 2.0);
   }
   //Y
   if (verbose) { TRACE("Y of QtEdge and QtRoundedEditRectItem must match at creation"); }
   {
     const double edge_y{edge->GetNode()->GetY()};
-    const double qtedge_y{qtitem->GetOuterY()};
+    const double qtedge_y{qtitem->GetCenterY()};
     assert(edge_y == qtedge_y);
   }
   if (verbose) { TRACE("If Y is set via QtEdge, QtRoundedEditRectItem must sync"); }
   {
-    const double old_y{qtedge->m_qtnode->GetOuterY()};
+    const double old_y{qtedge->m_qtnode->GetCenterY()};
     const double new_y{old_y + 10.0};
-    qtedge->m_qtnode->SetOuterY(new_y);
-    assert(std::abs(qtitem->GetOuterY() - new_y) < 2.0);
+    qtedge->m_qtnode->SetCenterY(new_y);
+    assert(std::abs(qtitem->GetCenterY() - new_y) < 2.0);
   }
   if (verbose) { TRACE("If Y is set via QtRoundedEditRectItem, QtEdge must sync"); }
   {
-    const double old_y{qtitem->GetOuterY()};
+    const double old_y{qtitem->GetCenterY()};
     const double new_y{old_y + 10.0};
-    qtitem->SetOuterY(new_y);
-    assert(std::abs(qtedge->m_qtnode->GetOuterY() - new_y) < 2.0);
+    qtitem->SetCenterY(new_y);
+    assert(std::abs(qtedge->m_qtnode->GetCenterY() - new_y) < 2.0);
   }
-  if (verbose) { TRACE("QtEdge must accept hover events"); }
+  //From
+  if (verbose) { TRACE("If qtnode_from is moved, a signal must be emitted by -at least- Edge"); }
   {
-    assert(qtedge->acceptHoverEvents()); //Must remove the 's' in Qt5?
+    Counter c{0}; //For receiving the signal
+    qtedge->GetEdge()->m_signal_from_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    qtnode_from->SetCenterX(qtnode_from->GetCenterX() + 10.0);
+    assert(c.Get() > 1);
   }
-  if (verbose) { TRACE("QtEdge its arrow must accept hover events"); }
+  if (verbose) { TRACE("If qtnode_from is moved, a signal must be emitted by QtEdge"); }
   {
-    assert(qtedge->GetArrow()->acceptHoverEvents()); //Must remove the 's' in Qt5?
+    Counter c{0}; //For receiving the signal
+    qtedge->m_signal_edge_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    qtnode_from->SetCenterX(qtnode_from->GetCenterX() + 10.0);
+    assert(c.Get() > 1);
   }
+  assert(!"Refactor");
 }
 #endif
 

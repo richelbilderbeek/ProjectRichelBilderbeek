@@ -84,8 +84,9 @@ void ribi::cmap::QtTool::paint(QPainter* painter, const QStyleOptionGraphicsItem
 {
   assert(m_item);
   this->setPos(
-    m_item->GetOuterPos().x(),
-    m_item->GetOuterPos().y() - 32.0);
+    m_item->GetCenterX(),
+    m_item->GetCenterY() - 32.0
+  );
 
   QGraphicsPixmapItem::paint(painter,option,widget);
 
