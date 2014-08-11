@@ -335,6 +335,12 @@ void ribi::ImageCanvas::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    fileio::FileIo();
+    CanvasColorSystems();
+    CanvasCoordinatSystems();
+
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string temp_filename { fileio::FileIo().GetTempFileName() };
   {

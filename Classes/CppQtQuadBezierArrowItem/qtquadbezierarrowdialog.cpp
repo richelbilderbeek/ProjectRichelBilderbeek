@@ -343,6 +343,17 @@ void ribi::QtQuadBezierArrowDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    const boost::shared_ptr<QGraphicsItem> from{new QGraphicsSimpleTextItem};
+    const bool tail{false};
+    const boost::shared_ptr<QGraphicsItem> mid{new QGraphicsSimpleTextItem};
+    const bool head{true};
+    const boost::shared_ptr<QGraphicsItem> to{new QGraphicsSimpleTextItem};
+    const boost::shared_ptr<QtQuadBezierArrowItem> arrow{
+      new QtQuadBezierArrowItem(from.get(),tail,mid.get(),head,to.get())
+    };
+    assert(arrow);
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const boost::shared_ptr<QGraphicsItem> from{new QGraphicsSimpleTextItem};
@@ -350,10 +361,10 @@ void ribi::QtQuadBezierArrowDialog::Test() noexcept
   const boost::shared_ptr<QGraphicsItem> mid{new QGraphicsSimpleTextItem};
   const bool head{true};
   const boost::shared_ptr<QGraphicsItem> to{new QGraphicsSimpleTextItem};
-  QtQuadBezierArrowDialog d;
   const boost::shared_ptr<QtQuadBezierArrowItem> arrow{
     new QtQuadBezierArrowItem(from.get(),tail,mid.get(),head,to.get())
   };
+  QtQuadBezierArrowDialog d;
   d.SetArrow(arrow);
   if (verbose) { TRACE("Get/SetUiMidX must be symmetric"); }
   {

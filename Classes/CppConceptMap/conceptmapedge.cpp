@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <sstream>
 
+#include <boost/lambda/lambda.hpp>
+
 #include "counter.h"
 #include "conceptmapconcept.h"
 #include "conceptmapedgefactory.h"
@@ -60,31 +62,34 @@ ribi::cmap::Edge::Edge(
   assert(from);
   assert(to);
   assert(from != to);
+  assert(m_from);
+  assert(m_to);
+  assert(m_from != m_to);
   assert(m_node);
 
   //Subscribe to all Concept signals to re-emit m_signal_edge_changed
   this->m_node->m_signal_concept_changed.connect(
-    boost::bind(&ribi::cmap::Edge::OnConceptChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnConceptChanged,this,boost::lambda::_1)
   );
 
   this->m_from->m_signal_x_changed.connect(
-    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,boost::lambda::_1)
   );
   this->m_from->m_signal_y_changed.connect(
-    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,boost::lambda::_1)
   );
   this->m_from->m_signal_concept_changed.connect(
-    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,boost::lambda::_1)
   );
 
   this->m_to->m_signal_x_changed.connect(
-    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,boost::lambda::_1)
   );
   this->m_to->m_signal_y_changed.connect(
-    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,boost::lambda::_1)
   );
   this->m_to->m_signal_concept_changed.connect(
-    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,boost::lambda::_1)
   );
 
 }
@@ -96,23 +101,23 @@ ribi::cmap::Edge::~Edge() noexcept
   );
 
   this->m_from->m_signal_x_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,boost::lambda::_1)
   );
   this->m_from->m_signal_y_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,boost::lambda::_1)
   );
   this->m_from->m_signal_concept_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnFromChanged,this,boost::lambda::_1)
   );
 
   this->m_to->m_signal_x_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,boost::lambda::_1)
   );
   this->m_to->m_signal_y_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,boost::lambda::_1)
   );
   this->m_to->m_signal_concept_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::OnToChanged,this,_1)
+    boost::bind(&ribi::cmap::Edge::OnToChanged,this,boost::lambda::_1)
   );
 
 }
@@ -281,6 +286,12 @@ void ribi::cmap::Edge::Test() noexcept
     assert(c.Get()==1);
   }
   //From
+  if (verbose) { TRACE("If Edge its source/from is equal to the one given in the constructor"); }
+  {
+    const boost::shared_ptr<Edge> edge{EdgeFactory().GetTest(0,from,to)};
+    assert(edge->GetFrom() == from);
+    assert(edge->GetTo() == to);
+  }
   if (verbose) { TRACE("If Edge its source/from is moved, a signal must be emitted"); }
   {
     const boost::shared_ptr<Edge> edge{EdgeFactory().GetTest(0,from,to)};
@@ -289,9 +300,18 @@ void ribi::cmap::Edge::Test() noexcept
       boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
     );
     from->SetX(from->GetX() + 10.0);
-    assert(c.Get() > 1);
+    assert(c.Get() > 0);
   }
-  assert(!"Refactor");
+  if (verbose) { TRACE("If Edge its target/to is moved, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Edge> edge{EdgeFactory().GetTest(0,from,to)};
+    Counter c{0}; //For receiving the signal
+    edge->m_signal_to_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    to->SetX(to->GetX() + 10.0);
+    assert(c.Get() > 0);
+  }
 }
 #endif
 

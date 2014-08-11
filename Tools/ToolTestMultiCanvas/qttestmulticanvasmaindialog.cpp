@@ -91,6 +91,7 @@ const boost::shared_ptr<ribi::DrawCanvas> ribi::QtTestMultiCanvasMainDialog::Cre
 }
 
 
+/*
 void ribi::QtTestMultiCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
 {
   const CanvasColorSystem color_system
@@ -109,6 +110,7 @@ void ribi::QtTestMultiCanvasMainDialog::on_box_coordinat_system_currentIndexChan
   this->m_canvas->SetCoordinatSystem(coordinat_system);
   //Should redraw automatically
 }
+*/
 
 void ribi::QtTestMultiCanvasMainDialog::ShowCanvas(const ribi::Canvas * const)
 {
@@ -119,6 +121,7 @@ void ribi::QtTestMultiCanvasMainDialog::ShowCanvas(const ribi::Canvas * const)
 
 }
 
+/*
 void ribi::QtTestMultiCanvasMainDialog::on_button_clear_clicked()
 {
   m_canvas->Clear();
@@ -151,6 +154,7 @@ void ribi::QtTestMultiCanvasMainDialog::on_button_line_clicked()
     ui->box_line_y2_draw->value()
   );
 }
+*/
 
 #ifndef NDEBUG
 void ribi::QtTestMultiCanvasMainDialog::Test() noexcept

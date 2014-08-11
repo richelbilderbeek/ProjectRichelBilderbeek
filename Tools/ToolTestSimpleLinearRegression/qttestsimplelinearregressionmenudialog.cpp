@@ -71,8 +71,8 @@ void ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtToolTestSimpleLinearRegressionMainDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Let Boost.Units check for compiling
   {
     typedef boost::units::quantity<boost::units::si::time> Time;

@@ -66,11 +66,11 @@ void ribi::tictactoe::QtTestTicTacToeMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  TestTicTacToeMenuDialog();
   for (const auto& ai: Ais().GetAll())
   {
     QtTestTicTacToeMainDialog(nullptr,ai);
   }
-  assert(TestTicTacToeMenuDialog().GetVersion().empty());
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

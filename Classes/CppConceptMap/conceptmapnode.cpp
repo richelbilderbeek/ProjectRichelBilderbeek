@@ -485,12 +485,26 @@ std::string ribi::cmap::Node::ToXml() const noexcept
 
 bool ribi::cmap::operator==(const Node& lhs, const Node& rhs) noexcept
 {
+  const bool verbose{false};
   assert(lhs.GetConcept());
   assert(rhs.GetConcept());
-  return
-       *lhs.GetConcept() == *rhs.GetConcept()
-    && lhs.GetX() == rhs.GetX()
-    && lhs.GetY() == rhs.GetY();
+  const double e{0.1};
+  if (*lhs.GetConcept() != *rhs.GetConcept())
+  {
+    if (verbose) { TRACE("Concepts differ"); }
+    return false;
+  }
+  if (std::abs(lhs.GetX() - rhs.GetX()) > e)
+  {
+    if (verbose) { TRACE("X coordinats differ"); }
+    return false;
+  }
+  if (std::abs(lhs.GetY() - rhs.GetY()) > e)
+  {
+    if (verbose) { TRACE("Y coordinats differ"); }
+    return false;
+  }
+  return true;
 }
 
 bool ribi::cmap::operator!=(const Node& lhs, const Node& rhs) noexcept

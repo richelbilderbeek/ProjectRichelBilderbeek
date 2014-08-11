@@ -55,7 +55,7 @@ void ribi::QtTestMultiCanvasMenuDialog::on_button_start_canvas_clicked()
 {
   QtTestMultiCanvasMainDialog d;
   d.setWindowIcon(this->windowIcon());
-  //d.setStyleSheet(this->styleSheet());
+  d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
@@ -67,6 +67,7 @@ void ribi::QtTestMultiCanvasMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TestMultiCanvasMenuDialog();
   QtTestMultiCanvasMainDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

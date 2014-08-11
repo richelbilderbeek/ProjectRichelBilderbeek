@@ -85,7 +85,7 @@ struct  Node : public Element
   protected:
   ///Block construction, except for NodeFactory and derived classes
   Node() = delete;
-  friend NodeFactory;
+  friend class NodeFactory;
 
   ///Use NodeFactory as an unused argument to enforce using it
   explicit Node(

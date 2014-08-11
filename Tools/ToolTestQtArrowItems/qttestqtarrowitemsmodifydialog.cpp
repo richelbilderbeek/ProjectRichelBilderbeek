@@ -164,6 +164,5 @@ void ribi::QtTestQtArrowItemsModifyDialog::Test() noexcept
     arrow->SetMidX(new_x);
     assert(std::abs(d.m_dialog_left->GetUiMidX() - new_x) < 2.0);
   }
-  assert(!"Refactor");
 }
 #endif

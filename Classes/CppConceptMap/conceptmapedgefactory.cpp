@@ -47,9 +47,9 @@ ribi::cmap::EdgeFactory::EdgeFactory() noexcept
 }
 
 
-boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
-  const boost::shared_ptr<ribi::cmap::Node> from,
-  const boost::shared_ptr<ribi::cmap::Node> to
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::Create(
+  const NodePtr& from,
+  const NodePtr& to
 ) const noexcept
 {
   assert(from);
@@ -64,7 +64,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
 
   const auto node = NodeFactory().Create(concept,x,y);
   assert(node);
-  const boost::shared_ptr<Edge> p {
+  const EdgePtr p {
     new Edge(
       node,
       from,
@@ -77,11 +77,11 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   return p;
 }
 
-boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
-  const boost::shared_ptr<Node>& node,
-  const boost::shared_ptr<ribi::cmap::Node> from,
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::Create(
+  const NodePtr& node,
+  const NodePtr& from,
   const bool tail_arrow,
-  const boost::shared_ptr<ribi::cmap::Node> to,
+  const NodePtr& to,
   const bool head_arrow
 ) const noexcept
 {
@@ -91,16 +91,16 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   assert(from);
   assert(to);
   assert(from != to);
-  boost::shared_ptr<Edge> p(new Edge(node,from,tail_arrow,to,head_arrow));
+  EdgePtr p(new Edge(node,from,tail_arrow,to,head_arrow));
   assert(p);
   return p;
 }
 
 #ifndef NDEBUG
-boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::DeepCopy(
-  const boost::shared_ptr<const cmap::Edge> edge,
-  const boost::shared_ptr<ribi::cmap::Node> from,
-  const boost::shared_ptr<ribi::cmap::Node> to
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::DeepCopy(
+  const ReadOnlyEdge& edge,
+  const NodePtr& from,
+  const NodePtr& to
 ) const noexcept
 {
   assert(edge);
@@ -113,7 +113,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::DeepCopy(
   //const boost::shared_ptr<Concept> concept = ConceptFactory().DeepCopy(edge->GetNode());
   const auto node = NodeFactory().DeepCopy(edge->GetNode());
   assert(node);
-  const boost::shared_ptr<Edge> p {
+  const EdgePtr p {
     EdgeFactory::Create(
       node,
       from,
@@ -128,9 +128,9 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::DeepCopy(
 }
 #endif
 
-boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::FromXml(
   const std::string& s,
-  const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes
+  const Nodes& nodes
 ) const noexcept
 {
   assert(s.size() >= 13);
@@ -196,7 +196,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   assert(from < boost::numeric_cast<int>(nodes.size()));
   assert(to   < boost::numeric_cast<int>(nodes.size()));
   const auto node = NodeFactory().Create(concept,x,y);
-  const boost::shared_ptr<Edge> edge(new Edge(node,nodes[from],tail_arrow,nodes[to],head_arrow));
+  const EdgePtr edge(new Edge(node,nodes[from],tail_arrow,nodes[to],head_arrow));
   assert(edge);
   return edge;
 }
@@ -206,10 +206,10 @@ int ribi::cmap::EdgeFactory::GetNumberOfTests() const noexcept
   return ConceptFactory().GetNumberOfTests();
 }
 
-boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::GetTest(
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::GetTest(
   const int index,
-  const boost::shared_ptr<Node> from,
-  const boost::shared_ptr<Node> to
+  const NodePtr& from,
+  const NodePtr& to
 ) const noexcept
 {
   assert(from);
@@ -219,43 +219,42 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::GetTest(
   return GetTests(from,to)[index];
 }
 
-std::vector<boost::shared_ptr<ribi::cmap::Edge>> ribi::cmap::EdgeFactory::GetTests(
-  const boost::shared_ptr<Node>& from,
-  const boost::shared_ptr<Node>& to
+ribi::cmap::EdgeFactory::Edges ribi::cmap::EdgeFactory::GetTests(
+  const NodePtr& from,
+  const NodePtr& to
 ) const noexcept
 {
   assert(from);
   assert(to);
-  const auto test_concepts = ConceptFactory().GetTests();
+  const int n{NodeFactory().GetNumberOfTests()};
+  std::vector<EdgePtr> result;
 
-  std::vector<boost::shared_ptr<Edge>> result;
-
-  for(const boost::shared_ptr<Concept> concept: test_concepts)
+  for(int i{0}; i!=n; ++i)
   {
     {
-      const auto node = NodeFactory().Create(concept,1.2,3.4);
-      const boost::shared_ptr<Edge> edge(new Edge(node,from,false,to,true));
+      const auto node = NodeFactory().GetTest(i);
+      const EdgePtr edge{new Edge(node,from,false,to,true)};
       result.push_back(edge);
     }
     /*
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,0,2,true));
+      const EdgePtr edge(new Edge(concept,0,2,true));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,0,3,true));
+      const EdgePtr edge(new Edge(concept,0,3,true));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,1,2,false));
+      const EdgePtr edge(new Edge(concept,1,2,false));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,1,3,false));
+      const EdgePtr edge(new Edge(concept,1,3,false));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,2,3,false));
+      const EdgePtr edge(new Edge(concept,2,3,false));
       result.push_back(edge);
     }
     */

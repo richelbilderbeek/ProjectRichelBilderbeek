@@ -37,52 +37,56 @@ struct EdgeFactory
 {
   EdgeFactory() noexcept;
 
-  boost::shared_ptr<Edge> Create(
-    const boost::shared_ptr<Node> from,
-    const boost::shared_ptr<Node> to
+  typedef boost::shared_ptr<Edge> EdgePtr;
+  typedef boost::shared_ptr<const Edge> ReadOnlyEdge;
+  typedef boost::shared_ptr<Node> NodePtr;
+  typedef boost::shared_ptr<const Node> ReadOnlyNode;
+  typedef std::vector<EdgePtr> Edges;
+  typedef std::vector<NodePtr> Nodes;
+
+  EdgePtr Create(
+    const NodePtr& from,
+    const NodePtr& to
   ) const noexcept;
 
-  boost::shared_ptr<Edge> Create(
-    const boost::shared_ptr<Node>& node,
-    //const boost::shared_ptr<Concept>& concept,
-    //const double concept_x,
-    //const double concept_y,
-    const boost::shared_ptr<Node> from,
+  EdgePtr Create(
+    const NodePtr& node,
+    const NodePtr& from,
     const bool tail_arrow,
-    const boost::shared_ptr<Node> to,
+    const NodePtr& to,
     const bool head_arrow
   ) const noexcept;
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
   ///The nodes need to be the deepcopied ones
-  boost::shared_ptr<Edge> DeepCopy(
-    const boost::shared_ptr<const cmap::Edge> edge,
-    const boost::shared_ptr<Node> from,
-    const boost::shared_ptr<Node> to
+  EdgePtr DeepCopy(
+    const ReadOnlyEdge& edge,
+    const NodePtr& from,
+    const NodePtr& to
   ) const noexcept;
   #endif
 
   ///Obtain an Edge from an XML std::string
   ///You need the real nodes to connect the edge to
-  boost::shared_ptr<Edge> FromXml(
+  EdgePtr FromXml(
     const std::string& s,
-    const std::vector<boost::shared_ptr<Node> >& nodes
+    const Nodes& nodes
   ) const noexcept;
 
 
   int GetNumberOfTests() const noexcept;
 
-  boost::shared_ptr<Edge> GetTest(
+  EdgePtr GetTest(
     const int index,
-    const boost::shared_ptr<Node> from,
-    const boost::shared_ptr<Node> to
+    const NodePtr& from,
+    const NodePtr& to
  ) const noexcept;
 
   ///Get testing edges connecting the two supplied nodes
-  std::vector<boost::shared_ptr<Edge>> GetTests(
-    const boost::shared_ptr<Node>& from,
-    const boost::shared_ptr<Node>& to
+  Edges GetTests(
+    const NodePtr& from,
+    const NodePtr& to
   ) const noexcept;
 
   private:

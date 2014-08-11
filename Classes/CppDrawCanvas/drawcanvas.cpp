@@ -550,6 +550,7 @@ void ribi::DrawCanvas::Test() noexcept
     DotMatrixString("X",1);
     CanvasColorSystems();
     CanvasCoordinatSystems();
+    fileio::FileIo();
     Geometry();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);

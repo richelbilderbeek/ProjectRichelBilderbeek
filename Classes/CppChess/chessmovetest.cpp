@@ -318,8 +318,6 @@ void ribi::Chess::Move::Test() noexcept
     assert(!m.PiecePromotion());
     assert((*m.To().get()==*SquareFactory().Create("a3")));
   }
-  #endif // FIX_ISSUE_240
-
 
   if (verbose) { TRACE("Test Kasparov against the world match"); }
   {
@@ -336,10 +334,11 @@ void ribi::Chess::Move::Test() noexcept
         {
           TRACE(s);
           TRACE(e.what());
-          assert("Should not get here");
+          assert(!"Should not get here");
         }
       }
     );
   }
+  #endif // FIX_ISSUE_240
 }
 #endif

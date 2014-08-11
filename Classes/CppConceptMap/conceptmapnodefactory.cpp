@@ -98,18 +98,16 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::DeepCopy(
 {
   assert(node);
   assert(node->GetConcept());
-  const boost::shared_ptr<Concept> new_concept
-    = ConceptFactory().DeepCopy(node->GetConcept());
-  assert(new_concept);
-  assert(*node->GetConcept() == *new_concept);
-  const boost::shared_ptr<Node> new_node
-    = Create(new_concept,
+  const boost::shared_ptr<Concept> new_concept{
+    ConceptFactory().DeepCopy(node->GetConcept())
+  };
+  const boost::shared_ptr<Node> new_node{
+    Create(
+      new_concept,
       node->GetX(),
       node->GetY()
-    );
-  assert(new_node);
-  assert(new_node->GetConcept());
-  assert(*node == *new_node);
+    )
+  };
   return new_node;
 }
 #endif
@@ -202,13 +200,11 @@ std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::GetTes
   std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes;
   const auto v = ConceptFactory().GetTests();
   std::transform(v.begin(),v.end(),std::back_inserter(nodes),
-    [](const boost::shared_ptr<ribi::cmap::Concept>& c)
+    [](const boost::shared_ptr<Concept>& c)
     {
-      static int x = 0;
-      static int y = 1;
+      const int x = 0;
+      const int y = 0;
       const boost::shared_ptr<Node> p(NodeFactory().Create(c,x,y));
-      ++x;
-      ++y;
       assert(p);
       return p;
     }
@@ -226,5 +222,9 @@ void ribi::cmap::NodeFactory::Test() noexcept
   }
   NodeFactory().GetTest(0);
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  assert( NodeFactory().GetTest(0) !=  NodeFactory().GetTest(0));
+  assert(*NodeFactory().GetTest(0) == *NodeFactory().GetTest(0));
+  assert(*NodeFactory().GetTest(0) != *NodeFactory().GetTest(1));
+  assert(*NodeFactory().DeepCopy(NodeFactory().GetTest(0)) == *NodeFactory().GetTest(0));
 }
 #endif
