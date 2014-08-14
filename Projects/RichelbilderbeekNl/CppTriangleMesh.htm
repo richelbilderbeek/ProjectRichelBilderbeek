@@ -986,7 +986,7 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_faces.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> p <a href="CppOperatorAssign.htm">=</a> n <a href="CppOperatorDivide.htm">/</a> 100;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> p <a href="CppOperatorAssign.htm">=</a> n <a href="CppOperatorDivide.htm">/</a> 100 <a href="CppOperatorEqual.htm">==</a> 0 ? 1 : n <a href="CppOperatorDivide.htm">/</a> 100;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> j <a href="CppOperatorAssign.htm">=</a> <a href="CppStdEnd.htm">std::end</a>(m_faces);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt;&amp; face: m_faces)<br/>
@@ -994,7 +994,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_faces[i]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_faces[i]-&gt;SetCorrectWinding();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorModulus.htm">%</a> p <a href="CppOperatorEqual.htm">==</a> 0) { <a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "%"; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p <a href="CppOperatorNotEqual.htm">!=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorModulus.htm">%</a> p <a href="CppOperatorEqual.htm">==</a> 0) { <a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "%"; } }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -1046,8 +1047,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; cell: m_cells)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cell);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(cell_usecount);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(cell.use_count());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cell.use_count() <a href="CppOperatorEqual.htm">==</a> cell_usecount <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Every Cell must have an equal use_count");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>All Cells must have existing indices<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cell-&gt;GetIndex() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
@@ -2326,7 +2325,7 @@
 <a href="CppComment.htm">//</a>It has no state, so Pimpl is unnecessary<br/>
 <b><a href="CppClass.htm">class</a></b> CellFactory<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Dialog;<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Cell;<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreator;<br/>
 <br/>
@@ -2509,7 +2508,7 @@
 &nbsp;&nbsp;FaceFactory();<br/>
 &nbsp;&nbsp;CellFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);<br/>
 &nbsp;&nbsp;CellsCreatorFactory();<br/>
-&nbsp;&nbsp;CellsCreator(Template::CreateTest(0),1,1.0 * meter,CreateVerticalFacesStrategy::one_face_per_square,<b><a href="CppFalse.htm">false</a></b>,CellsCreatorFactory());<br/>
+&nbsp;&nbsp;CellsCreatorFactory().Create(Template::CreateTest(0),1,1.0 * meter,CreateVerticalFacesStrategy::one_face_per_square,<b><a href="CppFalse.htm">false</a></b>);<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
@@ -2716,11 +2715,21 @@
 <a href="CppComment.htm">///</a>The next step will be<br/>
 /<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> freely <b><a href="CppDelete.htm">delete</a></b> the Cells that are not in the <b><a href="CppFinal.htm">final</a></b> mesh<br/>
 /<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> pass the desired cells to TriangleMeshBuilder to create the OpenFOAM files<br/>
-<b><a href="CppClass.htm">class</a></b> CellsCreator<br/>
+<b><a href="CppStruct.htm">struct</a></b> CellsCreator<br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellFactory;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellFactory;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>n_face_layers <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorEqual.htm">==</a> n_cell_layers<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> CellsCreator(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CellsCreatorFactory&amp; lock <a href="CppComment.htm">//</a>to force creation by CellsCreatorFactory<br/>
+&nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;CellsCreator(<b><a href="CppConst.htm">const</a></b> CellsCreator&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;CellsCreator(CellsCreator<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
@@ -2734,15 +2743,6 @@
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreatorFactory;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>n_face_layers <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorEqual.htm">==</a> n_cell_layers<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> CellsCreator(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CellsCreatorFactory&amp; lock <a href="CppComment.htm">//</a>to force creation by CellsCreatorFactory<br/>
-&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;~CellsCreator() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_cells;<br/>
@@ -3523,32 +3523,38 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Trying out to build cells from the hardest testing <a href="CppTemplate.htm">templates</a>"); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (testing_depth &gt; 1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(__LINE__),__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Trying out to build cells from the hardest testing <a href="CppTemplate.htm">templates</a>"); }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Template::CreateTest(3)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>This is the longest test by far<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(__LINE__),__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Template::CreateTest(3)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_<b><a href="CppTemplate.htm">template</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_cell_layers,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strategy,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verbose<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells { cells_creator-&gt;GetCells() };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells.size() &gt; 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_<b><a href="CppTemplate.htm">template</a></b>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_cell_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strategy,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verbose<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells { cells_creator-&gt;GetCells() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells.size() &gt; 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Specific: check <b><a href="CppIf.htm">if</a></b> a Face really loses its neighbour: remove a prism from a cube"); }<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(__LINE__),__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(__LINE__),__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a 2x1 cell block<br/>
@@ -3638,7 +3644,7 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Create Face, from <a href="CppBug.htm">bug</a>"); }<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(__LINE__),__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(__LINE__),__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(1.17557,2.35781,5.0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(2.35114,3.23607,5.0)<br/>
@@ -3684,7 +3690,7 @@
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>From <a href="CppBug.htm">bug</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(__LINE__),__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(__LINE__),__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Coordinat2D;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1 <a href="CppOperatorAssign.htm">=</a> 0.0004035051226622692510832834944523028752882964909076690673828125;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1 <a href="CppOperatorAssign.htm">=</a> 0.00023296416881187433805568132161312178141088224947452545166015625;<br/>
@@ -3754,12 +3760,12 @@
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> trim {<br/>
 <br/>
-<a href="CppComment.htm">///</a>The only <b><a href="CppClass.htm">class</a></b> to use Cell its <a href="CppConstructor.htm">constructor</a><br/>
-<b><a href="CppClass.htm">class</a></b> CellsCreatorFactory<br/>
+<a href="CppComment.htm">///</a>Creation of Cell<br/>
+<b><a href="CppStruct.htm">struct</a></b> CellsCreatorFactory<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellFactory;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreator;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellFactory;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreator;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Dialog;<br/>
 <br/>
 &nbsp;&nbsp;CellsCreatorFactory() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
@@ -3995,17 +4001,17 @@
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> trim {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> CreateVerticalFacesStrategies<br/>
+<b><a href="CppStruct.htm">struct</a></b> CreateVerticalFacesStrategies<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Cell;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellFactory;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreator;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreatorFactory;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Dialog;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Face;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> FaceFactory;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> TriangleMeshBuilder;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> TriangleMeshBuilderImpl;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Cell;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellFactory;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreator;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreatorFactory;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> Face;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> FaceFactory;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> TriangleMeshBuilder;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> TriangleMeshBuilderImpl;<br/>
 <br/>
 &nbsp;&nbsp;CreateVerticalFacesStrategies() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
 <br/>
@@ -4395,6 +4401,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "trianglefile.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshbuilder.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshcell.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshcellfactory.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshcellscreator.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshcellscreatorfactory.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshface.h"<br/>
@@ -4430,8 +4437,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;CreateTriangleMesh();<br/>
-&nbsp;&nbsp;Create3dMesh();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>CreateTriangleMesh();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create3dMesh();<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::trim::Dialog::Check3dMesh(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; path) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -4458,7 +4465,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> verbose <a href="CppOperatorAssign.htm">=</a> m_3dmesh_verbose;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> checkMesh_command(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" )"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Changing to drive D is important...<br/>
@@ -4468,6 +4476,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> cd .. "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (verbose ? "<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dir " : "")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> checkMesh"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"checkMesh"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>(checkMesh_command); }<br/>
@@ -4477,14 +4488,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (error)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("WARNING");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(path);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppGetPath.htm">GetPath</a>(path));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(checkMesh_command);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(error);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("BREAK");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("WARNING: cannot find checkMesh");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(path);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppGetPath.htm">GetPath</a>(path));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(checkMesh_command);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(error);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!error);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(!error);<br/>
 }<br/>
 <br/>
 <a href="CppStdFunction.htm">std::function</a>&lt;<b><a href="CppVoid.htm">void</a></b>(<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp;)&gt;<br/>
@@ -4765,13 +4775,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_triangle_input_poly <a href="CppOperatorAssign.htm">=</a> "";<br/>
 &nbsp;&nbsp;m_triangle_<a href="CppShape.htm">shape</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppShape.htm">Shape</a>s();<br/>
 &nbsp;&nbsp;m_triangle_output_ele <a href="CppOperatorAssign.htm">=</a> "";<br/>
 &nbsp;&nbsp;m_triangle_output_node <a href="CppOperatorAssign.htm">=</a> "";<br/>
 &nbsp;&nbsp;m_triangle_output_poly <a href="CppOperatorAssign.htm">=</a> "";<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_triangle_input_edges <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_triangle_input_vertices <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
@@ -4784,9 +4791,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> file <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;TriangleFile&gt;(m_<a href="CppShape.htm">shape</a>s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_triangle_file <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;TriangleFile&gt;(m_<a href="CppShape.htm">shape</a>s);<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_triangle_input_vertices <a href="CppOperatorAssign.htm">=</a> file-&gt;GetNumberOfVertices();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_triangle_input_edges <a href="CppOperatorAssign.htm">=</a> file-&gt;GetNumberOfEdges();<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -4878,10 +4882,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppRibi.htm">ribi</a>::trim::Dialog::Dialog: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppRibi.htm">ribi</a>::trim::Dialog::Dialog(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __LINE__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "): "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Triangle.exe failed: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s.str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>(s.str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>(s.str());<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
@@ -5176,16 +5179,39 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PolyFile( Vertices() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PolyFileFromPolygons( <a href="CppShape.htm">Shape</a>s() );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;TriangleFile( {} );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Template::CreateTest(0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ Dialog d; d.CreateTriangleMesh(); d.Create3dMesh(); } <a href="CppComment.htm">//</a>TriangleMeshBuilder<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CellFactory();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TriangleMeshBuilder(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ CellFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square) },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dialog::CreateDefaultBoundaryToPatchFieldType<a href="CppFunction.htm">Function</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateVerticalFacesStrategy::one_face_per_square,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFalse.htm">false</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>foam::BoundaryFile():<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;foam::ControlDictFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>foam::FacesFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;foam::FvSchemesFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;foam::FvSolutionFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>foam::NeighbourFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>foam::OwnerFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>foam::<a href="CppPoint.htm">Point</a>sFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;foam::PressureFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;foam::TemperatureFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;foam::ThermophysicalPropertiesFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;foam::VelocityFieldFile();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>{ Dialog d; d.CreateTriangleMesh(); d.Create3dMesh(); } <a href="CppComment.htm">//</a>TriangleMeshBuilder<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Flow of Dialog<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Dialog d;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d.Set<a href="CppShape.htm">Shape</a>s( Geometry().WktTo<a href="CppShape.htm">Shape</a>s("POLYGON((1 1,-1 1,-1 <a href="CppOperatorMinus.htm">-</a>1,1 <a href="CppOperatorMinus.htm">-</a>1))") );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;d.CreateTriangleMesh();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;d.Create3dMesh();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!d.Get3dMesh().empty());<br/>
@@ -5637,7 +5663,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Cell&gt; const_cell<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Face*&gt;(<b><a href="CppThis.htm">this</a></b>)-&gt;GetNeighbour();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoost.htm">boost</a>::const_<a href="CppPointer.htm">pointer</a>_cast&lt;Cell&gt;(const_cell);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostConst_pointer_cast.htm">boost::const_pointer_cast</a>&lt;Cell&gt;(const_cell);<br/>
 }<br/>
 <br/>
 <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Cell&gt; <a href="CppRibi.htm">ribi</a>::trim::Face::GetConstOwner() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -5680,7 +5706,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Cell&gt; const_cell<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Face*&gt;(<b><a href="CppThis.htm">this</a></b>)-&gt;GetConstOwner();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoost.htm">boost</a>::const_<a href="CppPointer.htm">pointer</a>_cast&lt;Cell&gt;(const_cell);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostConst_pointer_cast.htm">boost::const_pointer_cast</a>&lt;Cell&gt;(const_cell);<br/>
 }<br/>
 <br/>
 <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::<a href="CppPoint.htm">Point</a>&gt; <a href="CppRibi.htm">ribi</a>::trim::Face::Get<a href="CppPoint.htm">Point</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -6064,6 +6090,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c);<br/>
+&nbsp;&nbsp;bottom-&gt;SetBoundaryType("bottom");<br/>
+&nbsp;&nbsp;top-&gt;SetBoundaryType("top");<br/>
+&nbsp;&nbsp;a-&gt;SetBoundaryType("back");<br/>
+&nbsp;&nbsp;b-&gt;SetBoundaryType("left");<br/>
+&nbsp;&nbsp;c-&gt;SetBoundaryType("right");<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> prism {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;top,bottom,a,b,c<br/>
 &nbsp;&nbsp;};<br/>
@@ -6110,6 +6141,15 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(e);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f);<br/>
+&nbsp;&nbsp;bottom-&gt;SetBoundaryType("bottom");<br/>
+&nbsp;&nbsp;top-&gt;SetBoundaryType("top");<br/>
+&nbsp;&nbsp;a-&gt;SetBoundaryType("back");<br/>
+&nbsp;&nbsp;b-&gt;SetBoundaryType("back");<br/>
+&nbsp;&nbsp;c-&gt;SetBoundaryType("left");<br/>
+&nbsp;&nbsp;d-&gt;SetBoundaryType("left");<br/>
+&nbsp;&nbsp;e-&gt;SetBoundaryType("right");<br/>
+&nbsp;&nbsp;f-&gt;SetBoundaryType("right");<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> prism {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;top,bottom,a,b,c,d,e,f<br/>
 &nbsp;&nbsp;};<br/>
@@ -7524,6 +7564,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!Geometry().IsConvex(<a href="CppPointer.htm">point</a>s));<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> FIX_ISSUE_228<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Is<a href="CppCounter.htm">Counter</a>Clockwise, 3D, from #228"); }<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(__LINE__),__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
@@ -7566,6 +7607,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!h.IsConvex(<a href="CppPointer.htm">point</a>s));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!h.IsConvex(<a href="CppAdd.htm">Add</a>Const(<a href="CppPointer.htm">point</a>s)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!h.IsPlane(<a href="CppPointer.htm">point</a>s));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D observer{-2.1871,3.74169,5};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!h.Is<a href="CppCounter.htm">Counter</a>Clockwise(<a href="CppPointer.htm">point</a>s,observer));<br/>
@@ -7634,6 +7676,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!h.IsClockwise(<a href="CppPointer.htm">point</a>s,observer));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!h.IsClockwise(<a href="CppAdd.htm">Add</a>Const(<a href="CppPointer.htm">point</a>s),observer));<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> FIX_ISSUE_228<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> BRUTE_FORCE_TEST_MAKECOUNTERCLOCKWISE<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Make<a href="CppCounter.htm">Counter</a>Clockwise, <a href="CppMake.htm">make</a> shuffled <a href="CppPointer.htm">point</a>s <a href="CppCounter.htm">counter</a>clockwise, from #228"); }<br/>
 &nbsp;&nbsp;{<br/>

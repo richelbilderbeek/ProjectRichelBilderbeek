@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "testtictactoemenudialog.h"
 
+#include <iostream>
+
 #include "testtimer.h"
 #include "trace.h"
 

@@ -214,7 +214,7 @@ void ribi::cmap::QtEdge::Test() noexcept
       boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
     );
     qtnode_from->SetCenterX(qtnode_from->GetCenterX() + 10.0);
-    assert(c.Get() > 1);
+    assert(c.Get() > 0);
   }
   if (verbose) { TRACE("If qtnode_from is moved, a signal must be emitted by QtEdge"); }
   {
@@ -223,9 +223,8 @@ void ribi::cmap::QtEdge::Test() noexcept
       boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
     );
     qtnode_from->SetCenterX(qtnode_from->GetCenterX() + 10.0);
-    assert(c.Get() > 1);
+    assert(c.Get() > 0);
   }
-  assert(!"Refactor");
 }
 #endif
 

@@ -617,7 +617,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2014-07-03: <a href="CppVersion.htm">version</a> 1.6: use of <a href="CppApfloat.htm">apfloat</a>, improved accuracy",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2014-07-10: <a href="CppVersion.htm">version</a> 1.7: use of <a href="CppApfloat.htm">apfloat</a> only",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2014-07-15: <a href="CppVersion.htm">version</a> 1.8: multiple <a href="CppBug.htm">bug</a>fixes",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-02: <a href="CppVersion.htm">version</a> 1.9: use of stubs, to speed up testing"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-02: <a href="CppVersion.htm">version</a> 1.9: use of <a href="CppStub.htm">stub</a>s, to speed up testing"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
@@ -1734,11 +1734,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppRibi.htm">ribi</a>::PlaneX::<a href="CppDouble.htm">Double</a> <a href="CppRibi.htm">ribi</a>::PlaneX::CalcMinErrorPerC() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>min_error_per_c will be <a href="CppAbout.htm">about</a> 0.000000001<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>stub_value increases <b><a href="CppThis.htm">this</a></b> jut a little, by a 0.000001%<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> stub_value <a href="CppOperatorAssign.htm">=</a> 0.000000001 * 1.00000001;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStub.htm">stub</a>_value increases <b><a href="CppThis.htm">this</a></b> jut a little, by a 0.000001%<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppStub.htm">stub</a>_value <a href="CppOperatorAssign.htm">=</a> 0.000000001 * 1.00000001;<br/>
 &nbsp;&nbsp;<a href="CppDefine.htm">#define</a> USE_STUB<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> USE_STUB<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> stub_value;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStub.htm">stub</a>_value;<br/>
 &nbsp;&nbsp;<a href="CppPreElse.htm">#else</a> <a href="CppComment.htm">//</a>USE_STUB<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>PlaneX calculates its own tolerance <b><a href="CppFor.htm">for</a></b> errors, by measuring it<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppDouble.htm">Double</a> min_error_per_c <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
@@ -1760,7 +1760,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> min_y; y &lt; max_y; y<a href="CppOperatorMultiplyAssign.htm">*=</a>10.0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> min_x; x &lt; max_x; x<a href="CppOperatorMultiplyAssign.htm">*=</a>10.0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> y;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -1794,8 +1793,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(min_error_per_c); <a href="CppComment.htm">//</a>0.000000001e0<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &gt; zero);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &lt; stub_value);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &gt; 0.99 * stub_value);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &lt; <a href="CppStub.htm">stub</a>_value);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &gt; 0.99 * <a href="CppStub.htm">stub</a>_value);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> min_error_per_c;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a>USE_STUB<br/>
 }<br/>
@@ -2642,11 +2641,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppRibi.htm">ribi</a>::PlaneY::<a href="CppDouble.htm">Double</a> <a href="CppRibi.htm">ribi</a>::PlaneY::CalcMinErrorPerC() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>min_error_per_c will be <a href="CppAbout.htm">about</a> 0.000000001<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>stub_value increases <b><a href="CppThis.htm">this</a></b> jut a little, by a 0.000001%<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> stub_value <a href="CppOperatorAssign.htm">=</a> 0.000000001 * 1.00000001;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStub.htm">stub</a>_value increases <b><a href="CppThis.htm">this</a></b> jut a little, by a 0.000001%<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppStub.htm">stub</a>_value <a href="CppOperatorAssign.htm">=</a> 0.000000001 * 1.00000001;<br/>
 &nbsp;&nbsp;<a href="CppDefine.htm">#define</a> USE_STUB<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> USE_STUB<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> stub_value;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStub.htm">stub</a>_value;<br/>
 &nbsp;&nbsp;<a href="CppPreElse.htm">#else</a> <a href="CppComment.htm">//</a>USE_STUB<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>PlaneX calculates its own tolerance <b><a href="CppFor.htm">for</a></b> errors, by measuring it<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppDouble.htm">Double</a> min_error_per_c <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
@@ -2668,9 +2667,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> min_y; y &lt; max_y; y<a href="CppOperatorMultiplyAssign.htm">*=</a>10.0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> min_x; x &lt; max_x; x<a href="CppOperatorMultiplyAssign.htm">*=</a>10.0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> y;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D p1(0.0,&nbsp;&nbsp;y,0.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D p2(&nbsp;&nbsp;x,&nbsp;&nbsp;y,0.0);<br/>
@@ -2702,8 +2699,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(min_error_per_c); <a href="CppComment.htm">//</a>Output: <a href="CppTRACE.htm">TRACE</a> 'min_error_per_c' line 127 in file '..\..\<a href="CppClass.htm">Classes</a>\<a href="CppPlane.htm">CppPlane</a>\planey<a href="CppImplementationFile.htm">.cpp</a>': '0.000000001e0'<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &gt; zero);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &lt; stub_value);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &gt; 0.99 * stub_value);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &lt; <a href="CppStub.htm">stub</a>_value);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &gt; 0.99 * <a href="CppStub.htm">stub</a>_value);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> min_error_per_c;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_STUB<br/>
 }<br/>
@@ -3564,11 +3561,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppRibi.htm">ribi</a>::PlaneZ::<a href="CppDouble.htm">Double</a> <a href="CppRibi.htm">ribi</a>::PlaneZ::CalcMinErrorPerC() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>min_error_per_c will be <a href="CppAbout.htm">about</a> 0.000000001<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>stub_value increases <b><a href="CppThis.htm">this</a></b> jut a little, by a 0.000001%<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> stub_value <a href="CppOperatorAssign.htm">=</a> 0.000000001 * 1.00000001;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStub.htm">stub</a>_value increases <b><a href="CppThis.htm">this</a></b> jut a little, by a 0.000001%<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppStub.htm">stub</a>_value <a href="CppOperatorAssign.htm">=</a> 0.000000001 * 1.00000001;<br/>
 &nbsp;&nbsp;<a href="CppDefine.htm">#define</a> USE_STUB<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> USE_STUB<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> stub_value;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStub.htm">stub</a>_value;<br/>
 &nbsp;&nbsp;<a href="CppPreElse.htm">#else</a> <a href="CppComment.htm">//</a>USE_STUB<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>PlaneZ calculates its own tolerance <b><a href="CppFor.htm">for</a></b> errors, by measuring it<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppDouble.htm">Double</a> min_error_per_c <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
@@ -3621,8 +3618,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(min_error_per_c);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &gt; zero);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &lt; stub_value);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &gt; 0.99 * stub_value);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &lt; <a href="CppStub.htm">stub</a>_value);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(min_error_per_c &gt; 0.99 * <a href="CppStub.htm">stub</a>_value);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> min_error_per_c;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_STUB<br/>
 }<br/>

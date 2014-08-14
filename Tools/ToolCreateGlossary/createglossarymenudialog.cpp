@@ -38,7 +38,7 @@ ribi::CreateGlossaryMenuDialog::CreateGlossaryMenuDialog()
 int ribi::CreateGlossaryMenuDialog::ExecuteSpecific(const std::vector<std::string>&) noexcept
 {
   //Just create the glossaries, whatever the input was
-  CreateGlossaryMainDialog();
+  CreateGlossaryMainDialog().CreateAllGlossaries();
   return 0;
 }
 

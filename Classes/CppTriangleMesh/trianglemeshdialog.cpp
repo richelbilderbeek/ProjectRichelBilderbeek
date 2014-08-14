@@ -88,7 +88,11 @@ ribi::trim::Dialog::Dialog()
   //Create3dMesh();
 }
 
-void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
+void ribi::trim::Dialog::Check3dMesh(const std::string&
+  #ifndef NDEBUG
+  path
+  #endif // NDEBUG
+) const noexcept
 {
   #ifndef NDEBUG
   if (!fileio::FileIo().IsRegularFile(path))
@@ -96,11 +100,12 @@ void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
     TRACE("ERROR");
     TRACE("BREAK");
   }
-  #endif
 
   assert(fileio::FileIo().IsRegularFile(path)
     && "Check3dMesh calls OpenFOAM its checkMesh, which needs to know the full path"
   );
+  #endif
+
 
   const std::string ply_filename = fileio::FileIo().GetTempFileName(".ply");
 

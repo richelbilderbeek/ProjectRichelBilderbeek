@@ -96,6 +96,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;~Test<a href="CppTime.htm">Time</a>r() <b><a href="CppNoexcept.htm">noexcept</a></b>; <a href="CppComment.htm">//</a>But might terminate the program instead<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> SetMaxCnt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_cnt) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;Test<a href="CppTime.htm">Time</a>rImpl * <b><a href="CppConst.htm">const</a></b> m_impl;<br/>
@@ -151,20 +152,33 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_function_name.find('\n') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_function_name.find('\r') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_function_name.find('\t') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>m_cnt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>m_n_tests;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;~Test<a href="CppTime.htm">Time</a>rImpl() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>cnt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>m_cnt;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> cnt;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Number of active tests<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> m_cnt;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Maximum number of active tests<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> m_max_cnt;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Filename where the most recent test is active<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_file_name;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppFunction.htm">Function</a> name where the most recent test is active<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_function_name;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Maximum allowed <a href="CppTime.htm">time</a> <b><a href="CppFor.htm">for</a></b> a test<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m_max_<a href="CppTime.htm">time</a>_sec;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppTime.htm">Time</a>r to measure the duration of a test<br/>
 &nbsp;&nbsp;<a href="CppBoostTimer.htm">boost::timer</a> m_<a href="CppTime.htm">time</a>r;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The number of tests started<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> m_n_tests;<br/>
 };<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Test<a href="CppTime.htm">Time</a>rImpl::cnt <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> Test<a href="CppTime.htm">Time</a>rImpl::m_cnt <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> Test<a href="CppTime.htm">Time</a>rImpl::m_max_cnt <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+<b><a href="CppInt.htm">int</a></b> Test<a href="CppTime.htm">Time</a>rImpl::m_n_tests <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
@@ -176,28 +190,28 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 ) : m_impl(<b><a href="CppNew.htm">new</a></b> Test<a href="CppTime.htm">Time</a>rImpl(<a href="CppFunction.htm">function</a>_name,file_name,max_<a href="CppTime.htm">time</a>_sec))<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;m_cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\\ START: "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ExtractFilename(m_impl-&gt;m_file_name)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ','<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_function_name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " #"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_n_tests<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
 &nbsp;&nbsp;;<br/>
 <br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_impl-&gt;cnt &gt; 1)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_impl-&gt;m_cnt <a href="CppOperatorEqual.htm">==</a> m_impl-&gt;m_max_cnt)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "WARNING: "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_file_name<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ','<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_function_name<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": count equals " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;cnt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": count equals " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_cnt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_impl-&gt;cnt <a href="CppOperatorEqual.htm">==</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Test<a href="CppTime.htm">Time</a>r can only have one Test<a href="CppTime.htm">Time</a>r <a href="CppInstance.htm">instance</a> active");<br/>
-<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_impl-&gt;m_cnt &lt; m_impl-&gt;m_max_cnt <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Test<a href="CppTime.htm">Time</a>r can only have max_cnt Test<a href="CppTime.htm">Time</a>r <a href="CppInstance.htm">instances</a> active");<br/>
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::~Test<a href="CppTime.htm">Time</a>r() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -206,7 +220,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (elapsed_secs &gt; m_impl-&gt;m_max_<a href="CppTime.htm">time</a>_sec)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;m_cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " | FUNCTION '"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_function_name<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' IN <a href="CppCfile.htm">FILE</a> '"<br/>
@@ -216,7 +230,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;m_cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppOperatorDivide.htm">/</a> DONE : "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ExtractFilename(m_impl-&gt;m_file_name)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ','<br/>
@@ -235,14 +249,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
 <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-02: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-02: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-08: <a href="CppVersion.htm">version</a> 1.1: allow setting a maximum amount of Test<a href="CppTime.htm">Time</a>rs active",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-10: <a href="CppVersion.htm">version</a> 1.2: count the number of <a href="CppConstructor.htm">construct</a>ed Test<a href="CppTime.htm">Time</a>rs"<br/>
 &nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::SetMaxCnt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_cnt) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;Test<a href="CppTime.htm">Time</a>rImpl::m_max_cnt <a href="CppOperatorAssign.htm">=</a> max_cnt <a href="CppOperatorPlus.htm">+</a> 1;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

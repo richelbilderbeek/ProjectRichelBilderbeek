@@ -336,6 +336,9 @@ void ribi::cmap::QtNode::OnTextChanged(const QtRoundedRectItem * const
 
 void ribi::cmap::QtNode::OnXchanged(Node * const node) noexcept
 {
+  const bool verbose{false};
+  if (verbose) { TRACE("Slot ribi::cmap::QtNode::OnXchanged"); }
+
   //Node changed, sync QtRoundedRectItem
   assert(node);
   SetCenterX(node->GetX());

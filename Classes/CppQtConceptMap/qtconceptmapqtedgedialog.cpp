@@ -374,6 +374,5 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
   }
   dialog.SetQtEdge(nullptr);
   //dialog = QtQtEdgeDialog();
-  TRACE_FUNC();
 }
 #endif

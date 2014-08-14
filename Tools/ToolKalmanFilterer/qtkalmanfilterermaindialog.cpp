@@ -726,7 +726,7 @@ void ribi::kalman::QtKalmanFiltererMainDialog::Test() noexcept
   {
     ribi::kalman::QtKalmanFiltererMainDialog::Create();
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const TestTimer test_timer(__func__,__FILE__,2.0);
   const bool verbose{false};
   //TestTimer::SetMaxCnt(2);
   {

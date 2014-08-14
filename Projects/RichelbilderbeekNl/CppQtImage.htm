@@ -28,6 +28,28 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2>./CppQtImage/CppQtImage.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQtImage/CppQtImage.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppQtImage<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppQtImage/qtimage.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppQtImage/qtimage.h<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppQtImage/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>./CppQtImage/qtimage.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
@@ -35,34 +57,34 @@
 <a href="CppIfndef.htm">#ifndef</a> QTIMAGE_H<br/>
 <a href="CppDefine.htm">#define</a> QTIMAGE_H<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppUtilityH.htm">utility</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQRect.htm">QRect</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQMouseEvent.htm">QMouseEvent</a>;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQImage.htm">QImage</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Image : <b><a href="CppPublic.htm">public</a></b> <a href="CppQLabel.htm">QLabel</a><br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<a href="CppComment.htm">///</a>Some handy <a href="CppFunction.htm">function</a>s on <a href="CppQImage.htm">QImage</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>Image<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Image(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ClickableRegion(<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>&amp; region,<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt;&amp; <a href="CppFunction.htm">function</a>_to_do);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Image() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> Difference(<b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a>&amp; base, <b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a>&amp; to_xor) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppQRect.htm">QRect</a>,<a href="CppStdFunction.htm">std::function</a>&lt;<b><a href="CppVoid.htm">void</a></b>()<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt; m_v;<br/>
-<br/>
-<b><a href="CppQtSignals.htm">signals</a></b>:<br/>
-<br/>
-<b><a href="CppPublic.htm">public</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-<br/>
-<br/>
-<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> Xor(<b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a>&amp; base, <b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a>&amp; to_xor) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTIMAGE_H<br/>
 </code></td></tr></table>
@@ -78,47 +100,81 @@
 <table summary="./CppQtImage/qtimage.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> "qtimage.h"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Image::<a href="CppQt.htm">Qt</a>Image(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQLabel.htm">QLabel</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_v{}<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Image::<a href="CppQt.htm">Qt</a>Image() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMouseTracking(<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Image::<a href="CppAdd.htm">Add</a>ClickableRegion(<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>&amp; region,<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt;&amp; <a href="CppFunction.htm">function</a>_to_do)<br/>
+<a href="CppQImage.htm">QImage</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Image::Difference(<b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a>&amp; base, <b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a>&amp; to_xor) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;m_v.push_back(<a href="CppStdMake_pair.htm">std::make_pair</a>(region,<a href="CppFunction.htm">function</a>_to_do));<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Image::mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> is_arrow <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e-&gt;pos().x() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ',' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e-&gt;pos().y() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: m_v)<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> result{base};<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (p.first.contains(e-&gt;pos()))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is_arrow <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e-&gt;pos().x() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ',' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e-&gt;pos().y() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(&amp;result);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.setCompositionMode(<a href="CppQPainter.htm">QPainter</a>::CompositionMode_Difference);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawImage(0,0,to_xor);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setCursor(<a href="CppQCursor.htm">QCursor</a>(is_arrow ? <a href="CppQt.htm">Qt</a>::ArrowCursor : <a href="CppQt.htm">Qt</a>::<a href="CppPoint.htm">Point</a>ingHandCursor));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Image::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *e)<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Image::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e-&gt;pos().x() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ',' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e-&gt;pos().y() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: m_v)<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Image::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-05: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Image::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (p.first.contains(e-&gt;pos()))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> f <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Default-<a href="CppConstructor.htm">construct</a>ion of <a href="CppQt.htm">Qt</a>Image"); }<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Image q;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("<a href="CppQImage.htm">QImage</a> pixel manipultion"); }<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> q(1,1,<a href="CppQImage.htm">QImage</a>::Format_RGB32);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;q.setPixel(0,0,qRgb(1,2,3));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q.pixel(0,0) <a href="CppOperatorEqual.htm">==</a> qRgb(1,2,3));<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppQImage.htm">QImage</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Image::Xor(<b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a>&amp; base, <b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a>&amp; to_xor) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> result{base};<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(&amp;result);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>painter.setCompositionMode(<a href="CppQPainter.htm">QPainter</a>::CompositionMode_Xor);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.setCompositionMode(<a href="CppQPainter.htm">QPainter</a>::CompositionMode_<a href="CppMultiply.htm">Multiply</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawImage(0,0,to_xor);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

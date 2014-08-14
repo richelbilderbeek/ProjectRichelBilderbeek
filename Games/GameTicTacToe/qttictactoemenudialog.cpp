@@ -89,7 +89,6 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   TicTacToeMenuDialog();
   {
     const boost::shared_ptr<Ai> player1;
@@ -109,6 +108,7 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
   const auto player1 = boost::make_shared<AiEnforceDraw>();
   const auto player2 = boost::make_shared<AiPlayRandom>();
   QtTicTacToeWidget(player1,player2);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

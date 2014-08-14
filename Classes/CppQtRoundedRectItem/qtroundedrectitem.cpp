@@ -155,6 +155,7 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
 
 void ribi::QtRoundedRectItem::SetCenterX(const double x) noexcept
 {
+  const bool verbose{false};
   const double current_x = this->GetCenterX();
   if (current_x != x)
   {
@@ -164,8 +165,10 @@ void ribi::QtRoundedRectItem::SetCenterX(const double x) noexcept
       current_pos.y()
     );
 
-    this->update();
+    if (verbose) { TRACE("Emitting ribi::QtRoundedRectItem::m_signal_pos_changed"); }
+
     m_signal_pos_changed(this);
+    this->update();
   }
 }
 

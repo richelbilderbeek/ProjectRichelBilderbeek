@@ -199,12 +199,13 @@ void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
 
 void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
 {
+  const bool verbose{false};
   const boost::shared_ptr<QDialog> dialog(
     QtRichelBilderbeekProgram::CreateQtMenuDialog(program_type));
 
   if (!dialog)
   {
-    TRACE("Create placeholder");
+    if (verbose) { TRACE("Create placeholder"); }
     const boost::shared_ptr<QtHideAndShowDialog> placeholder(
       QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(program_type));
     assert(placeholder);
@@ -213,7 +214,7 @@ void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
   }
   else
   {
-    TRACE("Create QtHideAndShowDialog");
+    if (verbose) { TRACE("Create QtHideAndShowDialog"); }
     const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
       boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
     assert(hide_and_show_dialog);

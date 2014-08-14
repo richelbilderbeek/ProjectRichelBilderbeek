@@ -390,8 +390,8 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Area triangle_max_area,&nbsp;&nbsp; <a href="CppComment.htm">//</a>Triangle calls <b><a href="CppThis.htm">this</a></b> the 'area' parameter<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename { <a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().GetTempFileName(".poly") };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> delete_poly_file <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; <a href="CppComment.htm">//</a>True does not leave files scattered around<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename { <a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().GetTempFileNameSimple(".poly") };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> delete_poly_file{<b><a href="CppFalse.htm">false</a></b>}; <a href="CppComment.htm">//</a>True does not leave files scattered around<br/>
 &nbsp;&nbsp;node_filename <a href="CppOperatorAssign.htm">=</a> "";<br/>
 &nbsp;&nbsp;ele_filename <a href="CppOperatorAssign.htm">=</a> "";<br/>
 &nbsp;&nbsp;poly_filename <a href="CppOperatorAssign.htm">=</a> "";<br/>
@@ -433,7 +433,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> triangle_max_area.value()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;area_str <a href="CppOperatorAssign.htm">=</a> s.str();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(area_str);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(quality_str.find(',') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "No Dutch please");<br/>
@@ -445,8 +444,35 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppIsRegularFile.htm">IsRegularFile</a>(exe_filename));<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> _WIN32<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Do chmod <a href="CppOperatorPlus.htm">+</a>x in <a href="CppLinux.htm">Linux</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> chmod;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;chmod<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "chmod <a href="CppOperatorPlus.htm">+</a>x "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> exe_filename;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Starting command '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> chmod.str() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppStdSystem.htm">std::system</a>(chmod.str().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (error)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Finished command with an error (" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __<a href="CppCfile.htm">FILE</a>__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __LINE__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *m_polyfile <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Error: '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> chmod.str() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' failed (" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __<a href="CppCfile.htm">FILE</a>__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __LINE__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "), with error code " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> error;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>(s.str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 &nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> command;<br/>
 &nbsp;&nbsp;command<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> _WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "./"<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> exe_filename<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorMinus.htm">-</a>j <a href="CppOperatorMinus.htm">-</a>z <a href="CppOperatorMinus.htm">-</a>q"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> quality_str<br/>
@@ -478,12 +504,11 @@
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Finished command with an error" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(*m_polyfile);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Finished command with an error (" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __<a href="CppCfile.htm">FILE</a>__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __LINE__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *m_polyfile <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Error: '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> command.str() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' failed, with error code " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> error;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s.str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Error: '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> command.str() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' failed (" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __<a href="CppCfile.htm">FILE</a>__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __LINE__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "), with error code " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> error;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>(s.str());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Finished command without errors" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>; }<br/>
@@ -565,7 +590,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TriangleFile f(<a href="CppShape.htm">shape</a>s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(f.ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_node;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_ele;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_poly;<br/>

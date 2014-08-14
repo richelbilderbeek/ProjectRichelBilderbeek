@@ -311,7 +311,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 8th of August 2014",
+    "the 14th of August 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersionStatic(),
@@ -3363,7 +3363,7 @@ std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHist
     "2013-11-29: Version 1.13: added HistogramEqualizationer, ImageOperationer, ImageRotater, StyleSheetSetter, ThresholdFilterer",
     "2014-02-27: Version 1.14: added PreDickAdvocaTor and ValentineCardDecrypter, added retro versions to some games",
     "2014-04-22: Version 1.15: added CaesarCipher, CodeBreaker and VigenereCipher",
-    "2014-08-08: Version 1.16: increased use of TDD in console version"
+    "2014-08-14: Version 1.16: increased use of TDD in console version"
   };
 }
 

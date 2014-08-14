@@ -152,7 +152,10 @@ void ribi::cmap::Edge::OnFromChanged(Node * const
 #endif
 ) noexcept
 {
+  const bool verbose{false};
+  if (verbose) { TRACE("Slot ribi::cmap::Edge::OnFromChanged"); }
   assert(node == this->GetFrom().get());
+  if (verbose) { TRACE("Emitting ribi::cmap::Edge::m_signal_from_changed"); }
   this->m_signal_from_changed(this);
 }
 
@@ -162,8 +165,13 @@ void ribi::cmap::Edge::OnToChanged(Node * const
 #endif
 ) noexcept
 {
+  const bool verbose{false};
+  if (verbose) { TRACE("Slot ribi::cmap::Edge::OnFromChanged"); }
+
   assert(node == this->GetTo().get());
-  this->m_signal_from_changed(this);
+  if (verbose) { TRACE("Emitting ribi::cmap::Edge::m_signal_to_changed"); }
+
+  this->m_signal_to_changed(this);
 }
 
 void ribi::cmap::Edge::SetNode(const NodePtr& node) noexcept

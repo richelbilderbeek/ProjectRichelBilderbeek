@@ -85,8 +85,8 @@ void ribi::QtWktToSvgMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   WktToSvgMenuDialog();
   QtWktToSvgMainDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

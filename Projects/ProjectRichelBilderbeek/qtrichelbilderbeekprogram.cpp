@@ -99,7 +99,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestchessmenudialog.h"
 #endif
 
-#include "qttestconceptmapmenudialog.h"
+//#include "qttestconceptmapmenudialog.h"
 #include "qttestdialmenudialog.h"
 #include "qttestdrawcanvasmenudialog.h"
 #include "qttestfunctionparsermenudialog.h"

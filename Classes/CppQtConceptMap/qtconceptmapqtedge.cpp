@@ -364,7 +364,6 @@ void ribi::cmap::QtEdge::OnFromChanged(Edge * const edge) noexcept
   this->GetFrom()->SetNode(edge->GetFrom());
   assert(edge->GetFrom() == this->GetFrom()->GetNode());
   m_signal_edge_changed(this);
-  TRACE_FUNC();
   this->update();
   if (this->scene()) { this->scene()->update(); }
 }
@@ -381,7 +380,6 @@ void ribi::cmap::QtEdge::OnNodeChanged(Edge * const edge) noexcept
   m_qtnode->SetCenterY(edge->GetNode()->GetY());
   m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
   this->update();
-  //if (this->scene()) { this->scene()->update(); }
   m_signal_edge_changed(this);
 }
 
