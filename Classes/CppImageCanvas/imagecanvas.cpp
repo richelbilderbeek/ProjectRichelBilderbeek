@@ -39,6 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "canvascoordinatsystems.h"
 #include "fileio.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::ImageCanvas::ImageCanvas(
@@ -330,11 +331,17 @@ void ribi::ImageCanvas::SetCoordinatSystem(const CanvasCoordinatSystem coordinat
 void ribi::ImageCanvas::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ImageCanvas::Test");
+  {
+    fileio::FileIo();
+    CanvasColorSystems();
+    CanvasCoordinatSystems();
+
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string temp_filename { fileio::FileIo().GetTempFileName() };
   {
     const std::string resource_filename { ":/CppImageCanvas/images/R.png" };
@@ -349,16 +356,16 @@ void ribi::ImageCanvas::Test() noexcept
   }
   assert(fileio::FileIo().IsRegularFile(temp_filename));
   const int n
-    = static_cast<int>(CanvasColorSystems::GetAll().size())
-    * static_cast<int>(CanvasCoordinatSystems::GetAll().size());
+    = static_cast<int>(CanvasColorSystems().GetAll().size())
+    * static_cast<int>(CanvasCoordinatSystems().GetAll().size());
   for (int i=0; i!=n; ++i)
   {
-    const int ncs = static_cast<int>(CanvasColorSystems::GetAll().size());
+    const int ncs = static_cast<int>(CanvasColorSystems().GetAll().size());
     const int a = i % ncs;
-    const CanvasColorSystem color_system = CanvasColorSystems::GetAll()[a];
+    const CanvasColorSystem color_system = CanvasColorSystems().GetAll()[a];
     const int b = i / ncs;
     const CanvasCoordinatSystem coordinat_system
-      = CanvasCoordinatSystems::GetAll()[b];
+      = CanvasCoordinatSystems().GetAll()[b];
     const ImageCanvas c(temp_filename,20,color_system,coordinat_system);
     std::stringstream s;
     s << c;
@@ -366,7 +373,6 @@ void ribi::ImageCanvas::Test() noexcept
     //TRACE(c);
   }
   fileio::FileIo().DeleteFile(temp_filename);
-  TRACE("Finished ribi::ImageCanvas::Test successfully");
 }
 #endif
 

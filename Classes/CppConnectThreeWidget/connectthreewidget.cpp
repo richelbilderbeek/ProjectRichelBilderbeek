@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "connectthree.h"
 #include "connectthreemove.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 
@@ -46,6 +47,13 @@ ribi::con3::ConnectThreeWidget::ConnectThreeWidget(
   Test();
   #endif
   assert(m_game);
+  assert(m_x >= 0);
+  assert(m_y >= 0);
+  assert(n_cols > 0);
+  assert(n_rows > 0);
+  assert(m_x < n_cols);
+  assert(m_y < n_rows);
+
 }
 
 bool ribi::con3::ConnectThreeWidget::CanDoMove(const int x,const int y) const noexcept
@@ -59,6 +67,15 @@ bool ribi::con3::ConnectThreeWidget::CanSelect(const int x, const int y) const n
        x >= 0 && x < GetGame()->GetCols()
     && y >= 0 && y < GetGame()->GetRows()
     && GetGame()->GetSquare(x,y) == Square::empty;
+}
+
+std::bitset<3> ribi::con3::ConnectThreeWidget::CreateDefaultIsPlayerHuman() noexcept
+{
+  std::bitset<3> b;
+  b[0] = true;
+  b[1] = true;
+  b[2] = true;
+  return b;
 }
 
 void ribi::con3::ConnectThreeWidget::DoComputerMove() noexcept
@@ -101,7 +118,7 @@ bool ribi::con3::ConnectThreeWidget::IsComputerTurn() const noexcept
 
 bool ribi::con3::ConnectThreeWidget::IsHuman(const Player player) const noexcept
 {
-  const int player_index = PlayerToIndex(player);
+  const int player_index{PlayerToIndex(player)};
   assert(player_index >= 0);
   assert(player_index < static_cast<int>(m_is_player_human.size()));
   return m_is_player_human[player_index];
@@ -109,6 +126,11 @@ bool ribi::con3::ConnectThreeWidget::IsHuman(const Player player) const noexcept
 
 void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key) noexcept
 {
+  assert(m_x >= 0);
+  assert(m_y >= 0);
+  assert(m_x < m_game->GetCols());
+  assert(m_y < m_game->GetRows());
+
   switch (key)
   {
     case Key::up   : if (m_y > 0) --m_y; break;
@@ -119,6 +141,11 @@ void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key) noexcept
       if (m_game->CanDoMove(m_x,m_y)) { m_game->DoMove(m_x,m_y); }
       break;
   }
+
+  assert(m_x >= 0);
+  assert(m_y >= 0);
+  assert(m_x < m_game->GetCols());
+  assert(m_y < m_game->GetRows());
 }
 
 int ribi::con3::ConnectThreeWidget::PlayerToIndex(const Player player) const noexcept
@@ -166,11 +193,11 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThreeWidget::Sugges
 void ribi::con3::ConnectThreeWidget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::con3::ConnectThreeWidget::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const boost::shared_ptr<ConnectThreeWidget> widget {
     new ConnectThreeWidget
   };
@@ -190,8 +217,6 @@ void ribi::con3::ConnectThreeWidget::Test() noexcept
       case 4: widget->OnKeyPress(Key::select); break;
     }
   }
-  assert(1==2);
-  TRACE("Finished ribi::con3::ConnectThreeWidget::Test successfully");
 }
 #endif
 
@@ -212,7 +237,7 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::con3::ConnectThreeWidget::ToText
 {
   assert(m_game);
   const int n_cols { m_game->GetCols() };
-  const int n_rows { m_game->GetCols() };
+  const int n_rows { m_game->GetRows() };
 
   const boost::shared_ptr<TextCanvas> canvas {
     new TextCanvas(n_cols,n_rows)
@@ -222,9 +247,10 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::con3::ConnectThreeWidget::ToText
     for (int x=0; x!=n_cols; ++x)
     {
       char c = ' ';
+      assert(m_game->CanGetSquare(x,y));
       switch (m_game->GetSquare(x,y))
       {
-        case Square::empty  : c = (x + y % 2 ? '.' : ' '); break;
+        case Square::empty  : c = '.'; break;
         case Square::player1: c = 'O'; break;
         case Square::player2: c = 'X'; break;
         case Square::player3: c = 'A'; break;

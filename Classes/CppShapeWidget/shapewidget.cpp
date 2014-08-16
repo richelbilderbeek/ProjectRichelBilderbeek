@@ -9,7 +9,7 @@
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "shape.h"
-#include "rectangle.h"
+
 //#include "trace.h"
 
 #pragma GCC diagnostic pop

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeBreaker, code breaking class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/CppCodeBreaker.htm
 //---------------------------------------------------------------------------
-#ifndef CODEBREAKER_H
-#define CODEBREAKER_H
+#ifndef RIBI_CODEBREAKER_H
+#define RIBI_CODEBREAKER_H
 
 #include <map>
 #include <string>
@@ -136,4 +136,4 @@ struct CodeBreaker
 
 } //~namespace ribi
 
-#endif // CODEBREAKER_H
+#endif // RIBI_CODEBREAKER_H

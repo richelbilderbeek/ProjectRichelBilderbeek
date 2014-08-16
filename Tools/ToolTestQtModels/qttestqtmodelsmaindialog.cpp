@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtublasmatrixdoublemodel.h"
 #include "qtublasvectordoublemodel.h"
 #include "qtublasvectorintmodel.h"
+#include "testtimer.h"
 #include "qtstdvectorfunctionmodel.h"
 #include "qtstdvectorstringmodel.h"
 #include "trace.h"
@@ -268,11 +269,11 @@ void ribi::QtToolTestQtModelsMainDialog::on_button_headers_clicked()
 void ribi::QtToolTestQtModelsMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Start of ribi::QtToolTestQtModelsMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     QtUblasVectorDoubleModel * const model = new QtUblasVectorDoubleModel;
     assert(model);
@@ -312,6 +313,5 @@ void ribi::QtToolTestQtModelsMainDialog::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::QtToolTestQtModelsMainDialog::Test successfully");
 }
 #endif

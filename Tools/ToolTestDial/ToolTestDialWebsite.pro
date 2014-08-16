@@ -1,49 +1,27 @@
-QT       += core
-QT       -= gui
-LIBS += -lwt -lwthttp -lboost_program_options
-QMAKE_CXXFLAGS += -std=c++0x
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../WebApplication.pri)
+include(../../Libraries/BigInteger.pri)
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppDial \
-    ../../Classes/CppDialWidget \
-    ../../Classes/CppRainbow \
-    ../../Classes/CppRectangle \
-    ../../Classes/CppWidget \
-    ../../Classes/CppWtAboutDialog \
-    ../../Classes/CppWtAutoConfig \
-    ../../Classes/CppWtDialWidget
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralWeb.pri)
 
-SOURCES += wtmain.cpp\
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppDial/dial.cpp \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-    ../../Classes/CppWtDialWidget/wtdialwidget.cpp \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.cpp \
-    wttestdialmaindialog.cpp \
-    wttestdialmenudialog.cpp \
-    testdialmenudialog.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppDialWidget/dialwidget.cpp \
-    ../../Classes/CppRainbow/rainbow.cpp
 
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppDial/dial.h \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-    ../../Classes/CppWtDialWidget/wtdialwidget.h \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.h \
-    wttestdialmaindialog.h \
-    wttestdialmenudialog.h \
-    testdialmenudialog.h \
-    ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppDialWidget/dialwidget.h \
-    ../../Classes/CppRainbow/rainbow.h
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDial/CppDial.pri)
+include(../../Classes/CppDialWidget/CppDialWidget.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppRainbow/CppRainbow.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
-RESOURCES += \
-    ToolTestDial.qrc
+
+include(../../Classes/CppWtDialWidget/CppWtDialWidget.pri)
+
+include(ToolTestDialWebsite.pri)
+
+SOURCES += wtmain.cpp

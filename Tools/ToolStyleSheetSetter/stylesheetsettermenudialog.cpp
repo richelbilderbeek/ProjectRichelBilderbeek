@@ -3,7 +3,9 @@
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::StyleSheetSetterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -75,11 +77,10 @@ std::vector<std::string> ribi::StyleSheetSetterMenuDialog::GetVersionHistory() c
 void ribi::StyleSheetSetterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::StyleSheetSetterMenuDialog::Test");
-  TRACE("Finished ribi::StyleSheetSetterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

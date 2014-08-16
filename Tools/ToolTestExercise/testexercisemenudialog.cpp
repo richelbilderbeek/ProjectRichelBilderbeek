@@ -20,6 +20,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testexercisemenudialog.h"
 
 #include <cassert>
@@ -30,8 +32,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "testtimer.h"
 #include "question.h"
 #include "questiondialog.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -111,11 +115,10 @@ std::vector<std::string> ribi::TestExerciseMenuDialog::GetVersionHistory() const
 void ribi::TestExerciseMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestExerciseMenuDialog::Test");
-  TRACE("Finished ribi::TestExerciseMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

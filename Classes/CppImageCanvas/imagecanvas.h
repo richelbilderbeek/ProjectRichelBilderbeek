@@ -47,7 +47,8 @@ struct ImageCanvas : public Canvas
     const std::string& filename,
     const int n_cols,
     const CanvasColorSystem colorSystem         = CanvasColorSystem::normal,
-    const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen);
+    const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen
+  );
 
   ///The color system used:
   ///- normal: full/drawn is displayed by M

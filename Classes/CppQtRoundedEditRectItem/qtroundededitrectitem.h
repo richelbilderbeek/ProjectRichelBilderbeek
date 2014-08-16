@@ -25,44 +25,46 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include <QFont>
 #include "qtroundedrectitem.h"
+#include "qtroundededitrectitempadding.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
-
 ///A QtRoundedRectTextItem displaying multiple lines of text
-///For a single line of text, use QtRoundedTextRectItem
-struct QtRoundedEditRectItem : public QtRoundedRectItem
+///For a single line of text, use QtRoundedEditRectItem
+class QtRoundedEditRectItem : public QtRoundedRectItem
 {
-  struct Padding
-  {
-    Padding(const double any_top = 0.0, const double any_right = 0.0, const double any_bottom = 0.0, const double any_left = 0.0)
-      : bottom(any_bottom), left(any_left), right(any_right), top(any_top) {}
-    double bottom;
-    double left;
-    double right;
-    double top;
-  };
+  //Q_OBJECT //Cannot make this a QObject???
 
-  QtRoundedEditRectItem(
+  public:
+  typedef QtRoundedRectItem Base;
+  typedef QtRoundedEditRectItemPadding Padding;
+
+
+  explicit QtRoundedEditRectItem(
     const std::vector<std::string>& text = { "..." },
     const Padding& padding = Padding(),
     const QFont& font = QFont("monospace",9),
-    QGraphicsItem* parent = 0);
+    QGraphicsItem* parent = 0
+  );
 
-  virtual ~QtRoundedEditRectItem() noexcept {}
+  virtual ~QtRoundedEditRectItem() noexcept;
 
   ///Get the font by which the text is drawn
-  const QFont& GetFont() const { return m_font; }
+  const QFont& GetFont() const noexcept;
+
+  const Padding& GetPadding() const noexcept { return m_padding; }
 
   ///Obtain the text on the item
-  const std::vector<std::string>& GetText() const { return m_text; }
+  const std::vector<std::string>& GetText() const noexcept;
+
+  const QPen& GetTextPen() const noexcept { return m_text_pen; }
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -71,23 +73,29 @@ struct QtRoundedEditRectItem : public QtRoundedRectItem
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the font by which the text is drawn
-  void SetFont(const QFont& font);
+  void SetFont(const QFont& font) noexcept;
 
   ///Set the padding between text and rectangle
-  void SetPadding(const Padding& padding);
+  void SetPadding(const Padding& padding) noexcept;
 
   ///Set the text displayed
-  virtual void SetText(const std::vector<std::string>& text);
+  void SetText(const std::vector<std::string>& text) noexcept;
 
   ///Set the pen by which the text is drawn
-  void SetTextPen(const QPen& pen);
+  void SetTextPen(const QPen& pen) noexcept;
 
   ///Called when the user wants to edit the text
-  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_item_requests_edit;
+  //boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_item_requests_edit;
+
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_base_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_font_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_padding_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_text_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_text_pen_changed;
 
 protected:
-  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
-  virtual void keyPressEvent(QKeyEvent* event);
+  virtual void keyPressEvent(QKeyEvent* event) noexcept;
+  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept;
 
 private:
 
@@ -106,17 +114,84 @@ private:
   ///The pen by which the text is drawn
   QPen m_text_pen;
 
-  ///Obtain the unpadded text rectangle for a single line
-  ///Note: even this rectangle is enlarged by a pixel in both dimensions, so the text will be drawn in full
-  const QRectF GetTextRect(const std::string& s) const;
+  ///Obtain the unpadded text rectangle for a single line,
+  ///where the center lies at the origin
+  /*
+          |
+          |
+       +-----+
+    ---|ABCDE|---
+       +-----+
+          |
+          |
+  */
+  static QRectF GetTextRectAtOrigin(const std::string& s, const QFont& font) noexcept;
 
-  ///Obtain the unpadded text rectangle for the whole text
+  ///Obtain the unpadded text rectangle for the whole text,
+  ///where the center lies at the origin
   ///Note: even this rectangle is enlarged by a pixel in both dimensions, so the text will be drawn in full
-  const QRectF GetTextRect(const std::vector<std::string>& text) const;
+  /*
+          |
+          |
+       +-----+
+       |ABCDE|
+    ---|ABCDE|---
+       |ABCDE|
+       +-----+
+          |
+          |
+  */
+  static QRectF GetTextRectAtOrigin(const std::vector<std::string>& text, const QFont& font) noexcept;
 
   ///Obtain the padded text rectangle for a single line
-  const QRectF GetPaddedTextRect(const std::string& s) const;
+  ///where the center lies at the origin
+  /*
+          |
+          |
+      +-------+
+      |       |
+   ---| ABCDE |---
+      |       |
+      +-------+
+          |
+          |
+  */
+  static QRectF GetPaddedTextRectAtOrigin(const std::string& s, const QFont& font) noexcept;
+
+  ///Obtain the padded text rectangle for a single line
+  ///where the center lies at the correct location
+  /*
+          |
+          |
+      +-------+
+      |       |
+      | ABCDE |
+      |       |
+      +-------+
+      |       |
+   ---|       |---
+      |       |
+      +-------+
+      |       |
+      |       |
+      |       |
+      +-------+
+          |
+          |
+
+      Line 0/3
+  */
+  static QRectF GetPaddedTextRectAtLine(const std::string& s, const QFont& font, const int line, const int n_lines) noexcept;
+
+  ///Called whenever a base class item is changed
+  void OnBaseChanged(QtRoundedRectItem * const) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
+//std::ostream& operator<<(std::ostream& os, const QtRoundedEditRectItem&) noexcept;
 
 } //~namespace ribi
 

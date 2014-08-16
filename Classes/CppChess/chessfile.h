@@ -1,5 +1,5 @@
-#ifndef CHESSFILE_H
-#define CHESSFILE_H
+#ifndef RIBI_CHESSFILE_H
+#define RIBI_CHESSFILE_H
 
 #include <string>
 #include <vector>
@@ -51,4 +51,4 @@ bool operator==(const File& lhs, const File& rhs);
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSFILE_H
+#endif // RIBI_CHESSFILE_H

@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>IntegerFloatingPoint</title>
+  <meta name="description" content="C++ IntegerFloatingPoint"/>
+  <meta name="keywords" content="C++ IntegerFloatingPoint "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppIntegerFloatingPoint.htm">IntegerFloatingPoint</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppIntegerFloatingPoint-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppIntegerFloatingPoint/CppIntegerFloatingPoint.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppIntegerFloatingPoint/CppIntegerFloatingPoint.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppIpAddress.htm">CppIpAddress</a><br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppIpAddress.htm">CppIpAddress</a>/<a href="CppIpaddress.htm">ipaddress</a>.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppIpAddress.htm">CppIpAddress</a>/<a href="CppIpaddress.htm">ipaddress</a>.h<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppIpAddress.htm">CppIpAddress</a>/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppIntegerFloatingPoint/integerfloatingpoint.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppIntegerFloatingPoint/integerfloatingpoint.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> INTEGERFLOATINGPOINT_H<br/>
+<a href="CppDefine.htm">#define</a> INTEGERFLOATINGPOINT_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCinttypesH.htm">cinttypes</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "MathBase.h"<br/>
+<br/>
+<a href="CppComment.htm">///</a>Correct Binary<a href="CppPoint.htm">Point</a>Int implementation<br/>
+<a href="CppComment.htm">///</a><a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> simulate a <b><a href="CppDouble.htm">double</a></b> and a <b><a href="CppDouble.htm">double</a></b> multiplication <b><a href="CppUsing.htm">using</a></b> <a href="CppInt.htm">integer</a>s only<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> multiplicand <a href="CppOperatorAssign.htm">=</a> 0, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> exponent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/(conform <a href="CppVersion.htm">version</a> of) BPI <a href="CppInterface.htm">interface</a><br/>
+&nbsp;&nbsp;<a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> floating_<a href="CppPointer.htm">point</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;*<b><a href="CppThis.htm">this</a></b> <a href="CppOperatorAssign.htm">=</a> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::fromFloat(floating_<a href="CppPointer.htm">point</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *<b><a href="CppThis.htm">this</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Explicit reading from <b><a href="CppFloat.htm">float</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> fromFloat(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> floating_<a href="CppPointer.htm">point</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;test();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>(floating_<a href="CppPointer.htm">point</a>);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/BPI <a href="CppInterface.htm">interface</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> set(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>32_t value, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>32_t shift);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Explicit <a href="CppVersion.htm">version</a> of <b><a href="CppOperator.htm">operator</a></b>=<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> set(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> value);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the exponent used <b><a href="CppFor.htm">for</a></b> determining the <b><a href="CppTrue.htm">true</a></b> value<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <b><a href="CppTrue.htm">true</a></b> value equals 'm_multiplicand * (2 ^ m_exponent)'<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> getExponent() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_exponent; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the multiplicand used <b><a href="CppFor.htm">for</a></b> determining the <b><a href="CppTrue.htm">true</a></b> value<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <b><a href="CppTrue.htm">true</a></b> value equals 'm_multiplicand * (2 ^ m_exponent)'<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/BPI <a href="CppInterface.htm">interface</a><br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> getMultiplicand() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_multiplicand; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the negated exponent used <b><a href="CppFor.htm">for</a></b> determining the <b><a href="CppTrue.htm">true</a></b> value<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <b><a href="CppTrue.htm">true</a></b> value equals 'm_multiplicand * (2 ^ m_exponent)'<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/BPI <a href="CppInterface.htm">interface</a><br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> getShift() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <a href="CppOperatorMinus.htm">-</a>getExponent(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/BPI <a href="CppInterface.htm">interface</a><br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> getValue() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> getMultiplicand(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/BPI <a href="CppInterface.htm">interface</a> <b><a href="CppFor.htm">for</a></b> <b><a href="CppOperatorMultiply.htm">operator*</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The original BPI <a href="CppInterface.htm">interface</a> <b><a href="CppReturn.htm">return</a></b>ed an Int56. This is changed<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/to <b><a href="CppInt.htm">int</a></b>64_t, because Int56 has an implicit limiting of<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/its value (which results in Int56(x).get() being unequal to x)<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/which interfered with <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> from testing itself<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b>64_t mult(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t value) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b>64_t mult(<b><a href="CppConst.htm">const</a></b> Int56&amp; value) <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mult(value.get()); }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b>64_t mult(<b><a href="CppConst.htm">const</a></b> Int64&amp; value) <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mult(value.get()); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConvert.htm">Convert</a> the internally stored <a href="CppInt.htm">integer</a>s to <b><a href="CppDouble.htm">double</a></b>s<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/It is the goal of <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> to not use <b><a href="CppDouble.htm">double</a></b>s,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/so <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.htm">member function</a> can be used in <a href="CppDebug.htm">debugging</a> only<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> to<a href="CppDouble.htm">Double</a>() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The exponent used <b><a href="CppFor.htm">for</a></b> determining the <b><a href="CppTrue.htm">true</a></b> value<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <b><a href="CppTrue.htm">true</a></b> value equals 'm_multiplicand * (2 ^ m_exponent)'<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_exponent;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The multiplicand used <b><a href="CppFor.htm">for</a></b> determining the <b><a href="CppTrue.htm">true</a></b> value<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <b><a href="CppTrue.htm">true</a></b> value equals 'm_multiplicand * (2 ^ m_exponent)'<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_multiplicand;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Use the more <b><a href="CppExplicit.htm">explicit</a></b> fromFloat<br/>
+&nbsp;&nbsp;<a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> floating_<a href="CppPointer.htm">point</a>);<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> INTEGERFLOATINGPOINT_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppIntegerFloatingPoint/integerfloatingpoint.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppIntegerFloatingPoint/integerfloatingpoint.cpp" border = "1"><tr><td><code>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale C<a href="CppOperatorIncrement.htm">++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppInt.htm">integer</a>floating<a href="CppPointer.htm">point</a>.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppLimitsH.htm">limits</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::<a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> multiplicand, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> exponent)<br/>
+&nbsp;&nbsp;: m_exponent(exponent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_multiplicand(multiplicand)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<br/>
+<a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::<a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> floating_<a href="CppPointer.htm">point</a>)<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (floating_<a href="CppPointer.htm">point</a> &lt; 0.0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> p(-floating_<a href="CppPointer.htm">point</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_multiplicand <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>p.getValue();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_exponent <a href="CppOperatorAssign.htm">=</a> p.getExponent();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (floating_<a href="CppPointer.htm">point</a> <a href="CppOperatorEqual.htm">==</a> 0.0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_exponent <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_multiplicand <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> floating_<a href="CppPointer.htm">point</a>;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &gt; 0.0);<br/>
+<br/>
+&nbsp;&nbsp;m_exponent <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;m_multiplicand <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(x &gt; 1.0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>m_exponent;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x <a href="CppOperatorMultiplyAssign.htm">*=</a> 0.5;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> x <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(x &lt; 0.5)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>m_exponent;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x <a href="CppOperatorMultiplyAssign.htm">*=</a> 2.0;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.5 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> x <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> big_bits <a href="CppOperatorAssign.htm">=</a> 30;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(big_bits <a href="CppOperatorLessEqual.htm">&lt;=</a> 30<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Must not be too big, otherwise '<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(x * big_value)' will result in a negative value");<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> big_value <a href="CppOperatorAssign.htm">=</a> <a href="CppStdPow.htm">std::pow</a>(2.0,<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(big_bits));<br/>
+&nbsp;&nbsp;m_multiplicand <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(x * big_value);<br/>
+&nbsp;&nbsp;m_exponent <a href="CppOperatorMinusAssign.htm">-=</a> big_bits;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_multiplicand &gt; 0.0);<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b>64_t <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::mult(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t value) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t result<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> m_exponent <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;? (m_multiplicand * value) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;m_exponent<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: (m_multiplicand * value) <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppOperatorMinus.htm">-</a>m_exponent;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t expected <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>64_t&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(value) * to<a href="CppDouble.htm">Double</a>()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(<a href="CppStdAbs.htm">std::abs</a>(result-expected) <a href="CppOperatorLessEqual.htm">&lt;=</a> 1))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Error in " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="Cpp__func__.htm">__func__</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ":\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppThis.htm">this</a></b>.multiplicand: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;getMultiplicand() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppThis.htm">this</a></b>.exponent: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;getExponent() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppThis.htm">this</a></b>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;to<a href="CppDouble.htm">Double</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "multiplier: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> value <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "result: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> result <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "expected: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> expected <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="Cpp__func__.htm">__func__</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " failed, use floating <a href="CppPointer.htm">point</a>" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> expected;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(result-expected) <a href="CppOperatorLessEqual.htm">&lt;=</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::set(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>32_t value, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>32_t shift)<br/>
+{<br/>
+&nbsp;&nbsp;m_multiplicand <a href="CppOperatorAssign.htm">=</a> value;<br/>
+&nbsp;&nbsp;m_exponent <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>shift;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::set(<b><a href="CppDouble.htm">double</a></b> value)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> p(value);<br/>
+&nbsp;&nbsp;m_multiplicand <a href="CppOperatorAssign.htm">=</a> p.getValue();<br/>
+&nbsp;&nbsp;m_exponent <a href="CppOperatorAssign.htm">=</a> p.getShift();<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::test()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <b><a href="CppFor.htm">for</a></b> zero<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> p <a href="CppOperatorAssign.htm">=</a> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::fromFloat(0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.to<a href="CppDouble.htm">Double</a>() <a href="CppOperatorEqual.htm">==</a> 0.0);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <b><a href="CppFor.htm">for</a></b> correct conversion from and to <b><a href="CppFloat.htm">float</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>For positive powers of 2<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=-65; i<a href="CppOperatorNotEqual.htm">!=</a>65; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppStdPow.htm">std::pow</a>(2.0,<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> p <a href="CppOperatorAssign.htm">=</a> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::fromFloat(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> p.to<a href="CppDouble.htm">Double</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(x-y) &lt;&nbsp;&nbsp;<a href="CppStdNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::epsilon());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <b><a href="CppFor.htm">for</a></b> correct conversion from and to <b><a href="CppFloat.htm">float</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>For negative values of 2<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=-65; i<a href="CppOperatorNotEqual.htm">!=</a>65; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppStdPow.htm">std::pow</a>(2.0,<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> p <a href="CppOperatorAssign.htm">=</a> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::fromFloat(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> p.to<a href="CppDouble.htm">Double</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(x-y) &lt; <a href="CppStdNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::epsilon());<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <b><a href="CppFor.htm">for</a></b> correct conversion from and to <b><a href="CppFloat.htm">float</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>For positive powers of 2 with random noise added<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=-65; i<a href="CppOperatorNotEqual.htm">!=</a>65; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_tests_per_power <a href="CppOperatorAssign.htm">=</a> 100;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j <a href="CppOperatorAssign.htm">=</a> 0; j<a href="CppOperatorNotEqual.htm">!=</a>n_tests_per_power; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppStdRand.htm">std::rand</a>())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppStdPow.htm">std::pow</a>(2.0,<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* (0.5 <a href="CppOperatorPlus.htm">+</a> f);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> p <a href="CppOperatorAssign.htm">=</a> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::fromFloat(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> p.to<a href="CppDouble.htm">Double</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorEqual.htm">==</a> 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(x-y) &lt; <a href="CppStdNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::epsilon());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorNotEqual.htm">!=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ratio <a href="CppOperatorAssign.htm">=</a> y/x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ratio <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.9999);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ratio <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0001);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <b><a href="CppFor.htm">for</a></b> correct conversion from and to <b><a href="CppFloat.htm">float</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>For negative values of 2 with random noise added<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=-65; i<a href="CppOperatorNotEqual.htm">!=</a>65; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_tests_per_power <a href="CppOperatorAssign.htm">=</a> 100;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j <a href="CppOperatorAssign.htm">=</a> 0; j<a href="CppOperatorNotEqual.htm">!=</a>n_tests_per_power; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppStdRand.htm">std::rand</a>())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppStdPow.htm">std::pow</a>(2.0,<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* (0.5 * f);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> p <a href="CppOperatorAssign.htm">=</a> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::fromFloat(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> p.to<a href="CppDouble.htm">Double</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorEqual.htm">==</a> 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(x-y) &lt; <a href="CppStdNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::epsilon());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorNotEqual.htm">!=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ratio <a href="CppOperatorAssign.htm">=</a> y/x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ratio <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.9999);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ratio <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0001);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::mult<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> a_sign <a href="CppOperatorAssign.htm">=</a> 0; a_sign <a href="CppOperatorNotEqual.htm">!=</a> 4; <a href="CppOperatorIncrement.htm">++</a>a_sign)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=-100; i&lt;100; i<a href="CppOperatorPlusAssign.htm">+=</a>4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_multiplicand <a href="CppOperatorAssign.htm">=</a> i * (a_sign <a href="CppOperatorDivide.htm">/</a> 2 ? <a href="CppOperatorMinus.htm">-</a>1 : 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_exponent <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorDivide.htm">/</a> 4;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x_multiplicand)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="CppStdPow.htm">std::pow</a>(2.0,<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x_exponent));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t y <a href="CppOperatorAssign.htm">=</a> i * i * i * i * i * (a_sign <a href="CppOperatorModulus.htm">%</a> 2 ? <a href="CppOperatorMinus.htm">-</a>1 : 1);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t expected<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>64_t&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x*<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a> ifp(x_multiplicand,x_exponent);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t result <a href="CppOperatorAssign.htm">=</a> ifp.mult(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(result-expected) <a href="CppOperatorLessEqual.htm">&lt;=</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppInt.htm">Integer</a>Floating<a href="CppPoint.htm">Point</a>::to<a href="CppDouble.htm">Double</a>() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_multiplicand * <a href="CppStdPow.htm">std::pow</a>(2.0,<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(m_exponent));<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

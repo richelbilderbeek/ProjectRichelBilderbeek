@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestShinyButton/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestShinyButton/ToolTestShinyButton.qrc

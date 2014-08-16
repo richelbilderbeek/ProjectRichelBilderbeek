@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <sstream>
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::CodeBreakerMainDialog::CodeBreakerMainDialog() noexcept
@@ -52,16 +53,15 @@ void ribi::CodeBreakerMainDialog::SetEncryptedText(const std::string& s) noexcep
 void ribi::CodeBreakerMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CodeBreakerMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     CodeBreaker b;
     CodeBreakerMainDialog d;
     d.SetEncryptedText(b.GetExampleEnglish());
   }
-  TRACE("Finished ribi::CodeBreakerMainDialog::Test successfully");
 }
 #endif

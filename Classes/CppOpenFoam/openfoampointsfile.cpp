@@ -19,6 +19,7 @@
 
 #include "openfoamheader.h"
 #include "openfoampointsfileitem.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -63,11 +64,11 @@ ribi::foam::PointsFile ribi::foam::PointsFile::Parse(const std::string& filename
 void ribi::foam::PointsFile::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::PointsFile::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
   //Some initial data
@@ -169,7 +170,6 @@ void ribi::foam::PointsFile::Test() noexcept
       assert(!b.GetItems().empty());
     }
   }
-  TRACE("Finished ribi::foam::Header::PointsFile successfully");
 }
 #endif
 

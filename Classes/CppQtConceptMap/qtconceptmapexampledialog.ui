@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtExampleDialog</class>
+ <widget class="QDialog" name="QtExampleDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>198</width>
+    <height>166</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>198</width>
+    <height>166</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Example</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="layout_competency">
+     <item>
+      <widget class="QLabel" name="label_competency">
+       <property name="text">
+        <string>Competency</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="box_competency"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="box_is_complex">
+     <property name="text">
+      <string>is complex</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="box_is_concrete">
+     <property name="text">
+      <string>is concrete</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="box_is_specific">
+     <property name="text">
+      <string>is specific</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="layout_text">
+     <item>
+      <widget class="QLabel" name="label_text">
+       <property name="text">
+        <string>Text</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="edit_text"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>box_competency</tabstop>
+  <tabstop>box_is_complex</tabstop>
+  <tabstop>box_is_concrete</tabstop>
+  <tabstop>box_is_specific</tabstop>
+  <tabstop>edit_text</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

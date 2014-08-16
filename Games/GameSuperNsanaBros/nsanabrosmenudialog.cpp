@@ -7,6 +7,7 @@
 #include "nsanabrosoptionsdialog.h"
 #include "nsanabrosgamedialog.h"
 #include "nsanabrosgamearea2dwidget.h"
+#include "richelbilderbeekprogram.h"
 
 ribi::NsanaBrosMenuDialog::NsanaBrosMenuDialog()
   : m_game(0),

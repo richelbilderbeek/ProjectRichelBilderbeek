@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Hometrainer, exercise and survey suite
-Copyright (C) 2009-2013 Richel Bilderbeek
+Copyright (C) 2009-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,12 +33,12 @@ struct WtSelectHometrainerFileDialog : public WtSelectFileDialog
   WtSelectHometrainerFileDialog();
 
   ///The virtual method how to select Hometrainer files from a folder
-  const std::vector<std::string> SelectFiles() const;
+  std::vector<std::string> SelectFiles() const noexcept;
 
 
   private:
   ///GetFirstLineFromFile reads the first line from a file
-  static const std::string GetFirstLineFromFile(const std::string& filename);
+  static std::string GetFirstLineFromFile(const std::string& filename);
 
 };
 

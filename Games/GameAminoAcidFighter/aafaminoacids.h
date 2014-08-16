@@ -17,9 +17,10 @@ namespace aaf {
 
 struct AminoAcids
 {
-  static std::vector<AminoAcid> GetAll() noexcept;
-  static std::string ToStr(const AminoAcid s) noexcept;
-  static AminoAcid ToType(const std::string& s);
+  AminoAcids();
+  std::vector<AminoAcid> GetAll() const noexcept;
+  std::string ToStr(const AminoAcid s) const noexcept;
+  AminoAcid ToType(const std::string& s) const;
 
   private:
   static boost::bimap<AminoAcid,std::string> m_map;

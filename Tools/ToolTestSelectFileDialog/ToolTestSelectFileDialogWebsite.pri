@@ -1,4 +1,9 @@
 include(../../Tools/ToolTestSelectFileDialog/ToolTestSelectFileDialogConsole.pri)
-SOURCES +=
-HEADERS +=
+
+SOURCES += \
+    ../../Tools/ToolTestSelectFileDialog/wttestselectfiledialogmaindialog.cpp \
+    ../../Tools/ToolTestSelectFileDialog/wttestselectfiledialogmenudialog.cpp
+HEADERS += \
+    ../../Tools/ToolTestSelectFileDialog/wttestselectfiledialogmaindialog.h \
+    ../../Tools/ToolTestSelectFileDialog/wttestselectfiledialogmenudialog.h
 

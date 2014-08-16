@@ -1,9 +1,14 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtdialog.h"
 
 #include <cassert>
 
 #include <QStandardItemModel>
 #include "ui_qtdialog.h"
+#pragma GCC diagnostic pop
 
 QtDialog::QtDialog(QWidget *parent) :
   QDialog(parent),

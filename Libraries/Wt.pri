@@ -5,8 +5,7 @@ win32 {
     ../../Libraries/wt/src \
     ../../Libraries/wt/build
   LIBS += \
-    -L/../../Libraries/wt/src \
-    -lwt -lwthttp
+    -L/../../Libraries/wt/src
 }
 
 macx {
@@ -20,8 +19,8 @@ macx {
 unix:!macx{
   # Linux only
   message("Wt, built for Linux")
-  INCLUDEPATH += \
-    ../../Libraries/wt/src
+  #INCLUDEPATH += \
+  #  ../../Libraries/wt/src
   LIBS += -lwt -lwthttp
 }
 

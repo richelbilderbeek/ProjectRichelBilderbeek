@@ -22,7 +22,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "callstackcounter.h"
 
 #include <algorithm>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "callstackcounter.h"
+#pragma GCC diagnostic pop
 
 int CallStackCounter::cnt = 0;
 int CallStackHistoryCounter::cnt = 0;

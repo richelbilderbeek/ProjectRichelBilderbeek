@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "conceptmapexample.h"
 
 #include <cassert>
@@ -30,14 +31,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 #include <QRegExp>
 
+#include "counter.h"
+#include "conceptmapregex.h"
+#include "conceptmapcompetencies.h"
+#include "conceptmapcompetency.h"
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmaphelper.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
 
 ribi::cmap::Example::Example(
+  const ExampleFactory&,
   const std::string& text,
   const cmap::Competency competency,
   const bool is_complex,
@@ -45,6 +52,9 @@ ribi::cmap::Example::Example(
   const bool is_specific
   )
   : m_signal_competency_changed{},
+    m_signal_is_complex_changed{},
+    m_signal_is_concrete_changed{},
+    m_signal_is_specific_changed{},
     m_signal_text_changed{},
     m_competency(competency),
     m_is_complex(is_complex),
@@ -57,6 +67,7 @@ ribi::cmap::Example::Example(
   #endif
 }
 
+/*
 std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competency) noexcept
 {
   switch (competency)
@@ -73,14 +84,65 @@ std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competen
   assert(!"Should not get here");
   throw std::logic_error("ribi::cmap::Example::CompetencyToStr: unknown Competency");
 }
+*/
 
-
-void ribi::cmap::Example::SetCompetency(const cmap::Competency competency) noexcept
+void ribi::cmap::Example::SetCompetency(const Competency competency) noexcept
 {
-  if (m_competency != competency)
+  const bool verbose{false};
+  const Competency competency_before = m_competency;
+  const Competency competency_after  =   competency;
+  if (competency_before != competency_after)
   {
+    assert(m_competency == competency_before);
+
+    if (verbose)
+    {
+      std::stringstream s;
+      s << "Example will change Competency from " << Competencies().ToStr(competency_before)
+        << " to " << Competencies().ToStr(competency_after);
+      TRACE(s.str());
+    }
+
     m_competency = competency;
+
+    assert(m_competency == competency_after);
+
     m_signal_competency_changed(this);
+
+    assert(m_competency == competency_after);
+    if (verbose)
+    {
+      std::stringstream s;
+      s << "Competency changed to " << Competencies().ToStr(m_competency);
+      TRACE(s.str());
+    }
+  }
+}
+
+void ribi::cmap::Example::SetIsComplex(const bool is_complex) noexcept
+{
+  if (m_is_complex != is_complex)
+  {
+    m_is_complex = is_complex;
+    m_signal_is_complex_changed(this);
+  }
+}
+
+void ribi::cmap::Example::SetIsConcrete(const bool is_concrete) noexcept
+{
+  if (m_is_concrete != is_concrete)
+  {
+    m_is_concrete = is_concrete;
+    m_signal_is_concrete_changed(this);
+  }
+}
+
+void ribi::cmap::Example::SetIsSpecific(const bool is_specific) noexcept
+{
+  if (m_is_specific != is_specific)
+  {
+    m_is_specific = is_specific;
+    m_signal_is_specific_changed(this);
   }
 }
 
@@ -107,20 +169,74 @@ ribi::cmap::Competency ribi::cmap::Example::StrToCompetency(const std::string& s
   throw std::logic_error("ribi::cmap::Example::StrToCompetency: unknown string");
 }
 
+#ifndef NDEBUG
 void ribi::cmap::Example::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::Example::Test");
-  //Test of operator== and operator!=
+  ribi::cmap::Regex();
+  Counter();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+
+
+  if (verbose) { TRACE("Set and get must be symmetric"); }
+  {
+    const Competency competency_before = Competency::uninitialized;
+    const Competency competency_after = Competency::misc;
+    const bool is_complex_before  = false;
+    const bool is_complex_after   = true;
+    const bool is_concrete_before = true;
+    const bool is_concrete_after  = false;
+    const bool is_specific_before = true;
+    const bool is_specific_after  = false;
+    const std::string text_before = "before";
+    const std::string text_after  = "after";
+
+    auto example  = ExampleFactory().Create(
+      text_before,
+      competency_before,
+      is_complex_before,
+      is_concrete_before,
+      is_specific_before
+    );
+    assert(example->GetCompetency() == competency_before);
+    assert(example->GetCompetency() != competency_after);
+    assert(example->GetIsComplex() == is_complex_before);
+    assert(example->GetIsComplex() != is_complex_after);
+    assert(example->GetIsConcrete() == is_concrete_before);
+    assert(example->GetIsConcrete() != is_concrete_after);
+    assert(example->GetIsSpecific() == is_specific_before);
+    assert(example->GetIsSpecific() != is_specific_after);
+    assert(example->GetText() == text_before);
+    assert(example->GetText() != text_after);
+
+    example->SetCompetency(competency_after);
+    example->SetIsComplex(is_complex_after);
+    example->SetIsConcrete(is_concrete_after);
+    example->SetIsSpecific(is_specific_after);
+    example->SetText(text_after);
+
+    assert(example->GetCompetency() != competency_before);
+    assert(example->GetCompetency() == competency_after);
+    assert(example->GetIsComplex() != is_complex_before);
+    assert(example->GetIsComplex() == is_complex_after);
+    assert(example->GetIsConcrete() != is_concrete_before);
+    assert(example->GetIsConcrete() == is_concrete_after);
+    assert(example->GetIsSpecific() != is_specific_before);
+    assert(example->GetIsSpecific() == is_specific_after);
+    assert(example->GetText() != text_before);
+    assert(example->GetText() == text_after);
+  }
+  if (verbose) { TRACE("Test of operator== and operator!="); }
   {
     const int sz = ExampleFactory().GetNumberOfTests();
     for (int i=0; i!=sz; ++i)
     {
-      boost::shared_ptr<const cmap::Example> a = ExampleFactory().GetTest(i);
+      boost::shared_ptr<const Example> a = ExampleFactory().GetTest(i);
       boost::shared_ptr<      Example> b = ExampleFactory().GetTest(i);
       assert(*a == *a);
       assert(*a == *b);
@@ -128,8 +244,8 @@ void ribi::cmap::Example::Test() noexcept
       assert(*b == *b);
       for (int j=0; j!=sz; ++j)
       {
-        boost::shared_ptr<const cmap::Example> c = cmap::ExampleFactory().GetTest(j);
-        boost::shared_ptr<      Example> d = cmap::ExampleFactory().GetTest(j);
+        boost::shared_ptr<const Example> c = ExampleFactory().GetTest(j);
+        boost::shared_ptr<      Example> d = ExampleFactory().GetTest(j);
         assert(*c == *c);
         assert(*c == *d);
         assert(*d == *c);
@@ -151,48 +267,21 @@ void ribi::cmap::Example::Test() noexcept
       }
     }
   }
-  //Test if unrated and rated examples are noticed as different
+  if (verbose) { TRACE("Unrated and rated examples must be noticed as different"); }
   {
-    const boost::shared_ptr<cmap::Example> a = ExampleFactory::Create("1",Competency::misc);
-    const boost::shared_ptr<cmap::Example> b = ExampleFactory::Create("1",Competency::misc);
-    const boost::shared_ptr<cmap::Example> c = ExampleFactory::Create("1",Competency::uninitialized);
+    const boost::shared_ptr<Example> a = ExampleFactory().Create("1",Competency::misc);
+    const boost::shared_ptr<Example> b = ExampleFactory().Create("1",Competency::misc);
+    const boost::shared_ptr<Example> c = ExampleFactory().Create("1",Competency::uninitialized);
     assert(*a == *a); assert(*a == *b); assert(*a != *c);
     assert(*b == *a); assert(*b == *b); assert(*b != *c);
     assert(*c != *a); assert(*c != *b); assert(*c == *c);
   }
   //Conversion between std::string and competency
+  //Checked by Competencies
+
+  if (verbose) { TRACE("Conversion from class->XML->class must result in something equal to the class"); }
   {
-    const std::vector<Competency> v
-      =
-      {
-        cmap::Competency::uninitialized,
-        cmap::Competency::profession,
-        cmap::Competency::organisations,
-        cmap::Competency::social_surroundings,
-        cmap::Competency::target_audience,
-        cmap::Competency::ti_knowledge,
-        cmap::Competency::prof_growth,
-        cmap::Competency::misc
-      };
-    std::vector<std::string> w;
-    std::transform(v.begin(),v.end(),std::back_inserter(w),
-      [](const cmap::Competency& c)
-      {
-        return ribi::cmap::Example::CompetencyToStr(c);
-      }
-    );
-    std::vector<Competency> x;
-    std::transform(w.begin(),w.end(),std::back_inserter(x),
-      [](const std::string& s)
-      {
-        return Example::StrToCompetency(s);
-      }
-    );
-    assert(v == x);
-  }
-  //Conversion between class and XML, test for equality
-  {
-    const std::vector<boost::shared_ptr<const Example> > v = AddConst(ExampleFactory().GetTests());
+    const std::vector<boost::shared_ptr<const Example>> v = AddConst(ExampleFactory().GetTests());
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<const Example>& e)
       {
@@ -203,8 +292,9 @@ void ribi::cmap::Example::Test() noexcept
       }
     );
   }
+  if (verbose) { TRACE("Conversion from class->XML->class must differ between classes"); }
   {
-    const std::vector<boost::shared_ptr<const Example> > v = AddConst(ExampleFactory().GetTests());
+    const auto v = AddConst(ExampleFactory().GetTests());
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; ++i)
     {
@@ -227,7 +317,43 @@ void ribi::cmap::Example::Test() noexcept
       }
     }
   }
-  TRACE("Example::Test finished successfully");
+  if (verbose) { TRACE("When setting the competency, a signal must be emitted"); }
+  {
+    const auto example = ExampleFactory().GetTest(0);
+    example->SetCompetency(Competency::uninitialized);
+    Counter c{0}; //For receiving the signal
+    example->m_signal_competency_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    example->SetCompetency(Competency::misc);
+    assert(c.Get() == 1);
+  }
+  if (verbose) { TRACE("When setting the text, a signal must be emitted"); }
+  {
+    const auto example = ExampleFactory().GetTest(0);
+    example->SetText("A");
+    Counter c{0}; //For receiving the signal
+    example->m_signal_text_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    example->SetText("B");
+    assert(c.Get() == 1);
+  }
+}
+#endif
+
+std::string ribi::cmap::Example::ToStr() const noexcept
+{
+  std::stringstream s;
+  s
+    << GetText() << " "
+    << Competencies().ToStr(GetCompetency()) << " "
+    << GetIsComplex() << " "
+    << GetIsConcrete() << " "
+    << GetIsSpecific()
+  ;
+  return s.str();
+
 }
 
 std::string ribi::cmap::Example::ToXml() const noexcept
@@ -238,7 +364,8 @@ std::string ribi::cmap::Example::ToXml() const noexcept
   s <<     GetText();
   s <<   "</text>";
   s <<   "<competency>";
-  s <<     CompetencyToStr(GetCompetency());
+  s << Competencies().ToStr(GetCompetency());
+  //s <<     CompetencyToStr(GetCompetency());
   s <<   "</competency>";
   s <<   "<is_complex>";
   s <<     GetIsComplex();

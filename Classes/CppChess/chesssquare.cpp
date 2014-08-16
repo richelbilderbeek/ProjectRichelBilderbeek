@@ -6,9 +6,11 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 
 #include "chesssquare.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -28,7 +30,10 @@ ribi::Chess::Square::Square(const std::string &s)
   Test();
   #endif
   if (s.empty()) throw std::logic_error("An empty string cannot be converted to a chess square");
-  if (s.size() != 2) throw std::logic_error("An string to be converted to a chess square must consist of exactly two characters");
+  if (s.size() != 2)
+  {
+    throw std::logic_error("A string to be converted to a chess square must consist of exactly two characters");
+  }
 }
 
 //ribi::Chess::Square::Square(const char * const s)
@@ -51,9 +56,9 @@ std::string ribi::Chess::Square::GetVersion()
 
 std::vector<std::string> ribi::Chess::Square::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-25: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version"
+  };
 }
 
 #ifndef NDEBUG
@@ -64,127 +69,118 @@ void ribi::Chess::Square::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  {
+    Chess::File::Test();
+    Chess::Rank::Test();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+  {
+    Chess::Square s("a1");
+    Chess::Square t("a1");
+    Chess::Square u(t);
+    Chess::Square v("a2");
+    assert(s == t);
+    assert(t == u);
+    assert(s != v);
+    assert(u != v);
+  }
+
+  {
+    if (verbose) { TRACE("Test a1"); }
+    Chess::Square s("a1");
+    assert(s.GetFile().ToStr() == "a");
+    assert(s.GetRank().ToStr() == "1");
+    assert(s.GetFile().ToInt() == 0);
+    assert(s.GetRank().ToInt() == 0);
+    assert(s.GetColor() == Color::black);
+  }
+  {
+    if (verbose) { TRACE("Test b1"); }
+    Chess::Square s("b1");
+    assert(s.GetFile().ToStr() == "b");
+    assert(s.GetRank().ToStr() == "1");
+    assert(s.GetFile().ToInt() == 1);
+    assert(s.GetRank().ToInt() == 0);
+    assert(s.GetColor() == Color::white);
+  }
+  {
+    if (verbose) { TRACE("Test a2"); }
+    Chess::Square s("a2");
+    assert(s.GetFile().ToStr() == "a");
+    assert(s.GetRank() == Chess::Rank("2"));
+    assert(s.GetFile().ToInt() == 0);
+    assert(s.GetRank().ToInt() == 1);
+    assert(s.GetColor() == Color::white);
+  }
+  {
+    if (verbose) { TRACE("Test d1"); }
+    Chess::Square s("d1");
+    assert(s.GetColor() == Color::white);
+  }
+  {
+    if (verbose) { TRACE("Test d8"); }
+    Chess::Square s("d8");
+    assert(s.GetColor() == Color::black);
+  }
+  {
+    if (verbose) { TRACE("Test g8"); }
+    Chess::Square s("g8");
+    assert(s.GetFile().ToStr() == "g");
+    assert(s.GetRank() == Rank("8"));
+    assert(s.GetFile().ToInt() == 6);
+    assert(s.GetRank().ToInt() == 7);
+  }
+  {
+    if (verbose) { TRACE("Test known-to-be-valid squares"); }
+    const std::vector<std::string> v =
     {
-      Chess::File::Test();
-      Chess::Rank::Test();
-
-      FTRACE("Test Chess::Square operators and constructor");
+      "a1", "a8", "h1", "h8", "d4"
+    };
+    std::for_each(v.begin(),v.end(),
+      [](const std::string& s)
       {
-        Chess::Square s("a1");
-        Chess::Square t("a1");
-        Chess::Square u(t);
-        Chess::Square v("a2");
-        assert(s == t);
-        assert(t == u);
-        assert(s != v);
-        assert(u != v);
-      }
-
-      {
-        FTRACE("Test a1");
-        Chess::Square s("a1");
-        assert(s.GetFile().ToStr() == "a");
-        assert(s.GetRank().ToStr() == "1");
-        assert(s.GetFile().ToInt() == 0);
-        assert(s.GetRank().ToInt() == 0);
-        assert(s.GetColor() == Color::black);
-      }
-      {
-        FTRACE("Test b1");
-        Chess::Square s("b1");
-        assert(s.GetFile().ToStr() == "b");
-        assert(s.GetRank().ToStr() == "1");
-        assert(s.GetFile().ToInt() == 1);
-        assert(s.GetRank().ToInt() == 0);
-        assert(s.GetColor() == Color::white);
-      }
-      {
-        FTRACE("Test a2");
-        Chess::Square s("a2");
-        assert(s.GetFile().ToStr() == "a");
-        assert(s.GetRank() == Chess::Rank("2"));
-        assert(s.GetFile().ToInt() == 0);
-        assert(s.GetRank().ToInt() == 1);
-        assert(s.GetColor() == Color::white);
-      }
-      {
-        FTRACE("Test d1");
-        Chess::Square s("d1");
-        assert(s.GetColor() == Color::white);
-      }
-      {
-        FTRACE("Test d8");
-        Chess::Square s("d8");
-        assert(s.GetColor() == Color::black);
-      }
-      {
-        FTRACE("Test g8");
-        Chess::Square s("g8");
-        assert(s.GetFile().ToStr() == "g");
-        assert(s.GetRank() == Rank("8"));
-        assert(s.GetFile().ToInt() == 6);
-        assert(s.GetRank().ToInt() == 7);
-      }
-      {
-        FTRACE("Test known-to-be-valid squares");
-        const std::vector<std::string> v =
+        try
         {
-          "a1", "a8", "h1", "h8", "d4"
-        };
-        std::for_each(v.begin(),v.end(),
-          [](const std::string& s)
-          {
-            try
-            {
-              Chess::Square x(s);
-            }
-            catch (std::exception& e)
-            {
-              TRACE(s);
-              TRACE(e.what());
-              assert("Should not get here");
-            }
-          }
-        );
-      }
-
-      {
-        FTRACE("Test known-to-be-invalid squares");
-        const std::vector<std::string> v =
+          Chess::Square x(s);
+        }
+        catch (std::exception& e)
         {
-          "A1", "a9", "H8", "h9", "i1", "a", "A", "1", "9", "a10", "h10", "aa1", "a1a", "11", "aa"
-        };
-        std::for_each(v.begin(),v.end(),
-          [](const std::string& s)
-          {
-            bool ok = false;
-            try
-            {
-              Chess::Square x(s);
-            }
-            catch (std::exception& e)
-            {
-              //Ok!
-              ok = true;
-            }
-            if (!ok)
-            {
-              TRACE(s);
-              assert("Should not get here");
-            }
-          }
-        );
+          TRACE(s);
+          TRACE(e.what());
+          assert("Should not get here");
+        }
       }
-      FTRACE("Tested Chess::Square successfully");
-    }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
+    );
+  }
+
+  {
+    if (verbose) { TRACE("Test known-to-be-invalid squares"); }
+    const std::vector<std::string> v =
+    {
+      "A1", "a9", "H8", "h9", "i1", "a", "A", "1", "9", "a10", "h10", "aa1", "a1a", "11", "aa"
+    };
+    std::for_each(v.begin(),v.end(),
+      [](const std::string& s)
+      {
+        bool ok = false;
+        try
+        {
+          Chess::Square x(s);
+        }
+        catch (std::exception& e)
+        {
+          //Ok!
+          ok = true;
+        }
+        if (!ok)
+        {
+          TRACE(s);
+          assert("Should not get here");
+        }
+      }
+    );
+  }
 }
 #endif
 

@@ -20,14 +20,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttictactoegamedialog.h"
 
 #include <cassert>
+#include <functional>
 #include <stdexcept>
+
+#include <boost/lambda/bind.hpp>
 
 #include <QDesktopWidget>
 
 #include "tictactoegame.h"
+#include "testtimer.h"
 #include "tictactoewidget.h"
 #include "qttictactoewidget.h"
 #include "qttictactoewinnerdialog.h"
@@ -50,13 +56,21 @@ ribi::tictactoe::QtTicTacToeGameDialog::QtTicTacToeGameDialog(
 
   ui->setupUi(this);
   ui->layout->addWidget(m_tictactoe.get());
-  QObject::connect(m_tictactoe.get(),SIGNAL(hasWinner()),
-    this,SLOT(HasWinner()));
 
-  //Put the dialog in the screen center
-  const QRect screen = QApplication::desktop()->screenGeometry();
-  this->setGeometry(0,0,3 * screen.width() / 4,3 * screen.height() / 4);
-  this->move( screen.center() - this->rect().center() );
+
+  m_tictactoe->m_signal_has_winner.connect(
+    boost::bind(&ribi::tictactoe::QtTicTacToeGameDialog::HasWinner,this,boost::lambda::_1)
+  );
+  //QObject::connect(m_tictactoe.get(),&QtTicTacToeWidget::m_signal_has_winner,
+  //  this,&ribi::tictactoe::QtTicTacToeGameDialog::HasWinner
+  //);
+
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,3 * screen.width() / 4,3 * screen.height() / 4);
+    this->move( screen.center() - this->rect().center() );
+  }
 }
 
 ribi::tictactoe::QtTicTacToeGameDialog::~QtTicTacToeGameDialog() noexcept
@@ -64,7 +78,7 @@ ribi::tictactoe::QtTicTacToeGameDialog::~QtTicTacToeGameDialog() noexcept
   delete ui;
 }
 
-void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner()
+void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner(const QtTicTacToeWidget* const)
 {
 
   QtTicTacToeWinnerDialog d;
@@ -85,11 +99,10 @@ void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner()
 void ribi::tictactoe::QtTicTacToeGameDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTicTacToeGameDialog::Test");
-  TRACE("Finished ribi::tictactoe::QtTicTacToeGameDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

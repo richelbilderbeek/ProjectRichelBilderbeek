@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtShinyButtonWidget, Wt widget for displaying the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,19 +19,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppWtShinyButtonWidget.htm
 //---------------------------------------------------------------------------
 #include <iostream>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBrush>
 #include <Wt/WEvent>
 #include <Wt/WPainter>
 #include <Wt/WPen>
-//---------------------------------------------------------------------------
+
+#include "geometry.h"
 #include "rainbow.h"
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "wtshinybuttonwidget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtShinyButtonWidget::WtShinyButtonWidget(
   const double color,
   const double gradient,
@@ -58,12 +65,12 @@ ribi::WtShinyButtonWidget::WtShinyButtonWidget(
 
   this->clicked().connect(this,&ribi::WtShinyButtonWidget::OnClicked);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShinyButtonWidget::DoRepaint()
 {
   this->update();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShinyButtonWidget::DrawShinyButton(
   Wt::WPainter& painter,
   const int left, const int top,
@@ -99,52 +106,55 @@ void ribi::WtShinyButtonWidget::DrawShinyButton(
   Wt::WRectF r(left,top,width,height);
   painter.drawText(r,Wt::AlignCenter | Wt::AlignMiddle,button->GetText().c_str());
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShinyButtonWidget::DrawShinyButton(
   Wt::WPainter& painter,
   const ShinyButtonWidget * const widget)
 {
   DrawShinyButton(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetShinyButton());
+    Geometry().GetLeft(widget->GetGeometry()),
+    Geometry().GetTop(widget->GetGeometry()),
+    Geometry().GetWidth(widget->GetGeometry()),
+    Geometry().GetHeight(widget->GetGeometry()),
+    widget->GetShinyButton()
+  );
 }
-//---------------------------------------------------------------------------
-const std::string ribi::WtShinyButtonWidget::GetVersion()
+
+std::string ribi::WtShinyButtonWidget::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::WtShinyButtonWidget::GetVersionHistory()
+
+std::vector<std::string> ribi::WtShinyButtonWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-09-21: version 1.0: initial version");
-  v.push_back("2011-10-29: version 1.1: added OnClicked method");
-  return v;
+  return {
+    "2011-09-21: version 1.0: initial version",
+    "2011-10-29: version 1.1: added OnClicked method"
+  };
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShinyButtonWidget::OnClicked(const Wt::WMouseEvent&)
 {
   m_widget->Click();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShinyButtonWidget::OnResize()
 {
-  resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+  resize(
+    Geometry().GetWidth(m_widget->GetGeometry()),
+    Geometry().GetHeight(m_widget->GetGeometry())
+  );
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShinyButtonWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   DrawShinyButton(painter,m_widget.get());
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShinyButtonWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }
-//---------------------------------------------------------------------------
+

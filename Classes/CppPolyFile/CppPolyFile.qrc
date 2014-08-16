@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/polyfile">
+        <file>polyfile1.poly</file>
+    </qresource>
+</RCC>

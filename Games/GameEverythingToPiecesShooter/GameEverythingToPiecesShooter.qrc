@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/GameEverythingToPiecesShooter/images">
+        <file>GameEverythingToPiecesShooterPlayerWalkDown1.png</file>
+        <file>GameEverythingToPiecesShooterPlayerWalkLeft1.png</file>
+        <file>GameEverythingToPiecesShooterPlayerWalkRight1.png</file>
+        <file>GameEverythingToPiecesShooterPlayerWalkUp1.png</file>
+    </qresource>
+</RCC>

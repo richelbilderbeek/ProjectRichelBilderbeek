@@ -1,5 +1,5 @@
-#ifndef DOTMATRIXCHAR_H
-#define DOTMATRIXCHAR_H
+#ifndef RIBI_DOTMATRIXCHAR_H
+#define RIBI_DOTMATRIXCHAR_H
 
 #include <iosfwd>
 #include <string>
@@ -8,6 +8,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/array.hpp>
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
@@ -22,7 +23,7 @@ struct DotMatrixChar
 {
   DotMatrixChar(const char c);
 
-  const boost::shared_ptr<QImage> CreateImage() const noexcept;
+  boost::shared_ptr<QImage> CreateImage() const noexcept;
 
   ///Read back the character
   char GetChar() const noexcept { return m_c; }
@@ -41,8 +42,8 @@ struct DotMatrixChar
 
   private:
   ~DotMatrixChar() noexcept {}
-  friend void boost::checked_delete<>(DotMatrixChar* x);
-  friend void boost::checked_delete<>(const DotMatrixChar* x);
+  friend void boost::checked_delete<>(      DotMatrixChar*);
+  friend void boost::checked_delete<>(const DotMatrixChar*);
   ///The character
   const char m_c;
 
@@ -54,7 +55,7 @@ struct DotMatrixChar
   ///Dot-matrix characters are
   ///size 5 (width) x 7 (height) pixels, excluding empty spacer pixels
   ///size 6 (width) x 8 (height) pixels, including empty spacer pixels
-  static const boost::array<boost::array<int,5> ,7> GetChar(const char c) noexcept;
+  static boost::array<boost::array<int,5> ,7> GetChar(const char c) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -65,4 +66,4 @@ std::ostream& operator<<(std::ostream& os, const DotMatrixChar& m);
 
 } //~namespace ribi
 
-#endif // DOTMATRIXCHAR_H
+#endif // RIBI_DOTMATRIXCHAR_H

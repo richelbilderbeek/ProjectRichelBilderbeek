@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include "fuzzy_equal_to.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::foam::PointsFileItem::PointsFileItem(
@@ -20,11 +21,11 @@ ribi::foam::PointsFileItem::PointsFileItem(
 void ribi::foam::PointsFileItem::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::PointsFileItem::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //operator== and operator!=
   {
     const PointsFileItem i( Coordinat3D(1.1,2.2,3.3) );
@@ -48,7 +49,6 @@ void ribi::foam::PointsFileItem::Test() noexcept
     }
     assert(i == j);
   }
-  TRACE("Finished ribi::foam::PointsFileItem::Test successfully");
 }
 #endif
 

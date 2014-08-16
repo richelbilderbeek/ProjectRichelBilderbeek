@@ -1,11 +1,12 @@
-#ifndef OPENFOAMFILES_H
-#define OPENFOAMFILES_H
+#ifndef RIBI_OPENFOAMFILES_H
+#define RIBI_OPENFOAMFILES_H
 
 #include <vector>
 #include <iosfwd>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "openfoamfwd.h"
 #pragma GCC diagnostic pop
@@ -106,4 +107,4 @@ bool operator!=(const Files& lhs, const Files& rhs) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMFILES_H
+#endif // RIBI_OPENFOAMFILES_H

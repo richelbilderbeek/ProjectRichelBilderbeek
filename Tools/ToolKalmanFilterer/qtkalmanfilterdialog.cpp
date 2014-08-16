@@ -1,6 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtkalmanfilterdialog.h"
 
 #include <cassert>
@@ -15,6 +16,7 @@
 
 #include "matrix.h"
 #include "qtmatrix.h"
+#include "testtimer.h"
 #include "standardkalmanfilter.h"
 #include "standardkalmanfilterfactory.h"
 #include "steadystatekalmanfilter.h"
@@ -54,9 +56,9 @@ ribi::kalman::QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr
 
       QtKalmanFiltererParameterDialog * const dialog
         = new QtKalmanFiltererParameterDialog(
-          KalmanFilterParameter::ToName(type),
-          KalmanFilterParameter::ToDescription(type),
-          m_model->Find( KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(v[i]) )
+          KalmanFilterParameter().ToName(type),
+          KalmanFilterParameter().ToDescription(type),
+          m_model->Find( KalmanFilterExperimentParameter().ConvertToKalmanFilterExperimentParameter(v[i]) )
         );
       assert(dialog);
 
@@ -114,7 +116,7 @@ const std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::QtKalma
       KalmanFilterParameterType::estimated_process_noise_covariance, //Q
       KalmanFilterParameterType::estimated_measurement_noise         //R
     };
-  assert(v.size() == KalmanFilterParameter::GetAll().size());
+  assert(v.size() == KalmanFilterParameter().GetAll().size());
   return v;
 }
 
@@ -213,11 +215,12 @@ void ribi::kalman::QtKalmanFilterDialog::on_box_filter_type_currentIndexChanged(
 void ribi::kalman::QtKalmanFilterDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::QtKalmanFilterDialog::Test");
-  TRACE("Finished ribi::kalman::QtKalmanFilterDialog::Test successfully");
+  KalmanFilterParameter();
+  KalmanFilterExperimentParameter();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -27,7 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QCursor>
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -83,8 +84,9 @@ void ribi::cmap::QtTool::paint(QPainter* painter, const QStyleOptionGraphicsItem
 {
   assert(m_item);
   this->setPos(
-    m_item->pos().x(),
-    m_item->pos().y() - 32.0);
+    m_item->GetCenterX(),
+    m_item->GetCenterY() - 32.0
+  );
 
   QGraphicsPixmapItem::paint(painter,option,widget);
 

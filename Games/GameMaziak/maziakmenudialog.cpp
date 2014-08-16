@@ -30,7 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "maziakmaindialog.h"
+#include "testtimer.h"
 #include "textcanvas.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -68,8 +70,9 @@ ribi::About ribi::maziak::MenuDialog::GetAbout() const noexcept
     "2007-2014",
     "http://www.richelbilderbeek.nl/GameMaziak.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 
@@ -119,11 +122,10 @@ std::vector<std::string> ribi::maziak::MenuDialog::GetVersionHistory() const noe
 void ribi::maziak::MenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::MenuDialog::Test");
-  TRACE("Finished ribi::maziak::MenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -1,6 +1,6 @@
 #ProjectRichelBilderbeek
 
-Richel Bilderbeek's work
+Richel Bilderbeek's C++ work
 
 ## What ProjectRichelBilderbeek is
 

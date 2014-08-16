@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 AsciiArter, tool to create ASCII art
-Copyright (C) 2006-2013 Richel Bilderbeek
+Copyright (C) 2006-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,9 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolAsciiArter.htm
 //---------------------------------------------------------------------------
+#include "wtasciiartermaindialog.h"
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <boost/filesystem.hpp>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#pragma GCC diagnostic ignored "-Wcomment"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -35,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WTextArea>
 
-#include <QFile>
+#include <QFile> //Must be #included after Wt
 #include <QtGui/QImage>
 
 #include "about.h"
@@ -45,7 +49,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
-#include "wtasciiartermaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::WtAsciiArterMainDialog::Ui::Ui()
@@ -69,16 +72,16 @@ ribi::WtAsciiArterMainDialog::WtAsciiArterMainDialog()
 
     for(const std::string& filename: image_names)
     {
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         QFile f( (std::string(":/ToolAsciiArter/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " + filename + '\n';
       }
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
 
@@ -210,7 +213,7 @@ Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewWelcomeDialog() const
 void ribi::WtAsciiArterMainDialog::OnAnyChange()
 {
   if (!m_filename.empty()
-    && fileio::IsRegularFile(m_filename)
+    && fileio::FileIo().IsRegularFile(m_filename)
     && m_n_cols > 5)
   {
     m_dialog.reset(new AsciiArterMainDialog(m_filename,m_n_cols));
@@ -257,7 +260,7 @@ void ribi::WtAsciiArterMainDialog::OnUploadDone()
 const std::vector<std::vector<double> >
   ribi::WtAsciiArterMainDialog::ConvertToGreyYx(const std::string& filename)
 {
-  assert(boost::filesystem::exists(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
   const QImage * const i = new QImage(filename.c_str());
   const int maxy = i->height();
   const int maxx = i->width();

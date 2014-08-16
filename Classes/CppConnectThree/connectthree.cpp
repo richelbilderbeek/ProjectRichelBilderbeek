@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "connectthreemove.h"
 #include "connectthreemovefactory.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::con3::ConnectThree::ConnectThree(
@@ -70,7 +71,7 @@ int ribi::con3::ConnectThree::CanGetSquare(const int x, const int y) const noexc
        x >= 0
     && x <  GetCols()
     && y >= 0
-    && y <  GetCols()
+    && y <  GetRows()
   ;
 }
 
@@ -84,21 +85,33 @@ void ribi::con3::ConnectThree::DoMove(const int x, const int y)
 void ribi::con3::ConnectThree::DoMove(const boost::shared_ptr<Move> p) noexcept
 {
   assert(CanDoMove(p));
-  DoMove(p->GetX(),p->GetX());
+  DoMove(p->GetX(),p->GetY());
 }
 
 ribi::con3::Square ribi::con3::ConnectThree::GetSquare(const int x, const int y) const noexcept
 {
   assert(CanGetSquare(x,y));
   assert(!m_area.empty());
+  assert(x >= 0);
   assert(x < static_cast<int>(m_area.size()));
-  assert(y < static_cast<int>(m_area[0].size()));
+  assert(y >= 0);
+  #ifndef NDEBUG
+  if (y >= static_cast<int>(m_area[x].size()))
+  {
+    TRACE("ERROR");
+    TRACE(y);
+    TRACE(m_area.size());
+    TRACE(m_area[x].size());
+    TRACE("BREAK");
+  }
+  #endif
+  assert(y < static_cast<int>(m_area[x].size()));
   return m_area[x][y];
 }
 
 std::string ribi::con3::ConnectThree::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::con3::ConnectThree::GetVersionHistory() noexcept
@@ -109,6 +122,8 @@ std::vector<std::string> ribi::con3::ConnectThree::GetVersionHistory() noexcept
     "2011-01-11: version 1.0: added that the game can end in a draw. First tested and debugged version",
     "2011-04-19: version 1.1: added Restart method, removed m_is_player_human",
     "2014-02-13: version 1.2: improved interface",
+    "2014-06-30: version 1.3: fixed bug in ribi::con3::ConnectThree::DoMove",
+    "2014-07-21: version 1.4: fixed another bug"
   };
 }
 
@@ -602,14 +617,6 @@ ribi::con3::Player ribi::con3::ConnectThree::GetNextPlayer() const noexcept
   return ribi::con3::GetNextPlayer(m_player);
 }
 
-/*
-//From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double ribi::con3::ConnectThree::GetRandomUniform() noexcept
-{
-  return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
-}
-*/
-
 int ribi::con3::ConnectThree::GetRows() const noexcept
 {
   assert(!m_area.empty());
@@ -680,7 +687,7 @@ ribi::con3::Winner ribi::con3::ConnectThree::SquareToWinner(const Square square)
 void ribi::con3::ConnectThree::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

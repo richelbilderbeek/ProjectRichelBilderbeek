@@ -44,7 +44,9 @@ ribi::QtMaziakGameWonDialog::QtMaziakGameWonDialog(QWidget *parent) :
   ui->setupUi(this);
 
   m_timer->setInterval(2500);
-  QObject::connect(m_timer.get(),SIGNAL(timeout()),this,SLOT(onTimer()));
+  QObject::connect(m_timer.get(),&QTimer::timeout,
+    this,&ribi::QtMaziakGameWonDialog::onTimer
+  );
   m_timer->start();
 }
 

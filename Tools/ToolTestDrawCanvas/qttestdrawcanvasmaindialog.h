@@ -15,6 +15,7 @@ namespace Ui {
 namespace ribi {
 
 struct DrawCanvas;
+struct QtSurfacePlotWidget;
 
 class QtTestDrawCanvasMainDialog : public QtHideAndShowDialog
 {
@@ -42,8 +43,10 @@ private slots:
 private:
   Ui::QtTestDrawCanvasMainDialog *ui;
   boost::shared_ptr<DrawCanvas> m_canvas;
+  QtSurfacePlotWidget * m_surface_plot;
 
   static const boost::shared_ptr<DrawCanvas> CreateCanvas();
+  void OnChanged() noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

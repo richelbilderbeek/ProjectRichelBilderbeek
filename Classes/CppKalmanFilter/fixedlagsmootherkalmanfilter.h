@@ -3,6 +3,8 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "kalmanfilter.h"
 #include "standardkalmanfilter.h"
 #include "standardkalmanfilterparameters.h"
@@ -27,7 +29,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   //const boost::numeric::ublas::matrix<double>& GetEstimationErrorCovariances() const { return m_estimation_error_covariances; }
 
   ///Get the Kalman filter last calculation elements
-  const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const
+  boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const
   {
     return m_last_calculation;
   }
@@ -67,7 +69,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   //const boost::numeric::ublas::vector<double>& GetLastPredictedStates() const { return m_last_predicted_states; }
 
   ///Obtain the Kalman filter parameters
-  const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const
+  boost::shared_ptr<const KalmanFilterParameters> GetParameters() const
   {
     return m_parameters;
   }
@@ -93,7 +95,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Let the filter predict
-  const boost::numeric::ublas::vector<double> PredictState(
+  boost::numeric::ublas::vector<double> PredictState(
     const boost::numeric::ublas::vector<double>& input) const;
 
   ///Give the filter a measurement and input, and it will update its predictions
@@ -192,14 +194,14 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [ [ D ] ]   ->   [ D ]
   boost::numeric::ublas::vector<double> m_state_estimates;
 
-  static const boost::numeric::ublas::vector<boost::numeric::ublas::vector<double> > CreateComplexInitialStates(
+  static boost::numeric::ublas::vector<boost::numeric::ublas::vector<double>> CreateComplexInitialStates(
     const boost::shared_ptr<const FixedLagSmootherKalmanFilterParameters>& parameters);
 
-  static const boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double> > CreateInitialGains(
+  static boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double>> CreateInitialGains(
     const int lag,
     const StandardKalmanFilter& filter);
 
-  static const boost::numeric::ublas::vector<double> CreateInitialStates(
+  static boost::numeric::ublas::vector<double> CreateInitialStates(
     const boost::shared_ptr<const FixedLagSmootherKalmanFilterParameters>& parameters);
 
   ///         [ I ]
@@ -207,7 +209,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   ///term_a = [ 0 ], where I denotes an identity matrix with size input.size() x input.size()
   ///                and where 0 denotes a null matrix with size input.size() x input.size()
   ///The length of term_a is equal to the lag (3 in this example)
-  static const boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double> > CreateComplexTermA(
+  static boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double>> CreateComplexTermA(
     const int lag,
     const int state_size);
 
@@ -216,7 +218,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   ///term_b = [ 0  I  0], where I denotes an identity matrix with size input.size() x input.size()
   ///                     and where 0 denotes a null matrix with size input.size() x input.size()
   ///The size of term_b is lag x lag (3 in this example)
-  static const boost::numeric::ublas::matrix<boost::numeric::ublas::matrix<double> > CreateComplexTermB(
+  static boost::numeric::ublas::matrix<boost::numeric::ublas::matrix<double>> CreateComplexTermB(
     const int lag,
     const int state_size);
 
@@ -231,7 +233,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   ///The size of term_a will be:
   /// - number of rows   : lag (3) x input.size() (2) = 6
   /// - number of columns:           input.size() (2) = 2
-  static const boost::numeric::ublas::matrix<double> CreateTermA(
+  static boost::numeric::ublas::matrix<double> CreateTermA(
     const int lag,
     const int state_size);
 
@@ -247,18 +249,17 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   ///The size of term_b will be:
   /// - number of rows   : lag (3) x input.size() (2) = 6
   /// - number of columns: lag (3) x input.size() (2) = 6
-  static const boost::numeric::ublas::matrix<double> CreateTermB(
+  static boost::numeric::ublas::matrix<double> CreateTermB(
     const int lag,
     const int state_size);
 
-  static const boost::shared_ptr<const FixedLagSmootherKalmanFilterParameters> DownCast(
+  static boost::shared_ptr<const FixedLagSmootherKalmanFilterParameters> DownCast(
     const boost::shared_ptr<const KalmanFilterParameters>& parameters);
 
   ///Obtain the (unlagged) Kalman filter
-  const boost::shared_ptr<const StandardKalmanFilter> GetStandardKalmanFilter() const { return m_standard_filter; }
+  boost::shared_ptr<const StandardKalmanFilter> GetStandardKalmanFilter() const { return m_standard_filter; }
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 };

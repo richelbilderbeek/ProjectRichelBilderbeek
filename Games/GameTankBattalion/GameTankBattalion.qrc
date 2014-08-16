@@ -1,13 +1,17 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>PlayerDown.png</file>
-        <file>PlayerRight.png</file>
-        <file>PlayerUp.png</file>
-        <file>Arena.png</file>
-        <file>PlayerLeft.png</file>
-        <file>EnemyDown.png</file>
-        <file>EnemyLeft.png</file>
-        <file>EnemyRight.png</file>
-        <file>EnemyUp.png</file>
+    <qresource prefix="/GameTankBattalion/images">
+        <file>GameTankBattalionArena.png</file>
+        <file>GameTankBattalionEnemyDown.png</file>
+        <file>GameTankBattalionEnemyLeft.png</file>
+        <file>GameTankBattalionEnemyRight.png</file>
+        <file>GameTankBattalionEnemyUp.png</file>
+        <file>GameTankBattalionPlayerDown.png</file>
+        <file>GameTankBattalionPlayerLeft.png</file>
+        <file>GameTankBattalionPlayerRight.png</file>
+        <file>GameTankBattalionPlayerUp.png</file>
+        <file>TankBattalionOriginal.png</file>
+        <file>GameTankBattalionBricks.png</file>
+        <file>GameTankBattalionFlag.png</file>
+        <file>GameTankBattalionNoBricks.png</file>
     </qresource>
 </RCC>

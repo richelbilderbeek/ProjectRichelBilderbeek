@@ -15,3 +15,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolStaircaseCardCreator/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolStaircaseCardCreator/ToolStaircaseCardCreator.qrc

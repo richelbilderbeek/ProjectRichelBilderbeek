@@ -3,6 +3,8 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <vector>
 #include <string>
 #include <boost/shared_ptr.hpp>
@@ -25,10 +27,10 @@ struct KalmanFilter
   virtual KalmanFilterType GetType() const = 0;
 
   ///Get the Kalman filter last calculation elements
-  virtual const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const = 0;
+  virtual boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const = 0;
 
   ///Obtain the Kalman filter parameters
-  virtual const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const = 0;
+  virtual boost::shared_ptr<const KalmanFilterParameters> GetParameters() const = 0;
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -38,25 +40,16 @@ struct KalmanFilter
 
   virtual void SupplyMeasurementAndInput(
     const boost::numeric::ublas::vector<double>& measurements,
-    const boost::numeric::ublas::vector<double>& input) = 0;
+    const boost::numeric::ublas::vector<double>& input
+  ) = 0;
 
   protected:
   explicit KalmanFilter() {}
 
   private:
-  /*
-  ///An ABC can only be constructed by derived classes
-  explicit KalmanFilter(
-    const boost::shared_ptr<KalmanFilterCalculationElements>& calculation,
-    const boost::shared_ptr<const KalmanFilterParameters>& parameters
-  );
-
-  ///The Kalman filter last calculation elements
-  const boost::shared_ptr<KalmanFilterCalculationElements> m_last_calculation;
-
-  ///The Kalman filter parameters
-  const boost::shared_ptr<const KalmanFilterParameters> m_parameters;
-  */
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

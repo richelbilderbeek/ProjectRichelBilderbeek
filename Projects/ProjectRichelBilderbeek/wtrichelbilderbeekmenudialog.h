@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,14 +21,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef WTRICHELBILDERBEEKMENUDIALOG_H
 #define WTRICHELBILDERBEEKMENUDIALOG_H
 
-#include "wtrichelbilderbeekmenuitem.h"
 
 #include <string>
 #include <tuple>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WContainerWidget>
 #include <Wt/WPushButton>
+
+#include "wtrichelbilderbeekmenuitem.h"
+#pragma GCC diagnostic pop
 
 namespace Wt
 {
@@ -81,7 +87,7 @@ struct WtMenuDialog : public Wt::WContainerWidget
 
 
   ///Collect all the submenu items
-  const std::vector<Item_t> CollectSubMenuItems() const;
+  std::vector<Item_t> CollectSubMenuItems() const;
 
   ///Create the 'About' submenu dialog
   Wt::WWidget * CreateNewAboutDialog();
@@ -144,12 +150,12 @@ struct WtMenuDialog : public Wt::WContainerWidget
   void OnMainItemClicked(const ShinyButtonWidget * const widget);
   void OnSubItemClicked(const ShinyButtonWidget * const widget);
 
-  const std::vector<Item_t> CreateAboutMenuItems() const;
-  const std::vector<Item_t> CreateClassesMenuItems() const;
-  const std::vector<Item_t> CreateGamesMenuItems() const;
-  const std::vector<Item_t> CreateMainMenuItems() const;
-  const std::vector<Item_t> CreateProjectsMenuItems() const;
-  const std::vector<Item_t> CreateToolsMenuItems() const;
+  std::vector<Item_t> CreateAboutMenuItems() const;
+  std::vector<Item_t> CreateClassesMenuItems() const;
+  std::vector<Item_t> CreateGamesMenuItems() const;
+  std::vector<Item_t> CreateMainMenuItems() const;
+  std::vector<Item_t> CreateProjectsMenuItems() const;
+  std::vector<Item_t> CreateToolsMenuItems() const;
 };
 
 } //~namespace RichelBilderbeek

@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
@@ -39,76 +40,86 @@ struct Led
 {
   explicit Led(
     const double intensity    = 0.0,
-    const unsigned char red   = 255,
-    const unsigned char green =   0,
-    const unsigned char blue  =   0);
+    const int red   = 255,
+    const int green =   0,
+    const int blue  =   0);
   Led(const Led&) = delete;
   Led& operator=(const Led&) = delete;
 
-  mutable boost::signals2::signal<void ()> m_signal_color_changed;
-  mutable boost::signals2::signal<void ()> m_signal_intensity_changed;
+  mutable boost::signals2::signal<void (Led*)> m_signal_color_changed;
+  mutable boost::signals2::signal<void (Led*)> m_signal_intensity_changed;
 
   ///Set the Led its color
   void SetColor(
-    const unsigned char red,
-    const unsigned char green,
-    const unsigned char blue);
+    const int red,
+    const int green,
+    const int blue
+  ) noexcept;
 
   ///Get the Led its blueness
-  unsigned char GetBlue()  const { return m_blue;  }
+  int GetBlue()  const noexcept { return m_blue;  }
 
   ///Get the Led its greenness
-  unsigned char GetGreen() const { return m_green; }
+  int GetGreen() const noexcept { return m_green; }
 
   ///Get the Led its intensity, from 0.0 to 1.0
-  double GetIntensity() const { return m_intensity; }
+  double GetIntensity() const noexcept { return m_intensity; }
 
   ///Get the Led its redness
-  unsigned char GetRed()   const { return m_red;   }
+  int GetRed() const noexcept { return m_red;   }
 
-  ///Set the Led its blueness
-  void SetBlue(const unsigned char blue);
-
-  ///Set the Led its greenness
-  void SetGreen(const unsigned char green);
-
-  ///Set the Led its intensity, from 0.0 to 1.0
-  void SetIntensity(const double intensity);
-
-  ///Set the Led its redness
-  void SetRed(const unsigned char red);
-
-  private:
-  virtual ~Led() noexcept {}
-  friend void boost::checked_delete<>(Led*);
-
-  ///m_intensity has range [0.0,1.0]
-  double m_intensity;
-
-  ///The Led its redness
-  unsigned char m_red;
-
-  ///The Led its greenness
-  unsigned char m_green;
-
-  ///The Led its blueness
-  unsigned char m_blue;
-
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
-
-  friend std::ostream& operator<<(std::ostream& os, const Led& led);
-
-  public:
   ///Obtain this class its version
   static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///Set the Led its blueness, range [0.0,255]
+  void SetBlue(const int blue) noexcept;
+
+  ///Set the Led its greenness, range [0.0,255]
+  void SetGreen(const int green) noexcept;
+
+  ///Set the Led its intensity, from 0.0 to 1.0
+  void SetIntensity(const double intensity) noexcept;
+
+  ///Set the Led its redness, range [0.0,255]
+  void SetRed(const int red) noexcept;
+
+  std::string ToStr() const noexcept;
+  std::string ToXml() const noexcept;
+
+  private:
+  virtual ~Led() noexcept {}
+  friend void boost::checked_delete<>(Led*);
+  friend void boost::checked_delete<>(const Led*);
+  friend struct std::default_delete<      Led>;
+  friend struct std::default_delete<const Led>;
+  friend class boost::detail::sp_ms_deleter<      Led>;
+  friend class boost::detail::sp_ms_deleter<const Led>;
+
+  ///The Led its blueness, range [0.0,255]
+  int m_blue;
+
+  ///The Led its greenness, range [0.0,255]
+  int m_green;
+
+  ///m_intensity has range [0.0,1.0]
+  double m_intensity;
+
+  ///The Led its redness, range [0.0,255]
+  int m_red;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
+  friend std::ostream& operator<<(std::ostream& os, const Led& led) noexcept;
+
 };
 
-std::ostream& operator<<(std::ostream& os, const Led& led);
+std::ostream& operator<<(std::ostream& os, const Led& led) noexcept;
+bool operator==(const Led& lhs, const Led& rhs) noexcept;
 
 } //~namespace ribi
 

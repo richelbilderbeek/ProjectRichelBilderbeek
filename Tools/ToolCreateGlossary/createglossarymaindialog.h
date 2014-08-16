@@ -31,6 +31,9 @@ struct CreateGlossaryMainDialog
   ///Create all glossaries
   CreateGlossaryMainDialog();
 
+  ///Create all glossaries
+  void CreateAllGlossaries() const noexcept;
+
   private:
   ///Create a glossary
   static void CreatePage(

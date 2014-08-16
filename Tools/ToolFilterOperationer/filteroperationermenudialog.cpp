@@ -3,6 +3,8 @@
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::FilterOperationerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -31,8 +33,9 @@ ribi::About ribi::FilterOperationerMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolFilterOperationer.htm",
     GetVersion(),
     GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
   a.AddLibrary("Test image from http://sipi.usc.edu");
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
 
   return a;
 }
@@ -78,11 +81,10 @@ std::vector<std::string> ribi::FilterOperationerMenuDialog::GetVersionHistory() 
 void ribi::FilterOperationerMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::FilterOperationerMenuDialog::Test");
-  TRACE("Finished ribi::FilterOperationerMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeBreaker, code breaking class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "caesarcipher.h"
 #include "trace.h"
 #include "loopreader.h"
+#include "testtimer.h"
 #include "vigenerecipher.h"
 #pragma GCC diagnostic pop
 
@@ -51,7 +52,7 @@ std::pair<double,double> ribi::CodeBreaker::CalculateChiSquared(
   const std::map<char,double>& frequency_expected
 ) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   std::vector<double> tally_expected;
   std::vector<double> tally_measured;
 
@@ -182,7 +183,7 @@ std::map<char,double> ribi::CodeBreaker::GetCharFrequency(const std::string& tex
   );
   assert(sum > 0);
   std::map<char,double> n;
-  for (const auto p: m)
+  for (const auto& p: m)
   {
     n.insert(std::make_pair(p.first, static_cast<double>(p.second) / static_cast<double>(sum)));
   }
@@ -192,7 +193,7 @@ std::map<char,double> ribi::CodeBreaker::GetCharFrequency(const std::string& tex
 std::map<char,int> ribi::CodeBreaker::GetCharTally(const std::string& text) const noexcept
 {
   std::map<char,int> m;
-  for (const auto c:text)
+  for (const auto& c:text)
   {
     if (m.count(c) == 0) m.insert(std::make_pair(c,0));
     ++m[c];
@@ -216,7 +217,7 @@ std::vector<std::map<char,double>> ribi::CodeBreaker::GetCharFrequency(const std
     );
     assert(sum > 0);
     std::map<char,double> n;
-    for (const auto p: m)
+    for (const auto& p: m)
     {
       n.insert(std::make_pair(p.first, static_cast<double>(p.second) / static_cast<double>(sum)));
     }
@@ -324,7 +325,7 @@ int ribi::CodeBreaker::GuessCaesarCipherKey(
   const std::map<char,double>& expected_char_frequency
   ) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   std::vector<double> v;
 
   for (int key=0; key!=26; ++key)
@@ -412,13 +413,13 @@ int ribi::CodeBreaker::GuessVigenereCipherKeyLength(const std::string& secret_te
 void ribi::CodeBreaker::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
   const CodeBreaker b;
-  //const bool verbose = false;
-  TRACE("Starting ribi::CodeBreaker::Test");
+  //const bool verbose{false};
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const auto p(
       b.CalculateChiSquared(
@@ -521,7 +522,6 @@ void ribi::CodeBreaker::Test() noexcept
     assert(guess_length == length);
   }
   #endif //#ifdef FIXING_ISSUE_175
-  TRACE("Finished ribi::CodeBreaker::Test successfully");
 }
 #endif
 

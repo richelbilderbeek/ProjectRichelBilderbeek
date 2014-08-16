@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 #include "fparser.hh"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestfunctionparsermaindialog.h"
 #pragma GCC diagnostic pop
@@ -102,11 +103,10 @@ void ribi::QtTestFunctionParserMainDialog::Parse() noexcept
 void ribi::QtTestFunctionParserMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestFunctionParserMainDialog::Test");
-  TRACE("Finished ribi::QtTestFunctionParserMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -48,16 +48,16 @@ do
         mytypestr=""
 
         #Cleaning up
-        rm Makefile
-        rm Makefile.*
-        rm -r release
-        rm -r debug
-        rm ui_*.h
-        rm qrc_*.cpp
-        rm moc_*.cpp
-        rm object_script*.*
-        rm *.o
-        rm *_plugin_import.cpp
+        #rm Makefile
+        #rm Makefile.*
+        #rm -r release
+        #rm -r debug
+        #rm ui_*.h
+        #rm qrc_*.cpp
+        #rm moc_*.cpp
+        #rm object_script*.*
+        #rm *.o
+        #rm *_plugin_import.cpp
 
         case $type in
         0) myqmake="i686-pc-mingw32.static-qmake-qt5" mytypestr="Qt5LubuntuToWindows" ;;
@@ -96,16 +96,16 @@ do
         fi
 
         #Cleaning up
-        rm Makefile
-        rm Makefile.*
-        rm -r release
-        rm -r debug
-        rm ui_*.h
-        rm qrc_*.cpp
-        rm moc_*.cpp
-        rm object_script*.*
-        rm *.o
-        rm *_plugin_import.cpp
+        #rm Makefile
+        #rm Makefile.*
+        #rm -r release
+        #rm -r debug
+        #rm ui_*.h
+        #rm qrc_*.cpp
+        #rm moc_*.cpp
+        #rm object_script*.*
+        #rm *.o
+        #rm *_plugin_import.cpp
 
 
       done #next type

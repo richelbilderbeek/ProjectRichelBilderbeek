@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -46,7 +48,7 @@ ribi::About ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout() const n
     "Richel Bilderbeek",
     "TestKeyboardFriendlyGraphicsView",
     "tests QtKeyboardFriendlyGraphicsView",
-    "the 19th of December 2012",
+    "the 5th of November 2013",
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolTestKeyboardFriendlyGraphicsView.htm",
     GetVersion(),
@@ -98,11 +100,10 @@ std::vector<std::string> ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetVe
 void ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::Test");
-  TRACE("Finished ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

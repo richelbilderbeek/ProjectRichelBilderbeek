@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 #include "shape.h"
+#include "testtimer.h"
 #include "shapewidget.h"
 #include "trace.h"
 
@@ -75,11 +76,10 @@ std::vector<boost::shared_ptr<ribi::ShapeWidget> > ribi::TestShapeMainDialog::Cr
 void ribi::TestShapeMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestShapeMainDialog::Test");
-  TRACE("Finished ribi::TestShapeMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

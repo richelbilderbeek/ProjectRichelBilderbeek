@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtTimedServerPusher, server to broadcast to all its WtTimedServerPusherClients
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -48,10 +48,10 @@ struct WtTimedServerPusher
   static WtTimedServerPusher * GetInstance();
 
   ///Get the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///\brief
   ///Set the time (in milliseconds) WtTimedServerPusherClient::UpdatePage is to be called

@@ -35,7 +35,7 @@ int ribi::MultiCanvas::GetHeight() const noexcept
 {
   if (m_canvases.empty()) return 0;
   int h = m_canvases[0]->GetHeight();
-  for (auto c: m_canvases) { h = std::min(h,c->GetHeight()); }
+  for (const auto& c: m_canvases) { h = std::min(h,c->GetHeight()); }
   return h;
 }
 
@@ -55,7 +55,7 @@ int ribi::MultiCanvas::GetWidth() const noexcept
 {
   if (m_canvases.empty()) return 0;
   int w = m_canvases[0]->GetWidth();
-  for (auto c: m_canvases) { w = std::min(w,c->GetWidth()); }
+  for (const auto& c: m_canvases) { w = std::min(w,c->GetWidth()); }
   return w;
 }
 
@@ -66,7 +66,7 @@ std::vector<std::string> ribi::MultiCanvas::ToStrings() const noexcept
   if (maxx == 0 || maxy == 0) { return std::vector<std::string>(); }
   const int n_layers = static_cast<int>(m_canvases.size());
   std::vector<std::vector<std::string>> v;
-  for (auto c: m_canvases) { v.push_back(c->ToStrings()); }
+  for (const auto& c: m_canvases) { v.push_back(c->ToStrings()); }
   //Let the first canvas be drawn last, to give it the heighest Z order
   std::reverse(v.begin(),v.end());
 

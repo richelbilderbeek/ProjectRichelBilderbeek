@@ -1,42 +1,26 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
+include(../../Libraries/BigInteger.pri)
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
-TEMPLATE = app
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppContainer/CppContainer.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Classes/CppMultipleChoiceQuestion/CppMultipleChoiceQuestion.pri)
+include(../../Classes/CppMultipleChoiceQuestionDialog/CppMultipleChoiceQuestionDialog.pri)
+include(../../Classes/CppOpenQuestion/CppOpenQuestion.pri)
+include(../../Classes/CppOpenQuestionDialog/CppOpenQuestionDialog.pri)
+include(../../Classes/CppQuestion/CppQuestion.pri)
+include(../../Classes/CppQuestionDialog/CppQuestionDialog.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppTribool/CppTribool.pri)
 
-include( ToolTestMultipleChoiceQuestion.pri )
+include(../../Classes/CppQtMultipleChoiceQuestionDialog/CppQtMultipleChoiceQuestionDialog.pri)
+include(../../Classes/CppQtQuestionDialog/CppQtQuestionDialog.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppQtMultipleChoiceQuestionDialog \
-    ../../Classes/CppQtQuestionDialog
+include(ToolTestMultipleChoiceQuestionDesktop.pri )
 
 SOURCES += \
-    qtmain.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtMultipleChoiceQuestionDialog/qtmultiplechoicequestiondialog.cpp \
-    ../../Classes/CppQtQuestionDialog/qtquestiondialog.cpp \
-    qttestmultiplechoicequestionmaindialog.cpp \
-    qttestmultiplechoicequestionmenudialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
-
-HEADERS  += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtMultipleChoiceQuestionDialog/qtmultiplechoicequestiondialog.h \
-    ../../Classes/CppQtQuestionDialog/qtquestiondialog.h \
-    qttestmultiplechoicequestionmaindialog.h \
-    qttestmultiplechoicequestionmenudialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
-
-FORMS += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    ../../Classes/CppQtMultipleChoiceQuestionDialog/qtmultiplechoicequestiondialog.ui \
-    qttestmultiplechoicequestionmaindialog.ui \
-    qttestmultiplechoicequestionmenudialog.ui
-
-RESOURCES += \
-    ToolTestMultipleChoiceQuestion.qrc
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    ToolTestMultipleChoiceQuestion.pri
+    qtmain.cpp

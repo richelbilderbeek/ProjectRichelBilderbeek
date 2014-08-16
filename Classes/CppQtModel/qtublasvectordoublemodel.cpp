@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 #include "matrix.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -304,11 +305,11 @@ void ribi::QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vec
 void ribi::QtUblasVectorDoubleModel::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::QtUblasVectorDoubleModel::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     QtUblasVectorDoubleModel model;
     assert(model.rowCount()    == 0);
@@ -320,6 +321,5 @@ void ribi::QtUblasVectorDoubleModel::Test() noexcept
     assert(model.rowCount()    == 0);
     assert(model.columnCount() == 0);
   }
-  TRACE("Finished ribi::QtUblasVectorDoubleModel::Test successfully");
 }
 #endif

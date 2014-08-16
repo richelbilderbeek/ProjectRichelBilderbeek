@@ -6,83 +6,105 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>527</width>
-    <height>719</height>
+    <width>393</width>
+    <height>253</height>
    </rect>
   </property>
   <property name="font">
    <font>
-    <pointsize>24</pointsize>
+    <family>Courier New,courier,monospace</family>
+    <weight>75</weight>
+    <italic>false</italic>
+    <bold>true</bold>
    </font>
   </property>
   <property name="windowTitle">
-   <string>TestDial</string>
+   <string>TestLed</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/ToolTestDial/images/R.png</normaloff>:/ToolTestDial/images/R.png</iconset>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+
+QWidget { font: bold, &quot;Courier New&quot;, courier, monospace }
+QPushButton { font: 18 px  }
+QTabWidget { font: 12 px  }
+QLabel { font: 12px }
+QComboBox { font: 12px }
+QPlainTextEdit { font: 10px }
+
+</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label_title">
-     <property name="font">
-      <font>
-       <pointsize>36</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>TestLed</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_subtitle">
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Tool to test the Led and LedWidget classes</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestLed.qrc">:/ToolTestLed/images/ToolTestLedWelcome.png</pixmap>
+      <pixmap resource="ToolTestLed.qrc">:/ToolTestLed/images/ToolTestLedModify.png</pixmap>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QPushButton" name="button_start">
+   <item row="0" column="1">
+    <widget class="QPushButton" name="button_led_modify">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
-      <string>Start</string>
+      <string>&amp;Modify LED</string>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QPushButton" name="button_about">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>About</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestLed.qrc">:/ToolTestLed/images/ToolTestLedCompare.png</pixmap>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_led_compare">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;View LEDs</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
     <widget class="QPushButton" name="button_quit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
-      <string>Quit</string>
+      <string>&amp;Quit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="button_about">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;About</string>
      </property>
     </widget>
    </item>

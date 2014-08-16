@@ -48,8 +48,6 @@ public:
   ~QtTestNewickVectorDialog() noexcept;
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
-protected:
-  
 
 private:
   Ui::QtTestNewickVectorDialog *ui;

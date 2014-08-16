@@ -11,6 +11,7 @@
 #include <QVBoxLayout>
 
 #include "qtpongmaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtpongmaindialog.h"
 #pragma GCC diagnostic pop
@@ -62,7 +63,9 @@ ribi::QtPongMainDialog::QtPongMainDialog(QWidget *parent)
 
   //Create a timer to call 'advance' on all sprites
   QTimer * const timer(new QTimer(this));
-  timer->connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+  timer->connect(timer,&QTimer::timeout,
+    scene, &QGraphicsScene::advance
+  );
   timer->start(20);
 }
 
@@ -97,11 +100,10 @@ void ribi::QtPongMainDialog::resizeEvent(QResizeEvent *)
 void ribi::QtPongMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtPongMainDialog::Test");
-  TRACE("Finished ribi::QtPongMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

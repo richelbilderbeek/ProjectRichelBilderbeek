@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#ifndef CODETOHTMLCONTENT_H
-#define CODETOHTMLCONTENT_H
+#ifndef RIBI_CODETOHTMLCONTENT_H
+#define RIBI_CODETOHTMLCONTENT_H
 
 #include <string>
 #include <vector>
@@ -27,7 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/scoped_ptr.hpp>
+#include <boost/checked_delete.hpp>
+#include <boost/make_shared.hpp>
 
 #include "codetohtml.h"
 #include "codetohtmlfiletype.h"
@@ -54,17 +55,19 @@ struct File
 
   ///Get the HTML version of the file.
   ///The content is created by CreateHtml
-  const std::vector<std::string>& GetHtml() const { return m_html; }
+  const std::vector<std::string>& GetHtml() const noexcept { return m_html; }
 
   private:
   ~File() noexcept {}
   friend void boost::checked_delete<>(File*);
   friend void boost::checked_delete<>(const File*);
+  friend class boost::detail::sp_ms_deleter<      File>;
+  friend class boost::detail::sp_ms_deleter<const File>;
 
   const std::vector<std::string> m_html;
 
   ///Create the HTML of the file
-  std::vector<std::string> CreateHtml(
+  static std::vector<std::string> CreateHtml(
     const std::string& filename,
     const FileType content_type) noexcept;
 
@@ -76,4 +79,4 @@ struct File
 } //~namespace c2h
 } //~namespace ribi
 
-#endif // CODETOHTMLCONTENT_H
+#endif // RIBI_CODETOHTMLCONTENT_H

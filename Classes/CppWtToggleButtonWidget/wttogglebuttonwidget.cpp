@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtToggleButtonWidget, Wt widget for displaying the ToggleButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,27 +18,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtToggleButtonWidget.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include "wttogglebuttonwidget.h"
 
 #include <iostream>
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBrush>
 #include <Wt/WEvent>
 #include <Wt/WPainter>
 #include <Wt/WPen>
-//---------------------------------------------------------------------------
+
+#include "geometry.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtToggleButtonWidget::WtToggleButtonWidget(
   const bool toggled,
   const unsigned char red,
@@ -65,12 +64,12 @@ ribi::WtToggleButtonWidget::WtToggleButtonWidget(
 
   this->clicked().connect(this,&ribi::WtToggleButtonWidget::OnClicked);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtToggleButtonWidget::DoRepaint()
 {
   this->update();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtToggleButtonWidget::DrawToggleButton(
   Wt::WPainter& painter,
   const int left, const int top,
@@ -112,52 +111,55 @@ void ribi::WtToggleButtonWidget::DrawToggleButton(
     left + width - 1,
     top + (height * 2 / 3));
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtToggleButtonWidget::DrawToggleButton(
   Wt::WPainter& painter,
   const ToggleButtonWidget * const widget)
 {
   DrawToggleButton(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetToggleButton());
+    Geometry().GetLeft(widget->GetGeometry()),
+    Geometry().GetTop(widget->GetGeometry()),
+    Geometry().GetWidth(widget->GetGeometry()),
+    Geometry().GetHeight(widget->GetGeometry()),
+    widget->GetToggleButton()
+  );
 }
-//---------------------------------------------------------------------------
-const std::string ribi::WtToggleButtonWidget::GetVersion()
+
+std::string ribi::WtToggleButtonWidget::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::WtToggleButtonWidget::GetVersionHistory()
+
+std::vector<std::string> ribi::WtToggleButtonWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-06-16: version 1.0: initial version");
-  v.push_back("2011-08-31: Version 1.1: added setting the color of a ToggleButton");
-  return v;
+  return {
+    "2011-06-16: version 1.0: initial version",
+    "2011-08-31: Version 1.1: added setting the color of a ToggleButton"
+  };
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtToggleButtonWidget::OnClicked(const Wt::WMouseEvent&)
 {
   m_widget->GetToggleButton()->Toggle();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtToggleButtonWidget::OnResize()
 {
-  resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+  resize(
+    Geometry().GetWidth(m_widget->GetGeometry()),
+    Geometry().GetHeight(m_widget->GetGeometry())
+  );
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtToggleButtonWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   DrawToggleButton(painter,m_widget.get());
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtToggleButtonWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }
-//---------------------------------------------------------------------------
+

@@ -19,9 +19,9 @@ namespace kalman {
 ///Class to work on one or more KalmanFilterType instances
 struct KalmanFilterTypes
 {
-  static std::vector<KalmanFilterType> GetAllTypes() noexcept;
-  static std::string ToStr(const KalmanFilterType type) noexcept;
-  static KalmanFilterType ToType(const std::string& s);
+  std::vector<KalmanFilterType> GetAllTypes() const noexcept;
+  std::string ToStr(const KalmanFilterType type) const noexcept;
+  KalmanFilterType ToType(const std::string& s) const;
 
   private:
   static boost::bimap<KalmanFilterType,std::string> m_map;

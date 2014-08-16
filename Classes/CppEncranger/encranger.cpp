@@ -28,27 +28,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 #include <vector>
 
+#include "testtimer.h"
 #include "trace.h"
 #include "loopreader.h"
 
-ribi::Encranger::Encranger(const int key)
-  : characters(CreateCharacters()),
-    table(CreateTable(key,CreateCharacters().size()))
+ribi::Encranger::Encranger(const int key) noexcept
+  : m_characters(CreateCharacters()),
+    m_table(CreateTable(key,CreateCharacters().size()))
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-const std::vector<int> ribi::Encranger::CreateTestKeys() noexcept
+std::vector<int> ribi::Encranger::CreateTestKeys() noexcept
 {
   std::vector<int> v;
-  v.push_back(0);
-  int i=1;
-  while (i > 0)
+  int x=1;
+  for (int i=0; i!=16; ++i)
   {
-    v.push_back(i);
-    i *= 2;
+    v.push_back(x);
+    x *= 2;
   }
   return v;
 }
@@ -57,7 +57,7 @@ std::string ribi::Encranger::Encrypt(std::string s) const noexcept
 {
   typedef std::string::iterator StringIterator;
   typedef std::vector<int>::const_iterator LoopReaderIteratorType;
-  LoopReader<LoopReaderIteratorType> table_reader(table.begin(), table.end());
+  LoopReader<LoopReaderIteratorType> table_reader(m_table.begin(), m_table.end());
 
   const StringIterator j = s.end();
   for (StringIterator i = s.begin(); i!=j; ++i, table_reader.Next())
@@ -70,7 +70,7 @@ std::string ribi::Encranger::Encrypt(std::string s) const noexcept
 std::string ribi::Encranger::Deencrypt(std::string s) const noexcept
 {
   typedef std::string::iterator StringIterator;
-  LoopReader<std::vector<int>::const_iterator> table_reader(table.begin(), table.end());
+  LoopReader<std::vector<int>::const_iterator> table_reader(m_table.begin(), m_table.end());
 
   const StringIterator j = s.end();
   for (StringIterator i = s.begin(); i!=j; ++i, table_reader.Next())
@@ -83,40 +83,35 @@ std::string ribi::Encranger::Deencrypt(std::string s) const noexcept
 char ribi::Encranger::Encrypt(const char c, const int d) const noexcept
 {
   const int i = GetIndex(c);
-  const int n_chars = static_cast<int>(characters.size());
+  const int n_chars = static_cast<int>(m_characters.size());
   const int i_new = (i + d) % n_chars;
   assert(i_new >= 0);
-  assert(i_new < static_cast<int>(characters.size()));
-  return characters[i_new];
+  assert(i_new < static_cast<int>(m_characters.size()));
+  return m_characters[i_new];
 }
 
 char ribi::Encranger::Deencrypt(const char c, const int d) const noexcept
 {
   const int i = GetIndex(c);
-  const int n_chars = static_cast<int>(characters.size());
+  const int n_chars = static_cast<int>(m_characters.size());
   const int i_new = (i - d + n_chars) % n_chars;
   assert(i_new >= 0);
-  assert(i_new < static_cast<int>(characters.size()));
-  return characters[i_new];
+  assert(i_new < static_cast<int>(m_characters.size()));
+  return m_characters[i_new];
 }
 
 int ribi::Encranger::GetIndex(const char c) const noexcept
 {
   if (c == '\t' || c == '\n') return GetIndex(' ');
   const std::vector<char>::const_iterator i
-    = std::find(characters.begin(), characters.end(), c);
-  assert(i!=characters.end());
-  return i - characters.begin();
+    = std::find(m_characters.begin(), m_characters.end(), c);
+  assert(i!=m_characters.end());
+  return i - m_characters.begin();
 }
 
-const std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigned int sz) const
+std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigned int sz) const noexcept
 {
-  if (sz == 0)
-  {
-    throw std::logic_error("Encranger::CreateTable: cannot create table of size zero");
-  }
-
-  assert(sz!=0);
+  assert(sz != 0 && "Supplied table must not be of size zero");
 
   std::vector<int> v(sz);
   std::iota(v.begin(),v.end(),0);
@@ -130,7 +125,7 @@ const std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigne
   return v;
 }
 
-const std::vector<char> ribi::Encranger::CreateCharacters() noexcept
+std::vector<char> ribi::Encranger::CreateCharacters() noexcept
 {
   std::vector<char> v;
   //Uppercase
@@ -238,7 +233,7 @@ const std::vector<char> ribi::Encranger::CreateCharacters() noexcept
 
 std::string ribi::Encranger::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::Encranger::GetVersionHistory() noexcept
@@ -247,6 +242,7 @@ std::vector<std::string> ribi::Encranger::GetVersionHistory() noexcept
     "2010-01-05: version 1.0: initial version",
     "2011-01-12: version 1.1: added version info",
     "2014-04-01: version 1.2: replaced use of custom Increase class by std::iota",
+    "2014-07-21: version 1.3: rigid testing"
   };
 }
 
@@ -254,11 +250,11 @@ std::vector<std::string> ribi::Encranger::GetVersionHistory() noexcept
 void ribi::Encranger::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Encranger::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test Increase
   {
     const std::size_t sz { 5 };
@@ -285,10 +281,16 @@ void ribi::Encranger::Test() noexcept
         assert(e.Deencrypt(e.Encrypt(s)) == s);
         //Test encryption with real, decryption with faker
         const Encranger faker(key + 1);
+        if (faker.Deencrypt(e.Encrypt(s)) == s)
+        {
+          TRACE("ERROR");
+          TRACE(key);
+          TRACE(s);
+          TRACE("BREAK");
+        }
         assert(faker.Deencrypt(e.Encrypt(s)) != s);
       }
     }
   }
-  TRACE("Finished ribi::Encranger::Test successfully");
 }
 #endif

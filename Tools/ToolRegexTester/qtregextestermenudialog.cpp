@@ -37,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "regextestercpp11maindialog.h"
 #include "regextestermaindialog.h"
 #include "regextestermenudialog.h"
+#include "testtimer.h"
 #include "regextesterqtmaindialog.h"
 #include "trace.h"
 #include "ui_qtregextestermenudialog.h"
@@ -112,11 +113,10 @@ void ribi::QtRegexTesterMenuDialog::on_button_boost_xpressive_clicked()
 void ribi::QtRegexTesterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtRegexTesterMenuDialog::Test");
   {
     const boost::shared_ptr<RegexTesterMainDialog> d(
       new RegexTesterCpp11MainDialog);
@@ -139,6 +139,6 @@ void ribi::QtRegexTesterMenuDialog::Test() noexcept
       new RegexTesterBoostXpressiveMainDialog);
     assert(d);
   }
-  TRACE("Finished ribi::QtRegexTesterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

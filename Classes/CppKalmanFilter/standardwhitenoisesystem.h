@@ -33,7 +33,7 @@ struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
   void GoToNextState(const boost::numeric::ublas::vector<double>& input);
 
   ///Measure a value from this system with normally distributed noise
-  const boost::numeric::ublas::vector<double> Measure() const noexcept;
+  boost::numeric::ublas::vector<double> Measure() const noexcept;
 
   private:
   ///StandardWhiteNoiseSystem can only be created by a StandardWhiteNoiseSystemFactory
@@ -46,6 +46,10 @@ struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
 
   ///The parameters for the white noise system
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters> m_parameters;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

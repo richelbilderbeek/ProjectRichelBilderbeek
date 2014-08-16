@@ -4,14 +4,20 @@
 #include <iostream>
 
 #include "fileio.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 
-int ribi::TestTextCanvasMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::TestTextCanvasMenuDialog::TestTextCanvasMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+int ribi::TestTextCanvasMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
   const int argc = static_cast<int>(argv.size());
   if (argc != 1)
   {
@@ -98,12 +104,11 @@ std::vector<std::string> ribi::TestTextCanvasMenuDialog::GetVersionHistory() con
 void ribi::TestTextCanvasMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestTextCanvasMenuDialog::Test");
   ribi::TextCanvas();
-  TRACE("Finished ribi::TestTextCanvasMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

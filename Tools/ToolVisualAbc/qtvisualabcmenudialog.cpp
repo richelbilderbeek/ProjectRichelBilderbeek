@@ -1,11 +1,14 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "about.h"
 #include "qtaboutdialog.h"
 #include "qtvisualabcmaindialog.h"
 #include "qtvisualabcmenudialog.h"
 #include "trace.h"
 #include "ui_qtvisualabcmenudialog.h"
+#include "testtimer.h"
 #include "visualabcmenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -46,11 +49,10 @@ void ribi::QtVisualAbcMenuDialog::on_button_quit_clicked()
 void ribi::QtVisualAbcMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtVisualAbcMenuDialog::Test");
-  TRACE("Finished ribi::QtVisualAbcMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

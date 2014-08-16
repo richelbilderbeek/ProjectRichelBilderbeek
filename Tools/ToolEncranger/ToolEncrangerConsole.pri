@@ -11,3 +11,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolEncranger/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolEncranger/ToolEncranger.qrc

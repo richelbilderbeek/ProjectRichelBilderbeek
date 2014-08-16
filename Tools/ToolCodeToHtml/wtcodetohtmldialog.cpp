@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2011  Richel Bilderbeek
+Copyright (C) 2010-2014  Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,12 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <fstream>
 #include <string>
 #include <vector>
 
 #include <boost/algorithm/string/split.hpp>
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 
 #include <Wt/WAnchor>
 #include <Wt/WBreak>
@@ -44,12 +45,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtml.h"
 #include "codetohtmldialog.h"
+#include "fileio.h"
 #include "wtcodetohtmldialog.h"
 #pragma GCC diagnostic pop
 
-namespace c2h {
-
-WtDialog::Ui::Ui()
+ribi::c2h::WtDialog::Ui::Ui()
   : m_anchor(new Wt::WAnchor),
     m_area_result(new Wt::WTextArea),
     m_area_snippet(new Wt::WTextArea),
@@ -71,6 +71,7 @@ WtDialog::Ui::Ui()
     "  std::cout << \"Hello World\\n\"\n"
     "}\n"
     );
+  /*
   {
     const std::vector<c2h::PageType> v = c2h::GetAllPageTypes();
     std::for_each(v.begin(),v.end(),
@@ -101,6 +102,7 @@ WtDialog::Ui::Ui()
     );
     m_box_tech_info->setCurrentIndex(0);
   }
+  */
   m_button_convert->setText("Convert");
   m_button_convert->setMinimumSize(400,Wt::WLength::Auto);
   m_edit_source->setText("/home/richel/Projects/Tools/ToolCodeToHtml");
@@ -120,7 +122,7 @@ WtDialog::Ui::Ui()
 
 }
 
-WtDialog::WtDialog()
+ribi::c2h::WtDialog::WtDialog()
   : ui{}
 {
   this->setContentAlignment(Wt::AlignCenter);
@@ -163,7 +165,7 @@ WtDialog::WtDialog()
     this,&WtDialog::on_edit_source_textChanged);
 }
 
-const std::vector<std::string> WtDialog::AreaToVector(const Wt::WTextArea * const area)
+std::vector<std::string> ribi::c2h::WtDialog::AreaToVector(const Wt::WTextArea * const area)
 {
   assert(area);
   const std::string input = area->text().toUTF8();
@@ -174,26 +176,29 @@ const std::vector<std::string> WtDialog::AreaToVector(const Wt::WTextArea * cons
   return v;
 }
 
-c2h::PageType WtDialog::GetPageType() const
+/*
+c2h::PageType ribi::c2h::WtDialog::GetPageType() const
 {
   const std::string s = ui.m_box_page_type->currentText().toUTF8();
   return c2h::StrToPageType(s);
 }
 
-c2h::ContentType WtDialog::GetContentType() const
+c2h::ContentType ribi::c2h::WtDialog::GetContentType() const
 {
   const std::string s = ui.m_box_content_type->currentText().toUTF8();
   return c2h::StrToContentType(s);
 }
 
-c2h::TechInfoType WtDialog::GetTechInfo() const
+c2h::TechInfoType ribi::c2h::WtDialog::GetTechInfo() const
 {
   const std::string s = ui.m_box_tech_info->currentText().toUTF8();
   return c2h::StrToTechInfoType(s);
 }
+*/
 
-void WtDialog::on_button_convert_clicked()
+void ribi::c2h::WtDialog::on_button_convert_clicked()
 {
+  /*
   if (ui.m_stack->currentIndex() == 0)
   {
     const std::string source
@@ -205,6 +210,7 @@ void WtDialog::on_button_convert_clicked()
       std::ofstream f(source.c_str());
       std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     }
+
     boost::scoped_ptr<c2h::Dialog> d {
       new c2h::Dialog(
         GetPageType(),
@@ -213,7 +219,7 @@ void WtDialog::on_button_convert_clicked()
         GetTechInfo()
       )
     };
-    const std::vector<std::string> v = d->ToHtml();
+    const std::vector<std::string> v = Dialog::FileToHtml(source);
     Display(v);
     boost::filesystem::remove(source);
   }
@@ -234,12 +240,30 @@ void WtDialog::on_button_convert_clicked()
         GetTechInfo()
       )
     };
-    const std::vector<std::string> v = d->ToHtml();
+    const std::vector<std::string> v = Dialog::FolderToHtml(source);
     Display(v);
   }
+  */
+
+  const std::string source = ui.m_edit_source->text().toUTF8();
+  if (
+       !fileio::FileIo().IsRegularFile(source)
+    && !fileio::FileIo().IsFolder(source)
+  )
+  {
+    ui.m_button_convert->setText("Source (file or folder) does not exist");
+    return;
+  }
+
+  const std::vector<std::string> v
+    = fileio::FileIo().IsRegularFile(source)
+    ? Dialog::FileToHtml(source)
+    : Dialog::FolderToHtml(source)
+  ;
+  Display(v);
 }
 
-void WtDialog::Display(const std::vector<std::string>& v)
+void ribi::c2h::WtDialog::Display(const std::vector<std::string>& v)
 {
   std::string text;
   std::for_each(v.begin(),v.end(),
@@ -251,7 +275,8 @@ void WtDialog::Display(const std::vector<std::string>& v)
   ui.m_area_result->setText(text.c_str());
 
   {
-    const std::string filename = std::string(std::tmpnam(0)) + std::string(".htm");
+
+    const std::string filename = fileio::FileIo().GetTempFileName(".htm");
     std::ofstream f(filename.c_str());
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     ui.m_anchor->setText((std::string("Download ") + filename).c_str() );
@@ -260,7 +285,7 @@ void WtDialog::Display(const std::vector<std::string>& v)
 
 }
 
-void WtDialog::on_tab_source_currentChanged()
+void ribi::c2h::WtDialog::on_tab_source_currentChanged()
 {
   if (ui.m_stack->currentIndex() == 0)
   {
@@ -271,7 +296,8 @@ void WtDialog::on_tab_source_currentChanged()
   {
     //assert(ui->tab_source->currentWidget() == ui->tab_source_snippet);
     const std::string source = ui.m_edit_source->text().toUTF8();
-    if (!boost::filesystem::exists(source))
+
+    if (!fileio::FileIo().IsRegularFile(source))
     {
       ui.m_button_convert->setText("Source (file or folder) does not exist");
       ui.m_button_convert->setEnabled(false);
@@ -284,22 +310,25 @@ void WtDialog::on_tab_source_currentChanged()
   }
 }
 
-void WtDialog::on_edit_source_textChanged()
+void ribi::c2h::WtDialog::on_edit_source_textChanged()
 {
   const std::string source = ui.m_edit_source->text().toUTF8();
 
-  if (!boost::filesystem::exists(source))
+  if (!fileio::FileIo().IsRegularFile(source))
   {
     ui.m_button_convert->setText("Source does not exist");
     ui.m_button_convert->setEnabled(false);
     return;
   }
-  if (boost::filesystem::is_directory(source))
+
+  if (fileio::FileIo().IsFolder(source))
   {
     const std::vector<std::string> v
-      = c2h::SortFiles(
-          c2h::FilterFiles(
-            c2h::GetFilesInFolder(source)));
+      = SortFiles(
+          FilterFiles(
+            fileio::FileIo().GetFilesInFolder(source)
+          )
+        );
     const std::string s
       = std::string("&Convert (source type: folder, ")
       + std::to_string(v.size())
@@ -310,10 +339,8 @@ void WtDialog::on_edit_source_textChanged()
   }
   else
   {
-    assert(boost::filesystem::exists(source));
+    assert(fileio::FileIo().IsFolder(source));
     ui.m_button_convert->setText("&Convert (source type: file)");
     ui.m_button_convert->setEnabled(true);
   }
 }
-
-} //~namespace c2h

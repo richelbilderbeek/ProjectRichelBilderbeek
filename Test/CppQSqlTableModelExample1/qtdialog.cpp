@@ -1,3 +1,7 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtdialog.h"
 
 #include <cassert>
@@ -5,6 +9,7 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include "ui_qtdialog.h"
+#pragma GCC diagnostic pop
 
 QtDialog::QtDialog(QWidget *parent) :
   QDialog(parent),

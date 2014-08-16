@@ -19,7 +19,7 @@ struct SteadyStateKalmanFilterCalculationElements : public KalmanFilterCalculati
     const boost::numeric::ublas::vector<double>& updated_state = boost::numeric::ublas::vector<double>());
 
   ///Produce a deep copy of the derived class
-  const boost::shared_ptr<KalmanFilterCalculationElements> Clone() const;
+  boost::shared_ptr<KalmanFilterCalculationElements> Clone() const;
 
   ///Obtain the Kalman filter type as an enum
   KalmanFilterType GetType() const { return KalmanFilterType::steady_state; }
@@ -32,6 +32,9 @@ struct SteadyStateKalmanFilterCalculationElements : public KalmanFilterCalculati
   ~SteadyStateKalmanFilterCalculationElements() noexcept {}
   friend void boost::checked_delete<>(SteadyStateKalmanFilterCalculationElements*);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

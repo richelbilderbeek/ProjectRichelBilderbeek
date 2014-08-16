@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtchordedge.h"
 #include "qtchordrelationswidget.h"
+#include "testtimer.h"
 #include "qtchordvertex.h"
 #include "qtmultiscalechordrelationswidget.h"
 #include "qtmusictheorysinglescaledialog.h"
@@ -85,11 +86,10 @@ void ribi::QtMusicTheoryMenuDialog::on_button_start_multiscale_clicked()
 void ribi::QtMusicTheoryMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtMusicTheoryMenuDialog::Test");
-  TRACE("Finished ribi::QtMusicTheoryMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -40,6 +40,12 @@ namespace cmap {
 struct ConceptFactory;
 
 ///A Concept is a class that has a name and examples
+///A Concept is a Node without coordinats
+///A Concept is an Edge without coordinats, source and target
+///A Concept is the GUI independent part of a concept. It is displayed as:
+/// - QtConceptDialog (as a QDialog, to be used in a QDialog)
+/// - (as part of QtNode)
+/// - (as part of QtEdge)
 struct Concept
 {
   ///Block copying, as signals cannot be copied
@@ -71,49 +77,14 @@ struct Concept
   ///-1: not rated, 0: lowest, 2: highest
   int GetRatingSpecificity() const noexcept { return m_rating_specificity; }
 
+  ///Set the examples
+  void SetExamples(const boost::shared_ptr<Examples>& examples) noexcept;
+
   ///Has an assessor rated the name of this concept as being an addition to the complexity?
   ///This is something different than m_rating_complexity:
   ///m_is_complex can be used to help the assessor determine a m_rating_complexity,
   ///but m_rating_complexity is the final and complete rating
-  void SetIsComplex(const bool is_complex) noexcept { m_is_complex = is_complex; }
-
-  ///Emitted when the examples are changed
-  mutable boost::signals2::signal<void(const Concept*)> m_signal_examples_changed;
-
-  ///Emitted when the name is changed
-  mutable boost::signals2::signal<void(const Concept*)> m_signal_name_changed;
-
-  ///Emitted when the rating of the complexity is changed
-  mutable boost::signals2::signal<void(const Concept*)> m_signal_rating_complexity_changed;
-
-  ///Emitted when the rating of the complexity is changed
-  mutable boost::signals2::signal<void(const Concept*)> m_signal_rating_concreteness_changed;
-
-  ///Emitted when the rating of the specificity is changed
-  mutable boost::signals2::signal<void(const Concept*)> m_signal_rating_specificity_changed;
-
-  ///Convert Concept to a std::string to write to file
-  std::string ToXml() const noexcept;
-
-  private:
-
-  friend class QtConceptMapConceptEditDialog;
-  friend class QtConceptMapDialog;
-  friend class QtRateConceptDialogNewName;
-  friend class QtConceptMapTestConceptItemDialog;
-  friend class QtConceptMapTestEdgeItemDialog;
-  friend class QtConceptMapTestNodeItemDialog;
-  friend class QtEdge;
-  friend class QtNode;
-  friend class QtRateExamplesDialogNewName;
-  friend class QtStudentMenuDialog;
-  friend class QtTestEditConceptMapDialog;
-  friend class QtTestRateConceptMapDialog;
-  friend class QtTestEdgeItemDialog;
-  friend class QtTestNodeItemDialog;
-
-  ///Set the examples
-  void SetExamples(const boost::shared_ptr<Examples>& examples) noexcept;
+  void SetIsComplex(const bool is_complex) noexcept;
 
   ///Set the name
   void SetName(const std::string& name) noexcept;
@@ -129,6 +100,30 @@ struct Concept
   ///Set the rating of this Concept for specificity
   ///-1: not rated, 0: lowest, 2: highest
   void SetRatingSpecificity(const int rating_specificity) noexcept;
+
+  ///Convert Concept to a short std::string
+  std::string ToStr() const noexcept;
+
+  ///Convert Concept to a std::string to write to file
+  std::string ToXml() const noexcept;
+
+  ///Emitted when the examples are changed
+  mutable boost::signals2::signal<void(Concept*)> m_signal_examples_changed;
+
+  ///Emitted when IsComplex
+  mutable boost::signals2::signal<void(Concept*)> m_signal_is_complex_changed;
+
+  ///Emitted when the name is changed
+  mutable boost::signals2::signal<void(Concept*)> m_signal_name_changed;
+
+  ///Emitted when the rating of the complexity is changed
+  mutable boost::signals2::signal<void(Concept*)> m_signal_rating_complexity_changed;
+
+  ///Emitted when the rating of the complexity is changed
+  mutable boost::signals2::signal<void(Concept*)> m_signal_rating_concreteness_changed;
+
+  ///Emitted when the rating of the specificity is changed
+  mutable boost::signals2::signal<void(Concept*)> m_signal_rating_specificity_changed;
 
   private:
 
@@ -156,23 +151,27 @@ struct Concept
   ///-1: not rated, 0: lowest, 2: highest
   int m_rating_specificity;
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test() noexcept;
+  #endif
 
   ///Use checked_delete for destructor
   ~Concept() {}
   friend void boost::checked_delete<>(Concept* x);
 
   ///Let only ConceptFactory construct Concepts
-  Concept(
+  explicit Concept(
     const std::string& name,
     const boost::shared_ptr<Examples>& examples,
     const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
     const int rating_specificity);
-  friend ConceptFactory;
+  friend class ConceptFactory;
 };
+
+std::ostream& operator<<(std::ostream& os, const Concept& concept) noexcept;
 
 bool operator==(const Concept& lhs, const Concept& rhs);
 bool operator!=(const Concept& lhs, const Concept& rhs);

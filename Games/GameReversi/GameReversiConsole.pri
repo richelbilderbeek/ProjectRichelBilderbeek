@@ -12,3 +12,6 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Games/GameReversi/Licence.txt
 
+RESOURCES += \
+    ../../Games/GameReversi/GameReversi.qrc
+

@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H
-#define TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H
+#ifndef RIBI_TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H
+#define RIBI_TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H
 
 #include <string>
 #include <vector>
@@ -11,6 +11,16 @@ namespace trim {
 
 struct CreateVerticalFacesStrategies
 {
+  //friend class Cell;
+  //friend class CellFactory;
+  //friend class CellsCreator;
+  //friend class CellsCreatorFactory;
+  //friend class Dialog;
+  //friend class Face;
+  //friend class FaceFactory;
+  //friend class TriangleMeshBuilder;
+  //friend class TriangleMeshBuilderImpl;
+
   CreateVerticalFacesStrategies() noexcept {}
 
   std::vector<CreateVerticalFacesStrategy> GetAll() const noexcept;
@@ -23,4 +33,4 @@ struct CreateVerticalFacesStrategies
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H
+#endif // RIBI_TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H

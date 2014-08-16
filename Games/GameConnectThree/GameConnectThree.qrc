@@ -17,5 +17,6 @@
         <file>GameConnectThree.css</file>
         <file>R.png</file>
         <file>ConnectThreeIcon.png</file>
+        <file>GameConnectThreeRetro.png</file>
     </qresource>
 </RCC>

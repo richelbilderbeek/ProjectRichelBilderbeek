@@ -39,3 +39,5 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Games/GameMaziak/Licence.txt
 
+RESOURCES += \
+    ../../Games/GameMaziak/GameMaziak.qrc

@@ -1,0 +1,21 @@
+
+       author = Joerg Arndt       email: arndt@jjj.de
+
+       permanent address:
+         Huehlweg 37,  D-95448 Bayreuth,  Germany
+
+       this software is online at   http://www.jjj.de/
+
+---------------- *** LEGAL NOTICE: *** ------------------
+
+fxt is distributed under the GNU GENERAL PUBLIC LICENSE (GPL)
+cf. the file COPYING.txt
+
+------------ *** end of legal notice *** ------------------
+
+
+1.) If you use this software for scientific purposes then cite it in
+    your publications as you would cite an ordinary publication.
+
+2.) If you notice errors in the code or the documentation then
+    kindly drop me an email.

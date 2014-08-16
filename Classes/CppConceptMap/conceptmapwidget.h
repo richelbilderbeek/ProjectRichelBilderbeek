@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
+//#ifdef NOT_NOW_2014_08_11
+
 #ifndef CONCEPTMAPWIDGET_H
 #define CONCEPTMAPWIDGET_H
 
@@ -46,7 +48,7 @@ namespace cmap {
 ///Note that a Widget does not know the type of ConceptMap (Display/Edit/Rate)
 struct Widget
 {
-  Widget(const boost::shared_ptr<ConceptMap> conceptmap = CreateEmptyConceptMap());
+  explicit Widget(const boost::shared_ptr<ConceptMap> conceptmap = CreateEmptyConceptMap());
 
   #ifndef NDEBUG
   Widget(const Widget& other); //Only to be used in debugging
@@ -232,3 +234,5 @@ bool operator!=(const Widget& lhs, const Widget& rhs) noexcept;
 } //~namespace ribi
 
 #endif // CONCEPTMAPWIDGET_H
+
+//#endif // NOT_NOW_2014_08_11

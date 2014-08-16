@@ -23,11 +23,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include "codetohtmlreplacements.h"
+#include "testtimer.h"
 #include "trace.h"
 
 boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::Replacer::m_replacements_cpp {};
 boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::Replacer::m_replacements_pro {};
 boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::Replacer::m_replacements_txt {};
+
+ribi::c2h::Replacer::Replacer()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 const ribi::c2h::Replacements& ribi::c2h::Replacer::GetReplacementsCpp()
 {
@@ -101,35 +109,34 @@ std::string ribi::c2h::Replacer::ReplaceAll(
 void ribi::c2h::Replacer::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::c2h::Replacer::Test");
-
-  assert(!GetReplacementsCpp().Get().empty());
-  assert(!GetReplacementsPro().Get().empty());
-  assert(!GetReplacementsTxt().Get().empty());
+  Replacer().GetReplacementsCpp();
+  Replacer().GetReplacementsPro();
+  Replacer().GetReplacementsTxt();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 
   //Test for correct replacements
   {
     const std::vector<std::pair<std::string,std::string> > v {
-      { "C++ Builder", "(<a href=\"CppBuilder.htm\">C++ Builder</a>)" },
-      { "BeerWanter", "(<a href=\"GameBeerWanter.htm\">BeerWanter</a>)" },
-      { "int main()", "(<b><a href=\"CppInt.htm\">int</a></b> <a href=\"CppMain.htm\">main</a>())" },
-      { "boenken", "(<a href=\"GameBoenken.htm\">boenken</a>)" },
-      { "; ++i)", "(; <a href=\"CppOperatorIncrement.htm\">++</a>i))" },
-      { "C++11", "(<a href=\"Cpp11.htm\">C++11</a>)" },
-      { "C++0x", "(<a href=\"Cpp0x.htm\">C++0x</a>)" },
-      { "C++", "(<a href=\"Cpp.htm\">C++</a>)" },
-      { "++", "(<a href=\"CppOperatorIncrement.htm\">++</a>)" },
-      { "--", "(<a href=\"CppOperatorDecrement.htm\">--</a>)" }
+      { "C++ Builder", "<a href=\"CppBuilder.htm\">C++ Builder</a>" },
+      { "BeerWanter", "<a href=\"GameBeerWanter.htm\">BeerWanter</a>" },
+      { "int main()", "<b><a href=\"CppInt.htm\">int</a></b> <a href=\"CppMain.htm\">main</a>()" },
+      { "boenken", "<a href=\"GameBoenken.htm\">boenken</a>" },
+      { "; ++i)", "; <a href=\"CppOperatorIncrement.htm\">++</a>i)" },
+      { "C++11", "<a href=\"Cpp11.htm\">C++11</a>" },
+      { "C++0x", "<a href=\"Cpp0x.htm\">C++0x</a>" },
+      { "C++", "<a href=\"Cpp.htm\">C++</a>" },
+      { "++", "<a href=\"CppOperatorIncrement.htm\">++</a>" },
+      { "--", "<a href=\"CppOperatorDecrement.htm\">--</a>" }
     };
     std::for_each(v.begin(),v.end(),
       [](const std::pair<std::string,std::string>& p)
       {
         const std::string& s = p.first;
-        const std::string t = MultiReplace(s,GetReplacementsCpp().Get());
+        const std::string t = Replacer().MultiReplace(s,GetReplacementsCpp().Get());
         const std::string expected = p.second;
         if (t != expected)
         {
@@ -141,7 +148,16 @@ void ribi::c2h::Replacer::Test() noexcept
       }
     );
   }
-  TRACE("Finished ribi::c2h::Replacer::Test successfully");
+  {
+    std::stringstream s;
+    s << "Number of C++ replacements: " << Replacer().GetReplacementsCpp().Get().size();
+    TRACE(s.str());
+  }
+  {
+    std::stringstream s;
+    s << "Number of .pro file replacements: " << Replacer().GetReplacementsPro().Get().size();
+    TRACE(s.str());
+  }
 }
 #endif
 
@@ -156,6 +172,7 @@ std::vector<std::string> ribi::c2h::Replacer::ToHtml(
     case FileType::cpp:
       get_replacements = &ribi::c2h::Replacer::GetReplacementsCpp;
       break;
+    case FileType::foam:
     case FileType::py:
     case FileType::sh:
     case FileType::txt:
@@ -165,6 +182,9 @@ std::vector<std::string> ribi::c2h::Replacer::ToHtml(
     case FileType::pro:
       get_replacements = &ribi::c2h::Replacer::GetReplacementsPro;
       break;
+    case FileType::png:
+      assert(!"Do not HTML-ify FileType::png, display it instead");
+      throw std::logic_error("Never HTML-ify FileType::png, display it instead");
     case FileType::license_txt:
       assert(!"Do not HTML-ify FileType::license_txt");
       throw std::logic_error("Never HTML-ify FileType::license_txt");

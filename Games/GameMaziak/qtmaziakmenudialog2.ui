@@ -14,8 +14,11 @@
    <string>Maziak</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="GameMaziak.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -101,6 +104,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="GameMaziak.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppBinaryNewickVector.htm
 //---------------------------------------------------------------------------
-#ifndef BINARYNEWICKVECTOR_H
-#define BINARYNEWICKVECTOR_H
+#ifndef RIBI_BINARYNEWICKVECTOR_H
+#define RIBI_BINARYNEWICKVECTOR_H
 
 #include <string>
 #include <vector>
@@ -38,20 +38,20 @@ namespace ribi {
 ///a binary Newick.
 struct BinaryNewickVector
 {
-  BinaryNewickVector(const std::string& s);
-  BinaryNewickVector(const std::vector<int>& v);
+  BinaryNewickVector(const std::string& s) noexcept;
+  BinaryNewickVector(const std::vector<int>& v) noexcept;
 
-  double CalcDenominator(const double theta) const;
-  const BigInteger CalcNumOfCombinations() const;
-  const BigInteger CalcNumOfSymmetries() const;
-  double CalcProbabilitySimpleNewick(const double theta) const;
-  bool Empty() const { return m_v.empty(); }
+  double CalcDenominator(const double theta) const noexcept;
+  const BigInteger CalcNumOfCombinations() const noexcept;
+  const BigInteger CalcNumOfSymmetries() const noexcept;
+  double CalcProbabilitySimpleNewick(const double theta) const noexcept;
+  bool Empty() const noexcept { return m_v.empty(); }
 
   ///Peek at the implementation
   const std::vector<int>& Peek() const noexcept { return m_v; }
-  const std::vector<BinaryNewickVector> GetSimplerNewicks() const;
-  const std::pair<BinaryNewickVector,BinaryNewickVector> GetRootBranches() const;
-  bool IsSimple() const;
+  std::vector<BinaryNewickVector> GetSimplerNewicks() const noexcept;
+  std::pair<BinaryNewickVector,BinaryNewickVector> GetRootBranches() const noexcept;
+  bool IsSimple() const noexcept;
   std::string ToStr() const noexcept;
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -64,24 +64,29 @@ struct BinaryNewickVector
   static double CalculateProbabilityInternal(
     const BinaryNewickVector& n,
     const double theta,
-    NewickStorage<BinaryNewickVector>& storage);
+    NewickStorage<BinaryNewickVector>& storage
+  ) noexcept;
 
-  bool IsCloseBracketRight(const int pos) const;
-  bool IsOpenBracketLeft(const int pos) const;
-  const BinaryNewickVector LoseBrackets(const int x, const int i) const;
-  const BinaryNewickVector TermIsNotOne(const int i) const;
-  const BinaryNewickVector TermIsOne(const int i) const;
+  bool IsCloseBracketRight(const int pos) const noexcept;
+  bool IsOpenBracketLeft(const int pos) const noexcept;
+  BinaryNewickVector LoseBrackets(const int x, const int i) const noexcept;
+  BinaryNewickVector TermIsNotOne(const int i) const noexcept;
+  BinaryNewickVector TermIsOne(const int i) const noexcept;
 
   public:
   static double CalculateProbability(
     const std::string& newick_str,
-    const double theta);
+    const double theta
+  ) noexcept;
 
+  #ifndef NDEBUG
   static void Test() noexcept;
+  #endif
 
   static bool NewickCompare(
     const std::vector<int>& lhs,
-    const std::vector<int>& rhs) noexcept;
+    const std::vector<int>& rhs
+  ) noexcept;
 
 };
 
@@ -91,4 +96,4 @@ bool operator<(
 
 } //~namespace ribi
 
-#endif // BINARYNEWICKVECTOR_H
+#endif // RIBI_BINARYNEWICKVECTOR_H

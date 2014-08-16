@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include "questiondialog.h"
 #pragma GCC diagnostic pop
@@ -35,28 +36,43 @@ struct OpenQuestion;
 ///Dialog for an OpenQuestion
 struct OpenQuestionDialog : public QuestionDialog
 {
-  explicit OpenQuestionDialog(const std::string& question);
-  explicit OpenQuestionDialog(const boost::shared_ptr<const OpenQuestion>& question);
+  OpenQuestionDialog();
+  //explicit OpenQuestionDialog(const boost::shared_ptr<const OpenQuestion>& question);
 
-  boost::shared_ptr<const OpenQuestion> GetOpenQuestion() const noexcept { return m_question; }
+  ///The answer the user has typed in so far
+  std::string GetAnswerInProgress() const noexcept { return m_answer_in_progress; }
 
+  boost::shared_ptr<const OpenQuestion> GetOpenQuestion() const noexcept { return m_open_question; }
+  boost::shared_ptr<      OpenQuestion> GetOpenQuestion()       noexcept { return m_open_question; }
   boost::shared_ptr<const Question> GetQuestion() const noexcept;
 
-  ///Obtain the version
-  static std::string GetVersion() noexcept;
+  ///The answer the user has typed in so far
+  ///Used for synching between multiple QtOpenQuestionDialogs displaying
+  ///the same OpenQuestionDialog
+  void SetAnswerInProgress(const std::string& answer_in_progress) noexcept;
 
-  ///Obtain the version history
+  void SetOpenQuestion(const boost::shared_ptr<OpenQuestion>& open_question) noexcept;
+
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Submit an answer
   ///For an open question, s will be the anwer
   void Submit(const std::string& s);
 
+  std::string ToStr() const noexcept;
+
+  mutable boost::signals2::signal<void (OpenQuestionDialog*)> m_signal_open_question_changed;
+
   private:
   friend void boost::checked_delete<>(OpenQuestionDialog*);
+  friend void boost::checked_delete<>(const OpenQuestionDialog*);
+  friend class boost::detail::sp_ms_deleter<OpenQuestionDialog>;
+  friend class boost::detail::sp_ms_deleter<const OpenQuestionDialog>;
   ~OpenQuestionDialog() noexcept {}
 
-  const boost::shared_ptr<const OpenQuestion> m_question;
+  std::string m_answer_in_progress;
+  boost::shared_ptr<OpenQuestion> m_open_question;
 
   #ifndef NDEBUG
   static void Test() noexcept;

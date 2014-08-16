@@ -6,6 +6,7 @@
 
 #include "testaboutmenudialog.h"
 #include "qtaboutdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestaboutmenudialog.h"
 #pragma GCC diagnostic pop
@@ -40,12 +41,11 @@ void ribi::QtTestAboutMenuDialog::on_button_quit_clicked()
 void ribi::QtTestAboutMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestAboutMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtAboutDialog d(TestAboutMenuDialog().GetAbout());
-  TRACE("Successfully finished ribi::QtTestAboutMenuDialog::Test");
 }
 #endif

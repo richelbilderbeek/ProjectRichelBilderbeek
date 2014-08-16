@@ -7,25 +7,26 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-#include "qtroundedtextrectitem.h"
+#include "qtroundededitrectitem.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct QtQuadBezierArrowItem;
 
-///The QtLabeledQuadBezierArrowItem is a QtRoundedTextRectItem that
+///The QtLabeledQuadBezierArrowItem is a QtRoundedEditRectItem that
 ///draws a bezier curve underneath itself, between head and tail arrowhead
-struct QtLabeledQuadBezierArrowItem : public QtRoundedTextRectItem
+struct QtLabeledQuadBezierArrowItem : public QtRoundedEditRectItem
 {
 
   QtLabeledQuadBezierArrowItem(
-    const QGraphicsItem *const from,
+    QGraphicsItem *const from,
     const bool tail,
     const std::string& text,
     const bool head,
-    const QGraphicsItem *const to,
-    QGraphicsItem *parent = 0);
+    QGraphicsItem *const to,
+    QGraphicsItem *parent = 0
+  );
   QtLabeledQuadBezierArrowItem(const QtLabeledQuadBezierArrowItem&) = delete;
   QtLabeledQuadBezierArrowItem& operator=(const QtLabeledQuadBezierArrowItem&) = delete;
   ~QtLabeledQuadBezierArrowItem() noexcept {}
@@ -40,9 +41,9 @@ struct QtLabeledQuadBezierArrowItem : public QtRoundedTextRectItem
   static std::vector<std::string> GetVersionHistory() noexcept;
 
 protected:
-  virtual QRectF boundingRect() const;
-  virtual void keyPressEvent(QKeyEvent *event);
-  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
+  virtual QRectF boundingRect() const noexcept override final;
+  virtual void keyPressEvent(QKeyEvent *event) noexcept override final;
+  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept override final;
 
 private:
   const boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;

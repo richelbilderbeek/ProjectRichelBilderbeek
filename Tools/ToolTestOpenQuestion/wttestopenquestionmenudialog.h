@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011 Richel Bilderbeek
+TestOpenQuestion, tool to test the Question and QuestionDialog classes
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,26 +16,30 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestQuestion.htm
+//From http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm
 //---------------------------------------------------------------------------
-#ifndef WTTESTQUESTIONMENUDIALOG_H
-#define WTTESTQUESTIONMENUDIALOG_H
-//---------------------------------------------------------------------------
+#ifndef RIBI_WTTESTOPENQUESTIONMENUDIALOG_H
+#define RIBI_WTTESTOPENQUESTIONMENUDIALOG_H
+
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
-struct TestQuestionMenuDialog;
-//---------------------------------------------------------------------------
-struct WtTestQuestionMenuDialog : public Wt::WContainerWidget
+
+namespace ribi {
+
+struct TestOpenQuestionMenuDialog;
+
+struct WtTestOpenQuestionMenuDialog : public Wt::WContainerWidget
 {
-  WtTestQuestionMenuDialog();
+  WtTestOpenQuestionMenuDialog();
   private:
   Wt::WWidget * CreateNewAboutDialog() const;
   Wt::WWidget * CreateNewMainDialog() const;
   Wt::WWidget * CreateNewWelcomeDialog() const;
 
-  boost::scoped_ptr<TestQuestionMenuDialog> m_dialog;
+  boost::scoped_ptr<TestOpenQuestionMenuDialog> m_dialog;
 };
-//---------------------------------------------------------------------------
-#endif // WTTESTQUESTIONMENUDIALOG_H
+
+} //~namespace ribi
+
+#endif // RIBI_WTTESTOPENQUESTIONMENUDIALOG_H

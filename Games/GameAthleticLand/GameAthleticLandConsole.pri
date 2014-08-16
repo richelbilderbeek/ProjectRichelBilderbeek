@@ -11,3 +11,5 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Games/GameAthleticLand/Licence.txt
 
+RESOURCES += \
+    ../../Games/GameAthleticLand/GameAthleticLand.qrc

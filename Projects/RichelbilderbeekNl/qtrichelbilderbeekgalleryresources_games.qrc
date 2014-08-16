@@ -23,7 +23,6 @@
         <file>GameMetZnDrieen_1_3.png</file>
         <file>GamePokeVolley_2_0.png</file>
         <file>GamePylos_1_0.png</file>
-        <file>GameReversi_1_0.png</file>
         <file>GameReversiConsole_1_0.png</file>
         <file>GameRubiksClock_1_0.png</file>
         <file>GameRubiksClock_2_1.png</file>
@@ -41,5 +40,9 @@
         <file>GameTicTacToe_1_6.png</file>
         <file>GameTicTacToe_1_5.png</file>
         <file>GameDasWahreSchlagerfest_2_5.png</file>
+        <file>GameRubiksClock_2_3.png</file>
+        <file>GameReversiVcl_1_0.png</file>
+        <file>GameReversi_0_1.png</file>
+        <file>GamePylos_2_1.png</file>
     </qresource>
 </RCC>

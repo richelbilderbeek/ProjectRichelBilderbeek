@@ -12,9 +12,8 @@
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
 
-#include "Shiny.h"
-
 #include "geometry.h"
+#include "testtimer.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trianglemeshpoint.h"
@@ -36,9 +35,6 @@ ribi::trim::Face::Face(
   const FaceFactory&
   )
   :
-    #ifdef TRIANGLEMESH_USE_SIGNALS2
-    m_signal_destroyed{},
-    #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
     m_belongs_to{},
     m_coordinats{},
     m_index{index},
@@ -48,23 +44,23 @@ ribi::trim::Face::Face(
 {
   #ifndef NDEBUG
   Test();
-  PROFILE_FUNC();
   assert(m_points == any_points);
   assert(!m_points.empty());
   assert(  m_points[0].use_count() >= 2);
   assert(any_points[0].use_count() >= 2);
-  
   assert(Helper().IsPlane(m_points));
   if (!Helper().IsConvex(m_points))
   {
     TRACE("ERROR");
-    for (auto point: m_points) TRACE(point->ToStr());
+    for (const auto& point: m_points) TRACE(point->ToStr());
   }
   assert(sm_faces.count(this) == 0);
+  #endif
+
   sm_faces.insert(this);
 
+  #ifndef NDEBUG
   assert(Helper().IsConvex(m_points));
-
   if (m_orientation == FaceOrientation::horizontal)
   {
     const int n_points = static_cast<int>(m_points.size());
@@ -76,7 +72,7 @@ ribi::trim::Face::Face(
     if (m_points[0]->CanGetZ())
     {
       const auto z = m_points[0]->GetZ();
-      for (const auto p: m_points)
+      for (const auto& p: m_points)
       {
         assert(p->CanGetZ());
         assert(z == p->GetZ());
@@ -91,27 +87,8 @@ ribi::trim::Face::~Face() noexcept
   assert(sm_faces.count(this) == 1);
   sm_faces.erase(this);
   assert(sm_faces.count(this) == 0);
-
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  m_signal_destroyed(this);
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 }
 
-#ifdef TRIANGLEMESH_USE_SIGNALS2
-void ribi::trim::Face::AddBelongsTo(boost::shared_ptr<const Cell> cell)
-{
-  assert(cell);
-  m_belongs_to.push_back(cell);
-  assert(m_belongs_to.size() <= 2);
-  assert(
-       (m_belongs_to.size() == 1)
-    || (m_belongs_to.size() == 2 && m_belongs_to[0] != m_belongs_to[1])
-  );
-  cell->m_signal_destroyed.connect(
-    boost::bind(&ribi::trim::Face::OnCellDestroyed,this,boost::lambda::_1)
-  );
-}
-#else
 void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell)
 {
   assert(cell.lock());
@@ -122,7 +99,6 @@ void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell)
     || (m_belongs_to.size() == 2 && m_belongs_to[0].lock() != m_belongs_to[1].lock())
   );
 }
-#endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Face::CalcCenter() const noexcept
 {
@@ -149,15 +125,11 @@ int ribi::trim::Face::CalcPriority() const noexcept
 {
   assert(GetConstOwner());
   return GetConstOwner()->GetIndex();
-  //return std::max(
-  //  GetOwner()->GetIndex(),
-  //  GetNeighbour() ? GetNeighbour()->GetIndex() : -1
-  //);
 }
 
 bool ribi::trim::Face::CanExtractCoordinats() const noexcept
 {
-  for (const auto point: m_points)
+  for (const auto& point: m_points)
   {
     if (!point->CanGetZ()) return false;
   }
@@ -168,7 +140,7 @@ void ribi::trim::Face::CheckOrientation() const
 {
   assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
   std::set<double> zs;
-  for (auto point: m_points)
+  for (const auto& point: m_points)
   {
     if (point->CanGetZ()) { zs.insert(zs.begin(),point->GetZ().value()); }
   }
@@ -181,7 +153,7 @@ void ribi::trim::Face::CheckOrientation() const
 
 void ribi::trim::Face::DoExtractCoordinats() const
 {
-  PROFILE_FUNC();
+  
   assert(CanExtractCoordinats());
   //assert(m_coordinats.empty()); //This is done multiple times in debugging
   
@@ -190,50 +162,66 @@ void ribi::trim::Face::DoExtractCoordinats() const
 
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
 {
-  PROFILE_FUNC();
+  //#220: This is the number 3 slowest function
   assert(m_belongs_to.size() <= 2);
+
+  #define FIX_ISSUE_220
+  #ifdef FIX_ISSUE_220
+  assert(
+    std::count_if(
+      m_belongs_to.begin(),m_belongs_to.end(),
+      [](const boost::weak_ptr<const Cell> cell) { return !cell.lock(); }
+    ) == 0
+    && "Ha, we can save the statement below to increase speed"
+  );
+  #else
   m_belongs_to.erase(
     std::remove_if(
       m_belongs_to.begin(),m_belongs_to.end(),
-      #ifdef TRIANGLEMESH_USE_SIGNALS2
-      [](const boost::shared_ptr<const Cell> cell) { return !cell; }
-      #else
       [](const boost::weak_ptr<const Cell> cell) { return !cell.lock(); }
-      #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
     ),
     m_belongs_to.end()
   );
+  #endif
   boost::shared_ptr<const Cell> p;
   if (m_belongs_to.size() < 2) return p;
-
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  assert(m_belongs_to[0] != m_belongs_to[1]);
-  p = m_belongs_to[1];
-  assert(p);
-  return p;
-  #else
   assert(m_belongs_to[0].lock() != m_belongs_to[1].lock());
   p = m_belongs_to[1].lock();
   assert(p);
   return p;
-  #endif //#ifdef TRIANGLEMESH_USE_SIGNALS2
+}
+
+boost::shared_ptr<ribi::trim::Cell> ribi::trim::Face::GetNonConstNeighbour() noexcept
+{
+  const boost::shared_ptr<const ribi::trim::Cell> const_cell
+    = const_cast<const ribi::trim::Face*>(this)->GetNeighbour();
+  return boost::const_pointer_cast<Cell>(const_cell);
 }
 
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetConstOwner() const noexcept
 {
-  PROFILE_FUNC();
+  //#220: This is the number 1 slowest function
   assert(m_belongs_to.size() <= 2);
+
+  assert(
+    std::count_if(
+      m_belongs_to.begin(),m_belongs_to.end(),
+      [](const boost::weak_ptr<const Cell> cell) { return !cell.lock(); }
+    ) >= 0
+    && "Cells might and might not be deleted in other contexts"
+  );
+
   m_belongs_to.erase(
     std::remove_if(
       m_belongs_to.begin(),m_belongs_to.end(),
-      #ifdef TRIANGLEMESH_USE_SIGNALS2
-      [](const boost::shared_ptr<const Cell> cell) { return !cell; }
-      #else
       [](const boost::weak_ptr<const Cell> cell) { return !cell.lock(); }
-      #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
     ),
     m_belongs_to.end()
   );
+
+  assert( (m_belongs_to.empty() || m_belongs_to.size() > 0)
+    && "There might have been no owner assigned yet");
+
   if (m_belongs_to.empty())
   {
     return nullptr;
@@ -255,7 +243,7 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::Face::GetNonConstOwner() noexcep
 
 boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int index) const noexcept
 {
-  PROFILE_FUNC();
+  
   assert(index >= 0);
   assert(index < static_cast<int>(GetPoints().size()));
   return GetPoints()[index];
@@ -264,22 +252,14 @@ boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int 
 void ribi::trim::Face::OnCellDestroyed(const Cell* const cell) noexcept
 {
   assert(1==2);
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  const auto new_end = std::remove_if(m_belongs_to.begin(),m_belongs_to.end(),
-    [cell](const boost::shared_ptr<const Cell>& belongs_to) { return belongs_to.get() == cell; }
-  );
-  #else
   const auto new_end = std::remove_if(m_belongs_to.begin(),m_belongs_to.end(),
     [cell](const boost::weak_ptr<const Cell>& belongs_to) { return belongs_to.lock().get() == cell; }
   );
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
   m_belongs_to.erase(new_end,m_belongs_to.end());
 }
 
 void ribi::trim::Face::SetCorrectWinding() noexcept
 {
-  PROFILE_FUNC();
-  
   assert(m_points.size() == 3 || m_points.size() == 4);
   assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)
     && "A Face its winding can only be set if it belongs to a cell"
@@ -287,42 +267,18 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   assert(Helper().IsPlane(m_points));
   assert(Helper().IsConvex(m_points));
 
-  const boost::shared_ptr<const Cell> observer(
+  const boost::shared_ptr<const Cell> observer{
     !GetNeighbour()
     ? GetConstOwner()
     : GetConstOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetConstOwner() : GetNeighbour()
-  );
+  };
   assert(observer);
   assert(Helper().IsPlane(m_points));
 
-  if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
-  {
-    std::sort(m_points.begin(),m_points.end(),Helper().OrderByX()); //For std::next_permutation
-    //Must be ordered counter-clockwise (although the documentation says otherwise?)
-    while (std::next_permutation(m_points.begin(),m_points.end(),Helper().OrderByX()))
-    {
-      assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
-      if (
-        Helper().IsCounterClockwise(m_points,observer->CalculateCenter())
-        && Helper().IsConvex(m_points)
-      )
-      {
-        assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
-        break;
-      }
-    }
-  }
+  //Must be ordered clockwise, according to the OpenFOAM documentation
+  Helper().MakeClockwise(this->m_points,observer->CalculateCenter());
 
-  #ifndef NDEBUG
-  if (!Helper().IsCounterClockwise(AddConst(m_points),observer->CalculateCenter()))
-  {
-    TRACE(m_points.size());
-    
-    for (const auto point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
-    TRACE(Geometry().ToStr(observer->CalculateCenter()));
-  }
-  #endif
-  assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
+  assert(Helper().IsClockwise(m_points,observer->CalculateCenter()));
   assert(Helper().IsPlane(m_points));
   assert(Helper().IsConvex(m_points));
 }
@@ -331,18 +287,20 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
 void ribi::trim::Face::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::Face::Test");
+  FaceFactory();
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check that a Face has no owner nor neighbour when not added to a Cell
-  for (auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Face>> faces {
       FaceFactory().CreateTestPrism(strategy)
     };
-    for (auto face: faces)
+    for (const auto& face: faces)
     {
       assert(!(face->GetConstOwner().get()) && "Faces obtain an owner when being added to a Cell");
       assert(!(face->GetNeighbour().get()) && "Faces obtain a neighbour when beging added to a Cell twice");
@@ -361,7 +319,6 @@ void ribi::trim::Face::Test() noexcept
       == (winding == Winding::clockwise || winding == Winding::counter_clockwise)
     );
   }
-  TRACE("Finished ribi::trim::Face::Test successfully");
 }
 #endif
 
@@ -384,7 +341,7 @@ bool ribi::trim::operator!=(const ribi::trim::Face& lhs, const ribi::trim::Face&
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Face& f)
+std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Face& f) noexcept
 {
   os
     << ribi::xml::ToXml("face_index",f.GetIndex())

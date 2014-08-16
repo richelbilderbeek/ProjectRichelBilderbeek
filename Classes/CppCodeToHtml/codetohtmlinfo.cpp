@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "codetohtmlinfo.h"
 
 #include <cassert>
@@ -30,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtmlheader.h"
 #include "codetohtmlfooter.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -446,6 +448,162 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  CalcCrossProduct and CalcPlane are maintained in <a href=\"CppGeometry.htm\">CppGeometry</a>.",
         "  See <a href=\"CppGeometry.htm\">CppGeometry</a>",
         "  for the heavily used, debugged and tested versions of CalcCrossProduct and CalcPlane.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample5",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample5.htm\">Boost.Geometry example 5: Get a box its left, right, width, height and area</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample6",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample6.htm\">Boost.Geometry example 6: See if a point is within a polygon</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample7",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample7.htm\">Boost.Geometry example 7: Bug in boost::geometry::convex_hull</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample8",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample8.htm\">Boost.Geometry example 8: Convert points to a polygon and back</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample9",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample9.htm\">Boost.Geometry example 9: Rescale and translate a polygon</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample10",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample10.htm\">Boost.Geometry example 10: Create a polygon from WKT</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample11",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample11.htm\">Boost.Geometry example 11: Create a polygon from two intersecting polygons</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample12",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample12.htm\">Boost.Geometry example 12: Create a linestring from WKT</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample13",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample13.htm\">Boost.Geometry example 13: Convert a polygon to linestring and back</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample14",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample14.htm\">Boost.Geometry example 14: Convert points to a linestring and back</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample15",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample15.htm\">Boost.Geometry example 15: Obtain the intersection of a polygon and linestring</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample16",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample16.htm\">Boost.Geometry example 16: Convert a polygon to WKT</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>"
       }
     }
@@ -991,6 +1149,38 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"CppChessResources.htm\">ChessResources</a> contains and manages",
         "  <a href=\"CppChess.htm\">chess</a> resources",
+        "</p>"
+      }
+    }
+  );
+
+
+
+  m.push_back(
+    { "CppClnExample1",
+      {
+        "<p><img src=\"PicCln.png\" alt=\"CLN\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppClnExample1.htm\">CLN example 1</a> is a <a href=\"CppCln.htm\">CLN</a>",
+        "  example that compares the regular and <a href=\"CppCln.htm\">CLN</a>",
+        "  <a href=\"CppInt.htm\">int</a> in calculating a huge factorial."
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppClnExample2",
+      {
+        "<p><img src=\"PicCln.png\" alt=\"CLN\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppClnExample2.htm\">CLN example 2</a> is a <a href=\"CppCln.htm\">CLN</a>",
+        "  example that shows how to to <a href=\"CppConvert.htm\">convert</a> an",
+        "  <a href=\"CppCl_I.htm\">cln::cl_I</a> to <a href=\"CppStdString.htm\">std::string</a>",
+        "  and adding the thousands seperators.",
         "</p>"
       }
     }
@@ -1861,12 +2051,53 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppGetMaxDouble",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetMaxDouble.htm\">GetMaxDouble</a> is a <a href=\"CppCheck.htm\">checking</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to get the maximal value of an <a href=\"CppDouble.htm\">double</a>."
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGetMaxDouble.zip\">Download the Qt Creator project 'CppGetMaxDouble' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppGetMaxInt",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetMaxInt.htm\">GetMaxInt</a> is a <a href=\"CppCheck.htm\">checking</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to get the maximal value of an <a href=\"CppInt.htm\">int</a>."
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGetMaxInt.zip\">Download the Qt Creator project 'CppGetMaxInt' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppGetPath",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppGetPath.htm\">GetPath</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to get a filename's path.</p>",
+        "<p>",
+        "  <a href=\"CppGetPath.htm\">GetPath</a> is a <a href=\"CppFileIo.htm\">file I/O</a>",
+        "  <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to get a filename's path.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetPath.zip\">Download the Qt Creator project 'CppGetPath' (zip)</a></li>",
@@ -1874,6 +2105,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
   m.push_back(
     { "CppGetPermutations",
       {
@@ -1903,6 +2135,24 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetRegexMatches.zip\">Download the Qt Creator project 'GetRegexMatches' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppGetSmallestDouble",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetSmallestDouble.htm\">GetSmallestDouble</a> is a <a href=\"CppCheck.htm\">checking</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to get the smallest value of an <a href=\"CppDouble.htm\">double</a>."
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGetSmallestDouble.zip\">Download the Qt Creator project 'CppGetSmallestDouble' (zip)</a></li>",
         "</ul>"
       }
     }
@@ -3711,7 +3961,8 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>Possibilities are:</p>",
         "<ol>",
-        "  <li><img src=\"PicStl.png\" alt=\"STL\"/> <a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppVector.htm\">std::vector</a>&lt;<b><a href=\"CppInt.htm\">int</a></b>&gt; &gt;</li>",
+        "  <li><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/> <a href=\"CppStdVector.htm\">std::vector</a>&lt;<a href=\"CppStdVector.htm\">std::vector</a>&lt;<b><a href=\"CppInt.htm\">int</a></b>&gt; &gt;</li>",
+        "  <li><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/> <a href=\"CppStdArray.htm\">std::array</a>&lt;<a href=\"CppStdArray.htm\">std::array</a>&lt;<b><a href=\"CppInt.htm\">int</a></b>&gt; &gt;</li>",
         "  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"CppMulti_array.htm\">boost::multi_array</a></li>",
         "  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"CppUblasMatrix.htm\">boost::numeric::ublas::matrix</a></li>",
         "  <li><img src=\"PicSpacer.png\" alt=\" \"/>blitz::Array</li>",
@@ -4971,6 +5222,39 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppPimplExample1",
+      {
+        "<p>",
+        "  <a href=\"CppPimplExample1.htm\">pimpl example 1: Lizard implementation in one file using boost::shared_ptr</a> is a",
+        "  <a href=\"CppPimpl.htm\">pimpl</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Most lizards remain having the same gender for all their live. Therefore, it is a",
+        "  good idea to make a lizard's gender a const member variable. Problem is, that",
+        "  this makes a lizard class uncopyable. In this example I solve this by making a",
+        "  Lizard contain an opaque pointer to LizardImpl, where a LizardImpl does have a",
+        "  constant gender. Because I want to be able to do a <a href=\"CppShallowCopy.htm\">shallow copy</a>",
+        "  on Lizards, I use a <a href=\"CppBoostShared_ptr.htm\">boost::shared_ptr</a>.",
+        "  Also note that the code is very similar to a <a href=\"CppDesignPatternStrategy.htm\">Strategy</a>",
+        "  <a href=\"CppDesignPattern.htm\">design pattern</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppPimplExample2",
+      {
+        "<p>",
+        "  <a href=\"CppPimplExample2.htm\">pimpl example 1: Lizard implementation in multiple files using boost::shared_ptr</a> is a",
+        "  <a href=\"CppPimpl.htm\">pimpl</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "CppPredicateExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -5114,14 +5398,243 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
 
 
   m.push_back(
+    { "CppQGraphicsPixmapItemExample1",
+      {
+        "<p>",
+        "  <a href=\"CppQGraphicsPixmapItemExample1.htm\">QGraphicsPixmapItem example 1: basic</a> is a <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
+        "  example. This example shows how to put multiple movable <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItems</a> on screen. Note that the",
+        "  pixmaps are transparent, because the images supplied were transparent.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsPixmapItemExample1.png\">View a screenshot of 'CppQGraphicsPixmapItemExample1' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample1.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsPixmapItemExample2",
+      {
+        "<p><a href=\"CppQGraphicsPixmapItemExample2.htm\">QGraphicsPixmapItem example 2: clickable pixmap</a> is a <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
+        "example. This example shows how to put multiple movable <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItems</a> on screen",
+        "and let them respond to mouse clicks using a <a href=\"CppBoostSignal.htm\">boost::signal</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsPixmapItemExample2.png\">View a screenshot of 'CppQGraphicsPixmapItemExample2' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample2.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsPixmapItemExample3",
+      {
+         "<p><a href=\"CppQGraphicsPixmapItemExample3.htm\">QGraphicsPixmapItem example 3: clickable and selectable pixmap</a> is a <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
+         "example. This example shows how to put multiple movable <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItems</a> on screen",
+         "and let them respond to mouse clicks using a <a href=\"CppBoostSignal.htm\">boost::signal</a> and let the user select",
+         "one or more item (and show this by drawing those items differently).</p>",
+         "<p>&nbsp;</p>",
+         "<ul>",
+         "  <li><a href=\"CppQGraphicsPixmapItemExample3.png\">View a screenshot of 'CppQGraphicsPixmapItemExample3' (png)</a></li>",
+         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample3.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample3' (zip)</a></li>",
+         "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsPixmapItemExample4",
+      {
+         "<p><a href=\"CppQGraphicsPixmapItemExample4.htm\">QGraphicsPixmapItem example 4: pixmap that changes cursor</a> is a",
+         "<a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a> example. This example shows how to put multiple movable",
+         "<a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItems</a> on screen,",
+         "let them respond to mouse clicks using a <a href=\"CppBoostSignal.htm\">boost::signal</a>, let the user select",
+         "one or more item (and show this by drawing those items differently) and change the cursor shape when the mouse cursor moves over the item.</p>",
+         "<p>&nbsp;</p>",
+         "<ul>",
+         "  <li><a href=\"CppQGraphicsPixmapItemExample4.png\">View a screenshot of 'CppQGraphicsPixmapItemExample4' (png)</a></li>",
+         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample4.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample4' (zip)</a></li>",
+         "</ul>",
+         "<p>&nbsp;</p>",
+         "<p>This example is the precedent of <a href=\"CppQGraphicsObjectExample1.htm\">QGraphicsObject example 1: basic</a>.</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsPixmapItemExample5",
+      {
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample5.htm\">QGraphicsPixmapItem example 5: respond to cursor moving over pixmap</a> is a",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
+         "  example. This example shows how to let the <a href=\"CppQGraphicsPixmapItem.png\">QGraphicsPixmapItem</a> <a href=\"CppEmit.htm\">emit</a>",
+         "  a <a href=\"CppBoostSignal.htm\">(Boost) signal</a> so that the <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> can rotate it. It is usefull",
+         "  to be able to send signals to the <a href=\"CppQGraphicsView.htm\">QGraphicsView</a>, because <a href=\"CppQGraphicsView.htm\">QGraphicsView</a>",
+         "  is a <a href=\"CppQObject.htm\">QObject</a>, where <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a> is not. Due to this,",
+         "  the <a href=\"CppQGraphicsPixmapItem.htm\">item</a> cannot work with <a href=\"CppQtSignal.htm\">Qt signals</a>, but the",
+         "  <a href=\"CppQGraphicsView.htm\">view</a> can (note that <a href=\"CppQGraphicsObject.htm\">QGraphicsObject</a> is a",
+         "  <a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> that can work with signals and slots).",
+         "</p>",
+         "<p>&nbsp;</p>",
+         "<ul>",
+         "  <li><a href=\"CppQGraphicsPixmapItemExample5.png\">View a screenshot of 'CppQGraphicsPixmapItemExample5' (png)</a></li>",
+         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample5.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample5' (zip)</a></li>",
+         "</ul>",
+         "<p>&nbsp;</p>",
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample5.htm\">QGraphicsPixmapItem example 5: respond to cursor moving over pixmap</a> is the predecessor of",
+         "  <a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a>, which is",
+         "  the predecessor of <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example 7: respond to cursor moving over pixmap while holding the cursor still</a>.",
+         "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsPixmapItemExample6",
+      {
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a> is a",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
+         "  example. This example shows how to let the <a href=\"CppQGraphicsView.png\">QGraphicsView</a> responds to the cursor being moved over the",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>.",
+         "</p>",
+         "<p>&nbsp;</p>",
+         "<ul>",
+         "  <li><a href=\"CppQGraphicsPixmapItemExample6.png\">View a screenshot of 'CppQGraphicsPixmapItemExample6' (png)</a></li>",
+         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample6.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample6' (zip)</a></li>",
+         "</ul>",
+         "<p>&nbsp;</p>",
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a> is",
+         "  the predecessor of <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example 7: respond to cursor moving over pixmap while holding the cursor still</a>.",
+         "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsPixmapItemExample7",
+      {
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example example 7: respond to cursor moving over pixmap while holding the cursor still</a> is a",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
+         "  example. This example shows how to let the <a href=\"CppQGraphicsView.png\">QGraphicsView</a> responds to the cursor being moved over the",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>, where the <a href=\"CppQGraphicsPixmapItem.htm\">pixmap</a> keeps",
+         "  responding even when the mouse cursor is held still.",
+         "</p>",
+         "<p>&nbsp;</p>",
+         "<ul>",
+         "  <li><a href=\"CppQGraphicsPixmapItemExample7.png\">View a screenshot of 'CppQGraphicsPixmapItemExample7' (png)</a></li>",
+         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample7.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample7' (zip)</a></li>",
+         "</ul>",
+         "<p>&nbsp;</p>",
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a> is",
+         "  the predecessor of <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example 7: respond to cursor moving over pixmap while holding the cursor still</a>.",
+         "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsRectItemExample1",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsRectItemExample1.htm\">QGraphicsRectItem example 1: Basics</a> is a",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItems</a>. These items are movable",
+        "  and selectable.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsRectItemExample1.png\">View a screenshot of 'QGraphicsRectItemExample1' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsRectItemExample1.zip\">Download the Qt Creator project 'QGraphicsRectItemExample1' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsRectItemExample1Exe.zip\">Download a Windows executable of 'QGraphicsRectItemExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsRectItemExample2",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsRectItemExample2.htm\">QGraphicsRectItem example 2: Coordinat display</a> is a",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItems</a>. These items are movable",
+        "  and selectable. Additionally, the items display their coordinats.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsRectItemExample2.png\">View a screenshot of 'QGraphicsRectItemExample2' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsRectItemExample2.zip\">Download the Qt Creator project 'QGraphicsRectItemExample2' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsRectItemExample2Exe.zip\">Download a Windows executable of 'QGraphicsRectItemExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsRectItemExample3",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsRectItemExample3.htm\">QGraphicsRectItem example 3: Coordinat display on a linear gradient</a> is a",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItems</a>. These items are movable",
+        "  and selectable. Additionally, the items display their coordinats on a linear gradient.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsRectItemExample3.png\">View a screenshot of 'QGraphicsRectItemExample3' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsRectItemExample3.zip\">Download the Qt Creator project 'QGraphicsRectItemExample3' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsRectItemExample3Exe.zip\">Download a Windows executable of 'QGraphicsRectItemExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsRectItemExample4",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsRectItemExample4.htm\">QGraphicsRectItem example 4: varying pen widths</a> is a",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItems</a>. These items are movable",
+        "  and selectable. Additionally, the items display their width, height and pen width, on a linear gradient.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsRectItemExample4.png\">View a screenshot of 'QGraphicsRectItemExample4' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsRectItemExample4.zip\">Download the Qt Creator project 'QGraphicsRectItemExample4' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsRectItemExample4Exe.zip\">Download a Windows executable of 'QGraphicsRectItemExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
     { "CppQGraphicsSimpleTextItemExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQGraphicsSimpleTextItemExample1.htm\">QGraphicsSimpleTextItem example 1: Hello World</a> is a",
-        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
-        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with the text 'Hello World'. These items are movable",
-        "and selectable.</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsSimpleTextItemExample1.htm\">QGraphicsSimpleTextItem example 1: Hello World</a> is a",
+        "  <a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with the text 'Hello World'. These items are movable",
+        "  and selectable.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQGraphicsSimpleTextItemExample1.png\">View a screenshot of 'QGraphicsSimpleTextItemExample1' (png)</a></li>",
@@ -5228,6 +5741,43 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppQListWidgetExample1",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQListWidgetExample1.htm\">QListWidget example 1</a> is a",
+        "  <a href=\"CppQListWidgetExample.htm\">QListWidget</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQListWidgetExample1.png\">View a screenshot of 'CppQListWidgetExample1' (png)</a></li>",
+        "  <li><a href=\"CppQListWidgetExample1.zip\">Download the Qt Creator project 'CppQListWidgetExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQListWidgetExample2",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQListWidgetExample2.htm\">QListWidget example 2</a> is a",
+        "  <a href=\"CppQListWidget.htm\">QListWidget</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQListWidgetExample2.png\">View a screenshot of 'CppQListWidgetExample2' (png)</a></li>",
+        "  <li><a href=\"CppQListWidgetExample2.zip\">Download the Qt Creator project 'CppQListWidgetExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
 
   m.push_back(
     { "CppQmakeErrorUnknownModulesInQtLocationSensors",
@@ -5480,8 +6030,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
          "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQTableWidgetExample1.htm\">QTableWidget example 1: display text</a> is a",
-        "<a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQTableWidgetExample1.htm\">QTableWidget example 1: display text</a> is a",
+        "  <a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>",
@@ -5495,12 +6047,14 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQTableWidgetExample2.htm\">QTableWidget example 2: checkboxes and text</a> is a",
-        "<a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQTableWidgetExample2.htm\">QTableWidget example 2: checkboxes and text</a> is a",
+        "  <a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>",
-        "  <li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>",
+        "  <li><a href=\"CppQTableWidgetExample2.png\">View a screenshot of 'QTableWidgetExample2' (png)</a></li>",
+        "  <li><a href=\"CppQTableWidgetExample2.zip\">Download the Qt Creator project 'QTableWidgetExample2' (zip)</a></li>",
         "</ul>"
       }
     }
@@ -5510,8 +6064,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQTableWidgetExample3.htm\">QTableWidget example 3: checkboxes and text modifying external data</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQTableWidgetExample3.htm\">QTableWidget example 3: checkboxes and text modifying external data</a> is a",
+        "  <a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample3.png\">View a screenshot of 'QTableWidgetExample3' (png)</a></li>",
@@ -6623,6 +7179,156 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppQwtExample1",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample1.htm\">Qwt example 1: scatter plot</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to create a scatter plot.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample1.png\">View a screenshot of CppQwtExample1 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample1.zip\">Download the Qt Creator project 'CppQwtExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppQwtExample2",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample2.htm\">Qwt example 2: QwtPlot as QGraphicsItem</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to add a QwtPlot to a ",
+        "  <a href=\"CppQGraphicsScene.htm\">QGraphicsScene</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"CppQwtExample2Lubuntu.png\">View a screenshot of CppQwtExample2 (png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Lubuntu\"/> <a href=\"CppQwtExample2Windows.png\">View a screenshot of CppQwtExample2 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample2.zip\">Download the Qt Creator project 'CppQwtExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample3",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample3.htm\">Qwt example 3: alpha beta filter</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to add two timeseries to a QwtPlot.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample3.png\">View a screenshot of CppQwtExample3 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample3.zip\">Download the Qt Creator project 'CppQwtExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample4",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample4.htm\">Qwt example 4: alpha beta filter with variable parameters</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to add two timeseries to a QwtPlot.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample4.png\">View a screenshot of CppQwtExample4 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample4.zip\">Download the Qt Creator project 'CppQwtExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample5",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample5.htm\">Qwt example 5: alpha filter added</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to add two timeseries to a QwtPlot.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample5.png\">View a screenshot of CppQwtExample5 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample5.zip\">Download the Qt Creator project 'CppQwtExample5' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample6",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample6.htm\">Qwt example 6: scatter plot with smart pointers</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to create a scatter plot using",
+        "  <a href=\"CppSmartPointer.htm\">smart pointers</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample6.png\">View a screenshot of CppQwtExample6 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample6.zip\">Download the Qt Creator project 'CppQwtExample6' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample7",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample7.htm\">Qwt example 7: spectrogram from Qwt examples</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> of a spectrogram from the Qwt documentation",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample7.png\">View a screenshot of CppQwtExample7 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample7.zip\">Download the Qt Creator project 'CppQwtExample7' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample8",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample8.htm\">Qwt example 8: adapted spectrogram from Qwt examples</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that is adapted from a spectrogram from the Qwt documentation",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample8.png\">View a screenshot of CppQwtExample8 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample8.zip\">Download the Qt Creator project 'CppQwtExample8' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppRainbow",
       {
@@ -7121,8 +7827,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppTemplateClassExample1.htm\">Template class example 1: class holding a templated member variable</a>",
-        "is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample1.htm\">Template class example 1: class holding a templated member variable</a>",
+        "is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppTemplateClassExample1.zip\">Download the Qt Creator project 'CppTemplateClassExample1' (zip)</a></li>",
@@ -7135,11 +7843,93 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppTemplateClassExample2.htm\">Template class example 2: class that must be specialized; compile-time polymorphism</a>",
-        "is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample2.htm\">Template class example 2: class that must be specialized; compile-time polymorphism</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppTemplateClassExample2.zip\">Download the Qt Creator project 'CppTemplateClassExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample3",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample3.htm\">Template class example 3: class that has an integer template type</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample3.zip\">Download the Qt Creator project 'CppTemplateClassExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample4",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample4.htm\">Template class example 4: class that has an enum class template type</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample4.zip\">Download the Qt Creator project 'CppTemplateClassExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample5",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample5.htm\">Template class example 5: copy policy of integer class</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample5.zip\">Download the Qt Creator project 'CppTemplateClassExample5' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample6",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample6.htm\">Template class example 6: copy policy of template class type, two specialized classes</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample6.zip\">Download the Qt Creator project 'CppTemplateClassExample6' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample7",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample7.htm\">Template class example 7: copy policy of template class type, two partially specialized classes</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample7.zip\">Download the Qt Creator project 'CppTemplateClassExample7' (zip)</a></li>",
         "</ul>"
       }
     }
@@ -7694,11 +8484,31 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"GameAminoAcidFighter.wav\">Download the WAV with the theme music of 'Amino Acid Fighter'</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"GameAminoAcidFighterConsoleExe.zip\">Download the 'AminoAcidFighter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameAminoAcidFighterDesktopExe.zip\">Download the 'AminoAcidFighter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameAminoAcidFighterWebsiteExe.zip\">Download the 'AminoAcidFighter' Windows executable (latest version)(zip)</a></li>",
         "</ul>"
       }
     }
   );
 
+
+/*
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolCreateGlossaryConsoleExe.zip\">Download the 'CreateGlossary' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCreateGlossaryDesktopExe.zip\">Download the 'CreateGlossary' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolCreateGlossaryWebsiteExe.zip\">Download the 'CreateGlossary' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+
+*/
   m.push_back(
     { "GameAminoAcidFighterVcl",
       {
@@ -8770,8 +9580,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolPreDickAdvocaTor.png\">View a 'PreDickAdvocaTor' screenshot (v.1.0)(png)</a></li>",
-        "  <li><a href=\"ToolPreDickAdvocaTorExe.zip\">Download the 'PreDickAdvocaTor' Windows executable (v.1.0)(zip)</a></li>",
+        "  <li><a href=\"ToolPreDickAdvocaTor_2_1.png\">View a 'PreDickAdvocaTor' screenshot (v.2.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolPreDickAdvocaTorConsoleExe.zip\">Download the 'PreDickAdvocaTor' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPreDickAdvocaTorDesktopExe.zip\">Download the 'PreDickAdvocaTor' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPreDickAdvocaTorWebsiteExe.zip\">Download the 'PreDickAdvocaTor' Windows executable (latest version)(zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Older downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolPreDickAdvocaTor_1_0.png\">View a 'PreDickAdvocaTor' screenshot (v.1.0)(png)</a></li>",
         "</ul>"
       }
     }
@@ -8783,7 +9605,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolPrimeExpert.htm\">PrimeExpert</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to determine if a number is prime.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolPrimeExpert_2_1.png\">View a 'PrimeExpert' screenshot (v.2.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolPrimeExpertConsoleExe.zip\">Download the 'PrimeExpert' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPrimeExpertDesktopExe.zip\">Download the 'PrimeExpert' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPrimeExpertWebsiteExe.zip\">Download the 'PrimeExpert' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -8794,7 +9629,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolQmakeWatcher.htm\">QmakeWatcher</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to show which qmake does with with the makefile it creates.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolQmakeWatcher_1_0.png\">View a 'QmakeWatcher' screenshot (v.1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolQmakeWatcherConsoleExe.zip\">Download the 'QmakeWatcher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolQmakeWatcherDesktopExe.zip\">Download the 'QmakeWatcher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolQmakeWatcherWebsiteExe.zip\">Download the 'QmakeWatcher' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -8840,10 +9688,22 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"GamePylos_1_0.png\">View a screenshot of Pylos (version 1.0)(png)</a></li>",
+        "  <li><a href=\"GamePylos_2_1.png\">View a screenshot of Pylos (version 2.1)(png)</a></li>",
         "  <li><a href=\"GamePylosMenu_1_0.png\">View a screenshot of the Pylos menu screen (version 1.0)(png)</a></li>",
         "  <li><a href=\"GamePylosInstructions_1_0.png\">View a screenshot of the Pylos instructions screen (version 1.0)(png)</a></li>",
-        "  <li><a href=\"GamePylosSource_1_0.zip\">Download the source code of 'Pylos' (version 1.0)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"GamePylosConsoleExe.zip\">Download the 'Pylos' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GamePylosDesktopExe.zip\">Download the 'Pylos' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GamePylosWebsiteExe.zip\">Download the 'Pylos' Windows executable (latest version)(zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Older downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"GamePylos_1_0.png\">View a screenshot of Pylos (version 1.0)(png)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -8861,13 +9721,18 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   m.push_back(
     { "GameReversi",
       {
-        "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"QtCreator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p>I first programmed Reversi around the age of eighteen in QBasic. At the 24th of September 2007 in three hours time, I've programmed it in C++. Most of it is in STL, except for the graphical user interface, so it will be easily ported to any other graphics library.</p>",
+        "<p>",
+        "  I like Reversi and have programmed multiple versions:",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>On the 30th March of 2008, I got an assignment to program a console version of Reversi. It can be found at my <a href=\"GameReversiConsole.htm\">Reversi Console</a> page. It made me improve the Reversi class also used in this version.</p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"GameReversi.htm\">Reversi</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>",
+        "<ul>",
+        "  <li>around 1988: QBasic version (lose code)</li>",
+        "  <li>2007-09-24: <img src=\"PicVcl.png\" alt=\"Vcl\"/> <a href=\"GameReversiVcl.htm\">Reversi VCL</a></li>",
+        "  <li>2008-03-30: <img src=\"PicSpacer.png\" alt=\" \"/> <a href=\"GameReversiConsole.htm\">Reversi Console</a></li>",
+        "  <li>2010-09-24: <img src=\"PicQt.png\" alt=\"Qt\"/> Reversi (this page)</li>",
+        "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -8876,7 +9741,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"GameReversi_1_0.png\">View a screenshot of 'Reversi' (png)(version 1.0)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameReversi_0_1.png\">View a screenshot of 'Reversi' (png)(version 0.1)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"GameReversiConsoleExe.zip\">Download the 'Reversi' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameReversiDesktopExe.zip\">Download the 'Reversi' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameReversiWebsiteExe.zip\">Download the 'Reversi' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"GameReversiExe_1_0.zip\">Download the 'Reversi' Windows executable (zip)(version 1.0)</a></li>",
         "</ul>"
       }
@@ -8887,9 +9755,17 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p>On the 30th March of 2008 I got an assignment to make a Console version of Reversi. Using and improving the same Reversi class as in my <a href=\"GameReversi.htm\">Reversi game with GUI of 2007</a> and using some of my <a href=\"CppCodeSnippets.htm\">code snippets</a> I finished the assignment in 64 minutes. View the source code to see what is possible in 64 minutes.</p>",
+        "<p>",
+        "  I first programmed Reversi around the age of eighteen in QBasic. At the 24th of September 2007",
+        "  in three hours time, I've programmed it in C++. Most of it is in STL, except for the graphical",
+        "  user interface, so it will be easily ported to any other graphics library.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameReversiConsole.htm\">Reversi Console</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppBoost.htm\">Boost</a> libraries.</p>",
+        "<p>",
+        "  On the 30th March of 2008, I got an assignment to program a console version of Reversi.",
+        "  It can be found at my <a href=\"GameReversiConsole.htm\">Reversi Console</a> page.",
+        "  It made me improve the Reversi class also used in this version.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -8907,9 +9783,21 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     }
   );
   m.push_back(
-    { "GameRubiksClock",
+    { "GameReversiVcl",
       {
-        "<p><a href=\"GameRubiksClock.htm\">Rubik's Clock</a> is a Rubik's Clock <a href=\"Games.htm\">game</a>.</p>",
+        "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  I first programmed Reversi around the age of eighteen in QBasic. At the 24th of September 2007",
+        "  in three hours time, I've programmed it in C++. Most of it is in STL, except for the graphical",
+        "  user interface, so it will be easily ported to any other graphics library.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  On the 30th March of 2008, I got an assignment to program a console version of Reversi.",
+        "  It can be found at my <a href=\"GameReversiConsole.htm\">Reversi Console</a> page.",
+        "  It made me improve the Reversi class also used in this version.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -8918,8 +9806,45 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockDesktop_2_2.png\">View a screenshot of 'Rubik's Clock' (version 2.2)(png)</a></li>",
+        "  <li><a href=\"GameReversiVcl_1_0.png\">View a screenshot of 'Reversi VCL' (version 1.0)(png)</a></li>",
+        "  <li><a href=\"GameReversiVclExe_1_0.zip\">Download the 'Reversi VCL' Windows executable (version 1.0)(zip)</a></li>",
+        "  <li><a href=\"GameReversiVclSource_1_0.zip\">Download the 'Reversi VCL' source code (version 1.0)(zip)</a></li>",
+        "  <li><a href=\"GameReversiVclSource_1_0.htm\">View the C++ Builder source code of 'Reversi VCL' as a web page (version 1.0)(htm)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "GameRubiksClock",
+      {
+        "<p>",
+        "  <a href=\"GameRubiksClock.htm\">Rubik's Clock</a> is a Rubik's Clock",
+        " <a href=\"Games.htm\">game</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameRubiksClock_2_3.png\">View a screenshot of 'Rubik's Clock' (version 2.3)(png)</a></li>",
+        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"GameRubiksClockDesktop_2_2.png\">View a screenshot of 'Rubik's Clock' (version 2.2)(png)</a></li>",
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClock_2_1.png\">View a screenshot of 'Rubik's Clock' (version 2.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"GameRubiksClockConsoleExe.zip\">Download the 'RubiksClock' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockDesktopExe.zip\">Download the 'RubiksClock' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockWebsiteExe.zip\">Download the 'RubiksClock' Windows executable (latest version)(zip)</a></li>",
+        "  <li>Older: <a href=\"GameRubiksClockVcl.htm\">Rubik's Clock (VCL)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Older downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockDesktopExe_2_2.zip\">Download a Windows executable of 'Rubik's Clock' (version 2.2)(zip)</a></li>",
         "  <li>Older: <a href=\"GameRubiksClockVcl.htm\">Rubik's Clock (VCL)</a></li>",
         "</ul>"
@@ -8973,6 +9898,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"GameSearchAndDestroyChessConsoleExe.zip\">Download the 'SearchAndDestroyChess' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameSearchAndDestroyChessDesktopExe.zip\">Download the 'SearchAndDestroyChess' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameSearchAndDestroyChessWebsiteExe.zip\">Download the 'SearchAndDestroyChess' Windows executable (latest version)(zip)</a></li>",
         "  <li>Older: <a href=\"GameSearchAndDestroyChessVcl.htm\">SearchAndDestroyChess (VCL)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -9224,7 +10152,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"GameTicTacToe_1_6.png\">View a screenshot of 'TicTacToe' (version 1.6)(png)</a></li>",
         "  <li><a href=\"GameTicTacToeArchitecture_1_5.png\">View the 'TicTacToe' class architecture (version 1.5)(png)</a></li>",
         "  <li><a href=\"GameTicTacToeArchitecture_1_5.dia\">View the 'TicTacToe' class architecture (version 1.5)(dia)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameTicTacToeDesktopExeWindows_1_4.zip\">Download the Windows executable of 'TicTacToe' (version 1.4)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"GameTicTacToeConsoleExe.zip\">Download the 'TicTacToe' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameTicTacToeDesktopExe.zip\">Download the 'TicTacToe' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToeWebsiteExe.zip\">Download the 'TicTacToe' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToeSource_1_5.zip\">Download the Qt Creator source code of 'TicTacToe' (version 1.5)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -9238,6 +10168,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Older downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameTicTacToeDesktopExeWindows_1_4.zip\">Download the Windows executable of 'TicTacToe' (version 1.4)(zip)</a></li>",
         "  <li><a href=\"GameTicTacToeArchitecture_1_4.png\">View the 'TicTacToe' class architecture (version 1.4)(png)</a></li>",
         "  <li><a href=\"GameTicTacToeArchitecture_1_4.dia\">View the 'TicTacToe' class architecture (version 1.4)(dia)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToeSource_1_4.zip\">Download the Qt Creator source code of 'TicTacToe' (version 1.4)(zip)</a></li>",
@@ -9548,6 +10479,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver_0_33.png\">View a screenshot of 'Brainweaver' (version 0.33)(png)</a></li>",
         "  <li><img src=\"PicWine.png\" alt=\"Wine\"/> <a href=\"ProjectBrainweaver_0_28Wine.png\">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectBrainweaverDesktopExe.zip\">Download the 'Brainweaver' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ProjectBrainweaverExe_0_43.zip\">Download the 'Brainweaver' windows executable (version 0.43)(zip)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver20130725.mp4\">View Brainweaver being tested by libcvautomation (mp4)</a></li>",
         "</ul>",
@@ -9889,7 +10821,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>#1: (1,1,(1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (1,1,(1,1))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,1,(1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -9926,7 +10858,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>#2: (1,(1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (1,(1,1,1))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,(1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -9972,7 +10904,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>#3: (1,1,(1,2))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (1,1,(1,2))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,1,(1,2))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -10010,7 +10942,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>#4: (1,1,(1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (1,1,(1,1,1))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,1,(1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -10064,7 +10996,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>#5: (2,(1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (2,(1,1,1))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (2,(1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -10114,7 +11046,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>6#: (1,1,1,(1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (1,1,1,(1,1))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,1,1,(1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -10168,7 +11100,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>7#: (1,2,(1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (1,2,(1,1))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,2,(1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -10206,7 +11138,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>8#: (1,(1,1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (1,(1,1,1,1))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,(1,1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -10276,7 +11208,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>9#: (1,(1,1,2))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (1,(1,1,2))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,(1,1,2))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -10318,7 +11250,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h3>#10: (1,(1,1,1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Results for phylogeny (1,(1,1,1,1,1))\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,(1,1,1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -10528,13 +11460,13 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>The relationship found (which is dependent on the computer used) between complexity and execution time is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Relation between complexity and execution time\" border = \"1\"><tr><td><code>",
         "T = 1.0543*C - 4.5147<br/>",
         "</code></td></tr></table>",
         "<!-- end of code -->",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Symbol definitions\" border = \"1\"><tr><td><code>",
         "T = LOG10(time(sec))<br/>",
         "C = LOG10(complexity)<br/>",
         "</code></td></tr></table>",
@@ -10564,13 +11496,13 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>The relationship found (which is independent on the computer used) between complexity and memory use is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Relation between complexity and execution time\" border = \"1\"><tr><td><code>",
         "M = 1.0387*C + 0.6278",
         "</code></td></tr></table>",
         "<!-- end of code -->",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Symbol definitions\" border = \"1\"><tr><td><code>",
         "M = LOG10(memory use(byte))<br/>",
         "C = LOG10(complexity)<br/>",
         "</code></td></tr></table>",
@@ -10656,10 +11588,12 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeek_1_10.png\">View a screenshot of 'ProjectRichelBilderbeek' (version 1.14)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeek_1_7.png\">View a screenshot of 'ProjectRichelBilderbeek' (version 1.7)(png)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeek_1_10.png\">View a screenshot of 'ProjectRichelBilderbeek' (version 1.10)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ProjectWtWebsite_0_38.png\">View a screenshot of 'ProjectRichelBilderbeek' (at that time called 'ProjectWtWebsite')(version 0.38)(png)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekExe_1_8.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (version 1.8)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ProjectRichelBilderbeekConsoleExe.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekDesktopExe.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ProjectRichelBilderbeekWebsiteExe.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_8.zip\">Download the Qt creator project 'ProjectRichelBilderbeek' (version 1.8)(zip)</a></li>",
         "  <li><a href=\"ProjectRichelBilderbeekSloccount_1_8.txt\">View the SLOCcount of 'ProjectRichelBilderbeek' (version 1.8)(txt)</a></li>",
         "</ul>",
@@ -10671,6 +11605,8 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Older downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeek_1_10.png\">View a screenshot of 'ProjectRichelBilderbeek' (version 1.10)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekExe_1_8.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (version 1.8)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeek_1_5.png\">View a screenshot of 'ProjectRichelBilderbeek' (version 1.5)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekExe_1_7.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (version 1.7)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_7.zip\">Download the Qt creator project 'ProjectRichelBilderbeek' (version 1.7)(zip)</a></li>",
@@ -10813,7 +11749,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>The <a href=\"Projects.htm\">project</a> results of <a href=\"ProjectTwoDigitNewick.htm\">Project TwoDigitNewick</a> show that the probabilities of this and previous project match.</p>",
         "<p>&nbsp;</p>",
-        "<table summary=\"TODO\" border=\"1\">",
+        "<table summary=\"Test comparisons\" border=\"1\">",
         "  <tr><th>Test name</th> <th>Probability</th> <th>Time (sec)</th> <th>Phylogeny</th> <th>Theta</th> <th>Complexity</th></tr>",
         "  <tr><td>TestProjectRampal_Endversion2</td> <td>1.82639e-308</td> <td>252</td> <td>((90,1000),100)</td> <td>10</td> <td>27000000</td></tr>",
         "  <tr><td>TestTwoDigitNewickRelease</td> <td>1.82639e-308</td> <td>964</td> <td>((90,1000),100)</td> <td>10</td> <td>27000000</td></tr>",
@@ -11086,7 +12022,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p><a href=\"ProjectTwoDigitNewick.htm\">Project TwoDigitNewick</a> its <a href=\"Projects.htm\">project</a> results show that the newer version between one and two",
         "orders of magnitude faster.</p>",
         "<p>&nbsp;</p>",
-        "<table summary=\"TODO\" border=\"1\">",
+        "<table summary=\"Test comparisons\" border=\"1\">",
         "  <tr><td>Light</td> <td></td> <td></td> <td>Speed_improvement</td></tr>",
         "  <tr><td>TestProjectRampal_Endversion2</td> <td>((2,2),2)</td> <td>0</td> <td>-</td></tr>",
         "  <tr><td>TestTwoDigitNewickRelease</td> <td>((2,2),2)</td> <td>0</td> <td>-</td></tr>",
@@ -11384,6 +12320,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li>",
+        "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
+        "    <a href=\"ToolAsciiArter_6_0.png\">View a screenshot of 'AsciiArter' (version 6.0)(png)</a>",
+        "  </li>",
+        "  <li>",
         "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
         "    <a href=\"ToolAsciiArter_5_2.png\">View a screenshot of 'AsciiArter' (version 5.2)(png)</a>",
         "  </li>",
@@ -11391,10 +12331,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
         "    <a href=\"ToolAsciiArter_5_1.png\">View a screenshot of 'AsciiArter' (version 5.1)(png)</a>",
         "  </li>",
-        "  <li>",
-        "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
-        "    <a href=\"ToolAsciiArterDesktopExe_5_1.zip\">Download the 'AsciiArter' Windows executable (version 5.1)(zip)</a>",
-        "  </li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolAsciiArterConsoleExe.zip\">Download the 'AsciiArter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolAsciiArterDesktopExe.zip\">Download the 'AsciiArter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolAsciiArterWebsiteExe.zip\">Download the 'AsciiArter' Windows executable (latest version)(zip)</a></li>",
         "  <li>",
         "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> ",
         "    <a href=\"ToolAsciiArterSource_5_1.zip\">Download the 'AsciiArter' source code (version 5.1)(zip)</a>",
@@ -11410,6 +12349,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Older downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li>",
+        "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
+        "    <a href=\"ToolAsciiArterDesktopExe_5_1.zip\">Download the 'AsciiArter' Windows executable (version 5.1)(zip)</a>",
+        "  </li>",
         "  <li>",
         "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
         "    <a href=\"ToolTestAsciiArter_4_1.png\">View a screenshot of 'AsciiArter' (version 4.1)(png)</a>",
@@ -11518,7 +12461,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolCaesarCipher.htm\">CaesarCipher</a> is a <a href=\"Tools.htm\">tool</a> to",
         "  do Caesar cipher encryption and decryption",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolCaesarCipher_1_0.png\">View a screenshot of 'CaesarCipher' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolCaesarCipherConsoleExe.zip\">Download the 'CaesarCipher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCaesarCipherDesktopExe.zip\">Download the 'CaesarCipher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolCaesarCipherWebsiteExe.zip\">Download the 'CaesarCipher' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -11544,7 +12500,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolCodeBreaker.htm\">CodeBreaker</a> is a <a href=\"Tools.htm\">tool</a> to",
         "  do code breaking",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolCodeBreakerConsoleExe.zip\">Download the 'CodeBreaker' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCodeBreakerDesktopExe.zip\">Download the 'CodeBreaker' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolCodeBreakerWebsiteExe.zip\">Download the 'CodeBreaker' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -11565,9 +12533,13 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCodeToHtml_2_3.png\">View a screenshot of 'CodeToHtml' (version 2.3)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCodeToHtml_3_2.png\">View a screenshot of 'CodeToHtml' (version 3.2)(png)</a></li>",
+        "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCodeToHtml_2_3.png\">View a screenshot of 'CodeToHtml' (version 2.3)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCodeToHtml_2_3.png\">View a screenshot of the menu screen of 'CodeToHtml' (version 2.3)(png)</a></li>",
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolCodeToHtml_2_0.png\">View a screenshot of 'CodeToHtml' (version 2.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolCodeToHtmlConsoleExe.zip\">Download the 'CodeToHtml' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCodeToHtmlDesktopExe.zip\">Download the 'CodeToHtml' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolCodeToHtmlWebsiteExe.zip\">Download the 'CodeToHtml' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolCodeToHtmlSource_2_5.zip\">Download the 'CodeToHtml' source code (version 2.5)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolCodeToHtmlSource_2_5.htm\">View the 'CodeToHtml' source code as web page (version 2.5)(htm)</a></li>",
         "</ul>",
@@ -11713,7 +12685,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolCreateGlossary.htm\">CreateGlossary</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to generate the glossaries of this website.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolCreateGlossaryConsoleExe.zip\">Download the 'CreateGlossary' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCreateGlossaryDesktopExe.zip\">Download the 'CreateGlossary' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolCreateGlossaryWebsiteExe.zip\">Download the 'CreateGlossary' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -11733,6 +12717,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCreateQtProjectZipFile_2_0.png\">View a screenshot of 'CreateQtProjectZipFile' (version 2.0)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCreateQtProjectZipFileSource_2_0.zip\">Download the 'CreateQtProjectZipFile' source code (version 2.0)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCreateQtProjectZipFileSource_2_0.htm\">View the 'CreateQtProjectZipFile' source code as web page (version 2.0)(htm)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolCreateQtProjectZipFileConsoleExe.zip\">Download the 'CreateQtProjectZipFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCreateQtProjectZipFileDesktopExe.zip\">Download the 'CreateQtProjectZipFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolCreateQtProjectZipFileWebsiteExe.zip\">Download the 'CreateQtProjectZipFile' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -11762,6 +12749,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolDotMatrix_2_1.png\">View a screenshot of 'DotMatrix' (2.1)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolDotMatrixConsoleExe.zip\">Download the 'DotMatrix' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolDotMatrixDesktopExe.zip\">Download the 'DotMatrix' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolDotMatrixWebsiteExe.zip\">Download the 'DotMatrix' Windows executable (latest version)(zip)</a></li>",
         "</ul>"
       }
     }
@@ -11816,7 +12806,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ToolEncrypterScreenshot.png\">View a screenshot of the Encrypter GUI shell</a></li>",
         "  <li><a href=\"ToolEncrypterSource.rar\">Download the Encrypter source code</a></li>",
-        "  <li><a href=\"ToolEncrypterExe.rar\">Download the Encrypter Windows executables</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolEncrypterConsoleExe.zip\">Download the 'Encrypter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolEncrypterDesktopExe.zip\">Download the 'Encrypter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolEncrypterWebsiteExe.zip\">Download the 'Encrypter' Windows executable (latest version)(zip)</a></li>",
         "</ul>"
       }
     }
@@ -11832,6 +12824,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppDoFilterOperation.png\">View an example image of 'DoFilterOperation'</a></li>",
         "  <li><a href=\"ToolFilterOperationer_2_0.png\">View a screenshot of 'FilterOperationer' (2.0)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolFilterOperationerConsoleExe.zip\">Download the 'FilterOperationer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolFilterOperationerDesktopExe.zip\">Download the 'FilterOperationer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolFilterOperationerWebsiteExe.zip\">Download the 'FilterOperationer' Windows executable (latest version)(zip)</a></li>",
         "</ul>"
       }
     }
@@ -11864,7 +12859,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolFakeEvy.htm\">FakeEvy</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to generate 'Start To Run' episodes.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolFakeEvyConsoleExe.zip\">Download the 'FakeEvy' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolFakeEvyDesktopExe.zip\">Download the 'FakeEvy' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolFakeEvyWebsiteExe.zip\">Download the 'FakeEvy' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -11907,6 +12914,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolFunctionPlotter_2_0.png\">View a screenshot of 'FunctionPlotter' (v.2.0)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolFunctionPlotterConsoleExe.zip\">Download the 'FunctionPlotter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolFunctionPlotterDesktopExe.zip\">Download the 'FunctionPlotter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolFunctionPlotterWebsiteExe.zip\">Download the 'FunctionPlotter' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -11986,6 +12996,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ToolGaborFilterExample.png\">View an example image of 'GaborFilter' (png)</a></li>",
         "  <li><a href=\"ToolGaborFilter_2_0.png\">View a screenshot of 'GaborFilter' (png)(version 2.0)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolGaborFilterConsoleExe.zip\">Download the 'GaborFilter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolGaborFilterDesktopExe.zip\">Download the 'GaborFilter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolGaborFilterWebsiteExe.zip\">Download the 'GaborFilter' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -12005,7 +13018,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>The function of a one-dimensional Gabor filter is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function formula\" border = \"1\"><tr><td><code>",
         "f_Gabor(x) = cos(frequency*x) * exp(-(x*x)/(sigma*sigma))<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -12013,7 +13026,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>In the range [-5,5] a nice combination of values is frequency = 4.0 and sigma = 2.0:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor funtion formula integral with filled-in values\" border = \"1\"><tr><td><code>",
         "f_Gabor = cos(4.0*x) * exp(-(x*x)/(2.0*2.0))",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -12046,7 +13059,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p><a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">A Gaussian function</a> has the form</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function formula integrak\" border = \"1\"><tr><td><code>",
         "F_Gauss(x) <br/>",
         "&nbsp;&nbsp;= a * exp(-((x-b)*(x-b))/(2*c*c))<br/>",
         "</code></td></tr></table>",
@@ -12055,7 +13068,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p><a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">The Gaussian function</a> used in the one-dimensional Gabor filter has</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function values\" border = \"1\"><tr><td><code>",
         "a = 1<br/>",
         "b = 0 <br/>",
         "c = sigma <br/>",
@@ -12065,7 +13078,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>which results in</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function formula with filled-in values\" border = \"1\"><tr><td><code>",
         "f_Gabor_part2<br/>",
         "&nbsp;&nbsp;= 1.0 * exp(-((x-0.0) * (x-0.0))/(2.0 * sigma * sigma))<br/>",
         "&nbsp;&nbsp;= exp(-(x * x)/(2.0 * sigma * sigma))<br/>",
@@ -12087,7 +13100,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>A <a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">Gaussian function</a> has the form</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function formula\" border = \"1\"><tr><td><code>",
         "f_Gauss(x)<br/>",
         "&nbsp;&nbsp;= a * exp(-((x-b)*(x-b))/(2*c*c))<br/>",
         "</code></td></tr></table>",
@@ -12096,7 +13109,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>and has the <a href=\"http://en.wikipedia.org/wiki/Integral_of_a_Gaussian_function\">Gaussian integral</a> of</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function formula\" border = \"1\"><tr><td><code>",
         "F_Gauss(x) = a * c * sqrt(pi)",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -12104,7 +13117,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>Because in the Gabor filter</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function values\" border = \"1\"><tr><td><code>",
         "a = 1<br/>",
         "b = 0 <br/>",
         "c = sigma<br/>",
@@ -12114,7 +13127,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>the integral becomes</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function formula integral\" border = \"1\"><tr><td><code>",
         "F_Gabor_part2(x) <br/>",
         "&nbsp;&nbsp;= 1 * sigma * sqrt(pi)<br/>",
         "&nbsp;&nbsp;= sigma * sqrt(pi)<br/>",
@@ -12132,7 +13145,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>The function of a two-dimensional Gabor filter is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function formula\" border = \"1\"><tr><td><code>",
         "f_Gabor(x)<br/>",
         "&nbsp;&nbsp;= cos(frequency*x)<br/>",
         "&nbsp;&nbsp;* exp(-(x*x)/(sigma*sigma))<br/>",
@@ -12142,7 +13155,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>In the range [-5,5] a nice combination of values is frequency = 4.0 and sigma = 1.5:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gabor function formula with filled-in values\" border = \"1\"><tr><td><code>",
         "F_Gabor<br/>",
         "&nbsp;&nbsp;= cos(4*x) * exp(-(x*x)/(1.5*1.5)) * (1 / (1.5 * sqrt(3.14159265)))<br/>",
         "</code></td></tr></table>",
@@ -12176,7 +13189,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p><a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">A Gaussian function</a> has the form</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gaussian function formula\" border = \"1\"><tr><td><code>",
         "F_Gauss(x,y)<br/>",
         "&nbsp;&nbsp;= a * exp(- <br/>",
         "&nbsp;&nbsp;( ( (x-mid_x)*(x-mid_x))/(2*sigma_x * sigma_x) ) <br/>",
@@ -12187,7 +13200,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p><a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">The Gaussian function</a> used in the two-dimensional Gabor filter has</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gaussian function values\" border = \"1\"><tr><td><code>",
         "a = 1<br/>",
         "sigma_x = sigma_y = sigma <br/>",
         "mid_x = midy = 0<br/>",
@@ -12197,7 +13210,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>which results in</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Gaussian function formula integral\" border = \"1\"><tr><td><code>",
         "F_Gabor_part2(x,y) <br/>",
         "&nbsp;&nbsp;= exp(- <br/>",
         "&nbsp;&nbsp;( ( (x*x)/(2 * sigma * sigma) ) <br/>",
@@ -12237,7 +13250,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>The <a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">Gaussian function</a> part (part 2, as described above) of a Gabor filter, has the following formula:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"One-dimensional Gabor function formula\" border = \"1\"><tr><td><code>",
         "f_Gabor_part2(x) = exp(-(x * x)/(2.0 * sigma * sigma))<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -12245,7 +13258,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>Assume a filter size and halve it to obtain s (s is like a radius), then</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"One-dimensional Gabor function formula with filled-in values\" border = \"1\"><tr><td><code>",
         "x = s<br/>",
         "f_Gabor_part2(x = s) <br/>",
         "&nbsp;&nbsp;= exp(-(s * s)/(2.0 * sigma * sigma))<br/>",
@@ -12262,7 +13275,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>Which, by approximation is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"One-dimensional Gabor function formula approximation\" border = \"1\"><tr><td><code>",
         "sigma = sqrt(-(s * s) / -12.46882145143674291132554261896)<br/>",
         "sigma = sqrt( (s * s) /  12.46882145143674291132554261896)<br/>",
         "</code></td></tr></table>",
@@ -12363,6 +13376,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolGrayCoder_2_1.png\"> View a screenshot of 'GrayCoder' (version 2.1)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolGrayCoderConsoleExe.zip\">Download the 'GrayCoder' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolGrayCoderDesktopExe.zip\">Download the 'GrayCoder' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolGrayCoderWebsiteExe.zip\">Download the 'GrayCoder' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -12439,7 +13455,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolHistogramEqualizationer_2_0.png\">View a screenshot of HistogramEqualizationer' (2.0)(png)</a></li>",
-        "</ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolHistogramEqualizationerConsoleExe.zip\">Download the 'HistogramEqualizationer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHistogramEqualizationerDesktopExe.zip\">Download the 'HistogramEqualizationer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolHistogramEqualizationerWebsiteExe.zip\">Download the 'HistogramEqualizationer' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -12483,7 +13502,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>Supply the program with a text file like shown below (note that the first line is obligatory):</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Hometrainer example file\" border = \"1\"><tr><td><code>",
         "Hometrainer (C) 2009-2014 Richel Bilderbeek<br/>",
         "Humanbody.bmp,Which line points to the liver?,1,2,3,4<br/>",
         "Humanbody.bmp,Which line points to the liver?,1/one/One<br/>",
@@ -12511,7 +13530,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Hometrainer executable and source</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li>...</li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolHometrainerConsoleExe.zip\">Download the 'Hometrainer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerDesktopExe.zip\">Download the 'Hometrainer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolHometrainerWebsiteExe.zip\">Download the 'Hometrainer' Windows executable (latest version)(zip)</a></li>",
         "  <li>Older: <a href=\"ToolHometrainerVcl.htm\">Hometrainer (VCL)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -12641,7 +13662,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>Supply the program with a text file like shown below (note that the first line is obligatory):</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"Hometrainer example file\" border = \"1\"><tr><td><code>",
         "Hometrainer (C) 2009-2014 Richel Bilderbeek<br/>",
         "Humanbody.bmp,Which line points to the liver?,1,2,3,4<br/>",
         "Humanbody.bmp,Which line points to the liver?,1/one/One<br/>",
@@ -12789,6 +13810,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolImageRotater_2_0.png\">View a screenshot of Image Rotater (png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolImageRotaterConsoleExe.zip\">Download the 'ImageRotater' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolImageRotaterDesktopExe.zip\">Download the 'ImageRotater' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolImageRotaterWebsiteExe.zip\">Download the 'ImageRotater' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>And, yes, the spelling error is intended: I wanted to Dutchify the name of the program.</p>",
@@ -12875,9 +13899,11 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFilterer_1_15.png\">View a screenshot of 'KalmanFilterer' (version 1.15)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFilterer_1_11.png\">View a screenshot of 'KalmanFilterer' (version 1.11)(png)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFilterer_1_4.png\">View a screenshot of 'KalmanFilterer' (version 1.4)(png)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFiltererExe_1_9.zip\">Download a Windows executable of 'KalmanFilterer' (version 1.9)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolKalmanFiltererConsoleExe.zip\">Download the 'KalmanFilterer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFiltererDesktopExe.zip\">Download the 'KalmanFilterer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolKalmanFiltererWebsiteExe.zip\">Download the 'KalmanFilterer' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolKalmanFiltererSource_1_11.zip\">Download the 'KalmanFilterer' source code (version 1.11)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFiltererSource_1_11.htm\">View the 'KalmanFilterer' source code as web page (version 1.11)(htm)</a></li>",
         "</ul>",
@@ -12889,6 +13915,8 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Older downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFilterer_1_4.png\">View a screenshot of 'KalmanFilterer' (version 1.4)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFiltererExe_1_9.zip\">Download a Windows executable of 'KalmanFilterer' (version 1.9)(zip)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFilterer_1_9.png\">View a screenshot of 'KalmanFilterer' (version 1.9)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFilterer_1_6.png\">View a screenshot of 'KalmanFilterer' (version 1.6)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolKalmanFilterer_1_5.png\">View a screenshot of 'KalmanFilterer' (version 1.5)(png)</a></li>",
@@ -12915,11 +13943,13 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   m.push_back(
     { "ToolKeySender",
       {
-        "<p><a href=\"ToolKeySender.htm\">KeySender</a> is a demonstration tool of ",
-        "<a href=\"http://www.codeproject.com/KB/cpp/sendkeys_cpp_Article.aspx\">Lallous' CSendKey class</a> ",
-        "with which you can send virtual key presses to any window. ",
-        "For example, you can let <a href=\"ToolKeySender.htm\">KeySender</a> type a",
-        "notepad document for you (as seen in the screenshot).</p>",
+        "<p>",
+        "  <a href=\"ToolKeySender.htm\">KeySender</a> is a demonstration tool of ",
+        "  <a href=\"http://www.codeproject.com/KB/cpp/sendkeys_cpp_Article.aspx\">Lallous' CSendKey class</a> ",
+        "  with which you can send virtual key presses to any window. ",
+        "  For example, you can let <a href=\"ToolKeySender.htm\">KeySender</a> type a",
+        "  notepad document for you (as seen in the screenshot).",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolKeySender_1_0.png\">View a screenshot of 'KeySender' (version 1.0)(png)</a></li>",
@@ -13014,6 +14044,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolLogisticGrowthSimulator_1_0.png\">View a screenshot of 'Logistic Growth Simulator' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolLogisticGrowthSimulatorConsoleExe.zip\">Download the 'LogisticGrowthSimulator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolLogisticGrowthSimulatorDesktopExe.zip\">Download the 'LogisticGrowthSimulator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolLogisticGrowthSimulatorWebsiteExe.zip\">Download the 'LogisticGrowthSimulator' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolLogisticGrowthSimulatorExe_1_0.zip\"> Download the 'Logistic Growth Simulator' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolLogisticGrowthSimulatorSource_1_0.zip\"> Download the 'Logistic Growth Simulator' source code (version 1.0)(zip)</a></li>",
         "</ul>",
@@ -13062,6 +14095,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"ToolMazeCreator_2_0.png\">View a screenshot of 'Maze Creator' (v. 2.0)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolMazeCreatorConsoleExe.zip\">Download the 'MazeCreator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolMazeCreatorDesktopExe.zip\">Download the 'MazeCreator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolMazeCreatorWebsiteExe.zip\">Download the 'MazeCreator' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
       }
     }
@@ -13128,7 +14164,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li>...</li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolMultiEncrangerConsoleExe.zip\">Download the 'MultiEncranger' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolMultiEncrangerDesktopExe.zip\">Download the 'MultiEncranger' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolMultiEncrangerWebsiteExe.zip\">Download the 'MultiEncranger' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
       }
     }
@@ -13172,7 +14210,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ToolMusicTheory_1_0.png\">View a screenshot of 'MusicTheory' (version 1.0)(png)</a></li>",
-        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolMusicTheoryExe_1_1.zip\">Download the Windows executable of 'MusicTheory' (version 1.1)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolMusicTheoryConsoleExe.zip\">Download the 'MusicTheory' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolMusicTheoryDesktopExe.zip\">Download the 'MusicTheory' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolMusicTheoryWebsiteExe.zip\">Download the 'MusicTheory' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolMusicTheorySource_1_1.zip\">Download the 'MusicTheory' source code (version 1.1)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolMusicTheorySource_1_0.htm\">View the 'MusicTheory' source code as web page (version 1.0)(htm)</a></li>",
         "</ul>",
@@ -13184,6 +14224,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Older downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolMusicTheoryExe_1_1.zip\">Download the Windows executable of 'MusicTheory' (version 1.1)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolMusicTheory_0_1.png\">View a screenshot of the menu screen of 'MusicTheory' (version 0.1)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolMusicTheorySource_1_1.zip\">Download the 'MusicTheory' source code (version 1.1)(zip)</a></li>",
         "</ul>",
@@ -13274,7 +14315,29 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
-    { "ToolPaperRockScissors", // || m_page_name == "CppPaperRockScissors",
+    { "ToolPaperRockScissors",
+      {
+        "<p>",
+        "  This simulation shows pure paper-rock-scissors players competing on a",
+        "  two-dimensional grid (a donut-shaped world). Each time step, a random pixel is",
+        "  chosen (that is, either a paper, rock or scissors player) and a random",
+        "  neighbor. If one beats the other, the winner's strategy replaces the loser's",
+        "  pixel.",
+        "</p>",
+        //"<p>&nbsp;</p>",
+        //"<ul>",
+        //"  <li><a href=\"ToolPaperRockScissors.png\">View a screenshot of 'PaperRockScissors' (png)</a></li>",
+        //"  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolPaperRockScissorsConsoleExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
+        //"  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPaperRockScissorsDesktopExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
+        //"  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPaperRockScissorsWebsiteExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
+        //"  <li><a href=\"ToolPaperRockScissorsSource.zip\">Download the 'ToolPaperRockScissors' source code (zip)</a>.</li>",
+        //"</ul>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolPaperRockScissorsVcl", // || m_page_name == "CppPaperRockScissors",
       {
         "<p>This simulation shows pure paper-rock-scissors players competing on a",
         "two-dimensional grid (a donut-shaped world). Each time step, a random pixel is",
@@ -13283,8 +14346,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "pixel.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolPaperRockScissorsScreenshot.png\">View a screenshot of 'ToolPaperRockScissors' (png)</a></li>",
-        "  <li><a href=\"ToolPaperRockScissorsExe.zip\">Download the Windows executable of 'ToolPaperRockScissors' (zip)</a></li>",
+        "  <li><a href=\"ToolPaperRockScissorsScreenshot.png\">View a screenshot of 'PaperRockScissors' (png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolPaperRockScissorsConsoleExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPaperRockScissorsDesktopExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPaperRockScissorsWebsiteExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolPaperRockScissorsSource.zip\">Download the 'ToolPaperRockScissors' source code (zip)</a>.</li>",
         "</ul>",
       }
@@ -13338,7 +14403,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ToolPerfectElasticCollision_1_0.png\">View a 'PerfectElasticCollision' screenshot (v.1.0)(png)</a></li>",
         "  <li><a href=\"ToolPerfectElasticCollisionSource_1_0.zip\">Download the 'PerfectElasticCollision' source code (v.1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolPerfectElasticCollisionSourceExeWindows_1_0.zip\">Download the 'PerfectElasticCollision' Windows executable (v.1.0)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolPerfectElasticCollisionConsoleExe.zip\">Download the 'PerfectElasticCollision' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPerfectElasticCollisionDesktopExe.zip\">Download the 'PerfectElasticCollision' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPerfectElasticCollisionWebsiteExe.zip\">Download the 'PerfectElasticCollision' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.0 is created following ",
@@ -13361,6 +14428,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPicToCode_1_3.png\">View a 'PicToCode' screenshot (version 1.3)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCode_1_2.png\">View a 'PicToCode' screenshot (version 1.2)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolPicToCodeConsoleExe.zip\">Download the 'PicToCode' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCodeDesktopExe.zip\">Download the 'PicToCode' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPicToCodeWebsiteExe.zip\">Download the 'PicToCode' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPicToCodeSource_1_3.zip\">Download the 'PicToCode' source code (version 1.3)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -13388,7 +14458,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li>...</li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolPixelatorConsoleExe.zip\">Download the 'Pixelator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPixelatorDesktopExe.zip\">Download the 'Pixelator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPixelatorWebsiteExe.zip\">Download the 'Pixelator' Windows executable (latest version)(zip)</a></li>",
         "</ul>"
       }
     }
@@ -13425,10 +14497,28 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p><a href=\"ToolQuadraticSolver.htm\">QuadraticSolver</a> uses the ",
         "<a href=\"CppFunction.htm\">function</a> <a href=\"CppSolveQuadratic.htm\">SolveQuadratic</a>.</p>",
         "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolQuadraticSolver_1_0.png\">View a screenshot of 'QuadraticSolver'</a></li>",
-        "  <li><a href=\"ToolQuadraticSolverExe_1_0.zip\">Download the 'QuadraticSolver' Windows executable (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolQuadraticSolverConsoleExe.zip\">Download the 'QuadraticSolver' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolQuadraticSolverDesktopExe.zip\">Download the 'QuadraticSolver' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolQuadraticSolverWebsiteExe.zip\">Download the 'QuadraticSolver' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolQuadraticSolverSource_1_0.zip\">Download the 'QuadraticSolver' source code (zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Older downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolQuadraticSolverExe_1_0.zip\">Download the 'QuadraticSolver' Windows executable (zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -13464,6 +14554,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCode_3_0.png\">View a screenshot of 'Random Code' (Web application)(version 3.0)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"ToolRandomCode_2_0.png\">View a screenshot of 'Random Code' (version 2.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolRandomCodeConsoleExe.zip\">Download the 'RandomCode' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolRandomCodeDesktopExe.zip\">Download the 'RandomCode' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeWebsiteExe.zip\">Download the 'RandomCode' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolRandomCodeExeWindows_3_0.zip\">Download the 'Random Code' Windows executable (version 3.0)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -13509,6 +14602,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicRaspbian.png\" alt=\"Raspbian\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRasper_0_3.png\">View a screenshot of 'Rasper' (version 0.3)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolRasperConsoleExe.zip\">Download the 'Rasper' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolRasperDesktopExe.zip\">Download the 'Rasper' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRasperWebsiteExe.zip\">Download the 'Rasper' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolRasperSource_0_3.zip\">Download the 'Rasper' source code (version 0.3)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -13534,6 +14630,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolRectFitter_1_0.png\">View a screenshot of 'RectFitter' (version 1.0)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolRectFitterConsoleExe.zip\">Download the 'RectFitter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolRectFitterDesktopExe.zip\">Download the 'RectFitter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRectFitterWebsiteExe.zip\">Download the 'RectFitter' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolRectFitterExe_1_0.zip\">Download the 'RectFitter' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolRectFitterSource_1_0.zip\">Download the 'RectFitter' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolRectFitterSource_1_0.htm\">View the 'RectFitter' source code as a web page (version 1.0)(htm)</a></li>",
@@ -13556,7 +14655,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     { "ToolRefrigeratorPuzzleSolver",
       {
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"RefrigeratorPuzzleSolver remark\" border = \"1\"><tr><td><code>",
         "This type of puzzle is also called a monkey puzzle [1].<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -13566,6 +14665,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ol>",
         "  <li><a href=\"ToolRefrigeratorPuzzleSolverPuzzle.png\">View a photo of the refrigerator puzzle (png)</a></li>",
         "  <li><a href=\"ToolRefrigeratorPuzzleSolver_1_0.png\">View a screenshot of 'Refrigerator Puzzle Solver' (png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolRefrigeratorPuzzleSolverConsoleExe.zip\">Download the 'RefrigeratorPuzzleSolver' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolRefrigeratorPuzzleSolverDesktopExe.zip\">Download the 'RefrigeratorPuzzleSolver' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRefrigeratorPuzzleSolverWebsiteExe.zip\">Download the 'RefrigeratorPuzzleSolver' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolRefrigeratorPuzzleSolverExe_1_0.zip\">Download the 'Refrigerator Puzzle Solver' Windows executable (version 1.0)(zip)</a>.</li>",
         "  <li><a href=\"ToolRefrigeratorPuzzleSolverSource_1_0.zip\">Download the 'Refrigerator Puzzle Solver' source code (version 1.0)(zip)</a>.</li>",
         "</ol>",
@@ -13632,6 +14734,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/> ",
         "    <a href=\"ToolRegexTester_1_6.png\">View a screenshot of 'RegexTester' (version 1.6)(png)</a>",
         "  </li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolRegexTesterConsoleExe.zip\">Download the 'RegexTester' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolRegexTesterDesktopExe.zip\">Download the 'RegexTester' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRegexTesterWebsiteExe.zip\">Download the 'RegexTester' Windows executable (latest version)(zip)</a></li>",
         "  <li>",
         "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/> ",
         "    <a href=\"ToolRegexTesterSource_1_6.zip\">Download the 'RegexTester' source code (version 1.6)(zip)</a>",
@@ -13662,7 +14767,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolRichelBilderbeekGallery.htm\">RichelBilderbeekGallery</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to create the galleries on this website.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolRichelBilderbeekGalleryConsoleExe.zip\">Download the 'RichelBilderbeekGallery' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolRichelBilderbeekGalleryDesktopExe.zip\">Download the 'RichelBilderbeekGallery' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRichelBilderbeekGalleryWebsiteExe.zip\">Download the 'RichelBilderbeekGallery' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -13684,6 +14801,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolRichelbilderbeekNlSitemapGenerator_2_0.png\">View a screenshot of RichelbilderbeekNlSitemapGenerator' (v. 2.0)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolRichelbilderbeekNlSitemapGeneratorConsoleExe.zip\">Download the 'RichelbilderbeekNlSitemapGenerator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolRichelbilderbeekNlSitemapGeneratorDesktopExe.zip\">Download the 'RichelbilderbeekNlSitemapGenerator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRichelbilderbeekNlSitemapGeneratorWebsiteExe.zip\">Download the 'RichelbilderbeekNlSitemapGenerator' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolRichelbilderbeekNlSitemapGeneratorSource_2_0.zip\">Download the 'RichelbilderbeekNlSitemapGenerator' source code (v. 2.0)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -13728,7 +14848,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li>...</li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolSecretMessageConsoleExe.zip\">Download the 'SecretMessage' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSecretMessageDesktopExe.zip\">Download the 'SecretMessage' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolSecretMessageWebsiteExe.zip\">Download the 'SecretMessage' Windows executable (latest version)(zip)</a></li>",
         "</ul>"
       }
     }
@@ -13767,7 +14889,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     { "ToolSimBrainiac",
       {
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"SimBrainiac disclaimer\" border = \"1\"><tr><td><code>",
         "This computerprogram has nothing to do with the TV-program 'Brainiac'<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -13855,6 +14977,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolSimMysteryMachinePrototype.png\">View the real MysteryMachine (prototope)(png)</a></li>",
         "  <li><a href=\"ToolSimMysteryMachineArchitecture_1_0.png\">View the architecture of 'SimMysteryMachine' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolSimMysteryMachineArchitecture_1_0.dia\">View the architecture of 'SimMysteryMachine' (version 1.0)(dia)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolSimMysteryMachineConsoleExe.zip\">Download the 'SimMysteryMachine' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSimMysteryMachineDesktopExe.zip\">Download the 'SimMysteryMachine' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolSimMysteryMachineWebsiteExe.zip\">Download the 'SimMysteryMachine' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSimMysteryMachineDesktopExeWindows_1_0.zip\">Download the Windows executable of 'SimMysteryMachine' (version 1.0)(zip)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolSimMysteryMachineSource_1_2.zip\">Download the 'SimMysteryMachine' source code (version 1.2)(zip)</a></li>",
         "</ul>",
@@ -13896,6 +15021,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolSimplifyNewick_1_2.png\">View a screenshot of 'SimplifyNewick' (version 1.2)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolSimplifyNewickConsoleExe.zip\">Download the 'SimplifyNewick' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSimplifyNewickDesktopExe.zip\">Download the 'SimplifyNewick' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolSimplifyNewickWebsiteExe.zip\">Download the 'SimplifyNewick' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolSimplifyNewickSource_2_0.zip\">Download the 'SimplifyNewick' source code (version 2.0)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -14001,7 +15129,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolSolvePuzzleX.htm\">SolvePuzzleX</a> is a <a href=\"Tools.htm\">tool</a>",
         "  solve a puzzle given to me by a girl I initially named 'X'.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolSolvePuzzleXConsoleExe.zip\">Download the 'SolvePuzzleX' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSolvePuzzleXDesktopExe.zip\">Download the 'SolvePuzzleX' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolSolvePuzzleXWebsiteExe.zip\">Download the 'SolvePuzzleX' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14012,7 +15152,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolStaircaseCardCreator.htm\">StaircaseCardCreator</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to create staircase cards.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolStaircaseCardCreatorConsoleExe.zip\">Download the 'StaircaseCardCreator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolStaircaseCardCreatorDesktopExe.zip\">Download the 'StaircaseCardCreator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolStaircaseCardCreatorWebsiteExe.zip\">Download the 'StaircaseCardCreator' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14023,7 +15175,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolStyleSheetSetter.htm\">StyleSheetSetter</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to experiment with a Qt application its style sheet.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolStyleSheetSetterConsoleExe.zip\">Download the 'StyleSheetSetter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolStyleSheetSetterDesktopExe.zip\">Download the 'StyleSheetSetter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolStyleSheetSetterWebsiteExe.zip\">Download the 'StyleSheetSetter' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14039,6 +15203,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ToolStateObserver_1_1.png\">View a screenshot of 'StateObserver' (version 1.1)(png)</a></li>",
         "  <li><a href=\"ToolStateObserver_1_0.png\">View a screenshot of 'StateObserver' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolStateObserverConsoleExe.zip\">Download the 'StateObserver' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolStateObserverDesktopExe.zip\">Download the 'StateObserver' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolStateObserverWebsiteExe.zip\">Download the 'StateObserver' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolStateObserverExe_1_0.zip\">Download the 'StateObserver' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolStateObserverSource_1_0.zip\">Download the 'StateObserver' source code (version 1.0)(zip)</a></li>",
         "</ul>",
@@ -14081,6 +15248,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolSurfacePlotter_2_0.png\">View a screenshot of 'SurfacePlotter' (2.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolSurfacePlotterConsoleExe.zip\">Download the 'SurfacePlotter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSurfacePlotterDesktopExe.zip\">Download the 'SurfacePlotter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolSurfacePlotterWebsiteExe.zip\">Download the 'SurfacePlotter' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -14154,7 +15324,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestAbout.htm\">TestAbout</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppAbout.htm\">About</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestAboutConsoleExe.zip\">Download the 'TestAbout' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestAboutDesktopExe.zip\">Download the 'TestAbout' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestAboutWebsiteExe.zip\">Download the 'TestAbout' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14165,7 +15347,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestApproximator.htm\">TestApproximator</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppApproximator.htm\">Approximator</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestApproximatorConsoleExe.zip\">Download the 'TestApproximator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestApproximatorDesktopExe.zip\">Download the 'TestApproximator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestApproximatorWebsiteExe.zip\">Download the 'TestApproximator' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14186,6 +15380,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTestBinaryNewickVector_1_5.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.5)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestBinaryNewickVectorConsoleExe.zip\">Download the 'TestBinaryNewickVector' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestBinaryNewickVectorDesktopExe.zip\">Download the 'TestBinaryNewickVector' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestBinaryNewickVectorWebsiteExe.zip\">Download the 'TestBinaryNewickVector' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestBinaryNewickVectorSource_3_1.zip\">Download the 'TestBinaryNewickVector' source code (version 3.1)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -14211,7 +15408,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestBouncingBallsWidget.htm\">TestBouncingBallsWidget</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppBouncingBallsWidget.htm\">BouncingBallsWidget</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestBouncingBallsWidgetConsoleExe.zip\">Download the 'TestBouncingBallsWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestBouncingBallsWidgetDesktopExe.zip\">Download the 'TestBouncingBallsWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestBouncingBallsWidgetWebsiteExe.zip\">Download the 'TestBouncingBallsWidget' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14222,7 +15431,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestBouncingRectsWidget.htm\">TestBouncingRectsWidget</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppBouncingRectsWidget.htm\">BouncingRectsWidget</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestBouncingRectsWidgetConsoleExe.zip\">Download the 'TestBouncingRectsWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestBouncingRectsWidgetDesktopExe.zip\">Download the 'TestBouncingRectsWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestBouncingRectsWidgetWebsiteExe.zip\">Download the 'TestBouncingRectsWidget' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14249,6 +15470,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestBroadcastServer_1_0.png\">View a screenshot of 'TestBroadcastServer' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolTestBroadcastServerSource_1_2.zip\">Download the 'TestBroadcastServer' source code (version 1.2)(zip)</a></li>",
         "  <li><a href=\"ToolTestBroadcastServerSource_1_1.htm\">View the 'TestBroadcastServer' source code as web page (version 1.1)(htm)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestBroadcastServerConsoleExe.zip\">Download the 'TestBroadcastServer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestBroadcastServerDesktopExe.zip\">Download the 'TestBroadcastServer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestBroadcastServerWebsiteExe.zip\">Download the 'TestBroadcastServer' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -14261,7 +15485,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestBroadcastServerSource_1_1.zip\">Download the 'TestBroadcastServer' source code (version 1.1)(zip)</a></li>",
         "  <li><a href=\"ToolTestBroadcastServer_1_0.png\">View a screenshot of 'TestBroadcastServer' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolTestBroadcastServerSource_1_0.zip\">Download the 'TestBroadcastServer' source code (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -14272,7 +15496,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestChess.htm\">TestChess</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppChess.htm\">Chess</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestChessConsoleExe.zip\">Download the 'TestChess' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestChessDesktopExe.zip\">Download the 'TestChess' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestChessWebsiteExe.zip\">Download the 'TestChess' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14283,7 +15519,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestConceptMap.htm\">TestConceptMap</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppConceptMap.htm\">ConceptMap</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestConceptMap_1_0.png\">View a screenshot of 'TestConceptMap' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestConceptMapConsoleExe.zip\">Download the 'TestConceptMap' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestConceptMapDesktopExe.zip\">Download the 'TestConceptMap' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestConceptMapWebsiteExe.zip\">Download the 'TestConceptMap' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14302,11 +15551,14 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2><a href=\"ToolTestDial.htm\">TestDial</a> downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestDial_2_3.png\">View a screenshot of 'TestDial' (version 2.3)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDial_1_1.png\">View a screenshot of 'TestDial' (version 1.1)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestDial_1_0.png\">View a screenshot of 'TestDial' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolTestDialArchitecture.png\">View the architecture of 'TestDial' (version 2.1)(png)</a></li>",
         "  <li><a href=\"ToolTestDialArchitecture.dia\">View the architecture of 'TestDial' (version 2.1)(dia)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestDialDesktopExeWindows_1_0.zip\">Download the Windows executable of 'TestDial' (version 1.0)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestDialConsoleExe.zip\">Download the 'TestDial' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestDialDesktopExe.zip\">Download the 'TestDial' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialWebsiteExe.zip\">Download the 'TestDial' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialSource_2_1.zip\">Download the 'TestDial' source code (version 2.1)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -14334,7 +15586,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestDrawCanvas.htm\">TestDrawCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppDrawCanvas.htm\">DrawCanvas</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestDrawCanvas_1_2.png\">View a screenshot of 'TestDrawCanvas' (version 1.2)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestDrawCanvasConsoleExe.zip\">Download the 'TestDrawCanvas' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestDrawCanvasDesktopExe.zip\">Download the 'TestDrawCanvas' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDrawCanvasWebsiteExe.zip\">Download the 'TestDrawCanvas' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14358,6 +15623,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolEncranger_2_1.png\">View a screenshot of 'Encranger' (version 2.1)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolEncranger_2_0.png\">View a screenshot of 'Encranger' (version 2.0)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolEncranger_1_0.png\">View a screenshot of 'Encranger' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolEncrangerConsoleExe.zip\">Download the 'Encranger' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolEncrangerDesktopExe.zip\">Download the 'Encranger' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolEncrangerWebsiteExe.zip\">Download the 'Encranger' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolEncrangerExe_1_0.zip\">Download the 'Encranger' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolEncrangerSource_2_4.zip\">Download the 'Encranger' source code (version 2.4)(zip)</a></li>",
         "</ul>",
@@ -14427,6 +15695,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestEntrance_1_0.png\">View a screenshot of 'TestEntrance' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestEntranceConsoleExe.zip\">Download the 'TestEntrance' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestEntranceDesktopExe.zip\">Download the 'TestEntrance' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEntranceWebsiteExe.zip\">Download the 'TestEntrance' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEntranceSource_1_0.zip\">Download the 'TestEntrance' source code (version 1.0)(zip)</a></li>",
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEntranceSource_1_0.htm\">View the 'TestEntrance' source code as web page (version 1.0)(htm)</a></li>",
         "</ul>",
@@ -14441,7 +15712,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestExercise.htm\">TestExercise</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppExercise.htm\">Exercise</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestExerciseConsoleExe.zip\">Download the 'TestExercise' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestExerciseDesktopExe.zip\">Download the 'TestExercise' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestExerciseWebsiteExe.zip\">Download the 'TestExercise' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14465,6 +15748,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestFunctionParser_2_1.png\">View a screenshot of 'FunctionParser (version 2.1)(png)'</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParser_2_2.png\">View a screenshot of 'FunctionParser (version 2.2)(png)'</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParser_2_3.png\">View a screenshot of 'FunctionParser (version 2.3)(png)'</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestFunctionParserConsoleExe.zip\">Download the 'TestFunctionParser' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParserDesktopExe.zip\">Download the 'TestFunctionParser' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestFunctionParserWebsiteExe.zip\">Download the 'TestFunctionParser' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParserExe_2_3.zip\">Download the 'FunctionParser' Windows executable (version 2.3)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestFunctionParserSource_2_3.zip\">Download the 'FunctionParser' source code (version 2.3)(zip)</a></li>",
         "</ul>",
@@ -14502,7 +15788,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestGraphicsProxyWidget.htm\">TestGraphicsProxyWidget</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppGraphicsProxyWidget.htm\">GraphicsProxyWidget</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestGraphicsProxyWidget_0_1.png\">View a screenshot of 'TestGraphicsProxyWidget' (version 0.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestGraphicsProxyWidgetConsoleExe.zip\">Download the 'TestGraphicsProxyWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestGraphicsProxyWidgetDesktopExe.zip\">Download the 'TestGraphicsProxyWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGraphicsProxyWidgetWebsiteExe.zip\">Download the 'TestGraphicsProxyWidget' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14514,7 +15813,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestGravityWidget.htm\">ToolTestGravityWidget</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppGravityWidget.htm\">GravityWidget</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestGravityWidget_0_1.png\">View a screenshot of 'TestGravityWidget' (version 0.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestGravityWidgetConsoleExe.zip\">Download the 'TestGravityWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestGravityWidgetDesktopExe.zip\">Download the 'TestGravityWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGravityWidgetWebsiteExe.zip\">Download the 'TestGravityWidget' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14536,6 +15848,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidget_1_0.png\">View a screenshot of 'TestGroupWidget' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_3.zip\">Download the 'TestGroupWidget' source code (version 1.3)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestGroupWidgetConsoleExe.zip\">Download the 'TestGroupWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestGroupWidgetDesktopExe.zip\">Download the 'TestGroupWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetWebsiteExe.zip\">Download the 'TestGroupWidget' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
       }
     }
@@ -14547,7 +15862,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestHugeVector.htm\">ToolTestHugeVector</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppHugeVector.htm\">HugeVector</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestHugeVectorConsoleExe.zip\">Download the 'TestHugeVector' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestHugeVectorDesktopExe.zip\">Download the 'TestHugeVector' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestHugeVectorWebsiteExe.zip\">Download the 'TestHugeVector' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14558,7 +15885,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestImageCanvas.htm\">TestImageCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppImageCanvas.htm\">ImageCanvas</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestImageCanvas_1_0.png\">View a screenshot of 'TestImageCanvas' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestImageCanvasConsoleExe.zip\">Download the 'TestImageCanvas' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestImageCanvasDesktopExe.zip\">Download the 'TestImageCanvas' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestImageCanvasWebsiteExe.zip\">Download the 'TestImageCanvas' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14569,7 +15909,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestLazy_init.htm\">ToolTestLazy_init</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppLazy_init.htm\">Lazy_init</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestLazy_initConsoleExe.zip\">Download the 'TestLazy_init' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestLazy_initDesktopExe.zip\">Download the 'TestLazy_init' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestLazy_initWebsiteExe.zip\">Download the 'TestLazy_init' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14592,6 +15944,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestLed_1_0.png\">View a screenshot of 'TestLed' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolTestLedArchitecture.png\">View the architecture of 'TestLed' (version 1.2)(png)</a></li>",
         "  <li><a href=\"ToolTestLedArchitecture.dia\">View the architecture of 'TestLed' (version 1.2)(dia)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestLedConsoleExe.zip\">Download the 'TestLed' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestLedDesktopExe.zip\">Download the 'TestLed' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestLedWebsiteExe.zip\">Download the 'TestLed' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestLedExeWindows_1_0.zip\">Download the Windows executable of 'TestLed' (version 1.0)(zip)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestLedSource_1_3.zip\">Download the 'TestLed' source code (version 1.3)(zip)</a></li>",
         "</ul>",
@@ -14608,7 +15963,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestManyDigitNewick.htm\">ToolTestManyDigitNewick</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppManyDigitNewick.htm\">ManyDigitNewick</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestManyDigitNewick_1_0.png\">View a screenshot of 'TestManyDigitNewick' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestManyDigitNewickConsoleExe.zip\">Download the 'TestManyDigitNewick' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestManyDigitNewickDesktopExe.zip\">Download the 'TestManyDigitNewick' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestManyDigitNewickWebsiteExe.zip\">Download the 'TestManyDigitNewick' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14619,10 +15987,27 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestMultiApproximator.htm\">TestMultiApproximator</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppMultiApproximator.htm\">MultiApproximator</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestMultiApproximatorConsoleExe.zip\">Download the 'TestMultiApproximator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestMultiApproximatorDesktopExe.zip\">Download the 'TestMultiApproximator' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestMultiApproximatorWebsiteExe.zip\">Download the 'TestMultiApproximator' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
+
+
+
+
+
 
   m.push_back(
     { "ToolTestMultiCanvas",
@@ -14630,7 +16015,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestMultiCanvas.htm\">TestMultiCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppMultiCanvas.htm\">MultiCanvas</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestMultiCanvas_1_0.png\">View a screenshot of 'TestMultiCanvas' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestMultiCanvasConsoleExe.zip\">Download the 'TestMultiCanvas' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestMultiCanvasDesktopExe.zip\">Download the 'TestMultiCanvas' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestMultiCanvasWebsiteExe.zip\">Download the 'TestMultiCanvas' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14641,7 +16039,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestMultipleChoiceQuestion.htm\">TestMultipleChoiceQuestion</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestMultipleChoiceQuestionDialog_1_0.png\">View a screenshot of 'TestMultipleChoiceQuestionDialog' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestMultipleChoiceQuestionConsoleExe.zip\">Download the 'TestMultipleChoiceQuestion' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestMultipleChoiceQuestionDesktopExe.zip\">Download the 'TestMultipleChoiceQuestion' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestMultipleChoiceQuestionWebsiteExe.zip\">Download the 'TestMultipleChoiceQuestion' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14659,6 +16070,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2><a href=\"ToolTestMultiVector.htm\">TestMultiVector</a> downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestMultiVectorConsoleExe.zip\">Download the 'TestMultiVector' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestMultiVectorDesktopExe.zip\">Download the 'TestMultiVector' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestMultiVectorWebsiteExe.zip\">Download the 'TestMultiVector' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestMultiVectorSource_1_0.zip\">Download the 'TestMultiVector' source code (version 1.0)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -14728,8 +16142,11 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTestNeuralNet_0_1.png\">View a screenshot of 'TestNeuralNet' (version 0.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestNeuralNetConsoleExe.zip\">Download the 'TestNeuralNet' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestNeuralNetDesktopExe.zip\">Download the 'TestNeuralNet' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestNeuralNetWebsiteExe.zip\">Download the 'TestNeuralNet' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestNeuralNetSource_0_1.zip\">Download the 'TestNeuralNet' source code (version 0.1)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -14740,7 +16157,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestNewick.htm\">TestNewick</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestNewickConsoleExe.zip\">Download the 'TestNewick' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestNewickDesktopExe.zip\">Download the 'TestNewick' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestNewickWebsiteExe.zip\">Download the 'TestNewick' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14751,7 +16180,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestNewickVector.htm\">TestNewickVector</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppNewickVector.htm\">NewickVector</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestNewickVector_3_2.png\">View a screenshot of 'TestNewickVector' (version 3.2)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestNewickVectorConsoleExe.zip\">Download the 'TestNewickVector' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestNewickVectorDesktopExe.zip\">Download the 'TestNewickVector' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestNewickVectorWebsiteExe.zip\">Download the 'TestNewickVector' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14762,7 +16204,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestOpenQuestion.htm\">TestOpenQuestion</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppOpenQuestion.htm\">OpenQuestion</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestOpenQuestion_1_0.png\">View a screenshot of 'TestOpenQuestion' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestOpenQuestionConsoleExe.zip\">Download the 'TestOpenQuestion' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestOpenQuestionDesktopExe.zip\">Download the 'TestOpenQuestion' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestOpenQuestionWebsiteExe.zip\">Download the 'TestOpenQuestion' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14773,16 +16228,81 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestPlane.htm\">TestPlane</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppPlane.htm\">Plane</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestPlane_1_0.png\">View a screenshot of 'TestPlane' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestPlaneConsoleExe.zip\">Download the 'TestPlane' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestPlaneDesktopExe.zip\">Download the 'TestPlane' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestPlaneWebsiteExe.zip\">Download the 'TestPlane' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "ToolTestPolyFile",
+      {
+        "<p>",
+        "  <a href=\"ToolTestPolyFile.htm\">TestPolyFile</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppPolyFile.htm\">PolyFile</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestPolyFile_1_0.png\">View a screenshot of 'TestPolyFile' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestPolyFileConsoleExe.zip\">Download the 'TestPolyFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestPolyFileDesktopExe.zip\">Download the 'TestPolyFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestPolyFileWebsiteExe.zip\">Download the 'TestPolyFile' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
 
   m.push_back(
+    { "ToolTestPolyFileFromPolygons",
+      {
+        "<p>",
+        "  <a href=\"ToolTestPolyFileFromPolygons.htm\">TestPolyFileFromPolygons</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppPolyFileFromPolygons.htm\">PolyFileFromPolygons</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestPolyFileFromPolygons_1_0.png\">View a screenshot of 'TestPolyFileFromPolygons' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestPolyFileFromPolygonsConsoleExe.zip\">Download the 'TestPolyFileFromPolygons' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestPolyFileFromPolygonsDesktopExe.zip\">Download the 'TestPolyFileFromPolygons' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestPolyFileFromPolygonsWebsiteExe.zip\">Download the 'TestPolyFileFromPolygons' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "ToolTestPrimeExpert",
       {
-        "<p><a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a> is a <a href=\"Tools.htm\">tool</a> to test ",
-        "the <a href=\"CppPrimeExpert.htm\">PrimeExpert</a> <a href=\"CppClass.htm\">class</a>.</p>",
+        "<p>",
+        "  <a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a> is a <a href=\"Tools.htm\">tool</a> to test ",
+        "  the <a href=\"CppPrimeExpert.htm\">PrimeExpert</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -14792,6 +16312,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTestPrimeExpert_1_0.png\">View a screenshot of 'TestPrimeExpert' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestPrimeExpertConsoleExe.zip\">Download the 'TestPrimeExpert' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestPrimeExpertDesktopExe.zip\">Download the 'TestPrimeExpert' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestPrimeExpertWebsiteExe.zip\">Download the 'TestPrimeExpert' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestPrimeExpertSource_2_0.zip\">Download the 'TestPrimeExpert' source code (version 2.0)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -14802,6 +16325,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Older <a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a> downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestPrimeExpertConsoleExe.zip\">Download the 'TestPrimeExpert' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestPrimeExpertDesktopExe.zip\">Download the 'TestPrimeExpert' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestPrimeExpertWebsiteExe.zip\">Download the 'TestPrimeExpert' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestPrimeExpertSource_1_0.zip\">Download the 'TestPrimeExpert' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
@@ -14820,6 +16346,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestProFileConsoleExe.zip\">Download the 'TestProFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestProFileDesktopExe.zip\">Download the 'TestProFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestProFileWebsiteExe.zip\">Download the 'TestProFile' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestProFileSource_1_0.zip\">Download the 'TestProFile' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
@@ -14847,6 +16376,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTestPylos_1_0.png\">View a screenshot of 'TestPylos' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestPylosConsoleExe.zip\">Download the 'TestPylos' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestPylosDesktopExe.zip\">Download the 'TestPylos' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestPylosWebsiteExe.zip\">Download the 'TestPylos' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestPylosSource_1_2.zip\">Download the 'TestPylos' source code (version 1.1)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -14871,7 +16403,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestQtKeyboardFriendlyGraphicsView.htm\">TestQtKeyboardFriendlyGraphicsView</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppQtKeyboardFriendlyGraphicsView.htm\">QtKeyboardFriendlyGraphicsView</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestKeyboardFriendlyGraphicsView_0_4.png\">View a screenshot of 'TestKeyboardFriendlyGraphicsView' (version 0.4)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtKeyboardFriendlyGraphicsViewConsoleExe.zip\">Download the 'TestQtKeyboardFriendlyGraphicsView' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtKeyboardFriendlyGraphicsViewDesktopExe.zip\">Download the 'TestQtKeyboardFriendlyGraphicsView' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtKeyboardFriendlyGraphicsViewWebsiteExe.zip\">Download the 'TestQtKeyboardFriendlyGraphicsView' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14882,7 +16427,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestQrcFile.htm\">TestQrcFile</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppQrcFile.htm\">QrcFile</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestQrcFile_1_3.png\">View a screenshot of 'TestQrcFile' (version 1.3)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQrcFileConsoleExe.zip\">Download the 'TestQrcFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQrcFileDesktopExe.zip\">Download the 'TestQrcFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQrcFileWebsiteExe.zip\">Download the 'TestQrcFile' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14893,7 +16451,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestQtArrowItems.htm\">TestQtArrowItems</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppQtArrowItems.htm\">QtArrowItems</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtArrowItemsConsoleExe.zip\">Download the 'TestQtArrowItems' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtArrowItemsDesktopExe.zip\">Download the 'TestQtArrowItems' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtArrowItemsWebsiteExe.zip\">Download the 'TestQtArrowItems' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14904,7 +16474,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestQtCreatorProFile.htm\">TestQtCreatorProFile</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppQtCreatorProFile.htm\">QtCreatorProFile</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestQtCreatorProFile_1_4.png\">View a screenshot of 'TestQtCreatorProFile' (version 1.4)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtCreatorProFileConsoleExe.zip\">Download the 'TestQtCreatorProFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtCreatorProFileDesktopExe.zip\">Download the 'TestQtCreatorProFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtCreatorProFileWebsiteExe.zip\">Download the 'TestQtCreatorProFile' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14915,7 +16498,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestQtHideAndShowDialog.htm\">TestQtHideAndShowDialog</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppQtHideAndShowDialog.htm\">QtHideAndShowDialog</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestQtHideAndShowDialog_0_1.png\">View a screenshot of 'TestQtHideAndShowDialog' (version 0.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtHideAndShowDialogConsoleExe.zip\">Download the 'TestQtHideAndShowDialog' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtHideAndShowDialogDesktopExe.zip\">Download the 'TestQtHideAndShowDialog' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtHideAndShowDialogWebsiteExe.zip\">Download the 'TestQtHideAndShowDialog' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14933,7 +16529,11 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestQtModels_1_2.png\">View a screenshot of 'TestQtModels' (version 1.2)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtModels_1_0.png\">View a screenshot of 'TestQtModels' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtModelsConsoleExe.zip\">Download the 'TestQtModels' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtModelsDesktopExe.zip\">Download the 'TestQtModels' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtModelsWebsiteExe.zip\">Download the 'TestQtModels' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolTestQtModelsSource_1_0.zip\">Download the 'TestQtModels' source code (version 1.0)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtModelsSource_1_0.htm\">View the 'TestQtModels' source code as web page (version 1.0)(htm)</a></li>",
         "</ul>",
@@ -14948,7 +16548,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestQtOcrWidget.htm\">TestQtOcrWidget</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppQtOcrWidget.htm\">QtOcrWidget</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtOcrWidgetConsoleExe.zip\">Download the 'TestQtOcrWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtOcrWidgetDesktopExe.zip\">Download the 'TestQtOcrWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtOcrWidgetWebsiteExe.zip\">Download the 'TestQtOcrWidget' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14959,7 +16571,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestQtRoundedEditRectItem.htm\">TestQtRoundedEditRectItem</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppQtRoundedEditRectItem.htm\">QtRoundedEditRectItem</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestQtRoundedEditRectItem_1_2.png\">View a screenshot of 'TestQtRoundedEditRectItem' (version 1.2)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtRoundedEditRectItemConsoleExe.zip\">Download the 'TestQtRoundedEditRectItem' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtRoundedEditRectItemDesktopExe.zip\">Download the 'TestQtRoundedEditRectItem' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtRoundedEditRectItemWebsiteExe.zip\">Download the 'TestQtRoundedEditRectItem' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -14978,7 +16603,11 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestQtRoundedRectItem_1_2.png\">View a screenshot of 'TestQtRoundedRectItem' (version 1.2)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtRoundedRectItem_1_1.png\">View a screenshot of 'TestQtRoundedRectItem' (version 1.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtRoundedRectItemConsoleExe.zip\">Download the 'TestQtRoundedRectItem' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtRoundedRectItemDesktopExe.zip\">Download the 'TestQtRoundedRectItem' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtRoundedRectItemWebsiteExe.zip\">Download the 'TestQtRoundedRectItem' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtRoundedRectItemSource_1_1.zip\">Download the 'TestQtRoundedRectItem' source code (version 1.1)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtRoundedRectItemSource_1_1.htm\">View the 'TestQtRoundedRectItem' source code as web page (version 1.1)(htm)</a></li>",
         "</ul>",
@@ -14992,7 +16621,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestQtRoundedTextRectItem.htm\">TestQtRoundedTextRectItem</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppQtRoundedTextRectItem.htm\">QtRoundedTextRectItem</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestQtRoundedTextRectItem_1_2.png\">View a screenshot of 'TestQtRoundedTextRectItem' (version 1.2)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtRoundedTextRectItemConsoleExe.zip\">Download the 'TestQtRoundedTextRectItem' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtRoundedTextRectItemDesktopExe.zip\">Download the 'TestQtRoundedTextRectItem' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtRoundedTextRectItemWebsiteExe.zip\">Download the 'TestQtRoundedTextRectItem' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -15010,11 +16652,15 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestQuestion_3_1.png\">View a screenshot of 'TestQuestion' (version 3.1)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQuestion_2_1.png\">View a screenshot of TestQuestion (version 2.1)(png)</a></li>",
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestion_1_0.png\">View a screenshot of TestQuestion (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionArchitecture.png\">View the architecture of TestQuestion (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionArchitecture.dia\">View the architecture of TestQuestion (version 1.0)(dia)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionSource_2_1.zip\">Download the TestQuestion source code (version 2.1)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQuestionConsoleExe.zip\">Download the 'TestQuestion' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQuestionDesktopExe.zip\">Download the 'TestQuestion' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionWebsiteExe.zip\">Download the 'TestQuestion' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolTestQuestionDesktopExe_2_1.zip\">Download a Windows executable of TestQuestion (version 2.1)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -15037,7 +16683,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestReversi.htm\">TestReversi</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppReversi.htm\">Reversi</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestReversi_0_1.png\">View a screenshot of 'TestReversi' (version 0.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestReversiConsoleExe.zip\">Download the 'TestReversi' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestReversiDesktopExe.zip\">Download the 'TestReversi' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestReversiWebsiteExe.zip\">Download the 'TestReversi' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -15056,6 +16715,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialog_1_1.png\">View a screenshot of TestSelectFileDialog (version 1.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestSelectFileDialogConsoleExe.zip\">Download the 'TestSelectFileDialog' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestSelectFileDialogDesktopExe.zip\">Download the 'TestSelectFileDialog' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialogWebsiteExe.zip\">Download the 'TestSelectFileDialog' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialogSource_1_1.zip\">Download the TestSelectFileDialog source code (version 1.1)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -15088,6 +16750,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTestServerPusher_1_0.png\">View a screenshot of 'TestServerPusher' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestServerPusherConsoleExe.zip\">Download the 'TestServerPusher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestServerPusherDesktopExe.zip\">Download the 'TestServerPusher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestServerPusherWebsiteExe.zip\">Download the 'TestServerPusher' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestServerPusherSource_1_0.zip\">Download the 'TestServerPusher' source code (version 1.2)(zip)</a></li>",
         "  <li><a href=\"ToolTestServerPusherSource_1_0.htm\">View the 'TestServerPusher' source code as web page (version 1.1)(htm)</a></li>",
         "</ul>",
@@ -15107,8 +16772,12 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestShape_2_1.png\">View a screenshot of 'TestShape' (version 2.1)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShape_1_0_web.png\">View a screenshot of 'TestShape' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestShape_1_0_desktop.png\">View a screenshot of 'TestShape' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestShapeConsoleExe.zip\">Download the 'TestShape' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestShapeDesktopExe.zip\">Download the 'TestShape' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShapeWebsiteExe.zip\">Download the 'TestShape' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShapeSource_2_0.zip\">Download the 'TestShape' source code (version 2.0)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -15138,8 +16807,12 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2><a href=\"ToolTestShinyButton.htm\">TestShinyButton</a> downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestShinyButton_2_1.png\">View a screenshot of 'TestShinyButton' (version 2.1)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestShinyButton_2_0_desktop.png\">View a screenshot of 'TestShinyButton' (version 2.0)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShinyButtonSource_2_0_web.png\">View a screenshot of 'TestShinyButton' (version 2.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestShinyButtonConsoleExe.zip\">Download the 'TestShinyButton' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestShinyButtonDesktopExe.zip\">Download the 'TestShinyButton' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShinyButtonWebsiteExe.zip\">Download the 'TestShinyButton' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShinyButtonSource_1_0.zip\">Download the 'TestShinyButton' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
@@ -15152,7 +16825,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestSimpleLinearRegression.htm\">TestSimpleLinearRegression</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppSimpleLinearRegression.htm\">SimpleLinearRegression</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestSimpleLinearRegression_1_2.png\">View a screenshot of 'TestSimpleLinearRegression' (version 1.2)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestSimpleLinearRegressionConsoleExe.zip\">Download the 'TestSimpleLinearRegression' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestSimpleLinearRegressionDesktopExe.zip\">Download the 'TestSimpleLinearRegression' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSimpleLinearRegressionWebsiteExe.zip\">Download the 'TestSimpleLinearRegression' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -15175,6 +16861,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTestStopwatchSource_1_1.zip\">Download the 'TestStopwatch' source code (version 1.1)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestStopwatchConsoleExe.zip\">Download the 'TestStopwatch' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestStopwatchDesktopExe.zip\">Download the 'TestStopwatch' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestStopwatchWebsiteExe.zip\">Download the 'TestStopwatch' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -15196,7 +16885,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestTextCanvas.htm\">TestTextCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppTextCanvas.htm\">TextCanvas</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestTextCanvas_1_0.png\">View a screenshot of 'TestTextCanvas' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestTextCanvasConsoleExe.zip\">Download the 'TestTextCanvas' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestTextCanvasDesktopExe.zip\">Download the 'TestTextCanvas' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestTextCanvasWebsiteExe.zip\">Download the 'TestTextCanvas' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -15207,7 +16909,21 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolTestTextPositionWidget.htm\">TestTextPositionWidget</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppTextPositionWidget.htm\">TextPositionWidget</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestTextPositionWidget_1_4.png\">View a screenshot of 'TestTextPositionWidget' (version 1.4)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestTextPositionWidgetConsoleExe.zip\">Download the 'TestTextPositionWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestTextPositionWidgetDesktopExe.zip\">Download the 'TestTextPositionWidget' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestTextPositionWidgetWebsiteExe.zip\">Download the 'TestTextPositionWidget' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -15228,6 +16944,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ToolTestTicTacToe_1_1.png\">View a screenshot of 'TestTicTacToe' (desktop application)(version 1.1)(png)</a></li>",
         "  <li><a href=\"ToolTestTicTacToe_1_2.png\">View a screenshot of 'TestTicTacToe' (web application)(version 1.2)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestTicTacToeConsoleExe.zip\">Download the 'TestTicTacToe' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestTicTacToeDesktopExe.zip\">Download the 'TestTicTacToe' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestTicTacToeWebsiteExe.zip\">Download the 'TestTicTacToe' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestTicTacToeSource_1_3.zip\">Download the 'TestTicTacToe' source code (version 1.3)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
@@ -15260,6 +16979,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTestTimedServerPusher_1_0.png\">View a screenshot of 'TestTimedServerPusher' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestTimedServerPusherConsoleExe.zip\">Download the 'TestTimedServerPusher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestTimedServerPusherDesktopExe.zip\">Download the 'TestTimedServerPusher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestTimedServerPusherWebsiteExe.zip\">Download the 'TestTimedServerPusher' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestTimedServerPusherSource_1_0.zip\">Download the 'TestTimedServerPusher' source code (version 1.2)(zip)</a></li>",
         "  <li><a href=\"ToolTestTimedServerPusherSource_1_0.htm\">View the 'TestTimedServerPusher' source code as web page (version 1.1)(htm)</a></li>",
         "</ul>"
@@ -15281,7 +17003,11 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2><a href=\"ToolTestToggleButton.htm\">TestToggleButton</a> downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestToggleButton_1_4.png\">Download the 'TestToggleButton' source code (version 1.4)(zip)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestToggleButtonSource_1_1.zip\">Download the 'TestToggleButton' source code (version 1.1)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestToggleButtonConsoleExe.zip\">Download the 'TestToggleButton' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestToggleButtonDesktopExe.zip\">Download the 'TestToggleButton' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestToggleButtonWebsiteExe.zip\">Download the 'TestToggleButton' Windows executable (latest version)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -15296,18 +17022,41 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+  m.push_back(
+    { "ToolTestTriangle",
+      {
+        "<p>",
+        "<a href=\"ToolTestTriangle.htm\">TestTriangle</a> is a <a href=\"Tools.htm\">tool</a> to test ",
+        "the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTriangle.htm\">Triangle</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"ToolTestTriangle.htm\">TestTriangle</a> downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestTriangleConsoleExe.zip\">Download the 'TestTriangle' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestTriangleDesktopExe.zip\">Download the 'TestTriangle' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestTriangleWebsiteExe.zip\">Download the 'TestTriangle' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
 
 
   m.push_back(
     { "ToolTestTriangleMesh",
       {
         "<p>",
-        "  <a href=\"ToolTestTriangleMesh.htm\">TestTriangleMesh</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  to test the <a href=\"CppTriangleMesh.htm\">TriangleMesh</a> <a href=\"CppClass.htm\">classes</a>.",
+        "  <a href=\"ToolTestTriangleMesh.htm\">TestTriangleMesh</a> is the previous name",
+        "  of the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTriangleMeshCreator.htm\">TriangleMeshCreator</a>",
         "</p>"
       }
     }
   );
+
+
 
   m.push_back(
     { "ToolTestTwoDigitNewick",
@@ -15321,9 +17070,12 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolTestTwoDigitNewick_0_6.png\">View a 'TestTwoDigitNewick' screenshot (version 0.6)(png)</a></li>",
+        "  <li><a href=\"ToolTestTwoDigitNewick_2_2.png\">View a screenshot of 'TestTwoDigitNewick' (version 2.2)(png)</a></li>",
         "<!--",
         "  <li><a href=\"CppTwoDigitNewickAlgorithm.htm\">Read the TwoDigitNewick algorithm</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestTwoDigitNewickConsoleExe.zip\">Download the 'TestTwoDigitNewick' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestTwoDigitNewickDesktopExe.zip\">Download the 'TestTwoDigitNewick' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestTwoDigitNewickWebsiteExe.zip\">Download the 'TestTwoDigitNewick' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTestTwoDigitNewickSource_2_3.zip\">Download the 'TestTwoDigitNewick' source code (version 2.3)(zip)</a></li>",
         "  <li><a href=\"ToolTestTwoDigitNewickSource_2_2.zip\">Download the 'TestTwoDigitNewick' source code (version 2.2)(zip)</a></li>",
         "  <li><a href=\"ToolTestTwoDigitNewickSource_2_1.zip\">Download the 'TestTwoDigitNewick' source code (version 2.1)(zip)</a></li>",
@@ -15341,6 +17093,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Older downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestTwoDigitNewick_0_6.png\">View a 'TestTwoDigitNewick' screenshot (version 0.6)(png)</a></li>",
         "  <li><a href=\"ToolTestTwoDigitNewick_0_5.png\">View a 'TestTwoDigitNewick' screenshot (version 0.5)(png)</a></li>",
         "  <li><a href=\"ToolTestTwoDigitNewick_0_4.png\">View a 'TestTwoDigitNewick' screenshot (version 0.4)(png)</a></li>",
         "  <li><a href=\"ToolTestTwoDigitNewick_0_3.png\">View a 'TestTwoDigitNewick' screenshot (version 0.3)(png)</a></li>",
@@ -15365,7 +17118,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li>...</li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolThresholdFiltererConsoleExe.zip\">Download the 'ThresholdFilterer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolThresholdFiltererDesktopExe.zip\">Download the 'ThresholdFilterer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolThresholdFiltererWebsiteExe.zip\">Download the 'ThresholdFilterer' Windows executable (latest version)(zip)</a></li>",
         "</ul>"
       }
     }
@@ -15401,15 +17156,6 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>The current (version 0.3) problem is, that the learners do not get smarter at playing tic-tac-toe...</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"ToolTicTacToeLearner.htm\">TicTacToeLearner</a> uses the following <a href=\"CppLibrary.htm\">libraries</a>:</p>",
-        "<ul>",
-        "  <li><a href=\"CppBoost.htm\">Boost</a>: version 1.40</li>",
-        "  <li><a href=\"CppQt.htm\">Qt</a>: version 4.7.0 (32 bit)</li>",
-        "  <li><a href=\"CppQtSvg.htm\">QtSvg</a>: version 4:4.6.2-0ubuntu5</li>",
-        "  <li><a href=\"CppQwt.htm\">Qwt</a>: version 5.2.0-1build1</li>",
-        "  <li><a href=\"CppStl.htm\">STL</a>: from <a href=\"CppGcc.htm\">GCC</a>, shipped with <a href=\"CppQt.htm\">Qt Creator</a> 2.0.0</li>",
-        "  <li><a href=\"CppShark.htm\">Shark</a>: version 2.3.2</li>",
-        "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -15418,6 +17164,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTicTacToeLearner_0_3.png\">View a screenshot of 'TicTacToeLearner' (version 0.3)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTicTacToeLearnerConsoleExe.zip\">Download the 'TicTacToeLearner' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTicTacToeLearnerDesktopExe.zip\">Download the 'TicTacToeLearner' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTicTacToeLearnerWebsiteExe.zip\">Download the 'TicTacToeLearner' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTicTacToeLearnerSource_0_4.zip\">Download the 'TicTacToeLearner' source code (version 0.4)(zip)</a></li>",
         "  <li><a href=\"ToolTicTacToeLearnerSource_0_4.htm\">View the 'TicTacToeLearner' source code as web page (version 0.4)(htm)</a></li>",
         "</ul>",
@@ -15451,6 +17200,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTicTacToeValuer_0_7.png\">View a screenshot of 'TicTacToeValuer' (version 0.7)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTicTacToeValuerConsoleExe.zip\">Download the 'TicTacToeValuer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTicTacToeValuerDesktopExe.zip\">Download the 'TicTacToeValuer' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTicTacToeValuerWebsiteExe.zip\">Download the 'TicTacToeValuer' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTicTacToeValuerSource_0_7.zip\">Download the 'TicTacToeValuer' source code (version 0.7)(zip)</a></li>",
         "  <li><a href=\"ToolTicTacToeValuerSource_0_7.htm\">View the 'TicTacToeValuer' source code as web page (version 0.7)(htm)</a></li>",
         "</ul>",
@@ -15485,6 +17237,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolTimePoll_4_1.png\">View a screenshot of 'TimePoll' (version 4.1)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTimePollConsoleExe.zip\">Download the 'TimePoll' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTimePollDesktopExe.zip\">Download the 'TimePoll' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTimePollWebsiteExe.zip\">Download the 'TimePoll' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolTimePollSource_5_0.zip\">Download the 'TimePoll' source code (version 5.0)(zip)</a></li>",
         "  <li><a href=\"ToolTimePollSource_5_0.htm\">View the 'TimePoll' source code as web page (version 5.0)(htm)</a></li>",
         "</ul>",
@@ -15503,6 +17258,29 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "ToolTriangleMeshCreator",
+      {
+        "<p>",
+        "  <a href=\"ToolTriangleMeshCreator.htm\">TriangleMeshCreator</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to create a <a href=\"Cpp3D.htm\">3D</a> mesh using Triangle.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTriangleMeshCreator_1_2.png\">View a screenshot of 'TriangleMeshCreator' (version 1.2)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTriangleMeshCreatorConsoleExe.zip\">Download the 'TriangleMeshCreator' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolUbuntuOneWatcher",
       {
@@ -15517,6 +17295,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolUbuntuOneWatcher_1_0.png\">View a screenshot of 'UbuntuOneWatcher' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolUbuntuOneWatcherConsoleExe.zip\">Download the 'UbuntuOneWatcher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolUbuntuOneWatcherDesktopExe.zip\">Download the 'UbuntuOneWatcher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolUbuntuOneWatcherWebsiteExe.zip\">Download the 'UbuntuOneWatcher' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolUbuntuOneWatcherSource_1_0.zip\">Download the 'UbuntuOneWatcher' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolUbuntuOneWatcherSource_1_0.htm\">View the 'UbuntuOneWatcher' source code as web page (version 1.0)(htm)</a></li>",
         "</ul>",
@@ -15543,7 +17324,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolValentineCardDecrypter.htm\">ValentineCardDecrypter</a> is a <a href=\"Tools.htm\">tool</a>",
         "  I used to decrypt the cipher on a Valentine card I received.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolValentineCardDecrypterConsoleExe.zip\">Download the 'ValentineCardDecrypter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolValentineCardDecrypterDesktopExe.zip\">Download the 'ValentineCardDecrypter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolValentineCardDecrypterWebsiteExe.zip\">Download the 'ValentineCardDecrypter' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -15554,7 +17347,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolVigenereCipher.htm\">VigenereCipher</a> is a <a href=\"Tools.htm\">tool</a> to",
         "  do Vigenere cipher encryption and decryption",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolVigenereCipherConsoleExe.zip\">Download the 'VigenereCipher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolVigenereCipherDesktopExe.zip\">Download the 'VigenereCipher' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolVigenereCipherWebsiteExe.zip\">Download the 'VigenereCipher' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -15565,7 +17370,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolVirtualBastard.htm\">VirtualBastard</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test graphical user interfaces.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolVirtualBastardConsoleExe.zip\">Download the 'VirtualBastard' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolVirtualBastardDesktopExe.zip\">Download the 'VirtualBastard' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolVirtualBastardWebsiteExe.zip\">Download the 'VirtualBastard' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
       }
     }
   );
@@ -15585,6 +17402,9 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolVisualAbc_1_0.png\">View a screenshot of 'Visual ABC' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolVisualAbcConsoleExe.zip\">Download the 'VisualAbc' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolVisualAbcDesktopExe.zip\">Download the 'VisualAbc' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolVisualAbcWebsiteExe.zip\">Download the 'VisualAbc' Windows executable (latest version)(zip)</a></li>",
         "  <li><a href=\"ToolVisualAbcSource_1_0.zip\">Download the 'Visual ABC' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolVisualAbcSource_1_0.htm\">View the 'Visual ABC' source code as web page (version 1.0)(htm)</a></li>",
         "</ul>"
@@ -15619,7 +17439,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Core code</h2>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
+        "<table summary=\"WindowViewer core code\" border = \"1\"><tr><td><code>",
         "<a href=\"CppComment.htm\">//</a><a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppShared_ptr.htm\">boost::shared_ptr</a>&lt;TFormImage&gt; &gt; m_v<br/>",
         "<a href=\"CppComment.htm\">//</a>TFormImage has one member, a <a href=\"CppTImage.htm\">TImage</a> called Image<br/>",
         "&nbsp;<br/>",
@@ -15682,6 +17502,31 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "ToolWktToSvg",
+      {
+        "<p>",
+        "  <a href=\"ToolWktToSvg.htm\">WktToSvg</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to convert <a href=\"CppWkt.htm\">WKT</a> to <a href=\"CppSvg.htm\">SVG</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolWktToSvg_1_0.png\">View a screenshot of 'WktToSvg' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolWktToSvgConsoleExe.zip\">Download the 'WktToSvg' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolWktToSvgDesktopExe.zip\">Download the 'WktToSvg' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolWktToSvgWebsiteExe.zip\">Download the 'WktToSvg' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "ZZZ_I_MUST_FAIL",
       {
         "<p><ul>This incorrect HTML should be detected in debugging"
@@ -15703,14 +17548,15 @@ std::string ribi::c2h::Info::GetTime() noexcept
 
 std::string ribi::c2h::Info::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
 {
   return {
     "2013-09-20: version 1.0: initial versioning, added tests",
-    "2013-10-04: version 1.1: added display of when the program is executed"
+    "2013-10-04: version 1.1: added display of when the program is executed",
+    "2014-07-16: version 1.2: let std::x go to page CppStdX.htm, 4000 C++ replacements"
   };
 }
 
@@ -15718,53 +17564,54 @@ std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
 void ribi::c2h::Info::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::c2h::Info::Test");
-  {
-    const c2h::Info t;
-    #ifndef _WIN32
-    const std::map<std::string,std::vector<std::string> >& m = t.m_page_info;
-    for (const std::pair<std::string,std::vector<std::string> >& p: m)
-    {
-      std::vector<std::string> v;
-
-      //Add header
-      {
-        const std::vector<std::string> w { Header::ToHtml(HeaderType::cpp,"TestTitle") };
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
-      //Text about this page (if known)
-      {
-        const std::vector<std::string> w = p.second;
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
-      //Add footer
-      {
-        const std::vector<std::string> w = Footer::ToHtml(FooterType::cpp);
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
-
-      assert(IsTidyInstalled());
-      if(!IsCleanHtml(v))
-      {
-        TRACE("ERROR: invalid HTML in the following c2h::info page");
-        TRACE(p.first);
-        TRACE("SOLUTION: Clean HTML in ribi::c2h::Info::CreatePageInfo");
-
-        if (p.first == "ZZZ_I_MUST_FAIL") continue;
-      }
-      assert(IsCleanHtml(v) && p.first != "ZZZ_I_MUST_FAIL");
-    }
-    #endif
-    assert(!t.ToHtml("").empty());
-  }
-  TRACE("Finished ribi::c2h::Info::Test successfully");
-
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
+
+void ribi::c2h::Info::TestIfAllCreatedPagesAreValid() noexcept
+{
+  const c2h::Info t;
+  #ifndef _WIN32
+  const std::map<std::string,std::vector<std::string> >& m = t.m_page_info;
+  for (const std::pair<std::string,std::vector<std::string> >& p: m)
+  {
+    std::vector<std::string> v;
+
+    //Add header
+    {
+      const std::vector<std::string> w { Header::ToHtml(HeaderType::cpp,"TestTitle") };
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+    //Text about this page (if known)
+    {
+      const std::vector<std::string> w = p.second;
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+    //Add footer
+    {
+      const std::vector<std::string> w = Footer::ToHtml(FooterType::cpp);
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+
+    assert(IsTidyInstalled());
+    if(!IsCleanHtml(v))
+    {
+      if (p.first == "ZZZ_I_MUST_FAIL") continue;
+
+      TRACE("ERROR: invalid HTML in the following c2h::info page");
+      TRACE(p.first);
+      TRACE("SOLUTION: Clean HTML in ribi::c2h::Info::CreatePageInfo");
+
+    }
+    assert(IsCleanHtml(v) && p.first != "ZZZ_I_MUST_FAIL");
+  }
+  #endif
+  assert(!t.ToHtml("").empty());
+}
 
 std::vector<std::string> ribi::c2h::Info::ToHtml(const std::string page_name) const
 {

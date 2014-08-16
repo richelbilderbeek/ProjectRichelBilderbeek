@@ -30,11 +30,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexamplefactory.h"
 #include "conceptmapexamplesfactory.h"
 #include "conceptmaphelper.h"
+#include "conceptmapregex.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic push
 
-ribi::cmap::ConceptFactory::ConceptFactory()
+ribi::cmap::ConceptFactory::ConceptFactory() noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -74,7 +76,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCop
 ) const noexcept
 {
   const boost::shared_ptr<Examples> examples
-    = ExamplesFactory::Create(concept->GetExamples());
+    = ExamplesFactory().Create(concept->GetExamples());
   assert(examples);
   assert(*examples == *concept->GetExamples());
 
@@ -121,7 +123,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
     [](const std::pair<std::string,Competency>& p)
     {
       const boost::shared_ptr<cmap::Example> q
-        = ExampleFactory::Create(
+        = ExampleFactory().Create(
           p.first,
           p.second);
       assert(q);
@@ -130,7 +132,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   );
 
   const boost::shared_ptr<Examples> examples
-    = ExamplesFactory::Create(w);
+    = ExamplesFactory().Create(w);
   assert(examples);
 
   const boost::shared_ptr<Concept> concept
@@ -159,41 +161,59 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
   int rating_specificity   = -2; //Not even unrated (which has -1 as its value)
   //m_name
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<name>.*</name>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexName());
+    #ifndef NDEBUG
+    if (v.size() != 1)
+    {
+      TRACE("ERROR");
+      TRACE(s);
+      TRACE(Regex().GetRegexName());
+      TRACE(v.size());
+      for (const auto& t: v) { TRACE(t); }
+      TRACE("BREAK");
+    }
+    #endif
     assert(v.size() == 1);
     name = ribi::xml::StripXmlTag(v[0]);
   }
   //m_examples
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<examples>.*</examples>)"));
-    assert(v.size() == 1 && "<examples>*.</examples> must be present once in a Concept");
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexExamples());
+    assert(v.size() == 1 && "GetRegexExamples must be present once in a Concept");
     examples = ExamplesFactory().FromXml(v[0]);
   }
 
   //m_is_complex
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concept_is_complex>.*</concept_is_complex>)"));
-    assert(v.size() == 1 && "(<is_complex>.*</is_complex>) must be present once per Concept");
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexConceptIsComplex());
+    assert(v.size() == 1 && "GetRegexIsComplex must be present once per Concept");
     is_complex = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
 
+
   //m_rating_complexity
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<complexity>.*</complexity>)"));
-    assert(v.size() == 1 && "(<complexity>.*</complexity>) must be present once per Concept");
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexComplexity());
+    assert(v.size() == 1 && "GetRegexComplexity must be present once per Concept");
     rating_complexity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
     assert(rating_complexity >= -1);
     assert(rating_complexity <=  2);
   }
   //m_rating_concreteness
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concreteness>.*</concreteness>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexConcreteness());
     assert(v.size() == 1);
     rating_concreteness = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_rating_specificity
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<specificity>.*</specificity>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexSpecificity());
     assert(v.size() == 1);
     rating_specificity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -202,7 +222,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
     ConceptFactory().Create(name,examples,is_complex,rating_complexity,rating_concreteness,rating_specificity)
   };
   assert(concept);
-  //assert(concept->ToXml() == s); //TODO RJCB: Put back in
+  assert(concept->ToXml() == s);
   return concept;
 }
 
@@ -221,7 +241,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFa
 {
   std::vector<boost::shared_ptr<Concept> > v;
   {
-    const boost::shared_ptr<Examples> examples = ExamplesFactory::Create();
+    const boost::shared_ptr<Examples> examples = ExamplesFactory().Create();
     assert(examples);
     const boost::shared_ptr<Concept> p = Create("Concept without examples", examples, false, 0, 1, 2);
     assert(p);
@@ -275,7 +295,6 @@ const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFa
     v.push_back(p);
   }
   assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<Concept>& p) { return p; } ));
   assert(v[0]->GetExamples());
 
   return v;
@@ -285,11 +304,30 @@ const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFa
 void ribi::cmap::ConceptFactory::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::ConceptFactory::Test");
-  TRACE("ConceptFactory::Test finished successfully");
+  ConceptFactory().GetTest(0);
+  ExamplesFactory();
+  const bool verbose{false};
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  if (verbose) { TRACE("GetTests all valid"); }
+  {
+    const auto tests = ConceptFactory().GetTests();
+    for (const auto test: tests)
+    {
+      assert(test);
+      assert(test->GetExamples());
+    }
+  }
+  if (verbose) { TRACE("Concept -> XML -> Concept "); }
+  {
+    const auto concept = ConceptFactory().GetTest(2);
+    const auto xml = concept->ToXml();
+    const auto new_concept = ConceptFactory().FromXml(xml);
+    const auto new_xml = new_concept->ToXml();
+    assert(xml == new_xml);
+  }
 }
 #endif

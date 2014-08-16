@@ -1,4 +1,8 @@
 include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickConsole.pri)
-SOURCES +=
-HEADERS +=
+
+SOURCES += \
+    ../../Tools/ToolTestTwoDigitNewick/wttesttwodigitnewickdialog.cpp
+
+HEADERS += \
+    ../../Tools/ToolTestTwoDigitNewick/wttesttwodigitnewickdialog.h
 

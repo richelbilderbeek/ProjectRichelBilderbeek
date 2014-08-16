@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>406</width>
-    <height>104</height>
+    <width>376</width>
+    <height>118</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,7 +55,7 @@
    <item row="0" column="0" colspan="6">
     <widget class="QLineEdit" name="edit_plaintext">
      <property name="text">
-      <string>THISISPLAINTEXT</string>
+      <string>thisisplaintext</string>
      </property>
     </widget>
    </item>
@@ -70,9 +70,9 @@
     <widget class="QLineEdit" name="edit_encrypted_text"/>
    </item>
    <item row="1" column="3">
-    <widget class="QLineEdit" name="box_key">
+    <widget class="QLineEdit" name="edit_key">
      <property name="text">
-      <string>ABC</string>
+      <string>abc</string>
      </property>
     </widget>
    </item>

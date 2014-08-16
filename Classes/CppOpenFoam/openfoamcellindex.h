@@ -1,5 +1,5 @@
-#ifndef OPENFOAMCELLINDEX_H
-#define OPENFOAMCELLINDEX_H
+#ifndef RIBI_OPENFOAMCELLINDEX_H
+#define RIBI_OPENFOAMCELLINDEX_H
 
 #include <iosfwd>
 
@@ -36,4 +36,4 @@ bool operator<=(const CellIndex& lhs, const CellIndex& rhs) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMCELLINDEX_H
+#endif // RIBI_OPENFOAMCELLINDEX_H

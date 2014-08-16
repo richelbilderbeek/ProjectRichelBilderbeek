@@ -23,7 +23,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::TestPylosMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -101,11 +103,10 @@ std::vector<std::string> ribi::TestPylosMenuDialog::GetVersionHistory() const no
 void ribi::TestPylosMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestPylosMenuDialog::Test");
-  TRACE("Finished ribi::TestPylosMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

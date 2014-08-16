@@ -15,7 +15,7 @@ namespace Ui {
 
 namespace ribi {
 
-struct ReversiWidget;
+namespace reversi { struct QtWidget; }
 
 class QtTestReversiMainDialog : public QtHideAndShowDialog
 {
@@ -30,7 +30,7 @@ public:
 
 private:
   Ui::QtTestReversiMainDialog *ui;
-  boost::shared_ptr<ReversiWidget> m_reversi;
+  boost::shared_ptr<reversi::QtWidget> m_reversi;
 };
 
 } //~namespace ribi

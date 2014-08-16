@@ -1,56 +1,19 @@
-TEMPLATE = app
-CONFIG += console
-CONFIG -= app_bundle
-CONFIG -= qt
+include(../../ConsoleApplication.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppApproximator \
-    ../../Classes/CppCanvas \
-    ../../Classes/CppMultiApproximator \
-    ../../Classes/CppTrace
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/Boost.pri)
 
-SOURCES += main.cpp \
-    ../../Classes/CppApproximator/approximator.cpp \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.cpp \
-    ../../Classes/CppCanvas/canvas.cpp \
-    ../../Classes/CppMultiApproximator/multiapproximator.cpp
+include(../../Classes/CppApproximator/CppApproximator.pri)
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppContainer/CppContainer.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
+include(../../Classes/CppMultiApproximator/CppMultiApproximator.pri)
+include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
-HEADERS += \
-    ../../Classes/CppApproximator/approximator.h \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.h \
-    ../../Classes/CppCanvas/canvas.h \
-    ../../Classes/CppMultiApproximator/multiapproximator.h \
-    ../../Classes/CppTrace/trace.h
+include(ToolTestMultiApproximatorConsole.pri)
 
-OTHER_FILES += \
-    ../../Classes/CppApproximator/Licence.txt \
-    ../../Classes/CppCanvas/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    ../../Classes/CppMultiApproximator/Licence.txt
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
+SOURCES += main.cpp

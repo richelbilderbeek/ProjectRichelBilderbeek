@@ -38,6 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testtwodigitnewickmenudialog.h"
 #include "binarynewickvector.h"
 #include "newick.h"
+#include "testtimer.h"
 #include "qtaboutdialog.h"
 #include "trace.h"
 #include "twodigitnewickderivative.h"
@@ -54,13 +55,12 @@ ribi::QtTestTwoDigitNewickMainDialog::QtTestTwoDigitNewickMainDialog(QWidget *pa
   Test();
   #endif
   ui->setupUi(this);
-  QObject::connect(ui->edit_newick,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
-  QObject::connect(ui->edit_theta,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
-
-  QObject::connect(ui->button_about,SIGNAL(clicked()),
-    this,SLOT(OnAboutClick()));
+  QObject::connect(ui->edit_newick,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestTwoDigitNewickMainDialog::OnAnyChange);
+  QObject::connect(ui->edit_theta,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestTwoDigitNewickMainDialog::OnAnyChange);
+  QObject::connect(ui->button_about,&QPushButton::clicked,
+    this,&ribi::QtTestTwoDigitNewickMainDialog::OnAboutClick);
 
   //Put the dialog in the screen center
   const QRect screen = QApplication::desktop()->screenGeometry();
@@ -267,11 +267,10 @@ void ribi::QtTestTwoDigitNewickMainDialog::OnAboutClick()
 void ribi::QtTestTwoDigitNewickMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestTwoDigitNewickMainDialog::Test");
-  TRACE("Finished ribi::QtTestTwoDigitNewickMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

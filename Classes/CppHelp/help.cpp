@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::Help::Option::Option(
@@ -39,6 +40,15 @@ ribi::Help::Option::Option(
   const int chars_for_padding = 7;
   const int max_chars = max_chars_per_line - chars_for_padding;
   const int chars_used = static_cast<int>(1 + m_long.size() + m_description.size());
+  if (chars_used > max_chars)
+  {
+    TRACE("ERROR");
+    TRACE(chars_used);
+    TRACE(max_chars);
+    TRACE(option_short);
+    TRACE(option_long);
+    TRACE(option_description);
+  }
   assert(chars_used <= max_chars && "Options must be kept short to fit on a line");
   //os << "-" << p.m_short << ", --" << p.m_long << "  " << p.m_description << '\n';
   #endif
@@ -169,12 +179,11 @@ std::vector<std::string> ribi::Help::GetVersionHistory() noexcept
 void ribi::Help::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Help::Test");
-  TRACE("Finished ribi::Help::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

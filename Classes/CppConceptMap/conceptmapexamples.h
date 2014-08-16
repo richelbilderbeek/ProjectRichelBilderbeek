@@ -34,24 +34,28 @@ namespace ribi {
 namespace cmap {
 
 ///Container of Example instances
+///Examples is displayed by
+/// - ?QtExamplesItem: a QGraphicsItem, to be used in a QGraphicsView
+/// - QtExamplesDialog: a QDialog
 struct Examples
 {
-  Examples(const std::vector<boost::shared_ptr<cmap::Example> >& v);
+  explicit Examples(const std::vector<boost::shared_ptr<cmap::Example> >& v);
   Examples(const Example& rhs) = delete;
   Examples& operator=(const Example& rhs) = delete;
 
 
-  std::vector<boost::shared_ptr<Example> >& Get() noexcept { return m_v; }
-  std::vector<boost::shared_ptr<const Example> > Get() const noexcept;
+  std::vector<boost::shared_ptr<Example>>& Get() noexcept { return m_v; }
+  std::vector<boost::shared_ptr<const Example>> Get() const noexcept;
 
+  std::string ToStr() const noexcept;
   std::string ToXml() const noexcept;
 
   ///Something of one of the examples was changed
-  mutable boost::signals2::signal<void(const Examples*)> m_signal_examples_changed;
+  mutable boost::signals2::signal<void(Examples*)> m_signal_examples_changed;
 private:
-  ~Examples() noexcept {}
+  ~Examples() noexcept;
 
-  std::vector<boost::shared_ptr<Example> > m_v;
+  std::vector<boost::shared_ptr<Example>> m_v;
 
   //void Add(const boost::shared_ptr<cmap::Example>& example);
 

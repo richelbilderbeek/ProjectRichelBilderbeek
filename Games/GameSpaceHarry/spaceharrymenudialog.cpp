@@ -1,3 +1,4 @@
+/*
 #include "spaceharrymenudialog.h"
 
 #include <cassert>
@@ -5,6 +6,8 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+
+#include "richelbilderbeekprogram.h"
 
 int ribi::SpaceHarryMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -67,3 +70,4 @@ std::vector<std::string> ribi::SpaceHarryMenuDialog::GetVersionHistory() const n
     "2013-11-07: version 1.1: conformized to ProjectRichelBilderbeekConsole"
   };
 }
+*/

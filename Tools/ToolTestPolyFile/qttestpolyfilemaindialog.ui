@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestPolyFileMainDialog</class>
+ <widget class="QDialog" name="QtTestPolyFileMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>929</width>
+    <height>613</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TestPolyFile</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolTestPolyFile.qrc">
+    <normaloff>:/images/ToolTestPolyFileIcon.png</normaloff>:/images/ToolTestPolyFileIcon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QWidget { font: 14px,&quot;Courier New&quot;,&quot;Courier&quot;,&quot;monospace&quot;}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label_folder">
+       <property name="text">
+        <string>Poly file folder: ../../</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="edit">
+       <property name="text">
+        <string>somefolder/somefolder</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPlainTextEdit" name="text_result">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="ToolTestPolyFile.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -11,8 +11,10 @@
 #include "drawcanvas.h"
 #include "fileio.h"
 #include "imagecanvas.h"
-#include "textcanvas.h"
 #include "multicanvas.h"
+#include "testtimer.h"
+#include "richelbilderbeekprogram.h"
+#include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -134,11 +136,11 @@ std::vector<std::string> ribi::TestMultiCanvasMenuDialog::GetVersionHistory() co
 void ribi::TestMultiCanvasMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestMultiCanvasMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   boost::shared_ptr<Canvas> draw_canvas;
   const int n_cols = 78;
   {
@@ -169,6 +171,5 @@ void ribi::TestMultiCanvasMenuDialog::Test() noexcept
   std::stringstream s;
   s << (*multi_canvas);
   TRACE(*multi_canvas);
-  TRACE("Finished ribi::TestMultiCanvasMenuDialog::Test successfully");
 }
 #endif

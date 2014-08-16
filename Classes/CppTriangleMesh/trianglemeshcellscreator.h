@@ -1,11 +1,12 @@
-#ifndef TRIANGLEMESHCELLSCREATOR_H
-#define TRIANGLEMESHCELLSCREATOR_H
+#ifndef RIBI_TRIANGLEMESHCELLSCREATOR_H
+#define RIBI_TRIANGLEMESHCELLSCREATOR_H
 
 #include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/units/quantity.hpp>
@@ -25,6 +26,20 @@ namespace trim {
 /// - pass the desired cells to TriangleMeshBuilder to create the OpenFOAM files
 struct CellsCreator
 {
+
+  //friend class CellFactory;
+  //friend class Dialog;
+
+  //n_face_layers - 1 == n_cell_layers
+  explicit CellsCreator(
+    const boost::shared_ptr<const Template> t,
+    const int n_cell_layers,
+    const boost::units::quantity<boost::units::si::length> layer_height,
+    const CreateVerticalFacesStrategy strategy,
+    const bool verbose,
+    const CellsCreatorFactory& lock //to force creation by CellsCreatorFactory
+  );
+
   CellsCreator(const CellsCreator&) = delete;
   CellsCreator(CellsCreator&&) = delete;
   CellsCreator& operator=(const CellsCreator&) = delete;
@@ -34,63 +49,57 @@ struct CellsCreator
 
   std::vector<boost::shared_ptr<Cell>> GetCells() noexcept;
 
-  ///The Cells must be released, and this will clear CellsCreator its Cells
-  ///This is important, because one can freely delete those released Cells
-  ///and have a valid mesh. Would the Cells be copied, the mesh created would be
-  ///invalid: the deleted Cells would always have a copy inside CellsCreator
-  //const std::vector<boost::shared_ptr<Cell>> ReleaseCells() noexcept;
-
   private:
   friend class CellsCreatorFactory;
 
-  CellsCreator(
-    const boost::shared_ptr<const Template> t,
-    const int n_layers,
-    const boost::units::quantity<boost::units::si::length> layer_height,
-    const CreateVerticalFacesStrategy strategy,
-    const CellsCreatorFactory& lock //to force creation by CellsCreatorFactory
-  );
   ~CellsCreator() noexcept {}
 
   std::vector<boost::shared_ptr<Cell>> m_cells;
 
   const CreateVerticalFacesStrategy m_strategy;
 
+  #ifndef NDEBUG
   static void CheckCells(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept;
+  #endif // NDEBUG
 
   //Must be static: it is used in the constructor
+  //n_face_layers - 1 == n_cell_layers
   static std::vector<boost::shared_ptr<Cell>> CreateCells(
     const boost::shared_ptr<const Template> t,
-    const int n_layers,
+    const int n_face_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
-    const CreateVerticalFacesStrategy strategy
+    const CreateVerticalFacesStrategy strategy,
+    const bool verbose
   ) noexcept;
 
   static std::vector<boost::shared_ptr<Face>> CreateHorizontalFaces(
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
-    const int n_layers
+    const int n_face_layers
   );
 
   static std::vector<boost::shared_ptr<Point>> CreatePoints(
     const boost::shared_ptr<const Template> t,
-    const int n_layers,
+    const int n_face_layers,
     const boost::units::quantity<boost::units::si::length> layer_height
   );
-
 
   //Must be static: it is used in the constructor
   static std::vector<boost::shared_ptr<Face>> CreateVerticalFaces(
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
-    const int n_layers,
+    const int n_face_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
-    const CreateVerticalFacesStrategy strategy
+    const CreateVerticalFacesStrategy strategy,
+    const bool verbose
   ) noexcept;
 
   static std::vector<boost::shared_ptr<Face>> FindKnownFacesBetween(
     const boost::shared_ptr<const Face> a, const boost::shared_ptr<const Face> b
   );
+
+  ///Adapter to call Geometry().IsPlane()
+  static bool IsPlane(const std::vector<boost::shared_ptr<Point>>& v) noexcept;
 
   static bool IsSubset(
     std::vector<boost::shared_ptr<Point>> a,
@@ -110,4 +119,4 @@ struct CellsCreator
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHCELLSCREATOR_H
+#endif // RIBI_TRIANGLEMESHCELLSCREATOR_H

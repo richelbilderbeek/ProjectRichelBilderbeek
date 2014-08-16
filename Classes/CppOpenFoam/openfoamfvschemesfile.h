@@ -1,5 +1,5 @@
-#ifndef OPENFOAMFVSCHEMESFILE_H
-#define OPENFOAMFVSCHEMESFILE_H
+#ifndef RIBI_OPENFOAMFVSCHEMESFILE_H
+#define RIBI_OPENFOAMFVSCHEMESFILE_H
 
 #include <iosfwd>
 #include <vector>
@@ -36,4 +36,4 @@ std::ostream& operator<<(std::ostream& os, const FvSchemesFile& f) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMFVSCHEMESFILE_H
+#endif // RIBI_OPENFOAMFVSCHEMESFILE_H

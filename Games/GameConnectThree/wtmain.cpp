@@ -1,11 +1,16 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#include <cassert>
+
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
 
 #include "wtautoconfig.h"
 #include "wtconnectthreemenudialog.h"
 #include "connectthreeresources.h"
-
-#include <cassert>
+#pragma GCC diagnostic pop
 
 struct WtConnectThreeApplication : public Wt::WApplication
 {
@@ -14,7 +19,7 @@ struct WtConnectThreeApplication : public Wt::WApplication
   {
     this->setTitle("ConnectThree");
     this->useStyleSheet("wt.css");
-    root()->addWidget(new ribi::WtConnectThreeMenuDialog);
+    root()->addWidget(new ribi::con3::WtConnectThreeMenuDialog);
   }
 };
 

@@ -11,8 +11,6 @@
 #include <boost/lambda/lambda.hpp>
 
 #include <QPainter>
-//#include <QScrollBar>
-//#include <QTimer>
 
 #include "canvas.h"
 #include "dotmatrixtext.h"

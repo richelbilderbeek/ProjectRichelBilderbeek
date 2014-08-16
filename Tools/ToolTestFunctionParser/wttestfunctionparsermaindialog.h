@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestFunctionParser, tool to demonstrate Warp's FunctionParser class
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,8 +21,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef WTTESTFUNCTIONPARSERMAINDIALOG_H
 #define WTTESTFUNCTIONPARSERMAINDIALOG_H
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
 struct WtTestFunctionParserMainDialog : public Wt::WContainerWidget
 {
   WtTestFunctionParserMainDialog();

@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -50,8 +52,10 @@ ribi::About ribi::PicToCodeMenuDialog::GetAbout() const noexcept
     "2010-2014",
     "http://www.richelbilderbeek.nl/ToolPicToCode.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("PicToCode version: " + PicToCode::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -98,11 +102,10 @@ std::vector<std::string> ribi::PicToCodeMenuDialog::GetVersionHistory() const no
 void ribi::PicToCodeMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PicToCodeMenuDialog::Test");
-  TRACE("Finished ribi::PicToCodeMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

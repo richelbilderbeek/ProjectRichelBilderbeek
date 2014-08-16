@@ -15,6 +15,8 @@
 
 #include "dotmatrixstring.h"
 #include "fileio.h"
+#include "testtimer.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -106,6 +108,7 @@ ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   //a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
@@ -155,11 +158,11 @@ std::vector<std::string> ribi::DotMatrixMenuDialog::GetVersionHistory() const no
 void ribi::DotMatrixMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolDotMatrixMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 
   //Command line tests
   {
@@ -180,6 +183,5 @@ void ribi::DotMatrixMenuDialog::Test() noexcept
 
     fileio::FileIo().DeleteFile(filename);
   }
-  TRACE("Finished ribi::ToolDotMatrixMenuDialog::Test successfully");
 }
 #endif

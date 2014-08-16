@@ -1,6 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtkalmanfiltererparameterdialog.h"
 
 #include <cassert>
@@ -55,8 +56,11 @@ ribi::kalman::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
 
   //ui->table->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
   //ui->table->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-  QObject::connect(ui->table->model(),SIGNAL(layoutChanged()),
-    this,SLOT(OnModelSizeChanged()));
+  QObject::connect(ui->table->model(),
+    &QAbstractItemModel::layoutChanged,
+    this,
+    &ribi::kalman::QtKalmanFiltererParameterDialog::OnModelSizeChanged
+  );
 }
 
 ribi::kalman::QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog() noexcept

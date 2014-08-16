@@ -46,18 +46,18 @@ struct Matrix
 
   ///Create a n_rows x n_cols sized matrix from a std::vector,
   ///used for easy initialization
-  static const boost::numeric::ublas::matrix<double> CreateMatrix(
+  static boost::numeric::ublas::matrix<double> CreateMatrix(
     const std::size_t n_rows,
     const std::size_t n_cols,
     const std::vector<double>& v) noexcept;
 
   ///Create a random-filled matrix
-  static const boost::numeric::ublas::matrix<double> CreateRandomMatrix(
+  static boost::numeric::ublas::matrix<double> CreateRandomMatrix(
     const std::size_t n_rows, const std::size_t n_cols) noexcept;
 
   ///Create a uBLAS vector from a std::vector,
   ///used for easy initialization
-  static const boost::numeric::ublas::vector<double> CreateVector(
+  static boost::numeric::ublas::vector<double> CreateVector(
     const std::vector<double>& v) noexcept;
 
   ///Create a uBLAS vector from a std::vector,

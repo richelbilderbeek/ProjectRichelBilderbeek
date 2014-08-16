@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <sstream>
 
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -121,7 +122,7 @@ void ribi::SimpleLinearRegression::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::SimpleLinearRegression::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const std::vector<double> v { 75.0, 83.0, 96.0, 100.0, 121.0, 125.0 };
     const double variance { CalculateVariance(v) };
@@ -166,6 +167,5 @@ void ribi::SimpleLinearRegression::Test() noexcept
     assert(std::abs(expected_slope - slope) < e);
     assert(std::abs(expected_intercept - intercept) < e);
   }
-  TRACE("Finished ribi::SimpleLinearRegression::Test successfully");
 }
 #endif

@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include "conceptmapcompetency.h"
@@ -38,16 +39,18 @@ namespace cmap {
 struct ExampleFactory;
 
 ///A concept (on a node or an edge) can have examples
+///Example is displayed by:
+/// - QtExampleDialog
 struct Example
 {
   Example(const Example&) = delete;
   Example& operator=(const Example&) = delete;
 
   ///Convert a cmap::Competency to a std::string
-  static std::string CompetencyToStr(const Competency competency) noexcept;
+  //static std::string CompetencyToStr(const Competency competency) noexcept;
 
   ///Get the competency, as might be judged by an assessor
-  cmap::Competency GetCompetency() const noexcept { return m_competency; }
+  Competency GetCompetency() const noexcept { return m_competency; }
 
   ///Has an assessor rated this example as being an addition to the complexity?
   bool GetIsComplex() const noexcept { return m_is_complex; }
@@ -65,13 +68,13 @@ struct Example
   void SetCompetency(const cmap::Competency competency) noexcept;
 
   ///Has an assessor rated this example as being an addition to the complexity?
-  void SetIsComplex(const bool is_complex) noexcept { m_is_complex = is_complex; }
+  void SetIsComplex(const bool is_complex) noexcept;
 
   ///Has an assessor rated this example as being an addition to the concreteness?
-  void SetIsConcrete(const bool is_concrete) noexcept { m_is_concrete = is_concrete; }
+  void SetIsConcrete(const bool is_concrete) noexcept;
 
   ///Has an assessor rated this example as being an addition to the specificity?
-  void SetIsSpecific(const bool is_specific) noexcept { m_is_specific = is_specific; }
+  void SetIsSpecific(const bool is_specific) noexcept;
 
   ///Set the text
   void SetText(const std::string& text) noexcept;
@@ -79,14 +82,28 @@ struct Example
   ///Convert a std::string to a cmap::Competency
   static Competency StrToCompetency(const std::string& s);
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test() noexcept;
+  #endif
 
-  ///Convert Example to a std::string
+  ///Convert Example to a short std::string
+  std::string ToStr() const noexcept;
+
+  ///Convert Example to an XML std::string
   std::string ToXml() const noexcept;
 
   ///Emitted when SetCompetency changes the competency
   boost::signals2::signal<void(Example*)> m_signal_competency_changed;
+
+  ///Emitted when m_is_complex is changed
+  boost::signals2::signal<void(Example*)> m_signal_is_complex_changed;
+
+  ///Emitted when m_is_concrete is changed
+  boost::signals2::signal<void(Example*)> m_signal_is_concrete_changed;
+
+  ///Emitted when m_is_specific is changed
+  boost::signals2::signal<void(Example*)> m_signal_is_specific_changed;
 
   ///Emitted when SetText changes the text
   boost::signals2::signal<void(Example*)> m_signal_text_changed;
@@ -94,7 +111,7 @@ struct Example
 private:
 
   ///The competency, as might be judged by an assessor
-  cmap::Competency m_competency;
+  Competency m_competency;
 
   ///Has an assessor rated this example as being an addition to the complexity?
   bool m_is_complex;
@@ -115,32 +132,36 @@ private:
   ///Use checked_delete only
   ~Example() {}
   friend void boost::checked_delete<>(Example* x);
+  friend void boost::checked_delete<>(const Example* x);
+  friend class boost::detail::sp_ms_deleter<      Example>;
+  friend class boost::detail::sp_ms_deleter<const Example>;
 
   ///Only let ExampleFactory create Example instances
-  Example(
+  explicit Example(
+    const ExampleFactory& example_factory, //To enforce its use
     const std::string& text,
     const cmap::Competency competency = cmap::Competency::uninitialized,
     const bool is_complex = true,
     const bool is_concrete = true,
     const bool is_specific = true
-    );
+  );
   friend class ExampleFactory;
 };
 
-bool operator==(const cmap::Example& lhs, const cmap::Example& rhs) noexcept;
-bool operator!=(const cmap::Example& lhs, const cmap::Example& rhs) noexcept;
+bool operator==(const Example& lhs, const Example& rhs) noexcept;
+bool operator!=(const Example& lhs, const Example& rhs) noexcept;
 
 bool operator<(const Example& lhs,const Example& rhs) noexcept;
 bool operator>(const Example& lhs,const Example& rhs) noexcept;
 
-bool operator<(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs) = delete;
-bool operator<(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<cmap::Example>& rhs) = delete;
-bool operator<(const boost::shared_ptr<cmap::Example>& lhs,const boost::shared_ptr<cmap::Example>& rhs) = delete;
-bool operator<(const boost::shared_ptr<cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs) = delete;
-bool operator>(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs) = delete;
-bool operator>(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<cmap::Example>& rhs) = delete;
-bool operator>(const boost::shared_ptr<cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs) = delete;
-bool operator>(const boost::shared_ptr<cmap::Example>& lhs,const boost::shared_ptr<cmap::Example>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Example>& lhs,const boost::shared_ptr<const Example>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Example>& lhs,const boost::shared_ptr<Example>& rhs) = delete;
+bool operator<(const boost::shared_ptr<Example>& lhs,const boost::shared_ptr<Example>& rhs) = delete;
+bool operator<(const boost::shared_ptr<Example>& lhs,const boost::shared_ptr<const Example>& rhs) = delete;
+bool operator>(const boost::shared_ptr<const Example>& lhs,const boost::shared_ptr<const Example>& rhs) = delete;
+bool operator>(const boost::shared_ptr<const Example>& lhs,const boost::shared_ptr<Example>& rhs) = delete;
+bool operator>(const boost::shared_ptr<Example>& lhs,const boost::shared_ptr<const Example>& rhs) = delete;
+bool operator>(const boost::shared_ptr<Example>& lhs,const boost::shared_ptr<Example>& rhs) = delete;
 
 } //~namespace cmap
 } //~namespace ribi

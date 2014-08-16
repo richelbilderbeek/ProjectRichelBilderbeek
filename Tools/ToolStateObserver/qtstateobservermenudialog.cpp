@@ -6,6 +6,7 @@
 #include "qtstateobservermaindialog.h"
 #include "qthideandshowdialog.h"
 #include "stateobservermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtstateobservermenudialog.h"
 
@@ -53,11 +54,10 @@ void ribi::QtStateObserverMenuDialog::on_button_quit_clicked() noexcept
 void ribi::QtStateObserverMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtStateObserverMenuDialog::Test");
-  TRACE("Finished ribi::QtStateObserverMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "chesspiecefactory.h"
 
 #include <stdexcept>
@@ -10,7 +12,16 @@
 #include "chessmovefactory.h"
 #include "chesspiece.h"
 #include "chesssquarefactory.h"
+#include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
+
+ribi::Chess::PieceFactory::PieceFactory()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
   const char namechar,
@@ -40,7 +51,7 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
 ) const noexcept
 {
   const boost::shared_ptr<const Square> square {
-    SquareFactory::Create(square_str)
+    SquareFactory().Create(square_str)
   };
   assert(square);
   boost::shared_ptr<Piece> p;
@@ -98,6 +109,9 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
     case 'g':
     case 'h':
       return CreatePawn(color,square);
+    //Return a nullptr instead
+    //default:
+    //  assert("ribi::Chess::PieceFactory().CreateFromMove exception: unknown piece");
   }
   return piece;
 }
@@ -117,8 +131,12 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromPromo
     case 'N': return CreateKnight(Chess::Color::indeterminate,boost::shared_ptr<Square>());
     case 'Q': return CreateQueen(Chess::Color::indeterminate,boost::shared_ptr<Square>());
     case 'R': return CreateRook(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+    //allow nullptr
+    //default:
+    //  assert(!"ribi::Chess::PieceFactory().CreateFromPromotion: Cannot promote to a pawn, or invalid promotion");
+    //  throw std::logic_error("ribi::Chess::PieceFactory().CreateFromPromotion: Cannot promote to a pawn, or invalid promotion");
   }
-  assert(p);
+  assert( (p || !p) && "If a string is not a promotion, return a nullptr");
   return p;
 }
 
@@ -208,3 +226,26 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::DeepCopy(
   assert(original_piece != cloned_piece && "Must be a deep copy");
   return cloned_piece;
 }
+
+#ifndef NDEBUG
+void ribi::Chess::PieceFactory::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  Piece::Test();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  PieceFactory f;
+
+  #ifdef FIX_ISSUE_240
+  {
+    const boost::shared_ptr<Piece> piece = f.CreateFromMove(Color::indeterminate,"Na3 b4");
+    assert(piece);
+    assert(piece->GetSquare());
+    assert(piece->GetSquare() == SquareFactory().Create("a3"));
+  }
+  #endif // FIX_ISSUE_240
+}
+#endif

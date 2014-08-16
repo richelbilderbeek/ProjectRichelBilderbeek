@@ -27,9 +27,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
+#include "fileio.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
-#include "fileio.h"
+#include "testtimer.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 #include <QFile>
@@ -125,11 +127,10 @@ std::vector<std::string> ribi::TestOpenQuestionMenuDialog::GetVersionHistory() c
 void ribi::TestOpenQuestionMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestOpenQuestionMenuDialog::Test");
-  TRACE("Finished ribi::TestOpenQuestionMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

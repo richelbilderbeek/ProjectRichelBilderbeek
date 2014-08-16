@@ -10,8 +10,10 @@
 #include <QImage>
 
 #include "fileio.h"
-#include "trace.h"
+#include "richelbilderbeekprogram.h"
 #include "secretmessagemaindialog.h"
+#include "testtimer.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 int ribi::sema::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -148,11 +150,11 @@ std::vector<std::string> ribi::sema::MenuDialog::GetVersionHistory() const noexc
 void ribi::sema::MenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::SecretMessage::MenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string source_file { fileio::FileIo().GetTempFileName(".png") };
   const std::string message_file { fileio::FileIo().GetTempFileName(".png") };
   const std::string target_file { fileio::FileIo().GetTempFileName(".png") };
@@ -179,6 +181,5 @@ void ribi::sema::MenuDialog::Test() noexcept
   assert(!fileio::FileIo().IsRegularFile(source_file));
   assert(!fileio::FileIo().IsRegularFile(message_file));
   assert(!fileio::FileIo().IsRegularFile( target_file));
-  TRACE("Finished ribi::SecretMessage::MenuDialog::Test successfully");
 }
 #endif

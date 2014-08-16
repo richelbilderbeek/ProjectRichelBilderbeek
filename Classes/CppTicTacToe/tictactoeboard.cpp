@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "tictactoehelper.h"
 #include "trace.h"
@@ -228,11 +229,11 @@ void ribi::tictactoe::Board::SetSummarizedState(const int original_state) noexce
 void ribi::tictactoe::Board::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TicTacToe::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     //Check empty board state
     {
@@ -356,7 +357,6 @@ void ribi::tictactoe::Board::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::TicTacToe::Test successfully");
 }
 #endif
 

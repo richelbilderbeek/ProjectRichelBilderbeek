@@ -1,7 +1,11 @@
 //---------------------------------------------------------------------------
 /*
   Space Harry, a simple 'Space Harrier' clone
+<<<<<<< HEAD
   Copyright (C) 2007  Richèl Bilderbeek
+=======
+  Copyright (C) 2007  Richel Bilderbeek
+>>>>>>> develop
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by

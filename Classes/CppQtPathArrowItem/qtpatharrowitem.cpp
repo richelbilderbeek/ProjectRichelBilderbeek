@@ -172,20 +172,22 @@ void ribi::QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsI
   const double sz = 10.0; //pixels
   if (m_tail)
   {
-    const double pi = boost::math::constants::pi<double>();
-    const double dx = m_mid_pos[0].x() - m_tail_pos.x();
-    const double dy = m_mid_pos[0].y() - m_tail_pos.y();
-    double angle = Geometry().GetAngle(dx,dy);
+    const double pi{boost::math::constants::pi<double>()};
+    const double dx{m_mid_pos[0].x() - m_tail_pos.x()};
+    const double dy{m_mid_pos[0].y() - m_tail_pos.y()};
+    double angle{Geometry().GetAngleClockScreen(dx,dy)};
     if (dy >= 0.0) angle = (1.0 * pi) + angle;
     //const QPointF m_tail_pos(m_tail_x,m_tail_y);
-    const QPointF p1
-      = m_tail_pos + QPointF(
+    const QPointF p1{
+      m_tail_pos + QPointF(
          std::sin(angle + pi + (pi * 0.1)) * sz,
-        -std::cos(angle + pi + (pi * 0.1)) * sz);
-    const QPointF p2
-      = m_tail_pos + QPointF(
+        -std::cos(angle + pi + (pi * 0.1)) * sz)
+    };
+    const QPointF p2{
+      m_tail_pos + QPointF(
          std::sin(angle + pi - (pi * 0.1)) * sz,
-        -std::cos(angle + pi - (pi * 0.1)) * sz);
+        -std::cos(angle + pi - (pi * 0.1)) * sz)
+    };
     painter->drawPolygon(QPolygonF() << m_tail_pos << p1 << p2);
   }
   if (m_head)
@@ -193,7 +195,7 @@ void ribi::QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsI
     const double pi = boost::math::constants::pi<double>();
     const double dx = m_head_pos.x() - m_mid_pos[m_mid_pos.size() - 1].x();
     const double dy = m_head_pos.y() - m_mid_pos[m_mid_pos.size() - 1].y();
-    double angle = Geometry().GetAngle(dx,dy);
+    double angle{Geometry().GetAngleClockScreen(dx,dy)};
     if (dy >= 0.0) angle = (1.0 * pi) + angle;
     const QPointF p1
       = m_head_pos + QPointF(

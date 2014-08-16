@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtExercise, Wt GUI of Exercise
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,9 +24,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/shared_ptr.hpp>
 
 #include <Wt/WContainerWidget>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -40,16 +45,16 @@ struct WtExercise : public Wt::WContainerWidget
 
   ///Obtain the user its score: its number of correctly answered
   ///questions and the total number of questions answered
-  const std::pair<int,int> GetCurrentScore() const;
+  std::pair<int,int> GetCurrentScore() const;
 
   ///Get the Exercise
   const Exercise * GetExercise() const;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Set the questions
   void SetQuestions(const std::string& filename);

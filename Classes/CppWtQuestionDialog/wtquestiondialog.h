@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtQuestionDialog, Wt dialog for QuestionDialog
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,10 +21,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef WTQUESTIONDIALOG_H
 #define WTQUESTIONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 
 #include <Wt/WContainerWidget>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -37,13 +42,13 @@ struct WtQuestionDialog : public Wt::WContainerWidget
   explicit WtQuestionDialog();
 
   ///Obtain the dialog
-  virtual const boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept = 0;
+  virtual boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///This signal is emitted when the client submits an answer, where
   ///the boolean indicates if a correct answer was given

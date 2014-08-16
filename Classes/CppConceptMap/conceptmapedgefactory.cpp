@@ -32,32 +32,41 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapedgefactory.h"
 #include "conceptmaphelper.h"
 #include "conceptmapnode.h"
+#include "conceptmapnodefactory.h"
+#include "conceptmapregex.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
-  const boost::shared_ptr<ribi::cmap::Node> from,
-  const boost::shared_ptr<ribi::cmap::Node> to
+ribi::cmap::EdgeFactory::EdgeFactory() noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::Create(
+  const NodePtr& from,
+  const NodePtr& to
 ) const noexcept
 {
   assert(from);
   assert(to);
   assert(from != to);
-  const double concept_x { (from->GetX() + to->GetX()) / 2 };
-  const double concept_y { (from->GetY() + to->GetY()) / 2 };
-  const bool tail_arrow = false;
-  const bool head_arrow = true;
-  const boost::shared_ptr<ribi::cmap::Concept> concept {
-    ConceptFactory().Create()
-  };
-  assert(concept);
+  const double x{(from->GetX() + to->GetX()) / 2.0};
+  const double y{(from->GetY() + to->GetY()) / 2.0};
+  const bool tail_arrow{false};
+  const bool head_arrow{true};
+  const auto concept = ConceptFactory().Create();
   assert(concept->GetExamples());
-  const boost::shared_ptr<Edge> p {
+
+  const auto node = NodeFactory().Create(concept,x,y);
+  assert(node);
+  const EdgePtr p {
     new Edge(
-      concept,
-      concept_x,
-      concept_y,
+      node,
       from,
       tail_arrow,
       to,
@@ -68,46 +77,45 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   return p;
 }
 
-const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
-  const boost::shared_ptr<ribi::cmap::Concept>& concept,
-  const double concept_x,
-  const double concept_y,
-  const boost::shared_ptr<ribi::cmap::Node> from,
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::Create(
+  const NodePtr& node,
+  const NodePtr& from,
   const bool tail_arrow,
-  const boost::shared_ptr<ribi::cmap::Node> to,
+  const NodePtr& to,
   const bool head_arrow
 ) const noexcept
 {
-  assert(concept);
-  assert(concept->GetExamples());
+  assert(node);
+  assert(node->GetConcept());
+  assert(node->GetConcept()->GetExamples());
   assert(from);
   assert(to);
   assert(from != to);
-  boost::shared_ptr<Edge> p(new Edge(concept,concept_x,concept_y,from,tail_arrow,to,head_arrow));
+  EdgePtr p(new Edge(node,from,tail_arrow,to,head_arrow));
   assert(p);
   return p;
 }
 
 #ifndef NDEBUG
-const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::DeepCopy(
-  const boost::shared_ptr<const cmap::Edge> edge,
-  const boost::shared_ptr<ribi::cmap::Node> from,
-  const boost::shared_ptr<ribi::cmap::Node> to
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::DeepCopy(
+  const ReadOnlyEdge& edge,
+  const NodePtr& from,
+  const NodePtr& to
 ) const noexcept
 {
   assert(edge);
-  assert(edge->GetConcept());
-  assert(edge->GetConcept()->GetExamples());
+  assert(edge->GetNode());
+  assert(edge->GetNode()->GetConcept());
+  assert(edge->GetNode()->GetConcept()->GetExamples());
   assert(from);
   assert(to);
   assert(from != to);
-  const boost::shared_ptr<Concept> concept = ConceptFactory().DeepCopy(edge->GetConcept());
-  assert(concept);
-  const boost::shared_ptr<Edge> p {
+  //const boost::shared_ptr<Concept> concept = ConceptFactory().DeepCopy(edge->GetNode());
+  const auto node = NodeFactory().DeepCopy(edge->GetNode());
+  assert(node);
+  const EdgePtr p {
     EdgeFactory::Create(
-      concept,
-      edge->GetX(),
-      edge->GetY(),
+      node,
       from,
       edge->HasTailArrow(),
       to,
@@ -120,9 +128,9 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::DeepCopy(
 }
 #endif
 
-const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::FromXml(
   const std::string& s,
-  const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes
+  const Nodes& nodes
 ) const noexcept
 {
   assert(s.size() >= 13);
@@ -131,100 +139,151 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   //m_concept
   boost::shared_ptr<Concept> concept;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexConcept());
     assert(v.size() == 1);
     concept = ConceptFactory().FromXml(v[0]);
   }
   //m_from
   int from = -1;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<from>.*</from>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexFrom());
     assert(v.size() == 1);
     from = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_head_arrow
   bool head_arrow = false;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<head_arrow>.*</head_arrow>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexHeadArrow());
     assert(v.size() == 1);
     head_arrow = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_tail_arrow
   bool tail_arrow = false;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<tail_arrow>.*</tail_arrow>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexTailArrow());
     assert(v.size() == 1);
     tail_arrow = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_to
   int to = -1;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<to>.*</to>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexTo());
     assert(v.size() == 1);
     to = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_x
   double x = 0.0;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexX());
     assert(v.size() == 1);
     x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_y
   double y = 0.0;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexY());
     assert(v.size() == 1);
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   assert(from != to);
   assert(from < boost::numeric_cast<int>(nodes.size()));
   assert(to   < boost::numeric_cast<int>(nodes.size()));
-
-  const boost::shared_ptr<Edge> edge(new Edge(concept,x,y,nodes[from],tail_arrow,nodes[to],head_arrow));
+  const auto node = NodeFactory().Create(concept,x,y);
+  const EdgePtr edge(new Edge(node,nodes[from],tail_arrow,nodes[to],head_arrow));
   assert(edge);
   return edge;
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Edge> > ribi::cmap::EdgeFactory::GetTests(
-  const boost::shared_ptr<ribi::cmap::Node> from,
-  const boost::shared_ptr<ribi::cmap::Node> to
+int ribi::cmap::EdgeFactory::GetNumberOfTests() const noexcept
+{
+  return ConceptFactory().GetNumberOfTests();
+}
+
+ribi::cmap::EdgeFactory::EdgePtr ribi::cmap::EdgeFactory::GetTest(
+  const int index,
+  const NodePtr& from,
+  const NodePtr& to
 ) const noexcept
 {
   assert(from);
   assert(to);
-  const auto test_concepts = ConceptFactory().GetTests();
+  assert(index >= 0);
+  assert(index < GetNumberOfTests());
+  return GetTests(from,to)[index];
+}
 
-  std::vector<boost::shared_ptr<Edge> > result;
+ribi::cmap::EdgeFactory::Edges ribi::cmap::EdgeFactory::GetTests(
+  const NodePtr& from,
+  const NodePtr& to
+) const noexcept
+{
+  assert(from);
+  assert(to);
+  const int n{NodeFactory().GetNumberOfTests()};
+  std::vector<EdgePtr> result;
 
-  for(const boost::shared_ptr<Concept> concept: test_concepts)
+  for(int i{0}; i!=n; ++i)
   {
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,1.2,3.4,from,false,to,true));
+      const auto node = NodeFactory().GetTest(i);
+      const EdgePtr edge{new Edge(node,from,false,to,true)};
       result.push_back(edge);
     }
     /*
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,0,2,true));
+      const EdgePtr edge(new Edge(concept,0,2,true));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,0,3,true));
+      const EdgePtr edge(new Edge(concept,0,3,true));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,1,2,false));
+      const EdgePtr edge(new Edge(concept,1,2,false));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,1,3,false));
+      const EdgePtr edge(new Edge(concept,1,3,false));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<Edge> edge(new Edge(concept,2,3,false));
+      const EdgePtr edge(new Edge(concept,2,3,false));
       result.push_back(edge);
     }
     */
   }
+  if (GetNumberOfTests() != static_cast<int>(result.size()))
+  {
+    TRACE("ERROR");
+    std::stringstream s;
+    s << "GetNumberOfTests should return " << result.size();
+    TRACE(s.str());
+  }
+  assert(GetNumberOfTests() == static_cast<int>(result.size()));
   return result;
 }
+
+
+#ifndef NDEBUG
+void ribi::cmap::EdgeFactory::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  EdgeFactory().GetTest(
+     0,
+     NodeFactory().GetTest(0),
+     NodeFactory().GetTest(0)
+  );
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif // NDEBUG

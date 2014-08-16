@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "dial.h"
-#include "rectangle.h"
+
 #include "trace.h"
 
 #pragma GCC diagnostic pop

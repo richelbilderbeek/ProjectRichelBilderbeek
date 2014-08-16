@@ -1,0 +1,285 @@
+    0 => pi, quartic iteration with r=4
+    1 => pi, quartic iteration with r=16
+    2 => pi, 2.order iteration
+    3 => pi, agm iteration
+    4 => pi, agm3 iteration, faster variant
+    5 => pi, agm3 iteration, slower variant
+    6 => pi, derived agm iteration
+    7 => pi, quintic iteration
+    8 => pi, 3.order iteration
+    9 => pi, 9.order iteration
+   10 => pi, cubic agm iteration
+   13 => pi, agm iteration, quartic variant
+   14 => pi, agm3 iteration, quartic faster variant
+   15 => pi, agm3 iteration, quartic slower variant
+   16 => pi, agm iteration a la Schoenhage (DEFAULT)
+
+
+ ============================ 19 0 10000:
+    0 => pi, quartic iteration with r=4
+
+./pi $N $A $R  67.06s user 0.38s system 99% cpu 1:07.45 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961913640967580624366841461388856586269999884814118
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 6292224
+ hfdata: max bytes allocated: 6292224 (plus workspace)
+ fxtmult: work was=465.709 times length 2^20 real FFTs
+ fxtmult: == 465.709 full prec real FFTs
+ fxtmult: == 155.236 full prec mults
+
+
+ ============================ 19 1 10000:
+    1 => pi, quartic iteration with r=16
+
+./pi $N $A $R  70.61s user 0.42s system 99% cpu 1:11.05 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961913640967580624366841461388853838873830231700680
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 6292224
+ hfdata: max bytes allocated: 6292224 (plus workspace)
+ fxtmult: work was=491.142 times length 2^20 real FFTs
+ fxtmult: == 491.142 full prec real FFTs
+ fxtmult: == 163.714 full prec mults
+
+
+ ============================ 19 2 10000:
+    2 => pi, 2.order iteration
+
+./pi $N $A $R  105.29s user 0.61s system 99% cpu 1:45.95 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961913640967580624366841461388856575637374934349935
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 6292224
+ hfdata: max bytes allocated: 6292224 (plus workspace)
+ fxtmult: work was=731.142 times length 2^20 real FFTs
+ fxtmult: == 731.142 full prec real FFTs
+ fxtmult: == 243.714 full prec mults
+
+
+ ============================ 19 3 10000:
+    3 => pi, agm iteration
+
+./pi $N $A $R  40.65s user 0.25s system 99% cpu 40.912 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346660680709217230488016283660498732739611395700199547841
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 9962272
+ hfdata: max bytes allocated: 9962272 (plus workspace)
+ fxtmult: work was=281.795 times length 2^20 real FFTs
+ fxtmult: == 281.795 full prec real FFTs
+ fxtmult: == 93.9316 full prec mults
+
+
+ ============================ 19 4 10000:
+    4 => pi, agm3 iteration, faster variant
+
+./pi $N $A $R  41.11s user 0.27s system 99% cpu 41.398 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346846097033725837870647368640508245337301883989430019260
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 11010976
+ hfdata: max bytes allocated: 11010976 (plus workspace)
+ fxtmult: work was=284.988 times length 2^20 real FFTs
+ fxtmult: == 284.988 full prec real FFTs
+ fxtmult: == 94.996 full prec mults
+
+
+ ============================ 19 5 10000:
+    5 => pi, agm3 iteration, slower variant
+
+./pi $N $A $R  44.93s user 0.27s system 99% cpu 45.223 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346737001240611507117866974974266661038233139352500196757
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 11010976
+ hfdata: max bytes allocated: 11010976 (plus workspace)
+ fxtmult: work was=311.091 times length 2^20 real FFTs
+ fxtmult: == 311.091 full prec real FFTs
+ fxtmult: == 103.697 full prec mults
+
+
+ ============================ 19 6 10000:
+    6 => pi, derived agm iteration
+
+./pi $N $A $R  113.81s user 0.67s system 99% cpu 1:54.59 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961913640967580624366841461388856586320597238615543
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 12059424
+ hfdata: max bytes allocated: 12059424 (plus workspace)
+ fxtmult: work was=788.708 times length 2^20 real FFTs
+ fxtmult: == 788.708 full prec real FFTs
+ fxtmult: == 262.903 full prec mults
+
+
+ ============================ 19 7 10000:
+    7 => pi, quintic iteration
+
+./pi $N $A $R  152.39s user 0.99s system 99% cpu 2:34.46 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961913640967580624358890247304651738707595408821799
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 69730960
+ hfdata: max bytes allocated: 69730960 (plus workspace)
+ fxtmult: work was=1059.62 times length 2^20 real FFTs
+ fxtmult: == 1059.62 full prec real FFTs
+ fxtmult: == 353.205 full prec mults
+
+
+ ============================ 19 8 10000:
+    8 => pi, 3.order iteration
+
+./pi $N $A $R  87.91s user 0.58s system 99% cpu 1:28.72 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961913640967580624366841461388856856686238002719027
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 59769392
+ hfdata: max bytes allocated: 59769392 (plus workspace)
+ fxtmult: work was=599.7 times length 2^20 real FFTs
+ fxtmult: == 599.7 full prec real FFTs
+ fxtmult: == 199.9 full prec mults
+
+
+ ============================ 19 9 10000:
+    9 => pi, 9.order iteration
+
+./pi $N $A $R  118.69s user 0.78s system 97% cpu 2:02.56 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961913640967580624366841461388856856626765521637759
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 76546560
+ hfdata: max bytes allocated: 76546560 (plus workspace)
+ fxtmult: work was=820.995 times length 2^20 real FFTs
+ fxtmult: == 820.995 full prec real FFTs
+ fxtmult: == 273.665 full prec mults
+
+
+ ============================ 19 10 10000:
+   10 => pi, cubic agm iteration
+
+./pi $N $A $R  75.73s user 0.48s system 99% cpu 1:16.29 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961913640967580624366841461388856586320695980948896
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 52429216
+ hfdata: max bytes allocated: 52429216 (plus workspace)
+ fxtmult: work was=514.491 times length 2^20 real FFTs
+ fxtmult: == 514.491 full prec real FFTs
+ fxtmult: == 171.497 full prec mults
+
+
+ ============================ 19 13 10000:
+   13 => pi, agm iteration, quartic variant
+
+./pi $N $A $R  64.85s user 0.41s system 99% cpu 1:05.47 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961913640967580624366841461388856586320772948838677
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 10486528
+ hfdata: max bytes allocated: 10486528 (plus workspace)
+ fxtmult: work was=449.478 times length 2^20 real FFTs
+ fxtmult: == 449.478 full prec real FFTs
+ fxtmult: == 149.826 full prec mults
+
+
+ ============================ 19 14 10000:
+   14 => pi, agm3 iteration, quartic faster variant
+
+./pi $N $A $R  61.23s user 0.38s system 99% cpu 1:01.71 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346738350689031061100542608841282246559406475505013895308
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 15205280
+ hfdata: max bytes allocated: 15205280 (plus workspace)
+ fxtmult: work was=424.732 times length 2^20 real FFTs
+ fxtmult: == 424.732 full prec real FFTs
+ fxtmult: == 141.577 full prec mults
+
+
+ ============================ 19 15 10000:
+   15 => pi, agm3 iteration, quartic slower variant
+
+./pi $N $A $R  67.36s user 0.40s system 99% cpu 1:07.86 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115213346736961891218983433304638467450432665593255349876353889
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 15205280
+ hfdata: max bytes allocated: 15205280 (plus workspace)
+ fxtmult: work was=466.998 times length 2^20 real FFTs
+ fxtmult: == 466.998 full prec real FFTs
+ fxtmult: == 155.666 full prec mults
+
+
+ ============================ 19 16 10000:
+   16 => pi, agm iteration a la Schoenhage (DEFAULT)
+
+./pi $N $A $R  33.24s user 0.25s system 99% cpu 33.569 total
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=524288 LIMBS  ==2.09715e+06 decimal digits
+ last digits are:
+6115212842404601409708768726034996888740564389152670737815316708
+
+ --------------- computation done -------------- 
+ hfdata: bytes currently allocated: 30933792
+ hfdata: max bytes allocated: 30933792 (plus workspace)
+ fxtmult: work was=224.795 times length 2^20 real FFTs
+ fxtmult: == 224.795 full prec real FFTs
+ fxtmult: == 74.9316 full prec mults

@@ -5,8 +5,6 @@ FORMS += \
     ../../Tools/ToolVisualAbc/qtvisualabcmaindialog.ui \
     ../../Tools/ToolVisualAbc/qtvisualabcmenudialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolVisualAbc/ToolVisualAbc.qrc
 
 SOURCES += \
     ../../Tools/ToolVisualAbc/qtvisualabcchordsdialog.cpp \

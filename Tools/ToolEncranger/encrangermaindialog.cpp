@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "encrangermaindialog.h"
 
 #include "trace.h"
+#include "testtimer.h"
 
 ribi::ToolEncrangerMainDialog::ToolEncrangerMainDialog(const int key) noexcept
   : m_encranger(new Encranger(key)),
@@ -62,11 +63,11 @@ void ribi::ToolEncrangerMainDialog::SetPlainText(const std::string& s) noexcept
 void ribi::ToolEncrangerMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolEncrangerMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     ToolEncrangerMainDialog d;
     const std::string s = "Hello World";
@@ -79,6 +80,5 @@ void ribi::ToolEncrangerMainDialog::Test() noexcept
     const std::string deencrypted = d.GetPlainText();
     assert(s == deencrypted);
   }
-  TRACE("Finished ribi::ToolEncrangerMainDialog::Test successfully");
 }
 #endif

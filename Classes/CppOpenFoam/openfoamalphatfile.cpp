@@ -18,6 +18,7 @@
 #include "fileio.h"
 
 #include "openfoamheader.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -44,12 +45,11 @@ ribi::foam::Header ribi::foam::AlphatFile::GetDefaultHeader() noexcept
 void ribi::foam::AlphatFile::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::AlphatFile::Test");
-  TRACE("Finished ribi::foam::AlphatFile successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

@@ -6,11 +6,12 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
+
 
 #include "reversimove.h"
 #include "reversiboard.h"
 #include "reversiplayer.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -248,17 +249,19 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::reversi::Widget::ToTextCanvas() 
 void ribi::reversi::Widget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::reversi::Widget::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
   {
     ribi::reversi::Widget r(4);
     assert(r.GetCurrentPlayer() == Player::player1);
     assert(r.GetValidMoves().size() == 5); //4 place moves and one pass
   }
-  TRACE("Play random games")
+  /*
+  if (verbose) { TRACE("Play random games") }
   for (int sz = 4; sz != 6; ++sz)
   {
     ribi::reversi::Widget r(sz);
@@ -275,7 +278,8 @@ void ribi::reversi::Widget::Test() noexcept
       r.DoMove(move);
     }
   }
-  TRACE("Test copy constructor and operator== and operator!=");
+  */
+  if (verbose) { TRACE("Test copy constructor and operator== and operator!="); }
   {
     const int sz = 4;
     ribi::reversi::Widget r(sz);
@@ -304,7 +308,7 @@ void ribi::reversi::Widget::Test() noexcept
       assert(before == r);
     }
   }
-  TRACE("Test undo functionality in a single game");
+  if (verbose) { TRACE("Test undo functionality in a single game"); }
   {
     const int sz = 4;
     ribi::reversi::Widget r(sz);
@@ -332,7 +336,6 @@ void ribi::reversi::Widget::Test() noexcept
       r.DoMove(move);
     }
   }
-  TRACE("Finished ribi::reversi::Widget::Test()");
 }
 #endif
 

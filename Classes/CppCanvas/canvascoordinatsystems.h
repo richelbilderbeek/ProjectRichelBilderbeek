@@ -1,5 +1,5 @@
-#ifndef CANVASCOORDINATSYSTEMS_H
-#define CANVASCOORDINATSYSTEMS_H
+#ifndef RIBI_CANVASCOORDINATSYSTEMS_H
+#define RIBI_CANVASCOORDINATSYSTEMS_H
 
 #include <string>
 #include <vector>
@@ -17,9 +17,11 @@ namespace ribi {
 
 struct CanvasCoordinatSystems
 {
-  static std::vector<CanvasCoordinatSystem> GetAll() noexcept;
-  static std::string ToStr(const CanvasCoordinatSystem s) noexcept;
-  static CanvasCoordinatSystem ToType(const std::string& s);
+  CanvasCoordinatSystems();
+
+  std::vector<CanvasCoordinatSystem> GetAll() const noexcept;
+  std::string ToStr(const CanvasCoordinatSystem s) const noexcept;
+  CanvasCoordinatSystem ToType(const std::string& s) const;
 
   private:
   static boost::bimap<CanvasCoordinatSystem,std::string> m_map;
@@ -32,4 +34,4 @@ struct CanvasCoordinatSystems
 
 } //~namespace ribi
 
-#endif // CANVASCOORDINATSYSTEMS_H
+#endif // RIBI_CANVASCOORDINATSYSTEMS_H

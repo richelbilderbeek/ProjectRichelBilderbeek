@@ -20,44 +20,6 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="ArduinoServoExample2.htm">ArduinoServoExample2</a></h1>
 <p>&nbsp;</p>
-<h2>./ArduinoServoExample2/ArduinoServoExample2.ino</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="./ArduinoServoExample2/ArduinoServoExample2.ino" border = "1"><tr><td><code>
-#include &lt;Servo.h&gt;<br/>
-<br/>
-const int pin_servo = 2;<br/>
-<br/>
-Servo servo;<br/>
-<br/>
-const int n = 80;<br/>
-<br/>
-void setup()<br/>
-{<br/>
-&nbsp;&nbsp;servo.attach(pin_servo);&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<br/>
-&nbsp;&nbsp;servo.write(n);<br/>
-&nbsp;&nbsp;delay(1000);<br/>
-}<br/>
-<br/>
-void loop()<br/>
-{<br/>
-&nbsp;&nbsp;servo.write(n-5);<br/>
-&nbsp;&nbsp;delay(200);<br/>
-&nbsp;&nbsp;servo.write(n);<br/>
-&nbsp;&nbsp;delay(1000);<br/>
-&nbsp;&nbsp;servo.write(n+5);<br/>
-&nbsp;&nbsp;delay(200);<br/>
-&nbsp;&nbsp;servo.write(n);<br/>
-&nbsp;&nbsp;delay(1000);<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
 <p>&nbsp;</p>

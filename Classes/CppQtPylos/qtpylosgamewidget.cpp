@@ -46,6 +46,11 @@ ribi::pylos::QtPylosGameWidget::QtPylosGameWidget() :
 
 }
 
+ribi::pylos::QtPylosGameWidget::~QtPylosGameWidget() noexcept
+{
+  //OK
+}
+
 bool ribi::pylos::QtPylosGameWidget::CanRemove(const std::vector<pylos::Coordinat>& v) const
 {
   return m_pylos->CanRemove(v);
@@ -90,15 +95,17 @@ ribi::pylos::MustRemoveState ribi::pylos::QtPylosGameWidget::GetMustRemove() con
 
 std::string ribi::pylos::QtPylosGameWidget::GetVersion() noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
 std::vector<std::string> ribi::pylos::QtPylosGameWidget::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-09-22: version 1.2: initial release version");
-  v.push_back("2010-10-06: version 1.3: disallow clicking when there is a winner");
-  v.push_back("2010-05-28: version 2.0: inherit from QtPylosWidget");
+  std::vector<std::string> v {
+    "2010-09-22: version 1.2: initial release version",
+    "2010-10-06: version 1.3: disallow clicking when there is a winner",
+    "2010-05-28: version 2.0: inherit from QtPylosWidget",
+    "2014-06-20: version 2.1: moved destructor definition to implementation file to solve segmentation fault"
+  };
   return v;
 }
 

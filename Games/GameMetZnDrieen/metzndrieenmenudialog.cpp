@@ -1,3 +1,5 @@
+/*
+
 #include "metzndrieenmenudialog.h"
 
 #include <cassert>
@@ -6,6 +8,7 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::MetZnDrieenMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -79,11 +82,12 @@ std::vector<std::string> ribi::MetZnDrieenMenuDialog::GetVersionHistory() const 
 void ribi::MetZnDrieenMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::MetZnDrieenMenuDialog::Test");
-  TRACE("Finished ribi::MetZnDrieenMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
+
+*/

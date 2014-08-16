@@ -1,5 +1,5 @@
-#ifndef CHESSBOARDWIDGET_H
-#define CHESSBOARDWIDGET_H
+#ifndef RIBI_CHESSBOARDWIDGET_H
+#define RIBI_CHESSBOARDWIDGET_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -57,6 +57,7 @@ struct BoardWidget : public Chess::ChessWidget
   Player m_player;
 
   friend void boost::checked_delete<>(BoardWidget* x);
+  friend void boost::checked_delete<>(const BoardWidget* x);
   friend class boost::detail::sp_ms_deleter<      BoardWidget>;
   friend class boost::detail::sp_ms_deleter<const BoardWidget>;
 };
@@ -64,4 +65,4 @@ struct BoardWidget : public Chess::ChessWidget
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSBOARDWIDGET_H
+#endif // RIBI_CHESSBOARDWIDGET_H

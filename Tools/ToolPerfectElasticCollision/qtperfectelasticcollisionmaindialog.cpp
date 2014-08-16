@@ -50,26 +50,13 @@ ribi::QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(Q
   #endif
   ui->setupUi(this);
 
-  QObject::connect(
-    this->ui->dial_angle,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->dial_impulse_angle1,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->dial_impulse_angle2,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->slider_impulse_1,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->slider_impulse_2,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->check_demo,SIGNAL(toggled(bool)),
-    this,SLOT(onCheck()));
-  QObject::connect(m_timer,SIGNAL(timeout()),
-    this,SLOT(onTimer()));
+  QObject::connect(this->ui->dial_angle,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->dial_impulse_angle1,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->dial_impulse_angle2,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->slider_impulse_1,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->slider_impulse_2,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->check_demo,&QCheckBox::toggled,this,&ribi::QtPerfectElasticCollisionMainDialog::onCheck);
+  QObject::connect(m_timer,&QTimer::timeout,this,&ribi::QtPerfectElasticCollisionMainDialog::onTimer);
 }
 
 ribi::QtPerfectElasticCollisionMainDialog::~QtPerfectElasticCollisionMainDialog() noexcept
@@ -307,8 +294,6 @@ QPixmap ribi::QtPerfectElasticCollisionMainDialog::DrawGlobe(
   return pixmap;
 }
 
-
-//From http://www.richelbilderbeek.nl/CppPaint.htm
 void ribi::QtPerfectElasticCollisionMainDialog::Paint(
   QPixmap& pixmap,
   const unsigned char r,
@@ -398,60 +383,16 @@ void ribi::QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
 
 double ribi::QtPerfectElasticCollisionMainDialog::GetAngle(const double dx, const double dy)
 {
-  return Geometry().GetAngle(dx,dy);
-  //const double pi = boost::math::constants::pi<double>();
-  //return pi - (std::atan2(dx,dy));
+  return Geometry().GetAngleClockScreen(dx,dy);
 }
 
 #ifndef NDEBUG
 void ribi::QtPerfectElasticCollisionMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
-  }
-  const double pi = boost::math::constants::pi<double>();
-  //Test GetAngle
-  {
-    const double angle =  GetAngle(0.0,-1.0); //North
-    const double expected = 0.0 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  GetAngle(1.0,-1.0); //North-East
-    const double expected = 0.25 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  GetAngle(1.0,0.0); //East
-    const double expected = 0.5 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  GetAngle(1.0,1.0); //South-East
-    const double expected = 0.75 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  GetAngle(0.0,1.0); //South
-    const double expected = 1.0 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  GetAngle(-1.0,1.0); //South-West
-    const double expected = 1.25 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  GetAngle(-1.0,0.0); //West
-    const double expected = 1.5 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  GetAngle(-1.0,-1.0); //North-West
-    const double expected = 1.75 * pi;
-    assert(std::abs(angle-expected) < 0.01);
   }
 }
 #endif

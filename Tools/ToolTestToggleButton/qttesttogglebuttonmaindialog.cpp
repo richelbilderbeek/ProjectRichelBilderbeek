@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "rainbow.h"
 #include "testtogglebuttonmenudialog.h"
 #include "togglebutton.h"
+#include "testtimer.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
 #include "ui_qttesttogglebuttonmaindialog.h"
@@ -115,11 +116,10 @@ void ribi::QtTestToggleButtonMainDialog::on_dial_sliderPressed()
 void ribi::QtTestToggleButtonMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestToggleButtonMainDialog::Test");
-  TRACE("Finished ribi::QtTestToggleButtonMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -68,6 +68,10 @@ struct StandardKalmanFilterParameters : public KalmanFilterParameters
 
   ///P: The initial estimation error covariance estimate
   const boost::numeric::ublas::matrix<double> m_initial_covariance_estimate;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

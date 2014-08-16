@@ -1,60 +1,26 @@
-QT       += core
-QT       -= gui
-LIBS += -lwt -lwthttp -lboost_program_options -lboost_signals -lboost_system -lboost_filesystem
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++0x
+include(../../WebApplication.pri)
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
 
-INCLUDEPATH += \
-  ../../Classes/CppAbout \
-  ../../Classes/CppDial \
-  ../../Classes/CppDialWidget \
-  ../../Classes/CppRainbow \
-  ../../Classes/CppRectangle \
-  ../../Classes/CppShinyButton \
-  ../../Classes/CppShinyButtonWidget \
-  ../../Classes/CppTrace \
-  ../../Classes/CppWidget \
-  ../../Classes/CppWtAboutDialog \
-  ../../Classes/CppWtAutoConfig \
-  ../../Classes/CppWtDialWidget \
-  ../../Classes/CppWtShinyButtonWidget
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralWeb.pri)
 
-SOURCES += wtmain.cpp\
-  ../../Classes/CppAbout/about.cpp \
-  ../../Classes/CppShinyButton/shinybutton.cpp \
-  ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-  ../../Classes/CppWtShinyButtonWidget/wtshinybuttonwidget.cpp \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.cpp \
-    ../../Classes/CppShinyButtonWidget/shinybuttonwidget.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppWtDialWidget/wtdialwidget.cpp \
-    ../../Classes/CppDialWidget/dialwidget.cpp \
-    ../../Classes/CppDial/dial.cpp \
-    ../../Classes/CppRainbow/rainbow.cpp \
-    testshinybuttonmenudialog.cpp \
-    wttestshinybuttonmaindialog.cpp \
-    wttestshinybuttonmenudialog.cpp
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDial/CppDial.pri)
+include(../../Classes/CppDialWidget/CppDialWidget.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppRainbow/CppRainbow.pri)
+include(../../Classes/CppShinyButton/CppShinyButton.pri)
+include(../../Classes/CppShinyButtonWidget/CppShinyButtonWidget.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
+include(../../Classes/CppWtDialWidget/CppWtDialWidget.pri)
+include(../../Classes/CppWtShinyButtonWidget/CppWtShinyButtonWidget.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
-HEADERS  += \
-  ../../Classes/CppAbout/about.h \
-  ../../Classes/CppShinyButton/shinybutton.h \
-  ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-  ../../Classes/CppWtShinyButtonWidget/wtshinybuttonwidget.h \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.h \
-    ../../Classes/CppTrace/trace.h \
-    ../../Classes/CppShinyButtonWidget/shinybuttonwidget.h \
-    ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppWtDialWidget/wtdialwidget.h \
-    ../../Classes/CppDialWidget/dialwidget.h \
-    ../../Classes/CppDial/dial.h \
-    ../../Classes/CppRainbow/rainbow.h \
-    testshinybuttonmenudialog.h \
-    wttestshinybuttonmaindialog.h \
-    wttestshinybuttonmenudialog.h
+include(ToolTestShinyButtonWebsite.pri)
 
-RESOURCES += \
-    ToolTestShinyButton.qrc
+SOURCES += wtmain.cpp

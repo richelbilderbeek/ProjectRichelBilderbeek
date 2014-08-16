@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "codebreakermaindialog.h"
 #include "loopreader.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "vigenerecipher.h"
 #include "vigenereciphermenudialog.h"
 #pragma GCC diagnostic pop
@@ -135,11 +136,11 @@ std::vector<std::string> ribi::CodeBreakerMenuDialog::GetVersionHistory() const 
 void ribi::CodeBreakerMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolCodeBreakerMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     CodeBreakerMenuDialog d;
     d.Execute( {"CodeBreaker", "-k", "0", "--text", "helloworld", "-s" } );
@@ -147,6 +148,5 @@ void ribi::CodeBreakerMenuDialog::Test() noexcept
     d.Execute( {"CodeBreaker", "-k", "2", "--text", "helloworld", "-s" } );
     d.Execute( {"CodeBreaker", "-k", "123", "--cipher", "helloworld", "-s" } );
   }
-  TRACE("Finished ribi::ToolCodeBreakerMenuDialog::Test successfully");
 }
 #endif

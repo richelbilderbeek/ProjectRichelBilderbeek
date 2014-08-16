@@ -80,7 +80,8 @@ void ribi::QtShapeWidget::DrawShape(
   QPainter& painter,
   const int left, const int top,
   const int width, const int height,
-  const Shape * const shape)
+  const Shape * const shape
+)
 {
   const double pi = boost::math::constants::pi<double>();
 

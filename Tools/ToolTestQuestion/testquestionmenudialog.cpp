@@ -27,14 +27,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
-
-
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
 #include "question.h"
 #include "questiondialog.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #include <QFile>
@@ -142,7 +142,6 @@ void ribi::TestQuestionMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestQuestionMenuDialog::Test");
-  TRACE("Finished ribi::TestQuestionMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

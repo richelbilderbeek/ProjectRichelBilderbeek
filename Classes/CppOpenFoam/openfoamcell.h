@@ -1,11 +1,12 @@
-#ifndef OPENFOAMCELL_H
-#define OPENFOAMCELL_H
+#ifndef RIBI_OPENFOAMCELL_H
+#define RIBI_OPENFOAMCELL_H
 
 #include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "openfoamfwd.h"
 #pragma GCC diagnostic pop
@@ -25,7 +26,7 @@ namespace foam {
 struct Cell
 {
   ///owned_faces is a subset of all_faces
-  Cell(
+  explicit Cell(
     const std::vector<boost::shared_ptr<Face>> owned_faces = {},
     const std::vector<boost::shared_ptr<Face>> all_faces = {}
   );
@@ -61,4 +62,4 @@ std::ostream& operator<<(std::ostream& os, const Cell& cell) noexcept;
 } //namespace foam
 } //namespace ribi
 
-#endif // OPENFOAMCELL_H
+#endif // RIBI_OPENFOAMCELL_H

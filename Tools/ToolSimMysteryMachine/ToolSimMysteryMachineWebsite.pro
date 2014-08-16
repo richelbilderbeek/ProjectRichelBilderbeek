@@ -1,77 +1,36 @@
-QT       += core
-QT       -= gui
-LIBS += -lwt -lwthttp -lboost_program_options -lboost_signals -lboost_regex -lboost_system -lboost_filesystem -lboost_program_options
-QMAKE_CXXFLAGS += -std=c++0x
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
+include(../../WebApplication.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppDial \
-    ../../Classes/CppDialWidget \
-    ../../Classes/CppLed \
-    ../../Classes/CppLedWidget \
-    ../../Classes/CppMysteryMachine \
-    ../../Classes/CppMysteryMachineWidget \
-    ../../Classes/CppRectangle \
-    ../../Classes/CppToggleButton \
-    ../../Classes/CppToggleButtonWidget \
-    ../../Classes/CppTrace \
-    ../../Classes/CppWidget \
-    ../../Classes/CppWtAboutDialog \
-    ../../Classes/CppWtAutoConfig \
-    ../../Classes/CppWtDialWidget \
-    ../../Classes/CppWtLedWidget \
-    ../../Classes/CppWtLedWidget \
-    ../../Classes/CppWtMysteryMachineWidget \
-    ../../Classes/CppWtToggleButtonWidget
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralWeb.pri)
 
-SOURCES += wtmain.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppDial/dial.cpp \
-    ../../Classes/CppDialWidget/dialwidget.cpp \
-    ../../Classes/CppLed/led.cpp \
-    ../../Classes/CppLedWidget/ledwidget.cpp \
-    ../../Classes/CppMysteryMachine/mysterymachine.cpp \
-    ../../Classes/CppMysteryMachineWidget/mysterymachinewidget.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppToggleButton/togglebutton.cpp \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.cpp \
-    ../../Classes/CppWtDialWidget/wtdialwidget.cpp \
-    ../../Classes/CppWtLedWidget/wtledwidget.cpp \
-    ../../Classes/CppWtMysteryMachineWidget/wtmysterymachinewidget.cpp \
-    ../../Classes/CppWtToggleButtonWidget/wttogglebuttonwidget.cpp \
-    simmysterymachinemenudialog.cpp \
-    wtsimmysterymachinemaindialog.cpp \
-    wtsimmysterymachinemenudialog.cpp
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppCoordinat/CppCoordinat.pri)
+include(../../Classes/CppDial/CppDial.pri)
+include(../../Classes/CppDialWidget/CppDialWidget.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
+include(../../Classes/CppLed/CppLed.pri)
+include(../../Classes/CppLedWidget/CppLedWidget.pri)
+include(../../Classes/CppMysteryMachine/CppMysteryMachine.pri)
+include(../../Classes/CppMysteryMachineWidget/CppMysteryMachineWidget.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppToggleButton/CppToggleButton.pri)
+include(../../Classes/CppToggleButtonWidget/CppToggleButtonWidget.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppDial/dial.h \
-    ../../Classes/CppDialWidget/dialwidget.h \
-    ../../Classes/CppLed/led.h \
-    ../../Classes/CppLedWidget/ledwidget.h \
-    ../../Classes/CppMysteryMachine/mysterymachine.h \
-    ../../Classes/CppMysteryMachineWidget/mysterymachinewidget.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppToggleButton/togglebutton.h \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.h \
-    ../../Classes/CppTrace/trace.h \
-    ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.h \
-    ../../Classes/CppWtDialWidget/wtdialwidget.h \
-    ../../Classes/CppWtLedWidget/wtledwidget.h \
-    ../../Classes/CppWtMysteryMachineWidget/wtmysterymachinewidget.h \
-    ../../Classes/CppWtMysteryMachineWidget/wtmysterymachinewidget.h \
-    ../../Classes/CppWtToggleButtonWidget/wttogglebuttonwidget.h \
-    simmysterymachinemenudialog.h \
-    wtsimmysterymachinemaindialog.h \
-    wtsimmysterymachinemenudialog.h
+#Specific, web
+include(../../Classes/CppWtDialWidget/CppWtDialWidget.pri)
+include(../../Classes/CppWtLedWidget/CppWtLedWidget.pri)
+include(../../Classes/CppWtToggleButtonWidget/CppWtToggleButtonWidget.pri)
+include(../../Classes/CppWtMysteryMachineWidget/CppWtMysteryMachineWidget.pri)
 
-RESOURCES += \
-    ToolSimMysteryMachine.qrc
+include(../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineWebsite.pri)
+
+SOURCES += wtmain.cpp

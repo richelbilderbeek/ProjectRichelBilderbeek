@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 
 #include "conceptmapfwd.h"
 #pragma GCC diagnostic pop
@@ -44,7 +44,7 @@ struct QtCenterNode : public QtNode
   explicit QtCenterNode(const boost::shared_ptr<CenterNode> node);
 
   private:
-  static const boost::shared_ptr<QtItemDisplayStrategy> CreateConceptItem(const boost::shared_ptr<Node> node);
+  //static const boost::shared_ptr<QtItemDisplayStrategy> CreateConceptItem(const boost::shared_ptr<Node> node);
 };
 
 } //~namespace cmap

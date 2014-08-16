@@ -46,7 +46,7 @@ void ribi::athl::QtAthleticLandMainWidget::paintEvent(QPaintEvent *)
     = static_cast<double>(this->height())
     / static_cast<double>(resources.GetBackground().height());
 
-  const State state = m_player->GetState();
+  const PlayerState state = m_player->GetState();
   const double player_y
     = static_cast<double>(this->height()) * m_player->GetY();
   const double player_x

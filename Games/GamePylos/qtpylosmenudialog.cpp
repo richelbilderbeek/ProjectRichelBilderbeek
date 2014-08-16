@@ -20,9 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpylosmenudialog.h"
 
 #include <iostream>
+
+#include <boost/make_shared.hpp>
 
 #include <QMouseEvent>
 #include <QPainter>
@@ -31,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtpylosboardwidget.h"
 #include "qtpylosinstructionsdialog.h"
+#include "testtimer.h"
 #include "qtpylosmaindialog.h"
 #include "qtpylossprites.h"
 #include "qtpyloswidget.h"
@@ -166,7 +171,7 @@ void ribi::pylos::QtPylosMenuDialog::OnInstructions()
 
 void ribi::pylos::QtPylosMenuDialog::OnStart()
 {
-  QtPylosGameWidget * const p = new QtPylosGameWidget();
+  const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
   assert(p);
   //Set the game type
   if (m_type_basic) p->StartBasic();
@@ -184,19 +189,31 @@ void ribi::pylos::QtPylosMenuDialog::OnStart()
 void ribi::pylos::QtPylosMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::pylos::QtPylosMenuDialog::Test");
-  QtPylosGameWidget * const p = new QtPylosGameWidget();
+  {
+    pylos::MenuDialog();
+    {
+      const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
+      try
+      {
+        const boost::shared_ptr<QtPylosMainDialog> d{new QtPylosMainDialog(nullptr)};
+      }
+      catch (std::logic_error&) { /* OK */ }
+    }
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  #ifdef FIX_ISSUE_234
+  const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
   assert(p);
   //Set the game type
   p->StartBasic();
   p->SetColorSchemeBlackWhite();
-  const QtPylosMainDialog d(p);
-  assert(!d.GetVersion().empty());
-  delete p;
-  TRACE("Finished ribi::pylos::QtPylosMenuDialog::Test successfully");
+  const boost::shared_ptr<QtPylosMainDialog> d{new QtPylosMainDialog(p)};
+  //const QtPylosMainDialog d(p);
+  assert(!d->GetVersion().empty());
+  #endif // FIX_ISSUE_234
 }
 #endif

@@ -44,9 +44,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtrichelbilderbeekprogram.h"
 #include "about.h"
 #include "qtaboutdialog.h"
-#include "qtroundedtextrectitem.h"
+//#include "qtroundedtextrectitem.h" //OBSOLETE
 #include "richelbilderbeekprogramtypes.h"
-#include "testqtroundedtextrectitemmenudialog.h"
+//#include "testqtroundedtextrectitemmenudialog.h" //OBSOLETE
 #include "qtrichelbilderbeekmenuitem.h"
 
 #pragma GCC diagnostic pop
@@ -85,7 +85,7 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(
 
     //const std::string s = p->GetScreenName(); //Set the screen name
     //item->SetText(s);
-    item->setPos(x,y);
+    item->SetCenterPos(x,y);
 
     const double left = x;
     const double top = y;

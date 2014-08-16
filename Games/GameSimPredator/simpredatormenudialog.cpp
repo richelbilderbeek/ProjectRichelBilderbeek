@@ -1,3 +1,4 @@
+/*
 #include "simpredatormenudialog.h"
 
 #include <cassert>
@@ -5,6 +6,8 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+
+#include "richelbilderbeekprogram.h"
 
 int ribi::SimPredatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -67,3 +70,4 @@ std::vector<std::string> ribi::SimPredatorMenuDialog::GetVersionHistory() const 
     "2013-07-13: version 1.1: conformized to ProjectRichelBilderbeekConsole"
   };
 }
+*/

@@ -12,5 +12,3 @@ FORMS += \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmenudialog.ui \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmaindialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolTestMultipleChoiceQuestion/ToolTestMultipleChoiceQuestion.qrc

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/ToolTriangleMeshCreator">
+        <file>ToolTriangleMeshCreatorIcon.png</file>
+        <file>ToolTriangleMeshCreatorWelcome.png</file>
+    </qresource>
+</RCC>

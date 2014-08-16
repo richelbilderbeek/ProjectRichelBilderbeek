@@ -25,9 +25,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
+#include "codetohtmlinfo.h"
 #include "codetohtmlmenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtcodetohtmlmaindialog.h"
+#include "testtimer.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
 #include "ui_qtcodetohtmlmenudialog.h"
@@ -78,13 +80,32 @@ void ribi::c2h::QtCodeToHtmlMenuDialog::on_button_start_clicked() noexcept
 void ribi::c2h::QtCodeToHtmlMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtCodeToHtmlMenuDialog::Test");
   CodeToHtmlMenuDialog();
   QtCodeToHtmlMainDialog();
-  TRACE("Finished QtCodeToHtmlMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
+
+void ribi::c2h::QtCodeToHtmlMenuDialog::on_button_test_1_clicked()
+{
+  Info::TestIfAllCreatedPagesAreValid();
+  ui->button_test_1->setText("PASSED!");
+  ui->button_test_1->setEnabled(false);
+}
+
+void ribi::c2h::QtCodeToHtmlMenuDialog::on_button_test_2_clicked()
+{
+  ribi::c2h::CodeToHtmlMenuDialog::TestAllProgramsHaveInfo();
+  ui->button_test_2->setText("PASSED!");
+  ui->button_test_2->setEnabled(false);
+}
+
+void ribi::c2h::QtCodeToHtmlMenuDialog::on_button_test_3_clicked()
+{
+  ui->button_test_3->setText("PASSED!");
+  ui->button_test_3->setEnabled(false);
+}

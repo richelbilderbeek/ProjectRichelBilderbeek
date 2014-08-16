@@ -28,7 +28,7 @@ struct StandardKalmanFilterCalculationElements : public KalmanFilterCalculationE
   void Clear();
 
   ///Produce a deep copy of the derived class
-  const boost::shared_ptr<KalmanFilterCalculationElements> Clone() const;
+  boost::shared_ptr<KalmanFilterCalculationElements> Clone() const;
 
   ///Obtain the innovation ('y_squiggle')
   const boost::numeric::ublas::vector<double>& GetInnovation() const
@@ -118,6 +118,10 @@ struct StandardKalmanFilterCalculationElements : public KalmanFilterCalculationE
   ///Calculated at step 7 of the algorithm:
   ///2) P_n = [...] P_predicted
   boost::numeric::ublas::matrix<double> m_updated_covariance;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

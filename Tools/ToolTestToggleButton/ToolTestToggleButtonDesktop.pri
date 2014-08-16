@@ -12,6 +12,3 @@ FORMS += \
     ../../Tools/ToolTestToggleButton/qttesttogglebuttonmenudialog.ui \
     ../../Tools/ToolTestToggleButton/qttesttogglebuttonmaindialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolTestToggleButton/ToolTestToggleButton.qrc
-

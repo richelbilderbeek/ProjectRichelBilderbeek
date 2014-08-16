@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestFunctionParser, tool to demonstrate Warp's FunctionParser class
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,20 +19,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolTestFunctionParser.htm
 //---------------------------------------------------------------------------
 #include <iostream>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/lexical_cast.hpp>
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 #include <Wt/WString>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "wtaboutdialog.h"
 #include "fparser.hh"
 #include "wttestfunctionparsermaindialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 WtTestFunctionParserMainDialog::WtTestFunctionParserMainDialog()
   : m_edit_function(0),
     m_edit_value(0),
@@ -40,12 +46,15 @@ WtTestFunctionParserMainDialog::WtTestFunctionParserMainDialog()
 {
   Show();
 }
-//---------------------------------------------------------------------------
+
 void WtTestFunctionParserMainDialog::Show()
 {
   m_edit_function = new Wt::WLineEdit("sin(x)*sqrt(x)");
   m_edit_value = new Wt::WLineEdit(
-    boost::lexical_cast<std::string>(M_PI));
+    boost::lexical_cast<std::string>(
+      boost::math::constants::pi<double>()
+    )
+  );
   m_label_result = new Wt::WLabel("...");
 
   this->clear();
@@ -71,7 +80,7 @@ void WtTestFunctionParserMainDialog::Show()
     this,&WtTestFunctionParserMainDialog::Parse);
   Parse();
 }
-//---------------------------------------------------------------------------
+
 void WtTestFunctionParserMainDialog::Parse()
 {
  FunctionParser f;
@@ -109,4 +118,4 @@ void WtTestFunctionParserMainDialog::Parse()
   //Write down the solution
   m_label_result->setText(boost::lexical_cast<std::string>(y).c_str());
 }
-//---------------------------------------------------------------------------
+

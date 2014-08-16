@@ -106,7 +106,11 @@ void TFormMain::resetCoordinats()
   BasketRight->Left = ClientWidth - BasketRight->Width;
   BasketRight->Top = (ClientHeight / 2) - (BasketRight->Height / 2);
 
+<<<<<<< HEAD
   Caption = "PokeVolley, Copyright (C) 2006 Richèl Bilderbeek: " + IntToStr(mScoreLeft) + " : " + IntToStr(mScoreRight);
+=======
+  Caption = "PokeVolley, Copyright (C) 2006 Richel Bilderbeek: " + IntToStr(mScoreLeft) + " : " + IntToStr(mScoreRight);
+>>>>>>> develop
 }
 //---------------------------------------------------------------------------
 

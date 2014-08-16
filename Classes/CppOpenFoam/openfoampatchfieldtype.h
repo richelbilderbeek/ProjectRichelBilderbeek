@@ -1,5 +1,5 @@
-#ifndef OPENFOAMPATCHFIELDTYPE_H
-#define OPENFOAMPATCHFIELDTYPE_H
+#ifndef RIBI_OPENFOAMPATCHFIELDTYPE_H
+#define RIBI_OPENFOAMPATCHFIELDTYPE_H
 
 namespace ribi {
 namespace foam {
@@ -92,6 +92,7 @@ enum class PatchFieldType {
   uniformDensityHydrostaticPressure,
   uniformFixedValue,
   uniformTotalPressure,
+  wall, //Used for defaultFaces
   wallHeatTransfer,
   waveSurfacePressure,
   waveTransmissive,
@@ -103,4 +104,4 @@ enum class PatchFieldType {
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMPATCHFIELDTYPE_H
+#endif // RIBI_OPENFOAMPATCHFIELDTYPE_H

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,7 +18,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQuestion.htm
 //---------------------------------------------------------------------------
-#include <boost/foreach.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -38,6 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtopenquestiondialog.h"
 #include "wtmultiplechoicequestiondialog.h"
 #include "wttestquestionmaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::WtTestQuestionMainDialog::Ui::Ui()
   : m_box(new Wt::WGroupBox),

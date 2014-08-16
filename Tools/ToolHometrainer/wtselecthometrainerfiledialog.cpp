@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Hometrainer, exercise and survey suite
-Copyright (C) 2009-2013 Richel Bilderbeek
+Copyright (C) 2009-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,17 +18,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolHometrainer.htm
 //---------------------------------------------------------------------------
+#include "wtselecthometrainerfiledialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <fstream>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
-#include <boost/regex.hpp>
+#include <boost/xpressive/xpressive.hpp>
 
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 
-#include "wtselecthometrainerfiledialog.h"
+#include "fileio.h"
+#pragma GCC diagnostic pop
 
 ribi::WtSelectHometrainerFileDialog::WtSelectHometrainerFileDialog()
 {
@@ -37,10 +42,11 @@ ribi::WtSelectHometrainerFileDialog::WtSelectHometrainerFileDialog()
   OnUpdateDialog();
 }
 
-const std::string ribi::WtSelectHometrainerFileDialog::GetFirstLineFromFile(
+std::string ribi::WtSelectHometrainerFileDialog::GetFirstLineFromFile(
   const std::string& filename)
 {
-  assert(boost::filesystem::exists(filename));
+
+  assert(fileio::FileIo().IsRegularFile(filename));
   std::ifstream in(filename.c_str());
   for (int i=0; !in.eof(); ++i)
   {
@@ -54,13 +60,14 @@ const std::string ribi::WtSelectHometrainerFileDialog::GetFirstLineFromFile(
   return "";
 }
 
-const std::vector<std::string> ribi::WtSelectHometrainerFileDialog::SelectFiles() const
+std::vector<std::string> ribi::WtSelectHometrainerFileDialog::SelectFiles() const noexcept
 {
   //Get all filenames
-  const std::vector<std::string> all_files = GetFilesInFolder(m_path);
+  const std::vector<std::string> all_files = fileio::FileIo().GetFilesInFolder(m_path);
 
   //Create the regex for a correct text file
-  const boost::regex file_regex(".*.txt");
+  const boost::xpressive::sregex file_regex
+    = boost::xpressive::sregex::compile("(.*.txt)");
 
   std::vector<std::string> r;
   //Copy_if(v.begin(),v.end(),
@@ -68,9 +75,9 @@ const std::vector<std::string> ribi::WtSelectHometrainerFileDialog::SelectFiles(
   //    boost::regex_match(boost::bind(boost::lambda::_1),txt_file_regex));
 
   //Copy all filenames matching the regex in the resulting std::vector
-  BOOST_FOREACH(const std::string& file, all_files)
+  for(const auto file: all_files)
   {
-    if (boost::regex_match(file,file_regex))
+    if (boost::xpressive::regex_match(file,file_regex))
     {
       //File matches regex
       const std::string s = GetFirstLineFromFile(file);

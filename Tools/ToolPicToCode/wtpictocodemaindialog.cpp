@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PicToCode, tool to convert a picture to C++ code
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,10 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolPicToCode.htm
 //---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
+#include "wtpictocodemaindialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wcomment"
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WButtonGroup>
 #include <Wt/WFileUpload>
@@ -31,13 +36,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WTextArea>
 #include <Wt/WImage>
 #include <Wt/WResource>
-//---------------------------------------------------------------------------
+
 #include <QFile>
 #include <QImage>
-//---------------------------------------------------------------------------
-#include "wtpictocodemaindialog.h"
-//---------------------------------------------------------------------------
-WtPicToCodeMainDialog::WtPicToCodeMainDialog()
+#pragma GCC diagnostic pop
+
+ribi::WtPicToCodeMainDialog::WtPicToCodeMainDialog()
   : m_button_convert(new Wt::WPushButton("Convert")),
     m_fileupload(new Wt::WFileUpload),
     m_group(new Wt::WButtonGroup),
@@ -79,7 +83,7 @@ WtPicToCodeMainDialog::WtPicToCodeMainDialog()
   {
     m_button_convert->clicked().connect(
       this,
-      &WtPicToCodeMainDialog::on_convert);
+      &ribi::WtPicToCodeMainDialog::on_convert);
     m_button_convert->setEnabled(false);
     this->addWidget(m_button_convert);
   }
@@ -95,10 +99,10 @@ WtPicToCodeMainDialog::WtPicToCodeMainDialog()
 
   m_fileupload->uploaded().connect(
     this,
-    &WtPicToCodeMainDialog::on_upload_done);
+    &ribi::WtPicToCodeMainDialog::on_upload_done);
 }
-//---------------------------------------------------------------------------
-const PicToCodeMainDialog::YxImage WtPicToCodeMainDialog::QtImageToImage(const QImage& qt_image) const
+
+const ribi::PicToCodeMainDialog::YxImage ribi::WtPicToCodeMainDialog::QtImageToImage(const QImage& qt_image) const
 {
   const int width  = qt_image.width();
   const int height = qt_image.height();
@@ -120,8 +124,8 @@ const PicToCodeMainDialog::YxImage WtPicToCodeMainDialog::QtImageToImage(const Q
   }
   return image;
 }
-//---------------------------------------------------------------------------
-void WtPicToCodeMainDialog::on_convert()
+
+void ribi::WtPicToCodeMainDialog::on_convert()
 {
   QImage image(m_fileupload->spoolFileName().c_str());
   const std::vector<std::string> v =
@@ -129,7 +133,7 @@ void WtPicToCodeMainDialog::on_convert()
     QtImageToImage(image));
 
   std::string text;
-  BOOST_FOREACH(const std::string& s,v)
+  for(const auto s:v)
   {
     text += s;
     text += '\n';
@@ -138,10 +142,8 @@ void WtPicToCodeMainDialog::on_convert()
 
   m_text->setText(text.c_str());
 }
-//---------------------------------------------------------------------------
-void WtPicToCodeMainDialog::on_upload_done()
+
+void ribi::WtPicToCodeMainDialog::on_upload_done()
 {
   m_button_convert->setEnabled(true);
 }
-//---------------------------------------------------------------------------
-

@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "testtimer.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::RegexTesterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -97,11 +99,10 @@ std::vector<std::string> ribi::RegexTesterMenuDialog::GetVersionHistory() const 
 void ribi::RegexTesterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::RegexTesterMenuDialog::Test");
-  TRACE("Finished ribi::RegexTesterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

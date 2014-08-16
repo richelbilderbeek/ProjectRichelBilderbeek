@@ -1,0 +1,81 @@
+
+Machine where the timings were made:
+CPU             : 366MHz AMD K6/2 3D processor, stepping 0, 734.00 bogomips
+Mainboard       : Gigabyte HX2 (512kB pipeline-burst cache)
+MemTotal        : 192MB  (66MHz EDO-RAM)
+Linux version 2.2.13
+
+################################################
+ > time pi 18 16
+    ----====== HUGE_FLOAT ver 30-January-2000 ======---- 
+       author: Joerg Arndt, email: arndt (AT) jjj.de 
+ compiler used: "egcs-2.91.66 19990314/Linux (egcs-1.1.2 release)"
+        compilation date: Jan 30 2000, 18:58:23
+       hfloat is online at http://www.jjj.de/hfloat/   
+     ----========================================----  
+
+ hfloat: radix = 10000
+ hfloat: default precision is 262144 LIMBs
+ hfloat:  = 1.04858e+06 dec / 870824 hex digits  = 3.48329e+06 bits
+ hfloat: iterations for inverse n-th root are NOT checked 
+ fxtmult: fxt multiplies ARE checked via sum of digit test 
+ fxtmult: max workspace size for fxt mult will be 8388608 bytes 
+ workspace: size  = 8388608 bytes  =8 MB  =1 Mdoubles 
+ workspace: #doubles = 1048577
+ workspace: extra (pad) doubles = 0
+ workspace: noswap size = 134217728 bytes  =128 MB  =16 Mdoubles 
+ workspace: cache size  = 524288 bytes  =512 kB  =64 kdoubles 
+
+ pi_agm_sch(r):
+
+ ===== PI_algorithm: pi_agm_sch() =====
+
+...
+
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+ precision=262144 LIMBS  ==1.04858e+06 decimal digits
+ last digits are:
++. <...262128LIMBs+> 0707530429516986818476004781284782656494793356788764525192373162
+
+ --------------- computation done --------------
+ hfdata: bytes currently allocated: 15991712
+ hfdata: max bytes allocated: 15991712 (plus workspace)
+ fxtmult: work was=100.383 times length 2^20 real FFTs
+ fxtmult: == 211.333 full prec real FFTs
+
+real    5m18.888s
+user    5m8.430s
+sys     0m10.460s
+
+
+################### cf. ########################
+
+>time pi_agm_23 1m > result.txt 2> timing-1m.txt &
+
+Mem specified: 33554432  Mem wanted: 2097152
+Phys mem left: 4294967295  Virt mem left: 4294967295
+Allocated 2097152 bytes of core and 131072 bytes of Buffer.
+FFT is initialized to 65536 len (524288 digits.)
+(This formula will only use 'half' sized muls.)
+
+Total Execution time: 286
+
+real    4m47.386s
+user    4m45.050s
+sys     0m2.330s
+
+
+################### cf. ########################
+
+cln-1.0.1:
+>time timepi 1048576 > /dev/null
+Computing pi
+real time:  103.284 s, run time:   96.420 s
+Converting pi to decimal
+real time:   47.658 s, run time:   44.480 s
+
+real    2m30.968s
+user    2m20.900s
+sys     0m3.500s
+

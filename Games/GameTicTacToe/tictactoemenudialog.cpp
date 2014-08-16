@@ -25,13 +25,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "dotmatrixchar.h"
 #include "textcanvas.h"
 #include "tictactoeai.h"
 #include "tictactoeais.h"
 #include "tictactoeboard.h"
+#include "testtimer.h"
 #include "tictactoegame.h"
 #include "tictactoewidget.h"
 #include "trace.h"
+#include "richelbilderbeekprogram.h"
 #pragma GCC diagnostic pop
 
 ribi::tictactoe::TicTacToeMenuDialog::TicTacToeMenuDialog()
@@ -41,11 +44,17 @@ ribi::tictactoe::TicTacToeMenuDialog::TicTacToeMenuDialog()
   #endif
 }
 
-int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
 {
+  bool silent{false};
+  if (std::count(args.begin(),args.end(),"-s") || std::count(args.begin(),args.end(),"--silent"))
+  {
+    silent = true;
+  }
+
   boost::shared_ptr<Ai> p1;
   boost::shared_ptr<Ai> p2;
-  for (const auto arg: argv)
+  for (const auto& arg: args)
   {
     if (arg == "-e" || arg == "--1e") p1.reset(new AiEnforceDraw);
     if (arg == "-m" || arg == "--1m") p1.reset(new AiPlayRandom);
@@ -55,11 +64,15 @@ int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std:
     if (arg == "-H" || arg == "--2h") p2.reset(new AiEnforceWin);
   }
 
+  if (silent)
+  {
+    if (!p1 || !p2) { return 0; } //Cannot test a live game in silent mode
+  }
   tictactoe::Game t;
 
   while (1)
   {
-    std::cout << (*t.ToTextCanvas()) << std::endl;
+    if (!silent) { std::cout << (*t.ToTextCanvas()) << std::endl; }
 
     if (t.GetWinner() != tictactoe::Winner::no_winner) break;
 
@@ -74,6 +87,7 @@ int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std:
     {
       int x = 0;
       int y = 0;
+      TRACE("Please enter input");
       std::cin >> x >> y;
       if (t.CanDoMove(x,y)) t.DoMove(x,y);
     }
@@ -87,14 +101,20 @@ ribi::About ribi::tictactoe::TicTacToeMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TicTacToe",
     "tic-tac-toe game",
-    "the 10th of February 2014",
+    "the 5th of June 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/GameTicTacToe.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("DotMatrix version: " + DotMatrixChar::GetVersion());
+  a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("tictactoe::Board version: " + tictactoe::Board::GetVersion());
   a.AddLibrary("tictactoe::Game version: " + tictactoe::Game::GetVersion());
   a.AddLibrary("tictactoe::Widget version: " + tictactoe::Widget::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -107,6 +127,7 @@ ribi::Help ribi::tictactoe::TicTacToeMenuDialog::GetHelp() const noexcept
       Help::Option('e',"1e","Player 1: easy"),
       Help::Option('m',"1m","Player 1: medium"),
       Help::Option('h',"1h","Player 1: hard"),
+      Help::Option('s',"silent","no output"),
       Help::Option('E',"2e","Player 2: easy"),
       Help::Option('M',"2m","Player 2: medium"),
       Help::Option('H',"2h","Player 2: hard")
@@ -131,7 +152,7 @@ boost::shared_ptr<const ribi::Program> ribi::tictactoe::TicTacToeMenuDialog::Get
 
 std::string ribi::tictactoe::TicTacToeMenuDialog::GetVersion() const noexcept
 {
-  return "1.6";
+  return "1.8";
 }
 
 std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory() const noexcept
@@ -143,7 +164,9 @@ std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory
     "2011-01-07: version 1.3: seperated wtmain.cpp in multiple units",
     "2011-04-15: version 1.4: major architectural changes",
     "2011-04-16: version 1.5: added use of WtAutoConfig (for web application)"
-    "2014-02-10: version 1.6: added retro version"
+    "2014-02-10: version 1.6: added retro version",
+    "2014-06-05: version 1.7: first step in adding AI",
+    "2014-08-07: version 1.8: added silent flag in console version"
   };
 }
 
@@ -152,14 +175,17 @@ std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory
 void ribi::tictactoe::TicTacToeMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::TicTacToeMenuDialog::Test");
+  tictactoe::Game();
+  tictactoe::Board();
+  tictactoe::Widget();
+  TextCanvas();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
-    TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog" } );
+    TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog","--1h","--2h", "--silent" } );
   }
-  TRACE("Finished ribi::tictactoe::TicTacToeMenuDialog::Test successfully");
 }
 #endif

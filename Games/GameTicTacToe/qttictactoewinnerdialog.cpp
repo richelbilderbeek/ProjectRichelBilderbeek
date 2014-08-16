@@ -20,12 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttictactoewinnerdialog.h"
 
 #include <cassert>
 
 #include "trace.h"
 #include "ui_qttictactoewinnerdialog.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::tictactoe::QtTicTacToeWinnerDialog::QtTicTacToeWinnerDialog(QWidget *parent) :
@@ -65,11 +68,10 @@ void ribi::tictactoe::QtTicTacToeWinnerDialog::SetWinnerCircle()
 void ribi::tictactoe::QtTicTacToeWinnerDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTicTacToeWinnerDialog::Test");
-  TRACE("Finished ribi::tictactoe::QtTicTacToeWinnerDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

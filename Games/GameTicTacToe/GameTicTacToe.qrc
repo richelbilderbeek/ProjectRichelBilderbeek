@@ -7,5 +7,6 @@
         <file>GameTicTacToeX.png</file>
         <file>GameTicTacToeComputer.png</file>
         <file>GameTicTacToeHuman.png</file>
+        <file>GameTicTacToe.css</file>
     </qresource>
 </RCC>

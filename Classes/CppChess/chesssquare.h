@@ -1,5 +1,5 @@
-#ifndef CHESSSQUARE_H
-#define CHESSSQUARE_H
+#ifndef RIBI_CHESSSQUARE_H
+#define RIBI_CHESSSQUARE_H
 
 #include <iosfwd>
 #include <string>
@@ -68,4 +68,4 @@ bool operator!=(const Chess::Square& lhs, const Chess::Square& rhs) noexcept;
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSSQUARE_H
+#endif // RIBI_CHESSSQUARE_H

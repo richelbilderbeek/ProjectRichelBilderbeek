@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestEntrance, tool to test WtEntrance
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -42,7 +42,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #pragma GCC diagnostic pop
 
-ribi::ToolTestEntrance::WtMenuDialog::WtMenuDialog(boost::shared_ptr<const IpAddress> ip_address)
+ribi::ToolTestEntrance::WtMenuDialog::WtMenuDialog(
+  boost::shared_ptr<const IpAddress> ip_address)
 {
   {
     std::vector<std::string> image_names;
@@ -52,7 +53,7 @@ ribi::ToolTestEntrance::WtMenuDialog::WtMenuDialog(boost::shared_ptr<const IpAdd
     {
       if (!(QFile::exists(filename.c_str())))
       {
-        QFile f( (std::string(":/images/") + filename).c_str() );
+        QFile f( (std::string(":/ToolTestEntrance/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
       if (!boost::filesystem::exists(filename.c_str()))
@@ -102,7 +103,7 @@ ribi::ToolTestEntrance::WtMenuDialog::WtMenuDialog(boost::shared_ptr<const IpAdd
 
 Wt::WWidget * ribi::ToolTestEntrance::WtMenuDialog::CreateNewAboutDialog()
 {
-  About a = MenuDialog::GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtEntrance version: " + WtEntrance::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);

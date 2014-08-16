@@ -30,18 +30,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "openquestion.h"
 #include "multiplechoicequestion.h"
 #include "question.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QuestionDialog::QuestionDialog()
   : m_signal_request_quit{},
     m_signal_submitted{},
-    m_is_correct{}
+    m_is_correct(Tribool::Indeterminate)
 {
   #ifndef NDEBUG
   Test();
   #endif
-  assert(m_is_correct.empty() && "Answer is indeterminate at construction");
+  assert(m_is_correct == Tribool::Indeterminate && "Answer is indeterminate at construction");
   assert(!HasSubmitted());
 }
 
@@ -133,24 +134,18 @@ bool ribi::QuestionDialog::IsAnswerCorrect() const
     throw std::logic_error("Cannot only check if answer is correct, after submitting an answer");
   }
   assert(HasSubmitted());
-  assert(!m_is_correct.empty());
-  assert(m_is_correct.size() == 1);
-  assert(m_is_correct[0] == 0 || m_is_correct[0] == 1);
-  return m_is_correct[0] == 1;
+  return m_is_correct == Tribool::True;
 }
 
 void ribi::QuestionDialog::SetIsCorrect(const bool is_correct)
 {
-  assert(m_is_correct.empty()
-    && "Can only answer exactly once");
-  m_is_correct.push_back(is_correct ? 1 : 0);
-  assert(!m_is_correct.empty()
-    && "Must have stored that the question is answered");
+  assert(!HasSubmitted() && "Can only answer exactly once");
+  m_is_correct = is_correct ? Tribool::True : Tribool::False;
 
-  //m_has_submitted = true;
   assert(HasSubmitted());
+  assert(IsAnswerCorrect() == is_correct);
 
-  m_signal_submitted(IsAnswerCorrect());
+  m_signal_submitted(is_correct);
 }
 
 
@@ -158,12 +153,11 @@ void ribi::QuestionDialog::SetIsCorrect(const bool is_correct)
 void ribi::QuestionDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QuestionDialog::Test");
-  TRACE("Finished ribi::QuestionDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

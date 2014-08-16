@@ -1,12 +1,15 @@
+#include "wtmultiplechoicequestiondialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/bind.hpp>
-#include <boost/filesystem.hpp>
+
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-
-#include "multiplechoicequestion.h"
-#include "multiplechoicequestiondialog.h"
-#include "wtmultiplechoicequestiondialog.h"
+#include <boost/make_shared.hpp>
 
 #include <Wt/WBreak>
 #include <Wt/WButtonGroup>
@@ -19,6 +22,11 @@
 #include <Wt/WStackedWidget>
 //#include <Wt/WGroupBox>
 
+#include "fileio.h"
+#include "multiplechoicequestiondialog.h"
+#include "multiplechoicequestion.h"
+#pragma GCC diagnostic pop
+
 ribi::WtMultipleChoiceQuestionDialog::Ui::Ui()
  : m_button_submit(new Wt::WPushButton("Submit")),
    m_radio_buttons{},
@@ -27,17 +35,14 @@ ribi::WtMultipleChoiceQuestionDialog::Ui::Ui()
 
 }
 
-/*
+
 ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   const std::string& s)
-  : WtQuestionDialog(
-    boost::shared_ptr<QuestionDialog>(
-      new MultipleChoiceQuestionDialog(s))),
-    m_ui{}
+  : m_ui{},
+    m_dialog(boost::make_shared<MultipleChoiceQuestionDialog>(s))
 {
   Show();
 }
-*/
 
 ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   const boost::shared_ptr<MultipleChoiceQuestionDialog>& dialog)
@@ -47,22 +52,22 @@ ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   Show();
 }
 
-const boost::shared_ptr<const ribi::QuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetDialog() const noexcept
+boost::shared_ptr<const ribi::QuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetDialog() const noexcept
 {
   return m_dialog;
 }
 
-const boost::shared_ptr<const ribi::MultipleChoiceQuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetMultipleChoiceQuestionDialog() const noexcept
+boost::shared_ptr<const ribi::MultipleChoiceQuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetMultipleChoiceQuestionDialog() const noexcept
 {
   return m_dialog;
 }
 
-const std::string ribi::WtMultipleChoiceQuestionDialog::GetVersion()
+std::string ribi::WtMultipleChoiceQuestionDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::WtMultipleChoiceQuestionDialog::GetVersionHistory()
+std::vector<std::string> ribi::WtMultipleChoiceQuestionDialog::GetVersionHistory()
 {
   return {
     "2011-06-29: version 1.0: initial version",
@@ -96,25 +101,27 @@ void ribi::WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked()
 
 void ribi::WtMultipleChoiceQuestionDialog::Show()
 {
+  const auto question = m_dialog->GetMultipleChoiceQuestion();
   //const auto question = m_dialog->GetMultipleChoiceQuestion();
   //m_dialog->SetQuestion(question);
 
   this->setContentAlignment(Wt::AlignCenter);
 
-  if (boost::filesystem::exists(question->GetFilename()))
+
+  if (ribi::fileio::FileIo().IsRegularFile(GetDialog()->GetQuestion()->GetFilename()))
   {
-    this->addWidget(new Wt::WImage(question->GetFilename().c_str()));
+    this->addWidget(new Wt::WImage(GetDialog()->GetQuestion()->GetFilename().c_str()));
   }
 
   const MultipleChoiceQuestion * const q
-    = dynamic_cast<const MultipleChoiceQuestion *>(question.get());
+    = dynamic_cast<const MultipleChoiceQuestion *>(GetDialog()->GetQuestion().get());
   assert(q);
 
   this->addWidget(m_ui.m_stacked_widget);
   //Create the question page
   {
     Wt::WContainerWidget * const page = new Wt::WContainerWidget;
-    page->addWidget(new Wt::WLabel(question->GetQuestion().c_str()));
+    page->addWidget(new Wt::WLabel(GetDialog()->GetQuestion()->GetQuestion().c_str()));
     page->addWidget(new Wt::WBreak);
     //RadioButtons
     {
@@ -151,7 +158,7 @@ void ribi::WtMultipleChoiceQuestionDialog::Show()
     Wt::WContainerWidget * const page = new Wt::WContainerWidget;
     page->addWidget(new Wt::WLabel("Incorrect"));
     page->addWidget(new Wt::WBreak);
-    page->addWidget(new Wt::WLabel(question->GetQuestion().c_str()));
+    page->addWidget(new Wt::WLabel(GetDialog()->GetQuestion()->GetQuestion().c_str()));
     page->addWidget(new Wt::WBreak);
     page->addWidget(new Wt::WLabel(q->GetAnswer().c_str()));
     page->addWidget(new Wt::WBreak);
@@ -159,5 +166,3 @@ void ribi::WtMultipleChoiceQuestionDialog::Show()
   }
   m_ui.m_stacked_widget->setCurrentIndex(0);
 }
-
-

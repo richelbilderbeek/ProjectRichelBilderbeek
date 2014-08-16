@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtShapeGroupWidget, Wt widget for displaying Shapes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,17 +20,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTSHAPEGROUPWIDGET_H
 #define WTSHAPEGROUPWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace ribi {
 
 struct Shape;
-//---------------------------------------------------------------------------
+
 ///WtShapeGroupWidget displays a collection of Shape instances
 struct WtShapeGroupWidget : public Wt::WPaintedWidget
 {
@@ -38,8 +43,8 @@ struct WtShapeGroupWidget : public Wt::WPaintedWidget
 
   void SetShapes(const std::vector<std::vector<const Shape*> >& v);
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
 
   protected:
   void paintEvent(Wt::WPaintDevice *paintDevice);

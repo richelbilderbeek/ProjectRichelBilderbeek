@@ -27,21 +27,36 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QCursor>
 
 #include "conceptmapconcept.h"
+#include "conceptmapnode.h"
 #include "conceptmapexamples.h"
 #include "qtitemdisplaystrategy.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+ribi::cmap::QtConceptMapElement::QtConceptMapElement()
+  : QtRoundedEditRectItem()
+{
+
+}
+
+/*
 void ribi::cmap::QtConceptMapElement::OnConceptRequestsEdit()
 {
   assert(this);
-  assert(this->GetConcept());
-  assert(this->GetConcept()->GetExamples());
+  assert(this->GetNode());
+  assert(this->GetNode()->GetConcept()->GetExamples());
   this->setAcceptHoverEvents(true);
-  m_signal_conceptmapitem_requests_edit(this);
+  assert(!"TODO");
+  //m_signal_conceptmapitem_requests_edit(this);
+}
+*/
+
+void ribi::cmap::QtConceptMapElement::hoverMoveEvent(QGraphicsSceneHoverEvent *) noexcept
+{
+  this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void ribi::cmap::QtConceptMapElement::hoverMoveEvent(QGraphicsSceneHoverEvent *)
+void ribi::cmap::QtConceptMapElement::hoverEnterEvent(QGraphicsSceneHoverEvent *) noexcept
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }

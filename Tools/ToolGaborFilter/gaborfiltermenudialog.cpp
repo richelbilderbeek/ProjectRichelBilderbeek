@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "gaborfilter.h"
 #include "gaborfilterwidget.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::ToolGaborFilterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -53,8 +55,10 @@ ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() const noexcept
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolGaborFilter.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -98,11 +102,10 @@ std::vector<std::string> ribi::ToolGaborFilterMenuDialog::GetVersionHistory() co
 void ribi::ToolGaborFilterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolGaborFilterMenuDialog::Test");
-  TRACE("Finished ribi::ToolGaborFilterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

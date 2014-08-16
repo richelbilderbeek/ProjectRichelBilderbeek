@@ -1,7 +1,3 @@
-TEMPLATE = app
-CONFIG += console
-CONFIG -= app_bundle
-CONFIG -= qt
-QMAKE_CXXFLAGS += -Wall -Wextra -Werror
+include(../../ConsoleApplication.pri)
 SOURCES += main.cpp
 

@@ -46,7 +46,7 @@ struct KalmanFilterExperiment
 
   ///Obtain the predicted states
   ///The states are stored as a chronological collection (the std::vector) of states (the ublas::vector)
-  const std::vector<boost::numeric::ublas::vector<double> > GetPredictedStates() const;
+  std::vector<boost::numeric::ublas::vector<double>> GetPredictedStates() const;
 
   ///Obtain the inputs of each timestep
   ///The states are stored as a chronological collection (the std::vector) of inputs (the ublas::vector)
@@ -58,7 +58,7 @@ struct KalmanFilterExperiment
 
   ///Obtain the measured states, that is, measured with noise
   ///The states are stored as a chronological collection (the std::vector) of states (the ublas::vector)
-  const std::vector<boost::numeric::ublas::vector<double> > GetMeasuredStates() const;
+  std::vector<boost::numeric::ublas::vector<double>> GetMeasuredStates() const;
 
   ///Obtain the real states, that is, the values that would be measured without noise
   ///The states are stored as a chronological collection (the std::vector) of states (the ublas::vector)
@@ -86,18 +86,18 @@ struct KalmanFilterExperiment
   ~KalmanFilterExperiment() noexcept {}
   friend void boost::checked_delete<>(KalmanFilterExperiment*);
 
-  static const std::vector<boost::numeric::ublas::vector<double> > ParseInput(
+  static std::vector<boost::numeric::ublas::vector<double>> ParseInput(
     const std::vector<std::string>& input,
     const int n_timesteps);
 
   ///The calculation elements of each timestep
-  std::vector<boost::shared_ptr<KalmanFilterCalculationElements> > m_calculation_elements;
+  std::vector<boost::shared_ptr<KalmanFilterCalculationElements>> m_calculation_elements;
 
   ///The HTML description of the context of this experiment
   const std::string m_context;
 
   ///The inputs of each timestep
-  const std::vector<boost::numeric::ublas::vector<double> > m_inputs;
+  const std::vector<boost::numeric::ublas::vector<double>> m_inputs;
 
   ///The Kalman filter
   const boost::shared_ptr<KalmanFilter> m_kalman_filter;
@@ -110,6 +110,10 @@ struct KalmanFilterExperiment
 
   ///The white noise system
   const boost::shared_ptr<WhiteNoiseSystem> m_white_noise_system;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

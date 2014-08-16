@@ -142,5 +142,10 @@ void ribi::QtDialWidget::paintEvent(QPaintEvent *)
 
 void ribi::QtDialWidget::resizeEvent(QResizeEvent *)
 {
-  m_widget->SetGeometry(0,0,width(),height());
+  m_widget->SetGeometry(
+    0, //x(), //geometry().left(),
+    0, //y(), //geometry().top(),
+    width(), //geometry().width(),
+    height() //geometry().height()
+  );
 }

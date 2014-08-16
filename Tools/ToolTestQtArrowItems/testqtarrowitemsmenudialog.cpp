@@ -23,7 +23,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::TestQtArrowItemsMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -81,7 +83,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestQtArrowItemsMenuDialog::GetProg
 
 std::string ribi::TestQtArrowItemsMenuDialog::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory() const noexcept
@@ -89,7 +91,8 @@ std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory() c
   return {
     "2012-12-07: version 0.1: initial version",
     "2013-01-01: version 1.0: added menu",
-    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole",
+    "2014-07-29: version 1.2: added Modify dialog"
   };
 }
 
@@ -97,11 +100,10 @@ std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory() c
 void ribi::TestQtArrowItemsMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestQtArrowItemsMenuDialog::Test");
-  TRACE("Finished ribi::TestQtArrowItemsMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

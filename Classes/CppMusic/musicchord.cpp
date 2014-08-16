@@ -136,7 +136,7 @@ std::vector<std::string> ribi::Music::Chord::GetVersionHistory() noexcept
 void ribi::Music::Chord::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

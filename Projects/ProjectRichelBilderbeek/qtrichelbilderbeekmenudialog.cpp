@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtrichelbilderbeekmenudialog.h"
 
 #include <algorithm>
@@ -44,14 +45,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreewidget.h"
 #include "qtdialwidget.h"
 #include "qtdisplaypositem.h"
-#include "qtexercise.h"
+//#include "qtexercise.h"
 #include "qtgaborfilterwidget.h"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "qtlabeledquadbezierarrowitem.h"
 #include "qtledwidget.h"
 #include "qtleftrightrectitem.h"
 #include "qtmatrix.h"
-#include "qtmultiplechoicequestiondialog.h"
+//#include "qtmultiplechoicequestiondialog.h"
 #include "qtmysterymachinewidget.h"
 #include "qtopenquestiondialog.h"
 #include "qtpatharrowitem.h"
@@ -62,7 +63,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtrichelbilderbeekmenuitemwidget.h"
 #include "qtrichelbilderbeekprogram.h"
 #include "qtroundededitrectitem.h"
-#include "qtroundedtextrectitem.h"
+//#include "qtroundedtextrectitem.h" //OBSOLETE
 #include "qtshapewidget.h"
 #include "qtshinybuttonwidget.h"
 #include "qtsimplifynewickmaindialog.h"
@@ -70,6 +71,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtstdvectorfunctionmodel.h"
 #include "qtstdvectorstringmodel.h"
 #include "qttictactoewidget.h"
+#include "testtimer.h"
 #include "qttogglebuttonwidget.h"
 #include "qtublasmatrixdoublemodel.h"
 #include "qtublasvectordoublemodel.h"
@@ -112,7 +114,12 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
 
     QPushButton * const button = new QPushButton("&About");
     button->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Maximum);
-    QObject::connect(button,SIGNAL(clicked()),this,SLOT(OnAbout()));
+    QObject::connect(
+      button,
+      &QPushButton::clicked,
+      this,
+      &ribi::QtRichelBilderbeekMenuDialog::OnAbout
+    );
     layout->addWidget(button);
   }
   {
@@ -127,8 +134,6 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
     );
     this->move( screen.center() - this->rect().center() );
   }
-
-  assert(1==2); //TEMP
 }
 
 ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog() noexcept
@@ -144,7 +149,7 @@ ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   a.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());
   a.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());
-  a.AddLibrary("QtExercise version: " + QtExercise::GetVersion());
+  //a.AddLibrary("QtExercise version: " + QtExercise::GetVersion());
   a.AddLibrary("QtGaborFilterWidget version: " + QtGaborFilterWidget::GetVersion());
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtKeyboardFriendlyGraphicsView version: " + QtKeyboardFriendlyGraphicsView::GetVersion());
@@ -152,7 +157,7 @@ ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   a.AddLibrary("QtLedWidget version: " + QtLedWidget::GetVersion());
   a.AddLibrary("QtLeftRightRectItem version: " + QtLeftRightRectItem::GetVersion());
   a.AddLibrary("QtMatrix version: " + QtMatrix::GetVersion());
-  a.AddLibrary("QtMultipleChoiceQuestionDialog version: " + QtMultipleChoiceQuestionDialog::GetVersion());
+  //a.AddLibrary("QtMultipleChoiceQuestionDialog version: " + QtMultipleChoiceQuestionDialog::GetVersion());
   a.AddLibrary("QtMysteryMachineWidget version: " + QtMysteryMachineWidget::GetVersion());
   a.AddLibrary("QtOpenQuestionDialog version: " + QtOpenQuestionDialog::GetVersion());
   a.AddLibrary("QtPathArrowItem version: " + QtPathArrowItem::GetVersion());
@@ -162,7 +167,7 @@ ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());
   a.AddLibrary("QtRoundedEditRectItem version: " + QtRoundedEditRectItem::GetVersion());
   a.AddLibrary("QtRoundedRectItem version: " + QtRoundedRectItem::GetVersion());
-  a.AddLibrary("QtRoundedTextRectItem version: " + QtRoundedTextRectItem::GetVersion());
+  //a.AddLibrary("QtRoundedTextRectItem version: " + QtRoundedTextRectItem::GetVersion()); //OBSOLETE
   a.AddLibrary("QtShapeWidget version: " + QtShapeWidget::GetVersion());
   a.AddLibrary("QtShinyButtonWidget version: " + QtShinyButtonWidget::GetVersion());
   //a.AddLibrary("QtSprites version: " + QtSprites::GetVersion());
@@ -194,12 +199,13 @@ void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
 
 void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
 {
+  const bool verbose{false};
   const boost::shared_ptr<QDialog> dialog(
     QtRichelBilderbeekProgram::CreateQtMenuDialog(program_type));
 
   if (!dialog)
   {
-    TRACE("Create placeholder");
+    if (verbose) { TRACE("Create placeholder"); }
     const boost::shared_ptr<QtHideAndShowDialog> placeholder(
       QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(program_type));
     assert(placeholder);
@@ -208,7 +214,7 @@ void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
   }
   else
   {
-    TRACE("Create QtHideAndShowDialog");
+    if (verbose) { TRACE("Create QtHideAndShowDialog"); }
     const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
       boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
     assert(hide_and_show_dialog);
@@ -221,21 +227,24 @@ void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
 void ribi::QtRichelBilderbeekMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
+  const bool verbose{false};
+  //const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const std::vector<ProgramType> v = ProgramTypes::GetAll();
     for (const ProgramType type: v)
     {
-      #ifndef NDEBUG
-      const std::string progress
-        = boost::lexical_cast<std::string>(static_cast<int>(type))
-        + "/"
-        + boost::lexical_cast<std::string>(v.size());
-      TRACE(progress);
-      #endif
+      if (verbose)
+      {
+        const std::string progress
+          = boost::lexical_cast<std::string>(static_cast<int>(type))
+          + "/"
+          + boost::lexical_cast<std::string>(v.size());
+        TRACE(progress);
+      }
       const boost::shared_ptr<QDialog> d(
         QtRichelBilderbeekProgram::CreateQtMenuDialog(type));
     }

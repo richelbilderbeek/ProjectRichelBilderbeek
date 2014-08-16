@@ -5,6 +5,7 @@
 #include "qtaboutdialog.h"
 #include "stylesheetsettermenudialog.h"
 #include "qtstylesheetsettermaindialog.h"
+#include "testtimer.h"
 #include "ui_qtstylesheetsettermenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -45,12 +46,11 @@ void ribi::QtStyleSheetSetterMenuDialog::on_button_quit_clicked()
 void ribi::QtStyleSheetSetterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtStyleSheetSetterMenuDialog::Test");
   QtStyleSheetSetterMainDialog();
-  TRACE("Finished ribi::QtStyleSheetSetterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

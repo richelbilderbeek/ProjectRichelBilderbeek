@@ -13,6 +13,7 @@
 
 #include "textcanvas.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qtvalentinecarddecryptermaindialog.h"
 #include "valentinecarddecryptermaindialog.h"
 #include "valentinecardsymbol.h"
@@ -64,12 +65,11 @@ void ribi::QtValentineCardDecrypterMainDialog::on_edit_textChanged(const QString
 void ribi::QtValentineCardDecrypterMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtValentineCardDecrypterMainDialog::Test");
-  TRACE("Finished ribi::QtValentineCardDecrypterMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

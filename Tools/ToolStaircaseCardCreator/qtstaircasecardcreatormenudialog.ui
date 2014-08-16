@@ -16,11 +16,11 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>CodeToHtml</string>
+   <string>StaircaseCardCreator</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../Games/GameAminoAcidFighter/GameAminoAcidFighter.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+   <iconset resource="ToolStaircaseCardCreator.qrc">
+    <normaloff>:/images/ToolStaircaseCardCreatorR.png</normaloff>:/images/ToolStaircaseCardCreatorR.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
@@ -69,7 +69,7 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   <tabstop>button_quit</tabstop>
  </tabstops>
  <resources>
-  <include location="../../Games/GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
+  <include location="ToolStaircaseCardCreator.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "openfoampatchfieldtypes.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::foam::BoundaryFileItem::BoundaryFileItem(
@@ -34,11 +35,11 @@ ribi::foam::FaceIndex ribi::foam::BoundaryFileItem::GetEndFace() const noexcept
 void ribi::foam::BoundaryFileItem::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::BoundaryFileItem::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const BoundaryFileItem i("some_name",PatchFieldType::empty,123,FaceIndex(456));
   std::stringstream s;
   s << i;
@@ -50,7 +51,6 @@ void ribi::foam::BoundaryFileItem::Test() noexcept
     TRACE(j);
   }
   assert(i == j);
-  TRACE("Finished ribi::foam::BoundaryFileItem::Test successfully");
 }
 #endif
 

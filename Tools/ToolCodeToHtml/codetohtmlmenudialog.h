@@ -31,19 +31,21 @@ namespace ribi {
 namespace c2h {
 
 ///GUI independent CodeToHtml menu dialog
-struct CodeToHtmlMenuDialog : public MenuDialog
+struct CodeToHtmlMenuDialog final : public MenuDialog
 {
   CodeToHtmlMenuDialog();
   ~CodeToHtmlMenuDialog() noexcept {}
-  About GetAbout() const noexcept;
-  Help GetHelp() const noexcept;
-  boost::shared_ptr<const Program> GetProgram() const noexcept;
-  std::string GetVersion() const noexcept;
+  About GetAbout() const noexcept override;
+  Help GetHelp() const noexcept override;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
+  std::string GetVersion() const noexcept override;
 
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept override;
+
+  static void TestAllProgramsHaveInfo() noexcept;
 
   private:
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   #ifndef NDEBUG
   static void Test() noexcept;

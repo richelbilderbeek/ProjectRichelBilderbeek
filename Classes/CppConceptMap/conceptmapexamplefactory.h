@@ -37,27 +37,33 @@ namespace cmap {
 
 struct ExampleFactory
 {
-  ExampleFactory() {}
+  ExampleFactory() noexcept;
 
   ///Create an example from string and enum
-  static const boost::shared_ptr<cmap::Example> Create(
+  boost::shared_ptr<cmap::Example> Create(
     const std::string& text,
     const cmap::Competency& competency,
-    const bool is_complex = true,   //DEFAULT
-    const bool is_concrete = true,  //DEFAULT
-    const bool is_specific = true); //DEFAULT
+    const bool is_complex = true,
+    const bool is_concrete = true,
+    const bool is_specific = true
+  ) const noexcept;
 
   ///Create examples for strings
   ///Note that all cmap::Competency values are set to uninitialized
   //static const std::vector<boost::shared_ptr<cmap::Example> > CreateExamples(const std::vector<std::string>& v);
 
   ///Create an example from XML
-  static boost::shared_ptr<Example> FromXml(const std::string& s);
+  boost::shared_ptr<Example> FromXml(const std::string& s) const noexcept;
 
   int GetNumberOfTests() const noexcept { return static_cast<int>(GetTests().size()); }
-  const boost::shared_ptr<Example> GetTest(const int i) const noexcept;
-  const std::vector<boost::shared_ptr<Example>> GetTests() const noexcept;
+  boost::shared_ptr<Example> GetTest(const int i) const noexcept;
+  std::vector<boost::shared_ptr<Example>> GetTests() const noexcept;
 
+  private:
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif // NDEBUG
 };
 
 } //~namespace cmap

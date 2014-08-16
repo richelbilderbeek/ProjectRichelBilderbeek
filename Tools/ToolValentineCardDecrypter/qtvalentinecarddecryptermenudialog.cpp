@@ -5,6 +5,7 @@
 #include "qtaboutdialog.h"
 #include "valentinecarddecryptermenudialog.h"
 #include "qtvalentinecarddecryptermaindialog.h"
+#include "testtimer.h"
 #include "ui_qtvalentinecarddecryptermenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -45,12 +46,11 @@ void ribi::QtValentineCardDecrypterMenuDialog::on_button_quit_clicked()
 void ribi::QtValentineCardDecrypterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtValentineCardDecrypterMenuDialog::Test");
   QtValentineCardDecrypterMainDialog();
-  TRACE("Finished ribi::QtValentineCardDecrypterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

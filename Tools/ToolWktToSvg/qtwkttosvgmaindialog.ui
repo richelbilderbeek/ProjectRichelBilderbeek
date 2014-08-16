@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtWktToSvgMainDialog</class>
+ <widget class="QDialog" name="QtWktToSvgMainDialog">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>848</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>WktToSvg</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolWktToSvg.qrc">
+    <normaloff>:/ToolWktToSvg/ToolWktToSvgIcon.png</normaloff>:/ToolWktToSvg/ToolWktToSvgIcon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+
+QWidget { font: bold, &quot;Courier New&quot;, courier, monospace }
+QPushButton { font: 18 px  }
+QTabWidget { font: 12 px  }
+QLabel { font: 12px }
+QComboBox { font: 12px }
+QPlainTextEdit { font: 10px }
+
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="1" colspan="2">
+    <widget class="QDoubleSpinBox" name="box_stroke_width">
+     <property name="minimum">
+      <double>0.010000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>10.000000000000000</double>
+     </property>
+     <property name="value">
+      <double>1.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="3">
+    <widget class="ribi::QtNavigationableGraphicsView" name="view">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="3">
+    <widget class="QPlainTextEdit" name="text_svg">
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="3">
+    <widget class="QLabel" name="label_svg">
+     <property name="text">
+      <string>SVG</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_stroke_width">
+     <property name="text">
+      <string>stroke_width</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QLineEdit" name="edit">
+     <property name="text">
+      <string>POLYGON((-10 -10,-10 10,10 10,10 -10)),LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label_wkt">
+     <property name="text">
+      <string>WKT</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QLabel" name="label_other_parameters">
+     <property name="text">
+      <string>Other parameters</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ribi::QtNavigationableGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>qtnavigationablegraphicsview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="ToolWktToSvg.qrc"/>
+ </resources>
+ <connections/>
+</ui>

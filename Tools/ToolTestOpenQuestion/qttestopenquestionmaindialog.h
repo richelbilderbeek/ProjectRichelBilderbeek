@@ -38,6 +38,7 @@ namespace ribi {
 
 struct TestOpenQuestionMainDialog;
 struct QtOpenQuestionDialog;
+struct OpenQuestionDialog;
 
 class QtTestOpenQuestionMainDialog : public QtHideAndShowDialog
 {
@@ -48,7 +49,7 @@ public:
   QtTestOpenQuestionMainDialog(const QtTestOpenQuestionMainDialog&) = delete;
   QtTestOpenQuestionMainDialog& operator=(const QtTestOpenQuestionMainDialog&) = delete;
   ~QtTestOpenQuestionMainDialog() noexcept;
-  const boost::shared_ptr<const QtOpenQuestionDialog> GetDialog() const { return m_dialog; }
+  const boost::shared_ptr<const QtOpenQuestionDialog> GetDialog() const { return m_dialog_1; }
   void SetQuestion(const std::string& s);
 
 protected:
@@ -59,9 +60,10 @@ private slots:
 
 private:
   Ui::QtTestOpenQuestionMainDialog *ui;
-  boost::shared_ptr<QtOpenQuestionDialog> m_dialog;
+  boost::shared_ptr<QtOpenQuestionDialog> m_dialog_1;
+  boost::shared_ptr<QtOpenQuestionDialog> m_dialog_2;
 
-  static boost::shared_ptr<QtOpenQuestionDialog> CreateQtOpenQuestionDialog(const std::string& s);
+  static boost::shared_ptr<OpenQuestionDialog> CreateOpenQuestionDialog(const std::string& s);
 
   #ifndef NDEBUG
   static void Test() noexcept;

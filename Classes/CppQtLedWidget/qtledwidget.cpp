@@ -20,6 +20,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtledwidget.h"
 
 #include <cassert>
@@ -71,6 +73,8 @@ void ribi::QtLedWidget::DrawLed(
     const int width, const int height,
     const Led * const led)
 {
+  assert(width  > 0);
+  assert(height > 0);
   const int red   = boost::numeric_cast<int>(led->GetRed());
   const int green = boost::numeric_cast<int>(led->GetGreen());
   const int blue  = boost::numeric_cast<int>(led->GetBlue());
@@ -94,6 +98,7 @@ void ribi::QtLedWidget::DrawLed(
     assert( g >= 0 ); assert( g < 256);
     assert( b >= 0 ); assert( b < 256);
     const int pen_width = 1 + (std::min(width,height) / 25);
+    assert(pen_width > 0);
     {
       QPen pen = painter.pen();
       pen.setWidth(pen_width);
@@ -104,8 +109,9 @@ void ribi::QtLedWidget::DrawLed(
     painter.drawEllipse(
       left + pen_width,
       top + pen_width,
-      width  - (2 * pen_width),
-      height - (2 * pen_width));
+      width  - (4 * pen_width),
+      height - (4 * pen_width)
+    );
   }
   {
     //Draw topleft smaller lighter surface
@@ -134,7 +140,7 @@ void ribi::QtLedWidget::DrawLed(
     painter.drawEllipse(x,y,w,h);
   }
   {
-    //Draw bottomright smaller lighter surface
+    //Draw bottomright smaller darker surface
     const double maxBrightness = 0.33 * 255.0;
     const double minBrightness = 0.25 * maxBrightness;
     const int r = static_cast<int>(
@@ -213,10 +219,15 @@ void ribi::QtLedWidget::paintEvent(QPaintEvent *)
 void ribi::QtLedWidget::resizeEvent(QResizeEvent * )
 {
   m_widget->SetGeometry(
-    0, //this->geometry().left(),
-    0, //this->geometry().top(),
-    this->geometry().width(),
-    this->geometry().height()
+    x(), //geometry().left(),
+    y(), //geometry().top(),
+    width(), //geometry().width(),
+    height() //geometry().height()
   );
+
+  //  0, //x(), //geometry().left(),
+  //  0, //y(), //geometry().top(),
+  //  width(), //geometry().width(),
+  //  height() //geometry().height()
 }
 

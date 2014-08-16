@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtExercise, Wt GUI of Exercise
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,6 +20,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <fstream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/lambda/lambda.hpp>
 #include <boost/signals2.hpp>
 
@@ -30,11 +34,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "exercise.h"
 #include "trace.h"
+#include "question.h"
+#include "questiondialog.h"
 #include "wtexercise.h"
 #include "wtmultiplechoicequestiondialog.h"
 #include "wtopenquestiondialog.h"
 #include "wtquestiondialog.h"
-
+#pragma GCC diagnostic pop
 
 ribi::WtExercise::Ui::Ui()
   : m_box(new Wt::WGroupBox),
@@ -106,16 +112,16 @@ const ribi::Exercise * ribi::WtExercise::GetExercise() const
   return m_exercise.get();
 }
 
-const std::string ribi::WtExercise::GetVersion()
+std::string ribi::WtExercise::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::WtExercise::GetVersionHistory()
+std::vector<std::string> ribi::WtExercise::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-26: Version 1.0: initial version");
-  return v;
+  return {
+    "2011-09-26: Version 1.0: initial version"
+  };
 }
 
 void ribi::WtExercise::OnSubmittedAnswer(const bool answered_correct)

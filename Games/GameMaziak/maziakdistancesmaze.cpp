@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "maziakintmaze.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::maziak::DistancesMaze::DistancesMaze(
@@ -97,11 +98,10 @@ int ribi::maziak::DistancesMaze::Get(const int x, const int y) const noexcept
 void ribi::maziak::DistancesMaze::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::DistancesMaze::Test");
-  TRACE("Finished ribi::maziak::DistancesMaze::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

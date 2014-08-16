@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtbeerwantermaindialog.h"
 #include "ui_qtbeerwantermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -53,7 +54,6 @@ void ribi::QtBeerWanterMenuDialog::on_button_start_clicked() noexcept
 
 void ribi::QtBeerWanterMenuDialog::on_button_about_clicked() noexcept
 {
-  this->hide();
   About a = BeerWanterMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
@@ -71,12 +71,11 @@ void ribi::QtBeerWanterMenuDialog::on_button_quit_clicked() noexcept
 void ribi::QtBeerWanterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtBeerWanterMenuDialog::Test");
   QtBeerWanterMainDialog();
-  TRACE("Finished ribi::QtBeerWanterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

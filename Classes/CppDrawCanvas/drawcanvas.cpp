@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "drawcanvas.h"
 
 #include <algorithm>
@@ -31,16 +32,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <iterator>
 
-#include <boost/math/constants/constants.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <boost/geometry.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include <QString>
-#include <QRegExp>
 
 #include "canvascolorsystems.h"
 #include "canvascoordinatsystems.h"
+#include "container.h"
 #include "dotmatrixstring.h"
 #include "fileio.h"
+#include "geometry.h"
+#include "ribi_regex.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 
@@ -52,7 +57,7 @@ ribi::DrawCanvas::DrawCanvas(
   const CanvasColorSystem color_system,
   const CanvasCoordinatSystem coordinat_system)
   :
-    m_canvas(std::vector<std::vector<double> >(height,std::vector<double>(width,0.0))),
+    m_canvas(std::vector<std::vector<double>>(height,std::vector<double>(width,0.0))),
     m_color_system(color_system),
     m_coordinat_system(coordinat_system)
 {
@@ -93,19 +98,19 @@ ribi::DrawCanvas::DrawCanvas(const std::string& filename)
   assert(s.substr(0,8) == "<canvas>");
   assert(s.substr(s.size() - 9,9) == "</canvas>");
   {
-    const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<color_system>.*</color_system>)")) };
+    const std::vector<std::string> v { Regex().GetRegexMatches(s,"(<color_system>.*</color_system>)") };
     assert(v.size() == 1);
-    m_color_system = CanvasColorSystems::ToType(ribi::xml::StripXmlTag(v[0]));
+    m_color_system = CanvasColorSystems().ToType(ribi::xml::StripXmlTag(v[0]));
   }
 
   {
-    const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<coordinat_system>.*</coordinat_system>)")) };
+    const std::vector<std::string> v { Regex().GetRegexMatches(s,"(<coordinat_system>.*</coordinat_system>)") };
     assert(v.size() == 1);
-    m_coordinat_system = CanvasCoordinatSystems::ToType(ribi::xml::StripXmlTag(v[0]));
+    m_coordinat_system = CanvasCoordinatSystems().ToType(ribi::xml::StripXmlTag(v[0]));
   }
   int n_cols = -1;
   {
-    const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<n_cols>.*</n_cols>)")) };
+    const std::vector<std::string> v { Regex().GetRegexMatches(s,"(<n_cols>.*</n_cols>)") };
     assert(v.size() == 1);
     //assert(CanCast<int>(ribi::xml::StripXmlTag(v[0])));
     n_cols = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
@@ -113,7 +118,7 @@ ribi::DrawCanvas::DrawCanvas(const std::string& filename)
 
   m_canvas.push_back( {} );
   {
-    const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<data>.*</data>)")) };
+    const std::vector<std::string> v { Regex().GetRegexMatches(s,"(<data>.*</data>)") };
     assert(v.size() == 1 && "(<data>.*</data>) must be present exactly once");
     const std::pair<std::string,std::vector<std::string>> lines { xml::XmlToVector(v[0]) };
     assert(lines.first == "data");
@@ -147,7 +152,7 @@ void ribi::DrawCanvas::Clear() noexcept
   }
 
   #ifndef NDEBUG
-  for (auto row: m_canvas)
+  for (const auto& row: m_canvas)
   {
     assert(std::accumulate(row.begin(),row.end(),0.0) == 0.0);
   }
@@ -254,7 +259,7 @@ void ribi::DrawCanvas::DrawEllipse(const double left, const double top, const do
   m_signal_changed(this);
 }
 
-void ribi::DrawCanvas::DrawSurface(const std::vector<std::vector<double> >& v)
+void ribi::DrawCanvas::DrawSurface(const std::vector<std::vector<double>>& v)
 {
   if (m_canvas != v)
   {
@@ -266,21 +271,41 @@ void ribi::DrawCanvas::DrawSurface(const std::vector<std::vector<double> >& v)
 void ribi::DrawCanvas::DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept
 {
 
-  const double dX = x2 - x1;
-  const double dY = y2 - y1;
-  const double dist = std::sqrt( (dX * dX) + (dY * dY) );
-  const double stepX = dX / dist;
-  const double stepY = dY / dist;
-  const int nSteps = static_cast<int>(dist + 0.5);
+  const double dx = x2 - x1;
+  const double dy = y2 - y1;
+  const double dist = Geometry().GetDistance(dx,dy);
+  const double step_x = dx / dist;
+  const double step_y = dy / dist;
+  const int n_steps = static_cast<int>(dist + 0.5);
   double x = x1;
   double y = y1;
-  for (int i=0; i!=nSteps; ++i)
+  for (int i=0; i!=n_steps; ++i)
   {
     DrawDot(x,y);
-    x+=stepX;
-    y+=stepY;
+    x+=step_x;
+    y+=step_y;
   }
   m_signal_changed(this);
+}
+
+void ribi::DrawCanvas::DrawLine(
+  const ribi::DrawCanvas::Coordinat from,
+  const ribi::DrawCanvas::Coordinat to
+) noexcept
+{
+  DrawLine(from.x(),from.y(),to.x(),to.y());
+}
+
+void ribi::DrawCanvas::DrawPolygon(
+  const boost::geometry::model::polygon<ribi::DrawCanvas::Coordinat>& polygon
+) noexcept
+{
+  const std::vector<Coordinat> points = polygon.outer();
+  const int n = static_cast<int>(points.size());
+  for (int i=0; i!=n; ++i)
+  {
+    DrawLine(points[i],points[ (i + 1) % n]);
+  }
 }
 
 void ribi::DrawCanvas::DrawText(const double top, const double left, const std::string& text) noexcept
@@ -306,27 +331,9 @@ void ribi::DrawCanvas::DrawText(const double top, const double left, const std::
   }
 }
 
-std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
-  const std::string& s,
-  const QRegExp& r_original)
-{
-  QRegExp r(r_original);
-  r.setMinimal(true); //QRegExp must be non-greedy
-  std::vector<std::string> v;
-  int pos = 0;
-  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
-  {
-    const QString q = r.cap(1);
-    if (q.isEmpty()) break;
-    v.push_back(q.toStdString());
-    pos += r.matchedLength();
-  }
-
-  return v;
-}
 std::string ribi::DrawCanvas::GetVersion() noexcept
 {
-  return "3.0";
+  return "3.1";
 }
 
 std::vector<std::string> ribi::DrawCanvas::GetVersionHistory() noexcept
@@ -336,7 +343,8 @@ std::vector<std::string> ribi::DrawCanvas::GetVersionHistory() noexcept
     "2013-08-21: version 2.0: port to C++11 under Qt Creator",
     "2013-08-22: version 2.1: allow two color and coordinat systems"
     "2014-01-07: version 2.2: added the DrawText member function",
-    "2014-01-10: version 3.0: renamed to DrawCanvas, inherits from new class called Canvas"
+    "2014-01-10: version 3.0: renamed to DrawCanvas, inherits from new class called Canvas",
+    "2014-05-10: version 3.1: allow to draw a Boost.Geometry polygon, increase support for Boost.Geometry"
   };
 }
 
@@ -353,7 +361,7 @@ bool ribi::DrawCanvas::IsInRange(const int x, const int y) const
 
 void ribi::DrawCanvas::PlotSurface(
   std::ostream& os,
-  const std::vector<std::vector<double> >& v,
+  const std::vector<std::vector<double>>& v,
   const bool use_normal_color_system,
   const bool as_screen_coordinat_system)
 {
@@ -413,7 +421,7 @@ void ribi::DrawCanvas::PlotSurface(
   //Iterator through all rows
   if (as_screen_coordinat_system)
   {
-    for (const auto row: v)
+    for (const auto& row: v)
     {
       row_function(row,os,minVal,maxVal,use_normal_color_system);
     }
@@ -477,9 +485,9 @@ void ribi::DrawCanvas::Save(const std::string& filename) const noexcept
   std::stringstream s;
   {
     std::vector<std::string> v;
-    for (auto line: m_canvas)
+    for (const auto& line: m_canvas)
     {
-      for (auto element: line)
+      for (const auto& element: line)
       {
         const std::string t { boost::lexical_cast<std::string>(element) };
         v.push_back(t);
@@ -488,9 +496,9 @@ void ribi::DrawCanvas::Save(const std::string& filename) const noexcept
     s << xml::VectorToXml("data",v);
     s << xml::ToXml("n_cols",GetWidth());
     //color system
-    s << xml::ToXml("color_system",CanvasColorSystems::ToStr(m_color_system));
+    s << xml::ToXml("color_system",CanvasColorSystems().ToStr(m_color_system));
     //coordinat system
-    s << xml::ToXml("coordinat_system",CanvasCoordinatSystems::ToStr(m_coordinat_system));
+    s << xml::ToXml("coordinat_system",CanvasCoordinatSystems().ToStr(m_coordinat_system));
   }
   {
     const std::string t = xml::ToXml("canvas",s.str());
@@ -509,17 +517,6 @@ void ribi::DrawCanvas::Save(const std::string& filename) const noexcept
     assert(IsAboutEqual(*this,c));
   }
   #endif
-}
-
-std::vector<std::string> ribi::DrawCanvas::SeperateString(
-  const std::string& input,
-  const char seperator) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
 }
 
 void ribi::DrawCanvas::SetColorSystem(const CanvasColorSystem colorSystem) noexcept
@@ -544,11 +541,19 @@ void ribi::DrawCanvas::SetCoordinatSystem(const CanvasCoordinatSystem coordinatS
 void ribi::DrawCanvas::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DrawCanvas::Test");
+  {
+    Container();
+    DotMatrixString("X",1);
+    CanvasColorSystems();
+    CanvasCoordinatSystems();
+    fileio::FileIo();
+    Geometry();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Drawing text
   {
     const int maxx = 90;
@@ -585,7 +590,52 @@ void ribi::DrawCanvas::Test() noexcept
     const std::string str_after {s_after.str() };
     assert(std::count(str_after.begin(),str_after.end(),' ') != maxx * maxy); //Line trly drawn
   }
-  //Draw a smiley is all coordinat- and colorsystem combinations, Clear
+  //Draw a polygon
+  {
+    /*
+
+    6 +
+      |
+    5 +      -C
+      |     - |
+    4 +   --  |
+      |  -    |
+    3 + B     |
+      | |    |
+    2 + |    |
+      | |   |
+    1 + A---D
+      |
+    0 +-+-+-+-+-+-+
+
+      0 1 2 3 4 5 6
+    */
+    const int maxx = 22;
+    const int maxy = 22;
+    const boost::shared_ptr<DrawCanvas> canvas(
+      new DrawCanvas(
+        maxx,
+        maxy,
+        CanvasColorSystem::invert,
+        CanvasCoordinatSystem::graph
+      )
+    );
+    const std::vector<Coordinat> points {
+      {  4.0,  4.0}, //A
+      {  4.0, 12.0}, //B
+      { 16.0, 20.0}, //C
+      { 12.0,  4.0}  //D
+    };
+    boost::geometry::model::polygon<Coordinat> polygon;
+    boost::geometry::append(polygon,points);
+    canvas->DrawPolygon(polygon);
+    {
+      std::stringstream s;
+      s << (*canvas);
+      assert(!s.str().empty());
+    }
+  }
+  //Draw a smiley is all coordinat- and colorsystem combinations
   for (int i=0; i!=4; ++i)
   {
     const int maxx = 79;
@@ -667,7 +717,6 @@ void ribi::DrawCanvas::Test() noexcept
     assert(*old_canvas == *new_canvas);
 
   }
-  TRACE("Finished ribi::DrawCanvas::Test successfully");
 }
 #endif
 
@@ -675,7 +724,7 @@ std::vector<std::string> ribi::DrawCanvas::ToStrings() const noexcept
 {
   std::stringstream s;
   s << (*this);
-  const std::vector<std::string> v { SeperateString(s.str(),'\n') };
+  const auto v = Container().SeperateString(s.str(),'\n');
   return v;
 }
 
@@ -703,7 +752,7 @@ bool ribi::operator!=(const DrawCanvas& lhs, const DrawCanvas& rhs) noexcept
 
 bool ribi::IsAboutEqual(const DrawCanvas& lhs, const DrawCanvas& rhs) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   if (lhs.GetColorSystem() != rhs.GetColorSystem())
   {
     if (verbose) { TRACE("Color systems differ"); }

@@ -18,25 +18,30 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPlane.htm
 //---------------------------------------------------------------------------
-#ifndef PLANE_H
-#define PLANE_H
+#ifndef RIBI_PLANE_H
+#define RIBI_PLANE_H
 
 #include <vector>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
-#include "planex.h"
-#include "planey.h"
-#include "planez.h"
 #ifndef _WIN32
 #include <boost/geometry/geometries/polygon.hpp>
 #endif
+
+#include "apfloat.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
+struct PlaneX;
+struct PlaneY;
+struct PlaneZ;
 
 ///Any 3D plane, even a single point
 ///Can be constructed from its equation and at least three 3D points
@@ -47,7 +52,13 @@ namespace ribi {
 //    z = -A/C.x - B/C.y + D/C
 struct Plane
 {
-  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef apfloat Double;
+  typedef boost::geometry::model::d2::point_xy<apfloat> Coordinat2D;
+  typedef boost::geometry::model::point<apfloat,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef std::vector<Coordinat2D> Coordinats2D;
+  typedef std::vector<Coordinat3D> Coordinats3D;
+  typedef std::vector<Double> Doubles;
+
   ///Construct a Plane from three points
   /*
 
@@ -61,11 +72,10 @@ struct Plane
  / |
 
   */
-  ///By default, create the plane Z = 0
   explicit Plane(
-    const Coordinat3D& p1, //= Coordinat3D(0.0,0.0,0.0),
-    const Coordinat3D& p2, //= Coordinat3D(0.0,1.0,0.0),
-    const Coordinat3D& p3  //= Coordinat3D(1.0,0.0,0.0)
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   ///Get the 2D projection of these 3D points,
@@ -84,42 +94,47 @@ struct Plane
   +--B---                     A--B-----
 
   */
-  std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
-    const std::vector<Coordinat3D>& points
-  ) const;
+  Coordinats2D CalcProjection(const Coordinats3D& points) const;
 
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the X
-  double CalcX(const double y, const double z) const;
+  Double CalcX(const Double& y, const Double& z) const;
 
   ///If the Plane can be expressed as Y = A*X + B*Z + C, return the Y
-  double CalcY(const double x, const double z) const;
+  Double CalcY(const Double& y, const Double& z) const;
 
   ///If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
-  double CalcZ(const double x, const double y) const;
+  Double CalcZ(const Double& y, const Double& z) const;
 
-  ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
-  std::vector<double> GetCoefficientsX() const;
+  ///Can the Plane be expressed as X = A*Y + B*Z + C ?
+  bool CanCalcX() const noexcept;
 
-  ///If the Plane can be expressed as Y = A*X + B*Z + C, return the coefficients,
-  std::vector<double> GetCoefficientsY() const;
+  ///Can the Plane be expressed as Y = A*X + B*Z + C ?
+  bool CanCalcY() const noexcept;
 
-  ///If the Plane can be expressed as Z = A*X + B*Y + C, return the coefficients,
-  std::vector<double> GetCoefficientsZ() const;
+  ///Can the Plane be expressed as Z = A*X + B*Y + C ?
+  bool CanCalcZ() const noexcept;
 
-  std::string GetVersion() const noexcept;
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  ///Calculates the error between plane and coordinat
+  Double CalcError(const Coordinat3D& coordinat) const noexcept;
+
+  ///Calculates the maximum allowed error for that coordinat for it to be in the plane
+  Double CalcMaxError(const Coordinat3D& coordinat) const noexcept;
+
+  ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients
+  Doubles GetCoefficientsX() const;
+
+  ///If the Plane can be expressed as Y = A*X + B*Z + C, return the coefficients
+  Doubles GetCoefficientsY() const;
+
+  ///If the Plane can be expressed as Z = A*X + B*Y + C, return the coefficients
+  Doubles GetCoefficientsZ() const;
+
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Checks if the coordinat is in the plane
   bool IsInPlane(const Coordinat3D& coordinat) const noexcept;
 
-  ///If possible, convert the Plane to a x(y,z), e.g 'x=(2*y) + (3*z) + 5' (spaces exactly as shown)
-  std::string ToFunctionX() const;
-
-  ///If possible, convert the Plane to a y(x,z), e.g 'y=(2*x) + (3*z) + 5' (spaces exactly as shown)
-  std::string ToFunctionY() const;
-
-  ///If possible, convert the Plane to a z(x,y), e.g 'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
-  std::string ToFunctionZ() const;
 
   private:
   ~Plane() noexcept {}
@@ -133,19 +148,11 @@ struct Plane
   ///A non-vertical plane; a plane that can be expressed as 'Z(X,Y) = A*X + B*Y + C'
   const boost::shared_ptr<const PlaneZ> m_plane_z;
 
-  const std::vector<Coordinat3D> m_points;
+  const Coordinats3D m_points;
 
-  static boost::shared_ptr<PlaneX> CreatePlaneX(
-    const std::vector<double>& coefficients_x
-  ) noexcept;
-
-  static boost::shared_ptr<PlaneY> CreatePlaneY(
-    const std::vector<double>& coefficients_y
-  ) noexcept;
-
-  static boost::shared_ptr<PlaneZ> CreatePlaneZ(
-    const std::vector<double>& coefficients_z
-  ) noexcept;
+  static boost::shared_ptr<PlaneX> CreatePlaneX(const Doubles& coefficients_x) noexcept;
+  static boost::shared_ptr<PlaneY> CreatePlaneY(const Doubles& coefficients_y) noexcept;
+  static boost::shared_ptr<PlaneZ> CreatePlaneZ(const Doubles& coefficients_z) noexcept;
 
   static boost::shared_ptr<PlaneX> CreatePlaneX(
     const Coordinat3D& p1,
@@ -175,8 +182,11 @@ struct Plane
   friend struct std::default_delete<const Plane>;
   friend class boost::detail::sp_ms_deleter<      Plane>;
   friend class boost::detail::sp_ms_deleter<const Plane>;
+  friend std::ostream& operator<<(std::ostream& os, const Plane& plane) noexcept;
 };
+
+std::ostream& operator<<(std::ostream& os, const Plane& plane) noexcept;
 
 } //~namespace ribi
 
-#endif // PLANE_H
+#endif // RIBI_PLANE_H

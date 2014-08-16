@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTicTacToe, tool to test the TicTacToe class
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtcanvas.h"
 #include "qttictactoewidget.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "tictactoeais.h"
 #include "tictactoewidget.h"
@@ -161,22 +162,21 @@ void ribi::tictactoe::QtTestTicTacToeMainDialog::OnStateChange(QtTicTacToeWidget
 void ribi::tictactoe::QtTestTicTacToeMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTestTicTacToeMainDialog::Test");
-  for (auto ai: Ais().GetAll())
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  for (const auto& ai: Ais().GetAll())
   {
     QtTestTicTacToeMainDialog d(ai,nullptr);
     assert(!d.GetVersion().empty());
   }
-  for (auto ai: Ais().GetAll())
+  for (const auto& ai: Ais().GetAll())
   {
     QtTicTacToeWidget w(nullptr,ai);
     assert(!w.GetVersion().empty());
   }
-  TRACE("Finished ribi::tictactoe::QtTestTicTacToeMainDialog::Test successfully");
 }
 #endif
 

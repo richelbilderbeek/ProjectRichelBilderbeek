@@ -25,16 +25,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
-#include <fileio.h>
 #include <iostream>
 
-
-#include "codetohtml.h"
+#include "codetohtmlfiletypes.h"
 #include "codetohtmlfooter.h"
+#include "codetohtml.h"
 #include "codetohtmlheader.h"
 #include "codetohtmlreplacements.h"
 #include "codetohtmlreplacer.h"
-#include "codetohtmlfiletypes.h"
+#include "fileio.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -42,7 +42,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 ribi::c2h::File::File(const std::string& filename)
-    : m_html(CreateHtml(filename,FileTypes::DeduceFileType(filename)))
+  : m_html(CreateHtml(filename,FileTypes().DeduceFileType(filename)))
 {
   #ifndef NDEBUG
   Test();
@@ -60,33 +60,33 @@ ribi::c2h::File::File(
 }
 
 std::vector<std::string> ribi::c2h::File::CreateHtml(
-  const std::string& m_filename,
+  const std::string& filename,
   const FileType file_type
   ) noexcept
 {
-  assert(fileio::FileIo().IsRegularFile(m_filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
 
   std::vector<std::string> v;
-  if (m_filename == "Licence.txt" || m_filename == "License.txt") return v;
+  if (filename == "Licence.txt" || filename == "License.txt") return v;
 
   //Add heading
   switch(file_type)
   {
     case FileType::cpp:
-      v.push_back("<h2>" + m_filename + "</h2>");
+    case FileType::png:
+      v.push_back("<h2>" + filename + "</h2>");
     break;
     case FileType::pro:
       v.push_back(
         "<h2><a href=\"CppQtProjectFile.htm\">Qt project file</a>: "
-        + m_filename + "</h2>");
+        + filename + "</h2>");
     break;
+    case FileType::foam:
     case FileType::pri:
-      v.push_back("<h2>" + m_filename + "</h2>");
-    break;
     case FileType::py:
     case FileType::sh:
     case FileType::txt:
-      v.push_back("<h2>" + m_filename + "</h2>");
+      v.push_back("<h2>" + filename + "</h2>");
     break;
     case FileType::license_txt:
       assert(!"Should not HTML-ify FileType::license_txt");
@@ -96,32 +96,54 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
       throw std::logic_error("Should never use FileType::n_types");
   }
 
-  //Add end of heading and start of code
+  //Add end of heading
   v.push_back("<p>&nbsp;</p>");
-  v.push_back("<!-- start of code -->");
-  v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
 
-  //Add the HTMLified content
+  //Start of code
+  if (file_type == FileType::png)
   {
-    assert(fileio::FileIo().IsRegularFile(m_filename));
-    const std::vector<std::string> w {
-      Replacer::ToHtml(fileio::FileIo().FileToVector(m_filename),file_type)
-    };
-    std::transform(w.begin(),w.end(),std::back_inserter(v),
-      [](const std::string& s)
-      {
-        return s + "<br/>";
-      }
-    );
+    v.push_back("<p><img src=\"" + filename + "\" alt=\"" + filename + "\"/></p>");
   }
+  else
+  {
+    v.push_back("<!-- start of code -->");
+    v.push_back("<table summary=\"" + filename + "\" border = \"1\"><tr><td><code>");
 
-  //Remove empty lines
-  while (v.back() == "<br/>") v.pop_back();
-  assert(v.back()!="<br/>");
+    //Add the HTMLified content
+    {
+      assert(fileio::FileIo().IsRegularFile(filename));
+      auto lines_text = fileio::FileIo().FileToVector(filename);
+      if (file_type == FileType::foam)
+      {
+        //Keep lines 0-100 and last-50,last
+        const int n_lines_begin = 100;
+        const int n_lines_end = 50;
+        if (static_cast<int>(lines_text.size() > n_lines_begin + n_lines_end))
+        {
+          std::vector<std::string> lines_shorter;
+          std::copy(lines_text.begin(),lines_text.begin() + n_lines_begin,std::back_inserter(lines_shorter));
+          lines_shorter.push_back("[...]");
+          std::copy(lines_text.end() - n_lines_end,lines_text.end(),std::back_inserter(lines_shorter));
+          std::swap(lines_shorter,lines_text);
+        }
+      }
+      const auto lines_html = Replacer().ToHtml(lines_text,file_type);
+      std::transform(lines_html.begin(),lines_html.end(),std::back_inserter(v),
+        [](const std::string& s)
+        {
+          return s + "<br/>";
+        }
+      );
+    }
 
-  //Add end of code and and end of page
-  v.push_back("</code></td></tr></table>");
-  v.push_back("<!-- end of the code -->");
+    //Remove empty lines
+    while (v.back() == "<br/>") v.pop_back();
+    assert(v.back()!="<br/>");
+
+    //Add end of code and and end of page
+    v.push_back("</code></td></tr></table>");
+    v.push_back("<!-- end of the code -->");
+  }
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
@@ -134,11 +156,12 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
 void ribi::c2h::File::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::c2h::File::Test");
-  TRACE("Finished ribi::c2h::File::Test successfully");
+  ribi::fileio::FileIo();
+  Replacer();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

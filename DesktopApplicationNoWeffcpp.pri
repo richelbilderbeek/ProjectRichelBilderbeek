@@ -2,22 +2,28 @@ win32 {
   # Windows only
   message("Desktop application, no effc++, built for Windows")
   greaterThan(QT_MAJOR_VERSION, 4): QT += svg
+  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra #-Weffc++
 }
 
 macx {
   # Mac only
   message("Desktop application, no effc++, built for Mac")
+  QMAKE_CXXFLAGS = -mmacosx-version-min=10.7 -std=gnu0x -stdlib=libc+
+  CONFIG +=c++11
 }
 
 unix:!macx{
   # Linux only
   message("Desktop application, no effc++, built for Linux")
+  greaterThan(QT_MAJOR_VERSION, 4): QT +=  svg concurrent opengl printsupport
+  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror #-Weffc++
 }
 
 cross_compile {
   # Crosscompile only
   message("Desktop application, no effc++, cross-compiling from Linux to Windows")
   greaterThan(QT_MAJOR_VERSION, 4): QT += svg
+  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra #-Weffc++
 }
 
 
@@ -35,8 +41,4 @@ CONFIG(release, debug|release) {
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra #-Weffc++
 
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}

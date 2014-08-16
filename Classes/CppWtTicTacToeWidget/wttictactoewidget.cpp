@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtTicTacToeWidget, Wt widget to display the TicTacToe class
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,14 +18,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtTicTacToeWidget.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WPainter>
 #include <Wt/WPen>
 #include <Wt/WBrush>
 
-#include "tictactoe.h"
+#include "tictactoeboard.h"
+#include "tictactoegame.h"
+#include "tictactoewidget.h"
 #include "wttictactoewidget.h"
 
 #include <cassert>
+#pragma GCC diagnostic pop
 
 ribi::WtTicTacToeWidget::WtTicTacToeWidget()
   : m_signal_has_winner{},
@@ -38,7 +45,7 @@ ribi::WtTicTacToeWidget::WtTicTacToeWidget()
   this->update();
 }
 
-int ribi::WtTicTacToeWidget::GetState() const
+ribi::tictactoe::Winner ribi::WtTicTacToeWidget::GetWinner() const noexcept
 {
   return m_tictactoe->GetWinner();
 }
@@ -48,12 +55,12 @@ int ribi::WtTicTacToeWidget::GetHeight() const
   return 300.0;
 }
 
-const std::string ribi::WtTicTacToeWidget::GetVersion()
+std::string ribi::WtTicTacToeWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::WtTicTacToeWidget::GetVersionHistory()
+std::vector<std::string> ribi::WtTicTacToeWidget::GetVersionHistory()
 {
   return {
     "2011-01-06: version 1.0: initial version"
@@ -67,18 +74,19 @@ int ribi::WtTicTacToeWidget::GetWidth() const
 
 void ribi::WtTicTacToeWidget::OnClicked(const Wt::WMouseEvent& e)
 {
-  if (m_tictactoe->GetWinner() != TicTacToe::no_winner) return;
+  if (m_tictactoe->GetWinner() != tictactoe::Winner::no_winner) return;
   const int x = 3 * e.widget().x / this->GetWidth();
   if (x < 0 || x > 2) return;
   const int y = 3 * e.widget().y / this->GetHeight();
   if (y < 0 || y > 2) return;
-  if (m_tictactoe->CanDoMove(x,y))
+  if (m_tictactoe->GetGame()->CanDoMove(x,y))
   {
-    m_tictactoe->DoMove(x,y);
+    m_tictactoe->Select(x,y);
+    m_tictactoe->DoMove();
     //emit that the state has changed
     this->m_signal_state_changed();
   }
-  if (m_tictactoe->GetWinner() != TicTacToe::no_winner)
+  if (m_tictactoe->GetWinner() != tictactoe::Winner::no_winner)
   {
     //emit that there is a winner
     this->m_signal_has_winner();
@@ -125,14 +133,14 @@ void ribi::WtTicTacToeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
     {
       const int y1 = ((col + 0) * (height / 3)) + (line_width/1) + 4;
       const int y2 = ((col + 1) * (height / 3)) - (line_width/1) - 4;
-      const int state = m_tictactoe->GetSquare(row,col);
-      if (state == TicTacToe::player1)
+      const ribi::tictactoe::Square square = m_tictactoe->GetGame()->GetBoard()->GetSquare(row,col);
+      if (square == tictactoe::Square::player1)
       {
         //player1 = cross
         painter.drawLine(x1,y1,x2,y2);
         painter.drawLine(x1,y2,x2,y1);
       }
-      else if (state == TicTacToe::player2)
+      else if (square == tictactoe::Square::player2)
       {
         //player1 = circle
         painter.drawEllipse(x1,y1,x2-x1,y2-y1);
@@ -143,8 +151,8 @@ void ribi::WtTicTacToeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 
 void ribi::WtTicTacToeWidget::Restart()
 {
-  const boost::shared_ptr<TicTacToe> new_tictactoe(
-    new TicTacToe
+  const boost::shared_ptr<tictactoe::Widget> new_tictactoe(
+    new tictactoe::Widget
   );
   m_tictactoe = new_tictactoe;
   this->update();

@@ -38,160 +38,125 @@ namespace cmap {
 struct EdgeFactory;
 
 ///An Edge is the GUI-independent part of the edges used in QtConceptMap.
-///An Edge goes from one Node to another, which must a different Node
+///An Edge goes from one Node to another, which must a different Node,
+/// at the center of the Edge is a Node
 struct Edge : public Element
 {
+  typedef boost::shared_ptr<const Edge> ReadOnlyEdgePtr;
+  typedef boost::shared_ptr<Edge> EdgePtr;
+  typedef boost::shared_ptr<const Node> ReadOnlyNodePtr;
+  typedef boost::shared_ptr<Node> NodePtr;
+  typedef std::vector<ReadOnlyNodePtr> ReadOnlyNodes;
+  typedef std::vector<NodePtr> Nodes;
+
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
-  boost::shared_ptr<const Concept> GetConcept() const noexcept { return m_concept; }
-  boost::shared_ptr<      Concept> GetConcept()       noexcept { return m_concept; }
+  ReadOnlyNodePtr GetNode() const noexcept { return m_node; }
+  NodePtr GetNode()       noexcept { return m_node; }
 
   ///Get the Node this edge originates from
-  boost::shared_ptr<const Node> GetFrom() const noexcept { return m_from; }
-  boost::shared_ptr<      Node> GetFrom()       noexcept { return m_from; }
+  ReadOnlyNodePtr GetFrom() const noexcept { return m_from; }
+  NodePtr GetFrom()       noexcept { return m_from; }
 
   ///Get the Node index this edge goes to
-  boost::shared_ptr<const Node> GetTo() const noexcept { return m_to; }
-  boost::shared_ptr<      Node> GetTo()       noexcept { return m_to; }
+  ReadOnlyNodePtr GetTo() const noexcept { return m_to; }
+  NodePtr GetTo()       noexcept { return m_to; }
 
-  ///Get the x coordinat
-  double GetX() const noexcept { return m_x; }
-
-  ///Get the y coordinat
-  double GetY() const noexcept { return m_y; }
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Does the edge have an arrow at the head?
   bool HasHeadArrow() const noexcept { return m_head_arrow; }
 
-  //Similar to operator==, except that the coordinats are not checked
-  static bool HasSameContent(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) noexcept;
-
   ///Does the edge have an arrow at the tail?
   bool HasTailArrow() const noexcept { return m_tail_arrow; }
 
-  ///Set the concept
-  void SetConcept(const boost::shared_ptr<Concept> concept) noexcept { m_concept = concept; }
-
   ///Set the Node index this edge originates from
-  void SetFrom(const boost::shared_ptr<Node> from) noexcept;
+  //void SetFrom(const NodePtr& from) noexcept;
 
   ///Set if the head has an arrow
   void SetHeadArrow(const bool has_head_arrow) noexcept;
 
-  ///Set the coordinat of the concept at the center of the node
-  void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
+  ///Set the center Node
+  void SetNode(const NodePtr& node) noexcept;
 
   ///Set if the tail has an arrow
   void SetTailArrow(const bool has_tail_arrow) noexcept;
 
   ///Set the Node index this edge goes to
-  void SetTo(const boost::shared_ptr<Node> to) noexcept;
+  //void SetTo(const NodePtr& to) noexcept;
 
-  ///Set the x coordinat of the concept at the center of the node
-  void SetX(const double x) noexcept;
-
-  ///Set the y coordinat of the concept at the center of the node
-  void SetY(const double y) noexcept;
+  std::string ToStr() const noexcept;
 
   ///Convert an Edge from an XML std::string
   ///The container of nodes is needed to convert the 'to' and 'from'
   ///field to indices
   static std::string ToXml(
-    const boost::shared_ptr<const Edge>& c,
-    const std::vector<boost::shared_ptr<const Node> >& nodes
+    const ReadOnlyEdgePtr& c,
+    const ReadOnlyNodes& nodes
     ) noexcept;
 
   ///Emitted when an Edge attribute has changed
-  boost::signals2::signal<void (const Edge*)> m_signal_edge_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_from_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_head_arrow_changed;
+  mutable boost::signals2::signal<void (Edge*)> m_signal_node_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_tail_arrow_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_to_changed;
 
   private:
-
-  ///The Concept on the Edge
-  boost::shared_ptr<Concept> m_concept;
-
-  ///The Node index this edge originates from
-  ///Cannot be an index, see [1] below
-  boost::shared_ptr<Node> m_from;
+  ///The Node this edge originates from
+  const NodePtr m_from;
 
   ///Is there an arrowhead at the 'to' node?
   bool m_head_arrow;
 
+  ///The Node on the Edge
+  NodePtr m_node;
+
   ///Is there an arrowhead at the 'from' node?
   bool m_tail_arrow;
 
-  ///The Node index this edge goes to
-  ///Cannot be an index, see [1] below
-  boost::shared_ptr<Node> m_to;
-
-  ///The x-coordinat
-  double m_x;
-
-  ///The y-coordinat
-  double m_y;
-
-  void EmitSignalEdgeChanged();
+  ///The Node this edge goes to
+  const NodePtr m_to;
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 
   Edge() = delete;
 
   ///Block destructor, except for the friend boost::checked_delete
-  ~Edge() noexcept {}
-  friend void boost::checked_delete<>(Edge* x);
+  ~Edge() noexcept;
+  friend void boost::checked_delete<>(      Edge*);
+  friend void boost::checked_delete<>(const Edge*);
 
   ///Block constructor, except for EdgeFactory
-  friend EdgeFactory;
-  Edge(
-    const boost::shared_ptr<Concept> & concept,
-    const double concept_x,
-    const double concept_y,
-    const boost::shared_ptr<Node> from,
+  friend class EdgeFactory;
+  explicit Edge(
+    const NodePtr& node,
+    const NodePtr& from,
     const bool tail_arrow,
-    const boost::shared_ptr<Node> to,
-    const bool head_arrow);
+    const NodePtr& to,
+    const bool head_arrow
+  );
 
+  ///Bundles Node its signals into emitting a signal that the node has changed
+  void OnConceptChanged(Node * const node) noexcept;
+  void OnFromChanged(Node * const node) noexcept;
+  void OnToChanged(Node * const node) noexcept;
 };
 
 bool IsConnectedToCenterNode(const boost::shared_ptr<const Edge> edge) noexcept;
 
+std::ostream& operator<<(std::ostream& os, const Edge& edge) noexcept;
+
 bool operator==(const Edge& lhs, const Edge& rhs);
 bool operator!=(const Edge& lhs, const Edge& rhs);
 
-bool operator<(
-  const boost::shared_ptr<Edge>& lhs,
-  const boost::shared_ptr<Edge>& rhs) = delete;
-bool operator<(
-  const boost::shared_ptr<const Edge>& lhs,
-  const boost::shared_ptr<      Edge>& rhs) = delete;
-bool operator<(
-  const boost::shared_ptr<      Edge>& lhs,
-  const boost::shared_ptr<const Edge>& rhs) = delete;
-bool operator<(
-  const boost::shared_ptr<const Edge>& lhs,
-  const boost::shared_ptr<const Edge>& rhs) = delete;
-
-///Notes:
-/// [1] Node::m_from and Node::m_to cannot be indices, because of the desired copying behavior
-/// of Edge: when copying an edge, it is natural that it keeps pointing to the same nodes.
-/// When using pointers, this will work. Indices, on the other hand, are context-specific:
-/// Example: imagine a concept map like this:
-///
-/// NodeA Edge1 NodeB Edge2 NodeC
-/// [0] [1] [2]
-///
-/// In this example, Edge2 goes from [1] to [2]
-///
-/// A sub-concept map will be (when NodeC is the focal node):
-///
-/// NodeB Edge2 NodeC
-/// [0] [1]
-///
-/// In this example, Edge2 goes from [0] to [1]! Due to this, the same Edge2 cannot behave identical in the different contexts
-///
-/// Indices are only used when saving and loading
+bool operator<(const boost::shared_ptr<      Edge>& lhs, const boost::shared_ptr<      Edge>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<      Edge>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) = delete;
 
 } //~namespace cmap
 } //~namespace ribi

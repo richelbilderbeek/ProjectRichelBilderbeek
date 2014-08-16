@@ -35,7 +35,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/tuple/tuple.hpp>
 
 #include "widget.h"
-#include "rectangle.h"
 #include "mysterymachinekey.h"
 #pragma GCC diagnostic pop
 

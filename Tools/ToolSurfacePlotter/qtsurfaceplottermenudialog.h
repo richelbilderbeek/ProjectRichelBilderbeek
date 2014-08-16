@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
 //---------------------------------------------------------------------------
-#ifndef QtSurfacePlotterMENUDIALOG_H
-#define QtSurfacePlotterMENUDIALOG_H
+#ifndef QTSURFACEPLOTTERMENUDIALOG_H
+#define QTSURFACEPLOTTERMENUDIALOG_H
 
 #include "qthideandshowdialog.h"
 
@@ -40,9 +40,10 @@ public:
   ~QtSurfacePlotterMenuDialog() noexcept;
     
 private slots:
-  void on_button_start_clicked();
   void on_button_about_clicked();
   void on_button_quit_clicked();
+  void on_button_qwt_clicked();
+  void on_button_ribi_clicked();
 
 private:
   Ui::QtSurfacePlotterMenuDialog *ui;
@@ -54,4 +55,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QtSurfacePlotterMENUDIALOG_H
+#endif // QTSURFACEPLOTTERMENUDIALOG_H

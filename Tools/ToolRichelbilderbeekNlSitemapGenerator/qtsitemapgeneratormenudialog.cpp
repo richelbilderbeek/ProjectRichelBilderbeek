@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtsitemapgeneratormaindialog.h"
 #include "sitemapgeneratormenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtsitemapgeneratormenudialog.h"
 #pragma GCC diagnostic pop
@@ -78,11 +79,10 @@ void ribi::QtSitemapGeneratorMenuDialog::on_button_quit_clicked()
 void ribi::QtSitemapGeneratorMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtSitemapGeneratorMenuDialog::Test");
-  TRACE("Finished ribi::QtSitemapGeneratorMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -1,29 +1,24 @@
 include(../../DesktopApplication.pri)
 include(../../Libraries/Boost.pri)
-
-#General, console
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
-
-#General, desktop
-include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
-include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
 #Specific, console
 include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppContainer/CppContainer.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppLed/CppLed.pri)
 include(../../Classes/CppLedWidget/CppLedWidget.pri)
-include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
-include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 include(../../Classes/CppWidget/CppWidget.pri)
 
 #Specific, desktop
+include(../../Classes/CppQtLed/CppQtLed.pri)
 include(../../Classes/CppQtLedWidget/CppQtLedWidget.pri)
-include(../../Tools/ToolTestLed/ToolTestLedDesktop.pri)
+
+include(ToolTestLedDesktop.pri)
 
 SOURCES += qtmain.cpp

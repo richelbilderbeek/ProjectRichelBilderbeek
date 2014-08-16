@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>330</width>
-    <height>546</height>
+    <width>353</width>
+    <height>548</height>
    </rect>
   </property>
   <property name="font">
@@ -28,11 +28,17 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, 
 }
 QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
-QPushButton { font: 48px, &quot;monospace&quot; }</string>
+QPushButton { font: 48px,&quot;Courier New&quot;,&quot;Courier&quot;, &quot;monospace&quot; }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
+   <item row="2" column="1">
     <widget class="QPushButton" name="button_about">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>About</string>
      </property>
@@ -41,8 +47,14 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="3" column="1">
     <widget class="QPushButton" name="button_quit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Quit</string>
      </property>
@@ -51,10 +63,52 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QPushButton" name="button_start">
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_5">
      <property name="text">
-      <string>Start</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestQtArrowItems.qrc">:/images/ToolTestQtArrowItemsQuit.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_compare">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;Compare</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestQtArrowItems.qrc">:/images/ToolTestQtArrowItemsCompare.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="button_modify">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;Modify</string>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -62,22 +116,30 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_3">
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestQtArrowItems.qrc">:/images/ToolTestQtArrowItems.png</pixmap>
+      <pixmap resource="ToolTestQtArrowItems.qrc">:/images/ToolTestQtArrowItemsModify.png</pixmap>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestQtArrowItems.qrc">:/images/ToolTestQtArrowItemsAbout.png</pixmap>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>button_start</tabstop>
+  <tabstop>button_modify</tabstop>
+  <tabstop>button_compare</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>

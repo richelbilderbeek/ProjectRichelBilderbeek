@@ -11,6 +11,7 @@
 #include "qttesttictactoemaindialog.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qttesttictactoemenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -37,7 +38,7 @@ void ribi::tictactoe::QtTestTicTacToeMenuDialog::keyPressEvent(QKeyEvent * event
 
 void ribi::tictactoe::QtTestTicTacToeMenuDialog::on_button_about_clicked()
 {
-  About a = TestTicTacToeMenuDialog::GetAbout();
+  About a = TestTicTacToeMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
@@ -61,16 +62,15 @@ void ribi::tictactoe::QtTestTicTacToeMenuDialog::on_button_start_clicked()
 void ribi::tictactoe::QtTestTicTacToeMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTestTicTacToeMenuDialog::Test");
-  for (auto ai: Ais().GetAll())
+  TestTicTacToeMenuDialog();
+  for (const auto& ai: Ais().GetAll())
   {
     QtTestTicTacToeMainDialog(nullptr,ai);
   }
-  assert(TestTicTacToeMenuDialog().GetVersion().empty());
-  TRACE("Finished ribi::tictactoe::QtTestTicTacToeMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

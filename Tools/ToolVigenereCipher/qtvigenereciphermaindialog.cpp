@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "vigenerecipher.h"
 #include "loopreader.h"
+#include "testtimer.h"
 #include "qtaboutdialog.h"
 #include "trace.h"
 #include "ui_qtvigenereciphermaindialog.h"
@@ -38,12 +39,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtVigenereCipherMainDialog::QtVigenereCipherMainDialog(QWidget *parent) noexcept
  :  QtHideAndShowDialog(parent),
     ui(new Ui::QtVigenereCipherMainDialog),
-    m_dialog(new VigenereCipherMainDialog("A"))
+    m_dialog(new VigenereCipherMainDialog("a"))
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
+
+  {
+    const QRegExp regex("[a-z]*");
+    QValidator * const validator = new QRegExpValidator(regex, this);
+    ui->edit_encrypted_text->setValidator(validator);
+    ui->edit_key->setValidator(validator);
+    ui->edit_plaintext->setValidator(validator);
+  }
 }
 
 ribi::QtVigenereCipherMainDialog::~QtVigenereCipherMainDialog() noexcept
@@ -54,10 +63,10 @@ ribi::QtVigenereCipherMainDialog::~QtVigenereCipherMainDialog() noexcept
 
 void ribi::QtVigenereCipherMainDialog::on_button_encrypt_clicked() noexcept
 {
-  const std::string key = ui->box_key->text().toStdString();
-  for (auto c:key) { if (c < 'A' || c > 'Z') return; }
+  const std::string key = ui->edit_key->text().toStdString();
+  //for (auto c:key) { if (c < 'A' || c > 'Z') return; }
   const std::string text = ui->edit_plaintext->text().toStdString();
-  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
+  //for (auto c:text) { if (c < 'A' || c > 'Z') return; }
   m_dialog->SetPlainText(text);
   m_dialog->SetKey(key);
   m_dialog->Encrypt();
@@ -71,10 +80,10 @@ void ribi::QtVigenereCipherMainDialog::on_button_encrypt_clicked() noexcept
 
 void ribi::QtVigenereCipherMainDialog::on_button_deencrypt_clicked() noexcept
 {
-  const std::string key = ui->box_key->text().toStdString();
-  for (auto c:key) { if (c < 'A' || c > 'Z') return; }
+  const std::string key = ui->edit_key->text().toStdString();
+  //for (auto c:key) { if (c < 'A' || c > 'Z') return; }
   const std::string text = ui->edit_encrypted_text->text().toStdString();
-  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
+  //for (auto c:text) { if (c < 'A' || c > 'Z') return; }
   m_dialog->SetEncryptedText(text);
   m_dialog->SetKey(key);
   m_dialog->Deencrypt();
@@ -100,12 +109,11 @@ void ribi::QtVigenereCipherMainDialog::on_edit_encrypted_text_textChanged(const 
 void ribi::QtVigenereCipherMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtVigenereCipherMainDialog::Test");
-  TRACE("Finished ribi::QtVigenereCipherMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

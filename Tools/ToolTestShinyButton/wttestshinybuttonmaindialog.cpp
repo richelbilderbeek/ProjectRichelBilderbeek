@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShinyButton, tool to test the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,6 +18,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShinyButton.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -37,6 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wtshinybuttonwidget.h"
 #include "wttestshinybuttonmaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::WtTestShinyButtonMainDialog::Ui::Ui()
   : m_dial_color(new WtDialWidget),
@@ -70,7 +75,7 @@ ribi::WtTestShinyButtonMainDialog::WtTestShinyButtonMainDialog()
 
   ui.m_edit->setMinimumSize(400,Wt::WLength::Auto);
   ui.m_edit->keyWentUp().connect(this,&ribi::WtTestShinyButtonMainDialog::OnEditChanged);
-  ui.m_shiny_button->GetWidget()->SetGeometry(Rect(0,0,200,100));
+  ui.m_shiny_button->GetWidget()->SetGeometry(0,0,200,100);
 
   ui.m_shiny_button->GetWidget()->GetShinyButton()->m_signal_color_changed.connect(
     boost::bind(

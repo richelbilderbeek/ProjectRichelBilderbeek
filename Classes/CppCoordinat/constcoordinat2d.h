@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppCoordinat.htm
 //---------------------------------------------------------------------------
-#ifndef CONSTCOORDINAT2D_H
-#define CONSTCOORDINAT2D_H
+#ifndef RIBI_CONSTCOORDINAT2D_H
+#define RIBI_CONSTCOORDINAT2D_H
 
 //typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
 
@@ -98,5 +98,5 @@ boost::shared_ptr<const ConstCoordinat2D> operator-(
 
 #endif
 
-#endif // CONSTCOORDINAT2D_H
+#endif // RIBI_CONSTCOORDINAT2D_H
 

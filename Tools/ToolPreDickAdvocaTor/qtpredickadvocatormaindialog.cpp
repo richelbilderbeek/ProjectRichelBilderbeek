@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtpredickadvocatormaindialog.h"
 #pragma GCC diagnostic pop
@@ -86,11 +87,11 @@ void ribi::QtPreDickAdvocaTorMainDialog::on_box_right_currentIndexChanged(int)
 void ribi::QtPreDickAdvocaTorMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtPreDickAdvocaTorMainDialog::Test");
-  TRACE("Finished ribi::QtPreDickAdvocaTorMainDialog::Test successfully");
+  PreDickAdvocaTorMainDialog(0);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

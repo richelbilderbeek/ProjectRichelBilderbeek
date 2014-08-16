@@ -1,0 +1,53 @@
+If you need to multiply by the same number several times, you can save a lot
+of time by first transforming the constant number and using the transform in
+the multiplications.
+
+Using transformed numbers is fairly simple. There is a comprehensive example
+in the file taptest.cpp. Basically you create a transformed number, of class
+tapfloat, from an apfloat with the function transform ():
+
+apfloat x = pi (1000);
+tapfloat y = transform (x);
+
+Then you can multiply the transformed apfloats with apfloats or multiply two
+transformed apfloats or add two transformed apfloats:
+
+apfloat * tapfloat -> apfloat
+tapfloat * tapfloat -> apfloat
+tapfloat + tapfloat -> tapfloat
+
+However, there are some points you should notice and where things can get
+quite tricky:
+- The transformed apfloats in an arithmetic operation must have same
+  zero-padded sizes.
+- The numbers to be multiplied or added should have enough zero-padding so
+  that overflow doesn't occur. That is, the zero-padded size must be at
+  least the sum of the sizes of the numbers to be multiplied.
+- When adding, you don't usually need extra zero-padding, sometimes you need
+  one base unit extra length. However, the numbers to be added must have the
+  same sign and same exponent.
+
+The transform function has two optional parameters:
+
+transform (x, ssize, padsize)
+
+ssize is the truncated size of the source number x. It's typically same as
+the number's size, that is x.ap->size (this is the default value). If you
+want less precision, you can set it. Note that is the size in base units,
+not digits (which may vary depending on the base used).
+
+padsize is the total zero-padded size. It's automatically rounded upwards to
+the nearest power of two or three times a power of two. It's by default
+twice the ssize, so that two numbers with the same size can be multiplied
+via transforming them first without having to set the size parameters.
+
+For example:
+
+apfloat x = pi (1000);                  // Precision is 1000 digits
+apfloat y = exp (apfloat (1, 2000));    // Precision is 2000 digits
+
+tapfloat u = transform (x, x.ap->size, 2 * x.ap->size);         // Default
+// Now take less precision from y, since the result precision is less anyway
+tapfloat v = transform (y, x.ap->size, 2 * x.ap->size);
+
+cout << pretty << u * v << endl;        // Output

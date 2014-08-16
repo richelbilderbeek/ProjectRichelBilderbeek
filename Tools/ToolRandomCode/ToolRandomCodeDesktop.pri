@@ -1,8 +1,5 @@
 include(../../Tools/ToolRandomCode/ToolRandomCodeConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolRandomCode/ToolRandomCode.qrc
-
 FORMS += \
     ../../Tools/ToolRandomCode/qtrandomcodemenudialog.ui \
     ../../Tools/ToolRandomCode/qtrandomcodemaindialog.ui

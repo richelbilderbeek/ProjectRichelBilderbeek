@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "createglossarymaindialog.h"
 #include "htmlpage.h"
+#include "testtimer.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 
@@ -37,7 +38,7 @@ ribi::CreateGlossaryMenuDialog::CreateGlossaryMenuDialog()
 int ribi::CreateGlossaryMenuDialog::ExecuteSpecific(const std::vector<std::string>&) noexcept
 {
   //Just create the glossaries, whatever the input was
-  CreateGlossaryMainDialog();
+  CreateGlossaryMainDialog().CreateAllGlossaries();
   return 0;
 }
 
@@ -51,8 +52,12 @@ ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() const noexcept
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolCreateGlossary.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
+
   a.AddLibrary("HtmlPage version: " + HtmlPage::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -97,12 +102,11 @@ std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory() con
 void ribi::CreateGlossaryMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CreateGlossaryMenuDialog::Test()");
   CreateGlossaryMainDialog();
-  TRACE("Finished ribi::CreateGlossaryMenuDialog::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

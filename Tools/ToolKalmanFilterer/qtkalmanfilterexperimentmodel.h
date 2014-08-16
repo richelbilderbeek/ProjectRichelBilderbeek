@@ -30,25 +30,25 @@ struct QtKalmanFilterExperimentModel : public QObject
 
   public:
 
-  explicit QtKalmanFilterExperimentModel(QObject *parent = 0);
+  explicit QtKalmanFilterExperimentModel(QObject *parent = 0) noexcept;
 
   ///Calculate the optimal estimated Kalman gain
-  void CalculateOptimalEstimatedKalmanGain();
+  void CalculateOptimalEstimatedKalmanGain() noexcept;
 
   ///Create a KalmanFilterExperiment
-  const boost::shared_ptr<KalmanFilterExperiment> CreateExperiment() const;
+  boost::shared_ptr<KalmanFilterExperiment> CreateExperiment() const noexcept;
 
   ///Create a Kalman filter
-  const boost::shared_ptr<KalmanFilter> CreateKalmanFilter() const;
+  boost::shared_ptr<KalmanFilter> CreateKalmanFilter() const;
 
   ///Create a Kalman filter its parameters
-  const boost::shared_ptr<KalmanFilterParameters> CreateKalmanFilterParameters() const;
+  boost::shared_ptr<KalmanFilterParameters> CreateKalmanFilterParameters() const noexcept;
 
   ///Create a white noise system
-  const boost::shared_ptr<WhiteNoiseSystem> CreateWhiteNoiseSystem() const;
+  boost::shared_ptr<WhiteNoiseSystem> CreateWhiteNoiseSystem() const noexcept;
 
   ///Create a white noise system parameter set
-  const boost::shared_ptr<WhiteNoiseSystemParameters> CreateWhiteNoiseSystemParameters() const;
+  boost::shared_ptr<WhiteNoiseSystemParameters> CreateWhiteNoiseSystemParameters() const noexcept;
 
   ///Find the model for a parameter
   QAbstractTableModel * Find(KalmanFilterExperimentParameterType);
@@ -62,33 +62,34 @@ struct QtKalmanFilterExperimentModel : public QObject
   //void FromHtml(const std::string& s);
 
   ///Set the context
-  const std::string& GetContext() const { return m_context; }
+  const std::string& GetContext() const noexcept { return m_context; }
 
   ///Get the number of timesteps
-  int GetNumberOfTimesteps() const { return m_number_of_timesteps; }
+  int GetNumberOfTimesteps() const noexcept { return m_number_of_timesteps; }
 
   ///Set the context
   void SetContext(const std::string& context);
 
   ///Set an example parameter set
-  void SetExample(const boost::shared_ptr<const KalmanFilterExample>& example);
+  void SetExample(const boost::shared_ptr<const KalmanFilterExample>& example) noexcept;
 
   ///Set the type of Kalman filter
-  void SetKalmanFilterType(const KalmanFilterType type);
+  void SetKalmanFilterType(const KalmanFilterType type) noexcept;
 
   ///Set the estimated lag of a (possibly lagged) white noise system
   void SetLagEstimated(const int lag);
 
   ///Set the lag (of a lagged white noise system) in number of timesteps
-  void SetLagReal(const int lag);
+  void SetLagReal(const int lag) noexcept;
 
   ///Set the number of timesteps
-  void SetNumberOfTimesteps(const int n);
+  void SetNumberOfTimesteps(const int n) noexcept;
 
   ///Set the type of white noise system
-  void SetWhiteNoiseSystemType(const WhiteNoiseSystemType type);
+  void SetWhiteNoiseSystemType(const WhiteNoiseSystemType type) noexcept;
 
   ///Convert the data to DokuWiki markup language
+<<<<<<< HEAD
 <<<<<<< HEAD
   const std::string ToDokuWiki() const;
 
@@ -99,6 +100,12 @@ struct QtKalmanFilterExperimentModel : public QObject
 
   ///Convert the data to HTML
   std::string ToHtml() const;
+>>>>>>> develop
+=======
+  std::string ToDokuWiki() const noexcept;
+
+  ///Convert the data to HTML
+  std::string ToHtml() const noexcept;
 >>>>>>> develop
 
   ///Emitted when the context changes
@@ -149,28 +156,28 @@ struct QtKalmanFilterExperimentModel : public QObject
   WhiteNoiseSystemType m_white_noise_system_type;
 
   ///Create the map
-  static const std::map<KalmanFilterExperimentParameterType,QAbstractTableModel *> CreateMap();
+  static std::map<KalmanFilterExperimentParameterType,QAbstractTableModel *> CreateMap() noexcept;
 
   ///Create fixed-lag smoother Kalman filter parameters
-  const boost::shared_ptr<KalmanFilterParameters> CreateFixedLagSmootherKalmanFilterParameters() const;
+  boost::shared_ptr<KalmanFilterParameters> CreateFixedLagSmootherKalmanFilterParameters() const noexcept;
 
   ///Create standard Kalman filter parameters
-  const boost::shared_ptr<StandardKalmanFilterParameters> CreateStandardKalmanFilterParameters() const;
+  boost::shared_ptr<StandardKalmanFilterParameters> CreateStandardKalmanFilterParameters() const noexcept;
 
   ///Create standard white noise system parameters
-  const boost::shared_ptr<StandardWhiteNoiseSystemParameters> CreateStandardWhiteNoiseSystemParameters() const;
+  boost::shared_ptr<StandardWhiteNoiseSystemParameters> CreateStandardWhiteNoiseSystemParameters() const noexcept;
 
   ///Create gaps-filled white noise system parameters
-  const boost::shared_ptr<WhiteNoiseSystemParameters> CreateGapsFilledWhiteNoiseSystemParameters() const;
+  boost::shared_ptr<WhiteNoiseSystemParameters> CreateGapsFilledWhiteNoiseSystemParameters() const noexcept;
 
   ///Create lagged white noise system parameters
-  const boost::shared_ptr<WhiteNoiseSystemParameters> CreateLaggedWhiteNoiseSystemParameters() const;
+  boost::shared_ptr<WhiteNoiseSystemParameters> CreateLaggedWhiteNoiseSystemParameters() const noexcept;
 
   ///Create steady-state Kalman filter parameters
-  const boost::shared_ptr<KalmanFilterParameters> CreateSteadyStateKalmanFilterParameters() const;
+  boost::shared_ptr<KalmanFilterParameters> CreateSteadyStateKalmanFilterParameters() const noexcept;
 
   ///Create a model suiting a parameter
-  static QAbstractTableModel * CreateModel(const KalmanFilterExperimentParameterType type);
+  static QAbstractTableModel * CreateModel(const KalmanFilterExperimentParameterType type) noexcept;
 
   #ifndef NDEBUG
   bool IsValid() const;
@@ -191,6 +198,7 @@ struct QtKalmanFilterExperimentModel : public QObject
   ///If the string holds a WhiteNoiseSystemType, set this class to hold the same value
   void ReadWhiteNoiseSystemType(const std::string& s);
 
+<<<<<<< HEAD
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
 <<<<<<< HEAD
   static const std::vector<std::string> SeperateString(
@@ -200,13 +208,15 @@ struct QtKalmanFilterExperimentModel : public QObject
     const std::string& input,
     const char seperator);
 
+=======
+>>>>>>> develop
   #ifndef NDEBUG
   ///Test this class
   static void Test() noexcept;
   #endif
 };
 
-bool operator==(const QtKalmanFilterExperimentModel& lhs, const QtKalmanFilterExperimentModel& rhs);
+bool operator==(const QtKalmanFilterExperimentModel& lhs, const QtKalmanFilterExperimentModel& rhs) noexcept;
 
 } //~namespace kalman
 } //~namespace ribi

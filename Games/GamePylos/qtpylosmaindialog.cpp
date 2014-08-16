@@ -20,34 +20,57 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpylosmaindialog.h"
+
+#include <sstream>
+
+#include <boost/make_shared.hpp>
 
 #include <QDesktopWidget>
 
 #include "pylosgame.h"
+#include "qtpylosgamewidget.h"
+#include "testtimer.h"
 #include "qtpyloswondialog.h"
 #include "ui_qtpylosmaindialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
-  QtPylosGameWidget * const pylos_widget,
+  const boost::shared_ptr<QtPylosGameWidget>& pylos_widget,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPylosMainDialog),
-    m_pylos_widget(pylos_widget ? pylos_widget : new QtPylosGameWidget)
+    m_pylos_widget{pylos_widget}
 {
   #ifndef NDEBUG
   Test();
   #endif
+  if (!m_pylos_widget)
+  {
+    std::stringstream s;
+    s << "(" << __FILE__ << "," << __LINE__ << ") "
+      << "pylos_widget must not be nullptr" << '\n';
+    throw std::logic_error(s.str().c_str());
+  }
+
+  assert(m_pylos_widget);
+
   ui->setupUi(this);
 
+
   //Connect
-  QObject::connect(m_pylos_widget,SIGNAL(HasWinner()),
-    this,SLOT(OnWinner()));
+  QObject::connect(
+    m_pylos_widget.get(),
+    &QtPylosGameWidget::HasWinner,
+    this,
+    &ribi::pylos::QtPylosMainDialog::OnWinner
+  );
 
   //Place widget
-  this->layout()->addWidget(m_pylos_widget);
+  this->layout()->addWidget(m_pylos_widget.get()); //Takes ownership if not removed
 
   //Put the dialog in the screen center
   const QRect screen = QApplication::desktop()->screenGeometry();
@@ -58,13 +81,24 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
 
 ribi::pylos::QtPylosMainDialog::~QtPylosMainDialog() noexcept
 {
+  QObject::disconnect(
+    m_pylos_widget.get(),
+    &QtPylosGameWidget::HasWinner,
+    this,
+    &ribi::pylos::QtPylosMainDialog::OnWinner
+  );
+
+  this->layout()->removeWidget(m_pylos_widget.get()); //Remove QLayout its ownership
+
+  assert(this->layout()->children().isEmpty());
+  assert(m_pylos_widget);
+
   delete ui;
-  delete m_pylos_widget;
 }
 
 std::string ribi::pylos::QtPylosMainDialog::GetVersion() noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
 std::vector<std::string> ribi::pylos::QtPylosMainDialog::GetVersionHistory() noexcept
@@ -72,6 +106,7 @@ std::vector<std::string> ribi::pylos::QtPylosMainDialog::GetVersionHistory() noe
   return {
     "2010-09-22: version 1.0: initial release version",
     "2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek"
+    "2014-06-30: version 2.1: replaced raw by smart pointer"
   };
 }
 
@@ -87,19 +122,21 @@ void ribi::pylos::QtPylosMainDialog::OnWinner()
 void ribi::pylos::QtPylosMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::pylos::QtPylosMainDialog::Test");
-  QtPylosGameWidget * const p = new QtPylosGameWidget();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  #ifdef FIX_ISSUE_234
+  const boost::shared_ptr<QtPylosGameWidget> p{new QtPylosGameWidget};
   assert(p);
   //Set the game type
   p->StartBasic();
   p->SetColorSchemeBlackWhite();
-  const QtPylosMainDialog d(p);
-  assert(!d.GetVersion().empty());
-  delete p;
-  TRACE("Finished ribi::pylos::QtPylosMainDialog::Test successfully");
+  const boost::shared_ptr<QtPylosMainDialog> d{new QtPylosMainDialog(p)};
+  assert(!d->GetVersion().empty());
+  assert(p);
+  assert(!p->GetVersion().empty());
+  #endif // FIX_ISSUE_234
 }
 #endif

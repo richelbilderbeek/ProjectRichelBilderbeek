@@ -39,26 +39,26 @@ namespace ribi {
 struct Program;
 
 ///The GUI independent version of Project Richel Bilderbeek its menu dialog
-struct ProjectRichelBilderbeekMenuDialog : public ::ribi::MenuDialog
+struct ProjectRichelBilderbeekMenuDialog final : public ::ribi::MenuDialog
 {
   ProjectRichelBilderbeekMenuDialog();
   ~ProjectRichelBilderbeekMenuDialog() noexcept {}
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
-  About GetAbout() const noexcept { return GetAboutStatic(); }
-  Help GetHelp() const noexcept;
-  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
+  About GetAbout() const noexcept override { return GetAboutStatic(); }
+  Help GetHelp() const noexcept override;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
 
   ///Get every Program by Richel Bilderbeek
   //const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }
-  std::string GetVersion() const noexcept { return GetVersionStatic(); }
-  std::vector<std::string> GetVersionHistory() const noexcept { return GetVersionHistoryStatic(); }
+  std::string GetVersion() const noexcept override { return GetVersionStatic(); }
+  std::vector<std::string> GetVersionHistory() const noexcept override { return GetVersionHistoryStatic(); }
 
   private:
   ///All program menus
   const std::vector<boost::shared_ptr<MenuDialog>> m_menus;
 
   ///Create all menus
-  static const std::vector<boost::shared_ptr<MenuDialog>> CreateMenus() noexcept;
+  static std::vector<boost::shared_ptr<MenuDialog>> CreateMenus() noexcept;
 
   static About GetAboutStatic() noexcept;
   static std::string GetVersionStatic() noexcept;

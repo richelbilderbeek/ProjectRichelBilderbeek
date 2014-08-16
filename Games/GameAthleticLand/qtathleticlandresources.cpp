@@ -7,6 +7,7 @@
 
 #include <QFile>
 
+#include "athleticlandplayerstates.h"
 #include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -38,16 +39,43 @@ ribi::athl::QtAthleticLandResources::QtAthleticLandResources()
   }
 }
 
+std::map<ribi::athl::PlayerState,QPixmap> ribi::athl::QtAthleticLandResources::CreatePlayer() const noexcept
+{
+  std::map<PlayerState,QPixmap> m;
+
+  m.insert(std::make_pair(ribi::athl::PlayerState::stand_left,FetchPixmap(GetPlayerStandLeftFilename())));
+  m.insert(std::make_pair(ribi::athl::PlayerState::stand_right,FetchPixmap(GetPlayerStandRightFilename())));
+
+  return m;
+}
+
+QPixmap ribi::athl::QtAthleticLandResources::FetchPixmap(const std::string& filename) const noexcept
+{
+  const std::string qtfilename = GetQtResourcesBasename() + "/" + filename;
+  const QPixmap pixmap(qtfilename.c_str());
+  assert(pixmap.height() > 0);
+  assert(pixmap.width() > 0);
+  return pixmap;
+
+}
+
 std::vector<std::string> ribi::athl::QtAthleticLandResources::GetAllFilenames() const noexcept
 {
   return {
     GetBackgroundFilename(),
-    GetPlayerFilename()
+    GetPlayerStandLeftFilename(),
+    GetPlayerStandRightFilename()
   };
 }
 
-const QPixmap& ribi::athl::QtAthleticLandResources::GetPlayer(const State state) const noexcept
+const QPixmap& ribi::athl::QtAthleticLandResources::GetPlayer(const PlayerState state) const noexcept
 {
+  #ifndef NDEBUG
+  if(m_player.find(state) == m_player.end())
+  {
+    TRACE(PlayerStates().ToStr(state));
+  }
+  #endif
   assert(m_player.find(state) != m_player.end());
   return (*m_player.find(state)).second;
 }

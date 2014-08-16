@@ -1,22 +1,27 @@
 win32 {
   # Windows only
   message("Web application, built for Windows")
+  QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra
 }
 
 macx {
   # Mac only
   message("Web application, built for Mac")
+  QMAKE_CXXFLAGS = -mmacosx-version-min=10.7 -std=gnu0x -stdlib=libc+
+  CONFIG +=c++11
 }
 
 unix:!macx{
   # Linux only
   message("Web application, built for Linux")
-  QMAKE_CXXFLAGS += -Werror
+  #Cannot use -Weffc++ nor -Werror with Wt
+  QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra
 }
 
 cross_compile {
   # Crosscompile only
   message("Web application, cross-compiling from Linux to Windows")
+  QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra -Weffc++
 }
 
 # Go ahead and use Qt.Core: it is about as platform-independent as
@@ -43,6 +48,3 @@ CONFIG(release, debug|release) {
   message(Release mode)
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
-
-QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra -Weffc++
-

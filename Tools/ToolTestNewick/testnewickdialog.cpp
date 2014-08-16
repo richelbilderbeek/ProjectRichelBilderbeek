@@ -1,20 +1,26 @@
-//---------------------------------------------------------------------------
+
 #include <fstream>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "manydigitnewick.h"
 #include "newick.h"
-#include "newickravindran.h"
 #include "newickvector.h"
 #include "sortedbinarynewickvector.h"
 #include "trace.h"
 #include "testnewick.h"
 #include "testnewickdialog.h"
 #include "twodigitnewick.h"
-//---------------------------------------------------------------------------
-TestNewickDialog::TestNewickDialog(const int types)
-  : m_types(types)
+#pragma GCC diagnostic pop
+
+ribi::TestNewickDialog::TestNewickDialog(const int types)
+  : m_table{},
+    m_text{},
+    m_types(types)
 {
   START_TRACE();
 
@@ -23,13 +29,12 @@ TestNewickDialog::TestNewickDialog(const int types)
   Newick::Test();
   BinaryNewickVector::Test();
   TwoDigitNewick::Test();
-  NewickVector::Test();
 
   const std::vector<std::string> newicks = Newick::CreateValidNewicks();
   const std::vector<boost::shared_ptr<TestNewick> > tests
     = TestNewick::CreateTests(TestNewick::m_flag_all);
   const BigInteger max_complexity = 10000;
-  BOOST_FOREACH(const std::string& newick_str,newicks)
+  for(const std::string& newick_str: newicks)
   {
     const std::vector<int> newick = Newick::StringToNewick(newick_str);
     //Only test binary Newicks and relatively small Newicks
@@ -45,7 +50,7 @@ TestNewickDialog::TestNewickDialog(const int types)
     m_table.resize(0);
 
     //Do all valid tests
-    BOOST_FOREACH(const boost::shared_ptr<TestNewick>& test,tests)
+    for(const boost::shared_ptr<TestNewick>& test: tests)
     {
       if (test->CanCalculate(newick_str,theta))
       {
@@ -66,12 +71,12 @@ TestNewickDialog::TestNewickDialog(const int types)
       std::cerr
         << "WARNING: DIFFERENT PROBABILITIES FOUND"  << '\n'
         << "FOR NEWICK " << newick_str << '\n';
-      BOOST_FOREACH(const double& p,probabilities)
+      for(const double& p: probabilities)
       {
         std::cerr << p << '\n';
       }
 
-      BOOST_FOREACH(const auto& p,m_table)
+      for(const auto& p: m_table)
       {
         std::cerr
           << "Probability ("
@@ -85,8 +90,8 @@ TestNewickDialog::TestNewickDialog(const int types)
   }
   #endif
 }
-//---------------------------------------------------------------------------
-void TestNewickDialog::DoAutoCalculate(
+
+void ribi::TestNewickDialog::DoAutoCalculate(
   const std::string& newick_str,
   const std::string& theta_str,
   const std::string& max_complexity_str)
@@ -123,8 +128,8 @@ void TestNewickDialog::DoAutoCalculate(
     return;
   }
 }
-//---------------------------------------------------------------------------
-void TestNewickDialog::DoCalculate(
+
+void ribi::TestNewickDialog::DoCalculate(
   const std::string& newick_str,
   const std::string& theta_str)
 {
@@ -148,7 +153,7 @@ void TestNewickDialog::DoCalculate(
   const std::vector<boost::shared_ptr<TestNewick> > tests = TestNewick::CreateTests(m_types);
 
   //Do all valid tests
-  BOOST_FOREACH(const boost::shared_ptr<TestNewick>& test,tests)
+  for(const boost::shared_ptr<TestNewick>& test: tests)
   {
     if (test->CanCalculate(newick_str,theta))
     {
@@ -174,26 +179,26 @@ void TestNewickDialog::DoCalculate(
     m_text = "All probabilities about equal";
   }
 }
-//---------------------------------------------------------------------------
-const std::vector<double> TestNewickDialog::ExtractProbabilities(
+
+const std::vector<double> ribi::TestNewickDialog::ExtractProbabilities(
   const std::vector<TestNewickResult>& v)
 {
   std::vector<double> w;
-  BOOST_FOREACH(const auto& i,v)
+  for(const auto& i: v)
   {
     w.push_back( i.probability );
   }
   return w;
 }
-//---------------------------------------------------------------------------
-const About TestNewickDialog::GetAbout()
+
+const ribi::About ribi::TestNewickDialog::GetAbout()
 {
   About about(
     "Richel Bilderbeek",
     "QtTestNewickDialog",
     "Qt dialog to compare the Newick classes",
     "the 24th of March 2011",
-    "2010-2011",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolTestNewick.htm",
     GetVersion(),
     GetVersionHistory());
@@ -204,35 +209,35 @@ const About TestNewickDialog::GetAbout()
   about.AddLibrary("TwoDigitNewick: version " + TwoDigitNewick::GetVersion());
   return about;
 }
-//---------------------------------------------------------------------------
-const std::string TestNewickDialog::GetVersion()
+
+const std::string ribi::TestNewickDialog::GetVersion()
 {
   return "2.4";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestNewickDialog::GetVersionHistory()
+
+const std::vector<std::string> ribi::TestNewickDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-03-06: version 2.1: initial version, same versioning as QtTestNewickDialog");
-  v.push_back("2011-03-08: version 2.2: minor changes in Newick namespace, added About screen");
-  v.push_back("2011-03-11: version 2.3: put GUI logic in GUI-independent TestNewickDialog class");
-  v.push_back("2011-03-24: version 2.4: put About in TestNewickDialog");
-  return v;
+  return {
+    "2011-03-06: version 2.1: initial version, same versioning as QtTestNewickDialog",
+    "2011-03-08: version 2.2: minor changes in Newick namespace, added About screen",
+    "2011-03-11: version 2.3: put GUI logic in GUI-independent TestNewickDialog class",
+    "2011-03-24: version 2.4: put About in TestNewickDialog"
+  };
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double TestNewickDialog::GetRandomUniform()
+double ribi::TestNewickDialog::GetRandomUniform()
 {
   return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
-void TestNewickDialog::RandomizeTimer()
+void ribi::TestNewickDialog::RandomizeTimer()
 {
   std::srand(std::time(0));
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestNewickDialog::GetHardBiologicalBinaryNewicks()
+
+const std::vector<std::string> ribi::TestNewickDialog::GetHardBiologicalBinaryNewicks()
 {
   std::vector<std::string> v;
   v.push_back("((1,(1,(((((1,(1,((1,1),(3,1)))),1),((((1,((1,((1,1),(45,6))),(((1,1),(4,1)),2))),1),2),1)),1),2))),(1,1))");
@@ -337,8 +342,8 @@ const std::vector<std::string> TestNewickDialog::GetHardBiologicalBinaryNewicks(
   v.push_back("((1,(1,((((((3,1),(1,((1,1),((1,(2,1)),1)))),1),((((1,((1,((3,2),(68,16))),((5,2),(1,1)))),1),7),1)),1),1))),((1,(1,1)),1))");
   return v;
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestNewickDialog::GetHardBinaryNewicks()
+
+const std::vector<std::string> ribi::TestNewickDialog::GetHardBinaryNewicks()
 {
   std::vector<std::string> v;
   v.push_back("((4,4),4)");
@@ -358,8 +363,8 @@ const std::vector<std::string> TestNewickDialog::GetHardBinaryNewicks()
   v.push_back("((((((((((((((((4,4),4),4),4),4),4),4),4),4),4),4),4),3),3),3),3)");
   return v;
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestNewickDialog::GetLightBiologicalBinaryNewicks()
+
+const std::vector<std::string> ribi::TestNewickDialog::GetLightBiologicalBinaryNewicks()
 {
   std::vector<std::string> v;
   v.push_back("((1,(1,((((((1,1),(1,1)),1),((((1,((1,(1,(10,3))),((3,2),1))),1),2),1)),1),1))),1)");
@@ -464,8 +469,8 @@ const std::vector<std::string> TestNewickDialog::GetLightBiologicalBinaryNewicks
   v.push_back("((1,(1,(((((1,(1,(3,(1,1)))),1),((((1,((1,((3,1),(23,7))),((3,2),1))),1),(1,2)),1)),1),1))),(2,1))");
   return v;
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestNewickDialog::GetLightBinaryNewicks()
+
+const std::vector<std::string> ribi::TestNewickDialog::GetLightBinaryNewicks()
 {
   std::vector<std::string> v;
   v.push_back("((2,2),2)");
@@ -484,8 +489,8 @@ const std::vector<std::string> TestNewickDialog::GetLightBinaryNewicks()
   v.push_back("(((((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2),2),2),2)");
   return v;
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestNewickDialog::GetLightTrinaryNewicks()
+
+const std::vector<std::string> ribi::TestNewickDialog::GetLightTrinaryNewicks()
 {
   std::vector<std::string> v;
   //Trinarity in leaf
@@ -561,8 +566,8 @@ const std::vector<std::string> TestNewickDialog::GetLightTrinaryNewicks()
   v.push_back("(((((((((((((((2,2,2),2,2),2,2),2),2),2),2),2),2),2),2),2),2),2),2,2)");
   return v;
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestNewickDialog::GetManyBinaryNewicks()
+
+const std::vector<std::string> ribi::TestNewickDialog::GetManyBinaryNewicks()
 {
   std::vector<std::string> v;
   v.push_back("((90,1000),100)");
@@ -698,8 +703,8 @@ const std::vector<std::string> TestNewickDialog::GetManyBinaryNewicks()
   v.push_back("((((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2),2),2)");
   return v;
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestNewickDialog::GetMediumBinaryNewicks()
+
+const std::vector<std::string> ribi::TestNewickDialog::GetMediumBinaryNewicks()
 {
   std::vector<std::string> v;
   v.push_back("((3,3),3)");
@@ -715,11 +720,11 @@ const std::vector<std::string> TestNewickDialog::GetMediumBinaryNewicks()
   v.push_back("((((((((((((3,3),3),3),3),3),3),3),3),3),3),3),3)");
   return v;
 }
-//---------------------------------------------------------------------------
-void TestNewickDialog::SaveTable(const std::string& filename) const
+
+void ribi::TestNewickDialog::SaveTable(const std::string& filename) const
 {
   std::ofstream f(filename);
-  BOOST_FOREACH(const auto row,m_table)
+  for(const auto row: m_table)
   {
     f << row.newick
       << ','
@@ -733,5 +738,5 @@ void TestNewickDialog::SaveTable(const std::string& filename) const
       << '\n';
   }
 }
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+

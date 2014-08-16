@@ -21,8 +21,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPCONCEPTMAP_H
 #define QTCONCEPTMAPCONCEPTMAP_H
 
+#ifdef NOT_NOW_20140810
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
@@ -72,6 +76,8 @@ public:
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  void RemoveExamplesItem() noexcept { SetExamplesItem(nullptr); }
+
   #ifndef NDEBUG
   ///Shuffle the concepts (used in debugging)
   void Shuffle() noexcept;
@@ -107,7 +113,7 @@ protected:
   void DeleteEdge(QtEdge * const edge);
 
   ///Delete a Node
-  void DeleteNode(QtNode * const node);
+  void DeleteNode(const boost::shared_ptr<QtNode>& node);
 
   ///Get all the edges connected to the concept
   std::vector<QtEdge*> FindEdges(const QtNode * const from) const noexcept;
@@ -197,7 +203,10 @@ public slots:
 };
 
 } //~namespace cmap
-
 } //~namespace ribi
 
+#endif // NOT_NOW_20140810
+
 #endif // QTCONCEPTMAPCONCEPTMAP_H
+
+#endif // NOT_NOW_20140810

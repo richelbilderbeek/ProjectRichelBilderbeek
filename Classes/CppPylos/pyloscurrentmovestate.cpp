@@ -24,6 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -125,11 +126,15 @@ void ribi::pylos::CurrentMoveState::SetRemove(const std::vector<Coordinat>& v)
 #ifndef NDEBUG
 void ribi::pylos::CurrentMoveState::Test() noexcept
 {
-  static bool tested = false;
-  if (tested) return;
-  tested = true;
+  {
+    static bool tested = false;
+    if (tested) return;
+    tested = true;
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
 
-  TRACE("Test PylosCurrentMoveState");
+  if (verbose) { TRACE("Test PylosCurrentMoveState"); }
   {
     const Coordinat c(0,1,1);
     pylos::CurrentMoveState s;

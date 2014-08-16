@@ -1,4 +1,4 @@
-include(../../Tools/ToolEncranger/ToolEncrangerConsole.pri)
+include(../../Tools/ToolCodeBreaker/ToolCodeBreakerConsole.pri)
 
 SOURCES +=
 HEADERS +=

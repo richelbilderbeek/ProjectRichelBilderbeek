@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 StateObserver, tool to examine state observers
-Copyright (C) 2013 Richel Bilderbeek
+Copyright (C) 2013-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QApplication>
 #include "qtstateobservermenudialog.h"
 #pragma GCC diagnostic pop

@@ -5,7 +5,3 @@ SOURCES += \
 
 HEADERS += \
     ../../Projects/ProjectRichelBilderbeek/wtrichelbilderbeekmenudialog.h
-
-RESOURCES += \
-    ../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeek.qrc
-

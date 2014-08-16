@@ -1,0 +1,27 @@
+
+(orig from 7-August-1996)
+
+    in feig.h  
+    you find the superattractive periodic points on the
+    negative real axis of the mandelbrot set sa[.].
+
+    together with half[.] and deriv[.] and knowledge of
+    of the feigenbaum stuff you can calculate 
+    (using repeatedly aitken delta squared method)
+    delta (4.6692...) to 29 , alpha (2.5029...) to 28 
+    and the critical point (1.4011...) to 45 decimal places.
+  
+    this was a cpu-week for the 486/66.
+  
+    i used a method based on that described in 'chaos and fractals'
+    by peitgen, juergens and saupe (springer).
+  
+    in his 1991 paper  (math of comp, 57, 195)
+    'a precise calculation of the feigenbaum constants '
+    keith briggs gives 102 digits of alpha and 85 places of delta.
+    he solved the functional equation given bei feigenbaum in
+    his papers.
+  
+    i found the paper _after_ doing the calculations :-((  ... 
+
+

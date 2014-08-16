@@ -1,5 +1,5 @@
-#ifndef CANVASCOLORSYSTEMS_H
-#define CANVASCOLORSYSTEMS_H
+#ifndef RIBI_CANVASCOLORSYSTEMS_H
+#define RIBI_CANVASCOLORSYSTEMS_H
 
 #include <string>
 #include <vector>
@@ -16,9 +16,11 @@ namespace ribi {
 
 struct CanvasColorSystems
 {
-  static std::vector<CanvasColorSystem> GetAll() noexcept;
-  static std::string ToStr(const CanvasColorSystem s) noexcept;
-  static CanvasColorSystem ToType(const std::string& s);
+  CanvasColorSystems();
+
+  std::vector<CanvasColorSystem> GetAll() const noexcept;
+  std::string ToStr(const CanvasColorSystem s) const noexcept;
+  CanvasColorSystem ToType(const std::string& s) const;
 
   private:
   static boost::bimap<CanvasColorSystem,std::string> m_map;
@@ -31,4 +33,4 @@ struct CanvasColorSystems
 
 } //~namespace ribi
 
-#endif // CANVASCOLORSYSTEMS_H
+#endif // RIBI_CANVASCOLORSYSTEMS_H

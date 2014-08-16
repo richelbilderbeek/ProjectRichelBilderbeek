@@ -1,5 +1,5 @@
-#ifndef OPENFOAMOWNERFILE_H
-#define OPENFOAMOWNERFILE_H
+#ifndef RIBI_OPENFOAMOWNERFILE_H
+#define RIBI_OPENFOAMOWNERFILE_H
 
 #include <iosfwd>
 #include <string>
@@ -59,4 +59,4 @@ std::istream& operator>>(std::istream& is, OwnerFile& f);
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMOWNERFILE_H
+#endif // RIBI_OPENFOAMOWNERFILE_H

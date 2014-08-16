@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,16 +18,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
 //---------------------------------------------------------------------------
-
 #include "wtrichelbilderbeekmenudialog.h"
 
 #include <string>
 #include <tuple>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
-#include <boost/filesystem.hpp>
+
 #include <boost/function.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/scoped_ptr.hpp>
@@ -45,27 +48,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WVBoxLayout>
 #include <Wt/WBorderLayout>
 
-#include "projectgtstmenudialog.h"
+#include "fileio.h"
+#include "gtstmenudialog.h"
 #include "ipaddress.h"
+#include "qtrichelbilderbeekgalleryresources.h"
 #include "richelbilderbeekmenudialog.h"
 #include "richelbilderbeekprogram.h"
 #include "richelbilderbeekprogramstatus.h"
-#include "qtrichelbilderbeekgalleryresources.h"
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "testentrancemenudialog.h"
-#include "testserverpusherwtmenudialog.h"
 #include "testserverpushermenudialog.h"
-#include "testtimedserverpusherwtmenudialog.h"
 #include "timepollmenudialog.h"
-#include "timepollwtmenudialog.h"
-//#include "trace.h"
 #include "wtaboutdialog.h"
+#include "wtasciiartermaindialog.h"
 #include "wtautoconfig.h"
 #include "wtcodetohtmlmenudialog.h"
 #include "wtconnectthreemenudialog.h"
 #include "wtconnectthreewidget.h"
 #include "wtdialwidget.h"
+#include "wtencrangermenudialog.h"
 #include "wtentrance.h"
 #include "wtexercise.h"
 #include "wtgroupwidget.h"
@@ -85,9 +87,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtshapewidget.h"
 #include "wtshinybuttonwidget.h"
 #include "wtsimmysterymachinemenudialog.h"
-#include "wtasciiartermaindialog.h"
 #include "wttestdialmenudialog.h"
-#include "wttoolencrangermenudialog.h"
 #include "wttestentrancemenudialog.h"
 #include "wttestexercisemenudialog.h"
 #include "wttestfunctionparsermenudialog.h"
@@ -96,17 +96,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wttestnewickvectordialog.h"
 #include "wttestquestionmenudialog.h"
 #include "wttestselectfiledialogmenudialog.h"
+#include "wttestserverpushermenudialog.h"
 #include "wttestshapemenudialog.h"
 #include "wttestshinybuttonmenudialog.h"
+#include "wttesttimedserverpushermenudialog.h"
 #include "wttesttogglebuttonmenudialog.h"
 #include "wttesttwodigitnewickdialog.h"
 #include "wttictactoemenudialog.h"
 #include "wttictactoewidget.h"
 #include "wttimedserverpusher.h"
 #include "wttimedserverpusherclient.h"
+#include "wttimepollmenudialog.h"
 #include "wttogglebuttonwidget.h"
 
-
+#pragma GCC diagnostic pop
 
 ribi::RichelBilderbeek::WtMenuDialog::Ui::Ui()
   : m_stack_about(new Wt::WStackedWidget),
@@ -148,7 +151,7 @@ ribi::RichelBilderbeek::WtMenuDialog::WtMenuDialog(const std::string& ip_address
   {
     const double color = (0.5 * gradient) + (boost::numeric_cast<double>(i) * gradient);
     WtShinyButtonWidget * const b = new WtShinyButtonWidget(color,gradient,m_main_menu_items[i]->GetCaption());
-    b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
+    b->GetWidget()->SetGeometry(0,0,m_button_width,m_button_height);
     this->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnMainItemClicked,this,boost::lambda::_1));
@@ -163,7 +166,7 @@ ribi::RichelBilderbeek::WtMenuDialog::WtMenuDialog(const std::string& ip_address
 
 }
 
-const std::vector<ribi::RichelBilderbeek::WtMenuDialog::Item_t> ribi::RichelBilderbeek::WtMenuDialog::CollectSubMenuItems() const
+std::vector<ribi::RichelBilderbeek::WtMenuDialog::Item_t> ribi::RichelBilderbeek::WtMenuDialog::CollectSubMenuItems() const
 {
   std::vector<Item_t> v;
   std::copy(m_about_menu_items.begin(),m_about_menu_items.end(),std::back_inserter(v));
@@ -174,7 +177,7 @@ const std::vector<ribi::RichelBilderbeek::WtMenuDialog::Item_t> ribi::RichelBild
   return v;
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> >
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> >
   ribi::RichelBilderbeek::WtMenuDialog::CreateAboutMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_about;
@@ -191,7 +194,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> >
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateClassesMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateClassesMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_classes;
   return {
@@ -240,7 +243,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateGamesMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateGamesMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_games;
 
@@ -257,7 +260,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateMainMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateMainMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_main;
   return {
@@ -282,7 +285,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateProjectsMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateProjectsMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_projects;
 
@@ -299,7 +302,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateToolsMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateToolsMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_tools;
 
@@ -341,7 +344,7 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutDialog()
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
     WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
-    b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
+    b->GetWidget()->SetGeometry(0,0,m_button_width,m_button_height);
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));
@@ -356,7 +359,8 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutBepDialog() co
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   const std::string filename_bep = QtResources().GetBep();
-  assert(boost::filesystem::exists(filename_bep));
+
+  assert(fileio::FileIo().IsRegularFile(filename_bep));
   dialog->setContentAlignment(Wt::AlignCenter);
   dialog->addWidget(new Wt::WBreak);
   new Wt::WLabel("Bep is the name of my webserver running Project Richel Bilderbeek,",dialog);
@@ -378,14 +382,14 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutBepDialog() co
 
 Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutProgramDialog() const
 {
-  About a = MenuDialog::GetAbout();
+  About a = ProjectRichelBilderbeekMenuDialog().GetAbout();
   a.AddLibrary("Big Integer Library (by Matt McCutchen) version: 2010.04.30");
   a.AddLibrary("GTST version: " + ribi::gtst::MenuDialog::GetVersion());
-  a.AddLibrary("TestEntrance version: " + ToolTestEntrance::MenuDialog::GetVersion());
+  a.AddLibrary("TestEntrance version: " + ToolTestEntrance::MenuDialog().GetVersion());
   a.AddLibrary("TestServerPusher version: " + ToolTestServerPusher::MenuDialog::GetVersion());
   a.AddLibrary("TimePoll version: " + ToolTimePoll::TimePollMenuDialog::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
-  a.AddLibrary("WtConnectThreeWidget version: " + WtConnectThreeWidget::GetVersion());
+  a.AddLibrary("WtConnectThreeWidget version: " + con3::WtConnectThreeWidget::GetVersion());
   a.AddLibrary("WtDialWidget version: " + WtDialWidget::GetVersion());
   a.AddLibrary("WtGroupWidget version: " + WtGroupWidget::GetVersion());
   a.AddLibrary("WtEntrance version: " + WtEntrance::GetVersion());
@@ -395,7 +399,7 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutProgramDialog(
   a.AddLibrary("WtMysteryMachineWidget version: " + WtMysteryMachineWidget::GetVersion());
   a.AddLibrary("WtOpenQuestionDialog version: " + WtOpenQuestionDialog::GetVersion());
   a.AddLibrary("WtQuestionDialog version: " + WtOpenQuestionDialog::GetVersion());
-  a.AddLibrary("WtRubiksClockWidget version: " + WtRubiksClockWidget::GetVersion());
+  a.AddLibrary("WtRubiksClockWidget version: " + ruco::WtClockWidget::GetVersion());
   a.AddLibrary("WtServerPusher version: " + WtServerPusher::GetVersion());
   a.AddLibrary("WtServerPusherClient version: " + WtServerPusherClient::GetVersion());
   a.AddLibrary("WtSelectFileDialog version: " + WtSelectFileDialog::GetVersion());
@@ -425,7 +429,7 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewClassesDialog()
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
     WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
-    b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
+    b->GetWidget()->SetGeometry(0,0,m_button_width,m_button_height);
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));
@@ -438,16 +442,14 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewClassesDialog()
 
 Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewCodeToHtmlDialog() const
 {
-  CodeToHtml::WtMenuDialog * const d
-    = new CodeToHtml::WtMenuDialog;
+  c2h::WtMenuDialog * const d = new c2h::WtMenuDialog;
   assert(d);
   return d;
 }
 
 Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewConnectThreeDialog() const
 {
-  WtConnectThreeMenuDialog * const d
-    = new WtConnectThreeMenuDialog;
+  con3::WtConnectThreeMenuDialog * const d = new con3::WtConnectThreeMenuDialog;
   assert(d);
   return d;
 }
@@ -467,7 +469,7 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewGamesDialog()
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
     WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
-    b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
+    b->GetWidget()->SetGeometry(0,0,m_button_width,m_button_height);
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));
@@ -508,7 +510,7 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewProjectsDialog()
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
     WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
-    b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
+    b->GetWidget()->SetGeometry(0,0,m_button_width,m_button_height);
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));
@@ -527,7 +529,7 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewRandomCodeDialog() 
 
 Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewRubiksClockDialog() const
 {
-  WtRubiksClockMenuDialog * const d = new WtRubiksClockMenuDialog;
+  ruco::WtRubiksClockMenuDialog * const d = new ruco::WtRubiksClockMenuDialog;
   assert(d);
   return d;
 }
@@ -671,7 +673,7 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestTwoDigitNewickD
 
 Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewTicTacToeDialog() const
 {
-  WtTicTacToeMenuDialog * const d = new WtTicTacToeMenuDialog;
+  tictactoe::WtTicTacToeMenuDialog * const d = new tictactoe::WtTicTacToeMenuDialog;
   assert(d);
   return d;
 }
@@ -699,7 +701,7 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewToolsDialog()
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
     WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
-    b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
+    b->GetWidget()->SetGeometry(0,0,m_button_width,m_button_height);
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));

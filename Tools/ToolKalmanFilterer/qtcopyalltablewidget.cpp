@@ -1,18 +1,18 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtcopyalltablewidget.h"
 
 #include <string>
 #include <vector>
-
-#include <boost/algorithm/string/split.hpp>
 
 #include <QApplication>
 #include <QClipboard>
 #include <QKeyEvent>
 #include <QMimeData>
 
+#include "container.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -81,12 +81,12 @@ void ribi::QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
     std::vector<std::vector<std::string> > table;
     {
       const std::string raw_str = QApplication::clipboard()->text().toStdString();
-      const std::vector<std::string> rows = SeperateString(raw_str,'\n');
+      const std::vector<std::string> rows = Container().SeperateString(raw_str,'\n');
       const std::size_t n_rows = rows.size();
       for (std::size_t row_index=0; row_index!=n_rows; ++row_index)
       {
         const std::string& row_str = rows[row_index];
-        const std::vector<std::string> cols = SeperateString(row_str,'\t');
+        const std::vector<std::string> cols = Container().SeperateString(row_str,'\t');
         table.push_back(cols);
       }
     }
@@ -112,15 +112,4 @@ void ribi::QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
   {
     QTableWidget::keyPressEvent(event);
   }
-}
-
-std::vector<std::string> ribi::QtCopyAllTableWidget::SeperateString(
-  const std::string& input,
-  const char seperator)
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
 }

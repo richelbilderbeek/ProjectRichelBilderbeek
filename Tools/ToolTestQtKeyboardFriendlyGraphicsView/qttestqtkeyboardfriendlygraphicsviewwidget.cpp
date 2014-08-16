@@ -36,8 +36,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtleftrightrectitem.h"
 #include "qtroundedrectitem.h"
 #include "qtpatharrowitem.h"
+#include "testtimer.h"
 #include "qtroundededitrectitem.h"
-#include "qtroundedtextrectitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -113,18 +113,18 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
-      item->setPos(x,y);
+      item->SetCenterPos(x,y);
       scene()->addItem(item);
     }
   }
   {
     //QtRoundedTextRectItem
-    typedef QtRoundedTextRectItem Item;
+    typedef QtRoundedEditRectItem Item;
     const double midx = 174.0;
     const double midy = 300.0;
     const int n = 3;
     const double ray = 100.0;
-    QGraphicsTextItem * const text = new QGraphicsTextItem("QtRoundedTextRectItem");
+    QGraphicsTextItem * const text = new QGraphicsTextItem("QtRoundedEditRectItem");
     text->setPos(midx - text->boundingRect().center().x(),midy - text->boundingRect().center().y());
     scene()->addItem(text);
     QGraphicsEllipseItem * const circle = new QGraphicsEllipseItem(midx - ray, midy - ray,2.0 * ray,2.0 * ray);
@@ -135,7 +135,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
-      item->setPos(x,y);
+      item->SetCenterPos(x,y);
       //item->setRect(-16.0,-16.0,32.0,32.0);
       scene()->addItem(item);
     }
@@ -212,8 +212,10 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
         const double x = midx + std::sin(sub_angle) * sub_ray;
         const double y = midy - std::cos(sub_angle) * sub_ray;
         QtRoundedRectItem * const item = new QtRoundedRectItem;
-        item->setPos(x,y);
-        item->SetRoundedRect(QRectF(-4.0,-4.0,8.0,8.0),1.0,1.0);
+        item->SetOuterWidth(16.0);
+        item->SetOuterHeight(8.0);
+        //item->SetOuterRoundedRect(QRectF(-4.0,-4.0,8.0,8.0),1.0,1.0);
+        item->SetCenterPos(x,y);
         scene()->addItem(item);
         v[j] = item;
       }
@@ -297,7 +299,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
-      item->setPos(x,y);
+      item->SetCenterPos(x,y);
       std::vector<std::string> text;
       text.push_back("* *");
       for (int j=0; j!=i; ++j)
@@ -338,11 +340,10 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::keyPressEvent(QKeyEvent *ev
 void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test");
-  TRACE("Finished ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtQuestionDialog, Wt dialog for QuestionDialog
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,18 +20,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "wtquestiondialog.h"
 
+
 ribi::WtQuestionDialog::WtQuestionDialog()
-  : m_signal_submitted{},
+  : m_signal_submitted{}
 {
 
 }
 
-const std::string ribi::WtQuestionDialog::GetVersion()
+std::string ribi::WtQuestionDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::WtQuestionDialog::GetVersionHistory()
+std::vector<std::string> ribi::WtQuestionDialog::GetVersionHistory()
 {
   return {
     "2011-06-30: version 1.0: initial version"

@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPRATESTRATEGY_H
 #define QTCONCEPTMAPRATESTRATEGY_H
 
+#ifdef USE_ITEMDISPLAYSTRATEGY_20140622
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -64,5 +66,7 @@ private:
 } //~namespace cmap
 
 } //~namespace ribi
+
+#endif // USE_ITEMDISPLAYSTRATEGY_20140622
 
 #endif // QTCONCEPTMAPRATESTRATEGY_H

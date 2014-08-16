@@ -8,7 +8,9 @@
 
 #include "aaffighter.h"
 #include "aaffighterfactory.h"
+#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::aaf::MenuDialog::ExecuteSpecific(const std::vector<std::string>& /*argv*/) noexcept
@@ -89,11 +91,11 @@ std::vector<std::string> ribi::aaf::MenuDialog::GetVersionHistory() const noexce
 void ribi::aaf::MenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::aaf::AminoAcidFighterMenuDialog::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   MenuDialog d;
   assert(d.Execute( { "AminoAcidFigher", "-a" } ) == 0);
   assert(d.Execute( { "AminoAcidFigher", "--about" } ) == 0);
@@ -103,6 +105,5 @@ void ribi::aaf::MenuDialog::Test() noexcept
   assert(d.Execute( { "AminoAcidFigher", "--licence" } ) == 0);
   assert(d.Execute( { "AminoAcidFigher", "-v" } ) == 0);
   assert(d.Execute( { "AminoAcidFigher", "--version" } ) == 0);
-  TRACE("Finished ribi::aaf::AminoAcidFighterMenuDialog::Test()");
 }
 #endif

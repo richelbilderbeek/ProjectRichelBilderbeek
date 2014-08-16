@@ -20,40 +20,50 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppFunctionDeclaration.htm">function declaration</a></h1>
 <p>&nbsp;</p>
-<p>A <a href="CppFunctionDeclaration.htm">function declaration</a> states what a <a
-href="CppFunction.htm">function</a> needs and <a href="CppReturn.htm">returns</a>
-with giving its <a href="CppArgument.htm">arguments</a> proper names (without
-these names, it would be a called a function <a href="CppPrototype.htm">prototype</a>).
-A <a href="CppFunctionDeclaration.htm">function declaration</a> can be seen as
-a promise to the <a href="CppCompiler.htm">compiler</a> that a certain <a
-href="CppFunction.htm">function</a> exists and will be found by the <a
-href="CppLinker.htm">linker</a>.</p>
+<p>
+  A <a href="CppFunctionDeclaration.htm">function declaration</a> states what a <a
+  href="CppFunction.htm">function</a> needs and <a href="CppReturn.htm">returns</a>
+  with giving its <a href="CppArgument.htm">arguments</a> proper names (without
+  these names, it would be a called a function <a href="CppPrototype.htm">prototype</a>).
+  A <a href="CppFunctionDeclaration.htm">function declaration</a> can be seen as
+  a promise to the <a href="CppCompiler.htm">compiler</a> that a certain 
+  <a href="CppFunction.htm">function</a> exists and will be found by the 
+  <a href="CppLinker.htm">linker</a>.
+</p>
 <p>&nbsp;</p>
-<p>Although a <a href="CppFunctionDeclaration.htm">function declaration</a> tells nothing
-about the implementation of the function, an advanced programmer will assume a
-lot from it! And sometimes, a <a href="CppFunctionDeclaration.htm">function
-declaration</a> is all you will be allowed to see. View <a
-href="CppExerciseCorrectFunctionDeclarations.htm">Exercise #2: correct function
-declarations</a> to learn about correct <a href="CppFunctionDeclaration.htm">function
-declarations</a>.</p>
+<p>
+  Although a <a href="CppFunctionDeclaration.htm">function declaration</a> tells nothing
+  about the implementation of the function, an advanced programmer will assume a
+  lot from it! And sometimes, a <a href="CppFunctionDeclaration.htm">function
+  declaration</a> is all you will be allowed to see. View <a
+  href="CppExerciseCorrectFunctionDeclarations.htm">Exercise #2: correct function
+  declarations</a> to learn about correct <a href="CppFunctionDeclaration.htm">function
+  declarations</a>.
+</p>
 <p>&nbsp;</p>
-<p>Where a <a href="CppFunctionDeclaration.htm">function declaration</a> tells nothing
-about the implementation of the function, a <a href="CppFunctionDefinition.htm">function
-definition</a> consists of a <a href="CppFunctionDeclaration.htm">function
-declaration</a> including its implementation.</p>
+<p>
+  Where a <a href="CppFunctionDeclaration.htm">function declaration</a> tells nothing
+  about the implementation of the function, a <a href="CppFunctionDefinition.htm">function
+  definition</a> consists of a <a href="CppFunctionDeclaration.htm">function
+  declaration</a> including its implementation.
+</p>
 <p>&nbsp;</p>
-<p><a href="CppFunctionDeclaration.htm">Function declarations</a> are commonly found
-in <a href="CppHeaderFile.htm">header files (.h)</a>, where <a
-href="CppFunctionDefinition.htm">function definitions</a> in <a
-href="CppImplementationFile.htm">implementation (.cpp) files</a>.</p>
+<p>
+  <a href="CppFunctionDeclaration.htm">Function declarations</a> are commonly found
+  in <a href="CppHeaderFile.htm">header files (.h)</a>, where 
+  <a href="CppFunctionDefinition.htm">function definitions</a> in 
+  <a href="CppImplementationFile.htm">implementation (.cpp) files</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Examples</h2>
+<h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
-<p>Below I give some <a href="CppFunctionDeclaration.htm">function declarations</a> and how to read them.</p>
+<p>
+  Below I give some <a href="CppFunctionDeclaration.htm">function declarations</a> and how to read them.
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="SayHello" border = "1"><tr><td><code>
@@ -61,7 +71,9 @@ href="CppImplementationFile.htm">implementation (.cpp) files</a>.</p>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>The function SayHello lets the computer say hello in a certain unspecified way.</p>
+<p>
+  The function SayHello lets the computer say hello in a certain unspecified way.
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="Swap" border = "1"><tr><td><code>
@@ -69,11 +81,13 @@ href="CppImplementationFile.htm">implementation (.cpp) files</a>.</p>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>The function <a href="CppSwap.htm">Swap</a> uses two non-copied values (due to the <a
-href="CppReference.htm">reference</a>) and modifies (due to the omission of <a
-href="CppConst.htm">const</a>) them both. It probably swaps the values of 'a'
-and 'b'. <a href="CppSwap.htm">Swap</a> does nothing more, because it has no (<a
-href="CppVoid.htm">void</a>) <a href="CppReturnType.htm">return type</a>.</p>
+<p>
+  The function <a href="CppSwap.htm">Swap</a> uses two non-copied values (due to the 
+  <a href="CppReference.htm">reference</a>) and modifies (due to the omission of 
+  <a href="CppConst.htm">const</a>) them both. It probably swaps the values of 'a'
+  and 'b'. <a href="CppSwap.htm">Swap</a> does nothing more, because it has no 
+  (<a href="CppVoid.htm">void</a>) <a href="CppReturnType.htm">return type</a>.
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="GetRows" border = "1"><tr><td><code>
@@ -81,13 +95,15 @@ href="CppVoid.htm">void</a>) <a href="CppReturnType.htm">return type</a>.</p>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>The function GetRows obtains the number of rows (the <b><a href="CppConst.htm">const</a></b>
-<b><a href="CppInt.htm">int</a></b> <a href="CppReturnType.htm">return type</a>)
-from a certain Database. It needs an existing Database (it uses a <a
-href="CppReference.htm">reference</a>, instead of a <a href="CppPointer.htm">pointer</a>
-that can be <a href="CppNull.htm">null</a>) and does not copy (due to the <a
-href="CppReference.htm">reference</a>) nor modify (due to the <a
-href="CppConst.htm">const</a>) it.</p>
+<p>
+  The function GetRows obtains the number of rows (the <a href="CppConst.htm">const</a>
+  <a href="CppInt.htm">int</a> <a href="CppReturnType.htm">return type</a>)
+  from a certain Database. It needs an existing Database (it uses a 
+  <a href="CppReference.htm">reference</a>, instead of a <a href="CppPointer.htm">pointer</a>
+  that can be <a href="CppNull.htm">null</a>) and does not copy (due to the 
+  <a href="CppReference.htm">reference</a>) nor modify (due to the 
+  <a href="CppConst.htm">const</a>) it.
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="Sum" border = "1"><tr><td><code>
@@ -95,15 +111,15 @@ href="CppConst.htm">const</a>) it.</p>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>The
-function Sum obtains the sum of values (the <b><a href="CppConst.htm">const</a></b>
-<b><a href="CppInt.htm">int</a></b> <a href="CppReturnType.htm">return type</a>)
-from a certain <a href="CppVector.htm">std::vector</a>. It needs an existing <a
-href="CppVector.htm">std::vector</a> (it uses a <a href="CppReference.htm">reference</a>,
-instead of a <a href="CppPointer.htm">pointer</a> that can be <a
-href="CppNull.htm">null</a>) and does not copy (due to the <a
-href="CppReference.htm">reference</a>) nor modify (due to the <a
-href="CppConst.htm">const</a>) it.</p>
+<p>
+  The function Sum obtains the sum of values (the <a href="CppConst.htm">const</a> 
+  <a href="CppInt.htm">int</a> <a href="CppReturnType.htm">return type</a>) from a certain 
+  <a href="CppStdVector.htm">std::vector</a>. It needs an existing 
+  <a href="CppStdVector.htm">std::vector</a> (it uses a <a href="CppReference.htm">reference</a>,
+  instead of a <a href="CppPointer.htm">pointer</a> that can be <a href="CppNull.htm">null</a>) 
+  and does not copy (due to the <a href="CppReference.htm">reference</a>) 
+  nor modify (due to the <a href="CppConst.htm">const</a>) it.
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="MeanAndStdDev" border = "1"><tr><td><code>
@@ -111,19 +127,19 @@ href="CppConst.htm">const</a>) it.</p>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>The
-function <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a> uses an existing <a
-href="CppVector.htm">std::vector</a> (it uses a <a href="CppReference.htm">reference</a>,
-instead of a <a href="CppPointer.htm">pointer</a> that can be <a
-href="CppNull.htm">null</a>) and does not copy (due to the <a
-href="CppReference.htm">reference</a>) nor modify (due to the <a
-href="CppConst.htm">const</a>) it. <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a>
-does not <a href="CppReturn.htm">return</a> the mean and standard deviation by
-its <a href="CppReturnType.htm">return type</a> (<a href="CppVoid.htm">void</a>),
-but by using two <a href="CppReference.htm">references</a>. Therefore, the
-caller of <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a> must first create
-two <a href="CppDouble.htm">doubles</a>, which will store the mean and standard
-deviation after the call to <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a>.</p>
+<p>
+  The function <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a> uses an existing 
+  <a href="CppVector.htm">std::vector</a> (it uses a <a href="CppReference.htm">reference</a>,
+  instead of a <a href="CppPointer.htm">pointer</a> that can be <a href="CppNull.htm">null</a>) 
+  and does not copy (due to the <a href="CppReference.htm">reference</a>) nor modify 
+  (due to the <a href="CppConst.htm">const</a>) it. <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a>
+  does not <a href="CppReturn.htm">return</a> the mean and standard deviation by 
+  its <a href="CppReturnType.htm">return type</a> (<a href="CppVoid.htm">void</a>),
+  but by using two <a href="CppReference.htm">references</a>. Therefore, the
+  caller of <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a> must first create
+  two <a href="CppDouble.htm">doubles</a>, which will store the mean and standard
+  deviation after the call to <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

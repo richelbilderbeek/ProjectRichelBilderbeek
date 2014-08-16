@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dial.h"
 #include "drawcanvas.h"
 #include "geometry.h"
-#include "rectangle.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "textcanvas.h"
 
@@ -66,7 +66,7 @@ void ribi::DialWidget::Click(const int x,const int y) noexcept
   const int midy = h.GetTop( g) + (h.GetHeight(g) / 2);
   const double dx = boost::numeric_cast<double>(x - midx);
   const double dy = boost::numeric_cast<double>(y - midy);
-  const double angle = Geometry().GetAngle(dx,dy);
+  const double angle = Geometry().GetAngleClockScreen(dx,dy);
   const double pi = boost::math::constants::pi<double>();
   const double position = angle / (2.0 * pi);
   assert(position >= 0.0);
@@ -111,11 +111,16 @@ bool ribi::DialWidget::IsClicked(const int x, const int y) const noexcept
 void ribi::DialWidget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DialWidget::Test");
+  {
+    DrawCanvas();
+    TextCanvas();
+    Geometry();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<DialWidget> w(new DialWidget);
     assert(w->GetDial());
@@ -131,7 +136,6 @@ void ribi::DialWidget::Test() noexcept
       //TRACE(s.str());
     }
   }
-  TRACE("Finished ribi::DialWidget::Test successfully");
 }
 
 const boost::shared_ptr<ribi::DrawCanvas> ribi::DialWidget::ToDrawCanvas(const int radius) const noexcept

@@ -107,7 +107,7 @@ void ribi::Chess::SquareSelector::DoSelect()
 boost::shared_ptr<ribi::Chess::Square> ribi::Chess::SquareSelector::GetInitialSquare() noexcept
 {
   const std::string s { "c3" };
-  return SquareFactory::Create(s);
+  return SquareFactory().Create(s);
 }
 
 std::string ribi::Chess::SquareSelector::GetVersion() noexcept
@@ -133,7 +133,7 @@ void ribi::Chess::SquareSelector::MoveDown() noexcept
   if (m_cursor->GetRank().ToInt() != 7)
   {
     const boost::shared_ptr<const Square> square {
-      SquareFactory::Create(
+      SquareFactory().Create(
         File(m_cursor->GetFile().ToInt() + 0),
         Rank(m_cursor->GetRank().ToInt() + 1)
       )
@@ -150,7 +150,7 @@ void ribi::Chess::SquareSelector::MoveLeft() noexcept
   if (m_cursor->GetFile().ToInt() != 0)
   {
     const boost::shared_ptr<const Square> square {
-      SquareFactory::Create(
+      SquareFactory().Create(
         File(m_cursor->GetFile().ToInt() - 1),
         Rank(m_cursor->GetRank().ToInt() + 0)
       )
@@ -166,7 +166,7 @@ void ribi::Chess::SquareSelector::MoveRight() noexcept
   if (m_cursor->GetFile().ToInt() != 7)
   {
     const boost::shared_ptr<const Square> square {
-      SquareFactory::Create(
+      SquareFactory().Create(
         File(m_cursor->GetFile().ToInt() + 1),
         Rank(m_cursor->GetRank().ToInt() + 0)
       )
@@ -183,7 +183,7 @@ void ribi::Chess::SquareSelector::MoveUp() noexcept
   if (m_cursor->GetRank().ToInt() != 0)
   {
     const boost::shared_ptr<const Square> square {
-      SquareFactory::Create(
+      SquareFactory().Create(
         File(m_cursor->GetFile().ToInt() + 0),
         Rank(m_cursor->GetRank().ToInt() - 1)
       )

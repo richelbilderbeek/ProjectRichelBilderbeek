@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "daswahreschlagerfestwidget.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -89,7 +91,7 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
 
 ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
 {
-  return About(
+  About a(
     "Richel Bilderbeek",
     "Das Wahre Schlagerfest",
     "a truely fun game",
@@ -99,6 +101,8 @@ ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory()
   );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  return a;
 }
 
 ribi::Help ribi::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept
@@ -136,8 +140,8 @@ std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion() const noexcept
 std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2003-09-30: version 1.1: Windows-only version",
-    "2012-07-21: version 2.0: ported to cross-platform",
+    "2003-09-30: version 1.1: first VCL (Windows-only) version",
+    "2012-07-21: version 2.0: ported to Qt (cross-platform)",
     "2012-07-29: version 2.1: changed graphics to old-school",
     "2012-08-09: version 2.2: changed graphics, changed new tile selection (rendering the eat-it all tile) obsolete"
     "2014-01-30: version 2.3: added command-line demo and play mode",
@@ -150,12 +154,11 @@ std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory
 void ribi::DasWahreSchlagerfestMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DasWahreSchlagerfestMenuDialog::Test");
   DasWahreSchlagerfestWidget();
-  TRACE("Finished ribi::DasWahreSchlagerfestMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

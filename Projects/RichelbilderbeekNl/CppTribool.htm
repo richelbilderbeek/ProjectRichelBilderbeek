@@ -33,16 +33,16 @@
 <!-- start of code -->
 <table summary="./CppTribool/CppTribool.pri" border = "1"><tr><td><code>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTribool<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTribool.htm">CppTribool</a><br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTribool/tribool.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTribool.htm">CppTribool</a>/tribool.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTribool/tribool.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTribool.htm">CppTribool</a>/tribool.h<br/>
 <br/>
 <a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTribool/Licence.txt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTribool.htm">CppTribool</a>/Licence.txt<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -57,11 +57,15 @@
 <a href="CppIfndef.htm">#ifndef</a> TRIBOOL_H<br/>
 <a href="CppDefine.htm">#define</a> TRIBOOL_H<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Class similar to <a href="CppBoost.htm">Boost</a>.Tri<b><a href="CppBool.htm">bool</a></b>,<br/>
 <a href="CppComment.htm">///</a>except that <b><a href="CppThis.htm">this</a></b> <a href="CppVersion.htm">version</a> does not surprise me as often<br/>
 <b><a href="CppEnumClass.htm">enum class</a></b> Tri<b><a href="CppBool.htm">bool</a></b> { True, False, Indeterminate };<br/>
+<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Tri<b><a href="CppBool.htm">bool</a></b> <a href="CppTribool.htm">tribool</a>);<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
@@ -78,6 +82,20 @@
 <!-- start of code -->
 <table summary="./CppTribool/tribool.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> "<a href="CppTribool.htm">tribool</a>.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppOstreamH.htm">ostream</a>&gt;<br/>
+<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Tri<b><a href="CppBool.htm">bool</a></b> <a href="CppTribool.htm">tribool</a>)<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (<a href="CppTribool.htm">tribool</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Tri<b><a href="CppBool.htm">bool</a></b>::False: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '0'; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Tri<b><a href="CppBool.htm">bool</a></b>::Indeterminate: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '?'; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Tri<b><a href="CppBool.htm">bool</a></b>::True: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '1'; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

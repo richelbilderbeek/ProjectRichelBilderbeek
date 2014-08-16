@@ -24,8 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtsurfaceplotwidget.h"
 #include "surfaceplottermenudialog.h"
-#include "qtsurfaceplottermaindialog.h"
+#include "qtsurfaceplotterqwtdialog.h"
+#include "qtsurfaceplotterribidialog.h"
 #include "qtsurfaceplottermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtsurfaceplottermenudialog.h"
 #pragma GCC diagnostic pop
@@ -45,17 +47,12 @@ ribi::QtSurfacePlotterMenuDialog::~QtSurfacePlotterMenuDialog() noexcept
   delete ui;
 }
 
-void ribi::QtSurfacePlotterMenuDialog::on_button_start_clicked()
-{
-  QtSurfacePlotterMainDialog d;
-  this->ShowChild(&d);
-}
-
 void ribi::QtSurfacePlotterMenuDialog::on_button_about_clicked()
 {
   About a(SurfacePlotterMenuDialog().GetAbout());
   a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
   QtAboutDialog d(a);
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
@@ -64,15 +61,31 @@ void ribi::QtSurfacePlotterMenuDialog::on_button_quit_clicked()
   this->close();
 }
 
+void ribi::QtSurfacePlotterMenuDialog::on_button_qwt_clicked()
+{
+  QtSurfacePlotterQwtDialog d;
+  d.setStyleSheet(this->styleSheet());
+  this->ShowChild(&d);
+}
+
+void ribi::QtSurfacePlotterMenuDialog::on_button_ribi_clicked()
+{
+  QtSurfacePlotterRibiDialog d;
+  d.setStyleSheet(this->styleSheet());
+  this->ShowChild(&d);
+}
+
 #ifndef NDEBUG
 void ribi::QtSurfacePlotterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtSurfacePlotterMenuDialog::Test");
-  TRACE("Finished ribi::QtSurfacePlotterMenuDialog::Test successfully");
+  QtSurfacePlotterRibiDialog();
+  QtSurfacePlotterQwtDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
+

@@ -511,40 +511,44 @@ void ribi::pylos::Board::Remove(const std::vector<Coordinat>& v, const Player pl
 #ifndef NDEBUG
 void ribi::pylos::Board::Test() noexcept
 {
-  static bool tested = false;
-  if (tested) return;
-  tested = true;
-
-  TRACE("Test operator==");
   {
-    BoardBasic a;
-    BoardBasic b;
-    assert(a == b);
-    a.Do("(0,0,0)",Player::player1);
-    assert(a != b);
-    b.Do("(0,0,0)",Player::player1);
-    assert(a == b);
+    static bool tested = false;
+    if (tested) return;
+    tested = true;
+  }
+  const bool verbose{false};
+  const int testing_depth = 1;
+
+  if (verbose) { TRACE("Test operator=="); }
+  {
+    boost::shared_ptr<BoardBasic> a(new BoardBasic);
+    boost::shared_ptr<BoardBasic> b(new BoardBasic);
+    assert(*a == *b);
+    a->Do("(0,0,0)",Player::player1);
+    assert(*a != *b);
+    b->Do("(0,0,0)",Player::player1);
+    assert(*a == *b);
   }
   //Test operator==
   {
-    BoardAdvanced a;
-    BoardAdvanced b;
-    assert(a == b);
-    a.Do("(0,0,0)",Player::player1);
-    assert(a != b);
-    b.Do("(0,0,0)",Player::player1);
-    assert(a == b);
+    boost::shared_ptr<BoardAdvanced> a(new BoardAdvanced);
+    boost::shared_ptr<BoardAdvanced> b(new BoardAdvanced);
+    assert(*a == *b);
+    a->Do("(0,0,0)",Player::player1);
+    assert(*a != *b);
+    b->Do("(0,0,0)",Player::player1);
+    assert(*a == *b);
   }
   {
-    BoardAdvanced a;
-    BoardBasic b;
-    assert(a != b);
-    a.Do("(0,0,0)",Player::player1);
-    assert(a != b);
-    b.Do("(0,0,0)",Player::player1);
-    assert(a != b);
+    boost::shared_ptr<BoardAdvanced> a(new BoardAdvanced);
+    boost::shared_ptr<BoardBasic> b(new BoardBasic);
+    assert(*a != *b);
+    a->Do("(0,0,0)",Player::player1);
+    assert(*a != *b);
+    b->Do("(0,0,0)",Player::player1);
+    assert(*a != *b);
   }
-  TRACE("Test Game::Clone of GameBasic");
+  if (verbose) { TRACE("Test Game::Clone of GameBasic"); }
   {
     const boost::shared_ptr<Board> a(new BoardBasic);
     const boost::shared_ptr<Board> b(a->Clone());
@@ -558,7 +562,7 @@ void ribi::pylos::Board::Test() noexcept
     assert(*a == *b);
     assert(*a != *c);
   }
-  TRACE("Test Game::Clone of GameAdvanced");
+  if (verbose) { TRACE("Test Game::Clone of GameAdvanced"); }
   {
     const boost::shared_ptr<Board> a(new BoardAdvanced);
     const boost::shared_ptr<Board> b(a->Clone());
@@ -572,21 +576,21 @@ void ribi::pylos::Board::Test() noexcept
     assert(*a == *b);
     assert(*a != *c);
   }
-  TRACE("Test Clone of played GameBasic");
+  if (verbose) { TRACE("Test Clone of played GameBasic"); }
   {
     const boost::shared_ptr<Board> a(new BoardBasic);
     a->Do("(0,0,0)",Player::player1);
     const boost::shared_ptr<Board> b(a->Clone());
     assert(*a == *b);
   }
-  TRACE("Test Clone of played BoardAdvanced");
+  if (verbose) { TRACE("Test Clone of played BoardAdvanced"); }
   {
     const boost::shared_ptr<Board> a(new BoardAdvanced);
     a->Do("(0,0,0)",Player::player1);
     const boost::shared_ptr<Board> b(a->Clone());
     assert(*a == *b);
   }
-  TRACE("Test conversion of Board to text");
+  if (verbose) { TRACE("Test conversion of Board to text"); }
   {
     const boost::shared_ptr<Board> a(new BoardAdvanced);
     const boost::shared_ptr<Board> b(new BoardBasic);
@@ -615,7 +619,7 @@ void ribi::pylos::Board::Test() noexcept
 
     a->Do("(0,1,1)",Player::player1);
     b->Do("(0,1,1)",Player::player1);
-    TRACE(a->ToStr());
+    if (verbose) { TRACE(a->ToStr()); }
     assert(a->ToStr() == std::string(
       "X O . .\n"
       " . . . \n"
@@ -628,7 +632,7 @@ void ribi::pylos::Board::Test() noexcept
 
     a->Do("(0,0,1)",Player::player2);
     b->Do("(0,0,1)",Player::player2);
-    TRACE(a->ToStr());
+    if (verbose) { TRACE(a->ToStr()); }
     assert(a->ToStr() == std::string(
       "X O . .\n"
       " . . . \n"
@@ -641,7 +645,7 @@ void ribi::pylos::Board::Test() noexcept
 
     a->Do("(1,0,0)",Player::player1);
     b->Do("(1,0,0)",Player::player1);
-    TRACE(a->ToStr());
+    if (verbose) { TRACE(a->ToStr()); }
     assert(a->ToStr() == std::string(
       "X O . .\n"
       " X . . \n"
@@ -654,7 +658,7 @@ void ribi::pylos::Board::Test() noexcept
 
     a->Do("(0,2,0)",Player::player2);
     b->Do("(0,2,0)",Player::player2);
-    TRACE(a->ToStr());
+    if (verbose) { TRACE(a->ToStr()); }
     assert(a->ToStr() == std::string(
       "X O O .\n"
       " X . . \n"
@@ -667,7 +671,7 @@ void ribi::pylos::Board::Test() noexcept
 
     a->Do("(0,2,1)",Player::player1);
     b->Do("(0,2,1)",Player::player1);
-    TRACE(a->ToStr());
+    if (verbose) { TRACE(a->ToStr()); }
     assert(a->ToStr() == std::string(
       "X O O .\n"
       " X . . \n"
@@ -678,7 +682,7 @@ void ribi::pylos::Board::Test() noexcept
       ". . . ."));
     assert(a->ToStr() == b->ToStr());
   }
-  TRACE("Test horizontal detection of line in both boards");
+  if (verbose) { TRACE("Test horizontal detection of line in both boards"); }
   {
     const boost::shared_ptr<Board> a(new BoardAdvanced);
     const boost::shared_ptr<Board> b(new BoardBasic);
@@ -701,7 +705,7 @@ void ribi::pylos::Board::Test() noexcept
     a->Set(Coordinat("(0,3,2)"),Player::player2,must_remove); assert(must_remove != MustRemoveState::no);
     b->Set(Coordinat("(0,3,2)"),Player::player2,must_remove); assert(!must_remove); //Basic does not test for lines
   }
-  TRACE("Test horizontal detection of line in both boards");
+  if (verbose) { TRACE("Test horizontal detection of line in both boards"); }
   {
     const boost::shared_ptr<Board> a(new BoardAdvanced);
     const boost::shared_ptr<Board> b(new BoardBasic);
@@ -724,7 +728,7 @@ void ribi::pylos::Board::Test() noexcept
     a->Set(Coordinat("(0,0,3)"),Player::player2,must_remove); assert( must_remove != MustRemoveState::no);
     b->Set(Coordinat("(0,0,3)"),Player::player2,must_remove); assert(!must_remove); //Basic does not test for lines
   }
-  TRACE("Test block detection of line in both boards");
+  if (verbose) { TRACE("Test block detection of line in both boards"); }
   {
     const boost::shared_ptr<Board> a(new BoardAdvanced);
     const boost::shared_ptr<Board> b(new BoardBasic);
@@ -747,7 +751,7 @@ void ribi::pylos::Board::Test() noexcept
     a->Set(Coordinat("(0,2,2)"),Player::player2,must_remove); assert( must_remove != MustRemoveState::no);
     b->Set(Coordinat("(0,2,2)"),Player::player2,must_remove); assert( must_remove != MustRemoveState::no);
   }
-  TRACE("Board test transfer of marbles");
+  if (verbose) { TRACE("Board test transfer of marbles"); }
   {
     boost::shared_ptr<Board> a = CreateAdvancedBoard();
     boost::shared_ptr<Board> b = CreateBasicBoard();
@@ -762,7 +766,7 @@ void ribi::pylos::Board::Test() noexcept
     assert(!a->CanDo(Move("(0,0,0)->(0,0,1)"),Player::player2));
     assert(!b->CanDo(Move("(0,0,0)->(0,0,1)"),Player::player2));
   }
-  TRACE("Board test stacking by setting");
+  if (verbose) { TRACE("Board test stacking by setting"); }
   {
     boost::shared_ptr<Board> a = CreateAdvancedBoard();
     boost::shared_ptr<Board> b = CreateBasicBoard();
@@ -795,7 +799,7 @@ void ribi::pylos::Board::Test() noexcept
     assert(b->GetWinner() != Winner::none);
   }
 
-  TRACE("Board test #2");
+  if (verbose) { TRACE("Board test #2"); }
   {
     boost::shared_ptr<Board> a = CreateAdvancedBoard();
     boost::shared_ptr<Board> b = CreateBasicBoard();
@@ -839,7 +843,7 @@ void ribi::pylos::Board::Test() noexcept
     assert( b->CanDo(Move("(0,2,1) !(1,0,0) !(0,1,1)"),Player::player1));
   }
 
-  TRACE("Board test #3");
+  if (verbose) { TRACE("Board test #3"); }
   {
     boost::shared_ptr<Board> a = CreateAdvancedBoard();
     boost::shared_ptr<Board> b = CreateBasicBoard();
@@ -874,7 +878,7 @@ void ribi::pylos::Board::Test() noexcept
   }
 
 
-  TRACE("Test ribi::pylos::Board::GetAllPossibleMoves simple transfer");
+  if (verbose) { TRACE("Test ribi::pylos::Board::GetAllPossibleMoves simple transfer"); }
   {
     boost::shared_ptr<Board> a = CreateAdvancedBoard();
     boost::shared_ptr<Board> b = CreateBasicBoard();
@@ -913,7 +917,7 @@ void ribi::pylos::Board::Test() noexcept
     assert(a->GetAllPossibleMoves(Player::player2).size() == 14); //2 on one-but-buttom layer
     assert(b->GetAllPossibleMoves(Player::player2).size() == 14); //2 transfers
   }
-  TRACE("Test ribi::pylos::Board::GetAllPossibleMoves simple remove");
+  if (verbose) { TRACE("Test ribi::pylos::Board::GetAllPossibleMoves simple remove"); }
   {
     boost::shared_ptr<Board> a = CreateAdvancedBoard();
     boost::shared_ptr<Board> b = CreateBasicBoard();
@@ -930,17 +934,20 @@ void ribi::pylos::Board::Test() noexcept
     assert(a->GetAllPossibleMoves(Player::player2).size() == 13);
     assert(b->GetAllPossibleMoves(Player::player2).size() == 13);
   }
-  TRACE("Filling up 5 basic Pylos boards randomly");
+
+  if (testing_depth < 2) return;
+
+  if (verbose) { TRACE("Filling up 5 basic Pylos boards randomly"); }
   for (int i=0; i!=5; ++i)
   {
     ribi::pylos::Board::PlayRandomPylosGame(pylos::Board::CreateBasicBoard());
   }
-  TRACE("Filling up 5 advanced Pylos boards randomly");
+  if (verbose) { TRACE("Filling up 5 advanced Pylos boards randomly"); }
   for (int i=0; i!=5; ++i)
   {
     ribi::pylos::Board::PlayRandomPylosGame(ribi::pylos::Board::CreateAdvancedBoard());
   }
-  TRACE("Filling up 5 Pylos boards randomly");
+  if (verbose) { TRACE("Filling up 5 Pylos boards randomly"); }
   for (int i=0; i!=5; ++i)
   {
     ribi::pylos::Board::PlayRandomPylosGame();

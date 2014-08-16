@@ -20,9 +20,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttictactoemenudialog.h"
 
 #include <cassert>
+#include <boost/make_shared.hpp>
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -30,10 +33,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtcanvas.h"
 #include "qtcanvasdialog.h"
+#include "testtimer.h"
 #include "qttictactoecanvas.h"
 #include "qttictactoegamedialog.h"
 #include "qttictactoewidget.h"
 #include "tictactoemenudialog.h"
+#include "tictactoeai.h"
 #include "trace.h"
 #include "ui_qttictactoemenudialog.h"
 #pragma GCC diagnostic pop
@@ -67,6 +72,7 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_about_clicked()
   About a = TicTacToeMenuDialog().GetAbout();
   a.AddLibrary("QtTicTacToeWidget version: " + tictactoe::QtTicTacToeWidget::GetVersion());
   QtAboutDialog d(a);
+  //d.setStyleSheet(styleSheet());
   this->ShowChild(&d);
 }
 
@@ -79,11 +85,11 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_quit_clicked()
 void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::QtTicTacToeMenuDialog::Test");
+  TicTacToeMenuDialog();
   {
     const boost::shared_ptr<Ai> player1;
     const boost::shared_ptr<Ai> player2;
@@ -99,8 +105,10 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
     };
     assert(d);
   }
-
-  TRACE("Finished ribi::tictactoe::QtTicTacToeMenuDialog::Test successfully");
+  const auto player1 = boost::make_shared<AiEnforceDraw>();
+  const auto player2 = boost::make_shared<AiPlayRandom>();
+  QtTicTacToeWidget(player1,player2);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

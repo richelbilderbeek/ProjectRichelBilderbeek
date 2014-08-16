@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/xpressive/detail/dynamic/parse_charset.hpp>
 
+#include "ribi_regex.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -49,14 +51,16 @@ boost::shared_ptr<ribi::RegexTesterMainDialog>
 std::vector<std::string>
   ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatches(
   const std::string& s,
-  const std::string& r) const
+  const std::string& regex_str
+) const noexcept
 {
-  if (!this->GetRegexValid(r)) return std::vector<std::string>();
-
-  return GetRegexMatches(s,boost::xpressive::sregex::compile(r));
+  if (!this->GetRegexValid(regex_str)) return std::vector<std::string>();
+  return Regex().GetRegexMatchesXpressive(s,regex_str);
+  //return GetRegexMatches(s,boost::xpressive::sregex::compile(r));
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+/*
 std::vector<std::string>
   ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatches(
   const std::string& s,
@@ -82,9 +86,12 @@ std::vector<std::string>
   }
   return v;
 }
+*/
 
 bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatchLine(
-  const std::string& line, const std::string& regex_str) const noexcept
+  const std::string& line,
+  const std::string& regex_str
+) const noexcept
 {
   if (!GetRegexValid(regex_str)) return false;
   const boost::xpressive::sregex r(
@@ -118,52 +125,43 @@ std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
 bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexValid(
   const std::string& regex_str) const noexcept
 {
+  return Regex().IsValidXpressive(regex_str);
+  /*
   try
   {
     boost::xpressive::sregex::compile(regex_str);
   }
   catch (boost::xpressive::regex_error& e) { return false; }
   return true;
+  */
 }
 
 #ifndef NDEBUG
 void ribi::RegexTesterBoostXpressiveMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::RegexTesterBoostXpressiveMainDialog::Test")
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   RegexTesterBoostXpressiveMainDialog d;
   assert(!d.GetExampleRegex().empty());
-  for (auto v: d.GetTestRegexes() )
+  for (const auto& v: d.GetTestRegexes() )
   {
-    TRACE(v);
     d.GetRegexValid(v);
-    for (auto w: d.GetTestStrings() )
+    for (const auto& w: d.GetTestStrings() )
     {
-      TRACE(w);
       d.GetRegexMatches(v,w);
-      TRACE_FUNC();
       d.GetRegexMatches(w,v);
-      TRACE_FUNC();
       d.GetRegexMatchLine(v,w);
-      TRACE_FUNC();
       d.GetRegexMatchLine(w,v);
-      TRACE_FUNC();
       d.GetRegexReplace(v,w,v);
-      TRACE_FUNC();
       d.GetRegexReplace(w,v,v);
-      TRACE_FUNC();
       d.GetRegexReplace(v,w,w);
-      TRACE_FUNC();
       d.GetRegexReplace(w,v,w);
-      TRACE_FUNC();
       d.GetRegexValid(w);
-      TRACE_FUNC();
     }
   }
-  TRACE("Finished ribi::RegexTesterBoostXpressiveMainDialog::Test successfully")
 }
 #endif

@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "qtaboutdialog.h"
 #include "primeexpert.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtprimeexpertmaindialog.h"
 #pragma GCC diagnostic pop
@@ -88,11 +89,10 @@ void ribi::QtToolPrimeExpertMainDialog::on_edit_value_textChanged(QString s)
 void ribi::QtToolPrimeExpertMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolPrimeExpertMainDialog::Test");
-  TRACE("Finished ribi::QtToolPrimeExpertMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

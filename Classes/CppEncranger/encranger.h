@@ -29,7 +29,7 @@ namespace ribi {
 //Encranger stands for 'ENCryption by RAndom Number GEneratoR'
 struct Encranger
 {
-  Encranger(const int key);
+  Encranger(const int key) noexcept;
   std::string Encrypt(std::string s) const noexcept;
   std::string Deencrypt(std::string s) const noexcept;
 
@@ -38,12 +38,15 @@ struct Encranger
 
   private:
 
-  const std::vector<char> characters;
-  const std::vector<int>  table;
+  const std::vector<char> m_characters;
+  const std::vector<int> m_table;
 
-  const std::vector<int> CreateTable(const int key, const unsigned int sz) const;
-  static const std::vector<int> CreateTestKeys() noexcept;
-  static const std::vector<char> CreateCharacters() noexcept;
+  ///The unsigned int is the size of 'm_characters'
+  std::vector<int> CreateTable(const int key, const unsigned int sz) const noexcept;
+
+  static std::vector<int> CreateTestKeys() noexcept;
+
+  static std::vector<char> CreateCharacters() noexcept;
 
   char Encrypt(const char c, const int d) const noexcept;
   char Deencrypt(const char c, const int d) const noexcept;

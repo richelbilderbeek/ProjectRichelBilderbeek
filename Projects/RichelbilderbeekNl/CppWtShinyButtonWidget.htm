@@ -28,6 +28,28 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2>./CppWtShinyButtonWidget/CppWtShinyButtonWidget.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppWtShinyButtonWidget/CppWtShinyButtonWidget.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtShinyButtonWidget.htm">CppWtShinyButtonWidget</a><br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtShinyButtonWidget.htm">CppWtShinyButtonWidget</a>/<a href="CppWtShinyButtonWidget.htm">wtshinybuttonwidget</a>.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtShinyButtonWidget.htm">CppWtShinyButtonWidget</a>/<a href="CppWtShinyButtonWidget.htm">wtshinybuttonwidget</a>.h<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtShinyButtonWidget.htm">CppWtShinyButtonWidget</a>/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>./CppWtShinyButtonWidget/wtshinybuttonwidget.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
@@ -35,7 +57,7 @@
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
-Copyright (C) 2011 Richel Bilderbeek<br/>
+Copyright (C) 2011-2014 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
 it under the terms of the GNU General Public License as published by<br/>
@@ -54,22 +76,22 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> WTSHINYBUTTONWIDGET_H<br/>
 <a href="CppDefine.htm">#define</a> WTSHINYBUTTONWIDGET_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintDevice.htm">WPaintDevice</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a> { <b><a href="CppStruct.htm">struct</a></b> <a href="CppWMouseEvent.htm">WMouseEvent</a>Event; }<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppShinyButton.htm">ShinyButton</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> displays a <a href="CppShinyButton.htm">ShinyButton</a><br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a><br/>
 {<br/>
@@ -86,10 +108,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * Get<a href="CppWidget.htm">Widget</a>() { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw the <a href="CppShinyButton.htm">ShinyButton</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
@@ -141,7 +163,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
-Copyright (C) 2011 Richel Bilderbeek<br/>
+Copyright (C) 2011-2014 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
 it under the terms of the GNU General Public License as published by<br/>
@@ -159,19 +181,26 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppWtShinyButtonWidget.htm">CppWtShinyButtonWidget</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WBrush&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEvent.htm">WEvent</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPainter.htm">WPainter</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WPen&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppGeometry.htm">geometry</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRainbow.htm">rainbow</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppShinyButton.htm">shinybutton</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtShinyButtonWidget.htm">wtshinybuttonwidget</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gradient,<br/>
@@ -198,12 +227,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnClicked);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::DoRepaint()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
@@ -239,55 +268,57 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppWRectF.htm">Wt::WRectF</a> r(left,top,width,height);<br/>
 &nbsp;&nbsp;painter.drawText(r,<a href="CppWt.htm">Wt</a>::AlignCenter | <a href="CppWt.htm">Wt</a>::AlignMiddle,button-&gt;GetText().c_str());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;painter,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetX(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetY(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Geometry().GetLeft(<a href="CppWidget.htm">widget</a>-&gt;GetGeometry()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Geometry().GetTop(<a href="CppWidget.htm">widget</a>-&gt;GetGeometry()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Geometry().GetWidth(<a href="CppWidget.htm">widget</a>-&gt;GetGeometry()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Geometry().GetHeight(<a href="CppWidget.htm">widget</a>-&gt;GetGeometry()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()<br/>
+&nbsp;&nbsp;);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
-&nbsp;&nbsp;v.push_back("2011-09-21: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-10-29: <a href="CppVersion.htm">version</a> 1.1: added OnClicked <a href="CppMemberFunction.htm">member function</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-21: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-10-29: <a href="CppVersion.htm">version</a> 1.1: added OnClicked <a href="CppMemberFunction.htm">member function</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp;)<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnResize()<br/>
 {<br/>
-&nbsp;&nbsp;resize(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight());<br/>
+&nbsp;&nbsp;resize(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Geometry().GetWidth(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Geometry().GetHeight(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry())<br/>
+&nbsp;&nbsp;);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
 &nbsp;&nbsp;Draw<a href="CppShinyButton.htm">ShinyButton</a>(painter,m_<a href="CppWidget.htm">widget</a>.get());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a>::resize(width,height);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

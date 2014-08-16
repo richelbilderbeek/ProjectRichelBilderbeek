@@ -39,6 +39,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "chesssquare.h"
 #include "chesssquareselector.h"
 #include "chesswidget.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "widget.h"
 
@@ -113,13 +115,14 @@ boost::shared_ptr<const ribi::Program> ribi::TestChessMenuDialog::GetProgram() c
 
 std::string ribi::TestChessMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::TestChessMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2012-01-25: Version 1.0: initial version"
+    "2012-01-25: Version 1.0: initial version",
+    "2014-08-11: Version 1.1: increased use of TDD, has many tests disabled"
   };
 }
 
@@ -131,7 +134,24 @@ void ribi::TestChessMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestChessMenuDialog::Test");
-  TRACE("Finished ribi::TestChessMenuDialog::Test successfully");
+  Chess::BitBoard();
+  //Chess::Board::Test();
+  Chess::BoardWidget::Test();
+  Chess::ChessWidget::Test();
+  Chess::ColorVersion();
+  Chess::File::Test();
+  Chess::Game();
+  Chess::GameWidget::Test();
+  Chess::Move::Test();
+  Chess::Moves();
+  Chess::Piece::Test();
+  Chess::Rank::Test();
+  Chess::Resources();
+  Chess::Score::Test();
+  Chess::Square::Test();
+  //Chess::SquareSelector::Test();
+  //Widget();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  //const bool verbose{false};
 }
 #endif

@@ -73,7 +73,7 @@ struct QtBrushFactory
   static const int sm_color_mid_value;
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTCONCEPTMAPBRUSHFACTORY_H

@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "laggedwhitenoisesystem.h"
 
 #include <cassert>
@@ -14,18 +16,21 @@
 #include "laggedwhitenoisesystemparameters.h"
 #include "standardwhitenoisesystemparameters.h"
 #include "standardwhitenoisesystemfactory.h"
+#include "testtimer.h"
 
 ribi::kalman::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
   : WhiteNoiseSystem{parameters},
     m_measuments{},
     m_parameters{boost::dynamic_pointer_cast<const LaggedWhiteNoiseSystemParameters>(parameters)},
-    m_system{StandardWhiteNoiseSystemFactory::Create(
-      parameters->GetControl(),
-      parameters->GetInitialState(),
-      parameters->GetMeasurementNoise(),
-      parameters->GetProcessNoise(),
-      parameters->GetStateTransition())
+    m_system{
+      StandardWhiteNoiseSystemFactory().Create(
+        parameters->GetControl(),
+        parameters->GetInitialState(),
+        parameters->GetMeasurementNoise(),
+        parameters->GetProcessNoise(),
+        parameters->GetStateTransition()
+      )
     }
 {
   #ifndef NDEBUG
@@ -61,7 +66,7 @@ void ribi::kalman::LaggedWhiteNoiseSystem::GoToNextState(const boost::numeric::u
   m_system->GoToNextState(input);
 }
 
-const boost::numeric::ublas::vector<double> ribi::kalman::LaggedWhiteNoiseSystem::Measure() const noexcept
+boost::numeric::ublas::vector<double> ribi::kalman::LaggedWhiteNoiseSystem::Measure() const noexcept
 {
   assert(m_parameters->GetLag() == boost::numeric_cast<int>(m_measuments.size()));
   m_measuments.push(m_system->Measure());
@@ -83,11 +88,11 @@ const boost::numeric::ublas::vector<double>& ribi::kalman::LaggedWhiteNoiseSyste
 void ribi::kalman::LaggedWhiteNoiseSystem::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::LaggedWhiteNoiseSystem::Test()")
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check if measurements are indeed lagged:
   //The system's real value should update immediatly, but this fresh measurement
   //must only be accessible after lag timesteps
@@ -95,7 +100,7 @@ void ribi::kalman::LaggedWhiteNoiseSystem::Test() noexcept
   {
     const int lag = 5;
     const boost::shared_ptr<LaggedWhiteNoiseSystem> my_system
-      = LaggedWhiteNoiseSystemFactory::Create(
+      = LaggedWhiteNoiseSystemFactory().Create(
         Matrix::CreateMatrix(1,1, { 1.0 } ), //control
         Matrix::CreateVector(     { 0.0 } ), //initial_state,
         lag,
@@ -119,6 +124,5 @@ void ribi::kalman::LaggedWhiteNoiseSystem::Test() noexcept
       my_system->GoToNextState(input);
     }
   }
-  TRACE("Finished ribi::kalman::LaggedWhiteNoiseSystem::Test()")
 }
 #endif

@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
+//#ifdef NOT_NOW_2014_08_11
+
 #include "conceptmapwidget.h"
 
 #pragma GCC diagnostic push
@@ -42,6 +44,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapwidgetfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -85,7 +88,7 @@ ribi::cmap::Widget::Widget(const Widget& other)
     m_signal_lose_selected{},
     m_signal_set_focus{},
     m_signal_set_selected{},
-    m_conceptmap(ConceptMapFactory::DeepCopy(other.m_conceptmap)),
+    m_conceptmap(ConceptMapFactory().DeepCopy(other.m_conceptmap)),
     m_focus{other.m_focus},
     m_font_height(other.m_font_height),
     m_font_width(other.m_font_width),
@@ -427,11 +430,11 @@ void ribi::cmap::Widget::SetSelected(const std::vector<boost::shared_ptr<Node>>&
 void ribi::cmap::Widget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::Widget::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const int n_depth = 1;
   //operator<<
   /*
@@ -643,7 +646,6 @@ void ribi::cmap::Widget::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::cmap::Widget::Test()");
 }
 #endif
 
@@ -707,3 +709,5 @@ std::ostream& ribi::cmap::operator<<(std::ostream& os, const Widget& w)
 
 }
 */
+
+//#endif // NOT_NOW_2014_08_11

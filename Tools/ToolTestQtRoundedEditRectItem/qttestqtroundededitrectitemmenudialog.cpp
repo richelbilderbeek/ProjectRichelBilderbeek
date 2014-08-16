@@ -20,6 +20,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttestqtroundededitrectitemmenudialog.h"
 
 #include <QDesktopWidget>
@@ -27,11 +29,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "qtroundedrectitem.h"
-#include "qtroundedtextrectitem.h"
+#include "qtroundededitrectitem.h"
 #include "testqtroundededitrectitemmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttestqtroundededitrectitemmaindialog.h"
+#include "qttestqtroundededitrectitemcomparedialog.h"
+#include "qttestqtroundededitrectitemmodifydialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qttestqtroundededitrectitemmenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -61,11 +65,27 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_about_clicked()
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtKeyboardFriendlyGraphicsView version: " + QtKeyboardFriendlyGraphicsView::GetVersion());
   a.AddLibrary("QtRoundedRectItem version: " + QtRoundedRectItem::GetVersion());
-  a.AddLibrary("QtRoundedTextRectItem version: " + QtRoundedTextRectItem::GetVersion());
+  a.AddLibrary("QtRoundedEditRectItem version: " + QtRoundedEditRectItem::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
+}
+
+void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_compare_clicked()
+{
+  QtTestQtRoundedEditRectItemCompareDialog d;
+  d.setWindowIcon(this->windowIcon());
+  //d.setStyleSheet(this->styleSheet());
+  ShowChild(&d);
+}
+
+void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_modify_clicked()
+{
+  QtTestQtRoundedEditRectItemModifyDialog d;
+  d.setWindowIcon(this->windowIcon());
+  //d.setStyleSheet(this->styleSheet());
+  ShowChild(&d);
 }
 
 void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_quit_clicked()
@@ -73,21 +93,18 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_quit_clicked()
   close();
 }
 
-void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_start_clicked()
-{
-  QtTestQtRoundedEditRectItemMainDialog d;
-  ShowChild(&d);
-}
-
 #ifndef NDEBUG
 void ribi::QtTestQtRoundedEditRectItemMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtRoundedEditRectItemMenuDialog::Test");
-  TRACE("Finished ribi::QtTestQtRoundedEditRectItemMenuDialog::Test successfully");
+  QtRoundedRectItem();
+  QtRoundedEditRectItem();
+  QtTestQtRoundedEditRectItemCompareDialog();
+  QtTestQtRoundedEditRectItemModifyDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

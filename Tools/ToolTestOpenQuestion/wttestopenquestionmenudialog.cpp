@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011 Richel Bilderbeek
+TestOpenQuestion, tool to test the Question and QuestionDialog classes
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,13 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestQuestion.htm
+//From http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cassert>
-//---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
@@ -31,42 +32,46 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
+#include "fileio.h"
 #include "testquestionmenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
-#include "wttestquestionmaindialog.h"
-#include "wttestquestionmenudialog.h"
+#include "wttestopenquestionmaindialog.h"
+#include "wttestopenquestionmenudialog.h"
+#include "testopenquestionmenudialog.h"
 #include "wtmultiplechoicequestiondialog.h"
 #include "wtopenquestiondialog.h"
 #include "wtquestiondialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
-WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
-  : m_dialog(new TestQuestionMenuDialog)
+#pragma GCC diagnostic pop
+
+ribi::WtTestOpenQuestionMenuDialog::WtTestOpenQuestionMenuDialog()
+  : m_dialog(new TestOpenQuestionMenuDialog)
 {
  {
     std::vector<std::string> image_names;
-    image_names.push_back("ToolTestQuestionWelcome.png");
+    image_names.push_back("ToolTestOpenQuestionWelcome.png");
 
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const std::string& filename: image_names)
     {
-      if (!(QFile::exists(filename.c_str())))
+
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!boost::filesystem::exists(filename.c_str()))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
   this->setContentAlignment(Wt::AlignCenter);
   {
-    Wt::WLabel * const title = new Wt::WLabel("TestQuestion");
+    Wt::WLabel * const title = new Wt::WLabel("TestOpenQuestion");
     title->setStyleClass("title");
     this->addWidget(title);
   }
@@ -100,8 +105,8 @@ WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtTestQuestionMenuDialog::CreateNewAboutDialog() const
+
+Wt::WWidget * ribi::WtTestOpenQuestionMenuDialog::CreateNewAboutDialog() const
 {
   About a = m_dialog->GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -112,27 +117,27 @@ Wt::WWidget * WtTestQuestionMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtTestQuestionMenuDialog::CreateNewMainDialog() const
+
+Wt::WWidget * ribi::WtTestOpenQuestionMenuDialog::CreateNewMainDialog() const
 {
-  WtTestQuestionMainDialog * const d = new WtTestQuestionMainDialog;
+  WtTestOpenQuestionMainDialog * const d = new WtTestOpenQuestionMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtTestQuestionMenuDialog::CreateNewWelcomeDialog() const
+
+Wt::WWidget * ribi::WtTestOpenQuestionMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
   dialog->addWidget(new Wt::WBreak);
-  new Wt::WLabel("Welcome to TestQuestion",dialog);
+  new Wt::WLabel("Welcome to TestOpenQuestion",dialog);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  new Wt::WLabel("TestQuestion tests the QuestionDialog classes",dialog);
+  new Wt::WLabel("TestOpenQuestion tests the QuestionDialog classes",dialog);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
    Wt::WGroupBox * const box = new Wt::WGroupBox("Explanation",dialog);
-  box->addWidget(new Wt::WImage("ToolTestQuestionWelcome.png"));
+  box->addWidget(new Wt::WImage("ToolTestOpenQuestionWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------
+

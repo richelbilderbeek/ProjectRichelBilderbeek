@@ -4,7 +4,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 
 #include <QDesktopWidget>
@@ -13,6 +13,7 @@
 
 #include "fileio.h"
 #include "qtvisualabcmaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtvisualabcmaindialog.h"
 #include "visualabcmaindialog.h"
@@ -33,7 +34,7 @@ ribi::QtVisualAbcMainDialog::QtVisualAbcMainDialog(QWidget *parent)
   {
     const std::vector<std::string> v = VisualAbcMainDialog::GetAbcFriday();
     std::string t;
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       t+=s;
       t+='\n';
@@ -104,11 +105,10 @@ void ribi::QtVisualAbcMainDialog::on_label_save_clicked()
 void ribi::QtVisualAbcMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtVisualAbcMainDialog::Test");
-  TRACE("Finished ribi::QtVisualAbcMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

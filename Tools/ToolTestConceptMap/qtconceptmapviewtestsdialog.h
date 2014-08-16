@@ -55,7 +55,7 @@ private:
     const boost::shared_ptr<ConceptMap> concept_map);
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTPVDBVIEWTESTSDIALOG_H

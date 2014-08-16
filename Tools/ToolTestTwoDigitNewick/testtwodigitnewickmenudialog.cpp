@@ -8,7 +8,9 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
+#include "richelbilderbeekprogram.h"
 #include "twodigitnewick.h"
+#include "testtimer.h"
 #include "newick.h"
 #pragma GCC diagnostic pop
 
@@ -131,11 +133,10 @@ std::vector<std::string> ribi::TestTwoDigitNewickMenuDialog::GetVersionHistory()
 void ribi::TestTwoDigitNewickMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestTwoDigitNewickMenuDialog::Test");
-  TRACE("Finished ribi::TestTwoDigitNewickMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

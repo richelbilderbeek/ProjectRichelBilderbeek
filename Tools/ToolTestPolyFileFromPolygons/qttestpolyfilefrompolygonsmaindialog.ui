@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestPolyFileFromPolygonsMainDialog</class>
+ <widget class="QDialog" name="QtTestPolyFileFromPolygonsMainDialog">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>619</width>
+    <height>445</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>TestPolyFileFromPolygons</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolTestPolyFileFromPolygons.qrc">
+    <normaloff>:/ToolTestPolyFileFromPolygons/ToolTestPolyFileFromPolygonsIcon.png</normaloff>:/ToolTestPolyFileFromPolygons/ToolTestPolyFileFromPolygonsIcon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+
+QWidget { font: bold, &quot;Courier New&quot;, courier, monospace }
+QPushButton { font: 18 px  }
+QTabWidget { font: 12 px  }
+QLabel { font: 12px }
+QComboBox { font: 12px }
+QPlainTextEdit { font: 10px }
+
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Resulting .poly file</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="ribi::QtNavigationableGraphicsView" name="view">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_shapes">
+     <property name="text">
+      <string>Shapes</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QPlainTextEdit" name="edit_shapes">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
+     <property name="plainText">
+      <string>#Two intersecting squares
+#A square as you would expect
+POLYGON((-10 -10,-10 10,10 10,10 -10))
+#A linestring that goes back to its origin
+LINESTRING(-5 -5,-5 15,15 15,15 -5,-5 -5)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPlainTextEdit" name="text_file"/>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ribi::QtNavigationableGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>qtnavigationablegraphicsview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="ToolTestPolyFileFromPolygons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

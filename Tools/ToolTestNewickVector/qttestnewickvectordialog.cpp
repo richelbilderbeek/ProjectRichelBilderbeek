@@ -39,6 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "binarynewickvector.h"
 #include "testnewickvectordialog.h"
 #include "newick.h"
+#include "testtimer.h"
 #include "newickvector.h"
 #include "qtaboutdialog.h"
 #include "ui_qttestnewickvectordialog.h"
@@ -55,25 +56,28 @@ ribi::QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) noexce
   #endif
   ui->setupUi(this);
   QObject::connect(
-    ui->edit_newick,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_newick,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
   QObject::connect(
-    ui->edit_theta,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_theta,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
   QObject::connect(
-    ui->edit_max_complexity,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_max_complexity,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
   QObject::connect(
-    ui->box_show_calculation,SIGNAL(clicked()),
-    this,SLOT(OnAnyChange()));
+    ui->box_show_calculation,
+    static_cast<void (QAbstractButton::*)(bool)>(&QAbstractButton::clicked),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
   QObject::connect(
-    ui->box_compare,SIGNAL(clicked()),
-    this,SLOT(OnAnyChange()));
+    ui->box_compare,
+    static_cast<void (QAbstractButton::*)(bool)>(&QAbstractButton::clicked),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
 
 
   QObject::connect(
-    m_timer,SIGNAL(timeout()),
-    this,SLOT(OnDemoTick()));
+    m_timer,&QTimer::timeout,
+    this,&ribi::QtTestNewickVectorDialog::OnDemoTick
+  );
 
   #ifndef NDEBUG
   setWindowTitle(windowTitle()+" (debug)");
@@ -175,11 +179,10 @@ void ribi::QtTestNewickVectorDialog::on_box_compare_clicked() noexcept
 void ribi::QtTestNewickVectorDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestNewickVectorDialog::Test");
-  TRACE("Finished ribi::QtTestNewickVectorDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

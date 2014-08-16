@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestQtRoundedEditRectItemModifyDialog</class>
+ <widget class="QDialog" name="QtTestQtRoundedEditRectItemModifyDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>535</width>
+    <height>184</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TestQtRoundedEditRectItem</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolTestQtRoundedEditRectItem.qrc">
+    <normaloff>:/images/ToolTestQtRoundedEditRectItemIcon.png</normaloff>:/images/ToolTestQtRoundedEditRectItemIcon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QPushButton { background-color: rgb(255, 255, 255);  }
+QPushButton { color: rgb(0,0,0); }
+</string>
+  </property>
+ </widget>
+ <resources>
+  <include location="ToolTestQtRoundedEditRectItem.qrc"/>
+ </resources>
+ <connections/>
+</ui>

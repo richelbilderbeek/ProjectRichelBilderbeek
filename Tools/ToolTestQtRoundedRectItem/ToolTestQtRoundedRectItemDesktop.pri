@@ -3,16 +3,17 @@ include(../../Tools/ToolTestQtRoundedRectItem/ToolTestQtRoundedRectItemConsole.p
 HEADERS += \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemwidget.h \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmenudialog.h \
-    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmaindialog.h
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemcomparedialog.h \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmodifydialog.h
 
 SOURCES += \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemwidget.cpp \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmenudialog.cpp \
-    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmaindialog.cpp
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemcomparedialog.cpp \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmodifydialog.cpp
 
 FORMS += \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmenudialog.ui \
-    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmaindialog.ui
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemcomparedialog.ui \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmodifydialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolTestQtRoundedRectItem/ToolTestQtRoundedRectItem.qrc

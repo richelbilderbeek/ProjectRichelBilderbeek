@@ -32,6 +32,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtchessresources.h"
 #include "qttestchessboarddialog.h"
 #include "qttestchessgamedialog.h"
+#include "chessbitboard.h"
+#include "chessboard.h"
+#include "chessmove.h"
+#include "chesspiece.h"
+#include "chessscore.h"
+#include "chesssquare.h"
+#include "qtchessresources.h"
+#include "trace.h"
+#include "testtimer.h"
 #include "qttestchessviewresourcesdialog.h"
 #include "testchessmenudialog.h"
 #include "trace.h"
@@ -94,7 +103,14 @@ void ribi::QtTestChessMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestChessMenuDialog::Test");
-  TRACE("Finished ribi::QtTestChessMenuDialog::Test successfully");
+  TestChessMenuDialog();
+  ribi::Chess::QtResources();
+  ribi::Chess::Score::Test();
+  ribi::Chess::Square::Test();
+  ribi::Chess::BitBoard::Test();
+  ribi::Chess::Move::Test();
+  ribi::Chess::Piece::Test();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  //const bool verbose{false};
 }
 #endif

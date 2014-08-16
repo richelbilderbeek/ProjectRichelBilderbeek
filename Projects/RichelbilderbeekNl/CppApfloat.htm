@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>apfloat</title>
+  <meta name="description" content="C++ apfloat"/>
+  <meta name="keywords" content="C++ apfloat class library for numbers"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppApfloat.htm">apfloat</a></h1>
+<p>&nbsp;</p>
+<p>
+  <a href="CppApfloat.htm">apfloat</a> is a <a href="CppLibrary.htm">library</a> to work 
+  with <a href="CppArbitraryPrecision.htm">arbitrary precision</a> <a href="CppDouble.htm">double</a>.
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppApfloat.htm">apfloat</a> examples</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppApfloatExample1.htm">1: basics</a></li>
+  <li><a href="CppApfloatExample2.htm">2: basics</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>My <a href="CppApfloat.htm">apfloat</a> review</h2>
+<p>&nbsp;</p>
+<p>In general, I'd review <a href="CppApfloat.htm">apfloat</a> positively.</p>
+<p>&nbsp;</p>
+<p>Pros:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Works under both Linux and Windows
+  </li>
+  <li>
+    No installation needed
+  </li>
+  <li>
+    Use only the STL; no other libraries needed
+  </li>
+  <li>
+    Intuitive interface
+  </li>
+  <li>
+    Mostly const-correct
+  </li>
+  <li>
+    Uses some internal asserts
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>Cons:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    All apfloat classes and functions are in the global namespace, causing namespace pollution:
+    there will be some common names entering the global namespace,
+    either as a #define ('BIN') or constant ('INFINITE')
+  </li>
+  <li>
+    Some apfloat functions have the some name as used by the STL. Instead of specializing these (and
+    put them in namespace std), these are put in the global namespace. This means that instead
+    of 'std::abs' I have to use 'abs' on apfloats
+  </li>
+  <li>
+    The apfloat constructor taking a string as an argument, is not const correct:
+    it takes 'char *' as an argument, instead of 'const char*'
+  </li>
+  <li>
+    The apfloat header file does not use as much type forwarding as possible,
+    slowing down compile time
+  </li>
+  <li>
+    The apfloat class name does not start with a capital 'a'. Are there coding standards
+    for custom classes that think this is a good idea? Sure, a typedef can fix this
+  </li>
+  <li>
+    apfloat functions do not declare and initialize variables directly, instead all variables
+    are declared and initialized later
+  </li>
+  <li>
+    apfloat use C-style casts
+  </li>
+  <li>
+    apfloat use functions that takes 'void' as an argument. This is the C way to denote that there
+    are no arguments. In C++, this is an abomination
+  </li>
+  <li>
+    apfloat functions sometimes have unused variables, either as function arguments
+    or as local variables
+  </li>
+  <li>
+    apfloat its implementation of std::atan2 has its arguments the other way around. In other
+    words, std::atan(1.0,2.0) equals atan(apfloat(2.0),apfloat(1.0))
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

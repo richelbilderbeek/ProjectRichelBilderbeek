@@ -30,8 +30,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dialwidget.h"
 #include "led.h"
 #include "ledwidget.h"
+#include "testtimer.h"
 #include "mysterymachine.h"
 #include "mysterymachinewidget.h"
+#include "richelbilderbeekprogram.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
@@ -117,12 +119,10 @@ std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory() 
 void ribi::SimMysteryMachineMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::SimMysteryMachineMenuDialog::Test");
-  //::shared_ptr<MysteryMachineWidget> w { std::make_shared<MysteryMachineWidget>() };
-  TRACE("Finished ribi::SimMysteryMachineMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

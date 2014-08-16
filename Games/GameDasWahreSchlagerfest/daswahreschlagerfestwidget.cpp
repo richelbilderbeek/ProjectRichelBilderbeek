@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <numeric>
 
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -233,13 +234,11 @@ void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfest
 void ribi::DasWahreSchlagerfestWidget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DasWahreSchlagerfestWidget::Test");
-
-  TRACE("Finished ribi::DasWahreSchlagerfestWidget::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

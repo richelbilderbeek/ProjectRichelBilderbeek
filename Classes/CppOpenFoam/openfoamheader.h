@@ -1,5 +1,5 @@
-#ifndef OPENFOAMHEADER_H
-#define OPENFOAMHEADER_H
+#ifndef RIBI_OPENFOAMHEADER_H
+#define RIBI_OPENFOAMHEADER_H
 
 #include <iosfwd>
 #include <string>
@@ -68,4 +68,4 @@ std::istream& operator>>(std::istream& is, Header& h);
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMHEADER_H
+#endif // RIBI_OPENFOAMHEADER_H

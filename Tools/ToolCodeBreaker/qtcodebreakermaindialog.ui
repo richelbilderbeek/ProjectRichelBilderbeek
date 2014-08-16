@@ -13,7 +13,6 @@
   <property name="windowTitle">
    <string>CodeBreaker</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

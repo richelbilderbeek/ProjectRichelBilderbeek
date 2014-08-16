@@ -1,5 +1,5 @@
-#ifndef OPENFOAMFACESFILEITEM_H
-#define OPENFOAMFACESFILEITEM_H
+#ifndef RIBI_OPENFOAMFACESFILEITEM_H
+#define RIBI_OPENFOAMFACESFILEITEM_H
 
 #include <vector>
 #include <iosfwd>
@@ -38,4 +38,4 @@ std::istream& operator>>(std::istream& is, FacesFileItem& f);
 } //~namespace ribi
 
 
-#endif // OPENFOAMFACESFILEITEM_H
+#endif // RIBI_OPENFOAMFACESFILEITEM_H

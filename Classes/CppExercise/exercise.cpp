@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "openquestiondialogfactory.h"
 //#include "trace.h"
 
 #include <QFile>
@@ -57,7 +58,8 @@ ribi::Exercise::Exercise(const std::string& filename)
   {
     try
     {
-      boost::shared_ptr<QuestionDialog> tmp(new OpenQuestionDialog(s));
+      boost::shared_ptr<QuestionDialog> tmp
+        = OpenQuestionDialogFactory().Create(s);
       m_questions.push_back(s);
       continue;
     }

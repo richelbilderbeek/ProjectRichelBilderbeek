@@ -8,6 +8,7 @@
 
 #include "reversiboard.h"
 #include "fileio.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -27,11 +28,10 @@ void ribi::TestReversiMainDialog::Execute()
 void ribi::TestReversiMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestReversiMenuDialog::Test()");
-  TRACE("Finished ribi::TestReversiMenuDialog::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

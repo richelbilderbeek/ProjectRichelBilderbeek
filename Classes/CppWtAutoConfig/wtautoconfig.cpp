@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtAutoConfig, configures a Wt server in a default way
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,8 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
 
 #include <Wt/WApplication>
@@ -44,12 +44,12 @@ ribi::WtAutoConfig::WtAutoConfig(
 
 }
 
-const std::string ribi::WtAutoConfig::GetVersion()
+std::string ribi::WtAutoConfig::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::WtAutoConfig::GetVersionHistory()
+std::vector<std::string> ribi::WtAutoConfig::GetVersionHistory()
 {
   return {
     "2011-04-16: version 1.0: initial version",
@@ -110,7 +110,7 @@ int ribi::WtAutoConfig::Run()
   return WRun(w.size(), &w[0], m_function);
 }
 
-const std::vector<std::string> ribi::WtAutoConfig::CreateDefaultStylesheet()
+std::vector<std::string> ribi::WtAutoConfig::CreateDefaultStylesheet()
 {
   std::vector<std::string> v;
 

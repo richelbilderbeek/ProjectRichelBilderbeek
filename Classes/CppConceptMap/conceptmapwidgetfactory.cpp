@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
+//#ifdef NOT_NOW_2014_08_11
+
 #include "conceptmapwidgetfactory.h"
 
 #include <cassert>
@@ -30,7 +32,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Widget>>
   ribi::cmap::WidgetFactory::GetAllTests() noexcept
 {
   std::vector<boost::shared_ptr<Widget>> v;
-  for (const boost::shared_ptr<ConceptMap> m: ConceptMapFactory::GetAllTests())
+  for (const boost::shared_ptr<ConceptMap> m: ConceptMapFactory().GetAllTests())
   {
     assert( (m || !m)
       && "Allow a widget with and without an actual concept map");
@@ -45,3 +47,5 @@ const std::vector<boost::shared_ptr<ribi::cmap::Widget>>
   }
   return v;
 }
+
+//#endif // NOT_NOW_2014_08_11

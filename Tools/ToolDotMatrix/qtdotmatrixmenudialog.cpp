@@ -11,6 +11,7 @@
 #include "qtdotmatrixsinglelinemaindialog.h"
 #include "qtdotmatrixmultilinemaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtdotmatrixmenudialog.h"
 #pragma GCC diagnostic pop
@@ -55,14 +56,13 @@ void ribi::QtDotMatrixMenuDialog::on_button_quit_clicked()
 void ribi::QtDotMatrixMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtDotMatrixMenuDialog::Test");
   QtDotMatrixSingleLineMainDialog();
   QtDotMatrixMultiLineMainDialog();
-  TRACE("Finished ribi::QtDotMatrixMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

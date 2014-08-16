@@ -20,53 +20,6 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="ArduinoLcd.htm">ArduinoLcd</a></h1>
 <p>&nbsp;</p>
-<h2>./ArduinoLcd/ArduinoLcd.ino</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="./ArduinoLcd/ArduinoLcd.ino" border = "1"><tr><td><code>
-#include &lt;LiquidCrystal.h&gt;<br/>
-<br/>
-<br/>
-//OpenPCR defaults. Note: pin 16 and 17 don't exist!<br/>
-//iLcd(6, 7, 8, A5, 16, 17),<br/>
-const int pin_lcd_rs =&nbsp;&nbsp;2; //Arduino pin that connects to R/S pin of LCD display<br/>
-const int pin_lcd_e&nbsp;&nbsp;=&nbsp;&nbsp;3; //Arduino pin that connects to E&nbsp;&nbsp; pin of LCD display<br/>
-const int pin_lcd_d4 =&nbsp;&nbsp;4; //Arduino pin that connects to D4&nbsp;&nbsp;pin of LCD display<br/>
-const int pin_lcd_d5 =&nbsp;&nbsp;5; //Arduino pin that connects to D5&nbsp;&nbsp;pin of LCD display<br/>
-const int pin_lcd_d6 =&nbsp;&nbsp;6; //Arduino pin that connects to D6&nbsp;&nbsp;pin of LCD display<br/>
-const int pin_lcd_d7 =&nbsp;&nbsp;7; //Arduino pin that connects to D7&nbsp;&nbsp;pin of LCD display<br/>
-<br/>
-LiquidCrystal lcd(<br/>
-&nbsp;&nbsp;pin_lcd_rs,<br/>
-&nbsp;&nbsp;pin_lcd_e,<br/>
-&nbsp;&nbsp;pin_lcd_d4,<br/>
-&nbsp;&nbsp;pin_lcd_d5,<br/>
-&nbsp;&nbsp;pin_lcd_d6,<br/>
-&nbsp;&nbsp;pin_lcd_d7);<br/>
-<br/>
-<br/>
-void setup ()<br/>
-{<br/>
-&nbsp;&nbsp;lcd.begin(16,1);<br/>
-&nbsp;&nbsp;Serial.begin(9600);<br/>
-}<br/>
-<br/>
-void loop()<br/>
-{<br/>
-&nbsp;&nbsp;lcd.clear();<br/>
-&nbsp;&nbsp;lcd.setCursor(0,0);<br/>
-&nbsp;&nbsp;lcd.print(millis());<br/>
-&nbsp;&nbsp;Serial.print(millis());<br/>
-&nbsp;&nbsp;Serial.print("\n");<br/>
-&nbsp;&nbsp;delay(100);<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
 <p>&nbsp;</p>

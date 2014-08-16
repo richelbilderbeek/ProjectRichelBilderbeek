@@ -11,7 +11,8 @@
 
 #include "drawcanvas.h"
 #include "imagecanvas.h"
-#include  "textcanvas.h"
+#include "textcanvas.h"
+#include "testtimer.h"
 #include "multicanvas.h"
 #include "trace.h"
 #include "ui_qttestmulticanvasmaindialog.h"
@@ -90,6 +91,7 @@ const boost::shared_ptr<ribi::DrawCanvas> ribi::QtTestMultiCanvasMainDialog::Cre
 }
 
 
+/*
 void ribi::QtTestMultiCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
 {
   const CanvasColorSystem color_system
@@ -108,6 +110,7 @@ void ribi::QtTestMultiCanvasMainDialog::on_box_coordinat_system_currentIndexChan
   this->m_canvas->SetCoordinatSystem(coordinat_system);
   //Should redraw automatically
 }
+*/
 
 void ribi::QtTestMultiCanvasMainDialog::ShowCanvas(const ribi::Canvas * const)
 {
@@ -118,6 +121,7 @@ void ribi::QtTestMultiCanvasMainDialog::ShowCanvas(const ribi::Canvas * const)
 
 }
 
+/*
 void ribi::QtTestMultiCanvasMainDialog::on_button_clear_clicked()
 {
   m_canvas->Clear();
@@ -150,17 +154,17 @@ void ribi::QtTestMultiCanvasMainDialog::on_button_line_clicked()
     ui->box_line_y2_draw->value()
   );
 }
+*/
 
 #ifndef NDEBUG
 void ribi::QtTestMultiCanvasMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestMultiCanvasMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //MultiCanvas is tested in TestMultiCanvasMenuDialog
-  TRACE("Finished ribi::QtTestMultiCanvasMainDialog::Test successfully");
 }
 #endif

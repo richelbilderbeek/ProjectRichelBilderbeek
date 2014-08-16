@@ -1,4 +1,10 @@
 include(../../Tools/ToolTestLed/ToolTestLedConsole.pri)
-SOURCES +=
-HEADERS +=
+
+SOURCES += \
+    ../../Tools/ToolTestLed/wttestledmaindialog.cpp \
+    ../../Tools/ToolTestLed/wttestledmenudialog.cpp
+
+HEADERS += \
+    ../../Tools/ToolTestLed/wttestledmaindialog.h \
+    ../../Tools/ToolTestLed/wttestledmenudialog.h
 

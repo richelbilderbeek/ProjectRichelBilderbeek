@@ -13,6 +13,7 @@
 #include <boost/math/constants/constants.hpp>
 
 #include "dotmatrixstring.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -52,7 +53,7 @@ void ribi::TextCanvas::Clear() noexcept
   }
 
   #ifndef NDEBUG
-  for (auto row: m_canvas)
+  for (const auto& row: m_canvas)
   {
     assert(std::count(row.begin(),row.end(),' ') == static_cast<int>(row.size()));
   }
@@ -118,7 +119,7 @@ void ribi::TextCanvas::PutChar(const int x, const int y, const char c) noexcept
 void ribi::TextCanvas::PutText(const int x, const int y, const std::string& text) noexcept
 {
   int i=0;
-  for (const auto c: text)
+  for (const auto& c: text)
   {
     const int x_here = x + i;
     const int y_here = y;
@@ -143,11 +144,11 @@ void ribi::TextCanvas::SetCoordinatSystem(const CanvasCoordinatSystem coordinatS
 void ribi::TextCanvas::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TextCanvas::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Drawing text
   {
     const int maxx = 90;
@@ -184,7 +185,6 @@ void ribi::TextCanvas::Test() noexcept
     const std::string str_after {s_after.str() };
     assert(std::count(str_after.begin(),str_after.end(),' ') != maxx * maxy); //Line truely drawn
   }
-  TRACE("Finished ribi::TextCanvas::Test successfully");
 }
 #endif
 
@@ -192,7 +192,7 @@ std::string ribi::TextCanvas::ToString() const noexcept
 {
   const std::vector<std::string> v { ToStrings() };
   std::string s;
-  for (const auto t: v)
+  for (const auto& t: v)
   {
     s += t;
     s += '\n';

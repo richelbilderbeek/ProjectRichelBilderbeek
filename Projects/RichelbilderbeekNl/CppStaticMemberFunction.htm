@@ -41,6 +41,28 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2>Notes to self</h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    <a href="CppDeclaration.htm">Declare</a> a <a href="CppMemberFunction.htm">member function</a> that does not modify the state of its object a 
+    <a href="CppStaticMemberFunction.htm">static member function</a> [1], but only if there is no need to 
+    trigger a <a href="CppUnitTest.htm">unit test</a> for that <a href="CppClass.htm">class</a>. 
+    As <a href="CppStaticMemberFunction.htm">static member functions</a>
+    bypass the <a href="CppConstructor.htm">constructor</a>, and I use the 
+    <a href="CppConstructor.htm">constructor</a> to start a <a href="CppUnitTest.htm">unit test</a>, 
+    making a <a href="CppMemberFunction.htm">member function</a> like
+    'Transmogrify' <a href="CppStatic.htm">static</a>, leaves it untested. 
+    A <a href="CppMemberFunction.htm">member function</a> like 'GetVersion' is fine to keep 
+    <a href="CppStatic.htm">static</a>, especially if the <a href="CppClass.htm">class</a> has 
+    no <a href="CppDefaultConstructor.htm">default constructor</a>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>

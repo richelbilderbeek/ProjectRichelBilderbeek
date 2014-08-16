@@ -18,6 +18,8 @@
 #include "fileio.h"
 
 #include "openfoamheader.h"
+#include "openfoampatchfieldtypes.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -43,12 +45,11 @@ ribi::foam::Header ribi::foam::PressureFile::GetDefaultHeader() noexcept
 void ribi::foam::PressureFile::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::PressureFile::Test");
-  TRACE("Finished ribi::foam::PressureFile successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 
@@ -71,7 +72,20 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const PressureFile& f) no
     << "" << '\n'
     << "boundaryField" << '\n'
     << "{" << '\n'
-    << f.m_boundary_field << '\n'
+  ;
+  os << f.m_boundary_field << '\n';
+  /*
+  for (const auto& p: f.m_boundary_field)
+  {
+    os
+      << "  " << p.first << '\n'
+      << "  {\n"
+      << "    type " << PatchFieldTypes::ToStr(p.second) << ";\n"
+      << "  }\n"
+    ;
+  }
+  */
+  os
     << "}" << '\n'
   ;
   return os;

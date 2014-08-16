@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppCoordinat.htm
 //---------------------------------------------------------------------------
-#ifndef COORDINAT_H
-#define COORDINAT_H
+#ifndef RIBI_COORDINAT_H
+#define RIBI_COORDINAT_H
 
 #ifdef USE_CUSTOM_RIBI_COORDINAT
 
@@ -98,17 +98,16 @@ void Coordinat::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Coordinat::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const Coordinat<double> a(0.0,0.0);
     const Coordinat<double> b(0.0,0.0);
     assert(a == b);
     const Coordinat<double> c(a);
   }
-  TRACE("Finished ribi::Coordinat::Test successfully");
 }
 #endif
 
 #endif // USE_CUSTOM_RIBI_COORDINAT
 
-#endif // COORDINAT_H
+#endif // RIBI_COORDINAT_H

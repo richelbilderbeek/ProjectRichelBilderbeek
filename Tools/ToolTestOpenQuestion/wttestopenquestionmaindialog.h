@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQuestion.htm
 //---------------------------------------------------------------------------
-#ifndef WTTESTQUESTIONMAINDIALOG_H
-#define WTTESTQUESTIONMAINDIALOG_H
+#ifndef RIBI_WTTESTOPENQUESTIONMAINDIALOG_H
+#define RIBI_WTTESTOPENQUESTIONMAINDIALOG_H
 
 #include <vector>
 #include <boost/shared_ptr.hpp>
@@ -27,12 +27,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 
 namespace Wt { struct WLabel; }
+
+namespace ribi {
+
 struct TestQuestionMainDialog;
 struct WtQuestionDialog;
 
-struct WtTestQuestionMainDialog : public Wt::WContainerWidget
+struct WtTestOpenQuestionMainDialog : public Wt::WContainerWidget
 {
-  WtTestQuestionMainDialog();
+  WtTestOpenQuestionMainDialog();
 
   private:
   struct Ui
@@ -49,4 +52,6 @@ struct WtTestQuestionMainDialog : public Wt::WContainerWidget
   void OnSubmit();
 };
 
-#endif // WTTESTQUESTIONMAINDIALOG_H
+} //~namespace ribi
+
+#endif // RIBI_WTTESTOPENQUESTIONMAINDIALOG_H

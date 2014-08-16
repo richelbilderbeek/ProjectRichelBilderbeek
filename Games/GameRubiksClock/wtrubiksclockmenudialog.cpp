@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RubiksClock. Rubik's Clock game.
-Copyright (C) 2007-2011  Richel Bilderbeek
+Copyright (C) 2007-2014  Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,8 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
@@ -35,6 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
 
+#include "fileio.h"
 #include "rubiksclockmenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
@@ -43,9 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "wtrubiksclockwidget.h"
 #include "wttogglebuttonwidget.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#include <QFile>
+#include <QFile> //#include after Wt
 #pragma GCC diagnostic pop
 
 ribi::ruco::WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()
@@ -55,18 +56,18 @@ ribi::ruco::WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()
     image_names.push_back("GameRubiksClock.png");
     image_names.push_back("GameRubiksClockWelcome_2_1.png");
 
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const std::string& filename: image_names)
     {
       if (!(QFile::exists(filename.c_str())))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!boost::filesystem::exists(filename.c_str()))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
   this->setContentAlignment(Wt::AlignCenter);

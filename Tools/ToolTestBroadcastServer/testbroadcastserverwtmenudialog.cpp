@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestBroadcastServer, tool to test WtBroadcastServer
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,24 +18,28 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestBroadcastServer.htm
 //---------------------------------------------------------------------------
+#include "testbroadcastserverwtmenudialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WLabel>
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
 #include "testbroadcastservermenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "testbroadcastserverwtmaindialog.h"
-#include "testbroadcastserverwtmenudialog.h"
 #include "wtbroadcastserver.h"
 #include "wtbroadcastserverclient.h"
-//---------------------------------------------------------------------------
-namespace ToolTestBroadcastServer {
-//---------------------------------------------------------------------------
-WtMenuDialog::WtMenuDialog()
+#pragma GCC diagnostic pop
+
+ribi::ToolTestBroadcastServer::WtMenuDialog::WtMenuDialog()
 {
  this->setContentAlignment(Wt::AlignCenter);
   {
@@ -74,10 +78,10 @@ WtMenuDialog::WtMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtMenuDialog::CreateNewAboutDialog()
+
+Wt::WWidget * ribi::ToolTestBroadcastServer::WtMenuDialog::CreateNewAboutDialog()
 {
-  About a = MenuDialog::GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtBroadcastServer version: " + WtBroadcastServer::GetVersion());
   a.AddLibrary("WtBroadcastServerClient version: " + WtBroadcastServerClient::GetVersion());
@@ -85,15 +89,15 @@ Wt::WWidget * WtMenuDialog::CreateNewAboutDialog()
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtMenuDialog::CreateNewMainDialog() const
+
+Wt::WWidget * ribi::ToolTestBroadcastServer::WtMenuDialog::CreateNewMainDialog() const
 {
   WtMainDialog * const d = new WtMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
+
+Wt::WWidget * ribi::ToolTestBroadcastServer::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -108,6 +112,3 @@ Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
   new Wt::WLabel("using the WtBroadcastServer and WtBroadcastServerClient classes",dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTestBroadcastServer
-//---------------------------------------------------------------------------

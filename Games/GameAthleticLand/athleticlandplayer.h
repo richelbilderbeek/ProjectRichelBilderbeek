@@ -34,7 +34,7 @@ struct Player
   //void SetToStartingPosition(const Background* const background);
   //void RespondToBackground(const Background* const background);
 
-  State GetState() const noexcept { return m_state; }
+  PlayerState GetState() const noexcept { return m_state; }
   double GetX() const noexcept { return m_x; }
   double GetY() const noexcept { return m_y; }
   //int GetHeight() const;
@@ -50,7 +50,7 @@ struct Player
   private:
   //PlayerState * m_cur_state;
   //bool m_has_died;
-  State m_state;
+  PlayerState m_state;
 
   //The fraction the player is left
   double m_x;

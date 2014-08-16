@@ -24,7 +24,7 @@ ribi::kalman::SteadyStateKalmanFilterParameters::SteadyStateKalmanFilterParamete
   #endif
 }
 
-const boost::numeric::ublas::matrix<double> ribi::kalman::SteadyStateKalmanFilterParameters::CalculateOptimalKalmanGain(
+boost::numeric::ublas::matrix<double> ribi::kalman::SteadyStateKalmanFilterParameters::CalculateOptimalKalmanGain(
   const boost::numeric::ublas::matrix<double>& initial_covariance,
   const boost::numeric::ublas::matrix<double>& measurement_noise,
   const boost::numeric::ublas::matrix<double>& observation,

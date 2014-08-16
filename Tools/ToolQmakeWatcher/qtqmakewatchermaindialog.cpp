@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 
 #include "fileio.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtqmakewatchermaindialog.h"
 #pragma GCC diagnostic pop
@@ -50,8 +51,9 @@ ribi::QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent)
   ui->edit_makefile->setWordWrapMode(QTextOption::NoWrap);
   ui->edit_diff->setWordWrapMode(QTextOption::NoWrap);
 
-  QObject::connect(ui->button_qmake,SIGNAL(clicked()),
-    this,SLOT(OnQmake()));
+  QObject::connect(ui->button_qmake,&QPushButton::clicked,
+    this,&ribi::QtQmakeWatcherMainDialog::OnQmake
+  );
 
 
 
@@ -129,11 +131,10 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
 void ribi::QtQmakeWatcherMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtQmakeWatcherMainDialog::Test");
-  TRACE("Finished ribi::QtQmakeWatcherMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

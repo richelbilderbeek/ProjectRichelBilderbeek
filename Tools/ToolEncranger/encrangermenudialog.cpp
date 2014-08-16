@@ -27,9 +27,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <boost/lexical_cast.hpp>
 
-#include "loopreader.h"
 #include "encranger.h"
 #include "encrangermaindialog.h"
+#include "loopreader.h"
+#include "testtimer.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -118,6 +120,8 @@ ribi::About ribi::ToolEncrangerMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("Encranger version: " + Encranger::GetVersion());
   a.AddLibrary("LoopReader version: " + LoopReader<int>::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -163,7 +167,8 @@ std::vector<std::string> ribi::ToolEncrangerMenuDialog::GetVersionHistory() cons
     "2011-08-31: Version 2.4: added arrows and Welcome image",
     "2013-09-27: Version 2.5: conformized for ProjectRichelBilderbeek",
     "2013-11-01: Version 2.6: improved console version",
-    "2014-04-01: Version 2.7: added silent mode"
+    "2014-04-01: Version 2.7: added silent mode",
+    "2014-07-21: Version 2.8: added picture to desktop menu"
   };
 }
 
@@ -171,16 +176,15 @@ std::vector<std::string> ribi::ToolEncrangerMenuDialog::GetVersionHistory() cons
 void ribi::ToolEncrangerMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolEncrangerMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     ToolEncrangerMenuDialog d;
     d.Execute( {"Encranger", "-k", "123", "--text", "Hello World", "-s" } );
     d.Execute( {"Encranger", "-k", "123", "--cipher", "bc30h3g8h287g", "--silent" } );
   }
-  TRACE("Finished ribi::ToolEncrangerMenuDialog::Test successfully");
 }
 #endif

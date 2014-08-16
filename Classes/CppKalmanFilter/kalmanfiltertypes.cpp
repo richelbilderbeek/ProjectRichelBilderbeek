@@ -18,7 +18,8 @@ boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::KalmanFil
   return m;
 }
 
-std::vector<ribi::kalman::KalmanFilterType> ribi::kalman::KalmanFilterTypes::GetAllTypes() noexcept
+std::vector<ribi::kalman::KalmanFilterType>
+  ribi::kalman::KalmanFilterTypes::GetAllTypes() const noexcept
 {
   const std::vector<KalmanFilterType> v
   =
@@ -35,25 +36,25 @@ std::vector<ribi::kalman::KalmanFilterType> ribi::kalman::KalmanFilterTypes::Get
 void ribi::kalman::KalmanFilterTypes::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  const std::vector<KalmanFilterType> v = GetAllTypes();
+  const std::vector<KalmanFilterType> v = KalmanFilterTypes().GetAllTypes();
   const std::size_t sz = v.size();
   for (std::size_t i=0; i!=sz; ++i)
   {
     assert(i < v.size());
     const KalmanFilterType t = v[i];
-    const std::string s = ToStr(t);
+    const std::string s = KalmanFilterTypes().ToStr(t);
     assert(!s.empty());
-    const KalmanFilterType u = ToType(s);
+    const KalmanFilterType u = KalmanFilterTypes().ToType(s);
     assert(u == t);
   }
 }
 #endif
 
-std::string ribi::kalman::KalmanFilterTypes::ToStr(const KalmanFilterType type) noexcept
+std::string ribi::kalman::KalmanFilterTypes::ToStr(const KalmanFilterType type) const noexcept
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());
@@ -62,7 +63,7 @@ std::string ribi::kalman::KalmanFilterTypes::ToStr(const KalmanFilterType type) 
   return s;
 }
 
-ribi::kalman::KalmanFilterType ribi::kalman::KalmanFilterTypes::ToType(const std::string& s)
+ribi::kalman::KalmanFilterType ribi::kalman::KalmanFilterTypes::ToType(const std::string& s) const
 {
   if (m_map.right.empty()) m_map = CreateMap();
   assert(!m_map.right.empty());

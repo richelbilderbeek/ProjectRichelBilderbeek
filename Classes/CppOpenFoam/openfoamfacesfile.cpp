@@ -20,6 +20,7 @@
 #include "openfoamfacesfileitem.h"
 #include "openfoamfaceindex.h"
 #include "openfoamparseerror.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -82,11 +83,11 @@ ribi::foam::FacesFile ribi::foam::FacesFile::Parse(const std::string& filename)
 void ribi::foam::FacesFile::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::FacesFile::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Some initial data
   const Header header("some_name","some_location","some_object");
   std::vector<FacesFileItem> items;
@@ -175,7 +176,6 @@ void ribi::foam::FacesFile::Test() noexcept
         && "If a mesh has no non-bhoundary cells, neighbour can be empty");
     }
   }
-  TRACE("Finished ribi::foam::Header::FacesFile successfully");
 }
 #endif
 

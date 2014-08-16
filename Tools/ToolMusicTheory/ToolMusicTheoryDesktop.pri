@@ -23,6 +23,3 @@ FORMS    += \
     ../../Tools/ToolMusicTheory/qtmusictheorymultiscaledialog.ui \
     ../../Tools/ToolMusicTheory/qtmusictheorysinglescaledialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolMusicTheory/ToolMusicTheory.qrc
-

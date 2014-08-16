@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "regextestermaindialog.h"
 #include "regextestermaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtregextestermaindialog.h"
 #pragma GCC diagnostic pop
@@ -42,10 +43,9 @@ ribi::QtRegexTesterMainDialog::QtRegexTesterMainDialog(
   #endif
   ui->setupUi(this);
 
-  QObject::connect(ui->edit_line,SIGNAL(textEdited(QString)),this,SLOT(onAnyChange()));
-  QObject::connect(ui->edit_regex,SIGNAL(textEdited(QString)),this,SLOT(onAnyChange()));
-  QObject::connect(ui->edit_format,SIGNAL(textEdited(QString)),this,SLOT(onAnyChange()));
-
+  QObject::connect(ui->edit_line,&QLineEdit::textEdited,this,&ribi::QtRegexTesterMainDialog::onAnyChange);
+  QObject::connect(ui->edit_regex,&QLineEdit::textEdited,this,&ribi::QtRegexTesterMainDialog::onAnyChange);
+  QObject::connect(ui->edit_format,&QLineEdit::textEdited,this,&ribi::QtRegexTesterMainDialog::onAnyChange);
 
   ui->edit_regex->setText(m_dialog->GetExampleRegex().c_str());
   ui->edit_format->setText(m_dialog->GetExampleFormat().c_str());
@@ -106,11 +106,10 @@ void ribi::QtRegexTesterMainDialog::onAnyChange()
 void ribi::QtRegexTesterMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtRegexTesterMainDialog::Test");
-  TRACE("Finished ribi::QtRegexTesterMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

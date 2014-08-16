@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "testapproximatormenudialog.h"
 
 #include <cassert>
@@ -11,7 +13,9 @@
 #include "approximator.h"
 #include "canvas.h"
 #include "drawcanvas.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 #pragma GCC diagnostic pop
 
@@ -68,7 +72,7 @@ int ribi::ToolTestApproximatorMenuDialog::ExecuteSpecific(const std::vector<std:
   {
     std::vector<double> xs;
     std::vector<double> ys;
-    for (const auto p: a.Get())
+    for (const auto& p: a.Get())
     {
       c.DrawDot(
         static_cast<double>(p.first),
@@ -154,11 +158,10 @@ std::vector<std::string> ribi::ToolTestApproximatorMenuDialog::GetVersionHistory
 void ribi::ToolTestApproximatorMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolTestApproximatorMenuDialog::Test");
-  TRACE("Finished ribi::ToolTestApproximatorMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

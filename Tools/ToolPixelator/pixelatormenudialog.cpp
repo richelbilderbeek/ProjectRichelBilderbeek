@@ -3,7 +3,9 @@
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::PixelatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -30,8 +32,10 @@ ribi::About ribi::PixelatorMenuDialog::GetAbout() const noexcept
     "2008-2014",
     "http://www.richelbilderbeek.nl/ToolPixelator.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -75,11 +79,10 @@ std::vector<std::string> ribi::PixelatorMenuDialog::GetVersionHistory() const no
 void ribi::PixelatorMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PixelatorMenuDialog::Test");
-  TRACE("Finished ribi::PixelatorMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

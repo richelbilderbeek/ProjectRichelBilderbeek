@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestServerPusher, tool to test WtServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,14 +20,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TOOLTESTSERVERPUSHERDATA_H
 #define TOOLTESTSERVERPUSHERDATA_H
-//---------------------------------------------------------------------------
+
 #include <mutex>
-//---------------------------------------------------------------------------
+
 #include <boost/checked_delete.hpp>
-//---------------------------------------------------------------------------
+
 namespace ribi {
 namespace ToolTestServerPusher {
-//---------------------------------------------------------------------------
+
 ///Data is a Singleton
 struct Data
 {
@@ -38,7 +38,7 @@ struct Data
   static Data * GetInstance();
 
   ///Get the data
-  const std::string GetData() const;
+  std::string GetData() const;
 
   private:
   ///Data constructor
@@ -57,8 +57,8 @@ struct Data
   ///The data
   std::string m_s;
 };
-//---------------------------------------------------------------------------
+
 } //~namespace ToolTestServerPusher
 } //~namespace ribi
-//---------------------------------------------------------------------------
+
 #endif // TOOLTESTSERVERPUSHERDATA_H

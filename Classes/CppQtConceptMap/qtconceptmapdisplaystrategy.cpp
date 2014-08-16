@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
+#ifdef USE_ITEMDISPLAYSTRATEGY_20140622
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -48,7 +50,7 @@ ribi::cmap::QtDisplayStrategy::QtDisplayStrategy(const boost::shared_ptr<ribi::c
   assert(GetConcept());
   #endif
 
-  UpdateBrushesAndPens();
+  UpdateBrushesAndPens(); //NEVER CALL VIRTUAL FUNCTIONS IN CONSTRUCTORS
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
@@ -221,3 +223,5 @@ void ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens() noexcept
   }
   //TRACE("End of void ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens()");
 }
+
+#endif // USE_ITEMDISPLAYSTRATEGY_20140622

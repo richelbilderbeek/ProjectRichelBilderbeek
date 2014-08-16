@@ -10,6 +10,7 @@
 
 #include "textcanvas.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "valentinecardsymbol.h"
 #include "valentinecardsymbols.h"
 #pragma GCC diagnostic pop
@@ -25,11 +26,13 @@ ribi::ValentineCardDecrypterMainDialog::ValentineCardDecrypterMainDialog()
 void ribi::ValentineCardDecrypterMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ValentineCardDecrypterMainDialog::Test");
+  { boost::shared_ptr<ValentineCardSymbol> p{new ValentineCardSymbol(0)}; }
+  ValentineCardSymbols();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ValentineCardDecrypterMainDialog d;
   {
     const boost::shared_ptr<TextCanvas> canvas {
@@ -62,7 +65,6 @@ void ribi::ValentineCardDecrypterMainDialog::Test() noexcept
     };
     assert(*canvas == *expected);
   }
-  TRACE("Finished ribi::ValentineCardDecrypterMainDialog::Test successfully");
 }
 #endif
 

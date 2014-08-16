@@ -1,5 +1,5 @@
-#ifndef OPENFOAMCONTROLDICTFILE_H
-#define OPENFOAMCONTROLDICTFILE_H
+#ifndef RIBI_OPENFOAMCONTROLDICTFILE_H
+#define RIBI_OPENFOAMCONTROLDICTFILE_H
 
 #include <iosfwd>
 #include <vector>
@@ -70,4 +70,4 @@ std::ostream& operator<<(std::ostream& os, const ControlDictFile& f) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMCONTROLDICTFILE_H
+#endif // RIBI_OPENFOAMCONTROLDICTFILE_H

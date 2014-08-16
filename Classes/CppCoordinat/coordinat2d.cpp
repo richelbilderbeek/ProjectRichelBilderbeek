@@ -118,12 +118,11 @@ ribi::Coordinat2D ribi::Scale(
 void ribi::Coordinat2D::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Coordinat2D::Test");
-  TRACE("Finished ribi::Coordinat2D::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

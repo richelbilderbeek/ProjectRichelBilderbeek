@@ -1,11 +1,13 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtaboutdialog.h"
 #include "functionplottermenudialog.h"
-#include "qtfunctionplottermaindialog.h"
+#include "qtfunctionplotterplot2ddialog.h"
 #include "qtfunctionplottermenudialog.h"
 #include "ui_qtfunctionplottermenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -26,7 +28,7 @@ ribi::QtFunctionPlotterMenuDialog::~QtFunctionPlotterMenuDialog() noexcept
 
 void ribi::QtFunctionPlotterMenuDialog::on_button_start_clicked() noexcept
 {
-  QtFunctionPlotterMainDialog d;
+  QtFunctionPlotterPlot2dDialog d;
   this->ShowChild(&d);
 }
 
@@ -47,11 +49,10 @@ void ribi::QtFunctionPlotterMenuDialog::on_button_quit_clicked() noexcept
 void ribi::QtFunctionPlotterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtFunctionPlotterMenuDialog::Test");
-  TRACE("Finished ribi::QtFunctionPlotterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

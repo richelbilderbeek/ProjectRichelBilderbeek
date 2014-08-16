@@ -9,6 +9,7 @@
 #include <QLabel>
 
 #include "thresholdfilterermaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtthresholdfilterermaindialog.h"
 #pragma GCC diagnostic pop
@@ -93,11 +94,11 @@ void ribi::QtThresholdFiltererMainDialog::on_button_save_clicked()
 void ribi::QtThresholdFiltererMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtThresholdFiltererMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QPixmap source(":/thresholdfilterer/images/ToolThresholdFiltererTest.png");
   assert(!source.isNull());
   assert(source.width() > 0);
@@ -112,7 +113,6 @@ void ribi::QtThresholdFiltererMainDialog::Test() noexcept
     assert(target.width() > 0);
     assert(target.height() > 0);
   }
-  TRACE("Successfully finished ribi::QtThresholdFiltererMainDialog::Test");
 }
 #endif
 

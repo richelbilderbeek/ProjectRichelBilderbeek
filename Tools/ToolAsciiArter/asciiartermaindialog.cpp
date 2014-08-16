@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "canvas.h"
 #include "imagecanvas.h"
 #include "fileio.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -78,11 +79,15 @@ const boost::shared_ptr<ribi::ImageCanvas> ribi::AsciiArterMainDialog::GetImageC
 void ribi::AsciiArterMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::AsciiArterMainDialog::Test()");
+  {
+    fileio::FileIo();
+    boost::shared_ptr<ImageCanvas> canvas{new ImageCanvas("",1)};
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string temp_filename = fileio::FileIo().GetTempFileName();
   assert(!fileio::FileIo().IsRegularFile(temp_filename));
   {
@@ -101,7 +106,6 @@ void ribi::AsciiArterMainDialog::Test() noexcept
 
   fileio::FileIo().DeleteFile(temp_filename);
   assert(!fileio::FileIo().IsRegularFile(temp_filename));
-  TRACE("Finished ribi::AsciiArterMainDialog::Test()");
 }
 #endif
 

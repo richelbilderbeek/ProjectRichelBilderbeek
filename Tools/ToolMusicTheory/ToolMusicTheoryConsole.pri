@@ -9,3 +9,7 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolMusicTheory/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolMusicTheory/ToolMusicTheory.qrc
+

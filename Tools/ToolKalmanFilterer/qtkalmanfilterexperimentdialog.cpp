@@ -1,6 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtkalmanfilterexperimentdialog.h"
 
 #include <cassert>
@@ -21,6 +22,7 @@
 
 #include "kalmanfilter.h"
 #include "kalmanfilterexample.h"
+#include "testtimer.h"
 #include "kalmanfilterexperiment.h"
 #include "kalmanfilterexperimentparameter.h"
 #include "kalmanfilterexperimentparametertype.h"
@@ -75,7 +77,7 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   //Create the map
   {
     const std::vector<KalmanFilterExperimentParameterType> v =
-       KalmanFilterExperimentParameter::GetAll();
+       KalmanFilterExperimentParameter().GetAll();
     const std::size_t sz = v.size();
     for (std::size_t i=0; i!=sz; ++i)
     {
@@ -84,19 +86,19 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
       const KalmanFilterExperimentParameterType type = v[i];
 
       //Skip the KalmanFilterParameterType instances (these are done by KalmanFilterDialog
-      if (KalmanFilterExperimentParameter::CanConvertToKalmanFilterParameter(type))
+      if (KalmanFilterExperimentParameter().CanConvertToKalmanFilterParameter(type))
       {
         continue;
       }
-      if (KalmanFilterExperimentParameter::CanConvertToWhiteNoiseSystemParameter(type))
+      if (KalmanFilterExperimentParameter().CanConvertToWhiteNoiseSystemParameter(type))
       {
         continue;
       }
 
       QtKalmanFiltererParameterDialog * const dialog
         = new QtKalmanFiltererParameterDialog(
-          KalmanFilterExperimentParameter::ToName(type),
-          KalmanFilterExperimentParameter::ToDescription(type),
+          KalmanFilterExperimentParameter().ToName(type),
+          KalmanFilterExperimentParameter().ToDescription(type),
           m_model->Find(type)
         );
       assert(dialog);
@@ -124,18 +126,12 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   //Connect clicking on the example buttons to setting (and showing) these
   m_examples_dialog->m_signal_example.connect(
     boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetExample,this,boost::lambda::_1));
-
   //When the model changes its number of timesteps, also display this new number
   m_model->m_signal_number_of_timesteps_changed.connect(
     boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps,this,boost::lambda::_1));
-
   //Make the white noise system parameters follow the possible tab changes in parameters
   this->GetFilterDialog()->m_signal_kalman_filter_type_changed.connect(
     boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetKalmanFilterType,this,boost::lambda::_1));
-  //QObject::connect(
-  //  this->m_filter_dialog,SIGNAL(signal_kalman_filter_type_changed(KalmanFilterType)),
-  //  this,SLOT(SetKalmanFilterType(KalmanFilterType)));
-
   ui->box_n_timesteps->setValue(5);
 
   assert(IsValid());
@@ -190,8 +186,8 @@ bool ribi::kalman::QtKalmanFilterExperimentDialog::IsValid() const
     != m_model->CreateKalmanFilter()->GetType())
   {
     TRACE("Different Kalman Filter types");
-    TRACE(KalmanFilterTypes::ToStr(GetFilterDialog()->GetKalmanFilterType()));
-    TRACE(KalmanFilterTypes::ToStr(m_model->CreateKalmanFilter()->GetType()));
+    TRACE(KalmanFilterTypes().ToStr(GetFilterDialog()->GetKalmanFilterType()));
+    TRACE(KalmanFilterTypes().ToStr(m_model->CreateKalmanFilter()->GetType()));
     return false;
   }
   return true;
@@ -429,11 +425,16 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps(const in
 void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::QtKalmanFilterExperimentDialog::Test()")
+  {
+    KalmanFilterExperimentParameter();
+    KalmanFilterTypes();
+    WhiteNoiseSystemTypes();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //TRACE("Test QtWhiteNoiseSystemParametersDialog");
   {
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model(
@@ -448,14 +449,14 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
       new QtKalmanFilterExperimentDialog(model)
     );
     //TRACE("Test DokuWiki conversion for all Kalman filter types with empty parameters")
-    const std::vector<KalmanFilterType> kalman_filter_types = KalmanFilterTypes::GetAllTypes();
+    const std::vector<KalmanFilterType> kalman_filter_types = KalmanFilterTypes().GetAllTypes();
     const std::size_t n_kalman_filter_types = kalman_filter_types.size();
     for (std::size_t i=0; i!=n_kalman_filter_types; ++i)
     {
       const KalmanFilterType kalman_filter_type = kalman_filter_types[i];
       if (kalman_filter_type == KalmanFilterType::fixed_lag_smoother)
       {
-        TRACE("Fixed lag smoother not supported yet");
+        //TRACE("Fixed lag smoother not supported yet");
         continue;
       }
 
@@ -469,7 +470,7 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
       assert(s == model->ToDokuWiki());
 
 
-      const std::vector<WhiteNoiseSystemType> white_noise_system_types = WhiteNoiseSystemTypes::GetAllTypes();
+      const std::vector<WhiteNoiseSystemType> white_noise_system_types = WhiteNoiseSystemTypes().GetAllTypes();
       const std::size_t n_white_noise_system_types = white_noise_system_types.size();
       for (std::size_t j=0; j!=n_white_noise_system_types; ++j)
       {
@@ -534,8 +535,8 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::kalman::QtKalmanFilterExperimentDialog::Test()")
 }
 #endif
+
 
 

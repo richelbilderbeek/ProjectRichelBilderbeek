@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestToggleButton/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestToggleButton/ToolTestToggleButton.qrc

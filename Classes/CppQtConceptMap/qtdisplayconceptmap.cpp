@@ -82,8 +82,8 @@ ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
-  const boost::shared_ptr<QtDisplayStrategy> qtconcept(new QtDisplayStrategy(edge->GetConcept()));
-  assert(qtconcept);
+  //const boost::shared_ptr<QtDisplayStrategy> qtconcept(new QtDisplayStrategy(edge->GetNode()->GetConcept()));
+  //assert(qtconcept);
   QtNode * const from = FindQtNode(edge->GetFrom().get());
   assert(from);
   QtNode * const to   = FindQtNode(edge->GetTo().get());
@@ -91,7 +91,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   assert(from != to);
   QtEdge * const qtedge = new QtEdge(
     edge,
-    qtconcept,
+    //qtconcept,
     from,
     to
   );
@@ -123,18 +123,18 @@ ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   //this->GetConceptMap()->AddEdge(edge);
 
   #ifndef NDEBUG
-  if(qtedge->pos().x() != edge->GetX())
+  if(qtedge->pos().x() != edge->GetNode()->GetX())
   {
     TRACE(qtedge->pos().x());
-    TRACE(edge->GetX());
+    TRACE(edge->GetNode()->GetX());
   }
-  assert(qtedge->pos().x() == edge->GetX());
-  if(qtedge->pos().y() != edge->GetY())
+  assert(qtedge->pos().x() == edge->GetNode()->GetX());
+  if(qtedge->pos().y() != edge->GetNode()->GetY())
   {
     TRACE(qtedge->pos().y());
-    TRACE(edge->GetY());
+    TRACE(edge->GetNode()->GetY());
   }
-  assert(qtedge->pos().y() == edge->GetY());
+  assert(qtedge->pos().y() == edge->GetNode()->GetY());
   #endif
   return qtedge;
 }
@@ -236,7 +236,9 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
   const double node_x = 12.34; //Just some coordinat
   const double node_y = 45.67; //Just some coordinat
   const boost::shared_ptr<Edge> edge = EdgeFactory().Create(
-    edge_concept,node_x,node_y,node_from,true,node_to,true
+    NodeFactory().Create(
+      edge_concept,node_x,node_y
+    ),node_from,true,node_to,true
   );
   this->AddEdge(edge);
   const int n_edges_after = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
@@ -259,6 +261,10 @@ const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtDisplay
 
 void ribi::cmap::QtDisplayConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
+  //Allow a QtConceptMapWidget to have no QtExamplesItem
+  //This allows to omit showing these in the PDF versions used for printing (#205)
+  if (!GetExamplesItem()) return;
+
   assert(GetExamplesItem());
   assert(item);
   assert(dynamic_cast<const QtConceptMapElement*>(item));

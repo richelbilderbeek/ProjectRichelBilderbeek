@@ -26,7 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "fparser.hh"
 
 #include "drawcanvas.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::SurfacePlotterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -34,7 +36,7 @@ int ribi::SurfacePlotterMenuDialog::ExecuteSpecific(const std::vector<std::strin
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc < 1) //TEMP
+  if (argc < 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
@@ -84,7 +86,7 @@ ribi::About ribi::SurfacePlotterMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "SurfacePlotter",
     "plots a bivariate function",
-    "the 14th of July 2012",
+    "the 7th of July 2014",
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm",
     GetVersion(),
@@ -121,7 +123,7 @@ boost::shared_ptr<const ribi::Program> ribi::SurfacePlotterMenuDialog::GetProgra
 
 std::string ribi::SurfacePlotterMenuDialog::GetVersion() const noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
 std::vector<std::string> ribi::SurfacePlotterMenuDialog::GetVersionHistory() const noexcept
@@ -130,7 +132,8 @@ std::vector<std::string> ribi::SurfacePlotterMenuDialog::GetVersionHistory() con
     "2010-02-07: version 1.0: initial Windows-only version",
     "2010-02-15: version 1.1: let user specify the range of x and y coordinats",
     "2012-07-07: version 2.0: port to Qt",
-    "2014-03-07: version 2.1: command-line version plots a hard-coded function"
+    "2014-03-07: version 2.1: command-line version plots a hard-coded function",
+    "2014-07-07: version 2.2: added Qwt spectrogram"
   };
 }
 
@@ -138,11 +141,10 @@ std::vector<std::string> ribi::SurfacePlotterMenuDialog::GetVersionHistory() con
 void ribi::SurfacePlotterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::SurfacePlotterMenuDialog::Test");
-  TRACE("Finished ribi::SurfacePlotterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

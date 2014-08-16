@@ -290,6 +290,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
       }
     }
   }
+  #ifdef TODO_ISSUE_208
   if (n_depth >= 1)
   {
     TRACE("Random clicking");
@@ -301,6 +302,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
       d.DoClick(std::rand() % n_buttons);
     }
   }
+  #endif //TODO_ISSUE_208
   TRACE("Finished ribi::cmap::QtTestConceptMapWidgetDialog::Test successfully");
 }
 #endif

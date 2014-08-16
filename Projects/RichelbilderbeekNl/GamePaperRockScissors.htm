@@ -29,11 +29,11 @@
 </ul>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.04 (trusty)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.0.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -46,11 +46,11 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.2</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.2</li>
   <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.3.0</li>
 </ul>
 <p>&nbsp;</p>
@@ -64,7 +64,7 @@
 <table summary="./GamePaperRockScissors/GamePaperRockScissorsConsole.pro" border = "1"><tr><td><code>
 include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri)<br/>
 <br/>
-include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri)<br/>
 <br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
@@ -90,7 +90,7 @@ include(<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>Console.pri
 <table summary="./GamePaperRockScissors/GamePaperRockScissorsDesktop.pro" border = "1"><tr><td><code>
 include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
 <br/>
-include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri)<br/>
 <br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
@@ -164,7 +164,7 @@ unix {<br/>
 <br/>
 #<br/>
 #<br/>
-# Boost<br/>
+# <a href="CppBoost.htm">Boost</a><br/>
 #<br/>
 #<br/>
 <br/>
@@ -223,6 +223,22 @@ include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2>./GamePaperRockScissors/GamePaperRockScissorsWebsite.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./GamePaperRockScissors/GamePaperRockScissorsWebsite.pri" border = "1"><tr><td><code>
+include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>/<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>Console.pri)<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> +=<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> +=<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>./GamePaperRockScissors/paperrockscissorsmenudialog.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
@@ -234,16 +250,16 @@ include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> PaperRockScissorsMenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> PaperRockScissorsMenuDialog <b><a href="CppFinal.htm">final</a></b> : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;Help GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Program&gt; GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppOverride.htm">override</a></b>;<br/>
+&nbsp;&nbsp;Help GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppOverride.htm">override</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Program&gt; GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppOverride.htm">override</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppOverride.htm">override</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppOverride.htm">override</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppOverride.htm">override</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -272,6 +288,8 @@ include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -345,12 +363,11 @@ include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Test successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>

@@ -29,13 +29,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "dial.h"
 #include "dialwidget.h"
 #include "drawcanvas.h"
-#include "rectangle.h"
 #include "rubiksclock.h"
 #include "rubiksclockdial.h"
 #include "rubiksclockdialwidget.h"
 #include "rubiksclockside.h"
 #include "rubiksclockwidget.h"
+#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
+#include "testtimer.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
@@ -106,6 +107,7 @@ ribi::About ribi::ruco::MenuDialog::GetAbout() const noexcept
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("ToggleButton version: " + ToggleButton::GetVersion());
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
@@ -154,13 +156,12 @@ std::vector<std::string> ribi::ruco::MenuDialog::GetVersionHistory() const noexc
 void ribi::ruco::MenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ruco::MenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ruco::MenuDialog d;
   d.Execute( { "rubiksclockconsole" } );
-  TRACE("Finished ribi::ruco::MenuDialog::Test successfully");
 }
 #endif

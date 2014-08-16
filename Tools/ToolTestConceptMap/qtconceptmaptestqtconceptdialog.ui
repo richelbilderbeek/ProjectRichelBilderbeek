@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtConceptMapTestQtConceptDialog</class>
+ <widget class="QDialog" name="QtConceptMapTestQtConceptDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>992</width>
+    <height>486</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Test Concept</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>#1</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>#2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>#3</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="ribi::QtKeyboardFriendlyGraphicsView" name="view_1">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="ribi::QtKeyboardFriendlyGraphicsView" name="view_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="ribi::cmap::QtConceptDialog" name="qtconceptdialog1" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="4">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="button_load">
+       <property name="text">
+        <string>&amp;Load test QtConcept</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="box_test_concept"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ribi::QtKeyboardFriendlyGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>qtkeyboardfriendlygraphicsview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ribi::cmap::QtConceptDialog</class>
+   <extends>QWidget</extends>
+   <header>qtconceptmapconceptdialog.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>view_2</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

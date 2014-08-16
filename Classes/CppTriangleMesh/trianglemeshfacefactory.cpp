@@ -7,9 +7,8 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/make_shared.hpp>
 
-#include "Shiny.h"
-
 #include "geometry.h"
+#include "testtimer.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
@@ -30,25 +29,24 @@ ribi::trim::FaceFactory::FaceFactory()
 
 boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   std::vector<boost::shared_ptr<Point>> points,
-  const FaceOrientation any_orientation
+  const FaceOrientation any_orientation,
+  const bool verbose
 ) const noexcept
 {
-  PROFILE_FUNC();
+  
   //Give every Cell some index at creation
-  static int cnt = 1;
-  const int n = cnt;
+  static int cnt{1};
+  const int n{cnt};
   ++cnt;
 
   assert(points.size() == 3 || points.size() == 4);
   assert(std::count(points.begin(),points.end(),nullptr) == 0);
   #ifndef NDEBUG
-  
   if(!Helper().IsPlane(points))
   {
     TRACE("ERROR");
   }
-  #endif
-
+  #endif //NDEBUG
   assert(Helper().IsPlane(points));
 
   if (!Helper().IsConvex(points))
@@ -59,45 +57,33 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   assert(Helper().IsConvex(points)
     && "FaceFactory must be called by a sorted and convex collection of points"
   );
-  /*
-  if (!Helper().IsConvex(points))
+
+  if (verbose)
   {
-    #ifndef NDEBUG
-    //for (auto p: points) TRACE(*p);
-    #endif
-    std::sort(points.begin(),points.end());
-    while (std::next_permutation(points.begin(),points.end()))
-    {
-      if (Helper().IsConvex(points))
-      {
-        TRACE("CONVEX!");
-        break;
-      }
-    }
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Creating face with index " << n << std::endl
+    ;
   }
 
-
-  #ifndef NDEBUG
-  if(!Helper().IsConvex(points))
-  {
-    TRACE("ERROR: NOT CONVEX");
-    //for (auto p: points) TRACE(*p);
-    //TRACE("BREAK");
-  }
-  #endif
-  assert(Helper().IsConvex(points));
-  */
-
-  const boost::shared_ptr<Face> face(
+  const boost::shared_ptr<Face> face{
     new Face(
       points,
       any_orientation,
       n,
       *this
     )
-  );
+  };
   assert(face);
-  for (auto point: face->GetPoints())
+
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Connecting all " << face->GetPoints().size()
+      << " points to the face" << std::endl
+    ;
+  }
+
+  for (const auto& point: face->GetPoints())
   {
     assert(point);
     point->AddConnected(face);
@@ -121,37 +107,36 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
 
 std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrismOneFacePerVerticalFace() const noexcept
 {
-  const std::vector<boost::shared_ptr<Point>> points {
-    PointFactory().CreateTestPrism()
-  };
+  const auto points = PointFactory().CreateTestPrism();
   const std::vector<boost::shared_ptr<Point>> points_bottom { points[0], points[2], points[1] };
   const std::vector<boost::shared_ptr<Point>> points_top    { points[3], points[4], points[5] };
   const std::vector<boost::shared_ptr<Point>> points_a      { points[0], points[1], points[4], points[3] };
   const std::vector<boost::shared_ptr<Point>> points_b      { points[1], points[2], points[5], points[4] };
   const std::vector<boost::shared_ptr<Point>> points_c      { points[2], points[0], points[3], points[5] };
-  
-  assert(!Helper().IsClockwiseHorizontal(points_bottom) && "Clockwise from the inside");
-  assert(Helper().IsClockwiseHorizontal(points_top));
-  assert(Helper().IsConvex(points_bottom));
-  assert(Helper().IsConvex(points_top));
-  assert(Helper().IsConvex(points_a));
-  assert(Helper().IsConvex(points_b));
-  assert(Helper().IsConvex(points_c));
-  const auto bottom(FaceFactory().Create(points_bottom,FaceOrientation::horizontal));
-  const auto top(FaceFactory().Create(points_top,FaceOrientation::horizontal));
-  const auto a(FaceFactory().Create(points_a,FaceOrientation::vertical));
-  const auto b(FaceFactory().Create(points_b,FaceOrientation::vertical));
-  const auto c(FaceFactory().Create(points_c,FaceOrientation::vertical));
+  const bool verbose{false};
+
+  //assert(Helper().IsClockwiseHorizontal(points_bottom));
+  //assert(Helper().IsClockwiseHorizontal(points_top));
+  //assert(Helper().IsConvex(points_bottom));
+  //assert(Helper().IsConvex(points_top));
+  //assert(Helper().IsConvex(points_a));
+  //assert(Helper().IsConvex(points_b));
+  //assert(Helper().IsConvex(points_c));
+  const auto bottom = FaceFactory().Create(points_bottom,FaceOrientation::horizontal,verbose);
+  const auto top = FaceFactory().Create(points_top,FaceOrientation::horizontal,verbose);
+  const auto a = FaceFactory().Create(points_a,FaceOrientation::vertical,verbose);
+  const auto b = FaceFactory().Create(points_b,FaceOrientation::vertical,verbose);
+  const auto c = FaceFactory().Create(points_c,FaceOrientation::vertical,verbose);
   assert(bottom);
   assert(top);
   assert(a);
   assert(b);
   assert(c);
-  //bottom->SetIndex(1);
-  //top->SetIndex(2);
-  //a->SetIndex(3);
-  //b->SetIndex(4);
-  //c->SetIndex(5);
+  bottom->SetBoundaryType("bottom");
+  top->SetBoundaryType("top");
+  a->SetBoundaryType("back");
+  b->SetBoundaryType("left");
+  c->SetBoundaryType("right");
   const std::vector<boost::shared_ptr<Face>> prism {
     top,bottom,a,b,c
   };
@@ -171,7 +156,8 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   const std::vector<boost::shared_ptr<Point>> points_d      { points[1], points[4], points[5] };
   const std::vector<boost::shared_ptr<Point>> points_e      { points[0], points[2], points[3] };
   const std::vector<boost::shared_ptr<Point>> points_f      { points[2], points[3], points[5] };
-  
+  const bool verbose{false};
+
   if (!Helper().IsClockwiseHorizontal(points_bottom))
   {
     std::reverse(points_bottom.begin(),points_bottom.end());
@@ -181,14 +167,14 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
     std::reverse(points_top.begin(),points_top.end());
   }
 
-  const auto bottom(FaceFactory().Create(points_bottom,FaceOrientation::horizontal));
-  const auto top(FaceFactory().Create(points_top,FaceOrientation::horizontal));
-  const auto a(FaceFactory().Create(points_a,FaceOrientation::vertical));
-  const auto b(FaceFactory().Create(points_b,FaceOrientation::vertical));
-  const auto c(FaceFactory().Create(points_c,FaceOrientation::vertical));
-  const auto d(FaceFactory().Create(points_d,FaceOrientation::vertical));
-  const auto e(FaceFactory().Create(points_e,FaceOrientation::vertical));
-  const auto f(FaceFactory().Create(points_f,FaceOrientation::vertical));
+  const auto bottom = FaceFactory().Create(points_bottom,FaceOrientation::horizontal,verbose);
+  const auto top = FaceFactory().Create(points_top,FaceOrientation::horizontal,verbose);
+  const auto a = FaceFactory().Create(points_a,FaceOrientation::vertical,verbose);
+  const auto b = FaceFactory().Create(points_b,FaceOrientation::vertical,verbose);
+  const auto c = FaceFactory().Create(points_c,FaceOrientation::vertical,verbose);
+  const auto d = FaceFactory().Create(points_d,FaceOrientation::vertical,verbose);
+  const auto e = FaceFactory().Create(points_e,FaceOrientation::vertical,verbose);
+  const auto f = FaceFactory().Create(points_f,FaceOrientation::vertical,verbose);
   assert(bottom);
   assert(top);
   assert(a);
@@ -197,14 +183,15 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   assert(d);
   assert(e);
   assert(f);
-  //bottom->SetIndex(1);
-  //top->SetIndex(2);
-  //a->SetIndex(3);
-  //b->SetIndex(4);
-  //c->SetIndex(5);
-  //d->SetIndex(6);
-  //e->SetIndex(7);
-  //f->SetIndex(8);
+  bottom->SetBoundaryType("bottom");
+  top->SetBoundaryType("top");
+  a->SetBoundaryType("back");
+  b->SetBoundaryType("back");
+  c->SetBoundaryType("left");
+  d->SetBoundaryType("left");
+  e->SetBoundaryType("right");
+  f->SetBoundaryType("right");
+
   const std::vector<boost::shared_ptr<Face>> prism {
     top,bottom,a,b,c,d,e,f
   };
@@ -213,7 +200,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
 
 boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::CreateTestSquare(const Winding winding) const noexcept
 {
-
+  const bool verbose{false};
 
   const std::vector<boost::shared_ptr<Point>> points {
     PointFactory().CreateTestSquare(winding)
@@ -223,7 +210,9 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::CreateTestSquare(co
   const boost::shared_ptr<Face> square {
     FaceFactory().Create(
       { points[0],points[1],points[2],points[3] },
-      FaceOrientation::horizontal)
+      FaceOrientation::horizontal,
+      verbose
+    )
   };
   assert(square);
   //square->SetIndex(1);
@@ -234,15 +223,17 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::CreateTestSquare(co
 void ribi::trim::FaceFactory::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::FaceFactory::Test");
-  
-  const bool verbose = false;
+  PointFactory();
+  FaceFactory().CreateTestSquare(Winding::clockwise); //Face
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
   if (verbose) TRACE("Create a testing prism");
-  for (auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Face>> prism {
       FaceFactory().CreateTestPrism(strategy)
@@ -278,6 +269,7 @@ void ribi::trim::FaceFactory::Test() noexcept
     assert(points.size() == 4);
     assert(!Helper().IsConvex(points));
   }
+  #ifdef BRUTE_FORCE_ISSUE_168
   if (verbose) TRACE("IsConvex, issue 168");
   {
     typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
@@ -299,12 +291,12 @@ void ribi::trim::FaceFactory::Test() noexcept
     Helper().MakeConvex(points);
     assert(Helper().IsConvex(points) && "FaceFactory only accepts convex points");
     const auto face(
-      FaceFactory().Create(points,FaceOrientation::vertical)
+      FaceFactory().Create(points,FaceOrientation::vertical,verbose)
     );
     assert(face && "But when creating a Face, the points are ordered");
     assert(face->GetIndex() > 0);
     //Shuffle these more often:
-    //For every order, it must be possibleto be made convex
+    //For every order, it must be possible to be made convex
     for (int i=0; i!=256; ++i)
     {
       std::random_shuffle(points.begin(),points.end());
@@ -334,7 +326,7 @@ void ribi::trim::FaceFactory::Test() noexcept
     Helper().MakeConvex(points);
     assert(Helper().IsConvex(points) && "FaceFactory only accepts convex points");
     const auto face(
-      FaceFactory().Create(points,FaceOrientation::vertical)
+      FaceFactory().Create(points,FaceOrientation::vertical,verbose)
     );
     assert(face && "But when creating a Face, the points are ordered");
     assert(face->GetIndex() > 0);
@@ -347,8 +339,7 @@ void ribi::trim::FaceFactory::Test() noexcept
       assert(Helper().IsConvex(points));
     }
   }
-  assert("issue 168");
-  TRACE("Finished ribi::trim::FaceFactory::Test successfully");
+  #endif // BRUTE_FORCE_ISSUE_168
 }
 #endif
 

@@ -38,6 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "exercise.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestiondialog.h"
+#include "openquestiondialogfactory.h"
 #include "qtmultiplechoicequestiondialog.h"
 #include "qtopenquestiondialog.h"
 #include "qtquestiondialog.h"
@@ -74,11 +75,16 @@ void ribi::QtExercise::DisplayCurrentQuestion()
 {
   const std::string s = m_exercise->GetCurrentQuestion();
 
-  QtQuestionDialog * question = 0;
+  boost::shared_ptr<QtQuestionDialog> question;
   try
   {
-    const boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(s));
-    question = new QtOpenQuestionDialog(d);
+    const boost::shared_ptr<OpenQuestionDialog> d = OpenQuestionDialogFactory().Create(s);
+    //const boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(s));
+    //question = new QtOpenQuestionDialog(d);
+    const auto p = boost::make_shared<QtOpenQuestionDialog>();
+    p->SetDialog(d);
+    question = p;
+
   }
   catch(std::exception&) {}
   if (!question)
@@ -86,7 +92,8 @@ void ribi::QtExercise::DisplayCurrentQuestion()
     try
     {
       const boost::shared_ptr<MultipleChoiceQuestionDialog> d(new MultipleChoiceQuestionDialog(s));
-      question = new QtMultipleChoiceQuestionDialog(d);
+      //question = new QtMultipleChoiceQuestionDialog(d);
+      question = boost::make_shared<QtMultipleChoiceQuestionDialog>(d);
     }
     catch(std::exception&) {}
   }
@@ -97,10 +104,11 @@ void ribi::QtExercise::DisplayCurrentQuestion()
   if (m_ui.m_box->layout()) delete m_ui.m_box->layout();
   QVBoxLayout * const layout = new QVBoxLayout;
   m_ui.m_box->setLayout(layout);
-  layout->addWidget(question);
+  layout->addWidget(question.get());
 
   question->GetDialog()->m_signal_submitted.connect(
-    boost::bind(&ribi::QtExercise::OnSubmittedAnswer,this,boost::lambda::_1));
+    boost::bind(&ribi::QtExercise::OnSubmittedAnswer,this,boost::lambda::_1)
+  );
 
 }
 

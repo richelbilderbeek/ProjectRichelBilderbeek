@@ -1,5 +1,5 @@
-#ifndef OPENFOAMFVSOLUTIONFILE_H
-#define OPENFOAMFVSOLUTIONFILE_H
+#ifndef RIBI_OPENFOAMFVSOLUTIONFILE_H
+#define RIBI_OPENFOAMFVSOLUTIONFILE_H
 
 #include <iosfwd>
 #include <vector>
@@ -36,4 +36,4 @@ std::ostream& operator<<(std::ostream& os, const FvSolutionFile& f) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMFVSOLUTIONFILE_H
+#endif // RIBI_OPENFOAMFVSOLUTIONFILE_H

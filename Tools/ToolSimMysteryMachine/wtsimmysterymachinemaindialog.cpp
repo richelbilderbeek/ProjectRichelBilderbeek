@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestLed, tool to test the Led class
-Copyright (C) 2011 Richel Bilderbeek
+SimMysteryMachine, simulator of my mystery machine
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,26 +16,27 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestLed.htm
+//From http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <algorithm>
 #include <cassert>
 #include <iterator>
 #include <string>
 #include <sstream>
 #include <vector>
-//---------------------------------------------------------------------------
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WPushButton>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "dial.h"
 #include "dialwidget.h"
@@ -52,17 +53,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtmysterymachinewidget.h"
 #pragma GCC diagnostic pop
 
-//---------------------------------------------------------------------------
 ribi::WtSimMysteryMachineMainDialog::Ui::Ui()
  : m_machine(new WtMysteryMachineWidget(300,600))
 {
 
 }
-//---------------------------------------------------------------------------
+
 ribi::WtSimMysteryMachineMainDialog::WtSimMysteryMachineMainDialog()
   : ui{}
 {
   setContentAlignment(Wt::AlignCenter);
   addWidget(ui.m_machine);
 }
-//---------------------------------------------------------------------------

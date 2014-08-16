@@ -4,6 +4,10 @@
  * See the LICENSE file for terms of use.
  */
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <Wt/WApplication>
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
@@ -12,6 +16,7 @@
 #include <Wt/WText>
 
 #include <boost/version.hpp>
+#pragma GCC diagnostic pop
 
 using namespace Wt;
 

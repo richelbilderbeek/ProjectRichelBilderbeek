@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RandomCode, tool to generate random C++ code
-Copyright (C) 2010-2011  Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,11 +21,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <cassert>
-//---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
+//#include <boost/filesystem.hpp>
+
+
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>
 #include <Wt/WImage>
@@ -33,19 +35,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WText>
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
-//---------------------------------------------------------------------------
+
 #include "about.h"
+#include "fileio.h"
 #include "randomcodemenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "wtrandomcodemenudialog.h"
 #include "wtrandomcodegeneratedialog.h"
-//---------------------------------------------------------------------------
+
 //QFile must be #included after Wt header files
 #include <QFile>
 #pragma GCC diagnostic pop
 
-//---------------------------------------------------------------------------
 ribi::WtRandomCodeMenuDialog::WtRandomCodeMenuDialog()
 {
   CheckResources();
@@ -86,45 +88,46 @@ ribi::WtRandomCodeMenuDialog::WtRandomCodeMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtRandomCodeMenuDialog::CheckResources()
 {
  //Create resources
   std::vector<std::string> image_names;
   image_names.push_back("ToolRandomCodeWelcome.png");
 
-  BOOST_FOREACH(const std::string& filename,image_names)
+  for(const std::string& filename: image_names)
   {
-    if (!(QFile::exists(filename.c_str())))
+
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       QFile f( (std::string(":/images/") + filename).c_str() );
       f.copy(filename.c_str());
     }
-    if (!QFile::exists(filename.c_str()))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       const std::string s = "File not found: " + filename;
       throw std::logic_error(s.c_str());
     }
-    assert(QFile::exists(filename.c_str()));
+    assert(fileio::FileIo().IsRegularFile(filename));
   }
 }
-//---------------------------------------------------------------------------
+
 ribi::WtAboutDialog * ribi::WtRandomCodeMenuDialog::CreateNewAboutDialog()
 {
-  About a = RandomCodeMenuDialog::GetAbout();
+  About a = RandomCodeMenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 ribi::WtRandomCodeGenerateDialog * ribi::WtRandomCodeMenuDialog::CreateNewGenerateDialog() const
 {
   WtRandomCodeGenerateDialog * const d = new WtRandomCodeGenerateDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtRandomCodeMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -140,4 +143,4 @@ Wt::WWidget * ribi::WtRandomCodeMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolRandomCodeWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------
+

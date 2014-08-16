@@ -7,8 +7,8 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-
-
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "chessbitboard.h"
 #include "chessboard.h"
 #include "chessboardfactory.h"
@@ -20,6 +20,7 @@
 #include "chessrank.h"
 #include "chessscore.h"
 #include "chesssquare.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -107,12 +108,12 @@ ribi::Chess::Player ribi::Chess::Game::GetActivePlayer() const
   return m_moves.size() % 2 ? Player::black : Player::white;
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetMoves() const
+const std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::Game::GetMoves() const
 {
   return m_board->GetMoves(GetActivePlayer());
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetMoves(const boost::shared_ptr<const Square> square) const
+const std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::Game::GetMoves(const boost::shared_ptr<const Square> square) const
 {
   return m_board->GetMoves(square);
 }
@@ -158,18 +159,12 @@ void ribi::Chess::Game::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
     {
-      FTRACE("Testing Game");
+      if (verbose) { TRACE("Testing Game"); }
       Chess::Game();
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
 }
 #endif
 

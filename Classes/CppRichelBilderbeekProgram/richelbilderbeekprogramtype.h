@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
 //---------------------------------------------------------------------------
-#ifndef RICHELBILDERBEEKPROGRAMTYPE_H
-#define RICHELBILDERBEEKPROGRAMTYPE_H
+#ifndef RIBI_RICHELBILDERBEEKPROGRAMTYPE_H
+#define RIBI_RICHELBILDERBEEKPROGRAMTYPE_H
 
 #include <vector>
 
@@ -90,7 +90,7 @@ enum class ProgramType
   mazeCreatorVcl,
   maziak,
   maziakVcl,
-  metZnDrieen,
+  //metZnDrieen,
   metZnDrieenVcl,
   midiLessonCreator,
   morpher,
@@ -101,12 +101,13 @@ enum class ProgramType
   ndsmake,
   ndsPaint,
   paperRockScissors,
+  paperRockScissorsVcl,
   pause,
   perfectElasticCollision,
   picToCode,
   pixelator,
   pixelatorVcl,
-  pokeVolley,
+  pokeVolleyVcl,
   pong,
   preDickAdvocaTor,
   primeExpert,
@@ -121,6 +122,7 @@ enum class ProgramType
   refrigeratorPuzzleSolver,
   regexTester,
   reversi,
+  reversiVcl,
   richelBilderbeekGallery,
   richelbilderbeekNlSitemapGenerator,
   rubiksClock,
@@ -133,11 +135,11 @@ enum class ProgramType
   simImmuneResponse,
   simMysteryMachine,
   simplifyNewick,
-  simPredator,
+  simPredatorVcl,
   simStagecraft,
   soaSim,
   solvePuzzleX,
-  spaceHarry,
+  //spaceHarry,
   spaceHarryVcl,
   staircaseCardCreator,
   stateObserver,
@@ -178,6 +180,8 @@ enum class ProgramType
   testNewickVector,
   testOpenQuestion,
   testPlane,
+  testPolyFile,
+  testPolyFileFromPolygons,
   testPylos,
   testQrcFile,
   testQtArrowItems,
@@ -188,7 +192,7 @@ enum class ProgramType
   testQtOcrWidget,
   testQtRoundedEditRectItem,
   testQtRoundedRectItem,
-  testQtRoundedTextRectItem,
+  //testQtRoundedTextRectItem, //Removed
   testQuestion,
   testReversi,
   testSelectFileDialog,
@@ -202,7 +206,7 @@ enum class ProgramType
   testTicTacToe,
   testTimedServerPusher,
   testToggleButton,
-  testTriangleMesh,
+  testTriangle,
   testTwoDigitNewick,
   thorVeen,
   thresholdFilterer,
@@ -211,14 +215,16 @@ enum class ProgramType
   ticTacToeLearner,
   ticTacToeValuer,
   timePoll,
+  triangleMeshCreator,
   tronCollection,
   tronCollectionVcl,
   ubuntuOneWatcher,
-  vanDenBogaart,
   valentineCardDecrypter,
+  vanDenBogaart,
   vigenereCipher,
   virtualBastard,
   visualAbc,
+  wktToSvg,
   xeNonZero,
   zork,
 
@@ -227,4 +233,4 @@ enum class ProgramType
 
 } //~namespace ribi
 
-#endif // RICHELBILDERBEEKPROGRAMTYPE_H
+#endif // RIBI_RICHELBILDERBEEKPROGRAMTYPE_H

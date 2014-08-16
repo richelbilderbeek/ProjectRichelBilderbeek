@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,13 +18,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
 //---------------------------------------------------------------------------
+#include "wttictactoegamedialog.h"
+
+#include <cassert>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WBreak>
 #include <Wt/WPushButton>
 
-#include "wttictactoegamedialog.h"
 #include "wttictactoewidget.h"
 
-#include <cassert>
+#pragma GCC diagnostic pop
 
 ribi::WtTicTacToeGameDialog::WtTicTacToeGameDialog(
   const bool display_close_button)
@@ -74,18 +81,18 @@ void ribi::WtTicTacToeGameDialog::OnRestart()
 
 void ribi::WtTicTacToeGameDialog::OnStateChanged()
 {
-  switch (m_tictactoe->GetState())
+  switch (m_tictactoe->GetWinner())
   {
-    case TicTacToe::player1:
+    case tictactoe::Winner::player1:
       m_button_restart->setText("Player 1 has won. Click to restart");
       break;
-    case TicTacToe::player2:
+    case tictactoe::Winner::player2:
       m_button_restart->setText("Player 2 has won. Click to restart");
       break;
-    case TicTacToe::draw:
+    case tictactoe::Winner::draw:
       m_button_restart->setText("Draw. Click to restart");
       break;
-    case TicTacToe::no_winner:
+    case tictactoe::Winner::no_winner:
       m_button_restart->setText("Restart");
       break;
     default:

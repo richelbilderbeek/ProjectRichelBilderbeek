@@ -20,6 +20,7 @@
 #include "openfoamheader.h"
 #include "openfoamboundaryindex.h"
 #include "openfoamboundaryfileitem.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -108,11 +109,17 @@ ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(const std::string& file
 void ribi::foam::BoundaryFile::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::BoundaryFile::Test");
+  {
+    BoundaryFileItem();
+    FaceIndex(0);
+    BoundaryIndex(0);
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+
   //Some initial data
   const Header header("some_name","some_location","some_object");
   std::vector<BoundaryFileItem> items;
@@ -209,36 +216,42 @@ void ribi::foam::BoundaryFile::Test() noexcept
         && "If a mesh has no non-boundary cells, neighbour can be empty");
     }
   }
-  TRACE("Finished ribi::foam::Header::BoundaryFile successfully");
 }
 #endif
 
 bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs) noexcept
 {
+  const bool verbose{false};
   if (lhs.GetHeader() != rhs.GetHeader())
   {
-    //TRACE("Headers differ:");
-    //TRACE(lhs.GetHeader());
-    //TRACE(rhs.GetHeader());
+    if (verbose)
+    {
+      TRACE("Headers differ:");
+      TRACE(lhs.GetHeader());
+      TRACE(rhs.GetHeader());
+    }
     return false;
   }
   const std::vector<BoundaryFileItem>& lhs_items = lhs.GetItems();
   const std::vector<BoundaryFileItem>& rhs_items = rhs.GetItems();
   if (lhs_items.size() != rhs_items.size())
   {
-    //TRACE("Number of items differ:");
-    //TRACE(lhs_items.size());
-    //TRACE(rhs_items.size());
+    if (verbose)
+    {
+      TRACE("Number of items differ:");
+      TRACE(lhs_items.size());
+      TRACE(rhs_items.size());
+    }
     return false;
   }
   const bool all_items_equal {
     std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin())
   };
-  //if (!all_items_equal)
-  //{
-  //  TRACE("Items differ:");
-  //  TRACE(all_items_equal);
-  //}
+  if (verbose && !all_items_equal)
+  {
+    TRACE("Items differ:");
+    TRACE(all_items_equal);
+  }
   return all_items_equal;
 }
 

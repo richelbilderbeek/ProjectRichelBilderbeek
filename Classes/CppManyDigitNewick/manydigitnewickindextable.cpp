@@ -125,7 +125,7 @@ int ribi::ManyDigitIndexTable::GetIndex(const ManyDigitNewickCoordinat& indices)
 //int ribi::ManyDigitIndexTable::GetNumAllocated() const
 //{
 //  int n_allocated = 0;
-//  BOOST_FOREACH(const MultiVector<int>& v,m_v.PeekMultiVectors())
+//  for(const MultiVector<int>& v: m_v.PeekMultiVectors())
 //  {
 //    n_allocated+=boost::numeric_cast<int>(v.size());
 //  }
@@ -136,7 +136,7 @@ int ribi::ManyDigitIndexTable::GetIndex(const ManyDigitNewickCoordinat& indices)
 //int ribi::ManyDigitIndexTable::GetNumUsed() const
 //{
 //  int n_non_zero = 0;
-//  BOOST_FOREACH(const MultiVector<int>& v,m_v.PeekMultiVectors())
+//  for(const MultiVector<int>& v: m_v.PeekMultiVectors())
 //  {
 //    n_non_zero +=
 //      std::count_if(

@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
+#ifdef USE_ITEMDISPLAYSTRATEGY_20140622
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -108,3 +110,4 @@ void ribi::cmap::QtEditStrategy::Test() noexcept
 }
 #endif
 
+#endif // USE_ITEMDISPLAYSTRATEGY_20140622

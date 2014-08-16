@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,6 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/bind.hpp>
 
 #include <Wt/WApplication>
@@ -42,6 +46,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtconnectthreewidget.h"
 #include "qtconnectthreeresources.h"
 #include "wtselectplayerwidget.h"
+#pragma GCC diagnostic pop
 
 ribi::con3::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog()
   : ribi::con3::WtConnectThreeMenuDialog(ribi::con3::WtConnectThreeMenuDialog::CreateResources())
@@ -168,7 +173,7 @@ Wt::WWidget * ribi::con3::WtConnectThreeMenuDialog::CreateNewWelcomeDialog() con
   return dialog;
 }
 
-const boost::shared_ptr<const ribi::con3::ConnectThreeResources> ribi::con3::WtConnectThreeMenuDialog::CreateResources()
+boost::shared_ptr<const ribi::con3::ConnectThreeResources> ribi::con3::WtConnectThreeMenuDialog::CreateResources()
 {
   boost::shared_ptr<const ConnectThreeResources> r {
     new QtConnectThreeResources()

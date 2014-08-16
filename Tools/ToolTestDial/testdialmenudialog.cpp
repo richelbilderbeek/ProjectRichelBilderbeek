@@ -32,8 +32,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dial.h"
 #include "dialwidget.h"
 #include "drawcanvas.h"
+#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 int ribi::TestDialMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -153,17 +155,16 @@ std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() const noe
 void ribi::TestDialMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestDialMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<DialWidget> dial(
       new DialWidget
     );
     assert(dial->GetDial());
   }
-  TRACE("Finished ribi::TestDialMenuDialog::Test successfully");
 }
 #endif

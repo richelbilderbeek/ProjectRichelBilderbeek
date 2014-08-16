@@ -57,6 +57,9 @@ private slots:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+  void on_button_test_1_clicked();
+  void on_button_test_2_clicked();
+  void on_button_test_3_clicked();
 };
 
 } //~namespace c2h

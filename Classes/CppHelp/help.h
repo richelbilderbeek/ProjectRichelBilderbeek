@@ -18,11 +18,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppHelp.htm
 //---------------------------------------------------------------------------
-#ifndef HELP_H
-#define HELP_H
+#ifndef RIBI_HELP_H
+#define RIBI_HELP_H
 
 #include <iosfwd>
-#include <set>
 #include <string>
 #include <vector>
 
@@ -43,12 +42,12 @@ struct Help
     std::string m_long;        // about
     std::string m_description; // displays the about information
   };
-  Help(
+  explicit Help(
     const std::string& program_name,
     const std::string& program_description,
     const std::vector<Option>& options,
     const std::vector<std::string> example_uses
-    );
+  );
 
   const std::vector<std::string>& GetExampleUses() const noexcept { return m_example_uses; }
   const std::vector<Option>& GetOptions() const noexcept { return  m_options; }
@@ -81,4 +80,4 @@ std::ostream& operator<<(std::ostream& os, const Help& help);
 
 } //~namespace ribi
 
-#endif // HELP_H
+#endif // RIBI_HELP_H

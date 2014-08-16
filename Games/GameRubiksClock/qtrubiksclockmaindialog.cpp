@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qtrubiksclockmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -82,11 +83,10 @@ void ribi::ruco::QtRubiksClockMainDialog::resizeEvent(QResizeEvent *)
 void ribi::ruco::QtRubiksClockMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ruco::QtRubiksClockMainDialog::Test");
-  TRACE("Finished ribi::ruco::QtRubiksClockMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

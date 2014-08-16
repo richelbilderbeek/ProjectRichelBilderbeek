@@ -1,31 +1,13 @@
-QT       += core gui
-LIBS += -lwt -lwthttp
-QMAKE_CXXFLAGS += -DNDEBUG
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../WebApplication.pri)
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtSprites \
-    ../../Classes/CppWtAboutDialog \
-    ../../Classes/CppWtAutoConfig
-SOURCES += wtmain.cpp\
-    wtpictocodemaindialog.cpp \
-    pictocodemaindialog.cpp \
-    pictocodemenudialog.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-    wtpictocodemenudialog.cpp \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.cpp
-HEADERS  += \
-    pictocodemaindialog.h \
-    pictocodemenudialog.h \
-    wtpictocodemaindialog.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-    wtpictocodemenudialog.h \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.h
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralWeb.pri)
 
-RESOURCES += \
-    ToolPicToCode.qrc
+include(../../Classes/CppQtSprites/CppQtSprites.pri)
+
+include(ToolPicToCodeWebsite.pri)
+
+SOURCES += wtmain.cpp
+

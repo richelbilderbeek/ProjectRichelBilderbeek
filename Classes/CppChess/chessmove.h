@@ -1,5 +1,5 @@
-#ifndef CHESSMOVE_H
-#define CHESSMOVE_H
+#ifndef RIBI_CHESSMOVE_H
+#define RIBI_CHESSMOVE_H
 
 #include <iosfwd>
 #include <memory>
@@ -71,8 +71,8 @@ struct Move
   ///Obtain whether the string is a move that results in a promotion
   static bool ParseIsPromotion(const std::string& s);
 
-  ///Parse the Piece from a string
-  static const boost::shared_ptr<Chess::Piece> ParsePiece(const std::string& s);
+  ///Parse the Piece from a string, returns nullptr if no piece cannot be determined
+  static boost::shared_ptr<Chess::Piece> ParsePiece(const std::string& s) noexcept;
 
   ///Parse the Piece the pawn is promoted to from a string
   static boost::shared_ptr<Chess::Piece> ParsePiecePromotion(const std::string& s);
@@ -162,4 +162,4 @@ std::ostream& operator<<(std::ostream& os,const Move& m);
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSMOVE_H
+#endif // RIBI_CHESSMOVE_H

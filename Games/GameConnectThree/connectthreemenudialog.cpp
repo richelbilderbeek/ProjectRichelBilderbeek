@@ -25,10 +25,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "connectthree.h"
 #include "connectthreewidget.h"
+#include "richelbilderbeekprogram.h"
 
 #include <cassert>
 #include <iostream>
 
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -86,6 +88,7 @@ ribi::About ribi::con3::ConnectThreeMenuDialog::GetAbout() const noexcept
   a.AddLibrary("ConnectThree version: " + ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
   a.AddLibrary("Special thanks to Mark Wiering for his excellent bug reports");
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 
@@ -137,13 +140,12 @@ std::vector<std::string> ribi::con3::ConnectThreeMenuDialog::GetVersionHistory()
 void ribi::con3::ConnectThreeMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::con3::ConnectThreeMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ConnectThreeMenuDialog d;
   d.Execute(std::vector<std::string>(1,"connectthree"));
-  TRACE("Finished ribi::con3::ConnectThreeMenuDialog::Test successfully");
 }
 #endif

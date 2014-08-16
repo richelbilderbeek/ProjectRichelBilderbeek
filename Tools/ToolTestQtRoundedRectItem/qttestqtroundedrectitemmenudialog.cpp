@@ -21,7 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttestqtroundedrectitemmenudialog.h"
 
 #include <QDesktopWidget>
@@ -31,7 +31,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedrectitem.h"
 #include "testqtroundedrectitemmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttestqtroundedrectitemmaindialog.h"
+#include "qttestqtroundedrectitemcomparedialog.h"
+#include "qttestqtroundedrectitemmodifydialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestqtroundedrectitemmenudialog.h"
 
@@ -74,9 +76,9 @@ void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_quit_clicked()
   close();
 }
 
-void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_start_clicked()
+void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_compare_clicked()
 {
-  QtTestQtRoundedRectItemMainDialog d;
+  QtTestQtRoundedRectItemCompareDialog d;
   ShowChild(&d);
 }
 
@@ -84,11 +86,18 @@ void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_start_clicked()
 void ribi::QtTestQtRoundedRectItemMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtRoundedRectItemMenuDialog::Test");
-  TRACE("Finished ribi::QtTestQtRoundedRectItemMenuDialog::Test successfully");
+  QtTestQtRoundedRectItemCompareDialog();
+  QtTestQtRoundedRectItemModifyDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
+
+void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_modify_clicked()
+{
+  QtTestQtRoundedRectItemModifyDialog d;
+  ShowChild(&d);
+}

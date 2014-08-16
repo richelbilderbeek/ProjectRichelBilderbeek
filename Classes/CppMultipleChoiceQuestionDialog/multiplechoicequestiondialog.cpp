@@ -29,12 +29,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "multiplechoicequestion.h"
 #include "question.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
   const boost::shared_ptr<const MultipleChoiceQuestion> question)
-  : m_question(question)
+  : m_signal_mc_question_changed{},
+    m_question(question)
 {
   #ifndef NDEBUG
   Test();
@@ -44,7 +46,8 @@ ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
 }
 
 ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(const std::string& question)
-  : m_question(new MultipleChoiceQuestion(question))
+  : m_signal_mc_question_changed{},
+    m_question(new MultipleChoiceQuestion(question))
 {
   #ifndef NDEBUG
   Test();
@@ -117,11 +120,11 @@ void ribi::MultipleChoiceQuestionDialog::Submit(const std::string& s)
 void ribi::MultipleChoiceQuestionDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::MultipleChoiceQuestionDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test setting the multiple choice questions
   for(const std::string& s: MultipleChoiceQuestion::GetValidMultipleChoiceQuestions())
   {
@@ -196,6 +199,12 @@ void ribi::MultipleChoiceQuestionDialog::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::MultipleChoiceQuestionDialog::Test successfully");
 }
 #endif
+
+std::string ribi::MultipleChoiceQuestionDialog::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << m_question->ToStr();
+  return s.str();
+}

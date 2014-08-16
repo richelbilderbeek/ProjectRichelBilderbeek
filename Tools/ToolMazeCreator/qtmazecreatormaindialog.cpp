@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QTimer>
 
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qtmazecreatormaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -57,8 +58,9 @@ ribi::QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
   this->drawMaze();
 
   //Set all connections
-  QObject::connect(m_timer.get(),SIGNAL(timeout()),
-    this,SLOT(onTimer()));
+  QObject::connect(m_timer.get(),&QTimer::timeout,
+    this,&ribi::QtMazeCreatorMainDialog::onTimer
+  );
 
   //Set the rotation timer to work
   m_timer->start(50);
@@ -232,11 +234,10 @@ const std::vector<std::vector<int> > ribi::QtMazeCreatorMainDialog::CreateMaze(c
 void ribi::QtMazeCreatorMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtMazeCreatorMainDialog::Test");
-  TRACE("Finished ribi::QtMazeCreatorMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

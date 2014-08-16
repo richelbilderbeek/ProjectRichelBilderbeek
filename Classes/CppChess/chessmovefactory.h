@@ -1,5 +1,5 @@
-#ifndef CHESSMOVEFACTORY_H
-#define CHESSMOVEFACTORY_H
+#ifndef RIBI_CHESSMOVEFACTORY_H
+#define RIBI_CHESSMOVEFACTORY_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -26,4 +26,4 @@ struct MoveFactory
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSMOVEFACTORY_H
+#endif // RIBI_CHESSMOVEFACTORY_H

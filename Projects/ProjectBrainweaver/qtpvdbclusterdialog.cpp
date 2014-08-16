@@ -35,24 +35,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "conceptmapcenternodefactory.h"
 #include "conceptmapcenternode.h"
-#include "pvdbcluster.h"
-#include "conceptmapconcept.h"
-#include "conceptmapconceptfactory.h"
-#include "qtpvdbfiledialog.h"
-#include "pvdbclusterfactory.h"
-#include "conceptmap.h"
-#include "qtpvdbclusterwidget.h"
 #include "conceptmapcompetency.h"
-#include "conceptmapedge.h"
-#include "conceptmapedgefactory.h"
-#include "conceptmapnodefactory.h"
 #include "conceptmapconceptfactory.h"
-#include "conceptmapfactory.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmapconcept.h"
+#include "conceptmapedgefactory.h"
+#include "conceptmapedge.h"
 #include "conceptmapexamplefactory.h"
-#include "pvdbfile.h"
-#include "pvdbfilefactory.h"
+#include "conceptmapfactory.h"
+#include "conceptmap.h"
+#include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
+#include "pvdbclusterfactory.h"
+#include "pvdbcluster.h"
+#include "pvdbfilefactory.h"
+#include "pvdbfile.h"
+#include "qtpvdbclusterwidget.h"
 #include "qtpvdbconceptmapdialog.h"
+#include "qtpvdbfiledialog.h"
 #include "trace.h"
 #include "ui_qtpvdbclusterdialog.h"
 #pragma GCC diagnostic pop
@@ -184,13 +184,13 @@ ribi::pvdb::QtPvdbClusterWidget * ribi::pvdb::QtPvdbClusterDialog::GetWidget()
 
 void ribi::pvdb::QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
 {
-  if (!m_widget)
-  {
-    return;
-  }
   if (e->key()  == Qt::Key_Escape)
   {
     close();
+    return;
+  }
+  if (!m_widget)
+  {
     return;
   }
   if ((e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_S)
@@ -464,16 +464,16 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().GetTests().at(index_1));
     const boost::shared_ptr<Concept> concept_f(ConceptFactory().GetTests().at(index_2));
     const boost::shared_ptr<Node> node_a(CenterNodeFactory().CreateFromStrings(question));
-    const boost::shared_ptr<Node> node_b(cmap::NodeFactory().GetTest(index_1));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().GetTest(index_2));
+    const boost::shared_ptr<Node> node_b(NodeFactory().GetTest(index_1));
+    const boost::shared_ptr<Node> node_c(NodeFactory().GetTest(index_2));
     const Nodes nodes = { node_a, node_b, node_c };
-    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<Edge> edge_b(cmap::EdgeFactory().Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<Edge> edge_c(cmap::EdgeFactory().Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<Edge> edge_a(EdgeFactory().Create(NodeFactory().Create(concept_d,1.2,3.4),nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<Edge> edge_b(EdgeFactory().Create(NodeFactory().Create(concept_e,2.3,4.5),nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<Edge> edge_c(EdgeFactory().Create(NodeFactory().Create(concept_f,3.4,5.6),nodes.at(2),false,nodes.at(0),true));
     const Edges edges = { edge_a, edge_b, edge_c };
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(nodes,edges));
+      ribi::cmap::ConceptMapFactory().Create(nodes,edges));
     assert(concept_map);
     file->SetConceptMap(concept_map);
 

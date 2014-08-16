@@ -6,6 +6,8 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "richelbilderbeekprogram.h"
+
 int ribi::XeNonZeroMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());

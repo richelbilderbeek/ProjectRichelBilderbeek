@@ -6,11 +6,7 @@
 
 int main()
 {
-  //Create a std::vector
-  std::vector<int> v;
-  v.push_back(1);
-  v.push_back(2);
-  v.push_back(3);
+  std::vector<int> v = {1,2,3};
 
   assert(std::is_sorted(v.begin(),v.end())
     && "The vector must be sorted to see all permutations");

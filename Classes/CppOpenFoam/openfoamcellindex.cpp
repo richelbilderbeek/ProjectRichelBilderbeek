@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::foam::CellIndex::CellIndex(const int index)
@@ -34,11 +35,11 @@ ribi::foam::CellIndex ribi::foam::CellIndex::operator++(int) noexcept
 void ribi::foam::CellIndex::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::CellIndex::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   CellIndex a(2);
   CellIndex b(2);
   CellIndex c(3);
@@ -49,9 +50,6 @@ void ribi::foam::CellIndex::Test() noexcept
   assert(b != c);
   assert(c != b);
   assert(c == c);
-
-  TRACE("Finished ribi::foam::CellIndex::Test successfully");
-
 }
 #endif
 

@@ -34,6 +34,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "beerwantermaindialog.h"
 #include "fileio.h"
 #include "imagecanvas.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -93,6 +95,7 @@ ribi::About ribi::BeerWanterMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 
@@ -146,11 +149,11 @@ std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory() const n
 void ribi::BeerWanterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::BeerWanterMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Main dialog
   {
     const int screen_width = 640;
@@ -178,6 +181,5 @@ void ribi::BeerWanterMenuDialog::Test() noexcept
       && "BeerWanter resource must exist");
     fileio::FileIo().DeleteFile(filename);
   }
-  TRACE("Finished ribi::BeerWanterMenuDialog::Test successfully");
 }
 #endif

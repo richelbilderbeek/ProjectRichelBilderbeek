@@ -89,7 +89,7 @@ ribi::cmap::QtRateConceptMap::QtRateConceptMap(
 ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
-  const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
+  const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetNode()->GetConcept()));
   assert(qtconcept);
   QtNode * const from = FindQtNode(edge->GetFrom().get());
   assert(from);
@@ -160,8 +160,8 @@ ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   #ifndef NDEBUG
   const double epsilon = 0.000001;
   #endif
-  assert(std::abs(qtedge->pos().x() - edge->GetX()) < epsilon);
-  assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
+  assert(std::abs(qtedge->pos().x() - edge->GetNode()->GetX()) < epsilon);
+  assert(std::abs(qtedge->pos().y() - edge->GetNode()->GetY()) < epsilon);
   return qtedge;
 }
 
@@ -294,10 +294,13 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptMap::Cr
     nodes.push_back(other_node);
     assert(qtedge);
     assert(qtedge->GetEdge());
-    const boost::shared_ptr<Edge> edge(EdgeFactory().Create(
-      qtedge->GetEdge()->GetConcept(),
-      qtedge->GetEdge()->GetX(),
-      qtedge->GetEdge()->GetY(),
+    const boost::shared_ptr<Edge> edge(
+      EdgeFactory().Create(
+        NodeFactory().Create(
+        qtedge->GetEdge()->GetNode()->GetConcept(),
+        qtedge->GetEdge()->GetNode()->GetX(),
+        qtedge->GetEdge()->GetNode()->GetY()
+      ),
       focal_node,
       qtedge->GetEdge()->HasTailArrow(),
       other_node,
@@ -340,6 +343,10 @@ const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtRateCon
 
 void ribi::cmap::QtRateConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
+  //Allow a QtConceptMapWidget to have no QtExamplesItem
+  //This allows to omit showing these in the PDF versions used for printing (#205)
+  if (!GetExamplesItem()) return;
+
   GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
   scene()->update();
 }
@@ -375,23 +382,23 @@ void ribi::cmap::QtRateConceptMap::OnNodeRequestsRateConcept(QtNode * const item
 void ribi::cmap::QtRateConceptMap::OnNodeRequestsRateExamples(QtNode * const item)
 {
   assert(item);
-  if (item->GetConcept()->GetExamples()->Get().empty())
+  if (item->GetNode()->GetConcept()->GetExamples()->Get().empty())
   {
     return;
   }
   //Start edit
   {
     QtScopedDisable<QtRateConceptMap> disable(this);
-    const boost::shared_ptr<Concept> concept = item->GetConcept();
+    const boost::shared_ptr<Concept> concept = item->GetNode()->GetConcept();
     assert(concept);
-    assert(item->GetConcept().get() == concept.get());
-    assert(item->GetConcept() == concept);
+    assert(item->GetNode()->GetConcept().get() == concept.get());
+    assert(item->GetNode()->GetConcept() == concept);
 
     QtRateExamplesDialogNewName d(concept); //FYI: Might change the concept (as suggested by the ctor prototype)
     d.exec();
 
-    assert(item->GetConcept().get() == concept.get());
-    assert(item->GetConcept() == concept);
+    assert(item->GetNode()->GetConcept().get() == concept.get());
+    assert(item->GetNode()->GetConcept() == concept);
   }
   this->setFocus();
   this->scene()->setFocusItem(item);

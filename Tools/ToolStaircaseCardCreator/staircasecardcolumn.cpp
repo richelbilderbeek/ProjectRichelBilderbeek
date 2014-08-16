@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+StaircaseCardCreator, tool to generate staircase cards
+Copyright (C) 2014-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ToolStaircaseCardCreator.htm
+//---------------------------------------------------------------------------
 #include "staircasecardcolumn.h"
 
 #include <cassert>
@@ -74,7 +94,7 @@ void ribi::scc::Column::Swap(const int a, const int b) noexcept
 std::string ribi::scc::Column::ToStr() const noexcept
 {
   std::string s;
-  for (auto c: m_v)
+  for (const auto& c: m_v)
   {
     s += (c == Orientation::horizontal ? 'h' : 'v');
   }

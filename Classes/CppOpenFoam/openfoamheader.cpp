@@ -11,6 +11,7 @@
 #include <boost/algorithm/string/trim.hpp>
 
 #include "fileio.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -72,11 +73,11 @@ void ribi::foam::Header::CleanFile(
 void ribi::foam::Header::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::Header::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const Header h("some_name","some_location","some_note","some_object");
   std::stringstream s;
   s << h;
@@ -88,17 +89,20 @@ void ribi::foam::Header::Test() noexcept
     TRACE(i);
   }
   assert(h == i);
-  TRACE("Finished ribi::foam::Header::Test successfully");
 }
 #endif
 
 bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs) noexcept
 {
+  const bool verbose{false};
   if (lhs.GetClass() != rhs.GetClass())
   {
-    //TRACE("Classes differ:");
-    //TRACE(lhs.GetClass());
-    //TRACE(rhs.GetClass());
+    if (verbose)
+    {
+      TRACE("Classes differ:");
+      TRACE(lhs.GetClass());
+      TRACE(rhs.GetClass());
+    }
     return false;
   }
   //Compare location independent of OS path seperator
@@ -109,17 +113,23 @@ bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Hea
     std::replace(rhs_location.begin(),rhs_location.end(),'\\','/');
     if (lhs_location != rhs_location)
     {
-      //TRACE("Locations differ:");
-      //TRACE(lhs.GetLocation());
-      //TRACE(rhs.GetLocation());
+      if (verbose)
+      {
+        TRACE("Locations differ:");
+        TRACE(lhs.GetLocation());
+        TRACE(rhs.GetLocation());
+      }
       return false;
     }
   }
   if (lhs.GetObject() != rhs.GetObject())
   {
-    //TRACE("Object differ:");
-    //TRACE(lhs.GetObject());
-    //TRACE(rhs.GetObject());
+    if (verbose)
+    {
+      TRACE("Object differ:");
+      TRACE(lhs.GetObject());
+      TRACE(rhs.GetObject());
+    }
     return false;
   }
   return true;
@@ -176,6 +186,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, Header& h)
         << "OpenFOAM header start with 'FoamFile'. "
         << "This file starts with  '"
         << title << "' instead";
+      TRACE(s.str());
       throw std::runtime_error(s.str());
     }
   }

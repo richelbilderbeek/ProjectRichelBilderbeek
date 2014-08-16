@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "codetohtml.h"
 
 #include <algorithm>
@@ -39,6 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
 #include "codetohtmlreplacer.h"
+#include "testtimer.h"
 #include "codetohtmlsnippettype.h"
 #include "codetohtmltechinfo.h"
 #include "fileio.h"
@@ -128,11 +130,11 @@ bool ribi::c2h::IsTidyInstalled()
 void ribi::c2h::Test()
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test SortedFiles
   {
     const std::vector<std::string> result
@@ -162,8 +164,8 @@ void ribi::c2h::Test()
         "e.sh"
       };
     std::vector<std::string> v = result;
-    v.push_back("x.txt"); //Should not be added
-    v.push_back("y.txt"); //Should not be added
+    v.push_back("x.txt"); //Text files should be filtered away
+    v.push_back("y.txt"); //Text files should be filtered away
     std::random_shuffle(v.begin(),v.end());
     v = SortFiles(FilterFiles(v));
     assert(v == result);
@@ -172,7 +174,7 @@ void ribi::c2h::Test()
 }
 #endif
 
-std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& folder)
+std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& folder) noexcept
 {
   std::vector<std::string> files {
     FilterFiles(
@@ -183,29 +185,42 @@ std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& fo
   return files;
 }
 
-std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& files)
+std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& files) noexcept
 {
   std::vector<std::string> v;
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
     [](const std::string& file)
     {
-      const std::string ext = ribi::fileio::FileIo().GetExtension(file);
+      if (file.size() >= 3)
+      {
+        if (file.substr(0,3) == "ui_") return false;
+      }
+      if (file.size() >= 4)
+      {
+        if (file.substr(0,4) == "qrc_") return false;
+        if (file.substr(0,4) == "moc_") return false;
+      }
+      if (file.size() >= 18)
+      {
+        if (file.substr(file.size() - 18, 18) ==  "_plugin_import.cpp") return false;
+      }
+      const std::string ext = ribi::fileio::FileIo().GetExtensionNoDot(file);
       return
-           ext == ".c"
-        || ext == ".cpp"
-        || ext == ".h"
-        || ext == ".hpp"
-        || ext == ".pri"
-        || ext == ".pro"
-        || ext == ".py"
-        || ext == ".sh";
+           ext == "c"
+        || ext == "cpp"
+        || ext == "h"
+        || ext == "hpp"
+        || ext == "pri"
+        || ext == "pro"
+        || ext == "py"
+        || ext == "sh";
     }
   );
   return v;
 }
 
 
-std::vector<std::string> ribi::c2h::SortFiles(std::vector<std::string> files)
+std::vector<std::string> ribi::c2h::SortFiles(std::vector<std::string> files) noexcept
 {
   std::sort(files.begin(), files.end(),
     [](const std::string& lhs,const std::string& rhs)

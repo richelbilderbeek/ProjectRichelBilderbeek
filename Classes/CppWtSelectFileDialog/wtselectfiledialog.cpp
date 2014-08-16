@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtSelectFileDialog, Wt dialog for selecting a file
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,17 +18,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtSelectFileDialog.htm
 //---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
-#include <boost/regex.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#include "wtselectfiledialog.h"
+
+#include <boost/xpressive/xpressive.hpp>
 
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 #include <Wt/WSelectionBox>
 
-#include "wtselectfiledialog.h"
+#include "fileio.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ///The path this dialog starts at
 std::string ribi::WtSelectFileDialog::m_path = "";
@@ -78,53 +83,33 @@ void ribi::WtSelectFileDialog::DoRefresh()
   OnUpdateDialog();
 }
 
-const std::vector<std::string> ribi::WtSelectFileDialog::GetFilesInFolder(const std::string& folder)
-{
-  assert(!m_path.empty() && "Path must be set from argv[0]");
-  std::vector<std::string> v;
+//const std::vector<std::string> ribi::WtSelectFileDialog::GetFilesInFolder(const std::string& folder)
+//{
+//  assert(!m_path.empty() && "Path must be set from argv[0]");
+//  return fileio::FileIo().GetFilesInFolder(m_path);
+//}
 
-  const boost::filesystem::path my_folder
-    = boost::filesystem::system_complete(
-        boost::filesystem::path(folder));
-
-  if (!boost::filesystem::is_directory(my_folder)) return v;
-
-  const boost::filesystem::directory_iterator j;
-  for ( boost::filesystem::directory_iterator i(my_folder);
-        i != j;
-        ++i)
-  {
-    if ( boost::filesystem::is_regular_file( i->status() ) )
-    {
-      const std::string filename = i->path().filename().string();
-      //const std::string full_filename = folder + "/" + filename;
-      v.push_back(filename);
-    }
-  }
-  return v;
-}
-
-const std::string ribi::WtSelectFileDialog::GetSelectedFile() const
+std::string ribi::WtSelectFileDialog::GetSelectedFile() const
 {
   if (m_ui.m_selection_box->currentIndex() == -1) return std::string();
   return m_ui.m_selection_box->itemText(m_ui.m_selection_box->currentIndex()).toUTF8();
 }
 
-const std::string ribi::WtSelectFileDialog::GetVersion()
+std::string ribi::WtSelectFileDialog::GetVersion()
 {
   return "1.5";
 }
 
-const std::vector<std::string> ribi::WtSelectFileDialog::GetVersionHistory()
+std::vector<std::string> ribi::WtSelectFileDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-07-01: version 1.0: initial version");
-  v.push_back("2011-07-01: version 1.1: added support for setting the regex filter");
-  v.push_back("2011-07-03: version 1.2: added support for setting the regex filter to readonly");
-  v.push_back("2011-07-15: version 1.3: added GetPath method, removed \'Select\' Wt::WPushButton");
-  v.push_back("2011-10-16: version 1.4: put UI elements in Ui struct, added virtual SelectFiles method (for Hometrainer)");
-  v.push_back("2011-10-24: version 1.5: added DoRefresh method");
-  return v;
+  return {
+    "2011-07-01: version 1.0: initial version",
+    "2011-07-01: version 1.1: added support for setting the regex filter",
+    "2011-07-03: version 1.2: added support for setting the regex filter to readonly",
+    "2011-07-15: version 1.3: added GetPath method, removed \'Select\' Wt::WPushButton",
+    "2011-10-16: version 1.4: put UI elements in Ui struct, added virtual SelectFiles method (for Hometrainer)",
+    "2011-10-24: version 1.5: added DoRefresh method"
+  };
 }
 
 void ribi::WtSelectFileDialog::OnUpdateDialog()
@@ -133,7 +118,7 @@ void ribi::WtSelectFileDialog::OnUpdateDialog()
 
   const std::vector<std::string> v = SelectFiles();
 
-  BOOST_FOREACH(const std::string& s,v)
+  for(const auto s: v)
   {
     m_ui.m_selection_box->addItem(s.c_str());
   }
@@ -145,22 +130,27 @@ void ribi::WtSelectFileDialog::OnSelect()
   m_signal_selected();
 }
 
-const std::vector<std::string> ribi::WtSelectFileDialog::SelectFiles() const
+std::vector<std::string> ribi::WtSelectFileDialog::SelectFiles() const noexcept
 {
   try
   {
-    boost::regex(m_ui.m_edit_filter->text().toUTF8());
+    boost::xpressive::sregex::compile(m_ui.m_edit_filter->text().toUTF8());
   }
-  catch(boost::bad_expression& e)
+  catch(boost::xpressive::regex_error& e)
   {
     return std::vector<std::string>();
   }
+  catch (...)
+  {
+    assert(!"Should not get here");
+  }
 
   //Get all filenames
-  const std::vector<std::string> v = GetFilesInFolder(m_path);
+  const std::vector<std::string> v = fileio::FileIo().GetFilesInFolder(m_path);
 
   //Create the regex for a correct text file
-  const boost::regex txt_file_regex(m_ui.m_edit_filter->text().toUTF8());
+  const boost::xpressive::sregex txt_file_regex
+    = boost::xpressive::sregex::compile(m_ui.m_edit_filter->text().toUTF8());
 
   std::vector<std::string> w;
   //Copy_if(v.begin(),v.end(),
@@ -168,9 +158,9 @@ const std::vector<std::string> ribi::WtSelectFileDialog::SelectFiles() const
   //    boost::regex_match(boost::bind(boost::lambda::_1),txt_file_regex));
 
   //Copy all filenames matching the regex in the resulting std::vector
-  BOOST_FOREACH(const std::string& s, v)
+  for(const auto s: v)
   {
-    if (boost::regex_match(s,txt_file_regex))
+    if (boost::xpressive::regex_match(s,txt_file_regex))
     {
       w.push_back(s);
     }

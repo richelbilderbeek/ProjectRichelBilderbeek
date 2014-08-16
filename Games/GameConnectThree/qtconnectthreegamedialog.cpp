@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtconnectthreegamedialog.h"
 
 #include <QDesktopWidget>
@@ -31,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthreeresources.h"
 #include "qtconnectthreeresources.h"
 #include "ui_qtconnectthreegamedialog.h"
+#include "testtimer.h"
 #include "qtconnectthreegamedialog.h"
 #include "qtconnectthreewidget.h"
 #include "qtshowwinnerdialog.h"
@@ -65,13 +67,8 @@ ribi::con3::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
     ui->widget->setLayout(mylayout);
   }
 
-  QObject::connect(ui->button_quit,SIGNAL(clicked()),
-    this,SLOT(close()));
-
-  m_board->m_signal_valid_move.connect(
-    boost::bind(
-      &ribi::con3::QtConnectThreeGameDialog::OnValidMove,
-      this));
+  QObject::connect(ui->button_quit,&QPushButton::clicked,this,&ribi::con3::QtConnectThreeGameDialog::close);
+  m_board->m_signal_valid_move.connect(boost::bind(&ribi::con3::QtConnectThreeGameDialog::OnValidMove,this));
 
   //Put the dialog in the screen center
   const QRect screen = QApplication::desktop()->screenGeometry();
@@ -123,7 +120,10 @@ void ribi::con3::QtConnectThreeGameDialog::OnValidMove() noexcept
     {
       //Do a computer turn after a second
       QTimer::singleShot(100,
-        this, SLOT(DoComputerTurn()));
+        this,
+        //&ribi::con3::QtConnectThreeGameDialog::DoComputerTurn //Does not work
+        SLOT(DoComputerTurn())
+      );
     }
 
     return;
@@ -155,17 +155,16 @@ void ribi::con3::QtConnectThreeGameDialog::OnValidMove() noexcept
 void ribi::con3::QtConnectThreeGameDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::con3::QtConnectThreeGameDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
   assert(resources);
   const boost::shared_ptr<const QtConnectThreeGameDialog> d {
     new QtConnectThreeGameDialog(resources,nullptr,std::bitset<3>(false))
   };
   assert(d);
-  TRACE("Finished ribi::con3::QtConnectThreeGameDialog::Test successfully");
 }
 #endif

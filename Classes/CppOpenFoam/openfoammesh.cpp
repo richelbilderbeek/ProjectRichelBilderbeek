@@ -19,6 +19,7 @@
 #include "openfoampatchfieldtypes.h"
 #include "openfoampoint.h"
 #include "openfoampointsfile.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::foam::Mesh::Mesh(
@@ -117,7 +118,7 @@ ribi::foam::Mesh::Mesh(
       assert(m.find(owner) != m.end());
       (*m.find(owner)).second.push_back(face);
     }
-    for (auto p: m)
+    for (const auto& p: m)
     {
       p.first->AssignOwnedFaces(p.second);
     }
@@ -214,7 +215,7 @@ bool ribi::foam::Mesh::AreFacesOrdered() const noexcept
 }
 
 double ribi::foam::Mesh::CalcSimilarityFaster(
-  const std::vector<boost::shared_ptr<const Coordinat3D> >& v,
+  const std::vector<boost::shared_ptr<const Coordinat3D>>& v,
   const std::vector<Coordinat3D>& w) noexcept
 {
   if (v.size() != w.size()) return std::numeric_limits<double>::max();
@@ -291,7 +292,7 @@ double ribi::foam::Mesh::CalcSimilaritySlow(
 
 /*
 double ribi::foam::Mesh::CalcSimilaritySlow(
-  const std::vector<boost::shared_ptr<const Coordinat3D> >& v,
+  const std::vector<boost::shared_ptr<const Coordinat3D>>& v,
   const std::vector<Coordinat3D>& w) noexcept
 {
   if (v.size() != w.size()) return std::numeric_limits<double>::max();
@@ -317,7 +318,7 @@ double ribi::foam::Mesh::CalcSimilaritySlow(
 }
 */
 
-std::vector<boost::shared_ptr<ribi::foam::Boundary> > ribi::foam::Mesh::CreateBoundaries(
+std::vector<boost::shared_ptr<ribi::foam::Boundary>> ribi::foam::Mesh::CreateBoundaries(
   const Files& files,
   const std::vector<boost::shared_ptr<Face>>& all_faces
   )
@@ -333,7 +334,7 @@ std::vector<boost::shared_ptr<ribi::foam::Boundary> > ribi::foam::Mesh::CreateBo
     const std::string name = item.GetName();
     const auto type = item.GetType();
 
-    std::vector<boost::shared_ptr<Face> > faces;
+    std::vector<boost::shared_ptr<Face>> faces;
     const FaceIndex end_face { item.GetEndFace() } ;
     for (FaceIndex face_index = item.GetStartFace(); face_index!=end_face; ++face_index)
     {
@@ -405,7 +406,6 @@ boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Mesh::CreateBoundary() c
     #endif
 
     const FaceIndex n_start_face = FaceIndex(indices[0]);
-    //TRACE(n_start_face);
     const BoundaryFileItem item(
       boundary->GetName(),
       boundary->GetType(),
@@ -425,10 +425,10 @@ boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Mesh::CreateBoundary() c
   return f;
 }
 
-std::vector<boost::shared_ptr<ribi::foam::Cell> > ribi::foam::Mesh::CreateEmptyCells(
+std::vector<boost::shared_ptr<ribi::foam::Cell>> ribi::foam::Mesh::CreateEmptyCells(
   const Files& files)
 {
-  std::vector<boost::shared_ptr<ribi::foam::Cell> > cells;
+  std::vector<boost::shared_ptr<ribi::foam::Cell>> cells;
   const CellIndex n_cells = files.GetOwner()->CountNumberOfCells();
   assert(n_cells == files.GetOwner()->CountNumberOfCells());
   assert(n_cells > CellIndex(0));
@@ -455,7 +455,7 @@ boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Mesh::CreateFaces() const n
     [this](const boost::shared_ptr<const Face> face)
     {
       assert(face);
-      const std::vector<boost::shared_ptr<const Coordinat3D> > points {
+      const std::vector<boost::shared_ptr<const Coordinat3D>> points {
         face->GetPoints()
       };
       std::vector<PointIndex> point_indices;
@@ -669,7 +669,7 @@ std::vector<boost::shared_ptr<boost::geometry::model::point<double,3,boost::geom
   return v;
 }
 
-const boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimilarFace(
+boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimilarFace(
   const std::vector<Coordinat3D>& coordinats
   ) const
 {
@@ -704,9 +704,9 @@ const boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimila
   return p;
 }
 
-const std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Mesh::GetFaces() const noexcept
+const std::vector<boost::shared_ptr<const ribi::foam::Face>> ribi::foam::Mesh::GetFaces() const noexcept
 {
-  std::vector<boost::shared_ptr<const ribi::foam::Face> > v;
+  std::vector<boost::shared_ptr<const ribi::foam::Face>> v;
   std::transform(
     m_faces.begin(),m_faces.end(),
     std::back_inserter(v),
@@ -740,6 +740,19 @@ int ribi::foam::Mesh::GetNumberOfPoints() const noexcept
   return static_cast<int>(m_points.size());
 }
 
+std::string ribi::foam::Mesh::GetVersion() noexcept
+{
+  return "1.1";
+}
+
+std::vector<std::string> ribi::foam::Mesh::GetVersionHistory() const noexcept
+{
+  return {
+    "2014-xx-xx: version 1.0: initial version",
+    "2014-05-08: version 1.1: initial versioning"
+  };
+}
+
 void ribi::foam::Mesh::ReorderFaces()
 {
   assert(!this->AreFacesOrdered());
@@ -753,7 +766,7 @@ void ribi::foam::Mesh::ReorderFaces()
     for (std::size_t j=0; j!=n_faces; ++j)
     {
       assert(j < boundary->GetFaces().size());
-      const std::vector<boost::shared_ptr<Face> >::iterator here {
+      const std::vector<boost::shared_ptr<Face>>::iterator here {
         std::find(m_faces.begin(),m_faces.end(),boundary->GetFaces()[j])
       };
       assert(here != m_faces.end());
@@ -773,11 +786,11 @@ void ribi::foam::Mesh::ReorderFaces()
 void ribi::foam::Mesh::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::Mesh::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check if the number of boundary faces is correct
   {
     const std::vector<boost::shared_ptr<ribi::foam::Files>> v { Files::CreateTestFiles() };
@@ -788,7 +801,7 @@ void ribi::foam::Mesh::Test() noexcept
     for (int mesh_index = 0; mesh_index != n_meshes; ++mesh_index)
     {
       const Mesh mesh(*v[mesh_index]);
-      const std::vector<boost::shared_ptr<const Face> > mesh_faces {
+      const std::vector<boost::shared_ptr<const Face>> mesh_faces {
         mesh.GetFaces()
       };
       const int n_internal {
@@ -808,13 +821,13 @@ void ribi::foam::Mesh::Test() noexcept
   }
   //CalcSimilarity: empty
   {
-    std::vector<boost::shared_ptr<const Coordinat3D> > v;
+    std::vector<boost::shared_ptr<const Coordinat3D>> v;
     std::vector<Coordinat3D> w;
     assert(CalcSimilarityFaster(v,w) < 0.001);
   }
   //CalcSimilarity: one point
   {
-    std::vector<boost::shared_ptr<const Coordinat3D> > v;
+    std::vector<boost::shared_ptr<const Coordinat3D>> v;
     std::vector<Coordinat3D> w;
     {
       const Coordinat3D c(1.1,2.2,3.3);
@@ -830,7 +843,7 @@ void ribi::foam::Mesh::Test() noexcept
   }
   //CalcSimilarity: two points
   {
-    std::vector<boost::shared_ptr<const Coordinat3D> > v;
+    std::vector<boost::shared_ptr<const Coordinat3D>> v;
     std::vector<Coordinat3D> w;
     {
       const Coordinat3D c(1.1,2.2,3.3);
@@ -856,7 +869,7 @@ void ribi::foam::Mesh::Test() noexcept
   }
   //CalcSimilarity: one versus two points
   {
-    std::vector<boost::shared_ptr<const Coordinat3D> > v;
+    std::vector<boost::shared_ptr<const Coordinat3D>> v;
     std::vector<Coordinat3D> w;
     {
       const Coordinat3D c(1.1,2.2,3.3);
@@ -934,7 +947,7 @@ void ribi::foam::Mesh::Test() noexcept
     const std::vector<boost::shared_ptr<Face>> faces { f0,f1,f2,f3,f4,f5 };
     cell->AssignOwnedFaces( { f0,f1,f2,f3,f4,f5 } );
 
-    boost::shared_ptr<Boundary> boundary { new Boundary(  {f0,f1,f2,f3,f4,f5 },"defaultFaces",PatchFieldType::slip ) };
+    boost::shared_ptr<Boundary> boundary { new Boundary(  {f0,f1,f2,f3,f4,f5 },"defaultFaces",PatchFieldType::wall) };
     const std::vector<boost::shared_ptr<Boundary>> boundaries { boundary };
 
     const Mesh m(
@@ -970,7 +983,6 @@ void ribi::foam::Mesh::Test() noexcept
       assert(result == face);
     }
   }
-  TRACE("Finished ribi::foam::Mesh::Test successfully");
 }
 #endif
 

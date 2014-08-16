@@ -1,6 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "multiencrangermenudialog.h"
 
 #include <fstream>
@@ -11,6 +12,8 @@
 #include "loopreader.h"
 #include "encranger.h"
 #include "fileio.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -135,9 +138,12 @@ ribi::About ribi::MultiEncrangerMenuDialog::GetAbout() const noexcept
     "20xx-2014",
     "http://www.richelbilderbeek.nl/ToolMultiEncranger.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
   a.AddLibrary("Encranger version: " + Encranger::GetVersion());
   a.AddLibrary("LoopReader version: " + LoopReader<int>::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -170,7 +176,7 @@ boost::shared_ptr<const ribi::Program> ribi::MultiEncrangerMenuDialog::GetProgra
 
 std::string ribi::MultiEncrangerMenuDialog::GetVersion() const noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
 std::vector<std::string> ribi::MultiEncrangerMenuDialog::GetVersionHistory() const noexcept
@@ -178,7 +184,8 @@ std::vector<std::string> ribi::MultiEncrangerMenuDialog::GetVersionHistory() con
   return {
     "20xx-xx-xx: Version 1.0: initial version programmed in C++ Builder",
     "2013-09-30: Version 2.0: port to Qt Creator, renamed application to ToolMultiEncranger"
-    "2013-11-04: Version 2.1: conformized to ProjectRichelBilderbeekConsole"
+    "2013-11-04: Version 2.1: conformized to ProjectRichelBilderbeekConsole",
+    "2013-11-04: Version 2.2: really use multiple lines"
   };
 }
 
@@ -186,11 +193,10 @@ std::vector<std::string> ribi::MultiEncrangerMenuDialog::GetVersionHistory() con
 void ribi::MultiEncrangerMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolMultiEncrangerMenuDialog::Test");
-  TRACE("Finished ribi::ToolMultiEncrangerMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

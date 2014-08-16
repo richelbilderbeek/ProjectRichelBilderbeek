@@ -3,9 +3,15 @@
 
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/scoped_ptr.hpp>
 #include "about.h"
 #include "encranger.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -34,6 +40,8 @@ struct ToolMultiEncrangerMainDialog
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+
 };
 
 } //~namespace ribi

@@ -18,9 +18,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppContainer.htm
 //---------------------------------------------------------------------------
-#ifndef CONTAINER_H
-#define CONTAINER_H
+#ifndef RIBI_CONTAINER_H
+#define RIBI_CONTAINER_H
 
+#include <algorithm>
 #include <set>
 #include <string>
 #include <sstream>
@@ -37,14 +38,35 @@ namespace ribi {
 ///Class with container class helper functions
 struct Container
 {
+  Container();
+
+  ///Concatenate concatenates the strings, with a certain seperator
+  std::string Concatenate(const std::vector<std::string>& v, const std::string& seperator = "") const noexcept;
+
+  ///std::count(t.begin(),t.end(),u
+  template <class T, class U>
+  static int Count(const T& t, const U& u) noexcept
+  {
+    return std::count(std::begin(t),std::end(t),u);
+  }
+
+  ///Obtain the version
+  static std::string GetVersion() noexcept;
+
+  ///Obtain the version history
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  std::vector<std::string> SeperateString(
+    const std::string& input,
+    const char seperator) const noexcept;
+
   template <class T>
   static std::string ToStr(const std::set<T>& set) noexcept
   {
-    std::string str;
     std::stringstream s;
-    for (const auto t: set) { s << t << ","; }
-    str = s.str();
-    str.pop_back();
+    for (const auto& t: set) { s << t << ","; }
+    std::string str{s.str()};
+    if (!str.empty()) { str.pop_back(); }
     str = "{" + str + "}";
     return str;
   }
@@ -52,15 +74,16 @@ struct Container
   template <class T>
   static std::string ToStr(const std::vector<T>& v) noexcept
   {
-    std::string str;
     std::stringstream s;
-    for (const auto t: v) { s << t << ","; }
-    str = s.str();
-    str.pop_back();
+    for (const auto& t: v) { s << t << ","; }
+    std::string str{s.str()};
+    if (!str.empty()) { str.pop_back(); }
     str = "{" + str + "}";
     return str;
   }
 
+
+  private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
@@ -68,4 +91,4 @@ struct Container
 
 } //~namespace ribi
 
-#endif
+#endif // RIBI_CONTAINER_H

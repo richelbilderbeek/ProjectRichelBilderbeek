@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtTimedServerPusherClient, client of WtTimedServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,13 +18,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtTimedServerPusherClient.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WApplication>
-//---------------------------------------------------------------------------
+
 #include "wttimedserverpusher.h"
 #include "wttimedserverpusherclient.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtTimedServerPusherClient::WtTimedServerPusherClient()
 {
   Wt::WApplication::instance()->enableUpdates(true);
@@ -35,28 +40,28 @@ ribi::WtTimedServerPusherClient::WtTimedServerPusherClient()
   //Scott Meyers, Effective C++, item 9
   //OnServer();
 }
-//---------------------------------------------------------------------------
+
 ribi::WtTimedServerPusherClient::~WtTimedServerPusherClient()
 {
   Wt::WApplication::instance()->enableUpdates(false);
   ribi::WtTimedServerPusher::GetInstance()->Disconnect(this);
 }
-//---------------------------------------------------------------------------
-const std::string ribi::WtTimedServerPusherClient::GetVersion()
+
+std::string ribi::WtTimedServerPusherClient::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::WtTimedServerPusherClient::GetVersionHistory()
+
+std::vector<std::string> ribi::WtTimedServerPusherClient::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-08-05: version 1.0: initial version");
-  return v;
+  return {
+    "2011-08-05: version 1.0: initial version"
+  };
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTimedServerPusherClient::OnServer()
 {
   OnTimedServerPush();
   Wt::WApplication::instance()->triggerUpdate();
 }
-//---------------------------------------------------------------------------
+

@@ -72,7 +72,12 @@ ribi::QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
   this->setFixedHeight(m_dialog->GetWindowHeight());
   this->setFixedWidth(m_dialog->GetWindowWidth());
 
-  m_timer->connect(m_timer.get(),SIGNAL(timeout()),this,SLOT(onTimer()));
+  m_timer->connect(
+    m_timer.get(),
+    &QTimer::timeout,
+    this,
+    &ribi::QtBeerWanterWidget::onTimer
+  );
   m_timer->start(20); //Framerate about (1000/20=) 50 fps
 }
 

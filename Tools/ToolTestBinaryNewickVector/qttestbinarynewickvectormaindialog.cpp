@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 #include "qttestbinarynewickvectormaindialog.h"
+#include "testtimer.h"
 #include "testbinarynewickvectormenudialog.h"
 #include "newick.h"
 #include "newickstorage.h"
@@ -55,14 +56,22 @@ ribi::QtTestBinaryNewickVectorMainDialog::QtTestBinaryNewickVectorMainDialog(QWi
   #endif
   ui->setupUi(this);
   QObject::connect(
-    ui->edit_newick,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_newick,
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,
+    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange
+  );
   QObject::connect(
-    ui->edit_theta,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_theta,
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,
+    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange
+  );
   QObject::connect(
-    m_timer,SIGNAL(timeout()),
-    this,SLOT(OnDemoTick()));
+    m_timer,&QTimer::timeout,
+    this,
+    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange
+  );
 
   #ifndef NDEBUG
   setWindowTitle(windowTitle()+" (debug)");
@@ -348,11 +357,10 @@ void ribi::QtTestBinaryNewickVectorMainDialog::on_button_calculate_clicked()
 void ribi::QtTestBinaryNewickVectorMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestBinaryNewickVectorMainDialog::Test");
-  TRACE("Finished ribi::QtTestBinaryNewickVectorMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "pyloscoordinat.h"
+#include "testtimer.h"
 #include "trace.h"
 
 
@@ -135,11 +136,12 @@ bool ribi::pylos::Move::IsValid() const noexcept
 #ifndef NDEBUG
 void ribi::pylos::Move::Test() noexcept
 {
-  static bool tested = false;
-  if (tested) return;
-  tested = true;
-
-  TRACE("Test Moves");
+  {
+    static bool tested = false;
+    if (tested) return;
+    tested = true;
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     pylos::Move m;
     assert(!m.IsValid() && "An empty move is invalid");

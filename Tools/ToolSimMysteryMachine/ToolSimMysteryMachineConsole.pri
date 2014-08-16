@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolSimMysteryMachine/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachine.qrc

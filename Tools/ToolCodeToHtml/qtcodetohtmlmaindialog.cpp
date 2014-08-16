@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtcodetohtmlmaindialog.h"
 
 #define QTCODETOHTMLMAINDIALOG_TEMPORARILY_REMOVE_QWEBVIEW_253489729387428907
@@ -50,6 +51,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "qtaboutdialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qtcodetohtmlmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -117,7 +119,7 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
   {
     //Convert code snippet
     const std::vector<std::string> v = EditToVector(ui->edit_source_snippet);
-    const std::vector<std::string> w = Dialog::SnippetToHtml(v,SnippetType::cpp);
+    const std::vector<std::string> w = Dialog().SnippetToHtml(v,SnippetType::cpp);
     Display(w);
   }
   else
@@ -133,14 +135,14 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
     }
     if (ribi::fileio::FileIo().IsRegularFile(source))
     {
-      const std::vector<std::string> v { Dialog::FileToHtml(source) };
+      const std::vector<std::string> v { Dialog().FileToHtml(source) };
       Display(v);
     }
     else
     {
       assert(ribi::fileio::FileIo().IsFolder(source));
       const std::vector<std::string> v {
-        Dialog::FolderToHtml(source)
+        Dialog().FolderToHtml(source)
       };
       Display(v);
     }
@@ -225,11 +227,15 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString ) noe
 void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtCodeToHtmlMainDialog::Test");
+  {
+    ribi::fileio::FileIo();
+    Dialog();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //IsRegularFile
   {
     assert(!ribi::fileio::FileIo().IsRegularFile("../ToolCodeToHtml"));
@@ -241,16 +247,16 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
       d.ui->tab_source->setCurrentIndex(index);
       for (const std::string& s:
         {
-          "/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml",
-          "D:/Projects/Tools/ToolCodeToHtml",
-          "D:\\Projects\\Tools\\ToolCodeToHtml",
-          "D:/Projects/Test/ToolOpenFoamExample1",
-          "D:\\Projects\\Test\\ToolOpenFoamExample1",
-          "../../Tools/ToolCodeToHtml",
-          "..\\..\\Tools\\ToolCodeToHtml",
-          "../../Test/ToolOpenFoamExample1",
-          "..\\..\\Test\\ToolOpenFoamExample1",
-          "/home/richel/ProjectRichelBilderbeek/Test/ToolOpenFoamExample1"
+          "/home/richel/ProjectRichelBilderbeek/Tools/ToolTestAbout",
+          "D:/Projects/Tools/ToolTestAbout",
+          "D:\\Projects\\Tools\\ToolTestAbout",
+          "D:/Projects/Test/ToolTestAbout",
+          "D:\\Projects\\Test\\ToolTestAbout",
+          //"../../Tools/ToolCodeToHtml",
+          "..\\..\\Tools\\ToolTestAbout",
+          "../../Tools/ToolTestAbout",
+          "..\\..\\Tools\\ToolTestAbout",
+          "/home/richel/ProjectRichelBilderbeek/Test/ToolTestAbout"
         }
       )
       {
@@ -262,6 +268,5 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
       }
     }
   }
-  TRACE("Finished QtCodeToHtmlMainDialog::Test successfully");
 }
 #endif

@@ -22,11 +22,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTRICHELBILDERBEEKMENUITEM_H
 
 #include "richelbilderbeekprogramtype.h"
-#include "qtroundedtextrectitem.h"
+//#include "qtroundedtextrectitem.h" //OBSOLETE
+#include "qtroundededitrectitem.h"
 
 namespace ribi {
 
-struct QtRichelBilderbeekMenuItem : public QtRoundedTextRectItem
+struct QtRichelBilderbeekMenuItem : public QtRoundedEditRectItem
 {
   QtRichelBilderbeekMenuItem(const ProgramType program_type);
 

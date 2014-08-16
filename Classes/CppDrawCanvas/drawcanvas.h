@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/CppDrawCanvas.htm
 //---------------------------------------------------------------------------
-#ifndef DRAWCANVAS_H
-#define DRAWCANVAS_H
+#ifndef RIBI_DRAWCANVAS_H
+#define RIBI_DRAWCANVAS_H
 
 #include <iosfwd>
 #include <string>
@@ -28,6 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/geometry/geometries/polygon.hpp>
 #include <boost/signals2.hpp>
 #include <boost/units/base_units/angle/radian.hpp>
 #include <boost/units/systems/si/io.hpp>
@@ -48,6 +51,8 @@ namespace ribi {
 ///the part that goes through the DrawCanvas is drawn and stored
 struct DrawCanvas : public Canvas
 {
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+
   ///The number of characters the DrawCanvas is heigh and wide
   ///but also the maximum x and y coordinat. The minimum
   ///x and y coordinats are 0.0 and 0.0
@@ -96,9 +101,13 @@ struct DrawCanvas : public Canvas
   ///where (x1,y1) and (x2,y2) are the centers of a dot with radius 1.0 at
   ///the edges of the line
   void DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept;
+  void DrawLine(const Coordinat from, const Coordinat to) noexcept;
+
+  ///Draw (or actually: add) a polygon on the canvas
+  void DrawPolygon(const boost::geometry::model::polygon<Coordinat>& polygon) noexcept;
 
   ///Draw a Y-X-ordered surface to the DrawCanvas
-  void DrawSurface(const std::vector<std::vector<double> >& v);
+  void DrawSurface(const std::vector<std::vector<double>>& v);
 
   ///Draw (or actually: add) text to the DrawCanvas, where (top,left) is the topleft coordinat
   ///of the text. The text will end up as dots drawn for each character its pixel.
@@ -130,10 +139,10 @@ struct DrawCanvas : public Canvas
   ///The DrawCanvas its internal data: a 2D y-x-ordered std::vector
   ///of doubles, where 0.0 denotes empty/non-drawn
   ///and 1.0 denotes full/drawn.
-  const std::vector<std::vector<double> >& GetGreynesses() const noexcept { return m_canvas; }
+  const std::vector<std::vector<double>>& GetGreynesses() const noexcept { return m_canvas; }
 
   ///Obtain the height of the canvas is characters
-  int GetHeight() const noexcept { return m_canvas.size(); }
+  int GetHeight() const noexcept override { return m_canvas.size(); }
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -142,7 +151,7 @@ struct DrawCanvas : public Canvas
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the width of the canvas is characters
-  int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
+  int GetWidth() const noexcept override { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
 
   ///Save to file
   void Save(const std::string& filename) const noexcept;
@@ -153,7 +162,7 @@ struct DrawCanvas : public Canvas
   ///Set the coordinat system used
   void SetCoordinatSystem(const CanvasCoordinatSystem coordinat_system) noexcept;
 
-  std::vector<std::string> ToStrings() const noexcept;
+  std::vector<std::string> ToStrings() const noexcept override;
 
   private:
   ///The DrawCanvas its internal data: a 2D y-x-ordered std::vector
@@ -172,9 +181,9 @@ struct DrawCanvas : public Canvas
   CanvasCoordinatSystem m_coordinat_system;
 
   ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static std::vector<std::string> GetRegexMatches(
-    const std::string& s,
-    const QRegExp& r);
+  //static std::vector<std::string> GetRegexMatches(
+  //  const std::string& s,
+  //  const QRegExp& r);
 
   ///Check if a coordinat is in the range of the DrawCanvas
   bool IsInRange(const int x, const int y) const;
@@ -196,13 +205,10 @@ struct DrawCanvas : public Canvas
   //From http://www.richelbilderbeek.nl/CppPlotSurface.htm
   static void PlotSurface(
     std::ostream& os,
-    const std::vector<std::vector<double> >& v,
+    const std::vector<std::vector<double>>& v,
     const bool use_normal_color_system,
     const bool as_screen_coordinat_system);
 
-  static std::vector<std::string> SeperateString(
-    const std::string& input,
-    const char seperator) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -225,4 +231,4 @@ bool IsAboutEqual(const DrawCanvas& lhs, const DrawCanvas& rhs) noexcept;
 
 } //~namespace ribi
 
-#endif
+#endif // RIBI_DRAWCANVAS_H

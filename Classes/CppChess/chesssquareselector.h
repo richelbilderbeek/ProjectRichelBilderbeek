@@ -1,5 +1,5 @@
-#ifndef CHESSSQUARESELECTOR_H
-#define CHESSSQUARESELECTOR_H
+#ifndef RIBI_CHESSSQUARESELECTOR_H
+#define RIBI_CHESSSQUARESELECTOR_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -84,4 +84,4 @@ struct SquareSelector
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSSQUARESELECTOR_H
+#endif // RIBI_CHESSSQUARESELECTOR_H

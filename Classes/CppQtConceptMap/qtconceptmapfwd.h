@@ -26,22 +26,33 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct QtQuadBezierArrowItem;
+struct QtRoundedRectItemDialog;
+struct QtRoundedEditRectItem;
+struct QtRoundedEditRectItemDialog;
+struct QtKeyboardFriendlyGraphicsView;
 
 namespace cmap {
 
+struct QtConceptDialog;
 struct QtConceptMap;
 struct QtConceptMapElement;
 struct QtConceptMapWidget;
 struct QtDisplayConceptMap;
 struct QtDisplayStrategy;
 struct QtEdge;
+struct QtEdgeDialog;
 struct QtEditConceptMap;
 struct QtEditStrategy;
+struct QtExampleDialog;
+struct QtExamplesDialog;
 struct QtExamplesItem;
 struct QtItemDisplayStrategy;
 struct QtItemHighlighter;
 struct QtNewArrow;
 struct QtNode;
+struct QtNodeDialog;   //QtDialog showing a Node
+struct QtQtEdgeDialog; //QtDialog showing a QtEdge
+struct QtQtNodeDialog; //QtDialog showing a QtNode
 struct QtRateConceptMap;
 struct QtRateStrategy;
 struct QtTool;

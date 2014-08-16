@@ -10,6 +10,7 @@
 
 #include "imagerotatermaindialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qtimagerotatermaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -101,11 +102,11 @@ void ribi::QtImageRotaterMainDialog::on_button_save_clicked()
 void ribi::QtImageRotaterMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtImageRotaterMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const QImage source(":/imagerotater/images/ToolImageRotaterTest.png");
   assert(!source.isNull());
   QImage target(source);
@@ -117,7 +118,6 @@ void ribi::QtImageRotaterMainDialog::Test() noexcept
   assert(!target.isNull());
   assert(target != source
     && "Images do not look identical after rotation");
-  TRACE("Finished ribi::QtImageRotaterMainDialog::Test successfully");
 }
 #endif
 

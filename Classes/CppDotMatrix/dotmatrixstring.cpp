@@ -8,6 +8,7 @@
 #include <QImage>
 
 #include "dotmatrixchar.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -23,10 +24,10 @@ ribi::DotMatrixString::DotMatrixString(const std::string& s,
   assert(GetString() == s);
 }
 
-std::vector<boost::shared_ptr<const ribi::DotMatrixChar> >
+std::vector<boost::shared_ptr<const ribi::DotMatrixChar>>
   ribi::DotMatrixString::CreateDotMatrixChars(const std::string& s) noexcept
 {
-  std::vector<boost::shared_ptr<const DotMatrixChar> > v;
+  std::vector<boost::shared_ptr<const DotMatrixChar>> v;
   for (const char c: s)
   {
     boost::shared_ptr<const DotMatrixChar> p {
@@ -62,7 +63,7 @@ boost::shared_ptr<QImage> ribi::DotMatrixString::CreateImage() const noexcept
 std::string ribi::DotMatrixString::GetString() const noexcept
 {
   std::string s;
-  for (const auto c: m_v) { s += c->GetChar(); }
+  for (const auto& c: m_v) { s += c->GetChar(); }
   return s;
 }
 
@@ -126,11 +127,11 @@ std::vector<std::string> ribi::DotMatrixString::GetVersionHistory() noexcept
 void ribi::DotMatrixString::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DotMatrixString::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string text = "Hello world";
   const int spacing = 1;
   const boost::shared_ptr<const ribi::DotMatrixString> m {
@@ -139,7 +140,6 @@ void ribi::DotMatrixString::Test() noexcept
   std::stringstream s;
   s << *m;
   assert(!s.str().empty());
-  TRACE("Finished ribi::DotMatrixString::Test successfully");
 }
 #endif
 

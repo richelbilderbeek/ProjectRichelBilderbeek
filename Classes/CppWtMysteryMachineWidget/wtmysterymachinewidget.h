@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtMysteryMachineWidget, Wt widget for displaying the MysteryMachine class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,11 +25,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#include <boost/geometry/geometries/box.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/signals2.hpp>
 
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
-
+#pragma GCC diagnostic pop
 namespace Wt { struct WMouseEventEvent; }
 
 namespace ribi {
@@ -40,6 +46,9 @@ struct WtToggleButtonWidget;
 ///WtMysteryMachineWidget displays a MysteryMachine
 struct WtMysteryMachineWidget : public Wt::WPaintedWidget
 {
+  typedef boost::geometry::model::d2::point_xy<double> Point;
+  typedef boost::geometry::model::box<Point> Rect;
+
   ///A WtMysteryMachineWidget is created by its width and height
   explicit WtMysteryMachineWidget(const int width, const int height);
 
@@ -53,10 +62,10 @@ struct WtMysteryMachineWidget : public Wt::WPaintedWidget
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
   ///Obtain the WtMysteryMachineWidget its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the WtMysteryMachineWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   protected:
   ///Paint the WtMysteryMachineWidget

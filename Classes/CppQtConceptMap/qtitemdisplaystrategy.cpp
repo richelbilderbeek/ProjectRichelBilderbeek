@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
+#ifdef USE_ITEMDISPLAYSTRATEGY_20140622
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -49,19 +51,42 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
-  const boost::shared_ptr<ribi::cmap::Concept>& concept)
-  : m_signal_position_changed{},
-    m_concept(concept),
+    const QPen& contour_pen,
+    const QPen& focus_pen,
+    const QBrush& indicator_brush,
+    const QPen& indicator_pen,
+    const QBrush& main_brush
+) : m_contour_pen(countour_pen),
+    m_focus_pen(focus_pen),
+    m_indicator_brush(indicator_brush),
+    m_indicator_pen(indicator_pen),
+    m_main_brush(main_brush)
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+#ifdef REALLY_USE_20140621
+ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
+  //const boost::shared_ptr<ribi::cmap::Concept>& concept
+)
+  : //m_signal_position_changed{},
+    //m_concept(concept),
+    m_contour_pen(QPen(QColor(0,0,0))),
+    m_focus_pen(QPen(QColor(0,0,0))),
     m_indicator_brush(QBrush(QColor(0,0,0,0))),
-    m_indicator_pen(QPen(QColor(0,0,0)))
+    m_indicator_pen(QPen(QColor(0,0,0))),
+    m_main_brush(QBrush(QColor(0,0,0,0)))
 {
   #ifndef NDEBUG
   Test();
   #endif
 
-  assert(m_concept);
-  assert(m_concept->GetExamples());
+  //assert(m_concept);
+  //assert(m_concept->GetExamples());
 
+  /*
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsSelectable);
@@ -70,36 +95,43 @@ ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
   this->setAcceptHoverEvents(true);
 
   this->SetPadding(Base::Padding(1.0,6.0,1.0,2.0));
-
-  GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&ribi::cmap::QtItemDisplayStrategy::OnConceptNameChanged,this)); //Obligatory
+  */
+  //GetConcept()->m_signal_name_changed.connect(
+  //  boost::bind(&ribi::cmap::QtItemDisplayStrategy::OnConceptNameChanged,this)); //Obligatory
 
   //FIX? 2013-06-25
   //this->SetText("DUMMY TEXT");
   //assert(this->GetText() != m_concept->GetName()
   //  && "The text must be set, to get a resize");
 
-  this->SetName(m_concept->GetName());
+  //this->SetName(m_concept->GetName());
 }
+#endif //REALLY_USE_20140621
 
-const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtItemDisplayStrategy::GetConcept() const noexcept
+/*
+boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtItemDisplayStrategy::GetConcept() const noexcept
 {
   boost::shared_ptr<const ribi::cmap::Concept> p(m_concept);
   assert(p);
   return p;
 }
+*/
 
+/*
 std::string ribi::cmap::QtItemDisplayStrategy::GetName() const noexcept
 {
   return Unwordwrap(this->GetText());
 }
+*/
 
+/*
 void ribi::cmap::QtItemDisplayStrategy::hoverStartEvent(QGraphicsSceneHoverEvent *)
 {
   std::exit(1); //Never called
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
-
+*/
+/*
 void ribi::cmap::QtItemDisplayStrategy::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
@@ -151,13 +183,13 @@ void ribi::cmap::QtItemDisplayStrategy::paint(QPainter* painter, const QStyleOpt
       );
   }
 }
-
+*/
 void ribi::cmap::QtItemDisplayStrategy::SetIndicatorBrush(const QBrush& brush)
 {
   if (m_indicator_brush != brush)
   {
     m_indicator_brush = brush;
-    this->update();
+    //this->update();
   }
 }
 
@@ -166,21 +198,22 @@ void ribi::cmap::QtItemDisplayStrategy::SetIndicatorPen(const QPen& pen)
   if (m_indicator_pen != pen)
   {
     m_indicator_pen = pen;
-    this->update();
+    //this->update();
   }
 }
 
 void ribi::cmap::QtItemDisplayStrategy::SetMainBrush(const QBrush& any_brush)
 {
-
-  if (this->brush() != any_brush)
+  if (m_main_brush != any_brush)
   {
-    this->setBrush(any_brush);
-    this->update();
+    m_main_brush = any_brush;
+    //this->setBrush(any_brush);
+    //this->update();
   }
-  assert(this->brush() == any_brush);
+  //assert(this->brush() == any_brush);
 }
 
+/*
 void ribi::cmap::QtItemDisplayStrategy::SetPos(const double x, const double y)
 {
   if (x != this->x() || y != this->y())
@@ -204,6 +237,7 @@ void ribi::cmap::QtItemDisplayStrategy::SetName(const std::string& s)
   #endif
   assert(this->GetName() == s);
 }
+*/
 
 /*
 QPainterPath ribi::cmap::QtItemDisplayStrategy::shape() const
@@ -222,7 +256,7 @@ QPainterPath ribi::cmap::QtItemDisplayStrategy::shape() const
 void ribi::cmap::QtItemDisplayStrategy::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
@@ -231,3 +265,23 @@ void ribi::cmap::QtItemDisplayStrategy::Test() noexcept
   TRACE("Successfully finished ribi::cmap::QtItemDisplayStrategy::Test()");
 }
 #endif
+
+std::string ribi::cmap::QtItemDisplayStrategy::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << (*this);
+  return s.str():
+}
+
+std::ostream& ribi::cmap::operator<<(std::ostream& os, const QtItemDisplayStrategy& s) noexcept
+{
+  os
+    << s.GetContourPen().widthF() << ','
+    << s.GetFocusPen().widthF() << ','
+    << s.GetIndicatorBrush().color().value() << ','
+    << s.GetIndicatorPen().widthF()
+  ;
+  return os;
+}
+
+#endif // USE_ITEMDISPLAYSTRATEGY_20140622

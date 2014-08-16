@@ -20,14 +20,23 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "pvdbmenudialog.h"
 
 #include <cassert>
 #include <iostream>
 
+#include <boost/make_shared.hpp>
+
+#include "container.h"
 #include "conceptmap.h"
 #include "fileio.h"
 #include "fuzzy_equal_to.h"
+#include "geometry.h"
+#include "plane.h"
+#include "ribi_regex.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -50,15 +59,21 @@ ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
     "Brainweaver",
     "tool to create and assess concept maps",
-    "the 31st of December 2013",
+    "the 18th of May 2014",
     "2012-2014",
     "http://www.richelbilderbeek.nl/ProjectBrainweaver.htm",
     GetVersion(),
     GetVersionHistory());
 
+  a.AddLibrary("apfloat version: 2.4.1");
   a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
+  a.AddLibrary("Container version: " + ribi::Container().GetVersion());
   a.AddLibrary("FileIo version: " + ribi::fileio::FileIo().GetVersion());
   a.AddLibrary("fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
+  a.AddLibrary("Geometry version: " + Geometry().GetVersion());
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
+  a.AddLibrary("ribi::Regex version: " + ribi::Regex::GetVersion());
+
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
@@ -88,7 +103,7 @@ boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram() cons
 
 std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
 {
-  return "0.47";
+  return "0.50";
 }
 
 std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
@@ -137,7 +152,10 @@ std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexc
     "2013-12-29: Version 0.43: bugfixes, renaming, refactoring, preparing for undo functionality",
     "2013-12-31: Version 0.44: when tallying the relevancies of a concept its connected examples, the node names connected to the edges are displayed",
     "2013-12-31: Version 0.45: sub concept map creation bug fixes",
-    "2013-xx-xx: Version 0.46: misc",
-    "2014-04-19: Version 0.47: hotfix"
+    "2013-xx-xx: Version 0.46: edges connected to center node have no label",
+    "2014-04-19: Version 0.47: hotfix",
+    "2014-05-04: Version 0.48: edges connected to center node have center node again",
+    "2014-05-11: Version 0.49: wordwrap in tally relevancies dialog",
+    "2014-05-18: Version 0.50: edges connected to center node have no label, that cannot be edited"
   };
 }

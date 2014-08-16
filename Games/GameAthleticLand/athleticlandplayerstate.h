@@ -1,7 +1,5 @@
-
-
-#ifndef UnitPlayerStateH
-#define UnitPlayerStateH
+#ifndef ATHLETICLANDPLAYERSTATE_H
+#define ATHLETICLANDPLAYERSTATE_H
 
 #include <boost/shared_ptr.hpp>
 #include "athleticlandfwd.h"
@@ -9,10 +7,12 @@
 namespace ribi {
 namespace athl {
 
-enum class State
+enum class PlayerState
 {
   stand_left,
-  stand_right
+  stand_right,
+
+  n_types //Used for debugging only
 };
 
 /*

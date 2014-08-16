@@ -25,11 +25,11 @@
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.04 (trusty)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.0.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -41,11 +41,11 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.2</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.2</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -57,7 +57,7 @@
 <!-- start of code -->
 <table summary="./CppHelloWtQtCreatorWindows/CppHelloWtQtCreatorWindows.pro" border = "1"><tr><td><code>
 include(../../WebApplication.pri)<br/>
-include(../../<a href="CppLibrary.htm">Libraries</a>/BoostAll.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>All.pri)<br/>
 include(../../<a href="CppLibrary.htm">Libraries</a>/Wt.pri)<br/>
 <br/>
 !win32 {<br/>
@@ -82,6 +82,10 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Wt.pri)<br/>
  * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
  <a href="CppComment.htm">*/</a><br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
@@ -90,6 +94,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Wt.pri)<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.htm">WText</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppVersion.htm">version</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a>;<br/>
 <br/>

@@ -1,0 +1,91 @@
+  ----============== HFLOAT version 05-April-2001 ===============---- 
+       author: Joerg Arndt,  email: arndt (AT) jjj.de 
+     compiler used: GNU C 2.95.2 19991024 (release)
+     compilation date: Apr  7 2001, 22:57:54
+     compilation flags were:
+   -O -ffast-math -march=i586 -mcpu=i586 -fomit-frame-pointer 
+       HFLOAT is online at http://www.jjj.de/hfloat/   
+  ----===========================================================----  
+
+ hfloat: radix = 10000
+ hfloat: default precision is 16384 LIMBs
+ hfloat:  = 65536 dec / 54426.5 hex digits  = 217706 bits
+ hfloat: iterations for inverse n-th root are NOT checked 
+ fxtmult: fxt multiplies ARE checked via sum of digit test 
+ fxtmult: max workspace size for fxt mult will be 524288 bytes 
+ workspace: size  = 524288 bytes  =512 kB  =64 kdoubles 
+ workspace: #doubles = 65537
+ workspace: extra (pad) doubles = 0
+ workspace: noswap size = 134217728 bytes  =128 MB  =16 Mdoubles 
+ workspace: cache size  = 131072 bytes  =128 kB  =16 kdoubles 
+
+ pi_check:
+algorithm to compare to =
+ pi_4th_order(r,0):
+
+ ===== PI_algorithm: pi_4th_order(r=4 variant)
+  work = 123.491 full prec multiplies
+
+ RESULT:
++.3141592653589793238462643383279502884197169399375105820974944*10^1
+
+ last digits are:
+7710517802128012956684198414036287272562321442870884270826487072
+
+
+
+ ===== PI_algorithm: pi_4th_order(r=16 variant)
+diff=4  (of 16384)  i.e. 16380 are correct  work = 117.786 full prec multiplies
+
+
+ ===== PI_algorithm: pi_agm_sch() ===== 
+diff=10  (of 16384)  i.e. 16374 are correct  work = 56.4715 full prec multiplies
+
+
+ ===== PI_algorithm: pi_agm()
+diff=9  (of 16384)  i.e. 16375 are correct  work = 70.4715 full prec multiplies
+
+
+ ===== PI_algorithm: pi_agm3(fast variant)
+diff=9  (of 16384)  i.e. 16375 are correct  work = 71.5644 full prec multiplies
+
+
+ ===== PI_algorithm: pi_agm(quartic)
+diff=4  (of 16384)  i.e. 16380 are correct  work = 105.917 full prec multiplies
+
+
+ ===== PI_algorithm: pi_agm3(quartic, fast variant)
+diff=9  (of 16384)  i.e. 16375 are correct  work = 111.873 full prec multiplies
+
+
+ ===== PI_algorithm: pi_agm3(quartic, slow variant)
+diff=7  (of 16384)  i.e. 16377 are correct  work = 125.683 full prec multiplies
+
+
+ ===== PI_algorithm: pi_agm3(slow variant)
+diff=8  (of 16384)  i.e. 16376 are correct  work = 80.0803 full prec multiplies
+
+
+ ===== PI_algorithm: pi_cubic_agm() ===== 
+diff=4  (of 16384)  i.e. 16380 are correct  work = 134.741 full prec multiplies
+
+
+ ===== PI_algorithm: pi_3rd_order() ===== 
+diff=4  (of 16384)  i.e. 16380 are correct  work = 153.018 full prec multiplies
+
+
+ ===== PI_algorithm: pi_2nd_order() ===== 
+diff=5  (of 16384)  i.e. 16379 are correct  work = 183.84 full prec multiplies
+
+
+ ===== PI_algorithm: pi_derived_agm() ===== 
+diff=4  (of 16384)  i.e. 16380 are correct  work = 194.717 full prec multiplies
+
+
+ ===== PI_algorithm: pi_5th_order() ===== 
+diff=5  (of 16384)  i.e. 16379 are correct  work = 271.546 full prec multiplies
+
+
+ ===== PI_algorithm: pi_9th_order() ===== 
+diff=4  (of 16384)  i.e. 16380 are correct  work = 203.147 full prec multiplies
+

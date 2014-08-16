@@ -43,6 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "maziakmaze.h"
 #include "maziaksprites.h"
 #include "qtmaziakgameoverdialog.h"
+#include "testtimer.h"
 #include "qtmaziakgamewondialog.h"
 #include "maziaksolutionmaze.h"
 #include "maziakmaindialog.h"
@@ -174,8 +175,10 @@ void ribi::maziak::QtMaziakMainDialog::OnTimerStartShowingSolution()
 
 void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
 {
-  const int block_width  = 1 + ((ui->widget->width()  - 4) / m_view_width);
-  const int block_height = 1 + ((ui->widget->height() - 4) / m_view_height);
+  //const int block_width  = 1 + ((ui->widget->width()  - 4) / m_view_width);
+  //const int block_height = 1 + ((ui->widget->height() - 4) / m_view_height);
+  const int block_width  = width()  / m_view_width;
+  const int block_height = height() / m_view_height;
 
   m_dialog->AnimateFighting();
 
@@ -184,12 +187,15 @@ void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
   assert(painter.isActive());
 
   //Clean painter
+  //?Really needed?
+  /*
   {
     const boost::shared_ptr<const QPixmap> temp { m_sprites->Get(Sprite::empty) };
 
     assert(temp);
     painter.drawPixmap(ui->widget->rect(),*temp);
   }
+  */
 
   m_dialog->RespondToCurrentSquare();
 
@@ -287,12 +293,12 @@ void ribi::maziak::QtMaziakMainDialog::OnGameWon()
 void ribi::maziak::QtMaziakMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::QtMaziakMainDialog::Test");
   QtMaziakMainDialog(99);
-  TRACE("Finished ribi::maziak::QtMaziakMainDialog::Test successfully");
+  maziak::MainDialog(7);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

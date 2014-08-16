@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 K3-Op-Een-Rij. A simple game.
-Copyright (C) 2007-2011 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
 
+#include "wtautoconfig.h"
+
 #include "connectthreeresources.h"
 #include "wtconnectthreemenudialog.h"
 #include "qtk3opeenrijresources.h"
@@ -39,12 +41,12 @@ struct K3OpEenRijApplication : public Wt::WApplication
 {
   K3OpEenRijApplication(
     const Wt::WEnvironment& env,
-    const boost::shared_ptr<const ConnectThreeResources> resources)
+    const boost::shared_ptr<const ribi::con3::ConnectThreeResources> resources)
     : Wt::WApplication(env)
   {
     this->setTitle("K3OpEenRij");
     this->useStyleSheet(resources->GetCss());
-    root()->addWidget(new ribi::WtConnectThreeMenuDialog(resources));
+    root()->addWidget(new ribi::con3::WtConnectThreeMenuDialog(resources));
   }
 };
 
@@ -80,16 +82,8 @@ Wt::WApplication * createApplication(const Wt::WEnvironment& env)
 
 int main(int argc, char **argv)
 {
-  try
-  {
-    return Wt::WRun(argc, argv, &createApplication);
-  }
-  catch (std::exception& e)
-  {
-    std::cerr << e.what() << '\n';
-    std::clog << e.what() << '\n';
-    std::cout << e.what() << '\n';
-    return 1;
-  }
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
+  return a.Run();
 }
 

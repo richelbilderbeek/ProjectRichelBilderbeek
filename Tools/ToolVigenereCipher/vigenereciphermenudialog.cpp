@@ -28,7 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 
 #include "loopreader.h"
+#include "richelbilderbeekprogram.h"
 #include "vigenerecipher.h"
+#include "testtimer.h"
 #include "vigenereciphermaindialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -153,11 +155,11 @@ std::vector<std::string> ribi::VigenereCipherMenuDialog::GetVersionHistory() con
 void ribi::VigenereCipherMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolVigenereCipherMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     VigenereCipherMenuDialog d;
     d.Execute( {"VigenereCipher", "-k", "A", "--text", "HELLOWORLD", "-s" } );
@@ -165,6 +167,5 @@ void ribi::VigenereCipherMenuDialog::Test() noexcept
     d.Execute( {"VigenereCipher", "-k", "ABC", "--text", "HELLOWORLD", "-s" } );
     d.Execute( {"VigenereCipher", "-k", "ABCDEF", "--cipher", "HELLOWORLD", "-s" } );
   }
-  TRACE("Finished ribi::ToolVigenereCipherMenuDialog::Test successfully");
 }
 #endif

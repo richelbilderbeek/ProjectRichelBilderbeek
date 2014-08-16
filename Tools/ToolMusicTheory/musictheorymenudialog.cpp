@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "musicchord.h"
 #include "musicnote.h"
 #include "musicscale.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::MusicTheoryMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -52,10 +54,13 @@ ribi::About ribi::MusicTheoryMenuDialog::GetAbout() const noexcept
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolMusicTheory.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
   a.AddLibrary("Music::Chord version: " + Music::Chord::GetVersion());
   a.AddLibrary("Music::Note version: " + Music::Note::GetVersion());
   a.AddLibrary("Music::Scale version: " + Music::Scale::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -100,11 +105,10 @@ std::vector<std::string> ribi::MusicTheoryMenuDialog::GetVersionHistory() const 
 void ribi::MusicTheoryMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::MusicTheoryMenuDialog::Test");
-  TRACE("Finished ribi::MusicTheoryMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

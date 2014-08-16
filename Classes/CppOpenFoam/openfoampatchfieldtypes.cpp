@@ -102,6 +102,7 @@ boost::bimap<ribi::foam::PatchFieldType,std::string> ribi::foam::PatchFieldTypes
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::uniformDensityHydrostaticPressure,"uniformDensityHydrostaticPressure"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::uniformFixedValue,"uniformFixedValue"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::uniformTotalPressure,"uniformTotalPressure"));
+  m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::wall,"wall"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::wallHeatTransfer,"wallHeatTransfer"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::waveSurfacePressure,"waveSurfacePressure"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::waveTransmissive,"waveTransmissive"));
@@ -194,6 +195,7 @@ std::vector<ribi::foam::PatchFieldType> ribi::foam::PatchFieldTypes::GetAllTypes
     PatchFieldType::uniformDensityHydrostaticPressure,
     PatchFieldType::uniformFixedValue,
     PatchFieldType::uniformTotalPressure,
+    PatchFieldType::wall,
     PatchFieldType::wallHeatTransfer,
     PatchFieldType::waveSurfacePressure,
     PatchFieldType::waveTransmissive,
@@ -208,7 +210,7 @@ std::vector<ribi::foam::PatchFieldType> ribi::foam::PatchFieldTypes::GetAllTypes
 void ribi::foam::PatchFieldTypes::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

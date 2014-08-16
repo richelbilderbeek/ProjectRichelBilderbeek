@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHFACE_H
-#define TRIANGLEMESHFACE_H
+#ifndef RIBI_TRIANGLEMESHFACE_H
+#define RIBI_TRIANGLEMESHFACE_H
 
 #include <iosfwd>
 #include <set>
@@ -8,6 +8,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
@@ -22,14 +23,22 @@ namespace trim {
 ///Sure, its points can change...
 struct Face
 {
+  //friend class Dialog;
+  //friend class Cell;
+  //friend class CellsCreator;
+  //friend class Helper;
+  //friend class Point;
+  //friend class Template;
+  //friend class TriangleMeshBuilderImpl;
+  //friend void CellsCheck(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept;
+
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
-  //typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
 
   Face(const Face& ) = delete;
-  Face(      Face&&) = delete;
+  //Face(      Face&&) = delete;
   Face& operator=(const Face& ) = delete;
-  Face& operator=(      Face&&) = delete;
+  //Face& operator=(      Face&&) = delete;
 
   Coordinat3D CalcCenter() const noexcept;
 
@@ -51,6 +60,7 @@ struct Face
 
   ///nullptr if no neighbour
   boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
+  boost::shared_ptr<      Cell> GetNonConstNeighbour()       noexcept;
 
   FaceOrientation GetOrientation() const noexcept { return m_orientation; }
 
@@ -75,9 +85,7 @@ struct Face
   ///ownership to the neighbour
   void TransferOwnership() noexcept;
 
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  boost::signals2::signal<void(const Face* const)> m_signal_destroyed;
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
+  static const int sm_face_no_index = -2;
 
   private:
   ~Face() noexcept;
@@ -85,12 +93,7 @@ struct Face
   friend void boost::checked_delete<>(const Face* x);
 
   ///Cells this Face belongs to
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  mutable std::vector<boost::shared_ptr<const Cell>> m_belongs_to;
-  #else
   mutable std::vector<boost::weak_ptr<const Cell>> m_belongs_to;
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
-
 
   ///m_coordinats is used to speed up 'FaceExists', which compares a new Face
   ///with one already present, by comparing their sorted coordinats
@@ -114,7 +117,7 @@ struct Face
 
   friend class FaceFactory;
   ///Enforce a Face is only created by a FaceFactory
-  Face(
+  explicit Face(
     const std::vector<boost::shared_ptr<Point>>& points,
     const FaceOrientation any_orientation,
     const int index,
@@ -124,14 +127,10 @@ struct Face
   void OnCellDestroyed(const Cell* const cell) noexcept;
 
   friend class CellFactory;
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  void AddBelongsTo(boost::shared_ptr<const Cell> cell);
-  #else
   void AddBelongsTo(boost::weak_ptr<const Cell> cell);
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   ///Determined in the end
-  friend class TriangleMeshBuilder;
+  friend class TriangleMeshBuilderImpl;
   std::string GetBoundaryType() const noexcept { return m_type; }
   boost::shared_ptr<Cell> GetNonConstOwner() noexcept;
   void SetIndex(const int index) const noexcept { m_index = index; }
@@ -140,12 +139,15 @@ struct Face
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const Face& f);
+  friend std::ostream& operator<<(std::ostream& os, const Cell& cell) noexcept;
+  friend std::ostream& operator<<(std::ostream& os, const Face& f) noexcept;
+  friend bool operator==(const Face& lhs, const Face& rhs) noexcept;
+  friend bool operator!=(const Face& lhs, const Face& rhs) noexcept;
 };
 
 bool operator==(const Face& lhs, const Face& rhs) noexcept;
 bool operator!=(const Face& lhs, const Face& rhs) noexcept;
-std::ostream& operator<<(std::ostream& os, const Face& f);
+std::ostream& operator<<(std::ostream& os, const Face& f) noexcept;
 
 bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<      Face>& rhs) = delete;
 bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs) = delete;
@@ -156,4 +158,4 @@ bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHFACE_H
+#endif // RIBI_TRIANGLEMESHFACE_H

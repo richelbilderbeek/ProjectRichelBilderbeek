@@ -20,6 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "vigenereciphermaindialog.h"
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::VigenereCipherMainDialog::VigenereCipherMainDialog(const std::string& key) noexcept
@@ -62,15 +63,15 @@ void ribi::VigenereCipherMainDialog::SetPlainText(const std::string& s) noexcept
 void ribi::VigenereCipherMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::VigenereCipherMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
-    VigenereCipherMainDialog d("KEY");
-    const std::string s = "HELLOWORLD";
-    d.SetKey("KEY");
+    VigenereCipherMainDialog d("key");
+    const std::string s = "helloworld";
+    d.SetKey("key");
     d.SetPlainText(s);
     d.Encrypt();
     const std::string encrypted = d.GetEncryptedText();
@@ -79,6 +80,5 @@ void ribi::VigenereCipherMainDialog::Test() noexcept
     const std::string deencrypted = d.GetPlainText();
     assert(s == deencrypted);
   }
-  TRACE("Finished ribi::VigenereCipherMainDialog::Test successfully");
 }
 #endif

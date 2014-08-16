@@ -39,6 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "simplifynewickmaindialog.h"
 #include "qtsimplifynewickmaindialog.h"
+#include "testtimer.h"
 #include "newick.h"
 #include "ui_qtsimplifynewickmaindialog.h"
 #pragma GCC diagnostic pop
@@ -190,11 +191,10 @@ void ribi::QtToolSimplifyNewickMainDialog::on_edit_max_complexity_textChanged(co
 void ribi::QtToolSimplifyNewickMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolSimplifyNewickMainDialog::Test");
-  TRACE("Finished ribi::QtToolSimplifyNewickMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

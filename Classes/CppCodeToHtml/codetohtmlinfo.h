@@ -43,6 +43,8 @@ struct Info
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  static void TestIfAllCreatedPagesAreValid() noexcept;
+
   std::vector<std::string> ToHtml(const std::string page_name) const;
 
   private:

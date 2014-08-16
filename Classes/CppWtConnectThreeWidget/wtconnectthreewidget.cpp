@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtConnectThreeWidget, Wt widget for ConnectThree display
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,17 +18,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtConnectThreeWidget.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#include "wtconnectthreewidget.h"
+
+#include <cassert>
+
 #include <Wt/WPaintDevice>
 #include <Wt/WPainter>
 #include <Wt/WTimer>
 
-#include "connectthree.h"
 #include "connectthreewidget.h"
 #include "connectthreeresources.h"
 #include "connectthreemove.h"
-#include "wtconnectthreewidget.h"
-
-#include <cassert>
+#pragma GCC diagnostic pop
 
 ///Yes, naming the filename twice feels dumb, but
 ///I could not find enough documentation about
@@ -97,12 +102,12 @@ const std::bitset<3>& ribi::con3::WtConnectThreeWidget::GetIsPlayerHuman() const
   return m_widget->GetIsPlayerHuman();
 }
 
-const std::string ribi::con3::WtConnectThreeWidget::GetVersion()
+std::string ribi::con3::WtConnectThreeWidget::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::con3::WtConnectThreeWidget::GetVersionHistory()
+std::vector<std::string> ribi::con3::WtConnectThreeWidget::GetVersionHistory()
 {
   return {
     "2011-01-08: version 1.0: initial version",
@@ -145,7 +150,6 @@ void ribi::con3::WtConnectThreeWidget::OnClick(const Wt::WMouseEvent& e)
     this->update();
     m_signal_valid_move();
   }
-
 }
 
 void ribi::con3::WtConnectThreeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
@@ -195,6 +199,3 @@ void ribi::con3::WtConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is
   assert(m_widget);
   m_widget->SetIsPlayerHuman(is_player_human);
 }
-
-
-

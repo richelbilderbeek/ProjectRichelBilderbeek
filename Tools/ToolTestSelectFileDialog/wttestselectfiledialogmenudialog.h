@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestSelectFileDialog, tool to test the SelectFileDialog class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,20 +20,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTESTSELECTFILEDIALOGMENUDIALOG_H
 #define WTTESTSELECTFILEDIALOGMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace ribi {
 
 struct WtTestSelectFileDialogMenuDialog : public Wt::WContainerWidget
 {
   WtTestSelectFileDialogMenuDialog();
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
 
   private:
   Wt::WWidget * CreateNewAboutDialog() const;

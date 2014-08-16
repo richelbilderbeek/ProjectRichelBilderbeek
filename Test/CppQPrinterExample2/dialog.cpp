@@ -1,3 +1,7 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cassert>
 #include <QPainter>
 #include <QPrinter>
@@ -5,6 +9,7 @@
 #include <boost/shared_ptr.hpp>
 #include "dialog.h"
 #include "ui_dialog.h"
+#pragma GCC diagnostic pop
 
 Dialog::Dialog(QWidget *parent) :
   QDialog(parent),

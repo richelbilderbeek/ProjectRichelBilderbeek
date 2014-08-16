@@ -1,18 +1,22 @@
 #include "k3opeenrijmenudialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <cassert>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
 //#include <QPixmap>
 
 #include "connectthree.h"
 #include "connectthreewidget.h"
 #include "imagecanvas.h"
 #include "qtk3opeenrijresources.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -101,6 +105,7 @@ ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("ConnectThree version: " + con3::ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + con3::ConnectThreeWidget::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Special thanks to Mark Wiering for his excellent bug reports");
   return a;
 }
@@ -171,11 +176,11 @@ void ribi::K3OpEenRijMenuDialog::Show(const int girl_index) const noexcept
 void ribi::K3OpEenRijMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::K3OpEenRijMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   boost::shared_ptr<con3::ConnectThree> c {
     new con3::ConnectThree(15,5)
   };
@@ -184,7 +189,5 @@ void ribi::K3OpEenRijMenuDialog::Test() noexcept
   {
     c->DoMove(c->SuggestMove(is_player_human));
   }
-
-  TRACE("Finished ribi::K3OpEenRijMenuDialog::Test successfully");
 }
 #endif

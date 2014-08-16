@@ -1,0 +1,42 @@
+LEGAL NOTICE
+
+
+
+This program (the apfloat source code and documentation) is freeware. This
+means that you can freely use, distribute, modify and compile it, but you
+can't sell it or any part of it. Basically you can do anything with it, but
+the program or any part of it will always be free. That is you can't charge
+money or other valuables or services for it.
+
+Although you can use this program freely, it would perhaps be considered to
+be good manners to give the original author credit for his work, if this
+program is ever used for anything useful or remarkable.
+
+The author takes no responsibility whatsoever for any damage or harm that
+could result from using this program. The program has been thoroughly
+tested, so using it should be fairly safe. However, executing it as root is
+perhaps not a very good idea.
+
+
+
+Once more (a standard disclaimer):
+
+THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
+EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK
+AS TO THE QUALITY AND PERFORMANCE OF THE PRODUCT IS WITH YOU. SHOULD THE
+PRODUCT PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
+REPAIR OR CORRECTION.
+
+IN NO EVENT WILL MIKKO TOMMILA, THE AUTHOR OF THIS SOFTWARE, OR ANY OTHER
+PARTY WHO MAY HAVE REDISTRIBUTED THE PRODUCT AS PERMITTED ABOVE, BE LIABLE
+TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR
+CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE
+PRODUCT (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED
+INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE
+PRODUCT TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER
+PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+
+
+Whew. Anyway, I have no money, so suing me makes no sense.

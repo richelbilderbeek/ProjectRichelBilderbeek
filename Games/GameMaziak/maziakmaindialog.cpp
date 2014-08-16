@@ -13,6 +13,7 @@
 #include "maziakreceiver.h"
 #include "maziaksolutionmaze.h"
 #include "maziaksprites.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -406,12 +407,11 @@ void ribi::maziak::MainDialog::RespondToCurrentSquare() noexcept
 void ribi::maziak::MainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::MainDialog::Test");
-  TRACE("Finished ribi::maziak::MainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

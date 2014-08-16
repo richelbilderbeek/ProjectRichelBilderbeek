@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 #include <vector>
 
+#include "testtimer.h"
 #include "trace.h"
 #include "loopreader.h"
 
@@ -155,14 +156,14 @@ std::vector<std::string> ribi::VigenereCipher::GetVersionHistory() noexcept
 
 bool ribi::VigenereCipher::IsClean(const std::string& s) noexcept
 {
-  for (const auto c:s) { if (c < 'a' || c > 'z') return false; }
+  for (const auto& c:s) { if (c < 'a' || c > 'z') return false; }
   return true;
 }
 
 std::vector<int> ribi::VigenereCipher::StrToKey(const std::string& s) noexcept
 {
   std::vector<int> v;
-  for (const auto c: s)
+  for (const auto& c: s)
   {
     #ifndef NDEBUG
     if (!(c >= 'a'))
@@ -182,11 +183,11 @@ std::vector<int> ribi::VigenereCipher::StrToKey(const std::string& s) noexcept
 void ribi::VigenereCipher::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::VigenereCipher::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const VigenereCipher e("a");
     const std::string s = "abcdefghij";
@@ -221,6 +222,5 @@ void ribi::VigenereCipher::Test() noexcept
     const std::string clean_text = VigenereCipher::Clean(secret);
     TRACE(e.Deencrypt(e.Encrypt(clean_text)));
   }
-  TRACE("Finished ribi::VigenereCipher::Test successfully");
 }
 #endif

@@ -1,6 +1,5 @@
-
-#ifndef CHESSFWD_H
-#define CHESSFWD_H
+#ifndef RIBI_CHESSFWD_H
+#define RIBI_CHESSFWD_H
 
 ///Contains the CppChess forward declarations
 namespace ribi {
@@ -38,4 +37,4 @@ struct Widget;
 
 } //~namespace ribi
 
-#endif // CHESSFWD_H
+#endif // RIBI_CHESSFWD_H

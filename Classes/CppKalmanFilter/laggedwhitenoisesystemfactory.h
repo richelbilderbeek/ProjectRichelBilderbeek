@@ -17,18 +17,28 @@ namespace kalman {
 ///Factory for LaggedWhiteNoiseSystem
 struct LaggedWhiteNoiseSystemFactory
 {
+  LaggedWhiteNoiseSystemFactory();
+
   ///Create a LaggedWhiteNoiseSystem from the loose parameters
-  static const boost::shared_ptr<LaggedWhiteNoiseSystem> Create(
+  boost::shared_ptr<LaggedWhiteNoiseSystem> Create(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const int lag,
     const boost::numeric::ublas::vector<double>& real_measurement_noise,
     const boost::numeric::ublas::vector<double>& real_process_noise,
-    const boost::numeric::ublas::matrix<double>& state_transition);
+    const boost::numeric::ublas::matrix<double>& state_transition
+  ) const noexcept;
 
   ///Create a LaggedWhiteNoiseSystem from the parameters
-  static const boost::shared_ptr<LaggedWhiteNoiseSystem> Create(
-    const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
+  boost::shared_ptr<LaggedWhiteNoiseSystem> Create(
+    const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters
+  ) const noexcept;
+
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

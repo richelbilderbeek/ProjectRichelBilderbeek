@@ -1,5 +1,5 @@
-#ifndef CHESSCASTLING_H
-#define CHESSCASTLING_H
+#ifndef RIBI_CHESSCASTLING_H
+#define RIBI_CHESSCASTLING_H
 
 #include <iosfwd>
 #include <vector>
@@ -27,4 +27,4 @@ Castling StrToCastling(const std::string& s);
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSCASTLING_H
+#endif // RIBI_CHESSCASTLING_H

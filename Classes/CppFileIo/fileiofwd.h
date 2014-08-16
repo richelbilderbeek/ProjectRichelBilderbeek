@@ -1,5 +1,5 @@
-#ifndef FILEIOFWD_H
-#define FILEIOFWD_H
+#ifndef RIBI_FILEIOFWD_H
+#define RIBI_FILEIOFWD_H
 
 namespace ribi {
 namespace fileio {
@@ -10,4 +10,4 @@ struct Filename;
 } //~namespace fileio
 } //~namespace ribi
 
-#endif // FILEIOFWD_H
+#endif // RIBI_FILEIOFWD_H

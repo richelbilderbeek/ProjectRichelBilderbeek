@@ -7,7 +7,3 @@ SOURCES += \
 HEADERS  += \
     ../../Games/GameTicTacToe/wttictactoemenudialog.h \
     ../../Games/GameTicTacToe/wttictactoegamedialog.h
-
-RESOURCES += \
-    ../../Games/GameTicTacToe/GameTicTacToe.qrc
-

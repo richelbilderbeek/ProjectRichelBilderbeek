@@ -1,10 +1,11 @@
-#ifndef OPENFOAMFACE_H
-#define OPENFOAMFACE_H
+#ifndef RIBI_OPENFOAMFACE_H
+#define RIBI_OPENFOAMFACE_H
 
 #include <vector>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/shared_ptr.hpp>
@@ -26,11 +27,11 @@ struct Face
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
-  Face(
-    const boost::shared_ptr<Cell> neighbour,
-    const boost::shared_ptr<Cell> owner,
+  explicit Face(
+    const boost::shared_ptr<Cell>& neighbour,
+    const boost::shared_ptr<Cell>& owner,
     const std::vector<boost::shared_ptr<Coordinat3D>>& points
-  );
+  ) noexcept;
 
   Face(const Face&) = delete;
   Face& operator=(const Face&) = delete;
@@ -46,8 +47,8 @@ struct Face
   boost::shared_ptr<const Cell> GetOwner() const noexcept { return m_owner; }
   boost::shared_ptr<      Cell> GetOwner()       noexcept;
 
-        std::vector<boost::shared_ptr<const Coordinat3D> > GetPoints() const noexcept;
-  const std::vector<boost::shared_ptr<      Coordinat3D> >&GetPoints()       noexcept { return m_points; }
+        std::vector<boost::shared_ptr<const Coordinat3D>> GetPoints() const noexcept;
+  const std::vector<boost::shared_ptr<      Coordinat3D>>&GetPoints()       noexcept { return m_points; }
   private:
   ///If this Face has no Neighbour, this is nullptr
   boost::shared_ptr<Cell> m_neighbour;
@@ -74,4 +75,4 @@ std::ostream& operator<<(std::ostream& os, const Face& face) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMFACE_H
+#endif // RIBI_OPENFOAMFACE_H

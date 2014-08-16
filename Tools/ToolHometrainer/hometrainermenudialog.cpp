@@ -20,10 +20,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "hometrainermenudialog.h"
 
 #include <iostream>
 
+#include "container.h"
 #include "exercise.h"
 #include "fileio.h"
 #include "hometrainermaindialog.h"
@@ -34,6 +37,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "hometrainerresources.h"
 #include "question.h"
 #include "questiondialog.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #include <QFile>
@@ -159,14 +164,17 @@ std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() const 
 void ribi::HometrainerMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::HometrainerMenuDialog::Test()");
+  Container();
+  HometrainerResources();
+  HometrainerMainDialog(HometrainerResources().GetExerciseClouds());
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+
   HometrainerMenuDialog().Execute( { "Hometrainer", "-e" } );
   const HometrainerMainDialog d(HometrainerResources().GetExerciseClouds());
   assert(d.GetNumberCorrect() == 0);
-  TRACE("Finished ribi::HometrainerMenuDialog::Test()");
 }
 #endif

@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppFileIo.htm
 //---------------------------------------------------------------------------
-#ifndef FILEIO_H
-#define FILEIO_H
+#ifndef RIBI_FILEIO_H
+#define RIBI_FILEIO_H
 
 #include <string>
 #include <vector>
@@ -34,6 +34,10 @@ struct FileIo
   enum class RenameMode { allow_overwrite, prevent_overwrite };
 
   FileIo();
+
+  ///Converts a Windows path to a Unix path. A Unix path will remain unaltered.
+  //Does so by replacing '\' by '/'
+  std::string ConvertPathToUnix(const std::string& path) const noexcept;
 
   ///Creates a folder
   ///Will abort if it already exists
@@ -67,11 +71,18 @@ struct FileIo
     const std::string& filename_b
   ) const;
 
+  ///FileToStr reads a file and converts it to std::string
+  ///Throws std::bad_alloc if the file is too big to fit in std::vector
+  ///Throws std::logic_error if the file does not exist
+  //From http://www.richelbilderbeek.nl/CppFileToVector.htm
+  std::string FileToStr(const std::string& filename) const;
+
   ///FileToVector reads a file and converts it to a std::vector<std::string>
   ///Throws std::bad_alloc if the file is too big to fit in std::vector
   ///Throws std::logic_error if the file does not exist
   //From http://www.richelbilderbeek.nl/CppFileToVector.htm
   std::vector<std::string> FileToVector(const std::string& filename) const;
+
 
   ///Returns the extension of a filename, starting with a dot
   //From http://www.richelbilderbeek.nl/CppGetExtension.htm
@@ -136,6 +147,7 @@ struct FileIo
   /// - GetTempFileName("") -> tmp01234567
   /// - GetTempFileName(".txt") -> tmp01234567.txt
   std::string GetTempFileName(const std::string& post = "") const;
+  std::string GetTempFileNameSimple(const std::string& post = "") const;
 
   ///Obtain the name of a folder that does not exist
   ///Will throw a std::runtime_error in the unlikely
@@ -143,10 +155,18 @@ struct FileIo
   std::string GetTempFolderName() const;
 
   ///Obtain the version
-  std::string GetVersion() const noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///Checks if the path has only the right path seperators
+  ///A Linux path should not contain Windows backslashes
+  ///A Windows path should not contain Linux slashes
+  bool HasRightPathSeperators(const std::string& path) const noexcept;
+
+  ///Checks if the path has both Linux and Windows path seperators
+  bool HasTwoPathSeperators(const std::string& path) const noexcept;
 
   ///Returns if the name is a folder name
   ///From http://www.richelbilderbeek.nl/CppIsFolder.htm
@@ -156,6 +176,8 @@ struct FileIo
   ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
   bool IsRegularFile(const std::string& filename) const noexcept;
 
+  ///Checks if the path is a valid UNIX path
+  bool IsUnixPath(const std::string& path) const noexcept;
 
   ///Removes the path of a filename
   ///From http://www.richelbilderbeek.nl/CppRemovePath.htm
@@ -195,4 +217,4 @@ struct FileIo
 } //~namespace fileio
 } //~namespace ribi
 
-#endif // FILEIO_H
+#endif // RIBI_FILEIO_H

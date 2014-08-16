@@ -39,10 +39,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/function.hpp>
 
-//#include <QDir>
-//#include <QFile>
 #include "fileio.h"
 #include "trace.h"
+#include "testtimer.h"
 
 #pragma GCC diagnostic pop
 
@@ -56,7 +55,7 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
     m_libs{},
     m_other_files{},
     m_pri_files{},
-    m_pro_filename{filename},
+    m_pro_filename{fileio::FileIo().ConvertPathToUnix(filename)},
     m_qmake_cxxflags{},
     m_qt{},
     m_resources{},
@@ -67,22 +66,31 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   #ifndef NDEBUG
   Test();
   #endif
-
-  #ifndef NDEBUG
-  if (!ribi::fileio::FileIo().IsRegularFile(filename))
+  if (!ribi::fileio::FileIo().IsRegularFile(m_pro_filename))
   {
-    TRACE(filename);
-    TRACE("BREAK");
+    std::stringstream s;
+    s << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Filename '" << m_pro_filename << "' must be a regular file";
+    throw std::logic_error(s.str().c_str());
   }
-  #endif
-  assert(ribi::fileio::FileIo().IsRegularFile(filename));
+  assert(fileio::FileIo().IsUnixPath(m_pro_filename));
+  if (!fileio::FileIo().IsUnixPath(m_pro_filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Filename '" << m_pro_filename << "' must have a Linux-styl path "
+      << " (this is, folders must be seperated by a slash, instead of a backslash)"
+    ;
+    throw std::logic_error(s.str().c_str());
+  }
 
-  std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
+
+
+  std::vector<std::string> v{ribi::fileio::FileIo().FileToVector(m_pro_filename)};
   RemoveComments(v);
   DoReplacements(v);
   std::stringstream data;
   std::copy(std::begin(v),std::end(v),std::ostream_iterator<std::string>(data," "));
-  TRACE(data.str());
   Parse(data);
 }
 
@@ -110,7 +118,7 @@ ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
 
 std::string ribi::QtCreatorProFile::GetVersion() noexcept
 {
-  return "2.1";
+  return "3.0";
 }
 
 std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
@@ -127,13 +135,14 @@ std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
     "2012-12-23: version 1.8: renamed to QtCreatorProFile due to naming conflicts when cross-compiling",
     "2013-05-18: version 2.0: simplified architecture by removing file I/O",
     "2013-08-19: version 2.1: replaced Boost.Regex by Boost.Xpressive, removed Boost.Filesystem",
-    "2014-01-27: version 2.2: removes all comments, can detect includes of .pri files"
+    "2014-01-27: version 2.2: removes all comments, can detect includes of .pri files",
+    "2014-05-02: version 3.0: use UNIX path seperators only"
   };
 }
 
 void ribi::QtCreatorProFile::Parse(std::stringstream& data)
 {
-  const bool verbose = true;
+  const bool verbose{false};
   std::set<std::string> * p = nullptr; //A set to write to
   enum class Prefix { none, plus, minus };
   Prefix prefix = Prefix::none;
@@ -268,32 +277,18 @@ void ribi::QtCreatorProFile::RemoveComments(std::vector<std::string>& v)
 
 }
 
-std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
-  const std::string& input,
-  const char seperator)
-{
-  std::istringstream is(input);
-  std::vector<std::string> v;
-  for (
-    std::string sub;
-    std::getline(is, sub, seperator);
-    v.push_back(sub))
-  {
-    //Empty for loop
-  }
-  return v;
-}
-
 #ifndef NDEBUG
 void ribi::QtCreatorProFile::Test() noexcept
 {
   //Test exactly once
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtCreatorProFile::Test");
+  fileio::FileIo();
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
@@ -315,7 +310,6 @@ void ribi::QtCreatorProFile::Test() noexcept
     //Check the project file
     const QtCreatorProFile p(mypath);
     assert(p.GetPriFiles().size() == 1);
-    TRACE(*p.GetPriFiles().begin());
     assert(p.GetPriFiles().count("something.pri"));
     fileio::FileIo().DeleteFile(mypath.c_str());
   }
@@ -328,7 +322,6 @@ void ribi::QtCreatorProFile::Test() noexcept
     //Check the project file
     const QtCreatorProFile p(mypath);
     assert(p.GetPriFiles().size() == 1);
-    TRACE(*p.GetPriFiles().begin());
     assert(p.GetPriFiles().count("something.pri"));
     fileio::FileIo().DeleteFile(mypath.c_str());
   }
@@ -367,7 +360,6 @@ void ribi::QtCreatorProFile::Test() noexcept
     }
     //Check the project file
     const QtCreatorProFile p(mypath);
-    TRACE(p.GetConfig().size());
     assert(p.GetConfig().size() == 2);
     assert(p.GetConfig().count("console"));
     assert(p.GetConfig().count("-app_bundle"));
@@ -488,7 +480,6 @@ void ribi::QtCreatorProFile::Test() noexcept
     }
     fileio::FileIo().DeleteFile(mypath.c_str());
   }
-  TRACE("Finished QtCreatorProFile::Test successfully");
 }
 #endif
 

@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtkalmanfilterermenudialog.h"
 
 #include <QDesktopWidget>
@@ -9,6 +11,7 @@
 #include "kalmanfilterexample.h"
 #include "matrix.h"
 #include "qtaboutdialog.h"
+#include "testtimer.h"
 #include "qthideandshowdialog.h"
 #include "qtkalmanfilterermaindialog.h"
 #include "qtmatrix.h"
@@ -73,17 +76,16 @@ void ribi::kalman::QtKalmanFiltererMenuDialog::on_button_start_clicked()
 void ribi::kalman::QtKalmanFiltererMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
   {
     Matrix::Test();
     QtMatrix::Test();
-    TRACE("Starting ribi::kalman::QtKalmanFiltererMenuDialog::Test()")
-    const boost::shared_ptr<QtKalmanFiltererMainDialog> d = QtKalmanFiltererMainDialog::Create();
-    assert(d);
-    TRACE("Finished ribi::kalman::QtKalmanFiltererMenuDialog::Test()")
+    KalmanFiltererMenuDialog();
+    QtKalmanFiltererMainDialog::Create();
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

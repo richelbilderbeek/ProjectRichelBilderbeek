@@ -11,6 +11,7 @@
 
 #include <QKeyEvent>
 
+#include "conceptmapcompetencies.h"
 #include "conceptmapcompetency.h"
 #include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
@@ -65,22 +66,22 @@ void ribi::cmap::QtTestRateConceptMapDialog::DoSomethingRandom()
     {
       if (QtNode* const qtitem = dynamic_cast<QtNode*>(item))
       {
-        assert(qtitem->GetConcept());
-        assert(!qtitem->GetConcept()->GetName().empty());
-        assert(qtitem->GetConcept()->GetExamples());
+        assert(qtitem->GetNode());
+        assert(!qtitem->GetNode()->GetConcept()->GetName().empty());
+        assert(qtitem->GetNode()->GetConcept()->GetExamples());
         const int rating_complexity = -1 + (std::rand() % 4);
         assert(rating_complexity >= -1);
         assert(rating_complexity <=  2);
-        qtitem->GetConcept()->SetRatingComplexity(rating_complexity);
-        qtitem->GetConcept()->SetRatingConcreteness(-1 + (std::rand() % 4));
-        qtitem->GetConcept()->SetRatingSpecificity(-1 + (std::rand() % 4));
-        const auto v = qtitem->GetConcept()->GetExamples()->Get();
+        qtitem->GetNode()->GetConcept()->SetRatingComplexity(rating_complexity);
+        qtitem->GetNode()->GetConcept()->SetRatingConcreteness(-1 + (std::rand() % 4));
+        qtitem->GetNode()->GetConcept()->SetRatingSpecificity(-1 + (std::rand() % 4));
+        const auto v = qtitem->GetNode()->GetConcept()->GetExamples()->Get();
         std::for_each(v.begin(),v.end(),
           [](const boost::shared_ptr<cmap::Example>& example)
           {
             if ( (std::rand() >> 4) % 2)
             {
-              const std::vector<cmap::Competency> w = cmap::GetAllCompetencies();
+              const std::vector<cmap::Competency> w = Competencies().GetAllCompetencies();
               example->SetCompetency(w[ std::rand() % w.size() ]);
             }
             else

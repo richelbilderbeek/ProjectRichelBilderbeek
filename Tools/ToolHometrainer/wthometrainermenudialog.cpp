@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Hometrainer, exercise and survey suite
-Copyright (C) 2009-2013 Richel Bilderbeek
+Copyright (C) 2009-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,12 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolHometrainer.htm
 //---------------------------------------------------------------------------
+#include "wthometrainermenudialog.h"
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <cassert>
 
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
 #include <boost/lambda/lambda.hpp>
 
 #include <Wt/WBreak>
@@ -42,7 +44,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtexercise.h"
 #include "wthometrainerloadexercisedialog.h"
 #include "wthometrainerstartexercisedialog.h"
-#include "wthometrainermenudialog.h"
 #include "wtmultiplechoicequestiondialog.h"
 #include "wtopenquestiondialog.h"
 #include "wtquestiondialog.h"

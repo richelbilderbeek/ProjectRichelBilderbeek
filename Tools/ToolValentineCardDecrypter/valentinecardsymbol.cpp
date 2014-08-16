@@ -12,6 +12,7 @@
 #include "fileio.h"
 #include "textcanvas.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::ValentineCardSymbol::ValentineCardSymbol(
@@ -88,11 +89,11 @@ std::vector<std::string> ribi::ValentineCardSymbol::GetVersionHistory() noexcept
 void ribi::ValentineCardSymbol::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ValentineCardSymbol::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     assert(ValentineCardSymbol( { false, true, true,false }, CenterSymbol::none ).CalcValue() == 0);
     assert(ValentineCardSymbol( { false, true, true, true }, CenterSymbol::none ).CalcValue() == 1);
@@ -132,7 +133,6 @@ void ribi::ValentineCardSymbol::Test() noexcept
       boost::lexical_cast<std::string>(i) + ".png");
     ValentineCardSymbol(i).ToImage()->save(filename.c_str());
   }
-  TRACE("Finished ribi::ValentineCardSymbol::Test successfully");
 }
 #endif
 

@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttestpylostestboarddialog.h"
 
 #include <cassert>
@@ -60,21 +61,22 @@ ribi::pylos::QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *par
 
   //Connect the timer
   QObject::connect(
-    m_timer,SIGNAL(timeout()),
-    this,SLOT(OnTimer()));
+    m_timer,&QTimer::timeout,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::OnTimer
+  );
 
   //When there's a winner, only the log needs to be informed
-  QObject::connect(this->m_widget.get(),SIGNAL(HasWinner()),
-    this,SLOT(UpdateLog()));
+  QObject::connect(m_widget.get(),&QtPylosBoardWidget::HasWinner,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog);
   //When one of the other selectors changes, only the log needs to be informed
-  QObject::connect(this->m_widget.get(),SIGNAL(Toggle()),
-    this,SLOT(UpdateLog()));
+  QObject::connect(m_widget.get(),&QtPylosBoardWidget::Toggle,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog);
   //When the selector changes, only the log needs to be informed
-  QObject::connect(this->m_widget.get(),SIGNAL(SelectorChanged()),
-    this,SLOT(UpdateLog()));
+  QObject::connect(m_widget.get(),&QtPylosBoardWidget::SelectorChanged,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog);
   //When the active player changes, only the log needs to be informed
-  QObject::connect(this->m_widget.get(),SIGNAL(PlayerChanged()),
-    this,SLOT(UpdateLog()));
+  QObject::connect(m_widget.get(),&QtPylosBoardWidget::PlayerChanged,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog);
 
   UpdateLog();
 }

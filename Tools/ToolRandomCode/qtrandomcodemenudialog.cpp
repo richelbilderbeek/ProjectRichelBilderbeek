@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtrandomcodemaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtrandomcodemenudialog.h"
 #pragma GCC diagnostic pop
@@ -80,11 +81,10 @@ void ribi::QtRandomCodeMenuDialog::on_button_start_clicked()
 void ribi::QtRandomCodeMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtRandomCodeMenuDialog::Test");
-  TRACE("Finished ribi::QtRandomCodeMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

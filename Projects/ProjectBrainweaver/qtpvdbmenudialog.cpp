@@ -159,12 +159,12 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked() noexcept
 {
-  #ifdef TODO_RJCB //TODO RJCB
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(5);
+  const int test = 4;
+  assert(test < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(test);
   assert(file);
   QtPvdbRatingDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-  #endif //TODO RJCB
 }
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked() noexcept
@@ -211,7 +211,6 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked() noexcept
     assert(!file->GetCluster());
     assert( file->GetConceptMap());
 
-    //file->SetQuestion("Wat zal ik als test focusvraag schrijven?");
     assert(file->GetQuestion() == question);
   }
   QtPvdbClusterDialog d(file);
@@ -271,7 +270,6 @@ void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
       =
       {
         //Duplication of tests, the ones I am most interested in now
-        ui->button_test_conceptedit,
 
         //Normal alphabetical order of tests
         ui->button_about,
@@ -289,7 +287,6 @@ void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
         ui->button_student,
         ui->button_test_arrowitems,
         ui->button_test_cluster,
-        ui->button_test_conceptedit,
         ui->button_test_conceptmap,
         ui->button_test_create_sub_concept_map,
         ui->button_test_conceptmaps,
@@ -467,14 +464,6 @@ void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
 }
 #endif
 
-/*
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked() noexcept
-{
-  cmap::QtConceptMapTestNodeItemDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-*/
-
 void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked() noexcept
 {
   QtTestQtRoundedTextRectItemMenuDialog d;
@@ -578,5 +567,15 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked
 void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmaps_clicked()
 {
   cmap::QtTestConceptMapMenuDialog d;
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
+}
+
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
+{
+  const int test = 4;
+  assert(test < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(test);
+  assert(file);
+  QtPvdbConceptMapDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }

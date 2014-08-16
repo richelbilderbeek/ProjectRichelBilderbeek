@@ -1,5 +1,5 @@
-#ifndef OPENFOAMMESH_H
-#define OPENFOAMMESH_H
+#ifndef RIBI_OPENFOAMMESH_H
+#define RIBI_OPENFOAMMESH_H
 
 #include <iosfwd>
 #include <string>
@@ -32,9 +32,9 @@ struct Mesh
   ///Step #0
   ///Create Points so these can be shared over the Faces
   ///Create Cells so these can be shared over the Faces
-  Mesh(const Files& files) : Mesh(files,CreatePoints(files)) {}
+  explicit Mesh(const Files& files) : Mesh(files,CreatePoints(files)) {}
 
-  Mesh(
+  explicit Mesh(
     const std::vector<boost::shared_ptr<Boundary>>& boundaries,
     const std::vector<boost::shared_ptr<Cell>>& cells,
     const std::vector<boost::shared_ptr<Face>>& faces,
@@ -44,20 +44,22 @@ struct Mesh
   ///Write the Mesh to a Files
   Files CreateFiles() const noexcept;
 
-  const boost::shared_ptr<const Face> FindMostSimilarFace(
+  boost::shared_ptr<const Face> FindMostSimilarFace(
     const std::vector<Coordinat3D>& coordinats
   ) const;
 
+
+  const std::vector<boost::shared_ptr<Boundary>>& GetBoundaries() noexcept { return m_boundaries; }
+  const std::vector<boost::shared_ptr<Cell>>& GetCells() noexcept { return  m_cells; }
+  const std::vector<boost::shared_ptr<      Face>>& GetFaces()       noexcept { return m_faces; }
+  const std::vector<boost::shared_ptr<const Face>>  GetFaces() const noexcept;
   int GetNumberOfBoundaries() const noexcept;
   int GetNumberOfCells() const noexcept;
   int GetNumberOfFaces() const noexcept;
   int GetNumberOfPoints() const noexcept;
-
-  const std::vector<boost::shared_ptr<Boundary> >& GetBoundaries() noexcept { return m_boundaries; }
-  const std::vector<boost::shared_ptr<Cell> >& GetCells() noexcept { return  m_cells; }
-  const std::vector<boost::shared_ptr<      Face> >& GetFaces()       noexcept { return m_faces; }
-  const std::vector<boost::shared_ptr<const Face> >  GetFaces() const noexcept;
   const std::vector<boost::shared_ptr<Coordinat3D>>& GetPoints() noexcept { return m_points; }
+  static std::string GetVersion() noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:
 
@@ -88,14 +90,14 @@ struct Mesh
   //  const std::vector<Coordinat3D>& w) noexcept;
 
   static double CalcSimilarityFaster(
-    const std::vector<boost::shared_ptr<const Coordinat3D> >& v,
+    const std::vector<boost::shared_ptr<const Coordinat3D>>& v,
     const std::vector<Coordinat3D>& w) noexcept;
 
   //static double CalcSimilaritySlow(
-  //  const std::vector<boost::shared_ptr<const Coordinat3D> >& v,
+  //  const std::vector<boost::shared_ptr<const Coordinat3D>>& v,
   //  const std::vector<Coordinat3D>& w) noexcept;
 
-  static std::vector<boost::shared_ptr<Boundary> > CreateBoundaries(
+  static std::vector<boost::shared_ptr<Boundary>> CreateBoundaries(
     const Files& files, const std::vector<boost::shared_ptr<Face>>& faces);
 
   boost::shared_ptr<BoundaryFile> CreateBoundary() const noexcept;
@@ -115,7 +117,7 @@ struct Mesh
   boost::shared_ptr<OwnerFile> CreateOwner() const noexcept;
   boost::shared_ptr<PointsFile> CreatePoints() const noexcept;
 
-  static std::vector<boost::shared_ptr<Coordinat3D> > CreatePoints(const Files& files);
+  static std::vector<boost::shared_ptr<Coordinat3D>> CreatePoints(const Files& files);
 
   ///This member function is called to reorder the faces in such a way
   ///that indices in m_faces are adjacent when they belong to the
@@ -159,4 +161,4 @@ std::ostream& operator<<(std::ostream& os, const Mesh& mesh) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMMESH_H
+#endif // RIBI_OPENFOAMMESH_H

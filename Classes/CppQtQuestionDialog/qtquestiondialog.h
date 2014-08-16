@@ -38,18 +38,15 @@ struct QuestionDialog;
 struct QtQuestionDialog : public QtHideAndShowDialog
 {
   explicit QtQuestionDialog(QWidget *parent = 0);
-
   virtual ~QtQuestionDialog() noexcept {}
 
-  ///Obtain a read-only pointer to the dialog
-  virtual const boost::shared_ptr<const QuestionDialog> GetDialog() const = 0;
+  virtual boost::shared_ptr<const QuestionDialog> GetDialog() const = 0;
+  virtual void SetDialog(const boost::shared_ptr<QuestionDialog>& dialog) = 0;
 
-  ///Obtain the version of this class
   static std::string GetVersion() noexcept;
-
-  ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

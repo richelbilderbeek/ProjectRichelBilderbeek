@@ -189,7 +189,7 @@ std::string MapToXml(
 {
   std::stringstream s;
   const auto end = std::end(m);
-  for (auto begin = std::begin(m); begin!=end; ++begin)
+  for (/* const */ auto begin = std::begin(m); begin!=end; ++begin)
   {
     s << ToXml( (*begin).first, (*begin).second);
   }
@@ -227,7 +227,7 @@ std::string MapToXml(
 {
   std::stringstream s;
   const auto end = std::end(m);
-  for (auto begin = std::begin(m); begin!=end; ++begin)
+  for (/* const */ auto begin = std::begin(m); begin!=end; ++begin)
   {
     s << ToXml( (*begin).first, (*begin).second, key_to_str_function, value_to_str_function);
   }

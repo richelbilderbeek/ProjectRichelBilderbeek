@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshcellscreator.h"
 #include "trianglemeshcellscreatorfactory.h"
@@ -40,7 +41,7 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::Create(
   };
   assert(cell);
 
-  for (auto face: faces)
+  for (const auto& face: faces)
   {
     assert(face);
     face->AddBelongsTo(cell);
@@ -58,13 +59,15 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::Create
   };
   assert(my_template);
   assert(my_template->CountFaces() == 2);
-  const int n_layers = 2;
+  const int n_cell_layers = 1;
+  const bool verbose{false};
   const boost::shared_ptr<CellsCreator> cells_creator {
     CellsCreatorFactory().Create(
       my_template,
-      n_layers,
+      n_cell_layers,
       1.0 * boost::units::si::meter,
-      strategy
+      strategy,
+      verbose
     )
   };
   const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
@@ -74,7 +77,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::Create
   for (int i=0; i!=2; ++i)
   {
     const std::vector<boost::shared_ptr<Face>> faces { cells[i]->GetFaces() };
-    for (const auto face: faces)
+    for (const auto& face: faces)
     {
       assert(face);
       assert(face->GetPoints().size() == 3 || face->GetPoints().size() == 4);
@@ -89,7 +92,7 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::CreateTestPrism(
   const CreateVerticalFacesStrategy strategy
 ) const noexcept
 {
-  const std::vector<boost::shared_ptr<Face> > faces {
+  const std::vector<boost::shared_ptr<Face>> faces {
     FaceFactory().CreateTestPrism(strategy)
   };
   const boost::shared_ptr<Cell> prism {
@@ -103,13 +106,20 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::CreateTestPrism(
 void ribi::trim::CellFactory::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::CellFactory::Test");
+  using boost::units::si::meter;
+  FaceFactory();
+  CellFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);
+  CellsCreatorFactory();
+  CellsCreatorFactory().Create(Template::CreateTest(0),1,1.0 * meter,CreateVerticalFacesStrategy::one_face_per_square,false);
+
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Create prism
-  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const boost::shared_ptr<Cell> prism {
       CellFactory().CreateTestPrism(strategy)
@@ -128,8 +138,6 @@ void ribi::trim::CellFactory::Test() noexcept
       CellFactory().CreateTestCube(strategy)
     };
     assert(cube.size() == 2 && "A cube consists of two prisms");
-
   }
-  TRACE("Finished ribi::trim::CellFactory::Test successfully");
 }
 #endif

@@ -6,6 +6,8 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "testtimer.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::PaperRockScissorsMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -79,11 +81,10 @@ std::vector<std::string> ribi::PaperRockScissorsMenuDialog::GetVersionHistory() 
 void ribi::PaperRockScissorsMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PaperRockScissorsMenuDialog::Test");
-  TRACE("Finished ribi::PaperRockScissorsMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

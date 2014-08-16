@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtLedWidget, Wt widget for displaying the Led class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,18 +18,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtLedWidget.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WPainter>
 #include <Wt/WPen>
 #include <Wt/WBrush>
-//---------------------------------------------------------------------------
-#include "rectangle.h"
+
+#include "geometry.h"
 #include "led.h"
 #include "ledwidget.h"
 #include "wtledwidget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtLedWidget::WtLedWidget(
   const double intensity,
   const unsigned char red,
@@ -53,16 +58,16 @@ ribi::WtLedWidget::WtLedWidget(
       &ribi::WtLedWidget::OnResize,
       this));
 
-  m_widget->SetGeometry(Rect(0,0,100,100));
+  m_widget->SetGeometry(0,0,100,100);
   m_widget->GetLed()->SetColor(254,254,254);
   m_widget->GetLed()->SetIntensity(0.98);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtLedWidget::DoRepaint()
 {
   this->update();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtLedWidget::DrawLed(
   Wt::WPainter& painter,
   const int left, const int top,
@@ -160,46 +165,50 @@ void ribi::WtLedWidget::DrawLed(
   }
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtLedWidget::DrawLed(
   Wt::WPainter& painter,
   const LedWidget * const widget)
 {
   DrawLed(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetLed());
+    Geometry().GetLeft(widget->GetGeometry()),
+    Geometry().GetTop(widget->GetGeometry()),
+    Geometry().GetWidth(widget->GetGeometry()),
+    Geometry().GetHeight(widget->GetGeometry()),
+    widget->GetLed()
+  );
 }
-//---------------------------------------------------------------------------
-const std::string ribi::WtLedWidget::GetVersion()
+
+std::string ribi::WtLedWidget::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::WtLedWidget::GetVersionHistory()
+
+std::vector<std::string> ribi::WtLedWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-01-06: version 1.0: initial version");
-  return v;
+  return {
+    "2011-01-06: version 1.0: initial version",
+    "2014-04-23: version 1.1: use of Boost.Geometry its rectangle",
+  };
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtLedWidget::OnResize()
 {
-  resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+  resize(
+    Geometry().GetWidth(m_widget->GetGeometry()),
+    Geometry().GetHeight(m_widget->GetGeometry())
+  );
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtLedWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   DrawLed(painter,m_widget.get());
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtLedWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }
-//---------------------------------------------------------------------------
+

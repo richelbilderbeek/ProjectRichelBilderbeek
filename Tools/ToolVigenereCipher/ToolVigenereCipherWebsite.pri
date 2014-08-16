@@ -1,5 +1,6 @@
-include(../../Tools/ToolEncranger/ToolEncrangerConsole.pri)
+include(../../Tools/ToolVigenereCipher/ToolVigenereCipherConsole.pri)
 
 SOURCES +=
+
 HEADERS +=
 

@@ -12,3 +12,5 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Games/GameDasWahreSchlagerfest/Licence.txt
 
+RESOURCES += \
+    ../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfest.qrc

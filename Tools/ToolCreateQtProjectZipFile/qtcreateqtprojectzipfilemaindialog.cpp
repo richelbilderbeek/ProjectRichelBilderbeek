@@ -37,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "createqtprojectzipfilemaindialog.h"
 #include "fileio.h"
 #include "qtcreatorprofilezipscript.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtcreateqtprojectzipfilemaindialog.h"
 
@@ -88,11 +89,22 @@ void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QSt
 void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtCreateQtProjectZipFileMainDialog::Test");
+  {
+    const std::string pro_filename{"../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro"};
+    const boost::shared_ptr<const QtCreatorProFile> pro_file(
+      new QtCreatorProFile(pro_filename));
+    assert(pro_file);
+    assert(fileio::FileIo().IsRegularFile(pro_filename));
+    const boost::shared_ptr<const QtCreatorProFileZipScript> script(
+      new QtCreatorProFileZipScript(pro_file));
+    assert(script);
+
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test basic functions on this project with going two folders down
   const std::vector<std::string> pro_filenames
     =
@@ -135,7 +147,6 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
     s << (*script);
     assert(!s.str().empty());
   }
-  TRACE("Finished ribi::QtCreateQtProjectZipFileMainDialog::Test successfully");
 }
 #endif
 

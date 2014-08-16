@@ -18,6 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
 //---------------------------------------------------------------------------
+#include "wttictactoemenudialog.h"
+
+#include <cassert>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WMenu>
@@ -28,12 +37,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "wttictactoegamedialog.h"
-#include "wttictactoemenudialog.h"
 #include "wttictactoewidget.h"
+#pragma GCC diagnostic pop
 
-#include <cassert>
-
-ribi::con3::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
+ribi::tictactoe::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   {
@@ -67,9 +74,9 @@ ribi::con3::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
   }
 }
 
-ribi::WtAboutDialog * ribi::con3::WtTicTacToeMenuDialog::CreateNewAboutDialog() const
+ribi::WtAboutDialog * ribi::tictactoe::WtTicTacToeMenuDialog::CreateNewAboutDialog() const
 {
-  About a = TicTacToeMenuDialog().GetAbout();
+  About a = tictactoe::TicTacToeMenuDialog().GetAbout();
   a.AddLibrary("WtTicTacToeWidget version: " + WtTicTacToeWidget::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);

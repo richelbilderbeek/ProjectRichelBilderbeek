@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsItem>
 #include <QTimer>
 //#include "qtconceptmapconceptitem.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -41,8 +41,11 @@ ribi::cmap::QtItemHighlighter::QtItemHighlighter(QObject *parent)
 {
   m_timer->setInterval(10); //ms
   QObject::connect(
-    m_timer,SIGNAL(timeout()),
-    this,SLOT(OnTimer()));
+    m_timer,
+    &QTimer::timeout,
+    this,
+    &ribi::cmap::QtItemHighlighter::OnTimer
+  );
 }
 
 void ribi::cmap::QtItemHighlighter::SetItem(QtNode* const item)

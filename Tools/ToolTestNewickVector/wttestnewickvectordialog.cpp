@@ -1,28 +1,32 @@
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#include "wttestnewickvectordialog.h"
+
+#include <cassert>
 #include <cstdlib>
 #include <ctime>
-//---------------------------------------------------------------------------
 #include <boost/foreach.hpp>
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/tuple/tuple.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 #include <Wt/WText>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include "encranger.h"
 #include "newick.h"
 #include "newickvector.h"
 #include "trace.h"
 #include "twodigitnewick.h"
-#include "wttestnewickvectordialog.h"
-//---------------------------------------------------------------------------
-#include <cassert>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 ribi::WtTestNewickVectorDialog::WtTestNewickVectorDialog()
   : m_signal_about{},
     m_signal_any_change{},
@@ -81,7 +85,7 @@ ribi::WtTestNewickVectorDialog::WtTestNewickVectorDialog()
   //button_about->clicked().connect(
   //  this,&ribi::WtTestNewickVectorDialog::OnAbout);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestNewickVectorDialog::Display()
 {
   {
@@ -95,13 +99,13 @@ void ribi::WtTestNewickVectorDialog::Display()
     m_text->setText(ws);
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestNewickVectorDialog::OnAbout()
 {
   //Emit that about is clicked
   m_signal_about();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestNewickVectorDialog::OnCalculate()
 {
   {
@@ -124,4 +128,4 @@ void ribi::WtTestNewickVectorDialog::OnCalculate()
 
 
 }
-//---------------------------------------------------------------------------
+

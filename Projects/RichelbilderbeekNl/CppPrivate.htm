@@ -20,17 +20,21 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppPrivate.htm">private</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppPrivate.htm">private</a> is a <a href="CppKeyword.htm">keyword</a> for setting 
-<a href="CppClass.htm">class</a>
-access level to <a href="CppPrivate.htm">private</a> (the other access levels
-are <a href="CppPublic.htm">public</a> and <a href="CppProtected.htm">protected</a>)
-or for <a href="CppPrivateInheritance.htm">private inheritance</a>.</p>
+<p>
+  <a href="CppPrivate.htm">private</a> is a <a href="CppKeyword.htm">keyword</a> for setting 
+  <a href="CppClass.htm">class</a> access level to <a href="CppPrivate.htm">private</a> 
+  (the other access levels are <a href="CppPublic.htm">public</a> and 
+  <a href="CppProtected.htm">protected</a>)
+  or for <a href="CppPrivateInheritance.htm">private inheritance</a>.
+</p>
 <p>&nbsp;</p>
-<p>A <a href="CppClass.htm">class</a> created with the <a href="CppKeyword.htm">keyword</a>
-<a href="CppClass.htm">class</a> has a <a href="CppPrivate.htm">private</a>
-access level by default, a <a href="CppClass.htm">class</a> created by the <a
-href="CppKeyword.htm">keyword</a> <a href="CppStruct.htm">struct</a> has <a
-href="CppPublic.htm">public</a> access level by default.</p>
+<p>
+  A <a href="CppClass.htm">class</a> created with the <a href="CppKeyword.htm">keyword</a>
+  <a href="CppClass.htm">class</a> has a <a href="CppPrivate.htm">private</a>
+  access level by default, a <a href="CppClass.htm">class</a> created by the <a
+  href="CppKeyword.htm">keyword</a> <a href="CppStruct.htm">struct</a> has <a
+  href="CppPublic.htm">public</a> access level by default.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -55,6 +59,19 @@ href="CppPublic.htm">public</a> access level by default.</p>
   <li>
     Prefer <a href="CppPrivate.htm">private</a> <a href="CppMember.htm">members</a> for implementation details [6]
   </li>
+  <li>
+    Making the <a href="CppDataMember.htm">data members</a> of a <a href="CppClass.htm">class</a> 
+    <a href="CppPrivate.htm">private</a> and the <a href="CppMemberFunction.htm">member functions</a> 
+    of the <a href="CppClass.htm">class</a> <a href="CppPublic.htm">public</a> 
+    facilitates <a href="CppDebug.htm">debugging</a> [7]
+  </li>
+  <li>
+    An attempt by a <a href="CppFunction.htm">function</a>, which is not a 
+    <a href="CppMemberFunction.htm">member</a> of a particular <a href="CppClass.htm">class</a> 
+    (or a <a href="CppFriend.htm">friend</a> of that <a href="CppClass.htm">class</a>) 
+    to access a <a href="CppPrivate.htm">private</a> <a href="CppDataMember.htm">member</a>
+    of that <a href="CppClass.htm">class</a> is a <a href="CppCompileError.htm">compilation error</a> [8]
+  </li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -71,6 +88,8 @@ href="CppPublic.htm">public</a> access level by default.</p>
   <li><!--  4 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 41: 'Make data members private, except in behaviourless aggregates (C-style structs).</li>
   <li><!--  5 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0.</li>
   <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 20.7. Advice. page 611: '[10] Prefer private members for implementation details'</li>
+  <li><!--  7 -->Paul Deitel, Harvey Deitel. C++11 for programmers (2nd edition). 2014. ISBN: 978-0-13-343985-4. Chapter 3.4, Error Prevention Tip 3.1. page 47: 'Making the data members of a class private and the member functions of the class public facilitates debugging because problems with data manipulations are localized to either the class's member functions or the friends of the class'</li>
+  <li><!--  8 -->Paul Deitel, Harvey Deitel. C++11 for programmers (2nd edition). 2014. ISBN: 978-0-13-343985-4. Chapter 3.4, Common Programming Error 3.2. page 47: 'An attempt by a function, which is not a member of a particular class (or a friend of that class) to access a private member of that class is a compilation error.'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

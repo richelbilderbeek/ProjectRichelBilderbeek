@@ -81,7 +81,7 @@ ribi::cmap::QtRateExamplesDialogNewName::QtRateExamplesDialogNewName(
     const std::size_t sz = v.size();
     for (std::size_t i=0; i!=sz; ++i)
     {
-      const boost::shared_ptr<const cmap::Example>& example = v[i];
+      const boost::shared_ptr<const Example>& example = v[i];
       const std::string s = example->GetText();
       //const int n_lines = ribi::cmap::Wordwrap(s,40).size();
       //ui->list->setRowHeight(row,ui->list->fontMetrics().height() * 2 * (n_lines + 1));
@@ -121,7 +121,7 @@ ribi::cmap::QtRateExamplesDialogNewName::~QtRateExamplesDialogNewName() noexcept
 
 const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::QtRateExamplesDialogNewName::GetRatedExamples() const
 {
-  std::vector<boost::shared_ptr<cmap::Example> > v;
+  std::vector<boost::shared_ptr<Example> > v;
 
   const int sz = ui->list->count();
   for (int i=0; i!=sz; ++i)
@@ -130,8 +130,8 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::QtRateExamplesDialogNe
     assert(qtitem);
     const QtConceptMapListWidgetItem* const item = dynamic_cast<const QtConceptMapListWidgetItem*>(qtitem);
     assert(item);
-    const boost::shared_ptr<cmap::Example> example
-      = cmap::ExampleFactory::Create(
+    const boost::shared_ptr<Example> example
+      = ExampleFactory().Create(
         item->text().toStdString(),
         cmap::QtCompetency::IconToCompetency(item->icon())
       );

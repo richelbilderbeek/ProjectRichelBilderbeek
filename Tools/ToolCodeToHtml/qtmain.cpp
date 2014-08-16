@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014  Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <csignal>
 #include <iostream>
 
@@ -56,9 +58,9 @@ int main(int argc, char *argv[])
     #endif
 
     #ifndef NDEBUG
-    ribi::fileio::Test();
-    assert( ribi::fileio::IsRegularFile(argv[0]));
-    assert(!ribi::fileio::IsFolder(argv[0]));
+    ribi::fileio::FileIo();
+    assert( ribi::fileio::FileIo().IsRegularFile(argv[0]));
+    assert(!ribi::fileio::FileIo().IsFolder(argv[0]));
     #endif
 
     ribi::c2h::QtCodeToHtmlMenuDialog w;

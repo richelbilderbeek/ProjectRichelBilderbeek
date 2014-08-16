@@ -38,7 +38,8 @@ namespace ribi {
 ///QtCreatorProFile parses .pro files
 struct QtCreatorProFile
 {
-  ///Parse a .pro file
+  ///Parse a .pro file, throws a std::logic_error if
+  ///filename is not a regular file
   explicit QtCreatorProFile(const std::string& filename);
   QtCreatorProFile(const QtCreatorProFile&) = delete;
   QtCreatorProFile& operator=(const QtCreatorProFile&) = delete;
@@ -199,12 +200,7 @@ struct QtCreatorProFile
 
   void RemoveComments(std::vector<std::string>& v);
 
-  ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static std::vector<std::string> SeperateString(
-    const std::string& input, const char seperator);
-
   #ifndef NDEBUG
-  ///Test QtCreatorProFile
   static void Test() noexcept;
   #endif
 

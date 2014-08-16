@@ -92,9 +92,9 @@ struct Shape
 
   ///The rotation
   ///
-  ///The rotation is a value between 0.0 and 2.0 * M_PI,
-  ///in which  0.0 * M_PI is the equivalent to 12:00 o'clock
-  ///and which 0.5 * M_PI is the equivalent to  3:00 o'clock
+  ///The rotation is a value between 0.0 and 2.0 * pi,
+  ///in which  0.0 * pi is the equivalent to 12:00 o'clock
+  ///and which 0.5 * pi is the equivalent to  3:00 o'clock
   ///Values not in this range are accepted nonetheless
   double m_rotation;
 
@@ -104,16 +104,6 @@ struct Shape
   #endif
 
   public:
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy) noexcept;
-
-  //From www.richelbilderbeek.nl/CppGetDistance.htm
-  static double GetDistance(const double dX, const double dY) noexcept;
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 

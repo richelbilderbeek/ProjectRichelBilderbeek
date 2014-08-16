@@ -9,7 +9,8 @@
 
 #include "drawcanvas.h"
 #include "functionplottermaindialog.h"
-#include "qtcreatorprofile.h"
+#include "testtimer.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -75,6 +76,8 @@ ribi::About ribi::FunctionPlotterMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("DrawCanvas version: " + DrawCanvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
   return a;
 }
@@ -105,7 +108,7 @@ boost::shared_ptr<const ribi::Program> ribi::FunctionPlotterMenuDialog::GetProgr
 
 std::string ribi::FunctionPlotterMenuDialog::GetVersion() const noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
 std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistory() const noexcept
@@ -115,6 +118,7 @@ std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistory() co
     "2010-xx-xx: version 1.1: added integration",
     "2013-12-05: version 2.0: port to Qt"
     "2014-02-06: version 2.1: added command-line version"
+    "2014-07-04: version 2.2: desktop version plots nothing if function cannot be parsed"
   };
 }
 
@@ -122,11 +126,10 @@ std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistory() co
 void ribi::FunctionPlotterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::FunctionPlotterMenuDialog::Test");
-  TRACE("Finished ribi::FunctionPlotterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

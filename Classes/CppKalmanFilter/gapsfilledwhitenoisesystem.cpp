@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "gapsfilledwhitenoisesystem.h"
 
 #include <cassert>
@@ -8,6 +10,7 @@
 
 #include "matrix.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "gapsfilledwhitenoisesystem.h"
 #include "gapsfilledwhitenoisesystemfactory.h"
 #include "gapsfilledwhitenoisesystemparameters.h"
@@ -71,7 +74,7 @@ void ribi::kalman::GapsFilledWhiteNoiseSystem::GoToNextState(const boost::numeri
   SetNewCurrentState(new_state);
 }
 
-const boost::numeric::ublas::vector<double> ribi::kalman::GapsFilledWhiteNoiseSystem::Measure() const
+boost::numeric::ublas::vector<double> ribi::kalman::GapsFilledWhiteNoiseSystem::Measure() const
 {
   const boost::numeric::ublas::vector<int>& fs
     = this->GetGapsFilledWhiteNoiseSystemParameters()->GetMeasurementFrequency();
@@ -114,11 +117,11 @@ const boost::numeric::ublas::vector<double>&
 void ribi::kalman::GapsFilledWhiteNoiseSystem::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::GapsFilledWhiteNoiseSystem::Test()")
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check if measurements are indeed lagged:
   //The system's real value should update immediatly, but this fresh measurement
   //must only be accessible after lag timesteps
@@ -126,7 +129,7 @@ void ribi::kalman::GapsFilledWhiteNoiseSystem::Test() noexcept
   {
     const int f = 5;
     const boost::shared_ptr<GapsFilledWhiteNoiseSystem> my_system
-      = GapsFilledWhiteNoiseSystemFactory::Create(
+      = GapsFilledWhiteNoiseSystemFactory().Create(
         Matrix::CreateMatrix(1,1, { 1.0 } ), //control
         Matrix::CreateVector(     { 0.0 } ), //initial_state,
         Matrix::CreateVector(     {   f } ), //measurement frequencies
@@ -159,6 +162,6 @@ void ribi::kalman::GapsFilledWhiteNoiseSystem::Test() noexcept
       my_system->GoToNextState(input);
     }
   }
-  TRACE("Finished ribi::kalman::GapsFilledWhiteNoiseSystem::Test()")
 }
 #endif
+

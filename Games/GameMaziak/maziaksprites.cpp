@@ -6,6 +6,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <QPixmap>
 
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -138,13 +139,12 @@ const std::vector<ribi::maziak::Sprite> ribi::maziak::Sprites::GetAllSprites() n
 void ribi::maziak::Sprites::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::Sprites::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   assert(CamelCasify("player_look_down_sword") == "playerLookDownSword");
-  TRACE("Finished ribi::maziak::Sprites::Test successfully");
 }
 #endif
 

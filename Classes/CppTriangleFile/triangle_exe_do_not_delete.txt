@@ -1,0 +1,1 @@
+Do not delete triangle.exe: it is used in the resources

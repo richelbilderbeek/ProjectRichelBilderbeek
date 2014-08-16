@@ -1,5 +1,5 @@
-#ifndef OPENFOAMPARSEERROR_H
-#define OPENFOAMPARSEERROR_H
+#ifndef RIBI_OPENFOAMPARSEERROR_H
+#define RIBI_OPENFOAMPARSEERROR_H
 
 #include <stdexcept>
 
@@ -15,7 +15,7 @@ struct ParseError : public std::runtime_error
   const std::string m_filename;
   const int m_line;
 
-  const std::string CreateErrorMsg(
+  std::string CreateErrorMsg(
     const std::string& filename,
     const int line) noexcept;
 };
@@ -23,4 +23,4 @@ struct ParseError : public std::runtime_error
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMPARSEERROR_H
+#endif // RIBI_OPENFOAMPARSEERROR_H

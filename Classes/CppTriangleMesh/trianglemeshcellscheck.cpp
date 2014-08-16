@@ -12,7 +12,7 @@
 
 void ribi::trim::CellsCheck(
   const std::vector<boost::shared_ptr<Cell>>& cells
-)
+) noexcept
 {
   if (cells.empty()) return;
 

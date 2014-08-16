@@ -21,15 +21,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "conceptmapnode.h"
 
-#include <boost/lexical_cast.hpp>
-#include <QRegExp>
+//#include <boost/lexical_cast.hpp>
+#include <boost/lambda/lambda.hpp>
+//#include <QRegExp>
+
+#include "counter.h"
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmaphelper.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -39,15 +44,18 @@ ribi::cmap::Node::Node(
   const double x,
   const double y,
   const NodeFactory&
-) : m_signal_node_changed{},
-    m_concept(concept),
+) : m_signal_concept_changed{},
+    m_signal_x_changed{},
+    m_signal_y_changed{},
+    m_concept{},
     m_x(x),
     m_y(y)
 {
   #ifndef NDEBUG
   Test();
-  assert(m_concept);
   #endif
+  SetConcept(concept);
+  assert(m_concept == concept);
 }
 
 
@@ -60,35 +68,212 @@ std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTests() n
     {
       const int x = (std::rand() % 256) - 128;
       const int y = (std::rand() % 256) - 128;
-      const boost::shared_ptr<Node> node { NodeFactory().Create(concept,x,y) };
+      const auto node = NodeFactory().Create(concept,x,y);
       result.push_back(node);
     }
   );
   return result;
 }
 
-bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const cmap::Node>& lhs, const boost::shared_ptr<const cmap::Node>& rhs) noexcept
+bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const Node>& lhs, const boost::shared_ptr<const Node>& rhs) noexcept
 {
   assert(lhs);
   assert(rhs);
   return *lhs->GetConcept() == *rhs->GetConcept();
 }
 
-void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept) noexcept
+void ribi::cmap::Node::OnConceptChanged(Concept * const) noexcept
 {
-  if (m_concept != concept)
+  m_signal_concept_changed(this);
+}
+
+void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept>& concept) noexcept
+{
+  const bool verbose{false};
+
+  assert(concept);
+  if (m_concept == concept)
   {
-    m_concept = concept;
-    m_signal_node_changed(this);
+    return;
   }
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Setting concept '" << concept->ToStr() << "'\n";
+  }
+
+  const auto examples_after = concept->GetExamples();
+  const auto is_complex_after = concept->GetIsComplex();
+  const auto name_after = concept->GetName();
+  const auto rating_complexity_after = concept->GetRatingComplexity();
+  const auto rating_concreteness_after = concept->GetRatingConcreteness();
+  const auto rating_specificity_after = concept->GetRatingSpecificity();
+
+  bool examples_changed{true};
+  bool is_complex_changed{true};
+  bool name_changed{true};
+  bool rating_complexity_changed{true};
+  bool rating_concreteness_changed{true};
+  bool rating_specificity_changed{true};
+
+  if (m_concept)
+  {
+    const auto examples_before = m_concept->GetExamples();
+    const auto is_complex_before = m_concept->GetIsComplex();
+    const auto name_before = m_concept->GetName();
+    const auto rating_complexity_before = m_concept->GetRatingComplexity();
+    const auto rating_concreteness_before = m_concept->GetRatingConcreteness();
+    const auto rating_specificity_before = m_concept->GetRatingSpecificity();
+
+    examples_changed = examples_before != examples_after;
+    is_complex_changed = is_complex_before != is_complex_after;
+    name_changed = name_before != name_after;
+    rating_complexity_changed = rating_complexity_before != rating_complexity_after;
+    rating_concreteness_changed = rating_concreteness_before != rating_concreteness_after;
+    rating_specificity_changed = rating_specificity_before != rating_specificity_after;
+
+    if (verbose)
+    {
+      if (examples_changed)
+      {
+        std::stringstream s;
+        s
+          << "Examples will change from "
+          << examples_before->ToStr()
+          << " to "
+          << examples_after->ToStr()
+          << '\n'
+        ;
+        TRACE(s.str());
+      }
+      if (is_complex_changed)
+      {
+        std::stringstream s;
+        s << "Is complex will change from " << is_complex_before
+          << " to " << is_complex_after << '\n';
+        TRACE(s.str());
+      }
+      if (name_changed)
+      {
+        std::stringstream s;
+        s << "Name will change from " << name_before
+          << " to " << name_after << '\n';
+        TRACE(s.str());
+      }
+      if (rating_complexity_changed)
+      {
+        std::stringstream s;
+        s << "Rating_complexicity will change from " << rating_complexity_before
+          << " to " << rating_complexity_after << '\n';
+        TRACE(s.str());
+      }
+      if (rating_concreteness_changed)
+      {
+        std::stringstream s;
+        s << "Rating_concreteness will change from " << rating_concreteness_before
+          << " to " << rating_concreteness_after << '\n';
+        TRACE(s.str());
+      }
+      if (rating_specificity_changed)
+      {
+        std::stringstream s;
+        s << "Rating_specificity will change from " << rating_specificity_before
+          << " to " << rating_specificity_after << '\n';
+        TRACE(s.str());
+      }
+
+    }
+    //Disconnect
+    m_concept->m_signal_examples_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_is_complex_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_name_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_rating_complexity_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_rating_concreteness_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_rating_specificity_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+  }
+
+  //Replace m_example by the new one
+  m_concept = concept;
+
+
+  assert(m_concept->GetExamples() == examples_after );
+  assert(m_concept->GetIsComplex() == is_complex_after );
+  assert(m_concept->GetName() == name_after);
+  assert(m_concept->GetRatingComplexity() == rating_complexity_after);
+  assert(m_concept->GetRatingConcreteness() == rating_concreteness_after);
+  assert(m_concept->GetRatingSpecificity() == rating_specificity_after);
+
+
+  m_concept->m_signal_examples_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_is_complex_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_name_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_rating_complexity_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_rating_concreteness_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_rating_specificity_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+
+  //Emit everything that has changed
+  if (examples_changed)
+  {
+    m_concept->m_signal_examples_changed(m_concept.get());
+  }
+  if (is_complex_changed)
+  {
+    m_concept->m_signal_is_complex_changed(m_concept.get());
+  }
+  if (name_changed)
+  {
+    m_concept->m_signal_name_changed(m_concept.get());
+  }
+  if (rating_complexity_changed)
+  {
+    m_concept->m_signal_rating_complexity_changed(m_concept.get());
+  }
+  if (rating_concreteness_changed)
+  {
+    m_concept->m_signal_rating_concreteness_changed(m_concept.get());
+  }
+  if (rating_specificity_changed)
+  {
+    m_concept->m_signal_rating_specificity_changed(m_concept.get());
+  }
+
+  assert( concept ==  m_concept);
+  assert(*concept == *m_concept);
 }
 
 void ribi::cmap::Node::SetX(const double x) noexcept
 {
+  const bool verbose{false};
   if (m_x != x)
   {
     m_x = x;
-    m_signal_node_changed(this);
+    if (verbose) { TRACE("Emitting m_signal_x_changed"); }
+    m_signal_x_changed(this);
   }
 }
 
@@ -97,7 +282,7 @@ void ribi::cmap::Node::SetY(const double y) noexcept
   if (m_y != y)
   {
     m_y = y;
-    m_signal_node_changed(this);
+    m_signal_y_changed(this);
   }
 }
 
@@ -105,11 +290,12 @@ void ribi::cmap::Node::SetY(const double y) noexcept
 void ribi::cmap::Node::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::Node::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
   {
     const std::vector<boost::shared_ptr<Node> > v = Node::GetTests();
     std::for_each(v.begin(),v.end(),
@@ -238,10 +424,49 @@ void ribi::cmap::Node::Test() noexcept
       }
     }
   }
-
-  TRACE("Node::Test finished successfully");
+  if (verbose) { TRACE("When changing the name, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Node> node{NodeFactory().GetTest(0)};
+    node->GetConcept()->SetName("A");
+    Counter c{0}; //For receiving the signal
+    node->m_signal_concept_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    node->GetConcept()->SetName("B");
+    assert(c.Get() > 0);
+  }
+  if (verbose) { TRACE("When changing the x, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Node> node{NodeFactory().GetTest(0)};
+    node->SetX(0);
+    Counter c{0}; //For receiving the signal
+    node->m_signal_x_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    node->SetX(1);
+    assert(c.Get() > 0);
+  }
+  if (verbose) { TRACE("When changing the y, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Node> node{NodeFactory().GetTest(0)};
+    node->SetY(0);
+    Counter c{0}; //For receiving the signal
+    node->m_signal_y_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    node->SetY(1);
+    assert(c.Get() == 1);
+  }
 }
 #endif
+
+std::string ribi::cmap::Node::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << *this;
+  return s.str();
+}
+
 
 std::string ribi::cmap::Node::ToXml() const noexcept
 {
@@ -260,17 +485,54 @@ std::string ribi::cmap::Node::ToXml() const noexcept
   return r;
 }
 
-bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs) noexcept
+bool ribi::cmap::operator==(const Node& lhs, const Node& rhs) noexcept
 {
+  const bool verbose{false};
   assert(lhs.GetConcept());
   assert(rhs.GetConcept());
-  return
-       *lhs.GetConcept() == *rhs.GetConcept()
-    && lhs.GetX() == rhs.GetX()
-    && lhs.GetY() == rhs.GetY();
+  const double e{0.1};
+  if (*lhs.GetConcept() != *rhs.GetConcept())
+  {
+    if (verbose) { TRACE("Concepts differ"); }
+    return false;
+  }
+  if (std::abs(lhs.GetX() - rhs.GetX()) > e)
+  {
+    if (verbose) { TRACE("X coordinats differ"); }
+    return false;
+  }
+  if (std::abs(lhs.GetY() - rhs.GetY()) > e)
+  {
+    if (verbose) { TRACE("Y coordinats differ"); }
+    return false;
+  }
+  return true;
 }
 
-bool ribi::cmap::operator!=(const cmap::Node& lhs, const cmap::Node& rhs) noexcept
+bool ribi::cmap::operator!=(const Node& lhs, const Node& rhs) noexcept
 {
   return !(lhs == rhs);
 }
+
+bool ribi::cmap::operator<(const Node& lhs, const Node& rhs) noexcept
+{
+  assert(lhs.GetConcept());
+  assert(rhs.GetConcept());
+  if (lhs.GetX() < rhs.GetX()) return true;
+  if (lhs.GetX() > rhs.GetX()) return false;
+  if (lhs.GetY() < rhs.GetY()) return true;
+  if (lhs.GetY() > rhs.GetY()) return false;
+  return *lhs.GetConcept() < *rhs.GetConcept();
+}
+
+std::ostream& ribi::cmap::operator<<(std::ostream& os, const Node& node) noexcept
+{
+  os
+    << (*node.GetConcept()) << " "
+    << node.GetX() << " "
+    << node.GetY()
+  ;
+  return os;
+}
+
+

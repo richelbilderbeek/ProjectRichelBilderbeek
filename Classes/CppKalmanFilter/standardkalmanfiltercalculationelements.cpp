@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "standardkalmanfiltercalculationelements.h"
 #pragma GCC diagnostic pop
 
@@ -66,7 +68,7 @@ void ribi::kalman::StandardKalmanFilterCalculationElements::Clear()
   m_updated_covariance = boost::numeric::ublas::matrix<double>();
 }
 
-const boost::shared_ptr<ribi::kalman::KalmanFilterCalculationElements> ribi::kalman::StandardKalmanFilterCalculationElements::Clone() const
+boost::shared_ptr<ribi::kalman::KalmanFilterCalculationElements> ribi::kalman::StandardKalmanFilterCalculationElements::Clone() const
 {
   const boost::shared_ptr<KalmanFilterCalculationElements> p(
     new StandardKalmanFilterCalculationElements(

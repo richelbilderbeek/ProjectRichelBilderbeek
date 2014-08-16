@@ -1,5 +1,5 @@
-#ifndef PHP_H
-#define PHP_H
+#ifndef RIBI_PHP_H
+#define RIBI_PHP_H
 
 #include <algorithm>
 #include <iostream>
@@ -11,6 +11,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #pragma GCC diagnostic pop
 
@@ -149,7 +150,7 @@ std::vector<ValueType> array_values(
   const std::map<KeyType,ValueType>& m) noexcept
 {
   std::vector<ValueType> v;
-  for (auto p: m)
+  for (const auto& p: m)
   {
     v.push_back(p.second);
   }
@@ -162,7 +163,7 @@ std::map<KeyType,ValueType> array_values(
 {
   std::map<KeyType,ValueType> v;
   KeyType key = 0;
-  for (auto p: m)
+  for (const auto& p: m)
   {
     v[key] = p.second;
     ++key;
@@ -233,14 +234,13 @@ void var_dump(const std::map<T,U>& m,
 }
 
 template <class T>
-void var_dump(const std::vector<boost::shared_ptr<T> >& s,
+void var_dump(const std::vector<boost::shared_ptr<T>>& s,
   std::ostream& os = std::cout) noexcept
 {
   php_private::var_dump_ptrs(s.begin(),s.end(),os);
 }
 
 } //~namespace php
-
 } //~namespace ribi
 
-#endif // PHP_H
+#endif // RIBI_PHP_H

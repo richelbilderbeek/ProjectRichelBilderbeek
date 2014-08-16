@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "led.h"
 #include "ledwidget.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 
@@ -49,8 +51,7 @@ int ribi::TestLedMenuDialog::ExecuteSpecific(const std::vector<std::string>& arg
     new LedWidget(x,y,w,h,intensity)
   );
 
-  std::cout << (*widget->ToCanvas(10))
-    << std::endl;
+  std::cout << (*widget->ToCanvas(10)) << std::endl;
   return 0;
 }
 
@@ -60,7 +61,7 @@ ribi::About ribi::TestLedMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestLed",
     "tool to test the Led class",
-    "the 8th of September 2011",
+    "the 5th of November 2013",
     "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestLed.htm",
     GetVersion(),
@@ -97,7 +98,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestLedMenuDialog::GetProgram() con
 
 std::string ribi::TestLedMenuDialog::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory() const noexcept
@@ -107,7 +108,8 @@ std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory() const noex
     "2011-04-11: Version 1.1: got web version to work, added more About info",
     "2011-07-02: Version 1.2: added menu",
     "2011-09-08: Version 1.3: added Welcome screen picture and increased testing in website version",
-    "2013-11-05: version 1.4: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 1.4: conformized for ProjectRichelBilderbeekConsole",
+    "2014-06-25: version 1.5: improved desktop version"
   };
 }
 
@@ -116,11 +118,10 @@ std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory() const noex
 void ribi::TestLedMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestLedMenuDialog::Test");
-  TRACE("Finished ribi::TestLedMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

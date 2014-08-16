@@ -11,6 +11,8 @@
 
 #include "drawcanvas.h"
 #include "qtcanvas.h"
+#include "qtsurfaceplotwidget.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestdrawcanvasmaindialog.h"
 #pragma GCC diagnostic pop
@@ -18,7 +20,8 @@
 ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestDrawCanvasMainDialog),
-  m_canvas(CreateCanvas())
+  m_canvas(CreateCanvas()),
+  m_surface_plot(new ribi::QtSurfacePlotWidget)
 {
   #ifndef NDEBUG
   Test();
@@ -31,6 +34,7 @@ ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
       new QtCanvas(m_canvas)
     };
     ui->verticalLayout->addWidget(qtcanvas);
+    ui->verticalLayout->addWidget(m_surface_plot);
   }
 
   {
@@ -46,6 +50,11 @@ ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
     ui->box_line_x2->setValue(0.75 * w);
     ui->box_line_y2->setValue(0.75 * h);
   }
+
+  m_canvas->m_signal_changed.connect(
+    boost::bind(&ribi::QtTestDrawCanvasMainDialog::OnChanged,this)
+  );
+  OnChanged();
 }
 
 ribi::QtTestDrawCanvasMainDialog::~QtTestDrawCanvasMainDialog() noexcept
@@ -165,15 +174,20 @@ void ribi::QtTestDrawCanvasMainDialog::on_button_line_clicked()
   );
 }
 
+void ribi::QtTestDrawCanvasMainDialog::OnChanged() noexcept
+{
+  m_surface_plot->SetSurfaceGrey(m_canvas->GetGreynesses());
+}
+
 #ifndef NDEBUG
 void ribi::QtTestDrawCanvasMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestDrawCanvasMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestDrawCanvasMainDialog d;
   d.on_button_clear_clicked();
   {
@@ -206,6 +220,5 @@ void ribi::QtTestDrawCanvasMainDialog::Test() noexcept
       && "At least one row must have some greynesses"
     );
   }
-  TRACE("Finished ribi::QtTestDrawCanvasMainDialog::Test successfully");
 }
 #endif

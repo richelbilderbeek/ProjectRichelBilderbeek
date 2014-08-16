@@ -42,7 +42,7 @@ namespace cmap {
 ///Creates Concepts
 struct ConceptFactory
 {
-  ConceptFactory();
+  ConceptFactory() noexcept;
 
   //Default and complete Create method
   const boost::shared_ptr<Concept> Create(

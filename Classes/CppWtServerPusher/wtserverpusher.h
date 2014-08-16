@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtServerPusher, server to broadcast to all its WtServerPusherClients
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,9 +25,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <thread>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/function.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -50,10 +55,10 @@ struct WtServerPusher
   static WtServerPusher * GetInstance();
 
   ///Get the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Post calls all WtServerPusherClients' supplied functions
   void Post();

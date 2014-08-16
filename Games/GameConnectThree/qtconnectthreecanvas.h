@@ -32,7 +32,7 @@ public:
   QtConnectThreeCanvas& operator=(const QtConnectThreeCanvas&) = delete;
   ~QtConnectThreeCanvas() noexcept;
 
-  void keyPressEvent(QKeyEvent *e);
+  void keyPressEvent(QKeyEvent *e) override;
 
 private:
   const boost::shared_ptr<ConnectThreeWidget> m_dialog;

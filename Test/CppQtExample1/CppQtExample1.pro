@@ -1,22 +1,17 @@
-exists(../../DesktopApplication.pri) {
-  include(../../DesktopApplication.pri)
+exists (../../ConsoleApplication.pri) {
+  include(../../ConsoleApplication.pri)
 }
-!exists(../../DesktopApplication.pri) {
-  QT += core gui
+!exists (../../ConsoleApplication.pri) {
+  QT += core
+  QT += gui
   greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+  CONFIG   += console
+  CONFIG   -= app_bundle
   TEMPLATE = app
-
-  CONFIG(debug, debug|release) {
-    message(Debug mode)
-  }
-
   CONFIG(release, debug|release) {
-    message(Release mode)
     DEFINES += NDEBUG NTRACE_BILDERBIKKEL
   }
-
-  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
+  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
   unix {
     QMAKE_CXXFLAGS += -Werror
   }
@@ -28,9 +23,10 @@ exists(../../Libraries/Boost.pri) {
 !exists(../../Libraries/Boost.pri) {
   win32 {
     INCLUDEPATH += \
-      ../../../Projects/Libraries/boost_1_55_0
+      ../../Libraries/boost_1_55_0
   }
 }
+
 
 RESOURCES += CppQtExample1.qrc
 

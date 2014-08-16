@@ -27,12 +27,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lexical_cast.hpp>
 
+#include <QRegExp>
+#include <QValidator>
+
 #include "caesarcipher.h"
 #include "loopreader.h"
 #include "qtaboutdialog.h"
 #include "trace.h"
 #include "ui_qtcaesarciphermaindialog.h"
 #include "caesarciphermaindialog.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::QtCaesarCipherMainDialog::QtCaesarCipherMainDialog(QWidget *parent) noexcept
@@ -44,6 +48,13 @@ ribi::QtCaesarCipherMainDialog::QtCaesarCipherMainDialog(QWidget *parent) noexce
   Test();
   #endif
   ui->setupUi(this);
+
+  {
+    const QRegExp regex("[a-z]*");
+    QValidator * const validator = new QRegExpValidator(regex, this);
+    ui->edit_encrypted_text->setValidator(validator);
+    ui->edit_plaintext->setValidator(validator);
+  }
 }
 
 ribi::QtCaesarCipherMainDialog::~QtCaesarCipherMainDialog() noexcept
@@ -55,7 +66,6 @@ ribi::QtCaesarCipherMainDialog::~QtCaesarCipherMainDialog() noexcept
 void ribi::QtCaesarCipherMainDialog::on_button_encrypt_clicked() noexcept
 {
   const std::string text = ui->edit_plaintext->text().toStdString();
-  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
 
   const int key = ui->box_key->value();
   assert(key >= 0);
@@ -73,7 +83,6 @@ void ribi::QtCaesarCipherMainDialog::on_button_encrypt_clicked() noexcept
 void ribi::QtCaesarCipherMainDialog::on_button_deencrypt_clicked() noexcept
 {
   const std::string text = ui->edit_encrypted_text->text().toStdString();
-  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
 
   const int key = ui->box_key->value();
   m_dialog->SetEncryptedText(text);
@@ -91,12 +100,11 @@ void ribi::QtCaesarCipherMainDialog::on_button_deencrypt_clicked() noexcept
 void ribi::QtCaesarCipherMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtCaesarCipherMainDialog::Test");
-  TRACE("Finished ribi::QtCaesarCipherMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

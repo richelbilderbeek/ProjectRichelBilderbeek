@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtdaswahreschlagerfestwidget.h"
 #include "ui_qtdaswahreschlagerfestmaindialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget *parent) noexcept
@@ -36,7 +37,6 @@ ribi::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget
   Test();
   #endif
   ui->setupUi(this);
-  //QObject::connect(ui->widget,SIGNAL(destroyed()),this,SLOT(close()));
 }
 
 ribi::QtDasWahreSchlagerfestMainDialog::~QtDasWahreSchlagerfestMainDialog() noexcept
@@ -59,12 +59,12 @@ void ribi::QtDasWahreSchlagerfestMainDialog::keyPressEvent(QKeyEvent *event)
 void ribi::QtDasWahreSchlagerfestMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtDasWahreSchlagerfestMainDialog::Test");
+  DasWahreSchlagerfestWidget();
   QtDasWahreSchlagerfestWidget();
-  TRACE("Finished ribi::QtDasWahreSchlagerfestMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

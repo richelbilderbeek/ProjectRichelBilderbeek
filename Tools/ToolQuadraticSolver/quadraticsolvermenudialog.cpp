@@ -21,6 +21,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "quadraticsolvermenudialog.h"
 
 #include "quadraticsolvermaindialog.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::QuadraticSolverMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -49,7 +51,9 @@ ribi::About ribi::QuadraticSolverMenuDialog::GetAbout() const noexcept
     "2008-2014",
     "http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
@@ -95,11 +99,10 @@ std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistory() co
 void ribi::QuadraticSolverMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QuadraticSolverMenuDialog::Test");
-  TRACE("Finished ribi::QuadraticSolverMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

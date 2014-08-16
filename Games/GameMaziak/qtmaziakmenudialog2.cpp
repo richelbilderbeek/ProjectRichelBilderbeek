@@ -38,6 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtcanvas.h"
 #include "qtcanvasdialog.h"
+#include "testtimer.h"
 #include "qtmaziakcanvas.h"
 #include "qtmaziakinstructionsdialog.h"
 #include "qtmaziakmaindialog.h"
@@ -156,6 +157,11 @@ void ribi::maziak::QtMaziakMenuDialog2::keyPressEvent(QKeyEvent * event)
 void ribi::maziak::QtMaziakMenuDialog2::paintEvent(QPaintEvent*)
 {
   QPainter painter(this);
+  {
+    QPixmap background(":/images/GameMaziakBackground.png");
+    painter.drawPixmap(rect(),background);
+  }
+
   {
     //Top left
     QPixmap pixmap;
@@ -303,24 +309,19 @@ void ribi::maziak::QtMaziakMenuDialog2::OnStartRetro()
 void ribi::maziak::QtMaziakMenuDialog2::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::QtMaziakMenuDialog2::Test");
+  maziak::MenuDialog();
   {
-    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(99));
+    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(7));
     assert(d);
   }
   {
     const boost::scoped_ptr<QtMaziakInstructionsDialog> d(new QtMaziakInstructionsDialog);
     assert(d);
   }
-  {
-    const About a = MenuDialog().GetAbout();
-    boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
-    assert(d);
-  }
-  TRACE("Finished ribi::maziak::QtMaziakMenuDialog2::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

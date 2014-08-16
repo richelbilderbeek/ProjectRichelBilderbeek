@@ -273,12 +273,6 @@ I_WILL_NOT_COMPILE
 /*   be accomplished by setting the CPU86 symbol for the Microsoft C         */
 /*   compiler, or the LINUX symbol for the gcc compiler running on Linux.    */
 /*                                                                           */
-/* An inferior solution is to declare certain values as `volatile', thus     */
-/*   forcing them to be stored to memory and rounded off.  Unfortunately,    */
-/*   this solution might slow Triangle down quite a bit.  To use volatile    */
-/*   values, write "#define INEXACT volatile" below.  Normally, however,     */
-/*   INEXACT should be defined to be nothing.  ("#define INEXACT".)          */
-/*                                                                           */
 /* For more discussion, see http://www.cs.cmu.edu/~quake/robust.pc.html .    */
 /*   For yet more discussion, see Section 5 of my paper, "Adaptive Precision */
 /*   Floating-Point Arithmetic and Fast Robust Geometric Predicates" (also   */
@@ -286,9 +280,6 @@ I_WILL_NOT_COMPILE
 
 /* #define CPU86 */
 /* #define LINUX */
-
-#define INEXACT /* Nothing */
-/* #define INEXACT volatile */
 
 /* Maximum number of characters in a file name (including the null).         */
 
@@ -1431,7 +1422,6 @@ void triexit(int status)
 void triexit(status)
 int status;
 #endif /* not ANSI_DECLARATORS */
-
 {
   exit(status);
 }
@@ -1449,6 +1439,9 @@ int size;
   memptr = (VOID *) malloc((unsigned int) size);
   if (memptr == (VOID *) NULL) {
     printf("Error:  Out of memory.\n");
+    #ifdef TODO_206
+    throw std::runtime_error("Triangle: out of memory");
+    #endif
     triexit(1);
   }
   return(memptr);
@@ -4975,22 +4968,12 @@ void exactinit()
 /*                                                                           */
 /*****************************************************************************/
 
-#ifdef ANSI_DECLARATORS
 int fast_expansion_sum_zeroelim(int elen, REAL *e, int flen, REAL *f, REAL *h)
-#else /* not ANSI_DECLARATORS */
-int fast_expansion_sum_zeroelim(elen, e, flen, f, h)  /* h cannot be e or f. */
-int elen;
-REAL *e;
-int flen;
-REAL *f;
-REAL *h;
-#endif /* not ANSI_DECLARATORS */
-
 {
   REAL Q;
-  INEXACT REAL Qnew;
-  INEXACT REAL hh;
-  INEXACT REAL bvirt;
+  REAL Qnew;
+  REAL hh;
+  REAL bvirt;
   REAL avirt, bround, around;
   int eindex, findex, hindex;
   REAL enow, fnow;
@@ -5068,28 +5051,18 @@ REAL *h;
 /*  will h.)                                                                 */
 /*                                                                           */
 /*****************************************************************************/
-
-#ifdef ANSI_DECLARATORS
 int scale_expansion_zeroelim(int elen, REAL *e, REAL b, REAL *h)
-#else /* not ANSI_DECLARATORS */
-int scale_expansion_zeroelim(elen, e, b, h)   /* e and h cannot be the same. */
-int elen;
-REAL *e;
-REAL b;
-REAL *h;
-#endif /* not ANSI_DECLARATORS */
-
 {
-  INEXACT REAL Q, sum;
+  REAL Q, sum;
   REAL hh;
-  INEXACT REAL product1;
+  REAL product1;
   REAL product0;
   int eindex, hindex;
   REAL enow;
-  INEXACT REAL bvirt;
+  REAL bvirt;
   REAL avirt, bround, around;
-  INEXACT REAL c;
-  INEXACT REAL abig;
+  REAL c;
+  REAL abig;
   REAL ahi, alo, bhi, blo;
   REAL err1, err2, err3;
 
@@ -5175,26 +5148,26 @@ REAL detsum;
 #endif /* not ANSI_DECLARATORS */
 
 {
-  INEXACT REAL acx, acy, bcx, bcy;
+  REAL acx, acy, bcx, bcy;
   REAL acxtail, acytail, bcxtail, bcytail;
-  INEXACT REAL detleft, detright;
+  REAL detleft, detright;
   REAL detlefttail, detrighttail;
   REAL det, errbound;
   REAL B[4], C1[8], C2[12], D[16];
-  INEXACT REAL B3;
+  REAL B3;
   int C1length, C2length, Dlength;
   REAL u[4];
-  INEXACT REAL u3;
-  INEXACT REAL s1, t1;
+  REAL u3;
+  REAL s1, t1;
   REAL s0, t0;
 
-  INEXACT REAL bvirt;
+  REAL bvirt;
   REAL avirt, bround, around;
-  INEXACT REAL c;
-  INEXACT REAL abig;
+  REAL c;
+  REAL abig;
   REAL ahi, alo, bhi, blo;
   REAL err1, err2, err3;
-  INEXACT REAL _i, _j;
+  REAL _i, _j;
   REAL _0;
 
   acx = (REAL) (pa[0] - pc[0]);
@@ -5334,13 +5307,13 @@ REAL permanent;
 #endif /* not ANSI_DECLARATORS */
 
 {
-  INEXACT REAL adx, bdx, cdx, ady, bdy, cdy;
+  REAL adx, bdx, cdx, ady, bdy, cdy;
   REAL det, errbound;
 
-  INEXACT REAL bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;
+  REAL bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;
   REAL bdxcdy0, cdxbdy0, cdxady0, adxcdy0, adxbdy0, bdxady0;
   REAL bc[4], ca[4], ab[4];
-  INEXACT REAL bc3, ca3, ab3;
+  REAL bc3, ca3, ab3;
   REAL axbc[8], axxbc[16], aybc[8], ayybc[16], adet[32];
   int axbclen, axxbclen, aybclen, ayybclen, alen;
   REAL bxca[8], bxxca[16], byca[8], byyca[16], bdet[32];
@@ -5354,14 +5327,14 @@ REAL permanent;
   int finlength;
 
   REAL adxtail, bdxtail, cdxtail, adytail, bdytail, cdytail;
-  INEXACT REAL adxadx1, adyady1, bdxbdx1, bdybdy1, cdxcdx1, cdycdy1;
+  REAL adxadx1, adyady1, bdxbdx1, bdybdy1, cdxcdx1, cdycdy1;
   REAL adxadx0, adyady0, bdxbdx0, bdybdy0, cdxcdx0, cdycdy0;
   REAL aa[4], bb[4], cc[4];
-  INEXACT REAL aa3, bb3, cc3;
-  INEXACT REAL ti1, tj1;
+  REAL aa3, bb3, cc3;
+  REAL ti1, tj1;
   REAL ti0, tj0;
   REAL u[4], v[4];
-  INEXACT REAL u3, v3;
+  REAL u3, v3;
   REAL temp8[8], temp16a[16], temp16b[16], temp16c[16];
   REAL temp32a[32], temp32b[32], temp48[48], temp64[64];
   int temp8len, temp16alen, temp16blen, temp16clen;
@@ -5383,16 +5356,16 @@ REAL permanent;
   int abtlen, bctlen, catlen;
   REAL abtt[4], bctt[4], catt[4];
   int abttlen, bcttlen, cattlen;
-  INEXACT REAL abtt3, bctt3, catt3;
+  REAL abtt3, bctt3, catt3;
   REAL negate;
 
-  INEXACT REAL bvirt;
+  REAL bvirt;
   REAL avirt, bround, around;
-  INEXACT REAL c;
-  INEXACT REAL abig;
+  REAL c;
+  REAL abig;
   REAL ahi, alo, bhi, blo;
   REAL err1, err2, err3;
-  INEXACT REAL _i, _j;
+  REAL _i, _j;
   REAL _0;
 
   adx = (REAL) (pa[0] - pd[0]);
@@ -6002,13 +5975,13 @@ REAL permanent;
 #endif /* not ANSI_DECLARATORS */
 
 {
-  INEXACT REAL adx, bdx, cdx, ady, bdy, cdy, adheight, bdheight, cdheight;
+  REAL adx, bdx, cdx, ady, bdy, cdy, adheight, bdheight, cdheight;
   REAL det, errbound;
 
-  INEXACT REAL bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;
+  REAL bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;
   REAL bdxcdy0, cdxbdy0, cdxady0, adxcdy0, adxbdy0, bdxady0;
   REAL bc[4], ca[4], ab[4];
-  INEXACT REAL bc3, ca3, ab3;
+  REAL bc3, ca3, ab3;
   REAL adet[8], bdet[8], cdet[8];
   int alen, blen, clen;
   REAL abdet[16];
@@ -6020,37 +5993,37 @@ REAL permanent;
   REAL adxtail, bdxtail, cdxtail;
   REAL adytail, bdytail, cdytail;
   REAL adheighttail, bdheighttail, cdheighttail;
-  INEXACT REAL at_blarge, at_clarge;
-  INEXACT REAL bt_clarge, bt_alarge;
-  INEXACT REAL ct_alarge, ct_blarge;
+  REAL at_blarge, at_clarge;
+  REAL bt_clarge, bt_alarge;
+  REAL ct_alarge, ct_blarge;
   REAL at_b[4], at_c[4], bt_c[4], bt_a[4], ct_a[4], ct_b[4];
   int at_blen, at_clen, bt_clen, bt_alen, ct_alen, ct_blen;
-  INEXACT REAL bdxt_cdy1, cdxt_bdy1, cdxt_ady1;
-  INEXACT REAL adxt_cdy1, adxt_bdy1, bdxt_ady1;
+  REAL bdxt_cdy1, cdxt_bdy1, cdxt_ady1;
+  REAL adxt_cdy1, adxt_bdy1, bdxt_ady1;
   REAL bdxt_cdy0, cdxt_bdy0, cdxt_ady0;
   REAL adxt_cdy0, adxt_bdy0, bdxt_ady0;
-  INEXACT REAL bdyt_cdx1, cdyt_bdx1, cdyt_adx1;
-  INEXACT REAL adyt_cdx1, adyt_bdx1, bdyt_adx1;
+  REAL bdyt_cdx1, cdyt_bdx1, cdyt_adx1;
+  REAL adyt_cdx1, adyt_bdx1, bdyt_adx1;
   REAL bdyt_cdx0, cdyt_bdx0, cdyt_adx0;
   REAL adyt_cdx0, adyt_bdx0, bdyt_adx0;
   REAL bct[8], cat[8], abt[8];
   int bctlen, catlen, abtlen;
-  INEXACT REAL bdxt_cdyt1, cdxt_bdyt1, cdxt_adyt1;
-  INEXACT REAL adxt_cdyt1, adxt_bdyt1, bdxt_adyt1;
+  REAL bdxt_cdyt1, cdxt_bdyt1, cdxt_adyt1;
+  REAL adxt_cdyt1, adxt_bdyt1, bdxt_adyt1;
   REAL bdxt_cdyt0, cdxt_bdyt0, cdxt_adyt0;
   REAL adxt_cdyt0, adxt_bdyt0, bdxt_adyt0;
   REAL u[4], v[12], w[16];
-  INEXACT REAL u3;
+  REAL u3;
   int vlength, wlength;
   REAL negate;
 
-  INEXACT REAL bvirt;
+  REAL bvirt;
   REAL avirt, bround, around;
-  INEXACT REAL c;
-  INEXACT REAL abig;
+  REAL c;
+  REAL abig;
   REAL ahi, alo, bhi, blo;
   REAL err1, err2, err3;
-  INEXACT REAL _i, _j, _k;
+  REAL _i, _j, _k;
   REAL _0;
 
   adx = (REAL) (pa[0] - pd[0]);
@@ -13614,6 +13587,7 @@ struct badtriang *badtri;
       printf("  precision of floating point arithmetic.  (You can be\n");
       printf("  sure of this if I fail to terminate.)\n");
       precisionerror();
+      triexit(1); //RJCB
     }
   }
 }

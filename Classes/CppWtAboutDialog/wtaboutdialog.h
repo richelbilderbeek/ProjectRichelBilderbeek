@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtAboutDialog, Wt dialog for displaying the About class
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,13 +24,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
 
 #include <Wt/WContainerWidget>
 #include <Wt/WPushButton>
 
 #include "about.h"
-
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -43,12 +47,14 @@ struct WtAboutDialog : public Wt::WContainerWidget
   boost::signals2::signal<void ()> m_signal_close;
 
   ///Get the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
-  static const std::string GetWtVersion();
+  ///GetWtVersion returns the version of the currently installed Wt library
+  ///From http://www.richelbilderbeek.nl/CppGetWtVersion.htm
+  static std::string GetWtVersion();
   private:
   Wt::WPushButton * const m_button_close;
   void OnClose();

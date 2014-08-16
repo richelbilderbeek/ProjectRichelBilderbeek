@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
 #include "questiondialog.h"
 #pragma GCC diagnostic pop
 
@@ -54,8 +55,16 @@ struct MultipleChoiceQuestionDialog : public QuestionDialog
   ///For a multiple choice question, s will be the index of the answer
   void Submit(const std::string& s);
 
+  std::string ToStr() const noexcept;
+
+  mutable boost::signals2::signal<void (MultipleChoiceQuestionDialog*)> m_signal_mc_question_changed;
+
   private:
   friend void boost::checked_delete<>(MultipleChoiceQuestionDialog *);
+  friend void boost::checked_delete<>(const MultipleChoiceQuestionDialog *);
+  friend class boost::detail::sp_ms_deleter<      MultipleChoiceQuestionDialog>;
+  friend class boost::detail::sp_ms_deleter<const MultipleChoiceQuestionDialog>;
+
   ~MultipleChoiceQuestionDialog() noexcept {}
 
   const boost::shared_ptr<const MultipleChoiceQuestion> m_question;

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,18 +18,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
 //---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-#include <boost/program_options.hpp>
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
 
+#include "fileio.h"
 #include "ipaddress.h"
 #include "trace.h"
 #include "wtautoconfig.h"
 #include "wtentrance.h"
 #include "wtselectfiledialog.h"
 #include "wtrichelbilderbeekmenudialog.h"
+#pragma GCC diagnostic pop
 
 ///TODO
 ///List sorted on my priority
@@ -62,7 +65,8 @@ Wt::WApplication *createApplication(
 int main(int argc, char **argv)
 {
   START_TRACE();
-  ribi::WtSelectFileDialog::SetPath(boost::filesystem::path(argv[0]).parent_path().string());
+
+  ribi::WtSelectFileDialog::SetPath(ribi::fileio::FileIo().GetPath(argv[0]));
   ribi::WtAutoConfig::SaveDefaultStylesheet();
   ribi::WtAutoConfig a(argc,argv,createApplication);
   return a.Run();

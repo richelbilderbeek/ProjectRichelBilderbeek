@@ -28,6 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnode.h"
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
+#include "conceptmapregex.h"
+#include "container.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -39,7 +42,7 @@ ribi::cmap::NodeFactory::NodeFactory()
   #endif
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
   const boost::shared_ptr<ribi::cmap::Concept>& concept,
   const double x,
   const double y
@@ -50,13 +53,24 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
     new Node(concept,x,y,*this)
   );
   assert(node);
+  assert(node->GetConcept());
+  #ifndef NDEBUG
+  if(*concept != *node->GetConcept())
+  {
+    TRACE(concept);
+    TRACE(node->GetConcept());
+    TRACE(*concept);
+    TRACE(*node->GetConcept());
+    TRACE("BREAK");
+  }
+  #endif
   assert(*concept == *node->GetConcept());
   assert(node->GetX() == x);
   assert(node->GetY() == y);
   return node;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::CreateFromStrings(
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::CreateFromStrings(
   const std::string& name,
   const std::vector<std::pair<std::string,Competency> >& examples,
   const double x,
@@ -79,28 +93,26 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::CreateFromStr
 }
 
 #ifndef NDEBUG
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::DeepCopy(
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::DeepCopy(
   const boost::shared_ptr<const cmap::Node>& node) const noexcept
 {
   assert(node);
   assert(node->GetConcept());
-  const boost::shared_ptr<Concept> new_concept
-    = ConceptFactory().DeepCopy(node->GetConcept());
-  assert(new_concept);
-  assert(*node->GetConcept() == *new_concept);
-  const boost::shared_ptr<Node> new_node
-    = Create(new_concept,
+  const boost::shared_ptr<Concept> new_concept{
+    ConceptFactory().DeepCopy(node->GetConcept())
+  };
+  const boost::shared_ptr<Node> new_node{
+    Create(
+      new_concept,
       node->GetX(),
       node->GetY()
-    );
-  assert(new_node);
-  assert(new_node->GetConcept());
-  assert(*node == *new_node);
+    )
+  };
   return new_node;
 }
 #endif
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::string& s) const noexcept
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::string& s) const noexcept
 {
   {
     const boost::shared_ptr<CenterNode> center_node {
@@ -109,7 +121,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const
     if (center_node) { return center_node; }
   }
 
-  const bool verbose = false;
+  const bool verbose{false};
   if (s.size() < 13)
   {
     if (verbose) TRACE("string too short");
@@ -130,21 +142,36 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const
   //m_concept
   boost::shared_ptr<Concept> concept;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexConcept());
+    #ifndef NDEBUG
+    if (v.size() != 1)
+    {
+      TRACE("ERROR");
+      TRACE(s);
+      TRACE(Regex().GetRegexConcept());
+      TRACE(v.size());
+      for (const auto& t:v) { TRACE(t); }
+      for (const auto& t: xml::XmlToPretty(s)) { TRACE(t); }
+      TRACE("BREAK");
+    }
+    #endif
     assert(v.size() == 1);
     concept = ConceptFactory().FromXml(v[0]);
   }
   //m_x
   double x = 0.0;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexX());
     assert(v.size() == 1);
     x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_x
   double y = 0.0;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
+    const std::vector<std::string> v
+      = Regex().GetRegexMatches(s,Regex().GetRegexY());
     assert(v.size() == 1);
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -155,26 +182,29 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const
   return node;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::GetTest(const int i) const noexcept
+int ribi::cmap::NodeFactory::GetNumberOfTests() const noexcept
 {
-  const std::vector<boost::shared_ptr<Node>> tests { GetTests() };
+  return static_cast<int>(GetTests().size());
+}
+
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::GetTest(const int i) const noexcept
+{
+  const auto tests = GetTests();
   assert(i >= 0);
   assert(i < static_cast<int>(tests.size()));
   return tests[i];
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::GetTests() const noexcept
+std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::GetTests() const noexcept
 {
   std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes;
   const auto v = ConceptFactory().GetTests();
   std::transform(v.begin(),v.end(),std::back_inserter(nodes),
-    [](const boost::shared_ptr<ribi::cmap::Concept>& c)
+    [](const boost::shared_ptr<Concept>& c)
     {
-      static int x = 0;
-      static int y = 1;
+      const int x = 0;
+      const int y = 0;
       const boost::shared_ptr<Node> p(NodeFactory().Create(c,x,y));
-      ++x;
-      ++y;
       assert(p);
       return p;
     }
@@ -186,11 +216,15 @@ const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::
 void ribi::cmap::NodeFactory::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::NodeFactory::Test");
-  TRACE("Finished ribi::cmap::NodeFactory successfully");
+  NodeFactory().GetTest(0);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  assert( NodeFactory().GetTest(0) !=  NodeFactory().GetTest(0));
+  assert(*NodeFactory().GetTest(0) == *NodeFactory().GetTest(0));
+  assert(*NodeFactory().GetTest(0) != *NodeFactory().GetTest(1));
+  assert(*NodeFactory().DeepCopy(NodeFactory().GetTest(0)) == *NodeFactory().GetTest(0));
 }
 #endif

@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogramtype.h"
 
 #include <cassert>
+
+#include "testtimer.h"
 #include "trace.h"
 
 //Lazy initializion
@@ -103,7 +105,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::mazeCreatorVcl,"mazeCreatorVcl"));
   m.insert(Pair(ProgramType::maziak,"maziak"));
   m.insert(Pair(ProgramType::maziakVcl,"maziakVcl"));
-  m.insert(Pair(ProgramType::metZnDrieen,"metZnDrieen"));
+  //m.insert(Pair(ProgramType::metZnDrieen,"metZnDrieen"));
   m.insert(Pair(ProgramType::metZnDrieenVcl,"metZnDrieenVcl"));
   m.insert(Pair(ProgramType::midiLessonCreator,"midiLessonCreator"));
   m.insert(Pair(ProgramType::morpher,"morpher"));
@@ -114,12 +116,13 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
   m.insert(Pair(ProgramType::ndsPaint,"ndsPaint"));
   m.insert(Pair(ProgramType::paperRockScissors,"paperRockScissors"));
+  m.insert(Pair(ProgramType::paperRockScissorsVcl,"paperRockScissorsVcl"));
   m.insert(Pair(ProgramType::pause,"pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"perfectElasticCollision"));
   m.insert(Pair(ProgramType::picToCode,"picToCode"));
   m.insert(Pair(ProgramType::pixelator,"pixelator"));
   m.insert(Pair(ProgramType::pixelatorVcl,"pixelatorVcl"));
-  m.insert(Pair(ProgramType::pokeVolley,"pokeVolley"));
+  m.insert(Pair(ProgramType::pokeVolleyVcl,"pokeVolleyVcl"));
   m.insert(Pair(ProgramType::pong,"pong"));
   m.insert(Pair(ProgramType::preDickAdvocaTor,"preDickAdvocaTor"));
   m.insert(Pair(ProgramType::primeExpert,"primeExpert"));
@@ -134,6 +137,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::refrigeratorPuzzleSolver,"refrigeratorPuzzleSolver"));
   m.insert(Pair(ProgramType::regexTester,"regexTester"));
   m.insert(Pair(ProgramType::reversi,"reversi"));
+  m.insert(Pair(ProgramType::reversiVcl,"reversiVcl"));
   m.insert(Pair(ProgramType::richelBilderbeekGallery,"richelBilderbeekGallery"));
   m.insert(Pair(ProgramType::richelbilderbeekNlSitemapGenerator,"richelbilderbeekNlSitemapGenerator"));
   m.insert(Pair(ProgramType::rubiksClock,"rubiksClock"));
@@ -146,11 +150,11 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::simImmuneResponse,"simImmuneResponse"));
   m.insert(Pair(ProgramType::simMysteryMachine,"simMysteryMachine"));
   m.insert(Pair(ProgramType::simplifyNewick,"simplifyNewick"));
-  m.insert(Pair(ProgramType::simPredator,"simPredator"));
+  m.insert(Pair(ProgramType::simPredatorVcl,"simPredatorVcl"));
   m.insert(Pair(ProgramType::simStagecraft,"simStagecraft"));
   m.insert(Pair(ProgramType::soaSim,"soaSim"));
   m.insert(Pair(ProgramType::solvePuzzleX,"solvePuzzleX"));
-  m.insert(Pair(ProgramType::spaceHarry,"spaceHarry"));
+  //m.insert(Pair(ProgramType::spaceHarry,"spaceHarry"));
   m.insert(Pair(ProgramType::spaceHarryVcl,"spaceHarryVcl"));
   m.insert(Pair(ProgramType::staircaseCardCreator,"staircaseCardCreator"));
   m.insert(Pair(ProgramType::stateObserver,"stateObserver"));
@@ -190,8 +194,10 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testNewick,"testNewick"));
   m.insert(Pair(ProgramType::testNewickVector,"testNewickVector"));
   m.insert(Pair(ProgramType::testOpenQuestion,"testOpenQuestion"));
-  m.insert(Pair(ProgramType::testPylos,"testPylos"));
   m.insert(Pair(ProgramType::testPlane,"testPlane"));
+  m.insert(Pair(ProgramType::testPolyFile,"testPolyFile"));
+  m.insert(Pair(ProgramType::testPolyFileFromPolygons,"testPolyFileFromPolygons"));
+  m.insert(Pair(ProgramType::testPylos,"testPylos"));
   m.insert(Pair(ProgramType::testQrcFile,"testQrcFile"));
   m.insert(Pair(ProgramType::testQtArrowItems,"testQtArrowItems"));
   m.insert(Pair(ProgramType::testQtCreatorProFile,"testQtCreatorProFile"));
@@ -201,7 +207,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testQtOcrWidget,"testQtOcrWidget"));
   m.insert(Pair(ProgramType::testQtRoundedEditRectItem,"testQtRoundedEditRectItem"));
   m.insert(Pair(ProgramType::testQtRoundedRectItem,"testQtRoundedRectItem"));
-  m.insert(Pair(ProgramType::testQtRoundedTextRectItem,"testQtRoundedTextRectItem"));
+  m.insert(Pair(ProgramType::testQtRoundedEditRectItem,"testQtRoundedEditRectItem"));
   m.insert(Pair(ProgramType::testQuestion,"testQuestion"));
   m.insert(Pair(ProgramType::testReversi,"testReversi"));
   m.insert(Pair(ProgramType::testSelectFileDialog,"testSelectFileDialog"));
@@ -215,7 +221,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testTicTacToe,"testTicTacToe"));
   m.insert(Pair(ProgramType::testTimedServerPusher,"testTimedServerPusher"));
   m.insert(Pair(ProgramType::testToggleButton,"testToggleButton"));
-  m.insert(Pair(ProgramType::testTriangleMesh,"testTriangleMesh"));
+  m.insert(Pair(ProgramType::testTriangle,"testTriangle"));
   m.insert(Pair(ProgramType::testTwoDigitNewick,"testTwoDigitNewick"));
   m.insert(Pair(ProgramType::thorVeen,"thorVeen"));
   m.insert(Pair(ProgramType::thresholdFilterer,"thresholdFilterer"));
@@ -224,6 +230,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::ticTacToeLearner,"ticTacToeLearner"));
   m.insert(Pair(ProgramType::ticTacToeValuer,"ticTacToeValuer"));
   m.insert(Pair(ProgramType::timePoll,"timePoll"));
+  m.insert(Pair(ProgramType::triangleMeshCreator,"triangleMeshCreator"));
   m.insert(Pair(ProgramType::tronCollection,"tronCollection"));
   m.insert(Pair(ProgramType::tronCollectionVcl,"tronCollectionVcl"));
   m.insert(Pair(ProgramType::ubuntuOneWatcher,"ubuntuOneWatcher"));
@@ -232,6 +239,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::vigenereCipher,"vigenereCipher"));
   m.insert(Pair(ProgramType::virtualBastard,"virtualBastard"));
   m.insert(Pair(ProgramType::visualAbc,"visualAbc"));
+  m.insert(Pair(ProgramType::wktToSvg,"wktToSvg"));
   m.insert(Pair(ProgramType::xeNonZero,"xeNonZero"));
   m.insert(Pair(ProgramType::zork,"zork"));
   assert(m.left.size() == m.right.size());
@@ -320,7 +328,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::mazeCreatorVcl,"MazeCreator (VCL)"));
   m.insert(Pair(ProgramType::maziak,"Maziak"));
   m.insert(Pair(ProgramType::maziakVcl,"Maziak (VCL)"));
-  m.insert(Pair(ProgramType::metZnDrieen,"Met Z'n Drieen"));
+  //m.insert(Pair(ProgramType::metZnDrieen,"Met Z'n Drieen"));
   m.insert(Pair(ProgramType::metZnDrieenVcl,"Met Z'n Drieen (VCL)"));
   m.insert(Pair(ProgramType::midiLessonCreator,"MIDI Lesson Creator"));
   m.insert(Pair(ProgramType::morpher,"Morpher"));
@@ -331,12 +339,13 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
   m.insert(Pair(ProgramType::ndsPaint,"NDS Paint"));
   m.insert(Pair(ProgramType::paperRockScissors,"PaperRockScissors"));
+  m.insert(Pair(ProgramType::paperRockScissorsVcl,"PaperRockScissors (VCL)"));
   m.insert(Pair(ProgramType::pause,"Pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"PerfectElasticCollision"));
   m.insert(Pair(ProgramType::picToCode,"PicToCode"));
   m.insert(Pair(ProgramType::pixelator,"Pixelator"));
   m.insert(Pair(ProgramType::pixelatorVcl,"Pixelator (VCL)"));
-  m.insert(Pair(ProgramType::pokeVolley,"PokeVolley"));
+  m.insert(Pair(ProgramType::pokeVolleyVcl,"PokeVolley (VCL)"));
   m.insert(Pair(ProgramType::pong,"Pong"));
   m.insert(Pair(ProgramType::preDickAdvocaTor,"PreDickAdvocaTor"));
   m.insert(Pair(ProgramType::primeExpert,"PrimeExpert"));
@@ -351,6 +360,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::refrigeratorPuzzleSolver,"RefrigeratorPuzzleSolver"));
   m.insert(Pair(ProgramType::regexTester,"RegexTester"));
   m.insert(Pair(ProgramType::reversi,"Reversi"));
+  m.insert(Pair(ProgramType::reversiVcl,"Reversi (VCL)"));
   m.insert(Pair(ProgramType::richelBilderbeekGallery,"RichelBilderbeekGallery"));
   m.insert(Pair(ProgramType::richelbilderbeekNlSitemapGenerator,"RichelbilderbeekNlSitemapGenerator"));
   m.insert(Pair(ProgramType::rubiksClock,"Rubik's Clock"));
@@ -363,11 +373,11 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::simImmuneResponse,"SimImmuneResponse"));
   m.insert(Pair(ProgramType::simMysteryMachine,"SimMysteryMachine"));
   m.insert(Pair(ProgramType::simplifyNewick,"SimplifyNewick"));
-  m.insert(Pair(ProgramType::simPredator,"SimPredator"));
+  m.insert(Pair(ProgramType::simPredatorVcl,"SimPredator (VCL)"));
   m.insert(Pair(ProgramType::simStagecraft,"SimStagecraft"));
   m.insert(Pair(ProgramType::soaSim,"SoaSim"));
   m.insert(Pair(ProgramType::solvePuzzleX,"SolvePuzzleX"));
-  m.insert(Pair(ProgramType::spaceHarry,"SpaceHarry"));
+  //m.insert(Pair(ProgramType::spaceHarry,"SpaceHarry"));
   m.insert(Pair(ProgramType::spaceHarryVcl,"SpaceHarry (VCL)"));
   m.insert(Pair(ProgramType::staircaseCardCreator,"StaircaseCardCreator"));
   m.insert(Pair(ProgramType::stateObserver,"StateObserver"));
@@ -408,6 +418,8 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testNewickVector,"Test NewickVector"));
   m.insert(Pair(ProgramType::testOpenQuestion,"Test OpenQuestion"));
   m.insert(Pair(ProgramType::testPlane,"Test Plane"));
+  m.insert(Pair(ProgramType::testPolyFile,"Test PolyFile"));
+  m.insert(Pair(ProgramType::testPolyFileFromPolygons,"Test PolyFileFromPolygons"));
   m.insert(Pair(ProgramType::testPylos,"Test Pylos"));
   m.insert(Pair(ProgramType::testQrcFile,"Test QrcFile"));
   m.insert(Pair(ProgramType::testQtArrowItems,"Test QtArrowItems"));
@@ -418,7 +430,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testQtOcrWidget,"Test QtOcrWidget"));
   m.insert(Pair(ProgramType::testQtRoundedEditRectItem,"Test QtRoundedEditRectItem"));
   m.insert(Pair(ProgramType::testQtRoundedRectItem,"Test QtRoundedRectItem"));
-  m.insert(Pair(ProgramType::testQtRoundedTextRectItem,"Test QtRoundedTextRectItem"));
+  m.insert(Pair(ProgramType::testQtRoundedEditRectItem,"Test QtRoundedEditRectItem"));
   m.insert(Pair(ProgramType::testQuestion,"Test Question"));
   m.insert(Pair(ProgramType::testReversi,"Test Reversi"));
   m.insert(Pair(ProgramType::testSelectFileDialog,"Test SelectFileDialog"));
@@ -432,7 +444,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testTicTacToe,"Test TicTacToe"));
   m.insert(Pair(ProgramType::testTimedServerPusher,"Test TimedServerPusher"));
   m.insert(Pair(ProgramType::testToggleButton,"Test ToggleButton"));
-  m.insert(Pair(ProgramType::testTriangleMesh,"Test TriangleMesh"));
+  m.insert(Pair(ProgramType::testTriangle,"Test Triangle"));
   m.insert(Pair(ProgramType::testTwoDigitNewick,"Test TwoDigitNewick"));
   m.insert(Pair(ProgramType::thorVeen,"Thor Veen"));
   m.insert(Pair(ProgramType::thresholdFilterer,"ThresholdFilterer"));
@@ -441,6 +453,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::ticTacToeLearner,"TicTacToe Learner"));
   m.insert(Pair(ProgramType::ticTacToeValuer,"TicTacToe Valuer"));
   m.insert(Pair(ProgramType::timePoll,"TimePoll"));
+  m.insert(Pair(ProgramType::triangleMeshCreator,"TriangleMeshCreator"));
   m.insert(Pair(ProgramType::tronCollection,"Tron Collection"));
   m.insert(Pair(ProgramType::tronCollectionVcl,"Tron Collection (VCL)"));
   m.insert(Pair(ProgramType::ubuntuOneWatcher,"UbuntuOne Watcher"));
@@ -449,6 +462,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::vigenereCipher,"VigenereCipher"));
   m.insert(Pair(ProgramType::virtualBastard,"Virtual Bastard"));
   m.insert(Pair(ProgramType::visualAbc,"Visual ABC"));
+  m.insert(Pair(ProgramType::wktToSvg,"WktToSvg"));
   m.insert(Pair(ProgramType::xeNonZero,"XeNonZero"));
   m.insert(Pair(ProgramType::zork,"Zork"));
   assert(m.left.size() == m.right.size());
@@ -471,7 +485,7 @@ std::vector<std::string> ribi::ProgramTypes::GetAllEnumNames() noexcept
 
   //Copy right map of bimap
   std::vector<std::string> v;
-  for (auto t: m_map_to_enumname.right) { v.push_back(t.first); }
+  for (const auto& t: m_map_to_enumname.right) { v.push_back(t.first); }
   assert(!v.empty());
   assert(m_map_to_enumname.right.size() == v.size());
   return v;
@@ -484,7 +498,7 @@ std::vector<std::string> ribi::ProgramTypes::GetAllScreenNames() noexcept
 
   //Copy right map of bimap
   std::vector<std::string> v;
-  for (auto t: m_map_to_screenname.right) { v.push_back(t.first); }
+  for (const auto& t: m_map_to_screenname.right) { v.push_back(t.first); }
   assert(!v.empty());
   assert(m_map_to_screenname.right.size() == v.size());
   return v;
@@ -497,7 +511,7 @@ std::vector<ribi::ProgramType> ribi::ProgramTypes::GetAll() noexcept
 
   //Copy left map of bimap
   std::vector<ProgramType> v;
-  for (auto t: m_map_to_enumname.left) { v.push_back(t.first); }
+  for (const auto& t: m_map_to_enumname.left) { v.push_back(t.first); }
   assert(!v.empty());
   assert(m_map_to_enumname.left.size() == v.size());
   return v;
@@ -521,13 +535,12 @@ std::string ribi::ProgramTypes::ProgramTypeToScreenName(const ProgramType t) noe
 void ribi::ProgramTypes::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::ProgramTypes::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   assert(GetAll().size() == GetAllEnumNames().size());
   assert(GetAll().size() == GetAllScreenNames().size());
-  TRACE("Finished ribi::ProgramTypes::Test successfully");
 }
 #endif

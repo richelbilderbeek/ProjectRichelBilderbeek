@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "loopreader.h"
 #include "caesarcipher.h"
 #include "caesarciphermaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -119,6 +120,8 @@ ribi::About ribi::CaesarCipherMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("CaesarCipher version: " + CaesarCipher::GetVersion());
   a.AddLibrary("LoopReader version: " + LoopReader<int>::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -164,11 +167,11 @@ std::vector<std::string> ribi::CaesarCipherMenuDialog::GetVersionHistory() const
 void ribi::CaesarCipherMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolCaesarCipherMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     CaesarCipherMenuDialog d;
     d.Execute( {"CaesarCipher", "-k", "0", "--text", "HELLOWORLD", "-s" } );
@@ -176,6 +179,5 @@ void ribi::CaesarCipherMenuDialog::Test() noexcept
     d.Execute( {"CaesarCipher", "-k", "2", "--text", "HELLOWORLD", "-s" } );
     d.Execute( {"CaesarCipher", "-k", "123", "--cipher", "HELLOWORLD", "-s" } );
   }
-  TRACE("Finished ribi::ToolCaesarCipherMenuDialog::Test successfully");
 }
 #endif

@@ -36,10 +36,11 @@ struct Question
   explicit Question(
     const std::string& filename,
     const std::string& question,
-    const std::vector<std::string>& correct_answers);
+    const std::vector<std::string>& correct_answers
+  );
 
   ///Create a copy of the Question, depending on the derived class its type
-  virtual Question * Clone() const = 0;
+  virtual Question * Clone() const noexcept = 0;
 
   ///Obtain the correct answer(s)
   const std::vector<std::string>& GetCorrectAnswers() const noexcept { return m_correct_answers; }
@@ -62,6 +63,9 @@ struct Question
 
   ///How to display the question as multiple lines
   virtual std::vector<std::string> ToLines() const noexcept = 0;
+
+  ///Convert to std::string line, as read from file
+  virtual std::string ToStr() const noexcept = 0;
 
   protected:
   virtual ~Question() noexcept {}

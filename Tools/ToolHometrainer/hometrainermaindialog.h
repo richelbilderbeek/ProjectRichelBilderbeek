@@ -26,13 +26,13 @@ struct HometrainerMainDialog
   ///Start the command-line version
   void Execute();
 
-  const boost::shared_ptr<const Question> GetCurrentQuestion() const noexcept;
+  boost::shared_ptr<const Question> GetCurrentQuestion() const noexcept;
 
   int GetNumberCorrect() const noexcept { return m_n_correct; }
   int GetNumberIncorrect() const noexcept { return m_n_incorrect; }
 
   ///Get the parsed questions
-  const std::vector<boost::shared_ptr<const Question> > GetQuestions() const noexcept
+  std::vector<boost::shared_ptr<const Question>> GetQuestions() const noexcept
   {
     return m_questions;
   }
@@ -64,11 +64,11 @@ struct HometrainerMainDialog
     const std::string& s) noexcept;
 
   ///Build the correct dialog for a (derived class of) question
-  static const boost::shared_ptr<QuestionDialog> CreateQuestionDialog(
+  static boost::shared_ptr<QuestionDialog> CreateQuestionDialog(
     boost::shared_ptr<const Question> question) noexcept;
 
 
-  static const std::vector<boost::shared_ptr<const Question> > CreateQuestions(
+  static std::vector<boost::shared_ptr<const Question>> CreateQuestions(
     const std::string& filename);
 
   void DisplayScore() const noexcept;

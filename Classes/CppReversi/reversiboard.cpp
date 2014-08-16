@@ -7,8 +7,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
-
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -259,11 +258,11 @@ void ribi::reversi::Board::Set(const int x, const int y, const Square state) noe
 void ribi::reversi::Board::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::reversi::Board::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     Board r(4);
     assert(r.Get(1,1) == Square::player1);
@@ -330,7 +329,6 @@ void ribi::reversi::Board::Test() noexcept
       player = GetOtherPlayer(player);
     }
   }
-  TRACE("Finished ribi::reversi::Board::Test()");
 }
 #endif
 

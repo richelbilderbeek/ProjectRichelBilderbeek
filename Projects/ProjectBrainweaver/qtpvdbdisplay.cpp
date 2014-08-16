@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QHeaderView>
 #include <QTableWidget>
 
+#include "conceptmapcompetencies.h"
 #include "conceptmapcompetency.h"
 #include "conceptmapconcept.h"
 #include "conceptmap.h"
@@ -107,7 +108,7 @@ void ribi::pvdb::QtDisplay::DisplayExamples(
     for(int i=0; i!=n_rows; ++i)
     {
       const cmap::Competency competency = static_cast<cmap::Competency>(i + 1); //Skip 0 == uninitialized
-      const std::string text = cmap::CompetencyToDutchStr(competency);
+      const std::string text = cmap::Competencies().ToStrDutch(competency);
       const QIcon icon = cmap::QtCompetency::CompetencyToIcon(competency);
       QTableWidgetItem * const item = new QTableWidgetItem;
       item->setText(text.c_str());
@@ -221,7 +222,7 @@ void ribi::pvdb::QtDisplay::DisplayValues(
     const int n_edges_examples = std::accumulate(edges.begin(),edges.end(),0,
       [](int& init, const boost::shared_ptr<const cmap::Edge>& edge)
       {
-        return init + static_cast<int>(edge->GetConcept()->GetExamples()->Get().size());
+        return init + static_cast<int>(edge->GetNode()->GetConcept()->GetExamples()->Get().size());
       }
     );
     const int n_relations_not_to_focus //Constant 'r'

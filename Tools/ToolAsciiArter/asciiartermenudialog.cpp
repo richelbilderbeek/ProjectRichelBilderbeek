@@ -36,6 +36,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "asciiartermaindialog.h"
 #include "fileio.h"
 #include "imagecanvas.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -110,9 +112,11 @@ ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
     "2006-2014",
     "http://www.richelbilderbeek.nl/ToolAsciiArter.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("AsciiArter version: " + AsciiArter::GetVersion());
+    GetVersionHistory()
+  );
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -169,11 +173,15 @@ ribi::Help ribi::AsciiArterMenuDialog::GetHelp() const noexcept
 void ribi::AsciiArterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::AsciiArterMenuDialog::Test()");
+  {
+    fileio::FileIo();
+    AsciiArterMainDialog("",20);
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string temp_filename = fileio::FileIo().GetTempFileName();
   assert(!fileio::FileIo().IsRegularFile(temp_filename));
   {
@@ -188,6 +196,5 @@ void ribi::AsciiArterMenuDialog::Test() noexcept
 
   fileio::FileIo().DeleteFile(temp_filename);
   assert(!fileio::FileIo().IsRegularFile(temp_filename));
-  TRACE("Finished ribi::AsciiArterMenuDialog::Test()");
 }
 #endif

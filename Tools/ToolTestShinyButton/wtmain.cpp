@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShinyButton, tool to test the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,6 +18,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShinyButton.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/program_options.hpp>
 #include <boost/signals2.hpp>
 #include <Wt/WApplication>
@@ -27,34 +31,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintedWidget>
 #include <Wt/WPainter>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 #include "wtautoconfig.h"
 #include "wttestshinybuttonmenudialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct WtApplication : public Wt::WApplication
 {
   WtApplication(const Wt::WEnvironment& env)
     : Wt::WApplication(env),
-    m_dialog(new WtTestShinyButtonMenuDialog)
+    m_dialog(new ribi::WtTestShinyButtonMenuDialog)
   {
     this->setTitle("TestShinyButton");
     this->useStyleSheet("wt.css");
     root()->addWidget(m_dialog);
   }
   private:
-  WtTestShinyButtonMenuDialog * const m_dialog;
+  ribi::WtTestShinyButtonMenuDialog * const m_dialog;
 };
-//---------------------------------------------------------------------------
+
 Wt::WApplication *createApplication(
   const Wt::WEnvironment& env)
 {
   return new WtApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char **argv)
 {
-  WtAutoConfig a(argc,argv,createApplication);
-  WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
   return a.Run();
 }
-//---------------------------------------------------------------------------
+

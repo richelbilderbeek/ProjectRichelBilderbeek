@@ -2,9 +2,10 @@
 
 #include <iostream>
 
-#include "Shiny.h"
+
 
 #include "geometry.h"
+#include "testtimer.h"
 #include "trianglemeshcellfactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
@@ -18,9 +19,6 @@ ribi::trim::Cell::Cell(
   const int index,
   const CellFactory&)
   :
-    #ifdef TRIANGLEMESH_USE_SIGNALS2
-    m_signal_destroyed{},
-    #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
     m_faces(faces),
     m_index{index}
 {
@@ -30,16 +28,14 @@ ribi::trim::Cell::Cell(
   assert(faces.size() == 5 || faces.size() == 8);
 }
 
-ribi::trim::Cell::~Cell()
+ribi::trim::Cell::~Cell() noexcept
 {
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  m_signal_destroyed(this);
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
+
 }
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Cell::CalculateCenter() const noexcept
 {
-  PROFILE_FUNC();
+  
   Coordinat3D center(0.0,0.0,0.0);
   int cnt = 0;
   for(const boost::shared_ptr<const Face> face: m_faces)
@@ -82,24 +78,41 @@ void ribi::trim::Cell::SetCorrectOrder() noexcept
 
 void ribi::trim::Cell::SetIndex(const int index) noexcept
 {
+  assert( (index != Cell::sm_cell_no_index || index == Cell::sm_cell_no_index)
+    && "Cell indices are set and reset"
+  );
+
   m_index = index;
 
-  assert(!"TODO");
-  //If there is a Face that has this cell as its neighbour, yet that neighbour
+  //If there is a Face that has this cell as its neighbour, yet that Face its Owner
   //does not have an index yet, transfer the Face its ownership from neighbour to owner
+  for (const auto& face: m_faces)
+  {
+    assert(face->GetConstOwner());
+
+    if (face->GetNeighbour()
+      && face->GetNeighbour().get() == this
+      && face->GetConstOwner()->GetIndex() == Face::sm_face_no_index)
+    {
+      face->TransferOwnership();
+    }
+  }
 }
 
 #ifndef NDEBUG
 void ribi::trim::Cell::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::Cell::Test");
+  CellFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);
+  CellFactory().CreateTestCube(CreateVerticalFacesStrategy::one_face_per_square);
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
-  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const boost::shared_ptr<Cell> prism {
       CellFactory().CreateTestPrism(strategy)
@@ -136,7 +149,6 @@ void ribi::trim::Cell::Test() noexcept
     );
     
     std::sort(faces.begin(),faces.end(),Helper().OrderByIndex());
-    TRACE(faces.size());
     assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
     assert(
       (
@@ -190,18 +202,12 @@ void ribi::trim::Cell::Test() noexcept
 
   //Test that CalcCenter returns the same value each time
   //Failed once...
-  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const auto center(CellFactory().CreateTestPrism(strategy)->CalculateCenter());
-    
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
     assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
     assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
   }
-
-  TRACE("Finished ribi::trim::Cell::Test successfully");
 }
 #endif
 

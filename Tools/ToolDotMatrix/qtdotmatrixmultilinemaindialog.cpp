@@ -8,7 +8,9 @@
 
 #include <boost/algorithm/string/split.hpp>
 
+#include "container.h"
 #include "dotmatrixtext.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #include "ui_qtdotmatrixmultilinemaindialog.h"
@@ -32,40 +34,26 @@ ribi::QtDotMatrixMultiLineMainDialog::~QtDotMatrixMultiLineMainDialog()
 
 void ribi::QtDotMatrixMultiLineMainDialog::on_edit_textChanged()
 {
-
-  const std::vector<std::string> v {
-    SeperateString(ui->edit->toPlainText().toStdString(),'\n')
-  };
+  const auto v
+    = Container().SeperateString(ui->edit->toPlainText().toStdString(),'\n');
 
   const DotMatrixText m(v,1);
   m_image = m.CreateImage();
   ui->image->setPixmap(QPixmap::fromImage(*m_image.get()));
 }
 
-std::vector<std::string> ribi::QtDotMatrixMultiLineMainDialog::SeperateString(
-  const std::string& input,
-  const char seperator) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-
 #ifndef NDEBUG
 void ribi::QtDotMatrixMultiLineMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtDotMatrixMultiLineMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtDotMatrixMultiLineMainDialog d;
   d.ui->edit->setPlainText("Hello\n World");
   d.on_edit_textChanged();
-  TRACE("Finished ribi::QtDotMatrixMultiLineMainDialog::Test successfully");
 }
 #endif
 

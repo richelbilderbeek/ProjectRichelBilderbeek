@@ -20,11 +20,19 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppHeaderFile.htm">Header file</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppHeaderFile.htm">Header files</a> contain the <a href="CppDeclaration.htm">declarations</a> of <a href="CppFunction.htm">functions</a> and <a href="CppClass.htm">classes</a>.</p>
+<p>
+  <a href="CppHeaderFile.htm">Header files</a> contain the <a href="CppDeclaration.htm">declarations</a> 
+  of <a href="CppFunction.htm">functions</a> and <a href="CppClass.htm">classes</a>.
+</p>
 <p>&nbsp;</p>
-<p><a href="CppHeaderFile.htm">Header files</a> commonly have the .h and .hpp filename extensions.</p>
+<p>
+  <a href="CppHeaderFile.htm">Header files</a> commonly have the .h and .hpp filename extensions.
+</p>
 <p>&nbsp;</p>
-<p>To use a <a href="CppHeaderFile.htm">header file</a>, it must be <a href="CppInclude.htm">#included</a> in the source code.</p>
+<p>
+  To use a <a href="CppHeaderFile.htm">header file</a>, it must be 
+  <a href="CppInclude.htm">#included</a> in the source code.
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
@@ -40,22 +48,19 @@
 <!-- end of the code -->
 <p>&nbsp;</p>
 <p>
-  A <a href="CppHeaderFile.htm">header (.h) file</a> can (and commonly does) start with an <a href="CppIncludeGuard.htm">#include guard</a>.
-  The combination of a <a href="CppHeaderFile.htm">header (.h) file</a> and an <a href="CppImplementationFile.htm">implementation (.cpp) file</a> is called a <a href="CppUnit.htm">unit</a>.
-</p>
-<p>&nbsp;</p>
-<p>
-  Make <a href="CppHeaderFile.htm">header files</a> self-sufficient [1,14].
-  Avoid non-<a href="CppInline.htm">inline</a> <a href="CppFunction.htm">function</a> <a href="CppDefinition.htm">definitions</a> in <a href="CppHeaderFile.htm">header files</a> [7,9,12].
-  <a href="CppInclude.htm">#include</a> C <a href="CppHeaderFile.htm">header files</a> in <a href="CppNamespace.htm">namespace</a> to avoid <a href="CppGlobal.htm">global</a> 
-  names [13]. For example, <a href="CppInclude.htm">#include</a> <a href="CppCmathH.htm">cmath</a> instead of <a href="CppMathH.htm">math.h</a>.
+  A <a href="CppHeaderFile.htm">header (.h) file</a> can (and commonly does) start with an 
+  <a href="CppIncludeGuard.htm">#include guard</a>.
+  The combination of a <a href="CppHeaderFile.htm">header (.h) file</a> and an 
+  <a href="CppImplementationFile.htm">implementation (.cpp) file</a> is called a 
+  <a href="CppUnit.htm">unit</a>.
 </p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Examples</h2>
+<p>&nbsp;</p>
+<h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
 <ul>
   <li><a href="CppHeaderFileExample1.htm">Header file example 1: what does and does not belong in a header file</a> (from [5])</li>
@@ -157,6 +162,29 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Make <a href="CppHeaderFile.htm">header files</a> self-sufficient [1,14]
+  </li>
+  <li>
+    Avoid non-<a href="CppInline.htm">inline</a> <a href="CppFunction.htm">function</a> <a href="CppDefinition.htm">definitions</a> in <a href="CppHeaderFile.htm">header files</a> [7,9,12]
+  </li>
+  <li>
+    <a href="CppInclude.htm">#include</a> C <a href="CppHeaderFile.htm">header files</a> in <a href="CppNamespace.htm">namespace</a> to avoid <a href="CppGlobal.htm">global</a> names [13]. For example, <a href="CppInclude.htm">#include</a> <a href="CppCmathH.htm">cmath</a> instead of <a href="CppMathH.htm">math.h</a>
+  </li>
+  <li>
+    <a href="CppInclude.htm">include</a> user-defined <a href="CppHeaderFile.htm">headers</a>' 
+    names in quotes, <a href="CppInclude.htm">include</a> <a href="CppStl.htm">STL</a> 
+    <a href="CppHeaderFile.htm">headers</a>' names in angle brackets [15]
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
@@ -174,6 +202,7 @@
   <li><!-- 12 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 15.5. Advice. page 444: '[4] Avoid non-inline function definitions in headers'</li>
   <li><!-- 13 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 15.5. Advice. page 444: '[8] #include C headers in namespace to avoid global names'</li>
   <li><!-- 14 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 15.5. Advice. page 444: '[9] Make headers self-contained'</li>
+  <li><!-- 15 -->Paul Deitel, Harvey Deitel. C++11 for programmers (2nd edition). 2014. ISBN: 978-0-13-343985-4. Chapter 3.6, Error-Prevention Tip 3.3. page 57: 'To ensure that the preprocessor can locate headers correctly, #include preprocessing directives should place user-defined headers names in quotes [...] and place C++ Standard Library headers names in angle brackets [...]'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

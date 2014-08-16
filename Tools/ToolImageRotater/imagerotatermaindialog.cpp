@@ -32,13 +32,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-double ribi::ImageRotaterMainDialog::GetAngle(const double dx, const double dy)
-{
-  return Geometry().GetAngle(dx,dy);
-  //const double pi = boost::math::constants::pi<double>();
-  //return pi - (std::atan2(dx,dy));
-}
-
 QRgb ribi::ImageRotaterMainDialog::GetPixel(
   const QImage& image,
   const double x,
@@ -153,9 +146,9 @@ void ribi::ImageRotaterMainDialog::Translate(
   double& dx2,
   double& dy2)
 {
-  const double oldAngle = GetAngle(dx1,dy1);
+  const double oldAngle = Geometry().GetAngleClockScreen(dx1,dy1);
   const double newAngle = oldAngle - dAngle; //NEW: Must be a minus to rotate clockwise
   const double ray = std::sqrt((dx1 * dx1) + (dy1 * dy1)); //Pythagoras
-  dx2 = std::sin(newAngle) * ray;
+  dx2 =  std::sin(newAngle) * ray;
   dy2 = -std::cos(newAngle) * ray;
 }

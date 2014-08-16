@@ -64,8 +64,8 @@ public:
     QPainter& painter,
     const ShapeWidget * const widget);
 
-  ShapeWidget * GetWidget() const { return m_widget.get(); }
-  const ShapeWidget * GetWidget() { return m_widget.get(); }
+        ShapeWidget * GetWidget() const { return m_widget.get(); }
+  const ShapeWidget * GetWidget()       { return m_widget.get(); }
 
 private:
   boost::shared_ptr<ShapeWidget> m_widget;

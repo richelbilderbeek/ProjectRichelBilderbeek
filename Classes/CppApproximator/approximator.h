@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppApproximator.htm
 //---------------------------------------------------------------------------
-
-#ifndef APPROXIMATOR_H
-#define APPROXIMATOR_H
+#ifndef RIBI_APPROXIMATOR_H
+#define RIBI_APPROXIMATOR_H
 
 #include <cassert>
 #include <stdexcept>
@@ -32,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/container/flat_map.hpp>
 
 #include "exceptionnoextrapolation.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -95,7 +95,7 @@ struct Approximator
 
 template <class Key, class Value, class Container>
 Approximator<Key,Value,Container>::Approximator(const Container& m) noexcept
-  : m_m { m }
+  : m_m{m}
 {
   static_assert(!std::is_integral<Key>(),
     "Approximator will not work on integer keys");
@@ -107,7 +107,7 @@ Approximator<Key,Value,Container>::Approximator(const Container& m) noexcept
 template <class Key, class Value, class Container>
 void Approximator<Key,Value,Container>::Add(const Key& key, const Value& value)
 {
-  assert( CanAdd(key,value)
+  assert(CanAdd(key,value)
     && "Every key must be unique,"
        "use MultiApproximator if you need non-unique keys");
   m_m.insert(std::make_pair(key,value));
@@ -122,11 +122,11 @@ Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
   assert(!m_m.empty() && "Cannot approximate without data");
 
   {
-    const Iterator i { m_m.find(key) };
+    const Iterator i{m_m.find(key)};
     if (i!=m_m.end()) return (*i).second;
   }
 
-  const Iterator high { m_m.lower_bound(key) };
+  const Iterator high{m_m.lower_bound(key)};
   if (high == m_m.begin() || high == m_m.end())
   {
     assert(!m_m.empty());
@@ -183,8 +183,9 @@ void Approximator<Key,Value,Container>::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TestTimer::SetMaxCnt(2); //Due to templates, multiple Approximators get active
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
-    TRACE("Starting Approximator::Test");
     Approximator<double,int> m;
     m.Add(1.0,10);
     m.Add(2.0,20);
@@ -195,11 +196,11 @@ void Approximator<Key,Value,Container>::Test() noexcept
     assert(m.Approximate(3.0) == 35);
     assert(m.GetMin() == 1.0);
     assert(m.GetMax() == 4.0);
-    TRACE("Completed Approximator::Test successfully");
   }
+  TestTimer::SetMaxCnt(1); //Restore strictness
 }
 #endif
 
 } //~namespace ribi
 
-#endif // APPROXIMATOR_H
+#endif // RIBI_APPROXIMATOR_H

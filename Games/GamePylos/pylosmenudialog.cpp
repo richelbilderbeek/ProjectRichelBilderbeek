@@ -32,6 +32,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosgame.h"
 #include "pylosmove.h"
 #include "pylosplayer.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 
@@ -74,6 +76,7 @@ ribi::About ribi::pylos::MenuDialog::GetAbout() const noexcept
   a.AddLibrary("pylos::Game version: " + pylos::Game::GetVersion());
   a.AddLibrary("pylos::Move version: " + pylos::Move::GetVersion());
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   return a;
 }
@@ -119,11 +122,11 @@ std::vector<std::string> ribi::pylos::MenuDialog::GetVersionHistory() const noex
 void ribi::pylos::MenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::pylos::MenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const boost::shared_ptr<Board> a(
     new BoardAdvanced
   );
@@ -133,7 +136,9 @@ void ribi::pylos::MenuDialog::Test() noexcept
   );
   assert(b);
   Coordinat(0,0,0);
-  CurrentMoveState();
+  {
+    boost::shared_ptr<CurrentMoveState>(new CurrentMoveState);
+  }
   const boost::shared_ptr<Game> g_a(
     new Game(a)
   );
@@ -143,6 +148,5 @@ void ribi::pylos::MenuDialog::Test() noexcept
   );
   assert(g_b);
   Move();
-  TRACE("Finished ribi::pylos::MenuDialog::Test successfully");
 }
 #endif

@@ -6,6 +6,8 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::PokeVolleyMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -57,7 +59,7 @@ ribi::Help ribi::PokeVolleyMenuDialog::GetHelp() const noexcept
 boost::shared_ptr<const ribi::Program> ribi::PokeVolleyMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
-    new ProgramPokeVolley
+    new ProgramPokeVolleyVcl
   };
   assert(p);
   return p;
@@ -83,7 +85,6 @@ void ribi::PokeVolleyMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PokeVolleyMenuDialog::Test");
-  TRACE("Finished ribi::PokeVolleyMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

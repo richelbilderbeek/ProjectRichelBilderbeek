@@ -32,13 +32,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace cmap {
 
 struct NodeFactory;
 
-///A Node is the GUI independent part as used in QtConceptMapItem
-struct Node : public Element
+///A Node is a Concept with coordinats, that is used as an Element in a ConceptMap
+///A Node is the GUI independent part of a node. It is displayed as:
+/// - QtNode (as QtConceptMapElement: a QGraphicsItem, to be used in a QGraphicsView)
+/// - QtNodeDialog (as a QDialog, to be used in a QDialog)
+///Node is used as a base class by:
+/// - CenterNode
+struct  Node : public Element
 {
   Node(const Node&) = delete;
   Node& operator=(const Node&) = delete;
@@ -48,7 +52,7 @@ struct Node : public Element
   boost::shared_ptr<      Concept>& GetConcept()       noexcept { return m_concept; }
 
   ///Get some test nodes
-  static std::vector<boost::shared_ptr<Node> > GetTests() noexcept;
+  static std::vector<boost::shared_ptr<Node>> GetTests() noexcept;
 
   ///Get the x coordinat
   double GetX() const noexcept { return m_x; }
@@ -60,7 +64,7 @@ struct Node : public Element
   static bool HasSameContent(const boost::shared_ptr<const Node>& lhs, const boost::shared_ptr<const Node>& rhs) noexcept;
 
   ///Set the concept
-  void SetConcept(const boost::shared_ptr<Concept> concept) noexcept;
+  void SetConcept(const boost::shared_ptr<Concept>& concept) noexcept;
 
   ///Set the position
   void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
@@ -72,13 +76,16 @@ struct Node : public Element
   void SetY(const double y) noexcept;
 
   virtual std::string ToXml() const noexcept;
+  std::string ToStr() const noexcept;
 
-  boost::signals2::signal<void(const Node *)> m_signal_node_changed;
+  mutable boost::signals2::signal<void(Node *)> m_signal_concept_changed;
+  mutable boost::signals2::signal<void(Node *)> m_signal_x_changed;
+  mutable boost::signals2::signal<void(Node *)> m_signal_y_changed;
 
   protected:
   ///Block construction, except for NodeFactory and derived classes
   Node() = delete;
-  friend NodeFactory;
+  friend class NodeFactory;
 
   ///Use NodeFactory as an unused argument to enforce using it
   explicit Node(
@@ -103,16 +110,23 @@ struct Node : public Element
   ///The y-coordinat
   double m_y;
 
-  ///Test this class
+  ///Called whenever something on Concept changes
+  ///Re-emits m_concept_changed with 'this'
+  void OnConceptChanged(Concept * const this_concept) noexcept;
+
+  #ifndef NDEBUG
   static void Test() noexcept;
+  #endif
 
 };
 
+
 bool operator==(const Node& lhs, const Node& rhs) noexcept;
 bool operator!=(const Node& lhs, const Node& rhs) noexcept;
+bool operator<(const Node& lhs, const Node& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const Node& node) noexcept;
 
 } //~namespace cmap
-
 } //~namespace ribi
 
 #endif // CONCEPTMAPNODE_H

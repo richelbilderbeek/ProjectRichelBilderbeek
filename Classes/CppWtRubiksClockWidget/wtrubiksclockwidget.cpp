@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtClockWidget, Wt widget for displaying the Clock class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,6 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtrubiksclockwidget.h"
 
 #include <iostream>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -30,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPen>
 
 #include "dial.h"
+#include "geometry.h"
 #include "rubiksclock.h"
 #include "rubiksclockdial.h"
 #include "rubiksclockdialwidget.h"
@@ -41,6 +47,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 #include "wtdialwidget.h"
 #include "wttogglebuttonwidget.h"
+#pragma GCC diagnostic pop
 
 ribi::ruco::WtClockWidget::WtClockWidget(
   const bool toggled,
@@ -68,7 +75,7 @@ ribi::ruco::WtClockWidget::WtClockWidget(
 
   this->clicked().connect(this,&ribi::ruco::WtClockWidget::OnClicked);
 
-  m_widget->SetGeometry(Rect(0,0,200,200));
+  m_widget->SetGeometry(0,0,200,200);
 }
 
 void ribi::ruco::WtClockWidget::DoRepaint()
@@ -115,11 +122,12 @@ void ribi::ruco::WtClockWidget::DrawClock(
           = (front_side ? clock->GetFrontTimes() : clock->GetBackTimes())->times[x][y];
         WtDialWidget::DrawDial(
           painter,
-          w->GetGeometry().GetX(),
-          w->GetGeometry().GetY(),
-          w->GetGeometry().GetWidth(),
-          w->GetGeometry().GetHeight(),
-          w->GetRubiksClockDial()->GetDial());
+          Geometry().GetLeft(w->GetGeometry()),
+          Geometry().GetTop(w->GetGeometry()),
+          Geometry().GetWidth(w->GetGeometry()),
+          Geometry().GetHeight(w->GetGeometry()),
+          w->GetRubiksClockDial()->GetDial()
+        );
       }
     }
     //Draw the pegs
@@ -143,20 +151,21 @@ void ribi::ruco::WtClockWidget::DrawClock(
 {
   DrawClock(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
+    Geometry().GetLeft(widget->GetGeometry()),
+    Geometry().GetTop(widget->GetGeometry()),
+    Geometry().GetWidth(widget->GetGeometry()),
+    Geometry().GetHeight(widget->GetGeometry()),
     widget->GetRubiksClock(),
-    widget->GetDisplayFront());
+    widget->GetDisplayFront()
+  );
 }
 
-const std::string ribi::ruco::WtClockWidget::GetVersion()
+std::string ribi::ruco::WtClockWidget::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::ruco::WtClockWidget::GetVersionHistory()
+std::vector<std::string> ribi::ruco::WtClockWidget::GetVersionHistory()
 {
   return {
     "2011-09-01: version 1.0: initial version",
@@ -177,7 +186,10 @@ void ribi::ruco::WtClockWidget::OnClicked(const Wt::WMouseEvent& e)
 
 void ribi::ruco::WtClockWidget::OnResize()
 {
-  resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+  resize(
+    Geometry().GetWidth(m_widget->GetGeometry()),
+    Geometry().GetHeight(m_widget->GetGeometry())
+  );
 }
 
 void ribi::ruco::WtClockWidget::paintEvent(Wt::WPaintDevice *paintDevice)

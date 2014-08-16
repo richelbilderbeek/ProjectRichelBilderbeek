@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "vigenereciphermenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtvigenereciphermaindialog.h"
+#include "testtimer.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
 #include "ui_qtvigenereciphermenudialog.h"
@@ -78,12 +79,11 @@ void ribi::QtVigenereCipherMenuDialog::on_button_start_clicked() noexcept
 void ribi::QtVigenereCipherMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtVigenereCipherMenuDialog::Test");
   QtVigenereCipherMainDialog();
-  TRACE("Finished QtVigenereCipherMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

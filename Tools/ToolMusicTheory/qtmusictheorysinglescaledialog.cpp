@@ -58,16 +58,21 @@ ribi::QtMusicTheorySingleScaleDialog::QtMusicTheorySingleScaleDialog(QWidget *pa
     );
   }
 
-  QObject::connect(ui->scale,SIGNAL(currentIndexChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->root,SIGNAL(currentIndexChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_major,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_minor,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_aug,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_dim,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_6,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_m6,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_7,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_m7,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
+  QObject::connect(
+    ui->scale,
+    static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    this,
+    &ribi::QtMusicTheorySingleScaleDialog::any_change
+  );
+  QObject::connect(ui->root,static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),this,&ribi::QtMusicTheorySingleScaleDialog::any_change);
+  QObject::connect(ui->display_major,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,&ribi::QtMusicTheorySingleScaleDialog::any_change);
+  QObject::connect(ui->display_minor,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,&ribi::QtMusicTheorySingleScaleDialog::any_change);
+  QObject::connect(ui->display_aug,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,&ribi::QtMusicTheorySingleScaleDialog::any_change);
+  QObject::connect(ui->display_dim,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,&ribi::QtMusicTheorySingleScaleDialog::any_change);
+  QObject::connect(ui->display_6,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,&ribi::QtMusicTheorySingleScaleDialog::any_change);
+  QObject::connect(ui->display_m6,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,&ribi::QtMusicTheorySingleScaleDialog::any_change);
+  QObject::connect(ui->display_7,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,&ribi::QtMusicTheorySingleScaleDialog::any_change);
+  QObject::connect(ui->display_m7,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,&ribi::QtMusicTheorySingleScaleDialog::any_change);
 
 
   //any_change();

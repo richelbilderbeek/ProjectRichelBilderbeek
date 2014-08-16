@@ -55,13 +55,20 @@ the <a href="CppOperatorIndex.htm">index operator</a>.</p>
   <li><a href="CppArrayDynamic.htm">Dynamically allocated arrays</a>: size gets determined at run-time, for example 'int * v')</li>
 </ol>
 <p>&nbsp;</p>
-<p>
-  Take care not to write beyond the bounds of an <a href="CppArray.htm">array</a> [5,7]. 
-  Avoid multidimensional <a href="CppArray.htm">arrays</a>; define suitable <a href="CppContainer.htm">containers</a> instead.
-  Use <a href="CppContainer.htm">containers</a> rather than plain <a href="CppArray.htm">arrays</a> [9].
-  Use <a href="CppString.htm">std::string</a> rather than zero-terminated <a href="CppArray.htm">arrays</a> of <a href="CppChar.htm">chars</a> [10]. 
-  Avoid passing arrays as pointers [11].
-</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>Take care not to write beyond the bounds of an <a href="CppArray.htm">array</a> [5,7]</li>
+  <li>Avoid multidimensional <a href="CppArray.htm">arrays</a>; define suitable <a href="CppContainer.htm">containers</a> instead [8]</li>
+  <li>Use <a href="CppContainer.htm">containers</a> rather than plain <a href="CppArray.htm">arrays</a> [9]</li>
+  <li>Use <a href="CppString.htm">std::string</a> rather than zero-terminated <a href="CppArray.htm">arrays</a> of <a href="CppChar.htm">chars</a> [10]</li>
+  <li>Avoid passing arrays as pointers [11]</li>
+  <li>Prefer <a href="CppStdArray.htm">std::array</a> to built-in <a href="CppArray.htm">arrays</a> [12]</li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -105,6 +112,8 @@ the <a href="CppOperatorIndex.htm">index operator</a>.</p>
   <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 7.8. Advice. page 199: '[6] Use containers (e.g., vector, array, and valarray) rather than built-in (C-style) arrays'</li>
   <li><!-- 10 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 7.8. Advice. page 199: '[7] Use string rather than zero-terminated arrays of chars'</li>
   <li><!-- 11 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 12.7. Advice. page 341: '[15] Avoid passing arrays as pointers'</li>
+  <li><!-- 12 --><a href="CppScottMeyers.htm">Scott Meyers</a>. <a href="http://cppandbeyond.com/2012/04/16/session-topic-initial-thoughts-on-effective-c11">C++ And Beyond 2012 session: 'Initial thoughts on Effective C++11'. 2012. 'Prefer std::array to Built-in Arrays'</li>
+
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

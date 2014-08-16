@@ -18,20 +18,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-#include "conceptmapcenternodefactory.h"
-
-#include <cassert>
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "conceptmapcenternodefactory.h"
+
+#include <cassert>
+
 #include <boost/lexical_cast.hpp>
 
 #include "conceptmapcenternode.h"
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
+#include "conceptmapexamplefactory.h"
+#include "conceptmapexamplesfactory.h"
 #include "conceptmaphelper.h"
+#include "conceptmapnodefactory.h"
+#include "conceptmapregex.h"
+#include "counter.h"
+#include "ribi_regex.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -127,21 +134,21 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::F
   //m_concept
   boost::shared_ptr<Concept> concept;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
+    const auto v = Regex().GetRegexMatches(s,Regex().GetRegexConcept());
     assert(v.size() == 1);
     concept = ConceptFactory().FromXml(v[0]);
   }
   //m_x
   double x = 0.0;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
+    const std::vector<std::string> v = Regex().GetRegexMatches(s,Regex().GetRegexX());
     assert(v.size() == 1);
     x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_x
   double y = 0.0;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
+    const auto v = Regex().GetRegexMatches(s,Regex().GetRegexY());
     assert(v.size() == 1);
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -156,11 +163,28 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::F
 void ribi::cmap::CenterNodeFactory::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::CenterNodeFactory::Test");
-  TRACE("CenterNodeFactory::Test finished successfully");
+  NodeFactory();
+  ConceptFactory();
+  Counter();
+  ExampleFactory();
+  ExamplesFactory();
+  ::ribi::Regex();
+  ::ribi::cmap::TestHelperFunctions();
+  ::ribi::cmap::Regex();
+
+  const TestTimer test_timer{__func__,__FILE__,0.1};
+
+  const auto concept = ConceptFactory().GetTest(0);
+  const double x{0.1};
+  const double y{2.3};
+  const auto node = CenterNodeFactory().Create(concept,x,y);
+  assert(node);
+  assert(concept == node->GetConcept());
+  assert(node->GetX() == x);
+  assert(node->GetY() == y);
 }
 #endif

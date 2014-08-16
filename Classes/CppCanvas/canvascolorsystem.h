@@ -1,5 +1,5 @@
-#ifndef CANVASCOLORSYSTEM_H
-#define CANVASCOLORSYSTEM_H
+#ifndef RIBI_CANVASCOLORSYSTEM_H
+#define RIBI_CANVASCOLORSYSTEM_H
 
 namespace ribi {
 
@@ -16,4 +16,4 @@ enum class CanvasColorSystem
 
 } //~namespace ribi
 
-#endif // CANVASCOLORSYSTEM_H
+#endif // RIBI_CANVASCOLORSYSTEM_H

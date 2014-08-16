@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PicToCode, tool to convert a picture to C++ code
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,22 +18,28 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolPicToCode.htm
 //---------------------------------------------------------------------------
+#include "wtpictocodemenudialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WBreak>
 #include <Wt/WImage>
 #include <Wt/WLabel>
 #include <Wt/WMenu>
 #include <Wt/WStackedWidget>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "pictocodemenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "wtpictocodemaindialog.h"
-#include "wtpictocodemenudialog.h"
 //#include "qtsprites.h"
 #include <QFile>
-//---------------------------------------------------------------------------
-WtPicToCodeMenuDialog::WtPicToCodeMenuDialog()
+#pragma GCC diagnostic pop
+
+ribi::WtPicToCodeMenuDialog::WtPicToCodeMenuDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   {
@@ -90,12 +96,12 @@ WtPicToCodeMenuDialog::WtPicToCodeMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
-WtAboutDialog * WtPicToCodeMenuDialog::CreateNewAboutDialog() const
+
+ribi::WtAboutDialog * ribi::WtPicToCodeMenuDialog::CreateNewAboutDialog() const
 {
-  About a = PicToCodeMenuDialog::GetAbout();
+  About a = PicToCodeMenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   return d;
 }
-//---------------------------------------------------------------------------
+

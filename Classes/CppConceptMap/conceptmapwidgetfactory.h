@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
+//#ifdef NOT_NOW_2014_08_11
+
 #ifndef CONCEPTMAPWIDGETFACTORY_H
 #define CONCEPTMAPWIDGETFACTORY_H
 
@@ -49,3 +51,5 @@ struct WidgetFactory
 } //~namespace ribi
 
 #endif // CONCEPTMAPWIDGETFACTORY_H
+
+//#endif // NOT_NOW_2014_08_11

@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QGraphicsSvgItemExample2</title>
+  <meta name="description" content="C++ QGraphicsSvgItemExample2"/>
+  <meta name="keywords" content="C++ QGraphicsSvgItemExample2 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQGraphicsSvgItemExample2.htm">QGraphicsSvgItemExample2</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppQGraphicsSvgItemExample2-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.04 (trusty)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.2.1 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppQGraphicsSvgItemExample2/CppQGraphicsSvgItemExample2.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQGraphicsSvgItemExample2/CppQGraphicsSvgItemExample2.pro" border = "1"><tr><td><code>
+exists (../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri) {<br/>
+&nbsp;&nbsp;include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
+}<br/>
+!exists (../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri) {<br/>
+&nbsp;&nbsp;QT += core printsupport<br/>
+&nbsp;&nbsp;QT += gui<br/>
+&nbsp;&nbsp;greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s svg<br/>
+&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+&nbsp;&nbsp;<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+&nbsp;&nbsp;unix {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+exists(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri) {<br/>
+&nbsp;&nbsp;include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri)<br/>
+}<br/>
+!exists(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri) {<br/>
+&nbsp;&nbsp;win32 {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_55_0<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mygraphicsview.cpp<br/>
+<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CppQGraphicsSvgItemExample2.qrc<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mygraphicsview.h<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQGraphicsSvgItemExample2/mygraphicsview.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQGraphicsSvgItemExample2/mygraphicsview.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> MYGRAPHICSVIEW_H<br/>
+<a href="CppDefine.htm">#define</a> MYGRAPHICSVIEW_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> QWheelEvent;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> MyGraphicsView : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;MyGraphicsView(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;MyGraphicsView(<b><a href="CppConst.htm">const</a></b> MyGraphicsView&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;MyGraphicsView&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> MyGraphicsView&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> wheelEvent(QWheelEvent *event);<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MYGRAPHICSVIEW_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQGraphicsSvgItemExample2/mygraphicsview.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQGraphicsSvgItemExample2/mygraphicsview.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "mygraphicsview.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;QWheelEvent&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<br/>
+MyGraphicsView::MyGraphicsView(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsView.htm">QGraphicsView</a>(parent)<br/>
+{<br/>
+<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> MyGraphicsView::wheelEvent(QWheelEvent *event)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> new_scale <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(event-&gt;delta()) <a href="CppOperatorDivide.htm">/</a> 1000.0);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;scale(new_scale,new_scale);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQGraphicsSvgItemExample2/qtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQGraphicsSvgItemExample2/qtmain.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsSvgItem.htm">QGraphicsSvgItem</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "mygraphicsview.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsSvgItem.htm">QGraphicsSvgItem</a> i(":/images/Cpp<a href="CppQGraphicsSvgItem.htm">QGraphicsSvgItem</a>Example2.svg");<br/>
+&nbsp;&nbsp;i.setScale(0.25);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> s;<br/>
+&nbsp;&nbsp;s.addItem(&amp;i);<br/>
+<br/>
+&nbsp;&nbsp;MyGraphicsView w;<br/>
+&nbsp;&nbsp;w.setGeometry(100,100,200,200);<br/>
+&nbsp;&nbsp;w.setScene(&amp;s);<br/>
+<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

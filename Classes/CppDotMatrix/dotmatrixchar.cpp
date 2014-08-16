@@ -8,6 +8,7 @@
 
 #include <QImage>
 
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -20,7 +21,7 @@ ribi::DotMatrixChar::DotMatrixChar(const char c)
   assert(GetMatrixWidth()  == static_cast<int>(m_matrix[0].size()));
 }
 
-const boost::shared_ptr<QImage> ribi::DotMatrixChar::CreateImage() const noexcept
+boost::shared_ptr<QImage> ribi::DotMatrixChar::CreateImage() const noexcept
 {
   const int height = GetMatrixHeight();
   const int width  = GetMatrixWidth();
@@ -40,7 +41,7 @@ const boost::shared_ptr<QImage> ribi::DotMatrixChar::CreateImage() const noexcep
   return image;
 }
 
-const boost::array<boost::array<int,5> ,7> ribi::DotMatrixChar::GetChar(const char c) noexcept
+boost::array<boost::array<int,5> ,7> ribi::DotMatrixChar::GetChar(const char c) noexcept
 {
   //Create a 5 (width) x 7 (height) 2D array
   boost::array<boost::array<int,5> ,7> v;
@@ -947,12 +948,11 @@ std::vector<std::string> ribi::DotMatrixChar::GetVersionHistory() noexcept
 void ribi::DotMatrixChar::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DotMatrixChar::Test");
-  TRACE("Finished ribi::DotMatrixChar::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

@@ -6,16 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>291</width>
-    <height>500</height>
+    <width>383</width>
+    <height>385</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>TestPlane</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+   <iconset resource="ToolTestPlane.qrc">
+    <normaloff>:/images/ToolTestPlaneR.png</normaloff>:/images/ToolTestPlaneR.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
@@ -23,47 +23,125 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, 
 }
 QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
-QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }
+QPushButton { font: 32px &quot;Courier New&quot;, courier, monospace }
 QPlainTextEdit { font: 12px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label_2">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="4" column="1">
+    <widget class="QPushButton" name="button_about">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;About</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="button_investigate_accuracy_qwt">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;Investigate
+accuracy, Qwt</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QPushButton" name="button_quit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;Quit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label">
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/ToolSurfacePlotterMenuImage.png</pixmap>
+      <pixmap resource="ToolTestPlane.qrc">:/images/ToolTestPlaneAccuracy.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_investigate_accuracy_ribi">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;Investigate
+accuracy, ribi</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
     <widget class="QPushButton" name="button_start">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
-      <string>Start</string>
+      <string>&amp;Construct
+plane</string>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QPushButton" name="button_about">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_welcome">
      <property name="text">
-      <string>About</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestPlane.qrc">:/images/ToolTestPlaneConstruct.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QPushButton" name="button_quit">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Quit</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestPlane.qrc">:/images/ToolTestPlaneAccuracyRibi.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="ToolTestPlane.qrc"/>
+ </resources>
  <connections/>
 </ui>

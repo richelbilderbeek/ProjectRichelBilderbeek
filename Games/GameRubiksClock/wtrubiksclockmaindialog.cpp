@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RubiksClock. Rubik's Clock game.
-Copyright (C) 2007-2011  Richel Bilderbeek
+Copyright (C) 2007-2014  Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,11 +21,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "wtrubiksclockmaindialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <string>
 #include <vector>
 
 #include <boost/algorithm/string/split.hpp>
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <Wt/WBreak>
@@ -42,6 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "widget.h"
 #include "wtdialwidget.h"
 #include "wtrubiksclockwidget.h"
+#pragma GCC diagnostic pop
 
 ribi::ruco::WtRubiksClockMainDialog::Ui::Ui()
   : m_button_flip(new Wt::WPushButton("Flip clock")),
@@ -76,9 +81,9 @@ ribi::ruco::WtRubiksClockMainDialog::WtRubiksClockMainDialog()
       &ribi::ruco::WtRubiksClockMainDialog::OnSizeChanged,
       this));
 
-  m_ui.m_dial_size->GetWidget()->SetGeometry(Rect(0,0,32,32));
+  m_ui.m_dial_size->GetWidget()->SetGeometry(0,0,32,32);
   m_ui.m_label_size->setText("Size: ?x? (width x height)");
-  m_ui.m_widget->GetWidget()->SetGeometry(Rect(0,0,300,300));
+  m_ui.m_widget->GetWidget()->SetGeometry(0,0,300,300);
 
   m_ui.m_dial_size->GetWidget()->GetDial()->SetPosition(0.5);
 }
@@ -92,7 +97,7 @@ void ribi::ruco::WtRubiksClockMainDialog::OnSizeChanged()
 {
   const int size = boost::numeric_cast<int>(
     500.0 * m_ui.m_dial_size->GetWidget()->GetDial()->GetPosition());
-  m_ui.m_widget->GetWidget()->SetGeometry(Rect(0,0,size,size));
+  m_ui.m_widget->GetWidget()->SetGeometry(0,0,size,size);
   std::string text
     = std::string("Size: ")
     + boost::lexical_cast<std::string>(size)

@@ -11,6 +11,8 @@
 #include "fileio.h"
 #include "imagecanvas.h"
 #include "histogramequalizationermaindialog.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -61,10 +63,12 @@ ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noexcept
     "2008-2014",
     "http://www.richelbilderbeek.nl/ToolHistogramEqualizationer.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
+    GetVersionHistory()
+  );
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -110,17 +114,20 @@ std::vector<std::string> ribi::HistogramEqualizationerMenuDialog::GetVersionHist
 void ribi::HistogramEqualizationerMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::HistogramEqualizationerMenuDialog::Test");
+  {
+    fileio::FileIo();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+
   HistogramEqualizationerMenuDialog d;
   const std::string filename { fileio::FileIo().GetTempFileName(".png") };
   QFile file(":/histogramequalizationer/images/ToolHistogramEqualizationerMenu.png");
   file.copy(filename.c_str());
   d.Execute( { "HistogramEqualizationerMenuDialog", "-f", filename } );
   fileio::FileIo().DeleteFile(filename);
-  TRACE("Finished ribi::HistogramEqualizationerMenuDialog::Test successfully");
 }
 #endif

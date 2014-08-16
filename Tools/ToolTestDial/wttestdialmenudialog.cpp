@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestDial, tool to test the Dial and DialWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
@@ -28,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
 #include "rainbow.h"
 #include "testdialmenudialog.h"
 #include "wtaboutdialog.h"
@@ -36,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wttestdialmaindialog.h"
 #include "wttestdialmenudialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
 #pragma GCC diagnostic pop
 
@@ -54,7 +56,7 @@ ribi::WtTestDialMenuDialog::WtTestDialMenuDialog()
       {
         if (!(QFile::exists(filename.c_str())))
         {
-          QFile f( (std::string(":/images/") + filename).c_str() );
+          QFile f( (std::string(":/ToolTestDial/images/") + filename).c_str() );
           f.copy(filename.c_str());
         }
         if (!QFile::exists(filename.c_str()))
@@ -104,10 +106,10 @@ ribi::WtTestDialMenuDialog::WtTestDialMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestDialMenuDialog::CreateNewAboutDialog() const
 {
-  About a = TestDialMenuDialog::GetAbout();
+  About a = TestDialMenuDialog().GetAbout();
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtDialWidget version: " + WtDialWidget::GetVersion());
@@ -115,14 +117,14 @@ Wt::WWidget * ribi::WtTestDialMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestDialMenuDialog::CreateNewMainDialog() const
 {
   WtTestDialMainDialog * const d = new WtTestDialMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestDialMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -139,4 +141,4 @@ Wt::WWidget * ribi::WtTestDialMenuDialog::CreateNewWelcomeDialog() const
 
   return dialog;
 }
-//---------------------------------------------------------------------------
+

@@ -20,6 +20,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qthideandshowdialog.h"
 
 #include <cassert>
@@ -34,6 +36,11 @@ ribi::QtHideAndShowDialog::QtHideAndShowDialog(QWidget* parent) noexcept
 {
 
 }
+
+//ribi::QtHideAndShowDialog::~QtHideAndShowDialog() noexcept
+//{
+//
+//}
 
 void ribi::QtHideAndShowDialog::close_child()
 {
@@ -68,7 +75,6 @@ void ribi::QtHideAndShowDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape)
   {
-    TRACE_FUNC();
     close();
     return;
   }
@@ -79,8 +85,7 @@ void ribi::QtHideAndShowDialog::ShowChild(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->hide();
-
-  QObject::connect(dialog,SIGNAL(close_me()),this,SLOT(close_child()));
+  QObject::connect(dialog,&ribi::QtHideAndShowDialog::close_me,this,&ribi::QtHideAndShowDialog::close_child);
   m_show_child = true;
   while (m_show_child)
   {
@@ -93,7 +98,7 @@ void ribi::QtHideAndShowDialog::ShowModal(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->setEnabled(false);
-  QObject::connect(dialog,SIGNAL(close_me),this,SLOT(close_child));
+  QObject::connect(dialog,&ribi::QtHideAndShowDialog::close_me,this,&ribi::QtHideAndShowDialog::close_child);
   m_show_child = true;
   while (m_show_child)
   {

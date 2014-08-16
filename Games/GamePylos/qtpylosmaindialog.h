@@ -25,8 +25,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qthideandshowdialog.h"
 
+#include <boost/shared_ptr.hpp>
 #include "qtpylosgamewidget.h"
 #pragma GCC diagnostic pop
 
@@ -43,7 +46,7 @@ class QtPylosMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtPylosMainDialog(
-  QtPylosGameWidget * const pylos_widget = 0,
+    const boost::shared_ptr<QtPylosGameWidget>& pylos_widget,
     QWidget *parent = 0);
   QtPylosMainDialog(const QtPylosMainDialog&) = delete;
   QtPylosMainDialog& operator=(const QtPylosMainDialog&) = delete;
@@ -57,7 +60,7 @@ public:
 
 private:
   Ui::QtPylosMainDialog *ui;
-  QtPylosGameWidget * const m_pylos_widget;
+  const boost::shared_ptr<QtPylosGameWidget> m_pylos_widget;
 
   #ifndef NDEBUG
   static void Test() noexcept;

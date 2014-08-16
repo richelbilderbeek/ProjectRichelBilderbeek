@@ -43,8 +43,6 @@ struct ImageRotaterMainDialog
     const double angle);
 
   private:
-  static double GetAngle(const double dX, const double dY);
-
   //Special are the double x and y
   static QRgb GetPixel(
     const QImage& image,

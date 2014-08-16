@@ -12,5 +12,3 @@ FORMS    += \
     ../../Tools/ToolMazeCreator/qtmazecreatormaindialog.ui \
     ../../Tools/ToolMazeCreator/qtmazecreatormenudialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolMazeCreator/ToolMazeCreator.qrc

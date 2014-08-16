@@ -25,11 +25,11 @@
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.04 (trusty)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.0.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -41,11 +41,11 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.2</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.2</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -71,7 +71,7 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 #&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 # }<br/>
 <br/>
-include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code below<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri) #Or use the code below<br/>
 # win32 {<br/>
 #&nbsp;&nbsp; <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
@@ -96,7 +96,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSystem_clock.htm">std::chrono::system_clock</a>::<a href="CppTime.htm">time</a>_<a href="CppPointer.htm">point</a> t <a href="CppOperatorAssign.htm">=</a> <a href="CppStdSystem_clock.htm">std::chrono::system_clock</a>::now();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdHigh_resolution_clock.htm">std::chrono::high_resolution_clock</a>::<a href="CppTime.htm">time</a>_<a href="CppPointer.htm">point</a> u <a href="CppOperatorAssign.htm">=</a> <a href="CppStdHigh_resolution_clock.htm">std::chrono::high_resolution_clock</a>::now();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdStdHigh_resolution_clock.htm">std::chrono::high_resolution_clock</a>::<a href="CppTime.htm">time</a>_<a href="CppPointer.htm">point</a> u <a href="CppOperatorAssign.htm">=</a> <a href="CppStdStdHigh_resolution_clock.htm">std::chrono::high_resolution_clock</a>::now();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Burn some <a href="CppTime.htm">time</a><br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>100000000; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
@@ -108,7 +108,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSystem_clock.htm">std::chrono::system_clock</a>::duration d <a href="CppOperatorAssign.htm">=</a> <a href="CppStdSystem_clock.htm">std::chrono::system_clock</a>::now() <a href="CppOperatorMinus.htm">-</a> t;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSystem_clock.htm">std::chrono::system_clock</a>::duration e <a href="CppOperatorAssign.htm">=</a> <a href="CppStdHigh_resolution_clock.htm">std::chrono::high_resolution_clock</a>::now() <a href="CppOperatorMinus.htm">-</a> u;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSystem_clock.htm">std::chrono::system_clock</a>::duration e <a href="CppOperatorAssign.htm">=</a> <a href="CppStdStdHigh_resolution_clock.htm">std::chrono::high_resolution_clock</a>::now() <a href="CppOperatorMinus.htm">-</a> u;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdChrono.htm">std::chrono</a>::duration_cast&lt;<a href="CppStdChrono.htm">std::chrono</a>::milliseconds&gt;(d).count() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " milliseconds" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PicToCode, tool to convert a picture to C++ code
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,15 +20,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTPICTOCODEDIALOG_H
 #define WTPICTOCODEDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 #include "pictocodemaindialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct QImage;
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WButtonGroup;
@@ -36,9 +41,11 @@ namespace Wt
   struct WTextArea;
   struct WImage;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtPicToCodeWidget;
-//---------------------------------------------------------------------------
+
 struct WtPicToCodeMainDialog : public Wt::WContainerWidget
 {
   WtPicToCodeMainDialog();
@@ -56,5 +63,7 @@ struct WtPicToCodeMainDialog : public Wt::WContainerWidget
   //const PicToCodeMainDialog::YxImage ImageToImage(const Wt::WImage& wt_image) const;
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTPICTOCODEDIALOG_H

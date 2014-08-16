@@ -1,5 +1,5 @@
-#ifndef OPENFOAMPOINTINDEX_H
-#define OPENFOAMPOINTINDEX_H
+#ifndef RIBI_OPENFOAMPOINTINDEX_H
+#define RIBI_OPENFOAMPOINTINDEX_H
 
 #include <iosfwd>
 
@@ -40,4 +40,4 @@ bool operator>=(const PointIndex& lhs, const PointIndex& rhs) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMPOINTINDEX_H
+#endif // RIBI_OPENFOAMPOINTINDEX_H

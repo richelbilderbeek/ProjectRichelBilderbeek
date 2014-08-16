@@ -33,6 +33,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/ublas/blas.hpp> //boost::numeric::ublas::equals
 #pragma GCC diagnostic pop
 
+#include "ribi_random.h"
+#include "testtimer.h"
 #include "trace.h"
 
 double ribi::Matrix::CalcDeterminant(boost::numeric::ublas::matrix<double> m)
@@ -78,7 +80,7 @@ const std::vector<boost::numeric::ublas::matrix<double> > ribi::Matrix::Chop(
   return v;
 }
 
-const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateMatrix(
+boost::numeric::ublas::matrix<double> ribi::Matrix::CreateMatrix(
   const std::size_t n_rows,
   const std::size_t n_cols,
   const std::vector<double>& v) noexcept
@@ -95,7 +97,7 @@ const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateMatrix(
   return m;
 }
 
-const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(
+boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(
   const std::size_t n_rows, const std::size_t n_cols) noexcept
 {
   boost::numeric::ublas::matrix<double> m(n_rows,n_cols);
@@ -103,13 +105,13 @@ const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(
   {
     for (std::size_t col=0; col!=n_cols; ++col)
     {
-      m(row,col) = boost::numeric_cast<double>(std::rand()) / boost::numeric_cast<double>(RAND_MAX);
+      m(row,col) = Random().GetFraction();
     }
   }
   return m;
 }
 
-const boost::numeric::ublas::vector<double> ribi::Matrix::CreateVector(
+boost::numeric::ublas::vector<double> ribi::Matrix::CreateVector(
   const std::vector<double>& v) noexcept
 {
   boost::numeric::ublas::vector<double> w(v.size());
@@ -481,12 +483,14 @@ const boost::numeric::ublas::vector<double> ribi::Matrix::SimplifyVectorOfVector
 void ribi::Matrix::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  //
-  TRACE("Starting ribi::Matrix::Test()");
+  {
+    Random();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   using boost::numeric::ublas::detail::equals;
   using boost::numeric::ublas::matrix;
   using boost::numeric::ublas::vector;
@@ -877,7 +881,6 @@ void ribi::Matrix::Test() noexcept
       assert(VectorsAreAboutEqual(a,b));
     }
   }
-  TRACE("Finished ribi::Matrix::Test()");
 }
 #endif
 

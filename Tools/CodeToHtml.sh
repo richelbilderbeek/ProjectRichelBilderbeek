@@ -1,5 +1,5 @@
 #!/bin/bash
-for folder in `ls | egrep "Tool"`
+for folder in `ls | egrep "^Tool"`
 do
   echo $folder
 

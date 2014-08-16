@@ -10,3 +10,5 @@ HEADERS += \
 OTHER_FILES += \
     ../../Tools/ToolTestDial/Licence.txt
 
+RESOURCES += \
+    ../../Tools/ToolTestDial/ToolTestDial.qrc

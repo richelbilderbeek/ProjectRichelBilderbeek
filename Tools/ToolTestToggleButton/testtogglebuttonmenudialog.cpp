@@ -24,9 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "drawcanvas.h"
-#include "rectangle.h"
+#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "togglebutton.h"
+#include "testtimer.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
 
@@ -128,11 +129,10 @@ std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHistory() c
 void ribi::TestToggleButtonMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestToggleButtonMenuDialog::Test");
-  TRACE("Finished ribi::TestToggleButtonMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

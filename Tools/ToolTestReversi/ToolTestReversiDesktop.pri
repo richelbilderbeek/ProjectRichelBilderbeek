@@ -1,10 +1,10 @@
 include(../../Tools/ToolTestReversi/ToolTestReversiConsole.pri)
 
 SOURCES += \
-    qttestreversimaindialog.cpp
+    ../../Tools/ToolTestReversi/qttestreversimaindialog.cpp
 
 FORMS += \
-    qttestreversimaindialog.ui
+    ../../Tools/ToolTestReversi/qttestreversimaindialog.ui
 
 HEADERS += \
-    qttestreversimaindialog.h
+    ../../Tools/ToolTestReversi/qttestreversimaindialog.h

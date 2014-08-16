@@ -1,12 +1,12 @@
 #include "timepolldata.h"
 #include "stopwatch.h"
-//---------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------
+
+
 ribi::ToolTimePoll::Data * ribi::ToolTimePoll::Data::m_instance = 0;
-//---------------------------------------------------------------------------
+
 std::recursive_mutex ribi::ToolTimePoll::Data::m_mutex;
-//---------------------------------------------------------------------------
+
 ribi::ToolTimePoll::Data::Data(const int n_options)
   : m_index(-1),
     m_times(n_options,0.0),
@@ -14,7 +14,7 @@ ribi::ToolTimePoll::Data::Data(const int n_options)
 {
 
 }
-//---------------------------------------------------------------------------
+
 const std::vector<double> ribi::ToolTimePoll::Data::GetFractions() const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
@@ -29,7 +29,7 @@ const std::vector<double> ribi::ToolTimePoll::Data::GetFractions() const
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 ribi::ToolTimePoll::Data * ribi::ToolTimePoll::Data::GetInstance()
 {
   if (m_instance == 0)
@@ -44,7 +44,7 @@ ribi::ToolTimePoll::Data * ribi::ToolTimePoll::Data::GetInstance()
   assert(m_instance);
   return m_instance;
 }
-//---------------------------------------------------------------------------
+
 const std::vector<double> ribi::ToolTimePoll::Data::GetTimes() const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
@@ -58,7 +58,7 @@ const std::vector<double> ribi::ToolTimePoll::Data::GetTimes() const
   }
   return times;
 }
-//---------------------------------------------------------------------------
+
 void ribi::ToolTimePoll::Data::SetIndex(const int index)
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);

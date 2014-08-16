@@ -8,10 +8,10 @@
 #include "trace.h"
 
 ribi::foam::Face::Face(
-  const boost::shared_ptr<Cell> neighbour,
-  const boost::shared_ptr<Cell> owner,
+  const boost::shared_ptr<Cell>& neighbour,
+  const boost::shared_ptr<Cell>& owner,
   const std::vector<boost::shared_ptr<Coordinat3D>>& points
-)
+) noexcept
   : m_neighbour(neighbour),
     m_owner(owner),
     m_points(points)
@@ -19,7 +19,7 @@ ribi::foam::Face::Face(
   #ifndef NDEBUG
   assert(!m_neighbour);
   assert(!m_owner);
-  for (auto p: m_points) { assert(p); }
+  for (const auto& p: m_points) { assert(p); }
   #endif
 }
 

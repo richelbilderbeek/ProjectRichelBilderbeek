@@ -66,6 +66,14 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
   const int n_cols = 4;
   ui->table->setRowCount(n_rows);
   ui->table->setWordWrap(true);
+
+  //From https://stackoverflow.com/questions/9544122/how-to-word-wrap-text-in-the-rows-and-columns-of-a-qtablewidget
+  connect(
+    ui->table->horizontalHeader(),
+    SIGNAL(sectionResized(int, int, int)),
+    ui->table,
+    SLOT(resizeRowsToContents()));
+
   for (int row_index=0; row_index!=n_rows; ++row_index)
   {
     const Row& row = m_data[row_index];
@@ -115,12 +123,13 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
           center_is_from ? edge->GetTo() : edge->GetFrom()
         };
         const std::string s {
-            "via "
-          + concept->GetName() + " verbonden met '"
+            "via '"
+          + concept->GetName() + "' verbonden met '"
           + other->GetConcept()->GetName()
           + "'"
         };
         i->setText(s.c_str());
+
         const int column = 3;
         ui->table->setItem(row_index, column, i);
       }
@@ -220,7 +229,7 @@ std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
     }
 
 
-    const boost::shared_ptr<Concept> concept = edge->GetConcept();
+    const boost::shared_ptr<Concept> concept = edge->GetNode()->GetConcept();
     data.push_back(std::make_tuple(edge,concept,-1));
     const int n_examples = boost::numeric_cast<int>(concept->GetExamples()->Get().size());
     for (int i=0; i!=n_examples; ++i)
@@ -239,20 +248,23 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   // - edge with a concept with (1) text 'TextEdge' (2) one example with text 'TextExampleEdge'
   // - node with a concept with (1) text 'TextDontCare'
 
-  const boost::shared_ptr<Concept> concept_node_focal(ConceptFactory().Create("TextNode",
+  const boost::shared_ptr<Concept> concept_node_focal(ConceptFactory().Create(
+    "Node_focal: This is displayed at the top of the dialog and should have line wrapping",
     {
-      {"TextExampleNode",Competency::misc}
+      {"Node_focal example",Competency::misc}
     },
     0,1,2));
-  const boost::shared_ptr<Concept> concept_node_other(ConceptFactory().Create("TextDontCare",
+  const boost::shared_ptr<Concept> concept_node_other(ConceptFactory().Create(
+    "Node_other: Issue #206 is about line wrapping in this dialog. Before this issue was resolved, this long line trailed with a ... to indicate that there was even more text at the right",
     {
-      { }
+      { "Example that won't be displayed here",Competency::misc }
     },
     0,1,2));
 
-  const boost::shared_ptr<Concept> concept_edge(ConceptFactory().Create("TextEdge",
+  const boost::shared_ptr<Concept> concept_edge(ConceptFactory().Create(
+    "Edge: Issue #206 is about line wrapping in this dialog. Before this issue was resolved, this long line trailed with a ... to indicate that there was even more text at the right",
     {
-      {"TextExampleEdge",Competency::misc}
+      {"Edge example",Competency::misc}
     },
     2,1,0));
   const boost::shared_ptr<Node> node_focal(NodeFactory().Create(concept_node_focal));
@@ -265,7 +277,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
         node_other
       } ,
       {
-        EdgeFactory().Create(concept_edge,1.2,3.4,node_focal,true,node_other,true)
+        EdgeFactory().Create(NodeFactory().Create(concept_edge,1.2,3.4),node_focal,true,node_other,true)
       }
     )
   );
@@ -511,20 +523,20 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
   assert(d.ui->table->item(0,2)->checkState() == (focal_node->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(0,3)->text() == QString(focal_node->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
 
-  assert(d.ui->table->item(1,0)->checkState() == (edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(1,0)->checkState() == (edge->GetNode()->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(1,1)->text() == "");
   assert(d.ui->table->item(1,2)->text() == "");
   //NEW 20131231: now the text contains both
   //- the concept name of the edge
   //- the name of the node the edge is connected to
-  assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetConcept()->GetName()) != std::string::npos);
+  assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetNode()->GetConcept()->GetName()) != std::string::npos);
   assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetTo()->GetConcept()->GetName()) != std::string::npos);
   //OLD assert(d.ui->table->item(1,3)->text() == QString(edge->GetConcept()->GetName().c_str()));
 
-  assert(d.ui->table->item(2,0)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
-  assert(d.ui->table->item(2,1)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));
-  assert(d.ui->table->item(2,2)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
-  assert(d.ui->table->item(2,3)->text() == QString(edge->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
+  assert(d.ui->table->item(2,0)->checkState() == (edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,1)->checkState() == (edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,2)->checkState() == (edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,3)->text() == QString(edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
 
   //Modify table
   d.ui->table->item(0,0)->setCheckState(d.ui->table->item(0,0)->checkState() == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
@@ -547,21 +559,21 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
   assert(d.ui->table->item(0,2)->checkState() == (focal_node->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(0,3)->text() == QString(focal_node->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
 
-  assert(d.ui->table->item(1,0)->checkState() == (edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(1,0)->checkState() == (edge->GetNode()->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(1,1)->text() == "");
   assert(d.ui->table->item(1,2)->text() == "");
 
   //NEW 20131231: now the text contains both
   //- the concept name of the edge
   //- the name of the node the edge is connected to
-  assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetConcept()->GetName()) != std::string::npos);
+  assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetNode()->GetConcept()->GetName()) != std::string::npos);
   assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetTo()->GetConcept()->GetName()) != std::string::npos);
   //OLD assert(d.ui->table->item(1,3)->text() == QString(edge->GetConcept()->GetName().c_str()));
 
-  assert(d.ui->table->item(2,0)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
-  assert(d.ui->table->item(2,1)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));
-  assert(d.ui->table->item(2,2)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
-  assert(d.ui->table->item(2,3)->text() == QString(edge->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
+  assert(d.ui->table->item(2,0)->checkState() == (edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,1)->checkState() == (edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,2)->checkState() == (edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,3)->text() == QString(edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
 
   TRACE("Finished ribi::cmap::QtRateConceptTallyDialog::Test successfully");
 }

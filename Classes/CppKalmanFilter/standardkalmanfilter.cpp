@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "standardkalmanfilter.h"
 
 #include <boost/numeric/conversion/cast.hpp>
@@ -70,7 +72,7 @@ std::vector<std::string> ribi::kalman::StandardKalmanFilter::GetVersionHistory()
   };
 }
 
-const boost::numeric::ublas::vector<double> ribi::kalman::StandardKalmanFilter::PredictState(
+boost::numeric::ublas::vector<double> ribi::kalman::StandardKalmanFilter::PredictState(
   const boost::numeric::ublas::vector<double>& input) const
 {
   const boost::numeric::ublas::vector<double> state_prediction
@@ -79,7 +81,7 @@ const boost::numeric::ublas::vector<double> ribi::kalman::StandardKalmanFilter::
   return state_prediction;
 }
 
-const boost::numeric::ublas::matrix<double> ribi::kalman::StandardKalmanFilter::PredictCovariance() const
+boost::numeric::ublas::matrix<double> ribi::kalman::StandardKalmanFilter::PredictCovariance() const
 {
   const boost::numeric::ublas::matrix<double> covariance_prediction
     = Matrix::MultiProd(

@@ -33,6 +33,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QRegExp>
 
 #include "fileio.h"
+#include "conceptmapregex.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -52,6 +54,7 @@ double ribi::cmap::GetDistance(const double x1, const double y1, const double x2
   return GetDistance(x1-x2,y1-y2);
 }
 
+/*
 std::vector<std::string> ribi::cmap::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original
@@ -74,6 +77,7 @@ std::vector<std::string> ribi::cmap::GetRegexMatches(
 
   return v;
 }
+*/
 
 std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filename) noexcept
 {
@@ -82,43 +86,15 @@ std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filenam
   return v;
 }
 
-/*
-std::vector<std::string> ribi::cmap::SplitXml(const std::string& s)
-{
-  #ifndef NDEBUG
-  cmap::TestHelperFunctions();
-  #endif
-  std::vector<std::string> v;
-  std::string::const_iterator i = s.begin();
-  std::string::const_iterator j = s.begin();
-  const std::string::const_iterator end = s.end();
-  while (j!=end)
-  {
-    ++j;
-    if ((*j=='>' || *j == '<') && std::distance(i,j) > 1)
-    {
-      std::string t;
-      std::copy(
-        *i=='<' ? i   : i+1,
-        *j=='>' ? j+1 : j,
-        std::back_inserter(t));
-      v.push_back(t);
-      i = j;
-    }
-  }
-  return v;
-}
-*/
-
 #ifndef NDEBUG
 void ribi::cmap::TestHelperFunctions() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started TestHelperFunctions");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //GetRegexMatches
   {
     const std::string s = "In the Netherlands, 1234 AB and 2345 BC are valid zip codes";
@@ -127,7 +103,7 @@ void ribi::cmap::TestHelperFunctions() noexcept
     expected.push_back("2345 BC");
     {
       const std::string r = "(\\d{4} [A-Z]{2})";
-      assert(cmap::GetRegexMatches(s,QRegExp(r.c_str())) == expected);
+      assert(Regex().GetRegexMatches(s,(r.c_str())) == expected);
     }
   }
   {
@@ -138,8 +114,8 @@ void ribi::cmap::TestHelperFunctions() noexcept
     expected.push_back("<example>Example 2</example>");
     expected.push_back("<example>Example 3</example>");
     {
-      const std::string r = "(<example>.*</example>)";
-      assert(cmap::GetRegexMatches(s,QRegExp(r.c_str())) == expected);
+      const std::string r = "(<example>.*?</example>)";
+      assert(Regex().GetRegexMatches(s,(r.c_str())) == expected);
     }
   }
   //GetCombinations
@@ -321,7 +297,6 @@ void ribi::cmap::TestHelperFunctions() noexcept
       }
     }
   }
-  TRACE("TestHelperFunctions finished successfully");
 }
 #endif
 
@@ -456,30 +431,3 @@ std::vector<std::string> ribi::cmap::Wordwrap(
   assert(Unwordwrap(v) == s_original);
   return v;
 }
-
-/*
-std::vector<std::string> ribi::cmap::XmlToPretty(const std::string& s)
-{
-  #ifndef NDEBUG
-  cmap::TestHelperFunctions();
-  #endif
-  std::vector<std::string> v = cmap::SplitXml(s);
-  int n = -2;
-  std::for_each(v.begin(),v.end(),
-    [&n](std::string& s)
-    {
-      assert(!s.empty());
-      if (s[0] == '<' && s[1] != '/')
-      {
-        n+=2;
-      }
-      s = std::string(n,' ') + s;
-      if (s[n+0] == '<' && s[n+1] == '/')
-      {
-        n-=2;
-      }
-    }
-  );
-  return v;
-}
-*/

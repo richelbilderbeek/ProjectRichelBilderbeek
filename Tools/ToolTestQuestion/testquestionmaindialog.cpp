@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "openquestiondialogfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -37,10 +39,15 @@ ribi::TestQuestionMainDialog::TestQuestionMainDialog()
   #endif
 }
 
-std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestQuestionMainDialog::CreateQuestions()
+std::vector<boost::shared_ptr<ribi::QuestionDialog>> ribi::TestQuestionMainDialog::CreateQuestions()
 {
-  std::vector<boost::shared_ptr<QuestionDialog> > v;
+  std::vector<boost::shared_ptr<QuestionDialog>> v;
 
+  {
+    const auto w = OpenQuestionDialogFactory().GetTestOpenQuestionDialogs();
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  /*
   v.push_back(
     boost::shared_ptr<QuestionDialog>(
       new OpenQuestionDialog(
@@ -67,6 +74,7 @@ std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestQuestionMainDial
       )
     )
   );
+  */
   v.push_back(
     boost::shared_ptr<QuestionDialog>(
       new MultipleChoiceQuestionDialog(
@@ -107,7 +115,6 @@ void ribi::TestQuestionMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestQuestionMainDialog::Test");
-  TRACE("Finished ribi::TestQuestionMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

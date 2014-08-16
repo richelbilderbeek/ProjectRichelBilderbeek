@@ -56,14 +56,12 @@ private:
   const boost::shared_ptr<const ConnectThreeResources> m_resources;
   boost::shared_ptr<QtSelectPlayerWidget> m_select;
 
-  void OnStartRetro();
-
 private slots:
 
   void on_button_start_clicked() noexcept;
   void on_button_about_clicked() noexcept;
   void on_button_quit_clicked() noexcept;
-  void on_button_start_retro_clicked();
+  void on_button_start_retro_clicked() noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

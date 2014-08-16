@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHFACEFACTORY_H
-#define TRIANGLEMESHFACEFACTORY_H
+#ifndef RIBI_TRIANGLEMESHFACEFACTORY_H
+#define RIBI_TRIANGLEMESHFACEFACTORY_H
 
 #include <iosfwd>
 #include <vector>
@@ -7,6 +7,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
@@ -19,15 +20,22 @@
 namespace ribi {
 namespace trim {
 
-struct FaceFactory
+class FaceFactory
 {
+  //friend class Dialog;
+  friend class CellFactory;
+  friend class CellsCreator;
+  friend class Face;
+  friend class Template;
+
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
   FaceFactory();
 
   boost::shared_ptr<Face> Create(
     std::vector<boost::shared_ptr<Point>> points,
-    const FaceOrientation any_orientation
+    const FaceOrientation any_orientation,
+    const bool verbose
   ) const noexcept;
 
   ///Create the faces of a testing prism from points
@@ -76,7 +84,9 @@ struct FaceFactory
   The front planes are 'a' and 'b', where 'a' has two nodes at the base
 
   */
-  std::vector<boost::shared_ptr<Face>> CreateTestPrism(const CreateVerticalFacesStrategy strategy) const noexcept;
+  std::vector<boost::shared_ptr<Face>> CreateTestPrism(
+    const CreateVerticalFacesStrategy strategy
+  ) const noexcept;
 
   boost::shared_ptr<Face> CreateTestSquare(const Winding winding) const noexcept;
 
@@ -93,4 +103,4 @@ struct FaceFactory
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHFACEFACTORY_H
+#endif // RIBI_TRIANGLEMESHFACEFACTORY_H

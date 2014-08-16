@@ -51,13 +51,15 @@ struct ConnectThreeWidget
   enum class Key { up, right, down, left, select };
 
   explicit ConnectThreeWidget(
-    const std::bitset<3>& is_player_human = std::bitset<3>(true),
+    const std::bitset<3>& is_player_human = CreateDefaultIsPlayerHuman(),
     const int n_cols = 16,
     const int n_rows = 12);
 
 
   bool CanDoMove() const noexcept { return CanDoMove(m_x,m_y); }
   bool CanSelect(const int x, const int y) const noexcept;
+
+  static std::bitset<3> CreateDefaultIsPlayerHuman() noexcept;
 
   ///Let the computer do a move
   void DoComputerMove() noexcept;

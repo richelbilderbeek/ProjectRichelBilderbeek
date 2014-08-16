@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtShinyButtonWidget, Wt widget for displaying the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,22 +20,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTSHINYBUTTONWIDGET_H
 #define WTSHINYBUTTONWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 //#include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
-//---------------------------------------------------------------------------
+
 namespace Wt { struct WMouseEventEvent; }
 
 namespace ribi {
 
 struct ShinyButton;
 struct ShinyButtonWidget;
-//---------------------------------------------------------------------------
+
 ///WtShinyButtonWidget displays a ShinyButton
 struct WtShinyButtonWidget : public Wt::WPaintedWidget
 {
@@ -52,10 +52,10 @@ struct WtShinyButtonWidget : public Wt::WPaintedWidget
   ShinyButtonWidget * GetWidget() { return m_widget.get(); }
 
   ///Obtain the WtShinyButtonWidget its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the WtShinyButtonWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Draw the ShinyButton
   static void DrawShinyButton(

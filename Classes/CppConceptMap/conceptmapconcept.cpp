@@ -43,6 +43,7 @@ ribi::cmap::Concept::Concept(
   const int rating_concreteness,
   const int rating_specificity)
   : m_signal_examples_changed{},
+    m_signal_is_complex_changed{},
     m_signal_name_changed{},
     m_signal_rating_complexity_changed{},
     m_signal_rating_concreteness_changed{},
@@ -85,10 +86,18 @@ void ribi::cmap::Concept::SetExamples(const boost::shared_ptr<ribi::cmap::Exampl
   }
 }
 
+void ribi::cmap::Concept::SetIsComplex(const bool is_complex) noexcept
+{
+  if (is_complex != m_is_complex)
+  {
+    m_is_complex = is_complex;
+    m_signal_is_complex_changed(this);
+  }
+}
+
+
 void ribi::cmap::Concept::SetName(const std::string& name) noexcept
 {
-  assert(this);
-  assert(this->GetExamples());
   if (name != m_name)
   {
     m_name = name;
@@ -132,6 +141,20 @@ void ribi::cmap::Concept::SetRatingSpecificity(const int rating_specificity) noe
   }
 }
 
+std::string ribi::cmap::Concept::ToStr() const noexcept
+{
+  std::stringstream s;
+  s
+    << GetName() << " "
+    << GetExamples()->ToStr() << " "
+    << GetIsComplex() << " "
+    << GetRatingComplexity() << " "
+    << GetRatingConcreteness() << " "
+    << GetRatingSpecificity()
+  ;
+  return s.str();
+}
+
 std::string ribi::cmap::Concept::ToXml() const noexcept
 {
   std::stringstream s;
@@ -163,19 +186,67 @@ std::string ribi::cmap::Concept::ToXml() const noexcept
   return r;
 }
 
+std::ostream& ribi::cmap::operator<<(std::ostream& os, const Concept& concept) noexcept
+{
+  os << concept.ToStr();
+  return os;
+}
+
 bool ribi::cmap::operator==(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs)
 {
-  const boost::shared_ptr<const cmap::Examples> lhs_examples = lhs.GetExamples();
-  assert(lhs_examples);
-  const boost::shared_ptr<const cmap::Examples> rhs_examples = rhs.GetExamples();
+  const bool verbose{false};
+  if (lhs.GetIsComplex() != rhs.GetIsComplex())
+  {
+    if (verbose) { TRACE("Concept::IsComplex differs"); }
+    return false;
+  }
+  if (lhs.GetName() != rhs.GetName())
+  {
+    if (verbose) { TRACE("Concept::Name differs"); }
+    return false;
+  }
+  if (lhs.GetRatingComplexity() != rhs.GetRatingComplexity())
+  {
+    if (verbose) { TRACE("Concept::RatingComplexity differs"); }
+    return false;
+  }
+  if (lhs.GetRatingConcreteness() != rhs.GetRatingConcreteness())
+  {
+    if (verbose) { TRACE("Concept::RatingConcreteness differs"); }
+    return false;
+  }
+  if (lhs.GetRatingSpecificity() != rhs.GetRatingSpecificity())
+  {
+    if (verbose) { TRACE("Concept::RatingSpecificity differs"); }
+    return false;
+  }
+  const auto lhs_examples = lhs.GetExamples();
+  const auto rhs_examples = rhs.GetExamples();
+  if (lhs_examples == nullptr)
+  {
+    if (rhs_examples == nullptr)
+    {
+      return true;
+    }
+    if (verbose) { TRACE("Concept::Examples differs: lhs is nullptr"); }
+    return false;
+  }
+  if (rhs_examples == nullptr)
+  {
+    if (verbose) { TRACE("Concept::Examples differs: rhs is nullptr"); }
+    return false;
+  }
   assert(rhs_examples);
-  return
-      *lhs_examples               == *rhs_examples
-    && lhs.GetIsComplex()          == rhs.GetIsComplex()
-    && lhs.GetName()               == rhs.GetName()
-    && lhs.GetRatingComplexity()   == rhs.GetRatingComplexity()
-    && lhs.GetRatingConcreteness() == rhs.GetRatingConcreteness()
-    && lhs.GetRatingSpecificity()  == rhs.GetRatingSpecificity();
+  if (lhs_examples == rhs_examples) return true;
+  if (*lhs_examples == *rhs_examples)
+  {
+    return true;
+  }
+  else
+  {
+    if (verbose) { TRACE("Concept::Examples differs: content is different"); }
+    return false;
+  }
 }
 
 bool ribi::cmap::operator!=(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs)

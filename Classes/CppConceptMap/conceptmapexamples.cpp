@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmapexamplesfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -44,28 +45,53 @@ ribi::cmap::Examples::Examples(const std::vector<boost::shared_ptr<cmap::Example
   Test();
   #endif
 
-  std::for_each(m_v.begin(),m_v.end(),
-    [this](const boost::shared_ptr<Example>& example)
-    {
-      assert(example);
-      example->m_signal_competency_changed.connect(
-        boost::bind(
-          &Examples::OnExampleChanged,
-          this
-        )
-      );
-      example->m_signal_text_changed.connect(
-        boost::bind(
-          &Examples::OnExampleChanged,
-          this
-        )
-      );
-    }
-  );
+  for(const auto example: m_v)
+  {
+    assert(example);
+    example->m_signal_competency_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_complex_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_concrete_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_specific_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_text_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+  }
 
   assert(std::count_if(m_v.begin(),m_v.end(),
     [](const boost::shared_ptr<Example>& e) { return !e; }
     ) == 0 && "All Example instances must be initialized");
+}
+
+ribi::cmap::Examples::~Examples() noexcept
+{
+  for(const auto example: m_v)
+  {
+    assert(example);
+    example->m_signal_competency_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_complex_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_concrete_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_specific_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_text_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+  }
+
 }
 
 /*
@@ -99,17 +125,20 @@ std::vector<boost::shared_ptr<const ribi::cmap::Example> > ribi::cmap::Examples:
 
 void ribi::cmap::Examples::OnExampleChanged() noexcept
 {
-  m_signal_examples_changed(this);
+  m_signal_examples_changed(this); 
 }
 
 void ribi::cmap::Examples::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::Examples::Test");
+  ExampleFactory().GetTest(0);
+  ExamplesFactory();
+  ExamplesFactory().GetTest(0);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test of operator== and operator!=
   {
     const int sz = ExamplesFactory().GetNumberOfTests();
@@ -185,23 +214,36 @@ void ribi::cmap::Examples::Test() noexcept
   }
   //Test if unrated and rated examples are noticed as different
   {
-    const boost::shared_ptr<Example> a = ExampleFactory::Create("1",Competency::misc);
-    const boost::shared_ptr<Example> b = ExampleFactory::Create("1",Competency::misc);
-    const boost::shared_ptr<Example> c = ExampleFactory::Create("1",Competency::uninitialized);
+    const boost::shared_ptr<Example> a = ExampleFactory().Create("1",Competency::misc);
+    const boost::shared_ptr<Example> b = ExampleFactory().Create("1",Competency::misc);
+    const boost::shared_ptr<Example> c = ExampleFactory().Create("1",Competency::uninitialized);
     assert(*a == *a); assert(*a == *b); assert(*a != *c);
     assert(*b == *a); assert(*b == *b); assert(*b != *c);
     assert(*c != *a); assert(*c != *b); assert(*c == *c);
     std::vector<boost::shared_ptr<const Example> > v; v.push_back(a);
     std::vector<boost::shared_ptr<const Example> > w; w.push_back(b);
     std::vector<boost::shared_ptr<const Example> > x; x.push_back(c);
-    const boost::shared_ptr<Examples> d = ExamplesFactory::Create(v);
-    const boost::shared_ptr<Examples> e = ExamplesFactory::Create(w);
-    const boost::shared_ptr<Examples> f = ExamplesFactory::Create(x);
+    const boost::shared_ptr<Examples> d = ExamplesFactory().Create(v);
+    const boost::shared_ptr<Examples> e = ExamplesFactory().Create(w);
+    const boost::shared_ptr<Examples> f = ExamplesFactory().Create(x);
     assert(*d == *d); assert(*d == *e); assert(*d != *f);
     assert(*e == *d); assert(*e == *e); assert(*e != *f);
     assert(*f != *d); assert(*f != *e); assert(*f == *f);
   }
-  TRACE("Examples::Test finished successfully");
+}
+
+std::string ribi::cmap::Examples::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << "{ ";
+
+  //const std::vector<boost::shared_ptr<const Example> > examples = c->GetExamples();
+  for (const auto& example: Get())
+  {
+    s << example->ToStr() << " ";
+  };
+  s << "}";
+  return s.str();
 }
 
 std::string ribi::cmap::Examples::ToXml() const noexcept

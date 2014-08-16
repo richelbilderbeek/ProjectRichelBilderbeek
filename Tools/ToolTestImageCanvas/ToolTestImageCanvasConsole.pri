@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestImageCanvas/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestImageCanvas/ToolTestImageCanvas.qrc

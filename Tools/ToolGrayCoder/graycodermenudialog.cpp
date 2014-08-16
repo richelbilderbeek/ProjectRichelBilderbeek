@@ -30,6 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 
 #include "graycodermaindialog.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -101,7 +103,9 @@ ribi::About ribi::GrayCoderMenuDialog::GetAbout() const noexcept
     "2009-2014",
     "http://www.richelbilderbeek.nl/ToolGrayCoder.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
@@ -151,12 +155,11 @@ std::vector<std::string> ribi::GrayCoderMenuDialog::GetVersionHistory() const no
 void ribi::GrayCoderMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::GrayCoderMenuDialog::Test");
   GrayCoderMainDialog(0);
-  TRACE("Finished ribi::GrayCoderMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

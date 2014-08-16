@@ -1,14 +1,19 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "whitenoisesystem.h"
 
 #include <cassert>
-#include <boost/random.hpp>
+
+#include "testtimer.h"
+#include "ribi_random.h"
 
 #pragma GCC diagnostic pop
 
-ribi::kalman::WhiteNoiseSystem::WhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
+ribi::kalman::WhiteNoiseSystem::WhiteNoiseSystem(
+  const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters
+)
   : m_current_state{parameters->GetInitialState()},
     m_parameters{parameters}
 {
@@ -17,10 +22,7 @@ ribi::kalman::WhiteNoiseSystem::WhiteNoiseSystem(const boost::shared_ptr<const W
 
 double ribi::kalman::WhiteNoiseSystem::GetRandomNormal(const double mean, const double sigma) noexcept
 {
-  boost::normal_distribution<double> norm_dist(mean, sigma);
-  static boost::lagged_fibonacci19937 engine;
-  const double value = norm_dist.operator () <boost::lagged_fibonacci19937>((engine));
-  return value;
+  return Random().GetNormal(mean,sigma);
 }
 
 std::string ribi::kalman::WhiteNoiseSystem::GetVersion() noexcept
@@ -40,3 +42,18 @@ void ribi::kalman::WhiteNoiseSystem::SetNewCurrentState(const boost::numeric::ub
   assert(m_current_state.size() == new_current_state.size());
   m_current_state = new_current_state;
 }
+
+#ifndef NDEBUG
+void ribi::kalman::WhiteNoiseSystem::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    Random();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif

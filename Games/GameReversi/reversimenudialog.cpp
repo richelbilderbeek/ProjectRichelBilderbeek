@@ -15,7 +15,10 @@
 
 #include "reversiboard.h"
 #include "reversiwidget.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "reversimaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::reversi::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -74,8 +77,9 @@ ribi::About ribi::reversi::MenuDialog::GetAbout() const noexcept
     "200x-2014",
     "http://www.richelbilderbeek.nl/GameReversi.htm",
     GetVersion(),
-    GetVersionHistory());
-  //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 
@@ -120,14 +124,13 @@ std::vector<std::string> ribi::reversi::MenuDialog::GetVersionHistory() const no
 void ribi::reversi::MenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::reversi::MenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   MainDialog();
   Widget();
   Board();
-  TRACE("Finished ribi::reversi::MenuDialog::Test successfully");
 }
 #endif

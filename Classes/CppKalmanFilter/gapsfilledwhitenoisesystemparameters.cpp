@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "gapsfilledwhitenoisesystemparameters.h"
 
 #include <cassert>
@@ -49,7 +51,7 @@ ribi::kalman::GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemPa
 void ribi::kalman::GapsFilledWhiteNoiseSystemParameters::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -31,7 +31,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "fileio.h"
 #include "multiplechoicequestion.h"
+#include "testtimer.h"
 #include "multiplechoicequestiondialog.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -41,7 +43,7 @@ ribi::TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog
   #ifndef NDEBUG
   Test();
   #endif
-  const std::vector<std::string> files = { "question.png" };
+  const std::vector<std::string> files = { "Question.png" };
   for(const std::string& filename: files)
   {
 
@@ -130,7 +132,6 @@ void ribi::TestMultipleChoiceQuestionMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestMultipleChoiceQuestionMenuDialog::Test");
-  TRACE("Finished ribi::TestMultipleChoiceQuestionMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

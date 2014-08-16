@@ -20,6 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "caesarciphermaindialog.h"
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::CaesarCipherMainDialog::CaesarCipherMainDialog(const int key) noexcept
@@ -62,14 +63,14 @@ void ribi::CaesarCipherMainDialog::SetPlainText(const std::string& s) noexcept
 void ribi::CaesarCipherMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CaesarCipherMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     CaesarCipherMainDialog d;
-    const std::string s = "HELLOWORLD";
+    const std::string s = "helloworld";
     d.SetKey(123);
     d.SetPlainText(s);
     d.Encrypt();
@@ -79,6 +80,5 @@ void ribi::CaesarCipherMainDialog::Test() noexcept
     const std::string deencrypted = d.GetPlainText();
     assert(s == deencrypted);
   }
-  TRACE("Finished ribi::CaesarCipherMainDialog::Test successfully");
 }
 #endif

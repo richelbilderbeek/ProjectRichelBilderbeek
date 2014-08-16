@@ -8,6 +8,7 @@
 #include "qtconnectthreewidget.h"
 #include "qtk3opeenrijresources.h"
 #include "qtk3opeenrijinstructionsdialog.h"
+#include "testtimer.h"
 #include "qtk3opeenrijselectplayerwidget.h"
 #include "ui_qtk3opeenrijmenudialog.h"
 #include "trace.h"
@@ -80,11 +81,11 @@ void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked() noexcept
 void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtK3OpEenRijMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
     con3::QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
@@ -96,6 +97,5 @@ void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
     About about = K3OpEenRijMenuDialog().GetAbout();
     QtAboutDialog d(about);
   }
-  TRACE("Finished ribi::QtK3OpEenRijMenuDialog::Test successfully");
 }
 #endif

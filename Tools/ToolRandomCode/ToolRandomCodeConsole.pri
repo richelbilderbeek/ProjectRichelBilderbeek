@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolRandomCode/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolRandomCode/ToolRandomCode.qrc

@@ -11,9 +11,11 @@
 #include <QFile>
 
 #include "fileio.h"
+#include "richelbilderbeekprogram.h"
 #include "valentinecarddecryptermaindialog.h"
 #include "valentinecardsymbols.h"
 #include "valentinecardsymbol.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 
 #include "trace.h"
@@ -33,7 +35,7 @@ int ribi::ValentineCardDecrypterMenuDialog::ExecuteSpecific(const std::vector<st
   if (argc == 1)
   {
 
-    for (auto s: ValentineCardSymbols().CreateAlphabet().left)
+    for (const auto& s: ValentineCardSymbols().CreateAlphabet().left)
     {
       std::cout << s.first << "\n" << (*s.second->ToTextCanvas()) << std::endl;
     }
@@ -132,11 +134,11 @@ std::vector<std::string> ribi::ValentineCardDecrypterMenuDialog::GetVersionHisto
 void ribi::ValentineCardDecrypterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ValentineCardDecrypterMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ValentineCardDecrypterMenuDialog d;
   d.Execute( {"ValentineCardDecrypter"} );
   d.Execute( {"ValentineCardDecrypter", "--text", "Hello world"} );
@@ -156,6 +158,5 @@ void ribi::ValentineCardDecrypterMenuDialog::Test() noexcept
     fileio::FileIo().DeleteFile(filename);
     assert(!fileio::FileIo().IsRegularFile(filename));
   }
-  TRACE("Finished ribi::ValentineCardDecrypterMenuDialog::Test successfully");
 }
 #endif

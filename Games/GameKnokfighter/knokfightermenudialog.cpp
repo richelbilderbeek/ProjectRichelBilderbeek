@@ -6,6 +6,8 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::KnokfighterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -36,7 +38,7 @@ ribi::About ribi::KnokfighterMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/GameKnokfighter.htm",
     GetVersion(),
     GetVersionHistory());
-  //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 
@@ -79,11 +81,10 @@ std::vector<std::string> ribi::KnokfighterMenuDialog::GetVersionHistory() const 
 void ribi::KnokfighterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::KnokfighterMenuDialog::Test");
-  TRACE("Finished ribi::KnokfighterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

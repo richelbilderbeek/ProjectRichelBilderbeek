@@ -1,21 +1,26 @@
-//---------------------------------------------------------------------------
 #ifndef WTTESTNEWICKVECTORDIALOG_H
 #define WTTESTNEWICKVECTORDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+
 #include <string>
 #include <vector>
 #include <boost/signals2.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/tuple/tuple.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WCheckBox>
 #include <Wt/WContainerWidget>
 #include <Wt/WPushButton>
 #include <Wt/WTable>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "testnewickvectordialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Classes/CppAbout
+    ../../Classes/CppWtBroadcastServer
 
 SOURCES += \
-    ../../Classes/CppAbout/about.cpp
+    ../../Classes/CppWtBroadcastServer/wtbroadcastserver.cpp
 
 HEADERS  += \
-    ../../Classes/CppAbout/about.h
+    ../../Classes/CppWtBroadcastServer/wtbroadcastserver.h
 
 OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt
+    ../../Classes/CppWtBroadcastServer/Licence.txt
 

@@ -11,13 +11,12 @@
 #include <qwt_plot_grid.h>
 #include <qwt_plot_zoomer.h>
 
-#if QWT_VERSION != 0x060001
-#ifdef _WIN32
-#include <qwt_point_data.h>
-#endif
+#if QWT_VERSION >= 0x060100 || !WIN32
+#include "qwt_point_data.h"
 #endif
 
 #include "simplelinearregression.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestsimplelinearregressionmaindialog.h"
 
@@ -132,7 +131,7 @@ void ribi::QtToolTestSimpleLinearRegressionMainDialog::Plot() noexcept
 {
   //Plot values
   {
-    #if QWT_VERSION >= 0x060000
+    #if QWT_VERSION >= 0x060100 || !WIN32
     m_curve_values->setData(new QwtPointArrayData(&m_xs[0],&m_ys[0],m_xs.size()));
     #else
     m_curve_values->setData(&m_xs[0],&m_y[0],m_xs.size());
@@ -177,11 +176,10 @@ void ribi::QtToolTestSimpleLinearRegressionMainDialog::Plot() noexcept
 void ribi::QtToolTestSimpleLinearRegressionMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolTestSimpleLinearRegressionMainDialog::Test");
-  TRACE("Finished ribi::QtToolTestSimpleLinearRegressionMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

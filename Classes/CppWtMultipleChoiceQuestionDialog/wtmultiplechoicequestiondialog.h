@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtMultipleChoiceQuestionDialog, Wt dialog for MultipleChoiceQuestion
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,10 +21,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef WTMULTIPLECHOICEQUESTIONDIALOG_H
 #define WTMULTIPLECHOICEQUESTIONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "wtquestiondialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -38,15 +43,15 @@ struct WtMultipleChoiceQuestionDialog : public WtQuestionDialog
 
   explicit WtMultipleChoiceQuestionDialog(const boost::shared_ptr<MultipleChoiceQuestionDialog>& dialog);
 
-  const boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
-  const boost::shared_ptr<const MultipleChoiceQuestionDialog> GetMultipleChoiceQuestionDialog() const noexcept;
+  boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
+  boost::shared_ptr<const MultipleChoiceQuestionDialog> GetMultipleChoiceQuestionDialog() const noexcept;
 
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Sets the selected radio button index
   void SetSelectedRadioButton(const int index);

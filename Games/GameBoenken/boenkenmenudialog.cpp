@@ -24,13 +24,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
+#include "container.h"
+#include "fileio.h"
+#include "plane.h"
+#include "geometry.h"
+#include "testtimer.h"
 #include "trace.h"
 
-int ribi::Boenken::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::Boenken::MenuDialog::MenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+int ribi::Boenken::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -53,7 +63,14 @@ ribi::About ribi::Boenken::MenuDialog::GetAbout() const noexcept
     "2007-2014",
     "http://www.richelbilderbeek.nl/GameBoenken.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
+
+  a.AddLibrary("Container version: " + Container().GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
+  a.AddLibrary("Geometry version: " + Geometry().GetVersion());
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   return a;
 }
 
@@ -102,11 +119,16 @@ std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory() const no
 void ribi::Boenken::MenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Boenken::MenuDialog::Test");
-  TRACE("Finished ribi::Boenken::MenuDialog::Test successfully");
+  {
+    Container();
+    fileio::FileIo();
+    Geometry();
+  }
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

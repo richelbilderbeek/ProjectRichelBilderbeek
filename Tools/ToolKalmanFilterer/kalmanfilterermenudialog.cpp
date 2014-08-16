@@ -2,17 +2,22 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "kalmanfilterermenudialog.h"
 
-#include "standardkalmanfilter.h"
-#include "steadystatekalmanfilter.h"
-#include "standardkalmanfilterparameters.h"
-#include "steadystatekalmanfilterparameters.h"
-#include "matrix.h"
-#include "gapsfilledwhitenoisesystem.h"
-#include "trace.h"
-#include "laggedwhitenoisesystem.h"
-#include "standardwhitenoisesystem.h"
+#include "container.h"
 #include "fixedlagsmootherkalmanfilter.h"
+#include "fixedlagsmootherkalmanfilterfactory.h"
+#include "gapsfilledwhitenoisesystem.h"
+#include "gapsfilledwhitenoisesystemfactory.h"
+#include "kalmanfilterfactory.h"
+#include "laggedwhitenoisesystem.h"
+#include "matrix.h"
+#include "standardkalmanfilter.h"
+#include "standardkalmanfilterparameters.h"
+#include "standardwhitenoisesystem.h"
 #include "standardwhitenoisesystemparameters.h"
+#include "steadystatekalmanfilter.h"
+#include "steadystatekalmanfilterparameters.h"
+#include "testtimer.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 int ribi::kalman::KalmanFiltererMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -36,12 +41,13 @@ ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "KalmanFilterer",
     "tool to work with Kalman filters",
-    "the 17th of July 2013",
+    "the 10th of August 2014",
     "2013-2014",
     "http://www.richelbilderbeek.nl/ToolKalmanFilterer.htm",
     GetVersion(),
     GetVersionHistory()
   );
+  a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("FixedLagSmootherKalmanFilter version: " + FixedLagSmootherKalmanFilter::GetVersion());
   a.AddLibrary("GapsFilledWhiteNoiseSystem version: " + GapsFilledWhiteNoiseSystem::GetVersion());
   a.AddLibrary("KalmanFilter version: " + KalmanFilter::GetVersion());
@@ -53,6 +59,7 @@ ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexcept
   a.AddLibrary("StandardWhiteNoiseSystemParameters version: " + StandardWhiteNoiseSystemParameters::GetVersion());
   a.AddLibrary("SteadyStateKalmanFilter version: " + SteadyStateKalmanFilter::GetVersion());
   a.AddLibrary("SteadyStateKalmanFilterParameters version: " + SteadyStateKalmanFilterParameters::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("WhiteNoiseSystem version: " + WhiteNoiseSystem::GetVersion());
   return a;
@@ -83,7 +90,7 @@ boost::shared_ptr<const ribi::Program> ribi::kalman::KalmanFiltererMenuDialog::G
 
 std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion() const noexcept
 {
-  return "1.15";
+  return "1.16";
 }
 
 std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory() const noexcept
@@ -104,7 +111,8 @@ std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHisto
     "2013-07-01: version 1.12: added the constants pi and tau to function parser, context can be saved to file, tables are displayed correctly",
     "2013-07-05: version 1.13: added simple statistics",
     "2013-07-08: version 1.14: display statistics and value tables correctly, allow editing of context, tables resize to the number of rows",
-    "2013-07-17: version 1.15: allow copying from and pasting to parameter tables, transitioned to Qt5, GCC 4.8.0 and Boost 1.54.0, able to crosscompile again"
+    "2013-07-17: version 1.15: allow copying from and pasting to parameter tables, transitioned to Qt5, GCC 4.8.0 and Boost 1.54.0, able to crosscompile again",
+    "2014-08-10: version 1.16: increased use of TDD"
   };
 }
 
@@ -112,11 +120,24 @@ std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHisto
 void ribi::kalman::KalmanFiltererMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::KalmanFiltererMenuDialog::Test");
-  TRACE("Finished ribi::kalman::KalmanFiltererMenuDialog::Test successfully");
+  Container();
+  FixedLagSmootherKalmanFilterFactory();
+  GapsFilledWhiteNoiseSystemFactory();
+  KalmanFilterFactory();
+  //LaggedWhiteNoiseSystem(parameters);
+  Matrix();
+  //StandardKalmanFilter(calculation,parameters);
+  //StandardWhiteNoiseSystem(parameters);
+  //StandardWhiteNoiseSystemParameters();
+  //SteadyStateKalmanFilter(calculation,parameters);
+  //SteadyStateKalmanFilterParameters();
+  //WhiteNoiseSystem(parameters);
+  //StandardKalmanFilterParameters()
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

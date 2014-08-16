@@ -1,15 +1,17 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtreversiwidget.h"
 
 #include <cstdlib>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QMouseEvent>
 #include <QPainter>
 
 #include "reversiboard.h"
 #include "reversiwidget.h"
+#include "testtimer.h"
 #include "reversimove.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -73,18 +75,16 @@ void ribi::reversi::QtWidget::paintEvent(QPaintEvent *)
       painter.drawRect(x1,y1,x2-x1,y2-y1);
     }
   }
-
 }
 
 #ifndef NDEBUG
 void ribi::reversi::QtWidget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::reversi::QtWidget::Test()");
-  TRACE("Finished ribi::reversi::QtWidget::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

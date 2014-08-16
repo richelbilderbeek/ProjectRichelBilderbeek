@@ -23,13 +23,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
-int ribi::ToolTestQtModelsMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::ToolTestQtModelsMenuDialog::ToolTestQtModelsMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+int ribi::ToolTestQtModelsMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -96,11 +102,10 @@ std::vector<std::string> ribi::ToolTestQtModelsMenuDialog::GetVersionHistory() c
 void ribi::ToolTestQtModelsMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolTestQtModelsMenuDialog::Test");
-  TRACE("Finished ribi::ToolTestQtModelsMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

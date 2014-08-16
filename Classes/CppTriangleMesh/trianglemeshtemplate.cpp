@@ -8,10 +8,9 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/math/constants/constants.hpp>
 
-#include "Shiny.h"
-
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
+#include "testtimer.h"
 #include "fileio.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
@@ -21,7 +20,8 @@
 
 ribi::trim::Template::Template(
   const std::string& filename_node,
-  const std::string& filename_ele
+  const std::string& filename_ele,
+  const bool verbose
 )
   : m_edges{},
     m_faces{},
@@ -31,9 +31,8 @@ ribi::trim::Template::Template(
   #ifndef NDEBUG
   Test();
   #endif
-  PROFILE_FUNC();
-  
-  TRACE("Load the points and faces created by Triangle");
+
+  if (verbose) { TRACE("Load the points and faces created by Triangle"); }
   {
     const std::vector<std::string> v {
       ribi::fileio::FileIo().FileToVector(
@@ -44,11 +43,10 @@ ribi::trim::Template::Template(
     const int percent = sz / 100 ? sz / 100: 1;
     for(int n=0; n!=sz; ++n)
     {
-      PROFILE_BLOCK(Load_the_points_and_faces_created_by_Triangle);
-      if (n % percent == 0) std::clog << '%';
+      if (verbose) { if (n % percent == 0) std::clog << '%'; }
       const std::string line = v[n];
       if(n==0) continue; //No idea why this has to be skipped
-      const std::vector<std::string> w { SeperateString(line) };
+      const std::vector<std::string> w { CleanAndSplitString(ConvertNumbersToEnglish(line)) };
       if (w.empty() || w[0].empty() ||  w[0] == "#")
       {
         //The final comment line
@@ -57,6 +55,18 @@ ribi::trim::Template::Template(
       assert(w.size() == 4);
       assert(CanLexicalCast<int>(w[0]));
       assert(CanLexicalCast<double>(w[1]));
+      #ifndef NDEBUG
+      if (!CanLexicalCast<double>(w[2]))
+      {
+        TRACE("ERROR");
+        TRACE(line);
+        TRACE(w[0]);
+        TRACE(w[1]);
+        TRACE(w[2]);
+        TRACE(w[3]);
+        TRACE("BREAK");
+      }
+      #endif
       assert(CanLexicalCast<double>(w[2]));
       assert(CanLexicalCast<int>(w[3]));
       const double x = boost::lexical_cast<double>(w[1]);
@@ -72,7 +82,7 @@ ribi::trim::Template::Template(
     }
   }
 
-  TRACE("Load and translate faces");
+  if (verbose) { TRACE("Load and translate faces"); }
   {
     const std::vector<std::string> v
       = ribi::fileio::FileIo().FileToVector(filename_ele);
@@ -80,14 +90,16 @@ ribi::trim::Template::Template(
     const int percent = sz / 100 ? sz / 100: 1;
     for(int n=0; n!=sz; ++n)
     {
-      PROFILE_BLOCK(Load_and_translate_faces);
-      if (n % percent == 0)
+      if (verbose)
       {
-        std::clog << '%';
+        if (n % percent == 0)
+        {
+          std::clog << '%';
+        }
       }
       const std::string line = v[n];
       if(n==0) continue;
-      const std::vector<std::string> w { SeperateString(line) };
+      const std::vector<std::string> w { CleanAndSplitString(line) };
       if (w.empty() || w[0].empty() ||  w[0] == "#")
       {
         //The final comment line
@@ -99,25 +111,29 @@ ribi::trim::Template::Template(
       assert(CanLexicalCast<int>(w[2]));
       assert(CanLexicalCast<int>(w[3]));
 
-      //I do not correct for one-base Triangle.exe output
+      //I hope that I made the Triangle.exe output start at index 0..
       const int point1 = boost::lexical_cast<int>(w[1]);
       const int point2 = boost::lexical_cast<int>(w[2]);
       const int point3 = boost::lexical_cast<int>(w[3]);
-      assert(point1 > 0);
-      assert(point2 > 0);
-      assert(point3 > 0);
+      assert(point1 >= 0); //Start at index 0
+      assert(point2 >= 0); //Start at index 0
+      assert(point3 >= 0); //Start at index 0
+      assert(point1 - 0 < static_cast<int>(m_points.size()));
+      assert(point2 - 0 < static_cast<int>(m_points.size()));
+      assert(point3 - 0 < static_cast<int>(m_points.size()));
       const std::vector<int> face_point_indices {
-        point1-1,
-        point2-1,
-        point3-1
+        point1-0, //Start at index 0
+        point2-0, //Start at index 0
+        point3-0  //Start at index 0
       };
       m_edges.push_back(std::make_pair(face_point_indices[0],face_point_indices[1]));
       m_edges.push_back(std::make_pair(face_point_indices[0],face_point_indices[2]));
       m_edges.push_back(std::make_pair(face_point_indices[1],face_point_indices[2]));
+
       std::vector<boost::shared_ptr<Point>> face_points {
-        m_points[point1-1],
-        m_points[point2-1],
-        m_points[point3-1]
+        m_points[point1-0], //Start at index 0
+        m_points[point2-0], //Start at index 0
+        m_points[point3-0]  //Start at index 0
       };
       if (!Helper().IsClockwiseHorizontal(face_points))
       {
@@ -125,12 +141,13 @@ ribi::trim::Template::Template(
       }
       assert(Helper().IsClockwiseHorizontal(face_points));
       if (!Helper().IsConvex(face_points)) { Helper().MakeConvex(face_points); }
-      assert(Helper().IsConvex(face_points) && "FaceFacory only accepts convex ordered points");
+      assert(Helper().IsConvex(face_points) && "FaceFactory only accepts convex ordered points");
 
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       m_faces.push_back(face);
@@ -143,7 +160,7 @@ ribi::trim::Template::Template(
   }
 
   #ifndef NDEBUG
-  TRACE("Checking the result");
+  if (verbose) { TRACE("Checking the result"); }
   const int n_faces = static_cast<int>(m_faces.size());
   assert(m_faces.size() == m_face_point_indices.size());
   for (int i=0; i!=n_faces; ++i)
@@ -163,20 +180,32 @@ ribi::trim::Template::Template(
 
   auto new_end = std::unique(m_edges.begin(),m_edges.end());
   m_edges.erase(new_end,m_edges.end());
-  assert(!m_edges.empty());
+
+  if (verbose) { TRACE("Done checking the result"); }
 }
 
 ribi::trim::Template::Template(
-  std::vector<std::pair<int,int>> edges,
-  std::vector<boost::shared_ptr<Face>> faces,
-  std::vector<std::vector<int>> face_point_indices,
-  std::vector<boost::shared_ptr<Point>> points
+  const std::vector<std::pair<int,int>>& edges,
+  const std::vector<boost::shared_ptr<Face>>& faces,
+  const std::vector<std::vector<int>>& face_point_indices,
+  const std::vector<boost::shared_ptr<Point>>& points
 ) : m_edges{edges}, m_faces{faces}, m_face_point_indices{face_point_indices}, m_points{points}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(const int i) noexcept
+std::string ribi::trim::Template::ConvertNumbersToEnglish(const std::string& s) noexcept
+{
+  #ifndef _WIN32
+  return boost::algorithm::replace_all_copy(s,",",".");
+  #else
+  return s;
+  #endif
+}
+
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(const int i) noexcept
 {
   switch (i)
   {
@@ -190,14 +219,15 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(c
   return boost::shared_ptr<Template>();
 }
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSquare2x2() noexcept
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSquare2x2() noexcept
 {
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
   std::vector<boost::shared_ptr<Point>> points;
-  const int width = 2;
-  const int height = 2;
-  const int n_points = width * height;
+  const int width{2};
+  const int height{2};
+  const int n_points{width * height};
+  const bool verbose{false};
   points.reserve(n_points);
 
   //Create points
@@ -246,7 +276,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
     { 1,2,3 }
   };
 
-  const std::vector<std::pair<int,int> > edges {
+  const std::vector<std::pair<int,int>> edges {
     { 0,1 },
     { 0,2 },
     { 1,2 },
@@ -255,7 +285,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
   };
 
   {
-    for(auto v: face_point_indices)
+    for(const auto v: face_point_indices)
     {
       assert(v.size() == 3);
       //I do not correct for one-base Triangle.exe output
@@ -276,7 +306,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       faces.push_back(face);
@@ -291,14 +322,6 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
     const auto face = faces[i];
     const auto indices = face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
-    /*
-    const int n_points = static_cast<int>(indices.size());
-    for (int j=0; j!=n_points; ++j)
-    {
-      //Only true when points are not reversed
-      assert(face->GetPoints()[j] == points[ indices[j] ]);
-    }
-    */
   }
   #endif
 
@@ -319,14 +342,15 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
 }
 
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle2x2() noexcept
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle2x2() noexcept
 {
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
   std::vector<boost::shared_ptr<Point>> points;
-  const int width = 2;
+  const int width{2};
   //const int height = 2;
-  const int n_points = 3; //Triangle
+  const int n_points{3}; //Triangle
+  const bool verbose{false};
   points.reserve(n_points);
 
   //Create points
@@ -335,7 +359,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
     {
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
-      const std::string boundary_type = "two_times_two";
+      const std::string boundary_type{"two_times_two"};
       const boost::shared_ptr<const ConstCoordinat2D> bottom {
         new ConstCoordinat2D(x,y)
       };
@@ -372,14 +396,14 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
     { 0,1,2 }
   };
 
-  const std::vector<std::pair<int,int> > edges {
+  const std::vector<std::pair<int,int>> edges {
     { 0,1 },
     { 0,2 },
     { 1,2 }
   };
 
   {
-    for(auto v: face_point_indices)
+    for(const auto v: face_point_indices)
     {
       assert(v.size() == 3);
       //I do not correct for one-base Triangle.exe output
@@ -410,7 +434,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal //?20140224
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       faces.push_back(face);
@@ -425,14 +450,6 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
     const auto face = faces[i];
     const auto indices = face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
-    /*
-    const int n_points = static_cast<int>(indices.size());
-    for (int j=0; j!=n_points; ++j)
-    {
-      //Only true when points are not reversed
-      assert(face->GetPoints()[j] == points[ indices[j] ]);
-    }
-    */
   }
   #endif
 
@@ -452,26 +469,27 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
   return my_template;
 }
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x3() noexcept
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x3() noexcept
 {
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
   std::vector<boost::shared_ptr<Point>> points;
-  const int width = 3;
-  const int height = 2;
-  const int n_points = width * height;
+  const int width{3};
+  const int height{2};
+  const int n_points{width * height};
+  const bool verbose{false};
   points.reserve(n_points);
 
   //Create points
   {
     for(int i=0; i!=n_points; ++i)
     {
-      const double x = static_cast<double>(i % width);
-      const double y = static_cast<double>(i / width);
-      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+      const double x{static_cast<double>(i % width)};
+      const double y{static_cast<double>(i / width)};
+      const boost::shared_ptr<const ConstCoordinat2D> bottom{
         new ConstCoordinat2D(x,y)
       };
-      const boost::shared_ptr<Point> point {
+      const boost::shared_ptr<Point> point{
         PointFactory().Create(bottom)
       };
       points.push_back(point);
@@ -507,7 +525,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     { 2,4,5 }
   };
 
-  const std::vector<std::pair<int,int> > edges {
+  const std::vector<std::pair<int,int>> edges {
     { 0,1 },
     { 0,3 },
     { 1,2 },
@@ -520,7 +538,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
   };
 
   {
-    for(auto v: face_point_indices)
+    for(const auto v: face_point_indices)
     {
       assert(v.size() == 3);
       //I do not correct for one-base Triangle.exe output
@@ -549,7 +567,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       faces.push_back(face);
@@ -591,29 +610,28 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
   return my_template;
 }
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x3() noexcept
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x3() noexcept
 {
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
   std::vector<boost::shared_ptr<Point>> points;
-  const int width = 3;
-  const int height = 3;
-  const int n_points = width * height;
+  const int width{3};
+  const int height{3};
+  const int n_points{width * height};
+  const bool verbose{false};
   points.reserve(n_points);
 
   //Create points
   {
     for(int i=0; i!=n_points; ++i)
     {
-      const double x = static_cast<double>(i % width);
-      const double y = static_cast<double>(i / width);
+      const double x{static_cast<double>(i % width)};
+      const double y{static_cast<double>(i / width)};
       const std::string boundary_type = "three_times_three";
-      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+      const boost::shared_ptr<const ConstCoordinat2D> bottom{
         new ConstCoordinat2D(x,y)
       };
-      const boost::shared_ptr<Point> point {
-        PointFactory().Create(bottom)
-      };
+      const auto point = PointFactory().Create(bottom);
       points.push_back(point);
     }
   }
@@ -651,7 +669,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
     { 5,7,8 }
   };
 
-  const std::vector<std::pair<int,int> > edges {
+  const std::vector<std::pair<int,int>> edges {
     { 0,1 },
     { 0,3 },
     { 1,2 },
@@ -671,7 +689,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
   };
 
   {
-    for(auto v: face_point_indices)
+    for(const auto v: face_point_indices)
     {
       assert(v.size() == 3);
       //I do not correct for one-base Triangle.exe output
@@ -700,7 +718,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       faces.push_back(face);
@@ -744,10 +763,10 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
 
 
 
-std::vector<std::string> ribi::trim::Template::SeperateString(
+std::vector<std::string> ribi::trim::Template::CleanAndSplitString(
   const std::string& input_original) noexcept
 {
-  PROFILE_FUNC();
+
   std::string input = boost::algorithm::replace_all_copy(input_original,"\t"," ");
   for (int i=0; i!=8; ++i)
   {
@@ -766,64 +785,100 @@ std::vector<std::string> ribi::trim::Template::SeperateString(
 void ribi::trim::Template::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::Template::Test");
-  
-  //IsClockWise
+  PointFactory();
+  FaceFactory();
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+  if (verbose) { TRACE("IsClockWise, confirmation"); }
   {
-    {
-      //12 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> a {
-        new ConstCoordinat2D(0.0,-1.0)
-      };
-      //4 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> b {
-        new ConstCoordinat2D(0.83,0.5)
-      };
-      //8 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> c {
-        new ConstCoordinat2D(-0.83,0.5)
-      };
-      std::vector<boost::shared_ptr<Point>> points {
-        PointFactory().Create(a),
-        PointFactory().Create(b),
-        PointFactory().Create(c)
-      };
-      points[0]->SetZ(1.0 * boost::units::si::meter);
-      points[1]->SetZ(1.0 * boost::units::si::meter);
-      points[2]->SetZ(1.0 * boost::units::si::meter);
-      assert(Helper().IsClockwiseHorizontal(points));
-      std::reverse(points.begin(),points.end());
-      assert(!Helper().IsClockwiseHorizontal(points));
-    }
-    {
-      //12 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> a {
-        new ConstCoordinat2D(0.0,-1.0)
-      };
-      //8 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> b {
-        new ConstCoordinat2D(-0.83,0.5)
-      };
-      //4 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> c {
-        new ConstCoordinat2D(0.83,0.5)
-      };
-      std::vector<boost::shared_ptr<Point>> points {
-        PointFactory().Create(a),
-        PointFactory().Create(b),
-        PointFactory().Create(c)
-      };
-      points[0]->SetZ(1.0 * boost::units::si::meter);
-      points[1]->SetZ(1.0 * boost::units::si::meter);
-      points[2]->SetZ(1.0 * boost::units::si::meter);
-      assert(!Helper().IsClockwiseHorizontal(points));
-      std::reverse(points.begin(),points.end());
-      assert(Helper().IsClockwiseHorizontal(points));
-    }
+    /*
+
+    Cartesian plane
+
+          |
+          |
+          A = (0,1)
+         /|\
+        / | \
+    ---+--+--+----
+      /   |   \
+     C----+----B
+          |
+          |
+
+
+    */
+    //12 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> a {
+      new ConstCoordinat2D(0.0,1.0)
+    };
+    //4 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> b {
+      new ConstCoordinat2D(0.83,-0.5)
+    };
+    //8 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> c {
+      new ConstCoordinat2D(-0.83,-0.5)
+    };
+    std::vector<boost::shared_ptr<Point>> points {
+      PointFactory().Create(a),
+      PointFactory().Create(b),
+      PointFactory().Create(c)
+    };
+    points[0]->SetZ(1.0 * boost::units::si::meter);
+    points[1]->SetZ(1.0 * boost::units::si::meter);
+    points[2]->SetZ(1.0 * boost::units::si::meter);
+    assert( Helper().IsClockwiseHorizontal(points));
+    std::reverse(points.begin(),points.end());
+    assert(!Helper().IsClockwiseHorizontal(points));
+  }
+  if (verbose) { TRACE("IsClockWise, rejection"); }
+  {
+    /*
+
+    Cartesian plane
+
+          |
+          |
+          A = (0,1)
+         /|\
+        / | \
+    ---+--+--+----
+      /   |   \
+     B----+----C
+          |
+          |
+
+
+    */
+    //12 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> a {
+      new ConstCoordinat2D(0.0,1.0)
+    };
+    //8 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> b {
+      new ConstCoordinat2D(-0.83,-0.5)
+    };
+    //4 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> c {
+      new ConstCoordinat2D(0.83,-0.5)
+    };
+    std::vector<boost::shared_ptr<Point>> points {
+      PointFactory().Create(a),
+      PointFactory().Create(b),
+      PointFactory().Create(c)
+    };
+    points[0]->SetZ(1.0 * boost::units::si::meter);
+    points[1]->SetZ(1.0 * boost::units::si::meter);
+    points[2]->SetZ(1.0 * boost::units::si::meter);
+    assert(!Helper().IsClockwiseHorizontal(points));
+    std::reverse(points.begin(),points.end());
+    assert(Helper().IsClockwiseHorizontal(points));
   }
   for (int i=0; i!=4; ++i)
   {
@@ -831,7 +886,7 @@ void ribi::trim::Template::Test() noexcept
       CreateTest(i)
     };
     assert(my_template);
-    for (auto face: my_template->GetFaces())
+    for (const auto& face: my_template->GetFaces())
     {
       if (!Helper().IsClockwiseHorizontal(face->GetPoints()))
       {
@@ -840,6 +895,5 @@ void ribi::trim::Template::Test() noexcept
       assert(Helper().IsClockwiseHorizontal(face->GetPoints()));
     }
   }
-  TRACE("Finished ribi::trim::Template::Test successfully");
 }
 #endif

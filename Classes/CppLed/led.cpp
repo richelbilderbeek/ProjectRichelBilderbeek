@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "led.h"
 
 #include <cassert>
@@ -28,25 +29,34 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lexical_cast.hpp>
 
+#include "testtimer.h"
 #include "trace.h"
+#include "testtimer.h"
 
 #pragma GCC diagnostic pop
 
 ribi::Led::Led(
   const double intensity,
-  const unsigned char red,
-  const unsigned char green,
-  const unsigned char blue)
+  const int red,
+  const int green,
+  const int blue)
   : m_signal_color_changed{},
     m_signal_intensity_changed{},
-    m_intensity(intensity),
-    m_red(red),
+    m_blue(blue),
     m_green(green),
-    m_blue(blue)
+    m_intensity(intensity),
+    m_red(red)
 {
   #ifndef NDEBUG
   Test();
   #endif
+
+  assert(red >= 0);
+  assert(red < 256);
+  assert(green >= 0);
+  assert(green < 256);
+  assert(blue >= 0);
+  assert(blue < 256);
 
   assert(intensity >= 0.0
     && "An LED intensity must be a positive value");
@@ -56,7 +66,7 @@ ribi::Led::Led(
 
 std::string ribi::Led::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::Led::GetVersionHistory() noexcept
@@ -64,39 +74,45 @@ std::vector<std::string> ribi::Led::GetVersionHistory() noexcept
   return {
     "2011-04-10: Version 1.0: initial version",
     "2011-08-17: Version 1.1: emit a signal when the color is changed",
-    "2011-08-20: Version 1.2: added operator<<"
+    "2011-08-20: Version 1.2: added operator<<",
+    "2014-06-20: Version 1.3: changed color data types from unsigned char to int"
   };
 }
 
 void ribi::Led::SetColor(
-  const unsigned char red,
-  const unsigned char green,
-  const unsigned char blue)
+  const int red,
+  const int green,
+  const int blue
+) noexcept
 {
   SetRed(red);
   SetGreen(green);
   SetBlue(blue);
 }
 
-void ribi::Led::SetBlue(const unsigned char blue)
+void ribi::Led::SetBlue(const int blue) noexcept
 {
+  assert(blue >= 0);
+  assert(blue < 256);
   if (m_blue != blue)
   {
     m_blue = blue;
-    m_signal_color_changed();
+    m_signal_color_changed(this);
   }
 }
 
-void ribi::Led::SetGreen(const unsigned char green)
+void ribi::Led::SetGreen(const int green) noexcept
 {
+  assert(green >= 0);
+  assert(green < 256);
   if (m_green != green)
   {
     m_green = green;
-    m_signal_color_changed();
+    m_signal_color_changed(this);
   }
 }
 
-void ribi::Led::SetIntensity(const double intensity)
+void ribi::Led::SetIntensity(const double intensity) noexcept
 {
   assert(intensity >= 0.0
     && "An LED intensity must be a positive value");
@@ -106,16 +122,18 @@ void ribi::Led::SetIntensity(const double intensity)
   {
     m_intensity = intensity;
     //Emit signal
-    m_signal_intensity_changed();
+    m_signal_intensity_changed(this);
   }
 }
 
-void ribi::Led::SetRed(const unsigned char red)
+void ribi::Led::SetRed(const int red) noexcept
 {
+  assert(red >= 0);
+  assert(red < 256);
   if (m_red != red)
   {
     m_red = red;
-    m_signal_color_changed();
+    m_signal_color_changed(this);
   }
 }
 
@@ -123,32 +141,62 @@ void ribi::Led::SetRed(const unsigned char red)
 void ribi::Led::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Led::Test");
-  TRACE("Finished ribi::Led::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 
-std::ostream& ribi::operator<<(std::ostream& os, const Led& led)
+std::string ribi::Led::ToStr() const noexcept
 {
-  os
+  std::stringstream s;
+  s << (*this);
+  return s.str();
+}
+
+std::string ribi::Led::ToXml() const noexcept
+{
+  std::stringstream s;
+  s
     << "<Led>"
     << "<blue>"
-      << static_cast<int>(led.m_blue)
+      << m_blue
     << "</blue>"
     << "<green>"
-      << static_cast<int>(led.m_green)
+      << m_green
     << "</green>"
     << "<intensity>"
-      << led.m_intensity
+      << m_intensity
     << "</intensity>"
     << "<red>"
-      << static_cast<int>(led.m_red)
+      << m_red
     << "</red>"
     << "</Led>";
+  return s.str();
+
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const Led& led) noexcept
+{
+  os
+    << led.m_intensity << " ("
+    << led.m_red << ", "
+    << led.m_green << ", "
+    << led.m_blue << ")"
+  ;
   return os;
 }
+
+bool ribi::operator==(const Led& lhs, const Led& rhs) noexcept
+{
+  return
+       lhs.GetBlue()      == rhs.GetBlue()
+    && lhs.GetGreen()     == rhs.GetGreen()
+    && lhs.GetIntensity() == rhs.GetIntensity()
+    && lhs.GetRed()       == rhs.GetRed()
+  ;
+}
+
 

@@ -1,0 +1,746 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>CodeBreaker</title>
+  <meta name="description" content="C++ CodeBreaker"/>
+  <meta name="keywords" content="C++ CodeBreaker "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCodeBreaker.htm">CodeBreaker</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppCodeBreaker-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppCodeBreaker/CppCodeBreaker.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppCodeBreaker/CppCodeBreaker.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppCodeBreaker.htm">CppCodeBreaker</a><br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppCodeBreaker.htm">CppCodeBreaker</a>/codebreaker.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppCodeBreaker.htm">CppCodeBreaker</a>/codebreaker.h<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppCodeBreaker.htm">CppCodeBreaker</a>/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppCodeBreaker/codebreaker.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppCodeBreaker/codebreaker.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+CodeBreaker, code <b><a href="CppBreak.htm">break</a></b>ing <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2014-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="CppCodeBreaker.htm">CppCodeBreaker</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_CODEBREAKER_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_CODEBREAKER_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<a href="CppComment.htm">///</a>code <b><a href="CppBreak.htm">break</a></b>ing <b><a href="CppClass.htm">class</a></b><br/>
+<b><a href="CppStruct.htm">struct</a></b> CodeBreaker<br/>
+{<br/>
+&nbsp;&nbsp;CodeBreaker();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Returns chi_squared_value and critical_value<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<b><a href="CppIf.htm">if</a></b> (chi_squared_value &lt; critical_value)<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Cannot reject null hypothesis that the measured values "<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<b><a href="CppDo.htm">do</a></b> follow the expected frequencies" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Reject null hypothesis that the measured values "<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "<b><a href="CppDo.htm">do</a></b> follow the expected frequencies" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/}<br/>
+&nbsp;&nbsp;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; CalculateChiSquared(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_measured,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_expected<br/>
+&nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Same as CalculateChiSquared, but now simple<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppReturn.htm">returns</a> a measure of the distance between these<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/frequencies<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> CalculateDistanceSquared(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_measured,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_expected<br/>
+&nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Score the <a href="CppChar.htm">character</a>s frequencies in text<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; GetCharFrequency(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; text) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Tally the <a href="CppChar.htm">character</a>s in text<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; GetCharTally(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; text) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Score the <a href="CppChar.htm">character</a>s frequencies in text<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> GetCharFrequency(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; text, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> period) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Tally the <a href="CppChar.htm">character</a>s in text <b><a href="CppFor.htm">for</a></b> a certain period<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> GetCharTally(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; text, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> period) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> GetExampleDutch() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"In de kansrekening speelt het begrip kansverdeling, waarschijnlijkheidsverdeling "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"of <a href="CppOperatorMinus.htm">-</a>distributie (niet te verwarren met het gelijknamige begrip distributie in de "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"analyse) een centrale rol. Bij een experiment waarin het toeval een rol speelt, "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"geeft de kansverdeling aan hoe de kansen verdeeld zijn. In de theorie wordt hier "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"een zeer specifieke betekenis aan gegeven, maar meer algemeen duidt men met "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"kansverdeling wel het geheel van mogelijke uitkomsten en bijbehorende kansen aan."<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Zo wordt bij een worp met een zuivere dobbelsteen de kansverdeling van het geworpen "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ogenaantal wel beschreven als gelijk aan 1/6 voor elke uitkomst. Strikt genomen is "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dit echter de kansfunctie, waarmee overigens de kansverdeling wel vastgelegd wordt. "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Het formele begrip kansverdeling is voornamelijk van theoretisch belang en zelfs daar "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"zal vaker met de verdelingsfunctie, die geheel bepalend is voor de kansverdeling, "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"gewerkt worden. Bij discrete kansverdelingen wordt de verdelingsfunctie op zijn "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"beurt weer geheel bepaald door een kansfunctie en bij <b><a href="CppContinue.htm">continue</a></b> veranderlijken "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"(absoluut <b><a href="CppContinue.htm">continue</a></b> verdelingsfunctie) door een kansdichtheid."<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> GetExampleEnglish() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"In probability theory and statistics, the chi-squared distribution "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"(also chi-square or x2-distribution) with k degrees of freedom is the "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"distribution of a sum of the squares of k independent standard normal random "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"variables. A special <b><a href="CppCase.htm">case</a></b> of the gamma distribution, it is one of the most "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"widely used probability distributions in inferential statistics, e.g., in "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hypothesis testing or in <a href="CppConstructor.htm">construct</a>ion of confidence intervals. When there "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is a need to contrast it with the noncentral chi-squared distribution, <b><a href="CppThis.htm">this</a></b> "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"distribution is some<a href="CppTime.htm">time</a>s called the central chi-squared distribution. The "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"chi-squared distribution is used in the common chi-squared tests <b><a href="CppFor.htm">for</a></b> goodness "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"of fit of an observed distribution to a theoretical one, the independence of two "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"criteria of classification of qualitative data, and in confidence interval "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"estimation <b><a href="CppFor.htm">for</a></b> a population standard deviation of a normal distribution from "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"a sample standard deviation. M<a href="CppAny.htm">any</a> other statistical tests also use <b><a href="CppThis.htm">this</a></b> "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"distribution, like Friedman's analysis of variance by ranks.";<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; GetLetterFrequencyDutch() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; GetLetterFrequencyEnglish() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GuessCaesarCipherKey(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; secret_text,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; expected_char_frequency <a href="CppOperatorAssign.htm">=</a> GetLetterFrequencyEnglish()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GuessVigenereCipherKeyLength(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; secret_text) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; CalculateRelativeError(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_measured,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_expected<br/>
+&nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_CODEBREAKER_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppCodeBreaker/codebreaker.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppCodeBreaker/codebreaker.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+CodeBreaker, code <b><a href="CppBreak.htm">break</a></b>ing <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2014-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="CppCodeBreaker.htm">CppCodeBreaker</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "code<b><a href="CppBreak.htm">break</a></b>er.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/distributions/chi_squared.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "caesarcipher.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppLoopReader.htm">loopreader</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
+<a href="CppInclude.htm">#include</a> "vigenerecipher.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::CodeBreaker::CodeBreaker()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<br/>
+<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::CodeBreaker::CalculateChiSquared(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_measured,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_expected<br/>
+) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; tally_expected;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; tally_measured;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppChar.htm">char</a></b> c <a href="CppOperatorAssign.htm">=</a> 'a'; c<a href="CppOperatorLessEqual.htm">&lt;=</a>'z'; <a href="CppOperatorIncrement.htm">++</a>c)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tally_measured.push_back(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frequency_measured.count(c) <a href="CppOperatorEqual.htm">==</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: frequency_measured.find(c)-&gt;second<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tally_expected.push_back(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frequency_expected.count(c) <a href="CppOperatorEqual.htm">==</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: frequency_expected.find(c)-&gt;second<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; rel_error <a href="CppOperatorAssign.htm">=</a> CalculateRelativeError(tally_measured,tally_expected);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_categories <a href="CppOperatorAssign.htm">=</a> 26;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_categories <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(tally_measured.size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_categories <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(tally_expected.size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_categories <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(rel_error.size()));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_categories; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tally_measured[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\t"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tally_expected[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\t"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> rel_error[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> significance_level <a href="CppOperatorAssign.htm">=</a> 0.05;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> chi_squared_value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppStdAccumulate.htm">std::accumulate</a>(rel_error.begin(),rel_error.end(),0.0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> degrees_of_freedom<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n_categories)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> 1.0 <a href="CppComment.htm">//</a>We need to calculate the mean ourselves<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> 1.0 <a href="CppComment.htm">//</a>We need to calculate the standard deviation ourselves<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> 1.0; <a href="CppComment.htm">//</a>We need to calculate the sample size ourselves<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::math::chi_squared_distribution&lt;<b><a href="CppDouble.htm">double</a></b>&gt; distribution(degrees_of_freedom);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> critical_value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::quantile(<a href="CppBoost.htm">boost</a>::math::<b><a href="CppCompl.htm">compl</a></b>ement(distribution, significance_level));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Mean size: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> mean<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nStdDev size: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> stdDev<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nSUM observer: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdAccumulate.htm">std::accumulate</a>(tally_measured.begin(),tally_measured.end(), 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nSUM expected: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdAccumulate.htm">std::accumulate</a>(tally_expected.begin(),tally_expected.end(),0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nChi-square value: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> chi_squared_value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nSignificance level: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> significance_level<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nDegrees of freedom: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> degrees_of_freedom<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nCritical value: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> critical_value <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdMake_pair.htm">std::make_pair</a>(chi_squared_value,critical_value);<br/>
+}<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::CodeBreaker::CalculateDistanceSquared(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_left,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_right<br/>
+) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; tally_left;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; tally_right;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppChar.htm">char</a></b> c <a href="CppOperatorAssign.htm">=</a> 'a'; c<a href="CppOperatorLessEqual.htm">&lt;=</a>'z'; <a href="CppOperatorIncrement.htm">++</a>c)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tally_left.push_back(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frequency_left.count(c) <a href="CppOperatorEqual.htm">==</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: frequency_left.find(c)-&gt;second<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tally_right.push_back(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frequency_right.count(c) <a href="CppOperatorEqual.htm">==</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: frequency_right.find(c)-&gt;second<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(tally_left.size() <a href="CppOperatorEqual.htm">==</a> tally_right.size());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(tally_left.size());<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sum_squared <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d <a href="CppOperatorAssign.htm">=</a> tally_left[i] <a href="CppOperatorMinus.htm">-</a> tally_right[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d_squared <a href="CppOperatorAssign.htm">=</a> d * d;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sum_squared <a href="CppOperatorPlusAssign.htm">+=</a> d_squared;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum_squared;<br/>
+}<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::CodeBreaker::CalculateRelativeError(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_measured,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_expected<br/>
+) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(frequency_measured.size() <a href="CppOperatorEqual.htm">==</a> frequency_expected.size());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> frequency_measured.size();<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(sz);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> obs <a href="CppOperatorAssign.htm">=</a> frequency_measured[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> exp <a href="CppOperatorAssign.htm">=</a> frequency_expected[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (exp <a href="CppOperatorEqual.htm">==</a> 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("ERROR");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(exp<a href="CppOperatorNotEqual.htm">!=</a>0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i] <a href="CppOperatorAssign.htm">=</a> ((obs-exp)*(obs-exp))/exp;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::CodeBreaker::GetCharFrequency(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; text) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> m(GetCharTally(text));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum <a href="CppOperatorAssign.htm">=</a> <a href="CppStdAccumulate.htm">std::accumulate</a>(m.begin(),m.end(),0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> init, <b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> init <a href="CppOperatorPlus.htm">+</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sum &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: m)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>(p.first, <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(p.second) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sum)));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n;<br/>
+}<br/>
+<br/>
+<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm">ribi</a>::CodeBreaker::GetCharTally(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; text) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; c:text)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count(c) <a href="CppOperatorEqual.htm">==</a> 0) m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>(c,0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>m[c];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;<br/>
+}<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::CodeBreaker::GetCharFrequency(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; text, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> period) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(period &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v(GetCharTally(text,period));<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>period; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; m <a href="CppOperatorAssign.htm">=</a> v[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum <a href="CppOperatorAssign.htm">=</a> <a href="CppStdAccumulate.htm">std::accumulate</a>(m.begin(),m.end(),0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> init, <b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> init <a href="CppOperatorPlus.htm">+</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sum &gt; 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: m)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>(p.first, <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(p.second) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sum)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(n);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::CodeBreaker::GetCharTally(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; text, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> period) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(period &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v(period);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> length <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(text.size());<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>length; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c <a href="CppOperatorAssign.htm">=</a> text[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; m <a href="CppOperatorAssign.htm">=</a> v[i <a href="CppOperatorModulus.htm">%</a> period];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count(c) <a href="CppOperatorEqual.htm">==</a> 0) m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>(c,0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>m[c];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::CodeBreaker::GetLetterFrequencyDutch() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m;<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('a',0.0749));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('b',0.0158));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('c',0.0124));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('d',0.0593));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('e',0.1891));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('f',0.0081));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('g',0.0340));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('h',0.0238));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('i',0.0650));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('j',0.0146));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('k',0.0225));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('l',0.0357));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('m',0.0221));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('n',0.1003));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('o',0.0606));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('p',0.0157));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('q',0.00009));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('r',0.0641));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('s',0.0373));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('t',0.0679));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('u',0.0199));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('v',0.0285));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('w',0.0152));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('x',0.00040));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('y',0.00035));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('z',0.0139));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;<br/>
+}<br/>
+<br/>
+<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::CodeBreaker::GetLetterFrequencyEnglish() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m;<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('a',0.08167));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('b',0.01492));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('c',0.02782));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('d',0.04253));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('e',0.12702));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('f',0.02228));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('g',0.02015));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('h',0.06094));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('i',0.06966));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('j',0.00153));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('k',0.00772));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('l',0.04025));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('m',0.02406));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('n',0.06749));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('o',0.07507));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('p',0.01929));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('q',0.00095));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('r',0.05987));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('s',0.06327));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('t',0.09056));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('u',0.02758));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('v',0.00978));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('w',0.02360));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('x',0.00150));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('y',0.01974));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>('z',0.00074));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;<br/>
+}<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::CodeBreaker::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::CodeBreaker::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-04-04: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::CodeBreaker::GuessCaesarCipherKey(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; secret_text,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; expected_char_frequency<br/>
+&nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> key=0; key<a href="CppOperatorNotEqual.htm">!=</a>26; <a href="CppOperatorIncrement.htm">++</a>key)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CaesarCipher c(key);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> plain_text <a href="CppOperatorAssign.htm">=</a> c.Deencrypt(secret_text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalculateChiSquared(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetCharFrequency(plain_text),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expected_char_frequency<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(p.first);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>26; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The lower the value the better<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdDistance.htm">std::distance</a>(v.begin(),<a href="CppStdMin_element.htm">std::min_element</a>(v.begin(),v.end()));<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::CodeBreaker::GuessVigenereCipherKeyLength(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; secret_text) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(secret_text.size() &gt; 1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> text_length <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(secret_text.size());<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(text_length);<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; chi_squareds;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> shortest_guess <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=shortest_guess; i<a href="CppOperatorNotEqual.htm">!=</a>text_length; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; text_length);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; chi_squared;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m <a href="CppOperatorAssign.htm">=</a> GetCharFrequency(secret_text,i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_size <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>m_size-1; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(j);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(j <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(j &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; m_left <a href="CppOperatorAssign.htm">=</a> m[j];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> k=j+1; k<a href="CppOperatorNotEqual.htm">!=</a>m_size; <a href="CppOperatorIncrement.htm">++</a>k)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> k <a href="CppOperatorAssign.htm">=</a> j+1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(k);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(k <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(k &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; m_right <a href="CppOperatorAssign.htm">=</a> m[k];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chi_squared.push_back(CalculateDistanceSquared(m_left,m_right));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!chi_squared.empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> average<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppStdAccumulate.htm">std::accumulate</a>(chi_squared.begin(),chi_squared.end(),0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(chi_squared.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;chi_squareds.push_back(average);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(text_length <a href="CppOperatorMinus.htm">-</a> shortest_guess <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(chi_squareds.size()));<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=shortest_guess; i<a href="CppOperatorNotEqual.htm">!=</a>text_length; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorMinus.htm">-</a> shortest_guess <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorMinus.htm">-</a> shortest_guess &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(chi_squareds.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(chi_squareds[i-shortest_guess]);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> <a href="CppStdDistance.htm">std::distance</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;chi_squareds.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdMin_element.htm">std::min_element</a>(chi_squareds.begin(),chi_squareds.end())<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key_length <a href="CppOperatorAssign.htm">=</a> index <a href="CppOperatorPlus.htm">+</a> shortest_guess;<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(index);<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(key_length);<br/>
+&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key_length <a href="CppOperatorAssign.htm">=</a> 1; <a href="CppComment.htm">//</a>For now<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> key_length;<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::CodeBreaker::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CodeBreaker b;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.CalculateChiSquared(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.GetCharFrequency(b.GetExampleEnglish()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.GetLetterFrequencyEnglish()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> chi_squared_value <a href="CppOperatorAssign.htm">=</a> p.first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> critical_value <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(chi_squared_value &lt; critical_value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Cannot reject null hypothesis that the measured values "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "<b><a href="CppDo.htm">do</a></b> follow the expected frequencies"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.CalculateChiSquared(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.GetCharFrequency(b.GetExampleDutch()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.GetLetterFrequencyDutch()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> chi_squared_value <a href="CppOperatorAssign.htm">=</a> p.first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> critical_value <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(chi_squared_value &lt; critical_value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Cannot reject null hypothesis that the measured values "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "<b><a href="CppDo.htm">do</a></b> follow the expected frequencies"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check that encrypted text has significantly different frequencies<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>which fails <b><a href="CppFor.htm">for</a></b> Caesar cipher<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>26; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CaesarCipher c(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> c.Clean(b.GetExampleEnglish());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> encrypted <a href="CppOperatorAssign.htm">=</a> c.Encrypt(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(encrypted);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.CalculateChiSquared(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.GetCharFrequency(encrypted),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.GetLetterFrequencyEnglish()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> chi_squared_value <a href="CppOperatorAssign.htm">=</a> p.first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> critical_value <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(chi_squared_value &lt; critical_value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Cannot reject null hypothesis that the measured values "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "<b><a href="CppDo.htm">do</a></b> follow the expected frequencies"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "(as a Ceasar cipher on a <b><a href="CppShort.htm">short</a></b> text is not conclusive enough)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check that encrypted text has significantly different frequencies<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>which fails <b><a href="CppFor.htm">for</a></b> Vigenere cipher<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>26; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key_length <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (i * i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> key;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>key_length; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key <a href="CppOperatorPlusAssign.htm">+=</a> 'a' <a href="CppOperatorPlus.htm">+</a>( <a href="CppStdRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 26);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;VigenereCipher c(key);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> c.Clean(b.GetExampleEnglish());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> encrypted <a href="CppOperatorAssign.htm">=</a> c.Encrypt(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(encrypted);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.CalculateChiSquared(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.GetCharFrequency(encrypted),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.GetLetterFrequencyEnglish()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> chi_squared_value <a href="CppOperatorAssign.htm">=</a> p.first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> critical_value <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(chi_squared_value &lt; critical_value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Cannot reject null hypothesis that the measured values "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "<b><a href="CppDo.htm">do</a></b> follow the expected frequencies"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "(as a Vigenere cipher on a <b><a href="CppShort.htm">short</a></b> text is not conclusive enough)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Guess the Ceasar cipher key<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> key=0; key<a href="CppOperatorNotEqual.htm">!=</a>26; <a href="CppOperatorIncrement.htm">++</a>key)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CaesarCipher c(key);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> CaesarCipher::Clean(b.GetExampleEnglish());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> secret_text <a href="CppOperatorAssign.htm">=</a> c.Encrypt(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b.GuessCaesarCipherKey(secret_text) <a href="CppOperatorEqual.htm">==</a> key);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Guess the Vigenere cipher key length<br/>
+&nbsp;&nbsp;<a href="CppDefine.htm">#define</a> FIXING_ISSUE_175<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a>&nbsp;&nbsp;FIXING_ISSUE_175<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> length=2; length<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorIncrement.htm">++</a>length)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> key(length,'a');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>length; <a href="CppOperatorIncrement.htm">++</a>i) { key[i] <a href="CppOperatorAssign.htm">=</a> 'a' <a href="CppOperatorPlus.htm">+</a> (<a href="CppStdRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 26); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;VigenereCipher c(key);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> VigenereCipher::Clean(b.GetExampleEnglish());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> secret_text <a href="CppOperatorAssign.htm">=</a> c.Encrypt(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> guess_length <a href="CppOperatorAssign.htm">=</a> b.GuessVigenereCipherKeyLength(secret_text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(guess_length <a href="CppOperatorEqual.htm">==</a> length);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a><a href="CppIfdef.htm">#ifdef</a> FIXING_ISSUE_175<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

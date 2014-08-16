@@ -18,10 +18,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppFileIo.htm
 //---------------------------------------------------------------------------
-#ifdef REALLY_USE_FILENAME
+#ifdef REALLY_USE_RIBI_FILENAME
 
-#ifndef FILENAME_H
-#define FILENAME_H
+#ifndef RIBI_FILENAME_H
+#define RIBI_FILENAME_H
 
 #include <iosfwd>
 #include <string>
@@ -68,6 +68,6 @@ std::ostream& operator<<(std::ostream& os, const Filename& filename);
 } //~namespace fileio
 } //~namespace ribi
 
-#endif // FILENAME_H
+#endif // RIBI_FILENAME_H
 
 #endif //#ifdef REALLY_USE_FILENAME

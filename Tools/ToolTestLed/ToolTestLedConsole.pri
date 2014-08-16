@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestLed/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestLed/ToolTestLed.qrc

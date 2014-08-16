@@ -23,7 +23,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::TestFunctionParserMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -83,7 +85,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestFunctionParserMenuDialog::GetPr
 }
 std::string ribi::TestFunctionParserMenuDialog::GetVersion() const noexcept
 {
-  return "2.4";
+  return "2.5";
 }
 
 std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory() const noexcept
@@ -94,7 +96,8 @@ std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory()
     "2011-06-24: Version 2.1: added web version",
     "2011-08-31: Version 2.2: added image to Welcome to web version",
     "2013-04-22: Version 2.3: added image to Welcome to desktop version",
-    "2013-11-05: version 2.4: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 2.4: conformized for ProjectRichelBilderbeekConsole",
+    "2014-07-04: version 2.5: added console version"
   };
 }
 
@@ -102,11 +105,10 @@ std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory()
 void ribi::TestFunctionParserMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestFunctionParserMenuDialog::Test");
-  TRACE("Finished ribi::TestFunctionParserMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

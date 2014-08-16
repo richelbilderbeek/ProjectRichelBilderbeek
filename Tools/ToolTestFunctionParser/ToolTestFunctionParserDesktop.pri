@@ -1,8 +1,5 @@
 include(../../Tools/ToolTestFunctionParser/ToolTestFunctionParserConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolTestFunctionParser/ToolTestFunctionParser.qrc
-
 FORMS += \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.ui \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermaindialog.ui

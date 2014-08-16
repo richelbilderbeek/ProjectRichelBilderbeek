@@ -1,4 +1,7 @@
 include(../../Tools/ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryConsole.pri)
-SOURCES +=
-HEADERS +=
 
+SOURCES += \
+    ../../Tools/ToolRichelBilderbeekGallery/wtrichelbilderbeekgallerymenudialog.cpp
+
+HEADERS  += \
+    ../../Tools/ToolRichelBilderbeekGallery/wtrichelbilderbeekgallerymenudialog.h

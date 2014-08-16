@@ -26,10 +26,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
-
+#include "richelbilderbeekprogram.h"
 #include "shape.h"
 #include "shapewidget.h"
 #include "trace.h"
+#include "testtimer.h"
 
 #include <QFile>
 
@@ -127,11 +128,10 @@ std::vector<std::string> ribi::TestShapeMenuDialog::GetVersionHistory() const no
 void ribi::TestShapeMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestShapeMenuDialog::Test");
-  TRACE("Finished ribi::TestShapeMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

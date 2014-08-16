@@ -28,8 +28,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 
 #include "fileio.h"
-#include "trace.h"
 #include "qrcfile.h"
+#include "richelbilderbeekprogram.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -135,7 +136,7 @@ void ribi::TestQrcFileMenuDialog::Test() noexcept
 {
   //Test exactly once
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

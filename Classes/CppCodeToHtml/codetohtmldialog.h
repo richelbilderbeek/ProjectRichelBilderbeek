@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#ifndef CODETOHTMLDIALOG_H
-#define CODETOHTMLDIALOG_H
+#ifndef RIBI_CODETOHTMLDIALOG_H
+#define RIBI_CODETOHTMLDIALOG_H
 
 #include <string>
 #include <vector>
@@ -43,48 +43,49 @@ struct Info;
 ///- folders
 struct Dialog
 {
+  Dialog() noexcept;
+  ~Dialog() noexcept;
+
   ///Convert a file to an HTML page
   ///The file type will be deduced from the file name
-  static std::vector<std::string> FileToHtml(
-    const std::string& file_name) noexcept;
+  std::vector<std::string> FileToHtml(
+    const std::string& file_name) const noexcept;
 
   ///Convert a folder to an HTML page
   ///The project type will be deduced from the folder its content
-  static std::vector<std::string> FolderToHtml(
+  std::vector<std::string> FolderToHtml(
     const std::string& folder_name
-    ) noexcept;
+    ) const noexcept;
 
   ///Convert a snippet to an HTML page
-  static std::vector<std::string> SnippetToHtml(
+  std::vector<std::string> SnippetToHtml(
     const std::vector<std::string>& code,
     const SnippetType snippet_type
-  ) noexcept;
+  ) const noexcept;
 
   private:
-  Dialog() = delete;
-  ~Dialog() noexcept {}
   friend void boost::checked_delete<>(Dialog*);
   friend void boost::checked_delete<>(const Dialog*);
 
   ///Extract the page name, from, for example
   /// '/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml'
   /// to 'ToolCodeToHtml'
-  static std::string ExtractPageName(const std::string& s) noexcept;
+  std::string ExtractPageName(const std::string& s) const noexcept;
 
-  static std::vector<std::string> FoamFolderToHtml(
+  std::vector<std::string> FoamFolderToHtml(
     const std::string& folder_name
-    ) noexcept;
+    ) const noexcept;
 
-  static std::vector<std::string> GetProFilesInFolder(
-    const std::string& folder);
+  std::vector<std::string> GetProFilesInFolder(
+    const std::string& folder) const noexcept;
 
-  static std::vector<std::string> ProFolderToHtml(
+  std::vector<std::string> ProFolderToHtml(
     const std::string& folder_name
-    ) noexcept;
+    ) const noexcept;
 
-  static std::vector<std::string> TextFolderToHtml(
+  std::vector<std::string> TextFolderToHtml(
     const std::string& folder_name
-    ) noexcept;
+    ) const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -95,4 +96,4 @@ struct Dialog
 } //~namespace c2h
 } //~namespace ribi
 
-#endif // CODETOHTMLDIALOG_H
+#endif // RIBI_CODETOHTMLDIALOG_H

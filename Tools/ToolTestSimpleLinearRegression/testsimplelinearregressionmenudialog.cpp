@@ -5,6 +5,8 @@
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "simplelinearregression.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -81,11 +83,10 @@ std::vector<std::string> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVers
 void ribi::ToolTestSimpleLinearRegressionMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolTestSimpleLinearRegressionMenuDialog::Test");
-  TRACE("Finished ribi::ToolTestSimpleLinearRegressionMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

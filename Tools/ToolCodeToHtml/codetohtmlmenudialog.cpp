@@ -21,7 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "codetohtmlmenudialog.h"
 
 #include <algorithm>
@@ -33,11 +33,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include "codetohtml.h"
+#include "codetohtmldialog.h"
+#include "codetohtmlinfo.h"
 #include "fileio.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
-#include "codetohtmldialog.h"
-#include "codetohtmlinfo.h"
+#include "testtimer.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -120,13 +122,16 @@ int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::stri
     std::cout << "Source is directory: no" << std::endl;
   }
 
-  const std::function<const std::vector<std::string>(const std::string&)> f {
-    ribi::fileio::FileIo().IsRegularFile(source) ? &Dialog::FileToHtml : &Dialog::FolderToHtml
+  const std::function<const std::vector<std::string>(const Dialog*, const std::string&)> f {
+      ribi::fileio::FileIo().IsRegularFile(source)
+    ? &Dialog::FileToHtml
+    : &Dialog::FolderToHtml
   };
+  Dialog d;
 
   try
   {
-    const std::vector<std::string> v = f(source);
+    const std::vector<std::string> v = f(&d,source);
     const std::string output_filename = ribi::fileio::FileIo().GetFileBasename(source) + ".htm";
     assert(output_filename != ".htm");
     std::cout << "Output written to '" << output_filename << "'" << std::endl;
@@ -153,16 +158,19 @@ ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
-    "the 26th of November 2013",
+    "the 11th of August 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
     GetVersionHistory()
   };
+  a.AddLibrary("CodeToHtml (class) version: " + c2h::Info::GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
+  a.AddLibrary("HTML Tidy for Linux/x86 released on 25 March 2009");
   return a;
 }
 
@@ -189,7 +197,7 @@ boost::shared_ptr<const ribi::Program> ribi::c2h::CodeToHtmlMenuDialog::GetProgr
 
 std::string ribi::c2h::CodeToHtmlMenuDialog::GetVersion() const noexcept
 {
-  return "3.0";
+  return "3.3";
 }
 
 std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
@@ -231,7 +239,10 @@ std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() co
     "2013-09-17: version 2.8: compile with -Weffc++, fixed bug due to this, removed recursive replacements, cleaned info, do tests at run-time, added reading .pri files"
     "2013-09-26: version 2.9: use of boost::checked_delete on all classes, removed use of Boost.Program_options"
     "2013-10-25: version 2.10: console application callable from ProjectRichelBilderbeek",
-    "2013-11-26: version 3.0: improved interface and architecture, support for OpenFOAM projects"
+    "2013-11-26: version 3.0: improved interface and architecture, support for OpenFOAM projects",
+    "2014-04-27: version 3.1: prevents huge HTML file creation",
+    "2014-07-16: version 3.2: 4000 replacements, increased use of C++11, link std::x to CppStdX.htm",
+    "2014-08-11: version 3.3: increased use of TDD"
   };
   return v;
 }
@@ -240,11 +251,18 @@ std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() co
 void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::c2h::CodeToHtmlMenuDialog::Test()");
+  {
+    fileio::FileIo();
+    { boost::shared_ptr<c2h::Info> info(new c2h::Info); }
+    try { QrcFile(""); } catch(std::logic_error&) { /* OK */ };
+    try {  boost::shared_ptr<QtCreatorProFile> p{new QtCreatorProFile("")}; } catch(std::logic_error&) { /* OK */ };
+    ribi::c2h::Dialog();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
     const std::vector<std::string> html {
@@ -255,39 +273,40 @@ void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
     const std::string html_str = html[0];
     assert(html_str.substr(0,no_info_str.size()) == no_info_str);
   }
-  //Every Program must have some CodeToHtml info
-  {
-    const std::vector<boost::shared_ptr<Program> > programs { Program::GetAllPrograms() };
-    std::vector<std::string> pagenames;
-    std::transform(programs.begin(),programs.end(),std::back_inserter(pagenames),
-      [](const boost::shared_ptr<Program> program)
-      {
-        const std::string s = program->GetUrl();
-        assert(s.substr(s.size() - 4, 4) == ".htm");
-        const std::string t = s.substr(0,s.size() - 4);
-        return t;
-      }
-    );
-
-    for (const std::string pagename: pagenames)
-    {
-      const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
-      const std::vector<std::string> html {
-        info->ToHtml(pagename)
-      };
-      assert(!html.empty());
-      const std::string no_info_str = "<!-- No CodeToHtmlInfo about this class";
-      const std::string html_str = html[0];
-      if(html_str.substr(0,no_info_str.size()) == no_info_str)
-      {
-        TRACE("ERROR");
-        TRACE("No info for page:");
-        TRACE(pagename);
-      }
-      assert(html_str.substr(0,no_info_str.size()) != no_info_str
-        && "For every programType there must be HTML info");
-    }
-  }
-  TRACE("Finished ribi::c2h::CodeToHtmlMenuDialog::Test()");
 }
 #endif
+
+void ribi::c2h::CodeToHtmlMenuDialog::TestAllProgramsHaveInfo() noexcept
+{
+  //Every Program must have some CodeToHtml info
+  const std::vector<boost::shared_ptr<Program> > programs { Program::GetAllPrograms() };
+  std::vector<std::string> pagenames;
+  std::transform(programs.begin(),programs.end(),std::back_inserter(pagenames),
+    [](const boost::shared_ptr<Program> program)
+    {
+      const std::string s = program->GetUrl();
+      assert(s.substr(s.size() - 4, 4) == ".htm");
+      const std::string t = s.substr(0,s.size() - 4);
+      return t;
+    }
+  );
+
+  for (const std::string pagename: pagenames)
+  {
+    const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
+    const std::vector<std::string> html {
+      info->ToHtml(pagename)
+    };
+    assert(!html.empty());
+    const std::string no_info_str = "<!-- No CodeToHtmlInfo about this class";
+    const std::string html_str = html[0];
+    if(html_str.substr(0,no_info_str.size()) == no_info_str)
+    {
+      TRACE("ERROR");
+      TRACE("No info for page:");
+      TRACE(pagename);
+    }
+    assert(html_str.substr(0,no_info_str.size()) != no_info_str
+      && "For every programType there must be HTML info");
+  }
+}

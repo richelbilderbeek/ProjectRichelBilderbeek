@@ -98,7 +98,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::mazeCreatorVcl: p.reset(new ProgramMazeCreatorVcl); break;
     case ProgramType::maziak: p.reset(new ProgramMaziak); break;
     case ProgramType::maziakVcl: p.reset(new ProgramMaziakVcl); break;
-    case ProgramType::metZnDrieen: p.reset(new ProgramMetZnDrieen); break;
+    //case ProgramType::metZnDrieen: p.reset(new ProgramMetZnDrieen); break;
     case ProgramType::metZnDrieenVcl: p.reset(new ProgramMetZnDrieenVcl); break;
     case ProgramType::midiLessonCreator: p.reset(new ProgramMidiLessonCreator); break;
     case ProgramType::morpher: p.reset(new ProgramMorpher); break;
@@ -109,12 +109,13 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::ndsmake: p.reset(new ProgramNdsmake); break;
     case ProgramType::ndsPaint: p.reset(new ProgramNdsPaint); break;
     case ProgramType::paperRockScissors: p.reset(new ProgramPaperRockScissors); break;
+    case ProgramType::paperRockScissorsVcl: p.reset(new ProgramPaperRockScissorsVcl); break;
     case ProgramType::pause: p.reset(new ProgramPause); break;
     case ProgramType::perfectElasticCollision: p.reset(new ProgramPerfectElasticCollision); break;
     case ProgramType::picToCode: p.reset(new ProgramPicToCode); break;
     case ProgramType::pixelator: p.reset(new ProgramPixelator); break;
     case ProgramType::pixelatorVcl: p.reset(new ProgramPixelatorVcl); break;
-    case ProgramType::pokeVolley: p.reset(new ProgramPokeVolley); break;
+    case ProgramType::pokeVolleyVcl: p.reset(new ProgramPokeVolleyVcl); break;
     case ProgramType::pong: p.reset(new ProgramPong); break;
     case ProgramType::preDickAdvocaTor: p.reset(new ProgramPreDickAdvocaTor); break;
     case ProgramType::primeExpert: p.reset(new ProgramPrimeExpert); break;
@@ -129,6 +130,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::refrigeratorPuzzleSolver: p.reset(new ProgramRefrigeratorPuzzleSolver); break;
     case ProgramType::regexTester: p.reset(new ProgramRegexTester); break;
     case ProgramType::reversi: p.reset(new ProgramReversi); break;
+    case ProgramType::reversiVcl: p.reset(new ProgramReversiVcl); break;
     case ProgramType::richelBilderbeekGallery: p.reset(new ProgramRichelBilderbeekGallery); break;
     case ProgramType::richelbilderbeekNlSitemapGenerator: p.reset(new ProgramRichelBilderbeekNlSitemapGenerator); break;
     case ProgramType::rubiksClock: p.reset(new ProgramRubiksClock); break;
@@ -141,11 +143,11 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::simImmuneResponse: p.reset(new ProgramSimImmuneResponse); break;
     case ProgramType::simMysteryMachine: p.reset(new ProgramSimMysteryMachine); break;
     case ProgramType::simplifyNewick: p.reset(new ProgramSimplifyNewick); break;
-    case ProgramType::simPredator: p.reset(new ProgramSimPredator); break;
+    case ProgramType::simPredatorVcl: p.reset(new ProgramSimPredatorVcl); break;
     case ProgramType::simStagecraft: p.reset(new ProgramSimStagecraft); break;
     case ProgramType::soaSim: p.reset(new ProgramSoaSim); break;
     case ProgramType::solvePuzzleX: p.reset(new ProgramSolvePuzzleX); break;
-    case ProgramType::spaceHarry: p.reset(new ProgramSpaceHarry); break;
+    //case ProgramType::spaceHarry: p.reset(new ProgramSpaceHarry); break;
     case ProgramType::spaceHarryVcl: p.reset(new ProgramSpaceHarryVcl); break;
     case ProgramType::staircaseCardCreator: p.reset(new ProgramStaircaseCardCreator); break;
     case ProgramType::stateObserver: p.reset(new ProgramStateObserver); break;
@@ -186,6 +188,8 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::testNewickVector: p.reset(new ProgramTestNewickVector); break;
     case ProgramType::testOpenQuestion: p.reset(new ProgramTestOpenQuestion); break;
     case ProgramType::testPlane: p.reset(new ProgramTestPlane); break;
+    case ProgramType::testPolyFile: p.reset(new ProgramTestPolyFile); break;
+    case ProgramType::testPolyFileFromPolygons: p.reset(new ProgramTestPolyFileFromPolygons); break;
     case ProgramType::testPylos: p.reset(new ProgramTestPylos); break;
     case ProgramType::testQrcFile: p.reset(new ProgramTestQrcFile); break;
     case ProgramType::testQtArrowItems: p.reset(new ProgramTestQtArrowItems); break;
@@ -196,7 +200,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::testQtModels: p.reset(new ProgramTestQtModels); break;
     case ProgramType::testQtRoundedEditRectItem: p.reset(new ProgramTestQtRoundedEditRectItem); break;
     case ProgramType::testQtRoundedRectItem: p.reset(new ProgramTestQtRoundedRectItem); break;
-    case ProgramType::testQtRoundedTextRectItem: p.reset(new ProgramTestQtRoundedTextRectItem); break;
+    //case ProgramType::testQtRoundedTextRectItem: p.reset(new ProgramTestQtRoundedTextRectItem); break;
     case ProgramType::testQuestion: p.reset(new ProgramTestQuestion); break;
     case ProgramType::testReversi: p.reset(new ProgramTestReversi); break;
     case ProgramType::testSelectFileDialog: p.reset(new ProgramTestSelectFileDialog); break;
@@ -210,7 +214,8 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::testTicTacToe: p.reset(new ProgramTestTicTacToe); break;
     case ProgramType::testTimedServerPusher: p.reset(new ProgramTestTimedServerPusher); break;
     case ProgramType::testToggleButton: p.reset(new ProgramTestToggleButton); break;
-    case ProgramType::testTriangleMesh: p.reset(new ProgramTestTriangleMesh); break;
+    case ProgramType::testTriangle: p.reset(new ProgramTestTriangle); break;
+    case ProgramType::triangleMeshCreator: p.reset(new ProgramTriangleMeshCreator); break;
     case ProgramType::testTwoDigitNewick: p.reset(new ProgramTestTwoDigitNewick); break;
     case ProgramType::thorVeen: p.reset(new ProgramThorVeen); break;
     case ProgramType::thresholdFilterer: p.reset(new ProgramThresholdFilterer); break;
@@ -227,6 +232,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::vigenereCipher: p.reset(new ProgramVigenereCipher); break;
     case ProgramType::virtualBastard: p.reset(new ProgramVirtualBastard); break;
     case ProgramType::visualAbc: p.reset(new ProgramVisualAbc); break;
+    case ProgramType::wktToSvg: p.reset(new ProgramWktToSvg); break;
     case ProgramType::xeNonZero: p.reset(new ProgramXeNonZero); break;
     case ProgramType::zork: p.reset(new ProgramZork); break;
     case ProgramType::n_types:
@@ -263,15 +269,16 @@ std::string ribi::Program::GetScreenName() const noexcept
   return ribi::ProgramTypes::ProgramTypeToScreenName(this->GetType());
 }
 
-std::vector<boost::shared_ptr<ribi::Program> > ribi::Program::GetAllPrograms() noexcept
+std::vector<boost::shared_ptr<ribi::Program>> ribi::Program::GetAllPrograms() noexcept
 {
   const std::vector<ProgramType> types = ProgramTypes::GetAll();
-  std::vector<boost::shared_ptr<Program> > v;
+  std::vector<boost::shared_ptr<Program>> v;
 
   for (const ProgramType type: types)
   {
     const boost::shared_ptr<Program> p = CreateProgram(type);
     assert(p);
+    assert(p->GetType() == type);
     v.push_back(p);
   }
   assert(v.size() == types.size());

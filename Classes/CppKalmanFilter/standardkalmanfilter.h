@@ -24,7 +24,7 @@ struct StandardKalmanFilter : public KalmanFilter
     { return m_covariance_estimate; }
 
   ///Get the Kalman filter last calculation elements
-  const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const noexcept
+  boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const noexcept
   { return m_last_standard_calculation; }
 
   ///Obtain the (downcasted) calculation
@@ -32,11 +32,11 @@ struct StandardKalmanFilter : public KalmanFilter
     { return m_last_standard_calculation; }
 
   ///Obtain the Kalman filter parameters
-  const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const noexcept
+  boost::shared_ptr<const KalmanFilterParameters> GetParameters() const noexcept
   { return m_standard_parameters; }
 
   ///The downcasted parameters
-  const boost::shared_ptr<const StandardKalmanFilterParameters> GetStandardParameters() const noexcept
+  boost::shared_ptr<const StandardKalmanFilterParameters> GetStandardParameters() const noexcept
     { return m_standard_parameters; }
 
   ///Obtain the number of values a state consists of
@@ -61,11 +61,11 @@ struct StandardKalmanFilter : public KalmanFilter
     const boost::numeric::ublas::vector<double>& input);
 
   ///Let the filter estimate the next state
-  const boost::numeric::ublas::vector<double> PredictState(
+  boost::numeric::ublas::vector<double> PredictState(
     const boost::numeric::ublas::vector<double>& input) const;
 
   ///Let the filter estimate the next estimation error covariance
-  const boost::numeric::ublas::matrix<double> PredictCovariance() const;
+  boost::numeric::ublas::matrix<double> PredictCovariance() const;
 
   private:
   ///Initialize the filter with a first measurent
@@ -93,6 +93,10 @@ struct StandardKalmanFilter : public KalmanFilter
 
   ///x: The (current prediction of the) state
   boost::numeric::ublas::vector<double> m_state_estimate;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

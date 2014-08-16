@@ -10,6 +10,7 @@
 #include "qtaboutdialog.h"
 #include "qtprimeexpertmaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtprimeexpertmenudialog.h"
 #pragma GCC diagnostic pop
@@ -60,11 +61,10 @@ void ribi::QtToolPrimeExpertMenuDialog::on_button_start_clicked()
 void ribi::QtToolPrimeExpertMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolPrimeExpertMenuDialog::Test");
-  TRACE("Finished ribi::QtToolPrimeExpertMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

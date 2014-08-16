@@ -4,6 +4,7 @@
 
 #include "qtaboutdialog.h"
 #include "imagerotatermenudialog.h"
+#include "testtimer.h"
 #include "qtimagerotatermaindialog.h"
 #include "ui_qtimagerotatermenudialog.h"
 #include "trace.h"
@@ -45,12 +46,11 @@ void ribi::QtImageRotaterMenuDialog::on_button_quit_clicked()
 void ribi::QtImageRotaterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtImageRotaterMenuDialog::Test");
   QtImageRotaterMainDialog();
-  TRACE("Finished ribi::QtImageRotaterMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -10,3 +10,5 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Games/GamePylos/Licence.txt
 
+RESOURCES += \
+    ../../Games/GamePylos/GamePylos.qrc

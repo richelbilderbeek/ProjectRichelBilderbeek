@@ -23,7 +23,7 @@ struct FixedLagSmootherKalmanFilterParameters : public KalmanFilterParameters
   int GetLag() const { return m_lag; }
 
   ///The parameters from a standard Kalman filter
-  const boost::shared_ptr<const StandardKalmanFilterParameters> GetStandardParameters() const
+  boost::shared_ptr<const StandardKalmanFilterParameters> GetStandardParameters() const
     { return m_standard_parameters; }
 
   ///Obtain the Kalman filter type as an enum
@@ -48,6 +48,10 @@ struct FixedLagSmootherKalmanFilterParameters : public KalmanFilterParameters
 
   ///The parameters from a standard Kalman filter
   const boost::shared_ptr<const StandardKalmanFilterParameters> m_standard_parameters;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

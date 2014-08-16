@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolMazeCreator/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolMazeCreator/ToolMazeCreator.qrc

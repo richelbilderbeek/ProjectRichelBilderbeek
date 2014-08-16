@@ -2,15 +2,20 @@
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "trace.h"
 
 boost::bimap<ribi::aaf::AminoAcid,std::string> ribi::aaf::AminoAcids::m_map;
 
-boost::bimap<ribi::aaf::AminoAcid,std::string> ribi::aaf::AminoAcids::CreateMap()
+ribi::aaf::AminoAcids::AminoAcids()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+boost::bimap<ribi::aaf::AminoAcid,std::string> ribi::aaf::AminoAcids::CreateMap()
+{
   boost::bimap<AminoAcid,std::string> m;
   m.insert(boost::bimap<AminoAcid,std::string>::value_type(AminoAcid::alanine,"alanine"));
   m.insert(boost::bimap<AminoAcid,std::string>::value_type(AminoAcid::arginine,"arginine"));
@@ -37,7 +42,7 @@ boost::bimap<ribi::aaf::AminoAcid,std::string> ribi::aaf::AminoAcids::CreateMap(
   return m;
 }
 
-std::vector<ribi::aaf::AminoAcid> ribi::aaf::AminoAcids::GetAll() noexcept
+std::vector<ribi::aaf::AminoAcid> ribi::aaf::AminoAcids::GetAll() const noexcept
 {
   const std::vector<AminoAcid> v {
     AminoAcid::alanine,
@@ -71,27 +76,26 @@ std::vector<ribi::aaf::AminoAcid> ribi::aaf::AminoAcids::GetAll() noexcept
 void ribi::aaf::AminoAcids::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::aaf::AminoAcids::Test");
-  const std::vector<AminoAcid> v = GetAll();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const std::vector<AminoAcid> v = AminoAcids().GetAll();
   const std::size_t sz = v.size();
   for (std::size_t i=0; i!=sz; ++i)
   {
     assert(i < v.size());
     const AminoAcid t = v[i];
-    const std::string s = ToStr(t);
+    const std::string s = AminoAcids().ToStr(t);
     assert(!s.empty());
-    const AminoAcid u = ToType(s);
+    const AminoAcid u = AminoAcids().ToType(s);
     assert(u == t);
   }
-  TRACE("Finished ribi::aaf::AminoAcids::Test successfully");
 }
 #endif
 
-std::string ribi::aaf::AminoAcids::ToStr(const AminoAcid type) noexcept
+std::string ribi::aaf::AminoAcids::ToStr(const AminoAcid type) const noexcept
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());
@@ -100,7 +104,7 @@ std::string ribi::aaf::AminoAcids::ToStr(const AminoAcid type) noexcept
   return s;
 }
 
-ribi::aaf::AminoAcid ribi::aaf::AminoAcids::ToType(const std::string& s)
+ribi::aaf::AminoAcid ribi::aaf::AminoAcids::ToType(const std::string& s) const
 {
   if (m_map.right.empty()) m_map = CreateMap();
   assert(!m_map.right.empty());

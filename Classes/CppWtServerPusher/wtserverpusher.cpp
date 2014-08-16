@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtServerPusher, server to broadcast to all its WtServerPusherClients
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,12 +22,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <chrono>
 #include <numeric>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
 
 #include <Wt/WApplication>
 #include <Wt/WServer>
 
 #include "wtserverpusher.h"
+#pragma GCC diagnostic pop
 
 boost::scoped_ptr<ribi::WtServerPusher> ribi::WtServerPusher::m_instance;
 
@@ -74,12 +79,12 @@ ribi::WtServerPusher * ribi::WtServerPusher::GetInstance()
   return m_instance.get();
 }
 
-const std::string ribi::WtServerPusher::GetVersion()
+std::string ribi::WtServerPusher::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::WtServerPusher::GetVersionHistory()
+std::vector<std::string> ribi::WtServerPusher::GetVersionHistory()
 {
   return {
     "2011-08-05: version 1.0: initial version"

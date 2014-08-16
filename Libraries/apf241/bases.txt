@@ -1,0 +1,46 @@
+The library supports at present bases up to base 36 (the digits 0...9 and the
+letters A...Z). If you want more, you must edit the tables in the file
+apfloat.cpp:
+
+// Numeric value to character, up to base 36
+char chartable[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
+                    '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+                    'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+                    'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+
+- This is the table of which symbol each numeric value represents. Like 0
+  is printed out and read as '0', 1 as '1' etc.
+
+// Character to numeric value, up to base 36
+rawtype valuetable[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0, 0,
+                        0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+                        25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 0, 0, 0, 0, 0,
+                        0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+                        25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+- This is the table which numeric value a character corresponds to. Like the
+  table index number 49 (the character '1') corresponds to the value 1.
+
+- Note that the numbers are printed out and read (as the character string
+  constructor) in the base used. The symbol used to define the exponential
+  might confuse things. It's by default 'e' or 'E' (the standard
+  floating-point input/output format). If you use base greater than 14, it
+  will also correspond to a digit. So you probably want to change the
+  symbols used for the exponent (in the file apfloat.cpp):
+
+// Characters used in exponent notation (do not mix with e.g. hex digits)
+const char Expchar[2] = {'e', 'E'};
+
+- Note that the exponent is always expressed in decimal, although it means
+  *Basedigit^exp.

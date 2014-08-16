@@ -65,12 +65,11 @@ struct QtCompetency
   static const std::map<cmap::Competency,QIcon> CreateIconMap();
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTCONCEPTMAPCOMPETENCY_H

@@ -12,6 +12,7 @@
 #include "chessplayer.h"
 #include "chesssquarefactory.h"
 #include "chessscore.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #ifndef NDEBUG
@@ -23,16 +24,14 @@ void ribi::Chess::Board::Test() noexcept
     if (tested) return;
     tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
     {
-      FTRACE("Test Chess::Board");
+      if (verbose) { TRACE("Test Chess::Board"); }
       //Chess::Bitribi::Chess::Board::Test();
       //Chess::Move::Test();
       {
-        FTRACE("Test Board operator=");
+        if (verbose) { TRACE("Test Board operator="); }
         const boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         assert(b);
         boost::shared_ptr<Chess::Board> c(BoardFactory::DeepCopy(*b));
@@ -45,7 +44,7 @@ void ribi::Chess::Board::Test() noexcept
         assert(*b != *d);
       }
       {
-        FTRACE("Test Board operator== with fresh boards");
+        if (verbose) { TRACE("Test Board operator== with fresh boards"); }
         const boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         boost::shared_ptr<Chess::Board> c(BoardFactory::Create());
         assert((*b == *c));
@@ -57,7 +56,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test Board operator== with fresh boards");
+        if (verbose) { TRACE("Test Board operator== with fresh boards"); }
         const boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         boost::shared_ptr<Chess::Board> c(BoardFactory::Create());
         assert((*b == *c));
@@ -69,86 +68,86 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test GetMoves from initial position squares");
+        if (verbose) { TRACE("Test GetMoves from initial position squares"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         assert(!b->CanDoMove(MoveFactory::Create("Ra8 a6"),Player::black));
         assert(!b->CanDoMove(MoveFactory::Create("Ra8 a6"),Player::white));
-        assert(b->GetMoves(SquareFactory::Create("a1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("b1")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("d1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("e1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("f1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("g1")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("h1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("a2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("b2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("d2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("e2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("f2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("g2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("h2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("a8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("b8")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("d8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("e8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("f8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("g8")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("h8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("a7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("b7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("d7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("e7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("f7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("g7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("h7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("a1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("b1")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("d1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("e1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("f1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("g1")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("h1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("a2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("b2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("d2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("e2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("f2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("g2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("h2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("a8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("b8")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("d8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("e8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("f8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("g8")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("h8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("a7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("b7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("d7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("e7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("f7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("g7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("h7")).size() == 2);
       }
       {
-        FTRACE("Test GetVisibleSquares in the initial position");
+        if (verbose) { TRACE("Test GetVisibleSquares in the initial position"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         const BitBoard c = b->GetVisibleSquares(Player::white);
 
-        assert(c.Get(SquareFactory::Create("a1"))); assert(c.Get(SquareFactory::Create("a2"))); assert(c.Get(SquareFactory::Create("a3"))); assert(c.Get(SquareFactory::Create("a4")));
-        assert(c.Get(SquareFactory::Create("b1"))); assert(c.Get(SquareFactory::Create("b2"))); assert(c.Get(SquareFactory::Create("b3"))); assert(c.Get(SquareFactory::Create("b4")));
-        assert(c.Get(SquareFactory::Create("c1"))); assert(c.Get(SquareFactory::Create("c2"))); assert(c.Get(SquareFactory::Create("c3"))); assert(c.Get(SquareFactory::Create("c4")));
-        assert(c.Get(SquareFactory::Create("d1"))); assert(c.Get(SquareFactory::Create("d2"))); assert(c.Get(SquareFactory::Create("d3"))); assert(c.Get(SquareFactory::Create("d4")));
-        assert(c.Get(SquareFactory::Create("e1"))); assert(c.Get(SquareFactory::Create("e2"))); assert(c.Get(SquareFactory::Create("e3"))); assert(c.Get(SquareFactory::Create("e4")));
-        assert(c.Get(SquareFactory::Create("f1"))); assert(c.Get(SquareFactory::Create("f2"))); assert(c.Get(SquareFactory::Create("f3"))); assert(c.Get(SquareFactory::Create("f4")));
-        assert(c.Get(SquareFactory::Create("g1"))); assert(c.Get(SquareFactory::Create("g2"))); assert(c.Get(SquareFactory::Create("g3"))); assert(c.Get(SquareFactory::Create("g4")));
-        assert(c.Get(SquareFactory::Create("h1"))); assert(c.Get(SquareFactory::Create("h2"))); assert(c.Get(SquareFactory::Create("h3"))); assert(c.Get(SquareFactory::Create("h4")));
-        assert(!c.Get(SquareFactory::Create("a5"))); assert(!c.Get(SquareFactory::Create("a6"))); assert(!c.Get(SquareFactory::Create("a7"))); assert(!c.Get(SquareFactory::Create("a8")));
-        assert(!c.Get(SquareFactory::Create("b5"))); assert(!c.Get(SquareFactory::Create("b6"))); assert(!c.Get(SquareFactory::Create("b7"))); assert(!c.Get(SquareFactory::Create("b8")));
-        assert(!c.Get(SquareFactory::Create("c5"))); assert(!c.Get(SquareFactory::Create("c6"))); assert(!c.Get(SquareFactory::Create("c7"))); assert(!c.Get(SquareFactory::Create("c8")));
-        assert(!c.Get(SquareFactory::Create("d5"))); assert(!c.Get(SquareFactory::Create("d6"))); assert(!c.Get(SquareFactory::Create("d7"))); assert(!c.Get(SquareFactory::Create("d8")));
-        assert(!c.Get(SquareFactory::Create("e5"))); assert(!c.Get(SquareFactory::Create("e6"))); assert(!c.Get(SquareFactory::Create("e7"))); assert(!c.Get(SquareFactory::Create("e8")));
-        assert(!c.Get(SquareFactory::Create("f5"))); assert(!c.Get(SquareFactory::Create("f6"))); assert(!c.Get(SquareFactory::Create("f7"))); assert(!c.Get(SquareFactory::Create("f8")));
-        assert(!c.Get(SquareFactory::Create("g5"))); assert(!c.Get(SquareFactory::Create("g6"))); assert(!c.Get(SquareFactory::Create("g7"))); assert(!c.Get(SquareFactory::Create("g8")));
-        assert(!c.Get(SquareFactory::Create("h5"))); assert(!c.Get(SquareFactory::Create("h6"))); assert(!c.Get(SquareFactory::Create("h7"))); assert(!c.Get(SquareFactory::Create("h8")));
+        assert(c.Get(SquareFactory().Create("a1"))); assert(c.Get(SquareFactory().Create("a2"))); assert(c.Get(SquareFactory().Create("a3"))); assert(c.Get(SquareFactory().Create("a4")));
+        assert(c.Get(SquareFactory().Create("b1"))); assert(c.Get(SquareFactory().Create("b2"))); assert(c.Get(SquareFactory().Create("b3"))); assert(c.Get(SquareFactory().Create("b4")));
+        assert(c.Get(SquareFactory().Create("c1"))); assert(c.Get(SquareFactory().Create("c2"))); assert(c.Get(SquareFactory().Create("c3"))); assert(c.Get(SquareFactory().Create("c4")));
+        assert(c.Get(SquareFactory().Create("d1"))); assert(c.Get(SquareFactory().Create("d2"))); assert(c.Get(SquareFactory().Create("d3"))); assert(c.Get(SquareFactory().Create("d4")));
+        assert(c.Get(SquareFactory().Create("e1"))); assert(c.Get(SquareFactory().Create("e2"))); assert(c.Get(SquareFactory().Create("e3"))); assert(c.Get(SquareFactory().Create("e4")));
+        assert(c.Get(SquareFactory().Create("f1"))); assert(c.Get(SquareFactory().Create("f2"))); assert(c.Get(SquareFactory().Create("f3"))); assert(c.Get(SquareFactory().Create("f4")));
+        assert(c.Get(SquareFactory().Create("g1"))); assert(c.Get(SquareFactory().Create("g2"))); assert(c.Get(SquareFactory().Create("g3"))); assert(c.Get(SquareFactory().Create("g4")));
+        assert(c.Get(SquareFactory().Create("h1"))); assert(c.Get(SquareFactory().Create("h2"))); assert(c.Get(SquareFactory().Create("h3"))); assert(c.Get(SquareFactory().Create("h4")));
+        assert(!c.Get(SquareFactory().Create("a5"))); assert(!c.Get(SquareFactory().Create("a6"))); assert(!c.Get(SquareFactory().Create("a7"))); assert(!c.Get(SquareFactory().Create("a8")));
+        assert(!c.Get(SquareFactory().Create("b5"))); assert(!c.Get(SquareFactory().Create("b6"))); assert(!c.Get(SquareFactory().Create("b7"))); assert(!c.Get(SquareFactory().Create("b8")));
+        assert(!c.Get(SquareFactory().Create("c5"))); assert(!c.Get(SquareFactory().Create("c6"))); assert(!c.Get(SquareFactory().Create("c7"))); assert(!c.Get(SquareFactory().Create("c8")));
+        assert(!c.Get(SquareFactory().Create("d5"))); assert(!c.Get(SquareFactory().Create("d6"))); assert(!c.Get(SquareFactory().Create("d7"))); assert(!c.Get(SquareFactory().Create("d8")));
+        assert(!c.Get(SquareFactory().Create("e5"))); assert(!c.Get(SquareFactory().Create("e6"))); assert(!c.Get(SquareFactory().Create("e7"))); assert(!c.Get(SquareFactory().Create("e8")));
+        assert(!c.Get(SquareFactory().Create("f5"))); assert(!c.Get(SquareFactory().Create("f6"))); assert(!c.Get(SquareFactory().Create("f7"))); assert(!c.Get(SquareFactory().Create("f8")));
+        assert(!c.Get(SquareFactory().Create("g5"))); assert(!c.Get(SquareFactory().Create("g6"))); assert(!c.Get(SquareFactory().Create("g7"))); assert(!c.Get(SquareFactory().Create("g8")));
+        assert(!c.Get(SquareFactory().Create("h5"))); assert(!c.Get(SquareFactory().Create("h6"))); assert(!c.Get(SquareFactory().Create("h7"))); assert(!c.Get(SquareFactory().Create("h8")));
         b->DoMove(MoveFactory::Create("e2 e3"),Player::white);
         const BitBoard d = b->GetVisibleSquares(Player::black);
-        assert(d.Get(SquareFactory::Create("a5"))); assert(d.Get(SquareFactory::Create("a6"))); assert(d.Get(SquareFactory::Create("a7"))); assert(d.Get(SquareFactory::Create("a8")));
-        assert(d.Get(SquareFactory::Create("b5"))); assert(d.Get(SquareFactory::Create("b6"))); assert(d.Get(SquareFactory::Create("b7"))); assert(d.Get(SquareFactory::Create("b8")));
-        assert(d.Get(SquareFactory::Create("c5"))); assert(d.Get(SquareFactory::Create("c6"))); assert(d.Get(SquareFactory::Create("c7"))); assert(d.Get(SquareFactory::Create("c8")));
-        assert(d.Get(SquareFactory::Create("d5"))); assert(d.Get(SquareFactory::Create("d6"))); assert(d.Get(SquareFactory::Create("d7"))); assert(d.Get(SquareFactory::Create("d8")));
-        assert(d.Get(SquareFactory::Create("e5"))); assert(d.Get(SquareFactory::Create("e6"))); assert(d.Get(SquareFactory::Create("e7"))); assert(d.Get(SquareFactory::Create("e8")));
-        assert(d.Get(SquareFactory::Create("f5"))); assert(d.Get(SquareFactory::Create("f6"))); assert(d.Get(SquareFactory::Create("f7"))); assert(d.Get(SquareFactory::Create("f8")));
-        assert(d.Get(SquareFactory::Create("g5"))); assert(d.Get(SquareFactory::Create("g6"))); assert(d.Get(SquareFactory::Create("g7"))); assert(d.Get(SquareFactory::Create("g8")));
-        assert(d.Get(SquareFactory::Create("h5"))); assert(d.Get(SquareFactory::Create("h6"))); assert(d.Get(SquareFactory::Create("h7"))); assert(d.Get(SquareFactory::Create("h8")));
-        assert(!d.Get(SquareFactory::Create("a1"))); assert(!d.Get(SquareFactory::Create("a2"))); assert(!d.Get(SquareFactory::Create("a3"))); assert(!d.Get(SquareFactory::Create("a4")));
-        assert(!d.Get(SquareFactory::Create("b1"))); assert(!d.Get(SquareFactory::Create("b2"))); assert(!d.Get(SquareFactory::Create("b3"))); assert(!d.Get(SquareFactory::Create("b4")));
-        assert(!d.Get(SquareFactory::Create("c1"))); assert(!d.Get(SquareFactory::Create("c2"))); assert(!d.Get(SquareFactory::Create("c3"))); assert(!d.Get(SquareFactory::Create("c4")));
-        assert(!d.Get(SquareFactory::Create("d1"))); assert(!d.Get(SquareFactory::Create("d2"))); assert(!d.Get(SquareFactory::Create("d3"))); assert(!d.Get(SquareFactory::Create("d4")));
-        assert(!d.Get(SquareFactory::Create("e1"))); assert(!d.Get(SquareFactory::Create("e2"))); assert(!d.Get(SquareFactory::Create("e3"))); assert(!d.Get(SquareFactory::Create("e4")));
-        assert(!d.Get(SquareFactory::Create("f1"))); assert(!d.Get(SquareFactory::Create("f2"))); assert(!d.Get(SquareFactory::Create("f3"))); assert(!d.Get(SquareFactory::Create("f4")));
-        assert(!d.Get(SquareFactory::Create("g1"))); assert(!d.Get(SquareFactory::Create("g2"))); assert(!d.Get(SquareFactory::Create("g3"))); assert(!d.Get(SquareFactory::Create("g4")));
-        assert(!d.Get(SquareFactory::Create("h1"))); assert(!d.Get(SquareFactory::Create("h2"))); assert(!d.Get(SquareFactory::Create("h3"))); assert(!d.Get(SquareFactory::Create("h4")));
+        assert(d.Get(SquareFactory().Create("a5"))); assert(d.Get(SquareFactory().Create("a6"))); assert(d.Get(SquareFactory().Create("a7"))); assert(d.Get(SquareFactory().Create("a8")));
+        assert(d.Get(SquareFactory().Create("b5"))); assert(d.Get(SquareFactory().Create("b6"))); assert(d.Get(SquareFactory().Create("b7"))); assert(d.Get(SquareFactory().Create("b8")));
+        assert(d.Get(SquareFactory().Create("c5"))); assert(d.Get(SquareFactory().Create("c6"))); assert(d.Get(SquareFactory().Create("c7"))); assert(d.Get(SquareFactory().Create("c8")));
+        assert(d.Get(SquareFactory().Create("d5"))); assert(d.Get(SquareFactory().Create("d6"))); assert(d.Get(SquareFactory().Create("d7"))); assert(d.Get(SquareFactory().Create("d8")));
+        assert(d.Get(SquareFactory().Create("e5"))); assert(d.Get(SquareFactory().Create("e6"))); assert(d.Get(SquareFactory().Create("e7"))); assert(d.Get(SquareFactory().Create("e8")));
+        assert(d.Get(SquareFactory().Create("f5"))); assert(d.Get(SquareFactory().Create("f6"))); assert(d.Get(SquareFactory().Create("f7"))); assert(d.Get(SquareFactory().Create("f8")));
+        assert(d.Get(SquareFactory().Create("g5"))); assert(d.Get(SquareFactory().Create("g6"))); assert(d.Get(SquareFactory().Create("g7"))); assert(d.Get(SquareFactory().Create("g8")));
+        assert(d.Get(SquareFactory().Create("h5"))); assert(d.Get(SquareFactory().Create("h6"))); assert(d.Get(SquareFactory().Create("h7"))); assert(d.Get(SquareFactory().Create("h8")));
+        assert(!d.Get(SquareFactory().Create("a1"))); assert(!d.Get(SquareFactory().Create("a2"))); assert(!d.Get(SquareFactory().Create("a3"))); assert(!d.Get(SquareFactory().Create("a4")));
+        assert(!d.Get(SquareFactory().Create("b1"))); assert(!d.Get(SquareFactory().Create("b2"))); assert(!d.Get(SquareFactory().Create("b3"))); assert(!d.Get(SquareFactory().Create("b4")));
+        assert(!d.Get(SquareFactory().Create("c1"))); assert(!d.Get(SquareFactory().Create("c2"))); assert(!d.Get(SquareFactory().Create("c3"))); assert(!d.Get(SquareFactory().Create("c4")));
+        assert(!d.Get(SquareFactory().Create("d1"))); assert(!d.Get(SquareFactory().Create("d2"))); assert(!d.Get(SquareFactory().Create("d3"))); assert(!d.Get(SquareFactory().Create("d4")));
+        assert(!d.Get(SquareFactory().Create("e1"))); assert(!d.Get(SquareFactory().Create("e2"))); assert(!d.Get(SquareFactory().Create("e3"))); assert(!d.Get(SquareFactory().Create("e4")));
+        assert(!d.Get(SquareFactory().Create("f1"))); assert(!d.Get(SquareFactory().Create("f2"))); assert(!d.Get(SquareFactory().Create("f3"))); assert(!d.Get(SquareFactory().Create("f4")));
+        assert(!d.Get(SquareFactory().Create("g1"))); assert(!d.Get(SquareFactory().Create("g2"))); assert(!d.Get(SquareFactory().Create("g3"))); assert(!d.Get(SquareFactory().Create("g4")));
+        assert(!d.Get(SquareFactory().Create("h1"))); assert(!d.Get(SquareFactory().Create("h2"))); assert(!d.Get(SquareFactory().Create("h3"))); assert(!d.Get(SquareFactory().Create("h4")));
       }
 
       {
-        FTRACE("Test valid moves in the initial position");
+        if (verbose) { TRACE("Test valid moves in the initial position"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         {
           const std::vector<std::string> v
@@ -169,41 +168,41 @@ void ribi::Chess::Board::Test() noexcept
             }
           );
         }
-        assert(b->GetMoves(SquareFactory::Create("a1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("b1")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("a1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("b1")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c1")).size() == 0);
         assert(!b->CanDoMove(MoveFactory::Create("Qd1 d8"),Player::white));
         assert(!b->CanDoMove(MoveFactory::Create("Qd1 d7"),Player::white));
-        assert(b->GetMoves(SquareFactory::Create("d1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("e1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("f1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("g1")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("h1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("a2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("b2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("d2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("e2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("f2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("g2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("h2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("a8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("d1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("e1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("f1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("g1")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("h1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("a2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("b2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("d2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("e2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("f2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("g2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("h2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("a8")).size() == 0);
         /*
-        assert(b->GetMoves(SquareFactory::Create("b8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("c8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("d8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("e8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("f8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("g8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("h8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("a7")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("b7")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("c7")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("d7")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("e7")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("f7")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("g7")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("h7")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("b8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("c8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("d8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("e8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("f8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("g8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("h8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("a7")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("b7")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("c7")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("d7")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("e7")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("f7")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("g7")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("h7")).size() == 0);
         */
         assert(b->GetMoves(Player::white).size() == 20);
 
@@ -212,7 +211,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test moves in the initial position (short notation)");
+        if (verbose) { TRACE("Test moves in the initial position (short notation)"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         {
           const std::vector<std::string> v
@@ -235,7 +234,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test a Pawn on the board at e2");
+        if (verbose) { TRACE("Test a Pawn on the board at e2"); }
         const ribi::Chess::Board::Pieces v =
         {
           PieceFactory().Create('.',Color::white,"e2"),
@@ -250,7 +249,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test a Pawn on the board at e2, blocked by an opponent");
+        if (verbose) { TRACE("Test a Pawn on the board at e2, blocked by an opponent"); }
         const ribi::Chess::Board::Pieces v =
         {
           PieceFactory().Create('.',Color::white,"e2"),
@@ -262,7 +261,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test a Pawn on the board at h4, blocked by an opponent");
+        if (verbose) { TRACE("Test a Pawn on the board at h4, blocked by an opponent"); }
         const ribi::Chess::Board::Pieces v =
         {
           PieceFactory().Create('.',Color::white,"h4"),
@@ -273,7 +272,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test a Knight on the board at d4");
+        if (verbose) { TRACE("Test a Knight on the board at d4"); }
         const ribi::Chess::Board::Pieces v =
         {
           PieceFactory().Create('N',Color::white,"d4"),
@@ -289,7 +288,7 @@ void ribi::Chess::Board::Test() noexcept
 
 
       {
-        FTRACE("Test valid moves for black after 1. e2 e4");
+        if (verbose) { TRACE("Test valid moves for black after 1. e2 e4"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         b->DoMove(MoveFactory::Create("e2 e4"),Player::white);
         {
@@ -311,29 +310,29 @@ void ribi::Chess::Board::Test() noexcept
             }
           );
         }
-        assert(b->GetMoves(SquareFactory::Create("a8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("b8")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("d8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("e8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("f8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("g8")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("h8")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("a7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("b7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("d7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("e7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("f7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("g7")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("h7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("a8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("b8")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("d8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("e8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("f8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("g8")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("h8")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("a7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("b7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("d7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("e7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("f7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("g7")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("h7")).size() == 2);
         assert(b->GetMoves(Player::black).size() == 20);
         assert(!b->IsCheck(Player::black));
         assert(!b->IsCheckmate(Player::black));
       }
 
       {
-        FTRACE("Test valid moves for white after 1. e2 e4 e7 e5");
+        if (verbose) { TRACE("Test valid moves for white after 1. e2 e4 e7 e5"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         b->DoMove(MoveFactory::Create("e2 e4"),Player::white);
         b->DoMove(MoveFactory::Create("e7 e5"),Player::black);
@@ -358,74 +357,74 @@ void ribi::Chess::Board::Test() noexcept
             }
           );
         }
-        assert(b->GetMoves(SquareFactory::Create("a1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("b1")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("d1")).size() == 4);
-        assert(b->GetMoves(SquareFactory::Create("e1")).size() == 1);
-        assert(b->GetMoves(SquareFactory::Create("f1")).size() == 5);
-        assert(b->GetMoves(SquareFactory::Create("g1")).size() == 3);
-        assert(b->GetMoves(SquareFactory::Create("h1")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("a2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("b2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("c2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("d2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("e4")).size() == 0);
-        assert(b->GetMoves(SquareFactory::Create("f2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("g2")).size() == 2);
-        assert(b->GetMoves(SquareFactory::Create("h2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("a1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("b1")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("d1")).size() == 4);
+        assert(b->GetMoves(SquareFactory().Create("e1")).size() == 1);
+        assert(b->GetMoves(SquareFactory().Create("f1")).size() == 5);
+        assert(b->GetMoves(SquareFactory().Create("g1")).size() == 3);
+        assert(b->GetMoves(SquareFactory().Create("h1")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("a2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("b2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("c2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("d2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("e4")).size() == 0);
+        assert(b->GetMoves(SquareFactory().Create("f2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("g2")).size() == 2);
+        assert(b->GetMoves(SquareFactory().Create("h2")).size() == 2);
         assert(b->GetMoves(Player::white).size() == 29);
         assert(!b->IsCheck(Player::white));
         assert(!b->IsCheckmate(Player::white));
       }
 
       {
-        FTRACE("Test Board copy constructor");
+        if (verbose) { TRACE("Test Board copy constructor"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
-        assert( b->GetPiece(SquareFactory::Create("e2")));
-        assert(!b->GetPiece(SquareFactory::Create("e4")));
+        assert( b->GetPiece(SquareFactory().Create("e2")));
+        assert(!b->GetPiece(SquareFactory().Create("e4")));
         b->DoMove(MoveFactory::Create("e2 e4"),Player::white);
         const boost::shared_ptr<Chess::Board> c(b);
         assert(*b == *c);
-        assert(!b->GetPiece(SquareFactory::Create("e2")));
-        assert( b->GetPiece(SquareFactory::Create("e4")));
-        assert(!c->GetPiece(SquareFactory::Create("e2")));
-        assert( c->GetPiece(SquareFactory::Create("e4")));
+        assert(!b->GetPiece(SquareFactory().Create("e2")));
+        assert( b->GetPiece(SquareFactory().Create("e4")));
+        assert(!c->GetPiece(SquareFactory().Create("e2")));
+        assert( c->GetPiece(SquareFactory().Create("e4")));
         b->DoMove(MoveFactory::Create("e7 e5"),Player::black);
         assert(*b != *c);
-        assert( b->GetPiece(SquareFactory::Create("e5")));
-        assert(!b->GetPiece(SquareFactory::Create("e7")));
-        assert(!c->GetPiece(SquareFactory::Create("e5")));
-        assert( c->GetPiece(SquareFactory::Create("e7")));
+        assert( b->GetPiece(SquareFactory().Create("e5")));
+        assert(!b->GetPiece(SquareFactory().Create("e7")));
+        assert(!c->GetPiece(SquareFactory().Create("e5")));
+        assert( c->GetPiece(SquareFactory().Create("e7")));
       }
       {
-        FTRACE("Test EmptyBetween on single piece");
+        if (verbose) { TRACE("Test EmptyBetween on single piece"); }
         const Pieces pieces
           =
           {
             PieceFactory().Create('K',Color::white,"b2")
           };
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create(pieces));
-        assert( b->EmptyBetween(SquareFactory::Create("a1"),SquareFactory::Create("c1")));
-        assert( b->EmptyBetween(SquareFactory::Create("c1"),SquareFactory::Create("a1")));
-        assert( b->EmptyBetween(SquareFactory::Create("a1"),SquareFactory::Create("a3")));
-        assert( b->EmptyBetween(SquareFactory::Create("a3"),SquareFactory::Create("a1")));
-        assert(!b->EmptyBetween(SquareFactory::Create("a1"),SquareFactory::Create("c3")));
-        assert(!b->EmptyBetween(SquareFactory::Create("c3"),SquareFactory::Create("a1")));
-        assert(!b->EmptyBetween(SquareFactory::Create("b1"),SquareFactory::Create("b3")));
-        assert(!b->EmptyBetween(SquareFactory::Create("b3"),SquareFactory::Create("b1")));
-        assert(!b->EmptyBetween(SquareFactory::Create("a2"),SquareFactory::Create("c2")));
-        assert(!b->EmptyBetween(SquareFactory::Create("c2"),SquareFactory::Create("a2")));
-        assert( b->EmptyBetween(SquareFactory::Create("d1"),SquareFactory::Create("d8")));
-        assert( b->EmptyBetween(SquareFactory::Create("d8"),SquareFactory::Create("d1")));
-        assert( b->EmptyBetween(SquareFactory::Create("a4"),SquareFactory::Create("h4")));
-        assert( b->EmptyBetween(SquareFactory::Create("h4"),SquareFactory::Create("a4")));
-        assert( b->EmptyBetween(SquareFactory::Create("b5"),SquareFactory::Create("f1")));
-        assert( b->EmptyBetween(SquareFactory::Create("f1"),SquareFactory::Create("b5")));
+        assert( b->EmptyBetween(SquareFactory().Create("a1"),SquareFactory().Create("c1")));
+        assert( b->EmptyBetween(SquareFactory().Create("c1"),SquareFactory().Create("a1")));
+        assert( b->EmptyBetween(SquareFactory().Create("a1"),SquareFactory().Create("a3")));
+        assert( b->EmptyBetween(SquareFactory().Create("a3"),SquareFactory().Create("a1")));
+        assert(!b->EmptyBetween(SquareFactory().Create("a1"),SquareFactory().Create("c3")));
+        assert(!b->EmptyBetween(SquareFactory().Create("c3"),SquareFactory().Create("a1")));
+        assert(!b->EmptyBetween(SquareFactory().Create("b1"),SquareFactory().Create("b3")));
+        assert(!b->EmptyBetween(SquareFactory().Create("b3"),SquareFactory().Create("b1")));
+        assert(!b->EmptyBetween(SquareFactory().Create("a2"),SquareFactory().Create("c2")));
+        assert(!b->EmptyBetween(SquareFactory().Create("c2"),SquareFactory().Create("a2")));
+        assert( b->EmptyBetween(SquareFactory().Create("d1"),SquareFactory().Create("d8")));
+        assert( b->EmptyBetween(SquareFactory().Create("d8"),SquareFactory().Create("d1")));
+        assert( b->EmptyBetween(SquareFactory().Create("a4"),SquareFactory().Create("h4")));
+        assert( b->EmptyBetween(SquareFactory().Create("h4"),SquareFactory().Create("a4")));
+        assert( b->EmptyBetween(SquareFactory().Create("b5"),SquareFactory().Create("f1")));
+        assert( b->EmptyBetween(SquareFactory().Create("f1"),SquareFactory().Create("b5")));
       }
 
       {
-        FTRACE("Test EmptyBetween after 3rd move of white in Kasparov against the World game");
+        if (verbose) { TRACE("Test EmptyBetween after 3rd move of white in Kasparov against the World game"); }
         const Pieces pieces
           =
           {
@@ -464,14 +463,14 @@ void ribi::Chess::Board::Test() noexcept
             PieceFactory().Create('.',Color::black,"h7")
           };
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create(pieces));
-        assert( b->EmptyBetween(SquareFactory::Create("b5"),SquareFactory::Create("e8")));
-        assert( b->EmptyBetween(SquareFactory::Create("e8"),SquareFactory::Create("b5")));
-        assert( b->EmptyBetween(SquareFactory::Create("b5"),SquareFactory::Create("f1")));
-        assert( b->EmptyBetween(SquareFactory::Create("f1"),SquareFactory::Create("b5")));
+        assert( b->EmptyBetween(SquareFactory().Create("b5"),SquareFactory().Create("e8")));
+        assert( b->EmptyBetween(SquareFactory().Create("e8"),SquareFactory().Create("b5")));
+        assert( b->EmptyBetween(SquareFactory().Create("b5"),SquareFactory().Create("f1")));
+        assert( b->EmptyBetween(SquareFactory().Create("f1"),SquareFactory().Create("b5")));
       }
 
       {
-        FTRACE("Test IsCheck from setup 1");
+        if (verbose) { TRACE("Test IsCheck from setup 1"); }
         const Pieces pieces
           =
           {
@@ -485,21 +484,21 @@ void ribi::Chess::Board::Test() noexcept
         assert(b->IsCheck(Player::black));
       }
       {
-        FTRACE("Test IsCheck by playing");
+        if (verbose) { TRACE("Test IsCheck by playing"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         b->DoMove(MoveFactory::Create("e2 e4"),Player::white);
         b->DoMove(MoveFactory::Create("d7 d6"),Player::black);
-        FTRACE("Test that the move ending is check can be done");
+        if (verbose) { TRACE("Test that the move ending is check can be done"); }
         assert(b->CanDoMove(MoveFactory::Create("Bf1 b5+"),Player::white));
-        FTRACE("Do the move ending is check");
+        if (verbose) { TRACE("Do the move ending is check"); }
         b->DoMove(MoveFactory::Create("Bf1 b5+"),Player::white);
-        FTRACE("Test that the board detects check");
+        if (verbose) { TRACE("Test that the board detects check"); }
         assert(b->IsCheck(Player::black));
       }
 
 
       {
-        FTRACE("Test invalid moves in the initial position");
+        if (verbose) { TRACE("Test invalid moves in the initial position"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         {
           const std::vector<std::string> v
@@ -536,7 +535,7 @@ void ribi::Chess::Board::Test() noexcept
 
       /*
       {
-        FTRACE("Test Fools mate");
+        if (verbose) { TRACE("Test Fools mate"); }
         boost::shared_ptr<Chess::Board> b;
         {
           const std::vector<std::string> v = Moves::GetGameFoolsMate();
@@ -555,7 +554,7 @@ void ribi::Chess::Board::Test() noexcept
       */
 
       {
-        FTRACE("Test Shephards mate");
+        if (verbose) { TRACE("Test Shephards mate"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         Player player = Player::white;
         {
@@ -573,7 +572,7 @@ void ribi::Chess::Board::Test() noexcept
       }
 
       {
-        FTRACE("Test Kasparov Versus The World match");
+        if (verbose) { TRACE("Test Kasparov Versus The World match"); }
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         Player player = Player::white;
         {
@@ -591,9 +590,5 @@ void ribi::Chess::Board::Test() noexcept
         }
       }
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
 }
 #endif

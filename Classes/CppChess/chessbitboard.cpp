@@ -6,6 +6,7 @@
 #include "chessbitboard.h"
 #include "chesssquare.h"
 #include "chesssquarefactory.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::Chess::BitBoard::BitBoard()
@@ -60,24 +61,19 @@ void ribi::Chess::BitBoard::Test() noexcept
     if (tested) return;
     tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  ribi::Chess::SquareFactory();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
     {
-      FTRACE("Test Chess::BitBoard");
+      if (verbose) { TRACE("Test Chess::BitBoard"); }
       BitBoard b;
 
-      assert(!b.Get(SquareFactory::Create("g8")));
-      b.Set(SquareFactory::Create("g8"),true);
-      assert( b.Get(SquareFactory::Create(("g8"))));
-      b.Set(SquareFactory::Create("g8"),false);
-      assert(!b.Get(SquareFactory::Create(("g8"))));
+      assert(!b.Get(SquareFactory().Create("g8")));
+      b.Set(SquareFactory().Create("g8"),true);
+      assert( b.Get(SquareFactory().Create(("g8"))));
+      b.Set(SquareFactory().Create("g8"),false);
+      assert(!b.Get(SquareFactory().Create(("g8"))));
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
 }
 
 std::ostream& ribi::Chess::operator<<(std::ostream& os, const BitBoard& b)

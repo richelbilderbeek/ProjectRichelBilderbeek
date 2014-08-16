@@ -31,7 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ribi::Question::Question(
     const std::string& filename,
     const std::string& question,
-    const std::vector<std::string>& correct_answers)
+    const std::vector<std::string>& correct_answers
+)
 : m_filename(filename),
   m_question(question),
   m_correct_answers(correct_answers)

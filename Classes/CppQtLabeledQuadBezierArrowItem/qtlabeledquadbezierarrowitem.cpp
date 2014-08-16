@@ -19,13 +19,13 @@
 #pragma GCC diagnostic pop
 
 ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
-    const QGraphicsItem *const from,
+    QGraphicsItem *const from,
     const bool tail,
     const std::string& text,
     const bool head,
-    const QGraphicsItem *const to,
+    QGraphicsItem *const to,
     QGraphicsItem *parent)
-  : QtRoundedTextRectItem(text,QtRoundedTextRectItem::Padding(),QFont("monospace",9),parent),
+  : QtRoundedEditRectItem( {text} ,QtRoundedEditRectItem::Padding(),QFont("monospace",9),parent),
     m_arrow(new QtQuadBezierArrowItem(from,tail,this,head,to))
 {
   assert(from);
@@ -35,20 +35,20 @@ ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
-  this->setPos(
+  this->SetCenterPos(
     (from->pos().x() + to->pos().x()) * 0.49,
     (from->pos().y() + to->pos().y()) * 0.49
   );
   assert(m_arrow->GetMidItem());
-  assert(m_arrow->GetMidItem()->pos() == this->pos());
+  assert(m_arrow->GetMidItem()->pos() == this->GetCenterPos());
   assert(m_arrow->GetFromItem()->pos() == from->pos());
   assert(m_arrow->GetToItem()->pos() == to->pos());
 }
 
-QRectF ribi::QtLabeledQuadBezierArrowItem::boundingRect() const
+QRectF ribi::QtLabeledQuadBezierArrowItem::boundingRect() const noexcept
 {
-  return QtRoundedTextRectItem::boundingRect()
-    .united(m_arrow->boundingRect().translated(-this->pos()));
+  return QtRoundedEditRectItem::boundingRect()
+    .united(m_arrow->boundingRect().translated(-this->GetCenterPos()));
 }
 
 std::string ribi::QtLabeledQuadBezierArrowItem::GetVersion() noexcept
@@ -63,18 +63,18 @@ std::vector<std::string> ribi::QtLabeledQuadBezierArrowItem::GetVersionHistory()
   };
 }
 
-void ribi::QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
+void ribi::QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event) noexcept
 {
-  QtRoundedTextRectItem::keyPressEvent(event);
+  QtRoundedEditRectItem::keyPressEvent(event);
   m_arrow->keyPressEvent(event);
 }
 
-void ribi::QtLabeledQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::QtLabeledQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
   assert(m_arrow->GetMidItem());
-  assert(this->pos() == m_arrow->GetMidItem()->pos());
-  painter->translate(-this->pos());
+  assert(this->GetCenterPos() == m_arrow->GetMidItem()->pos());
+  painter->translate(-this->GetCenterPos());
   m_arrow->paint(painter,option,widget);
-  painter->translate(this->pos());
-  QtRoundedTextRectItem::paint(painter,option,widget);
+  painter->translate(this->GetCenterPos());
+  QtRoundedEditRectItem::paint(painter,option,widget);
 }

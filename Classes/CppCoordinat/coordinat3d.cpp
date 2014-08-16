@@ -156,11 +156,11 @@ double ribi::Length(const Coordinat3D& v) noexcept
 void Coordinat3D::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting Coordinat3D::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //CalcCenter, one Coordinat3D
   {
     assert(CalcCenter( { Coordinat3D() } ) == Coordinat3D());
@@ -301,7 +301,6 @@ void Coordinat3D::Test() noexcept
     assert(std::abs(normal.GetZ() - expected.GetZ()) < 0.0001);
   }
 
-  TRACE("Finished Coordinat3D::Test successfully");
 }
 #endif
 

@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "fileio.h"
 #include "qrcfile.h"
+#include "testtimer.h"
 #include "testqrcfilemenudialog.h"
 #include "trace.h"
 #include "ui_qttestqrcfilemaindialog.h"
@@ -75,11 +76,10 @@ void ribi::QtTestQrcFileMainDialog::on_edit_textChanged(const QString &arg1)
 void ribi::QtTestQrcFileMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQrcFileMainDialog::Test");
-  TRACE("Finished ribi::QtTestQrcFileMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

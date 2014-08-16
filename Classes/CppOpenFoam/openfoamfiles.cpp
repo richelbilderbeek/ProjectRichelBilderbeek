@@ -22,6 +22,7 @@
 #include "openfoamownerfile.h"
 #include "openfoamfilenames.h"
 #include "openfoampointsfile.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -340,6 +341,7 @@ boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBoundary(
     std::stringstream s;
     s << "File '" << filename << "' is not an OpenFOAM 'boundary' file: "
       << e.what();
+    TRACE(s.str());
     throw std::runtime_error(s.str());
   }
 }
@@ -720,11 +722,11 @@ void ribi::foam::Files::Swap(const ribi::foam::FaceIndex& lhs, const ribi::foam:
 void ribi::foam::Files::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::Files::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //operator==
   {
     const Files f;
@@ -794,46 +796,61 @@ void ribi::foam::Files::Test() noexcept
     assert(!ribi::fileio::FileIo().IsFolder(temp_folder));
 
   }
-  TRACE("Finished ribi::foam::Files::Test successfully");
 }
 #endif
 
 bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs) noexcept
 {
   //Split function for ease in debugging
+  const bool verbose{false};
   if (*lhs.GetBoundary()!= *rhs.GetBoundary())
   {
-    //TRACE("Boundaries differ:");
-    //TRACE(*lhs.GetBoundary());
-    //TRACE(*rhs.GetBoundary());
+    if (verbose)
+    {
+      TRACE("Boundaries differ:");
+      TRACE(*lhs.GetBoundary());
+      TRACE(*rhs.GetBoundary());
+    }
     return false;
   }
   if (*lhs.GetFaces() != *rhs.GetFaces())
   {
-    //TRACE("Faces differ:");
-    //TRACE(*lhs.GetFaces());
-    //TRACE(*rhs.GetFaces());
+    if (verbose)
+    {
+      TRACE("Faces differ:");
+      TRACE(*lhs.GetFaces());
+      TRACE(*rhs.GetFaces());
+    }
     return false;
   }
   if (*lhs.GetNeighbour() != *rhs.GetNeighbour())
   {
-    //TRACE("Neighbours differ:");
-    //TRACE(*lhs.GetNeighbour());
-    //TRACE(*rhs.GetNeighbour());
+    if (verbose)
+    {
+      TRACE("Neighbours differ:");
+      TRACE(*lhs.GetNeighbour());
+      TRACE(*rhs.GetNeighbour());
+    }
     return false;
   }
   if (*lhs.GetOwner() != *rhs.GetOwner())
   {
-    //TRACE("Owners differ:");
-    //TRACE(*lhs.GetOwner());
-    //TRACE(*rhs.GetOwner());
+    if (verbose)
+    {
+      TRACE("Owners differ:");
+      TRACE(*lhs.GetOwner());
+      TRACE(*rhs.GetOwner());
+    }
     return false;
   }
   if (*lhs.GetPoints() != *rhs.GetPoints())
   {
-    //TRACE("Points differ:");
-    //TRACE(*lhs.GetPoints());
-    //TRACE(*rhs.GetPoints());
+    if (verbose)
+    {
+      TRACE("Points differ:");
+      TRACE(*lhs.GetPoints());
+      TRACE(*rhs.GetPoints());
+    }
     return false;
   }
   return true;

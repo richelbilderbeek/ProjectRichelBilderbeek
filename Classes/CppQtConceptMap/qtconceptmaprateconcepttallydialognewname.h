@@ -95,7 +95,7 @@ private:
 
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTCONCEPTMAPRATECONCEPTTALLYDIALOG_H

@@ -19,11 +19,6 @@ class QtCopyAllTableWidget : public QTableWidget
   protected:
   void keyPressEvent(QKeyEvent *event);
 
-  ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static std::vector<std::string> SeperateString(
-    const std::string& input,
-    const char seperator);
-
 };
 
 } //~namespace ribi

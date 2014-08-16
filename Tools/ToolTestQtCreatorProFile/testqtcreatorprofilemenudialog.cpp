@@ -26,8 +26,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "fileio.h"
-#include "trace.h"
 #include "qtcreatorprofile.h"
+#include "testtimer.h"
+#include "richelbilderbeekprogram.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::TestQtCreatorProFileMenuDialog::TestQtCreatorProFileMenuDialog()
@@ -132,11 +134,12 @@ std::vector<std::string> ribi::TestQtCreatorProFileMenuDialog::GetVersionHistory
 void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestQtCreatorProFileMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
   {
     std::stringstream s;
     s
@@ -152,7 +155,7 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
       new QtCreatorProFile(filename)
     );
     assert(p->GetSources().size() == 1);
-    TRACE(*p);
+    if (verbose) { TRACE(*p); }
 
     fileio::FileIo().DeleteFile(filename);
   }
@@ -193,10 +196,9 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
       new QtCreatorProFile(filename)
     );
     assert(p->GetSources().size() == 1);
-    TRACE(*p);
+    if (verbose) { TRACE(*p); }
 
     fileio::FileIo().DeleteFile(filename);
   }
-  TRACE("Finished ribi::TestQtCreatorProFileMenuDialog::Test successfully");
 }
 #endif

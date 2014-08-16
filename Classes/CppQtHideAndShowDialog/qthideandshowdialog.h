@@ -18,11 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtHideAndShowDialog.htm
 //---------------------------------------------------------------------------
-#ifndef QTHIDEANDSHOWDIALOG_H
-#define QTHIDEANDSHOWDIALOG_H
+#ifndef RIBI_QTHIDEANDSHOWDIALOG_H
+#define RIBI_QTHIDEANDSHOWDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QDialog>
 #pragma GCC diagnostic pop
 
@@ -57,10 +59,10 @@ protected:
   bool m_show_child;
 
   ///closeEvent that emits the close_me signal
-  void closeEvent(QCloseEvent *);
+  void closeEvent(QCloseEvent *) override;
 
   ///Close on escape key
-  virtual void keyPressEvent(QKeyEvent* event);
+  virtual void keyPressEvent(QKeyEvent* event) override;
 
 signals:
   ///Emit the closeEvent of this dialog
@@ -74,4 +76,4 @@ protected slots:
 
 } //~namespace ribi
 
-#endif // QTHIDEANDSHOWDIALOG_H
+#endif // RIBI_QTHIDEANDSHOWDIALOG_H

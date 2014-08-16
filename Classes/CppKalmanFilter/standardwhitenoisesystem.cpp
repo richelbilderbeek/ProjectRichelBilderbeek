@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "standardwhitenoisesystem.h"
 
 #include <iostream>
@@ -62,7 +64,7 @@ void ribi::kalman::StandardWhiteNoiseSystem::GoToNextState(const boost::numeric:
   SetNewCurrentState(new_state);
 }
 
-const boost::numeric::ublas::vector<double> ribi::kalman::StandardWhiteNoiseSystem::Measure() const noexcept
+boost::numeric::ublas::vector<double> ribi::kalman::StandardWhiteNoiseSystem::Measure() const noexcept
 {
   const auto sz = GetCurrentState().size();
   assert(GetCurrentState().size() == m_parameters->GetMeasurementNoise().size());

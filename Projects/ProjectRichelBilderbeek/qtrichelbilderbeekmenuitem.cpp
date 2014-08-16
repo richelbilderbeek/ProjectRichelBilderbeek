@@ -23,8 +23,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QPen>
 
+#include "ribi_random.h"
 #include "richelbilderbeekprogramtypes.h"
 #pragma GCC diagnostic pop
 
@@ -37,11 +39,11 @@ ribi::QtRichelBilderbeekMenuItem::QtRichelBilderbeekMenuItem(const ProgramType p
   pen.setColor(QColor(255,0,0));
   SetFocusPen(pen);
 
-  this->SetText(ProgramTypes::ProgramTypeToScreenName(program_type));
+  this->SetText( { ProgramTypes::ProgramTypeToScreenName(program_type) } );
 
   //Rotation
   {
-    const double f = static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX);
+    const double f = Random().GetFraction();
     const double angle = -3.0 + (6.0 * f);
     this->setRotation(angle);
   }

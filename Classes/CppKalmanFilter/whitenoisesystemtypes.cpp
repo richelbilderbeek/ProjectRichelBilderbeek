@@ -1,14 +1,16 @@
-
-
 #include "whitenoisesystemtypes.h"
 
 boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::WhiteNoiseSystemTypes::m_map;
 
-boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::WhiteNoiseSystemTypes::CreateMap() noexcept
+ribi::kalman::WhiteNoiseSystemTypes::WhiteNoiseSystemTypes()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::WhiteNoiseSystemTypes::CreateMap() noexcept
+{
 
   boost::bimap<WhiteNoiseSystemType,std::string> m;
   m.insert(boost::bimap<WhiteNoiseSystemType,std::string>::value_type(
@@ -20,7 +22,8 @@ boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::White
   return m;
 }
 
-std::vector<ribi::kalman::WhiteNoiseSystemType> ribi::kalman::WhiteNoiseSystemTypes::GetAllTypes() noexcept
+std::vector<ribi::kalman::WhiteNoiseSystemType>
+  ribi::kalman::WhiteNoiseSystemTypes::GetAllTypes() const noexcept
 {
   const std::vector<WhiteNoiseSystemType> v {
     WhiteNoiseSystemType::gaps_filled,
@@ -35,38 +38,34 @@ std::vector<ribi::kalman::WhiteNoiseSystemType> ribi::kalman::WhiteNoiseSystemTy
 void ribi::kalman::WhiteNoiseSystemTypes::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  const std::vector<WhiteNoiseSystemType> v = GetAllTypes();
-  const std::size_t sz = v.size();
-  for (std::size_t i=0; i!=sz; ++i)
+  for (const auto& t: WhiteNoiseSystemTypes().GetAllTypes())
   {
-    assert(i < v.size());
-    const WhiteNoiseSystemType t = v[i];
-    const std::string s = ToStr(t);
+    const std::string s = WhiteNoiseSystemTypes().ToStr(t);
     assert(!s.empty());
-    const WhiteNoiseSystemType u = ToType(s);
+    const auto u = WhiteNoiseSystemTypes().ToType(s);
     assert(u == t);
   }
 }
 #endif
 
-std::string ribi::kalman::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type) noexcept
+std::string ribi::kalman::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type) const noexcept
 {
-  if (m_map.left.empty()) m_map = CreateMap();
+  if (m_map.left.empty()) { m_map = CreateMap(); }
   assert(!m_map.left.empty());
   assert(m_map.left.count(type) == 1);
   const std::string s = m_map.left.find(type)->second;
   return s;
 }
 
-ribi::kalman::WhiteNoiseSystemType ribi::kalman::WhiteNoiseSystemTypes::ToType(const std::string& s)
+ribi::kalman::WhiteNoiseSystemType ribi::kalman::WhiteNoiseSystemTypes::ToType(const std::string& s) const
 {
-  if (m_map.right.empty()) m_map = CreateMap();
+  if (m_map.right.empty()) { m_map = CreateMap(); }
   assert(!m_map.right.empty());
   assert(m_map.right.count(s) == 1);
-  const WhiteNoiseSystemType t = m_map.right.find(s)->second;
+  const auto t = m_map.right.find(s)->second;
   return t;
 }

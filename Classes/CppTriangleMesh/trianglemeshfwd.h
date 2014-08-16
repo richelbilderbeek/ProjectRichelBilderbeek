@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHFWD_H
-#define TRIANGLEMESHFWD_H
+#ifndef RIBI_TRIANGLEMESHFWD_H
+#define RIBI_TRIANGLEMESHFWD_H
 
 namespace ribi {
 
@@ -9,13 +9,16 @@ struct Cell;
 struct CellFactory;
 struct CellsCreator;
 struct CellsCreatorFactory;
+struct Dialog;
 struct Face;
 struct FaceFactory;
 struct Point;
 struct PointFactory;
 struct Template;
+struct TriangleMeshBuilder;
+struct TriangleMeshBuilderImpl;
 
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHFWD_H
+#endif // RIBI_TRIANGLEMESHFWD_H

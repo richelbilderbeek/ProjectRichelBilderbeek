@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ToolTestPolyFileWelcome.png</file>
+        <file>ToolTestPolyFileIcon.png</file>
+    </qresource>
+</RCC>

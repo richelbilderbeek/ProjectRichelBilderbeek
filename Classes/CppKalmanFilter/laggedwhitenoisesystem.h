@@ -37,7 +37,7 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
   void GoToNextState(const boost::numeric::ublas::vector<double>& input);
 
   ///Measure a value from this system with normally distributed noise
-  const boost::numeric::ublas::vector<double> Measure() const noexcept;
+  boost::numeric::ublas::vector<double> Measure() const noexcept;
 
   ///Peek what the real value is
   const boost::numeric::ublas::vector<double>& PeekAtRealState() const noexcept;
@@ -62,7 +62,6 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
   boost::shared_ptr<StandardWhiteNoiseSystem> m_system;
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 };

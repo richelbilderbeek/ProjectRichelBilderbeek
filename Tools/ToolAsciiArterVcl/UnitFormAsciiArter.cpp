@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
   AsciiArter, tool to convert images to ASCII art
-  Copyright (C) 2006  Richèl Bilderbeek
+  Copyright (C) 2006  Richel Bilderbeek
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by

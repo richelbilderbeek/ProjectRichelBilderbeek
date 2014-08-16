@@ -27,14 +27,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <vector>
 
-#include "pvdbcluster.h"
-#include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
-#include "conceptmapexample.h"
-#include "pvdbclusterfactory.h"
+#include "conceptmapconcept.h"
 #include "conceptmapexamplefactory.h"
-#include "conceptmapexamples.h"
+#include "conceptmapexample.h"
 #include "conceptmapexamplesfactory.h"
+#include "conceptmapexamples.h"
+#include "pvdbclusterfactory.h"
+#include "pvdbcluster.h"
 #include "qtconceptmapcompetency.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -382,7 +382,7 @@ void ribi::pvdb::QtPvdbClusterWidget::WriteToCluster()
       const cmap::Competency competency = pvdb_item ? pvdb_item->m_competency : cmap::Competency::uninitialized;
       assert(GetDepth(top->child(j))==1);
       boost::shared_ptr<cmap::Example> p(
-        cmap::ExampleFactory::Create(
+        ribi::cmap::ExampleFactory().Create(
           top->child(j)->text(0).toStdString(),
           competency
         )
@@ -396,7 +396,7 @@ void ribi::pvdb::QtPvdbClusterWidget::WriteToCluster()
     concepts.push_back(
       ConceptFactory().Create(
         name,
-        cmap::ExamplesFactory::Create(examples),
+        cmap::ExamplesFactory().Create(examples),
         pvdb_top ? pvdb_top->m_is_complex : true,
         pvdb_top ? pvdb_top->m_rating_complexity : -1,
         pvdb_top ? pvdb_top->m_rating_concreteness : -1,

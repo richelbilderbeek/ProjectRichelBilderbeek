@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtboenkengame.h"
 #include "ui_qtboenkenmaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -69,8 +70,14 @@ ribi::QtBoenkenMainDialog::QtBoenkenMainDialog(
   this->setFixedHeight(m_boenken->getHeight());
 
   ///Start the timer
-  QObject::connect( m_timer.get(),SIGNAL(timeout()),this,SLOT(onTimer()));
-  QObject::connect( m_timer_countdown.get(),SIGNAL(timeout()),this,SLOT(onCountdownTimer()));
+  QObject::connect(
+    m_timer.get(),&QTimer::timeout,
+    this,&ribi::QtBoenkenMainDialog::onTimer
+  );
+  QObject::connect(
+    m_timer_countdown.get(),&QTimer::timeout,
+    this,&ribi::QtBoenkenMainDialog::onCountdownTimer
+  );
   if (!m_is_training)
   {
     m_timer_countdown->start(1000);
@@ -182,11 +189,10 @@ void ribi::QtBoenkenMainDialog::Paint(
 void ribi::QtBoenkenMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtBoenkenMainDialog::Test");
-  TRACE("Finished ribi::QtBoenkenMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

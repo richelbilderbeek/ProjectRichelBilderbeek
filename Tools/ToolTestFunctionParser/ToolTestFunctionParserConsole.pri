@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestFunctionParser/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestFunctionParser/ToolTestFunctionParser.qrc

@@ -3,9 +3,16 @@
 #include <cassert>
 #include <iostream>
 
-//#include "qtrateconceptmap.h"
+
 #include "conceptmap.h"
 #include "conceptmapwidget.h"
+#include "container.h"
+#include "fileio.h"
+#include "geometry.h"
+#include "plane.h"
+#include "ribi_regex.h"
+#include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::TestConceptMapMenuDialog::TestConceptMapMenuDialog()
@@ -36,14 +43,21 @@ ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestConceptMap",
     "tests the ConceptMap classes",
-    "on the 3rd of December 2013",
+    "on the 7th of August 2014",
     "2013-2014",
     "http://www.richelbilderbeek.nl/ToolTestConceptMap.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("ConceptMap version: " + cmap::ConceptMap::GetVersion());
+
+  a.AddLibrary("apfloat version: 2.4.1");
+  a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
   a.AddLibrary("ConceptMapWidget version: " + cmap::Widget().GetVersion());
-  //a.AddLibrary("Test image from http://sipi.usc.edu");
+  a.AddLibrary("Container version: " + ribi::Container().GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
+  a.AddLibrary("Geometry version: " + Geometry().GetVersion());
+  a.AddLibrary("ribi::Regex version: " + Regex().GetVersion());
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
 
   return a;
 }
@@ -73,13 +87,15 @@ boost::shared_ptr<const ribi::Program> ribi::TestConceptMapMenuDialog::GetProgra
 
 std::string ribi::TestConceptMapMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::TestConceptMapMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2013-12-03: version 1.0: initial version"
+    "2013-12-03: version 1.0: initial version",
+    "2014-05-18: version 1.1: added testing Example",
+    "2014-08-07: version 1.2: increased use of TDD"
   };
 }
 
@@ -87,12 +103,12 @@ std::vector<std::string> ribi::TestConceptMapMenuDialog::GetVersionHistory() con
 void ribi::TestConceptMapMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::TestConceptMapMenuDialog::Test");
   ribi::cmap::Widget();
-  TRACE("ribi::TestConceptMapMenuDialog finished successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  //No test
 }
 #endif

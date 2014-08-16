@@ -47,10 +47,17 @@ ribi::QrcFile::QrcFile(const std::string& filename)
 {
   #ifndef NDEBUG
   Test();
-  if(!ribi::fileio::FileIo().IsRegularFile(filename)) TRACE(filename);
+  #endif
+  if(!ribi::fileio::FileIo().IsRegularFile(filename))
+  {
+    std::stringstream s;
+    s << "ribi::QrcFile::QrcFile exception: file '"
+      << filename << "' is not an existing regular file";
+    throw std::logic_error(s.str().c_str());
+  }
   assert(ribi::fileio::FileIo().IsRegularFile(filename)
     && "QrcFile::QrcFile error: .qrc file must exist");
-  #endif
+  assert(ribi::fileio::FileIo().IsUnixPath(filename));
 
   std::ifstream file(filename.c_str());
 
@@ -89,14 +96,15 @@ ribi::About ribi::QrcFile::GetAbout() noexcept
 
 std::string ribi::QrcFile::GetVersion() noexcept
 {
-  return "1.1";
+  return "2.0";
 }
 
 std::vector<std::string> ribi::QrcFile::GetVersionHistory() noexcept
 {
   return {
     "2012-06-13: version 1.0: initial version",
-    "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive"
+    "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive",
+    "2014-05-02: version 2.0: use UNIX path seperators only"
   };
 }
 
@@ -105,7 +113,7 @@ void ribi::QrcFile::Test() noexcept
 {
   ///Test exactly once
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

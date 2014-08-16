@@ -2039,7 +2039,7 @@ void ribi::Newick::Test()
   //Check if well-formed Newicks are accepted
   {
     const std::vector<std::string> v = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       #ifdef TRACE_REJECTED_NEWICKS
       const std::string debug = "I must be accepted: " + s;
@@ -2054,7 +2054,7 @@ void ribi::Newick::Test()
   {
     #ifndef NDEBUG
     const std::vector<std::string> v = Newick::CreateInvalidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       #ifdef TRACE_REJECTED_NEWICKS
       const std::string debug = "I must be rejected: " + s;
@@ -2218,7 +2218,7 @@ void ribi::Newick::Test()
   //Compare C++98 and C++0x version
   {
     const std::vector<std::string> v = Newick::CreateValidBinaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       const std::vector<int> n = Newick::StringToNewick(s);
       assert(Newick::GetRootBranches(n) == NewickCpp98::GetRootBranches(n));
@@ -2228,7 +2228,7 @@ void ribi::Newick::Test()
   //Check if binary and trinary Newicks are detected correctly
   {
     const std::vector<std::string> v = Newick::CreateValidBinaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       const std::vector<int> n = Newick::StringToNewick(s);
       assert(Newick::IsBinaryNewick(n));
@@ -2237,7 +2237,7 @@ void ribi::Newick::Test()
   //Check if unary Newicks are detected correctly
   {
     const std::vector<std::string> v = Newick::CreateValidUnaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       const std::vector<int> n = Newick::StringToNewick(s);
       assert( Newick::GetLeafMaxArity(n)<=1);
@@ -2249,7 +2249,7 @@ void ribi::Newick::Test()
   //Check if binary Newicks are detected correctly
   {
     const std::vector<std::string> v = Newick::CreateValidBinaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       const std::vector<int> n = Newick::StringToNewick(s);
       assert( Newick::GetLeafMaxArity(n)<=2);
@@ -2261,7 +2261,7 @@ void ribi::Newick::Test()
   //Check if trinary Newicks are detected correctly
   {
     const std::vector<std::string> v = Newick::CreateValidTrinaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       //TRACE(s);
       const std::vector<int> n = Newick::StringToNewick(s);
@@ -2277,7 +2277,7 @@ void ribi::Newick::Test()
     const std::vector<std::vector<int> > n = GetSimplerNewicks(Newick::StringToNewick(s));
     //#define DEBUG_1_BO_1_2_3_BC
     #ifdef  DEBUG_1_BO_1_2_3_BC
-    BOOST_FOREACH(const auto& t,n)
+    for(const auto& t: n)
     {
       TRACE(Newick::NewickToString(t));
     }
@@ -2305,7 +2305,7 @@ void ribi::Newick::Test()
     //#define DEBUG_1_BO_1_3_4_BC
     #ifdef  DEBUG_1_BO_1_3_4_BC
     TRACE(boost::lexical_cast<std::string>(n.size()));
-    BOOST_FOREACH(const auto& t,n)
+    for(const auto& t: n)
     {
       TRACE(Newick::NewickToString(t));
     }
@@ -2326,7 +2326,7 @@ void ribi::Newick::Test()
       = GetSimplerNewicksFrequencyPairs(Newick::StringToNewick(s));
     typedef std::pair<std::vector<int>,int> Pair;
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_1_134
-    BOOST_FOREACH(const Pair& p, n)
+    for(const Pair& p: n)
     {
       std::cout << Newick::NewickToString(p.first) << '\n';
     }
@@ -2351,7 +2351,7 @@ void ribi::Newick::Test()
       Newick::StringToNewick(s));
     //#define DEBUG_BO_1_1_BC_2
     #ifdef  DEBUG_BO_1_1_BC_2
-    BOOST_FOREACH(const auto& t,n)
+    for(const auto& t: n)
     {
       TRACE(Newick::NewickToString(t));
     }
@@ -2370,7 +2370,7 @@ void ribi::Newick::Test()
     const std::vector<Pair> n
       = GetSimplerNewicksFrequencyPairs(Newick::StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_11_2
-    BOOST_FOREACH(const Pair& p, n)
+    for(const Pair& p: n)
     {
       std::clog << Newick::NewickToString(p.first) << '\n';
     }
@@ -2404,7 +2404,7 @@ void ribi::Newick::Test()
     const std::vector<Pair> n
       = GetSimplerNewicksFrequencyPairs(Newick::StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_21_2
-    BOOST_FOREACH(const Pair& p, n)
+    for(const Pair& p: n)
     {
       TRACE(Newick::NewickToString(p.first));
     }
@@ -2441,7 +2441,7 @@ void ribi::Newick::Test()
     const std::vector<Pair> n
       = GetSimplerNewicksFrequencyPairs(Newick::StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_23_4
-    BOOST_FOREACH(const Pair& p, n)
+    for(const Pair& p: n)
     {
       std::cout << Newick::NewickToString(p.first) << '\n';
     }
@@ -2462,7 +2462,7 @@ void ribi::Newick::Test()
   {
     const std::vector<std::string> newicks
       = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& newick_str,newicks)
+    for(const std::string& newick_str: newicks)
     {
       const std::vector<int> newick
         = Newick::StringToNewick(newick_str);

@@ -10,6 +10,7 @@
 
 #include "fileio.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::sema::MainDialog::MainDialog()
@@ -141,11 +142,11 @@ bool ribi::sema::MainDialog::IsWhite(const QRgb& rgb) const noexcept
 void ribi::sema::MainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::SecretMessage::MenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string source_file { fileio::FileIo().GetTempFileName(".png") };
   const std::string message_file { fileio::FileIo().GetTempFileName(".png") };
   //const std::string result_file { fileio::FileIo().GetTempFileName(".png") };
@@ -167,7 +168,6 @@ void ribi::sema::MainDialog::Test() noexcept
   assert(message_again);
   fileio::FileIo().DeleteFile(source_file);
   fileio::FileIo().DeleteFile(message_file);
-  TRACE("Finished ribi::SecretMessage::MainDialog::Test successfully");
 }
 #endif
 

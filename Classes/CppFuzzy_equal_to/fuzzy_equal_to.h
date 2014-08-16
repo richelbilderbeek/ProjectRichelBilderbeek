@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppFuzzy_equal_to.htm
 //---------------------------------------------------------------------------
-#ifndef FUZZY_EQUAL_TO_H
-#define FUZZY_EQUAL_TO_H
+#ifndef RIBI_FUZZY_EQUAL_TO_H
+#define RIBI_FUZZY_EQUAL_TO_H
 
 #include <cassert>
 #include <cmath>
@@ -30,7 +30,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 //Temporarily suppress Weffc++ warning below, because I won't change std::binary_function
 //error: base class 'struct std::binary_function<double, double, bool>' has a non-virtual destructor [-Werror=effc++]
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 
 namespace ribi {
 
@@ -61,12 +64,12 @@ struct fuzzy_equal_to
   }
   static std::vector<std::string> GetVersionHistory()
   {
-    std::vector<std::string> v;
-    v.push_back("2011-02-24: version 1.0: initial version");
-    v.push_back("2012-11-14: version 1.1: set default tolerance to std::numeric_limits<double>::epsilon()");
-    v.push_back("2012-11-18: version 1.2: added #pragma's to file to suppress -Weffc++ warnings");
-    v.push_back("2012-11-18: version 1.3: added #include <limits>");
-    return v;
+    return {
+      "2011-02-24: version 1.0: initial version",
+      "2012-11-14: version 1.1: set default tolerance to std::numeric_limits<double>::epsilon()",
+      "2012-11-18: version 1.2: added #pragma's to file to suppress -Weffc++ warnings",
+      "2012-11-18: version 1.3: added #include <limits>"
+    };
   }
 };
 
@@ -104,4 +107,4 @@ struct fuzzy_equal_to_abs
 
 } //~namespace ribi
 
-#endif // FUZZY_EQUAL_TO_H
+#endif // RIBI_FUZZY_EQUAL_TO_H

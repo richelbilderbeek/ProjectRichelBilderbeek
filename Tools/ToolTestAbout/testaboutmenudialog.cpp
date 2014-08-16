@@ -3,7 +3,9 @@
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::TestAboutMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -77,11 +79,10 @@ std::vector<std::string> ribi::TestAboutMenuDialog::GetVersionHistory() const no
 void ribi::TestAboutMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestAboutMenuDialog::Test");
-  TRACE("Finished ribi::TestAboutMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

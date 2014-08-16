@@ -23,8 +23,21 @@
 namespace ribi {
 namespace trim {
 
-struct Helper
+///Helper class for TriangleMesh
+//It has no state, so Pimpl is unnecessary
+class Helper
 {
+  friend class Cell;
+  friend class CellsCreator;
+  friend class Dialog;
+  friend class Face;
+  friend class FaceFactory;
+  friend class Point;
+  friend class PointFactory;
+  friend class Template;
+  friend class TriangleMeshBuilder;
+  friend class TriangleMeshBuilderImpl;
+
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
@@ -34,12 +47,16 @@ struct Helper
 
   Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Point>>& points) const noexcept;
 
-  std::vector<Coordinat2D> CalcProjection(const std::vector<boost::shared_ptr<const Point>>& v) const;
+  std::vector<Coordinat2D> CalcProjection(
+    const std::vector<boost::shared_ptr<const Point>>& v
+  ) const;
 
   ///Find out the Winding of the edges
   ///knowing that all edges are in the same XY plane
   ///when viewed from above (at an infinite Z coordinat)
-  Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Point>>& points) const noexcept;
+  Winding CalcWindingHorizontal(
+    const std::vector<boost::shared_ptr<const Point>>& points
+  ) const noexcept;
 
   FaceSet CreateEmptyFaceSet() const noexcept;
 
@@ -84,10 +101,23 @@ struct Helper
   12: ( 0,-3) : 12/6 * pi
 
   */
-  double GetAngle(const boost::shared_ptr<const Point> point) const noexcept;
+  //double GetAngle(const boost::shared_ptr<const Point> point) const noexcept;
+
+  ///Obtain all permutations of a std::vector
+  ///Examples:
+  /// {1    } -> { {1} }
+  /// {1,2  } -> { {1,2} , {2,1} }
+  /// {1,2,3} -> { {1,2,3} , {1,3,2} , {2,1,3} , {2,3,1} , {3,1,2} , {3,2,1} }
+  //From http://www.richelbilderbeek.nl/CppGetPermutations.htm
+  std::vector<std::vector<int>> GetPermutations(std::vector<int> v) const noexcept;
 
   bool IsClockwise(
     const std::vector<boost::shared_ptr<const Point>>& points,
+    const Coordinat3D& observer
+  ) const noexcept;
+
+  bool IsClockwise(
+    const std::vector<boost::shared_ptr<Point>>& points,
     const Coordinat3D& observer
   ) const noexcept;
 
@@ -109,6 +139,7 @@ struct Helper
     const std::vector<boost::shared_ptr<const Point>>& points,
     const Coordinat3D& observer
   ) const noexcept;
+
   bool IsCounterClockwise(
     const std::vector<boost::shared_ptr<Point>>& points,
     const Coordinat3D& observer
@@ -128,6 +159,10 @@ struct Helper
 
   ///Order the points so that these are convex
   void MakeConvex(std::vector<boost::shared_ptr<Point>>& points) const noexcept;
+
+  //The points of face must be ordered clockwise, according to the documentation
+  void MakeClockwise(std::vector<boost::shared_ptr<Point>>& points,const Coordinat3D& observer) const noexcept;
+  void MakeCounterClockwise(std::vector<boost::shared_ptr<Point>>& points,const Coordinat3D& observer) const noexcept;
 
   std::function<bool(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs)>
     OrderByIndex() const noexcept;
@@ -179,11 +214,6 @@ bool CanLexicalCast(const std::string& from) noexcept
   }
   return true;
 }
-
-//bool operator==(
-//  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,
-//  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs
-//) noexcept;
 
 bool operator<(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,

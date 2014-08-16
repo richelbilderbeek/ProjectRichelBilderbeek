@@ -18,10 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/CppCanvas.htm
 //---------------------------------------------------------------------------
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "canvas.h"
 
 #include <iostream>
@@ -31,6 +27,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <functional>
 #include <iterator>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/math/constants/constants.hpp>
 #include <boost/algorithm/string/split.hpp>
 
@@ -55,24 +55,6 @@ std::vector<char> ribi::Canvas::GetAsciiArtGradient() noexcept
   return { 'M','N','m','d','h','y','s','o','+','/',':','-','.','`',' ' };
 }
 
-std::vector<std::string> ribi::Canvas::GetRegexMatches(
-  const std::string& s,
-  const QRegExp& r_original)
-{
-  QRegExp r(r_original);
-  r.setMinimal(true); //QRegExp must be non-greedy
-  std::vector<std::string> v;
-  int pos = 0;
-  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
-  {
-    const QString q = r.cap(1);
-    if (q.isEmpty()) break;
-    v.push_back(q.toStdString());
-    pos += r.matchedLength();
-  }
-
-  return v;
-}
 std::string ribi::Canvas::GetVersion() noexcept
 {
   return "1.0";
@@ -127,15 +109,4 @@ typename Container::value_type::value_type ribi::Canvas::MaxElement(const Contai
     if (localMaxVal > maxValue) maxValue = localMaxVal;
   }
   return maxValue;
-}
-
-std::vector<std::string> ribi::Canvas::SeperateString(
-  const std::string& input,
-  const char seperator) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
 }

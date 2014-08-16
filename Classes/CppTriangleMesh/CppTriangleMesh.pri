@@ -1,5 +1,3 @@
-#DEFINES += TRIANGLEMESH_USE_SIGNALS2
-
 INCLUDEPATH += \
     ../../Classes/CppTriangleMesh
 
@@ -13,17 +11,23 @@ SOURCES += \
     ../../Classes/CppTriangleMesh/trianglemeshcellfactory.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshcell.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshhelper.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_pout.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_pin.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_mut.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_k.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshpointfactory.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshcellscreatorfactory.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshwinding.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshwindings.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategy.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategies.cpp
+    ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategies.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshdialog.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshbuilderimpl.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshtemplateimpl.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshcellimpl.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshbuilderimpl_pout.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshbuilderimpl_pin.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshbuilderimpl_mut.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshbuilderimpl_k.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshfaceimpl.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshhelper_test.cpp
 
 HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshtemplate.h \
@@ -42,7 +46,12 @@ HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshwinding.h \
     ../../Classes/CppTriangleMesh/trianglemeshwindings.h \
     ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategy.h \
-    ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategies.h
+    ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategies.h \
+    ../../Classes/CppTriangleMesh/trianglemeshdialog.h \
+    ../../Classes/CppTriangleMesh/trianglemeshbuilderimpl.h \
+    ../../Classes/CppTriangleMesh/trianglemeshtemplateimpl.h \
+    ../../Classes/CppTriangleMesh/trianglemeshcellimpl.h \
+    ../../Classes/CppTriangleMesh/trianglemeshfaceimpl.h
 
 OTHER_FILES += \
     ../../Classes/CppTriangleMesh/Licence.txt

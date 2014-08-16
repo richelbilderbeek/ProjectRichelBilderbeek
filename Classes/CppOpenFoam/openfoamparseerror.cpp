@@ -12,7 +12,7 @@ ribi::foam::ParseError::ParseError(
 
 }
 
-const std::string ribi::foam::ParseError::CreateErrorMsg(
+std::string ribi::foam::ParseError::CreateErrorMsg(
   const std::string& filename,
   const int line) noexcept
 {

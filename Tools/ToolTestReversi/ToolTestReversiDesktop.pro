@@ -12,6 +12,7 @@ include(../../Classes/CppReversi/CppReversi.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 
 #Desktop
-include(../../Tools/ToolTestReversi/ToolTestReversiDesktop.pri)
+include(../../Classes/CppQtReversi/CppQtReversi.pri)
+include(ToolTestReversiDesktop.pri)
 
 SOURCES += qtmain.cpp

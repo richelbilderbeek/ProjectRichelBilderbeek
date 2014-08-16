@@ -1,0 +1,192 @@
+Some short notes on using the apfloat package:
+
+- It's simplest to use the makefile. See the program aptest.cpp for a quick
+  demo about the program. Then just type "make lib", "make aptest" (or "make
+  aptest.exe" if you use MS-DOS) and run "aptest". Initially aptest contains
+  a program to calculate pi. The argument is the desired number of decimals.
+  The result is output to cout and other information to cerr.
+
+- The file apfloat.ini (must be in the current directory) contains some
+  (optional) information about your system:
+
+Ramsize=41943040       - memory size in bytes
+CacheL1size=8192       - level-1 cache size (use 8192, doesn't matter really)
+CacheL2size=262144     - level-2 cache size (use 262144, doesn't matter really)
+Cacheburst=32          - cache line size in bytes, set to 32 or 16 (doesn't matter really)
+Memorytreshold=8192    - longer data than this is stored on disk by default (don't set to too high)
+Blocksize=8192         - efficient disk I/O block size (in modints), should be <= Memorytreshold
+
+- The basic data type is the apfloat. You can construct apfloats from
+  integers, doubles or character strings. For example:
+
+apfloat x = 2;
+apfloat x = 1.5;
+apfloat x = "1.2345678901234567890987654321";
+
+- Integers have infinite precision (actually 0x7FFFFFFF base units).
+  Apfloats constructed from doubles have by default precision between 1 and 3
+  base units and from character strings the number of significant digits in
+  the string. One base unit is 10^9 or 9 digits (might be different on a
+  different version).
+
+- The necessary declarations are #included in "apfloat.h". For further use
+  you only need this header file plus the compiled library (made by "make
+  lib").
+
+- Remember to set integers to a finite precision before doing arithmetic on
+  them which will create an infinite decimal expansion (like sqrt(2) or 2/3).
+  For example
+
+apfloat x = 2;
+cout << sqrt (x);
+
+  will exhaust virtual memory or result in a crash. Instead define the
+  precision in the constructor:
+
+apfloat x = apfloat (2, 1000);
+cout << sqrt (x);
+
+  or afterwards, like
+
+apfloat x = 2;
+x.prec (1000);
+cout << sqrt (x);
+
+- It probably doesn't make much sense to construct high-precision apfloats
+  from numbers with infinite binary expansions using the constructor from a
+  double. For example
+
+apfloat x = apfloat (1.3, 1000);
+
+  will be correct only to at most 16 digits, not 1000. This is because the
+  number 1.3 cannot be presented exactly in base two with a finite number of
+  bits (which is the case when you use a double). Depending on your compiler
+  there might be an error of about 10^-16 with any doubles (like 0.5).
+  Instead you should use
+
+apfloat x = apfloat ("1.3", 1000);
+
+- The compiler will give a lot of warnings when you compile the code. This
+  is due to the structure of the apfloats. Since an apfloat only contains a
+  pointer to the actual data and only pointers are exchanged in constructors
+  and assignment, temporary objects will be used. For example
+
+apfloat x = apfloat (2, 1000);
+cout << sqrt (x);
+
+  will use temporary apfloats in suspicious constructors. The first line
+  constructs an apfloat (2, 1000). On the second line first a temporary
+  object sqrt (x) is created. It is then copied to the parameter going out
+  of cout. If all the data was copied a lot of time would be wasted. Only a
+  link is copied and then removed, so much time is saved. There is nothing
+  wrong with this, but you'll get a warning.
+
+- The operators available are:
+
+The standard arithmetic functions
++ - * / += -= *= /= ++ --
+
+  Multiplication and division check if the other operand has size 1. If so,
+  a much faster (linear time) "short" algorithm is used. General division is
+  computed using the invroot function (see below)
+
+Other functions
+invroot (x, n)       - inverse nth root (Newton's iteration)
+root (x, n)          - inverse of invroot
+sqrt (x)             - square root (optimized)
+cbrt (x)             - cube root (optimized)
+pow (x, n)           - integer power
+floor (x)            - floor function
+ceil (x)             - ceiling function
+abs (x)              - absolute value
+agm (x, y)           - arithmetic-geometric mean
+log (x)              - natural logarithm
+exp (x)              - exponential function
+pow (x, y)           - arbitrary power x^y
+sin (x)              - transcendental functions, included in apcplx.h
+cos (x)
+tan (x)
+asin (x)
+acos (x)
+atan (x)
+atan2 (x, y)         - angle of (x, y)
+sinh (x)             - hyperbolic functions
+cosh (x)
+tanh (x)
+asinh (x)
+acosh (x)
+atanh (x)
+
+  There is also a stream output operator, so you can
+
+cout << x
+
+  This outputs the number in a floating-point style number, like
+
+0.0000000031415926535e9
+
+  If you want a prettier output (no exponent), there is a manipulator:
+
+cout << pretty << x
+
+  will output
+
+3.1415926535
+
+  Also a stream input operator is available.
+
+- To use complex numbers, #include "apcplx.h". See the examples in the file
+  cplxtest.cpp.
+
+- To use integer numbers, #include "apint.h". See the examples in the file
+  inttest.cpp.
+
+- To use rational numbers, #include "aprat.h". See the examples in the file
+  rattest.cpp.
+
+- The arithmetic functions check what are the operands' precisions and
+  actual data sizes and does only the necessary work to do the calculation.
+  So you can multiply by integer 2 and still use the "short" multiplication.
+
+- Since this package is designed for extreme precision (millions of
+  decimals), the iterated root functions will sometimes have slightly less
+  or more digits (about 20) than you wanted. Also the last few (20 or so)
+  digits can be inaccurate.
+
+- If you get strange run-time errors like "Assertion failed: !workspaceused"
+  try increasing Memorytreshold and Blocksize in apfloat.ini, or reducing
+  the cache size parameters.
+
+- If you use the 64-bit version, you should probably tell the compiler (if
+  it doesn't assume it automatically) that long ints are 64 bits long (like
+  the -mips3 and -mlong64 switches on MIPS R4000's gcc). You also might need
+  to enable the integer multiplication and division instructions (like the
+  -mv8 switch on Sparcv8 computers).
+
+- If your compiler complains, that the ios class doesn't contain a member
+  ios::binary (or ios::bin), you can try to set the line BIN = binary to
+  BIN = bin (or vice versa), or if you are sure that files are always
+  opened in binary (not text) format, set BIN = in in the makefile.
+
+- If you get strange linking errors, you might need to include or exclude
+  the standard c library (the -lc switch on the LIBS line in the makefile),
+  and when using gcc, you might need to explicitly include the g++ library
+  (add the -lgpp switch).
+
+- If you get errors on a Linux system that the linker doesn't find any of
+  the assembler-optimized functions (bigmul, tablefnt, bigshr, ...), the
+  problem is that your gcc puts underscores in front of variables and
+  function names. Either get a newer version of gcc or try the files (not
+  the makefile) in the DOS djgpp versions of the package. If you compile
+  your own files which use directly the bigint functions, remember to put
+  -DASM to the compiler command line.
+
+- There are some known problems when running under Linux which seem to be
+  due to the bugs in the Linux operating system (depends on the version of
+  Linux you use). Also with some versions of djgpp (or gcc) there may be
+  some problems which are due to djgpp (or gcc), not apfloat.
+
+
+
+Mikko Tommila
+e-mail: Mikko.Tommila@apfloat.org

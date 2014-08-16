@@ -71,6 +71,10 @@ struct KalmanFilterExample
   static std::unique_ptr<KalmanFilterExample> CreateExample8();
 
   static std::string DisplayAsUblasVector(const std::vector<std::string>& v);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace kalman

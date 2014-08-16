@@ -11,6 +11,8 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
+
+#include "richelbilderbeekprogram.h"
 #pragma GCC diagnostic pop
 
 const QPixmap ribi::FilterOperationerMainDialog::DoFilterOperation(

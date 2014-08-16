@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestQtArrowItems/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.qrc
