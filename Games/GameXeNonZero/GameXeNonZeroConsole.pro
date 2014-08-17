@@ -1,9 +1,10 @@
 include(../../ConsoleApplication.pri)
 include(../../Libraries/Boost.pri)
+include(../../Libraries/GeneralConsole.pri)
 
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 
 include(GameXeNonZeroConsole.pri)
 

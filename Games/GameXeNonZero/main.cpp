@@ -2,18 +2,18 @@
 #include <iostream>
 #include <cassert>
 
-#include "xenonzerodialog.h"
+#include "xenonzeromaindialog.h"
 
 int main()
 {
 
-  xenon_zero::XeNonZero s;
+  ribi::xnz::Dialog s;
 
   while(!s.IsGameOver())
   {
     std::cout << s << std::endl;
-    s.AskUserInputAndProcess();
-    s.DrawSprites();
+    //s.AskUserInputAndProcess();
+    //s.DrawSprites();
   }
 
   std::cout << "GAME OVER!" << std::endl;
