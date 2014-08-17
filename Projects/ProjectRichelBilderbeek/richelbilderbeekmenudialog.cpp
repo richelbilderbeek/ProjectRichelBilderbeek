@@ -24,14 +24,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "richelbilderbeekmenudialog.h"
 
-#include "aafmenudialog.h"
 #include "about.h"
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
 #include "alphafilter.h"
 #include "approximator.h"
 #include "asciiartermenudialog.h"
-#include "athleticlandmenudialog.h"
 #include "beerwantermenudialog.h"
 #include "binarynewickvector.h"
 #include "boenkenmenudialog.h"
@@ -88,7 +86,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "k3opeenrijmenudialog.h"
 #include "kalmanfilter.h"
 #include "kalmanfilterermenudialog.h"
-#include "knokfightermenudialog.h"
 #include "laggedwhitenoisesystem.h"
 #include "lazy_init.h"
 #include "led.h"
@@ -98,7 +95,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "matrix.h"
 #include "mazecreatormenudialog.h"
 #include "maziakmenudialog.h"
-#include "metzndrieenmenudialog.h"
 #include "multialphafilter.h"
 #include "multiapproximator.h"
 #include "multiencrangermenudialog.h"
@@ -113,20 +109,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "mysterymachinewidget.h"
 #include "newick.h"
 #include "newickvector.h"
-#include "nsanabrosmenudialog.h"
 #include "openfoammesh.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
-#include "paperrockscissorsmenudialog.h"
 #include "perfectelasticcollisionmenudialog.h"
 #include "pictocodemenudialog.h"
 #include "pixelatormenudialog.h"
 #include "pixelatormenudialog.h"
 #include "plane.h"
-//#include "pokevolleymenudialog.h"
 #include "polyfile.h"
 #include "polyfilefrompolygons.h"
-#include "pongmenudialog.h"
 #include "predickadvocatormenudialog.h"
 #include "primeexpertmenudialog.h"
 #ifdef INCLUDE_BRAINWEAVER_20140617
@@ -173,11 +165,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "simmysterymachinemenudialog.h"
 #include "simplelinearregression.h"
 #include "simplifynewickmenudialog.h"
-#include "simpredatormenudialog.h"
 #include "sitemapgeneratormenudialog.h"
 #include "sitemapgeneratormenudialog.h"
 #include "sortedbinarynewickvector.h"
-#include "spaceharrymenudialog.h"
 #include "staircasecardcreatormenudialog.h"
 #include "stateobservermenudialog.h"
 #include "steadystatekalmanfilter.h"
@@ -311,7 +301,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 14th of August 2014",
+    "the 17th of August 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersionStatic(),
@@ -320,10 +310,9 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("AlphaBetaFilter version: " + AlphaBetaFilter::GetVersion());
   a.AddLibrary("AlphaBetaGammaFilter version: " + AlphaBetaGammaFilter::GetVersion());
   a.AddLibrary("AlphaFilter version: " + AlphaFilter::GetVersion());
-  a.AddLibrary("AminoAcidFighter version: " + aaf::MenuDialog().GetVersion());
   a.AddLibrary("Approximator version: " + Approximator<double,double>::GetVersion());
+  a.AddLibrary("apfloat version: 2.4.1");
   a.AddLibrary("AsciiArter version: " + AsciiArterMenuDialog().GetVersion());
-  a.AddLibrary("AthleticLand version: " + AthleticLandMenuDialog().GetVersion());
   a.AddLibrary("BeerWanter version: " + BeerWanterMenuDialog().GetVersion());
   a.AddLibrary("Big Integer Library (by Matt McCutchen) version: 2010.04.30");
   a.AddLibrary("BinaryNewickVector version: " + BinaryNewickVector::GetVersion());
@@ -384,7 +373,6 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("kalman::SteadyStateKalmanFilter version: " + kalman::SteadyStateKalmanFilter::GetVersion());
   a.AddLibrary("kalman::SteadyStateKalmanFilterParameters version: " + kalman::SteadyStateKalmanFilterParameters::GetVersion());
   a.AddLibrary("kalman::WhiteNoiseSystem version: " + kalman::WhiteNoiseSystem::GetVersion());
-  a.AddLibrary("Knokfighter version: " + KnokfighterMenuDialog().GetVersion());
   a.AddLibrary("Lazy_init version: " + Lazy_initVersion::GetVersion());
   a.AddLibrary("Led version: " + Led::GetVersion());
   a.AddLibrary("LedWidget version: " + LedWidget::GetVersion());
@@ -392,7 +380,6 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("ManyDigitNewick version: " + ManyDigitNewick::GetVersion());
   a.AddLibrary("Matrix version: " + Matrix::GetVersion());
   a.AddLibrary("Maziak version: " + maziak::MenuDialog().GetVersion());
-  //a.AddLibrary("MetZnDrieenMenu version: " + MetZnDrieenMenuDialog().GetVersion());
   a.AddLibrary("MultiAlphaFilter version: " + MultiAlphaFilter::GetVersion());
   a.AddLibrary("MultiApproximator version: " + MultiApproximator<double,double>::GetVersion());
   a.AddLibrary("MultipleChoiceQuestion version: " + MultipleChoiceQuestion::GetVersion());
@@ -407,7 +394,6 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("NewickVector version: " + NewickVector::GetVersion());
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
-  a.AddLibrary("PaperRockScissors version: " + PaperRockScissorsMenuDialog().GetVersion());
   const std::unique_ptr<Plane> plane(
     new Plane(
       Plane::Coordinat3D(0.0,0.0,0.0),
@@ -417,10 +403,8 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   );
   assert(plane);
   a.AddLibrary("Plane version: " + plane->GetVersion());
-  //a.AddLibrary("PokeVolley version: " + PokeVolleyMenuDialog().GetVersion());
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
   a.AddLibrary("PolyFileFromPolygons version: " + PolyFileFromPolygons::GetVersion());
-  a.AddLibrary("Pong version: " + PongMenuDialog().GetVersion());
   a.AddLibrary("Pylos version: " + pylos::MenuDialog().GetVersion());
   a.AddLibrary("QmakeWatcher version: " + QmakeWatcherMenuDialog().GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
@@ -461,7 +445,6 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("StaircaseCardCreator version: " + scc::MenuDialog().GetVersion());
   a.AddLibrary("StateObserver version: " + StateObserverMenuDialog().GetVersion());
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
-  a.AddLibrary("SuperNsanaBros version: " + NsanaBrosMenuDialog().GetVersion());
 
 #ifdef INCLUDE_TANKBATTALION_20140617
   a.AddLibrary("TankBattalion version: " + taba::MenuDialog().GetVersion());
@@ -509,7 +492,6 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
     boost::shared_ptr<ribi::MenuDialog> p;
     switch (t)
     {
-      case ProgramType::aminoAcidFighter: p.reset(new aaf::MenuDialog); assert(p); break;
       case ProgramType::asciiArter: p.reset(new AsciiArterMenuDialog); break;
       case ProgramType::asciiArterVcl:
       {
@@ -539,7 +521,6 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::athleticLand: p.reset(new AthleticLandMenuDialog); break;
       case ProgramType::athleticLandVcl:
       {
         const std::string version = "3.0";
@@ -880,32 +861,6 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::fakeEvy:
-      {
-        const std::string version = "x.x";
-        const std::vector<std::string> version_history {
-          "20xx-xx-xx: version x.x: something",
-        };
-        const About about(
-          About::GetDefaultAuthor(),
-          "FakeEvy",
-          "Running trainer generator",
-          "someday",
-          "20xx-20xx",
-          "http://www.richelbilderbeek.nl/ToolFakeEvy.htm",
-          version,
-          version_history
-        );
-        p.reset(
-          new PlaceholderMenuDialog(
-            about,
-            boost::shared_ptr<Program>(new ProgramFakeEvy),
-            version,
-            version_history
-          )
-        );
-      }
-      break;
       case ProgramType::filterOperationer: p.reset(new FilterOperationerMenuDialog); break;
       case ProgramType::filterOperationerVcl:
       {
@@ -1229,7 +1184,6 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::knokfighter: p.reset(new KnokfighterMenuDialog); break;
       case ProgramType::knokfighterVcl:
       {
         const std::string version = "x.x";
@@ -1624,34 +1578,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
           )
         );
       }
-      break; //
-      case ProgramType::ndsPaint:
-      {
-        const std::string version = "x.x";
-        const std::vector<std::string> version_history {
-          "20xx-xx-xx: version x.x: something",
-        };
-        const About about(
-          About::GetDefaultAuthor(),
-          "NDS paint",
-          "drawing program for NDS",
-          "someday",
-          "20xx-20xx",
-          "http://www.richelbilderbeek.nl/ToolNdsPaint.htm",
-          version,
-          version_history
-        );
-        p.reset(
-          new PlaceholderMenuDialog(
-            about,
-            boost::shared_ptr<Program>(new ProgramNdsPaint),
-            version,
-            version_history
-          )
-        );
-      }
       break;
-      case ProgramType::paperRockScissors: p.reset(new PaperRockScissorsMenuDialog); break;
       case ProgramType::paperRockScissorsVcl:
       {
         const std::string version = "x.x";
@@ -1760,7 +1687,6 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::pong: p.reset(new PongMenuDialog); break;
       case ProgramType::preDickAdvocaTor: p.reset(new PreDickAdvocaTorMenuDialog); break;
       case ProgramType::primeExpert: p.reset(new PrimeExpertMenuDialog); break;
       case ProgramType::projectRichelBilderbeek:
@@ -2170,7 +2096,6 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      //case ProgramType::spaceHarry: p.reset(new SpaceHarryMenuDialog); break;
       case ProgramType::spaceHarryVcl:
       {
         const std::string version = "x.x";
@@ -2225,7 +2150,6 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       break;
       case ProgramType::stateObserver: p.reset(new StateObserverMenuDialog); break;
       case ProgramType::styleSheetSetter: p.reset(new StyleSheetSetterMenuDialog); break;
-      case ProgramType::superNsanaBros: p.reset(new NsanaBrosMenuDialog); break;
       case ProgramType::surfacePlotter: p.reset(new SurfacePlotterMenuDialog); break;
       case ProgramType::surfacePlotterVcl:
       {
@@ -3048,58 +2972,6 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
       break;
       case ProgramType::ticTacToe: p.reset(new tictactoe::TicTacToeMenuDialog); break;
-      case ProgramType::ticTacToeLearner:
-      {
-        const std::string version = "x.x";
-        const std::vector<std::string> version_history {
-          "20xx-xx-xx: version x.x: something",
-        };
-        const About about(
-          About::GetDefaultAuthor(),
-          "somename",
-          "description",
-          "someday",
-          "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
-          version,
-          version_history
-        );
-        p.reset(
-          new PlaceholderMenuDialog(
-            about,
-            boost::shared_ptr<Program>(new ProgramTicTacToeLearner),
-            version,
-            version_history
-          )
-        );
-      }
-      break;
-      case ProgramType::ticTacToeValuer:
-      {
-        const std::string version = "x.x";
-        const std::vector<std::string> version_history {
-          "20xx-xx-xx: version x.x: something",
-        };
-        const About about(
-          About::GetDefaultAuthor(),
-          "somename",
-          "description",
-          "someday",
-          "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
-          version,
-          version_history
-        );
-        p.reset(
-          new PlaceholderMenuDialog(
-            about,
-            boost::shared_ptr<Program>(new ProgramTicTacToeValuer),
-            version,
-            version_history
-          )
-        );
-      }
-      break;
       case ProgramType::timePoll:
       {
         const std::string version = "x.x";
@@ -3181,32 +3053,6 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
       break;
       case ProgramType::valentineCardDecrypter : p.reset(new ValentineCardDecrypterMenuDialog); break;
-      case ProgramType::vanDenBogaart:
-      {
-        const std::string version = "x.x";
-        const std::vector<std::string> version_history {
-          "20xx-xx-xx: version x.x: something",
-        };
-        const About about(
-          About::GetDefaultAuthor(),
-          "somename",
-          "description",
-          "someday",
-          "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
-          version,
-          version_history
-        );
-        p.reset(
-          new PlaceholderMenuDialog(
-            about,
-            boost::shared_ptr<Program>(new ProgramVanDenBogaart),
-            version,
-            version_history
-          )
-        );
-      }
-      break;
       case ProgramType::vigenereCipher: p.reset(new VigenereCipherMenuDialog); break;
       case ProgramType::virtualBastard:
       {
@@ -3303,7 +3149,7 @@ boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDialog::
 
 std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersionStatic() noexcept
 {
-  return "1.16";
+  return "1.17";
 }
 
 std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistoryStatic() noexcept
@@ -3363,7 +3209,8 @@ std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHist
     "2013-11-29: Version 1.13: added HistogramEqualizationer, ImageOperationer, ImageRotater, StyleSheetSetter, ThresholdFilterer",
     "2014-02-27: Version 1.14: added PreDickAdvocaTor and ValentineCardDecrypter, added retro versions to some games",
     "2014-04-22: Version 1.15: added CaesarCipher, CodeBreaker and VigenereCipher",
-    "2014-08-14: Version 1.16: increased use of TDD in console version"
+    "2014-08-14: Version 1.16: increased use of TDD in console version",
+    "2014-08-17: Version 1.17: removed code-that-might-once-be-added"
   };
 }
 

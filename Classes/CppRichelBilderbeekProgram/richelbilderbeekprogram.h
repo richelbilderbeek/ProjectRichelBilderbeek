@@ -128,36 +128,6 @@ struct ProgramTool : public Program
   std::string GetTypeName() const noexcept override { return "tool"; }
 };
 
-struct ProgramAminoAcidFighter : public ProgramGame
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return "GameAminoAcidFighter_0_9.png"; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return "GameAminoAcidFighter_0_9.png"; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "AminoAcidFighter"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::wip; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::wip; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::aminoAcidFighter; }
-  std::string GetUrl() const noexcept override final { return "GameAminoAcidFighter.htm"; }
-};
-
-struct ProgramAthleticLand : public ProgramGame
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "Athletic Land"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::wip; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::athleticLand; }
-  std::string GetUrl() const noexcept override final { return "GameAthleticLand.htm"; }
-};
-
 struct ProgramAthleticLandVcl : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept override final { return ""; }
@@ -548,21 +518,6 @@ struct ProgramEverythingToPiecesShooter : public ProgramGame
   std::string GetUrl() const noexcept override final { return "GameEverythingToPiecesShooter.htm"; }
 };
 
-struct ProgramFakeEvy : public ProgramTool
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "GrayFakeEvy"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::wip; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::fakeEvy; }
-  std::string GetUrl() const noexcept override final { return "ToolFakeEvy.htm"; }
-};
-
 struct ProgramFilterOperationer : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept override final { return ""; }
@@ -879,21 +834,6 @@ struct ProgramKeySender : public ProgramTool
   std::string GetUrl() const noexcept override final { return "ToolKeySender.htm"; }
 };
 
-struct ProgramKnokfighter : public ProgramGame
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "Knokfighter"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::wip; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::knokfighter; }
-  std::string GetUrl() const noexcept override final { return "GameKnokfighter.htm"; }
-};
-
 struct ProgramKnokfighterVcl : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept override final { return ""; }
@@ -1197,35 +1137,6 @@ struct ProgramNdsmake : public ProgramClass
   std::string GetUrl() const noexcept override final { return "ToolNdsmake.htm"; }
 };
 
-struct ProgramNdsPaint : public ProgramTool
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "NdsPaint"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::ndsPaint; }
-  std::string GetUrl() const noexcept override final { return "ToolNdsPaint.htm"; }
-};
-
-struct ProgramPaperRockScissors : public ProgramTool
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "PaperRockScissors"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::paperRockScissors; }
-  std::string GetUrl() const noexcept override final { return "ToolPaperRockScissors.htm"; }
-};
 
 struct ProgramPaperRockScissorsVcl : public ProgramTool
 {
@@ -1330,21 +1241,6 @@ struct ProgramPokeVolleyVcl : public ProgramGame
   ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
   ProgramType GetType() const noexcept override final { return ProgramType::pokeVolleyVcl; }
   std::string GetUrl() const noexcept override final { return "GamePokeVolley.htm"; }
-};
-
-struct ProgramPong : public ProgramGame
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "Pong"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::wip; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::pong; }
-  std::string GetUrl() const noexcept override final { return "GamePong.htm"; }
 };
 
 struct ProgramPreDickAdvocaTor : public ProgramTool
@@ -1800,23 +1696,6 @@ struct ProgramSolvePuzzleX : public ProgramTool
   std::string GetUrl() const noexcept override final { return "ToolSolvePuzzleX.htm"; }
 };
 
-/*
-struct ProgramSpaceHarry : public ProgramGame
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "Space Harry"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::wip; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::spaceHarry; }
-  std::string GetUrl() const noexcept override final { return "GameSpaceHarry.htm"; }
-};
-*/
-
 struct ProgramSpaceHarryVcl : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept override final { return ""; }
@@ -1875,21 +1754,6 @@ struct ProgramStyleSheetSetter : public ProgramTool
   ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
   ProgramType GetType() const noexcept override final { return ProgramType::styleSheetSetter; }
   std::string GetUrl() const noexcept override final { return "ToolStyleSheetSetter.htm"; }
-};
-
-struct ProgramSuperNsanaBros : public ProgramGame
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "Super Nsana Bros"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::superNsanaBros; }
-  std::string GetUrl() const noexcept override final { return "GameSuperNsanaBros.htm"; }
 };
 
 struct ProgramSurfacePlotter : public ProgramTool
@@ -2901,36 +2765,6 @@ struct ProgramTicTacToe : public ProgramGame
   std::string GetUrl() const noexcept override final { return "GameTicTacToe.htm"; }
 };
 
-struct ProgramTicTacToeLearner : public ProgramTool
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return "ToolTicTacToeLearner_0_3.png"; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "TicTacToeLearner"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::ticTacToeLearner; }
-  std::string GetUrl() const noexcept override final { return "ToolTicTacToeLearner.htm"; }
-};
-
-struct ProgramTicTacToeValuer : public ProgramTool
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return "ToolTicTacToeValuer_0_7.png"; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "TicTacToeValuer"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::ticTacToeValuer; }
-  std::string GetUrl() const noexcept override final { return "ToolTicTacToeValuer.htm"; }
-};
-
 struct ProgramTimePoll : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept override final { return ""; }
@@ -3020,22 +2854,6 @@ struct ProgramValentineCardDecrypter : public ProgramTool
   ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
   ProgramType GetType() const noexcept override final { return ProgramType::valentineCardDecrypter; }
   std::string GetUrl() const noexcept override final { return "ToolValentineCardDecrypter.htm"; }
-};
-
-
-struct ProgramVanDenBogaart : public ProgramProject
-{
-  std::string GetFilenameConsole() const noexcept override final { return ""; }
-  std::string GetFilenameDesktop() const noexcept override final { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
-  std::string GetFilenameWeb() const noexcept override final { return ""; }
-  std::string GetScreenName() const noexcept override final { return "VanDenBogaart"; }
-  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept override final { return ProgramType::vanDenBogaart; }
-  std::string GetUrl() const noexcept override final { return "ProjectVanDenBogaart.htm"; }
 };
 
 struct ProgramVigenereCipher : public ProgramTool

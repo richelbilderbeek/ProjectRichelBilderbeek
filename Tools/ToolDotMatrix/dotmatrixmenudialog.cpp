@@ -13,6 +13,7 @@
 
 #include <QImage>
 
+#include "container.h"
 #include "dotmatrixstring.h"
 #include "fileio.h"
 #include "testtimer.h"
@@ -20,53 +21,73 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-
-int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::DotMatrixMenuDialog::DotMatrixMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
-  const int argc = static_cast<int>(argv.size());
+}
+
+int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
+{
+  const int argc = static_cast<int>(args.size());
   if (argc == 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
+
+  bool silent{false};
+  if (std::count(args.begin(),args.end(),"-i") || std::count(args.begin(),args.end(),"--silent"))
+  {
+    silent = true;
+  }
+
   std::string text = "";
   for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
   {
-    if (argv[i] == "-t" || argv[i] == "--text")
+    if (args[i] == "-t" || args[i] == "--text")
     {
-      text = argv[i + 1];
+      text = args[i + 1];
       break;
     }
   }
   if (text.empty())
   {
-    std::cout
-      << "Please supply a text and supply it correctly,\n"
-      << "for example:\n"
-      << "  DotMatrix -t my_text\n";
+    if (!silent)
+    {
+      std::cout
+        << "Please supply a text and supply it correctly,\n"
+        << "for example:\n"
+        << "  DotMatrix -t my_text\n"
+      ;
+    }
     return 1;
   }
   int spacing = 1;
   for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
   {
-    if (argv[i] == "-s" || argv[i] == "--spacing")
+    if (args[i] == "-s" || args[i] == "--spacing")
     {
-      const std::string s = argv[i + 1];
+      const std::string s = args[i + 1];
       try
       {
         spacing = boost::lexical_cast<int>(s);
         if (spacing < 0)
         {
-          std::cout << "Spacing must be zero or a positive number\n";
+          if (!silent)
+          {
+            std::cout << "Spacing must be zero or a positive number\n";
+          }
           return 1;
         }
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cout << "Spacing must be a number\n";
+        if (!silent)
+        {
+          std::cout << "Spacing must be a number\n";
+        }
         return 1;
       }
       break;
@@ -75,9 +96,9 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   std::string filename = "";
   for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
   {
-    if (argv[i] == "-f" || argv[i] == "--filename")
+    if (args[i] == "-f" || args[i] == "--filename")
     {
-      filename = argv[i + 1];
+      filename = args[i + 1];
       break;
     }
   }
@@ -91,7 +112,10 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
     m->CreateImage()->save(filename.c_str());
   }
 
-  std::cout << *m << '\n';
+  if (!silent)
+  {
+    std::cout << *m << '\n';
+  }
 
   return 0;
 }
@@ -108,6 +132,8 @@ ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   //a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("Container version: " + Container::GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo::GetVersion());
   a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
@@ -122,6 +148,7 @@ ribi::Help ribi::DotMatrixMenuDialog::GetHelp() const noexcept
       Help::Option('f',"filename","Save the text to an image file"),
       Help::Option('t',"text","The text to convert to file or ASCII art"),
       Help::Option('s',"spacing","Set the spacing in pixels, default: 1"),
+      Help::Option('e',"silent","Produce no output"),
     },
     {
       "DotMatrix -t \"Hello world\"",
@@ -162,23 +189,31 @@ void ribi::DotMatrixMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    Container();
+    fileio::FileIo();
+    const boost::shared_ptr<const DotMatrixString> m {
+      new DotMatrixString("",0)
+    };
+  }
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
 
   //Command line tests
   {
     DotMatrixMenuDialog d;
     const std::string filename { fileio::FileIo().GetTempFileName(".png") };
-    d.Execute( { "DotMatrix", "-t", "\"Hello world\"" } );
-    d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-s", "0" } );
+    d.Execute( { "DotMatrix", "-t", "\"Hello world\"", "--silent" } );
+    d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-s", "0", "--silent" } );
 
     assert(!fileio::FileIo().IsRegularFile(filename));
-    d.Execute( { "DotMatrix", "-t", "\"Hello world\"", "-f", filename } );
+    d.Execute( { "DotMatrix", "-t", "\"Hello world\"", "-f", filename, "--silent" } );
     assert(fileio::FileIo().IsRegularFile(filename));
 
     fileio::FileIo().DeleteFile(filename);
 
     assert(!fileio::FileIo().IsRegularFile(filename));
-    d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-f", filename, "--spacing", "1" } );
+    d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-f", filename, "--spacing", "1", "--silent" } );
     assert(fileio::FileIo().IsRegularFile(filename));
 
     fileio::FileIo().DeleteFile(filename);

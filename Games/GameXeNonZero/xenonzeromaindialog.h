@@ -61,7 +61,7 @@ std::ostream& operator<<(std::ostream& os, const Dialog& s);
 
 //const std::string AskUserInput();
 
-struct SpriteMover : public std::unary_function<void,Sprite>
+struct SpriteMover
 {
   void operator()(boost::shared_ptr<Sprite>& s) const;
 };
@@ -75,12 +75,12 @@ struct SpriteDrawer : public std::unary_function<void,Sprite>
 };
 */
 
-struct SpriteIsDead : public std::unary_function<bool,Sprite>
+struct SpriteIsDead
 {
   bool operator()(boost::shared_ptr<Sprite>& s) const;
 };
 
-struct SpriteShoot : public std::unary_function<void,Sprite>
+struct SpriteShoot
 {
   SpriteShoot(Dialog::SpriteContainer& tempSprites) : mTempSprites(tempSprites) {}
   void operator()(boost::shared_ptr<Sprite>& s) const;

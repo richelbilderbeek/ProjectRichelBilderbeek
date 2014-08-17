@@ -43,8 +43,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   ///Generated with Gnumeric:
   /// =CONCATENATE("m.insert(Pair(ProgramType::",A1,",\"",A1,"\"));")
   ///where A1 to Ax contain the programType enum values
-  m.insert(Pair(ProgramType::aminoAcidFighter,"aminoAcidFighter"));
-  m.insert(Pair(ProgramType::athleticLand,"athleticLand"));
   m.insert(Pair(ProgramType::athleticLandVcl,"athleticLandVcl"));
   m.insert(Pair(ProgramType::asciiArter,"asciiArter"));
   m.insert(Pair(ProgramType::asciiArterVcl,"asciiArterVcl"));
@@ -71,7 +69,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::dotMatrixVcl,"dotMatrixVcl"));
   m.insert(Pair(ProgramType::encranger,"encranger"));
   m.insert(Pair(ProgramType::everythingToPiecesShooter,"everythingToPiecesShooter"));
-  m.insert(Pair(ProgramType::fakeEvy,"fakeEvy"));
   m.insert(Pair(ProgramType::filterOperationer,"filterOperationer"));
   m.insert(Pair(ProgramType::filterOperationerVcl,"filterOperationerVcl"));
   m.insert(Pair(ProgramType::fryskLeareLieder,"fryskLeareLieder"));
@@ -93,7 +90,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::k3OpEenRijVcl,"k3OpEenRijVcl"));
   m.insert(Pair(ProgramType::kalmanFilterer,"kalmanFilterer"));
   m.insert(Pair(ProgramType::keySender,"keySender"));
-  m.insert(Pair(ProgramType::knokfighter,"knokfighter"));
   m.insert(Pair(ProgramType::knokfighterVcl,"knokfighterVcl"));
   m.insert(Pair(ProgramType::kTouchLectureCreator,"kTouchLectureCreator"));
   m.insert(Pair(ProgramType::lambdaBot,"lambdaBot"));
@@ -114,8 +110,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::muscaDomestica,"muscaDomestica"));
   m.insert(Pair(ProgramType::musicTheory,"musicTheory"));
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
-  m.insert(Pair(ProgramType::ndsPaint,"ndsPaint"));
-  m.insert(Pair(ProgramType::paperRockScissors,"paperRockScissors"));
   m.insert(Pair(ProgramType::paperRockScissorsVcl,"paperRockScissorsVcl"));
   m.insert(Pair(ProgramType::pause,"pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"perfectElasticCollision"));
@@ -123,7 +117,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::pixelator,"pixelator"));
   m.insert(Pair(ProgramType::pixelatorVcl,"pixelatorVcl"));
   m.insert(Pair(ProgramType::pokeVolleyVcl,"pokeVolleyVcl"));
-  m.insert(Pair(ProgramType::pong,"pong"));
   m.insert(Pair(ProgramType::preDickAdvocaTor,"preDickAdvocaTor"));
   m.insert(Pair(ProgramType::primeExpert,"primeExpert"));
   m.insert(Pair(ProgramType::projectRichelBilderbeek,"projectRichelBilderbeek"));
@@ -154,12 +147,10 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::simStagecraft,"simStagecraft"));
   m.insert(Pair(ProgramType::soaSim,"soaSim"));
   m.insert(Pair(ProgramType::solvePuzzleX,"solvePuzzleX"));
-  //m.insert(Pair(ProgramType::spaceHarry,"spaceHarry"));
   m.insert(Pair(ProgramType::spaceHarryVcl,"spaceHarryVcl"));
   m.insert(Pair(ProgramType::staircaseCardCreator,"staircaseCardCreator"));
   m.insert(Pair(ProgramType::stateObserver,"stateObserver"));
   m.insert(Pair(ProgramType::styleSheetSetter,"styleSheetSetter"));
-  m.insert(Pair(ProgramType::superNsanaBros,"superNsanaBros"));
   m.insert(Pair(ProgramType::surfacePlotter,"surfacePlotter"));
   m.insert(Pair(ProgramType::surfacePlotterVcl,"surfacePlotterVcl"));
   m.insert(Pair(ProgramType::tankBattalion,"tankBattalion"));
@@ -227,15 +218,12 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::thresholdFilterer,"thresholdFilterer"));
   m.insert(Pair(ProgramType::thresholdFiltererVcl,"thresholdFiltererVcl"));
   m.insert(Pair(ProgramType::ticTacToe,"ticTacToe"));
-  m.insert(Pair(ProgramType::ticTacToeLearner,"ticTacToeLearner"));
-  m.insert(Pair(ProgramType::ticTacToeValuer,"ticTacToeValuer"));
   m.insert(Pair(ProgramType::timePoll,"timePoll"));
   m.insert(Pair(ProgramType::triangleMeshCreator,"triangleMeshCreator"));
   m.insert(Pair(ProgramType::tronCollection,"tronCollection"));
   m.insert(Pair(ProgramType::tronCollectionVcl,"tronCollectionVcl"));
   m.insert(Pair(ProgramType::ubuntuOneWatcher,"ubuntuOneWatcher"));
   m.insert(Pair(ProgramType::valentineCardDecrypter,"valentineCardDecrypter"));
-  m.insert(Pair(ProgramType::vanDenBogaart,"vanDenBogaart"));
   m.insert(Pair(ProgramType::vigenereCipher,"vigenereCipher"));
   m.insert(Pair(ProgramType::virtualBastard,"virtualBastard"));
   m.insert(Pair(ProgramType::visualAbc,"visualAbc"));
@@ -266,10 +254,8 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   ///Generated with Gnumeric:
   /// =CONCATENATE("m.insert(Pair(ProgramType::",A1,",\"",A1,"\"));")
   ///where A1 to Ax contain the programType enum values
-  m.insert(Pair(ProgramType::aminoAcidFighter,"Amino Acid Fighter"));
   m.insert(Pair(ProgramType::asciiArter,"AsciiArter"));
   m.insert(Pair(ProgramType::asciiArterVcl,"AsciiArter (VCL)"));
-  m.insert(Pair(ProgramType::athleticLand,"Athletic Land"));
   m.insert(Pair(ProgramType::athleticLandVcl,"Athletic Land (VCL)"));
   m.insert(Pair(ProgramType::barbaImage,"BarbaImage"));
   m.insert(Pair(ProgramType::beerWanter,"BeerWanter"));
@@ -294,7 +280,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::dotMatrixVcl,"DotMatrix (VCL)"));
   m.insert(Pair(ProgramType::encranger,"Encranger"));
   m.insert(Pair(ProgramType::everythingToPiecesShooter,"EverythingToPiecesShooter"));
-  m.insert(Pair(ProgramType::fakeEvy,"Fake Evy"));
   m.insert(Pair(ProgramType::filterOperationer,"FilterOperationer"));
   m.insert(Pair(ProgramType::filterOperationerVcl,"FilterOperationer (VCL)"));
   m.insert(Pair(ProgramType::fryskLeareLieder,"Frysk Leare Lieder"));
@@ -316,7 +301,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::k3OpEenRijVcl,"K3 Op Een Rij (VCL)"));
   m.insert(Pair(ProgramType::kalmanFilterer,"KalmanFilterer"));
   m.insert(Pair(ProgramType::keySender,"KeySender"));
-  m.insert(Pair(ProgramType::knokfighter,"Knokfighter"));
   m.insert(Pair(ProgramType::knokfighterVcl,"KnokfighterVcl"));
   m.insert(Pair(ProgramType::kTouchLectureCreator,"KTouch Lecture Creator"));
   m.insert(Pair(ProgramType::lambdaBot,"LambdaBot"));
@@ -328,7 +312,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::mazeCreatorVcl,"MazeCreator (VCL)"));
   m.insert(Pair(ProgramType::maziak,"Maziak"));
   m.insert(Pair(ProgramType::maziakVcl,"Maziak (VCL)"));
-  //m.insert(Pair(ProgramType::metZnDrieen,"Met Z'n Drieen"));
   m.insert(Pair(ProgramType::metZnDrieenVcl,"Met Z'n Drieen (VCL)"));
   m.insert(Pair(ProgramType::midiLessonCreator,"MIDI Lesson Creator"));
   m.insert(Pair(ProgramType::morpher,"Morpher"));
@@ -337,8 +320,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::muscaDomestica,"MuscaDomestica"));
   m.insert(Pair(ProgramType::musicTheory,"MusicTheory"));
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
-  m.insert(Pair(ProgramType::ndsPaint,"NDS Paint"));
-  m.insert(Pair(ProgramType::paperRockScissors,"PaperRockScissors"));
   m.insert(Pair(ProgramType::paperRockScissorsVcl,"PaperRockScissors (VCL)"));
   m.insert(Pair(ProgramType::pause,"Pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"PerfectElasticCollision"));
@@ -346,7 +327,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::pixelator,"Pixelator"));
   m.insert(Pair(ProgramType::pixelatorVcl,"Pixelator (VCL)"));
   m.insert(Pair(ProgramType::pokeVolleyVcl,"PokeVolley (VCL)"));
-  m.insert(Pair(ProgramType::pong,"Pong"));
   m.insert(Pair(ProgramType::preDickAdvocaTor,"PreDickAdvocaTor"));
   m.insert(Pair(ProgramType::primeExpert,"PrimeExpert"));
   m.insert(Pair(ProgramType::projectRichelBilderbeek,"ProjectRichelBilderbeek"));
@@ -377,12 +357,10 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::simStagecraft,"SimStagecraft"));
   m.insert(Pair(ProgramType::soaSim,"SoaSim"));
   m.insert(Pair(ProgramType::solvePuzzleX,"SolvePuzzleX"));
-  //m.insert(Pair(ProgramType::spaceHarry,"SpaceHarry"));
   m.insert(Pair(ProgramType::spaceHarryVcl,"SpaceHarry (VCL)"));
   m.insert(Pair(ProgramType::staircaseCardCreator,"StaircaseCardCreator"));
   m.insert(Pair(ProgramType::stateObserver,"StateObserver"));
   m.insert(Pair(ProgramType::styleSheetSetter,"StyleSheetSetter"));
-  m.insert(Pair(ProgramType::superNsanaBros,"Super Nsana Bros"));
   m.insert(Pair(ProgramType::surfacePlotter,"SurfacePlotter"));
   m.insert(Pair(ProgramType::surfacePlotterVcl,"SurfacePlotter (VCL)"));
   m.insert(Pair(ProgramType::tankBattalion,"Tank Battalion"));
@@ -450,15 +428,12 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::thresholdFilterer,"ThresholdFilterer"));
   m.insert(Pair(ProgramType::thresholdFiltererVcl,"ThresholdFilterer (VCL)"));
   m.insert(Pair(ProgramType::ticTacToe,"TicTacToe"));
-  m.insert(Pair(ProgramType::ticTacToeLearner,"TicTacToe Learner"));
-  m.insert(Pair(ProgramType::ticTacToeValuer,"TicTacToe Valuer"));
   m.insert(Pair(ProgramType::timePoll,"TimePoll"));
   m.insert(Pair(ProgramType::triangleMeshCreator,"TriangleMeshCreator"));
   m.insert(Pair(ProgramType::tronCollection,"Tron Collection"));
   m.insert(Pair(ProgramType::tronCollectionVcl,"Tron Collection (VCL)"));
   m.insert(Pair(ProgramType::ubuntuOneWatcher,"UbuntuOne Watcher"));
   m.insert(Pair(ProgramType::valentineCardDecrypter,"ValentineCardDecrypter"));
-  m.insert(Pair(ProgramType::vanDenBogaart,"Van Den Bogaart"));
   m.insert(Pair(ProgramType::vigenereCipher,"VigenereCipher"));
   m.insert(Pair(ProgramType::virtualBastard,"Virtual Bastard"));
   m.insert(Pair(ProgramType::visualAbc,"Visual ABC"));

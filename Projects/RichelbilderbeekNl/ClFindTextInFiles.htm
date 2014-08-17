@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>command line: convert MP3 to OGG</title>
-  <meta name="description" content="command line: convert MP3 to OGG"/>
-  <meta name="keywords" content="shell command line ubuntu shell unix convert MP3 to OGG to png tex pdf"/>
+  <title>Find text in files</title>
+  <meta name="description" content="command line Find text in files"/>
+  <meta name="keywords" content="shell command line Find egrep refex text in files recursive recursively"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,23 +18,24 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cl.htm">Command line</a>) <a href="ClMp3ToOgg.htm">convert MP3 to OGG</a></h1>
+<h1>(<a href="Cl.htm">Command line</a>) 
+  <img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/> 
+  <a href="ClFindTextInFiles.htm">Find text in files</a>
+</h1>
 <p>&nbsp;</p>
 <p>
-  <a href="ClMp3ToOgg.htm">convert MP3 to OGG</a> is a <a href="Cl.htm">command line</a>
-  snippet to convert an MP3 audio file to an OGG audio file.
+  <img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/> 
+  <a href="ClFindTextInFiles.htm">Find text in files</a> is a <a href="Cl.htm">command line</a> 
+  snippet to find a regex in regex-named files in all subfolders.
+</p>
+<p>&nbsp;</p>
+<p>
+  Find regex within all files in all subfolders:
 </p>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
-mpg321 my_song_name.mp3 -w - | oggenc -o my_song_name.ogg -<br/>
-</code></td></tr></table>
-<p>&nbsp;</p>
-<p>Or all files in a folder at once:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-for x in *.mp3; do avconv -i "$x" "`basename "$x" .mp3`.ogg"; done<br/>
+<table summary="Find regex within all files in all subfolders" border = "1"><tr><td><code>
+egrep -r "my_regex" .<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

@@ -11,7 +11,7 @@ namespace ribi {
 ///GUI independent ToolDotMatrix menu dialog
 struct DotMatrixMenuDialog final : public MenuDialog
 {
-
+  DotMatrixMenuDialog();
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;
   boost::shared_ptr<const Program> GetProgram() const noexcept override;

@@ -30,9 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QVBoxLayout>
 
 #include "fileio.h"
-#include "qtaminoacidfightermenudialog.h"
 #include "qtasciiartermenudialog.h"
-#include "qtathleticlandmenudialog.h"
 #include "qtbeerwantermenudialog.h"
 #include "qtboenkenmenudialog.h"
 #include "qtcaesarciphermenudialog.h"
@@ -151,10 +149,8 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
   QtHideAndShowDialog *  p = nullptr;
   switch (type)
   {
-    case ProgramType::aminoAcidFighter: p = new aaf::QtAafMenuDialog; break;
     case ProgramType::asciiArter: p = new QtAsciiArterMenuDialog; break;
     case ProgramType::asciiArterVcl: break;
-    case ProgramType::athleticLand: p = new athl::QtAthleticLandMenuDialog; break;
     case ProgramType::athleticLandVcl: break;
     case ProgramType::barbaImage: break;
     case ProgramType::beerWanter: p = new QtBeerWanterMenuDialog; break;
@@ -183,7 +179,6 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::dotMatrixVcl: break;
     case ProgramType::encranger: p = new QtToolEncrangerMenuDialog; break;
     case ProgramType::everythingToPiecesShooter: break;
-    case ProgramType::fakeEvy: break;
     case ProgramType::filterOperationer: p = new QtFilterOperationerMenuDialog; break;
     case ProgramType::filterOperationerVcl: break;
     case ProgramType::fryskLeareLieder: break;
@@ -210,7 +205,6 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::k3OpEenRijVcl: break;
     case ProgramType::kalmanFilterer: p = new kalman::QtKalmanFiltererMenuDialog; break;
     case ProgramType::keySender: break;
-    case ProgramType::knokfighter: break;
     case ProgramType::knokfighterVcl: break;
     case ProgramType::kTouchLectureCreator: break;
     case ProgramType::lambdaBot: break;
@@ -231,8 +225,6 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::muscaDomestica: break;
     case ProgramType::musicTheory: p = new QtMusicTheoryMenuDialog; break;
     case ProgramType::ndsmake: break;
-    case ProgramType::ndsPaint: break;
-    case ProgramType::paperRockScissors: break;
     case ProgramType::paperRockScissorsVcl: break;
     case ProgramType::pause: break;
     case ProgramType::perfectElasticCollision: p = new QtPerfectElasticCollisionMenuDialog; break;
@@ -241,7 +233,6 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::pixelator: p = new QtPixelatorMenuDialog; break;
     case ProgramType::pixelatorVcl: break;
     case ProgramType::pokeVolleyVcl: break;
-    case ProgramType::pong: break;
     case ProgramType::primeExpert: p = new QtToolPrimeExpertMenuDialog;  break;
     case ProgramType::projectRichelBilderbeek: p = new QtRichelBilderbeekMenuDialog; break;
     case ProgramType::pylos: p = new pylos::QtPylosMenuDialog; break;
@@ -276,7 +267,6 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::staircaseCardCreator: break;
     case ProgramType::stateObserver: p = new QtStateObserverMenuDialog; break;
     case ProgramType::styleSheetSetter: p = new QtStyleSheetSetterMenuDialog; break;
-    case ProgramType::superNsanaBros: break;
     case ProgramType::surfacePlotter: p = new QtSurfacePlotterMenuDialog; break;
     case ProgramType::surfacePlotterVcl: break;
     case ProgramType::tankBattalion: break;
@@ -352,15 +342,12 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::thresholdFilterer: p = new QtThresholdFiltererMenuDialog; break;
     case ProgramType::thresholdFiltererVcl: break;
     case ProgramType::ticTacToe: p = new tictactoe::QtTicTacToeMenuDialog; break;
-    case ProgramType::ticTacToeLearner: break;
-    case ProgramType::ticTacToeValuer: break;
     case ProgramType::timePoll: break;
     case ProgramType::triangleMeshCreator: break; p = new QtTriangleMeshCreatorMenuDialog; break;
     case ProgramType::tronCollection: new tron::QtTronMenuDialog; break;
     case ProgramType::tronCollectionVcl: break;
     case ProgramType::ubuntuOneWatcher: break;
     case ProgramType::valentineCardDecrypter: p = new QtValentineCardDecrypterMenuDialog; break;
-    case ProgramType::vanDenBogaart: break;
     case ProgramType::vigenereCipher: p = new QtVigenereCipherMenuDialog; break;
     case ProgramType::virtualBastard: break;
     case ProgramType::visualAbc: p = new QtVisualAbcMenuDialog; break;

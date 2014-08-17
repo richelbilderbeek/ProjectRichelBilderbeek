@@ -36,13 +36,11 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
   boost::shared_ptr<Program> p;
   switch (type)
   {
-    case ProgramType::aminoAcidFighter: p.reset(new ProgramAminoAcidFighter); break;
     case ProgramType::asciiArter: p.reset(new ProgramAsciiArter); break;
     case ProgramType::asciiArterVcl: p.reset(new ProgramAsciiArterVcl); break;
     case ProgramType::barbaImage: p.reset(new ProgramBarbaImage); break;
     case ProgramType::beerWanter: p.reset(new ProgramBeerWanter); break;
     case ProgramType::beerWanterVcl: p.reset(new ProgramBeerWanterVcl); break;
-    case ProgramType::athleticLand: p.reset(new ProgramAthleticLand); break;
     case ProgramType::athleticLandVcl: p.reset(new ProgramAthleticLandVcl); break;
     case ProgramType::bochum: p.reset(new ProgramBochum); break;
     case ProgramType::boenken: p.reset(new ProgramBoenken); break;
@@ -64,7 +62,6 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::dotMatrixVcl: p.reset(new ProgramDotMatrixVcl); break;
     case ProgramType::encranger: p.reset(new ProgramEncranger); break;
     case ProgramType::everythingToPiecesShooter: p.reset(new ProgramEverythingToPiecesShooter); break;
-    case ProgramType::fakeEvy: p.reset(new ProgramFakeEvy); break;
     case ProgramType::filterOperationer: p.reset(new ProgramFilterOperationer); break;
     case ProgramType::filterOperationerVcl: p.reset(new ProgramFilterOperationerVcl); break;
     case ProgramType::fryskLeareLieder: p.reset(new ProgramFryskLeareLieder); break;
@@ -86,7 +83,6 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::k3OpEenRijVcl: p.reset(new ProgramK3OpEenRijVcl); break;
     case ProgramType::kalmanFilterer: p.reset(new ProgramKalmanFilterer); break;
     case ProgramType::keySender: p.reset(new ProgramKeySender); break;
-    case ProgramType::knokfighter: p.reset(new ProgramKnokfighter); break;
     case ProgramType::knokfighterVcl: p.reset(new ProgramKnokfighterVcl); break;
     case ProgramType::kTouchLectureCreator: p.reset(new ProgramKTouchLectureCreator); break;
     case ProgramType::lambdaBot: p.reset(new ProgramLambdaBot); break;
@@ -98,7 +94,6 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::mazeCreatorVcl: p.reset(new ProgramMazeCreatorVcl); break;
     case ProgramType::maziak: p.reset(new ProgramMaziak); break;
     case ProgramType::maziakVcl: p.reset(new ProgramMaziakVcl); break;
-    //case ProgramType::metZnDrieen: p.reset(new ProgramMetZnDrieen); break;
     case ProgramType::metZnDrieenVcl: p.reset(new ProgramMetZnDrieenVcl); break;
     case ProgramType::midiLessonCreator: p.reset(new ProgramMidiLessonCreator); break;
     case ProgramType::morpher: p.reset(new ProgramMorpher); break;
@@ -107,8 +102,6 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::muscaDomestica: p.reset(new ProgramMuscaDomestica); break;
     case ProgramType::musicTheory: p.reset(new ProgramMusicTheory); break;
     case ProgramType::ndsmake: p.reset(new ProgramNdsmake); break;
-    case ProgramType::ndsPaint: p.reset(new ProgramNdsPaint); break;
-    case ProgramType::paperRockScissors: p.reset(new ProgramPaperRockScissors); break;
     case ProgramType::paperRockScissorsVcl: p.reset(new ProgramPaperRockScissorsVcl); break;
     case ProgramType::pause: p.reset(new ProgramPause); break;
     case ProgramType::perfectElasticCollision: p.reset(new ProgramPerfectElasticCollision); break;
@@ -116,7 +109,6 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::pixelator: p.reset(new ProgramPixelator); break;
     case ProgramType::pixelatorVcl: p.reset(new ProgramPixelatorVcl); break;
     case ProgramType::pokeVolleyVcl: p.reset(new ProgramPokeVolleyVcl); break;
-    case ProgramType::pong: p.reset(new ProgramPong); break;
     case ProgramType::preDickAdvocaTor: p.reset(new ProgramPreDickAdvocaTor); break;
     case ProgramType::primeExpert: p.reset(new ProgramPrimeExpert); break;
     case ProgramType::projectRichelBilderbeek: p.reset(new ProgramProjectRichelBilderbeek); break;
@@ -147,12 +139,10 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::simStagecraft: p.reset(new ProgramSimStagecraft); break;
     case ProgramType::soaSim: p.reset(new ProgramSoaSim); break;
     case ProgramType::solvePuzzleX: p.reset(new ProgramSolvePuzzleX); break;
-    //case ProgramType::spaceHarry: p.reset(new ProgramSpaceHarry); break;
     case ProgramType::spaceHarryVcl: p.reset(new ProgramSpaceHarryVcl); break;
     case ProgramType::staircaseCardCreator: p.reset(new ProgramStaircaseCardCreator); break;
     case ProgramType::stateObserver: p.reset(new ProgramStateObserver); break;
     case ProgramType::styleSheetSetter: p.reset(new ProgramStyleSheetSetter); break;
-    case ProgramType::superNsanaBros: p.reset(new ProgramSuperNsanaBros); break;
     case ProgramType::surfacePlotter: p.reset(new ProgramSurfacePlotter); break;
     case ProgramType::surfacePlotterVcl: p.reset(new ProgramSurfacePlotterVcl); break;
     case ProgramType::tankBattalion: p.reset(new ProgramTankBattalion); break;
@@ -221,14 +211,11 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::thresholdFilterer: p.reset(new ProgramThresholdFilterer); break;
     case ProgramType::thresholdFiltererVcl: p.reset(new ProgramThresholdFiltererVcl); break;
     case ProgramType::ticTacToe: p.reset(new ProgramTicTacToe); break;
-    case ProgramType::ticTacToeLearner: p.reset(new ProgramTicTacToeLearner); break;
-    case ProgramType::ticTacToeValuer: p.reset(new ProgramTicTacToeValuer); break;
     case ProgramType::timePoll: p.reset(new ProgramTimePoll); break;
     case ProgramType::tronCollection: p.reset(new ProgramTronCollection); break;
     case ProgramType::tronCollectionVcl: p.reset(new ProgramTronCollectionVcl); break;
     case ProgramType::ubuntuOneWatcher: p.reset(new ProgramUbuntuOneWatcher); break;
     case ProgramType::valentineCardDecrypter: p.reset(new ProgramValentineCardDecrypter); break;
-    case ProgramType::vanDenBogaart: p.reset(new ProgramVanDenBogaart); break;
     case ProgramType::vigenereCipher: p.reset(new ProgramVigenereCipher); break;
     case ProgramType::virtualBastard: p.reset(new ProgramVirtualBastard); break;
     case ProgramType::visualAbc: p.reset(new ProgramVisualAbc); break;

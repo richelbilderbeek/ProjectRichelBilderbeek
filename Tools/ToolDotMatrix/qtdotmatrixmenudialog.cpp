@@ -60,6 +60,7 @@ void ribi::QtDotMatrixMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  DotMatrixMenuDialog();
   QtDotMatrixSingleLineMainDialog();
   QtDotMatrixMultiLineMainDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
