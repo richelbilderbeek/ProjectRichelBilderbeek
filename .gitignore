@@ -2394,3 +2394,17 @@ Libraries/qwt-6.1/.svn/
 gmock-1.7.0.zip
 gmock-*/
 cppunit/
+Games/GameBeerWanter/GameBeerWanterDesktop
+Games/GameConnectThree/GameConnectThreeConsole
+Games/GameConnectThree/GameConnectThreeDesktop
+Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfestConsole
+Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfestDesktop
+Games/GameK3OpEenRij/GameK3OpEenRijDesktop
+Games/GameK3OpEenRij/GameK3OpEenRijWebsite
+Games/GameEverythingToPiecesShooter/GameEverythingToPiecesShooterDesktop
+Games/GameKnokfighter/GameKnokfighterConsole
+Games/GamePylos/GamePylosDesktop
+Games/GameTicTacToe/GameTicTacToeConsole
+Libraries/qwt-6.1/*
+Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekConsole
+Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop

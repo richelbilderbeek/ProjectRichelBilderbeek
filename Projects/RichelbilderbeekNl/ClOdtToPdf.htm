@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>command line: convert MP3 to OGG</title>
-  <meta name="description" content="command line: convert MP3 to OGG"/>
-  <meta name="keywords" content="shell command line ubuntu shell unix convert MP3 to OGG to png tex pdf"/>
+  <title>command line: convert ODT to PDF</title>
+  <meta name="description" content="command line: convert ODT to PDF"/>
+  <meta name="keywords" content="shell command line ubuntu shell unix convert from odt ODT to PDF pdf"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,25 +18,17 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cl.htm">Command line</a>) <a href="ClMp3ToOgg.htm">convert MP3 to OGG</a></h1>
+<h1>(<a href="Cl.htm">Command line</a>) <a href="ClOdtToPdf.htm">convert ODT to PDF</a></h1>
 <p>&nbsp;</p>
 <p>
-  <a href="ClMp3ToOgg.htm">convert MP3 to OGG</a> is a <a href="Cl.htm">command line</a>
-  snippet to convert an MP3 audio file to an OGG audio file.
+  <a href="ClOdtToPdf.htm">convert ODT to PDF</a> is a <a href="Cl.htm">command line</a>
+  snippet to convert an ODT document to a PDF document.
 </p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
-mpg321 my_song_name.mp3 -w - | oggenc -o my_song_name.ogg -<br/>
+unoconv -f pdf my_odt_file.odt<br/>
 </code></td></tr></table>
-<p>&nbsp;</p>
-<p>Or all files in a folder at once:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-for x in *.mp3; do avconv -i "$x" "`basename "$x" .mp3`.ogg"; done<br/>
-</code></td></tr></table>
-<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
