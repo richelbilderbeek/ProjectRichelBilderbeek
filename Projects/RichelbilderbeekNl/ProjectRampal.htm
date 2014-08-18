@@ -880,50 +880,50 @@ const std::vector&lt;std::string&gt; GetMediumNewicks();<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ProjectRampal/301/MyTrace.h" border = "1"><tr><td><code>
-#ifndef BILDERBIKKEL_TRACE_H<br/>
-#define BILDERBIKKEL_TRACE_H<br/>
-//---------------------------------------------------------------------------<br/>
-#include &lt;cassert&gt;<br/>
-<br/>
-//From http://www.richelbilderbeek.nl/CppAssert.htm<br/>
-#ifdef NTRACE_BILDERBIKKEL<br/>
-&nbsp;&nbsp;#define Trace(x) ((void)0)<br/>
-#else<br/>
-&nbsp;&nbsp;#include &lt;fstream&gt;<br/>
-&nbsp;&nbsp;#include &lt;iostream&gt;<br/>
-&nbsp;&nbsp;#include &lt;stdexcept&gt;<br/>
-<br/>
-&nbsp;&nbsp;#define Trace(x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream f("trace_out.txt"); \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "TRACE \'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;std::string (#x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"\' line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;" in file '"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;__FILE__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"': "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;std::string (x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; std::endl;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f.close();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "TRACE \'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;std::string (#x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"\' line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;" in file '"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;__FILE__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"': "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;std::string (x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; std::endl;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-<br/>
-#endif<br/>
-//---------------------------------------------------------------------------<br/>
-#endif // BILDERBIKKEL_TRACE_H<br/>
+#ifndef BILDERBIKKEL_TRACE_H<br/>
+#define BILDERBIKKEL_TRACE_H<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;cassert&gt;<br/>
+<br/>
+//From http://www.richelbilderbeek.nl/CppAssert.htm<br/>
+#ifdef NTRACE_BILDERBIKKEL<br/>
+&nbsp;&nbsp;#define Trace(x) ((void)0)<br/>
+#else<br/>
+&nbsp;&nbsp;#include &lt;fstream&gt;<br/>
+&nbsp;&nbsp;#include &lt;iostream&gt;<br/>
+&nbsp;&nbsp;#include &lt;stdexcept&gt;<br/>
+<br/>
+&nbsp;&nbsp;#define Trace(x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream f("trace_out.txt"); \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "TRACE \'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;std::string (#x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"\' line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;" in file '"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;__FILE__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"': "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;std::string (x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; std::endl;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f.close();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "TRACE \'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;std::string (#x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"\' line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;" in file '"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;__FILE__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"': "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;std::string (x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;"'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; std::endl;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
+<br/>
+#endif<br/>
+//---------------------------------------------------------------------------<br/>
+#endif // BILDERBIKKEL_TRACE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -935,40 +935,40 @@ const std::vector&lt;std::string&gt; GetMediumNewicks();<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ProjectRampal/301/ProjectRampalGui.cpp" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-<br/>
-#include &lt;vcl.h&gt;<br/>
-#pragma hdrstop<br/>
-//---------------------------------------------------------------------------<br/>
-USEFORM("UnitFormAnalyse.cpp", FormAnalyse);<br/>
-//---------------------------------------------------------------------------<br/>
-WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)<br/>
-{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Initialize();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Title = "The Rampal Etienne Project multi-run GUI";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;CreateForm(__classid(TFormAnalyse), &amp;FormAnalyse);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Run();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch (Exception &amp;exception)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;ShowException(&amp;exception);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch (...)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw Exception("");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (Exception &amp;exception)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;ShowException(&amp;exception);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
+//---------------------------------------------------------------------------<br/>
+<br/>
+#include &lt;vcl.h&gt;<br/>
+#pragma hdrstop<br/>
+//---------------------------------------------------------------------------<br/>
+USEFORM("UnitFormAnalyse.cpp", FormAnalyse);<br/>
+//---------------------------------------------------------------------------<br/>
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Initialize();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Title = "The Rampal Etienne Project multi-run GUI";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;CreateForm(__classid(TFormAnalyse), &amp;FormAnalyse);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Run();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch (...)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw Exception("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1531,397 +1531,397 @@ RESOURCES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ProjectRampal/301/test.cpp" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
-&nbsp;&nbsp;(C) 2009 Richel Bilderbeek<br/>
-<br/>
-&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
-&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
-&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
-&nbsp;&nbsp;(at your option) any later version.<br/>
-<br/>
-&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
-&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
-&nbsp;&nbsp;GNU General Public License for more details.<br/>
-&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
-&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-// From http://www.richelbilderbeek.nl<br/>
-//---------------------------------------------------------------------------<br/>
-#include &lt;fstream&gt;<br/>
-#include &lt;vector&gt;<br/>
-//---------------------------------------------------------------------------<br/>
-#include &lt;boost/numeric/conversion/cast.hpp&gt;<br/>
-#include &lt;boost/timer.hpp&gt;<br/>
-//---------------------------------------------------------------------------<br/>
-#include "binarynewickvector.h"<br/>
-#include "newick.h"<br/>
-#include "stopwatch.h"<br/>
-#include "test.h"<br/>
-//---------------------------------------------------------------------------<br/>
-///Create all tests according to the flags given.<br/>
-///Test parameters:\n<br/>
-///i &amp;&nbsp;&nbsp;1: use Ravindran\n<br/>
-///i &amp;&nbsp;&nbsp;2: use SortedNewick\n<br/>
-///i &amp;&nbsp;&nbsp;4: use SmartSortedNewick\n<br/>
-///i &amp;&nbsp;&nbsp;8: use RampalMain_Endversion2\n<br/>
-///i &amp; 16: use TestTwoDigitNewickDebug\n<br/>
-///i &amp; 32: use TestTwoDigitNewickRelease\n<br/>
-///63: use all\n<br/>
-std::vector&lt;boost::shared_ptr&lt;Test&gt; &gt; Test::CreateTests(<br/>
-&nbsp;&nbsp;const std::string&amp; newick,<br/>
-&nbsp;&nbsp;const double theta,<br/>
-&nbsp;&nbsp;const int flags)<br/>
-{<br/>
-&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Test&gt; &gt; v;<br/>
-&nbsp;&nbsp;if (flags &amp; 1)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Test&gt; t(new TestRavindran(newick,theta));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;if (flags &amp; 2)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Test&gt; t(new TestEndversion2(newick,theta));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(t);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;if (flags &amp; 4)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Test&gt; t(new TestTwoDigitNewickDebug(newick,theta));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(t);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;if (flags &amp; 8)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Test&gt; t(new TestTwoDigitNewickRelease(newick,theta));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(t);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;return v;<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-///FileExists checks if a certain file exists<br/>
-///From http://www.richelbilderbeek.nl/CppFileExists.htm<br/>
-bool Test::FileExists(const std::string&amp; filename)<br/>
-{<br/>
-&nbsp;&nbsp;std::fstream f;<br/>
-&nbsp;&nbsp;f.open(filename.c_str(),std::ios::in);<br/>
-&nbsp;&nbsp;return f.is_open();<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-//From http://www.richelbilderbeek.nl/CppFileToVector.htm<br/>
-const std::vector&lt;std::string&gt; Test::FileToVector(const std::string&amp; fileName)<br/>
-{<br/>
-&nbsp;&nbsp;assert(FileExists(fileName)==true);<br/>
-&nbsp;&nbsp;std::vector&lt;std::string&gt; myVector;<br/>
-&nbsp;&nbsp;std::ifstream in(fileName.c_str());<br/>
-&nbsp;&nbsp;std::string myString;<br/>
-&nbsp;&nbsp;for (int i=0; !in.eof(); ++i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::getline(in,myString);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;myVector.push_back(myString);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;return myVector;<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-const BigInteger Test::GetComplexity() const<br/>
-{<br/>
-&nbsp;&nbsp;const BinaryNewickVector n(GetNewick());<br/>
-&nbsp;&nbsp;return Newick::CalcComplexity(n.Get());<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-//Ewensprobability = probability * num_of_combinations<br/>
-const std::string Test::GetEwensProbability() const<br/>
-{<br/>
-&nbsp;&nbsp;const BigInteger n_combinations<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;= Newick::CalcNumOfCombinations(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BinaryNewickVector(GetNewick()).Get());<br/>
-&nbsp;&nbsp;try<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int i = n_combinations.toInt();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const double d = boost::numeric_cast&lt;double&gt;(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const double ewens_probability = d * GetProbability();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return boost::lexical_cast&lt;std::string&gt;(ewens_probability);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;catch (...)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= bigIntegerToString(n_combinations)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ std::string(" * ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetProbability());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return s;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-bool Test::Execute(<br/>
-&nbsp;&nbsp;const std::string&amp; exe_filename,<br/>
-&nbsp;&nbsp;const std::string&amp; full_command,<br/>
-&nbsp;&nbsp;const std::string&amp; output_filename)<br/>
-{<br/>
-&nbsp;&nbsp;std::clog &lt;&lt; "Starting '" &lt;&lt; GetTestName() &lt;&lt; "' for '"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; this-&gt;GetNewick() &lt;&lt; "'\n";<br/>
-<br/>
-&nbsp;&nbsp;if (!FileExists(exe_filename))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::cerr &lt;&lt; "Executable file '" &lt;&lt; exe_filename &lt;&lt; "' not found\n";<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;assert(FileExists(exe_filename));<br/>
-<br/>
-&nbsp;&nbsp;const Stopwatch s;<br/>
-<br/>
-&nbsp;&nbsp;const int sys_error = std::system(full_command.c_str());<br/>
-<br/>
-&nbsp;&nbsp;if (sys_error == 0)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_time = s.elapsed();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(FileExists(result_filename));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_probability = ReadDoubleFromFile(output_filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_time = 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_probability = 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-///ReadDoubleFromFile reads the first line of a file<br/>
-///and converts it to a double.<br/>
-///From http://www.richelbilderbeek.nl/CppReadDoubleFromFile.htm<br/>
-double Test::ReadDoubleFromFile(const std::string&amp; fileName)<br/>
-{<br/>
-&nbsp;&nbsp;const std::vector&lt;std::string&gt; v = FileToVector(fileName);<br/>
-&nbsp;&nbsp;assert(v.empty()==false);<br/>
-&nbsp;&nbsp;const double d = std::atof(v[0].c_str());<br/>
-&nbsp;&nbsp;return d;<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-//Returns if the test was successful<br/>
-bool TestRavindran::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;std::clog &lt;&lt; "Starting TestRavindranLinux for '"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; this-&gt;GetNewick() &lt;&lt; "'\n";<br/>
-<br/>
-&nbsp;&nbsp;if (GetComplexity() &gt; 1000000) return false;<br/>
-<br/>
-&nbsp;&nbsp;//Write parameters to file<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream file("theta.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;file &lt;&lt; GetTheta();<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Older version expects a /n at end<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream file("phylogeny.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;file &lt;&lt; GetNewick() &lt;&lt; "\n\n";<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;#ifdef WIN32<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/phy_prob_12.exe";<br/>
-&nbsp;&nbsp;const std::string full_command = "../Exes/phy_prob_12.exe";<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/phy_prob_linux";<br/>
-&nbsp;&nbsp;const std::string full_command = "./../Exes/phy_prob_linux";<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;return Test::Execute(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;full_command,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"expected_probability.txt");<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-///Just call the executable ProjectRampalMain_Endversion2<br/>
-///with the parameters<br/>
-bool TestEndversion2::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/ProjectRampalMain_Endversion2";<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/ProjectRampal.exe";<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;const std::string command_full =<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
-&nbsp;&nbsp;#endif<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
-<br/>
-&nbsp;&nbsp;const std::string output_filename = "Result_probability.txt";<br/>
-<br/>
-&nbsp;&nbsp;return Test::Execute(exe_filename,command_full,output_filename);<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-///Just call the executable TestTwoDigitNewickDebug<br/>
-///with the parameters<br/>
-bool TestTwoDigitNewickDebug::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestTwoDigitNewickUbuntuDebug";<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestTwoDigitNewickWinDebug.exe";<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;const std::string command_full =<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
-&nbsp;&nbsp;#endif<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
-&nbsp;&nbsp;const std::string output_filename = "Result_probability.txt";<br/>
-&nbsp;&nbsp;return Test::Execute(exe_filename,command_full,output_filename);<br/>
-<br/>
-&nbsp;&nbsp;/*<br/>
-&nbsp;&nbsp;std::clog &lt;&lt; "Starting TestTwoDigitNewickDebug for '"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; this-&gt;GetNewick() &lt;&lt; "'\n";<br/>
-&nbsp;&nbsp;const std::string filename<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;= "../../../Tools/ToolTestTwoDigitNewick-build-desktop/TestTwoDigitNewickUbuntuDebug";<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;= "../../../Tools/ToolTestTwoDigitNewick/debug/TestNewickVectorWinDebug.exe";<br/>
-&nbsp;&nbsp;#endif<br/>
-&nbsp;&nbsp;if (!FileExists(filename))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::cerr &lt;&lt; "File '" &lt;&lt; filename &lt;&lt; "' not found\n";<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;assert(FileExists(filename));<br/>
-<br/>
-&nbsp;&nbsp;const std::string command =<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
-&nbsp;&nbsp;#endif<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
-<br/>
-&nbsp;&nbsp;const Stopwatch s;<br/>
-<br/>
-&nbsp;&nbsp;const int sys_error = std::system(command.c_str());<br/>
-&nbsp;&nbsp;if (sys_error == 0)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;time = s.elapsed();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string result_filename = "Result_probability.txt";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(FileExists(result_filename));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;probability = ReadDoubleFromFile(result_filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;time = 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;probability = 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;*/<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-///Just call the executable TestTwoDigitNewickRelease<br/>
-///with the parameters<br/>
-bool TestTwoDigitNewickRelease::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestTwoDigitNewickUbuntuRelease";<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestTwoDigitNewickWinRelease.exe";<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;const std::string command_full =<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
-&nbsp;&nbsp;#endif<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
-&nbsp;&nbsp;const std::string output_filename = "Result_probability.txt";<br/>
-&nbsp;&nbsp;return Test::Execute(exe_filename,command_full,output_filename);<br/>
-&nbsp;&nbsp;/*<br/>
-&nbsp;&nbsp;std::clog &lt;&lt; "Starting TestTwoDigitNewickRelease for '"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; this-&gt;GetNewick() &lt;&lt; "'\n";<br/>
-&nbsp;&nbsp;const std::string filename<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;= "../../../Tools/ToolTestTwoDigitNewick-build-desktop/TestTwoDigitNewickUbuntuRelease";<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;= "../../../Tools/ToolTestTwoDigitNewick/release/TestNewickVectorWinRelease.exe";<br/>
-&nbsp;&nbsp;#endif<br/>
-&nbsp;&nbsp;assert(FileExists(filename));<br/>
-&nbsp;&nbsp;if (!FileExists(filename))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::cerr &lt;&lt; "File '" &lt;&lt; filename &lt;&lt; "' not found\n";<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;const std::string command =<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
-&nbsp;&nbsp;#endif<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
-<br/>
-&nbsp;&nbsp;const Stopwatch s;<br/>
-<br/>
-&nbsp;&nbsp;const int sys_error = std::system(command.c_str());<br/>
-<br/>
-&nbsp;&nbsp;if (sys_error == 0)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_time = s.elapsed();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string result_filename = "Result_probability.txt";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(FileExists(result_filename));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_probability = ReadDoubleFromFile(result_filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_time = 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_probability = 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;*/<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
-///Just call the executable TestTwoDigitNewickDebug<br/>
-///with the parameters<br/>
-bool TestManyDigitNewickDebug::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestManyDigitNewickUbuntuDebug";<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestManyDigitNewickWinDebug.exe";<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;const std::string command_full =<br/>
-&nbsp;&nbsp;#ifndef WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
-&nbsp;&nbsp;#endif<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
-<br/>
-&nbsp;&nbsp;const std::string output_filename = "Result_probability.txt";<br/>
-<br/>
-&nbsp;&nbsp;return Test::Execute(exe_filename,command_full,output_filename);<br/>
-}<br/>
-//---------------------------------------------------------------------------<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
+&nbsp;&nbsp;(C) 2009 Richel Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;fstream&gt;<br/>
+#include &lt;vector&gt;<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;boost/numeric/conversion/cast.hpp&gt;<br/>
+#include &lt;boost/timer.hpp&gt;<br/>
+//---------------------------------------------------------------------------<br/>
+#include "binarynewickvector.h"<br/>
+#include "newick.h"<br/>
+#include "stopwatch.h"<br/>
+#include "test.h"<br/>
+//---------------------------------------------------------------------------<br/>
+///Create all tests according to the flags given.<br/>
+///Test parameters:\n<br/>
+///i &amp;&nbsp;&nbsp;1: use Ravindran\n<br/>
+///i &amp;&nbsp;&nbsp;2: use SortedNewick\n<br/>
+///i &amp;&nbsp;&nbsp;4: use SmartSortedNewick\n<br/>
+///i &amp;&nbsp;&nbsp;8: use RampalMain_Endversion2\n<br/>
+///i &amp; 16: use TestTwoDigitNewickDebug\n<br/>
+///i &amp; 32: use TestTwoDigitNewickRelease\n<br/>
+///63: use all\n<br/>
+std::vector&lt;boost::shared_ptr&lt;Test&gt; &gt; Test::CreateTests(<br/>
+&nbsp;&nbsp;const std::string&amp; newick,<br/>
+&nbsp;&nbsp;const double theta,<br/>
+&nbsp;&nbsp;const int flags)<br/>
+{<br/>
+&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Test&gt; &gt; v;<br/>
+&nbsp;&nbsp;if (flags &amp; 1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Test&gt; t(new TestRavindran(newick,theta));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;if (flags &amp; 2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Test&gt; t(new TestEndversion2(newick,theta));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;if (flags &amp; 4)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Test&gt; t(new TestTwoDigitNewickDebug(newick,theta));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;if (flags &amp; 8)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Test&gt; t(new TestTwoDigitNewickRelease(newick,theta));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;return v;<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+///FileExists checks if a certain file exists<br/>
+///From http://www.richelbilderbeek.nl/CppFileExists.htm<br/>
+bool Test::FileExists(const std::string&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;std::fstream f;<br/>
+&nbsp;&nbsp;f.open(filename.c_str(),std::ios::in);<br/>
+&nbsp;&nbsp;return f.is_open();<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppFileToVector.htm<br/>
+const std::vector&lt;std::string&gt; Test::FileToVector(const std::string&amp; fileName)<br/>
+{<br/>
+&nbsp;&nbsp;assert(FileExists(fileName)==true);<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; myVector;<br/>
+&nbsp;&nbsp;std::ifstream in(fileName.c_str());<br/>
+&nbsp;&nbsp;std::string myString;<br/>
+&nbsp;&nbsp;for (int i=0; !in.eof(); ++i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::getline(in,myString);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;myVector.push_back(myString);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;return myVector;<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+const BigInteger Test::GetComplexity() const<br/>
+{<br/>
+&nbsp;&nbsp;const BinaryNewickVector n(GetNewick());<br/>
+&nbsp;&nbsp;return Newick::CalcComplexity(n.Get());<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+//Ewensprobability = probability * num_of_combinations<br/>
+const std::string Test::GetEwensProbability() const<br/>
+{<br/>
+&nbsp;&nbsp;const BigInteger n_combinations<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= Newick::CalcNumOfCombinations(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BinaryNewickVector(GetNewick()).Get());<br/>
+&nbsp;&nbsp;try<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int i = n_combinations.toInt();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const double d = boost::numeric_cast&lt;double&gt;(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const double ewens_probability = d * GetProbability();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return boost::lexical_cast&lt;std::string&gt;(ewens_probability);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;catch (...)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= bigIntegerToString(n_combinations)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ std::string(" * ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetProbability());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return s;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+bool Test::Execute(<br/>
+&nbsp;&nbsp;const std::string&amp; exe_filename,<br/>
+&nbsp;&nbsp;const std::string&amp; full_command,<br/>
+&nbsp;&nbsp;const std::string&amp; output_filename)<br/>
+{<br/>
+&nbsp;&nbsp;std::clog &lt;&lt; "Starting '" &lt;&lt; GetTestName() &lt;&lt; "' for '"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; this-&gt;GetNewick() &lt;&lt; "'\n";<br/>
+<br/>
+&nbsp;&nbsp;if (!FileExists(exe_filename))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::cerr &lt;&lt; "Executable file '" &lt;&lt; exe_filename &lt;&lt; "' not found\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;assert(FileExists(exe_filename));<br/>
+<br/>
+&nbsp;&nbsp;const Stopwatch s;<br/>
+<br/>
+&nbsp;&nbsp;const int sys_error = std::system(full_command.c_str());<br/>
+<br/>
+&nbsp;&nbsp;if (sys_error == 0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_time = s.elapsed();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(FileExists(result_filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_probability = ReadDoubleFromFile(output_filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_time = 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_probability = 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+///ReadDoubleFromFile reads the first line of a file<br/>
+///and converts it to a double.<br/>
+///From http://www.richelbilderbeek.nl/CppReadDoubleFromFile.htm<br/>
+double Test::ReadDoubleFromFile(const std::string&amp; fileName)<br/>
+{<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt; v = FileToVector(fileName);<br/>
+&nbsp;&nbsp;assert(v.empty()==false);<br/>
+&nbsp;&nbsp;const double d = std::atof(v[0].c_str());<br/>
+&nbsp;&nbsp;return d;<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+//Returns if the test was successful<br/>
+bool TestRavindran::Execute()<br/>
+{<br/>
+&nbsp;&nbsp;std::clog &lt;&lt; "Starting TestRavindranLinux for '"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; this-&gt;GetNewick() &lt;&lt; "'\n";<br/>
+<br/>
+&nbsp;&nbsp;if (GetComplexity() &gt; 1000000) return false;<br/>
+<br/>
+&nbsp;&nbsp;//Write parameters to file<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream file("theta.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file &lt;&lt; GetTheta();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Older version expects a /n at end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream file("phylogeny.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file &lt;&lt; GetNewick() &lt;&lt; "\n\n";<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;#ifdef WIN32<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/phy_prob_12.exe";<br/>
+&nbsp;&nbsp;const std::string full_command = "../Exes/phy_prob_12.exe";<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/phy_prob_linux";<br/>
+&nbsp;&nbsp;const std::string full_command = "./../Exes/phy_prob_linux";<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;return Test::Execute(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exe_filename,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;full_command,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"expected_probability.txt");<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+///Just call the executable ProjectRampalMain_Endversion2<br/>
+///with the parameters<br/>
+bool TestEndversion2::Execute()<br/>
+{<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/ProjectRampalMain_Endversion2";<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/ProjectRampal.exe";<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;const std::string command_full =<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
+<br/>
+&nbsp;&nbsp;const std::string output_filename = "Result_probability.txt";<br/>
+<br/>
+&nbsp;&nbsp;return Test::Execute(exe_filename,command_full,output_filename);<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+///Just call the executable TestTwoDigitNewickDebug<br/>
+///with the parameters<br/>
+bool TestTwoDigitNewickDebug::Execute()<br/>
+{<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestTwoDigitNewickUbuntuDebug";<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestTwoDigitNewickWinDebug.exe";<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;const std::string command_full =<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
+&nbsp;&nbsp;const std::string output_filename = "Result_probability.txt";<br/>
+&nbsp;&nbsp;return Test::Execute(exe_filename,command_full,output_filename);<br/>
+<br/>
+&nbsp;&nbsp;/*<br/>
+&nbsp;&nbsp;std::clog &lt;&lt; "Starting TestTwoDigitNewickDebug for '"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; this-&gt;GetNewick() &lt;&lt; "'\n";<br/>
+&nbsp;&nbsp;const std::string filename<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= "../../../Tools/ToolTestTwoDigitNewick-build-desktop/TestTwoDigitNewickUbuntuDebug";<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= "../../../Tools/ToolTestTwoDigitNewick/debug/TestNewickVectorWinDebug.exe";<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;if (!FileExists(filename))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::cerr &lt;&lt; "File '" &lt;&lt; filename &lt;&lt; "' not found\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;assert(FileExists(filename));<br/>
+<br/>
+&nbsp;&nbsp;const std::string command =<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
+<br/>
+&nbsp;&nbsp;const Stopwatch s;<br/>
+<br/>
+&nbsp;&nbsp;const int sys_error = std::system(command.c_str());<br/>
+&nbsp;&nbsp;if (sys_error == 0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;time = s.elapsed();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string result_filename = "Result_probability.txt";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(FileExists(result_filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;probability = ReadDoubleFromFile(result_filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;time = 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;probability = 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;*/<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+///Just call the executable TestTwoDigitNewickRelease<br/>
+///with the parameters<br/>
+bool TestTwoDigitNewickRelease::Execute()<br/>
+{<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestTwoDigitNewickUbuntuRelease";<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestTwoDigitNewickWinRelease.exe";<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;const std::string command_full =<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
+&nbsp;&nbsp;const std::string output_filename = "Result_probability.txt";<br/>
+&nbsp;&nbsp;return Test::Execute(exe_filename,command_full,output_filename);<br/>
+&nbsp;&nbsp;/*<br/>
+&nbsp;&nbsp;std::clog &lt;&lt; "Starting TestTwoDigitNewickRelease for '"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; this-&gt;GetNewick() &lt;&lt; "'\n";<br/>
+&nbsp;&nbsp;const std::string filename<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= "../../../Tools/ToolTestTwoDigitNewick-build-desktop/TestTwoDigitNewickUbuntuRelease";<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= "../../../Tools/ToolTestTwoDigitNewick/release/TestNewickVectorWinRelease.exe";<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;assert(FileExists(filename));<br/>
+&nbsp;&nbsp;if (!FileExists(filename))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::cerr &lt;&lt; "File '" &lt;&lt; filename &lt;&lt; "' not found\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;const std::string command =<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
+<br/>
+&nbsp;&nbsp;const Stopwatch s;<br/>
+<br/>
+&nbsp;&nbsp;const int sys_error = std::system(command.c_str());<br/>
+<br/>
+&nbsp;&nbsp;if (sys_error == 0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_time = s.elapsed();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string result_filename = "Result_probability.txt";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(FileExists(result_filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_probability = ReadDoubleFromFile(result_filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_time = 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_probability = 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;*/<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+///Just call the executable TestTwoDigitNewickDebug<br/>
+///with the parameters<br/>
+bool TestManyDigitNewickDebug::Execute()<br/>
+{<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestManyDigitNewickUbuntuDebug";<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;const std::string exe_filename = "../Exes/TestManyDigitNewickWinDebug.exe";<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;const std::string command_full =<br/>
+&nbsp;&nbsp;#ifndef WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::string("./") +<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ boost::lexical_cast&lt;std::string&gt;(GetTheta())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ " \""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ GetNewick()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ "\"";<br/>
+<br/>
+&nbsp;&nbsp;const std::string output_filename = "Result_probability.txt";<br/>
+<br/>
+&nbsp;&nbsp;return Test::Execute(exe_filename,command_full,output_filename);<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1933,124 +1933,124 @@ bool TestManyDigitNewickDebug::Execute()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ProjectRampal/301/test.h" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
-&nbsp;&nbsp;(C) 2009 Richel Bilderbeek<br/>
-<br/>
-&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
-&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
-&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
-&nbsp;&nbsp;(at your option) any later version.<br/>
-<br/>
-&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
-&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
-&nbsp;&nbsp;GNU General Public License for more details.<br/>
-&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
-&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-// From http://www.richelbilderbeek.nl<br/>
-//---------------------------------------------------------------------------<br/>
-#ifndef UnitTestH<br/>
-#define UnitTestH<br/>
-//---------------------------------------------------------------------------<br/>
-#include &lt;string&gt;<br/>
-//---------------------------------------------------------------------------<br/>
-#include &lt;boost/shared_ptr.hpp&gt;<br/>
-//---------------------------------------------------------------------------<br/>
-#include "BigIntegerLibrary.hh"<br/>
-//---------------------------------------------------------------------------<br/>
-struct Test<br/>
-{<br/>
-&nbsp;&nbsp;Test(const std::string&amp; any_newick, const double any_theta)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: m_newick_str(any_newick),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_theta(any_theta),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_time(0.0),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_probability(0.0)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Do nothing<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;virtual ~Test() {};<br/>
-&nbsp;&nbsp;virtual bool Execute() = 0;<br/>
-&nbsp;&nbsp;virtual const std::string GetTestName() const = 0;<br/>
-&nbsp;&nbsp;double GetProbability() const { return m_probability; }<br/>
-&nbsp;&nbsp;const std::string GetEwensProbability() const; //Ewensprobability = probability * num_of_combinations<br/>
-&nbsp;&nbsp;int GetTime() const { return m_time; }<br/>
-&nbsp;&nbsp;const BigInteger GetComplexity() const;<br/>
-<br/>
-&nbsp;&nbsp;const std::string&amp; GetNewick() const { return m_newick_str; }<br/>
-&nbsp;&nbsp;double GetTheta() const { return m_theta; }<br/>
-<br/>
-&nbsp;&nbsp;bool Execute(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; exe_filename,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; full_command,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; output_filename);<br/>
-<br/>
-&nbsp;&nbsp;private:<br/>
-&nbsp;&nbsp;const std::string m_newick_str;<br/>
-&nbsp;&nbsp;const double m_theta;<br/>
-&nbsp;&nbsp;double m_time;<br/>
-&nbsp;&nbsp;double m_probability;<br/>
-<br/>
-&nbsp;&nbsp;public:<br/>
-&nbsp;&nbsp;//helper functions<br/>
-&nbsp;&nbsp;static std::vector&lt;boost::shared_ptr&lt;Test&gt; &gt; CreateTests(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; newick,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const double theta,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int flags);<br/>
-&nbsp;&nbsp;static bool FileExists(const std::string&amp; filename);<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; FileToVector(const std::string&amp; fileName);<br/>
-&nbsp;&nbsp;static double ReadDoubleFromFile(const std::string&amp; fileName);<br/>
-};<br/>
-//---------------------------------------------------------------------------<br/>
-struct TestRavindran : public Test<br/>
-{<br/>
-&nbsp;&nbsp;TestRavindran(const std::string&amp; any_newick, const double any_theta)<br/>
-&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
-&nbsp;&nbsp;~TestRavindran() {}<br/>
-&nbsp;&nbsp;bool Execute();<br/>
-&nbsp;&nbsp;const std::string GetTestName() const { return "Ravindran&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; }<br/>
-};<br/>
-//---------------------------------------------------------------------------<br/>
-struct TestEndversion2: public Test<br/>
-{<br/>
-&nbsp;&nbsp;TestEndversion2(const std::string&amp; any_newick, const double any_theta)<br/>
-&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
-&nbsp;&nbsp;~TestEndversion2() {}<br/>
-&nbsp;&nbsp;bool Execute();<br/>
-&nbsp;&nbsp;const std::string GetTestName() const { return "TestProjectRampal_Endversion2"; }<br/>
-};<br/>
-//---------------------------------------------------------------------------<br/>
-struct TestTwoDigitNewickDebug: public Test<br/>
-{<br/>
-&nbsp;&nbsp;TestTwoDigitNewickDebug(const std::string&amp; any_newick, const double any_theta)<br/>
-&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
-&nbsp;&nbsp;~TestTwoDigitNewickDebug() {}<br/>
-&nbsp;&nbsp;bool Execute();<br/>
-&nbsp;&nbsp;const std::string GetTestName() const { return "TestTwoDigitNewickDebug"; }<br/>
-};<br/>
-//---------------------------------------------------------------------------<br/>
-struct TestTwoDigitNewickRelease: public Test<br/>
-{<br/>
-&nbsp;&nbsp;TestTwoDigitNewickRelease(const std::string&amp; any_newick, const double any_theta)<br/>
-&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
-&nbsp;&nbsp;~TestTwoDigitNewickRelease() {}<br/>
-&nbsp;&nbsp;bool Execute();<br/>
-&nbsp;&nbsp;const std::string GetTestName() const { return "TestTwoDigitNewickRelease"; }<br/>
-};<br/>
-//---------------------------------------------------------------------------<br/>
-struct TestManyDigitNewickDebug: public Test<br/>
-{<br/>
-&nbsp;&nbsp;TestManyDigitNewickDebug(const std::string&amp; any_newick, const double any_theta)<br/>
-&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
-&nbsp;&nbsp;~TestManyDigitNewickDebug() {}<br/>
-&nbsp;&nbsp;bool Execute();<br/>
-&nbsp;&nbsp;const std::string GetTestName() const { return "TestManyDigitNewickRelease"; }<br/>
-};<br/>
-//---------------------------------------------------------------------------<br/>
-#endif<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
+&nbsp;&nbsp;(C) 2009 Richel Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef UnitTestH<br/>
+#define UnitTestH<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;string&gt;<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;boost/shared_ptr.hpp&gt;<br/>
+//---------------------------------------------------------------------------<br/>
+#include "BigIntegerLibrary.hh"<br/>
+//---------------------------------------------------------------------------<br/>
+struct Test<br/>
+{<br/>
+&nbsp;&nbsp;Test(const std::string&amp; any_newick, const double any_theta)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_newick_str(any_newick),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_theta(any_theta),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_time(0.0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_probability(0.0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Do nothing<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;virtual ~Test() {};<br/>
+&nbsp;&nbsp;virtual bool Execute() = 0;<br/>
+&nbsp;&nbsp;virtual const std::string GetTestName() const = 0;<br/>
+&nbsp;&nbsp;double GetProbability() const { return m_probability; }<br/>
+&nbsp;&nbsp;const std::string GetEwensProbability() const; //Ewensprobability = probability * num_of_combinations<br/>
+&nbsp;&nbsp;int GetTime() const { return m_time; }<br/>
+&nbsp;&nbsp;const BigInteger GetComplexity() const;<br/>
+<br/>
+&nbsp;&nbsp;const std::string&amp; GetNewick() const { return m_newick_str; }<br/>
+&nbsp;&nbsp;double GetTheta() const { return m_theta; }<br/>
+<br/>
+&nbsp;&nbsp;bool Execute(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; exe_filename,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; full_command,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; output_filename);<br/>
+<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;const std::string m_newick_str;<br/>
+&nbsp;&nbsp;const double m_theta;<br/>
+&nbsp;&nbsp;double m_time;<br/>
+&nbsp;&nbsp;double m_probability;<br/>
+<br/>
+&nbsp;&nbsp;public:<br/>
+&nbsp;&nbsp;//helper functions<br/>
+&nbsp;&nbsp;static std::vector&lt;boost::shared_ptr&lt;Test&gt; &gt; CreateTests(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; newick,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const double theta,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int flags);<br/>
+&nbsp;&nbsp;static bool FileExists(const std::string&amp; filename);<br/>
+&nbsp;&nbsp;static const std::vector&lt;std::string&gt; FileToVector(const std::string&amp; fileName);<br/>
+&nbsp;&nbsp;static double ReadDoubleFromFile(const std::string&amp; fileName);<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+struct TestRavindran : public Test<br/>
+{<br/>
+&nbsp;&nbsp;TestRavindran(const std::string&amp; any_newick, const double any_theta)<br/>
+&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
+&nbsp;&nbsp;~TestRavindran() {}<br/>
+&nbsp;&nbsp;bool Execute();<br/>
+&nbsp;&nbsp;const std::string GetTestName() const { return "Ravindran&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; }<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+struct TestEndversion2: public Test<br/>
+{<br/>
+&nbsp;&nbsp;TestEndversion2(const std::string&amp; any_newick, const double any_theta)<br/>
+&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
+&nbsp;&nbsp;~TestEndversion2() {}<br/>
+&nbsp;&nbsp;bool Execute();<br/>
+&nbsp;&nbsp;const std::string GetTestName() const { return "TestProjectRampal_Endversion2"; }<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+struct TestTwoDigitNewickDebug: public Test<br/>
+{<br/>
+&nbsp;&nbsp;TestTwoDigitNewickDebug(const std::string&amp; any_newick, const double any_theta)<br/>
+&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
+&nbsp;&nbsp;~TestTwoDigitNewickDebug() {}<br/>
+&nbsp;&nbsp;bool Execute();<br/>
+&nbsp;&nbsp;const std::string GetTestName() const { return "TestTwoDigitNewickDebug"; }<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+struct TestTwoDigitNewickRelease: public Test<br/>
+{<br/>
+&nbsp;&nbsp;TestTwoDigitNewickRelease(const std::string&amp; any_newick, const double any_theta)<br/>
+&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
+&nbsp;&nbsp;~TestTwoDigitNewickRelease() {}<br/>
+&nbsp;&nbsp;bool Execute();<br/>
+&nbsp;&nbsp;const std::string GetTestName() const { return "TestTwoDigitNewickRelease"; }<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+struct TestManyDigitNewickDebug: public Test<br/>
+{<br/>
+&nbsp;&nbsp;TestManyDigitNewickDebug(const std::string&amp; any_newick, const double any_theta)<br/>
+&nbsp;&nbsp;: Test(any_newick,any_theta) {}<br/>
+&nbsp;&nbsp;~TestManyDigitNewickDebug() {}<br/>
+&nbsp;&nbsp;bool Execute();<br/>
+&nbsp;&nbsp;const std::string GetTestName() const { return "TestManyDigitNewickRelease"; }<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+#endif<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

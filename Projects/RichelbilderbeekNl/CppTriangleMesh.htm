@@ -4441,7 +4441,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create3dMesh();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::trim::Dialog::Check3dMesh(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; path) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::trim::Dialog::Check3dMesh(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;path<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppIsRegularFile.htm">IsRegularFile</a>(path))<br/>
@@ -4449,11 +4453,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("ERROR");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("BREAK");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppIsRegularFile.htm">IsRegularFile</a>(path)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Check3dMesh calls OpenFOAM its checkMesh, which needs to know the full path"<br/>
 &nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> ply_filename <a href="CppOperatorAssign.htm">=</a> <a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().GetTempFileName(".ply");<br/>
 <br/>
