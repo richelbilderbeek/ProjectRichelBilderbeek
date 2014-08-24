@@ -99,7 +99,7 @@ ribi::cmap::QtTestQtEdgeDialog::~QtTestQtEdgeDialog() noexcept
 {
   SetQtEdge(nullptr);
   m_view_left->scene()->removeItem(m_from.get()); //Remove in destructor
-  m_view_left->scene()->removeItem(m_to.get()); //Remove in destructor
+  m_view_left->scene()->removeItem(m_to.get());   //Remove in destructor
   delete ui;
 }
 
@@ -179,7 +179,7 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     QtImage();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  const bool verbose{false};
+  const bool verbose{true};
   QtTestQtEdgeDialog dialog;
   const boost::shared_ptr<QtEdge> qtedge{dialog.GetQtEdge()};
   const int n = dialog.ui->box_test_index->maximum();
@@ -306,6 +306,42 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
 
     const QImage image_before{dialog.GetUiView()};
     from->setX(from->x() + 100.0);
+    const QImage image_after{dialog.GetUiView()};
+    //if (image_before != image_after)
+    {
+      image_before.save("QtTestQtEdgeDialogTest1_before.png");
+      image_after.save("QtTestQtEdgeDialogTest1_after.png");
+      const QImage result{QtImage().Difference(image_before,image_after)};
+      result.save("QtTestQtEdgeDialogTest1_difference.png");
+    }
+    assert(image_before != image_after);
+  }
+  if (verbose) { TRACE("If the target/'to' of an QtEdge its Edge is changed by a member function, the Item must be updated"); }
+  {
+    const boost::shared_ptr<QtRoundedEditRectItem> to{
+      boost::dynamic_pointer_cast<QtRoundedEditRectItem>(dialog.m_to)
+    };
+
+    const QImage image_before{dialog.GetUiView()};
+    to->setX(to->x() + 100.0);
+    const QImage image_after{dialog.GetUiView()};
+    //if (image_before != image_after)
+    {
+      image_before.save("QtTestQtEdgeDialogTest1_before.png");
+      image_after.save("QtTestQtEdgeDialogTest1_after.png");
+      const QImage result{QtImage().Difference(image_before,image_after)};
+      result.save("QtTestQtEdgeDialogTest1_difference.png");
+    }
+    assert(image_before != image_after);
+  }
+  if (verbose) { TRACE("If the target/'to' of an QtEdge its Edge is changed by a drag event, the Item must be updated"); }
+  {
+    const boost::shared_ptr<QtRoundedEditRectItem> to{
+      boost::dynamic_pointer_cast<QtRoundedEditRectItem>(dialog.m_to)
+    };
+
+    const QImage image_before{dialog.GetUiView()};
+    to->setX(to->x() + 100.0);
     const QImage image_after{dialog.GetUiView()};
     assert(image_before != image_after);
     //if (image_before != image_after)

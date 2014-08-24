@@ -207,7 +207,7 @@ void ribi::cmap::QtEdge::Test() noexcept
     assert(std::abs(qtedge->m_qtnode->GetCenterY() - new_y) < 2.0);
   }
   //From
-  if (verbose) { TRACE("If qtnode_from is moved, a signal must be emitted by -at least- Edge"); }
+  if (verbose) { TRACE("If qtnode_from is moved, a signal must be emitted by -at least- QtEdge"); }
   {
     Counter c{0}; //For receiving the signal
     qtedge->GetEdge()->m_signal_from_changed.connect(
@@ -223,6 +223,25 @@ void ribi::cmap::QtEdge::Test() noexcept
       boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
     );
     qtnode_from->SetCenterX(qtnode_from->GetCenterX() + 10.0);
+    assert(c.Get() > 0);
+  }
+  //To
+  if (verbose) { TRACE("If qtnode_to is moved, a signal must be emitted by -at least- Edge"); }
+  {
+    Counter c{0}; //For receiving the signal
+    qtedge->GetEdge()->m_signal_to_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    qtnode_to->SetCenterX(qtnode_to->GetCenterX() + 10.0);
+    assert(c.Get() > 0);
+  }
+  if (verbose) { TRACE("If qtnode_to is moved, a signal must be emitted by QtEdge"); }
+  {
+    Counter c{0}; //For receiving the signal
+    qtedge->m_signal_edge_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    qtnode_to->SetCenterX(qtnode_to->GetCenterX() + 10.0);
     assert(c.Get() > 0);
   }
 }

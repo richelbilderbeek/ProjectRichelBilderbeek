@@ -186,11 +186,6 @@ ribi::cmap::QtEdge::~QtEdge() noexcept
 
 QRectF ribi::cmap::QtEdge::boundingRect() const
 {
-  //assert((m_display_strategy->boundingRect() == QtConceptMapElement::boundingRect()
-  //    || m_display_strategy->boundingRect() != QtConceptMapElement::boundingRect())
-  //  && "Bounding rects should be synced, but this member function is used to sync them,"
-  //  && "so this must be checked on a higher level");
-
   return m_qtnode->boundingRect() //Bypassed going via m_concept_item
     .united(m_arrow->boundingRect().translated(-m_qtnode->GetCenterPos()));
   //return m_concept_item->boundingRect()
@@ -364,8 +359,8 @@ void ribi::cmap::QtEdge::OnFromChanged(Edge * const edge) noexcept
   this->GetFrom()->SetNode(edge->GetFrom());
   assert(edge->GetFrom() == this->GetFrom()->GetNode());
   m_signal_edge_changed(this);
-  this->update();
-  if (this->scene()) { this->scene()->update(); }
+  this->update(); //Obligatory: when the 'source/from' QtNode moves, this update causes the QtEdge keep pointing to
+  //if (this->scene()) { this->scene()->update(); } // Not needed
 }
 
 void ribi::cmap::QtEdge::OnHeadArrowChanged(Edge * const edge) noexcept
@@ -406,6 +401,7 @@ void ribi::cmap::QtEdge::OnToChanged(Edge * const edge) noexcept
   this->GetTo()->SetNode(edge->GetTo());
   assert(edge->GetTo() == this->GetTo()->GetNode());
   m_signal_edge_changed(this);
+  this->update(); //Obligatory: when the 'target/to' QtNode moves, this update causes the QtEdge keep pointing to
 }
 
 

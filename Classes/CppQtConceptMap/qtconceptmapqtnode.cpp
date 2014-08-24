@@ -51,7 +51,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::cmap::QtNode::QtNode(
   const boost::shared_ptr<Node> node
-  //const boost::shared_ptr<QtItemDisplayStrategy> concept_item
 )
   : QtRoundedEditRectItem(),
     //m_signal_display_changed{},
@@ -59,7 +58,6 @@ ribi::cmap::QtNode::QtNode(
     m_signal_node_changed{},
     //m_signal_node_requests_rate_concept{},
     //m_signal_node_requests_rate_examples{},
-    //m_display_strategy(concept_item),
     //m_contour_pen(concept_item->GetContourPen()),
     //m_focus_pen(concept_item->GetFocusPen()),
     m_node{}
@@ -361,11 +359,6 @@ void ribi::cmap::QtNode::paint(
   QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget
 ) noexcept
 {
-
-  //assert(m_display_strategy);
-  //assert(!m_display_strategy->hasFocus());
-  //assert(!m_display_strategy->isSelected());
-
   //this->m_display_strategy->SetName(this->GetNode()->GetConcept()->GetName());
 
 

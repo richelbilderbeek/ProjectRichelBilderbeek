@@ -30,5 +30,8 @@ int main(int argc, char *argv[])
   //item->dragLeaveEvent(nullptr); //protected
 
   w.show();
-  return a.exec();
+  a.exec();
+
+  //Prevent QGraphicsScene from deleting item (let item be deleted by std::shared_ptr instead)
+  s.removeItem(item.get());
 }
