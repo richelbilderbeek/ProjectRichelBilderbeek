@@ -442,13 +442,16 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
   //TODO: Add again
   //assert(!m_arrow->GetMidItem() || m_qtnode->GetPos() == m_arrow->GetMidItem()->pos());
 
+  //The Arrow might be hidden in debugging
   painter->translate(-m_qtnode->GetCenterPos());
-  m_arrow->paint(painter,option,widget);
+  if (m_arrow->isVisible())
+  {
+    m_arrow->paint(painter,option,widget);
+  }
 
   //The QtNode might be hidden in debugging
   if (m_qtnode->isVisible())
   {
-    painter->translate(m_qtnode->GetCenterPos());
     m_qtnode->paint(painter,option,widget);
   }
 

@@ -16,7 +16,7 @@ unix:!macx {
   # Linux only
   message("Desktop application, built for Linux")
   greaterThan(QT_MAJOR_VERSION, 4): QT += svg sql printsupport
-  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
+  QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra -Weffc++ -Werror
 }
 
 cross_compile {

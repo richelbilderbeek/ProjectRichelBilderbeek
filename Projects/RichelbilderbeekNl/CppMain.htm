@@ -74,7 +74,10 @@
   </li>
 </ol>
 <p>&nbsp;</p>
-<p>When <a href="CppMain.htm">main</a>'s closing bracket is reached, the effect is equivalent to (Standard, 3.6.1.5):</p>
+<p>
+  When <a href="CppMain.htm">main</a>'s closing bracket is reached, the effect is equivalent 
+  to [6,8]:
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
@@ -117,8 +120,8 @@ a <a href="CppFunction.htm">function</a> has no arguments, nothing is written be
 <p>&nbsp;</p>
 <p>
   Note that the standard states that the closing bracket of <a href="CppMain.htm">main</a>() must have the same
-  effect of returning zero [6]. Therefore, return zero can be omitted, but many people like to keep it in.
-  </p>
+  effect of returning zero [6,8]. Therefore, return zero can be omitted, but many people like to keep it in.
+</p>
 <p>&nbsp;</p>
 <p>
   Incorrect/non-standard is [1-5] (although with some <a href="CppCompiler.htm">compilers</a> it might <a href="CppCompile.htm">compile</a>):
@@ -172,7 +175,7 @@ testMain <a href="CppHelloWorld.htm">Hello World</a><br/>
 <p>&nbsp;</p>
 <h2>Should I use void main() or int main()?</h2>
 <p>&nbsp;</p>
-<p><a href="CppInt.htm">int</a> <a href="CppMain.htm">main</a>() [1-6].</p>
+<p><a href="CppInt.htm">int</a> <a href="CppMain.htm">main</a>() [1-5].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -234,7 +237,8 @@ testMain <a href="CppHelloWorld.htm">Hello World</a><br/>
   </li>
   <li><!--  6 -->C++. International Standard. ISO/IEC 14882. Second edition. Paragraph 3.6.1.5</li>
   <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 13.7. Advice. page 387: '[27] 'Have main() catch and report every exception'</li>
-</ol>
+  <li><!--  8 -->Working Draft, Standard for Programming Language C++. International Standard. ISO/IEC document number N3936. 2014-08-22. Paragraph 3.6.1.5</li>
+  </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

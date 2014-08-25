@@ -5396,6 +5396,67 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     }
   );
 
+  m.push_back(
+    { "CppQGraphicsObjectExample1",
+      {
+        "<p>",
+        "  <a href=\"CppQGraphicsObjectExample1.htm\">QGraphicsObject example 1: basic</a> is a <a href=\"CppQGraphicsObject.htm\">QGraphicsObject</a>",
+        "  <a href=\"CppExample.htm\">example</a>.",
+        "  Actually, it is not so basic, as it is a conversion from",
+        "  <a href=\"CppQGraphicsPixmapItemExample4.htm\">QGraphicsPixmapItem example 4: pixmap that changes cursor</a>, where",
+        "  the <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a> is replaced by a <a href=\"CppQGraphicsObject.htm\">QGraphicsObject</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsObjectExample1.png\">View a screenshot of 'CppQGraphicsObjectExample1' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsObjectExample1.zip\">Download the Qt Creator project 'CppQGraphicsObjectExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsObjectExample2",
+      {
+        "<p>",
+        "  <a href=\"CppQGraphicsObjectExample2.htm\">QGraphicsObject example 2: flashing</a> is a <a href=\"CppQGraphicsObject.htm\">QGraphicsObject</a>",
+        "  <a href=\"CppExample.htm\">example</a>.",
+        "  It demonstrates how to use an internal <a href=\"CppQTimer.htm\">QTimer</a> to make the item flash.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsObjectExample2.png\">View a screenshot of 'CppQGraphicsObjectExample2' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsObjectExample2.zip\">Download the Qt Creator project 'CppQGraphicsObjectExample2' (zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsObjectExample3.htm\">QGraphicsObject example 3: flashing only</a> is a simplification of this example.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsObjectExample3",
+      {
+        "<p>",
+        "  <a href=\"CppQGraphicsObjectExample3.htm\">QGraphicsObject example 3: flashing only</a> is a <a href=\"CppQGraphicsObject.htm\">QGraphicsObject</a>",
+        "  <a href=\"CppExample.htm\">example</a>.",
+        "  It is a demonstration how to use an internal <a href=\"CppQTimer.htm\">QTimer</a> to make the item flash."
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsObjectExample3.png\">View a screenshot of 'CppQGraphicsObjectExample3' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsObjectExample3.zip\">Download the Qt Creator project 'CppQGraphicsObjectExample3' (zip)</a></li>",
+        "</ul>",
+        "<p>",
+        "  <a href=\"CppQGraphicsObjectExample3.htm\">QGraphicsObject example 3: flashing only</a> is a simplification of this example."
+        "</p>"
+
+      }
+    }
+  );
+
 
   m.push_back(
     { "CppQGraphicsPixmapItemExample1",
