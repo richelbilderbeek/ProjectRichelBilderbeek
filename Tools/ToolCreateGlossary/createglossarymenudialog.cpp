@@ -22,6 +22,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include "fileio.h"
+#include "glossarytypes.h"
 #include "createglossarymaindialog.h"
 #include "htmlpage.h"
 #include "testtimer.h"
@@ -39,6 +41,14 @@ int ribi::CreateGlossaryMenuDialog::ExecuteSpecific(const std::vector<std::strin
 {
   //Just create the glossaries, whatever the input was
   CreateGlossaryMainDialog().CreateAllGlossaries();
+  for (const auto t: GlossaryTypes().GetAll())
+  {
+    std::cout
+      << GlossaryTypes().GetPageUrl(t) << ": "
+      << (fileio::FileIo().IsRegularFile(GlossaryTypes().GetPageUrl(t)) ? "OK" : "FAIL")
+      << std::endl
+    ;
+  }
   return 0;
 }
 
@@ -107,6 +117,7 @@ void ribi::CreateGlossaryMenuDialog::Test() noexcept
     is_tested = true;
   }
   CreateGlossaryMainDialog();
+  GlossaryTypes();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

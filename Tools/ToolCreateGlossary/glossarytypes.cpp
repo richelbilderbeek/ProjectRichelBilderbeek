@@ -26,27 +26,17 @@ std::vector<ribi::GlossaryType> ribi::GlossaryTypes::GetAll() const noexcept
   return v;
 }
 
-/*
-    CreatePage("Command-line glossary","ClGlossary.htm","Cl.*\\.htm\\>");
-    CreatePage("C++ glossary","CppGlossary.htm","Cpp.*\\.htm\\>");
-    CreatePage("Game glossary","GameGlossary.htm","Game.*\\.htm\\>");
-    CreatePage("Levend Cluedo glossary","LevendCluedoGlossary.htm","LevendCluedo.*\\.htm\\>");
-    CreatePage("Tool glossary","ToolGlossary.htm","Tool.*\\.htm\\>");
-    CreatePage("Music glossary","MusicGlossary.htm","(Music|Song|Cd).*\\.htm\\>");
-    CreatePage("Sitemap","Sitemap.htm",".*\\.htm\\>");
-*/
-
 std::string ribi::GlossaryTypes::GetPageName(const GlossaryType t) const noexcept
 {
   switch (t)
   {
-    case GlossaryType::command_line: return "";
-    case GlossaryType::cpp: return "";
-    case GlossaryType::game: return "";
-    case GlossaryType::levend_cluedo: return "";
-    case GlossaryType::tool: return "";
-    case GlossaryType::music: return "";
-    case GlossaryType::sitemap: return "";
+    case GlossaryType::command_line: return "Command-line glossary";
+    case GlossaryType::cpp: return "C++ glossary";
+    case GlossaryType::game: return "Game glossary";
+    case GlossaryType::levend_cluedo: return "Levend Cluedo glossary";
+    case GlossaryType::tool: return "Tool glossary";
+    case GlossaryType::music: return "Music glossary";
+    case GlossaryType::sitemap: return "Sitemap";
     case GlossaryType::n_types:
       assert(!"Never use the value GlossaryType::n_types, except for debugging");
       break;
@@ -59,13 +49,13 @@ std::string ribi::GlossaryTypes::GetPageRegex(const GlossaryType t) const noexce
 {
   switch (t)
   {
-    case GlossaryType::command_line: return "";
-    case GlossaryType::cpp: return "";
-    case GlossaryType::game: return "";
-    case GlossaryType::levend_cluedo: return "";
-    case GlossaryType::tool: return "";
-    case GlossaryType::music: return "";
-    case GlossaryType::sitemap: return "";
+    case GlossaryType::command_line: return "Cl.*\\.htm\\>";
+    case GlossaryType::cpp: return "Cpp.*\\.htm\\>";
+    case GlossaryType::game: return "Game.*\\.htm\\>";
+    case GlossaryType::levend_cluedo: return "LevendCluedo.*\\.htm\\>";
+    case GlossaryType::tool: return "Tool.*\\.htm\\>";
+    case GlossaryType::music: return "(Music|Song|Cd).*\\.htm\\>";
+    case GlossaryType::sitemap: return ".*\\.htm\\>";
     case GlossaryType::n_types:
       assert(!"Never use the value GlossaryType::n_types, except for debugging");
       break;
@@ -78,13 +68,13 @@ std::string ribi::GlossaryTypes::GetPageUrl(const GlossaryType t) const noexcept
 {
   switch (t)
   {
-    case GlossaryType::command_line: return "";
-    case GlossaryType::cpp: return "";
-    case GlossaryType::game: return "";
-    case GlossaryType::levend_cluedo: return "";
-    case GlossaryType::tool: return "";
-    case GlossaryType::music: return "";
-    case GlossaryType::sitemap: return "";
+    case GlossaryType::command_line: return "ClGlossary.htm";
+    case GlossaryType::cpp: return "CppGlossary.htm";
+    case GlossaryType::game: return "GameGlossary.htm";
+    case GlossaryType::levend_cluedo: return "LevendCluedoGlossary.htm";
+    case GlossaryType::tool: return "ToolGlossary.htm";
+    case GlossaryType::music: return "MusicGlossary.htm";
+    case GlossaryType::sitemap: return "Sitemap.htm";
     case GlossaryType::n_types:
       assert(!"Never use the value GlossaryType::n_types, except for debugging");
       break;
@@ -106,6 +96,6 @@ void ribi::GlossaryTypes::Test() noexcept
   for (const auto t: GlossaryTypes().GetAll()) { assert(!GlossaryTypes().GetPageName(t).empty()); }
   for (const auto t: GlossaryTypes().GetAll()) { assert(!GlossaryTypes().GetPageRegex(t).empty()); }
   for (const auto t: GlossaryTypes().GetAll()) { assert(!GlossaryTypes().GetPageUrl(t).empty()); }
-  assert(!"Refactor");
+  //assert(!"Refactor");
 }
 #endif

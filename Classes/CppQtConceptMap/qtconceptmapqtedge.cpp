@@ -431,52 +431,24 @@ void ribi::cmap::QtEdge::OnRequestSceneUpdate()
 
 void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
-
-  //Only QtEditStrategy actually modifies the position of the concept items
-  //if (dynamic_cast<QtEditStrategy*>(m_display_strategy.get()))
-  //{
-  //  //Notifies the GUI-independent collaborators
-  //  this->m_display_strategy->SetPos(x(),y());
-  //}
-  assert(m_arrow);
-  //TODO: Add again
-  //assert(!m_arrow->GetMidItem() || m_qtnode->GetPos() == m_arrow->GetMidItem()->pos());
-
-  //The Arrow might be hidden in debugging
-  painter->translate(-m_qtnode->GetCenterPos());
   if (m_arrow->isVisible())
   {
     m_arrow->paint(painter,option,widget);
   }
 
-  //The QtNode might be hidden in debugging
   if (m_qtnode->isVisible())
   {
+    painter->translate(m_qtnode->GetCenterPos());
     m_qtnode->paint(painter,option,widget);
   }
 
-  //assert(m_display_strategy);
-  if (this->hasFocus() || this->isSelected())
-  {
-    //Does the arrow or the concept have focus?
-    //if (m_arrow->GetPen() != m_arrow->GetFocusPen())
-    //{
-    //  m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen());
-    //}
-    ///else
-    //{
-    //  m_display_strategy->SetContourPen(m_display_strategy->GetContourPen());
-    //}
-  }
-  else
-  {
-    //m_display_strategy->SetContourPen(m_display_strategy->GetContourPen());
-  }
-  //if (m_display_strategy->isVisible())
-  //{
-  //  //Edges connect to the center node do not display their concept item
-  //  m_display_strategy->paint(painter,option,widget);
-  //}
+  const QPen pen{
+    this->hasFocus() || this->isSelected()
+    ? this->GetQtNode()->GetFocusPen()
+    : this->GetQtNode()->GetContourPen()
+  };
+  m_arrow->SetPen(pen);
+  m_qtnode->setPen(pen);
 }
 
 void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept

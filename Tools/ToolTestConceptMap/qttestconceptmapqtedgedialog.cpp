@@ -243,7 +243,7 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
   if (verbose) { TRACE("Grabbing QtEdge of QGraphicsView twice, results in an identical picture"); }
   {
     //If the line below is needed, update() is not called automatically
-    //const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     const QImage image_before{dialog.GetUiView()};
     const QImage image_after{dialog.GetUiView()};
     assert(image_before == image_after);
