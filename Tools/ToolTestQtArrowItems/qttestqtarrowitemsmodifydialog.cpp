@@ -135,6 +135,9 @@ void ribi::QtTestQtArrowItemsModifyDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    Random();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   QtTestQtArrowItemsModifyDialog d;

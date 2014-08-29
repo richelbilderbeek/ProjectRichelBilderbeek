@@ -2,14 +2,14 @@ win32 {
   # Windows only
   message("Boost, built for Windows")
   INCLUDEPATH += \
-    ../../Libraries/boost_1_55_0
+    ../../Libraries/boost_1_56_0
 }
 
 macx {
   # Mac only
   message("Boost, built for Mac")
   INCLUDEPATH += \
-    ../../Libraries/boost_1_55_0
+    ../../Libraries/boost_1_56_0
 }
 
 unix:!macx {

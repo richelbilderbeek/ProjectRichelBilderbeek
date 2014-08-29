@@ -366,6 +366,7 @@ void ribi::cmap::QtEdge::OnFromChanged(Edge * const edge) noexcept
 void ribi::cmap::QtEdge::OnHeadArrowChanged(Edge * const edge) noexcept
 {
   SetHasHeadArrow(edge->HasHeadArrow());
+  this->update(); //Obligatory
   m_signal_edge_changed(this);
 }
 
@@ -431,6 +432,7 @@ void ribi::cmap::QtEdge::OnRequestSceneUpdate()
 
 void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
+  painter->translate(m_qtnode->GetCenterPos());
   if (m_arrow->isVisible())
   {
     m_arrow->paint(painter,option,widget);
@@ -438,7 +440,6 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
 
   if (m_qtnode->isVisible())
   {
-    painter->translate(m_qtnode->GetCenterPos());
     m_qtnode->paint(painter,option,widget);
   }
 

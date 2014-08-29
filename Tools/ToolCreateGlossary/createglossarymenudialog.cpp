@@ -96,7 +96,7 @@ boost::shared_ptr<const ribi::Program> ribi::CreateGlossaryMenuDialog::GetProgra
 
 std::string ribi::CreateGlossaryMenuDialog::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory() const noexcept
@@ -104,7 +104,8 @@ std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory() con
   return {
     "2011-xx-xx: version 1.0: initial version",
     "2012-08-06: version 1.1: added the creation of more type of glossaries",
-    "2012-08-11: version 1.2: add desktop version"
+    "2012-08-11: version 1.2: add desktop version",
+    "2014-08-25: version 1.3: removed create glossaries in tests"
   };
 }
 
