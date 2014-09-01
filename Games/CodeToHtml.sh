@@ -1,6 +1,5 @@
 #!/bin/bash
 for folder in `ls | egrep "^Game"`
-
 do
   echo $folder
 

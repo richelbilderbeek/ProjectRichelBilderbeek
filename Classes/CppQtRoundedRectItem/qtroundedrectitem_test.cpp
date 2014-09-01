@@ -24,6 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtroundedrectitem.h"
 
+#include <QCoreApplication>
+#include <QGraphicsSceneMouseEvent>
+
+#include "counter.h"
 #include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -153,6 +157,17 @@ void ribi::QtRoundedRectItem::Test() noexcept
     i.SetCenterX(i.GetCenterX() + 10.0);
     i.SetCenterY(i.GetCenterY() + 10.0);
     assert(i.GetInnerRect().contains(i.GetCenterPos()));
+  }
+  if (verbose) { TRACE("After a drag event, m_signal_pos_changed must be emitted"); }
+  {
+    //Cannot be tested
+    //Counter c{0}; //For receiving the signal
+    //i.m_signal_pos_changed.connect(
+    //  boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    //);
+    //const QGraphicsSceneMouseEvent * const event{new QGraphicsSceneMouseEvent};
+    //QCoreApplication::sendEvent(&i,event);
+    //assert(c.Get() > 0);
   }
 }
 #endif

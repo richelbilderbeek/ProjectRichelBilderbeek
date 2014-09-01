@@ -37,7 +37,7 @@ ribi::QtCreateGlossaryMainDialog::QtCreateGlossaryMainDialog(QWidget *parent) :
   Test();
   #endif
   ui->setupUi(this);
-  CreateGlossaryMainDialog();
+  CreateGlossaryMainDialog().CreateAllGlossaries();
   ui->label->setText("Done!");
 }
 
@@ -54,7 +54,7 @@ void ribi::QtCreateGlossaryMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   CreateGlossaryMainDialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
