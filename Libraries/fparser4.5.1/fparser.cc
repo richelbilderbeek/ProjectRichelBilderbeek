@@ -2587,7 +2587,7 @@ inline void FunctionParserBase<Value_t>::PutOpcodeParamAt
 // Function evaluation
 //===========================================================================
 template<typename Value_t>
-Value_t FunctionParserBase<Value_t>::Eval(const Value_t* Vars) const
+Value_t FunctionParserBase<Value_t>::Eval(const Value_t* Vars)
 {
     if(mData->mParseErrorType != FP_NO_ERROR) return Value_t(0);
 
