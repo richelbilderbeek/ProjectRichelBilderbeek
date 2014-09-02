@@ -61,7 +61,8 @@ ribi::QtPathArrowItem::QtPathArrowItem(
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
-    | QGraphicsItem::ItemIsSelectable);
+    | QGraphicsItem::ItemIsSelectable
+  );
 
   //Allow mouse tracking
   this->setAcceptHoverEvents(true);
@@ -71,13 +72,6 @@ QRectF ribi::QtPathArrowItem::boundingRect() const
 {
   return shape().boundingRect();
 }
-
-//double ribi::QtPathArrowItem::GetAngle(const double dx, const double dy)
-//{
-// return Geometry().GetAngle(dx,dy);
-  //const double pi = boost::math::constants::pi<double>();
-  //return pi - (std::atan(dx/dy));
-//}
 
 std::string ribi::QtPathArrowItem::GetVersion() noexcept
 {

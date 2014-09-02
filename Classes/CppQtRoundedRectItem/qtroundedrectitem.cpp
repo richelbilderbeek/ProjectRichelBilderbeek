@@ -65,6 +65,21 @@ ribi::QtRoundedRectItem::~QtRoundedRectItem() noexcept
   //OK
 }
 
+void ribi::QtRoundedRectItem::dragEnterEvent(QGraphicsSceneDragDropEvent *) noexcept
+{
+  this->m_signal_pos_changed(this);
+}
+
+void ribi::QtRoundedRectItem::dragLeaveEvent(QGraphicsSceneDragDropEvent *) noexcept
+{
+  this->m_signal_pos_changed(this);
+}
+
+void ribi::QtRoundedRectItem::dragMoveEvent(QGraphicsSceneDragDropEvent *) noexcept
+{
+  this->m_signal_pos_changed(this);
+}
+
 double ribi::QtRoundedRectItem::GetInnerHeight() const noexcept
 {
   const double pen_width = GetCurrentPen().widthF();

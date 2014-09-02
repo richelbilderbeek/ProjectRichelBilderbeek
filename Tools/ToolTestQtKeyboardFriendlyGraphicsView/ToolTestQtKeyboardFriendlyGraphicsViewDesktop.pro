@@ -2,10 +2,14 @@ include(../../DesktopApplication.pri)
 
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 
+include(../../Classes/CppCounter/CppCounter.pri)
+include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
 
 include(../../Classes/CppQtArrowItem/CppQtArrowItem.pri)
 include(../../Classes/CppQtDisplayPosItem/CppQtDisplayPosItem.pri)
@@ -15,7 +19,6 @@ include(../../Classes/CppQtPathArrowItem/CppQtPathArrowItem.pri)
 include(../../Classes/CppQtQuadBezierArrowItem/CppQtQuadBezierArrowItem.pri)
 include(../../Classes/CppQtRoundedEditRectItem/CppQtRoundedEditRectItem.pri)
 include(../../Classes/CppQtRoundedRectItem/CppQtRoundedRectItem.pri)
-include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
 
 include(ToolTestQtKeyboardFriendlyGraphicsViewDesktop.pri)
 

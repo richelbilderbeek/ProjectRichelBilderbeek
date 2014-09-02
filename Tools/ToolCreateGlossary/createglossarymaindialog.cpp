@@ -31,11 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/function.hpp>
 #include <boost/shared_ptr.hpp>
-//#include <boost/xpressive/xpressive.hpp>
 
-//#include <QDir>
 
 #include "fileio.h"
+#include "glossarytypes.h"
 #include "testtimer.h"
 #include "htmlpage.h"
 #include "trace.h"
@@ -51,13 +50,13 @@ ribi::CreateGlossaryMainDialog::CreateGlossaryMainDialog()
 
 void ribi::CreateGlossaryMainDialog::CreateAllGlossaries() const noexcept
 {
-  CreatePage("Command-line glossary","ClGlossary.htm","Cl.*\\.htm\\>");
-  CreatePage("C++ glossary","CppGlossary.htm","Cpp.*\\.htm\\>");
-  CreatePage("Game glossary","GameGlossary.htm","Game.*\\.htm\\>");
-  CreatePage("Levend Cluedo glossary","LevendCluedoGlossary.htm","LevendCluedo.*\\.htm\\>");
-  CreatePage("Tool glossary","ToolGlossary.htm","Tool.*\\.htm\\>");
-  CreatePage("Music glossary","MusicGlossary.htm","(Music|Song|Cd).*\\.htm\\>");
-  CreatePage("Sitemap","Sitemap.htm",".*\\.htm\\>");
+  for (const auto t: GlossaryTypes().GetAll())
+  {
+    const auto name = GlossaryTypes().GetPageName(t);
+    const auto regex = GlossaryTypes().GetPageRegex(t);
+    const auto url = GlossaryTypes().GetPageUrl(t);
+    CreatePage(name,url,regex);
+  }
 }
 
 void ribi::CreateGlossaryMainDialog::CreatePage(
@@ -195,6 +194,11 @@ void ribi::CreateGlossaryMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    fileio::FileIo();
+    GlossaryTypes();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  //assert(!"Refactor");
 }
 #endif

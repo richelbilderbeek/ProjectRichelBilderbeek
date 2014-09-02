@@ -59,7 +59,8 @@ ribi::QtArrowItem::QtArrowItem(
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
-    | QGraphicsItem::ItemIsSelectable);
+    | QGraphicsItem::ItemIsSelectable
+  );
 
   //Allow mouse tracking
   this->setAcceptHoverEvents(true);

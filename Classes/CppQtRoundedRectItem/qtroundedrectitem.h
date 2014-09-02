@@ -150,6 +150,9 @@ class QtRoundedRectItem : public QGraphicsRectItem
 
 protected:
 
+  virtual void dragEnterEvent(QGraphicsSceneDragDropEvent *event) noexcept override;
+  virtual void dragLeaveEvent(QGraphicsSceneDragDropEvent *event) noexcept override;
+  virtual void dragMoveEvent(QGraphicsSceneDragDropEvent *event) noexcept override;
   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) noexcept override;
   virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept override;
 
