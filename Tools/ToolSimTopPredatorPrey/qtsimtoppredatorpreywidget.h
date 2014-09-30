@@ -16,7 +16,7 @@ class SimTopPredatorPreyWidget : public QWidget
   static int GetWidth() { return m_width; }
   static int GetHeight() { return m_height; }
 
-  void Set(const int z);
+  void Set(const Grid& grid);
 
   signals:
 

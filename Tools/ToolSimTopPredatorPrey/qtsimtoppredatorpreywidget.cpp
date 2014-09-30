@@ -1,5 +1,7 @@
 #include "qtsimtoppredatorpreywidget.h"
 
+#include <cassert>
+
 #include <QImage>
 #include <QPainter>
 
@@ -16,16 +18,16 @@ void SimTopPredatorPreyWidget::paintEvent(QPaintEvent *)
   painter.drawPixmap(0,0,m_width,m_height,QPixmap::fromImage(m_image));
 }
 
-void SimTopPredatorPreyWidget::Set(const int z)
+void SimTopPredatorPreyWidget::Set(const Grid& grid)
 {
+  assert(static_cast<int>(grid.size()) == m_height);
+  assert(static_cast<int>(grid[0].size()) == m_width);
   for (int y{0}; y!=m_height; ++y)
   {
     for (int x{0}; x!=m_width; ++x)
     {
-      m_image.setPixel(
-        x,
-        y,
-        qRgb((x+z)%256,(y+z)%256,(x+y+z)%256));
+      const int color{static_cast<int>(grid[y][x] * 255.0)};
+      m_image.setPixel(x,y,qRgb(color,color,color));
     }
   }
   repaint();
