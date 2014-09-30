@@ -26,8 +26,12 @@ void SimTopPredatorPreyWidget::Set(const Grid& grid)
   {
     for (int x{0}; x!=m_width; ++x)
     {
-      const int color{static_cast<int>(grid[y][x] * 255.0)};
-      m_image.setPixel(x,y,qRgb(color,color,color));
+      const double color_angle{grid[y][x] * 270.0};
+      QColor color;
+      color.setHsv(color_angle,255,255);
+      int r,g,b;
+      color.getRgb(&r,&g,&b);
+      m_image.setPixel(x,y,qRgb(r,g,b));
     }
   }
   repaint();

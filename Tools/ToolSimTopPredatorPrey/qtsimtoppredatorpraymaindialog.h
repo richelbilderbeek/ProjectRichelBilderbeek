@@ -35,7 +35,7 @@ private:
   static constexpr double m_frac_pred{0.1};
   /// Fraction of area with toppredators
   static constexpr double m_frac_top{0.01};
-  static constexpr double m_diffusion_coefficient{0.025};
+  static constexpr double m_diffusion_coefficient{0.1};
 
 private slots:
   void OnTimer() noexcept;
