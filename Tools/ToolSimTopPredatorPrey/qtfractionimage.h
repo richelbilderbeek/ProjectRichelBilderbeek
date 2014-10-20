@@ -1,16 +1,17 @@
-#ifndef SIMTOPPREDATORPREYWIDGET_H
-#define SIMTOPPREDATORPREYWIDGET_H
+#ifndef QTFRACTIONIMAGE_H
+#define QTFRACTIONIMAGE_H
 
 #include <vector>
 #include <QWidget>
 #include <QImage>
 
-class SimTopPredatorPreyWidget : public QWidget
+///Displays fractions
+class QtFractionImage : public QWidget
 {
   Q_OBJECT
   public:
   typedef std::vector<std::vector<double>> Grid;
-  explicit SimTopPredatorPreyWidget(QWidget *parent = 0);
+  explicit QtFractionImage(QWidget *parent = 0);
   void paintEvent(QPaintEvent *);
 
   static int GetWidth() { return m_width; }
@@ -25,9 +26,9 @@ class SimTopPredatorPreyWidget : public QWidget
 
   private:
   static void Test() noexcept;
-  static const int m_width{256};
-  static const int m_height{256};
+  static const int m_width{128};
+  static const int m_height{128};
   QImage m_image;
 };
 
-#endif // SIMTOPPREDATORPREYWIDGET_H
+#endif // QTFRACTIONIMAGE_H

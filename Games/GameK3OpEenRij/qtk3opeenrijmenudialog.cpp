@@ -85,9 +85,9 @@ void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
+    con3::QtConnectThreeWidget widget(resources);
     con3::QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
   }
   {
@@ -97,5 +97,6 @@ void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
     About about = K3OpEenRijMenuDialog().GetAbout();
     QtAboutDialog d(about);
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

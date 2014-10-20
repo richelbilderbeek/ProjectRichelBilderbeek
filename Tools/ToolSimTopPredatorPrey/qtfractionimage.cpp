@@ -1,24 +1,24 @@
-#include "qtsimtoppredatorpreywidget.h"
+#include "qtfractionimage.h"
 
 #include <cassert>
 
 #include <QImage>
 #include <QPainter>
 
-SimTopPredatorPreyWidget::SimTopPredatorPreyWidget(QWidget *parent) :
+QtFractionImage::QtFractionImage(QWidget *parent) :
     QWidget(parent),
     m_image{}
 {
   m_image = QImage(m_width,m_height,QImage::Format::Format_RGB32);
 }
 
-void SimTopPredatorPreyWidget::paintEvent(QPaintEvent *)
+void QtFractionImage::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   painter.drawPixmap(0,0,m_width,m_height,QPixmap::fromImage(m_image));
 }
 
-void SimTopPredatorPreyWidget::Set(const Grid& grid)
+void QtFractionImage::Set(const Grid& grid)
 {
   assert(static_cast<int>(grid.size()) == m_height);
   assert(static_cast<int>(grid[0].size()) == m_width);
@@ -26,6 +26,8 @@ void SimTopPredatorPreyWidget::Set(const Grid& grid)
   {
     for (int x{0}; x!=m_width; ++x)
     {
+      assert(grid[y][x] >= 0.0);
+      assert(grid[y][x]  < 1.0);
       const double color_angle{grid[y][x] * 270.0};
       QColor color;
       color.setHsv(color_angle,255,255);

@@ -1,22 +1,20 @@
-#include "qtsimtoppredatorpraymaindialog.h"
+#include "qtsimpredatorpraymaindialog.h"
 
 #include <cassert>
 #include <QHBoxLayout>
 #include <QDesktopWidget>
 #include <QTimer>
-#include "ui_qtsimtoppredatorpraymaindialog.h"
+#include "ui_qtsimpredatorpraymaindialog.h"
 
 #include "qtfractionimage.h"
 
-QtSimTopPredatorPrayMainDialog::QtSimTopPredatorPrayMainDialog(QWidget *parent) :
+QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::QtSimTopPredatorPrayMainDialog),
+    ui(new Ui::QtSimPredatorPrayMainDialog),
     m_widget_prey{new QtFractionImage},
     m_widget_pred{new QtFractionImage},
-    m_widget_top{new QtFractionImage},
     m_grid_prey{CreateGrid()},
-    m_grid_pred{CreateGrid()},
-    m_grid_top{CreateGrid()}
+    m_grid_pred{CreateGrid()}
 {
   ui->setupUi(this);
   this->setGeometry(0,
@@ -29,7 +27,6 @@ QtSimTopPredatorPrayMainDialog::QtSimTopPredatorPrayMainDialog(QWidget *parent) 
   this->setLayout(layout);
   layout->addWidget(m_widget_prey);
   layout->addWidget(m_widget_pred);
-  layout->addWidget(m_widget_top);
 
   //Put dialog at screen center
   {
@@ -47,7 +44,6 @@ QtSimTopPredatorPrayMainDialog::QtSimTopPredatorPrayMainDialog(QWidget *parent) 
       {
         m_grid_prey[y][x] = 0.5;
         m_grid_pred[y][x]= GetRandomUniform() < m_frac_pred ? 0.1 : 0.0;
-        m_grid_top[y][x] = GetRandomUniform() < m_frac_top ? 0.1 : 0.0;
       }
     }
 
@@ -61,12 +57,12 @@ QtSimTopPredatorPrayMainDialog::QtSimTopPredatorPrayMainDialog(QWidget *parent) 
   }
 }
 
-QtSimTopPredatorPrayMainDialog::~QtSimTopPredatorPrayMainDialog()
+QtSimPredatorPrayMainDialog::~QtSimPredatorPrayMainDialog()
 {
   delete ui;
 }
 
-QtSimTopPredatorPrayMainDialog::Grid QtSimTopPredatorPrayMainDialog::CreateDiffusion(const Grid& grid) noexcept
+QtSimPredatorPrayMainDialog::Grid QtSimPredatorPrayMainDialog::CreateDiffusion(const Grid& grid) noexcept
 {
   const int w{QtFractionImage::GetWidth()};
   const int h{QtFractionImage::GetHeight()};
@@ -99,33 +95,32 @@ QtSimTopPredatorPrayMainDialog::Grid QtSimTopPredatorPrayMainDialog::CreateDiffu
   return diffusion;
 }
 
-QtSimTopPredatorPrayMainDialog::Grid QtSimTopPredatorPrayMainDialog::CreateGrid() noexcept
+QtSimPredatorPrayMainDialog::Grid QtSimPredatorPrayMainDialog::CreateGrid() noexcept
 {
   return {static_cast<std::size_t>(QtFractionImage::GetHeight()),
       std::vector<double>(QtFractionImage::GetWidth(),0.0)
   };
 }
 
-double QtSimTopPredatorPrayMainDialog::GetRandomUniform()
+double QtSimPredatorPrayMainDialog::GetRandomUniform()
 {
   return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
 }
 
-double QtSimTopPredatorPrayMainDialog::Limit(const double x)
+double QtSimPredatorPrayMainDialog::Limit(const double x)
 {
   if (x < 0.0) return 0.0;
   if (x > 1.0) return 1.0;
   return x;
 }
 
-void QtSimTopPredatorPrayMainDialog::OnTimer() noexcept
+void QtSimPredatorPrayMainDialog::OnTimer() noexcept
 {
   const int w{QtFractionImage::GetWidth()};
   const int h{QtFractionImage::GetHeight()};
 
   const Grid prey_diffuse{CreateDiffusion(m_grid_prey)};
   const Grid pred_diffuse{CreateDiffusion(m_grid_pred)};
-  const Grid top_diffuse{CreateDiffusion(m_grid_top)};
 
   //Top-Pred-Prey interaction
   for (int y{0}; y!=h; ++y)
@@ -134,7 +129,6 @@ void QtSimTopPredatorPrayMainDialog::OnTimer() noexcept
     {
       m_grid_prey[y][x] = Limit(m_grid_prey[y][x] + prey_diffuse[y][x]);
       m_grid_pred[y][x] = Limit(m_grid_pred[y][x] + pred_diffuse[y][x]);
-      m_grid_top[y][x] = Limit(m_grid_top[y][x] + top_diffuse[y][x]);
     }
   }
 
@@ -147,35 +141,26 @@ void QtSimTopPredatorPrayMainDialog::OnTimer() noexcept
     {
       const double prey{m_grid_prey[y][x]};
       const double pred{m_grid_pred[y][x]};
-      const double top{m_grid_top[y][x]};
       assert(prey >= 0.0);
       assert(pred >= 0.0);
-      assert(top >= 0.0);
       assert(prey <= 1.0);
       assert(pred <= 1.0);
-      assert(top <= 1.0);
       const double pred_efficiency{0.5};
-      const double top_efficiency{0.5};
       //const double r_prey{10.0};
       const double prey_growth{prey * (1.0 - prey)};
       const double prey_eaten{prey*pred*pred_efficiency/(1.0 + (pred_efficiency*prey))};
       const double pred_growth{prey_eaten*0.2};
-      const double pred_eaten{pred*top*top_efficiency/(1.0 + (top_efficiency*pred))};
-      const double top_growth{pred_eaten*0.1};
-      const double top_eaten{0.0};
+      const double pred_eaten{0.0};
       const double new_prey{prey + prey_growth - prey_eaten};
       const double new_pred{pred + pred_growth - pred_eaten};
-      const double new_top { top +  top_growth -  top_eaten};
       assert(new_prey >= -0.1);
       assert(new_pred >= -0.1);
-      assert(new_top >= -0.1);
       assert(new_prey <= 1.1);
       assert(new_pred <= 1.1);
-      assert(new_top <= 1.1);
       prey_interact[y][x] = Limit(new_prey);
       pred_interact[y][x] = Limit(new_pred);
-      top_interact[y][x] = Limit(new_top);
     }
+
   }
 
 
@@ -186,11 +171,9 @@ void QtSimTopPredatorPrayMainDialog::OnTimer() noexcept
     {
       m_grid_prey[y][x] = prey_interact[y][x];
       m_grid_pred[y][x] = pred_interact[y][x];
-      m_grid_top[y][x] = top_interact[y][x];
     }
   }
 
   m_widget_prey->Set(m_grid_prey);
   m_widget_pred->Set(m_grid_pred);
-  m_widget_top->Set(m_grid_top);
 }

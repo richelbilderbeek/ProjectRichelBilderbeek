@@ -10,6 +10,7 @@
 
 #include "imagerotatermaindialog.h"
 #include "trace.h"
+#include "plane.h"
 #include "testtimer.h"
 #include "ui_qtimagerotatermaindialog.h"
 #pragma GCC diagnostic pop
@@ -106,6 +107,16 @@ void ribi::QtImageRotaterMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    const Plane::Coordinat3D p1( 1.0, 2.0,3.0);
+    const Plane::Coordinat3D p2( 4.0, 6.0,9.0);
+    const Plane::Coordinat3D p3(12.0,11.0,9.0);
+    const boost::shared_ptr<Plane> p(
+      boost::make_shared<Plane>(p1,p2,p3)
+    );
+    assert(p);
+  }
+  ImageRotaterMainDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const QImage source(":/imagerotater/images/ToolImageRotaterTest.png");
   assert(!source.isNull());

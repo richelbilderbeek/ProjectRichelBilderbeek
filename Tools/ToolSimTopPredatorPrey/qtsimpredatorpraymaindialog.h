@@ -1,31 +1,29 @@
-#ifndef QTSIMTOPPREDATORPRAYMAINDIALOG_H
-#define QTSIMTOPPREDATORPRAYMAINDIALOG_H
+#ifndef QTSIMPREDATORPRAYMAINDIALOG_H
+#define QTSIMPREDATORPRAYMAINDIALOG_H
 
 #include <QDialog>
 
 namespace Ui {
-  class QtSimTopPredatorPrayMainDialog;
+  class QtSimPredatorPrayMainDialog;
 }
 
 struct QtFractionImage;
 
-class QtSimTopPredatorPrayMainDialog : public QDialog
+class QtSimPredatorPrayMainDialog : public QDialog
 {
   Q_OBJECT
 
 public:
   typedef std::vector<std::vector<double>> Grid;
-  explicit QtSimTopPredatorPrayMainDialog(QWidget *parent = 0);
-  ~QtSimTopPredatorPrayMainDialog();
+  explicit QtSimPredatorPrayMainDialog(QWidget *parent = 0);
+  ~QtSimPredatorPrayMainDialog();
 
 private:
-  Ui::QtSimTopPredatorPrayMainDialog *ui;
+  Ui::QtSimPredatorPrayMainDialog *ui;
   QtFractionImage * const m_widget_prey;
   QtFractionImage * const m_widget_pred;
-  QtFractionImage * const m_widget_top;
   Grid m_grid_prey;
   Grid m_grid_pred;
-  Grid m_grid_top;
 
   //Creates a delta-density grid based on diffusion
   static Grid CreateDiffusion(const Grid& grid) noexcept;
@@ -34,12 +32,10 @@ private:
 
   /// Fraction of area with predators
   static constexpr double m_frac_pred{0.1};
-  /// Fraction of area with toppredators
-  static constexpr double m_frac_top{0.1};
   static constexpr double m_diffusion_coefficient{0.05};
   static double Limit(const double x);
 private slots:
   void OnTimer() noexcept;
 };
 
-#endif // QTSIMTOPPREDATORPRAYMAINDIALOG_H
+#endif // QTSIMPREDATORPRAYMAINDIALOG_H

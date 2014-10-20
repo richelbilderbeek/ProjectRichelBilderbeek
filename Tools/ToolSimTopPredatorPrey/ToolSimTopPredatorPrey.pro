@@ -10,9 +10,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     qtsimtoppredatorpraymaindialog.cpp \
-    qtsimtoppredatorpreywidget.cpp
+    qtsimpredatorpraymaindialog.cpp \
+    qtfractionimage.cpp
 
 HEADERS  += qtsimtoppredatorpraymaindialog.h \
-    qtsimtoppredatorpreywidget.h
+    qtsimpredatorpraymaindialog.h \
+    qtfractionimage.h
 
-FORMS    += qtsimtoppredatorpraymaindialog.ui
+FORMS    += qtsimtoppredatorpraymaindialog.ui \
+    qtsimpredatorpraymaindialog.ui
