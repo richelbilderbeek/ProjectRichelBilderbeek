@@ -8,21 +8,26 @@
 #include <boost/shared_ptr.hpp>
 
 #include "tankbattalionfwd.h"
-
-struct QPixmap;
+#include "tankbattaliondirection.h"
+struct QImage;
 
 #pragma GCC diagnostic pop
 
 namespace ribi {
 namespace taba {
 
+//Displays an Arena
 struct QtArena
 {
-  QtArena(const boost::shared_ptr<Arena>& arena);
-  QPixmap Create();
+  QtArena(const boost::shared_ptr<const Arena>& arena);
+  QImage Create(
+    const int player_x,
+    const int player_y,
+    const Direction player_direction
+  ) const;
 
   private:
-  const boost::shared_ptr<Arena> m_arena;
+  const boost::shared_ptr<const Arena> m_arena;
 };
 
 } //~namespace taba

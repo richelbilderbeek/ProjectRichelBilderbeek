@@ -1,21 +1,16 @@
-QT       += core gui
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
 
-QMAKE_CXXFLAGS += -std=c++1y
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../Classes/CppBiology/CppBiology.pri)
+include(../../Classes/CppRibiRandom/CppRibiRandom.pri)
+#include(../../Classes/CppCodeToHtml/CppCodeToHtml.pri)
+#include(../../Classes/CppQrcFile/CppQrcFile.pri)
+#include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
 
-TARGET = ToolSimTopPredatorPrey
-TEMPLATE = app
+include(ToolSimTopPredatorPreyDesktop.pri)
 
+SOURCES += qtmain.cpp
 
-SOURCES += main.cpp \
-    qtsimtoppredatorpraymaindialog.cpp \
-    qtsimpredatorpraymaindialog.cpp \
-    qtfractionimage.cpp
-
-HEADERS  += qtsimtoppredatorpraymaindialog.h \
-    qtsimpredatorpraymaindialog.h \
-    qtfractionimage.h
-
-FORMS    += qtsimtoppredatorpraymaindialog.ui \
-    qtsimpredatorpraymaindialog.ui

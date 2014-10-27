@@ -1,9 +1,14 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtfractionimage.h"
 
 #include <cassert>
 
 #include <QImage>
 #include <QPainter>
+#pragma GCC diagnostic pop
 
 QtFractionImage::QtFractionImage(QWidget *parent) :
     QWidget(parent),
@@ -27,10 +32,10 @@ void QtFractionImage::Set(const Grid& grid)
     for (int x{0}; x!=m_width; ++x)
     {
       assert(grid[y][x] >= 0.0);
-      assert(grid[y][x]  < 1.0);
+      assert(grid[y][x] <= 1.0);
       const double color_angle{grid[y][x] * 270.0};
       QColor color;
-      color.setHsv(color_angle,255,255);
+      color.setHsv(color_angle,254,254);
       int r,g,b;
       color.getRgb(&r,&g,&b);
       m_image.setPixel(x,y,qRgb(r,g,b));

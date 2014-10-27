@@ -15,6 +15,7 @@
 #include "tankbattalionkey.h"
 #include "tankbattalionspritetype.h"
 #include "tankbattalionfwd.h"
+#include "qttankbattalionsprite.h"
 
 #pragma GCC diagnostic pop
 
@@ -26,27 +27,24 @@ namespace Qt
 namespace ribi {
 namespace taba {
 
-class QtGameWidget : public QWidget
+///Draws the Arena
+class QtArenaWidget : public QWidget
 {
     Q_OBJECT
 public:
-
-  typedef std::map<SpriteType,boost::shared_ptr<QPixmap>> SpriteMap;
-  explicit QtGameWidget(QWidget *parent = 0);
+  explicit QtArenaWidget(QWidget *parent = 0);
 
   void keyPressEvent(QKeyEvent *);
   void keyReleaseEvent(QKeyEvent *);
 
 protected:
   void paintEvent(QPaintEvent *);
-
+  void resizeEvent(QResizeEvent *);
 private:
-  const SpriteMap m_sprites;
+  //const QtSprite m_sprites;
   boost::shared_ptr<GameWidget> m_widget;
 
 
-  SpriteMap CreateSprites() const;
-  boost::shared_ptr<QPixmap> GetPixmap(const SpriteType& s) const;
 
 private slots:
   void OnTimer();

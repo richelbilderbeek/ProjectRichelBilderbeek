@@ -1,21 +1,31 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtsimpredatorpraymaindialog.h"
 
 #include <cassert>
 #include <QHBoxLayout>
 #include <QDesktopWidget>
 #include <QTimer>
-#include "ui_qtsimpredatorpraymaindialog.h"
-
+#include "biology.h"
 #include "qtfractionimage.h"
+#include "ribi_random.h"
+#include "testtimer.h"
+#include "ui_qtsimpredatorpraymaindialog.h"
+#pragma GCC diagnostic pop
 
-QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent)
+ :  QDialog(parent),
     ui(new Ui::QtSimPredatorPrayMainDialog),
     m_widget_prey{new QtFractionImage},
     m_widget_pred{new QtFractionImage},
     m_grid_prey{CreateGrid()},
     m_grid_pred{CreateGrid()}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   this->setGeometry(0,
     0,
@@ -42,8 +52,8 @@ QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent) :
     {
       for (int x{0}; x!=w; ++x)
       {
-        m_grid_prey[y][x] = 0.5;
-        m_grid_pred[y][x]= GetRandomUniform() < m_frac_pred ? 0.1 : 0.0;
+        m_grid_prey[y][x] = 0.1;
+        m_grid_pred[y][x]= ribi::Random().GetFraction() < m_frac_pred ? 0.1 : 0.0;
       }
     }
 
@@ -57,12 +67,12 @@ QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent) :
   }
 }
 
-QtSimPredatorPrayMainDialog::~QtSimPredatorPrayMainDialog()
+ribi::QtSimPredatorPrayMainDialog::~QtSimPredatorPrayMainDialog()
 {
   delete ui;
 }
 
-QtSimPredatorPrayMainDialog::Grid QtSimPredatorPrayMainDialog::CreateDiffusion(const Grid& grid) noexcept
+ribi::QtSimPredatorPrayMainDialog::Grid ribi::QtSimPredatorPrayMainDialog::CreateDiffusion(const Grid& grid) noexcept
 {
   const int w{QtFractionImage::GetWidth()};
   const int h{QtFractionImage::GetHeight()};
@@ -95,26 +105,22 @@ QtSimPredatorPrayMainDialog::Grid QtSimPredatorPrayMainDialog::CreateDiffusion(c
   return diffusion;
 }
 
-QtSimPredatorPrayMainDialog::Grid QtSimPredatorPrayMainDialog::CreateGrid() noexcept
+ribi::QtSimPredatorPrayMainDialog::Grid
+  ribi::QtSimPredatorPrayMainDialog::CreateGrid() noexcept
 {
   return {static_cast<std::size_t>(QtFractionImage::GetHeight()),
       std::vector<double>(QtFractionImage::GetWidth(),0.0)
   };
 }
 
-double QtSimPredatorPrayMainDialog::GetRandomUniform()
-{
-  return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
-}
-
-double QtSimPredatorPrayMainDialog::Limit(const double x)
+double ribi::QtSimPredatorPrayMainDialog::Limit(const double x)
 {
   if (x < 0.0) return 0.0;
   if (x > 1.0) return 1.0;
   return x;
 }
 
-void QtSimPredatorPrayMainDialog::OnTimer() noexcept
+void ribi::QtSimPredatorPrayMainDialog::OnTimer() noexcept
 {
   const int w{QtFractionImage::GetWidth()};
   const int h{QtFractionImage::GetHeight()};
@@ -145,20 +151,20 @@ void QtSimPredatorPrayMainDialog::OnTimer() noexcept
       assert(pred >= 0.0);
       assert(prey <= 1.0);
       assert(pred <= 1.0);
-      const double pred_efficiency{0.5};
-      //const double r_prey{10.0};
-      const double prey_growth{prey * (1.0 - prey)};
-      const double prey_eaten{prey*pred*pred_efficiency/(1.0 + (pred_efficiency*prey))};
-      const double pred_growth{prey_eaten*0.2};
+      //const double pred_efficiency{1.0};
+      const double prey_growth{Biology().LogisticGrowth(1.0,prey,1.0)};
+      const double prey_eaten{prey*pred};
+      const double pred_growth{(prey_eaten*0.5) * (1.0 - pred - (0.5 * pred))};
+      const double pred_death{0.1 * pred};
       const double pred_eaten{0.0};
-      const double new_prey{prey + prey_growth - prey_eaten};
-      const double new_pred{pred + pred_growth - pred_eaten};
-      assert(new_prey >= -0.1);
-      assert(new_pred >= -0.1);
-      assert(new_prey <= 1.1);
-      assert(new_pred <= 1.1);
-      prey_interact[y][x] = Limit(new_prey);
-      pred_interact[y][x] = Limit(new_pred);
+      const double new_prey{prey + (prey_growth - prey_eaten)};
+      const double new_pred{pred + (pred_growth - pred_eaten) - pred_death};
+      assert(new_prey >= 0.0);
+      assert(new_pred >= 0.0);
+      assert(new_prey <= 1.0);
+      assert(new_pred <= 1.0);
+      prey_interact[y][x] = new_prey;
+      pred_interact[y][x] = new_pred;
     }
 
   }
@@ -169,11 +175,31 @@ void QtSimPredatorPrayMainDialog::OnTimer() noexcept
   {
     for (int x{0}; x!=w; ++x)
     {
-      m_grid_prey[y][x] = prey_interact[y][x];
-      m_grid_pred[y][x] = pred_interact[y][x];
+      const double prey{prey_interact[y][x]};
+      const double pred{pred_interact[y][x]};
+      assert(prey >= 0.0);
+      assert(pred >= 0.0);
+      assert(prey <= 1.0);
+      assert(pred <= 1.0);
+      m_grid_prey[y][x] = prey;
+      m_grid_pred[y][x] = pred;
     }
   }
 
   m_widget_prey->Set(m_grid_prey);
   m_widget_pred->Set(m_grid_pred);
 }
+
+#ifndef NDEBUG
+void ribi::QtSimPredatorPrayMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  Biology();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+
+}
+#endif // NDEBUG

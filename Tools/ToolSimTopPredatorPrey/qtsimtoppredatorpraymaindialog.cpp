@@ -1,3 +1,7 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtsimtoppredatorpraymaindialog.h"
 
 #include <cassert>
@@ -7,6 +11,7 @@
 #include "ui_qtsimtoppredatorpraymaindialog.h"
 
 #include "qtfractionimage.h"
+#pragma GCC diagnostic pop
 
 QtSimTopPredatorPrayMainDialog::QtSimTopPredatorPrayMainDialog(QWidget *parent) :
     QDialog(parent),

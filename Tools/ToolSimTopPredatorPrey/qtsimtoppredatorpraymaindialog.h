@@ -1,7 +1,12 @@
 #ifndef QTSIMTOPPREDATORPRAYMAINDIALOG_H
 #define QTSIMTOPPREDATORPRAYMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtSimTopPredatorPrayMainDialog;
@@ -16,6 +21,8 @@ class QtSimTopPredatorPrayMainDialog : public QDialog
 public:
   typedef std::vector<std::vector<double>> Grid;
   explicit QtSimTopPredatorPrayMainDialog(QWidget *parent = 0);
+  QtSimTopPredatorPrayMainDialog(const QtSimTopPredatorPrayMainDialog&) = delete;
+  QtSimTopPredatorPrayMainDialog& operator=(const QtSimTopPredatorPrayMainDialog&) = delete;
   ~QtSimTopPredatorPrayMainDialog();
 
 private:

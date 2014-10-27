@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <array>
 #include <QPixmap>
+#include "tankbattalionspritetype.h"
 #pragma GCC diagnostic pop
 
 struct QPixmap;
@@ -16,18 +17,18 @@ namespace taba {
 
 struct Arena
 {
-  Arena(const int level = 1);
+  Arena(const int level = 0);
   static int GetColumns() noexcept { return sm_n_columns; }
   static int GetRows() noexcept { return sm_n_rows; }
-  int Get(const int x, const int y) const noexcept;
+  SpriteType Get(const int x, const int y) const noexcept;
   //QPixmap CreatePixmap() const noexcept;
 
   private:
   static const int sm_n_columns = 21; //blocks
   static const int sm_n_rows    = 22; //blocks
-  std::array<std::array<int,sm_n_columns>,sm_n_rows> m_arena;
+  std::array<std::array<SpriteType,sm_n_columns>,sm_n_rows> m_arena;
 
-  static std::array<std::array<int,sm_n_columns>,sm_n_rows> CreateArena(const int level) noexcept;
+  static std::array<std::array<SpriteType,sm_n_columns>,sm_n_rows> CreateArena(const int level) noexcept;
 
 };
 

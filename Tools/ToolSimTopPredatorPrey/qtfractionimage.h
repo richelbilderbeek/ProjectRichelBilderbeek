@@ -2,8 +2,13 @@
 #define QTFRACTIONIMAGE_H
 
 #include <vector>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QWidget>
 #include <QImage>
+#pragma GCC diagnostic pop
 
 ///Displays fractions
 class QtFractionImage : public QWidget
