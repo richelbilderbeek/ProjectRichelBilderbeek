@@ -38,6 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmaphelper.h"
+#include "ribi_regex.h"
 #include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
@@ -177,6 +178,7 @@ void ribi::cmap::Example::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  ribi::Regex();
   ribi::cmap::Regex();
   Counter();
   const TestTimer test_timer(__func__,__FILE__,1.0);

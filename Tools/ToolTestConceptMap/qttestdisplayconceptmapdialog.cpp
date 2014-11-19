@@ -27,7 +27,7 @@
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
 #include "ui_qttestdisplayconceptmapdialog.h"
@@ -38,7 +38,7 @@ ribi::cmap::QtTestDisplayConceptMapDialog::QtTestDisplayConceptMapDialog(QWidget
   ui(new Ui::QtTestDisplayConceptMapDialog),
   m_concept_map(
     new QtDisplayConceptMap(
-      ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+      ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15)
     )
   )
 {

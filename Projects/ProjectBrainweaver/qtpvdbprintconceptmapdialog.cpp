@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapconcept.h"
 #include "conceptmap.h"
 #include "conceptmapfactory.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapratedconceptdialog.h"
 #include "qtpvdbfiledialog.h"

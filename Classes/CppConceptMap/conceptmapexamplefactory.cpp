@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include <boost/make_shared.hpp>
 
 #include "conceptmaphelper.h"
+#include "counter.h"
 #include "conceptmapexample.h"
 #include "conceptmapregex.h"
 #include "testtimer.h"
@@ -151,6 +152,8 @@ void ribi::cmap::ExampleFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  Counter();
+  Example(ExampleFactory(),"Test example 0",Competency::profession,true,false,false);
   ExampleFactory().GetTest(0);
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

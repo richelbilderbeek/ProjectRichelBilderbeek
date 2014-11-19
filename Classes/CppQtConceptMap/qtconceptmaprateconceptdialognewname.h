@@ -32,7 +32,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace Ui { class QtRateConceptDialogNewName; }
-
 namespace ribi {
 namespace cmap {
 
@@ -83,7 +82,8 @@ private:
   ///Cannot be const, only used in calculating the suggestions
   const boost::shared_ptr<ConceptMap> m_sub_concept_map;
 
-  const boost::shared_ptr<QtRateConceptMap> m_widget;
+  const boost::shared_ptr<QtConceptMap> m_widget;
+  //const boost::shared_ptr<QtRateConceptMap> m_widget;
   //QtConceptMapRateWidget * const m_widget; //WHY DID I DO THIS???
 
   void OnRatingComplexityChanged(const Concept* concept);

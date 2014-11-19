@@ -64,7 +64,6 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::Cluster::FromXml(const 
 {
   assert(s.size() >= 19);
   assert(s.substr(0,9) == "<cluster>");
-  TRACE(s);
   assert(s.substr(s.size() - 10,10) == "</cluster>");
 
   std::vector<boost::shared_ptr<ribi::cmap::Concept> > concepts;

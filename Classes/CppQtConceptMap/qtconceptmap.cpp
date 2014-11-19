@@ -18,7 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
-#ifdef NOT_NOW_20140810
+#define NOT_NOW_20140810
+#ifdef  NOT_NOW_20140810
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -243,6 +244,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
       && "There must as much nodes in the scene as there were in the concept map");
   }
   #endif
+  #ifdef NOT_NOW_20141111
   //Add the Concepts on the Edges
   {
     const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = m_concept_map->GetEdges();
@@ -256,6 +258,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
       }
     );
   }
+  #endif // NOT_NOW_20141111
 
   #ifndef NDEBUG
   {
@@ -315,7 +318,8 @@ void ribi::cmap::QtConceptMap::DeleteEdge(QtEdge * const qtedge)
   #endif
 }
 
-void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<QtNode>& qtnode)
+//void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<QtNode>& qtnode)
+void ribi::cmap::QtConceptMap::DeleteNode(const QtNode * const qtnode)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -329,7 +333,7 @@ void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<QtNode>& qtnod
     {
       QtEdge * const qtedge = qtedges[i];
       assert(qtedge);
-      if (qtedge->GetFrom() == qtnode || qtedge->GetTo() == qtnode)
+      if (*qtedge->GetFrom() == *qtnode || *qtedge->GetTo() == *qtnode)
       {
         DeleteEdge(qtedge);
       }
@@ -337,9 +341,11 @@ void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<QtNode>& qtnod
   }
 
   //Remove from non-GUI, which removes the left-overs
+  #ifdef NOT_NOW_20141111
   GetConceptMap()->DeleteNode(qtnode->GetNode());
   //Remove node from GUI
   this->scene()->removeItem(qtnode.get());
+  #endif // NOT_NOW_20141111
 
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
@@ -358,7 +364,7 @@ std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
   std::copy_if(v.begin(),v.end(),std::back_inserter(w),
     [from](const QtEdge* const edge)
     {
-      return edge->GetFrom() == from || edge->GetTo() == from;
+      return *edge->GetFrom() == *from || *edge->GetTo() == *from;
     }
   );
   return w;
@@ -408,7 +414,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
 const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdgeConst(
   const QtEdge* const edge) const noexcept
 {
-  return FindQtEdgeConst(edge->GetFrom(),edge->GetTo());
+  return FindQtEdgeConst(edge->GetFrom().get(),edge->GetTo().get());
 }
 
 const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdgeConst(
@@ -424,8 +430,8 @@ const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdgeConst(
     [from,to](const QtEdge* const edge)
     {
       return
-        (edge->GetFrom() == from && edge->GetTo() == to)
-     || (edge->GetFrom() == to && edge->GetTo() == from);
+        (*edge->GetFrom() == *from && *edge->GetTo() == *to)
+     || (*edge->GetFrom() == *to && *edge->GetTo() == *from);
     }
   );
   if (iter == edge_concepts.end()) return nullptr;
@@ -644,10 +650,10 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     const QtNode * const qtcenter_node
       = dynamic_cast<const QtNode *>(qtnode_concepts[0]);
     assert(qtcenter_node);
-    assert(qtcenter_node->GetOuterX() > -0.5);
-    assert(qtcenter_node->GetOuterX() <  0.5);
-    assert(qtcenter_node->GetOuterY() > -0.5);
-    assert(qtcenter_node->GetOuterY() <  0.5);
+    //assert(qtcenter_node->GetOuterRect(). GetOuterX() > -0.5);
+    //assert(qtcenter_node->GetOuterX() <  0.5);
+    //assert(qtcenter_node->GetOuterY() > -0.5);
+    //assert(qtcenter_node->GetOuterY() <  0.5);
 
     const double r1
       = 0.5 * ribi::cmap::GetDistance(
@@ -671,18 +677,17 @@ void ribi::cmap::QtConceptMap::RepositionItems()
       qtnode->GetNode()->SetPos(x,y);
       //qtnode->setPos(x,y);
       #ifndef NDEBUG
-      const double epsilon = 0.000001;
+      //const double epsilon = 0.000001;
       #endif
-      assert(std::abs(x - qtnode->GetOuterX()) < epsilon);
-      assert(std::abs(x - qtnode->GetNode()->GetX()) < epsilon);
-      //assert(std::abs(x - qtnode->GetDisplayStrategy()->pos().x()) < epsilon);
-      assert(std::abs(y - qtnode->GetOuterY()) < epsilon);
-      assert(std::abs(y - qtnode->GetNode()->GetY()) < epsilon);
-      //assert(std::abs(y - qtnode->GetDisplayStrategy()->pos().y()) < epsilon);
+      //assert(std::abs(x - qtnode->GetOuterX()) < epsilon);
+      //assert(std::abs(x - qtnode->GetNode()->GetX()) < epsilon);
+      //assert(std::abs(y - qtnode->GetOuterY()) < epsilon);
+      //assert(std::abs(y - qtnode->GetNode()->GetY()) < epsilon);
 
     }
   }
 
+  #ifdef NOT_NOW_20141111
   {
     //Put the edge concepts in the middle of the nodes
     const std::vector<QtEdge *> qtedge_concepts = Collect<QtEdge>(scene());
@@ -692,13 +697,12 @@ void ribi::cmap::QtConceptMap::RepositionItems()
         const QPointF p((qtedge->GetFrom()->GetOuterPos() + qtedge->GetTo()->GetOuterPos()) / 2.0);
         const double new_x = p.x();
         const double new_y = p.y();
-        //qtedge->GetEdge()->SetX(new_x);
-        //qtedge->GetEdge()->SetY(new_y);
         qtedge->GetEdge()->GetNode()->SetX(new_x);
         qtedge->GetEdge()->GetNode()->SetY(new_y);
       }
     );
   }
+  #endif // NOT_NOW_20141111
 
   //Put the nodes around the focal question in their improved position
   //If there is no focal node, the non-focal nodes are put around an empty spot
@@ -772,6 +776,7 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
     {
       if (!IsQtCenterNode(qtnode))
       {
+        #ifdef NOT_NOW_20141111
         double x = qtnode->GetOuterX();
         double y = qtnode->GetOuterY();
         const int i = (std::rand() >> 4) % 4;
@@ -785,6 +790,7 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
         }
         assert(QPointF(x,y) != qtnode->GetOuterPos());
         qtnode->GetNode()->SetPos(x,y);
+        #endif // NOT_NOW_20141111
       }
     }
   );

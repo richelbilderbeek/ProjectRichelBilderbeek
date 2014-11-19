@@ -43,6 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtrateconceptmap.h"
 #include "trace.h"
 #include "qtpvdbratingdialog.h"
+
 #include "qtconceptmaprateconceptdialognewname.h"
 #include "ui_qtpvdbrateconceptmapdialog.h"
 #pragma GCC diagnostic pop

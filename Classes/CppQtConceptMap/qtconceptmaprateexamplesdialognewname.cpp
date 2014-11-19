@@ -140,7 +140,7 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::QtRateExamplesDialogNe
   }
 
   const boost::shared_ptr<ribi::cmap::Examples> examples
-    = cmap::ExamplesFactory::Create(v);
+    = cmap::ExamplesFactory().Create(v);
   assert(examples);
   return examples;
 }

@@ -51,7 +51,7 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
   }
   //Test base class (after having tested cloning of derived class)
   {
-    const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
+    const auto v = ribi::cmap::ConceptMapFactory().GetAllTests();
     for (const boost::shared_ptr<ConceptMap> concept_map: v)
     {
       if (!concept_map) continue;
@@ -65,14 +65,14 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
   }
   //Deletion of nodes
   {
-    const std::size_t n_concept_maps = ribi::cmap::ConceptMapFactory::GetAllTests().size();
+    const std::size_t n_concept_maps = ribi::cmap::ConceptMapFactory().GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
-      if (!cmap::ConceptMapFactory::GetAllTests()[i]) continue;
-      const std::size_t n_nodes = ribi::cmap::ConceptMapFactory::GetAllTests()[i]->GetNodes().size();
+      if (!cmap::ConceptMapFactory().GetAllTests()[i]) continue;
+      const std::size_t n_nodes = ribi::cmap::ConceptMapFactory().GetAllTests()[i]->GetNodes().size();
       for (std::size_t j=0; j!=n_nodes; ++j)
       {
-        boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory::GetAllTests()[i];
+        boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory().GetAllTests()[i];
         if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetNodes().size() == n_nodes);
@@ -89,14 +89,14 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
   }
   //Deletion of edges
   {
-    const std::size_t n_concept_maps = ribi::cmap::ConceptMapFactory::GetAllTests().size();
+    const std::size_t n_concept_maps = ribi::cmap::ConceptMapFactory().GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
-      if (!cmap::ConceptMapFactory::GetAllTests()[i]) continue;
-      const std::size_t n_edges = ribi::cmap::ConceptMapFactory::GetAllTests()[i]->GetEdges().size();
+      if (!cmap::ConceptMapFactory().GetAllTests()[i]) continue;
+      const std::size_t n_edges = ribi::cmap::ConceptMapFactory().GetAllTests()[i]->GetEdges().size();
       for (std::size_t j=0; j!=n_edges; ++j)
       {
-        boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory::GetAllTests()[i];
+        boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory().GetAllTests()[i];
         if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetEdges().size() == n_edges);

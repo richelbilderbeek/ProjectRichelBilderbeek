@@ -1,6 +1,7 @@
 #DEFINES += TODO_ISSUE_207
 
 include(../../DesktopApplication.pri)
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)

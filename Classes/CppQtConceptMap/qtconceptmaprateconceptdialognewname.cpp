@@ -43,7 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtrateconceptmap.h"
-#include "conceptmaprating.h"
+#include "qtconceptmaprating.h"
 #include "qtrateconceptmap.h"
 #include "qtconceptmaprateconcepttallydialognewname.h"
 #include "trace.h"
@@ -298,7 +298,7 @@ void ribi::cmap::QtRateConceptDialogNewName::on_button_tally_relevancies_clicked
   #ifndef NDEBUG
   const bool has_concept_map = m_sub_concept_map.get(); //.get() needed for crosscompiler
   #endif
-  QtRateConceptTallyDialogNewName d(m_sub_concept_map);
+   QtRateConceptTallyDialogNewName d(m_sub_concept_map);
   d.exec(); //Keep this dialog visible, as of 2013-08-30
   assert(has_concept_map == static_cast<bool>(m_sub_concept_map.get()));
   ui->box_complexity->setCurrentIndex(d.GetSuggestedComplexity());

@@ -43,7 +43,7 @@ ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::QtPvdbTestCreateSubConceptMapDi
   #ifndef NDEBUG
   Test();
   #endif
-  const int n_tests = boost::numeric_cast<int>(cmap::ConceptMapFactory::GetAllTests().size());
+  const int n_tests = boost::numeric_cast<int>(cmap::ConceptMapFactory().GetAllTests().size());
   ui->box_index->setMaximum(n_tests - 1); //-1: 0-based counting
 
   QObject::connect(ui->box_index,SIGNAL(valueChanged(int)),this,SLOT(OnConceptMapChanged()));
@@ -61,7 +61,7 @@ ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::~QtPvdbTestCreateSubConceptMapD
 void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnConceptMapChanged()
 {
   const int i = ui->box_index->value();
-  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > v = ribi::cmap::ConceptMapFactory::GetAllTests();
+  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > v = ribi::cmap::ConceptMapFactory().GetAllTests();
   assert(i < boost::numeric_cast<int>(v.size()));
   assert(v[i]);
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = v[i];

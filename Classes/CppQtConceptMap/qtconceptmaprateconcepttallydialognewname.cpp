@@ -44,7 +44,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexample.h"
 #include "conceptmapedge.h"
 #include "conceptmapexamples.h"
-#include "conceptmaprating.h"
+#include "qtconceptmaprating.h"
 #include "trace.h"
 #include "ui_qtconceptmaprateconcepttallydialognewname.h"
 #pragma GCC diagnostic pop
@@ -271,13 +271,15 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   const boost::shared_ptr<Node> node_other(NodeFactory().Create(concept_node_other));
 
   const boost::shared_ptr<ConceptMap> sub_concept_map(
-    ConceptMapFactory::Create(
+    ConceptMapFactory().Create(
       {
         node_focal,
         node_other
       } ,
       {
-        EdgeFactory().Create(NodeFactory().Create(concept_edge,1.2,3.4),node_focal,true,node_other,true)
+        EdgeFactory().Create(
+          NodeFactory().Create(concept_edge,1.2,3.4),node_focal,true,node_other,true
+        )
       }
     )
   );

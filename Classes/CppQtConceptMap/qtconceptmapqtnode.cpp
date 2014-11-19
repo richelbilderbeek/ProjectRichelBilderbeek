@@ -548,6 +548,7 @@ void ribi::cmap::QtNode::Test() noexcept
     is_tested = true;
   }
   QtRoundedEditRectItem();
+  QtNodeFactory().GetTest(1);
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};

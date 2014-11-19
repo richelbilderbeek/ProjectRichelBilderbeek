@@ -18,7 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
-#ifdef NOT_NOW_20140805_1204
+#define NOT_NOW_20140805_1204
+#ifdef  NOT_NOW_20140805_1204
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -46,11 +47,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapcenternode.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapelement.h"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 #include "qtconceptmapexamplesitem.h"
 #include "qtconceptmapitemhighlighter.h"
 #include "qtconceptmapnewarrow.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmaptoolsitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtscopeddisable.h"
@@ -87,7 +88,7 @@ ribi::cmap::QtEditConceptMap::QtEditConceptMap(
 {
   assert(m_highlighter || m_mode != Mode::classic);
   #ifndef NDEBUG
-  Test();
+  //Test();
   #endif
   if (!concept_map) return;
 
@@ -125,6 +126,7 @@ ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept
   }
 }
 
+#ifdef NOT_NOW_20141111
 ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
@@ -287,6 +289,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_fro
 
   return qtedge;
 }
+#endif // NOT_NOW_20141111
 
 ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_ptr<Node> node)
 {
@@ -294,20 +297,16 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
   assert(node->GetConcept());
   //const boost::shared_ptr<QtEditStrategy> display_strategy(new QtEditStrategy(node->GetConcept()));
   //assert(node);
-  //QtNode * const qtnode = new QtNode(node,display_strategy);
-  QtNode * const qtnode {
-    IsCenterNode(node)
-    ? new QtCenterNode(boost::dynamic_pointer_cast<CenterNode>(node))
-    : new QtNode(node,GetDisplayStrategy(node->GetConcept()))
-  };
-
-  assert(qtnode->pos().x() == node->GetX());
-  assert(qtnode->pos().y() == node->GetY());
+  QtNode * const qtnode = new QtNode(node);
+  assert(qtnode);
+  assert(qtnode->GetCenterX() == node->GetX());
+  assert(qtnode->GetCenterY() == node->GetY());
   assert(IsCenterNode(qtnode->GetNode()) == IsQtCenterNode(qtnode)
     && "Should be equivalent");
 
   //Signal #1
   //General: inform an Observer that this item has changed
+  #ifdef NOT_NOW_20141111
   qtnode->m_signal_item_has_updated.connect(
    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
 
@@ -322,6 +321,7 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
     boost::bind(
       &ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
+  #endif // NOT_NOW_20141111
 
   assert(!qtnode->scene());
   this->scene()->addItem(qtnode);
@@ -333,8 +333,8 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
   );
   //this->GetConceptMap()->AddNode(node);
 
-  assert(qtnode->pos().x() == node->GetX());
-  assert(qtnode->pos().y() == node->GetY());
+  assert(qtnode->GetCenterX() == node->GetX());
+  assert(qtnode->GetCenterY() == node->GetY());
   //Cannot check this: during construction the concept map has multiple nodes, that can only be
   //added one by one
   //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
@@ -397,7 +397,7 @@ void ribi::cmap::QtEditConceptMap::CleanMe()
 std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtEditConceptMap::CreateNewDerived() const
 {
   const boost::shared_ptr<ConceptMap> concept_map
-    = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+    = ribi::cmap::ConceptMapFactory().DeepCopy(this->GetConceptMap());
   assert(concept_map);
   std::unique_ptr<QtConceptMap> p(new This_t(concept_map,this->m_mode));
   return p;
@@ -463,14 +463,15 @@ void ribi::cmap::QtEditConceptMap::DoRandomStuff()
   QtNode * const qtnode2 = AddNode(node2);
 
   assert(qtnode1->GetNode() != qtnode2->GetNode());
-  this->AddEdge(qtnode1,qtnode2);
+  //this->AddEdge(qtnode1,qtnode2);
 
   assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 }
 #endif
 
-const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtEditConceptMap::GetDisplayStrategy(
+#ifdef NOT_NOW_20141111
+boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtEditConceptMap::GetDisplayStrategy(
   const boost::shared_ptr<Concept> concept) const noexcept
 {
   assert(concept);
@@ -480,6 +481,7 @@ const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtEditCon
   assert(display_strategy);
   return display_strategy;
 }
+#endif // NOT_NOW_20141111
 
 
 
@@ -514,13 +516,13 @@ void ribi::cmap::QtEditConceptMap::keyPressEvent(QKeyEvent* event) noexcept
           [this](QGraphicsItem* const item)
           {
             //Delete a Node Concept
-            if (QtNode * const node = dynamic_cast<QtNode *>(item))
+            if (QtNode * const qtnode = dynamic_cast<QtNode *>(item))
             {
-              if (!IsQtCenterNode(node)) //Cannot delete center node
+              if (!IsQtCenterNode(qtnode)) //Cannot delete center node
               {
                 const std::vector<QtNode*> node_concepts = Collect<QtNode>(scene());
-                assert(std::count(node_concepts.begin(),node_concepts.end(),node) == 1);
-                DeleteNode(node);
+                assert(std::count(node_concepts.begin(),node_concepts.end(),qtnode) == 1);
+                DeleteNode(qtnode);
               }
             }
             //Delete an Edge Concept
@@ -612,7 +614,9 @@ void ribi::cmap::QtEditConceptMap::mousePressEvent(QMouseEvent *event)
       if (m_highlighter->GetItem() && m_arrow->GetFrom() != m_highlighter->GetItem())
       {
         assert(!dynamic_cast<QtTool*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
+        #ifdef NOT_NOW_20141111
         AddEdge( m_arrow->GetFrom(),m_highlighter->GetItem());
+        #endif // NOT_NOW_20141111
       }
       this->scene()->removeItem(m_arrow);
       m_arrow = nullptr;
@@ -628,7 +632,9 @@ void ribi::cmap::QtEditConceptMap::mousePressEvent(QMouseEvent *event)
   {
     //Let any node (in this case the central node) emit an update for the Examples
     //to hide.
+    #ifdef NOT_NOW_20141111
     this->GetCenterNode()->m_signal_item_has_updated(0);
+    #endif // NOT_NOW_20141111
   }
 }
 
@@ -644,17 +650,21 @@ void ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit(QtConceptMapElem
   //TRACE("Try edit from EditWidget");
   //m_signal_conceptmapitem_requests_edit(item);
 
+  #ifdef NOT_NOW_20141111
   {
     QtScopedDisable<QtConceptMap> disable(this);
     QtConceptMapConceptEditDialog d(item->GetNode()->GetConcept());
     d.exec();
   }
+  #endif // NOT_NOW_20141111
   this->show();
   this->setFocus();
   this->scene()->setFocusItem(item);
   item->setSelected(true);
+  #ifdef NOT_NOW_20141111
   item->m_signal_item_has_updated(item);
   item->m_signal_request_scene_update();
+  #endif // NOT_NOW_20141111
   this->scene()->update();
   this->OnItemRequestsUpdate(item);
 }
@@ -674,8 +684,8 @@ void ribi::cmap::QtEditConceptMap::OnToolsClicked()
   if (m_mode == Mode::classic)
   {
     const QPointF cursor_pos_approx(
-      m_tools->GetBuddyItem()->pos().x(),
-      m_tools->GetBuddyItem()->pos().y() - 32.0
+      m_tools->GetBuddyItem()->GetCenterX(),
+      m_tools->GetBuddyItem()->GetCenterY() - 32.0
       - m_tools->GetBuddyItem()->GetRadiusY()
       //TODO_COEN ISSUE_101 the QGraphicsItem needs to emit that it is clicked,
       //with itself as the argument, so that the QtTool knows the height the of the square to be above

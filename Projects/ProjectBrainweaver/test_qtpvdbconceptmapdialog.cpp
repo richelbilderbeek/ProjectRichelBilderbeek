@@ -49,10 +49,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pvdbcluster.h"
 #include "pvdbfile.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 #include "qtconceptmapelement.h"
 #include "qtconceptmap.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -181,7 +181,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<Edge> edge_c(EdgeFactory().Create(NodeFactory().Create(concept_f,3.4,5.6),nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(
+      ribi::cmap::ConceptMapFactory().Create(
         nodes,
         { edge_a, edge_b, edge_c }
       )
@@ -238,7 +238,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<Edge> edge_c(EdgeFactory().Create(NodeFactory().Create(concept_f,3.4,5.6),nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(
+      ribi::cmap::ConceptMapFactory().Create(
         nodes,
         { edge_a, edge_b, edge_c }
       )
@@ -298,7 +298,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<Edge> edge_c(EdgeFactory().Create(NodeFactory().Create(concept_f,3.4,5.6),nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(
+      ribi::cmap::ConceptMapFactory().Create(
         nodes,
         { edge_a, edge_b, edge_c }
       )
@@ -383,7 +383,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
   //When putting in each of the heteromorphous concept maps, shuffling it, saving it, loading
   //it, the resulting concept map must be homomorphous with the input map
   {
-    const auto v = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps();
+    const auto v = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps();
     const int sz = v.size();
     for (int i = 0; i!=sz; ++i)
     {

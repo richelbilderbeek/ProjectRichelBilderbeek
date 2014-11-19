@@ -134,8 +134,6 @@ boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromXml(con
   const boost::shared_ptr<Examples> result {
     Create(examples)
   };
-  assert(result);
-  assert(result->ToXml() == s);
   return result;
 }
 

@@ -63,11 +63,11 @@ void ribi::QtTestFunctionParserMainDialog::on_edit_function_textChanged(QString 
 
 void ribi::QtTestFunctionParserMainDialog::Parse() noexcept
 {
- FunctionParser f;
+  FunctionParser f;
 
   //Parse the formula
   f.Parse(ui->edit_function->text().toStdString().c_str(),"x");
-  if (f.GetParseErrorType()!= FunctionParser::FP_NO_ERROR)
+  if (f.GetParseErrorType() != FunctionParser::FP_NO_ERROR)
   {
     ui->label_result->setText("Function could not be parsed");
     return;

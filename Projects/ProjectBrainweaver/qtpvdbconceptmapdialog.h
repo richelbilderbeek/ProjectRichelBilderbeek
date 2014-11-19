@@ -18,7 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
 //---------------------------------------------------------------------------
-#ifdef NOT_NOW_20140805_1204
+#define NOT_NOW_20140805_1204
+#ifdef  NOT_NOW_20140805_1204
 
 #ifndef QTPVDBCONCEPTMAPDIALOG_H
 #define QTPVDBCONCEPTMAPDIALOG_H
@@ -99,8 +100,10 @@ private:
   ///DON'T USE: puts a new ConceptMap in file
   static ribi::cmap::QtEditConceptMap * CreateWidget(const boost::shared_ptr<pvdb::File> file);
 
-  ///NEW 2013-01-07
+  //#define NOT_NOW_20141111
+  #ifdef NOT_NOW_20141111
   void OnConceptMapItemRequestsEdit(cmap::QtConceptMapElement* const item);
+  #endif //NOT_NOW_20141111
 
   #ifndef NDEBUG
   ///Test this class

@@ -1,3 +1,4 @@
+
 //---------------------------------------------------------------------------
 /*
 TestQtRoundedEditRectItem, tool to test QtRoundedEditRectItem

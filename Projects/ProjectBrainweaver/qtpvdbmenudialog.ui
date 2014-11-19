@@ -86,13 +86,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="button_test_qtroundedtextrectitem">
-        <property name="text">
-         <string>&amp;H. QtRoundedTextRectItem</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="button_test_qtroundededitrectitem">
         <property name="text">
          <string>&amp;I. QtRoundedEditRectItem</string>
@@ -279,7 +272,6 @@
   <tabstop>button_view_files</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_overview</tabstop>
-  <tabstop>button_test_qtroundedtextrectitem</tabstop>
   <tabstop>button_test_qtroundededitrectitem</tabstop>
   <tabstop>button_test_arrowitems</tabstop>
   <tabstop>button_test_conceptmaps</tabstop>

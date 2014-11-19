@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmaphelper.h"
 #include "conceptmapregex.h"
 #include "testtimer.h"
+#include "counter.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic push
@@ -221,8 +222,6 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
   const boost::shared_ptr<Concept> concept {
     ConceptFactory().Create(name,examples,is_complex,rating_complexity,rating_concreteness,rating_specificity)
   };
-  assert(concept);
-  assert(concept->ToXml() == s);
   return concept;
 }
 
@@ -308,6 +307,7 @@ void ribi::cmap::ConceptFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  Counter();
   ConceptFactory().GetTest(0);
   ExamplesFactory();
   const bool verbose{false};

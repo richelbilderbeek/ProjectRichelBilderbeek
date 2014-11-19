@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
         //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked,
         //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked
         //&ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked
       };
