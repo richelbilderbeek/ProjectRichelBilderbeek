@@ -1,6 +1,7 @@
 #include <cassert>
 #include <string>
 
+#include <boost/lexical_cast.hpp>
 #include <QDebug>
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
@@ -21,7 +22,7 @@ Dialog::Dialog(QWidget *parent) :
   }
   else
   {
-    QTimer * const timer{new QTimer(this)};
+    QTimer * const timer{new QTimer};
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(OnTimer()));
     timer->setInterval(100);
     timer->start();
@@ -49,8 +50,9 @@ std::shared_ptr<QSerialPort> Dialog::AcquireSerialPort() noexcept
 
 void Dialog::OnTimer()
 {
-  const QByteArray b = m_serial->readAll();
-  if (b.isEmpty()) return;
-  this->ui->progressBar->setValue(std::atoi(b));
+  const int position{ui->dial->value()};
+  std::string s{boost::lexical_cast<std::string>(position)};
+  if (s.size() < 4) s = " " + s;
+  ui->label->setText(s.c_str());
+  m_serial->write(s.c_str(),4);
 }
-

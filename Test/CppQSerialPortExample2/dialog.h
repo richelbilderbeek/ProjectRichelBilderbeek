@@ -1,8 +1,8 @@
 #ifndef DIALOG_H
 #define DIALOG_H
 
-#include <QDialog>
 #include <memory>
+#include <QDialog>
 
 namespace Ui {
   class Dialog;
@@ -19,6 +19,7 @@ public:
   ~Dialog();
   
 private slots:
+
   void OnTimer();
 
 private:
