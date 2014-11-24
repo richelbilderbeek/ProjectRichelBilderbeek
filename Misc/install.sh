@@ -53,6 +53,11 @@ then
   ./libsequence.sh
 fi
 
+if [ ! -d "fwdpp" ]
+then
+  ./fwdpp.sh
+fi
+
 if [ ! -d "mxe" ]
 then
   ./mxe.sh
