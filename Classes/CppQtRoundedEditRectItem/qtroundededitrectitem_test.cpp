@@ -95,8 +95,8 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
   if (verbose) { TRACE("A padded text rectangle of a multi-line text, line 1/3 must have its center above origin"); }
   {
     const auto center = QtRoundedEditRectItem::GetPaddedTextRectAtLine("ABCDEFG",QFont(),0,3).center();
-    TRACE(center.x());
-    TRACE(center.y());
+    //TRACE(center.x());
+    //TRACE(center.y());
     assert(center.x() >= -2.0);
     assert(center.x() <=  2.0);
     assert(center.y() <   0.0);
@@ -104,8 +104,8 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
   if (verbose) { TRACE("A padded text rectangle of a multi-line text, line 3/3 must have its center above origin"); }
   {
     const auto center = QtRoundedEditRectItem::GetPaddedTextRectAtLine("ABCDEFG",QFont(),2,3).center();
-    TRACE(center.x());
-    TRACE(center.y());
+    //TRACE(center.x());
+    //TRACE(center.y());
     assert(center.x() >= -2.0);
     assert(center.x() <=  2.0);
     assert(center.y() >   0.0);

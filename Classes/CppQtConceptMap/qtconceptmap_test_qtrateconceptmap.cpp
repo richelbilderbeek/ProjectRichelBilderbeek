@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsItem>
 
 #include "conceptmapfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -48,6 +49,7 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept
       QtConceptMap::Test(widget);
     }
   }
+  const TestTimer test_timer{__func__,__FILE__,0.1};
   /*
   {
     const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
@@ -63,7 +65,7 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept
     }
   }
   */
-  TRACE("ribi::cmap::QtConceptMapRateWidget::Test finished successfully");
+
 }
 #endif
 

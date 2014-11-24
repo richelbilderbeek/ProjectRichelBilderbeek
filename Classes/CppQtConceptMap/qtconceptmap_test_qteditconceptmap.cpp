@@ -24,12 +24,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qteditconceptmap.h"
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -41,11 +38,7 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
+  const TestTimer test_timer{__func__,__FILE__,0.1};
   //Test cloning
   {
   }
@@ -110,11 +103,6 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
       }
     }
   }
-  TRACE("ribi::cmap::QtEditConceptMap::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
+
 }
 #endif

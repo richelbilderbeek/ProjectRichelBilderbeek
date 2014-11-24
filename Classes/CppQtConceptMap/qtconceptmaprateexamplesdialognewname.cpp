@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexamplesfactory.h"
 #include "conceptmaphelper.h"
 #include "qtconceptmapcompetency.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtconceptmaprateexamplesdialognewname.h"
 #pragma GCC diagnostic pop
@@ -49,7 +50,7 @@ struct QtConceptMapListWidgetItem : public QListWidgetItem
     if (!t.empty()) t.resize(t.size() - 1);
     this->setText(t.c_str());
     //Icon
-    this->setIcon(ribi::cmap::QtCompetency::CompetencyToIcon(example->GetCompetency()));
+    this->setIcon(ribi::cmap::QtCompetency().CompetencyToIcon(example->GetCompetency()));
   }
 };
 
@@ -133,7 +134,7 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::QtRateExamplesDialogNe
     const boost::shared_ptr<Example> example
       = ExampleFactory().Create(
         item->text().toStdString(),
-        cmap::QtCompetency::IconToCompetency(item->icon())
+        cmap::QtCompetency().IconToCompetency(item->icon())
       );
     assert(example);
     v.push_back(example);
@@ -177,8 +178,12 @@ void ribi::cmap::QtRateExamplesDialogNewName::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtRateExamplesDialog::Test started");
-  ///Test conversion between reading and writing a concept
+  {
+    QtCompetency();
+    QtRateExamplesDialogNewName(cmap::ConceptFactory().GetTests()[0]).GetRatedExamples();
+  }
+
+  const TestTimer test_timer{__func__,__FILE__,0.1};
   {
     const int sz = ribi::cmap::ConceptFactory().GetTests().size();
     for (int i=0; i!=sz; ++i)
@@ -203,7 +208,7 @@ void ribi::cmap::QtRateExamplesDialogNewName::Test() noexcept
       }
     }
   }
-  TRACE("ribi::cmap::QtRateExamplesDialog::Test finished successfully");
+
 }
 
 void ribi::cmap::QtRateExamplesDialogNewName::on_button_prof_clicked()
@@ -211,7 +216,7 @@ void ribi::cmap::QtRateExamplesDialogNewName::on_button_prof_clicked()
   if (ui->list->currentItem())
   {
     QtConceptMapListWidgetItem* const item = dynamic_cast<QtConceptMapListWidgetItem*>(ui->list->currentItem());
-    item->setIcon(cmap::QtCompetency::CompetencyToIcon(cmap::Competency::profession));
+    item->setIcon(cmap::QtCompetency().CompetencyToIcon(cmap::Competency::profession));
   }
 }
 
@@ -220,7 +225,7 @@ void ribi::cmap::QtRateExamplesDialogNewName::on_button_organisations_clicked()
   if (ui->list->currentItem())
   {
     QtConceptMapListWidgetItem* const item = dynamic_cast<QtConceptMapListWidgetItem*>(ui->list->currentItem());
-    item->setIcon(cmap::QtCompetency::CompetencyToIcon(cmap::Competency::organisations));
+    item->setIcon(cmap::QtCompetency().CompetencyToIcon(cmap::Competency::organisations));
   }
 }
 
@@ -229,7 +234,7 @@ void ribi::cmap::QtRateExamplesDialogNewName::on_button_social_clicked()
   if (ui->list->currentItem())
   {
     QtConceptMapListWidgetItem* const item = dynamic_cast<QtConceptMapListWidgetItem*>(ui->list->currentItem());
-    item->setIcon(cmap::QtCompetency::CompetencyToIcon(cmap::Competency::social_surroundings));
+    item->setIcon(cmap::QtCompetency().CompetencyToIcon(cmap::Competency::social_surroundings));
   }
 }
 
@@ -238,7 +243,7 @@ void ribi::cmap::QtRateExamplesDialogNewName::on_button_target_audience_clicked(
   if (ui->list->currentItem())
   {
     QtConceptMapListWidgetItem* const item = dynamic_cast<QtConceptMapListWidgetItem*>(ui->list->currentItem());
-    item->setIcon(cmap::QtCompetency::CompetencyToIcon(cmap::Competency::target_audience));
+    item->setIcon(cmap::QtCompetency().CompetencyToIcon(cmap::Competency::target_audience));
   }
 }
 
@@ -247,7 +252,7 @@ void ribi::cmap::QtRateExamplesDialogNewName::on_button_prof_development_clicked
   if (ui->list->currentItem())
   {
     QtConceptMapListWidgetItem* const item = dynamic_cast<QtConceptMapListWidgetItem*>(ui->list->currentItem());
-    item->setIcon(cmap::QtCompetency::CompetencyToIcon(cmap::Competency::prof_growth));
+    item->setIcon(cmap::QtCompetency().CompetencyToIcon(cmap::Competency::prof_growth));
   }
 }
 
@@ -256,7 +261,7 @@ void ribi::cmap::QtRateExamplesDialogNewName::on_button_misc_clicked()
   if (ui->list->currentItem())
   {
     QtConceptMapListWidgetItem* const item = dynamic_cast<QtConceptMapListWidgetItem*>(ui->list->currentItem());
-    item->setIcon(cmap::QtCompetency::CompetencyToIcon(cmap::Competency::misc));
+    item->setIcon(cmap::QtCompetency().CompetencyToIcon(cmap::Competency::misc));
   }
 }
 
@@ -265,7 +270,7 @@ void ribi::cmap::QtRateExamplesDialogNewName::on_button_ti_knowledge_clicked()
   if (ui->list->currentItem())
   {
     QtConceptMapListWidgetItem* const item = dynamic_cast<QtConceptMapListWidgetItem*>(ui->list->currentItem());
-    item->setIcon(cmap::QtCompetency::CompetencyToIcon(cmap::Competency::ti_knowledge));
+    item->setIcon(cmap::QtCompetency().CompetencyToIcon(cmap::Competency::ti_knowledge));
   }
 }
 

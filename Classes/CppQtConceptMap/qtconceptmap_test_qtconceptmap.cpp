@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "conceptmap.h"
 #include "conceptmapfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -40,7 +41,7 @@ void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>&
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtConceptMap::Test");
+  const TestTimer test_timer{__func__,__FILE__,0.1};
   assert(concept_map);
   //#define I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
   #ifdef  I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
@@ -111,7 +112,7 @@ void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>&
     );
   }
   #endif
-  TRACE("ribi::cmap::QtConceptMap::Test finished successfully");
+
 }
 #endif
 

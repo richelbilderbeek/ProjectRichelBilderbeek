@@ -37,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
 #include "conceptmapedge.h"
+#include "testtimer.h"
 #include "conceptmapexamplesfactory.h"
 #include "conceptmapexamples.h"
 //#include "conceptmapfile.h"
@@ -219,7 +220,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtRateStrategyDialog::Test");
+  const TestTimer test_timer{__func__,__FILE__,0.1};
   #ifdef RJCB_TODO //TODO RJCB: Put back in
   {
     const std::vector<boost::shared_ptr<ConceptMap> > concept_maps
@@ -289,7 +290,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
     }
   }
   #endif
-  TRACE("Finished ribi::cmap::QtRateStrategyDialog::Test successfully");
+
 }
 #endif
 

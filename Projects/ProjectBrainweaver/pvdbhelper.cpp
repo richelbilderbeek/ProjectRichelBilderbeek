@@ -320,7 +320,7 @@ void ribi::pvdb::TestHelperFunctions()
       }
     }
   }
-  TRACE("TestHelperFunctions finished successfully");
+
 }
 #endif
 

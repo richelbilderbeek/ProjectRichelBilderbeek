@@ -5,6 +5,8 @@
 
 #include <boost/timer.hpp>
 
+#include "testtimer.h"
+
 namespace ribi {
 
 std::string ExtractFilename(const std::string& s) noexcept
@@ -131,7 +133,7 @@ ribi::TestTimer::~TestTimer() noexcept
 
 std::string ribi::TestTimer::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::TestTimer::GetVersionHistory() noexcept
@@ -139,8 +141,14 @@ std::vector<std::string> ribi::TestTimer::GetVersionHistory() noexcept
   return {
     "2014-08-02: version 1.0: initial version",
     "2014-08-08: version 1.1: allow setting a maximum amount of TestTimers active",
-    "2014-08-10: version 1.2: count the number of constructed TestTimers"
+    "2014-08-10: version 1.2: count the number of constructed TestTimers",
+    "2014-12-24: version 1.3: added GetMaxCnt"
   };
+}
+
+int ribi::TestTimer::GetMaxCnt() noexcept
+{
+  return TestTimerImpl::m_max_cnt;
 }
 
 void ribi::TestTimer::SetMaxCnt(const int max_cnt) noexcept

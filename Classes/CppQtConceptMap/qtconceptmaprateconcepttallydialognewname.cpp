@@ -44,6 +44,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexample.h"
 #include "conceptmapedge.h"
 #include "conceptmapexamples.h"
+#include "testtimer.h"
 #include "qtconceptmaprating.h"
 #include "trace.h"
 #include "ui_qtconceptmaprateconcepttallydialognewname.h"
@@ -474,7 +475,7 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtRateConceptTallyDialog::Test");
+  const TestTimer test_timer{__func__,__FILE__,0.1};
   //Empty table
   {
     const boost::shared_ptr<ConceptMap> concept_map;
@@ -577,6 +578,5 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
   assert(d.ui->table->item(2,2)->checkState() == (edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(2,3)->text() == QString(edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
 
-  TRACE("Finished ribi::cmap::QtRateConceptTallyDialog::Test successfully");
 }
 #endif

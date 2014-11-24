@@ -224,6 +224,7 @@ ribi::cmap::QtEditConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(
 #ifndef NDEBUG
 void ribi::pvdb::QtPvdbConceptMapDialog::DoRandomStuff()
 {
+  #ifdef NOT_NOW_20141224
   //Do random stuff
   assert(m_file);
   assert(m_file->GetConceptMap());
@@ -238,6 +239,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::DoRandomStuff()
   const int n_nodes_after = boost::numeric_cast<int>(m_file->GetConceptMap()->GetNodes().size());
   assert(n_edges_after > n_edges_before);
   assert(n_nodes_after > n_nodes_before);
+  #endif // NOT_NOW_20141224
 }
 #endif
 

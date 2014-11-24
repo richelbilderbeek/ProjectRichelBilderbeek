@@ -258,7 +258,6 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
       }
     );
   }
-  #endif // NOT_NOW_20141111
 
   #ifndef NDEBUG
   {
@@ -271,6 +270,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
       && "There must as much edges in the scene as there were in the concept map");
   }
   #endif
+  #endif // NOT_NOW_20141111
 
   //Put the nodes around the focal question in an initial position
   if (MustReposition(AddConst(m_concept_map->GetNodes())))

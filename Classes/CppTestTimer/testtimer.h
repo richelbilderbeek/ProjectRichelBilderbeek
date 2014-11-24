@@ -38,6 +38,7 @@ struct TestTimer
   TestTimer(const TestTimer&) = delete;
   TestTimer& operator=(const TestTimer&) = delete;
   ~TestTimer() noexcept; //But might terminate the program instead
+  static int GetMaxCnt() noexcept;
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
   static void SetMaxCnt(const int max_cnt) noexcept;

@@ -586,7 +586,7 @@ void ribi::QtQuadBezierArrowItem::Test() noexcept
     is_tested = true;
   }
   Geometry();
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  //const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 
