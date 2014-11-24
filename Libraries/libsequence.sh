@@ -3,7 +3,7 @@ set -u
 
 if [ ! -d libsequence ]
 then
-  echo "Extracting avr-libc-1.8.0"
+  echo "Extracting libsequence"
   git clone https://github.com/molpopgen/libsequence.git
 else
   echo "libsequence already cloned"
@@ -21,6 +21,6 @@ else
 fi
 
 make
-make install
+sudo make install
 
 

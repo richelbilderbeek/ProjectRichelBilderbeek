@@ -33,7 +33,6 @@ then
   ./libcvautomation.sh
 fi
 
-
 if [ ! -d "fparser4.4.3" ]
 then
   ./fparser.sh
@@ -42,6 +41,16 @@ fi
 if [ ! -d "fparser4.5.1" ]
 then
   ./fparser.sh
+fi
+
+if [ ! -d "htslib" ]
+then
+  ./htslib.sh
+fi
+
+if [ ! -d "libsequence" ]
+then
+  ./libsequence.sh
 fi
 
 if [ ! -d "mxe" ]
