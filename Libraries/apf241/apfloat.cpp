@@ -177,7 +177,8 @@ apfloat::apfloat (long value, size_t prec, int location)
         return;
     }
 
-    if (Base <= Maxlong)
+    //static_assert(Base <= Maxlong,"Thanks to the compiler");
+    //if (Base <= Maxlong)
     {
         for (size = 0; size < 3 && value > 0; size++)
         {
@@ -185,11 +186,11 @@ apfloat::apfloat (long value, size_t prec, int location)
             value /= (long) Base;
         }
     }
-    else
-    {
-        size = 1;                               // Nonzero
-        tmpdata[2] = (rawtype) value;
-    }
+    //else
+    //{
+    //    size = 1;                               // Nonzero
+    //    tmpdata[2] = (rawtype) value;
+    //}
 
     exp = size;
 
@@ -229,7 +230,8 @@ apfloat::apfloat (unsigned long value, size_t prec, int location)
         return;
     }
 
-    if (Base <= Maxunsignedlong)
+    //Always true, thanks compiler!
+    //if (Base <= Maxunsignedlong)
     {
         for (size = 0; size < 3 && value > 0; size++)
         {
@@ -237,11 +239,11 @@ apfloat::apfloat (unsigned long value, size_t prec, int location)
             value /= (unsigned long) Base;
         }
     }
-    else
-    {
-        size = 1;                               // Nonzero
-        tmpdata[2] = (rawtype) value;
-    }
+    //else
+    //{
+    //    size = 1;                               // Nonzero
+    //    tmpdata[2] = (rawtype) value;
+    //}
 
     exp = size;
 
