@@ -4,7 +4,7 @@ set -u
 if [ ! -d fwdpp ]
 then
   echo "Extracting fwdpp"
-  git clone https://github.com/molpopgen/fwdpp.git
+  git clone https://github.com/richelbilderbeek/fwdpp.git
 else
   echo "fwdpp already cloned"
 fi

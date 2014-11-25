@@ -1,4 +1,4 @@
-  INCLUDEPATH += \
+INCLUDEPATH += \
     ../../Libraries/fwdpp
 
 SOURCES += \

@@ -153,12 +153,11 @@ int main(int argc, char ** argv)
       std::vector<mtype> fixations;  //store mutation that fix.  Passed to KTfwd::remove_fixed_lost
       std::vector<unsigned> fixation_times; //store when they fix.  Passed to KTfwd::remove_fixed_lost
       unsigned generation;
-      double wbar;
       lookup_table_type lookup;  //this is our lookup table for the mutation model
       for( generation = 0; generation < ngens; ++generation )
 	{
 	  //Sample gamete frequencies proportional to fitness/(population mean fitness, aka wbar).  wbar is the return value
-	  wbar = KTfwd::sample_diploid(r,&gametes,twoN,
+    KTfwd::sample_diploid(r,&gametes,twoN,
 				       /*
 					 Fitness is multiplicative over sites.
 
@@ -211,7 +210,7 @@ int main(int argc, char ** argv)
 
 
 	  //Mutate the gamete pool
-    unsigned nmuts = KTfwd::mutate(r,&gametes,&mutations,mu,
+    KTfwd::mutate(r,&gametes,&mutations,mu,
 					 /*
 					   The mutation model (defined above) will pass each gamete
 					   to be mutated to the mutation model function.  Again, _1
@@ -236,7 +235,7 @@ int main(int argc, char ** argv)
 
 	  //Recombination
 	  //unsigned nrec = KTfwd::recombine_test_not_inserting_as_much(r, 
-    unsigned nrec = KTfwd::recombine(r,
+    KTfwd::recombine(r,
 					   &gametes,
 					   twoN, 
 					   littler, 

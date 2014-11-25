@@ -1,15 +1,15 @@
 #!/bin/bash
 set -u
 
-if [ ! -d fwdpp ]
+if [ ! -d libsequence ]
 then
-  echo "Extracting fwdpp"
-  git clone https://github.com/molpopgen/fwdpp.git
+  echo "Extracting libsequence"
+  git clone https://github.com/richelbilderbeek/libsequence.git
 else
-  echo "fwdpp already cloned"
+  echo "libsequence already cloned"
 fi
 
-cd fwdpp
+cd libsequence
 
 if [ ! -f "Makefile" ]
 then
