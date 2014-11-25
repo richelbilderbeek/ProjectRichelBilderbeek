@@ -9,10 +9,13 @@ three types: master, develop and feature branches.
 * Only the develop branch pushes to master
 * The feature branch branches and merges with the develop branch
 
+The current feature branch(es) is/are:
+* brainweaver
+
 The workflow has multiple phases:
 - Setting up
 - Adding changes
-- Updating from the inegration GitHub
+- Updating from the integration GitHub
 
 ##Setting up
 
@@ -30,7 +33,13 @@ Enter the freshly cloned repository:
 cd ProjectRichelBilderbeek
 ```
 
-If you are a developer: switch to develop branch:
+If you are a Brainweaver developer: switch to brainweaver branch:
+
+```
+git checkout brainweaver
+```
+
+If you are a not Brainweaver developer: switch to the general develop branch:
 
 ```
 git checkout develop
@@ -44,6 +53,16 @@ git remote add upstream https://github.com/richelbilderbeek/ProjectRichelBilderb
 
 ##Adding changes
 
+For Brainweaver developers:
+
+```
+git add --all :/
+git commit -m "your description of the commit here"
+git push origin brainweaver
+```
+
+For non-Brainweaver developers:
+
 ```
 git add --all :/
 git commit -m "your description of the commit here"
@@ -54,13 +73,25 @@ If you want the commit to be added to the intergration GitHub, submit a Pull Req
 
 ##Updating from the integration GitHub
 
-To pull your own code:
+For Brainweaver developers, to pull your own code:
+
+```
+git pull origin brainweaver
+```
+
+For non-Brainweaver developers, to pull your own code:
 
 ```
 git pull origin develop
 ```
 
-To update with the integration GitHub:
+For Brainweaver developers, to update with the integration GitHub:
+
+```
+git pull upstream brainweaver
+```
+
+For non-Brainweaver developers, to update with the integration GitHub:
 
 ```
 git pull upstream develop
