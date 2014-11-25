@@ -21,10 +21,16 @@ The workflow has multiple phases:
 
 Fork the GitHub of richelbilderbeek in your own GitHub at the GitHub website.
 
-Clone your fork:
+Clone your fork, for a user:
 
 ```
 git clone https://github.com/your_name/ProjectRichelBilderbeek.git
+```
+
+Clone your fork, for a Brainweaver developer:
+
+```
+git clone https://github.com/your_name/ProjectRichelBilderbeek.git -b brainweaver
 ```
 
 Enter the freshly cloned repository:
