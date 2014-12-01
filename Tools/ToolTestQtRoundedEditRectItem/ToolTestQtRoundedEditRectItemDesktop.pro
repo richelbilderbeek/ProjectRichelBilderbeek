@@ -6,6 +6,7 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
 include(../../Classes/CppContainer/CppContainer.pri)
+include(../../Classes/CppCounter/CppCounter.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGraphicsView.pri)

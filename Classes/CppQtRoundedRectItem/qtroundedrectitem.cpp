@@ -142,7 +142,8 @@ void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) no
 void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept
 {
   painter->setBrush(brush());
-  const double width{GetOuterWidth()};
+  const double w{GetOuterWidth() - this->GetCurrentPen().widthF()};
+  const double h{GetOuterHeight() - this->GetCurrentPen().widthF()};
   if (this->isSelected() || this->hasFocus())
   {
     painter->setPen(m_focus_pen);
@@ -151,19 +152,25 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
   {
     painter->setPen(m_contour_pen);
   }
-  const double width_diff = width - GetCurrentPen().widthF();
+  #ifdef USE_ADJUSTED_20141201
+  const double width_diff = w - GetCurrentPen().widthF();
+  #endif // USE_ADJUSTED_20141201
   painter->drawRoundedRect(
     QRectF(
-      -0.5 * GetOuterWidth(),
-      -0.5 * GetOuterHeight(),
-       1.0 * GetOuterWidth(), //Width
-       1.0 * GetOuterHeight() //Height
-    ).adjusted( //Adjust to stay within rect
-      ( 1.0 * width) - width_diff, //+ 1.0,
-      ( 1.0 * width) - width_diff, //+ 1.0,
-      (-1.0 * width) + width_diff, //- 1.0,
-      (-1.0 * width) + width_diff  //- 1.0
-    ),
+      -0.5 * w,
+      -0.5 * h,
+       1.0 * w, //Width
+       1.0 * h //Height
+    )
+    #ifdef USE_ADJUSTED_20141201
+    .adjusted( //Adjust to stay within rect
+      ( 1.0 * w) - width_diff, //+ 1.0,
+      ( 1.0 * w) - width_diff, //+ 1.0,
+      (-1.0 * w) + width_diff, //- 1.0,
+      (-1.0 * w) + width_diff  //- 1.0
+    )
+    #endif //USE_ADJUSTED_20141201
+    ,
     m_radius_x,m_radius_y
   );
 }
