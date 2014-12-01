@@ -199,11 +199,6 @@ void ribi::QtRoundedRectItemDialog::on_box_contour_pen_width_valueChanged(double
     arg1
   );
   m_item->SetContourPen(pen);
-
-  TRACE("DISPLAY THA SHIT");
-  TRACE(m_item->GetInnerHeight());
-  TRACE(m_item->GetOuterHeight());
-  TRACE(m_item->GetCurrentPen().widthF());
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_focus_pen_width_valueChanged(double arg1)

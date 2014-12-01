@@ -152,25 +152,13 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
   {
     painter->setPen(m_contour_pen);
   }
-  #ifdef USE_ADJUSTED_20141201
-  const double width_diff = w - GetCurrentPen().widthF();
-  #endif // USE_ADJUSTED_20141201
   painter->drawRoundedRect(
     QRectF(
       -0.5 * w,
       -0.5 * h,
        1.0 * w, //Width
        1.0 * h //Height
-    )
-    #ifdef USE_ADJUSTED_20141201
-    .adjusted( //Adjust to stay within rect
-      ( 1.0 * w) - width_diff, //+ 1.0,
-      ( 1.0 * w) - width_diff, //+ 1.0,
-      (-1.0 * w) + width_diff, //- 1.0,
-      (-1.0 * w) + width_diff  //- 1.0
-    )
-    #endif //USE_ADJUSTED_20141201
-    ,
+    ),
     m_radius_x,m_radius_y
   );
 }
