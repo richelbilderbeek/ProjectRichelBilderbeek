@@ -95,6 +95,15 @@ GetLineLineIntersections(
   typedef boost::geometry::model::d2::point_xy<T> Point;
   std::vector<Point> points;
   boost::geometry::intersection(line1,line2,points);
+  #ifndef FIX_ISSUE_230
+  if (!(points.empty() || points.size() == 1))
+  {
+    TRACE(points.size());
+    for (const auto p: points) TRACE(ribi::Geometry().ToStr(p));
+  }
+  CLAUDIO HERE
+  SUGGEST: RETURN THE POINT IN BETWEEN
+  #endif // FIX_ISSUE_230
   assert(points.empty() || points.size() == 1);
   return points;
 }
@@ -146,13 +155,14 @@ GetLineRectIntersections(
       CreateLine(std::vector<Point>( {p2,p3} ))
     };
   std::vector<Point> points;
-  std::for_each(rect_sides.begin(),rect_sides.end(),
-    [&points,line](const Line& side)
-    {
-      const std::vector<Point> v = GetLineLineIntersections(line,side);
-      std::copy(v.begin(),v.end(),std::back_inserter(points));
-    }
-  );
+  for (const auto side: rect_sides)
+  {
+
+    TRACE(ribi::Geometry().ToStr(line));
+    TRACE(ribi::Geometry().ToStr(side));
+    const std::vector<Point> v = GetLineLineIntersections(line,side);
+    std::copy(v.begin(),v.end(),std::back_inserter(points));
+  }
   //Remove doublures
   //Put 'typename' before 'std::vector<Point>::iteratortype' to prevent getting the error below:
   //error: need 'typename' before 'std::vector<boost::geometry::model::d2::point_xy<T> >::iterator'
@@ -587,6 +597,10 @@ void ribi::QtQuadBezierArrowItem::Test() noexcept
   }
   Geometry();
   //const TestTimer test_timer(__func__,__FILE__,1.0);
+
+  //TRACE 'ribi::Geometry().ToStr(line)' line 158 in file '../../Classes/CppQtQuadBezierArrowItem/qtquadbezierarrowitem.cpp': '(100,550),(100,100)'
+  //TRACE 'ribi::Geometry().ToStr(side)' line 159 in file '../../Classes/CppQtQuadBezierArrowItem/qtquadbezierarrowitem.cpp': '(100,100),(100,117)'
+
 }
 #endif
 
