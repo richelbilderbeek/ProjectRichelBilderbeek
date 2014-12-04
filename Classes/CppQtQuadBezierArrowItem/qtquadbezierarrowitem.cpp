@@ -95,16 +95,11 @@ GetLineLineIntersections(
   typedef boost::geometry::model::d2::point_xy<T> Point;
   std::vector<Point> points;
   boost::geometry::intersection(line1,line2,points);
-  #ifndef FIX_ISSUE_230
-  if (!(points.empty() || points.size() == 1))
-  {
-    TRACE(points.size());
-    for (const auto p: points) TRACE(ribi::Geometry().ToStr(p));
-  }
-  CLAUDIO HERE
-  SUGGEST: RETURN THE POINT IN BETWEEN
-  #endif // FIX_ISSUE_230
-  assert(points.empty() || points.size() == 1);
+
+  assert((points.empty() || points.size() == 1 || points.size() == 2)
+         && "0: The lines are parallel and not on top of each other"
+         && "1: The lines are crossing"
+         && "2: The lines are on top of each other"); //edit claudio_04122014
   return points;
 }
 
@@ -157,10 +152,10 @@ GetLineRectIntersections(
   std::vector<Point> points;
   for (const auto side: rect_sides)
   {
-
-    TRACE(ribi::Geometry().ToStr(line));
-    TRACE(ribi::Geometry().ToStr(side));
     const std::vector<Point> v = GetLineLineIntersections(line,side);
+    //there is the option to make sure we do not add twice the same point
+    //adding here something
+    //HOWEVER for now I will adapt the assert statement edit claudio 04122014
     std::copy(v.begin(),v.end(),std::back_inserter(points));
   }
   //Remove doublures
@@ -175,7 +170,13 @@ GetLineRectIntersections(
   );
   points.erase(new_end,points.end());
 
-  assert(points.size() <= 2);
+  assert(points.size() <= 4
+         && "0: The line does not cross the rectangle"
+         && "1: The line crosses one edge of the rectangle"
+         && "2: The line crosses two edges or one corner of the rectangle"
+         && "3: The line is on top of one edge and one corner of the rectangle"
+         && "4: The line is on top of one edge and two corners of the rectangle"
+         ); // edit claudio_04122014
 
   return points;
 }
@@ -280,12 +281,13 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
     //Yes,it happens, when the line does not leave the rectangle
     //this happens when the two node rectanges overlap
     assert(!p_head_end.empty());
-    assert(p_head_end.size() == 1); ///BUG?
+    assert(p_head_end.size() == 1); ///BUG? claudio does not think this is a bug:
+                                    ///one element is added two lines above
     return QPointF(p_head_end[0].x(),p_head_end[0].y());
   }
   else
   {
-    assert(p_head_end.size() == 2);
+    assert(p_head_end.size() >= 2 && p_head_end.size() <= 4); //edit claudio_04122014
     //Choose point closest to beyond
     const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[0].x(),p_head_end[0].x());
     const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[1].x(),p_head_end[1].x());
@@ -341,7 +343,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
   }
   else
   {
-    assert(p_tail_end.size() == 2);
+    assert(p_tail_end.size() >= 2 && p_tail_end.size() <= 4); // edit claudio_04122014
     //Choose point closest to beyond
     const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[0].x(),p_tail_end[0].x());
     const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[1].x(),p_tail_end[1].x());
