@@ -182,7 +182,7 @@ GetLineRectIntersections(
   assert(points.size() <= 2
          && "0: The line does not cross the rectangle"
          && "1: The line crosses one edge or one corner of the rectangle"
-         && "2: The line is on top of one edge of the rectangle"
+         && "2: The line is on top of one edge or crosses two edges of the rectangle"
          ); // edit claudio_04122014
 
   return points;
@@ -461,11 +461,18 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       //The angle from midpoint to tail
       //Thanks goes out to Toine van den Bogaart and Theo van den Bogaart for being happy to help with the math
       const double pi{boost::math::constants::pi<double>()};
+      /* claudio edit_05122014
       const double dx{beyond.x() - m_from->pos().x()};
       const double dy{beyond.y() - m_from->pos().y()};
       const double arrowangle{0.1*pi};
       double angle1{0.5*pi + arrowangle - Geometry().GetAngleClockScreen(-dx,-dy)};
       double angle2{0.5*pi + arrowangle - Geometry().GetAngleClockScreen(-dx,-dy)};
+      */
+      // claudio edit_05122014
+      const double dx{m_from->pos().x() - beyond.x()};
+      const double dy{m_from->pos().y() - beyond.y()};
+      double angle1{0.6*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
+      double angle2{0.4*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
 
       const QPointF p0{p_tail_end.x(),p_tail_end.y()};
       const QPointF p1
