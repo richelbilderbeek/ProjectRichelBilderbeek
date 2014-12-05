@@ -153,11 +153,19 @@ GetLineRectIntersections(
   for (const auto side: rect_sides)
   {
     const std::vector<Point> v = GetLineLineIntersections(line,side);
-    //there is the option to make sure we do not add twice the same point
-    //adding here something
-    //HOWEVER for now I will adapt the assert statement edit claudio 04122014
     std::copy(v.begin(),v.end(),std::back_inserter(points));
   }
+
+  //claudio edit_05122014
+  //the vector points must be sorted before deleting the duplicates
+  //because std::unique works on consecutive elements
+  std::sort( points.begin(),points.end(),
+    [](const Point& lhs, const Point& rhs)
+    {
+      return lhs.x() == rhs.x() && lhs.y() == rhs.y();
+    }
+  );
+
   //Remove doublures
   //Put 'typename' before 'std::vector<Point>::iteratortype' to prevent getting the error below:
   //error: need 'typename' before 'std::vector<boost::geometry::model::d2::point_xy<T> >::iterator'
@@ -168,14 +176,13 @@ GetLineRectIntersections(
       return lhs.x() == rhs.x() && lhs.y() == rhs.y();
     }
   );
+
   points.erase(new_end,points.end());
 
-  assert(points.size() <= 4
+  assert(points.size() <= 2
          && "0: The line does not cross the rectangle"
-         && "1: The line crosses one edge of the rectangle"
-         && "2: The line crosses two edges or one corner of the rectangle"
-         && "3: The line is on top of one edge and one corner of the rectangle"
-         && "4: The line is on top of one edge and two corners of the rectangle"
+         && "1: The line crosses one edge or one corner of the rectangle"
+         && "2: The line is on top of one edge of the rectangle"
          ); // edit claudio_04122014
 
   return points;
@@ -287,7 +294,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
   }
   else
   {
-    assert(p_head_end.size() >= 2 && p_head_end.size() <= 4); //edit claudio_04122014
+    assert(p_head_end.size() == 2);
     //Choose point closest to beyond
     const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[0].x(),p_head_end[0].x());
     const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[1].x(),p_head_end[1].x());
@@ -343,7 +350,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
   }
   else
   {
-    assert(p_tail_end.size() >= 2 && p_tail_end.size() <= 4); // edit claudio_04122014
+    assert(p_tail_end.size() == 2);
     //Choose point closest to beyond
     const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[0].x(),p_tail_end[0].x());
     const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[1].x(),p_tail_end[1].x());
