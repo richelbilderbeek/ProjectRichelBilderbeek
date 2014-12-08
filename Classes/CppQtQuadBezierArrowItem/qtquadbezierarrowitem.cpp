@@ -430,7 +430,11 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
 {
   painter->setRenderHint(QPainter::Antialiasing);
 
-  if (GetMidItem()) painter->drawEllipse(GetMidItem()->pos(),1,1);
+  if (GetMidItem())
+  {
+    painter->drawEllipse(GetMidItem()->pos(),1,1);
+  }
+
 
   if (this->isSelected() || this->hasFocus())
   {
@@ -446,12 +450,13 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
   // - define point 'beyond' as the mirror point of 'center', using mid_pos as a mirror
 
   const QPointF beyond{GetBeyond()};
-  const QPointF p_tail_end{GetTail()};
-  const QPointF p_head_end{GetHead()};
+  const QPointF from{GetFromItem()->pos()}; //edit claudio_08122014
+  const QPointF to{GetToItem()->pos()}; //edit claudio_08122014
 
   QPainterPath curve;
-  curve.moveTo(p_tail_end);
-  curve.quadTo(beyond,p_head_end);
+  curve.moveTo(from);
+  curve.quadTo(beyond,to);
+
   painter->drawPath(curve);
 
   {
@@ -474,7 +479,7 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       double angle1{0.6*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
       double angle2{0.4*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
 
-      const QPointF p0{p_tail_end.x(),p_tail_end.y()};
+      const QPointF p0{from.x(),from.y()};
       const QPointF p1
         = p0 + QPointF(
            std::cos(angle1) * sz,
@@ -495,7 +500,7 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       double angle1{0.6*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
       double angle2{0.4*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
 
-      const QPointF p0(p_head_end.x(),p_head_end.y());
+      const QPointF p0(to.x(),to.y());
       const QPointF p1
         = p0 + QPointF( 
            std::cos(angle1) * sz,
@@ -591,12 +596,12 @@ void ribi::QtQuadBezierArrowItem::SetToPos(const QPointF& pos) noexcept
 QPainterPath ribi::QtQuadBezierArrowItem::shape() const noexcept
 {
   const QPointF beyond = GetBeyond();
-  const QPointF p_tail_end = GetTail();
-  const QPointF p_head_end = GetHead();
+  const QPointF from = GetFromItem()->pos();
+  const QPointF to = GetToItem()->pos();
 
   QPainterPath curve;
-  curve.moveTo(p_tail_end);
-  curve.quadTo(beyond,p_head_end);
+  curve.moveTo(from);
+  curve.quadTo(beyond,to);
 
   QPainterPathStroker stroker;
   stroker.setWidth(m_click_easy_width);
