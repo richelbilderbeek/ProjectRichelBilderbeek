@@ -56,5 +56,6 @@ const boost::shared_ptr<ribi::QtAboutDialog> ribi::pvdb::QtPvdbAboutDialog::Get(
   QLabel * const label = new QLabel(d.get());
   label->setPixmap(QPixmap(":/images/PicLoomAbout.png"));
   d->layout()->addWidget(label);
+  //Issue 160: add Button here
   return d;
 }

@@ -1,7 +1,7 @@
 QMAKE_CXXFLAGS_DEBUG += -pg
 QMAKE_LFLAGS_DEBUG += -pg
 
-include(../../DesktopApplication.pri)
+include(../../DesktopApplicationNoWeffcpp.pri)
 
 #Libs
 include(../../Libraries/Apfloat.pri)
