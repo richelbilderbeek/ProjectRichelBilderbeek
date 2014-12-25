@@ -29,7 +29,7 @@
 #include <iostream>
 #include <cmath>       // for sqrt()
 #include "identity.h"
-using namespace std;
+
 
 template <class T> class Quaternion
 {
@@ -61,8 +61,8 @@ template <class T> class Quaternion
       double magnitude() const;
 
       // Streams
-      ostream &print(ostream &) const;
-      istream &input(istream &s);
+      std::ostream &print(std::ostream &) const;
+      std::istream &input(std::istream &s);
 };
 
 template <class T> Quaternion<T>::Quaternion() 
@@ -148,14 +148,14 @@ template <class T> Quaternion<T> Quaternion<T>::inverse() const
 template <class T> double Quaternion<T>::magnitude() const
 { return sqrt(r*r + i*i + j*j + k*k); }
 
-template <class T> ostream &Quaternion<T>::print(ostream &s) const
+template <class T> std::ostream &Quaternion<T>::print(std::ostream &s) const
 {
    s << "(" << r << "," << i << ","
             << j << "," << k << ")";
    return s;
 }
 
-template <class T> istream &Quaternion<T>::input(istream &s)
+template <class T> std::istream &Quaternion<T>::input(std::istream &s)
 {
    s >> r >> i >> j >> k;
    return s;
@@ -165,11 +165,11 @@ template <class T> Quaternion<T> operator * (T factor,Quaternion<T> &arg)
 { return arg * factor; }
 
 template <class T>
-ostream & operator << (ostream &s,const Quaternion<T> &arg)
+ostream & operator << (std::ostream &s,const Quaternion<T> &arg)
 { return arg.print(s); }
 
 template <class T>
-istream & operator >> (istream &s,Quaternion<T> &arg)
+istream & operator >> (std::istream &s,Quaternion<T> &arg)
 { return arg.input(s); }
 
 #endif

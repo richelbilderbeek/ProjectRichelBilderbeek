@@ -25,7 +25,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <complex>
-using namespace std;
+
 
 template <class T> T zero(T) { static const T z = T() - T(); return z; }
 
@@ -72,9 +72,9 @@ template <> double one(double) { return (double) 1.0; }
 #undef LIBSYMBOLICCPLUSPLUS
 
 template <class T>
-complex<T> zero(complex<T>) { return complex<T>(zero(T())); }
+std::complex<T> zero(std::complex<T>) { return std::complex<T>(zero(T())); }
 
 template <class T>
-complex<T> one(complex<T>) { return complex<T>(one(T())); }
+std::complex<T> one(std::complex<T>) { return std::complex<T>(one(T())); }
 
 #endif

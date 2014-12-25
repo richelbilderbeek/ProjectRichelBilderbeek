@@ -28,7 +28,7 @@
 #include <iostream>
 #include <cmath>
 #include "identity.h"
-using namespace std;
+
 
 template <class T> class Derive
 {
@@ -71,7 +71,7 @@ template <class T> class Derive
       Derive<T> sin() const;
       Derive<T> cos() const;
       T df() const;
-      ostream &output(ostream&) const;
+      std::ostream &output(std::ostream&) const;
 };
 
 template <class T> Derive<T>::Derive() : u(zero(T())),du(one(T())) {}
@@ -182,10 +182,10 @@ template <class T> T Derive<T>::df() const { return du; }
 template <class T> T df(const Derive<T> &x) { return x.df(); }
 
 template <class T>
-ostream &Derive<T>::output(ostream &s) const { return s << u; }
+ostream &Derive<T>::output(std::ostream &s) const { return s << u; }
 
 template <class T>
-ostream &operator << (ostream &s,const Derive<T> &r)
+ostream &operator << (std::ostream &s,const Derive<T> &r)
 { return r.output(s); }
 
 #endif

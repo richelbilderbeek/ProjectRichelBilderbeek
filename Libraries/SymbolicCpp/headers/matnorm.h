@@ -31,7 +31,7 @@
 #include "vecnorm.h"
 #include "matrix.h"
 #include "identity.h"
-using namespace std;
+
 
 template <class T> T norm1(const Matrix<T> &m)
 {

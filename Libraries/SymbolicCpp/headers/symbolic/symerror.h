@@ -54,7 +54,7 @@ class SymbolicError
 
          error errornumber;
          SymbolicError(const error &e);
-         string message() const;
+         std::string message() const;
 };
 
 #endif
@@ -68,7 +68,7 @@ class SymbolicError
 
 SymbolicError::SymbolicError(const error &e) : errornumber(e) {}
 
-string SymbolicError::message() const
+std::string SymbolicError::message() const
 {
  switch(errornumber)
  {

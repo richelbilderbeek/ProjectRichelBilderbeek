@@ -29,11 +29,11 @@
 #include <cassert>
 #include <cstdarg>
 #include <vector>
-using namespace std;
 
-template <int d> vector<int> dimensions(int d1, ...)
+
+template <int d> std::vector<int> dimensions(int d1, ...)
 {
-   vector<int> dim;
+   std::vector<int> dim;
    va_list ap;
 
    dim.push_back(d1);
@@ -45,21 +45,21 @@ template <int d> vector<int> dimensions(int d1, ...)
 }
 
 template <class T,int d>
-class Array : public vector<Array<T,d-1> >
+class Array : public std::vector<Array<T,d-1> >
 {
    public:
       // Constructors
       Array();
       Array(int,...);
-      Array(vector<int>);
-      Array(vector<int>,const T&);
+      Array(std::vector<int>);
+      Array(std::vector<int>,const T&);
       Array(const Array<T,d>&);
       ~Array();
 
       // Member Functions
       void resize(int,...);
-      void resize(vector<int>);
-      void resize(vector<int>,const T&);
+      void resize(std::vector<int>);
+      void resize(std::vector<int>,const T&);
 
       // Arithmetic Operators
       const Array<T,d> & operator = (const T&);
@@ -73,12 +73,12 @@ class Array : public vector<Array<T,d-1> >
 // Constructor, destructor and copy constructor.
 
 template <class T,int d> 
-Array<T,d>::Array() : vector<Array<T,d-1> >() {}
+Array<T,d>::Array() : std::vector<Array<T,d-1> >() {}
 
 template <class T,int d> 
-Array<T,d>::Array(int r, ...) : vector<Array<T,d-1> >(r)
+Array<T,d>::Array(int r, ...) : std::vector<Array<T,d-1> >(r)
 {
-   vector<int> dim;
+   std::vector<int> dim;
    va_list ap;
 
    dim.push_back(r);
@@ -91,33 +91,33 @@ Array<T,d>::Array(int r, ...) : vector<Array<T,d-1> >(r)
 }
 
 template <class T,int d> 
-Array<T,d>::Array(vector<int> r)
+Array<T,d>::Array(std::vector<int> r)
 {
    if(!r.empty())
    {
-    vector<Array<T,d-1> >::resize(r.front());
-    vector<int> n(r.begin()+1, r.end());
+    std::vector<Array<T,d-1> >::resize(r.front());
+    std::vector<int> n(r.begin()+1, r.end());
     // resize the arrays with sizes in r
     for(int i=0;i<r.front();++i)
-     vector<Array<T,d-1> >::at(i).resize(n);
+     std::vector<Array<T,d-1> >::at(i).resize(n);
    }
 }
 
 template <class T,int d> 
-Array<T,d>::Array(vector<int> r,const T &num)
+Array<T,d>::Array(std::vector<int> r,const T &num)
 {
    if(!r.empty())
    {
-    vector<Array<T,d-1> >::resize(r.front());
-    vector<int> n(r.begin()+1,r.end());
+    std::vector<Array<T,d-1> >::resize(r.front());
+    std::vector<int> n(r.begin()+1,r.end());
     // resize the arrays with sizes in r
     for(int i=0;i<r.front();++i)
-     vector<Array<T,d-1> >::at(i).resize(n,num);
+     std::vector<Array<T,d-1> >::at(i).resize(n,num);
    }
 }
 
 template <class T,int d> 
-Array<T,d>::Array(const Array<T,d> &m) : vector<Array<T,d-1> >(m) { }
+Array<T,d>::Array(const Array<T,d> &m) : std::vector<Array<T,d-1> >(m) { }
 
 template <class T,int d> Array<T,d>::~Array() { }
 
@@ -126,7 +126,7 @@ template <class T,int d> Array<T,d>::~Array() { }
 template <class T,int d> 
 void Array<T,d>::resize(int r, ...)
 {
-   vector<int> dim;
+   std::vector<int> dim;
    va_list ap;
    dim.push_back(r);
    // collect the remaining sizes in dim
@@ -137,28 +137,28 @@ void Array<T,d>::resize(int r, ...)
 }
 
 template <class T,int d> 
-void Array<T,d>::resize(vector<int> r)
+void Array<T,d>::resize(std::vector<int> r)
 {
    if(!r.empty())
    {
-    vector<Array<T,d-1> >::resize(r.front());
-    vector<int> n(r.begin()+1, r.end());
+    std::vector<Array<T,d-1> >::resize(r.front());
+    std::vector<int> n(r.begin()+1, r.end());
     // resize the arrays with sizes in r
     for(int i=0;i<r.front();++i)
-     vector<Array<T,d-1> >::at(i).resize(n);
+     std::vector<Array<T,d-1> >::at(i).resize(n);
    }
 }
 
 template <class T,int d> 
-void Array<T,d>::resize(vector<int> r,const T &value)
+void Array<T,d>::resize(std::vector<int> r,const T &value)
 {
    if(!r.empty())
    {
-    vector<Array<T,d-1> >::resize(r.front());
-    vector<int> n(r.begin()+1, r.end());
+    std::vector<Array<T,d-1> >::resize(r.front());
+    std::vector<int> n(r.begin()+1, r.end());
     // resize the arrays with sizes in r
     for(int i=0;i<r.front();++i)
-     vector<Array<T,d-1> >::at(i).resize(n,value);
+     std::vector<Array<T,d-1> >::at(i).resize(n,value);
    }
 }
 
@@ -167,16 +167,16 @@ void Array<T,d>::resize(vector<int> r,const T &value)
 template <class T,int d> 
 const Array<T,d> & Array<T,d>::operator = (const T &num)
 {
-   int length = vector<Array<T,d-1> >::size();
-   for(int i=0;i<length;i++) vector<Array<T,d-1> >::at(i) = num;
+   int length = std::vector<Array<T,d-1> >::size();
+   for(int i=0;i<length;i++) std::vector<Array<T,d-1> >::at(i) = num;
    return *this;
 }
 
 template <class T,int d> 
 Array<T,d> Array<T,d>::operator *= (const T &num)
 {
-   int length = vector<Array<T,d-1> >::size();
-   for(int i=0;i<length;i++) vector<Array<T,d-1> >::at(i) *= num;
+   int length = std::vector<Array<T,d-1> >::size();
+   for(int i=0;i<length;i++) std::vector<Array<T,d-1> >::at(i) *= num;
    return *this;
 }
 
@@ -191,51 +191,51 @@ Array<T,d> Array<T,d>::operator -= (const Array<T,d> &m)
 template <class T,int d> 
 Array<T,d> Array<T,d>::operator + (const Array<T,d> &m)
 {
-   int length = vector<Array<T,d-1> >::size();
-   assert(m.size() == (vector<Array<T,d-1> >::size()));
+   int length = std::vector<Array<T,d-1> >::size();
+   assert(m.size() == (std::vector<Array<T,d-1> >::size()));
    Array<T,d> temp(*this);
    for(int i=0;i<length;i++)
-    temp[i] = vector<Array<T,d-1> >::at(i)+m[i];
+    temp[i] = std::vector<Array<T,d-1> >::at(i)+m[i];
    return temp;
 }
 
 template <class T,int d> 
 Array<T,d> Array<T,d>::operator - (const Array<T,d> &m)
 {
-   int length = vector<Array<T,d-1> >::size();
-   assert(m.size() == (vector<Array<T,d-1> >::size()));
+   int length = std::vector<Array<T,d-1> >::size();
+   assert(m.size() == (std::vector<Array<T,d-1> >::size()));
    Array<T,d> temp(*this);
    for(int i=0;i<length;i++)
-    temp[i] = vector<Array<T,d-1> >::at(i)-m[i];
+    temp[i] = std::vector<Array<T,d-1> >::at(i)-m[i];
    return temp;
 }
 
 template <class T,int d> 
-ostream & operator << (ostream &s,const Array<T,d> &m)
+ostream & operator << (std::ostream &s,const Array<T,d> &m)
 {
-   for(int i=0;i<int(m.size());i++) s << m[i] << endl;
+   for(int i=0;i<int(m.size());i++) s << m[i] << std::endl;
    return s;
 }
 
 //Override the template definition for the 1-dimensional case
 
 template <class T>
-class Array<T,1> : public vector<T>
+class Array<T,1> : public std::vector<T>
 {
    public:
       // Constructors
       Array(int = 0);
-      Array(vector<int>);
+      Array(std::vector<int>);
       Array(int,const T&);
-      Array(vector<int>,const T&);
+      Array(std::vector<int>,const T&);
       Array(const Array<T,1>&);
       ~Array();
 
       // Member Functions
       void resize(int);
-      void resize(vector<int>);
+      void resize(std::vector<int>);
       void resize(int,const T&);
-      void resize(vector<int>,const T&);
+      void resize(std::vector<int>,const T&);
 
       // Arithmetic Operators
       const Array<T,1> & operator = (const T&);
@@ -249,55 +249,55 @@ class Array<T,1> : public vector<T>
 // Constructors, destructors and copy constructor.
 
 template <class T> 
-Array<T,1>::Array(int n) : vector<T>(n) { }
+Array<T,1>::Array(int n) : std::vector<T>(n) { }
 
 template <class T> 
-Array<T,1>::Array(vector<int> n)
-{ if(!n.empty()) vector<T>::resize(n.front()); }
+Array<T,1>::Array(std::vector<int> n)
+{ if(!n.empty()) std::vector<T>::resize(n.front()); }
 
 template <class T> 
-Array<T,1>::Array(int n,const T &num) : vector<T>(n,num) { }
+Array<T,1>::Array(int n,const T &num) : std::vector<T>(n,num) { }
 
 template <class T> 
-Array<T,1>::Array(vector<int> n,const T &num)
-{ if(!n.empty()) vector<T>::resize(n.front(),num); }
+Array<T,1>::Array(std::vector<int> n,const T &num)
+{ if(!n.empty()) std::vector<T>::resize(n.front(),num); }
 
 template <class T> 
-Array<T,1>::Array(const Array<T,1> &v) : vector<T>(v) { }
+Array<T,1>::Array(const Array<T,1> &v) : std::vector<T>(v) { }
 
 template <class T> Array<T,1>::~Array() { }
 
 // Member functions
 
 template <class T> void Array<T,1>::resize(int n)
-{ vector<T>::resize(n); }
+{ std::vector<T>::resize(n); }
 
-template <class T> void Array<T,1>::resize(vector<int> n)
-{ if(!n.empty()) vector<T>::resize(n.front()); }
+template <class T> void Array<T,1>::resize(std::vector<int> n)
+{ if(!n.empty()) std::vector<T>::resize(n.front()); }
 
 template <class T> 
 void Array<T,1>::resize(int n,const T &value)
-{ vector<T>::resize(n,value); }
+{ std::vector<T>::resize(n,value); }
 
 template <class T> 
-void Array<T,1>::resize(vector<int> n,const T &value)
-{ if(!n.empty()) vector<T>::resize(n.front(),value); }
+void Array<T,1>::resize(std::vector<int> n,const T &value)
+{ if(!n.empty()) std::vector<T>::resize(n.front(),value); }
 
 // Various member operators
 
 template <class T> 
 const Array<T,1> & Array<T,1>::operator = (const T &num)
 {
-   int length = vector<T>::size();
-   for(int i=0;i<length;i++) vector<T>::at(i) = num;
+   int length = std::vector<T>::size();
+   for(int i=0;i<length;i++) std::vector<T>::at(i) = num;
    return *this;
 }
 
 template <class T> 
 Array<T,1> Array<T,1>::operator *= (const T &num)
 {
-   int length = vector<T>::size();
-   for(int i=0;i<length;i++) vector<T>::at(i) *= num;
+   int length = std::vector<T>::size();
+   for(int i=0;i<length;i++) std::vector<T>::at(i) *= num;
    return *this;
 }
 
@@ -312,25 +312,25 @@ Array<T,1> Array<T,1>::operator -= (const Array<T,1> &v)
 template <class T> 
 Array<T,1> Array<T,1>::operator + (const Array<T,1> &v)
 {
-   int length = vector<T>::size();
-   assert(vector<T>::size() == v.size());
+   int length = std::vector<T>::size();
+   assert(std::vector<T>::size() == v.size());
    Array<T,1> temp(length);
-   for(int i=0;i<length;i++) temp[i] = vector<T>::at(i)+v[i];
+   for(int i=0;i<length;i++) temp[i] = std::vector<T>::at(i)+v[i];
    return temp;
 }
 
 template <class T> 
 Array<T,1> Array<T,1>::operator - (const Array<T,1> &v)
 {
-   int length = vector<T>::size();
-   assert(vector<T>::size() == v.size());
+   int length = std::vector<T>::size();
+   assert(std::vector<T>::size() == v.size());
    Array<T,1> temp(length);
-   for(int i=0;i<length;i++) temp[i] = vector<T>::at(i)-v[i];
+   for(int i=0;i<length;i++) temp[i] = std::vector<T>::at(i)-v[i];
    return temp;
 }
 
 template <class T> 
-ostream & operator << (ostream &s,const Array<T,1> &v)
+ostream & operator << (std::ostream &s,const Array<T,1> &v)
 {
    s << "[";
    for(int i=0;i<int(v.size())-1;i++) s << v[i] << " ";

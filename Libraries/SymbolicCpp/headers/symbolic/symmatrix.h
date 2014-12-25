@@ -24,7 +24,7 @@
 #ifndef SYMBOLIC_CPLUSPLUS_SYMBOLICMATRIX
 
 #include "matrix.h"
-using namespace std;
+
 
 #ifdef  SYMBOLIC_FORWARD
 #ifndef SYMBOLIC_CPLUSPLUS_SYMBOLICMATRIX_FORWARD
@@ -44,14 +44,14 @@ class SymbolicMatrix
 {
  public: SymbolicMatrix(const SymbolicMatrix&);
          SymbolicMatrix(const Matrix<Symbolic>&);
-         SymbolicMatrix(const list<list<Symbolic> >&);
-         SymbolicMatrix(const string&,int,int);
+         SymbolicMatrix(const std::list<std::list<Symbolic> >&);
+         SymbolicMatrix(const std::string&,int,int);
          SymbolicMatrix(const char*,int,int);
          SymbolicMatrix(const Symbolic&,int,int);
          SymbolicMatrix(int,int);
          virtual ~SymbolicMatrix();
 
-         void print(ostream&) const;
+         void print(std::ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
@@ -60,9 +60,9 @@ class SymbolicMatrix
          Symbolic coeff(const Symbolic&) const;
          Expanded expand() const;
          int commute(const Symbolic&) const;
-         PatternMatches match(const Symbolic&, const list<Symbolic>&) const;
+         PatternMatches match(const Symbolic&, const std::list<Symbolic>&) const;
          PatternMatches match_parts(const Symbolic&,
-                                    const list<Symbolic>&) const;
+                                    const std::list<Symbolic>&) const;
 
          Cloning *clone() const { return Cloning::clone(*this); }
 };
@@ -84,11 +84,11 @@ SymbolicMatrix::SymbolicMatrix(const Matrix<Symbolic> &s)
 : Matrix<Symbolic>(s)
 {}
 
-SymbolicMatrix::SymbolicMatrix(const list<list<Symbolic> > &sl)
+SymbolicMatrix::SymbolicMatrix(const std::list<std::list<Symbolic> > &sl)
 {
  int cols = 0, k, l;
- list<Symbolic>::const_iterator j;
- list<list<Symbolic> >::const_iterator i;
+ std::list<Symbolic>::const_iterator j;
+ std::list<std::list<Symbolic> >::const_iterator i;
 
  for(i=sl.begin();i!=sl.end();++i)
   if(int(i->size()) > cols) cols = i->size();
@@ -101,13 +101,13 @@ SymbolicMatrix::SymbolicMatrix(const list<list<Symbolic> > &sl)
  }
 }
 
-SymbolicMatrix::SymbolicMatrix(const string &s,int n,int m)
+SymbolicMatrix::SymbolicMatrix(const std::string &s,int n,int m)
  : Matrix<Symbolic>(n,m)
 {
  for(int i=0;i<n;++i)
   for(int j=0;j<m;++j)
   {
-   ostringstream os;
+   std::ostringstream os;
    if(n == 1 || m == 1)
     os << s << i + j;
    else
@@ -126,7 +126,7 @@ SymbolicMatrix::SymbolicMatrix(const char *s,int n,int m)
  for(i=0;i<n;++i)
   for(j=0;j<m;++j)
   {
-   ostringstream os;
+   std::ostringstream os;
    if(n == 1 || m == 1)
     os << s << i + j;
    else
@@ -140,8 +140,8 @@ SymbolicMatrix::SymbolicMatrix(int n,int m)
 
 SymbolicMatrix::~SymbolicMatrix() {}
 
-void SymbolicMatrix::print(ostream &o) const
-{ o << endl << *this; }
+void SymbolicMatrix::print(std::ostream &o) const
+{ o << std::endl << *this; }
 
 Symbolic SymbolicMatrix::subst(const Symbolic &x,
                                const Symbolic &y,int &n) const
@@ -222,7 +222,7 @@ int SymbolicMatrix::commute(const Symbolic &s) const
 }
 
 PatternMatches
-SymbolicMatrix::match(const Symbolic &s, const list<Symbolic> &p) const
+SymbolicMatrix::match(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l;
  if(type() != s.type())
@@ -250,7 +250,7 @@ SymbolicMatrix::match(const Symbolic &s, const list<Symbolic> &p) const
 }
  
 PatternMatches
-SymbolicMatrix::match_parts(const Symbolic &s, const list<Symbolic> &p) const
+SymbolicMatrix::match_parts(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l = s.match(*this, p);
 

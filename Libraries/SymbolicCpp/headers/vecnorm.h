@@ -28,7 +28,7 @@
 #include <iostream>
 #include <math.h>
 #include "vector.h"
-using namespace std;
+
 
 template <class T> T norm1(const Vector<T> &v)
 {

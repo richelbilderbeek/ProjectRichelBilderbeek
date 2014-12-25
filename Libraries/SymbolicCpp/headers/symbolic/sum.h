@@ -24,7 +24,7 @@
 #ifndef SYMBOLIC_CPLUSPLUS_SUM
 
 #include <list>
-using namespace std;
+
 
 #ifdef  SYMBOLIC_FORWARD
 #ifndef SYMBOLIC_CPLUSPLUS_SUM_FORWARD
@@ -41,7 +41,7 @@ class Sum;
 
 class Sum: public CloningSymbolicInterface
 {
- public: list<Symbolic> summands;
+ public: std::list<Symbolic> summands;
          Sum();
          Sum(const Sum&);
          Sum(const Symbolic&,const Symbolic&);
@@ -49,7 +49,7 @@ class Sum: public CloningSymbolicInterface
 
          Sum &operator=(const Sum&);
 
-         void print(ostream&) const;
+         void print(std::ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
@@ -58,9 +58,9 @@ class Sum: public CloningSymbolicInterface
          Symbolic coeff(const Symbolic&) const;
          Expanded expand() const;
          int commute(const Symbolic&) const;
-         PatternMatches match(const Symbolic&, const list<Symbolic>&) const;
+         PatternMatches match(const Symbolic&, const std::list<Symbolic>&) const;
          PatternMatches match_parts(const Symbolic&,
-                                    const list<Symbolic>&) const;
+                                    const std::list<Symbolic>&) const;
 
          Cloning *clone() const { return Cloning::clone(*this); }
 };
@@ -100,10 +100,10 @@ Sum &Sum::operator=(const Sum &s)
  return *this;
 }
 
-void Sum::print(ostream &o) const
+void Sum::print(std::ostream &o) const
 {
  if(summands.empty()) o << 0;
- for(list<Symbolic>::const_iterator i=summands.begin();i!=summands.end();
+ for(std::list<Symbolic>::const_iterator i=summands.begin();i!=summands.end();
      ++i)
  {
   if((i->type() != typeid(Numeric)
@@ -119,8 +119,8 @@ Symbolic Sum::subst(const Symbolic &x,const Symbolic &y,int &n) const
 {
  if(x.type() == type())
  {
-  list<Symbolic>::const_iterator i;
-  list<Symbolic>::iterator j;
+  std::list<Symbolic>::const_iterator i;
+  std::list<Symbolic>::iterator j;
   // make a copy of *this
   CastPtr<Sum> s1(*this);
   CastPtr<const Sum> s2(x);
@@ -143,7 +143,7 @@ Symbolic Sum::subst(const Symbolic &x,const Symbolic &y,int &n) const
  // sum does not contain expression for substitution
  // try to substitute in each summand
  Sum s;
- for(list<Symbolic>::const_iterator i=summands.begin();i!=summands.end();
+ for(std::list<Symbolic>::const_iterator i=summands.begin();i!=summands.end();
      ++i)
   s.summands.push_back(i->subst(x,y,n));
  return s;
@@ -151,8 +151,8 @@ Symbolic Sum::subst(const Symbolic &x,const Symbolic &y,int &n) const
 
 Simplified Sum::simplify() const
 {
- list<Symbolic>::const_iterator i;
- list<Symbolic>::iterator j, k;
+ std::list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::iterator j, k;
  Sum r;
 
  // 1-element sum:  (a) -> a
@@ -270,8 +270,8 @@ int Sum::compare(const Symbolic &s) const
  // make a copy of s
  CastPtr<Sum> p(*s);
 
- list<Symbolic>::const_iterator i;
- list<Symbolic>::iterator j;
+ std::list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::iterator j;
 
  if(summands.size() != p->summands.size()) return 0;
  for(i=summands.begin();i!=summands.end();++i)
@@ -286,7 +286,7 @@ int Sum::compare(const Symbolic &s) const
 
 Symbolic Sum::df(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
  Sum r;
  for(i=summands.begin();i!=summands.end();++i)
   r.summands.push_back(i->df(s));
@@ -295,7 +295,7 @@ Symbolic Sum::df(const Symbolic &s) const
 
 Symbolic Sum::integrate(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
  Sum r;
  for(i=summands.begin();i!=summands.end();++i)
   r.summands.push_back(::integrate(*i,s));
@@ -304,7 +304,7 @@ Symbolic Sum::integrate(const Symbolic &s) const
 
 Symbolic Sum::coeff(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
  Sum r;
  for(i=summands.begin();i!=summands.end();++i)
   r.summands.push_back(i->coeff(s));
@@ -313,7 +313,7 @@ Symbolic Sum::coeff(const Symbolic &s) const
 
 Expanded Sum::expand() const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
  Sum r;
  for(i=summands.begin();i!=summands.end();++i)
   r.summands.push_back(i->expand());
@@ -322,7 +322,7 @@ Expanded Sum::expand() const
 
 int Sum::commute(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
 
  // Optimize the case for numbers
  if(s.type() == typeid(Numeric)) return 1;
@@ -330,7 +330,7 @@ int Sum::commute(const Symbolic &s) const
  // Optimize the case for a single symbol
  if(s.type() == typeid(Symbol))
  {
-  list<Symbolic>::const_iterator i;
+  std::list<Symbolic>::const_iterator i;
   for(i=summands.begin();i!=summands.end();++i)
    if(!i->commute(s)) return 0;
   return 1;
@@ -350,28 +350,28 @@ int Sum::commute(const Symbolic &s) const
  return sum == 0;
 }
 
-PatternMatches Sum::match(const Symbolic &s, const list<Symbolic> &p) const
+PatternMatches Sum::match(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l;
- list<Symbolic>::const_iterator i;
- list<list<int> >::iterator j;
- list<int>::iterator k;
+ std::list<Symbolic>::const_iterator i;
+ std::list<std::list<int> >::iterator j;
+ std::list<int>::iterator k;
 
  if(summands.size() == 0) return l;
  if(summands.size() == 1) return summands.front().match(s, p);
  if(s.type() != type()) return l;
 
  CastPtr<Sum> sum(s);
- list<list<int> > thismatch;
+ std::list<std::list<int> > thismatch;
  Sum rest(*this);
  rest.summands.pop_front();
- thismatch.push_back(list<int>()); // start with an empty sum
+ thismatch.push_back(std::list<int>()); // start with an empty sum
 
  for(i=sum->summands.begin();i!=sum->summands.end();++i)
  {
   for(j=thismatch.begin();j!=thismatch.end();++j)
   {
-   list<int> s(*j); s.push_back(0); j->push_back(1);
+   std::list<int> s(*j); s.push_back(0); j->push_back(1);
    thismatch.insert(j, s);
   }
  }
@@ -395,13 +395,13 @@ PatternMatches Sum::match(const Symbolic &s, const list<Symbolic> &p) const
 }
 
 PatternMatches
-Sum::match_parts(const Symbolic &s, const list<Symbolic> &p) const
+Sum::match_parts(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l = s.match(*this, p);
- list<Symbolic>::const_iterator i;
- list<Sum>::iterator j;
+ std::list<Symbolic>::const_iterator i;
+ std::list<Sum>::iterator j;
 
- list<Sum> matchpart;
+ std::list<Sum> matchpart;
  matchpart.push_back(Sum()); // start with an empty sum
 
  for(i=summands.begin();i!=summands.end();++i)

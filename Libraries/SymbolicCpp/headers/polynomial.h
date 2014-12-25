@@ -28,9 +28,9 @@
 #include <iostream>
 #include <list>
 #include <string>
-#include <utility>  // for pair
+#include <utility>  // for std::pair
 #include "identity.h"
-using namespace std;
+
 
 //Polynomial class
 
@@ -82,10 +82,10 @@ class Polynomial
                            const Polynomial<T>&,int) const;
    Polynomial<T> newton(const Polynomial<T>&,const Polynomial<T>&) const;
    Polynomial<T> gcd(const Polynomial<T>&,const Polynomial<T>&) const;
-   Polynomial<T> Diff(const string &) const;
-   Polynomial<T> Int(const string &) const;
+   Polynomial<T> Diff(const std::string &) const;
+   Polynomial<T> Int(const std::string &) const;
    Polynomial<T> reverse() const;
-   list<Polynomial<T> > squarefree() const;
+   std::list<Polynomial<T> > squarefree() const;
 
    int operator==(const Polynomial<T>&) const;
    int operator!=(const Polynomial<T>&) const;
@@ -94,13 +94,13 @@ class Polynomial
    int operator!=(const T&) const;
 
    T operator()(const T&) const;
-   ostream &output1(ostream &) const;
-   ostream &output2(ostream &) const;
+   std::ostream &output1(std::ostream &) const;
+   std::ostream &output2(std::ostream &) const;
    int constant() const;
  protected:
    void remove_zeros(void);
-   string variable;
-   list<pair<T,int> > terms;
+   std::string variable;
+   std::list<pair<T,int> > terms;
 };
 
 // multiply using Karatsuba algorithm
@@ -156,7 +156,7 @@ template <class T>
 Polynomial<T> Polynomial<T>::operator-() const
 {
  Polynomial<T> p2(*this);
- typename list<pair<T,int> >::iterator i = p2.terms.begin();
+ typename std::list<pair<T,int> >::iterator i = p2.terms.begin();
  for(;i!=p2.terms.end();i++) i->first = -(i->first);
  return p2;
 }
@@ -166,8 +166,8 @@ Polynomial<T>
 Polynomial<T>::operator+(const Polynomial<T> &p) const
 {
  Polynomial<T> p2;
- typename list<pair<T,int> >::const_iterator i = terms.begin();
- typename list<pair<T,int> >::const_iterator j = p.terms.begin();
+ typename std::list<pair<T,int> >::const_iterator i = terms.begin();
+ typename std::list<pair<T,int> >::const_iterator j = p.terms.begin();
  
  if(constant()) p2.variable = p.variable;
  else if(p.constant()) p2.variable = variable;
@@ -201,7 +201,7 @@ Polynomial<T>
 Polynomial<T>::operator*(const Polynomial<T> &p) const
 {
  Polynomial<T> p2;
- typename list<pair<T,int> >::const_iterator i, j;
+ typename std::list<pair<T,int> >::const_iterator i, j;
  
  if(constant()) p2.variable = p.variable;
  else if(p.constant()) p2.variable = variable;
@@ -235,8 +235,8 @@ Polynomial<T>
 Polynomial<T>::operator/(const Polynomial<T> &p) const
 {
  Polynomial<T> p2, p3(*this);
- typename list<pair<T,int> >::const_iterator i;
- typename list<pair<T,int> >::iterator j;
+ typename std::list<pair<T,int> >::const_iterator i;
+ typename std::list<pair<T,int> >::iterator j;
  
  if(constant()) p2.variable = p.variable;
  else if(p.constant()) p2.variable = variable;
@@ -251,7 +251,7 @@ Polynomial<T>::operator/(const Polynomial<T> &p) const
   Polynomial<T> t;
   t.variable = p2.variable;
   t.terms.push_back(
-    pair<T,int>(p3.terms.front().first/p.terms.front().first,
+    std::pair<T,int>(p3.terms.front().first/p.terms.front().first,
                 p3.terms.front().second-p.terms.front().second));
   p2 += t;
   p3 -= t * p;
@@ -341,20 +341,20 @@ Polynomial<T> &Polynomial<T>::operator%=(const T &c)
 { return *this %= Polynomial<T>(c); }
 
 template <class T>
-T Diff(const T &t,const string &x)
+T Diff(const T &t,const std::string &x)
 { return zero(T()); }
 
 // partial template specialization for polynomials
 template <class T>
-Polynomial<T> Diff(const Polynomial<T>&p,const string &x)
+Polynomial<T> Diff(const Polynomial<T>&p,const std::string &x)
 { return p.Diff(x); }
 
 template <class T>
 Polynomial<T> Polynomial<T>::karatsuba(const Polynomial<T> &p1,
                                        const Polynomial<T> &p2,int n) const
 {
- typename list<pair<T,int> >::const_iterator i;
- typename list<pair<T,int> >::iterator j;
+ typename std::list<pair<T,int> >::const_iterator i;
+ typename std::list<pair<T,int> >::iterator j;
  int n2 = n/2;
  Polynomial<T> f0;
  Polynomial<T> f1;
@@ -454,10 +454,10 @@ Polynomial<T> Polynomial<T>::gcd(const Polynomial<T> &a,
 }
 
 template <class T>
-Polynomial<T> Polynomial<T>::Diff(const string &x) const
+Polynomial<T> Polynomial<T>::Diff(const std::string &x) const
 {
  Polynomial<T> p2;
- typename list<pair<T,int> >::const_iterator i = terms.begin();
+ typename std::list<pair<T,int> >::const_iterator i = terms.begin();
 
  // if(variable != x) return Polynomial<T>(zero(T()));
  if(variable != x)
@@ -477,23 +477,23 @@ Polynomial<T> Polynomial<T>::Diff(const string &x) const
 }
 
 template <class T>
-T Int(const T &t,const string &x)
+T Int(const T &t,const std::string &x)
 {
- cerr << "Tried to integrate a datatype with respect to " << x
-      << " when it is not supported." << endl;
+ std::cerr << "Tried to integrate a datatype with respect to " << x
+      << " when it is not supported." << std::endl;
  return t;
 }
 
 // partial template specialization for polynomials
 template <class T>
-Polynomial<T> Int(const Polynomial<T> &p,const string &x)
+Polynomial<T> Int(const Polynomial<T> &p,const std::string &x)
 { return p.Int(x); }
 
 template <class T>
-Polynomial<T> Polynomial<T>::Int(const string &x) const
+Polynomial<T> Polynomial<T>::Int(const std::string &x) const
 {
  Polynomial<T> p2;
- typename list<pair<T,int> >::const_iterator i = terms.begin();
+ typename std::list<pair<T,int> >::const_iterator i = terms.begin();
 
  if(variable != x)
  {
@@ -513,7 +513,7 @@ template <class T>
 Polynomial<T> Polynomial<T>::reverse() const
 {
  int degree = terms.front().second;
- typename list<pair<T,int> >::const_reverse_iterator i;
+ typename std::list<pair<T,int> >::const_reverse_iterator i;
  Polynomial<T> p(variable);
 
  p.terms.clear();
@@ -526,7 +526,7 @@ Polynomial<T> Polynomial<T>::reverse() const
 template <class T>
 list<Polynomial<T> > Polynomial<T>::squarefree() const
 {
- list<Polynomial<T> > l;
+ std::list<Polynomial<T> > l;
  T lc = (terms.empty()) ? one(T()) : terms.front().first;
  Polynomial<T> a = *this/lc;
  Polynomial<T> c = gcd(a,Diff(variable));
@@ -563,7 +563,7 @@ template <class T>
 T Polynomial<T>::operator()(const T &c) const
 {
  T factor = one(T()), result = zero(T());
- typename list<pair<T,int> >::const_reverse_iterator i = terms.rbegin();
+ typename std::list<pair<T,int> >::const_reverse_iterator i = terms.rbegin();
 
  for(int j=0;i!=terms.rend();i++) 
  {
@@ -576,9 +576,9 @@ T Polynomial<T>::operator()(const T &c) const
 }
 
 template <class T>
-ostream &Polynomial<T>::output1(ostream &o) const
+ostream &Polynomial<T>::output1(std::ostream &o) const
 {
- typename list<pair<T,int> >::const_iterator i = terms.begin();
+ typename std::list<pair<T,int> >::const_iterator i = terms.begin();
 
  if(i == terms.end()) return o << zero(T());
  o << ((i->first >= zero(T())) ? "" : "-");
@@ -594,9 +594,9 @@ ostream &Polynomial<T>::output1(ostream &o) const
 }
 
 template <class T>
-ostream &Polynomial<T>::output2(ostream &o) const
+ostream &Polynomial<T>::output2(std::ostream &o) const
 {
- typename list<pair<T,int> >::const_iterator i = terms.begin();
+ typename std::list<pair<T,int> >::const_iterator i = terms.begin();
 
  if(i == terms.end()) return o << zero(T());
  while(i != terms.end())
@@ -611,12 +611,12 @@ ostream &Polynomial<T>::output2(ostream &o) const
 }
 
 template <class T>
-ostream &operator<<(ostream &o,const Polynomial<T> &p)
+ostream &operator<<(std::ostream &o,const Polynomial<T> &p)
 { return p.output1(o); }
 
 // partial template specialization for polynomial coefficients
 template <class T>
-ostream &operator<<(ostream &o,const Polynomial<Polynomial<T> > &p)
+ostream &operator<<(std::ostream &o,const Polynomial<Polynomial<T> > &p)
 { return p.output2(o); }
 
 template <class T>
@@ -629,7 +629,7 @@ int Polynomial<T>::constant(void) const
 template <class T>
 void Polynomial<T>::remove_zeros(void)
 {
- typename list<pair<T,int> >::iterator i, j;
+ typename std::list<pair<T,int> >::iterator i, j;
 
  for(i=j=terms.begin();i!=terms.end();)
  {

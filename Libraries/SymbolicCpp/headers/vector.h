@@ -30,10 +30,10 @@
 #include <iostream>
 #include <vector>
 #include "identity.h"
-using namespace std;
+
 
 // definition of class Vector
-template <class T> class Vector: public vector<T>
+template <class T> class Vector: public std::vector<T>
 {
    public:
       // Constructors
@@ -75,19 +75,19 @@ template <class T> class Vector: public vector<T>
       T operator | (const Vector<T>&) const; // Dot product / Inner product
       Vector<T> operator % (const Vector<T>&) const; // Cross product
 
-      ostream &output(ostream&) const;
-      istream &input(istream&);
+      std::ostream &output(std::ostream&) const;
+      std::istream &input(std::istream&);
 };
 
 // implementation of class Vector
-template <class T> Vector<T>::Vector() : vector<T>() { }
+template <class T> Vector<T>::Vector() : std::vector<T>() { }
 
-template <class T> Vector<T>::Vector(int n) : vector<T>(n) { }
+template <class T> Vector<T>::Vector(int n) : std::vector<T>(n) { }
 
 template <class T> Vector<T>::Vector(int n,const T &value)
- : vector<T>(n,value) { }
+ : std::vector<T>(n,value) { }
 
-template <class T> Vector<T>::Vector(const Vector<T> &v) : vector<T>(v) { }
+template <class T> Vector<T>::Vector(const Vector<T> &v) : std::vector<T>(v) { }
 
 template <class T> Vector<T>::~Vector() { }
 
@@ -95,21 +95,21 @@ template <class T> void Vector<T>::reset(int length)
 { reset(length, zero(T())); }
 
 template <class T> T& Vector<T>::operator [] (int i)
-{ return vector<T>::at(i); }
+{ return std::vector<T>::at(i); }
 
 template <class T> const T& Vector<T>::operator [] (int i) const
-{ return vector<T>::at(i); }
+{ return std::vector<T>::at(i); }
 
 template <class T> void Vector<T>::reset(int length, const T &value)
 {
-   vector<T>::resize(length);
-   for(int i=0;i<length;i++) vector<T>::at(i) = value;
+   std::vector<T>::resize(length);
+   for(int i=0;i<length;i++) std::vector<T>::at(i) = value;
 }
 
 template <class T> const Vector<T> & Vector<T>::operator = (const T &value)
 {
-   int length = vector<T>::size();
-   for(int i=0;i<length;i++) vector<T>::at(i) = value;
+   int length = std::vector<T>::size();
+   for(int i=0;i<length;i++) std::vector<T>::at(i) = value;
    return *this;
 }
 
@@ -121,33 +121,33 @@ template <class T> Vector<T> Vector<T>::operator - () const
 
 template <class T> Vector<T> Vector<T>::operator += (const Vector<T> &v)
 {
-   int length = vector<T>::size();
-   assert(vector<T>::size()==v.size());
-   for(int i=0;i<length;i++) vector<T>::at(i) += v[i];
+   int length = std::vector<T>::size();
+   assert(std::vector<T>::size()==v.size());
+   for(int i=0;i<length;i++) std::vector<T>::at(i) += v[i];
    return *this;
 }
 
 template <class T> Vector<T> Vector<T>::operator -= (const Vector<T> &v)
 {
-   int length = vector<T>::size();
-   assert(vector<T>::size()==v.size());
-   for(int i=0;i<length;i++) vector<T>::at(i) -= v[i];
+   int length = std::vector<T>::size();
+   assert(std::vector<T>::size()==v.size());
+   for(int i=0;i<length;i++) std::vector<T>::at(i) -= v[i];
    return *this;
 }
 
 template <class T> Vector<T> Vector<T>::operator *= (const Vector<T> &v)
 {
-   int length = vector<T>::size();
-   assert(vector<T>::size()==v.size());
-   for(int i=0;i<length;i++) vector<T>::at(i) *= v[i];
+   int length = std::vector<T>::size();
+   assert(std::vector<T>::size()==v.size());
+   for(int i=0;i<length;i++) std::vector<T>::at(i) *= v[i];
    return *this;
 }
 
 template <class T> Vector<T> Vector<T>::operator /= (const Vector<T> &v)
 {
-   int length = vector<T>::size();
-   assert(vector<T>::size()==v.size());
-   for(int i=0;i<length;i++) vector<T>::at(i) /= v[i];
+   int length = std::vector<T>::size();
+   assert(std::vector<T>::size()==v.size());
+   for(int i=0;i<length;i++) std::vector<T>::at(i) /= v[i];
    return *this;
 }
 
@@ -181,29 +181,29 @@ Vector<T> Vector<T>::operator / (const Vector<T> &v) const
 
 template <class T> Vector<T> Vector<T>::operator += (const T &c)
 {
-   int length = vector<T>::size();
-   for(int i=0;i<length;i++) vector<T>::at(i) += c;
+   int length = std::vector<T>::size();
+   for(int i=0;i<length;i++) std::vector<T>::at(i) += c;
    return *this;
 }
 
 template <class T> Vector<T> Vector<T>::operator -= (const T &c)
 {
-   int length = vector<T>::size();
-   for(int i=0;i<length;i++) vector<T>::at(i) -= c;
+   int length = std::vector<T>::size();
+   for(int i=0;i<length;i++) std::vector<T>::at(i) -= c;
    return *this;
 }
 
 template <class T> Vector<T> Vector<T>::operator *= (const T &c)
 {
-   int length = vector<T>::size();
-   for(int i=0;i<length;i++) vector<T>::at(i) *= c;
+   int length = std::vector<T>::size();
+   for(int i=0;i<length;i++) std::vector<T>::at(i) *= c;
    return *this;
 }
 
 template <class T> Vector<T> Vector<T>::operator /= (const T &c)
 {
-   int length = vector<T>::size();
-   for(int i=0;i<length;i++) vector<T>::at(i) /= c;
+   int length = std::vector<T>::size();
+   for(int i=0;i<length;i++) std::vector<T>::at(i) /= c;
    return *this;
 }
 
@@ -251,10 +251,10 @@ template <class T> Vector<T> operator / (const T &c, const Vector<T> &v)
 // Dot Product / Inner Product
 template <class T> T Vector<T>::operator | (const Vector<T> &v) const
 {
-   int length = vector<T>::size();
-   assert(vector<T>::size() == v.size());
+   int length = std::vector<T>::size();
+   assert(std::vector<T>::size() == v.size());
    T result(zero(T()));
-   for(int i=0;i<length;i++) result = result + vector<T>::at(i)*v[i];
+   for(int i=0;i<length;i++) result = result + std::vector<T>::at(i)*v[i];
    return result;
 }
 
@@ -262,43 +262,43 @@ template <class T> T Vector<T>::operator | (const Vector<T> &v) const
 template <class T> 
 Vector<T> Vector<T>::operator % (const Vector<T> &v) const
 {
-   assert(vector<T>::size() == 3 && v.size() == 3);
+   assert(std::vector<T>::size() == 3 && v.size() == 3);
    Vector<T> result(3);
-   result[0] = vector<T>::at(1)*v[2]-v[1]*vector<T>::at(2);
-   result[1] = v[0]*vector<T>::at(2)-vector<T>::at(0)*v[2];
-   result[2] = vector<T>::at(0)*v[1]-v[0]*vector<T>::at(1);
+   result[0] = std::vector<T>::at(1)*v[2]-v[1]*std::vector<T>::at(2);
+   result[1] = v[0]*std::vector<T>::at(2)-std::vector<T>::at(0)*v[2];
+   result[2] = std::vector<T>::at(0)*v[1]-v[0]*std::vector<T>::at(1);
    return result;
 }
 
-template <class T> ostream& Vector<T>::output(ostream &s) const
+template <class T> std::ostream& Vector<T>::output(std::ostream &s) const
 {
-   int lastnum = vector<T>::size();
-   for(int i=0;i<lastnum;i++) s << "[" << vector<T>::at(i) << "]" << endl;
+   int lastnum = std::vector<T>::size();
+   for(int i=0;i<lastnum;i++) s << "[" << std::vector<T>::at(i) << "]" << std::endl;
    return s;
 }
 
-template <class T> ostream& operator << (ostream &s,const Vector<T> &v)
+template <class T> std::ostream& operator << (std::ostream &s,const Vector<T> &v)
 { return v.output(s); }
 
-template <class T> istream& Vector<T>::input(istream &s)
+template <class T> std::istream& Vector<T>::input(std::istream &s)
 {
    int i, num;
    s.clear();                 // set stream state to good
    s >> num;                  // read size of Vector
    if(! s.good()) return s;  // can't get an integer, just return
-   vector<T>::resize(num);
+   std::vector<T>::resize(num);
    for(i=0;i<num;i++)
    {
-      s >> vector<T>::at(i); // read in entries
+      s >> std::vector<T>::at(i); // read in entries
       if(! s.good())
       {
-         s.clear(s.rdstate() | ios::badbit);
+         s.clear(s.rdstate() | std::ios::badbit);
          return s;
       }
    }
    return s;
 }
 
-template <class T> istream & operator >> (istream &s,Vector<T> &v)
+template <class T> std::istream & operator >> (std::istream &s,Vector<T> &v)
 { return v.input(s); }
 #endif

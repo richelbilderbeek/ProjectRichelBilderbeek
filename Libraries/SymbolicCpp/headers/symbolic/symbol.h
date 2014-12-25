@@ -25,7 +25,7 @@
 
 #include <list>
 #include <string>
-using namespace std;
+
 
 #ifdef  SYMBOLIC_FORWARD
 #ifndef SYMBOLIC_CPLUSPLUS_SYMBOL_FORWARD
@@ -43,15 +43,15 @@ class UniqueSymbol;
 
 class Symbol: public CloningSymbolicInterface
 {
- public: string name;
-         list<Symbolic> parameters;
+ public: std::string name;
+         std::list<Symbolic> parameters;
          int commutes;
          Symbol(const Symbol&);
-         Symbol(const string&,int = 1);
+         Symbol(const std::string&,int = 1);
          Symbol(const char*,int = 1);
          ~Symbol();
 
-         void print(ostream&) const;
+         void print(std::ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
@@ -60,12 +60,12 @@ class Symbol: public CloningSymbolicInterface
          Symbolic coeff(const Symbolic&) const;
          Expanded expand() const;
          int commute(const Symbolic&) const;
-         PatternMatches match(const Symbolic&, const list<Symbolic>&) const;
+         PatternMatches match(const Symbolic&, const std::list<Symbolic>&) const;
          PatternMatches match_parts(const Symbolic&,
-                                    const list<Symbolic>&) const;
+                                    const std::list<Symbolic>&) const;
 
          Symbol operator[](const Symbolic&) const;
-	 Symbol operator[](const list<Symbolic> &l) const;
+	 Symbol operator[](const std::list<Symbolic> &l) const;
          Symbol commutative(int=0) const;
          Symbol operator~() const;
 
@@ -82,7 +82,7 @@ class UniqueSymbol: public Symbol
          ~UniqueSymbol();
          UniqueSymbol& operator=(const UniqueSymbol&) = delete;
 
-         void print(ostream&) const;
+         void print(std::ostream&) const;
          int compare(const Symbolic&) const;
 
          Cloning *clone() const { return Cloning::clone(*this); }
@@ -106,15 +106,15 @@ Symbol::Symbol(const Symbol &s)
 : CloningSymbolicInterface(s),
   name(s.name), parameters(s.parameters), commutes(s.commutes) {}
 
-Symbol::Symbol(const string &s,int c) : name(s), parameters(), commutes(c) {}
+Symbol::Symbol(const std::string &s,int c) : name(s), parameters(), commutes(c) {}
 
 Symbol::Symbol(const char *s,int c)   : name(s), parameters(), commutes(c) {}
 
 Symbol::~Symbol() {}
 
-void Symbol::print(ostream &o) const
+void Symbol::print(std::ostream &o) const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
  o << name;
  if(!parameters.empty())
  {
@@ -133,7 +133,7 @@ Symbolic Symbol::subst(const Symbolic &x,const Symbolic &y,int &n) const
   ++n;
   return y;
  }
- list<Symbolic>::iterator i;
+ std::list<Symbolic>::iterator i;
  // make a copy of *this
  CastPtr<Symbol> s(*this);
  for(i=s->parameters.begin();i!=s->parameters.end();++i)
@@ -146,7 +146,7 @@ Symbolic Symbol::subst(const Symbolic &x,const Symbolic &y,int &n) const
 
 Simplified Symbol::simplify() const
 {
- list<Symbolic>::iterator i;
+ std::list<Symbolic>::iterator i;
  // make a copy of *this
  CastPtr<Symbol> sym(*this);
 
@@ -158,8 +158,8 @@ Simplified Symbol::simplify() const
 
 int Symbol::compare(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
- list<Symbolic>::const_iterator j;
+ std::list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator j;
 
  if(s.type() != type()) return 0;
  CastPtr<const Symbol> sym = s;
@@ -174,7 +174,7 @@ int Symbol::compare(const Symbolic &s) const
 
 Symbolic Symbol::df(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
 
  if(*this == s) return 1;
 
@@ -187,7 +187,7 @@ Symbolic Symbol::df(const Symbolic &s) const
 
 Symbolic Symbol::integrate(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
 
  if(*this == s) return (s^2)/2;
 
@@ -207,7 +207,7 @@ Expanded Symbol::expand() const
 {
  // make a copy of *this
  CastPtr<Symbol> r(*this);
- list<Symbolic>::iterator i;
+ std::list<Symbolic>::iterator i;
  for(i=r->parameters.begin();i!=r->parameters.end();++i)
   *i = i->expand();
  return *r;
@@ -215,7 +215,7 @@ Expanded Symbol::expand() const
 
 int Symbol::commute(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
 
  if(*this == s) return 1;
  for(i=parameters.begin();i!=parameters.end();++i)
@@ -227,7 +227,7 @@ int Symbol::commute(const Symbolic &s) const
    if(!commute(*i)) return 0;
   return cp->commutes || commutes;
  }
- catch(bad_cast) {}
+ catch(std::bad_cast) {}
  
  if(s.type() == typeid(SymbolicMatrix))
   return commutes;
@@ -236,10 +236,10 @@ int Symbol::commute(const Symbolic &s) const
 }
 
 PatternMatches
-Symbol::match(const Symbolic &s, const list<Symbolic> &p) const
+Symbol::match(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l;
- list<Symbolic>::const_iterator i, j;
+ std::list<Symbolic>::const_iterator i, j;
 
  if((type() == typeid(Symbol) || type() == typeid(UniqueSymbol))
     && find(p.begin(), p.end(), *this) != p.end())
@@ -268,10 +268,10 @@ Symbol::match(const Symbolic &s, const list<Symbolic> &p) const
 }
 
 PatternMatches
-Symbol::match_parts(const Symbolic &s, const list<Symbolic> &p) const
+Symbol::match_parts(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l = s.match(*this, p);
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
 
  for(i=parameters.begin();i!=parameters.end();++i)
  {
@@ -286,8 +286,8 @@ Symbol::match_parts(const Symbolic &s, const list<Symbolic> &p) const
 Symbol Symbol::operator[](const Symbolic &s) const
 {
  if(type() != typeid(Symbol))
-  cerr << "Warning: " << *this << " [" << s
-       << "] discards any methods which have been overridden." << endl;
+  std::cerr << "Warning: " << *this << " [" << s
+       << "] discards any methods which have been overridden." << std::endl;
  Symbol r(*this);
  r.parameters.push_back(s);
  return r;
@@ -296,11 +296,11 @@ Symbol Symbol::operator[](const Symbolic &s) const
 // this should not be used with the functions cos, exp etc.
 // since the override on simplification and other methods
 // will be lost
-Symbol Symbol::operator[](const list<Symbolic> &l) const
+Symbol Symbol::operator[](const std::list<Symbolic> &l) const
 {
  if(type() != typeid(Symbol))
-  cerr << "Warning: " << *this << " [..."
-       << "] discards any methods which have been overridden." << endl;
+  std::cerr << "Warning: " << *this << " [..."
+       << "] discards any methods which have been overridden." << std::endl;
  Symbol r(*this);
  r.parameters.insert(r.parameters.end(),l.begin(),l.end());
  return r;
@@ -312,8 +312,8 @@ Symbol Symbol::operator[](const list<Symbolic> &l) const
 Symbol Symbol::commutative(int c) const
 {
  if(type() != typeid(Symbol))
-  cerr << "Warning: " << *this << " .commutative(" << c
-       << ") discards any methods which have been overridden." << endl;
+  std::cerr << "Warning: " << *this << " .commutative(" << c
+       << ") discards any methods which have been overridden." << std::endl;
  Symbol r(*this);
  r.commutes = c;
  return r;
@@ -337,7 +337,7 @@ UniqueSymbol::UniqueSymbol(const Symbol &s) : Symbol(s), p(new int(1)) {}
 UniqueSymbol::~UniqueSymbol()
 { if(--(*p) == 0) delete p; }
 
-void UniqueSymbol::print(ostream &o) const
+void UniqueSymbol::print(std::ostream &o) const
 { o << "c@" << p; }
 
 int UniqueSymbol::compare(const Symbolic &s) const

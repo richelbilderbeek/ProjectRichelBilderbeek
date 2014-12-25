@@ -32,7 +32,7 @@
 #include <utility>
 #include "identity.h"
 #include "vector.h"
-using namespace std;
+
 
 // definition of class Matrix
 template <class T> class Matrix
@@ -95,10 +95,10 @@ template <class T> class Matrix
       Matrix<T> kron(const Matrix<T>&) const;
       Matrix<T> dsum(const Matrix<T>&) const;
       Matrix<T> hadamard(const Matrix<T>&) const;
-      pair<Matrix<T>, Matrix<T> > LU() const;
+      std::pair<Matrix<T>, Matrix<T> > LU() const;
 
-      ostream &output(ostream&) const;
-      istream &input(istream&);
+      std::ostream &output(std::ostream&) const;
+      std::istream &input(std::istream&);
 };
 
 template <class T> T tr(const Matrix<T> &m) { return m.trace(); }
@@ -458,7 +458,7 @@ Matrix<T> hadamard(const Matrix<T> &s,const Matrix<T> &m)
 { return s.hadamard(m); }
 
 template <class T>
-pair<Matrix<T>, Matrix<T> > Matrix<T>::LU() const
+std::pair<Matrix<T>, Matrix<T> > Matrix<T>::LU() const
 {
  assert(rowNum == colNum);
  Matrix<T> L(rowNum,colNum,zero(T()));
@@ -480,7 +480,7 @@ pair<Matrix<T>, Matrix<T> > Matrix<T>::LU() const
 }
 
 template <class T>
-pair<Matrix<T>, Matrix<T> > LU(const Matrix<T> &m)
+std::pair<Matrix<T>, Matrix<T> > LU(const Matrix<T> &m)
 { return m.LU(); }
 
 template <class T> 
@@ -496,19 +496,19 @@ template <class T>
 int operator != (const Matrix<T> &m1,const Matrix<T> &m2)
 { return !(m1==m2); }
 
-template <class T> ostream & Matrix<T>::output(ostream &s) const
+template <class T> std::ostream & Matrix<T>::output(std::ostream &s) const
 {
    int t = colNum-1, maxwidth=0, i, j, k, l;
-   vector<string> m(rowNum*colNum);
+   std::vector<std::string> m(rowNum*colNum);
    for(i=0,k=0;i<rowNum;i++)
    {
       for(j=0;j<colNum;j++,k++)
       {
-       // strore the string representation for each
+       // strore the std::string representation for each
        // element so that we can compute the maximum
-       // string length and then center each element
+       // std::string length and then center each element
        // in its column
-       ostringstream os;
+       std::ostringstream os;
        os << mat[i][j];
        m[k] = os.str();
        if(maxwidth < (int)m[k].length()) maxwidth = m[k].length();
@@ -519,27 +519,27 @@ template <class T> ostream & Matrix<T>::output(ostream &s) const
       s << "[";
       for(j=0;j<t;j++,k++)
       {
-       // add spaces around the string to center it
+       // add spaces around the std::string to center it
        l = maxwidth-m[k].length();
        if(l%2) m[k] = " " + m[k];
        for(l=l/2;l>0;l--) m[k] = " " + m[k] + " ";
-       // output the centered string
+       // output the centered std::string
        s << m[k] << " ";
       }
-      // add spaces around the string to center it
+      // add spaces around the std::string to center it
       l = maxwidth-m[k].length();
       if(l%2) m[k] = " " + m[k];
       for(l=l/2;l>0;l--) m[k] = " " + m[k] + " ";
-      // output the centered string
-      s << m[k++] << "]" << endl;
+      // output the centered std::string
+      s << m[k++] << "]" << std::endl;
    }
    return s;
 }
 
-template <class T> ostream & operator << (ostream &s,const Matrix<T> &m)
+template <class T> std::ostream & operator << (std::ostream &s,const Matrix<T> &m)
 { return m.output(s); }
 
-template <class T> istream & Matrix<T>::input(istream &s)
+template <class T> std::istream & Matrix<T>::input(std::istream &s)
 {
    int i, j, num1, num2;
    s.clear();                 // set stream state to good
@@ -554,13 +554,13 @@ template <class T> istream & Matrix<T>::input(istream &s)
          s >> mat[i][j];
          if(! s.good())
          {
-            s.clear(s.rdstate() | ios::badbit);
+            s.clear(s.rdstate() | std::ios::badbit);
             return s;
          }
       }
    return s;
 }
 
-template <class T> istream & operator >> (istream &s,Matrix<T> &m)
+template <class T> std::istream & operator >> (std::istream &s,Matrix<T> &m)
 { return m.input(s); }
 #endif

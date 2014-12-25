@@ -25,7 +25,7 @@
 
 #include <list>
 
-using namespace std;
+
 
 #ifdef  SYMBOLIC_FORWARD
 #ifndef SYMBOLIC_CPLUSPLUS_EQUATION_FORWARD
@@ -43,13 +43,13 @@ class Equation;
 class Equation: public CloningSymbolicInterface
 {
  public: Symbolic lhs, rhs;
-	 list<Symbolic> free;
+	 std::list<Symbolic> free;
          Equation(const Equation&);
          Equation(const Equation&, const Symbolic &);
          Equation(const Symbolic&,const Symbolic&);
          ~Equation();
 
-         void print(ostream&) const;
+         void print(std::ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
@@ -58,9 +58,9 @@ class Equation: public CloningSymbolicInterface
          Symbolic coeff(const Symbolic&) const;
          Expanded expand() const;
          int commute(const Symbolic&) const;
-         PatternMatches match(const Symbolic&, const list<Symbolic>&) const;
+         PatternMatches match(const Symbolic&, const std::list<Symbolic>&) const;
          PatternMatches match_parts(const Symbolic&,
-                                    const list<Symbolic>&) const;
+                                    const std::list<Symbolic>&) const;
 
          operator bool() const;
          operator int() const;
@@ -90,7 +90,7 @@ Equation::Equation(const Symbolic &s1,const Symbolic &s2)
 
 Equation::~Equation() {}
 
-void Equation::print(ostream &o) const
+void Equation::print(std::ostream &o) const
 { o << lhs << " == " << rhs; }
 
 Symbolic Equation::subst(const Symbolic &x,const Symbolic &y,int &n) const
@@ -124,7 +124,7 @@ int Equation::commute(const Symbolic &) const
 { return 0; }
 
 PatternMatches
-Equation::match(const Symbolic &s, const list<Symbolic> &p) const
+Equation::match(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l;
 
@@ -140,7 +140,7 @@ Equation::match(const Symbolic &s, const list<Symbolic> &p) const
 }
 
 PatternMatches
-Equation::match_parts(const Symbolic &s, const list<Symbolic> &p) const
+Equation::match_parts(const Symbolic &s, const std::list<Symbolic> &p) const
 { return s.match(*this, p); }
 
 Equation::operator bool() const

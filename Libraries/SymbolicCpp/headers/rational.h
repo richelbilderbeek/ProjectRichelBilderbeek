@@ -32,7 +32,7 @@
 #include <vector>
 #include <ctype.h>
 #include "identity.h"
-using namespace std;
+
 
 template <class T>
 class Rational
@@ -56,7 +56,7 @@ class Rational
       Rational(T);
       Rational(T,T);
       Rational(const Rational<T>&);
-      Rational(const string&);
+      Rational(const std::string&);
       Rational(const double&);
       ~Rational();
 
@@ -95,8 +95,8 @@ class Rational
       int operator <= (const Rational<T>&) const;
 
       // I/O stream functions
-      ostream &output(ostream&) const;
-      istream &input(istream&);
+      std::ostream &output(std::ostream&) const;
+      std::istream &input(std::istream&);
 
       static void output_style(output_type);
 };
@@ -115,7 +115,7 @@ template <class T> Rational<T>::Rational (T N, T D) : p(N),q(D)
 {
    if(D==zero(T()))
    {
-      cerr << "Zero denominator in Rational Number " << endl;
+      std::cerr << "Zero denominator in Rational Number " << std::endl;
       return;
    }
    if(q < zero(T())) {p = -p; q = -q;}
@@ -125,17 +125,17 @@ template <class T> Rational<T>::Rational (T N, T D) : p(N),q(D)
 template <class T> Rational<T>::Rational(const Rational<T> &r) 
    : p(r.p), q(r.q) {}
 
-// for a string "a" or "a/b" or "a.b"
+// for a std::string "a" or "a/b" or "a.b"
 // spaces are allowed for "a / b"
-template <class T> Rational<T>::Rational(const string &s)
+template <class T> Rational<T>::Rational(const std::string &s)
 {
-  string s1 = s;
-  string::size_type fraction, decimal, space;
+  std::string s1 = s;
+  std::string::size_type fraction, decimal, space;
   p = zero(T());
   q = one(T());
   // erase spaces
   space = s1.find(" ");
-  while(space != string::npos)
+  while(space != std::string::npos)
   {
    s1.erase(space, 1);
    space = s1.find(" ");
@@ -143,32 +143,32 @@ template <class T> Rational<T>::Rational(const string &s)
   fraction = s1.find("/");
   decimal = s1.find(".");
 
-  if(fraction != string::npos)
+  if(fraction != std::string::npos)
   {
-   istringstream istr(s1.substr(0,fraction));
+   std::istringstream istr(s1.substr(0,fraction));
    istr >> p;
    // the following line allows 1/2/3 == 1/6
    *this /= Rational<T>(s1.substr(fraction+1));
   }
-  else if(decimal != string::npos)
+  else if(decimal != std::string::npos)
   {
-   string s2 = s1.substr(decimal+1);
+   std::string s2 = s1.substr(decimal+1);
    int power = s2.length(); // 10^power in denomenator
    // change aaa.bbbb -> aaa + bbbb/10000
    while(s2[0] == '0') s2.erase(0,1);
-   *this += Rational<T>(s2 + "/" + "1" + string(power, '0'));
+   *this += Rational<T>(s2 + "/" + "1" + std::string(power, '0'));
   }
   else
   {
-   istringstream istr(s1);
+   std::istringstream istr(s1);
    istr >> p;
   }
 }
 
 template <class T> Rational<T>::Rational(const double &d)
 {
- static int base = numeric_limits<double>::radix;
- static vector<Rational<T> > digits(0);
+ static int base = std::numeric_limits<double>::radix;
+ static std::vector<Rational<T> > digits(0);
  static Rational<T> rbase("0");
  Rational<T> rint("0"), rfrac("0"), rfact;
  double integer, fraction;
@@ -325,7 +325,7 @@ int Rational<T>::operator <= (const Rational<T> &r2) const
 { return (*this<r2) || (*this==r2); }
 
 template <class T> 
-ostream & Rational<T>::output(ostream &s) const
+std::ostream & Rational<T>::output(std::ostream &s) const
 {  
    switch(output_preference)
    {
@@ -337,21 +337,21 @@ ostream & Rational<T>::output(ostream &s) const
        return s << double(*this);
        break;
      default:
-       cerr << "Unknown output stylei in Rational::output." << endl;
+       std::cerr << "Unknown output stylei in Rational::output." << std::endl;
        return s;
        break;
    }
 }
 
 template <class T> 
-ostream & operator << (ostream &s,const Rational<T> &r)
+std::ostream & operator << (std::ostream &s,const Rational<T> &r)
 { return r.output(s); }
 
 template <class T> 
-istream & Rational<T>::input(istream &s)
+std::istream & Rational<T>::input(std::istream &s)
 {  
    char c;
-   T    n, d(one(T()));
+   T n, d(one(T()));
    s.clear();                 // set stream state to good
    s >> n;                    // read numerator
    if(! s.good()) return s;  // can't get an integer, just return
@@ -362,7 +362,7 @@ istream & Rational<T>::input(istream &s)
       s >> d;                 // read denominator
       if(! s.good())
       {
-         s.clear(s.rdstate() | ios::badbit);
+         s.clear(s.rdstate() | std::ios::badbit);
          return s;
       }
    }
@@ -371,7 +371,7 @@ istream & Rational<T>::input(istream &s)
 }
 
 template <class T> 
-istream & operator >> (istream &s,Rational<T> &r)
+std::istream & operator >> (std::istream &s,Rational<T> &r)
 { return r.input(s); }
 
 template <class T>

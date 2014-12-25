@@ -34,13 +34,13 @@
 #include <limits>
 #include <string>
 #include "identity.h"
-using namespace std;
+
 
 class Verylong
 {
    private:
       // Data Fields
-      string vlstr;     // The string is stored in reverse order.
+      std::string vlstr;     // The std::string is stored in reverse order.
       int    vlsign;    // Sign of Verylong: +=>0; -=>1
 
       // Private member functions
@@ -49,7 +49,7 @@ class Verylong
 
    public:
       // Constructors and destructor
-      Verylong(const string& = "0");
+      Verylong(const std::string& = "0");
       Verylong(int);
       Verylong(const Verylong&);
       ~Verylong();
@@ -57,7 +57,7 @@ class Verylong
       // Conversion operators
       operator int () const;
       operator double () const;
-      operator string () const;
+      operator std::string () const;
 
       // Arithmetic operators and Relational operators
       const Verylong & operator = (const Verylong&);  // assignment operator
@@ -98,8 +98,8 @@ class Verylong
       static const Verylong two;
 
       // I/O stream functions
-      friend ostream & operator << (ostream&,const Verylong&);
-      friend istream & operator >> (istream&,Verylong&);
+      friend std::ostream & operator << (std::ostream&,const Verylong&);
+      friend std::istream & operator >> (std::istream&,Verylong&);
 };
 
 #define LIBSYMBOLICCPLUSPLUS
@@ -114,9 +114,9 @@ const Verylong Verylong::two = Verylong("2");
 
 // Constructors, Destructors and Conversion operators.
 
-Verylong::Verylong(const string &value) : vlstr{""}, vlsign{-1}
+Verylong::Verylong(const std::string &value) : vlstr{""}, vlsign{-1}
 {
-   string s = (value == "") ? "0" : value;
+   std::string s = (value == "") ? "0" : value;
 
    vlsign = (s[0] == '-') ? 1:0;        // check for negative sign
    if(ispunct(s[0]))                    // if the first character
@@ -135,7 +135,7 @@ Verylong::Verylong(int n) : vlstr{""}, vlsign{-1}
        vlstr = char(n%10 + '0') + vlstr;
        n /= 10;
      }
-   else vlstr = string("0"); // else number is zero
+   else vlstr = std::string("0"); // else number is zero
 }
 
 Verylong::Verylong(const Verylong &x) : vlstr(x.vlstr),vlsign(x.vlsign) { }
@@ -145,19 +145,19 @@ Verylong::~Verylong() { }
 Verylong::operator int() const
 {
    int number, factor = 1;
-   static Verylong max0(numeric_limits<int>::max());
-   static Verylong min0(numeric_limits<int>::min()+1);
-   string::const_reverse_iterator j=vlstr.rbegin();
+   static Verylong max0(std::numeric_limits<int>::max());
+   static Verylong min0(std::numeric_limits<int>::min()+1);
+   std::string::const_reverse_iterator j=vlstr.rbegin();
 
    if(*this > max0)
    {
-     cerr << "Error: Conversion Verylong->integer is not possible" << endl;
-     return numeric_limits<int>::max();
+     std::cerr << "Error: Conversion Verylong->integer is not possible" << std::endl;
+     return std::numeric_limits<int>::max();
    }
    else if(*this < min0)
    {
-     cerr << "Error: Conversion Verylong->integer is not possible" << endl;
-     return numeric_limits<int>::min();
+     std::cerr << "Error: Conversion Verylong->integer is not possible" << std::endl;
+     return std::numeric_limits<int>::min();
    }
 
    number = *j - '0';
@@ -175,7 +175,7 @@ Verylong::operator int() const
 Verylong::operator double() const
 {
    double sum, factor = 1.0;
-   string::const_reverse_iterator i = vlstr.rbegin();
+   std::string::const_reverse_iterator i = vlstr.rbegin();
 
    sum = double(*i) - '0';
    for(i++;i!=vlstr.rend();i++)
@@ -187,9 +187,9 @@ Verylong::operator double() const
    return sum;
 }
 
-Verylong::operator string () const
+Verylong::operator std::string () const
 {
-   if(vlstr.length() == 0) return string("0");
+   if(vlstr.length() == 0) return std::string("0");
    return vlstr;
 }
 
@@ -263,8 +263,8 @@ Verylong Verylong::operator %= (const Verylong &v)
 Verylong operator + (const Verylong &u,const Verylong &v)
 {
     char digitsum, d1, d2, carry = 0;
-    string temp;
-    string::const_reverse_iterator j, k;
+    std::string temp;
+    std::string::const_reverse_iterator j, k;
 
     if(u.vlsign ^ v.vlsign)
     {
@@ -291,8 +291,8 @@ Verylong operator - (const Verylong &u,const Verylong &v)
 {
     char d, d1, d2, borrow = 0;
     int negative;
-    string temp, temp2;
-    string::reverse_iterator i, j;
+    std::string temp, temp2;
+    std::string::reverse_iterator i, j;
     if(u.vlsign ^ v.vlsign)
     {
       if(u.vlsign == 0) return u+abs(v);
@@ -325,7 +325,7 @@ Verylong operator - (const Verylong &u,const Verylong &v)
 Verylong operator * (const Verylong &u,const Verylong &v)
 {
     Verylong pprod("1"), tempsum("0");
-    string::const_reverse_iterator r = v.vlstr.rbegin();
+    std::string::const_reverse_iterator r = v.vlstr.rbegin();
 
     for(int j=0;r!=v.vlstr.rend();j++,r++)
     {
@@ -342,12 +342,12 @@ Verylong operator * (const Verylong &u,const Verylong &v)
 Verylong operator / (const Verylong &u,const Verylong &v)
 {
     int len = u.vlstr.length() - v.vlstr.length();
-    string temp;
+    std::string temp;
     Verylong w,y,b,c,d,quotient=Verylong::zero;
 
     if(v == Verylong::zero) 
     {
-      cerr << "Error : division by zero" << endl;
+      std::cerr << "Error : division by zero" << std::endl;
       return Verylong::zero;
     }
 
@@ -418,11 +418,11 @@ Verylong abs(const Verylong &v)
 Verylong sqrt(const Verylong &v)
 {
    // if v is negative, error is reported
-   if(v.vlsign) {cerr << "NaN" << endl; return Verylong::zero; }
+   if(v.vlsign) { std::cerr << "NaN" << std::endl; return Verylong::zero; }
 
    int j, k = v.vlstr.length()+1, num = k >> 1;
    Verylong y, z, sum, tempsum, digitsum;
-   string temp, w(v.vlstr);
+   std::string temp, w(v.vlstr);
 
    k = 0;
    j = 1;
@@ -490,11 +490,11 @@ double div(const Verylong &u,const Verylong &v)
    Verylong w,y,b,c;
    int d, count;
    // number of significant digits
-   int decno = numeric_limits<double>::digits;
+   int decno = std::numeric_limits<double>::digits;
 
    if(v == Verylong::zero) 
    {
-     cerr << "ERROR : Division by zero" << endl;
+     std::cerr << "ERROR : Division by zero" << std::endl;
      return 0.0;
    }
    if(u == Verylong::zero) return 0.0;
@@ -503,7 +503,7 @@ double div(const Verylong &u,const Verylong &v)
    while(w<y) { w = w.mult10(1); qqscale *= 0.1; }
 
    int len = w.vlstr.length() - y.vlstr.length();
-   string temp = w.vlstr.substr(0,w.vlstr.length()-len);
+   std::string temp = w.vlstr.substr(0,w.vlstr.length()-len);
    c = Verylong(temp);
 
    for(int i=0;i<=len;i++)
@@ -534,16 +534,16 @@ double div(const Verylong &u,const Verylong &v)
    return qq;
 }
 
-ostream & operator << (ostream &s,const Verylong &v)
+std::ostream & operator << (std::ostream &s,const Verylong &v)
 {
     if(v.vlstr.length() > 0) { if(v.vlsign) s << "-"; s << v.vlstr; }
     else s << "0";
     return s;
 }
 
-istream & operator >> (istream &s,Verylong &v)
+std::istream & operator >> (std::istream &s,Verylong &v)
 {
-   string temp(10000, ' ');
+   std::string temp(10000, ' ');
    s >> temp;
    v = Verylong(temp);
    return s;
@@ -556,11 +556,11 @@ istream & operator >> (istream &s,Verylong &v)
 Verylong Verylong::multdigit(int num) const
 {
     int carry = 0;
-    string::const_reverse_iterator r;
+    std::string::const_reverse_iterator r;
 
     if(num)
     {
-      string temp;
+      std::string temp;
       for(r=vlstr.rbegin();r!=vlstr.rend();r++)
       {
         int d1 = *r - '0',               // get digit and multiplied by
@@ -571,7 +571,7 @@ Verylong Verylong::multdigit(int num) const
           digitprod -= carry*10;         // result is low digit
         }
         else carry = 0;                  // otherwise carry is 0
-        temp = char(digitprod + '0') + temp;   // insert char in string
+        temp = char(digitprod + '0') + temp;   // insert char in std::string
        }
        if(carry) temp = char(carry + '0') + temp; //if carry at end,
        Verylong result(temp);
@@ -585,7 +585,7 @@ Verylong Verylong::mult10(int num) const
 {
     if(*this != zero)
     {
-      string temp;
+      std::string temp;
       for(int j=0;j<num;j++) temp = temp + '0';
       Verylong result(vlstr+temp);
       if(vlsign) result = -result;

@@ -24,7 +24,7 @@
 #ifndef SYMBOLIC_CPLUSPLUS_FUNCTIONS
 
 #include <cmath>
-using namespace std;
+
 
 #ifdef  SYMBOLIC_FORWARD
 #ifndef SYMBOLIC_CPLUSPLUS_FUNCTIONS_FORWARD
@@ -111,7 +111,7 @@ class Log: public Symbol
  public: Log(const Log&);
          Log(const Symbolic&, const Symbolic&);
 
-         void print(ostream&) const;
+         void print(std::ostream&) const;
          Simplified simplify() const;
          Symbolic df(const Symbolic&) const;
          Symbolic integrate(const Symbolic&) const;
@@ -124,13 +124,13 @@ class Power: public Symbol
  public: Power(const Power&);
          Power(const Symbolic&,const Symbolic&);
 
-         void print(ostream&) const;
+         void print(std::ostream&) const;
          Simplified simplify() const;
          Expanded expand() const;
          Symbolic subst(const Symbolic &x,const Symbolic &y,int &n) const;
          Symbolic df(const Symbolic&) const;
          Symbolic integrate(const Symbolic&) const;
-         PatternMatches match_parts(const Symbolic &s, const list<Symbolic>&) const;
+         PatternMatches match_parts(const Symbolic &s, const std::list<Symbolic>&) const;
 
          Cloning *clone() const { return Cloning::clone(*this); }
 };
@@ -437,7 +437,7 @@ Log::Log(const Log &s) : Symbol(s) {}
 Log::Log(const Symbolic &s1,const Symbolic &s2)
 : Symbol(Symbol("log")[s1,s2]) {}
 
-void Log::print(ostream &o) const
+void Log::print(std::ostream &o) const
 {
  if(parameters.size() == 2 && parameters.front() == SymbolicConstant::e)
  {
@@ -501,7 +501,7 @@ Power::Power(const Power &s) : Symbol(s) {}
 Power::Power(const Symbolic &s,const Symbolic &p) : Symbol("pow")
 { parameters.push_back(s); parameters.push_back(p); }
 
-void Power::print(ostream &o) const
+void Power::print(std::ostream &o) const
 {
   if(*this == SymbolicConstant::i)
   { o << SymbolicConstant::i_symbol; return; }
@@ -533,7 +533,7 @@ void Power::print(ostream &o) const
 
 Simplified Power::simplify() const
 {
- list<Symbolic>::iterator i, j;
+ std::list<Symbolic>::iterator i, j;
  const Symbolic &b = parameters.front().simplify();
  const Symbolic &n = parameters.back().simplify();
  if(n == 0) return Number<int>(1);
@@ -615,7 +615,7 @@ Expanded Power::expand() const
  {
   CastPtr<const Sum> s(*n);
   Product p;
-  list<Symbolic>::const_iterator k, k1;
+  std::list<Symbolic>::const_iterator k, k1;
   for(k=s->summands.begin();k!=s->summands.end();++k)
    for(++(k1=k);k1!=s->summands.end();++k1)
     if(!k->commute(*k1)) return Power(b,n);
@@ -629,7 +629,7 @@ Expanded Power::expand() const
  {
   CastPtr<const Product> p(*b);
   Product r;
-  list<Symbolic>::const_iterator k, k1;
+  std::list<Symbolic>::const_iterator k, k1;
   for(k=p->factors.begin();k!=p->factors.end();++k)
    for(++(k1=k);k1!=p->factors.end();++k1)
     if(!k->commute(*k1)) return Power(b,n);
@@ -709,7 +709,7 @@ Symbolic Power::integrate(const Symbolic &s) const
 }
 
 PatternMatches
-Power::match_parts(const Symbolic &s, const list<Symbolic> &p) const
+Power::match_parts(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l;
  if(s.type() == typeid(Power))
@@ -767,8 +767,8 @@ Symbolic Derivative::subst(const Symbolic &x,const Symbolic &y,int &n) const
 {
  if(*this == x) return y;
 
- list<Symbolic>::const_iterator i;
- list<Symbolic>::iterator j;
+ std::list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::iterator j;
 
  if(x.type() == type() &&
     parameters.front() == CastPtr<const Derivative>(x)->parameters.front())
@@ -815,7 +815,7 @@ Symbolic Derivative::subst(const Symbolic &x,const Symbolic &y,int &n) const
 
 Symbolic Derivative::df(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
 
  if(parameters.front().type() == typeid(Symbol))
  {
@@ -839,8 +839,8 @@ Symbolic Derivative::df(const Symbolic &s) const
 
 int Derivative::compare(const Symbolic &s) const
 {
- list<Symbolic>::const_iterator i;
- list<Symbolic>::iterator j;
+ std::list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::iterator j;
 
  if(s.type() != type()) return 0;
  // make a copy of s
@@ -860,8 +860,8 @@ int Derivative::compare(const Symbolic &s) const
 Symbolic Derivative::integrate(const Symbolic &s) const
 {
  int n = 0, n1;
- list<Symbolic>::const_iterator i, i1 = parameters.end();
- list<Symbolic>::iterator j;
+ std::list<Symbolic>::const_iterator i, i1 = parameters.end();
+ std::list<Symbolic>::iterator j;
 
  for(i=parameters.begin();i!=parameters.end();++i,++n)
   if(*i == s) { i1 = i; n1 = n; }
@@ -904,7 +904,7 @@ Symbolic Integral::subst(const Symbolic &x,const Symbolic &y,int &n) const
 {
  if(*this == x) { ++n; return y; }
 
- list<Symbolic>::const_iterator i = parameters.begin();
+ std::list<Symbolic>::const_iterator i = parameters.begin();
  Symbolic dy = i->subst(x,y,n);
  for(++i;i!=parameters.end();++i)
   dy = ::integrate(dy, i->subst(x,y,n));
@@ -914,8 +914,8 @@ Symbolic Integral::subst(const Symbolic &x,const Symbolic &y,int &n) const
 Symbolic Integral::df(const Symbolic &s) const
 {
  int n = 0, n1;
- list<Symbolic>::const_iterator i, i1 = parameters.end();
- list<Symbolic>::iterator j;
+ std::list<Symbolic>::const_iterator i, i1 = parameters.end();
+ std::list<Symbolic>::iterator j;
 
  for(i=parameters.begin();i!=parameters.end();++i,++n)
   if(*i == s) { i1 = i; n1 = n; }

@@ -26,7 +26,7 @@
 #include <iostream>
 #include <typeinfo>
 #include <list>
-using namespace std;
+
 
 #ifdef  SYMBOLIC_FORWARD
 #ifndef SYMBOLIC_CPLUSPLUS_SYMBOLIC_FORWARD
@@ -53,8 +53,8 @@ class SymbolicInterface
          SymbolicInterface(const SymbolicInterface&);
          virtual ~SymbolicInterface();
 
-         virtual void print(ostream&) const = 0;
-         virtual const type_info &type() const;
+         virtual void print(std::ostream&) const = 0;
+         virtual const std::type_info &type() const;
          virtual Symbolic subst(const Symbolic&,
                                 const Symbolic&,int &n) const = 0;
          virtual Simplified simplify() const = 0;
@@ -66,10 +66,10 @@ class SymbolicInterface
          virtual int commute(const Symbolic&) const = 0;
          // match *this (as a pattern) against an expression
          virtual PatternMatches match(const Symbolic&,
-                                      const list<Symbolic>&) const = 0;
+                                      const std::list<Symbolic>&) const = 0;
          // match parts of *this (as an expression) against a pattern
          virtual PatternMatches match_parts(const Symbolic&,
-                                            const list<Symbolic>&) const = 0;
+                                            const std::list<Symbolic>&) const = 0;
 };
 
 class CloningSymbolicInterface : public SymbolicInterface, public Cloning
@@ -86,8 +86,8 @@ class SymbolicProxy: public SymbolicInterface,
          SymbolicProxy(const Number<void>&);
          SymbolicProxy();
 
-         void print(ostream&) const;
-         const type_info &type() const;
+         void print(std::ostream&) const;
+         const std::type_info &type() const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
@@ -96,9 +96,9 @@ class SymbolicProxy: public SymbolicInterface,
          Symbolic coeff(const Symbolic&) const;
          Expanded expand() const;
          int commute(const Symbolic&) const;
-         PatternMatches match(const Symbolic&, const list<Symbolic>&) const;
+         PatternMatches match(const Symbolic&, const std::list<Symbolic>&) const;
          PatternMatches match_parts(const Symbolic&,
-                                      const list<Symbolic>&) const;
+                                      const std::list<Symbolic>&) const;
 
          SymbolicProxy &operator=(const CloningSymbolicInterface&);
          SymbolicProxy &operator=(const SymbolicProxy&);
@@ -130,30 +130,30 @@ class Symbolic: public SymbolicProxy
          Symbolic(const Number<void>&);
          Symbolic(const int&);
          Symbolic(const double&);
-         Symbolic(const string&);
+         Symbolic(const std::string&);
          Symbolic(const char*);
-         Symbolic(const string&,int);
+         Symbolic(const std::string&,int);
          Symbolic(const char*,int);
          Symbolic(const Symbolic&,int);
-         Symbolic(const string&,int,int);
+         Symbolic(const std::string&,int,int);
          Symbolic(const char*,int,int);
          Symbolic(const Symbolic&,int,int);
-         Symbolic(const list<Symbolic>&);
-         Symbolic(const list<list<Symbolic> >&);
+         Symbolic(const std::list<Symbolic>&);
+         Symbolic(const std::list<std::list<Symbolic> >&);
          ~Symbolic();
 
          SymbolicProxy &operator=(const CloningSymbolicInterface&);
          SymbolicProxy &operator=(const SymbolicProxy&);
          SymbolicProxy &operator=(const int&);
          SymbolicProxy &operator=(const double&);
-         SymbolicProxy &operator=(const string&);
+         SymbolicProxy &operator=(const std::string&);
          SymbolicProxy &operator=(const char*);
-         SymbolicProxy &operator=(const list<Symbolic>&);
-         SymbolicProxy &operator=(const list<list<Symbolic> >&);
+         SymbolicProxy &operator=(const std::list<Symbolic>&);
+         SymbolicProxy &operator=(const std::list<std::list<Symbolic> >&);
          Symbolic operator[](const Equation&) const;
          Symbolic operator[](const Equations&) const;
          Symbolic operator[](const Symbolic&) const;
-         Symbolic operator[](const list<Symbolic>&) const;
+         Symbolic operator[](const std::list<Symbolic>&) const;
          Symbolic &operator()(int);
          Symbolic &operator()(int,int);
          const Symbolic &operator()(int) const;
@@ -221,7 +221,7 @@ SymbolicInterface::SymbolicInterface(const SymbolicInterface &s)
 
 SymbolicInterface::~SymbolicInterface() {}
 
-const type_info &SymbolicInterface::type() const
+const std::type_info &SymbolicInterface::type() const
 { return typeid(*this); }
 
 
@@ -251,10 +251,10 @@ SymbolicProxy::SymbolicProxy(const Number<void> &n)
 
 SymbolicProxy::SymbolicProxy() {}
 
-void SymbolicProxy::print(ostream &o) const
+void SymbolicProxy::print(std::ostream &o) const
 { (*this)->print(o); }
 
-const type_info &SymbolicProxy::type() const
+const std::type_info &SymbolicProxy::type() const
 { return (*this)->type(); }
 
 Symbolic SymbolicProxy::subst(const Symbolic &x,
@@ -289,11 +289,11 @@ int SymbolicProxy::commute(const Symbolic &s) const
 { return (*this)->commute(s); }
 
 PatternMatches
-SymbolicProxy::match(const Symbolic &s, const list<Symbolic> &p) const
+SymbolicProxy::match(const Symbolic &s, const std::list<Symbolic> &p) const
 { return (*this)->match(s,p); }
 
 PatternMatches
-SymbolicProxy::match_parts(const Symbolic &s, const list<Symbolic> &p) const
+SymbolicProxy::match_parts(const Symbolic &s, const std::list<Symbolic> &p) const
 { return (*this)->match_parts(s,p); }
 
 SymbolicProxy &SymbolicProxy::operator=(const CloningSymbolicInterface &s)
@@ -382,13 +382,13 @@ Symbolic::Symbolic(const int &i)
 Symbolic::Symbolic(const double &d)
  : SymbolicProxy(Number<double>(d).simplify()) {}
 
-Symbolic::Symbolic(const string &s)
+Symbolic::Symbolic(const std::string &s)
  : SymbolicProxy(Symbol(s).simplify()) {}
 
 Symbolic::Symbolic(const char *s)
  : SymbolicProxy(Symbol(s).simplify()) {}
 
-Symbolic::Symbolic(const string &s,int n)
+Symbolic::Symbolic(const std::string &s,int n)
  : SymbolicProxy(SymbolicMatrix(s,n,1)) {}
 
 Symbolic::Symbolic(const char *s,int n)
@@ -397,7 +397,7 @@ Symbolic::Symbolic(const char *s,int n)
 Symbolic::Symbolic(const Symbolic &s,int n)
  : SymbolicProxy(SymbolicMatrix(s,n,1)) {}
 
-Symbolic::Symbolic(const string &s,int n,int m)
+Symbolic::Symbolic(const std::string &s,int n,int m)
  : SymbolicProxy(SymbolicMatrix(s,n,m)) {}
 
 Symbolic::Symbolic(const char *s,int n,int m)
@@ -406,14 +406,14 @@ Symbolic::Symbolic(const char *s,int n,int m)
 Symbolic::Symbolic(const Symbolic &s,int n,int m)
  : SymbolicProxy(SymbolicMatrix(s,n,m)) {}
 
-Symbolic::Symbolic(const list<Symbolic> &l)
+Symbolic::Symbolic(const std::list<Symbolic> &l)
 {
- list<list<Symbolic> > ll;
+ std::list<std::list<Symbolic> > ll;
  ll.push_back(l);
  (*this) = SymbolicMatrix(ll);
 }
 
-Symbolic::Symbolic(const list<list<Symbolic> > &l)
+Symbolic::Symbolic(const std::list<std::list<Symbolic> > &l)
  : SymbolicProxy(SymbolicMatrix(l)) {}
 
 Symbolic::~Symbolic() {}
@@ -422,7 +422,7 @@ Symbolic::~Symbolic() {}
 #pragma GCC diagnostic ignored "-Weffc++"
 SymbolicProxy &Symbolic::operator=(const CloningSymbolicInterface &s)
 {
-// cout << "*** " << &s << " " ; /*s.print(cout);*/ cout << endl;
+// cout << "*** " << &s << " " ; /*s.print(cout);*/ cout << std::endl;
 #if 1
  if(auto_expand)
   SymbolicProxy::operator=(s.expand().simplify());
@@ -441,16 +441,16 @@ SymbolicProxy &Symbolic::operator=(const int &i)
 SymbolicProxy &Symbolic::operator=(const double &d)
 { return *this = Number<double>(d); }
 
-SymbolicProxy &Symbolic::operator=(const string &s)
+SymbolicProxy &Symbolic::operator=(const std::string &s)
 { return *this = Symbolic(s); }
 
 SymbolicProxy &Symbolic::operator=(const char *s)
 { return *this = Symbolic(s); }
 
-SymbolicProxy &Symbolic::operator=(const list<Symbolic> &l)
+SymbolicProxy &Symbolic::operator=(const std::list<Symbolic> &l)
 { return *this = Symbolic(l); }
 
-SymbolicProxy &Symbolic::operator=(const list<list<Symbolic> > &l)
+SymbolicProxy &Symbolic::operator=(const std::list<std::list<Symbolic> > &l)
 { return *this = Symbolic(l); }
 #pragma GCC diagnostic pop
 
@@ -477,10 +477,10 @@ Symbolic Symbolic::operator[](const Symbolic &p) const
  return *this;
 }
 
-Symbolic Symbolic::operator[](const list<Symbolic> &l) const
+Symbolic Symbolic::operator[](const std::list<Symbolic> &l) const
 {
  Symbolic result(*this);
- for(list<Symbolic>::const_iterator i=l.begin();i!=l.end();++i)
+ for(std::list<Symbolic>::const_iterator i=l.begin();i!=l.end();++i)
   result = result[*i];
  return result;
 }
@@ -491,8 +491,8 @@ Symbolic &Symbolic::operator()(int i)
  {
   if(i != 0)
   {
-   cerr << "Attempted to cast " << *this
-        << " in operator() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this
+        << " in operator() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
   }
   return *this;
@@ -501,8 +501,8 @@ Symbolic &Symbolic::operator()(int i)
  if(m->cols() == 1) return (*m)[i][0];
  if(m->rows() == 1) return (*m)[0][i];
 
- cerr << "Attempted to cast " << *this
-      << " in operator() to SymbolicMatrix (vector) failed." << endl;
+ std::cerr << "Attempted to cast " << *this
+      << " in operator() to SymbolicMatrix (std::vector) failed." << std::endl;
  throw SymbolicError(SymbolicError::NotVector);
 
  return *this;
@@ -514,8 +514,8 @@ Symbolic &Symbolic::operator()(int i,int j)
  {
   if(i != 0 || j != 0)
   {
-   cerr << "Attempted to cast " << *this
-        << " in operator() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this
+        << " in operator() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
   }
   return *this;
@@ -531,8 +531,8 @@ const Symbolic &Symbolic::operator()(int i) const
  {
   if(i != 0)
   {
-   cerr << "Attempted to cast " << *this
-        << " in operator() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this
+        << " in operator() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
   }
   return *this;
@@ -541,8 +541,8 @@ const Symbolic &Symbolic::operator()(int i) const
  if(m->cols() == 1) return (*m)[i][0];
  if(m->rows() == 1) return (*m)[0][i];
 
- cerr << "Attempted to cast " << *this
-      << " in operator() to SymbolicMatrix (vector) failed." << endl;
+ std::cerr << "Attempted to cast " << *this
+      << " in operator() to SymbolicMatrix (std::vector) failed." << std::endl;
  throw SymbolicError(SymbolicError::NotVector);
 
  return *this;
@@ -554,8 +554,8 @@ const Symbolic &Symbolic::operator()(int i,int j) const
  {
   if(i != 0 || j != 0)
   {
-   cerr << "Attempted to cast " << *this
-        << " in operator() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this
+        << " in operator() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
   }
   return *this;
@@ -578,7 +578,7 @@ Symbolic Symbolic::subst(const Equation &e,int &n) const
 {
  int nsubs = 0;
  Symbolic lhs, rhs, r;
- list<Equations>::iterator i;
+ std::list<Equations>::iterator i;
  // use the existing substitution for equations without binding variables
  if(e.free.empty()) return subst(e.lhs,e.rhs,n);
 
@@ -694,7 +694,7 @@ Symbolic::operator int(void) const
  if(type() == typeid(Numeric) &&
     Number<void>(*this).numerictype() == typeid(int))
   return CastPtr<const Number<int> >(*this)->n;
- cerr << "Attempted to cast " << *this << " to int failed." << endl;
+ std::cerr << "Attempted to cast " << *this << " to int failed." << std::endl;
  throw SymbolicError(SymbolicError::NotInt);
  return 0;
 }
@@ -715,7 +715,7 @@ Symbolic::operator double(void) const
   Symbolic den = n->n.den();
   return double(num)/double(den);
  }
- cerr << "Attempted to cast " << *this << " to double failed." << endl;
+ std::cerr << "Attempted to cast " << *this << " to double failed." << std::endl;
  throw SymbolicError(SymbolicError::NotDouble);
  return 0.0;
 }
@@ -725,8 +725,8 @@ Symbolic Symbolic::operator|(const Symbolic &s) const
  if(rows() != s.rows() || columns() != s.columns() ||
     (rows() != 1 && columns() != 1))
  {
-  cerr << "Attempt to dot product " << *this
-       << " and " << s << " failed." << endl;
+  std::cerr << "Attempt to dot product " << *this
+       << " and " << s << " failed." << std::endl;
   throw SymbolicError(SymbolicError::IncompatibleVector);
  }
 
@@ -744,8 +744,8 @@ Symbolic Symbolic::operator%(const Symbolic &s) const
  if(rows() != s.rows() || columns() != s.columns() ||
     (rows() != 1 && columns() != 1))
  {
-  cerr << "Attempt to cross product " << *this
-       << " and " << s << " failed." << endl;
+  std::cerr << "Attempt to cross product " << *this
+       << " and " << s << " failed." << std::endl;
   throw SymbolicError(SymbolicError::IncompatibleVector);
  }
 
@@ -775,8 +775,8 @@ Symbolic Symbolic::row(int i) const
  if(type() != typeid(SymbolicMatrix))
  {
    if(i == 0) return *this;
-   cerr << "Attempted to cast " << *this
-        << " in row() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this
+        << " in row() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
  }
  Matrix<Symbolic> m = (*CastPtr<const SymbolicMatrix>(*this))[i];
@@ -788,8 +788,8 @@ Symbolic Symbolic::column(int i) const
  if(type() != typeid(SymbolicMatrix))
  {
    if(i == 0) return *this;
-   cerr << "Attempted to cast " << *this
-        << " in column() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this
+        << " in column() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
  }
  return SymbolicMatrix((*CastPtr<const SymbolicMatrix>(*this))(i));
@@ -823,8 +823,8 @@ Symbolic Symbolic::vec() const
 {
  if(type() != typeid(SymbolicMatrix))
  {
-   cerr << "Attempted to cast " << *this
-        << " in vec() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this
+        << " in vec() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
  }
  return SymbolicMatrix(CastPtr<const SymbolicMatrix>(*this)->vec());
@@ -835,8 +835,8 @@ Symbolic Symbolic::kron(const Symbolic &s) const
  if(type() != typeid(SymbolicMatrix) ||
     s.type() != typeid(SymbolicMatrix))
  {
-   cerr << "Attempted to cast " << *this << " or " << s
-        << " in kron() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this << " or " << s
+        << " in kron() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
  }
  CastPtr<const SymbolicMatrix> m1(*this), m2(s);
@@ -848,8 +848,8 @@ Symbolic Symbolic::dsum(const Symbolic &s) const
  if(type() != typeid(SymbolicMatrix) ||
     s.type() != typeid(SymbolicMatrix))
  {
-   cerr << "Attempted to cast " << *this << " or " << s
-        << " in dsum() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this << " or " << s
+        << " in dsum() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
  }
  CastPtr<const SymbolicMatrix> m1(*this), m2(s);
@@ -861,8 +861,8 @@ Symbolic Symbolic::hadamard(const Symbolic &s) const
  if(type() != typeid(SymbolicMatrix) ||
     s.type() != typeid(SymbolicMatrix))
  {
-   cerr << "Attempted to cast " << *this << " or " << s
-        << " in hadamard() to SymbolicMatrix failed." << endl;
+   std::cerr << "Attempted to cast " << *this << " or " << s
+        << " in hadamard() to SymbolicMatrix failed." << std::endl;
    throw SymbolicError(SymbolicError::NotMatrix);
  }
  CastPtr<const SymbolicMatrix> m1(*this), m2(s);

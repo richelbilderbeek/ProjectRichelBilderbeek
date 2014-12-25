@@ -36,7 +36,7 @@
 
 Equations solve(const Symbolic &, const Symbolic &);
 Equations solve(const Equation &, const Symbolic &);
-list<Equations> solve(const Equations &, const list<Symbolic> &);
+std::list<Equations> solve(const Equations &, const std::list<Symbolic> &);
 
 #endif
 #endif
@@ -59,8 +59,8 @@ Equations solve(const Symbolic &e, const Symbolic &x)
   Symbolic a = e.coeff(x,2), b = e.coeff(x,1), c = e.coeff(x,0);
   Symbolic d = b*b-4*a*c;
 
-  list<Equations> eq;
-  list<Equations>::iterator i;
+  std::list<Equations> eq;
+  std::list<Equations>::iterator i;
   UniqueSymbol u, v, w;
   eq = ((u^2) + u*v + w).match(d, (u,v,w));
   for(i=eq.begin(); i!=eq.end(); ++i)
@@ -101,13 +101,13 @@ Equations solve(const Symbolic &e, const Symbolic &x)
 Equations solve(const Equation &e, const Symbolic &x)
 { return solve(e.lhs - e.rhs, x); }
 
-list<Equations> solve(const Equations &e, const list<Symbolic> &l)
+std::list<Equations> solve(const Equations &e, const std::list<Symbolic> &l)
 {
  int sc = 0, free = 1;
- list<Equations> soln;
+ std::list<Equations> soln;
  Equations::const_iterator i, j, k;
- list<Equations>::const_iterator u;
- list<Symbolic>::const_iterator li;
+ std::list<Equations>::const_iterator u;
+ std::list<Symbolic>::const_iterator li;
 
  if(e.empty())
  {
@@ -129,7 +129,7 @@ list<Equations> solve(const Equations &e, const list<Symbolic> &l)
     for(k=e.begin(); k!=e.end(); ++k)
      if(k!=i) eq.push_back(k->lhs->subst(j->lhs,j->rhs, sc) ==
                            k->rhs->subst(j->lhs,j->rhs, sc));
-    list<Equations> slns = solve(eq, list<Symbolic>(++l.begin(), l.end()));
+    std::list<Equations> slns = solve(eq, std::list<Symbolic>(++l.begin(), l.end()));
     for(u=slns.begin(); u!=slns.end(); ++u)
      pattern_match_OR(soln, (j->lhs == j->rhs[*u], *u));
    }
@@ -146,7 +146,7 @@ list<Equations> solve(const Equations &e, const list<Symbolic> &l)
   }
   else
   {
-   list<Equations> slns = solve(e, list<Symbolic>(++l.begin(), l.end()));
+   std::list<Equations> slns = solve(e, std::list<Symbolic>(++l.begin(), l.end()));
    for(u=slns.begin(); u!=slns.end(); ++u)
     soln.push_back((l.front() == l.front(), *u));
   }

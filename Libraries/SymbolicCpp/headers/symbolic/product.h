@@ -26,7 +26,7 @@
 #include <algorithm>
 #include <list>
 #include <vector>
-using namespace std;
+
 
 #ifdef  SYMBOLIC_FORWARD
 #ifndef SYMBOLIC_CPLUSPLUS_PRODUCT_FORWARD
@@ -43,7 +43,7 @@ class Product;
 
 class Product: public CloningSymbolicInterface
 {
- public: list<Symbolic> factors;
+ public: std::list<Symbolic> factors;
          Product();
          Product(const Product&);
          Product(const Symbolic&,const Symbolic&);
@@ -52,7 +52,7 @@ class Product: public CloningSymbolicInterface
          Product &operator=(const Product&);
          int printsNegative() const;
 
-         void print(ostream&) const;
+         void print(std::ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
@@ -61,9 +61,9 @@ class Product: public CloningSymbolicInterface
          Symbolic coeff(const Symbolic&) const;
          Expanded expand() const;
          int commute(const Symbolic&) const;
-         PatternMatches match(const Symbolic&, const list<Symbolic>&) const;
+         PatternMatches match(const Symbolic&, const std::list<Symbolic>&) const;
          PatternMatches match_parts(const Symbolic&,
-                                    const list<Symbolic>&) const;
+                                    const std::list<Symbolic>&) const;
 
          Cloning *clone() const { return Cloning::clone(*this); }
 };
@@ -112,12 +112,12 @@ int Product::printsNegative() const
         CastPtr<const Numeric>(factors.front())->isNegative();
 }
 
-void Product::print(ostream &o) const
+void Product::print(std::ostream &o) const
 {
  if(factors.empty()) o << 1;
  if(factors.size() == 1) factors.begin()->print(o);
  else
-  for(list<Symbolic>::const_iterator i=factors.begin();i!=factors.end();++i)
+  for(std::list<Symbolic>::const_iterator i=factors.begin();i!=factors.end();++i)
   {
    o << ((i==factors.begin()) ? "":"*");
    if(*i == -1) { o << "-"; ++i; }
@@ -142,13 +142,13 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
  {
   int i;
   CastPtr<const Product> p(x);
-  list<Symbolic>::const_iterator pi, lastpi, j, k;
-  vector<list<Symbolic>::const_iterator> v(p->factors.size());
-  vector<list<Symbolic>::const_iterator>::const_iterator vi, vj;
+  std::list<Symbolic>::const_iterator pi, lastpi, j, k;
+  std::vector<std::list<Symbolic>::const_iterator> v(p->factors.size());
+  std::vector<std::list<Symbolic>::const_iterator>::const_iterator vi, vj;
   i = 0; v[0] = factors.begin(); pi = p->factors.begin();
   while(i >= 0)
   {
-    cout << "-- " << i << " / " << p->factors.size() << endl;
+    cout << "-- " << i << " / " << p->factors.size() << std::endl;
    while(v[i] != factors.end() && pi != p->factors.end())
     if(pi->compare(*v[i]))
     {
@@ -158,11 +158,11 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
     }
     else ++v[i];
 
-    cout << "!! " << i << " / " << p->factors.size() << endl;
+    cout << "!! " << i << " / " << p->factors.size() << std::endl;
    // found a match for every factor
    if(pi == p->factors.end())
    {
-    cout << "** " << i << endl;
+    cout << "** " << i << std::endl;
     for(vi=v.begin(); vi!=v.end(); ++vi)
     {
      // don't use any factor more than once
@@ -218,27 +218,27 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
     if(pi == p->factors.end()) pi = lastpi; else --pi;
    }
    if(i >= 0) ++v[i];
-   cout << "** " << i << " / " << p->factors.size() << endl;
+   cout << "** " << i << " / " << p->factors.size() << std::endl;
   }
-  cout << "done" << endl;
+  cout << "done" << std::endl;
  }
 */
 #else
  if(x.type() == type())
  {
   CastPtr<const Product> p(x);
-  // vector<T>::iterator has ordering comparisons
-  // while list<T>::iterator does not
-  list<Symbolic> u;
-  vector<Symbolic> v;
-  list<Symbolic>::const_iterator i;
-  list<Symbolic>::const_iterator i1;
-  vector<Symbolic>::iterator j, insert;
-  list< vector<Symbolic>::iterator >::iterator k;
-  // we store lists of locations (iterators) in v in the list l,
-  // each list in l should describe a path of unique locations through v
-  list<list< vector<Symbolic>::iterator > > l;
-  list<list< vector<Symbolic>::iterator > >::iterator li;
+  // std::vector<T>::iterator has ordering comparisons
+  // while std::list<T>::iterator does not
+  std::list<Symbolic> u;
+  std::vector<Symbolic> v;
+  std::list<Symbolic>::const_iterator i;
+  std::list<Symbolic>::const_iterator i1;
+  std::vector<Symbolic>::iterator j, insert;
+  std::list< std::vector<Symbolic>::iterator >::iterator k;
+  // we store std::lists of locations (iterators) in v in the std::list l,
+  // each std::list in l should describe a path of unique locations through v
+  std::list<std::list< std::vector<Symbolic>::iterator > > l;
+  std::list<std::list< std::vector<Symbolic>::iterator > >::iterator li;
 
   // expand positive integer powers to match each factor individually
   for(i=p->factors.begin();i!=p->factors.end();++i)
@@ -304,7 +304,7 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
   for(j=v.begin();j!=v.end();++j)
    if(*j == *i) 
    {
-    l.push_back(list< vector<Symbolic>::iterator >());
+    l.push_back(std::list< std::vector<Symbolic>::iterator >());
     l.back().push_back(j);
    }
 
@@ -313,7 +313,7 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
   // all possible paths
   for(++i;i!=u.end();++i)
   {
-   list<list< vector<Symbolic>::iterator > > l2;
+   std::list<std::list< std::vector<Symbolic>::iterator > > l2;
    for(j=v.begin();j!=v.end();++j)
     if(*j == *i) 
      for(li=l.begin();li!=l.end();++li)
@@ -335,7 +335,7 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
   {
    for(k=li->begin();k!=li->end();++k)
    {
-    list< vector<Symbolic>::iterator >::iterator k1 = k;
+    std::list< std::vector<Symbolic>::iterator >::iterator k1 = k;
     // when consecutive values are in the wrong order
     // check that they commute
     for(++(k1=k);k1!=li->end();++k1)
@@ -351,7 +351,7 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
    {
     for(k=li->begin();k!=li->end();++k)
     {
-     vector<Symbolic>::iterator beg, end;
+     std::vector<Symbolic>::iterator beg, end;
      if(insert <= *k) { beg = insert; end = *k; }
      else { beg = *k + 1; end = insert; }
      for(j=beg;j!=end;++j)
@@ -393,15 +393,15 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
  // product does not contain expression for substitution
  // try to substitute in each factor
  Product p;
- for(list<Symbolic>::const_iterator i=factors.begin();i!=factors.end();++i)
+ for(std::list<Symbolic>::const_iterator i=factors.begin();i!=factors.end();++i)
   p.factors.push_back(i->subst(x,y,n));
  return p;
 }
 
 Simplified Product::simplify() const
 {
- list<Symbolic>::const_iterator i;
- list<Symbolic>::iterator j, k, k1;
+ std::list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::iterator j, k, k1;
  Product r;
 
  // 1-element product:  (a) -> a
@@ -429,7 +429,7 @@ Simplified Product::simplify() const
   if(j->type() == typeid(SymbolicMatrix))
   {
    int br = 0;
-   list<Symbolic>::iterator k;
+   std::list<Symbolic>::iterator k;
    m = *CastPtr<const SymbolicMatrix>(*j);
    // some terms preceding the matrix must be brought in from the left
    k = j;
@@ -553,7 +553,7 @@ int Product::compare(const Symbolic &s) const
 
 Symbolic Product::df(const Symbolic &s) const
 {
- list<Symbolic>::iterator i;
+ std::list<Symbolic>::iterator i;
  Product p(*this);
  Sum r;
 
@@ -570,7 +570,7 @@ Symbolic Product::df(const Symbolic &s) const
 Symbolic Product::integrate(const Symbolic &s) const
 {
  int count = 0;
- list<Symbolic>::const_iterator i, i1;
+ std::list<Symbolic>::const_iterator i, i1;
 
  for(i=factors.begin();i!=factors.end();++i)
   if(i->df(s) != 0) { ++count; i1 = i; }
@@ -598,7 +598,7 @@ Symbolic Product::coeff(const Symbolic &s) const
  if(s.type() == typeid(Product))
  {
   CastPtr<const Product> p(s);
-  list<Symbolic>::const_iterator i;
+  std::list<Symbolic>::const_iterator i;
   for(i=p->factors.begin();i!=p->factors.end();++i)
   {
    // numbers always substitute successfully
@@ -624,8 +624,8 @@ Symbolic Product::coeff(const Symbolic &s) const
 
 Expanded Product::expand() const
 {
- list<Symbolic>::const_iterator i, k;
- list<Symbolic>::iterator j;
+ std::list<Symbolic>::const_iterator i, k;
+ std::list<Symbolic>::iterator j;
  Product r;
 
 #if 0
@@ -639,7 +639,7 @@ Expanded Product::expand() const
  if(!mustexpand) return r;
  r.factors.clear();
  Sum s; s.summands.push_back(Product());
- list<Symbolic>::iterator lsi, lsj;
+ std::list<Symbolic>::iterator lsi, lsj;
  for(j=r.factors.begin();j!=r.factors.end();++j)
   if(j->type() == typeid(Sum))
   {
@@ -688,35 +688,35 @@ int Product::commute(const Symbolic &s) const
  // Optimize the case for numbers
  if(s.type() == typeid(Numeric)) return 1;
 
- list<Symbolic>::const_iterator i;
+ std::list<Symbolic>::const_iterator i;
  for(i=factors.begin();i!=factors.end();++i)
   if(!i->commute(s)) return 0;
  return 1;
 }
 
 PatternMatches
-Product::match(const Symbolic &s, const list<Symbolic> &p) const
+Product::match(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l;
- list<Symbolic>::const_iterator i, i1;
- list<list<int> >::iterator j;
- list<int>::iterator k, k1;
+ std::list<Symbolic>::const_iterator i, i1;
+ std::list<std::list<int> >::iterator j;
+ std::list<int>::iterator k, k1;
 
  if(factors.size() == 0) return l;
  if(factors.size() == 1) return factors.front().match(s, p);
  if(s.type() != type()) return l;
 
  CastPtr<Product> prod(s);
- list<list<int> > thismatch;
+ std::list<std::list<int> > thismatch;
  Product rest(*this);
  rest.factors.pop_front();
- thismatch.push_back(list<int>()); // start with an empty product
+ thismatch.push_back(std::list<int>()); // start with an empty product
 
  for(i=prod->factors.begin();i!=prod->factors.end();++i)
  {
   for(j=thismatch.begin();j!=thismatch.end();++j)
   {
-   list<int> s(*j); s.push_back(0); j->push_back(1);
+   std::list<int> s(*j); s.push_back(0); j->push_back(1);
    thismatch.insert(j, s);
   }
  }
@@ -746,15 +746,15 @@ Product::match(const Symbolic &s, const list<Symbolic> &p) const
 }
 
 PatternMatches
-Product::match_parts(const Symbolic &s, const list<Symbolic> &p) const
+Product::match_parts(const Symbolic &s, const std::list<Symbolic> &p) const
 {
  PatternMatches l = s.match(*this, p);
- list<Symbolic>::iterator i, i1, i2;
- list<list<int> >::iterator j;
- list<int>::iterator k, k1, k2;
+ std::list<Symbolic>::iterator i, i1, i2;
+ std::list<std::list<int> >::iterator j;
+ std::list<int>::iterator k, k1, k2;
 
- list<list<int> > matchpart;
- matchpart.push_back(list<int>()); // start with an empty product
+ std::list<std::list<int> > matchpart;
+ matchpart.push_back(std::list<int>()); // start with an empty product
 
  Product pr(*this);
 
@@ -784,7 +784,7 @@ Product::match_parts(const Symbolic &s, const list<Symbolic> &p) const
   pattern_match_OR(l, lp);
   for(j=matchpart.begin();j!=matchpart.end();++j)
   {
-   list<int> s(*j); s.push_back(0); j->push_back(1);
+   std::list<int> s(*j); s.push_back(0); j->push_back(1);
    matchpart.insert(j, s);
   }
  }
@@ -821,7 +821,7 @@ Product::match_parts(const Symbolic &s, const list<Symbolic> &p) const
   }
   if(k != j->end())
 #else
-  list<int>::iterator endofp2;
+  std::list<int>::iterator endofp2;
   for(k=endofp2=j->begin(); k!=j->end();)
    if(*(k++) == 0 && (k == j->end() || *k == 1)) endofp2 = k;
 

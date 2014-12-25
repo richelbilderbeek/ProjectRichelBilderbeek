@@ -30,7 +30,7 @@
 #include <utility>
 #include "rational.h"
 #include "verylong.h"
-using namespace std;
+
 
 #ifdef  SYMBOLIC_FORWARD
 #ifndef SYMBOLIC_CPLUSPLUS_NUMBER_FORWARD
@@ -50,7 +50,7 @@ class Numeric: public CloningSymbolicInterface
 {
  public: Numeric();
          Numeric(const Numeric&);
-         virtual const type_info &numerictype() const = 0;
+         virtual const std::type_info &numerictype() const = 0;
          virtual Number<void> add(const Numeric&) const = 0;
          virtual Number<void> mul(const Numeric&) const = 0;
          virtual Number<void> div(const Numeric&) const = 0;
@@ -59,7 +59,7 @@ class Numeric: public CloningSymbolicInterface
          virtual int isOne() const = 0;
          virtual int isNegative() const = 0;
          virtual int cmp(const Numeric &) const = 0;
-         static pair<Number<void>,Number<void> >
+         static std::pair<Number<void>,Number<void> >
              match(const Numeric&,const Numeric&);
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
          int compare(const Symbolic&) const;
@@ -68,9 +68,9 @@ class Numeric: public CloningSymbolicInterface
          Symbolic coeff(const Symbolic&) const;
          Expanded expand() const;
          int commute(const Symbolic&) const;
-         PatternMatches match(const Symbolic&, const list<Symbolic>&) const;
+         PatternMatches match(const Symbolic&, const std::list<Symbolic>&) const;
          PatternMatches match_parts(const Symbolic&,
-                                    const list<Symbolic>&) const;
+                                    const std::list<Symbolic>&) const;
 };
 
 template <class T>
@@ -85,9 +85,9 @@ class Number: public Numeric
          Number &operator=(const Number&);
          Number &operator=(const T&);
 
-         void print(ostream&) const;
-         const type_info &type() const;
-         const type_info &numerictype() const;
+         void print(std::ostream&) const;
+         const std::type_info &type() const;
+         const std::type_info &numerictype() const;
          Simplified simplify() const;
 
          Number<void> add(const Numeric&) const; 
@@ -111,13 +111,13 @@ class Number<void>: public CastPtr<Numeric>
          Number(const Symbolic&);
          ~Number();
 
-         const type_info &numerictype() const;
+         const std::type_info &numerictype() const;
          int isZero() const;
          int isOne() const;
          int isNegative() const;
-         static pair<Number<void>,Number<void> >
+         static std::pair<Number<void>,Number<void> >
              match(const Numeric&,const Numeric&);
-         static pair<Number<void>,Number<void> >
+         static std::pair<Number<void>,Number<void> >
              match(const Number<void>&,const Number<void>&);
 
          Number<void> operator+(const Numeric&) const;
@@ -180,7 +180,7 @@ Numeric::Numeric(const Numeric &n) : CloningSymbolicInterface(n) {}
 // Template specialization for Rational<Number<void> >
 template <> Rational<Number<void> >::operator double() const
 {
- pair<Number<void>,Number<void> > pr = p.match(p,q);
+ std::pair<Number<void>,Number<void> > pr = p.match(p,q);
  if(pr.first.numerictype() == typeid(int))
  {
   CastPtr<const Number<int> > i1 = pr.first;
@@ -193,8 +193,8 @@ template <> Rational<Number<void> >::operator double() const
   CastPtr<const Number<Verylong> > v2 = pr.second;
   return double(Rational<Verylong>(v1->n,v2->n));
  }
- cerr << "convert to double : "
-      << pr.first.numerictype().name() << endl;
+ std::cerr << "convert to double : "
+      << pr.first.numerictype().name() << std::endl;
  throw SymbolicError(SymbolicError::NotDouble);
  return 0.0;
 }
@@ -203,32 +203,32 @@ template <> Rational<Number<void> >::operator double() const
 // Implementation of Numeric      //
 ////////////////////////////////////
 
-pair<Number<void>,Number<void> >
+std::pair<Number<void>,Number<void> >
 Numeric::match(const Numeric &n1,const Numeric &n2)
 {
- const type_info &t1 = n1.numerictype();
- const type_info &t2 = n2.numerictype();
- const type_info &type_int = typeid(int);
- const type_info &type_double = typeid(double);
- const type_info &type_verylong = typeid(Verylong);
- const type_info &type_rational = typeid(Rational<Number<void> >);
+ const std::type_info &t1 = n1.numerictype();
+ const std::type_info &t2 = n2.numerictype();
+ const std::type_info &type_int = typeid(int);
+ const std::type_info &type_double = typeid(double);
+ const std::type_info &type_verylong = typeid(Verylong);
+ const std::type_info &type_rational = typeid(Rational<Number<void> >);
 
  if(t1 == type_int)
  {
   CastPtr<const Number<int> > i1 = n1;
 
   if(t2 == type_int)
-   return pair<Number<void>,Number<void> >(n1,n2);
+   return std::pair<Number<void>,Number<void> >(n1,n2);
   if(t2 == type_double)
-   return pair<Number<void>,Number<void> >(Number<double>(i1->n),n2);
+   return std::pair<Number<void>,Number<void> >(Number<double>(i1->n),n2);
   if(t2 == type_verylong)
-   return pair<Number<void>,Number<void> >(Number<Verylong>(i1->n),n2);
+   return std::pair<Number<void>,Number<void> >(Number<Verylong>(i1->n),n2);
   if(t2 == type_rational)
-   return pair<Number<void>,Number<void> >
+   return std::pair<Number<void>,Number<void> >
           (Number<Rational<Number<void> > >
               (Rational<Number<void> >(Number<void>(*i1)))
           ,n2);
-  cerr << "Numeric cannot use " << t2.name() << endl;
+  std::cerr << "Numeric cannot use " << t2.name() << std::endl;
   throw SymbolicError(SymbolicError::UnsupportedNumeric);
  }
  if(t1 == type_double)
@@ -238,22 +238,22 @@ Numeric::match(const Numeric &n1,const Numeric &n2)
   if(t2 == type_int)
   {
    CastPtr<const Number<int> > i2 = n2;
-   return pair<Number<void>,Number<void> >(n1,Number<double>(i2->n));
+   return std::pair<Number<void>,Number<void> >(n1,Number<double>(i2->n));
   }
   if(t2 == type_double)
-   return pair<Number<void>,Number<void> >(n1,n2);
+   return std::pair<Number<void>,Number<void> >(n1,n2);
   if(t2 == type_verylong)
   {
    CastPtr<const Number<Verylong> > v2 = n2;
-   return pair<Number<void>,Number<void> >(n1,Number<double>(v2->n));
+   return std::pair<Number<void>,Number<void> >(n1,Number<double>(v2->n));
   }
   if(t2 == type_rational)
   {
    CastPtr<const Number<Rational<Number<void> > > > r2 = n2;
-   return pair<Number<void>,Number<void> >
+   return std::pair<Number<void>,Number<void> >
           (n1,Number<double>(double(r2->n)));
   }
-  cerr << "Numeric cannot use " << t2.name() << endl;
+  std::cerr << "Numeric cannot use " << t2.name() << std::endl;
   throw SymbolicError(SymbolicError::UnsupportedNumeric);
  }
  if(t1 == type_verylong)
@@ -263,17 +263,17 @@ Numeric::match(const Numeric &n1,const Numeric &n2)
   if(t2 == type_int)
   {
    CastPtr<const Number<int> > i2 = n2;
-   return pair<Number<void>,Number<void> >(n1,Number<Verylong>(i2->n));
+   return std::pair<Number<void>,Number<void> >(n1,Number<Verylong>(i2->n));
   }
   if(t2 == type_double)
-   return pair<Number<void>,Number<void> >(Number<double>(v1->n),n2);
+   return std::pair<Number<void>,Number<void> >(Number<double>(v1->n),n2);
   if(t2 == type_verylong)
-   return pair<Number<void>,Number<void> >(n1,n2);
+   return std::pair<Number<void>,Number<void> >(n1,n2);
   if(t2 == type_rational)
-   return pair<Number<void>,Number<void> >
+   return std::pair<Number<void>,Number<void> >
           (Number<Rational<Number<void> > >
               (Rational<Number<void> >(Number<void>(*v1))),n2);
-  cerr << "Numeric cannot use " << t2.name() << endl;
+  std::cerr << "Numeric cannot use " << t2.name() << std::endl;
   throw SymbolicError(SymbolicError::UnsupportedNumeric);
  }
  if(t1 == type_rational)
@@ -283,30 +283,30 @@ Numeric::match(const Numeric &n1,const Numeric &n2)
   if(t2 == type_int)
   {
    CastPtr<const Number<int> > i2 = n2;
-   return pair<Number<void>,Number<void> >
+   return std::pair<Number<void>,Number<void> >
           (n1,
           Number<Rational<Number<void> > >
               (Rational<Number<void> >(Number<void>(*i2))));
   }
   if(t2 == type_double)
-   return pair<Number<void>,Number<void> >
+   return std::pair<Number<void>,Number<void> >
           (Number<double>(double(r1->n)),n2);
   if(t2 == type_verylong)
   {
    CastPtr<const Number<Verylong> > v2 = n2;
-   return pair<Number<void>,Number<void> >
+   return std::pair<Number<void>,Number<void> >
           (n1,
           Number<Rational<Number<void> > >
               (Rational<Number<void> >(Number<void>(*v2))));
   }
   if(t2 == type_rational)
-   return pair<Number<void>,Number<void> >(n1,n2);
-  cerr << "Numeric cannot use " << t2.name() << endl;
+   return std::pair<Number<void>,Number<void> >(n1,n2);
+  std::cerr << "Numeric cannot use " << t2.name() << std::endl;
   throw SymbolicError(SymbolicError::UnsupportedNumeric);
  }
- cerr << "Numeric cannot use " << t1.name() << endl;
+ std::cerr << "Numeric cannot use " << t1.name() << std::endl;
  throw SymbolicError(SymbolicError::UnsupportedNumeric);
- return pair<Number<void>,Number<void> >(n1,n2);
+ return std::pair<Number<void>,Number<void> >(n1,n2);
 }
 
 Symbolic Numeric::subst(const Symbolic &x,const Symbolic &y,int &n) const
@@ -318,7 +318,7 @@ Symbolic Numeric::subst(const Symbolic &x,const Symbolic &y,int &n) const
 int Numeric::compare(const Symbolic &s) const
 {
  if(s.type() != type()) return 0;
- pair<Number<void>,Number<void> >
+ std::pair<Number<void>,Number<void> >
   p = Number<void>::match(*this,*Number<void>(s));
  return p.first->cmp(*(p.second));
 }
@@ -342,7 +342,7 @@ int Numeric::commute(const Symbolic &) const
 { return 1; }
 
 PatternMatches
-Numeric::match(const Symbolic &s, const list<Symbolic> &) const
+Numeric::match(const Symbolic &s, const std::list<Symbolic> &) const
 {
  PatternMatches l;
  if(*this == s) pattern_match_TRUE(l);
@@ -351,7 +351,7 @@ Numeric::match(const Symbolic &s, const list<Symbolic> &) const
 }
 
 PatternMatches
-Numeric::match_parts(const Symbolic &s, const list<Symbolic> &p) const
+Numeric::match_parts(const Symbolic &s, const std::list<Symbolic> &p) const
 { return s.match(*this, p); }
 
 ////////////////////////////////////
@@ -378,13 +378,13 @@ template <class T> Number<T> &Number<T>::operator=(const Number &n)
 template <class T> Number<T> &Number<T>::operator=(const T &t)
 { n = t; return *this; }
 
-template <class T> void Number<T>::print(ostream &o) const
+template <class T> void Number<T>::print(std::ostream &o) const
 { o << n; }
 
-template <class T> const type_info &Number<T>::type() const
+template <class T> const std::type_info &Number<T>::type() const
 { return typeid(Numeric); }
 
-template <class T> const type_info &Number<T>::numerictype() const
+template <class T> const std::type_info &Number<T>::numerictype() const
 { return typeid(T); }
 
 template <class T>
@@ -394,8 +394,8 @@ Simplified Number<T>::simplify() const
 template <>
 Simplified Number<Verylong>::simplify() const
 {
- if(n <= Verylong(numeric_limits<int>::max())
-    && n > Verylong(numeric_limits<int>::min()))
+ if(n <= Verylong(std::numeric_limits<int>::max())
+    && n > Verylong(std::numeric_limits<int>::min()))
   return Number<int>(n);
  return *this;
 }
@@ -534,7 +534,7 @@ Number<void>::Number(const Symbolic &n) : CastPtr<Numeric>(Number<int>(0))
 
 Number<void>::~Number() {}
 
-const type_info &Number<void>::numerictype() const
+const std::type_info &Number<void>::numerictype() const
 { return (*this)->numerictype(); }
 
 int Number<void>::isZero() const
@@ -546,41 +546,41 @@ int Number<void>::isOne() const
 int Number<void>::isNegative() const
 { return (*this)->isNegative(); }
 
-pair<Number<void>,Number<void> >
+std::pair<Number<void>,Number<void> >
 Number<void>::match(const Numeric &n1,const Numeric &n2)
 { return Numeric::match(n1,n2); }
 
-pair<Number<void>,Number<void> >
+std::pair<Number<void>,Number<void> >
 Number<void>::match(const Number<void> &n1,const Number<void> &n2)
 { return Numeric::match(*n1,*n2); }
 
 Number<void> Number<void>::operator+(const Numeric &n) const
 {
- pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
+ std::pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
  return p.first->add(*(p.second));
 }
 
 Number<void> Number<void>::operator-(const Numeric &n) const
 {
- pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
+ std::pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
  return p.first->add(*(p.second));
 }
 
 Number<void> Number<void>::operator*(const Numeric &n) const
 {
- pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
+ std::pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
  return p.first->mul(*(p.second));
 }
 
 Number<void> Number<void>::operator/(const Numeric &n) const
 {
- pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
+ std::pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
  return p.first->div(*(p.second));
 }
 
 Number<void> Number<void>::operator%(const Numeric &n) const
 {
- pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
+ std::pair<Number<void>,Number<void> > p = Number<void>::match(*this,n);
  return p.first->mod(*(p.second));
 }
 
@@ -598,13 +598,13 @@ Number<void> &Number<void>::operator%=(const Numeric &n)
 
 int Number<void>::operator==(const Numeric &n) const
 {
- pair<Number<void>,Number<void> > p = Number<void>::match(*(*this),n);
+ std::pair<Number<void>,Number<void> > p = Number<void>::match(*(*this),n);
  return p.first->compare(*(p.second));
 }
 
 int Number<void>::operator<(const Numeric &n) const
 {
- pair<Number<void>,Number<void> > p = Number<void>::match(*(*this),n);
+ std::pair<Number<void>,Number<void> > p = Number<void>::match(*(*this),n);
  return (p.first - p.second).isNegative();
 }
 
