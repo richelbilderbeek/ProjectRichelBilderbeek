@@ -80,6 +80,7 @@ class UniqueSymbol: public Symbol
          UniqueSymbol(const UniqueSymbol&);
          UniqueSymbol(const Symbol&);
          ~UniqueSymbol();
+         UniqueSymbol& operator=(const UniqueSymbol&) = delete;
 
          void print(ostream&) const;
          int compare(const Symbolic&) const;
@@ -105,9 +106,9 @@ Symbol::Symbol(const Symbol &s)
 : CloningSymbolicInterface(s),
   name(s.name), parameters(s.parameters), commutes(s.commutes) {}
 
-Symbol::Symbol(const string &s,int c) : name(s), commutes(c) {}
+Symbol::Symbol(const string &s,int c) : name(s), parameters(), commutes(c) {}
 
-Symbol::Symbol(const char *s,int c)   : name(s), commutes(c) {}
+Symbol::Symbol(const char *s,int c)   : name(s), parameters(), commutes(c) {}
 
 Symbol::~Symbol() {}
 
@@ -326,7 +327,7 @@ Symbol Symbol::operator~() const
 // Implementation of UniqueSymbol   //
 //////////////////////////////////////
 
-UniqueSymbol::UniqueSymbol() : Symbol("") { p = new int(1); }
+UniqueSymbol::UniqueSymbol() : Symbol(""), p(new int(1)) {}
 
 UniqueSymbol::UniqueSymbol(const UniqueSymbol &u) : Symbol(u), p(u.p)
 { ++(*p); }

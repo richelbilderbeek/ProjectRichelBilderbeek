@@ -82,10 +82,10 @@ class Rational
       Rational<T> operator * (const Rational<T>&) const;
       Rational<T> operator / (const Rational<T>&) const;
 
-      Rational<T> operator ++ ();
-      Rational<T> operator ++ (int);
-      Rational<T> operator -- ();
-      Rational<T> operator -- (int);
+      Rational<T>& operator ++ ();
+      Rational<T>  operator ++ (int);
+      Rational<T>& operator -- ();
+      Rational<T>  operator -- (int);
 
       int operator == (const Rational<T>&) const;
       int operator != (const Rational<T>&) const;
@@ -287,14 +287,14 @@ Rational<T> Rational<T>::operator / (const Rational<T> &r2) const
 { return Rational<T> (p * r2.q, q * r2.p); }
 
 template <class T> 
-Rational<T> Rational<T>::operator ++ () { p += q; return *this; }
+Rational<T>& Rational<T>::operator ++ () { p += q; return *this; }
 
 template <class T> 
 Rational<T> Rational<T>::operator ++ (int)
 { Rational<T> r = *this; ++(*this); return r; }
 
 template <class T> 
-Rational<T> Rational<T>::operator -- () { p -= q; return *this; }
+Rational<T>& Rational<T>::operator -- () { p -= q; return *this; }
 
 template <class T> 
 Rational<T> Rational<T>::operator -- (int)

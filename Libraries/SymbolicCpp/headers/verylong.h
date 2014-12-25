@@ -62,9 +62,9 @@ class Verylong
       // Arithmetic operators and Relational operators
       const Verylong & operator = (const Verylong&);  // assignment operator
       Verylong operator - () const;     // negate  operator
-      Verylong operator ++ ();          // prefix  increment operator
+      Verylong& operator ++ ();          // prefix  increment operator
       Verylong operator ++ (int);       // postfix increment operator
-      Verylong operator -- ();          // prefix  decrement operator
+      Verylong& operator -- ();          // prefix  decrement operator
       Verylong operator -- (int);       // postfix decrement operator
 
       Verylong operator += (const Verylong&);
@@ -114,7 +114,7 @@ const Verylong Verylong::two = Verylong("2");
 
 // Constructors, Destructors and Conversion operators.
 
-Verylong::Verylong(const string &value)
+Verylong::Verylong(const string &value) : vlstr{""}, vlsign{-1}
 {
    string s = (value == "") ? "0" : value;
 
@@ -124,7 +124,7 @@ Verylong::Verylong(const string &value)
    else vlstr = s;
 }
 
-Verylong::Verylong(int n)
+Verylong::Verylong(int n) : vlstr{""}, vlsign{-1}
 {
    if(n < 0) { vlsign = 1; n = (-n); } // check for sign and convert the
    else vlsign = 0;                    // number to positive when negative
@@ -214,8 +214,11 @@ Verylong Verylong::operator -() const
 }
 
 // Prefix increment operator
-Verylong Verylong::operator ++ ()
-{ return *this = *this + one; }
+Verylong& Verylong::operator ++ ()
+{
+  *this = *this + one;
+  return *this;
+}
 
 // Postfix increment operator
 Verylong Verylong::operator ++ (int)
@@ -226,8 +229,11 @@ Verylong Verylong::operator ++ (int)
 }
 
 // Prefix decrement operator
-Verylong Verylong::operator -- ()
-{ return *this = *this - one; }
+Verylong& Verylong::operator -- ()
+{
+  *this = *this - one;
+  return *this;
+}
 
 // Postfix decrement operator
 Verylong Verylong::operator -- (int)

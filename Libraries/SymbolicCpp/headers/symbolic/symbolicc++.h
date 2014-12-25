@@ -84,7 +84,7 @@ Symbolic operator+(const int &,const Symbolic &);
 Symbolic operator+(const Symbolic &,const int &);
 Symbolic operator+(const double &,const Symbolic &);
 Symbolic operator+(const Symbolic &,const double &);
-Symbolic operator++(Symbolic &);
+Symbolic& operator++(Symbolic &);
 Symbolic operator++(Symbolic &,int);
 Symbolic operator-(const Symbolic &);
 Symbolic operator-(const Symbolic &,const Symbolic &);
@@ -92,7 +92,7 @@ Symbolic operator-(const int &,const Symbolic &);
 Symbolic operator-(const Symbolic &,const int &);
 Symbolic operator-(const double &,const Symbolic &);
 Symbolic operator-(const Symbolic &,const double &);
-Symbolic operator--(Symbolic &);
+Symbolic& operator--(Symbolic &);
 Symbolic operator--(Symbolic &,int);
 Symbolic operator*(const Symbolic &,const Symbolic &);
 Symbolic operator*(const int &,const Symbolic &);
@@ -152,6 +152,9 @@ Symbolic &rhs(Equations &,const Symbolic &);
 Symbolic &lhs(Equations &,const Symbolic &);
 template<> Symbolic zero(Symbolic);
 template<> Symbolic one(Symbolic);
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 Equations operator,(const Equation &,const Equation &);
 Equations operator,(const Equations &,const Equation &);
 Equations operator,(const Equation &,const Equations &);
@@ -174,6 +177,8 @@ list<list<Symbolic> >
 operator,(const list<Symbolic> &,const list<list<Symbolic> > &);
 Equation operator,(const Symbolic &, const Equation &);
 Equation operator,(const list<Symbolic> &, const Equation &);
+#pragma GCC diagnostic pop
+
 ostream &operator<<(ostream &,const Equations &);
 ostream &operator<<(ostream &,const list<Symbolic> &);
 Symbolic tr(const Symbolic &);
@@ -231,7 +236,7 @@ Symbolic operator+(const double &s1,const Symbolic &s2)
 Symbolic operator+(const Symbolic &s1,const double &s2)
 { return s1 + Symbolic(Number<double>(s2)); }
 
-Symbolic operator++(Symbolic &s)
+Symbolic& operator++(Symbolic &s)
 { return s = s + 1; }
 
 Symbolic operator++(Symbolic &s,int)
@@ -255,7 +260,7 @@ Symbolic operator-(const double &s1,const Symbolic &s2)
 Symbolic operator-(const Symbolic &s1,const double &s2)
 { return s1 - Symbolic(s2); }
 
-Symbolic operator--(Symbolic &s)
+Symbolic& operator--(Symbolic &s)
 { return s = s - 1; }
 
 Symbolic operator--(Symbolic &s,int)

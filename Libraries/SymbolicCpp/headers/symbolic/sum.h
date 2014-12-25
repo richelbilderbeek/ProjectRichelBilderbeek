@@ -75,12 +75,12 @@ class Sum: public CloningSymbolicInterface
 #define SYMBOLIC_CPLUSPLUS_SUM_DEFINE
 #define SYMBOLIC_CPLUSPLUS_SUM
 
-Sum::Sum() {}
+Sum::Sum() : summands() {}
 
 Sum::Sum(const Sum &s)
  : CloningSymbolicInterface(s), summands(s.summands) {}
 
-Sum::Sum(const Symbolic &s1,const Symbolic &s2)
+Sum::Sum(const Symbolic &s1,const Symbolic &s2) : summands()
 {
  if(s1.type() == typeid(Sum)) summands = CastPtr<const Sum>(s1)->summands;
  else summands.push_back(s1);
@@ -419,7 +419,8 @@ Sum::match_parts(const Symbolic &s, const list<Symbolic> &p) const
  // remove empty sum
  for(j=matchpart.begin();j!=matchpart.end();++j)
   if(j->summands.size() == 0) break;
- if(j != matchpart.end()); matchpart.erase(j);
+
+ if(j != matchpart.end()) { matchpart.erase(j); } //RJCB: FIXED BUG
 
  for(j=matchpart.begin();j!=matchpart.end();++j)
  {

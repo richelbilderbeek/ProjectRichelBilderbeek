@@ -78,12 +78,13 @@ class Product: public CloningSymbolicInterface
 #define SYMBOLIC_CPLUSPLUS_PRODUCT_DEFINE
 #define SYMBOLIC_CPLUSPLUS_PRODUCT
 
-Product::Product() {}
+Product::Product() : factors() {}
 
 Product::Product(const Product &s)
  : CloningSymbolicInterface(s), factors(s.factors) {}
 
 Product::Product(const Symbolic &s1,const Symbolic &s2)
+  : factors()
 {
  if(s1.type() == typeid(Product))
   factors = CastPtr<const Product>(s1)->factors;
@@ -370,10 +371,13 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
 
    // if the term did not play a role in the substitution just copy it
    for(j=v.begin();j!=insert;++j)
+   {
     if(find(li->begin(),li->end(),j) == li->end())
-     if(j->commute(x)) resultr.factors.push_back(*j);
-     else              resultl.factors.push_back(*j);
-
+    {
+     if(j->commute(x)) { resultr.factors.push_back(*j); }
+     else              { resultl.factors.push_back(*j); }
+    }
+   }
    // perform the substitution
    resultl.factors.push_back(y);
    ++n;

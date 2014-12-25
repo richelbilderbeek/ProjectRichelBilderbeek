@@ -323,7 +323,7 @@ int Numeric::compare(const Symbolic &s) const
  return p.first->cmp(*(p.second));
 }
 
-Symbolic Numeric::df(const Symbolic &s) const
+Symbolic Numeric::df(const Symbolic &) const
 { return Number<int>(0); }
 
 Symbolic Numeric::integrate(const Symbolic &s) const
@@ -338,11 +338,11 @@ Symbolic Numeric::coeff(const Symbolic &s) const
 Expanded Numeric::expand() const
 { return *this; }
 
-int Numeric::commute(const Symbolic &s) const
+int Numeric::commute(const Symbolic &) const
 { return 1; }
 
 PatternMatches
-Numeric::match(const Symbolic &s, const list<Symbolic> &p) const
+Numeric::match(const Symbolic &s, const list<Symbolic> &) const
 {
  PatternMatches l;
  if(*this == s) pattern_match_TRUE(l);

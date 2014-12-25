@@ -212,11 +212,12 @@ class Symbolic: public SymbolicProxy
 // Implementation for SymbolicInterface          //
 ///////////////////////////////////////////////////
 
-SymbolicInterface::SymbolicInterface()
-{ simplified = expanded = 0; }
+SymbolicInterface::SymbolicInterface() : simplified{0}, expanded {0} { }
 
 SymbolicInterface::SymbolicInterface(const SymbolicInterface &s)
-{ simplified = s.simplified; expanded = s.expanded; }
+ : simplified {s.simplified},
+   expanded{s.expanded}
+{ }
 
 SymbolicInterface::~SymbolicInterface() {}
 
@@ -243,7 +244,7 @@ SymbolicProxy::SymbolicProxy(const CloningSymbolicInterface &s)
  : CastPtr<CloningSymbolicInterface>(s) {}
 
 SymbolicProxy::SymbolicProxy(const SymbolicProxy &s)
- : CastPtr<CloningSymbolicInterface>(s) {}
+ : SymbolicInterface(), CastPtr<CloningSymbolicInterface>(s) {}
 
 SymbolicProxy::SymbolicProxy(const Number<void> &n)
  : CastPtr<CloningSymbolicInterface>(n) {}
@@ -417,6 +418,8 @@ Symbolic::Symbolic(const list<list<Symbolic> > &l)
 
 Symbolic::~Symbolic() {}
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 SymbolicProxy &Symbolic::operator=(const CloningSymbolicInterface &s)
 {
 // cout << "*** " << &s << " " ; /*s.print(cout);*/ cout << endl;
@@ -426,7 +429,7 @@ SymbolicProxy &Symbolic::operator=(const CloningSymbolicInterface &s)
  else
 #endif
   SymbolicProxy::operator=(s.simplify());
- return *this;
+  return *this;
 }
 
 SymbolicProxy &Symbolic::operator=(const SymbolicProxy &s)
@@ -449,6 +452,7 @@ SymbolicProxy &Symbolic::operator=(const list<Symbolic> &l)
 
 SymbolicProxy &Symbolic::operator=(const list<list<Symbolic> > &l)
 { return *this = Symbolic(l); }
+#pragma GCC diagnostic pop
 
 Symbolic Symbolic::operator[](const Equation &p) const
 { return subst(p); }

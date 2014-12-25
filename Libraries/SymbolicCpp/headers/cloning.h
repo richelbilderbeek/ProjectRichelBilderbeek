@@ -51,7 +51,7 @@ class CloningPtr
  public:    CloningPtr();
             CloningPtr(const Cloning&);
             CloningPtr(const CloningPtr&);
-            ~CloningPtr();
+            virtual ~CloningPtr();
 
             CloningPtr &operator=(const Cloning&);
             CloningPtr &operator=(const CloningPtr&);
@@ -63,7 +63,7 @@ class CastPtr: public CloningPtr
  public:  CastPtr();
           CastPtr(const Cloning&);
           CastPtr(const CloningPtr&);
-          ~CastPtr();
+          virtual ~CastPtr();
 
           T *operator->() const;
           T &operator*() const;
@@ -117,8 +117,7 @@ void Cloning::unreference(Cloning *c)
 
 CloningPtr::CloningPtr() : value(0) { }
 
-CloningPtr::CloningPtr(const Cloning &p)
-{ value = p.clone(); }
+CloningPtr::CloningPtr(const Cloning &p) : value(p.clone()) { }
 
 CloningPtr::CloningPtr(const CloningPtr &p) : value(p.value)
 { Cloning::reference(value); }

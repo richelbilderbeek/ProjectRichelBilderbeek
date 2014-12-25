@@ -49,7 +49,7 @@ template <class T> class Matrix
       Matrix(int,int,const T&);
       Matrix(const Vector<T>&);
       Matrix(const Matrix<T>&);
-      ~Matrix();
+      virtual ~Matrix();
 
       // Member Functions
       Vector<T>& operator [] (int);

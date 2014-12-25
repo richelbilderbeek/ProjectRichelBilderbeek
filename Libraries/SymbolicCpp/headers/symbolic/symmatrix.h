@@ -49,7 +49,7 @@ class SymbolicMatrix
          SymbolicMatrix(const char*,int,int);
          SymbolicMatrix(const Symbolic&,int,int);
          SymbolicMatrix(int,int);
-         ~SymbolicMatrix();
+         virtual ~SymbolicMatrix();
 
          void print(ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;

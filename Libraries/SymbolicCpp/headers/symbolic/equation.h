@@ -86,7 +86,7 @@ Equation::Equation(const Equation &s, const Symbolic &newfree)
 { free.push_back(newfree); }
 
 Equation::Equation(const Symbolic &s1,const Symbolic &s2)
-: lhs(s1), rhs(s2) {}
+: lhs(s1), rhs(s2), free() {}
 
 Equation::~Equation() {}
 
@@ -114,13 +114,13 @@ Symbolic Equation::df(const Symbolic &s) const
 Symbolic Equation::integrate(const Symbolic &s) const
 { return Equation(::integrate(lhs,s),::integrate(rhs,s)); }
 
-Symbolic Equation::coeff(const Symbolic &s) const
+Symbolic Equation::coeff(const Symbolic &) const
 { return 0; }
 
 Expanded Equation::expand() const
 { return Equation(lhs.expand(),rhs.expand()); }
 
-int Equation::commute(const Symbolic &s) const
+int Equation::commute(const Symbolic &) const
 { return 0; }
 
 PatternMatches
