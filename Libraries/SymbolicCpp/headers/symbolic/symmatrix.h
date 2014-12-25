@@ -198,7 +198,7 @@ Symbolic SymbolicMatrix::integrate(const Symbolic &s) const
  return m;
 }
 
-Symbolic SymbolicMatrix::coeff(const Symbolic &s) const
+Symbolic SymbolicMatrix::coeff(const Symbolic &) const
 { return 0; }
 
 Expanded SymbolicMatrix::expand() const

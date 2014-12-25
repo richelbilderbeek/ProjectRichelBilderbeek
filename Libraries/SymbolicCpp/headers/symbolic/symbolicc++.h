@@ -401,7 +401,7 @@ Symbolic operator^(const Symbolic &s,const Symbolic &n)
 Symbolic operator^(const Symbolic &s,int i)
 { return Power(s,Symbolic(i)); }
 
-Symbolic operator^(int i,const Symbolic &s)
+Symbolic operator^(int i,const Symbolic &)
 { return Power(Symbolic(i),i); }
 
 Symbolic operator^(const Symbolic &s,double d)
@@ -456,6 +456,9 @@ template<> Symbolic zero(Symbolic) { return Number<int>(0); }
 
 template<> Symbolic one(Symbolic) { return Number<int>(1); }
 
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 Equations
 operator,(const Equation &x,const Equation &y)
 {
@@ -585,6 +588,7 @@ Equation operator,(const list<Symbolic> &x, const Equation &e)
   else p.free.push_front(x);
  return p;
 }
+#pragma GCC diagnostic pop
 
 ostream &operator<<(ostream &o,const Equations &e)
 {

@@ -90,7 +90,10 @@ Symbolic integrate(const Symbolic &f,const Symbolic &x)
    {
     int n = CastPtr<const Number<int> >(bp)->n, sgn = 1;
     Symbolic integral, nf = 1;
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wsequence-point"
     for(; n>=0; nf*=n+1, --n, sgn=-sgn) integral += sgn*nf*(x^n)*exp(x);
+    #pragma GCC diagnostic pop
     return integral;
    }
   } catch(const SymbolicError &se) {}
@@ -107,8 +110,12 @@ Symbolic integrate(const Symbolic &f,const Symbolic &x)
     {
      int n = CastPtr<const Number<int> >(bp)->n, sgn = 1;
      Symbolic integral, nf = 1/ap;
+     #pragma GCC diagnostic push
+     #pragma GCC diagnostic ignored "-Wsequence-point"
      for(; n>=0; nf*=(n+1)/ap, --n, sgn=-sgn)
       integral += sgn*nf*(x^n)*exp(ap*x);
+     #pragma GCC diagnostic pop
+
      return integral;
     }
    }
@@ -126,8 +133,11 @@ Symbolic integrate(const Symbolic &f,const Symbolic &x)
     {
      int n = CastPtr<const Number<int> >(bp)->n, sgn = 1;
      Symbolic integral, nf = 1/ap;
+     #pragma GCC diagnostic push
+     #pragma GCC diagnostic ignored "-Wsequence-point"
      for(; n>=0; nf*=(n+1)/ap, --n, sgn=-sgn)
       integral += sgn*nf*(x^n)*exp(ap*x);
+     #pragma GCC diagnostic pop
      return rhs(*i, c)*integral;
     }
    }

@@ -332,7 +332,7 @@ UniqueSymbol::UniqueSymbol() : Symbol(""), p(new int(1)) {}
 UniqueSymbol::UniqueSymbol(const UniqueSymbol &u) : Symbol(u), p(u.p)
 { ++(*p); }
 
-UniqueSymbol::UniqueSymbol(const Symbol &s) : Symbol(s) { p = new int(1); }
+UniqueSymbol::UniqueSymbol(const Symbol &s) : Symbol(s), p(new int(1)) {}
 
 UniqueSymbol::~UniqueSymbol()
 { if(--(*p) == 0) delete p; }
