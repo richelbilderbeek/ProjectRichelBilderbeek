@@ -7660,6 +7660,35 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppStdRandom_shuffle",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdRandom_shuffle.htm\">std::random_shuffle</a> is an <a href=\"CppStl.htm\">STL</a>",
+        "  <a href=\"CppAlgorithm.htm\">algorithm</a> to shuffle all elements in a <a href=\"CppContainer.htm\">container</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdRandom_shuffle.htm\">std::random_shuffle</a> is labelled deprecated in the C++14",
+        "  Standard [1] and is planned for removal in C++17. Use <a href=\"CppStdShuffle.htm\">std::shuffle</a> instead.",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"CppReferences.htm\">References</a></h2>",
+        "<p>&nbsp;</p>",
+        "<ol>",
+        "  <li><!--  1 --><!-- C++14 -->Working Draft, Standard for Programming Language C++. 2014-08-22. N3936. Paragraph D.12. 'The function templates random_shuffle are deprecated'</li>",
+        "</ol>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppStdSetExample1",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -7726,6 +7755,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppStdSetExample6.htm\">std::set example 6</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdShuffle",
+      {
+        "<p><img src=\"PicCpp14.png\" alt=\"C++14\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdShuffle.htm\">std::shuffle</a> is an <a href=\"CppStl.htm\">STL</a>",
+        "  <a href=\"CppAlgorithm.htm\">algorithm</a> to shuffle all elements in a <a href=\"CppContainer.htm\">container</a>.",
         "</p>"
       }
     }

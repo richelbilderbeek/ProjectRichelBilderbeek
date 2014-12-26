@@ -98,6 +98,9 @@
 <p>&nbsp;</p>
 <ul>
   <li>
+    A function declared with an empty parameter list takes no arguments [37]. Or: write 'int f()' instead of 'int f(void)' [37]
+  </li>
+  <li>
     Prefer pass-by-reference-to-const to pass-by-value [30]
   </li>
   <li>
@@ -228,6 +231,7 @@
   <li><!-- 34 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 13.7. Advice, page 387: '[23] If your function may not throw, declare it noexcept'</li>
   <li><!-- 35 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 15: 'Watch for long member function definitions. A function that is long and complicated is difficult and expensive to maintain, and is probably trying to do too much all by itself. If you see such a function, it indicates that, at the least, it should be broken up into multiple functions. It may also suggest the creation of a new class.'</li>
   <li><!-- 36 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 16: 'Watch for long argument lists. Function calls then become difficult to write, read and maintain. Instead, try to move the member function to a class where it is (more) appropriate, and/or pass objects in as arguments.'</li>
+  <li><!-- 37 --><!-- C++14 -->Working Draft, Standard for Programming Language C++. 2014-08-22. N3936. Paragraph C.1.7. First change. 'In C++, a function declared with an empty parameter list takes no arguments. In C, an empty parameter list means that the number and type of the function arguments are unknown.'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

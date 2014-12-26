@@ -447,6 +447,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "std::istringstream","<a href=\"C$ppS$tdI$stringstream.htm\">s$td::ist$ringstream</a>" },
     { "std::move_backward","<a href=\"C$ppS$tdM$o$ve_b$ackward.htm\">s$td::mo$ve_b$ackward</a>" },
     { "std::ostringstream","<a href=\"C$ppS$tdO$stringstream.htm\">s$td::ost$ringstream</a>" },
+    { "std::random_device","<a href=\"C$ppS$tdR$a$nd$om_d$ev$ice.htm\">s$td::r$a$nd$om_d$evice</a>" },
+
     { "std::resetiosflags","<a href=\"C$ppS$tdR$esetiosflags.htm\">st$d::r$eseti$osf$lags</a>" },
     { "std::runtime_error","<a href=\"C$ppS$tdR$unt$ime_e$rror.htm\">st$d::r$unt$ime_error</a>" },
     { "std::unordered_map","<a href=\"C$ppS$tdU$nordered_m$ap.htm\">s$td::u$no$rdered_m$ap</a>" },
@@ -1109,7 +1111,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "std::mbsinit","<a href=\"C$ppS$tdM$bsinit.htm\">s$td::mb$sinit</a>" },
     { "std::mem_fun","<a href=\"C$ppS$tdM$em_fun.htm\">s$td::me$m_fu$n</a>" },
     { "std::memmove","<a href=\"C$ppS$tdM$emmove.htm\">s$td::me$mmove</a>" },
-    { "std::modulus","<a href=\"C$ppS$tdM$odulus.htm\">st$d::modulus</a>" },
+    { "std::modulus","<a href=\"C$ppS$tdM$od$ulus.htm\">st$d::m$od$ulus</a>" },
+    { "std::mt19937","<a href=\"C$ppS$tdM$t19937.htm\">st$d::m$t19937</a>" },
     { "std::none_of","<a href=\"C$ppS$tdN$one_o$f.htm\">s$td::n$one_o$f</a>" },
     { "std::ostream","<a href=\"C$ppS$tdO$s$tream.htm\">s$td::o$st$ream</a>" },
     { "std::ptr_fun","<a href=\"C$ppS$tdP$tr_fun.htm\">s$td::p$tr_fun</a>" },
