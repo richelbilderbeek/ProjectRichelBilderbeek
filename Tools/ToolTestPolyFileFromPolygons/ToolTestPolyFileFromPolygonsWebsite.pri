@@ -1,4 +1,4 @@
-include(../../Tools/ToolTestTriangle/ToolTestTriangleConsole.pri)
+include(../../Tools/ToolTestPolyFileFromPolygons/ToolTestPolyFileFromPolygonsConsole.pri)
 
 HEADERS +=
 

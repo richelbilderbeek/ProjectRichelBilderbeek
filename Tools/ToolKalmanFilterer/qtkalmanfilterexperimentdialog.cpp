@@ -20,6 +20,7 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
+#include "fileio.h"
 #include "kalmanfilter.h"
 #include "kalmanfilterexample.h"
 #include "testtimer.h"
@@ -488,8 +489,8 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
       assert(file.size() > 0);
       const std::string temp_filename = "tmp_0.txt";
       file.copy(temp_filename.c_str());
-      assert(QFile::exists(temp_filename.c_str()));
 
+      assert(::ribi::fileio::FileIo().IsRegularFile(temp_filename));
       d->LoadFromDokuWiki(temp_filename);
     }
     //TRACE("Test read/write of examples");

@@ -1,4 +1,4 @@
-include(../../Tools/ToolTestPolyFile/ToolTestPolyConsole.pri)
+include(../../Tools/ToolTestPolyFile/ToolTestPolyFileConsole.pri)
 SOURCES +=
 HEADERS +=
 

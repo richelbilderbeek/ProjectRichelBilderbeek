@@ -40,8 +40,11 @@
 
 #pragma GCC diagnostic pop
 
-boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boost::numeric::ublas::matrix<std::string>& v) noexcept
+boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(
+  const boost::numeric::ublas::matrix<std::string>& v
+) noexcept
 {
+
   boost::numeric::ublas::matrix<double> w(v.size1(),v.size2());
   const std::size_t n_rows = v.size1();
   const std::size_t n_cols = v.size2();
@@ -55,7 +58,13 @@ boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boost::nu
       assert(row < w.size1());
       assert(col < w.size2());
       try { boost::lexical_cast<double>(v(row,col)); }
-      catch (boost::bad_lexical_cast&) { assert(!"Should not get here"); }
+      catch (boost::bad_lexical_cast&)
+      {
+        TRACE("ERROR");
+        TRACE(v(row,col));
+        TRACE("BREAK");
+        assert(!"Should not get here");
+      }
       #endif
       w(row,col) = boost::lexical_cast<double>(v(row,col));
     }

@@ -8,8 +8,6 @@ SOURCES += \
     ../../Tools/ToolTestPolyFileFromPolygons/testpolyfilefrompolygonsmaindialog.cpp \
     ../../Tools/ToolTestPolyFileFromPolygons/testpolyfilefrompolygonsmenudialog.cpp
 
-
-
 OTHER_FILES += \
     ../../Tools/ToolTestPolyFileFromPolygons/Licence.txt
 

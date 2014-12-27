@@ -257,8 +257,8 @@ void ribi::c2h::WtDialog::on_button_convert_clicked()
 
   const std::vector<std::string> v
     = fileio::FileIo().IsRegularFile(source)
-    ? Dialog::FileToHtml(source)
-    : Dialog::FolderToHtml(source)
+    ? Dialog().FileToHtml(source)
+    : Dialog().FolderToHtml(source)
   ;
   Display(v);
 }
