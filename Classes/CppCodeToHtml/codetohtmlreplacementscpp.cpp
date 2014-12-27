@@ -1404,6 +1404,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CreateMaze","<a href=\"CppCr$eateMaze.htm\">Cr$eateMa$ze</a>" },
     { "Definition","<a href=\"CppDe$finition.htm\">De$fi$nition</a>" },
     { "definition","<a href=\"CppDe$finition.htm\">de$fi$nition</a>" },
+    { "deprecated","<a href=\"C$ppD$epr$ec$at$ed.htm\">d$ep$rec$at$ed</a>" },
     { "DeleteFile","<a href=\"CppD$eleteF$ile.htm\">D$eleteF$ile</a>" },
     { "Destructor","<a href=\"CppD$estr$uctor.htm\">D$estr$uctor</a>" },
     { "destructor","<a href=\"CppDestr$uctor.htm\">destr$uctor</a>" },

@@ -39,7 +39,7 @@ boost::weak_ptr<ribi::gtst::Administrator> ribi::gtst::Administrators::CreateNew
     } );
   #endif
 
-  const int new_id = m_last_id_administrator->Count();
+  const int new_id = m_last_id_administrator->Get();
   assert(new_id > 0);
 
   #ifndef NDEBUG

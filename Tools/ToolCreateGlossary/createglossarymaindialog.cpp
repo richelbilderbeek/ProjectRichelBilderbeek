@@ -66,7 +66,7 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
 {
   const std::string website_folder {
   #ifndef _WIN32
-    "/home/richel/GitHubs/richelbilderbeek/develop/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",
+    "/home/richel/GitHubs/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",
   #else
     "D:\\Projects\\Projects\\RichelbilderbeekNl",
   #endif

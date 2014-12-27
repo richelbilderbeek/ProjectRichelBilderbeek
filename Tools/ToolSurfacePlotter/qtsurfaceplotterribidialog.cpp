@@ -136,7 +136,9 @@ void ribi::QtSurfacePlotterRibiDialog::OnAnyChange()
     double operator()(const double x, const double y) const noexcept
     {
       const double xs[2] = { x,y };
-      const double z = m_f.Eval(xs);
+      //FunctionParser::Eval is not const, although it does not change
+      //the state of the FunctionParser itself
+      const double z{const_cast<FunctionParser&>(m_f).Eval(xs)};
       return m_f.EvalError() ? 0.0 : z;
     }
     private:

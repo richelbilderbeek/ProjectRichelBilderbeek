@@ -2123,6 +2123,37 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppGetRandomNormal",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetRandomNormal.htm\">GetRandomNormal</a> is a ",
+        "  <a href=\"CppRandom.htm\">random</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to draw a value from a normal distribution with average 'mean' and a",
+        "  standard deviation of 'sigma'.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppGetRandomUniform",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetRandomUniform.htm\">GetRandomUniform</a> is a ",
+        "  <a href=\"CppRandom.htm\">random</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to draw a value from 0.0 to (and not including) 1.0.",
+        "  All values have an equal likelyhood to be drawn.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppGetRegexMatches",
       {

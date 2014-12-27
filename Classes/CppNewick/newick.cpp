@@ -78,19 +78,20 @@ Out Copy_if(In first, In last, Out res, Pred Pr)
 }
 
 //From http://www.richelbilderbeek.nl/CppFunctorIncrease.htm
-struct Increase //: public std::unary_function<void,int>
+struct Increase
 {
-  explicit Increase(const int& initValue = 0) noexcept : mValue(initValue) {}
+  explicit Increase(const int& init_value = 0) noexcept : m_value(init_value) {}
   void operator()(int& anything) noexcept
   {
-    anything = mValue;
-    ++mValue;
+    anything = m_value;
+    ++m_value;
   }
   private:
-  int mValue;
+  int m_value;
 };
 
 
+/*
 bool ribi::Newick::AllAboutEqual(
   const std::vector<double>& v,
   const double tolerance)
@@ -100,9 +101,11 @@ bool ribi::Newick::AllAboutEqual(
     v.begin(),
     v.end(),
     std::bind2nd(fuzzy_equal_to(tolerance),v[0]))
-    == boost::numeric_cast<int>(v.size());
+    == boost::numeric_cast<int>(v.size()
+  );
 
 }
+*/
 
 BigInteger ribi::Newick::CalcComplexity(const std::vector<int>& v)
 {

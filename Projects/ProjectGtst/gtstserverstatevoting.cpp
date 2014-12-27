@@ -115,7 +115,7 @@ void ribi::gtst::ServerStateVoting::Start()
   {
     assert(p);
     m_has_voted[p] = false;
-    StateVoting * const state = dynamic_cast<const StateVoting*>(this);
+    const StateVoting * const state = dynamic_cast<const StateVoting*>(this);
     assert(state);
     FindParticipant(p)->SetState(state);
   }

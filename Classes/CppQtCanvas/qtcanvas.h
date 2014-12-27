@@ -28,8 +28,8 @@ public:
   QtCanvas& operator=(const QtCanvas&) = delete;
   virtual ~QtCanvas() noexcept;
 
-  const boost::shared_ptr<const Canvas> GetCanvas() const noexcept { return m_canvas; }
-  const boost::shared_ptr<      Canvas> GetCanvas()       noexcept { return m_canvas; }
+  boost::shared_ptr<const Canvas> GetCanvas() const noexcept { return m_canvas; }
+  boost::shared_ptr<      Canvas> GetCanvas()       noexcept { return m_canvas; }
 
   void SetCanvas(const boost::shared_ptr<Canvas> canvas);
 
@@ -47,13 +47,8 @@ private:
   boost::shared_ptr<Canvas> m_canvas;
 
   boost::shared_ptr<QImage> m_image; //Used as buffer
-  //QTimer * const m_resize_timer;
 
   void ShowCanvas(const Canvas * const);
-
-  //private slots:
-  //void OnResizeTimer();
-
 };
 
 } //~namespace ribi

@@ -104,7 +104,7 @@ void ribi::gtst::ServerStateAssignPayoff::Start()
   std::for_each(ps.begin(),ps.end(),
     [this](const boost::shared_ptr<const Participant>& p)
     {
-      StateAssignPayoff * const state
+      const StateAssignPayoff * const state
         = dynamic_cast<const StateAssignPayoff*>(this);
       assert(state);
       this->FindParticipant(p)->SetState(state);

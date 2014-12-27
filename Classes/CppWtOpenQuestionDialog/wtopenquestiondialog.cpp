@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "fileio.h"
 #include "openquestion.h"
+#include "openquestionfactory.h"
 #include "openquestiondialog.h"
 //#include "trace.h"
 #pragma GCC diagnostic pop
@@ -51,9 +52,10 @@ ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(
   const std::string& question)
   : WtQuestionDialog(),
     m_ui{},
-    m_dialog(boost::make_shared<ribi::OpenQuestionDialog>(question))
+    m_dialog(boost::make_shared<ribi::OpenQuestionDialog>())
 {
   assert(m_dialog);
+  m_dialog->SetOpenQuestion(OpenQuestionFactory().Create(question));
   SetQuestion(m_dialog->GetQuestion());
 }
 

@@ -82,7 +82,7 @@ void ribi::gtst::ServerStateViewResultsGroup::Start()
   std::for_each(ps.begin(),ps.end(),
     [this](const boost::shared_ptr<const Participant>& p)
     {
-      StateViewResultsGroup * const state
+      const StateViewResultsGroup * const state
         = dynamic_cast<const StateViewResultsGroup*>(this);
       assert(state);
       this->FindParticipant(p)->SetState(state);

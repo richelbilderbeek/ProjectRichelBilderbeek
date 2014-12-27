@@ -209,7 +209,7 @@ void ribi::gtst::ServerStateViewResultsVoting::Start()
   for(const boost::shared_ptr<const Participant>& p:
     GetServer()->GetGroups()->CollectParticipants(false,false,true,false))
   {
-    StateViewResultsVoting * const state
+    const StateViewResultsVoting * const state
       = dynamic_cast<const StateViewResultsVoting*>(this);
     assert(state);
     FindParticipant(p)->SetState(state);

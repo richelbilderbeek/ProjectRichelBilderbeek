@@ -1,4 +1,4 @@
-include(../../ConsoleApplication.pri)
+include(../../ConsoleApplicationNoWeffcpp.pri)
 
 include(../../Libraries/Apfloat.pri)
 include(../../Libraries/BigInteger.pri)

@@ -34,29 +34,33 @@ namespace ribi {
 ///Random functions
 struct Random
 {
+  ///Random seed
   Random();
+  ///Use a given seed
+  Random(const int seed);
 
   ///Obtain a random boolean
-  bool GetBool() const noexcept;
+  bool GetBool() noexcept;
 
   ///Obtain a random lowercase character
-  char GetChar() const noexcept;
+  char GetChar() noexcept;
 
   ///Obtain a random number from zero to (and not including) one
-  double GetFraction() const noexcept;
+  double GetFraction() noexcept;
 
   ///Obtain a random number from a normal distribution
   ///From http://www.richelbilderbeek.nl/CppGetRandomNormal.htm
-  double GetNormal(const double mean = 0.0, const double sigma = 1.0) const noexcept;
+  double GetNormal(const double mean = 0.0, const double sigma = 1.0) noexcept;
 
   ///Return a random string
-  std::string GetString() const noexcept;
+  std::string GetString(const int length) noexcept;
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
-
+  struct RandomImpl;
+  RandomImpl * const m_impl;
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
