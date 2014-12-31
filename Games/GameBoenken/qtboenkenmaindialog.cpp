@@ -35,9 +35,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 
 #include "qtboenkengame.h"
-#include "ui_qtboenkenmaindialog.h"
 #include "testtimer.h"
 #include "trace.h"
+#include "ui_qtboenkenmaindialog.h"
 
 #pragma GCC diagnostic pop
 

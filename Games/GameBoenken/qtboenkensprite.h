@@ -78,11 +78,6 @@ struct Sprite
   ///Every sprite must be within the arena
   static void setArenaSize(const int width, const int height);
 
-  ///dummy_make_me_abstract ensures that
-  ///Sprite and SpriteMoving
-  ///are abstract base classes
-  virtual void dummy_make_me_abstract() const = 0;
-
   protected:
   double m_x;
   double m_y;

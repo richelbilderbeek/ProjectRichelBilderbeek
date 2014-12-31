@@ -24,11 +24,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
-#include "richelbilderbeekprogram.h"
 #include "container.h"
 #include "fileio.h"
-#include "plane.h"
 #include "geometry.h"
+#include "plane.h"
+#include "richelbilderbeekprogram.h"
 #include "testtimer.h"
 #include "trace.h"
 

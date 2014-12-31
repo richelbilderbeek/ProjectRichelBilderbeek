@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtboenkenspritemoving.h"
 #include "qtboenkenspritenonmoving.h"
 #include "qtboenkenspriteplayer.h"
+#include "testtimer.h"
 
 #pragma GCC diagnostic pop
 
@@ -213,6 +214,7 @@ void ribi::Boenken::Game::Test() noexcept
     ArenaSettings arena_settings;
     const Controls controls;
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 
 ///Moves all sprites

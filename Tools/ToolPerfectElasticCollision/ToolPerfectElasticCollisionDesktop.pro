@@ -8,6 +8,6 @@ include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
-include(../../Tools/ToolPerfectElasticCollision/ToolPerfectElasticCollisionDesktop.pri)
+include(ToolPerfectElasticCollisionDesktop.pri)
 
 SOURCES += qtmain.cpp

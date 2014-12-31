@@ -28,8 +28,7 @@ namespace ribi {
 
 namespace Boenken {
 
-///SpriteMoving is an abstract base class,
-///thanks to dummy_make_me_abstract
+///SpriteMoving is an abstract base class
 struct SpriteMoving : public Sprite
 {
   SpriteMoving(
@@ -42,7 +41,7 @@ struct SpriteMoving : public Sprite
 
   double CalcImpulseAngle() const noexcept;
   double CalcImpulseSpeed() const noexcept;
-  virtual void Draw(QPainter& painter) const;
+  virtual void Draw(QPainter& painter) const override;
   virtual void Move() = 0;
   void Move(const double dx, const double dy) { m_dx += dx; m_dy += dy; }
   void SetSpeed(const double dx, const double dy) { m_dx = dx; m_dy = dy; }

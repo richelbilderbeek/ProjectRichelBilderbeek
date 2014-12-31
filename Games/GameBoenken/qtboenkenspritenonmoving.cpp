@@ -29,7 +29,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/math/constants/constants.hpp>
 #include "qtboenkenspritemoving.h"
+#include "testtimer.h"
+
 #pragma GCC diagnostic pop
+
+ribi::Boenken::SpriteNonMoving::SpriteNonMoving(
+  const double x,
+  const double y,
+  const int size,
+  const unsigned char r,
+  const unsigned char g,
+  const unsigned char b)
+  : Sprite(x,y,size,r,g,b)
+{
+  #ifndef NDEBUG
+  SpriteNonMoving::Test();
+  #endif
+}
 
 void ribi::Boenken::SpriteNonMoving::Collision(SpriteNonMoving * const p1, SpriteMoving * const p2)
 {
@@ -79,4 +95,15 @@ void ribi::Boenken::SpriteNonMoving::Collision(SpriteNonMoving * const p1, Sprit
     }
     #endif
   }
+}
+
+void ribi::Boenken::SpriteNonMoving::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  assert(!"Test for correct bouncing of balls with obstacles");
 }

@@ -59,9 +59,6 @@ struct SpriteBall : public SpriteMoving
   static int m_score_left;
   static int m_score_right;
 
-  ///SpriteBall is no base class
-  void dummy_make_me_abstract() const {}
-
   //The number of balls, for debugging purposes
   static int sm_n_balls;
 

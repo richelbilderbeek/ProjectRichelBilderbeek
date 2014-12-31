@@ -1,13 +1,11 @@
 #!/bin/sh
 #From http://richelbilderbeek.nl/CppMxe.htm
 
-
+#Don't put the full path here. It has to be found in the 
+# In /home/yourusername/.bashrc add the following line add the end instead:
+# export PATH=$PATH:/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/bin/
 #myqmake="i686-pc-mingw32.static-qmake-qt4"
-#myqmake="i686-pc-mingw32.static-qmake-qt5"
-#myqmake="/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/bin/i686-pc-mingw32.static-qmake-qt5"
-myqmake="/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/bin/i686-w64-mingw32.static-qmake-qt5"
-
-
+myqmake="i686-w64-mingw32.static-qmake-qt5"
 
 echo "Displaying cross compiler version (if it is not found, set the path to YourFolder/mxe/usr/bin"
 $myqmake -v

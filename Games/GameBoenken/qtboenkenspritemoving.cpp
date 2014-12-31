@@ -28,6 +28,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/math/constants/constants.hpp>
+
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 int ribi::Boenken::SpriteMoving::sm_n_moving_sprites = 0;

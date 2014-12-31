@@ -42,11 +42,12 @@ struct SpritePlayer : public Boenken::SpriteMoving
     const int size,
     const unsigned char r,
     const unsigned char g,
-    const unsigned char b);
+    const unsigned char b
+  );
 
   void Accelerate() noexcept;
-  void Draw(QPainter& painter) const;
-  void Move() noexcept;
+  void Draw(QPainter& painter) const override;
+  void Move() noexcept override;
   void TurnRight() noexcept;
 
   ///The SpritePlayer's ID
@@ -59,8 +60,6 @@ struct SpritePlayer : public Boenken::SpriteMoving
 
   double m_angle;
 
-  ///SpritePlayer is no base class
-  void dummy_make_me_abstract() const {}
   static const double m_acceleration;
   static const double m_turnspeed;
   static int ms_n_players;

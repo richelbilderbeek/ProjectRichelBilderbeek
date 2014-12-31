@@ -45,24 +45,21 @@ struct SpriteNonMoving : public Sprite
     const int size = 32,
     const unsigned char r = 255,
     const unsigned char g = 255,
-    const unsigned char b = 255)
-    : Sprite(x,y,size,r,g,b)
-  {
-
-  }
+    const unsigned char b = 255
+  );
 
   public:
   void setX(const double x) { m_x = x; }
   void setY(const double y) { m_y = y; }
   static void Collision(SpriteNonMoving * const p1, SpriteMoving * const p2);
 
-  ///SpriteNonMoving is no base class
-  void dummy_make_me_abstract() const {}
-
   private:
   ///Ensure SpriteNonMoving can only be deleted by boost::checked_delete
   virtual ~SpriteNonMoving() noexcept {}
   friend void boost::checked_delete<>(SpriteNonMoving* x);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace Boenken

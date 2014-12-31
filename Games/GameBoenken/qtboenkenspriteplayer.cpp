@@ -30,6 +30,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 #include <QPainter>
+
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ///The acceleration (i.e. change of impulse)
