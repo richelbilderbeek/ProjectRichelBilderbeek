@@ -71,7 +71,7 @@ ribi::TestTimer::TestTimer(
   const std::string& function_name,
   const std::string& file_name,
   const double max_time_sec
-) : m_impl(new TestTimerImpl(function_name,file_name,max_time_sec))
+) : m_impl(std::make_unique<TestTimerImpl>(function_name,file_name,max_time_sec))
 {
   std::clog
     << std::string(m_impl->m_cnt - 1,' ')
@@ -124,7 +124,6 @@ ribi::TestTimer::~TestTimer() noexcept
     << " seconds)"
     << std::endl
   ;
-  delete m_impl;
   if (elapsed_secs > m_impl->m_max_time_sec)
   {
     std::exit(0);
@@ -133,7 +132,7 @@ ribi::TestTimer::~TestTimer() noexcept
 
 std::string ribi::TestTimer::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::TestTimer::GetVersionHistory() noexcept
@@ -142,7 +141,8 @@ std::vector<std::string> ribi::TestTimer::GetVersionHistory() noexcept
     "2014-08-02: version 1.0: initial version",
     "2014-08-08: version 1.1: allow setting a maximum amount of TestTimers active",
     "2014-08-10: version 1.2: count the number of constructed TestTimers",
-    "2014-12-24: version 1.3: added GetMaxCnt"
+    "2014-12-24: version 1.3: added GetMaxCnt",
+    "2014-12-31: version 1.4: use of std::unique_ptr"
   };
 }
 

@@ -1,31 +1,31 @@
 #include <iostream>
 
-struct Animal
+struct Base
 {
-  virtual ~Animal() {}
-  virtual void MakeSound() const = 0;
-  virtual void Walk() const = 0;
+  virtual ~Base() noexcept {}
+  virtual void A() const = 0;
+  virtual void B() const = 0;
 };
 
-struct Cow : public Animal
+struct Derived : public Base
 {
-  void MakeSound() const final { std::cout << "moo\n"; } //MakeSound is final
-  virtual void Walk() const { std::cout << "walk\n"; }
+  void A() const override final { std::cout << "Derived::A\n"; } //A is final
+  virtual void B() const override { std::cout << "Derived::B\n"; }
 };
 
-struct NonCow : public Cow
+struct DerivedAgain : public Derived
 {
-  //void MakeSound() const { std::cout << "MOO\n"; } //will not compile: Cow::MakeSound is final
-  void Walk() const { std::cout << "non walk\n"; }
+  //void MakeSound() const { std::cout << "DerivedAgain::A\n"; } //will not compile: Derived::A is final
+  void B() const override { std::cout << "DerivedAgain::B\n"; }
 };
 
 int main()
 {
-  Cow cow;
-  cow.MakeSound();
-  cow.Walk();
+  Derived d;
+  d.A();
+  d.B();
 
-  NonCow noncow;
-  noncow.MakeSound();
-  noncow.Walk();
+  DerivedAgain da;
+  da.A();
+  da.B();
 }

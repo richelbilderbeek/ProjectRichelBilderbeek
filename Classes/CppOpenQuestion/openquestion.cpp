@@ -125,6 +125,9 @@ void ribi::OpenQuestion::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    try { std::make_shared<ImageCanvas>("",0); } catch (std::logic_error&) { /* fine */ }
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test simple get/set with single answer
   {

@@ -3,7 +3,11 @@
 
 
 #myqmake="i686-pc-mingw32.static-qmake-qt4"
-myqmake="i686-pc-mingw32.static-qmake-qt5"
+#myqmake="i686-pc-mingw32.static-qmake-qt5"
+#myqmake="/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/bin/i686-pc-mingw32.static-qmake-qt5"
+myqmake="/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/bin/i686-w64-mingw32.static-qmake-qt5"
+
+
 
 echo "Displaying cross compiler version (if it is not found, set the path to YourFolder/mxe/usr/bin"
 $myqmake -v
@@ -15,18 +19,18 @@ do
 
   #echo "mybasename: "$mybasename
 
-  echo "Cleaning up"
-  rm Makefile
-  rm Makefile.*
-  rm -r release
-  rm -r debug
-  rm ui_*.h
-  rm qrc_*.cpp
-  rm moc_*.cpp
-  rm object_script*.*
-  rm *.o
-  rm *_plugin_import.cpp
-  rm *.exe #Also clean up the executable
+  # echo "Cleaning up"
+  # rm Makefile
+  # rm Makefile.*
+  # rm -r release
+  # rm -r debug
+  # rm ui_*.h
+  # rm qrc_*.cpp
+  # rm moc_*.cpp
+  # rm object_script*.*
+  # rm *.o
+  # rm *_plugin_import.cpp
+  # rm *.exe #Also clean up the executable
 
   echo "Creating makefile"
 
@@ -55,16 +59,15 @@ do
   fi
 
   #Cleaning up
-  rm Makefile
-  rm Makefile.*
-  rm -r release
-  rm -r debug
-  rm ui_*.h
-  rm qrc_*.cpp
-  rm moc_*.cpp
-  rm object_script*.*
-  rm *.o
-  rm *_plugin_import.cpp
-  #rm *.exe #Keep the executable
+  # rm Makefile
+  # rm Makefile.*
+  # rm -r release
+  # rm -r debug
+  # rm ui_*.h
+  # rm qrc_*.cpp
+  # rm moc_*.cpp
+  # rm object_script*.*
+  # rm *.o
+  # rm *_plugin_import.cpp
 
 done #next myprofile

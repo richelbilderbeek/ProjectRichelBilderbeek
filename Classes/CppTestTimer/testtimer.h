@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace ribi {
 
@@ -44,7 +45,7 @@ struct TestTimer
   static void SetMaxCnt(const int max_cnt) noexcept;
 
   private:
-  TestTimerImpl * const m_impl;
+  const std::unique_ptr<TestTimerImpl> m_impl;
 };
 
 } //~namespace ribi
