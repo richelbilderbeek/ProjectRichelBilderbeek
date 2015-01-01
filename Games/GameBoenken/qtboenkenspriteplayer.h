@@ -33,7 +33,7 @@ namespace Boenken {
 
 ///SpritePlayer is a MovingSprite that can respond to input
 ///and can only be deleted by boost::checked_delete
-struct SpritePlayer : public Boenken::SpriteMoving
+struct SpritePlayer final : public SpriteMoving
 {
   SpritePlayer(
     const double x,
@@ -47,6 +47,7 @@ struct SpritePlayer : public Boenken::SpriteMoving
 
   void Accelerate() noexcept;
   void Draw(QPainter& painter) const override;
+  double GetAngle() const noexcept { return m_angle; }
   void Move() noexcept override;
   void TurnRight() noexcept;
 
@@ -54,10 +55,6 @@ struct SpritePlayer : public Boenken::SpriteMoving
   const int m_id;
 
   private:
-  ///Ensure SpritePlayer can only be deleted by boost::checked_delete
-  ~SpritePlayer() noexcept;
-  friend void boost::checked_delete<>(SpritePlayer* x);
-
   double m_angle;
 
   static const double m_acceleration;

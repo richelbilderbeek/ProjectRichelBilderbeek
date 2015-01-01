@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/math/constants/constants.hpp>
 #include "qtboenkenspritemoving.h"
+#include "qtboenkenspriteplayer.h"
 #include "testtimer.h"
 
 #pragma GCC diagnostic pop
@@ -47,7 +48,7 @@ ribi::Boenken::SpriteNonMoving::SpriteNonMoving(
   #endif
 }
 
-void ribi::Boenken::SpriteNonMoving::Collision(SpriteNonMoving * const p1, SpriteMoving * const p2)
+void ribi::Boenken::SpriteNonMoving::Collision(const SpriteNonMoving * const p1, SpriteMoving * const p2)
 {
   const double dx = p2->getX() - p1->getX();
   const double dy = p2->getY() - p1->getY();
@@ -105,5 +106,30 @@ void ribi::Boenken::SpriteNonMoving::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  assert(!"Test for correct bouncing of balls with obstacles");
+  const auto obstacle = std::make_unique<SpriteNonMoving>(
+    0.0, //x
+    0.0, //y
+    32   //size
+  );
+  const auto player = std::make_unique<SpritePlayer>(
+    0.0, //x
+    32.0, //y
+    0.0, //angle
+    32,  //size
+    255, //r
+    255, //g
+    255  //b
+  );
+  // Player below obstacle, moves up
+  {
+    player->SetX(0.0);
+    player->SetY(32.0);
+    player->SetSpeed(0.0,-4.0);
+    SpriteNonMoving::Collision(
+      obstacle.get(),
+      player.get()
+    );
+    assert(std::abs(player->GetDeltaY() - 4.0) < 0.001);
+  }
+  assert(!"Refactor");
 }

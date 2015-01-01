@@ -1,7 +1,6 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/mkspecs/win32-g++
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Projects/ProjectRichelBilderbeek
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/apf241
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/apf241
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/bigint-2010.04.30
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/boost_1_55_0
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/fparser4.5.1

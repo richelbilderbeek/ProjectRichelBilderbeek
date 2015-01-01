@@ -37,9 +37,9 @@ struct SpriteMoving;
 ///SpriteNonMoving are obstacles.
 ///Obstacles are grey per default
 ///and can only be deleted by boost::checked_delete
-struct SpriteNonMoving : public Sprite
+struct SpriteNonMoving final : public Sprite
 {
-  SpriteNonMoving(
+  explicit SpriteNonMoving(
     const double x,
     const double y,
     const int size = 32,
@@ -51,12 +51,11 @@ struct SpriteNonMoving : public Sprite
   public:
   void setX(const double x) { m_x = x; }
   void setY(const double y) { m_y = y; }
-  static void Collision(SpriteNonMoving * const p1, SpriteMoving * const p2);
+
+  ///A non-moving sprite, like an object, will not change
+  static void Collision(const SpriteNonMoving * const p1, SpriteMoving * const p2);
 
   private:
-  ///Ensure SpriteNonMoving can only be deleted by boost::checked_delete
-  virtual ~SpriteNonMoving() noexcept {}
-  friend void boost::checked_delete<>(SpriteNonMoving* x);
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

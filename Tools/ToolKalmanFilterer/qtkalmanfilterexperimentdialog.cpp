@@ -427,6 +427,7 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
     is_tested = true;
   }
   {
+    fileio::FileIo();
     KalmanFilterExperimentParameter();
     KalmanFilterTypes();
     WhiteNoiseSystemTypes();

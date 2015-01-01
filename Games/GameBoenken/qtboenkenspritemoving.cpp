@@ -54,6 +54,11 @@ ribi::Boenken::SpriteMoving::SpriteMoving(
   ++sm_n_moving_sprites;
 }
 
+ribi::Boenken::SpriteMoving::~SpriteMoving()
+{
+  --sm_n_moving_sprites;
+}
+
 double ribi::Boenken::SpriteMoving::CalcImpulseAngle() const noexcept
 {
   return GetAngle(m_dx,m_dy);

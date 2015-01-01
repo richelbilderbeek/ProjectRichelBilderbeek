@@ -38,7 +38,7 @@ namespace Boenken {
 ///Sprite is the ABC of anything that must be drawn on screen
 struct Sprite
 {
-  Sprite(
+  explicit Sprite(
     const double x,
     const double y,
     const int size,
@@ -47,6 +47,7 @@ struct Sprite
     const unsigned char b);
   Sprite(const Sprite&) = delete;
   Sprite& operator=(const Sprite&) = delete;
+  virtual ~Sprite() = default;
 
   ///The size (width==height) in pixels
   const int m_size;
@@ -54,8 +55,10 @@ struct Sprite
   ///The globe part of the Sprite
   const QPixmap m_pixmap;
 
-  double getX() const noexcept { return m_x; }
-  double getY() const noexcept { return m_y; }
+  double getX() const noexcept { return GetX(); }
+  double getY() const noexcept { return GetY(); }
+  double GetX() const noexcept { return m_x; }
+  double GetY() const noexcept { return m_y; }
 
   ///The x,y,w,h of the sprite
   QRect rect() const;
@@ -78,16 +81,17 @@ struct Sprite
   ///Every sprite must be within the arena
   static void setArenaSize(const int width, const int height);
 
+  void setX(const double x) noexcept { SetX(x); }
+  void setY(const double y) noexcept { SetY(y); }
+  void SetX(const double x) noexcept { m_x  = x; }
+  void SetY(const double y) noexcept { m_y  = y; }
+
   protected:
   double m_x;
   double m_y;
   static int m_maxx;
   static int m_maxy;
 
-  //private:
-  //Ensure Sprite can only be deleted by boost::checked_delete
-  virtual ~Sprite() noexcept {}
-  //friend void boost::checked_delete<>(Sprite* x);
 
   ///Draws a globe with a nice 3D effect\n
   ///From http://www.richelbilderbeek.nl/CppDrawGlobe.htm

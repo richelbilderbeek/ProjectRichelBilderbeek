@@ -34,7 +34,7 @@ namespace Boenken {
 ///SpriteBall is green per default
 ///and keeps track of the score
 ///and can only be deleted by boost::checked_delete
-struct SpriteBall : public SpriteMoving
+struct SpriteBall final : public SpriteMoving
 {
   SpriteBall(
     const double x,
