@@ -85,6 +85,11 @@ std::vector<std::string>
   return v;
 }
 
+std::string ribi::Regex::GetRegexDutchFloat() const noexcept
+{
+  return R"((\d*,\d*))";
+}
+
 std::string ribi::Regex::GetRegexDutchPostalCode() const noexcept
 {
   return R"((\d{4})( )([A-Z]{2}))";
@@ -104,13 +109,14 @@ std::string ribi::Regex::GetRegexShapes() const noexcept
 
 std::string ribi::Regex::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::Regex::GetVersionHistory() noexcept
 {
   return {
-    "2014-06-19: Version 1.0: initial version"
+    "2014-06-19: Version 1.0: initial version",
+    "2014-01-02: Version 1.1: added GetRegexDutchFloat"
   };
 }
 
@@ -184,6 +190,11 @@ void ribi::Regex::Test() noexcept
     const auto x = r.GetRegexMatchesXpressive(s,t);
     //assert(v == w);
     assert(v == x);
+  }
+  if (verbose) { TRACE("GetRegexDutchFloat"); }
+  {
+    assert( r.GetRegexMatches("1.23",r.GetRegexDutchFloat()).empty());
+    assert(!r.GetRegexMatches("1,23",r.GetRegexDutchFloat()).empty());
   }
 }
 #endif

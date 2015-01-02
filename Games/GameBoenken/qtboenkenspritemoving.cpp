@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/math/constants/constants.hpp>
 
+#include "geometry.h"
 #include "testtimer.h"
 #pragma GCC diagnostic pop
 
@@ -61,12 +62,13 @@ ribi::Boenken::SpriteMoving::~SpriteMoving()
 
 double ribi::Boenken::SpriteMoving::CalcImpulseAngle() const noexcept
 {
-  return GetAngle(m_dx,m_dy);
+  return Geometry().GetAngleClockScreen(m_dx,m_dy);
 }
 
 double ribi::Boenken::SpriteMoving::CalcImpulseSpeed() const noexcept
 {
-  return std::sqrt( (m_dx * m_dx) + (m_dy * m_dy) );
+
+  return Geometry().GetDistance(m_dx,m_dy);
 }
 
 void ribi::Boenken::SpriteMoving::SetFriction(const double friction)

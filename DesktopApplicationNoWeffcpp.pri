@@ -1,3 +1,5 @@
+# -Weffc++ does not go with Qwt
+
 win32 {
   # Windows only
   message("Desktop application, no effc++, built for Windows")

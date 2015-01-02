@@ -55,6 +55,7 @@ struct Regex
     const std::string& regex_str
   ) const noexcept;
 
+  std::string GetRegexDutchFloat() const noexcept;
   std::string GetRegexDutchPostalCode() const noexcept;
   std::string GetRegexPolygon() const noexcept;
   std::string GetRegexShapes() const noexcept;

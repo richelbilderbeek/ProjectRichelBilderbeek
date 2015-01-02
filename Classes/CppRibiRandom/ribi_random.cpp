@@ -129,6 +129,11 @@ ribi::Random::Random(const int seed) : m_impl{new RandomImpl(seed)}
   #endif
 }
 
+ribi::Random::~Random()
+{
+  //Otherwise trouble with forward declarations
+}
+
 bool ribi::Random::GetBool() noexcept
 {
   return m_impl->GetBool();

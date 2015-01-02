@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>FwdppExample1</title>
+  <meta name="description" content="C++ FwdppExample1"/>
+  <meta name="keywords" content="C++ FwdppExample1 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppFwdppExample1.htm">FwdppExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppFwdppExample1-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.10 (utopic)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.1.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.9.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.9.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppFwdppExample1/CppFwdppExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppFwdppExample1/CppFwdppExample1.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>NoWeffcpp.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>All.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Fwdpp.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Libsequence.pri)<br/>
+<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -lgsl<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -lgslcblas<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -lz<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += diploid.cc<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += common_gamete.hpp<br/>
+<br/>
+<br/>
+# N theta rho ngens samplesize nreps seed<br/>
+# 1000 1 1 1000 100 100 42<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppFwdppExample1/common_gamete.hpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppFwdppExample1/common_gamete.hpp" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> __FWDPP_EXAMPLES_COMMON_GAMETE_HPP__<br/>
+<a href="CppDefine.htm">#define</a> __FWDPP_EXAMPLES_COMMON_GAMETE_HPP__<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> USE_STANDARD_CONTAINERS<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/unordered_set.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppContainer.htm">container</a>/list.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppContainer.htm">container</a>/vector.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/pool/pool_alloc.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/unordered_set.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppFunction.htm">function</a>al/hash.hpp&gt;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::pool_allocator&lt;mtype&gt; mut_allocator;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppContainer.htm">container</a>::list&lt;mtype,mut_allocator &gt; mlist;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> KTfwd::gamete_base&lt;mtype,mlist&gt; gtype;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::pool_allocator&lt;gtype&gt; gam_allocator;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppContainer.htm">container</a>::vector&lt;gtype,gam_allocator &gt; gvector;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::unordered_set&lt;<b><a href="CppDouble.htm">double</a></b>,<a href="CppBoost.htm">boost</a>::hash&lt;<b><a href="CppDouble.htm">double</a></b>&gt;,KTfwd::equal_eps &gt; lookup_table_type;<br/>
+<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;We wish to <b><a href="CppDo.htm">do</a></b> mutations under the infinitely-many sites assumption.&nbsp;&nbsp;That means that<br/>
+&nbsp;&nbsp;a <b><a href="CppNew.htm">new</a></b> mutation cannot appear at <a href="CppAny.htm">any</a> previously-mutated site.&nbsp;&nbsp;Here, we cheat a little<br/>
+&nbsp;&nbsp;and <b><a href="CppDo.htm">do</a></b> not allow mutations at <a href="CppAny.htm">any</a> sites that are currently polymorphic.<br/>
+<br/>
+&nbsp;&nbsp;We ac<b><a href="CppCompl.htm">compl</a></b>ish <b><a href="CppThis.htm">this</a></b> via a lookup table of the current mutation positions.&nbsp;&nbsp;The <a href="CppFunction.htm">function</a> object<br/>
+&nbsp;&nbsp;KTfwd::equal_eps is used as a replacement <b><a href="CppFor.htm">for</a></b> <a href="CppStd.htm">std</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>) in order to ensure<br/>
+&nbsp;&nbsp;that values differing by <a href="CppOperatorLessEqual.htm">&lt;=</a> DBL_EPSILON (~10^-17 on most systems) are not allowed, as they cause problems.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::unordered_set&lt;<b><a href="CppDouble.htm">double</a></b>,<a href="CppBoost.htm">boost</a>::hash&lt;<b><a href="CppDouble.htm">double</a></b>&gt;,KTfwd::equal_eps &gt; lookup_table_type;<br/>
+<a href="CppPreElse.htm">#else</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnordered_setH.htm">unordered_set</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppListH.htm">list</a>&gt;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdList.htm">std::list</a>&lt;mtype&gt; mlist;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> KTfwd::gamete_base&lt;mtype,mlist&gt; gtype;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;gtype&gt; gvector;<br/>
+<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;We wish to <b><a href="CppDo.htm">do</a></b> mutations under the infinitely-many sites assumption.&nbsp;&nbsp;That means that<br/>
+&nbsp;&nbsp;a <b><a href="CppNew.htm">new</a></b> mutation cannot appear at <a href="CppAny.htm">any</a> previously-mutated site.&nbsp;&nbsp;Here, we cheat a little<br/>
+&nbsp;&nbsp;and <b><a href="CppDo.htm">do</a></b> not allow mutations at <a href="CppAny.htm">any</a> sites that are currently polymorphic.<br/>
+<br/>
+&nbsp;&nbsp;We ac<b><a href="CppCompl.htm">compl</a></b>ish <b><a href="CppThis.htm">this</a></b> via a lookup table of the current mutation positions.&nbsp;&nbsp;The <a href="CppFunction.htm">function</a> object<br/>
+&nbsp;&nbsp;KTfwd::equal_eps is used as a replacement <b><a href="CppFor.htm">for</a></b> <a href="CppStd.htm">std</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>) in order to ensure<br/>
+&nbsp;&nbsp;that values differing by <a href="CppOperatorLessEqual.htm">&lt;=</a> DBL_EPSILON (~10^-17 on most systems) are not allowed, as they cause problems.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStd.htm">std</a>::unordered_set&lt;<b><a href="CppDouble.htm">double</a></b>,<a href="CppStd.htm">std</a>::hash&lt;<b><a href="CppDouble.htm">double</a></b>&gt;,KTfwd::equal_eps &gt; lookup_table_type;<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> USE_STANDARD_CONTAINERS<br/>
+<br/>
+<a href="CppPreElse.htm">#else</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

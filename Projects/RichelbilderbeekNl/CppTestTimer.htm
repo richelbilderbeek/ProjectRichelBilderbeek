@@ -56,8 +56,8 @@
 <table summary="./CppTestTimer/testtimer.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Test<a href="CppTime.htm">Time</a>r, <a href="CppTime.htm">time</a>s tests<br/>
-Copyright (C) 2014-2014 Richel Bilderbeek<br/>
+Test<a href="CppTime.htm">Time</a>r, <b><a href="CppClass.htm">class</a></b> that measures <a href="CppTime.htm">time</a> a test takes<br/>
+Copyright (C) 2014-2015 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
 it under the terms of the GNU General Public License as published by<br/>
@@ -79,6 +79,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
@@ -94,12 +95,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Test<a href="CppTime.htm">Time</a>r(<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;Test<a href="CppTime.htm">Time</a>r&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;~Test<a href="CppTime.htm">Time</a>r() <b><a href="CppNoexcept.htm">noexcept</a></b>; <a href="CppComment.htm">//</a>But might terminate the program instead<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> GetMaxCnt() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> SetMaxCnt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_cnt) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;Test<a href="CppTime.htm">Time</a>rImpl * <b><a href="CppConst.htm">const</a></b> m_impl;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdUnique_ptr.htm">std::unique_ptr</a>&lt;Test<a href="CppTime.htm">Time</a>rImpl&gt; m_impl;<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -116,12 +118,34 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTestTimer/testtimer.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+Test<a href="CppTime.htm">Time</a>r, <b><a href="CppClass.htm">class</a></b> that measures <a href="CppTime.htm">time</a> a test takes<br/>
+Copyright (C) 2014-2015 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppTest<a href="CppTime.htm">Time</a>r.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTime.htm">time</a>r.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
@@ -187,7 +211,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; <a href="CppFunction.htm">function</a>_name,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; file_name,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max_<a href="CppTime.htm">time</a>_sec<br/>
-) : m_impl(<b><a href="CppNew.htm">new</a></b> Test<a href="CppTime.htm">Time</a>rImpl(<a href="CppFunction.htm">function</a>_name,file_name,max_<a href="CppTime.htm">time</a>_sec))<br/>
+) : m_impl(<a href="CppStd.htm">std</a>::make_unique&lt;Test<a href="CppTime.htm">Time</a>rImpl&gt;(<a href="CppFunction.htm">function</a>_name,file_name,max_<a href="CppTime.htm">time</a>_sec))<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;m_cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
@@ -240,7 +264,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " seconds)"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
 &nbsp;&nbsp;;<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> m_impl;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (elapsed_secs &gt; m_impl-&gt;m_max_<a href="CppTime.htm">time</a>_sec)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdExit.htm">std::exit</a>(0);<br/>
@@ -249,7 +272,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.4";<br/>
 }<br/>
 <br/>
 <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -257,8 +280,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2014-08-02: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2014-08-08: <a href="CppVersion.htm">version</a> 1.1: allow setting a maximum amount of Test<a href="CppTime.htm">Time</a>rs active",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-10: <a href="CppVersion.htm">version</a> 1.2: count the number of <a href="CppConstructor.htm">construct</a>ed Test<a href="CppTime.htm">Time</a>rs"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-10: <a href="CppVersion.htm">version</a> 1.2: count the number of <a href="CppConstructor.htm">construct</a>ed Test<a href="CppTime.htm">Time</a>rs",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-12-24: <a href="CppVersion.htm">version</a> 1.3: added GetMaxCnt",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-12-31: <a href="CppVersion.htm">version</a> 1.4: use of <a href="CppStdUnique_ptr.htm">std::unique_ptr</a>"<br/>
 &nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::GetMaxCnt() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Test<a href="CppTime.htm">Time</a>rImpl::m_max_cnt;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::SetMaxCnt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_cnt) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>

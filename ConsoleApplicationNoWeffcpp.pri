@@ -1,27 +1,27 @@
 win32 {
   # Windows only
   message("Console application, built for Windows")
-  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+  QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra
 }
 
 macx {
   # Mac only
   message("Console application, built for Mac")
   QMAKE_CXXFLAGS = -mmacosx-version-min=10.7 -std=gnu0x -stdlib=libc+
-  CONFIG +=c++11
+  CONFIG +=c++1y
 }
 
 unix:!macx{
   # Linux only
   message("Console application, built for Linux")
   QMAKE_CXXFLAGS += -Werror
-  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+  QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra
 }
 
 cross_compile {
   # Crosscompile only
   message("Console application, cross-compiling from Linux to Windows")
-  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+  QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra
 }
 
 

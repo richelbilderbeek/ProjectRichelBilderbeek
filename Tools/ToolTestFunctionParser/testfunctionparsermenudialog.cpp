@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "fparser.hh"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "testtimer.h"
@@ -110,5 +111,21 @@ void ribi::TestFunctionParserMenuDialog::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  //Test the parsing of the FunctionParser
+  {
+    FunctionParser f;
+    f.Parse("sin(x)","x");
+    assert(f.GetParseErrorType() == FunctionParser::FP_NO_ERROR);
+  }
+  {
+    FunctionParser f;
+    f.Parse("0.0","x");
+    assert(f.GetParseErrorType() == FunctionParser::FP_NO_ERROR);
+  }
+  {
+    FunctionParser f;
+    f.Parse("0,0","x"); //Dutch, should fail!
+    assert(f.GetParseErrorType() != FunctionParser::FP_NO_ERROR);
+  }
 }
 #endif

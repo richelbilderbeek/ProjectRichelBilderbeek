@@ -12,6 +12,7 @@
 #include "fparser.hh"
 
 #include "ribi_random.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -20,6 +21,9 @@ ribi::ModelFunctionParser::ModelFunctionParser(
   const std::string& variable_name)
   : m_parser{new FunctionParser}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(m_parser);
 
   const double pi = boost::math::constants::pi<double>();
@@ -52,3 +56,26 @@ double ribi::ModelFunctionParser::MyRand(const double * const max) noexcept
   assert(max);
   return (*max) * Random().GetFraction();
 }
+
+#ifndef NDEBUG
+void ribi::ModelFunctionParser::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+
+  {
+    const ModelFunctionParser p("x * x * sin(x) * rand(x)","x");
+    p.Evaluate(0.0);
+  }
+  {
+    const ModelFunctionParser p("0.0","x");
+    assert(std::abs(p.Evaluate(0.0) - 0.0) < 0.0001);
+  }
+
+  assert(!"Refactor");
+}
+#endif

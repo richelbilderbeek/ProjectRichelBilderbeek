@@ -78,7 +78,6 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppQuestionDialog
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppRainbow
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppRandomCode
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppRectangle
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppReversi
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppRibiRandom
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppRibiRegex
@@ -124,11 +123,8 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppWtToggleButtonWidget
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppXml
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameBeerWanter
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameBoenken
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameConnectThree
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameDasWahreSchlagerfest
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameK3OpEenRij
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameMaziak
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GamePylos
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameReversi
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameRubiksClock

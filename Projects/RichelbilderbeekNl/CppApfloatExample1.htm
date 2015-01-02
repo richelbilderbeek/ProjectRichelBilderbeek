@@ -23,34 +23,29 @@
 <!-- No CodeToHtmlInfo about this class with page name CppApfloatExample1-->
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
-<p><a href="CppApplication.htm">Application type(s)</a></p>
-<ul>
-  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
-</ul>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.04 (trusty)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.10 (utopic)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.0.1</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.1.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
-  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
 </ul>
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
-  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.8.2</li>
+  <li><a href="CppGpp.htm">G++</a> 4.9.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.2.1 (32 bit)</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.2</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.9.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -61,36 +56,9 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppApfloatExample1/CppApfloatExample1.pro" border = "1"><tr><td><code>
-exists (../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) {<br/>
-&nbsp;&nbsp;include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri)<br/>
-}<br/>
-!exists (../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) {<br/>
-&nbsp;&nbsp;QT += core<br/>
-&nbsp;&nbsp;QT += gui<br/>
-&nbsp;&nbsp;greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
-&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
-&nbsp;&nbsp;<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
-&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
-&nbsp;&nbsp;unix {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-exists(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri) {<br/>
-&nbsp;&nbsp;include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri)<br/>
-}<br/>
-!exists(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri) {<br/>
-&nbsp;&nbsp;win32 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_55_0<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri)<br/>
 include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppApfloat.htm">Apfloat</a>.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri)<br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
@@ -146,6 +114,88 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppApfloat.htm">Ap
 Press &lt;RETURN&gt; to close <b><a href="CppThis.htm">this</a></b> window...<br/>
 <br/>
 <a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppApfloatExample1/crosscompile.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppApfloatExample1/crosscompile.sh" border = "1"><tr><td><code>
+#!/bin/sh<br/>
+#From http://richelbilderbeek.nl/CppMxe.htm<br/>
+<br/>
+#Don't put the full path here. It has to be found in the <br/>
+# In /home/yourusername/.bashrc add the following line add the end instead:<br/>
+# export PATH=$PATH:/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/bin/<br/>
+#myqmake="i686-pc-mingw32.static-qmake-qt4"<br/>
+myqmake="i686-w64-mingw32.static-qmake-qt5"<br/>
+<br/>
+echo "Displaying cross compiler version (if it is not found, set the path to YourFolder/mxe/usr/bin"<br/>
+$myqmake -v<br/>
+<br/>
+for myprofile in `ls | egrep ".pro\&gt;"`<br/>
+do<br/>
+&nbsp;&nbsp;#echo $myprofile<br/>
+&nbsp;&nbsp;mybasename=`echo $myprofile | sed "s/\.pro//"`<br/>
+<br/>
+&nbsp;&nbsp;#echo "mybasename: "$mybasename<br/>
+<br/>
+&nbsp;&nbsp;# echo "Cleaning up"<br/>
+&nbsp;&nbsp;# rm Makefile<br/>
+&nbsp;&nbsp;# rm Makefile.*<br/>
+&nbsp;&nbsp;# rm -r release<br/>
+&nbsp;&nbsp;# rm -r debug<br/>
+&nbsp;&nbsp;# rm ui_*.h<br/>
+&nbsp;&nbsp;# rm qrc_*.cpp<br/>
+&nbsp;&nbsp;# rm moc_*.cpp<br/>
+&nbsp;&nbsp;# rm object_script*.*<br/>
+&nbsp;&nbsp;# rm *.o<br/>
+&nbsp;&nbsp;# rm *_plugin_import.cpp<br/>
+&nbsp;&nbsp;# rm *.exe #Also clean up the executable<br/>
+<br/>
+&nbsp;&nbsp;echo "Creating makefile"<br/>
+<br/>
+&nbsp;&nbsp;$myqmake $myprofile<br/>
+<br/>
+&nbsp;&nbsp;if [ ! -e Makefile ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo "FAIL:"$myqmake", "$myprofile": FAIL (Makefile not found)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;continue<br/>
+&nbsp;&nbsp;fi<br/>
+<br/>
+&nbsp;&nbsp;echo "Start make"<br/>
+<br/>
+&nbsp;&nbsp;make<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;if [ -e ./release/$mybasename".exe" ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $myprofile", : SUCCESS"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if [ -e ./release/$mybasename".exe" ]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cp ./release/$mybasename".exe" .<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;fi<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $myprofile", "$mytypestr": FAIL (executable not found)"<br/>
+&nbsp;&nbsp;fi<br/>
+<br/>
+&nbsp;&nbsp;#Cleaning up<br/>
+&nbsp;&nbsp;# rm Makefile<br/>
+&nbsp;&nbsp;# rm Makefile.*<br/>
+&nbsp;&nbsp;# rm -r release<br/>
+&nbsp;&nbsp;# rm -r debug<br/>
+&nbsp;&nbsp;# rm ui_*.h<br/>
+&nbsp;&nbsp;# rm qrc_*.cpp<br/>
+&nbsp;&nbsp;# rm moc_*.cpp<br/>
+&nbsp;&nbsp;# rm object_script*.*<br/>
+&nbsp;&nbsp;# rm *.o<br/>
+&nbsp;&nbsp;# rm *_plugin_import.cpp<br/>
+<br/>
+done #next myprofile<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

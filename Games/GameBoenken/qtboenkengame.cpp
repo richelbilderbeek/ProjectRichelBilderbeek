@@ -247,7 +247,7 @@ void ribi::Boenken::Game::tick()
     {
       for(SpriteMoving* const s2: m_moving_sprites)
       {
-        SpriteNonMoving::Collision(s1.get(),s2);
+        SpriteNonMoving::Collision(*s1,*s2);
       }
     }
   }

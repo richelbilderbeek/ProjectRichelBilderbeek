@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QPainter>
 
+#include "geometry.h"
 #include "testtimer.h"
 #pragma GCC diagnostic pop
 
@@ -124,6 +125,15 @@ void ribi::Boenken::SpritePlayer::Accelerate() noexcept
 {
   m_dx += (std::sin(m_angle) * m_acceleration);
   m_dy -= (std::cos(m_angle) * m_acceleration);
+}
+
+void ribi::Boenken::SpritePlayer::SetSpeed(const double dx, const double dy) noexcept
+{
+  SpriteMoving::SetSpeed(dx,dy);
+
+  //Don't set the angle of the player!
+  //The angle is where the player 'looks to'
+  //this->m_angle = Geometry().GetAngleClockScreen(dx,dy);
 }
 
 void ribi::Boenken::SpritePlayer::TurnRight() noexcept

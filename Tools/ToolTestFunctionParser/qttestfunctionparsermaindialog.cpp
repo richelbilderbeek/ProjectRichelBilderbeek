@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttestfunctionparsermaindialog.h"
 
 #include <boost/lexical_cast.hpp>
+#include <boost/locale.hpp>
 #include <boost/math/constants/constants.hpp>
 
 #include "fparser.hh"
@@ -108,5 +109,21 @@ void ribi::QtTestFunctionParserMainDialog::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+
+  const double pi = boost::math::constants::pi<double>();
+
+  TRACE(std::locale().name());
+  //TRACE(boost::lexical_cast<std::string>(pi)[1]);
+  //assert(boost::lexical_cast<std::string>(pi)[1] == ',' && "Dutch please?");
+
+  boost::locale::generator gen;
+  std::locale::global(gen("")); //Or explicitly: "en_US.UTF-8"
+  std::locale::global(gen("en_US.UTF-8")); //Or explicitly: "en_US.UTF-8"
+
+  TRACE(std::locale().name());
+  //TRACE(boost::lexical_cast<std::string>(pi)[1]);
+  assert(boost::lexical_cast<std::string>(pi)[1] == '.' && "No Dutch please");
+
+  assert(!"Refactor");
 }
 #endif

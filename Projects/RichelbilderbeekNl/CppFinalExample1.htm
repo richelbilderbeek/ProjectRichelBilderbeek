@@ -25,11 +25,11 @@
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.04 (trusty)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.10 (utopic)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.0.1</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.1.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -41,11 +41,11 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.8.2</li>
+  <li><a href="CppGpp.htm">G++</a> 4.9.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.2</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.9.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -56,20 +56,7 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppFinalExample1/CppFinalExample1.pro" border = "1"><tr><td><code>
-include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
-# QT += core<br/>
-# QT += gui<br/>
-# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
-# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
-# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
-# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
-#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
-# }<br/>
-# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
-# unix {<br/>
-#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
-# }<br/>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri)<br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
@@ -85,34 +72,34 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <table summary="./CppFinalExample1/main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Animal<br/>
+<b><a href="CppStruct.htm">struct</a></b> Base<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Animal() {}<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Base() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> A() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> B() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Cow : <b><a href="CppPublic.htm">public</a></b> Animal<br/>
+<b><a href="CppStruct.htm">struct</a></b> Derived : <b><a href="CppPublic.htm">public</a></b> Base<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> <b><a href="CppFinal.htm">final</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "moo\n"; } <a href="CppComment.htm">//</a>MakeSound is <b><a href="CppFinal.htm">final</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "walk\n"; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> A() <b><a href="CppConst.htm">const</a></b> <b><a href="CppOverride.htm">override</a></b> <b><a href="CppFinal.htm">final</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Derived::A\n"; } <a href="CppComment.htm">//</a>A is <b><a href="CppFinal.htm">final</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> B() <b><a href="CppConst.htm">const</a></b> <b><a href="CppOverride.htm">override</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Derived::B\n"; }<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> NonCow : <b><a href="CppPublic.htm">public</a></b> Cow<br/>
+<b><a href="CppStruct.htm">struct</a></b> DerivedAgain : <b><a href="CppPublic.htm">public</a></b> Derived<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "MOO\n"; } <a href="CppComment.htm">//</a>will not <a href="CppCompile.htm">compile</a>: Cow::MakeSound is <b><a href="CppFinal.htm">final</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "non walk\n"; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "DerivedAgain::A\n"; } <a href="CppComment.htm">//</a>will not <a href="CppCompile.htm">compile</a>: Derived::A is <b><a href="CppFinal.htm">final</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> B() <b><a href="CppConst.htm">const</a></b> <b><a href="CppOverride.htm">override</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "DerivedAgain::B\n"; }<br/>
 };<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;Cow cow;<br/>
-&nbsp;&nbsp;cow.MakeSound();<br/>
-&nbsp;&nbsp;cow.Walk();<br/>
+&nbsp;&nbsp;Derived d;<br/>
+&nbsp;&nbsp;d.A();<br/>
+&nbsp;&nbsp;d.B();<br/>
 <br/>
-&nbsp;&nbsp;NonCow noncow;<br/>
-&nbsp;&nbsp;noncow.MakeSound();<br/>
-&nbsp;&nbsp;noncow.Walk();<br/>
+&nbsp;&nbsp;DerivedAgain da;<br/>
+&nbsp;&nbsp;da.A();<br/>
+&nbsp;&nbsp;da.B();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

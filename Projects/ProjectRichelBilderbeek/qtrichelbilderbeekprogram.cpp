@@ -71,6 +71,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpvdbmenudialog.h"
 #endif // INCLUDE_BRAINWEAVER_20140617
 
+#include "qtrichelbilderbeekgalleryresources.h"
 #include "qtpylosmenudialog.h"
 #include "qtqmakewatchermenudialog.h"
 #include "qtquadraticsolvermenudialog.h"
@@ -380,6 +381,10 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholder
     QLabel * const label = new QLabel((p->GetScreenName() + "(placeholder)").c_str());
     label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     layout->addWidget(label);
+  }
+  // Create files
+  {
+    QtResources();
   }
   if (fileio::FileIo().IsRegularFile(p->GetFilenameConsole()))
   {

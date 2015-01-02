@@ -74,6 +74,8 @@ struct Sprite
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  static bool IsCollision(const Sprite& p1, const Sprite& p2) noexcept;
+
   ///Sets the arena size,
   ///that is Sprite::m_maxx and Sprite::m_maxy.
   ///SpriteBall::SetGoalPoles defines the vertical

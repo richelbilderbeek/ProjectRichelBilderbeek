@@ -821,7 +821,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
 }
 
-ribi::trim::TriangleMeshBuilderImpl::~TriangleMeshBuilderImpl() noexcept
+ribi::trim::TriangleMeshBuilderImpl::~TriangleMeshBuilderImpl()
 {
   //OK
 }

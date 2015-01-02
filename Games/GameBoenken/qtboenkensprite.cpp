@@ -90,6 +90,15 @@ std::vector<std::string> ribi::Boenken::Sprite::GetVersionHistory() noexcept
   };
 }
 
+bool ribi::Boenken::Sprite::IsCollision(const Sprite& p1, const Sprite& p2) noexcept
+{
+  const double dx = p2.getX() - p1.getX();
+  const double dy = p2.getY() - p1.getY();
+  const double distance = std::sqrt((dy * dy) + (dx * dx));
+  const double collision_distance
+    = boost::numeric_cast<double>(p1.m_size + p2.m_size) / 2.0;
+  return distance < collision_distance;
+}
 
 void ribi::Boenken::Sprite::setArenaSize(const int width, const int height)
 {
@@ -147,6 +156,10 @@ void ribi::Boenken::Sprite::Test() noexcept
     const double angle =  GetAngle(-1.0,-1.0); //North-West
     const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
+  }
+  //IsCollision
+  {
+
   }
 }
 #endif

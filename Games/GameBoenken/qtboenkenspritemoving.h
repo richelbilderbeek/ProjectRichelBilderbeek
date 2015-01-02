@@ -50,7 +50,7 @@ struct SpriteMoving: public Sprite
 
   //void SetDeltaX(const double dx) noexcept { m_dx = dx; }
   //void SetDeltaY(const double dy) noexcept { m_dy = dy; }
-  void SetSpeed(const double dx, const double dy) { m_dx = dx; m_dy = dy; }
+  virtual void SetSpeed(const double dx, const double dy) noexcept { m_dx = dx; m_dy = dy; }
 
   static void SetFriction(const double friction);
   static void Collision(SpriteMoving * const p1, SpriteMoving * const p2);

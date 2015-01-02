@@ -44,17 +44,22 @@ struct SpritePlayer final : public SpriteMoving
     const unsigned char g,
     const unsigned char b
   );
+  ~SpritePlayer();
 
   void Accelerate() noexcept;
   void Draw(QPainter& painter) const override;
   double GetAngle() const noexcept { return m_angle; }
   void Move() noexcept override;
+  void SetSpeed(const double dx, const double dy) noexcept override;
   void TurnRight() noexcept;
 
   ///The SpritePlayer's ID
   const int m_id;
 
   private:
+  ///Direction the player looks to
+  ///Angle following the clock (0 = 12 o'clock, 0.5*pi = 3 o'clock)
+  ///Note: the actual moving is done by m_dx and m_dy
   double m_angle;
 
   static const double m_acceleration;

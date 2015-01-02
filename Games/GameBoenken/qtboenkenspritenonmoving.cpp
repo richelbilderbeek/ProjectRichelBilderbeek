@@ -28,9 +28,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/math/constants/constants.hpp>
+#include "geometry.h"
 #include "qtboenkenspritemoving.h"
 #include "qtboenkenspriteplayer.h"
 #include "testtimer.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -48,54 +50,78 @@ ribi::Boenken::SpriteNonMoving::SpriteNonMoving(
   #endif
 }
 
-void ribi::Boenken::SpriteNonMoving::Collision(const SpriteNonMoving * const p1, SpriteMoving * const p2)
+void ribi::Boenken::SpriteNonMoving::Collision(
+  const SpriteNonMoving &obstacle, SpriteMoving &moving
+)
 {
-  const double dx = p2->getX() - p1->getX();
-  const double dy = p2->getY() - p1->getY();
-  const double distance = std::sqrt((dy * dy) + (dx * dx));
-  const double collision_distance
-    = boost::numeric_cast<double>(p1->m_size + p2->m_size) / 2.0;
-  if (distance < collision_distance)
-  {
-    //A collision!
-    //Obtain the relative angle between the players
-    const double a = GetAngle(dx,dy);
-    //Obtain the moving sprite's current impulse
-    double p2_a = p2->CalcImpulseAngle();
-    double p2_s = p2->CalcImpulseSpeed();
-    //Obstacles have opposite impulse
-    const double pi = boost::math::constants::pi<double>();
-    double p1_a = p2_a + pi;
-    double p1_s = p1_s;
-    //Obtain the new impulses
-    DoPerfectElasticCollision(a, p1_a,p1_s,p2_a,p2_s);
-    //Set the player's new impulse
-    const double dx2 =  std::sin(p2_a) * p2_s;
-    const double dy2 = -std::cos(p2_a) * p2_s;
-    p2->SetSpeed(dx2,dy2);
+  if (!Sprite::IsCollision(obstacle,moving)) return;
+  /*
+
+    O     -
+          |
+          | dy (in this case > 0)
+          |
+        M -
+    |---|
+      dx (in this case > 0)
+  */
+  const double dx = moving.getX() - obstacle.getX();
+  const double dy = moving.getY() - obstacle.getY();
+  const double distance = Geometry().GetDistance(dx,dy);
+  //const double collision_distance
+  //  = boost::numeric_cast<double>(obstacle.m_size + moving.m_size) / 2.0;
+  //Obtain the relative angle between the players
+
+  /*
+
+    O
+     \
+      \
+       \
+        M
+
+  angle_players in this case 135 degrees
+
+  */
+  const double angle_players = Geometry().GetAngleClockScreen(dx,dy);
+
+  //Obtain the moving sprite's current impulse
+  double moving_angle = moving.CalcImpulseAngle();
+  double moving_speed = moving.CalcImpulseSpeed();
+  //Obstacles have opposite impulse
+  const double pi = boost::math::constants::pi<double>();
+  double obstacle_angle = moving_angle + pi;
+  double obstancle_speed = moving_speed;
+  //Obtain the new impulses
+  DoPerfectElasticCollision(angle_players, obstacle_angle,obstancle_speed,moving_angle,moving_speed);
+  //Set the player's new impulse
+  const double dx2 =  std::sin(moving_angle) * moving_speed;
+  const double dy2 = -std::cos(moving_angle) * moving_speed;
+  moving.SetSpeed(dx2,dy2);
     //Let the player move away from each perpendicalar to the collision axis
-    {
-      const double go_away_distance = collision_distance - distance;
-      assert(go_away_distance > 0);
-      const double go_away_dx2 =  std::sin(a +  0.0) * (go_away_distance / 2.0);
-      const double go_away_dy2 = -std::cos(a +  0.0) * (go_away_distance / 2.0);
-      p2->Move(go_away_dx2,go_away_dy2);
-    }
-    //Let the player move again
-    p2->Move();
-    #ifndef NDEBUG
-    {
-      const double new_dx = p2->getX() - p1->getX();
-      const double new_dy = p2->getY() - p1->getY();
-      const double new_distance = std::sqrt((new_dy * new_dy) + (new_dx * new_dx));
-      if (new_distance < distance)
-      {
-        //std::clog << "Players should in general move away after a collision\n";
-      }
-      //assert(new_distance > distance && "Players should move away after a collision");
-    }
-    #endif
+  /*
+  {
+    const double go_away_distance = collision_distance - distance;
+    assert(go_away_distance > 0);
+    const double go_away_dx2 =  std::sin(angle_players +  0.0) * (go_away_distance / 2.0);
+    const double go_away_dy2 = -std::cos(angle_players +  0.0) * (go_away_distance / 2.0);
+    moving.Move(go_away_dx2,go_away_dy2);
   }
+  */
+  //Let the player move again
+  moving.Move();
+  #ifndef NDEBUG
+  {
+    const double new_dx = moving.getX() - obstacle.getX();
+    const double new_dy = moving.getY() - obstacle.getY();
+    const double new_distance = Geometry().GetDistance(new_dx,new_dy);
+    if (new_distance < distance)
+    {
+      std::clog << "Players should in general move away after a collision\n";
+    }
+    assert(new_distance > distance && "Players should move away after a collision");
+  }
+  #endif
 }
 
 void ribi::Boenken::SpriteNonMoving::Test() noexcept
@@ -106,14 +132,16 @@ void ribi::Boenken::SpriteNonMoving::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  const auto obstacle = std::make_unique<SpriteNonMoving>(
-    0.0, //x
-    0.0, //y
+  const double obstacle_x = 160.0;
+  const double obstacle_y = 100.0;
+  const SpriteNonMoving obstacle(
+    obstacle_x, //x
+    obstacle_y, //y
     32   //size
   );
-  const auto player = std::make_unique<SpritePlayer>(
-    0.0, //x
-    32.0, //y
+  SpritePlayer player(
+    obstacle_x, //x
+    obstacle_y, //y
     0.0, //angle
     32,  //size
     255, //r
@@ -122,14 +150,43 @@ void ribi::Boenken::SpriteNonMoving::Test() noexcept
   );
   // Player below obstacle, moves up
   {
-    player->SetX(0.0);
-    player->SetY(32.0);
-    player->SetSpeed(0.0,-4.0);
-    SpriteNonMoving::Collision(
-      obstacle.get(),
-      player.get()
-    );
-    assert(std::abs(player->GetDeltaY() - 4.0) < 0.001);
+    player.SetX(obstacle_x);
+    player.SetY(obstacle_y + 30.0);
+    player.SetSpeed(0.0,-4.0);
+    assert(player.GetDeltaY() < -3.99);
+    assert(IsCollision(obstacle,player));
+    SpriteNonMoving::Collision(obstacle,player);
+    assert(player.GetDeltaY() > 1.0 && "Be gentle, due to friction");
   }
-  assert(!"Refactor");
+  // Player right of obstacle, moves left
+  {
+    player.SetX(obstacle_x + 30.0);
+    player.SetY(obstacle_y + 0.0);
+    player.SetSpeed(-4.0,0.0);
+    assert(player.GetDeltaX() < -3.99);
+    assert(IsCollision(obstacle,player));
+    SpriteNonMoving::Collision(obstacle,player);
+    assert(player.GetDeltaX() > 1.0 && "Be gentle, due to friction");
+  }
+
+  // Player above obstacle, moves down
+  {
+    player.SetX(obstacle_x + 0.0);
+    player.SetY(obstacle_y - 30.0);
+    player.SetSpeed(0.0,4.0);
+    assert(player.GetDeltaY() > 3.99);
+    assert(IsCollision(obstacle,player));
+    SpriteNonMoving::Collision(obstacle,player);
+    assert(player.GetDeltaY() < -1.0 && "Be gentle, due to friction");
+  }
+  // Player left of obstacle, moves right
+  {
+    player.SetX(obstacle_x - 30.0);
+    player.SetY(obstacle_y + 0.0);
+    player.SetSpeed(4.0,0.0);
+    assert(player.GetDeltaX() >  3.99);
+    assert(IsCollision(obstacle,player));
+    SpriteNonMoving::Collision(obstacle,player);
+    assert(player.GetDeltaX() < -1.0 && "Be gentle, due to friction");
+  }
 }

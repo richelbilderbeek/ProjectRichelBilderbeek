@@ -27,6 +27,7 @@
 #include "laggedwhitenoisesystemparameters.h"
 #include "matrix.h"
 #include "qtkalmanfilterermodel.h"
+#include "ribi_regex.h"
 #include "standardkalmanfilterparameters.h"
 #include "standardkalmanfilterparameters.h"
 #include "standardwhitenoisesystemfactory.h"
@@ -60,7 +61,7 @@ boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(
       try { boost::lexical_cast<double>(v(row,col)); }
       catch (boost::bad_lexical_cast&)
       {
-        TRACE("ERROR");
+        TRACE("ERBREAKROR");
         TRACE(v(row,col));
         TRACE("BREAK");
         assert(!"Should not get here");
@@ -1344,8 +1345,8 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Test() noexcept
   QtKalmanFilterExperimentModel().CreateGapsFilledWhiteNoiseSystemParameters();
   QtKalmanFilterExperimentModel().CreateLaggedWhiteNoiseSystemParameters();
   QtKalmanFilterExperimentModel().CreateMap();
-
   QtKalmanFilterExperimentModel().CreateLaggedWhiteNoiseSystemParameters();
+  ribi::Regex();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 
   //Test some regexes
@@ -1449,7 +1450,13 @@ std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const noex
         {
           const QModelIndex index = model->index(row,col);
           const QString q = model->data(index).toString();
-          s << q.toStdString() << " | ";
+          std::string str{q.toStdString()};
+          std::replace(std::begin(str),std::end(str),',','.');
+          const ribi::Regex r;
+          assert(r.GetRegexMatches(str,r.GetRegexDutchFloat()).empty()
+            && "No Dutch please"
+          );
+          s << str << " | ";
         }
         s << "\n";
       }

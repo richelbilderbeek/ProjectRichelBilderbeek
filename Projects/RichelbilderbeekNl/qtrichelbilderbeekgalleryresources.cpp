@@ -81,7 +81,7 @@ ribi::QtResources::QtResources()
   }
   //Try to create the screenshots
   {
-    const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
+    const std::vector<boost::shared_ptr<Program>> ps = Program::GetAllPrograms();
 
     std::vector<std::string> files;
     std::for_each(ps.begin(),ps.end(),

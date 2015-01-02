@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-variable"
+#include <memory>
 #include <string>
 #include <vector>
 #pragma GCC diagnostic pop
@@ -38,6 +39,7 @@ struct Random
   Random();
   ///Use a given seed
   Random(const int seed);
+  ~Random();
 
   ///Obtain a random boolean
   bool GetBool() noexcept;
@@ -60,7 +62,7 @@ struct Random
 
   private:
   struct RandomImpl;
-  RandomImpl * const m_impl;
+  const std::unique_ptr<RandomImpl> m_impl;
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

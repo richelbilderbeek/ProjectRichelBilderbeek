@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SymbolicCppExample1</title>
+  <meta name="description" content="C++ SymbolicCppExample1"/>
+  <meta name="keywords" content="C++ SymbolicCppExample1 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSymbolicCppExample1.htm">SymbolicCppExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppSymbolicCppExample1-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.10 (utopic)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.1.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.9.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.9.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppSymbolicCppExample1/CppSymbolicCppExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppSymbolicCppExample1/CppSymbolicCppExample1.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/SymbolicCpp.pri)<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppSymbolicCppExample1/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppSymbolicCppExample1/main.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SymbolicC<a href="CppOperatorIncrement.htm">++</a> : An object oriented computer algebra system written in <a href="Cpp.htm">C++</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Copyright (C) 2008 Yorick Hardy and Willi-Hans Steeb<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program is free software; you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;the Free Software Foundation; either <a href="CppVersion.htm">version</a> 2 of the License, or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GNU General Public License for more details.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;You should have received a copy of the GNU General Public License along<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;with this program; <b><a href="CppIf.htm">if</a></b> not, write to the Free Software Foundation, Inc.,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a> derivatv<a href="CppImplementationFile.htm">.cpp</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "symbolicc<a href="CppOperatorIncrement.htm">++</a>.h"<br/>
+<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppStd.htm">std</a>;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppVoid.htm">void</a></b>)<br/>
+{<br/>
+&nbsp;&nbsp; <b><a href="CppInt.htm">int</a></b> i;<br/>
+&nbsp;&nbsp; Symbolic x("x"), y, z("z");<br/>
+<br/>
+&nbsp;&nbsp; y <a href="CppOperatorAssign.htm">=</a> 1/(1-x) <a href="CppOperatorPlus.htm">+</a> 2*(x^3) <a href="CppOperatorMinus.htm">-</a> z;<br/>
+&nbsp;&nbsp; cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "y <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> y <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+<br/>
+&nbsp;&nbsp; <b><a href="CppFor.htm">for</a></b>(i=0;i&lt;8;i<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp; { y <a href="CppOperatorAssign.htm">=</a> df(y,x); cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "y <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> y <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl; }<br/>
+&nbsp;&nbsp; cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+<br/>
+&nbsp;&nbsp; Symbolic u, v("v");<br/>
+<br/>
+&nbsp;&nbsp; u <a href="CppOperatorAssign.htm">=</a> (v^(Symbolic(3)/5))/3 <a href="CppOperatorMinus.htm">-</a> 2*(v^(Symbolic(1)/5))/7 <a href="CppOperatorPlus.htm">+</a> Symbolic(1)/6;<br/>
+&nbsp;&nbsp; cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "u <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> u <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+<br/>
+&nbsp;&nbsp; <b><a href="CppFor.htm">for</a></b>(i=0;i&lt;8;i<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp; { u <a href="CppOperatorAssign.htm">=</a> df(u,v); cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "u <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> u <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl; }<br/>
+&nbsp;&nbsp; <b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -59,8 +59,8 @@ ribi::About ribi::Boenken::MenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "Boenken",
     "a multiplayer soccer/billiards game",
-    "the 17th of November 2012",
-    "2007-2014",
+    "the 2nd of January 2015",
+    "2007-2015",
     "http://www.richelbilderbeek.nl/GameBoenken.htm",
     GetVersion(),
     GetVersionHistory()
@@ -99,7 +99,7 @@ boost::shared_ptr<const ribi::Program> ribi::Boenken::MenuDialog::GetProgram() c
 
 std::string ribi::Boenken::MenuDialog::GetVersion() const noexcept
 {
-  return "4.1";
+  return "4.2";
 }
 
 std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory() const noexcept
@@ -111,7 +111,8 @@ std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory() const no
     "2010-08-14: version 3.0: initial port to cross-platform, using Qt Creator. Added doxygen support",
     "2010-08-15: version 3.1: created basic menu functionality, improved doxygen documentation,  improved code (seperated GUI from game rules, all sprites can be deleted by boost::checked_delete only)",
     "2012-03-07: version 4.0: conformized naming and architecture for ProjectRichelBilderbeek"
-    "2012-11-17: version 4.1: added a fancy color gradient to the main menu"
+    "2012-11-17: version 4.1: added a fancy color gradient to the main menu",
+    "2015-01-02: version 4.2: fixed bug in collision between player and object"
   };
 }
 

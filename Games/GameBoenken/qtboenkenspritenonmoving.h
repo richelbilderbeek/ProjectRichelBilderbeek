@@ -53,7 +53,7 @@ struct SpriteNonMoving final : public Sprite
   void setY(const double y) { m_y = y; }
 
   ///A non-moving sprite, like an object, will not change
-  static void Collision(const SpriteNonMoving * const p1, SpriteMoving * const p2);
+  static void Collision(const SpriteNonMoving& p1, SpriteMoving& p2);
 
   private:
   #ifndef NDEBUG
