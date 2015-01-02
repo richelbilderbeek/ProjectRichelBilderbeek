@@ -82,7 +82,7 @@ struct QuestionDialog
   mutable boost::signals2::signal<void (bool)> m_signal_submitted;
 
   protected:
-  virtual ~QuestionDialog() noexcept {}
+  virtual ~QuestionDialog() = default;
   friend void boost::checked_delete<>(QuestionDialog*);
   friend void boost::checked_delete<>(const QuestionDialog*);
 

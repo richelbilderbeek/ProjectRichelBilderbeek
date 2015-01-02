@@ -34,7 +34,7 @@ struct Question;
 struct OpenQuestion;
 
 ///Dialog for an OpenQuestion
-struct OpenQuestionDialog : public QuestionDialog
+struct OpenQuestionDialog final : public QuestionDialog
 {
   OpenQuestionDialog();
   //explicit OpenQuestionDialog(const boost::shared_ptr<const OpenQuestion>& question);

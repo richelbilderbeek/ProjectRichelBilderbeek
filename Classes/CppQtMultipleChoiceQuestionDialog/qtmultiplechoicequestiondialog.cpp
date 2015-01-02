@@ -131,30 +131,36 @@ std::vector<std::string> ribi::QtMultipleChoiceQuestionDialog::GetVersionHistory
 }
 
 void ribi::QtMultipleChoiceQuestionDialog::OnMultipleChoiceQuestionDialogChanged(
-  MultipleChoiceQuestionDialog * const open_question_dialog
+  MultipleChoiceQuestionDialog * const mc_question_dialog
 ) noexcept
 {
-  assert(open_question_dialog);
+  assert(mc_question_dialog);
 
-  ui->edit_answer->setText(open_question_dialog->GetAnswerInProgress().c_str());
-
-  OnOpenQuestionChanged(open_question_dialog->GetOpenQuestion());
+  ui->radio_1->setChecked(mc_question_dialog->GetAnswerInProgress() == 0);
+  ui->radio_2->setChecked(mc_question_dialog->GetAnswerInProgress() == 1);
+  ui->radio_3->setChecked(mc_question_dialog->GetAnswerInProgress() == 2);
+  ui->radio_4->setChecked(mc_question_dialog->GetAnswerInProgress() == 3);
+  ui->radio_5->setChecked(mc_question_dialog->GetAnswerInProgress() == 4);
+  ui->radio_6->setChecked(mc_question_dialog->GetAnswerInProgress() == 5);
+  ui->radio_7->setChecked(mc_question_dialog->GetAnswerInProgress() == 6);
+  OnMultipleChoiceQuestionDialogChanged(mc_question_dialog);
 }
 
 void ribi::QtMultipleChoiceQuestionDialog::OnMultipleChoiceQuestionChanged(
-  const boost::shared_ptr<MultipleChoiceQuestionDialog>& open_question
+  const boost::shared_ptr<MultipleChoiceQuestionDialog>& mc_question
 ) noexcept
 {
-  assert(open_question);
-  if (fileio::FileIo().IsRegularFile(open_question->GetFilename().c_str()))
+  assert(mc_question);
+  assert(mc_question->GetQuestion());
+  if (fileio::FileIo().IsRegularFile(mc_question->GetQuestion()->GetFilename()))
   {
-    ui->image->setPixmap(QPixmap(open_question->GetFilename().c_str()));
+    ui->image->setPixmap(QPixmap(mc_question->GetQuestion()->GetFilename().c_str()));
   }
 
   ui->stackedWidget->setCurrentWidget(ui->page_question);
-  ui->label_question->setText(open_question->GetQuestion().c_str());
-  ui->label_question_again->setText(open_question->GetQuestion().c_str());
-  ui->label_answer->setText(open_question->GetCorrectAnswers()[0].c_str());
+  ui->label_question->setText(mc_question->GetQuestion()->GetQuestion().c_str());
+  ui->label_question_again->setText(mc_question->GetQuestion()->GetQuestion().c_str());
+  ui->label_answer->setText(mc_question->GetQuestion()->GetCorrectAnswers()[0].c_str());
 
 }
 

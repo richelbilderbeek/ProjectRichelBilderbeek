@@ -13,7 +13,7 @@ namespace ribi {
 struct OpenQuestion;
 struct OpenQuestionDialog;
 
-struct OpenQuestionDialogFactory
+struct OpenQuestionDialogFactory final
 {
   OpenQuestionDialogFactory();
 

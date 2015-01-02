@@ -80,8 +80,8 @@ private:
   ///Set the Question
   //void SetQuestion(const boost::shared_ptr<const MultipleChoiceQuestion>& question) noexcept;
 
-  void OnMultipleChoiceQuestionDialogChanged(MultipleChoiceQuestionDialog * const open_question_dialog) noexcept;
-  void OnMultipleChoiceQuestionChanged(const boost::shared_ptr<MultipleChoiceQuestionDialog>& open_question) noexcept;
+  void OnMultipleChoiceQuestionDialogChanged(MultipleChoiceQuestionDialog * const mc_question_dialog) noexcept;
+  void OnMultipleChoiceQuestionChanged(const boost::shared_ptr<MultipleChoiceQuestionDialog>& mc_question) noexcept;
 
 };
 

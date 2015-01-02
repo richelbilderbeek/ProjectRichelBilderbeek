@@ -1,8 +1,8 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
-#include "qttoolvisualabcmenudialog.h"
-#include "toolvisualabccheckprerequisites.h"
+#include "qtvisualabcmenudialog.h"
+#include "visualabccheckprerequisites.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
