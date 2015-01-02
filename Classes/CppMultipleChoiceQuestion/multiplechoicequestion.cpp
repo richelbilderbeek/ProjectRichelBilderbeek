@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include "container.h"
+#include "fileio.h"
 #include "imagecanvas.h"
 #include "testtimer.h"
 #include "trace.h"
@@ -210,6 +211,8 @@ void ribi::MultipleChoiceQuestion::Test() noexcept
   }
   {
     Container();
+    ribi::fileio::FileIo();
+    ImageCanvas::Test();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   try

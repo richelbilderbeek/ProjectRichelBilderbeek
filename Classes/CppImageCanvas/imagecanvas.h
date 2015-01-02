@@ -77,6 +77,10 @@ struct ImageCanvas : public Canvas
   ///Set the coordinat system used
   void SetCoordinatSystem(const CanvasCoordinatSystem coordinat_system) noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
   std::vector<std::string> ToStrings() const noexcept override;
 
   private:
@@ -151,9 +155,6 @@ struct ImageCanvas : public Canvas
     const int x2,
     const int y2) noexcept;
 
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
 
   friend std::ostream& operator<<(std::ostream& os, const ImageCanvas& canvas) noexcept;
 };

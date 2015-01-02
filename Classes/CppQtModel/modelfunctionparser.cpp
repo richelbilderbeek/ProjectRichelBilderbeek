@@ -39,7 +39,9 @@ ribi::ModelFunctionParser::ModelFunctionParser(
       + my_function
       + "' with variable '"
       + variable_name
-      + "'";
+      + "' (note: this can have to do that the locale is non-English,"
+      + "as '0.0' should be accepted)"
+    ;
     throw std::runtime_error(error.c_str());
   }
 }
@@ -71,9 +73,14 @@ void ribi::ModelFunctionParser::Test() noexcept
     const ModelFunctionParser p("x * x * sin(x) * rand(x)","x");
     p.Evaluate(0.0);
   }
+  try
   {
     const ModelFunctionParser p("0.0","x");
     assert(std::abs(p.Evaluate(0.0) - 0.0) < 0.0001);
+  }
+  catch (std::runtime_error&)
+  {
+    assert(!"Should not get here, '0.0' is a correct function");
   }
 
   assert(!"Refactor");

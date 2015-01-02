@@ -123,7 +123,7 @@
       <item row="4" column="1">
        <widget class="QComboBox" name="box_friction">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <item>
          <property name="text">
@@ -133,6 +133,11 @@
         <item>
          <property name="text">
           <string>Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Medium</string>
          </property>
         </item>
        </widget>

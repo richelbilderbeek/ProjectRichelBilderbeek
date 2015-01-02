@@ -4,6 +4,7 @@
 int main()
 {
   std::cout << "Current locale: " << std::locale().name() << std::endl;
+  assert(std::locale().name() == "C");
 
   //It was observed in a Qt Desktop environment that
   //pi converted to a string as '3,14...', probably because
@@ -19,7 +20,8 @@ int main()
   //Default (which is English)
   {
     std::locale::global(gen(""));
-    std::cout << "Current locale: " << std::locale().name() << std::endl;
+    //std::cout << "Current locale: " << std::locale().name() << std::endl;
+    assert(std::locale().name() == "*");
 
     const std::string pi_str_boost{boost::lexical_cast<std::string>(pi)};
     assert(pi_str_boost[1] == '.' && "Default (English) please");
@@ -27,7 +29,8 @@ int main()
   //English (which is the same as the default)
   {
     std::locale::global(gen("en_US.UTF-8"));
-    std::cout << "Current locale: " << std::locale().name() << std::endl;
+    //std::cout << "Current locale: " << std::locale().name() << std::endl;
+    assert(std::locale().name() == "*");
     const std::string pi_str_boost{boost::lexical_cast<std::string>(pi)};
     assert(pi_str_boost[1] == '.' && "English please");
   }
@@ -36,7 +39,8 @@ int main()
   try
   {
     std::locale::global(std::locale("de_DE.UTF-8"));
-    std::cout << "Current locale: " << std::locale().name() << std::endl;
+    assert(std::locale().name() == "*");
+    //std::cout << "Current locale: " << std::locale().name() << std::endl;
     const std::string pi_str_boost{boost::lexical_cast<std::string>(pi)};
     assert(pi_str_boost[1] == ',' && "German please");
   }
@@ -48,7 +52,8 @@ int main()
   //Dutch
   const auto my_locale = gen("nl_NL.UTF-8");
   std::locale::global(my_locale);
-  std::cout << "Current locale: " << std::locale().name() << std::endl;
+  assert(std::locale().name() == "*");
+  //std::cout << "Current locale: " << std::locale().name() << std::endl;
   std::cout.imbue(my_locale);
   std::cout << "Pi in Dutch (should have a comma): " << pi << std::endl;
 

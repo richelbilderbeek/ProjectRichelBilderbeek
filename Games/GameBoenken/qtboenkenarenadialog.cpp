@@ -147,7 +147,7 @@ ribi::Boenken::Formation ribi::QtBoenkenArenaDialog::GetFormation() const noexce
 double ribi::QtBoenkenArenaDialog::GetFriction() const noexcept
 {
   const QComboBox * const b = ui->box_friction;
-  assert(b->count()==2);
+  assert(b->count()==3);
   switch(b->currentIndex())
   {
     case 0:
@@ -156,6 +156,9 @@ double ribi::QtBoenkenArenaDialog::GetFriction() const noexcept
     case 1:
       assert(b->currentText() == "Low");
       return 0.999;
+    case 2:
+      assert(b->currentText() == "Medium");
+      return 0.99;
   }
   assert(!"Should not get here");
   throw std::logic_error("ribi::QtBoenkenArenaDialog::GetFriction");
