@@ -2211,6 +2211,27 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppGetToday",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetToday.htm\">GetToday</a> is a <a href=\"CppTime.htm\">time</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a> to obtain today its date.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetToday.htm\">GetToday</a> can depend on two different <a href=\"CppLibrary.htm\">libraries</a>:",
+        "</p>",
+        "<ul>",
+        "  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"CppBoostDate_Time.htm\">Boost.Date_Time</a></li>",
+        "  <li><img src=\"PicStl.png\" alt=\"STL\"/> <a href=\"CppStl.htm\">STL</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
     { "CppGetTxtFilesInFolder",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",

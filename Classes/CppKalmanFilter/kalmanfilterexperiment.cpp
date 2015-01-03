@@ -173,14 +173,16 @@ std::vector<boost::numeric::ublas::vector<double> > ribi::kalman::KalmanFilterEx
       const std::string& s = input[col];
       try
       {
-        const ModelFunctionParser f(s.empty() ? "0.0" : s, "t");
+        const std::string zero{boost::lexical_cast<std::string>(0.0)}; //For locale
+        const ModelFunctionParser f(s.empty() ? zero : s, "t");
         const double y = f.Evaluate( boost::numeric_cast<double>(row) );
         assert(row < boost::numeric_cast<int>(m.size()));
         assert(col < boost::numeric_cast<int>(m[row].size()));
         m[row](col) = y;
       }
-      catch (std::runtime_error&)
+      catch (std::runtime_error& e)
       {
+        TRACE(e.what());
         TRACE("Unparsable function (will be parsed against 't'):");
         TRACE(s);
         assert(!"Parsing the function should have succeeded, as the GUI takes this out");

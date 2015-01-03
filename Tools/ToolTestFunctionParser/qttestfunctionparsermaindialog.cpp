@@ -67,7 +67,9 @@ void ribi::QtTestFunctionParserMainDialog::Parse() noexcept
   FunctionParser f;
 
   //Parse the formula
-  f.Parse(ui->edit_function->text().toStdString().c_str(),"x");
+  std::string my_function{ui->edit_function->text().toStdString()};
+
+  f.Parse(my_function.c_str(),"x");
   if (f.GetParseErrorType() != FunctionParser::FP_NO_ERROR)
   {
     ui->label_result->setText("Function could not be parsed");
@@ -109,21 +111,14 @@ void ribi::QtTestFunctionParserMainDialog::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-
-  const double pi = boost::math::constants::pi<double>();
-
-  TRACE(std::locale().name());
-  //TRACE(boost::lexical_cast<std::string>(pi)[1]);
-  //assert(boost::lexical_cast<std::string>(pi)[1] == ',' && "Dutch please?");
-
-  boost::locale::generator gen;
-  std::locale::global(gen("")); //Or explicitly: "en_US.UTF-8"
-  std::locale::global(gen("en_US.UTF-8")); //Or explicitly: "en_US.UTF-8"
-
-  TRACE(std::locale().name());
-  //TRACE(boost::lexical_cast<std::string>(pi)[1]);
-  assert(boost::lexical_cast<std::string>(pi)[1] == '.' && "No Dutch please");
-
-  assert(!"Refactor");
+  #define SET_LOCALE_TO_ENGLISH_QTTESTFUNCTIONPARSERMAINDIALOG
+  #ifdef  SET_LOCALE_TO_ENGLISH_QTTESTFUNCTIONPARSERMAINDIALOG
+  //In case the decimal digits need to be non-Dutch
+  {
+    const double pi = boost::math::constants::pi<double>();
+    std::locale::global(std::locale("en_US.UTF-8"));
+    assert(boost::lexical_cast<std::string>(pi)[1] == '.' && "No Dutch please");
+  }
+  #endif // SET_LOCALE_TO_ENGLISH_QTTESTFUNCTIONPARSERMAINDIALOG
 }
 #endif

@@ -16,7 +16,7 @@ struct ModelFunctionParser
   ///For example:
   ///my_function = 'x * x * sin(x) * rand(x)'
   ///variable_name = 'x'
-  explicit ModelFunctionParser(const std::string& my_function, const std::string& variable_name);
+  explicit ModelFunctionParser(std::string my_function, const std::string& variable_name);
 
   ModelFunctionParser(const ModelFunctionParser&e) = delete;
   ModelFunctionParser& operator=(const ModelFunctionParser&e) = delete;
@@ -24,6 +24,12 @@ struct ModelFunctionParser
 
   ///Calculate the y for 'y = f(x)'
   double Evaluate(const double x) const;
+
+  ///Obtain the version of this class
+  static std::string GetVersion() noexcept;
+
+  ///Obtain the version history of this class
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   const boost::shared_ptr<FunctionParser> m_parser;

@@ -1,5 +1,5 @@
 include(../../ConsoleApplication.pri)
-include(../../Libraries/Boost.pri)
+include(../../Libraries/BoostAll.pri)
 
 SOURCES += main.cpp
 

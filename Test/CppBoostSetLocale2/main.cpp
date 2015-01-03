@@ -50,15 +50,12 @@ int main()
   }
 
   //Dutch
-  const auto my_locale = gen("nl_NL.UTF-8");
+  const auto my_locale = std::locale("nl_NL.UTF-8");
   std::locale::global(my_locale);
-  assert(std::locale().name() == "*");
-  //std::cout << "Current locale: " << std::locale().name() << std::endl;
-  std::cout.imbue(my_locale);
-  std::cout << "Pi in Dutch (should have a comma): " << pi << std::endl;
+  assert(std::locale().name() == "nl_NL.UTF-8");
+  std::cout << "Current locale: " << std::locale().name() << std::endl;
 
-  {
-    const std::string pi_str_boost{boost::lexical_cast<std::string>(pi)};
-    assert(pi_str_boost[1] == ',' && "Dutch please");
-  }
+  const std::string pi_str_boost{boost::lexical_cast<std::string>(pi)};
+  assert(pi_str_boost[1] == ',' && "Dutch please");
+  std::cout << "Pi in Dutch (should have a comma): " << pi_str_boost << std::endl;
 }
