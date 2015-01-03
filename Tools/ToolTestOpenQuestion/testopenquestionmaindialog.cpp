@@ -55,7 +55,7 @@ std::vector<boost::shared_ptr<ribi::QuestionDialog>> ribi::TestOpenQuestionMainD
       { "2", "two" }
     )
   );
-  std::random_shuffle(v.begin(),v.end());
+  std::random_shuffle(std::begin(v),std::end(v));
   return v;
 }
 

@@ -215,7 +215,7 @@ std::vector<ribi::BinaryNewickVector> ribi::BinaryNewickVector::GetSimplerNewick
 {
   assert(Newick::IsNewick(m_v));
   const std::vector<std::vector<int> > v = Newick::GetSimplerBinaryNewicks(m_v);
-  std::vector<BinaryNewickVector> w(v.begin(),v.end());
+  std::vector<BinaryNewickVector> w(std::begin(v),std::end(v));
   return w;
 }
 

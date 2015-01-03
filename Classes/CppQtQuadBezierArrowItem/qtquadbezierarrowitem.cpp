@@ -111,7 +111,7 @@ CreateLine(const std::vector<boost::geometry::model::d2::point_xy<T> >& v)
 {
   return boost::geometry::model::linestring<
     boost::geometry::model::d2::point_xy<T>
-  >(v.begin(),v.end());
+  >(std::begin(v),std::end(v));
 }
 
 ///Obtain the zero, one or two intersections between a line and a rectanle

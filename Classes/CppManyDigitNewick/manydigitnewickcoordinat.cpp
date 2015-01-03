@@ -78,7 +78,7 @@ bool ribi::ManyDigitNewickCoordinat::IsValid() const
 
 const std::vector<int> ribi::ManyDigitNewickCoordinat::Sort(std::vector<int> v)
 {
-  std::sort(v.begin(),v.end());
+  std::sort(std::begin(v),std::end(v));
   return v;
 }
 

@@ -115,7 +115,7 @@ std::vector<std::string> ribi::MultipleChoiceQuestion::CreateOptions(
 {
   std::vector<std::string> v = wrong_answers;
   v.push_back(answer);
-  std::random_shuffle(v.begin(),v.end());
+  std::random_shuffle(std::begin(v),std::end(v));
   return v;
 }
 

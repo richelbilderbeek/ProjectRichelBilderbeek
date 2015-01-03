@@ -140,7 +140,7 @@ int ribi::TwoDigitNewickIndexer::CalculateReserved(const BinaryNewickVector& n) 
   const int n_elements
     = std::count_if(v.begin(),v.end(),
       std::bind2nd(std::greater<int>(),0));
-  const int max_element = *std::max_element(v.begin(),v.end());
+  const int max_element = *std::max_element(std::begin(v),std::end(v));
   //\todo: +1 needed?
   return n_elements + max_element + 1;
 }

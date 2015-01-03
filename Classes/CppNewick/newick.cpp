@@ -193,7 +193,7 @@ BigInteger ribi::Newick::CalcNumOfSymmetriesBinary(std::vector<int> v)
   if (v.size() == 4) return (v[1] > 0 && v[1]==v[2] ? 1 : 0);
 
   const int n_reserved
-    = *std::max_element(v.begin(),v.end())
+    = *std::max_element(std::begin(v),std::end(v))
     + std::count_if(v.begin(), v.end(), std::bind2nd(std::greater<int>(),0));
 
   BigInteger n_symmetries = 0;

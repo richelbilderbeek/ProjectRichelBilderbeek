@@ -57,7 +57,15 @@
 <h2><a href="CppAdvice.htm">Advice</a></h2>
 <p>&nbsp;</p>
 <ul>
-  <li>Prefer pass-by-reference-to-const to pass-by-value for <a href="CppStdShared_ptr.htm">std::shared_ptrs</a> [1]</li>
+  <li>
+    Prefer pass-by-reference-to-const to pass-by-value for <a href="CppStdShared_ptr.htm">std::shared_ptrs</a> [1]
+  </li>
+  <li>
+    Use <a href="CppStdShared_ptr.htm"> to refer to shared <a href="CppObject.htm">objects</a> [2]
+  </li>
+  <li>
+    Prefer <a href="CppStdUnique_ptr.htm">std::unique_ptr</a> over <a href="CppStdShared_ptr.htm">std::shared_ptr</a> [3]
+  </li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -68,6 +76,8 @@
 <p>&nbsp;</p>
 <ol>
   <li><!--  1 --><a href="CppScottMeyers.htm">Scott Meyers</a>. <a href="http://cppandbeyond.com/2012/04/16/session-topic-initial-thoughts-on-effective-c11">C++ And Beyond 2012 session: 'Initial thoughts on Effective C++11'. 2012. 'Prefer Pass-by-Reference-to-const to Pass-by-Value for std::shared_ptrs'</li>
+  <li><!--  2 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. A tour of C++. 2014. ISBN: 978-0-321-958310. Chapter 11.7.6, page 131: 'Use shared_ptr to refer to shared objects'</li>
+  <li><!--  3 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. A tour of C++. 2014. ISBN: 978-0-321-958310. Chapter 11.7.8, page 131: 'Prefer unique_ptr over shared_ptr'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

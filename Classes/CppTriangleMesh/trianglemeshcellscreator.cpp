@@ -664,7 +664,7 @@ bool ribi::trim::CellsCreator::IsSubset(
   std::sort(w.begin(),w.end(),Helper().OrderByX());
   assert(std::is_sorted(v.begin(),v.end(),Helper().OrderByX()));
   assert(std::is_sorted(w.begin(),w.end(),Helper().OrderByX()));
-  assert(std::unique(v.begin(),v.end()) == v.end());
+  assert(std::unique(std::begin(v),std::end(v)) == v.end());
   assert(std::unique(w.begin(),w.end()) == w.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
   assert(std::count(w.begin(),w.end(),nullptr) == 0);

@@ -214,7 +214,7 @@ ribi::pylos::Winner ribi::pylos::Game::PlayRandomGame(const boost::shared_ptr<Bo
       if (p->CanTransfer(c))
       {
         std::vector<pylos::Coordinat> v = pylos::GetAllCoordinats();
-        std::random_shuffle(v.begin(),v.end());
+        std::random_shuffle(std::begin(v),std::end(v));
         const std::size_t sz = v.size();
         for (std::size_t i = 0; i!=sz; ++i)
         {

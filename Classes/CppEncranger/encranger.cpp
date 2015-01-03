@@ -120,7 +120,7 @@ std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigned int 
   std::srand(key);
 
   //Shuffle
-  std::random_shuffle(v.begin(),v.end());
+  std::random_shuffle(std::begin(v),std::end(v));
 
   return v;
 }

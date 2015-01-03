@@ -1094,7 +1094,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
   }
 
   std::sort(v.begin(),v.end(),Helper().OrderByIndex());
-  const auto new_end = std::unique(v.begin(),v.end());
+  const auto new_end = std::unique(std::begin(v),std::end(v));
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
 
@@ -1123,7 +1123,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMeshBuilde
   }
 
   std::sort(v.begin(),v.end(),Helper().OrderByX());
-  const auto new_end = std::unique(v.begin(),v.end());
+  const auto new_end = std::unique(std::begin(v),std::end(v));
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
 

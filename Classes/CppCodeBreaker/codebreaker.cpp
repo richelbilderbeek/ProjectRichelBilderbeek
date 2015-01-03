@@ -348,7 +348,7 @@ int ribi::CodeBreaker::GuessCaesarCipherKey(
     }
   }
   //The lower the value the better
-  return std::distance(v.begin(),std::min_element(v.begin(),v.end()));
+  return std::distance(v.begin(),std::min_element(std::begin(v),std::end(v)));
 }
 
 int ribi::CodeBreaker::GuessVigenereCipherKeyLength(const std::string& secret_text) const noexcept

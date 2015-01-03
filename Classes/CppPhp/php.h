@@ -73,7 +73,7 @@ std::vector<T> array_intersect(
   const std::vector<T>& v,
   const std::vector<T>& w) noexcept
 {
-  assert(std::is_sorted(v.begin(),v.end()));
+  assert(std::is_sorted(std::begin(v),std::end(v)));
   assert(std::is_sorted(w.begin(),w.end()));
   std::vector<T> x;
   std::set_intersection(v.begin(),v.end(),w.begin(),w.end(),std::back_inserter(x));
