@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RibiRegex, class for working with regular expressions
-Copyright (C) 2014-2014 Richel Bilderbeek
+Copyright (C) 2014-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

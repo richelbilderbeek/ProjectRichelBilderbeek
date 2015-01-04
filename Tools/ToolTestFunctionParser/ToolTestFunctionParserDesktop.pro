@@ -9,6 +9,8 @@ include(../../Libraries/Qwt.pri)
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
+include(../../Classes/CppTempLocale/CppTempLocale.pri)
+
 include(ToolTestFunctionParserDesktop.pri)
 
 SOURCES += \

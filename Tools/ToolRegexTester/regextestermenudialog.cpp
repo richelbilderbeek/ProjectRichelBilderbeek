@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ ribi::About ribi::RegexTesterMenuDialog::GetAbout() const noexcept
     "RegexTester",
     "regular expression tester",
     "the 16th of July 2013",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolRegexTester.htm",
     GetVersion(),
     GetVersionHistory());

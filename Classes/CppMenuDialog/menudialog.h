@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MenuDialog, menu dialog class
-Copyright (C) 2013-2014 Richel Bilderbeek
+Copyright (C) 2013-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

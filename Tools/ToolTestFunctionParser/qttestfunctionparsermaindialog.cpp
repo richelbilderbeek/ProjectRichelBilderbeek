@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestFunctionParser, tool to demonstrate Warp's FunctionParser class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 #include "fparser.hh"
+#include "templocale.h"
 #include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestfunctionparsermaindialog.h"
@@ -111,14 +112,11 @@ void ribi::QtTestFunctionParserMainDialog::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  #define SET_LOCALE_TO_ENGLISH_QTTESTFUNCTIONPARSERMAINDIALOG
-  #ifdef  SET_LOCALE_TO_ENGLISH_QTTESTFUNCTIONPARSERMAINDIALOG
   //In case the decimal digits need to be non-Dutch
   {
+    const TempLocale temp_english_locale("en_US.UTF-8");
     const double pi = boost::math::constants::pi<double>();
-    std::locale::global(std::locale("en_US.UTF-8"));
     assert(boost::lexical_cast<std::string>(pi)[1] == '.' && "No Dutch please");
   }
-  #endif // SET_LOCALE_TO_ENGLISH_QTTESTFUNCTIONPARSERMAINDIALOG
 }
 #endif

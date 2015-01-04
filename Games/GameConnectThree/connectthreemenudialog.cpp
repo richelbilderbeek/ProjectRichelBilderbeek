@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ ribi::About ribi::con3::ConnectThreeMenuDialog::GetAbout() const noexcept
     "ConnectThree",
     "connect-three game",
     "the 23rd of January 2014",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/GameConnectThree.htm",
     GetVersion(),
     GetVersionHistory());

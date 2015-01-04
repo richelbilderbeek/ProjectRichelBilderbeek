@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -231,7 +231,7 @@ void ribi::QtRichelBilderbeekMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const bool verbose{false};
+  const bool verbose{true};
   //const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const std::vector<ProgramType> v = ProgramTypes::GetAll();

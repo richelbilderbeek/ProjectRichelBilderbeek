@@ -39,7 +39,7 @@ ribi::About ribi::TestManyDigitNewickMenuDialog::GetAbout() const noexcept
     "TestManyDigitNewick",
     "tool to test the two-digit-Newick architecture",
     "the 8th of May 2014",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolTestManyDigitNewick",
     GetVersion(),
     GetVersionHistory());

@@ -41,7 +41,7 @@ ribi::About ribi::TestBinaryNewickVectorMenuDialog::GetAbout() const noexcept
     "TestBinaryNewickVector",
     "GUI tool to test BinaryNewickVector",
     "the 6th of December 2013",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolTestBinaryNewickVector.htm",
     GetVersion(),
     GetVersionHistory());

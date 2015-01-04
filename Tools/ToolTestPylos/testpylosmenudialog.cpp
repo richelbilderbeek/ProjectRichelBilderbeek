@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ ribi::About ribi::TestPylosMenuDialog::GetAbout() const noexcept
     "TestPylos",
     "tool to test the Pylos board classes",
     "the 29th of April 2012",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolTestPylos.htm",
     GetVersion(),
     GetVersionHistory());

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RibiRandom, class for working with random numbers
-Copyright (C) 2014-2014 Richel Bilderbeek
+Copyright (C) 2014-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -147,6 +147,11 @@ char ribi::Random::GetChar() noexcept
 double ribi::Random::GetFraction() noexcept
 {
   return m_impl->GetFraction();
+}
+
+int ribi::Random::GetInt(const int min, const int max) noexcept
+{
+  return m_impl->GetInt(min,max);
 }
 
 double ribi::Random::GetNormal(const double mean, const double sigma) noexcept

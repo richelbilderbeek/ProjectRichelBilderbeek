@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RibiRandom, class for working with random numbers
-Copyright (C) 2014-2014 Richel Bilderbeek
+Copyright (C) 2014-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -49,6 +49,9 @@ struct Random
 
   ///Obtain a random number from zero to (and not including) one
   double GetFraction() noexcept;
+
+  ///Obtain a random integer in range 'min' to and including 'max'
+  int GetInt(const int min, const int max) noexcept;
 
   ///Obtain a random number from a normal distribution
   ///From http://www.richelbilderbeek.nl/CppGetRandomNormal.htm

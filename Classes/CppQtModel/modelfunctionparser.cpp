@@ -12,6 +12,7 @@
 #include "fparser.hh"
 
 #include "ribi_random.h"
+#include "templocale.h"
 #include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -65,14 +66,15 @@ double ribi::ModelFunctionParser::Evaluate(const double x) const
 
 std::string ribi::ModelFunctionParser::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::ModelFunctionParser::GetVersionHistory() noexcept
 {
   return {
     "201x-xx-xx: version 1.0: initial version",
-    "2015-01-03: version 1.1: set locale to English in Desktop version" //SET_LOCALE_TO_ENGLISH_MODELFUNCTIONPARSER
+    "2015-01-03: version 1.1: set locale to English in Desktop version", //SET_LOCALE_TO_ENGLISH_MODELFUNCTIONPARSER
+    "2015-01-04: version 1.2: made locale local"
   };
 }
 
@@ -91,15 +93,14 @@ void ribi::ModelFunctionParser::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  #define SET_LOCALE_TO_ENGLISH_MODELFUNCTIONPARSER
-  #ifdef  SET_LOCALE_TO_ENGLISH_MODELFUNCTIONPARSER
+  //Set std::locale to English
+  TempLocale temp_english_locale("en_US.UTF-8");
+
   //In case the decimal digits need to be non-Dutch
   {
     const double pi = boost::math::constants::pi<double>();
-    std::locale::global(std::locale("en_US.UTF-8"));
     assert(boost::lexical_cast<std::string>(pi)[1] == '.' && "No Dutch please");
   }
-  #endif // SET_LOCALE_TO_ENGLISH_MODELFUNCTIONPARSER
 
   {
     const ModelFunctionParser p("x * x * sin(x) * rand(x)","x");

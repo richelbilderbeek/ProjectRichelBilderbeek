@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ndsmake, tool to generate NDS makefile from Qt Creator project file
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -41,12 +41,12 @@ struct Ndsmake
   void CreateMakefile() const noexcept;
 
   const std::string& GetCommand() const noexcept { return m_command; }
-  static const std::vector<std::string> GetHelp() noexcept;
-  static const std::vector<std::string> GetHistory() noexcept;
-  static const std::vector<std::string> GetLicence() noexcept;
+  static std::vector<std::string> GetHelp() noexcept;
+  static std::vector<std::string> GetHistory() noexcept;
+  static std::vector<std::string> GetLicence() noexcept;
 
   ///Obtain the TARGET of the possibly multiple QtCreatorProFile::m_targets
-  const std::string GetTarget() const noexcept;
+  std::string GetTarget() const noexcept;
 
   static std::string GetVersion() noexcept { return "1.2"; }
 
@@ -57,13 +57,13 @@ struct Ndsmake
   const std::string m_command; //A terminal command
   const boost::shared_ptr<const QtCreatorProFile> m_proFile;
 
-  const std::string CreateCommand() const noexcept;
+  std::string CreateCommand() const noexcept;
   void CreateHolyMakefile() const noexcept;
 
-  const boost::shared_ptr<const QtCreatorProFile> GetProFile() const noexcept { return m_proFile; }
+  boost::shared_ptr<const QtCreatorProFile> GetProFile() const noexcept { return m_proFile; }
 
   //From http://www.richelbilderbeek.nl/CppRemoveExtension.htm
-  static const std::string RemoveExtension(const std::string& filename);
+  static std::string RemoveExtension(const std::string& filename);
 
 };
 

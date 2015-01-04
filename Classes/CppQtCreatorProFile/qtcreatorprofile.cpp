@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtCreatorProFile, class to parse Qt Project files
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -109,7 +109,7 @@ ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
     "QtCreatorProFile",
     "class to parse Qt Project files",
     "the 19th of August 2013",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/CppQtCreatorProFile.htm",
     GetVersion(),
     GetVersionHistory());

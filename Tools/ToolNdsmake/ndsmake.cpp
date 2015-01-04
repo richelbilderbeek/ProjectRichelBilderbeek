@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ndsmake, tool to generate NDS makefile from Qt Creator project file
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,6 +22,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "ndsmake.h"
 
+#include <fstream>
+
+#include "fileio.h"
 #include "qtcreatorprofile.h"
 #pragma GCC diagnostic pop
 
@@ -32,7 +35,7 @@ ribi::Ndsmake::Ndsmake(const std::string filename)
 
 }
 
-const std::string ribi::Ndsmake::CreateCommand() const noexcept
+std::string ribi::Ndsmake::CreateCommand() const noexcept
 {
   //Copy ProFile files to the needed folders
   std::string s
@@ -349,7 +352,7 @@ void ribi::Ndsmake::CreateMakefile(const QtCreatorProFile& p) const noexcept
   << "#---------------------------------------------------------------------------------------\n";
 }
 
-const std::vector<std::string> ribi::Ndsmake::GetHelp() noexcept
+std::vector<std::string> ribi::Ndsmake::GetHelp() noexcept
 {
   std::vector<std::string> v;
   v.push_back("Usage: ndsmake [options] [target]");
@@ -365,7 +368,7 @@ const std::vector<std::string> ribi::Ndsmake::GetHelp() noexcept
   return v;
 }
 
-const std::vector<std::string> ribi::Ndsmake::GetHistory() noexcept
+std::vector<std::string> ribi::Ndsmake::GetHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -376,11 +379,11 @@ const std::vector<std::string> ribi::Ndsmake::GetHistory() noexcept
   return v;
 }
 
-const std::vector<std::string> ribi::Ndsmake::GetLicence() noexcept
+std::vector<std::string> ribi::Ndsmake::GetLicence() noexcept
 {
   std::vector<std::string> v;
   v.push_back("ndsmake, tool to generate NDS makefile from Qt Creator project file");
-  v.push_back("Copyright (C) 2010 Richel Bilderbeek");
+  v.push_back("Copyright (C) 2010-2015 Richel Bilderbeek");
   v.push_back("");
   v.push_back("This program is free software: you can redistribute it and/or modify");
   v.push_back("it under the terms of the GNU General Public License as published by");
@@ -396,7 +399,7 @@ const std::vector<std::string> ribi::Ndsmake::GetLicence() noexcept
   return v;
 }
 
-const std::string ribi::Ndsmake::GetTarget() const noexcept
+std::string ribi::Ndsmake::GetTarget() const noexcept
 {
   assert(m_proFile);
   return m_proFile->GetTarget().empty()
@@ -404,7 +407,7 @@ const std::string ribi::Ndsmake::GetTarget() const noexcept
     : (*m_proFile->GetTarget().begin());
 }
 
-const std::string RemoveExtension(const std::string& filename)
+std::string RemoveExtension(const std::string& filename)
 {
   const int dot_index = filename.rfind(".",filename.size());
   assert(dot_index != -1 && "No dot found in filename");

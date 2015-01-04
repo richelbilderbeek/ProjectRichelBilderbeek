@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -302,7 +302,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
     "the 17th of August 2014",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersionStatic(),
     GetVersionHistoryStatic());
@@ -3210,7 +3210,8 @@ std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHist
     "2014-02-27: Version 1.14: added PreDickAdvocaTor and ValentineCardDecrypter, added retro versions to some games",
     "2014-04-22: Version 1.15: added CaesarCipher, CodeBreaker and VigenereCipher",
     "2014-08-14: Version 1.16: increased use of TDD in console version",
-    "2014-08-17: Version 1.17: removed code-that-might-once-be-added"
+    "2014-08-17: Version 1.17: removed code-that-might-once-be-added",
+    "2015-01-04: Version 1.18: made placeholder dialogs look nice"
   };
 }
 

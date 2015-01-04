@@ -32,6 +32,7 @@
 #include "standardkalmanfilterparameters.h"
 #include "standardwhitenoisesystemfactory.h"
 #include "standardwhitenoisesystemparameters.h"
+#include "templocale.h"
 #include "testtimer.h"
 #include "trace.h"
 #include "whitenoisesystemfactory.h"
@@ -807,9 +808,17 @@ void ribi::kalman::QtKalmanFilterExperimentModel::FromDokuWiki(const std::string
     //Test if new version works OK
     #ifndef NDEBUG
     {
+      TempLocale temp_english_locale("en_US.UTF-8");
       const std::string new_str = this->ToDokuWiki();
       QtKalmanFilterExperimentModel dummy_model;
       dummy_model.FromDokuWiki(new_str);
+      assert(this->GetNumberOfTimesteps() == dummy_model.GetNumberOfTimesteps());
+      if (new_str != dummy_model.ToDokuWiki())
+      {
+        //Error in number of timesteps
+        TRACE(new_str);
+        TRACE(dummy_model.ToDokuWiki());
+      }
       assert(new_str == dummy_model.ToDokuWiki());
     }
     #endif
@@ -1412,11 +1421,35 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Test() noexcept
 std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const noexcept
 {
   assert(m_version == m_version_current);
+
+  //TempLocale temp_english_locale("en_US.UTF-8");
+
+  assert(std::to_string(1234) == "1234" && "No digit seperators");
+  //assert(boost::lexical_cast<std::string>(1234) == "1234" && "No digit seperators"); //FAILS!
+  {
+    //std::stringstream s; s << 1234;
+    //assert(s.str() == "1234" && "No digit seperators in std::stringstream please"); //FAILS!
+  }
+
+  const auto lag_estimated_str = std::to_string(m_lag_estimated);
+  const auto lag_real_str = std::to_string(m_lag_real);
+  const auto number_of_timesteps_str = std::to_string(m_number_of_timesteps);
+
+  assert(std::count(std::begin(lag_estimated_str),std::end(lag_estimated_str),',') == 0
+    && "No decimal seperators please"
+  );
+  assert(std::count(std::begin(lag_real_str),std::end(lag_real_str),',') == 0
+    && "No decimal seperators please"
+  );
+  assert(std::count(std::begin(number_of_timesteps_str),std::end(number_of_timesteps_str),',') == 0
+    && "No decimal seperators please"
+  );
+
   std::stringstream s;
   s << "  * Kalman filter type: " << KalmanFilterTypes().ToStr(m_kalman_filter_type) << "\n"
-    << "  * Lag estimated: " << boost::lexical_cast<std::string>(m_lag_estimated) << "\n"
-    << "  * Lag real: " << boost::lexical_cast<std::string>(m_lag_real) << "\n"
-    << "  * Number of timesteps: " << boost::lexical_cast<std::string>(m_number_of_timesteps) << "\n"
+    << "  * Lag estimated: " << lag_estimated_str << "\n"
+    << "  * Lag real: " << lag_real_str << "\n"
+    << "  * Number of timesteps: " << number_of_timesteps_str << "\n"
     << "  * Version: " << boost::lexical_cast<std::string>(m_version) << "\n"
     << "  * White noise system type: " << WhiteNoiseSystemTypes().ToStr(m_white_noise_system_type) << "\n"
     << " \n"
@@ -1453,8 +1486,7 @@ std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const noex
           std::string str{q.toStdString()};
           std::replace(std::begin(str),std::end(str),',','.');
           const ribi::Regex r;
-          assert(r.GetRegexMatches(str,r.GetRegexDutchFloat()).empty()
-            && "No Dutch please"
+          assert(r.GetRegexMatches(str,r.GetRegexDutchFloat()).empty() && "No Dutch please"
           );
           s << str << " | ";
         }

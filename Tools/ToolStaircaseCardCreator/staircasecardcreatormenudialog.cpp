@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 StaircaseCardCreator, tool to generate staircase cards
-Copyright (C) 2014-2014 Richel Bilderbeek
+Copyright (C) 2014-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@ ribi::About ribi::scc::MenuDialog::GetAbout() const noexcept
     "StaircaseCardCreator",
     "tool to generate staircase cards",
     "the 6th of March 2014",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolStaircaseCardCreator.htm",
     GetVersion(),
     GetVersionHistory()

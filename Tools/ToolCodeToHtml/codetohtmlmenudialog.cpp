@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -159,7 +159,7 @@ ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
     "the 11th of August 2014",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
     GetVersionHistory()

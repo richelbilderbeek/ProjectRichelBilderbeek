@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 pylos::Coordinat, Pylos/Phyraos coordinat class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,6 +32,8 @@ namespace pylos {
 struct Coordinat
 {
   Coordinat(const int layer, const int x, const int y);
+  //Coordinat(const Coordinat&) = default;
+  //Coordinat& operator=(const Coordinat&) = default;
 
   ///Construct a Coordinat from a std::string.
   ///For example, (0,1,2) is the coordinat Z=0=bottom,X=1=leftmost-but-one,Y=2=frontmost-but-two
