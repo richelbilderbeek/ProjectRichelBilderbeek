@@ -117,6 +117,7 @@ public:
 
 private:
   ///The pylos::Game class displayed and interacted with
+  ///The Game acts as a Model, where this class is a View of
   boost::shared_ptr<pylos::Game> m_pylos;
 };
 

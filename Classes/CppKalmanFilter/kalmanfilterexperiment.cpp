@@ -173,7 +173,7 @@ std::vector<boost::numeric::ublas::vector<double> > ribi::kalman::KalmanFilterEx
       const std::string& s = input[col];
       try
       {
-        const std::string zero{boost::lexical_cast<std::string>(0.0)}; //For locale
+        const std::string zero{std::to_string(0.0)}; //For locale
         const ModelFunctionParser f(s.empty() ? zero : s, "t");
         const double y = f.Evaluate( boost::numeric_cast<double>(row) );
         assert(row < boost::numeric_cast<int>(m.size()));

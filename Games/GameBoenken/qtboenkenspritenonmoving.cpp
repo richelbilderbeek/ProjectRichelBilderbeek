@@ -67,7 +67,9 @@ void ribi::Boenken::SpriteNonMoving::Collision(
   */
   const double dx = moving.getX() - obstacle.getX();
   const double dy = moving.getY() - obstacle.getY();
+  #ifndef NDEBUG
   const double distance = Geometry().GetDistance(dx,dy);
+  #endif
   //const double collision_distance
   //  = boost::numeric_cast<double>(obstacle.m_size + moving.m_size) / 2.0;
   //Obtain the relative angle between the players
@@ -124,6 +126,7 @@ void ribi::Boenken::SpriteNonMoving::Collision(
   #endif
 }
 
+#ifndef NDEBUG
 void ribi::Boenken::SpriteNonMoving::Test() noexcept
 {
   {
@@ -190,3 +193,4 @@ void ribi::Boenken::SpriteNonMoving::Test() noexcept
     assert(player.GetDeltaX() < -1.0 && "Be gentle, due to friction");
   }
 }
+#endif // NDEBUG

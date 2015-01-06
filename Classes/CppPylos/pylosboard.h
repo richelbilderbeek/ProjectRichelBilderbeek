@@ -130,7 +130,8 @@ struct Board
   virtual void Set(
     const Coordinat& c,
     const Player player,
-    MustRemoveState& must_remove) = 0;
+    MustRemoveState& must_remove
+  ) = 0;
 
 
   ///Display the board as a std::string

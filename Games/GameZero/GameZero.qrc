@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/GameZero/images">
+        <file>GameZeroBackground.png</file>
+        <file>GameZeroBeer.png</file>
+    </qresource>
+</RCC>

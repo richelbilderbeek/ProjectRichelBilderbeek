@@ -217,3 +217,11 @@ void ribi::QtOpenQuestionDialog::on_edit_answer_textChanged(const QString &arg1)
 {
   m_openquestiondialog->SetAnswerInProgress(arg1.toStdString());
 }
+
+void ribi::QtOpenQuestionDialog::SetOpenQuestionDialog(
+  const boost::shared_ptr<OpenQuestionDialog>& dialog
+) noexcept
+{
+  this->m_openquestiondialog = dialog;
+  //SetOpenQuestionDialog(dialog);
+}
