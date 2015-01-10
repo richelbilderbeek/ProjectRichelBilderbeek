@@ -9,9 +9,16 @@
 
 int main(int argc, char *argv[])
 {
+  //Start the application
   QApplication a(argc, argv);
+
+  //Load the dialog
   ribi::QtZeroMainDialog w;
+
+  //Show the dialog
   w.show();
+
+  //Execute the application
   return a.exec();
 }
 

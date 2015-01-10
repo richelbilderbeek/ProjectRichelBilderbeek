@@ -61,11 +61,13 @@ ribi::QtZeroMainDialog::QtZeroMainDialog(QWidget *parent)
   #endif
   ui->setupUi(this);
 
+  ///Keys are virtually pressed every 10 milliseconds
   m_timer_press_key->setInterval(10);
 
+  ///Connect the key-press-timer to the OnTimerPressKey event
   QObject::connect(m_timer_press_key.get(),&QTimer::timeout,
     this,&ribi::QtZeroMainDialog::OnTimerPressKey);
-
+  ///Start the key-press-timer
   m_timer_press_key->start();
 
   //Put the dialog in the screen center at 75% of fullscreen size
@@ -90,34 +92,39 @@ void ribi::QtZeroMainDialog::resizeEvent(QResizeEvent*)
 
 void ribi::QtZeroMainDialog::keyPressEvent(QKeyEvent* e)
 {
+  ///Store the key pressed down
   m_keys_pressed.insert(e->key());
 }
 
 void ribi::QtZeroMainDialog::keyReleaseEvent(QKeyEvent * e)
 {
+  ///Remove the key released
   m_keys_pressed.erase(e->key());
 }
 
 void ribi::QtZeroMainDialog::OnTimerPressKey()
 {
+  ///Respond to the keys that are pressed
   if(m_keys_pressed.count(Qt::Key_Up   )) { --m_player_y; }
   if(m_keys_pressed.count(Qt::Key_Right)) { ++m_player_x; }
   if(m_keys_pressed.count(Qt::Key_Down )) { ++m_player_y; }
   if(m_keys_pressed.count(Qt::Key_Left )) { --m_player_x; }
+
+  ///Start the paintEvent
   repaint();
 }
 
 void ribi::QtZeroMainDialog::paintEvent(QPaintEvent *)
 {
+  //Obtain the painter (do not touch)
   QPainter painter(this);
-  assert(painter.isActive());
 
+  //Paint the background
   painter.drawPixmap(this->rect(),QPixmap(":/GameZero/images/GameZeroBackground.png"));
+
+  //Paint the player
   painter.drawPixmap(m_player_x,m_player_y,QPixmap(":/GameZero/images/GameZeroBeer.png"));
 }
-
-
-
 
 #ifndef NDEBUG
 void ribi::QtZeroMainDialog::Test() noexcept

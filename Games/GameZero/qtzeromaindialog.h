@@ -53,14 +53,29 @@ public:
 private:
   Ui::QtZeroMainDialog *ui;
 
+  ///The keys that are currently pressed
   std::set<int> m_keys_pressed;
+
+  ///The sprite of the player
   const std::unique_ptr<QPixmap> m_player_sprite;
+
+  ///The player its coordinats
   int m_player_x;
   int m_player_y;
+
+  ///The timer that presses the pressed keys
   const std::unique_ptr<QTimer> m_timer_press_key;
+
+  ///This event is called when a key is pressed down
   void keyPressEvent(QKeyEvent * e);
+
+  ///This event is called when a key is released
   void keyReleaseEvent(QKeyEvent * e);
+
+  ///This event is called when the screen needs to be (re)draw
   void paintEvent(QPaintEvent * event);
+
+  ///This event is called when the dialog is resized
   void resizeEvent(QResizeEvent*);
 
   #ifndef NDEBUG
