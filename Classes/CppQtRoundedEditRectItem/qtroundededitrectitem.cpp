@@ -33,6 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 
 #include "container.h"
+//#include "geometry.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -251,6 +252,7 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
 
     // (1) a padded text rectangle at the right location
     const QRectF padded_rect = GetPaddedTextRectAtLine(s,m_font,i,sz);
+    //TRACE(Geometry().ToStr(padded_rect));
 
     // (2) an (ordinary) text rectangle (where the text will be drawn), at the right location
     const QRectF text_rect(
@@ -261,6 +263,9 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
         -m_text_padding.bottom
       )
     );
+
+    //TRACE(Geometry().ToStr(text_rect));
+
     painter->drawText(text_rect,s.c_str());
   }
 }

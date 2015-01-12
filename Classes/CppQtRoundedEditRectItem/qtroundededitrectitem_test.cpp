@@ -115,7 +115,6 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
     assert(GetTextRectAtOrigin("X",QFont()).width() > 0.0);
     assert(GetPaddedTextRectAtOrigin("X",QFont()).width() >= GetTextRectAtOrigin("X",QFont()).width());
   }
-  //assert(!"Refactor");
 }
 #endif
 

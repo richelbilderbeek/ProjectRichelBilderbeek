@@ -210,7 +210,8 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     const std::string new_name_again = qtrectitem->GetText()[0];
     assert(new_name_again == new_name);
   }
-  if (verbose) { TRACE("Grabbing QtNodeof QGraphicsView twice, results in an identical picture"); }
+  #ifdef NOT_NOW_20140112
+  if (verbose) { TRACE("Grabbing QtNode of QGraphicsView twice, results in an identical picture"); }
   {
     //If the line below is needed, update() is not called automatically
     //const QImage image_tmp1{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
@@ -247,6 +248,8 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
   {
     assert(dialog.m_view_left->scene()->items().size() == 1);
   }
+  #endif // NOT_NOW_20140112
+
   if (verbose) { TRACE("Setting X via UI should result in an update of the QtRoundedEditRectItem in the QGraphicsScene"); }
   {
     const double old_x{dialog.m_dialog_left->GetUiX()};
