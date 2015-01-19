@@ -454,7 +454,7 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::OnCellChanged(int row_index, i
 
 void ribi::cmap::QtRateConceptTallyDialogNewName::resizeEvent(QResizeEvent *)
 {
-  const int small_col_width = 20;
+  const int small_col_width = 28;
   ui->table->setColumnWidth(0, small_col_width);
   ui->table->setColumnWidth(1, small_col_width);
   ui->table->setColumnWidth(2, small_col_width);
