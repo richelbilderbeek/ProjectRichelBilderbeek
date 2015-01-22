@@ -11,6 +11,8 @@ Item{
 
     property string buttonText: "Button text"
 
+    signal buttonOnClicked
+
     Rectangle {
         id: buttonArea
         color: button.buttonColor
@@ -23,12 +25,14 @@ Item{
         text: button.buttonText
         font.pointSize: 20
         color: "black"
+        horizontalAlignment: Text.Center
+        verticalAlignment: Text.Center
         anchors.centerIn: buttonArea
     }
     MouseArea {
         anchors.fill: buttonArea
         onClicked: {
-            Qt.quit();
+            buttonOnClicked()
         }
     }
 }
