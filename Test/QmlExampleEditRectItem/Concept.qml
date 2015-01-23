@@ -5,6 +5,7 @@ Item{
 
     height: border.height
     width: border.width
+    z: +1
 
     //properties for border
     property int borderWidth: 10
