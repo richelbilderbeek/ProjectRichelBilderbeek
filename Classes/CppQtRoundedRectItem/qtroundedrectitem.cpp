@@ -377,11 +377,11 @@ bool ribi::operator==(const QtRoundedRectItem& lhs, const QtRoundedRectItem& rhs
 {
   return
        lhs.GetContourPen() == rhs.GetContourPen()
-    && lhs.GetFocusPen() == lhs.GetFocusPen()
-    && lhs.GetRadiusX() == lhs.GetRadiusX()
-    && lhs.GetRadiusY() == lhs.GetRadiusY()
-    && lhs.GetInnerWidth() == lhs.GetInnerWidth()
-    && lhs.GetInnerHeight() == lhs.GetInnerHeight()
+    && lhs.GetFocusPen() == rhs.GetFocusPen()
+    && lhs.GetRadiusX() == rhs.GetRadiusX()
+    && lhs.GetRadiusY() == rhs.GetRadiusY()
+    && lhs.GetInnerWidth() == rhs.GetInnerWidth()
+    && lhs.GetInnerHeight() == rhs.GetInnerHeight()
   ;
 }
 

@@ -404,7 +404,7 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
   assert(m_item->GetCenterPos()   == pos_after        );
   assert(m_item->GetRadiusX()    == radius_x_after   );
   assert(m_item->GetRadiusY()    == radius_y_after   );
-  assert(m_item->GetInnerWidth() == width_after);
+  assert(std::abs(m_item->GetInnerWidth() - width_after) < 1.0);
 
   m_item->m_signal_contour_pen_changed.connect(
     boost::bind(&ribi::QtRoundedRectItemDialog::OnContourPenChanged,this,boost::lambda::_1)
