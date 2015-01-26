@@ -1,3 +1,16 @@
+/*
+This is a file to quadratic Bezier curve.
+It uses three elements:
+ 1. Rectangle
+ 2. MouseArea
+ 3. Canvas
+Three points are used to draw the quadratic Bezier curve:
+ a. starting point, where the curve originates
+ b. ending point, where the curve ends
+ c. control point. This allows to bend the line,
+    which connects the starting and the ending point
+*/
+
 import QtQuick 2.2
 
 Item {
@@ -9,7 +22,7 @@ Item {
     property real endPointX
     property real endPointY
 
-
+    //The point where the curve starts
     Rectangle{
         id: startingPoint
         x: startPointX
@@ -24,6 +37,7 @@ Item {
             canvas.requestPaint()
         }
     }
+    //The MouseArea allows the starting point to be moved around
     MouseArea{
         id:startingPointMArea
         anchors.fill: startingPoint
@@ -44,7 +58,7 @@ Item {
         }
     }
 
-    //endPoint
+    //The point where the curve ends
     Rectangle{
         id: endPoint
         x: endPointX
@@ -59,6 +73,7 @@ Item {
             canvas.requestPaint()
         }
     }
+    //The MouseArea allows the starting point to be moved around
     MouseArea{
         id:endPointMArea
         anchors.fill: endPoint
@@ -79,7 +94,7 @@ Item {
         }
     }
 
-    //controlPoint
+    //The control point
     Rectangle{
         id: controlPoint
         width: 10
@@ -94,6 +109,8 @@ Item {
             canvas.requestPaint()
         }
     }
+    //The MouseArea can be used to bend the straight line,
+    //connecting the starting point to the ending point
     MouseArea{
         id:controlPointMArea
         anchors.fill: controlPoint
@@ -114,7 +131,7 @@ Item {
         }
     }
 
-    //drawing section
+    //The canvas is created and the curve is actually drawn
     Canvas {
         id:canvas
         height: canvasAreaH
