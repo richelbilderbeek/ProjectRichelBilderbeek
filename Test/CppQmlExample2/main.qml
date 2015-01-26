@@ -6,16 +6,10 @@ Window {
     width: 360
     height: 360
 
-    MyCaesarCipherObject {
-
-    }
     QmlCaesarCipher {
 
     }
 
-    QmlCaesarCipherWrapper {
-
-    }
 
     MouseArea {
         anchors.fill: parent
