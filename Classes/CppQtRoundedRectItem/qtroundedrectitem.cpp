@@ -42,7 +42,6 @@ ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
    m_signal_width_changed{},
    m_contour_pen(QPen(QColor(0,0,0),0.0)),
    m_focus_pen(QPen(QColor(0,0,0),0.0,Qt::DashLine)),
-   m_is_dirty{false},
    m_radius_x(4.0),
    m_radius_y(4.0)
 {
@@ -85,7 +84,9 @@ void ribi::QtRoundedRectItem::dragMoveEvent(QGraphicsSceneDragDropEvent *) noexc
 
 double ribi::QtRoundedRectItem::GetInnerHeight() const noexcept
 {
-  const double pen_width = GetCurrentPen().widthF();
+  const double pen_width = GetFocusPen().widthF() > GetContourPen().widthF()
+                         ? GetFocusPen().widthF()
+                         : GetContourPen().widthF();
   return GetOuterHeight() - (2.0 * pen_width);
 }
 
@@ -101,7 +102,9 @@ QRectF ribi::QtRoundedRectItem::GetInnerRect() const noexcept
 
 double ribi::QtRoundedRectItem::GetInnerWidth() const noexcept
 {
-  const double pen_width = GetCurrentPen().widthF();
+  const double pen_width = GetFocusPen().widthF() > GetContourPen().widthF()
+                         ? GetFocusPen().widthF()
+                         : GetContourPen().widthF();
   return GetOuterWidth() - (2.0 * pen_width);
 }
 
@@ -147,55 +150,23 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
 {
   painter->setBrush(brush());
 
+  const QPen thickest_pen = GetContourPen().widthF() > GetFocusPen().widthF()
+                         ? GetContourPen()
+                         : GetFocusPen();
+
   if (this->isSelected() || this->hasFocus())
   {
-    if (m_is_dirty)
-    {
-      const auto left = this->GetRawRect().left();
-      const auto top = this->GetRawRect().top();
-      const auto new_width
-        = this->GetRawRect().width()
-        - (2 * this->m_contour_pen.width())
-        + (2 * this->m_focus_pen.width())
-      ;
-      const auto new_height
-        = this->GetRawRect().height()
-        - (2 * this->m_contour_pen.width())
-        + (2 * this->m_focus_pen.width())
-      ;
-      this->SetRawRect(QRectF(left,top,new_width,new_height));
-      m_is_dirty = false;
-    }
     painter->setPen(m_focus_pen);
     assert(painter->pen() == m_focus_pen);
   }
   else
   {
-    //Loses focus
-    if (m_is_dirty)
-    {
-      const auto left = this->GetRawRect().left();
-      const auto top = this->GetRawRect().top();
-      const auto new_width
-       = this->GetRawRect().width()
-       - (2 * this->m_focus_pen.width())
-       + (2 * this->m_contour_pen.width())
-      ;
-      const auto new_height
-        = this->GetRawRect().height()
-        - (2 * this->m_focus_pen.width() )
-        + (2 * this->m_contour_pen.width())
-      ;
-      this->SetRawRect(QRectF(left,top,new_width,new_height));
-      m_is_dirty = false;
-    }
-
     painter->setPen(m_contour_pen);
     assert(painter->pen() == m_contour_pen);
   }
 
-  const double w{GetOuterWidth()  - this->GetCurrentPen().widthF()};
-  const double h{GetOuterHeight() - this->GetCurrentPen().widthF()};
+  const double w{GetOuterWidth() - (2 * thickest_pen.widthF()) + this->GetCurrentPen().widthF()};
+  const double h{GetOuterHeight() - (2 * thickest_pen.widthF()) + this->GetCurrentPen().widthF()};
 
   painter->drawRoundedRect(
     QRectF(
@@ -304,15 +275,21 @@ void ribi::QtRoundedRectItem::SetFocusPen(const QPen& pen) noexcept
 
 void ribi::QtRoundedRectItem::SetInnerHeight(const double height) noexcept
 {
+  const double pen_width = GetFocusPen().widthF() > GetContourPen().widthF()
+                         ? GetFocusPen().widthF()
+                         : GetContourPen().widthF();
   SetOuterHeight(
-    height + (2.0 * GetCurrentPen().widthF())
+    height + (2.0 * pen_width)
   );
 }
 
 void ribi::QtRoundedRectItem::SetInnerWidth(const double width) noexcept
 {
+  const double pen_width = GetFocusPen().widthF() > GetContourPen().widthF()
+                         ? GetFocusPen().widthF()
+                         : GetContourPen().widthF();
   SetOuterWidth(
-    width + (2.0 * GetCurrentPen().widthF())
+    width + (2.0 * pen_width)
   );
 }
 

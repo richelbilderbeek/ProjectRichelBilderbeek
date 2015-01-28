@@ -106,23 +106,17 @@ class QtRoundedRectItem : public QGraphicsRectItem
   QRectF GetInnerRect() const noexcept;
   double GetInnerWidth() const noexcept;
 
-  //double GetOuterHeight() const noexcept { return QGraphicsRectItem::rect().height(); }
-  double GetOuterHeight() const noexcept { return GetOuterRect().height(); }
+  double GetOuterHeight() const noexcept { return QGraphicsRectItem::rect().height(); }
   ///Gets the rectangle with/including the pen, use GetRawRect the get the raw QRectF
   QRectF GetOuterRect() const noexcept;
-  //double GetOuterWidth() const noexcept { return QGraphicsRectItem::rect().width(); }
-  double GetOuterWidth() const noexcept { return GetOuterRect().width(); }
+  double GetOuterWidth() const noexcept { return QGraphicsRectItem::rect().width(); }
+
 
   ///Get the rounded rect corner x radius
   double GetRadiusX() const noexcept{ return m_radius_x; }
 
   ///Get the rounded rect corner y radius
   double GetRadiusY() const noexcept{ return m_radius_y; }
-
-  #ifndef NDEBUG
-  //TODO: Get rid of this member function
-  QRectF GetRawRect() const { return QGraphicsRectItem::rect(); }
-  #endif // NDEBUG
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -147,9 +141,6 @@ class QtRoundedRectItem : public QGraphicsRectItem
   void SetRadiusX(const double radius_x) noexcept;
   void SetRadiusY(const double radius_y) noexcept;
 
-  //TODO: Get rid of this member function
-  void SetRawRect(const QRectF& new_rect) noexcept { QGraphicsRectItem::setRect(new_rect); }
-
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_height_changed;
@@ -163,8 +154,6 @@ class QtRoundedRectItem : public QGraphicsRectItem
 
 protected:
 
-  virtual void focusInEvent(QFocusEvent*) noexcept override { m_is_dirty = true; }
-  virtual void focusOutEvent(QFocusEvent*) noexcept override { m_is_dirty = true; }
   virtual void dragEnterEvent(QGraphicsSceneDragDropEvent *event) noexcept override;
   virtual void dragLeaveEvent(QGraphicsSceneDragDropEvent *event) noexcept override;
   virtual void dragMoveEvent(QGraphicsSceneDragDropEvent *event) noexcept override;
@@ -177,9 +166,6 @@ protected:
 
   ///The pen by which focus is indicated
   QPen m_focus_pen;
-
-  ///When the item receives or loses focus, its QRect needs to be recalculated
-  bool m_is_dirty;
 
   ///The rounded rect corner x radius
   double m_radius_x;
