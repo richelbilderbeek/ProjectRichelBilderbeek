@@ -86,6 +86,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="button_test_qtroundedrectitem">
+        <property name="text">
+         <string>&amp;G. QtRoundedRectItem</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="button_test_qtroundededitrectitem">
         <property name="text">
          <string>&amp;I. QtRoundedEditRectItem</string>

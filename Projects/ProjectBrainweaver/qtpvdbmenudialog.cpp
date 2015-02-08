@@ -78,7 +78,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtstylesheetsettermaindialog.h"
 #include "qttestqtarrowitemsmenudialog.h"
 #include "qttestqtroundededitrectitemmenudialog.h"
-//#include "qttestqtroundedtextrectitemmenudialog.h"
+#include "qttestqtroundedrectitemmenudialog.h"
 #include "trace.h"
 #include "ui_qtpvdbmenudialog.h"
 #pragma GCC diagnostic pop
@@ -591,5 +591,11 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(test);
   assert(file);
   QtPvdbConceptMapDialog d(file);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
+}
+
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedrectitem_clicked()
+{
+  QtTestQtRoundedRectItemMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }

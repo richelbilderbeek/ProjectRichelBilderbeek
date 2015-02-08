@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtRoundedRectItem, rectangular-shaped QGraphicsItem
-Copyright (C) 2012-2015 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek and Claudio Tiecher
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -118,7 +118,7 @@ QRectF ribi::QtRoundedRectItem::GetOuterRect() const noexcept
 
 std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
-  return "1.9";
+  return "1.10";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
@@ -133,7 +133,8 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2014-06-22: version 1.6: allow setting the inner and outer rectangle",
     "2014-08-07: version 1.7: renamed IncludingPen member functions to Outer",
     "2014-08-08: version 1.8: removed using with rectangles from interface, as it led to incorrectness and confusion",
-    "2014-08-09: version 1.9: increased use of TDD, fixed bug"
+    "2014-08-09: version 1.9: increased use of TDD, fixed bug",
+    "2015-02-08: version 1.10: gaining/losing focus for different pen widths work correctly"
   };
 }
 

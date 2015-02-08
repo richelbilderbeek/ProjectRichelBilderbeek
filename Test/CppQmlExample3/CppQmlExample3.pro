@@ -11,9 +11,5 @@ QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
-<<<<<<< HEAD
-=======
 
-OTHER_FILES += \
-    MyButton.qml
->>>>>>> c99017a2d230e590727b21cc2d7426112c8072b8
+OTHER_FILES += MyButton.qml
