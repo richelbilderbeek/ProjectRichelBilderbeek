@@ -77,6 +77,8 @@ public slots:
 private slots:
   void keyPressEvent(QKeyEvent* e) noexcept;
 
+  void on_button_test_qtroundedrectitem_clicked();
+
 private:
   Ui::QtPvdbMenuDialog *ui;
 

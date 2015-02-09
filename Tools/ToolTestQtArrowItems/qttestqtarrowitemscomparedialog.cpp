@@ -62,6 +62,12 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
   {
     const int n_items = 12;
     const double ray = 100;
+    {
+
+      QGraphicsTextItem * const item = new QGraphicsTextItem("QtArrowItem");
+      item->setPos(0,-ray);
+      this->ui->view->scene()->addItem(item);
+    }
     for (int i=0; i<n_items; i+=2) //1 arrow per 2 items
     {
       const double angle1 = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
@@ -82,6 +88,12 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
   {
     const int n_items = 16;
     const double ray = 150;
+    {
+
+      QGraphicsTextItem * const item = new QGraphicsTextItem("QtPathArrowItem");
+      item->setPos(0,-ray);
+      this->ui->view->scene()->addItem(item);
+    }
     for (int i=0; i<n_items; i+=2) //1 arrow per 2 items
     {
       const double angle1 = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
@@ -114,6 +126,13 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
   {
     const int n_items = 18;
     const double ray = 200;
+    {
+
+      QGraphicsTextItem * const item = new QGraphicsTextItem("QtQuadBezierArrowItem");
+      item->setPos(0,-ray);
+      this->ui->view->scene()->addItem(item);
+    }
+
     std::vector<QtRoundedRectItem *> rects;
 
     for (int i=0; i!=n_items; ++i)
@@ -160,6 +179,13 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
   {
     const int n_items = 18;
     const double ray = 250;
+
+    {
+      QGraphicsTextItem * const item = new QGraphicsTextItem("QtQuadBezierArrowItem");
+      item->setPos(0,-ray);
+      this->ui->view->scene()->addItem(item);
+    }
+
     std::vector<QtRoundedRectItem *> rects;
 
     for (int i=0; i!=n_items; ++i)
@@ -206,6 +232,13 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
   {
     const double ray = 300;
     const int n_items = 18;
+
+    {
+      QGraphicsTextItem * const item = new QGraphicsTextItem("QtLabeledQuadBezierArrowItem");
+      item->setPos(0,-ray);
+      this->ui->view->scene()->addItem(item);
+    }
+
     std::vector<QtRoundedRectItem *> rects;
     for (int i=0; i!=n_items; ++i)
     {
@@ -214,8 +247,8 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       const double y1 = -std::cos(angle) * ray;
       QtRoundedRectItem * rect = new QtRoundedRectItem;
       assert(rect);
-      rect->SetOuterWidth(16.0);
-      rect->SetOuterHeight(8.0);
+      rect->SetInnerWidth(32.0);
+      rect->SetInnerHeight(16.0);
       //rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
       rect->SetCenterPos(x1,y1);

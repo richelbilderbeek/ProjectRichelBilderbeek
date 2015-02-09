@@ -2452,3 +2452,4 @@ Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekNlSitemapGenera
 fwdpp/
 biopp/
 libsequence/
+*.qmlproject.user

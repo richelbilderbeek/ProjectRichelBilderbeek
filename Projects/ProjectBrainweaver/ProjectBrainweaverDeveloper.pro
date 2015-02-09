@@ -38,6 +38,7 @@ include(../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetterDesktop.pri)
 include(../../Tools/ToolTestConceptMap/ToolTestConceptMapDesktop.pri)
 include(../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItemsDesktop.pri)
 include(../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItemDesktop.pri)
+include(../../Tools/ToolTestQtRoundedRectItem/ToolTestQtRoundedRectItemDesktop.pri)
 
 #Desktop
 include(../../Classes/CppQtConceptMap/CppQtConceptMap.pri)

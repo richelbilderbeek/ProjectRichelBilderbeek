@@ -1,19 +1,30 @@
+/*
+This is the whole program, where you can visualize and edit boxes containing text.
+There are three buttons that allow you to:
+ 1. connect two text boxes
+ 2. create new text boxes
+ 3. quit the program
+*/
+
 import QtQuick 2.2
 import QtQuick.Window 2.0
 
-Rectangle {
+//The main window which contains all the elements
+Window {
     id: window
     width: Screen.width
     height: Screen.height - 52
 
     property bool connecting: false
 
+    //One text box is loaded as default and centered in the middle of the screen
     Concept{
         borderWidth: 10
         x: (window.width / 2) - (width / 2)
         y: (window.height / 2) - (height / 2)
     }
 
+    //The button to quit the program
     Button{
         id: quitButton
         buttonText: "Quit"
@@ -26,6 +37,7 @@ Rectangle {
         anchors.bottomMargin: 10
     }
 
+    //The button to create a new text box
     Button{
         id: createConcept
         buttonText: "Create New\nConcept"
@@ -41,6 +53,7 @@ Rectangle {
         }
     }
 
+    //The button allows to draw curves
     Button{
         id: connect
         buttonText: "Connect two concepts"
@@ -55,10 +68,13 @@ Rectangle {
         }
     }
 
+    //The MouseArea needed to draw curves.
+    //By dafault is not visible == not clickable.
     MouseArea{
         id:canvasMArea
+        width: Screen.width
+        height: Screen.height - 52
         visible: false
-        anchors.fill: window
         opacity: 100
 
         property bool firstClick: false
