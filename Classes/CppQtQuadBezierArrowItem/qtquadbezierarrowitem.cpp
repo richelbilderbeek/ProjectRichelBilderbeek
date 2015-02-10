@@ -272,6 +272,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
     )
   );
 
+
   const QRectF qr_to = m_to->boundingRect().translated(m_to->pos());
 
   const Rect r_to(
@@ -471,20 +472,31 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       //The angle from midpoint to tail
       //Thanks goes out to Toine van den Bogaart and Theo van den Bogaart for being happy to help with the math
       const double pi{boost::math::constants::pi<double>()};
-      /* claudio edit_05122014
-      const double dx{beyond.x() - m_from->pos().x()};
-      const double dy{beyond.y() - m_from->pos().y()};
+      //#define USE_RICHEL_EDIT_20141204
+      #ifdef USE_RICHEL_EDIT_20141204
+      const double dx{p_beyond.x() - m_from->pos().x()};
+      const double dy{p_beyond.y() - m_from->pos().y()};
       const double arrowangle{0.1*pi};
       double angle1{0.5*pi + arrowangle - Geometry().GetAngleClockScreen(-dx,-dy)};
       double angle2{0.5*pi + arrowangle - Geometry().GetAngleClockScreen(-dx,-dy)};
-      */
-      // claudio edit_05122014
+      #endif // USE_RICHEL_EDIT_20141204
+      #define USE_CLAUDIO_EDIT_20141205
+      #ifdef USE_CLAUDIO_EDIT_20141205
       const double dx{p_end_tail.x() - p_beyond.x()};
       const double dy{p_end_tail.y() - p_beyond.y()};
       double angle1{0.6*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
       double angle2{0.4*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
+      #endif // USE_CLAUDIO_EDIT_20141205
+      //#define USE_RICHEL_EDIT_20150209
+      #ifdef USE_RICHEL_EDIT_20150209
+      const double dx{p_end_tail.x() - p_beyond.x()};
+      const double dy{p_end_tail.y() - p_beyond.y()};
+      double angle1{0.5*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
+      double angle2{0.5*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
+      #endif
 
       const QPointF p0{p_end_tail.x(),p_end_tail.y()};
+      #ifdef USE_RICHEL_2014
       const QPointF p1
         = p0 + QPointF(
            std::cos(angle1) * sz,
@@ -493,6 +505,16 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
         = p0 + QPointF(
            std::cos(angle2) * sz,
            -std::sin(angle2) * sz);
+      #else // USE_RICHEL_2014
+      const QPointF p1
+        = p0 + QPointF(
+           std::sin(angle1) * sz,
+           -std::cos(angle1) * sz);
+      const QPointF p2
+        = p0 + QPointF(
+           std::sin(angle2) * sz,
+           -std::cos(angle2) * sz);
+      #endif // USE_ORIGINAL
       painter->drawPolygon(QPolygonF() << p0 << p1 << p2);
     }
     if (m_head)

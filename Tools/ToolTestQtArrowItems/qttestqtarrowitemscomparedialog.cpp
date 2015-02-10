@@ -125,7 +125,7 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
   #endif //FIX_ISSUE_256
   //Add QtQuadBezierArrowItem
   {
-    const int n_items = 3;
+    const int n_items = 18;
     const double ray = 200;
     {
 
@@ -145,8 +145,8 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       if ((i%3)!=1)
       {
         rect = new QtRoundedRectItem;
-        rect->SetInnerWidth(320.0);
-        rect->SetInnerHeight(160.0);
+        rect->SetInnerWidth(32.0);
+        rect->SetInnerHeight(16.0);
         rect->SetCenterPos(0.0,0.0);
       }
       else
