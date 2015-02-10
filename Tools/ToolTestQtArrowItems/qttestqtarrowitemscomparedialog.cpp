@@ -57,7 +57,7 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
   assert(this->ui->view->scene());
 
   const double pi = boost::math::constants::pi<double>();
-
+  #ifdef FIX_ISSUE_256
   //Add normal arrows
   {
     const int n_items = 12;
@@ -122,9 +122,10 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       this->ui->view->scene()->addItem(item);
     }
   }
+  #endif //FIX_ISSUE_256
   //Add QtQuadBezierArrowItem
   {
-    const int n_items = 18;
+    const int n_items = 3;
     const double ray = 200;
     {
 
@@ -144,8 +145,8 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       if ((i%3)!=1)
       {
         rect = new QtRoundedRectItem;
-        rect->SetInnerWidth(32.0);
-        rect->SetInnerHeight(16.0);
+        rect->SetInnerWidth(320.0);
+        rect->SetInnerHeight(160.0);
         rect->SetCenterPos(0.0,0.0);
       }
       else
@@ -175,6 +176,7 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       this->ui->view->scene()->addItem(item);
     }
   }
+  #ifdef FIX_ISSUE_256
   //Add QtQuadBezierArrowItem, no mid
   {
     const int n_items = 18;
@@ -272,6 +274,7 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       this->ui->view->scene()->addItem(item);
     }
   }
+  #endif // FIX_ISSUE_256
 }
 
 ribi::QtTestQtArrowItemsCompareDialog::~QtTestQtArrowItemsCompareDialog() noexcept

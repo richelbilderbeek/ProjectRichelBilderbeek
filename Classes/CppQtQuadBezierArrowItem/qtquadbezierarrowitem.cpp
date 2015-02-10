@@ -258,6 +258,9 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
   typedef boost::geometry::model::linestring<Point> Line;
   typedef boost::geometry::model::box<Point> Rect;
 
+  //const bool debug = true;
+
+
   const QPointF beyond = GetBeyond();
 
   const Line line_head = CreateLine(
@@ -352,8 +355,8 @@ QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
   {
     assert(p_tail_end.size() == 2);
     //Choose point closest to beyond
-    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[0].x(),p_tail_end[0].x());
-    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[1].x(),p_tail_end[1].x());
+    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[0].x(),p_tail_end[0].y());
+    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[1].x(),p_tail_end[1].y());
     if (d1 <= d2)
     {
       return QPointF(p_tail_end[0].x(),p_tail_end[0].y());
