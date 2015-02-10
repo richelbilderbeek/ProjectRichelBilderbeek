@@ -296,8 +296,8 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
   {
     assert(p_head_end.size() == 2);
     //Choose point closest to beyond
-    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[0].x(),p_head_end[0].x());
-    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[1].x(),p_head_end[1].x());
+    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[0].x(),p_head_end[0].y());
+    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[1].x(),p_head_end[1].y());
     if (d1 <= d2)
     {
       return QPointF(p_head_end[0].x(),p_head_end[0].y());

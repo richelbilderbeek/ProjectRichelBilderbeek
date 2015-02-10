@@ -144,8 +144,8 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       if ((i%3)!=1)
       {
         rect = new QtRoundedRectItem;
-        rect->SetOuterWidth(16.0);
-        rect->SetOuterHeight(8.0);
+        rect->SetInnerWidth(32.0);
+        rect->SetInnerHeight(16.0);
         rect->SetCenterPos(0.0,0.0);
       }
       else
@@ -197,8 +197,8 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       //if ((i%3)!=1)
       {
         rect = new QtRoundedRectItem;
-        rect->SetOuterWidth(16.0);
-        rect->SetOuterHeight(8.0);
+        rect->SetInnerWidth(32.0);
+        rect->SetInnerHeight(16.0);
         rect->SetCenterPos(0.0,0.0);
         //rect->SetOuterRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       }
