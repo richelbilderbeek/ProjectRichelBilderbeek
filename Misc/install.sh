@@ -1,5 +1,5 @@
 #!/bin/bash
-apt-get install git vim qtcreator tmux make g++ libboost-all-dev witty-dev libqwt-dev autoconf bison cmake flex intltool libtool pkg-config scons tidy libopencv-dev lynx lyx libxtst-dev libgsl0-dev
+apt-get install git vim qtcreator tmux make g++ libboost-all-dev witty-dev libqwt-dev autoconf bison cmake flex intltool libtool pkg-config scons tidy libopencv-dev lynx lyx libxtst-dev libgsl0-dev openjdk-7-jre
 
 #From MXE
 apt-get install autoconf automake autopoint bash bison bzip2 \
