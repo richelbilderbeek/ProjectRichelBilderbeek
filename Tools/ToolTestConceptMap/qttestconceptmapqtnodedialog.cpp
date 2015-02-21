@@ -210,12 +210,9 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     const std::string new_name_again = qtrectitem->GetText()[0];
     assert(new_name_again == new_name);
   }
-  #ifdef NOT_NOW_20140112
   if (verbose) { TRACE("Grabbing QtNode of QGraphicsView twice, results in an identical picture"); }
   {
     //If the line below is needed, update() is not called automatically
-    //const QImage image_tmp1{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
-    //const QImage image_tmp2{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     const QImage image_before{dialog.GetUiView()};
     const QImage image_after{dialog.GetUiView()};
     assert(image_before == image_after);
@@ -223,33 +220,18 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
   if (verbose) { TRACE("If the text of an QtNode its center QtNode is changed, the Item must be updated"); }
   {
     //If the line below is needed, update() is not called automatically
-    //const QImage image_tmp1{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
-    //const QImage image_tmp2{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     const QImage image_before{dialog.GetUiView()};
 
     dialog.GetQtNode()->GetNode()->GetConcept()->SetName("A");
     dialog.GetQtNode()->GetNode()->GetConcept()->SetName("B");
 
     const QImage image_after{dialog.GetUiView()};
-    /*
-    if (image_before == image_after)
-    {
-      const std::string a{"QtTestQtNodeDialogTest1_before.png"};
-      const std::string b{"QtTestQtNodeDialogTest1_after.png"};
-      image_before.save(a.c_str());
-      image_after.save(b.c_str());
-      const QImage result{QtImage().Difference(image_before,image_after)};
-      result.save("QtTestQtNodeDialogTest1_difference.png");
-    }
-    */
     assert(image_before != image_after);
   }
   if (verbose) { TRACE("QGraphicsScene must have one item"); }
   {
     assert(dialog.m_view_left->scene()->items().size() == 1);
   }
-  #endif // NOT_NOW_20140112
-
   if (verbose) { TRACE("Setting X via UI should result in an update of the QtRoundedEditRectItem in the QGraphicsScene"); }
   {
     const double old_x{dialog.m_dialog_left->GetUiX()};
