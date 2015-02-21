@@ -1,1 +1,0 @@
-g++-4  -o CppHelloWorldQtCreatorCygwin.exe main.o    -L/usr/lib/qt4/lib -lQtCore -L/usr/lib/qt4/lib -lz -lm -lgthread-2.0 -lglib-2.0 -lintl -liconv -ldl -lpthread

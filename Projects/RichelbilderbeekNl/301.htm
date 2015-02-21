@@ -1,2190 +1,0 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>301</title>
-  <meta name="description" content="C++ 301"/>
-  <meta name="keywords" content="C++ 301 code snippet"/>
-  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
-</head>
-<!-- End of head, start of body -->
-<body>
-<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="301.htm">301</a></h1>
-<p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name 301-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Technical facts</h2>
-<p>&nbsp;</p>
-<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
-<ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
-</ul>
-<p><a href="CppIde.htm">IDE(s)</a>:</p>
-<ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
-</ul>
-<p><a href="CppQtProjectType.htm">Project type</a>:</p>
-<ul>
-  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
-</ul>
-<p><a href="CppStandard.htm">C++ standard</a>:</p>
-<ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
-</ul>
-<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
-<ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
-</ul>
-<p><a href="CppLibrary.htm">Libraries</a> used:</p>
-<ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ProjectRampalTest.pro</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="ProjectRampalTest.pro" border = "1"><tr><td><code>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
-<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
-<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
-#Disallow release version<br/>
-#<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += debug<br/>
-#<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= release<br/>
-#Under Windows, under release mode, add this dumb config,<br/>
-#otherwise, it will still be in debug mode (beats me why)<br/>
-<a href="CppQmakeConfig.htm">CONFIG</a> -= debug<br/>
-#Message showing what the application is thinking<br/>
-unix: <a href="CppQmakeConfig.htm">CONFIG</a>(debug&nbsp;&nbsp;,debug|release):message("Building Ubuntu debug")<br/>
-unix: <a href="CppQmakeConfig.htm">CONFIG</a>(release,debug|release):message("Building Ubuntu release: SHOULD NOT HAPPEN")<br/>
-win32:<a href="CppQmakeConfig.htm">CONFIG</a>(debug&nbsp;&nbsp;,debug|release):message("Building Windows debug")<br/>
-win32:<a href="CppQmakeConfig.htm">CONFIG</a>(release,debug|release):message("Building Windows release: SHOULD NOT HAPPEN")<br/>
-#Application name<br/>
-#Debug flag for keeping/removing <a href="CppAssert.htm">assert</a><br/>
-<a href="CppQmakeConfig.htm">CONFIG</a>(release,debug|release):<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG<br/>
-#Add the path of the BigInt library and <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a><br/>
-<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> +=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppBinaryNewickVector.htm">CppBinaryNewickVector</a>&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppNewick.htm">CppNewick</a>&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppStopwatch.htm">CppStopwatch</a> \<br/>
-&nbsp;&nbsp;../../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30<br/>
-#<a href="CppLibrary.htm">Libraries</a><br/>
-win32:<a href="CppQmakeLibs.htm">LIBS</a> += C:/Qt/2010.02.1/qt/lib/libboost_filesystem.lib<br/>
-unix:<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_filesystem</a><br/>
-#Using BigInt library by including its source<br/>
-<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dialogrampaltest.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ProjectRampalTest.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;test.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppBinaryNewickVector.htm">CppBinaryNewickVector</a>/<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30/BigInteger.cc \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30/BigIntegerAlgorithms.cc \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30/BigIntegerUtils.cc \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30/BigUnsigned.cc \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30/BigUnsignedInABase.cc \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppNewick.htm">CppNewick</a>/<a href="CppNewick.htm">newick</a>.cpp<br/>
-<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;test.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dialogrampaltest.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppBinaryNewickVector.htm">CppBinaryNewickVector</a>/<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppStopwatch.htm">CppStopwatch</a>/<a href="CppStopwatch.htm">stopwatch</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppNewick.htm">CppNewick</a>/<a href="CppNewick.htm">newick</a>.h<br/>
-<a href="CppFORMS.htm">FORMS</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dialogrampaltest.ui<br/>
-<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ProjectRampal.qrc<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>MyAssert.h</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="MyAssert.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> BILDERBIKKEL_ASSERT_H<br/>
-<a href="CppDefine.htm">#define</a> BILDERBIKKEL_ASSERT_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppAssert.htm">CppAssert</a>.htm<br/>
-<a href="CppIfdef.htm">#ifdef</a> <a href="CppNDEBUG.htm">NDEBUG</a>_BILDERBIKKEL<br/>
-&nbsp;&nbsp;<a href="CppDefine.htm">#define</a> <a href="CppAssert.htm">Assert</a>(x) ((<b><a href="CppVoid.htm">void</a></b>)0)<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppDefine.htm">#define</a> <a href="CppAssert.htm">Assert</a>(x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(x))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR!! <a href="CppAssert.htm">Assert</a>ion "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a> (#x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;" failed\n on line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"\n in file "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__<a href="CppCfile.htm">FILE</a>__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("<a href="CppAssert.htm">assert</a>_out.txt");&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR!! <a href="CppAssert.htm">Assert</a>ion "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a> (#x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;" failed\n on line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"\n in file "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__<a href="CppCfile.htm">FILE</a>__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f.close();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppExit.htm">std::exit</a>(1234);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAssert.htm">Assert</a>ion failed");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BILDERBIKKEL_ASSERT_H<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>MyTrace.h</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="MyTrace.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> BILDERBIKKEL_<a href="CppTRACE.htm">TRACE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> BILDERBIKKEL_<a href="CppTRACE.htm">TRACE</a>_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppAssert.htm">CppAssert</a>.htm<br/>
-<a href="CppIfdef.htm">#ifdef</a> N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
-&nbsp;&nbsp;<a href="CppDefine.htm">#define</a> <a href="CppTrace.htm">Trace</a>(x) ((<b><a href="CppVoid.htm">void</a></b>)0)<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppDefine.htm">#define</a> <a href="CppTrace.htm">Trace</a>(x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("<a href="CppTrace.htm">trace</a>_out.txt"); \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppTRACE.htm">TRACE</a> \'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a> (#x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"\' line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;" in file '"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__<a href="CppCfile.htm">FILE</a>__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"': "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a> (x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f.close();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppTRACE.htm">TRACE</a> \'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a> (#x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"\' line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;" in file '"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__<a href="CppCfile.htm">FILE</a>__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"': "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a> (x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BILDERBIKKEL_<a href="CppTRACE.htm">TRACE</a>_H<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>ProjectRampalGui.cpp</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="ProjectRampalGui.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-USEFORM("UnitFormAnalyse<a href="CppImplementationFile.htm">.cpp</a>", FormAnalyse);<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
-{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "The Rampal Etienne Project multi-run GUI";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormAnalyse), &amp;FormAnalyse);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>ProjectRampalTest.cpp</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="ProjectRampalTest.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
-&nbsp;&nbsp;(C) 2009 Richel Bilderbeek<br/>
-<br/>
-&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
-&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
-&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
-&nbsp;&nbsp;(at your option) any later version.<br/>
-<br/>
-&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
-&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
-&nbsp;&nbsp;GNU General Public License for more details.<br/>
-&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
-&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCctypeH.htm">cctype</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIomanipH.htm">iomanip</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "dialogrampaltest.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppNewick.htm">newick</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "test.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.htm">GetRandomUniform</a>.htm<br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> T AskUserForInput()<br/>
-{<br/>
-&nbsp;&nbsp;T t;<br/>
-&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(<a href="CppCin.htm">std::cin</a>,t);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> t;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppAskUserForDouble.htm">AskUserForDouble</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> AskUserFor<a href="CppNewick.htm">Newick</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please enter a <a href="CppNewick.htm">newick</a> or press enter to quit:\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> AskUserForInput&lt;<a href="CppString.htm">std::string</a>&gt;();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppReturn.htm">return</a></b> <a href="CppString.htm">std::string</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> n(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppInvalid_argument.htm">std::invalid_argument</a>&amp; e)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Invalid input: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppAskUserForDouble.htm">AskUserForDouble</a>.htm<br/>
-<b><a href="CppDouble.htm">double</a></b> AskUserForTheta()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please enter a value <b><a href="CppFor.htm">for</a></b> theta or press enter to quit:\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> AskUserForInput&lt;<a href="CppString.htm">std::string</a>&gt;();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppReturn.htm">return</a></b> 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorLessEqual.htm">&lt;=</a> 0.0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Theta must be a positive non-zero value\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(...)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Theta must be a positive non-zero value\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppRandomizeTimer.htm">RandomizeTimer</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRandomizeTimer.htm">RandomizeTimer</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppSrand.htm">std::srand</a>(<a href="CppTime.htm">std::time</a>(0));<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppStrToLower.htm">StrToLower</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppStrToLower.htm">StrToLower</a>(<a href="CppString.htm">std::string</a> s)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(s.begin(), s.end(), s.begin(),<a href="CppPtr_fun.htm">std::ptr_fun</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppTolower.htm">std::tolower</a>));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetPath.htm">GetPath</a>.htm<br/>
-<a href="CppComment.htm">//</a>Returns the path, without a trailing backslash '\'<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> USE_WINDOWS<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> endOfPathIndex <a href="CppOperatorAssign.htm">=</a> fileName.rfind("/",fileName.size());<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> endOfPathIndex <a href="CppOperatorAssign.htm">=</a> fileName.rfind("\\",fileName.size());<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(endOfPathIndex &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(fileName.size()));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> fileName.substr(0,endOfPathIndex);<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetPath.htm">GetPath</a>(s);<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> ShowCorrectUse()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Incorrect use of ProjectTestMain\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ProjectTestMain [theta input parameter] [<a href="CppNewick.htm">newick</a> input parameter] [test parameters]\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Theta input parameters: \n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppAny.htm">any</a> positive non-zero value, <b><a href="CppFor.htm">for</a></b> example '10.0'\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>m: manual input of thetas\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>r: random theta\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Input parameters: \n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppAny.htm">any</a> <a href="CppNewick.htm">newick</a> string, <b><a href="CppFor.htm">for</a></b> example '(1,(2,3))\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>m: manual input of <a href="CppNewick.htm">newick</a> strings\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>r: random <a href="CppNewick.htm">newick</a> strings\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Test parameters: \n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " i &amp;&nbsp;&nbsp;1: use Ravindran\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " i &amp;&nbsp;&nbsp;2: use Sorted<a href="CppNewick.htm">Newick</a>\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " i &amp;&nbsp;&nbsp;4: use SmartSorted<a href="CppNewick.htm">Newick</a>\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " i &amp;&nbsp;&nbsp;8: use RampalMain_End<a href="CppVersion.htm">version</a>2\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " i &amp; 16: use <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a>\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " i &amp; 32: use <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " 63: use all\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>ProjectRampalTest is the testing facility of ProjectRampal.<br/>
-<a href="CppComment.htm">///</a>A newly developed brach of the project can be tested with<br/>
-<a href="CppComment.htm">///</a><b><a href="CppThis.htm">this</a></b> program in terms of obtaining the right output and speed.<br/>
-<a href="CppComment.htm">///</a>ProjectRampalTest forbids the use of a release mode,<br/>
-<a href="CppComment.htm">///</a>because its purpose is to test the code.<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;DialogRampalTest d;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;d.show();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<a href="CppArgc.htm">argv</a>[0]) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "/" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppArgc.htm">argv</a>[0]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " (<a href="CppVersion.htm">version</a> 300.0)\n";<br/>
-&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ProjectTest cannot be run in no-<a href="CppDebug.htm">debug</a> mode!\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please re<a href="CppCompile.htm">compile</a> without the <a href="CppNDEBUG.htm">NDEBUG</a> <a href="CppDefine.htm">#define</a>"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a><a href="CppOperatorNotEqual.htm">!=</a>4) { ShowCorrectUse(); <b><a href="CppReturn.htm">return</a></b> 0; }<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppArgc.htm">argv</a>1 <a href="CppOperatorAssign.htm">=</a> <a href="CppStrToLower.htm">StrToLower</a>(<a href="CppArgc.htm">argv</a>[1]);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppArgc.htm">argv</a>2 <a href="CppOperatorAssign.htm">=</a> <a href="CppStrToLower.htm">StrToLower</a>(<a href="CppArgc.htm">argv</a>[2]);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> the fourth argument is an <a href="CppInt.htm">integer</a><br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>[3]);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a>&amp;)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ShowCorrectUse();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argv</a>3 <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>[3]);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test sanity of input<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>First parameter: theta<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> { <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppArgc.htm">argv</a>1); } <a href="CppComment.htm">//</a>Is it a <b><a href="CppDouble.htm">double</a></b>?<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(...)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>1<a href="CppOperatorNotEqual.htm">!=</a>"-m" <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppArgc.htm">argv</a>1<a href="CppOperatorNotEqual.htm">!=</a>"-r") { ShowCorrectUse(); <b><a href="CppReturn.htm">return</a></b> 0; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Second parameter: phylogeny<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> { <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> n(<a href="CppArgc.htm">argv</a>2); } <a href="CppComment.htm">//</a>Is it a <a href="CppNewick.htm">newick</a>?<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(...)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>2<a href="CppOperatorNotEqual.htm">!=</a>"-m" <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppArgc.htm">argv</a>2<a href="CppOperatorNotEqual.htm">!=</a>"-r" ) { ShowCorrectUse(); <b><a href="CppReturn.htm">return</a></b> 0; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Third parameter: test<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>3 <a href="CppOperatorLessEqual.htm">&lt;=</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppArgc.htm">argv</a>3 &gt; 63) { ShowCorrectUse(); <b><a href="CppReturn.htm">return</a></b> 0; }<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Input is sane<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppRandomizeTimer.htm">RandomizeTimer</a>();<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> file("Results.txt");<br/>
-&nbsp;&nbsp;file <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Results of " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppArgc.htm">argv</a>[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppArgc.htm">argv</a>[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppArgc.htm">argv</a>[2] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppArgc.htm">argv</a>[3] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
-&nbsp;&nbsp;file.close();<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetprecision.htm">std::setprecision</a>(10);<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain theta<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Theta input parameters:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAny.htm">any</a> positive non-zero value, <b><a href="CppFor.htm">for</a></b> example '10.0'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>f: theta values from file 'test_thetas.txt'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>m: manual input of thetas<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>1 <a href="CppOperatorEqual.htm">==</a> "-m")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;theta <a href="CppOperatorAssign.htm">=</a> AskUserForTheta();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (theta<a href="CppOperatorEqual.htm">==</a>0.0) <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>1 <a href="CppOperatorEqual.htm">==</a> "-r")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;theta <a href="CppOperatorAssign.htm">=</a> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>() * 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;theta <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppArgc.htm">argv</a>1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain <a href="CppNewick.htm">newick</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> <a href="CppNewick.htm">newick</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Input parameters:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAny.htm">any</a> <a href="CppNewick.htm">newick</a> string, <b><a href="CppFor.htm">for</a></b> example '(1,(2,3))'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>m: manual input of <a href="CppNewick.htm">newick</a> strings<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>p: predefined <a href="CppNewick.htm">newick</a> strings<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>r: random <a href="CppNewick.htm">newick</a> strings<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>2 <a href="CppOperatorEqual.htm">==</a> "-m")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> AskUserFor<a href="CppNewick.htm">Newick</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppNewick.htm">newick</a>.empty()) <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>2 <a href="CppOperatorEqual.htm">==</a> "-r")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::CreateRandom<a href="CppNewick.htm">Newick</a>(7,7);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppArgc.htm">argv</a>2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> file("Results.txt", <a href="CppStd.htm">std</a>::ios_base::app);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;file <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetprecision.htm">std::setprecision</a>(99);<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create all tests<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; &gt; tests<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Test::CreateTests(<a href="CppNewick.htm">newick</a>,theta,<a href="CppArgc.htm">argv</a>3);<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Execute all tests<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; t,tests)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t-&gt;Execute();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Show test results<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Theta: '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> theta <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppNewick.htm">Newick</a>: '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppNewick.htm">newick</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Number of combinations: "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppNewick.htm">Newick</a>::<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>(<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>(<a href="CppNewick.htm">newick</a>).Get())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n\n\n\n\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "TestName\t\t\tProbability\t<a href="CppTime.htm">Time</a>\n";<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; t,tests)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetTestName()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\t" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetProbability()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetEwensProbability()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;<a href="CppGetTime.htm">GetTime</a>()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetTestName()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;Get<a href="CppNewick.htm">Newick</a>()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetProbability()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetEwensProbability()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;<a href="CppGetTime.htm">GetTime</a>()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Probably we're done,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>except <b><a href="CppIf.htm">if</a></b> the user wants to input another value manually<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>1<a href="CppOperatorNotEqual.htm">!=</a>"-m" <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppArgc.htm">argv</a>2<a href="CppOperatorNotEqual.htm">!=</a>"-m") <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateTest<a href="CppNewick.htm">Newick</a>s()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("((2,2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((2,2),3)");<br/>
-&nbsp;&nbsp;v.push_back("((2,3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((3,3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((5,5),5)");<br/>
-&nbsp;&nbsp;v.push_back("(((2,2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((2,2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((2,2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((2,3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((3,3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((5,5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),10)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),20)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),30)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),40)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),50)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),60)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),70)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),80)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),90)");<br/>
-&nbsp;&nbsp;v.push_back("((10,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((20,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((30,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((40,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((50,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((60,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((70,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((80,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((90,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),10)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),20)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),30)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),40)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),50)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),60)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),70)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),80)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),90)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((10,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((10,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((20,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((20,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((30,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((30,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((40,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((40,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((50,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((50,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((60,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((60,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((70,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((70,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((80,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((80,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((90,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((90,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((3,3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((5,5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((3,3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((5,5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((3,3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((5,5),5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((3,3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((5,5),5),5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((3,3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((5,5),5),5),5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,3),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((5,5),5),5),5),5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),3),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((2,2),2),2),2),2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>dialogrampaltest.h</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="dialogrampaltest.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGRAMPALTEST_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGRAMPALTEST_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppBigInt.htm">BigIntegerLibrary</a>.hh"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogRampalTest;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> DialogRampalTest : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
-<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogRampalTest(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~DialogRampalTest();<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> Row<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> m_test_name;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_probability;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_<a href="CppTime.htm">time</a>;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> m_<a href="CppNewick.htm">newick</a>;<br/>
-&nbsp;&nbsp;<a href="CppBigInt.htm">BigInteger</a> m_complexity;<br/>
-};<br/>
-<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
-<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogRampalTest *ui;<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Row&gt; m_data;<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_valid_input;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetFlags() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetNumTestsChecked() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowData();<br/>
-<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onAnyChange();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onBenchmark();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onStart();<br/>
-<br/>
-};<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetHardBiological<a href="CppNewick.htm">Newick</a>s();<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetHard<a href="CppNewick.htm">Newick</a>s();<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetLightBiological<a href="CppNewick.htm">Newick</a>s();<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetLight<a href="CppNewick.htm">Newick</a>s();<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetM<a href="CppAny.htm">any</a><a href="CppNewick.htm">Newick</a>s();<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetMedium<a href="CppNewick.htm">Newick</a>s();<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGRAMPALTEST_H<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>dialogrampaltest.cpp</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="dialogrampaltest.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "dialogrampaltest.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppNewick.htm">newick</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialogrampaltest.h"<br/>
-<a href="CppInclude.htm">#include</a> "test.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogRampalTest::DialogRampalTest(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent,<a href="CppQt.htm">Qt</a>::Window),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogRampalTest),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_valid_input(<b><a href="CppFalse.htm">false</a></b>)<br/>
-{<br/>
-&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_start,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onStart()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_benchmark,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onBenchmark()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;edit_<a href="CppNewick.htm">newick</a>,<a href="CppSignalMacro.htm">SIGNAL</a>(textChanged(<a href="CppQString.htm">QString</a>)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onAnyChange()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;edit_theta,<a href="CppSignalMacro.htm">SIGNAL</a>(textChanged(<a href="CppQString.htm">QString</a>)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onAnyChange()));<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set table header<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item("Test name");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setHorizontalHeaderItem(0,i);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item("Probability");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setHorizontalHeaderItem(1,i);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item("<a href="CppTime.htm">Time</a> (sec)");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setHorizontalHeaderItem(2,i);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item("<a href="CppNewick.htm">Newick</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setHorizontalHeaderItem(3,i);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item("Complexity");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setHorizontalHeaderItem(4,i);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
-<br/>
-&nbsp;&nbsp;onAnyChange();<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogRampalTest::~DialogRampalTest()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogRampalTest::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogRampalTest::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> ui-&gt;table-&gt;columnCount();<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>-18 because of header column<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> (ui-&gt;table-&gt;width() <a href="CppOperatorMinus.htm">-</a> 18) <a href="CppOperatorDivide.htm">/</a> n_cols;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setColumnWidth(i,width);<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogRampalTest::onAnyChange()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_<a href="CppNewick.htm">newick</a>-&gt;text().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> n(s);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp;)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_input_feedback-&gt;setText("Invalid <a href="CppNewick.htm">Newick</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_valid_input <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_theta-&gt;text().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> t <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (t <a href="CppOperatorLessEqual.htm">&lt;=</a> 0.0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_input_feedback-&gt;setText("Invalid theta");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a>&amp;)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_input_feedback-&gt;setText("Invalid theta");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_valid_input <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Calculate complexity<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_<a href="CppNewick.htm">newick</a>-&gt;text().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> n(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> complexity <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppCalcComplexity.htm">CalcComplexity</a>(n.Get());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> c_str <a href="CppOperatorAssign.htm">=</a> big<a href="CppInt.htm">Integer</a>ToString(complexity);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_input_feedback-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("<a href="CppNewick.htm">Newick</a> complexity: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(c_str.c_str()) );<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;m_valid_input <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogRampalTest::onBenchmark()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create fresh file<br/>
-&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> file("test_output.txt");<br/>
-&nbsp;&nbsp;file.close();<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain the <a href="CppNewick.htm">Newick</a>s to be tested<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui-&gt;box_benchmark_type-&gt;count()<a href="CppOperatorEqual.htm">==</a>6);<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; (*<a href="CppFunction.htm">function</a>_<a href="CppPointer.htm">pointer</a>)();<br/>
-&nbsp;&nbsp;<a href="CppFunction.htm">function</a>_<a href="CppPointer.htm">pointer</a> <a href="CppNewick.htm">newick</a>_getter <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(ui-&gt;box_benchmark_type-&gt;currentIndex())<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <a href="CppNewick.htm">newick</a>_getter <a href="CppOperatorAssign.htm">=</a> GetLight<a href="CppNewick.htm">Newick</a>s; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: <a href="CppNewick.htm">newick</a>_getter <a href="CppOperatorAssign.htm">=</a> GetMedium<a href="CppNewick.htm">Newick</a>s; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: <a href="CppNewick.htm">newick</a>_getter <a href="CppOperatorAssign.htm">=</a> GetHard<a href="CppNewick.htm">Newick</a>s; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: <a href="CppNewick.htm">newick</a>_getter <a href="CppOperatorAssign.htm">=</a> GetM<a href="CppAny.htm">any</a><a href="CppNewick.htm">Newick</a>s; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 4: <a href="CppNewick.htm">newick</a>_getter <a href="CppOperatorAssign.htm">=</a> GetLightBiological<a href="CppNewick.htm">Newick</a>s; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 5: <a href="CppNewick.htm">newick</a>_getter <a href="CppOperatorAssign.htm">=</a> GetHardBiological<a href="CppNewick.htm">Newick</a>s; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppNewick.htm">newick</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">newick</a>_getter();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> 10.0;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flags <a href="CppOperatorAssign.htm">=</a> GetFlags();<br/>
-&nbsp;&nbsp;m_data.resize(0);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>, <a href="CppNewick.htm">newick</a>s)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test each <a href="CppNewick.htm">Newick</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create tests<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; &gt; tests<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Test::CreateTests(<a href="CppNewick.htm">newick</a>,theta,flags);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; t,tests)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t-&gt;Execute();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Row d;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_complexity <a href="CppOperatorAssign.htm">=</a> t-&gt;GetComplexity();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> t-&gt;Get<a href="CppNewick.htm">Newick</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_probability <a href="CppOperatorAssign.htm">=</a> t-&gt;GetProbability();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_test_name <a href="CppOperatorAssign.htm">=</a> t-&gt;GetTestName();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> t-&gt;<a href="CppGetTime.htm">GetTime</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write to file<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.open("test_output.txt",<a href="CppStd.htm">std</a>::ios::app);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetTestName() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetProbability() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;<a href="CppGetTime.htm">GetTime</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;Get<a href="CppNewick.htm">Newick</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> theta <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetComplexity() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.close();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_data.push_back(d);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowData();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a>::processEvents();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b>-&gt;ShowData();<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogRampalTest::onStart()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_valid_input) <b><a href="CppReturn.htm">return</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> file("test_output.txt");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_<a href="CppNewick.htm">newick</a>-&gt;text().toStdString();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ui-&gt;edit_theta-&gt;text().toStdString()));<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create all tests<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; &gt; tests<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Test::CreateTests(s,theta,GetFlags());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Execute all tests<br/>
-&nbsp;&nbsp;m_data.resize(0);<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; t,tests)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;t-&gt;Execute();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Row d;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;d.m_complexity <a href="CppOperatorAssign.htm">=</a> t-&gt;GetComplexity();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;d.m_<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> t-&gt;Get<a href="CppNewick.htm">Newick</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;d.m_probability <a href="CppOperatorAssign.htm">=</a> t-&gt;GetProbability();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;d.m_test_name <a href="CppOperatorAssign.htm">=</a> t-&gt;GetTestName();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;d.m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> t-&gt;<a href="CppGetTime.htm">GetTime</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;file<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetTestName() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetProbability() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;<a href="CppGetTime.htm">GetTime</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;Get<a href="CppNewick.htm">Newick</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> theta <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t-&gt;GetComplexity() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_data.push_back(d);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowData();<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> DialogRampalTest::GetFlags() <b><a href="CppConst.htm">const</a></b><br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> flags <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_ravindran-&gt;isChecked()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) flags<a href="CppOperatorPlusAssign.htm">+=</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_end<a href="CppVersion.htm">version</a>2-&gt;isChecked()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) flags<a href="CppOperatorPlusAssign.htm">+=</a> 2;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_<a href="CppTwoDigitNewick.htm">twodigitnewick</a>_<a href="CppDebug.htm">debug</a>-&gt;isChecked()&nbsp;&nbsp;) flags<a href="CppOperatorPlusAssign.htm">+=</a> 4;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_<a href="CppTwoDigitNewick.htm">twodigitnewick</a>_release-&gt;isChecked()) flags<a href="CppOperatorPlusAssign.htm">+=</a> 8;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> flags;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> DialogRampalTest::GetNumTestsChecked() <b><a href="CppConst.htm">const</a></b><br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> cnt <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_ravindran-&gt;isChecked()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) <a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_end<a href="CppVersion.htm">version</a>2-&gt;isChecked()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) <a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_<a href="CppTwoDigitNewick.htm">twodigitnewick</a>_<a href="CppDebug.htm">debug</a>-&gt;isChecked()&nbsp;&nbsp;) <a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_<a href="CppTwoDigitNewick.htm">twodigitnewick</a>_release-&gt;isChecked()) <a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> cnt;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogRampalTest::ShowData()<br/>
-{<br/>
-&nbsp;&nbsp;ui-&gt;table-&gt;clearContents();<br/>
-&nbsp;&nbsp;ui-&gt;table-&gt;setRowCount(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size()));<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> Row&amp; d, m_data)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>(d.m_test_name.c_str()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(row, 0, i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_probability).c_str()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(row, 1, i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_<a href="CppTime.htm">time</a>).c_str()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(row, 2, i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_<a href="CppNewick.htm">newick</a>).c_str()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(row, 3, i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_complexity).c_str()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(row, 4, i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>row;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetHardBiological<a href="CppNewick.htm">Newick</a>s()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),(3,1)))),1),((((1,((1,((1,1),(45,6))),(((1,1),(4,1)),2))),1),2),1)),1),2))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,2))),1),((((1,((1,(1,(35,7))),((4,4),1))),1),4),1)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,((1,1),1))),1),((((1,((1,(5,(36,10))),((2,2),1))),1),(1,5)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(2,(3,1)))),1),((((1,((1,(1,(36,10))),((5,6),1))),1),2),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,3))),1),((((1,((1,((1,1),(34,10))),((4,(4,1)),3))),1),(1,1)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,1),1),(1,(2,1))),1),((((1,((1,(3,(47,14))),((6,4),(1,1)))),1),(1,1)),1)),1),2))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(3,((1,1),1)))),1),((((1,((1,(2,(45,8))),((5,2),1))),1),(2,5)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),((1,1),1)))),1),((((1,((1,((2,1),(35,10))),((4,(5,1)),2))),1),8),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(1,1)))),1),((((1,((1,(2,(66,13))),((8,(5,1)),1))),1),(1,5)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(2,((1,1),1)))),1),((((1,((1,(2,(57,8))),((4,(1,2)),2))),1),6),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,3))),1),((((1,((1,(3,(41,10))),((4,(1,1)),(1,2)))),1),5),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),2))),1),((((1,((1,(1,(44,12))),((3,5),1))),1),(3,9)),(1,1))),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(2,(1,(4,1)))),1),((((1,((1,((1,1),(61,8))),((3,(4,1)),2))),1),(1,5)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,((1,1),3)))),1),((((1,((1,((2,1),(39,8))),((7,3),1))),1),(2,3)),(1,1))),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,3))),1),((((1,((1,((2,2),(37,9))),(4,2))),1),(4,2)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(1,2))),1),((((1,((1,(1,(38,12))),((4,5),2))),1),(1,3)),1)),1),2))),(3,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(2,((1,(1,1)),1)))),1),((((1,((1,(3,(53,13))),8)),1),(2,3)),2)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(3,((1,1),2)))),1),((((1,((1,((1,1),(50,9))),((6,(2,1)),3))),1),2),1)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),(2,1)))),1),((((1,((1,((2,1),(47,7))),((8,4),1))),1),(1,8)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,(3,1)))),1),((((1,((1,(2,(26,7))),((7,3),1))),1),(3,3)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(6,((1,3),1)))),1),((((1,((1,((2,2),(39,12))),((3,(2,1)),1))),1),3),1)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,1),1)))),1),((((1,((1,((6,2),(47,7))),((4,(6,1)),1))),1),(1,4)),1)),1),2))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(2,(1,(2,1)))),1),((((1,((1,(2,(49,7))),((7,2),3))),1),(1,6)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,(1,1)),1)))),1),((((1,((1,((2,2),(43,12))),((5,6),(1,2)))),1),1),2)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(2,((1,3),1)))),1),((((1,((1,(1,(68,13))),((6,5),3))),1),(1,2)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,((1,1),2))),1),((((1,((1,((1,2),(59,9))),((11,2),(1,1)))),1),(1,7)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(2,((1,(2,1)),1)))),1),((((1,((1,((1,2),(42,7))),((8,4),1))),1),(2,3)),1)),1),2))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,3),1),(1,(1,((1,1),1)))),1),((((1,((1,((2,1),(48,14))),((4,4),4))),1),(3,1)),1)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,1))),1),((((1,((1,(5,(36,12))),((4,4),4))),1),8),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(3,((1,(1,2)),1)))),1),((((1,((1,(3,(33,12))),((4,3),1))),1),(2,3)),(1,1))),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((3,1),((1,1),1)))),1),((((1,((1,((1,1),(49,10))),((9,4),2))),1),(1,5)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),(3,1)))),1),((((1,((1,(1,(32,11))),((5,4),1))),1),(2,8)),(3,1))),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,((1,1),(3,1)))),1),((((1,((1,(1,(54,12))),((7,4),1))),1),(1,6)),2)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((2,1),1),(1,(1,((1,1),1)))),1),((((1,((1,(2,(48,11))),((5,6),2))),1),(1,4)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,((2,2),((1,1),1)))),1),((((1,((1,((2,2),(61,14))),((4,3),1))),1),(1,3)),(1,1))),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),((1,1),1)))),1),((((1,((1,((1,4),(59,17))),((4,(1,1)),(1,1)))),1),(2,8)),1)),1),3))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,2),((1,1),1)))),1),((((1,((1,((4,2),(45,7))),((5,4),(1,1)))),1),(2,6)),((1,1),1))),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(2,((1,1),1))),1),((((1,((1,(3,(33,10))),((6,3),(1,1)))),1),(1,5)),2)),1),2))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((2,1),1),(1,(3,(2,1)))),1),((((1,((1,((1,1),(50,7))),((6,4),2))),1),(1,4)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,((1,2),2))),1),((((1,((1,((2,2),(62,8))),((10,(2,1)),(1,1)))),1),(1,4)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((3,(2,((2,1),((1,(1,1)),1)))),1),((((1,((1,((1,2),(41,20))),((4,1),2))),1),(1,8)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,1),1)))),1),((((1,((1,((4,1),(44,16))),((7,3),1))),1),(2,7)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,(1,((1,(1,1)),1)))),1),((((1,((1,((1,3),(57,18))),((2,(7,1)),2))),1),4),((1,1),1))),1),1))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,(4,((1,2),1)))),1),((((1,((1,((4,1),(58,11))),((10,1),1))),1),(1,1)),1)),1),1))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(1,((1,(1,1)),1)))),1),((((1,((1,((1,4),(42,7))),((5,4),1))),1),5),1)),1),2))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,(1,1)),1)))),1),((((1,((1,(5,(60,14))),((4,5),(1,1)))),1),(1,4)),2)),1),1))),((1,(2,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((3,(1,(1,(2,1)))),1),((((1,((1,(1,(53,11))),((4,(2,1)),(2,1)))),1),(1,3)),2)),1),3))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(2,((1,2),1)))),1),((((1,((1,(2,(47,13))),((7,2),1))),1),(1,3)),1)),1),2))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),1))),1),((((1,((1,((2,1),(53,8))),((7,2),3))),1),(3,5)),2)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(2,1)))),1),((((1,((1,((2,2),(40,7))),((4,7),2))),1),3),1)),1),2))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,((1,1),(2,1)))),1),((((1,((1,((1,2),(52,5))),((6,(5,2)),(1,2)))),1),(1,4)),1)),1),1))),(3,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((3,1),((1,1),1)))),1),((((1,((1,((3,1),(62,20))),((10,(1,1)),2))),1),(1,4)),1)),1),1))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,(2,(1,1)))),1),((((1,((1,((3,2),(56,10))),((5,(5,1)),1))),1),3),(1,1))),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((2,1),1),(1,(3,((1,(3,3)),1)))),1),((((1,((1,((3,1),(48,9))),((1,(1,1)),3))),1),(1,4)),((1,2),1))),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,5))),1),((((1,((1,(1,(44,11))),((7,3),2))),1),(1,3)),(2,1))),1),2))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,2),((1,1),1)))),1),((((1,((1,((5,1),(66,13))),((8,6),2))),1),(1,2)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(4,(2,1)))),1),((((1,((1,(4,(55,7))),((8,2),(1,1)))),1),(1,3)),1)),1),2))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(1,3))),1),((((1,((1,((2,1),(55,12))),((7,3),1))),1),8),3)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,2),((1,(2,1)),1)))),1),((((1,((1,(2,(50,13))),((6,5),2))),1),(3,2)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((4,1),((((1,((1,((1,2),(57,5))),((4,4),1))),1),(2,8)),2)),1),1))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(2,((1,2),1)))),1),((((1,((1,(4,(63,11))),((3,(5,1)),1))),1),(1,7)),2)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,1),1),(1,(2,((1,1),1)))),1),((((1,((1,((1,3),(55,13))),((5,6),1))),1),(1,7)),(2,1))),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,((1,1),((1,1),1)))),1),((((1,((1,((2,3),(48,15))),((5,(1,1)),2))),1),(3,5)),((1,1),1))),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,(2,1)))),1),((((1,((1,((3,4),(49,9))),((4,4),1))),1),5),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,(4,1)))),1),((((1,((1,(3,(53,7))),((4,(4,1)),1))),1),(3,5)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,1),1),(1,((1,1),(2,1)))),1),((((1,((1,(2,(75,16))),((5,6),1))),1),(1,5)),1)),1),1))),(3,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(2,(1,(1,1)))),1),((((1,((1,((1,1),(49,20))),((6,1),(1,1)))),1),4),3)),1),5))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,(2,1)))),1),((((1,((1,(4,(38,10))),((5,(3,1)),3))),1),7),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,(1,1)),1)))),1),((((1,((1,((2,3),(38,9))),((10,8),2))),1),5),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,((1,1),(1,1)))),1),((((1,((1,((1,2),(72,10))),((5,6),3))),1),(1,5)),(1,1))),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,((1,1),((1,(2,1)),1)))),1),((((1,((1,((3,1),(41,11))),((6,(6,2)),2))),1),(2,2)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(1,(1,2)))),1),((((1,((1,(2,(35,15))),((7,5),1))),1),(1,5)),1)),1),2))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,((1,1),(1,1)))),1),((((1,((1,((5,2),(59,15))),((7,4),1))),1),(1,5)),1)),1),2))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,(2,(1,1)))),1),((((1,((1,(1,(52,18))),((4,5),2))),1),(1,5)),1)),1),1))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(1,(2,1)))),1),((((1,((1,((1,3),(52,15))),((3,2),(2,1)))),1),(2,4)),1)),1),2))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(2,((1,1),((1,(2,1)),1)))),1),((((1,((1,((4,1),(42,11))),((7,3),2))),1),4),2)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(4,((1,(1,1)),1)))),1),((((1,((1,(2,(58,13))),((8,3),1))),1),(1,8)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,1),1),(1,(1,((1,2),1)))),1),((((1,((1,((1,3),(44,12))),((3,(3,2)),2))),1),4),2)),1),1))),(3,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,2),(1,((1,1),3))),1),((((1,((1,((3,1),(39,9))),((4,(5,1)),1))),1),(3,5)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,((1,1),(3,1)))),1),((((1,((1,((1,1),(59,16))),((9,2),2))),1),(1,5)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,2))),1),((((1,((1,(1,(44,5))),((8,3),2))),1),(3,3)),3)),1),2))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,(2,((1,4),1)))),1),((((1,((1,(3,(48,14))),((12,(1,1)),(1,1)))),1),1),2)),1),2))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(2,((1,(1,2)),1)))),1),((((1,((1,((2,1),(55,7))),((3,3),2))),1),(2,9)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,5),1)))),1),((((1,((1,((1,3),(41,12))),((3,3),4))),1),(1,4)),1)),1),1))),(3,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((3,1),(1,((1,1),((1,(1,1)),1)))),1),((((1,((1,(1,(78,19))),((4,(10,1)),2))),1),(1,7)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(2,(1,((1,2),1)))),1),((((1,((1,(1,(37,14))),((3,(3,1)),(1,3)))),1),(1,6)),2)),1),4))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(2,((1,2),1)))),1),((((1,((1,((3,1),(54,7))),((4,2),(1,3)))),1),(1,6)),1)),1),2))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,2))),1),((((1,((1,(3,(53,9))),((7,(6,1)),(1,1)))),1),(3,4)),1)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(2,(2,1)))),1),((((1,((1,(1,(71,12))),((10,(3,1)),2))),1),(2,4)),1)),1),2))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,1),1),(1,(1,((1,1),1)))),1),((((1,((1,(2,(55,8))),((6,7),2))),1),(5,5)),1)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),((1,(1,2)),1)))),1),((((1,((1,((2,3),(43,12))),((1,7),1))),1),(2,6)),(1,1))),1),2))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,5),1)))),1),((((1,((1,((4,2),(44,6))),((4,(3,1)),2))),1),(2,2)),1)),1),1))),(3,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(2,(1,((1,1),1)))),1),((((1,((1,(5,(41,7))),((5,7),1))),1),(3,11)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,(1,((1,(2,1)),1)))),1),((((1,((1,((1,3),(65,16))),((9,(5,1)),(1,1)))),1),(1,4)),(1,1))),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(1,((1,3),1)))),1),((((1,((1,((1,1),(67,5))),((5,7),1))),1),(3,4)),1)),1),3))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,4))),1),((((1,((1,((4,1),(48,16))),((3,6),1))),1),(1,3)),1)),1),3))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,2),(3,(1,((1,2),1)))),1),((((1,((1,((3,1),(57,10))),((3,3),3))),1),(1,3)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,1),1),(1,((2,3),(2,1)))),1),((((1,((1,(2,(46,9))),((4,(2,2)),(1,1)))),1),(2,9)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(2,((1,1),3))),1),((((1,((1,((1,1),(46,5))),((9,3),(2,1)))),1),(2,9)),1)),1),1))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((3,1),(1,((1,1),((1,(2,1)),1)))),1),((((1,((1,((3,2),(68,16))),((5,2),(1,1)))),1),7),1)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetHard<a href="CppNewick.htm">Newick</a>s()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("((4,4),4)");<br/>
-&nbsp;&nbsp;v.push_back("(((4,4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("((((4,4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("(((((4,4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("((((((4,4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((4,4),4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((4,4),4),4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((4,4),4),4),4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((4,4),4),4),4),4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((4,4),4),4),4),4),4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((4,4),4),4),4),4),4),4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((((4,4),4),4),4),4),4),4),4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((((4,4),4),4),4),4),4),4),4),4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((((((4,4),4),4),4),4),4),4),4),4),4),4),4),4),4),4)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((((((4,4),4),4),4),4),4),4),4),4),4),4),4),3),3),3),3)");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetLightBiological<a href="CppNewick.htm">Newick</a>s()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,1)),1),((((1,((1,(1,(10,3))),((3,2),1))),1),2),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,1))),1),((((1,((1,(1,(18,3))),((1,(2,2)),2))),1),1),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,(1,4)),1)))),1),((((1,((1,(2,(11,5))),((1,1),1))),1),2),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,1),1)))),1),((((1,((1,((1,1),(12,6))),(4,1))),1),(1,2)),2)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((2,1),(1,1)))),1),((((1,((1,(2,(32,6))),((1,2),(1,1)))),1),(1,1)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,2),1),((((1,((1,((1,1),(17,3))),(4,1))),1),7),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(1,2))),1),((((1,((1,(1,(29,3))),((5,1),1))),1),(2,1)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,1)),1),((((1,((1,((1,1),(30,7))),((6,(1,1)),(1,2)))),1),(1,1)),(1,1))),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,1))),1),((((1,((1,(2,(19,3))),(4,1))),1),3),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(1,1)))),1),((((1,((1,((1,1),(18,4))),((2,2),1))),1),7),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,2))),1),((((1,((1,(1,(11,7))),((4,(2,1)),1))),1),3),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,((1,2),1))),1),((((1,((1,(2,(22,4))),((1,2),(1,1)))),1),(1,1)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((2,1),((((1,((1,(1,(16,9))),((2,4),1))),1),2),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(1,(1,1)))),1),((((1,((1,(3,(37,12))),((2,1),1))),1),(1,1)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,(1,1)))),1),((((1,((1,((1,1),(19,3))),((3,1),1))),1),(3,3)),(1,1))),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,1),1),(1,(1,((1,1),1)))),1),((((1,((1,(1,(27,5))),((4,2),1))),1),3),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,2))),1),((((1,((1,(2,(37,5))),((2,(2,1)),1))),1),(1,1)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,1),2)))),1),((((1,((1,(1,(23,8))),((3,3),1))),1),(1,2)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(1,2)))),1),((((1,((1,((1,1),(26,4))),((2,3),1))),1),3),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(1,((1,(2,1)),1)))),1),((((1,((1,(1,(13,7))),((2,3),3))),1),(1,2)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,((1,1),1)))),1),((((1,((1,(2,(28,5))),((2,1),2))),1),1),2)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(2,((1,1),2))),1),((((1,((1,(1,(23,7))),((3,2),1))),1),(1,1)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,((1,(1,1)),1)))),1),((((1,((1,((1,1),(35,7))),((5,1),1))),1),2),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,1))),1),((((1,((1,((2,1),(24,4))),((3,3),1))),1),3),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(3,1)))),1),((((1,((1,(1,(34,7))),(1,2))),1),7),(1,1))),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(1,1)))),1),((((1,((1,(2,(26,8))),((4,3),1))),1),1),1)),2),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,2))),1),((((1,((1,(2,(31,7))),((3,2),1))),1),2),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,1))),1),((((1,((1,(1,(29,9))),((3,(1,1)),1))),1),(1,3)),2)),1),2))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(2,2))),1),((((1,((1,(1,(13,7))),((3,1),2))),1),1),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,((1,1),1)))),1),((((1,((1,(1,(35,11))),((3,(1,1)),1))),1),(1,2)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,2)),1),((((1,((1,(1,(32,10))),((3,3),1))),1),1),1)),1),1))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,2),1)))),1),((((1,((1,(1,(31,9))),((1,3),1))),1),3),2)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,2),1)))),1),((((1,((1,(1,(27,3))),((3,3),1))),1),(1,2)),(1,1))),1),2))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,(2,1)))),1),((((1,((1,(2,(23,4))),((3,2),1))),1),3),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(1,1)))),1),((((1,((1,(2,(16,3))),((2,2),(1,1)))),1),(2,3)),3)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,2))),1),((((1,((1,(1,(19,7))),((2,2),2))),1),(1,1)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,(1,1)),1)))),1),((((1,((1,((1,1),(32,5))),((3,6),(1,1)))),1),2),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),((1,(1,1)),1)))),1),((((1,((1,(1,(32,13))),((1,(2,2)),1))),1),(3,2)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(2,1))),1),((((1,((1,(1,(23,4))),((3,4),2))),1),2),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,1),1),(1,(2,1))),1),((((1,((1,((4,2),(25,2))),((2,1),2))),1),(1,3)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),((1,1),1)))),1),((((1,((1,((4,1),(30,9))),((4,3),1))),1),1),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,2))),1),((((1,((1,(2,19)),((5,2),2))),1),4),(1,1))),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,(1,(2,1)))),1),((((1,((1,(4,(44,6))),((1,(1,1)),3))),1),(1,1)),(1,1))),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,((1,1),((1,(1,1)),1)))),1),((((1,((1,(1,(31,8))),((6,1),1))),1),1),2)),1),2))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,3))),1),((((1,((1,(2,(23,6))),(4,1))),1),2),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,(1,1)),2)))),1),((((1,((1,(1,(27,8))),(4,2))),1),5),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,2),1),(1,3)),1),((((1,((1,(2,(23,9))),((4,1),1))),1),(1,2)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,((1,1),(2,1)))),1),((((1,((1,(2,(40,10))),((2,4),1))),1),1),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(1,1)))),1),((((1,((1,((2,2),(35,8))),((2,2),1))),1),(1,4)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,2),1)))),1),((((1,((1,((1,2),(27,7))),((2,2),2))),1),(1,1)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(1,((1,2),1)))),1),((((1,((1,((2,1),(33,5))),((1,(2,1)),1))),1),(2,6)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,((1,1),((1,1),1)))),1),((((1,((1,(1,(38,4))),((2,3),(1,3)))),1),(1,3)),(1,1))),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,2),((1,1),1)))),1),((((1,((1,(2,(22,4))),((2,(3,1)),3))),1),(1,3)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,3))),1),((((1,((1,(2,(21,2))),((4,2),2))),1),3),2)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((2,2),(1,1)))),1),((((1,((1,(1,(36,8))),((2,2),1))),1),2),2)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(2,((1,2),1)))),1),((((1,((1,(1,(25,9))),((4,1),1))),1),(1,6)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,(1,1)),1)))),1),((((1,((1,((1,1),(22,9))),((5,3),1))),1),5),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((3,3),1),((((1,((1,(1,(21,8))),((3,1),3))),1),(1,1)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,((1,4),1)))),1),((((1,((1,(4,(28,10))),((1,1),1))),1),(1,1)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,((1,(1,1)),1)))),1),((((1,((1,((2,1),(46,3))),((1,4),1))),1),(1,4)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(3,(2,1)))),1),((((1,((1,(2,(35,11))),1)),1),(1,2)),(3,1))),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((3,(1,(1,((1,1),1)))),1),((((1,((1,(2,(25,4))),((2,1),(2,1)))),1),5),1)),1),2))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,1),1)))),1),((((1,((1,(3,(42,6))),((3,3),1))),1),3),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,1))),1),((((1,((1,((1,1),(37,5))),((7,2),1))),1),(1,3)),(3,1))),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(1,1))),1),((((1,((1,(3,(20,7))),((3,2),1))),1),2),2)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((2,1),2))),1),((((1,((1,((3,1),(18,6))),((4,1),2))),1),(2,1)),(1,1))),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,2),((1,1),1)))),1),((((1,((1,((1,4),(30,6))),((3,1),1))),1),(1,5)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),((1,(1,1)),1)))),1),((((1,((1,(2,(26,7))),((5,2),1))),1),7),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(1,((1,2),1)))),1),((((1,((1,((2,1),(31,9))),((2,1),1))),1),(1,2)),2)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,1))),1),((((1,((1,(1,(33,9))),((7,2),2))),1),2),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,(1,1)))),1),((((1,((1,(1,(40,12))),((4,1),1))),1),3),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,((1,1),1))),1),((((1,((1,(1,(29,8))),((6,3),1))),1),4),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(2,((((((2,1),(1,((1,1),((1,(1,1)),1)))),1),((((1,((1,((1,1),(34,6))),((3,(1,1)),(1,1)))),1),3),3)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,4),1)))),1),((((1,((1,((1,1),(44,10))),((1,3),1))),1),5),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),1))),1),((((1,((1,((3,1),(44,5))),((2,(3,1)),(3,1)))),1),2),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,2))),1),((((1,((1,(1,(34,7))),((4,(1,3)),1))),1),2),1)),1),2))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,2),1)))),1),((((1,((1,(2,(15,5))),((4,3),2))),1),3),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(1,2))),1),((((1,((1,(1,(16,4))),((1,(4,1)),(2,2)))),1),5),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((3,1),(1,(1,(3,1)))),1),((((1,((1,(2,(26,5))),((2,2),1))),1),(1,3)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),((1,(1,2)),1)))),1),((((1,((1,(1,(42,9))),((3,2),3))),1),(1,2)),(1,1))),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((2,1),(1,(1,((1,(1,1)),1)))),1),((((1,((1,((1,2),(15,5))),((5,3),(1,1)))),1),(1,3)),1)),1),1))),((1,2),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(4,1)))),1),((((1,((1,(3,(28,5))),((1,(3,1)),1))),1),2),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((2,2),(1,2)))),1),((((1,((1,(1,(29,6))),((4,3),1))),1),1),1)),1),1))),((1,(1,1)),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(2,2))),1),((((1,((1,(3,(20,5))),(4,1))),1),(3,1)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((2,2),4))),1),((((1,((1,((1,1),(36,9))),((1,(1,1)),1))),1),3),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,1))),1),((((1,((1,((1,1),(33,13))),((5,4),1))),1),2),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(1,1)))),1),((((1,((1,((2,1),(47,10))),((3,(1,1)),1))),1),(1,5)),2)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,2)),1),((((1,((1,((2,1),(13,3))),((5,2),(1,2)))),1),3),2)),1),2))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((2,(1,(1,((1,2),1)))),1),((((1,((1,(1,(30,7))),((3,1),(1,2)))),1),4),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,(2,2)))),1),((((1,((1,(2,(23,8))),((3,1),1))),1),(1,2)),1)),1),1))),(3,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,(2,1)),1)))),1),((((1,((1,((4,1),(42,5))),((4,1),1))),1),(1,4)),1)),1),1))),1)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,((1,2),1)))),1),((((1,((1,(2,(21,6))),((6,2),1))),1),3),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((2,1),2))),1),((((1,((1,(2,(29,6))),((2,2),1))),1),(1,4)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((((1,1),1),(1,(1,((1,2),1)))),1),((((1,((1,(3,(47,6))),((4,1),1))),1),(1,5)),1)),1),1))),(1,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,1)),1),((((1,((1,(1,(51,10))),((3,2),(1,2)))),1),(2,1)),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(2,2))),1),((((1,((1,(2,(22,2))),((2,6),1))),1),5),1)),1),1))),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,(1,(1,1)))),1),((((1,((1,(1,(46,10))),((2,2),2))),1),(1,4)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(1,((1,3),1)))),1),((((1,((1,((1,1),(18,7))),((6,1),1))),1),(1,3)),1)),1),1))),(3,1))");<br/>
-&nbsp;&nbsp;v.push_back("((2,(1,(((((1,(1,((1,1),1))),1),((((1,((1,((3,1),(28,8))),((2,(2,2)),3))),1),(1,1)),1)),1),1))),((1,1),1))");<br/>
-&nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,(3,(1,1)))),1),((((1,((1,((3,1),(23,7))),((3,2),1))),1),(1,2)),1)),1),1))),(2,1))");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetLight<a href="CppNewick.htm">Newick</a>s()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("((2,2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((2,2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">/*</a><br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetM<a href="CppAny.htm">any</a><a href="CppNewick.htm">Newick</a>s()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> GetLight<a href="CppNewick.htm">Newick</a>s();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> GetMedium<a href="CppNewick.htm">Newick</a>s();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> GetHard<a href="CppNewick.htm">Newick</a>s();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetMedium<a href="CppNewick.htm">Newick</a>s()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("((3,3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((3,3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((3,3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((3,3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((3,3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((3,3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((3,3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((3,3),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((3,3),3),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((3,3),3),3),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((3,3),3),3),3),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetM<a href="CppAny.htm">any</a><a href="CppNewick.htm">Newick</a>s()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("((90,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((90,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((90,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((80,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((80,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((80,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((70,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((70,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((70,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((60,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((60,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((60,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((50,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((50,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((50,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((5,5),5)");<br/>
-&nbsp;&nbsp;v.push_back("((40,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((40,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((40,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((30,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((30,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((30,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((3,3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((20,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((20,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((20,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((2,3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((2,2),3)");<br/>
-&nbsp;&nbsp;v.push_back("((2,2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),90)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),80)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),70)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),60)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),50)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),40)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),30)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),20)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((1000,100),10)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),90)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),80)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),70)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),60)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),50)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),40)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),30)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),20)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("((100,100),10)");<br/>
-&nbsp;&nbsp;v.push_back("((10,1000),100)");<br/>
-&nbsp;&nbsp;v.push_back("((10,100),1000)");<br/>
-&nbsp;&nbsp;v.push_back("((10,100),100)");<br/>
-&nbsp;&nbsp;v.push_back("(((5,5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("(((3,3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((2,3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((2,2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((2,2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((2,2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((5,5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("((((3,3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((2,2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((5,5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("(((((3,3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((2,2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((5,5),5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("((((((3,3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((2,2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((5,5),5),5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((3,3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((2,2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((5,5),5),5),5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((3,3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),2),2),2),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((2,2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((5,5),5),5),5),5),5),5),5),5)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,3),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),2),2),2),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((2,2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),3),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),3),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),2),2),2),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((2,2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),3),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),2),3),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),2),2),2),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((2,2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((2,2),2),2),2),2),2),2),3),3),3),3),3)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("(((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;v.push_back("((((((((((((((2,2),2),2),2),2),2),2),2),2),2),2),2),2),2)");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>test.h</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="test.h" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
-&nbsp;&nbsp;(C) 2009 Richel Bilderbeek<br/>
-<br/>
-&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
-&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
-&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
-&nbsp;&nbsp;(at your option) any later version.<br/>
-<br/>
-&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
-&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
-&nbsp;&nbsp;GNU General Public License for more details.<br/>
-&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
-&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitTestH<br/>
-<a href="CppDefine.htm">#define</a> UnitTestH<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppBigInt.htm">BigIntegerLibrary</a>.hh"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test<br/>
-{<br/>
-&nbsp;&nbsp;Test(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>_theta)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: m_<a href="CppNewick.htm">newick</a>_str(<a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_theta(<a href="CppAny.htm">any</a>_theta),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>(0.0),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_probability(0.0)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Do nothing<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Test() {};<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppBool.htm">bool</a></b> Execute() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetProbability() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_probability; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetEwensProbability() <b><a href="CppConst.htm">const</a></b>; <a href="CppComment.htm">//</a>Ewensprobability <a href="CppOperatorAssign.htm">=</a> probability * num_of_combinations<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> <a href="CppGetTime.htm">GetTime</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppTime.htm">time</a>; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> GetComplexity() <b><a href="CppConst.htm">const</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; Get<a href="CppNewick.htm">Newick</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppNewick.htm">newick</a>_str; }<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetTheta() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_theta; }<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Execute(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; exe_filename,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; full_command,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; output_filename);<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_<a href="CppNewick.htm">newick</a>_str;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m_theta;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_<a href="CppTime.htm">time</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_probability;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>helper <a href="CppFunction.htm">function</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; &gt; CreateTests(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flags);<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> <a href="CppFileExists.htm">FileExists</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName);<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppReadDoubleFromFile.htm">ReadDoubleFromFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName);<br/>
-};<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> TestRavindran : <b><a href="CppPublic.htm">public</a></b> Test<br/>
-{<br/>
-&nbsp;&nbsp;TestRavindran(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>_theta)<br/>
-&nbsp;&nbsp;: Test(<a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>,<a href="CppAny.htm">any</a>_theta) {}<br/>
-&nbsp;&nbsp;~TestRavindran() {}<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Execute();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "Ravindran&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; }<br/>
-};<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> TestEnd<a href="CppVersion.htm">version</a>2: <b><a href="CppPublic.htm">public</a></b> Test<br/>
-{<br/>
-&nbsp;&nbsp;TestEnd<a href="CppVersion.htm">version</a>2(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>_theta)<br/>
-&nbsp;&nbsp;: Test(<a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>,<a href="CppAny.htm">any</a>_theta) {}<br/>
-&nbsp;&nbsp;~TestEnd<a href="CppVersion.htm">version</a>2() {}<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Execute();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "TestProjectRampal_End<a href="CppVersion.htm">version</a>2"; }<br/>
-};<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a>: <b><a href="CppPublic.htm">public</a></b> Test<br/>
-{<br/>
-&nbsp;&nbsp;<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>_theta)<br/>
-&nbsp;&nbsp;: Test(<a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>,<a href="CppAny.htm">any</a>_theta) {}<br/>
-&nbsp;&nbsp;~<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Execute();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a>"; }<br/>
-};<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release: <b><a href="CppPublic.htm">public</a></b> Test<br/>
-{<br/>
-&nbsp;&nbsp;<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>_theta)<br/>
-&nbsp;&nbsp;: Test(<a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>,<a href="CppAny.htm">any</a>_theta) {}<br/>
-&nbsp;&nbsp;~<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release() {}<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Execute();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release"; }<br/>
-};<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a><a href="CppDebug.htm">Debug</a>: <b><a href="CppPublic.htm">public</a></b> Test<br/>
-{<br/>
-&nbsp;&nbsp;Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a><a href="CppDebug.htm">Debug</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>_theta)<br/>
-&nbsp;&nbsp;: Test(<a href="CppAny.htm">any</a>_<a href="CppNewick.htm">newick</a>,<a href="CppAny.htm">any</a>_theta) {}<br/>
-&nbsp;&nbsp;~Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a><a href="CppDebug.htm">Debug</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Execute();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>Release"; }<br/>
-};<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>test.cpp</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="test.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
-&nbsp;&nbsp;(C) 2009 Richel Bilderbeek<br/>
-<br/>
-&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
-&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
-&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
-&nbsp;&nbsp;(at your option) any later version.<br/>
-<br/>
-&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
-&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
-&nbsp;&nbsp;GNU General Public License for more details.<br/>
-&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
-&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTime.htm">time</a>r.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppNewick.htm">newick</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppStopwatch.htm">stopwatch</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "test.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>Create all tests according to the flags given.<br/>
-<a href="CppComment.htm">///</a>Test parameters:\n<br/>
-<a href="CppComment.htm">///</a>i &amp;&nbsp;&nbsp;1: use Ravindran\n<br/>
-<a href="CppComment.htm">///</a>i &amp;&nbsp;&nbsp;2: use Sorted<a href="CppNewick.htm">Newick</a>\n<br/>
-<a href="CppComment.htm">///</a>i &amp;&nbsp;&nbsp;4: use SmartSorted<a href="CppNewick.htm">Newick</a>\n<br/>
-<a href="CppComment.htm">///</a>i &amp;&nbsp;&nbsp;8: use RampalMain_End<a href="CppVersion.htm">version</a>2\n<br/>
-<a href="CppComment.htm">///</a>i &amp; 16: use <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a>\n<br/>
-<a href="CppComment.htm">///</a>i &amp; 32: use <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release\n<br/>
-<a href="CppComment.htm">///</a>63: use all\n<br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; &gt; Test::CreateTests(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flags)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; &gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; 1)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; t(<b><a href="CppNew.htm">new</a></b> TestRavindran(<a href="CppNewick.htm">newick</a>,theta));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; 2)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; t(<b><a href="CppNew.htm">new</a></b> TestEnd<a href="CppVersion.htm">version</a>2(<a href="CppNewick.htm">newick</a>,theta));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; 4)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; t(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a>(<a href="CppNewick.htm">newick</a>,theta));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; 8)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; t(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release(<a href="CppNewick.htm">newick</a>,theta));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(t);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppFileExists.htm">FileExists</a> checks <b><a href="CppIf.htm">if</a></b> a certain file exists<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileExists.htm">FileExists</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> Test::<a href="CppFileExists.htm">FileExists</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
-&nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.is_open();<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Test::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(fileName)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; myVector;<br/>
-&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(fileName.c_str());<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> myString;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorIncrement.htm">++</a>i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(in,myString);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;myVector.push_back(myString);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> myVector;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> Test::GetComplexity() <b><a href="CppConst.htm">const</a></b><br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> n(Get<a href="CppNewick.htm">Newick</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNewick.htm">Newick</a>::<a href="CppCalcComplexity.htm">CalcComplexity</a>(n.Get());<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>Ewensprobability <a href="CppOperatorAssign.htm">=</a> probability * num_of_combinations<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Test::GetEwensProbability() <b><a href="CppConst.htm">const</a></b><br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> n_combinations<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>(Get<a href="CppNewick.htm">Newick</a>()).Get());<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> n_combinations.toInt();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ewens_probability <a href="CppOperatorAssign.htm">=</a> d * GetProbability();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(ewens_probability);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> big<a href="CppInt.htm">Integer</a>ToString(n_combinations)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" * ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(GetProbability());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppBool.htm">bool</a></b> Test::Execute(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; exe_filename,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; full_command,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; output_filename)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Starting '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetTestName() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' <b><a href="CppFor.htm">for</a></b> '"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppNewick.htm">Newick</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n";<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileExists.htm">FileExists</a>(exe_filename))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Executable file '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> exe_filename <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' not found\n";<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(exe_filename));<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStopwatch.htm">Stopwatch</a> s;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sys_error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(full_command.c_str());<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sys_error <a href="CppOperatorEqual.htm">==</a> 0)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> s.elapsed();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(result_filename));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_probability <a href="CppOperatorAssign.htm">=</a> <a href="CppReadDoubleFromFile.htm">ReadDoubleFromFile</a>(output_filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_probability <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppReadDoubleFromFile.htm">ReadDoubleFromFile</a> reads the first line of a file<br/>
-<a href="CppComment.htm">///</a>and <a href="CppConvert.htm">converts</a> it to a <b><a href="CppDouble.htm">double</a></b>.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppReadDoubleFromFile.htm">ReadDoubleFromFile</a>.htm<br/>
-<b><a href="CppDouble.htm">double</a></b> Test::<a href="CppReadDoubleFromFile.htm">ReadDoubleFromFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>(fileName);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d <a href="CppOperatorAssign.htm">=</a> <a href="CppAtof.htm">std::atof</a>(v[0].c_str());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>Returns <b><a href="CppIf.htm">if</a></b> the test was successful<br/>
-<b><a href="CppBool.htm">bool</a></b> TestRavindran::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Starting TestRavindran<a href="CppLinux.htm">Linux</a> <b><a href="CppFor.htm">for</a></b> '"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppNewick.htm">Newick</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n";<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetComplexity() &gt; 1000000) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write parameters to file<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> file("theta.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;file <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetTheta();<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Older <a href="CppVersion.htm">version</a> expects a <a href="CppOperatorDivide.htm">/</a>n at end<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> file("phylogeny.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;file <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Get<a href="CppNewick.htm">Newick</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n\n";<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> WIN32<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/phy_prob_12.exe";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> full_command <a href="CppOperatorAssign.htm">=</a> "../Exes/phy_prob_12.exe";<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/phy_prob_linux";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> full_command <a href="CppOperatorAssign.htm">=</a> "./../Exes/phy_prob_linux";<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Test::Execute(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;full_command,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"expected_probability.txt");<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>Just call the executable ProjectRampalMain_End<a href="CppVersion.htm">version</a>2<br/>
-<a href="CppComment.htm">///</a>with the parameters<br/>
-<b><a href="CppBool.htm">bool</a></b> TestEnd<a href="CppVersion.htm">version</a>2::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/ProjectRampalMain_End<a href="CppVersion.htm">version</a>2";<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/ProjectRampal.exe";<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> command_full <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("./") <a href="CppOperatorPlus.htm">+</a><br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> Get<a href="CppNewick.htm">Newick</a>()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "\"";<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Test::Execute(exe_filename,command_full,output_filename);<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>Just call the executable <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a><br/>
-<a href="CppComment.htm">///</a>with the parameters<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a>::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppUbuntu.htm">Ubuntu</a><a href="CppDebug.htm">Debug</a>";<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Win<a href="CppDebug.htm">Debug</a>.exe";<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> command_full <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("./") <a href="CppOperatorPlus.htm">+</a><br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> Get<a href="CppNewick.htm">Newick</a>()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "\"";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Test::Execute(exe_filename,command_full,output_filename);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Starting <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a> <b><a href="CppFor.htm">for</a></b> '"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppNewick.htm">Newick</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "../../../<a href="Tools.htm">Tools</a>/<a href="ToolTestTwoDigitNewick.htm">ToolTestTwoDigitNewick</a>-build-desktop/<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppUbuntu.htm">Ubuntu</a><a href="CppDebug.htm">Debug</a>";<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "../../../<a href="Tools.htm">Tools</a>/<a href="ToolTestTwoDigitNewick.htm">ToolTestTwoDigitNewick</a>/<a href="CppDebug.htm">debug</a>/<a href="ToolTestNewickVector.htm">TestNewickVector</a>Win<a href="CppDebug.htm">Debug</a>.exe";<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileExists.htm">FileExists</a>(filename))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "File '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' not found\n";<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(filename));<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> command <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("./") <a href="CppOperatorPlus.htm">+</a><br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> Get<a href="CppNewick.htm">Newick</a>()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "\"";<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStopwatch.htm">Stopwatch</a> s;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sys_error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(command.c_str());<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sys_error <a href="CppOperatorEqual.htm">==</a> 0)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> s.elapsed();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> result_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(result_filename));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;probability <a href="CppOperatorAssign.htm">=</a> <a href="CppReadDoubleFromFile.htm">ReadDoubleFromFile</a>(result_filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;probability <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>Just call the executable <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release<br/>
-<a href="CppComment.htm">///</a>with the parameters<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppUbuntu.htm">Ubuntu</a>Release";<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>WinRelease.exe";<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> command_full <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("./") <a href="CppOperatorPlus.htm">+</a><br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> Get<a href="CppNewick.htm">Newick</a>()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "\"";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Test::Execute(exe_filename,command_full,output_filename);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Starting <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release <b><a href="CppFor.htm">for</a></b> '"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppNewick.htm">Newick</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "../../../<a href="Tools.htm">Tools</a>/<a href="ToolTestTwoDigitNewick.htm">ToolTestTwoDigitNewick</a>-build-desktop/<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppUbuntu.htm">Ubuntu</a>Release";<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "../../../<a href="Tools.htm">Tools</a>/<a href="ToolTestTwoDigitNewick.htm">ToolTestTwoDigitNewick</a>/release/<a href="ToolTestNewickVector.htm">TestNewickVector</a>WinRelease.exe";<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(filename));<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileExists.htm">FileExists</a>(filename))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "File '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' not found\n";<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> command <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("./") <a href="CppOperatorPlus.htm">+</a><br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> Get<a href="CppNewick.htm">Newick</a>()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "\"";<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStopwatch.htm">Stopwatch</a> s;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sys_error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(command.c_str());<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sys_error <a href="CppOperatorEqual.htm">==</a> 0)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> s.elapsed();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> result_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(result_filename));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_probability <a href="CppOperatorAssign.htm">=</a> <a href="CppReadDoubleFromFile.htm">ReadDoubleFromFile</a>(result_filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_probability <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>Just call the executable <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a><br/>
-<a href="CppComment.htm">///</a>with the parameters<br/>
-<b><a href="CppBool.htm">bool</a></b> Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a><a href="CppDebug.htm">Debug</a>::Execute()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a><a href="CppUbuntu.htm">Ubuntu</a><a href="CppDebug.htm">Debug</a>";<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe_filename <a href="CppOperatorAssign.htm">=</a> "../Exes/Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>Win<a href="CppDebug.htm">Debug</a>.exe";<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> command_full <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("./") <a href="CppOperatorPlus.htm">+</a><br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;exe_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(GetTheta())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " \""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> Get<a href="CppNewick.htm">Newick</a>()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "\"";<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Test::Execute(exe_filename,command_full,output_filename);<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>zip.sh</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="zip.sh" border = "1"><tr><td><code>
-#!/bin/sh<br/>
-#pack2port packs all the files to port into a single .zip file,<br/>
-#minicking the same folder structure<br/>
-#Folder structure<br/>
-# *<br/>
-#&nbsp;&nbsp; * Classes<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp; * CppStopwatch<br/>
-#&nbsp;&nbsp; * Libraries<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp; * bigint-2010.04.30<br/>
-#&nbsp;&nbsp; * Projects<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp; * ProjectRampal<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-#&nbsp;&nbsp; * Tools<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp; * ToolTestNewickVector&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp; * ToolTestTwoDigitNewick<br/>
-echo "Removing old zip archive"<br/>
-rm 300.zip<br/>
-rm *.o<br/>
-rm ProjectRampalTest.pro.user<br/>
-<br/>
-echo "Mimicking file structure"<br/>
-mkdir temp_zip<br/>
-mkdir temp_zip/Classes<br/>
-mkdir temp_zip/Classes/CppStopwatch<br/>
-mkdir temp_zip/Libraries<br/>
-mkdir temp_zip/Libraries/bigint-2010.04.30<br/>
-mkdir temp_zip/Projects<br/>
-mkdir temp_zip/Projects/ProjectRampal<br/>
-mkdir temp_zip/Projects/ProjectRampal/300<br/>
-mkdir temp_zip/Tools<br/>
-mkdir temp_zip/Tools/ToolTestNewickVector<br/>
-mkdir temp_zip/Tools/ToolTestTwoDigitNewick<br/>
-<br/>
-echo "Copying files"<br/>
-cp ../../../Classes/CppStopwatch/*.* temp_zip/Classes/CppStopwatch<br/>
-cp ../../../Libraries/bigint-2010.04.30/*.* temp_zip/Libraries/bigint-2010.04.30<br/>
-cp *.* temp_zip/Projects/ProjectRampal/300<br/>
-cp ../../../Tools/ToolTestNewickVector/*.* temp_zip/Tools/ToolTestNewickVector<br/>
-cp ../../../Tools/ToolTestTwoDigitNewick/*.* temp_zip/Tools/ToolTestTwoDigitNewick<br/>
-<br/>
-echo "Compressing files"<br/>
-cd temp_zip<br/>
-zip -r 300 Classes<br/>
-zip -r 300 Libraries<br/>
-zip -r 300 Projects<br/>
-zip -r 300 Tools<br/>
-cd ..<br/>
-cp temp_zip/300.zip 300.zip<br/>
-<br/>
-echo "Cleaning up"<br/>
-#Classes<br/>
-rm temp_zip/Classes/CppStopwatch/*.*<br/>
-rmdir temp_zip/Classes/CppStopwatch<br/>
-rmdir temp_zip/Classes<br/>
-#Libraries<br/>
-rm temp_zip/Libraries/bigint-2010.04.30/*.*<br/>
-rmdir temp_zip/Libraries/bigint-2010.04.30<br/>
-rmdir temp_zip/Libraries<br/>
-#Projects<br/>
-rm temp_zip/Projects/ProjectRampal/300/*.*<br/>
-rmdir temp_zip/Projects/ProjectRampal/300<br/>
-rmdir temp_zip/Projects/ProjectRampal<br/>
-rmdir temp_zip/Projects<br/>
-#Tools<br/>
-rm temp_zip/Tools/ToolTestNewickVector/*.*<br/>
-rm temp_zip/Tools/ToolTestTwoDigitNewick/*.*<br/>
-rmdir temp_zip/Tools/ToolTestNewickVector<br/>
-rmdir temp_zip/Tools/ToolTestTwoDigitNewick<br/>
-rmdir temp_zip/Tools<br/>
-#temp_zip<br/>
-rm temp_zip/*.*<br/>
-rmdir temp_zip<br/>
-<br/>
-echo "Done"<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-<p>&nbsp;</p>
-<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
-<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
-</body>
-</html>
