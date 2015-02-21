@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-//#ifdef NOT_NOW_2014_08_11
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -1737,5 +1735,3 @@ void ribi::cmap::ConceptMapFactory::Test() noexcept
   }
 }
 #endif // NDEBUG
-
-//#endif // NOT_NOW_2014_08_11

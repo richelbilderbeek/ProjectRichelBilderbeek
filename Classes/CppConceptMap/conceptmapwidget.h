@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-//#ifdef NOT_NOW_2014_08_11
-
 #ifndef CONCEPTMAPWIDGET_H
 #define CONCEPTMAPWIDGET_H
 
@@ -234,5 +232,3 @@ bool operator!=(const Widget& lhs, const Widget& rhs) noexcept;
 } //~namespace ribi
 
 #endif // CONCEPTMAPWIDGET_H
-
-//#endif // NOT_NOW_2014_08_11

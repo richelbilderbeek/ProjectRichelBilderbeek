@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-//#ifdef NOT_NOW_2014_08_11
-
 #include "conceptmapwidgetfactory.h"
 
 #include <cassert>
@@ -47,5 +45,3 @@ const std::vector<boost::shared_ptr<ribi::cmap::Widget>>
   }
   return v;
 }
-
-//#endif // NOT_NOW_2014_08_11
