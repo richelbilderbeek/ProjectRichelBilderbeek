@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QCoreApplication>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsScene>
+#include <QImage>
+#include <QPainter>
 
 #include "counter.h"
 #include "testtimer.h"
@@ -170,9 +172,51 @@ void ribi::QtRoundedRectItem::Test() noexcept
     //QCoreApplication::sendEvent(&i,event);
     //assert(c.Get() > 0);
   }
-  if (verbose) { TRACE("Bug #244: Changing pens does not resize the raw QRect"); }
-  #ifdef NOT_NOW_20150112
+  if (verbose) { TRACE("GetInnerRect should not change if width of contour pen changes"); }
   {
+    QGraphicsScene scene;
+    scene.addItem(&i);
+    i.setSelected(false);
+    i.clearFocus();
+    assert(!i.hasFocus() && !i.isSelected()
+      && "Assume no focus, otherwise this test has no use");
+    const auto before = i.GetInnerRect();
+    const QPen old_pen{i.GetContourPen()};
+    QPen new_pen{old_pen};
+    new_pen.setWidth((old_pen.width() * 10) + 10);
+    i.SetContourPen(new_pen);
+    const auto after = i.GetInnerRect();
+    assert(before == after);
+    scene.removeItem(&i); //Otherwise i gets deleted
+  }
+  //#define NOT_NOW_20150112
+  #ifdef NOT_NOW_20150112
+  if (verbose) { TRACE("GetInnerRect should not change if width of contour pen changes"); }
+  {
+    QGraphicsScene scene;
+    scene.addItem(&i);
+    const auto before = i.GetInnerRect();
+    const QPen old_pen{i.GetContourPen()};
+    QPen new_pen{old_pen};
+    new_pen.setWidth((old_pen.width() * 10) + 10);
+    i.SetContourPen(new_pen);
+    const auto after = i.GetInnerRect();
+    assert(before == after);
+    scene.removeItem(&i); //Otherwise i gets deleted
+
+  }
+  if (verbose) { TRACE("Bug #244: Changing pens does not resize the raw QRect"); }
+  // The GetInnerRect should always remain the same
+  // Test procedure:
+  // 1) Set the contour pen to wide
+  // 2) Give the item focus
+  // Now, the inner rectangle has gotten bigger. This should not be.
+
+  {
+
+    QGraphicsScene scene;
+    scene.addItem(&i);
+
     //Set contour pen to width 20
     {
       auto contour_pen = i.GetContourPen();
@@ -200,16 +244,22 @@ void ribi::QtRoundedRectItem::Test() noexcept
       );
     }
     //big_rect_width is the outer rectangle of the QItem, as it is drawn
-    const auto big_rect_width = i.GetRawRect().width();
+    const auto big_rect_width = i.GetOuterRect().width();
     TRACE("PAY ATTENTION!");
     //Set focus to QtNode
     i.setSelected(true);
     assert(i.GetCurrentPen() == i.GetFocusPen()
       && "Be sure that QtNode has focus now");
-    assert(!i.scene()); //Not added to a scene yet
-    //Force a redraw (won't fail without it)
-    i.update();
-    qApp->processEvents(); //Really, really let it repaint
+    //Paint it to file, to force a redraw
+    {
+      //Create an image of before
+      QImage image_before(scene.sceneRect().size().toSize(), QImage::Format_ARGB32);
+      // Start all pixels transparent
+      image_before.fill(Qt::transparent);
+      QPainter painter(&image_before);
+      scene.render(&painter);
+      image_before.save("tmp_bug244.png");
+    }
 
     //ERROR: inner width + 2 * focus pen width != outer width
     {
@@ -238,10 +288,14 @@ void ribi::QtRoundedRectItem::Test() noexcept
     // |       |
     // +-------+
 
-    const auto small_rect_width = i.GetRawRect().width();
+    const auto small_rect_width = i.GetInnerRect().width();
     assert(small_rect_width + 4 < big_rect_width);
+
+    scene.removeItem(&i); //Otherwise i gets deleted
+
     assert(!"Fixed, refactor, then check in");
   }
+  assert(1==2);
   #endif // NOT_NOW_20150112
 }
 #endif

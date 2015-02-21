@@ -240,7 +240,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     qtedge->GetQtNode()->SetCenterX(new_x);
     assert(std::abs(new_x - dialog.m_dialog_left->GetUiX()) < 2.0);
   }
-  #ifdef NOT_NOW_20150112
   if (verbose) { TRACE("Grabbing QtEdge of QGraphicsView twice, results in an identical picture"); }
   {
     //If the line below is needed, update() is not called automatically
@@ -252,14 +251,12 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
   if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
   {
     //If the line below is needed, update() is not called automatically
-    //const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
     const QImage image_before{dialog.GetUiView()};
     dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
     const QImage image_after{dialog.GetUiView()};
     assert(image_before != image_after);
   }
-  #endif // NOT_NOW_20150112
   if (verbose) { TRACE("If the head arrow head of an QtEdge its Edge is changed, the Item must be updated"); }
   {
     dialog.GetQtEdge()->GetEdge()->SetHeadArrow(true);
