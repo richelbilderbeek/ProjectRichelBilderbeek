@@ -18,9 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
 //---------------------------------------------------------------------------
-#define NOT_NOW_20140805_1204
-#ifdef  NOT_NOW_20140805_1204
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -373,5 +370,3 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Shuffle()
   this->GetWidget()->Shuffle();
 }
 #endif
-
-#endif // NOT_NOW_20140805_1204
