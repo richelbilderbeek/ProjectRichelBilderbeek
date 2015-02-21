@@ -6,7 +6,9 @@ namespace taba {
 
 enum SpriteType
 {
-  arena,
+  bricks,
+  flag,
+  no_bricks,
   player_down,
   player_left,
   player_right,

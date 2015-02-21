@@ -41,8 +41,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtscopeddisable.h"
 #include "pvdbfile.h"
 #include "qtrateconceptmap.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "qtpvdbratingdialog.h"
+
 #include "qtconceptmaprateconceptdialognewname.h"
 #include "ui_qtpvdbrateconceptmapdialog.h"
 #pragma GCC diagnostic pop
@@ -157,7 +159,13 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::pvdb::QtPvdbRateConceptMapDialog::Test started");
+  {
+    pvdb::FileFactory::GetTests();
+  }
+  const TestTimer test_timer{__func__,__FILE__,0.1};
+  const int test_depth = 1;
+
+  if (test_depth > 1)
   {
     const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::FileFactory::GetTests();
     const int sz = boost::numeric_cast<int>(v.size());
@@ -185,7 +193,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Test() noexcept
         );
     }
   }
-  TRACE("ribi::pvdb::QtPvdbRateConceptMapDialog::Test finished successfully");
+
 }
 #endif
 

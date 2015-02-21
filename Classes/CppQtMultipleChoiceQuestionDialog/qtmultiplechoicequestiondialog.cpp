@@ -131,30 +131,36 @@ std::vector<std::string> ribi::QtMultipleChoiceQuestionDialog::GetVersionHistory
 }
 
 void ribi::QtMultipleChoiceQuestionDialog::OnMultipleChoiceQuestionDialogChanged(
-  MultipleChoiceQuestionDialog * const open_question_dialog
+  MultipleChoiceQuestionDialog * const mc_question_dialog
 ) noexcept
 {
-  assert(open_question_dialog);
+  assert(mc_question_dialog);
 
-  ui->edit_answer->setText(open_question_dialog->GetAnswerInProgress().c_str());
-
-  OnOpenQuestionChanged(open_question_dialog->GetOpenQuestion());
+  ui->radio_1->setChecked(mc_question_dialog->GetAnswerInProgress() == 0);
+  ui->radio_2->setChecked(mc_question_dialog->GetAnswerInProgress() == 1);
+  ui->radio_3->setChecked(mc_question_dialog->GetAnswerInProgress() == 2);
+  ui->radio_4->setChecked(mc_question_dialog->GetAnswerInProgress() == 3);
+  ui->radio_5->setChecked(mc_question_dialog->GetAnswerInProgress() == 4);
+  ui->radio_6->setChecked(mc_question_dialog->GetAnswerInProgress() == 5);
+  ui->radio_7->setChecked(mc_question_dialog->GetAnswerInProgress() == 6);
+  OnMultipleChoiceQuestionDialogChanged(mc_question_dialog);
 }
 
 void ribi::QtMultipleChoiceQuestionDialog::OnMultipleChoiceQuestionChanged(
-  const boost::shared_ptr<MultipleChoiceQuestionDialog>& open_question
+  const boost::shared_ptr<MultipleChoiceQuestionDialog>& mc_question
 ) noexcept
 {
-  assert(open_question);
-  if (fileio::FileIo().IsRegularFile(open_question->GetFilename().c_str()))
+  assert(mc_question);
+  assert(mc_question->GetQuestion());
+  if (fileio::FileIo().IsRegularFile(mc_question->GetQuestion()->GetFilename()))
   {
-    ui->image->setPixmap(QPixmap(open_question->GetFilename().c_str()));
+    ui->image->setPixmap(QPixmap(mc_question->GetQuestion()->GetFilename().c_str()));
   }
 
   ui->stackedWidget->setCurrentWidget(ui->page_question);
-  ui->label_question->setText(open_question->GetQuestion().c_str());
-  ui->label_question_again->setText(open_question->GetQuestion().c_str());
-  ui->label_answer->setText(open_question->GetCorrectAnswers()[0].c_str());
+  ui->label_question->setText(mc_question->GetQuestion()->GetQuestion().c_str());
+  ui->label_question_again->setText(mc_question->GetQuestion()->GetQuestion().c_str());
+  ui->label_answer->setText(mc_question->GetQuestion()->GetCorrectAnswers()[0].c_str());
 
 }
 
@@ -186,26 +192,26 @@ void ribi::QtMultipleChoiceQuestionDialog::SetDialog(const boost::shared_ptr<Que
     std::stringstream s;
     s << "Setting mcquestiondialog '" << mcquestiondialog->ToStr() << "'\n";
   }
-  const auto open_question_after = mcquestiondialog->GetMultipleChoiceQuestion();
+  const auto mc_question_after = mcquestiondialog->GetMultipleChoiceQuestion();
 
-  bool open_question_changed  = true;
+  bool mc_question_changed  = true;
 
   if (m_dialog)
   {
-    const auto open_question_before = m_dialog->GetMultipleChoiceQuestion();
+    const auto mc_question_before = m_dialog->GetMultipleChoiceQuestion();
 
-    open_question_changed = open_question_before != open_question_after;
+    mc_question_changed = mc_question_before != mc_question_after;
 
     if (verbose)
     {
-      if (open_question_changed)
+      if (mc_question_changed)
       {
         std::stringstream s;
         s
           << "open_question will change from "
-          << open_question_before->ToStr()
+          << mc_question_before->ToStr()
           << " to "
-          << open_question_after->ToStr()
+          << mc_question_after->ToStr()
           << '\n'
         ;
         TRACE(s.str());
@@ -216,34 +222,37 @@ void ribi::QtMultipleChoiceQuestionDialog::SetDialog(const boost::shared_ptr<Que
       boost::bind(&ribi::QtMultipleChoiceQuestionDialog::OnMultipleChoiceQuestionDialogChanged,this,boost::lambda::_1)
     );
 
+    /*
     m_dialog->m_signal_request_quit.disconnect(
       boost::bind(&ribi::QtMultipleChoiceQuestionDialog::OnQuit,this,boost::lambda::_1)
     );
     m_dialog->m_signal_submitted.disconnect(
       boost::bind(&ribi::QtMultipleChoiceQuestionDialog::OnSubmit,this,boost::lambda::_1)
     );
+    */
   }
 
   //Replace m_example by the new one
   m_dialog = mcquestiondialog;
 
-  assert(m_dialog->GetMultipleChoiceQuestion() == open_question_after);
+  assert(m_dialog->GetMultipleChoiceQuestion() == mc_question_after);
 
-  m_dialog->m_signal_open_question_changed.connect(
+  m_dialog->m_signal_mc_question_changed.connect(
     boost::bind(&ribi::QtMultipleChoiceQuestionDialog::OnMultipleChoiceQuestionDialogChanged,this,boost::lambda::_1)
   );
+  /*
   m_dialog->m_signal_request_quit.connect(
     boost::bind(&ribi::QtMultipleChoiceQuestionDialog::OnQuit,this)
   );
   m_dialog->m_signal_submitted.connect(
     boost::bind(&ribi::QtMultipleChoiceQuestionDialog::OnSubmit,this,boost::lambda::_1)
   );
-
+  */
 
   //Emit everything that has changed
-  if (open_question_changed)
+  if (mc_question_changed)
   {
-    m_dialog->m_signal_open_question_changed(m_dialog.get());
+    m_dialog->m_signal_mc_question_changed(m_dialog.get());
   }
 
   assert(mcquestiondialog == m_dialog);

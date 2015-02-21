@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtOpenQuestionDialog, Qt dialog for OpenQuestionDialog
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -216,4 +216,12 @@ void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
 void ribi::QtOpenQuestionDialog::on_edit_answer_textChanged(const QString &arg1)
 {
   m_openquestiondialog->SetAnswerInProgress(arg1.toStdString());
+}
+
+void ribi::QtOpenQuestionDialog::SetOpenQuestionDialog(
+  const boost::shared_ptr<OpenQuestionDialog>& dialog
+) noexcept
+{
+  this->m_openquestiondialog = dialog;
+  //SetOpenQuestionDialog(dialog);
 }

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Encranger, encryption and de-encryption class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -120,7 +120,7 @@ std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigned int 
   std::srand(key);
 
   //Shuffle
-  std::random_shuffle(v.begin(),v.end());
+  std::random_shuffle(std::begin(v),std::end(v));
 
   return v;
 }

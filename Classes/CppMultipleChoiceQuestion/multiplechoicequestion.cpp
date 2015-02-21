@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MultipleChoiceQuestion, class for a multiple choice question
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include "container.h"
+#include "fileio.h"
 #include "imagecanvas.h"
 #include "testtimer.h"
 #include "trace.h"
@@ -114,7 +115,7 @@ std::vector<std::string> ribi::MultipleChoiceQuestion::CreateOptions(
 {
   std::vector<std::string> v = wrong_answers;
   v.push_back(answer);
-  std::random_shuffle(v.begin(),v.end());
+  std::random_shuffle(std::begin(v),std::end(v));
   return v;
 }
 
@@ -210,6 +211,8 @@ void ribi::MultipleChoiceQuestion::Test() noexcept
   }
   {
     Container();
+    ribi::fileio::FileIo();
+    ImageCanvas::Test();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   try

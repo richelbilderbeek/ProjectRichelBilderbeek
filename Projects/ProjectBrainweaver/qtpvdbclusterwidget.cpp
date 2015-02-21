@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pvdbclusterfactory.h"
 #include "pvdbcluster.h"
 #include "qtconceptmapcompetency.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -332,7 +333,7 @@ void ribi::pvdb::QtPvdbClusterWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::pvdb::QtPvdbClusterWidget::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     //const std::vector<boost::shared_ptr<pvdb::Cluster> > v = pvdb::ClusterFactory::GetTests();
     for (const boost::shared_ptr<pvdb::Cluster>& c: pvdb::ClusterFactory::GetTests())
@@ -358,7 +359,6 @@ void ribi::pvdb::QtPvdbClusterWidget::Test() noexcept
       }
     //);
   }
-  TRACE("ribi::pvdb::QtPvdbClusterWidget::Test completed successfully");
 }
 #endif
 

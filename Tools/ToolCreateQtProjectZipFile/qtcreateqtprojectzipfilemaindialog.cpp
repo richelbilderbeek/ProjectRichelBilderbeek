@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateQtProjectZipFile, tool to create a zip file from a Qt project
-Copyright (C) 2012-2014 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -51,8 +51,6 @@ ribi::QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWi
   Test();
   #endif
   ui->setupUi(this);
-
-  TRACE("QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog");
   ui->lineEdit->setText("Tools/ToolCreateQtProjectZipFile");
 }
 
@@ -106,6 +104,7 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test basic functions on this project with going two folders down
+  const bool verbose{false};
   const std::vector<std::string> pro_filenames
     =
     {
@@ -119,12 +118,14 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
       [](const std::string& filename)
       { return fileio::FileIo().IsRegularFile(filename); }
     );
-  const std::string s = "Testing "
-    + boost::lexical_cast<std::string>(n_tests)
-    + " / "
-    + boost::lexical_cast<std::string>(pro_filenames.size());
-  TRACE(s);
-
+  if (verbose)
+  {
+    const std::string s = "Testing "
+      + boost::lexical_cast<std::string>(n_tests)
+      + " / "
+      + boost::lexical_cast<std::string>(pro_filenames.size());
+    TRACE(s);
+  }
   for (const std::string& pro_filename: pro_filenames)
   {
     if (!fileio::FileIo().IsRegularFile(pro_filename)) continue;

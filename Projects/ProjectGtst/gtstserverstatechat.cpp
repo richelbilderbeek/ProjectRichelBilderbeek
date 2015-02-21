@@ -149,7 +149,7 @@ void ribi::gtst::ServerStateChat::Start()
   std::for_each(ps.begin(),ps.end(),
     [this](const boost::shared_ptr<const Participant>& p)
     {
-      StateChat * const state = dynamic_cast<const StateChat*>(this);
+      const StateChat * const state = dynamic_cast<const StateChat*>(this);
       assert(state);
       this->FindParticipant(p)->SetState(state);
       this->FindParticipant(p)->StartChat();

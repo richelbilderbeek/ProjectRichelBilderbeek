@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-//#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
@@ -27,10 +27,12 @@
 #include "laggedwhitenoisesystemparameters.h"
 #include "matrix.h"
 #include "qtkalmanfilterermodel.h"
+#include "ribi_regex.h"
 #include "standardkalmanfilterparameters.h"
 #include "standardkalmanfilterparameters.h"
 #include "standardwhitenoisesystemfactory.h"
 #include "standardwhitenoisesystemparameters.h"
+#include "templocale.h"
 #include "testtimer.h"
 #include "trace.h"
 #include "whitenoisesystemfactory.h"
@@ -40,8 +42,11 @@
 
 #pragma GCC diagnostic pop
 
-boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boost::numeric::ublas::matrix<std::string>& v) noexcept
+boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(
+  const boost::numeric::ublas::matrix<std::string>& v
+) noexcept
 {
+
   boost::numeric::ublas::matrix<double> w(v.size1(),v.size2());
   const std::size_t n_rows = v.size1();
   const std::size_t n_cols = v.size2();
@@ -55,7 +60,13 @@ boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boost::nu
       assert(row < w.size1());
       assert(col < w.size2());
       try { boost::lexical_cast<double>(v(row,col)); }
-      catch (boost::bad_lexical_cast&) { assert(!"Should not get here"); }
+      catch (boost::bad_lexical_cast&)
+      {
+        TRACE("ERBREAKROR");
+        TRACE(v(row,col));
+        TRACE("BREAK");
+        assert(!"Should not get here");
+      }
       #endif
       w(row,col) = boost::lexical_cast<double>(v(row,col));
     }
@@ -797,9 +808,17 @@ void ribi::kalman::QtKalmanFilterExperimentModel::FromDokuWiki(const std::string
     //Test if new version works OK
     #ifndef NDEBUG
     {
+      TempLocale temp_english_locale("en_US.UTF-8");
       const std::string new_str = this->ToDokuWiki();
       QtKalmanFilterExperimentModel dummy_model;
       dummy_model.FromDokuWiki(new_str);
+      assert(this->GetNumberOfTimesteps() == dummy_model.GetNumberOfTimesteps());
+      if (new_str != dummy_model.ToDokuWiki())
+      {
+        //Error in number of timesteps
+        TRACE(new_str);
+        TRACE(dummy_model.ToDokuWiki());
+      }
       assert(new_str == dummy_model.ToDokuWiki());
     }
     #endif
@@ -935,15 +954,9 @@ void ribi::kalman::QtKalmanFilterExperimentModel::OnStateNamesChanged()
 
 void ribi::kalman::QtKalmanFilterExperimentModel::ReadContext(const std::vector<std::string>& v)
 {
-<<<<<<< HEAD
-  const auto begin = std::find(v.begin(),v.end(),std::string("<html>"));
-  if (begin == v.end()) return;
-  auto end = std::find(v.begin(),v.end(),std::string("</html>"));
-=======
   const auto begin = std::find(v.begin(),v.end(),"<html>");
   if (begin == v.end()) return;
   auto end = std::find(v.begin(),v.end(),"</html>");
->>>>>>> develop
   assert(end != v.end());
   std::string new_context;
 
@@ -984,11 +997,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Read(
   const int sz = boost::numeric_cast<int>(text.size());
 
   //Find begin
-<<<<<<< HEAD
-  const std::string header = std::string("^ ") + name;
-=======
   const std::string header = "^ " + name;
->>>>>>> develop
   int begin_tmp = -1;
   for (int i=0; i!=sz; ++i)
   {
@@ -1124,11 +1133,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Read(const std::string& line,c
 {
   if (line.find(sub) != std::string::npos)
   {
-<<<<<<< HEAD
     if (line.substr(line.size() - 5,5) == std::string("</li>"))
-=======
-    if (line.substr(line.size() - 5,5) == "</li>")
->>>>>>> develop
     {
       Read(line.substr(0,line.size() - 5),sub,value_to_change);
       return;
@@ -1169,16 +1174,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::ReadWhiteNoiseSystemType(const
   }
 }
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-const std::vector<std::string> ribi::kalman::QtKalmanFilterExperimentModel::SeperateString(
-=======
-=======
-/*
->>>>>>> develop
 std::vector<std::string> ribi::kalman::QtKalmanFilterExperimentModel::SeperateString(
->>>>>>> develop
   const std::string& input,
   const char seperator)
 {
@@ -1188,7 +1184,6 @@ std::vector<std::string> ribi::kalman::QtKalmanFilterExperimentModel::SeperateSt
     boost::algorithm::token_compress_on);
   return v;
 }
-*/
 
 void ribi::kalman::QtKalmanFilterExperimentModel::SetContext(const std::string& context)
 {
@@ -1359,8 +1354,8 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Test() noexcept
   QtKalmanFilterExperimentModel().CreateGapsFilledWhiteNoiseSystemParameters();
   QtKalmanFilterExperimentModel().CreateLaggedWhiteNoiseSystemParameters();
   QtKalmanFilterExperimentModel().CreateMap();
-
   QtKalmanFilterExperimentModel().CreateLaggedWhiteNoiseSystemParameters();
+  ribi::Regex();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 
   //Test some regexes
@@ -1423,28 +1418,38 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Test() noexcept
 }
 #endif
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const
-=======
-std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const
->>>>>>> develop
-=======
 std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const noexcept
->>>>>>> develop
 {
-  if (m_version != m_version_current)
-  {
-    TRACE(m_version);
-    TRACE(m_version_current);
-    TRACE("BREAK");
-  }
   assert(m_version == m_version_current);
+
+  //TempLocale temp_english_locale("en_US.UTF-8");
+
+  assert(std::to_string(1234) == "1234" && "No digit seperators");
+  //assert(boost::lexical_cast<std::string>(1234) == "1234" && "No digit seperators"); //FAILS!
+  {
+    //std::stringstream s; s << 1234;
+    //assert(s.str() == "1234" && "No digit seperators in std::stringstream please"); //FAILS!
+  }
+
+  const auto lag_estimated_str = std::to_string(m_lag_estimated);
+  const auto lag_real_str = std::to_string(m_lag_real);
+  const auto number_of_timesteps_str = std::to_string(m_number_of_timesteps);
+
+  assert(std::count(std::begin(lag_estimated_str),std::end(lag_estimated_str),',') == 0
+    && "No decimal seperators please"
+  );
+  assert(std::count(std::begin(lag_real_str),std::end(lag_real_str),',') == 0
+    && "No decimal seperators please"
+  );
+  assert(std::count(std::begin(number_of_timesteps_str),std::end(number_of_timesteps_str),',') == 0
+    && "No decimal seperators please"
+  );
+
   std::stringstream s;
   s << "  * Kalman filter type: " << KalmanFilterTypes().ToStr(m_kalman_filter_type) << "\n"
-    << "  * Lag estimated: " << boost::lexical_cast<std::string>(m_lag_estimated) << "\n"
-    << "  * Lag real: " << boost::lexical_cast<std::string>(m_lag_real) << "\n"
-    << "  * Number of timesteps: " << boost::lexical_cast<std::string>(m_number_of_timesteps) << "\n"
+    << "  * Lag estimated: " << lag_estimated_str << "\n"
+    << "  * Lag real: " << lag_real_str << "\n"
+    << "  * Number of timesteps: " << number_of_timesteps_str << "\n"
     << "  * Version: " << boost::lexical_cast<std::string>(m_version) << "\n"
     << "  * White noise system type: " << WhiteNoiseSystemTypes().ToStr(m_white_noise_system_type) << "\n"
     << " \n"
@@ -1469,36 +1474,25 @@ std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const noex
 
       assert(n_cols >= 0);
       assert(n_rows >= 0);
-<<<<<<< HEAD
-      assert(std::string(0,'^') == std::string(""));
-      s << std::string("^ ") << name << " " << std::string(n_cols,'^') << "^ \n";
-      for (int row = 0; row!=n_rows; ++row)
-      {
-        s  << std::string("^ ") << model->headerData(row,Qt::Vertical).toString().toStdString() << std::string(" | ");
-=======
       assert(std::string(0,'^') == "");
       s << "^ " << name << " " << std::string(n_cols,'^') << "^ \n";
       for (int row = 0; row!=n_rows; ++row)
       {
         s  << "^ " << model->headerData(row,Qt::Vertical).toString().toStdString() << " | ";
->>>>>>> develop
         for (int col = 0; col!=n_cols; ++col)
         {
           const QModelIndex index = model->index(row,col);
           const QString q = model->data(index).toString();
-<<<<<<< HEAD
-          s << q.toStdString() << std::string(" | ");
-        }
-        s << std::string("\n");
-      }
-      s << std::string(" \n"); //Empty line after every table, space is really needed
-=======
-          s << q.toStdString() << " | ";
+          std::string str{q.toStdString()};
+          std::replace(std::begin(str),std::end(str),',','.');
+          const ribi::Regex r;
+          assert(r.GetRegexMatches(str,r.GetRegexDutchFloat()).empty() && "No Dutch please"
+          );
+          s << str << " | ";
         }
         s << "\n";
       }
       s << " \n"; //Empty line after every table, space is really needed
->>>>>>> develop
     }
   }
   const std::string text = s.str();
@@ -1506,15 +1500,7 @@ std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const noex
 }
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const
-=======
-std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const
->>>>>>> develop
-=======
 std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const noexcept
->>>>>>> develop
 {
   std::string s =
 

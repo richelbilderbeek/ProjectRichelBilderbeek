@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Plane, 3D plane class
-Copyright (C) 2013-2014 Richel Bilderbeek
+Copyright (C) 2013-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -114,6 +114,24 @@ struct Plane
   ///Can the Plane be expressed as Z = A*X + B*Y + C ?
   bool CanCalcZ() const noexcept;
 
+  static boost::shared_ptr<PlaneX> CreatePlaneX(
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
+  ) noexcept;
+
+  static boost::shared_ptr<PlaneY> CreatePlaneY(
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
+  ) noexcept;
+
+  static boost::shared_ptr<PlaneZ> CreatePlaneZ(
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
+  ) noexcept;
+
   ///Calculates the error between plane and coordinat
   Double CalcError(const Coordinat3D& coordinat) const noexcept;
 
@@ -153,24 +171,6 @@ struct Plane
   static boost::shared_ptr<PlaneX> CreatePlaneX(const Doubles& coefficients_x) noexcept;
   static boost::shared_ptr<PlaneY> CreatePlaneY(const Doubles& coefficients_y) noexcept;
   static boost::shared_ptr<PlaneZ> CreatePlaneZ(const Doubles& coefficients_z) noexcept;
-
-  static boost::shared_ptr<PlaneX> CreatePlaneX(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3
-  ) noexcept;
-
-  static boost::shared_ptr<PlaneY> CreatePlaneY(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3
-  ) noexcept;
-
-  static boost::shared_ptr<PlaneZ> CreatePlaneZ(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3
-  ) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

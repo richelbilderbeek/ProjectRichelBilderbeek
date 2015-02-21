@@ -39,6 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapconceptfactory.h"
 #include "qtconceptmapcompetency.h"
 #include "ui_qtconceptmapconcepteditdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -165,6 +166,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     //Assume reading in a concept and clicking OK without modification does not modify anything
     const auto v = ribi::cmap::ConceptFactory().GetTests();

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Das Wahre Schlagerfest, a truely fun game
-Copyright (C) 2003-2014 Richel Bilderbeek
+Copyright (C) 2003-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

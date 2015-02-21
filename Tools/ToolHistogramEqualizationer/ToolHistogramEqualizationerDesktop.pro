@@ -1,20 +1,12 @@
 include(../../DesktopApplication.pri)
 include(../../Libraries/Boost.pri)
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-include(../../Classes/CppRectangle/CppRectangle.pri)
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
-
-include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
-include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 #Specific
 include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 
-include(../../Classes/CppTrace/CppTrace.pri)
-include(../../Tools/ToolHistogramEqualizationer/ToolHistogramEqualizationerDesktop.pri)
+include(ToolHistogramEqualizationerDesktop.pri)
 
 SOURCES += qtmain.cpp

@@ -2,15 +2,8 @@ include(../../ConsoleApplication.pri)
 
 #Libs
 include(../../Libraries/Boost.pri)
+include(../../Libraries/GeneralConsole.pri)
 #include(../../Libraries/Fparser.pri)
-
-#General, console
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
 
 #Specific, console
 include(../../Classes/CppCanvas/CppCanvas.pri)

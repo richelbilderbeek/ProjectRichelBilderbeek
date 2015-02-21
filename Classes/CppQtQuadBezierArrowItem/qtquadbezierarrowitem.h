@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtQuadBezierArrowItem, an quadratic Bezier arrow QGraphicsItem
-Copyright (C) 2012-2014 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -52,6 +52,10 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
 
   virtual ~QtQuadBezierArrowItem() noexcept {}
 
+  ///The rectangle that containg the item, used for rough calculations like
+  ///collision detection
+  QRectF boundingRect() const override final;
+
   ///Get the QPen used to indicate that the arrow has focus
   const QPen& GetFocusPen() const noexcept { return m_focus_pen; }
 
@@ -101,10 +105,6 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
 
   ///Respond to mouse press
   void mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept override final;
-
-  ///The rectangle that containg the item, used for rough calculations like
-  ///collision detection
-  QRectF boundingRect() const override final;
 
   ///Paint a QtQuadBezierArrowItem
   void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept override final;

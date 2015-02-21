@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -71,6 +71,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpvdbmenudialog.h"
 #endif // INCLUDE_BRAINWEAVER_20140617
 
+#include "qtrichelbilderbeekgalleryresources.h"
 #include "qtpylosmenudialog.h"
 #include "qtqmakewatchermenudialog.h"
 #include "qtquadraticsolvermenudialog.h"
@@ -376,10 +377,15 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholder
     const std::string title = p->GetScreenName() + "(placeholder)";
     d->setWindowTitle(title.c_str());
   }
+  //Add label, useful if there are no screenshots
   {
     QLabel * const label = new QLabel((p->GetScreenName() + "(placeholder)").c_str());
     label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     layout->addWidget(label);
+  }
+  // Create files
+  {
+    QtResources();
   }
   if (fileio::FileIo().IsRegularFile(p->GetFilenameConsole()))
   {

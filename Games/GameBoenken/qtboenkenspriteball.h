@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2014 Richel Bilderbeek
+Copyright (C) 2007-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ namespace Boenken {
 ///SpriteBall is green per default
 ///and keeps track of the score
 ///and can only be deleted by boost::checked_delete
-struct SpriteBall : public SpriteMoving
+struct SpriteBall final : public SpriteMoving
 {
   SpriteBall(
     const double x,
@@ -58,9 +58,6 @@ struct SpriteBall : public SpriteMoving
   static double m_goal_y_bottom;
   static int m_score_left;
   static int m_score_right;
-
-  ///SpriteBall is no base class
-  void dummy_make_me_abstract() const {}
 
   //The number of balls, for debugging purposes
   static int sm_n_balls;

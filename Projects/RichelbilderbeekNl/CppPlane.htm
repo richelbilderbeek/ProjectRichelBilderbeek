@@ -180,6 +180,24 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Can the Plane be expressed as Z <a href="CppOperatorAssign.htm">=</a> A*X <a href="CppOperatorPlus.htm">+</a> B*Y <a href="CppOperatorPlus.htm">+</a> C ?<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanCalcZ() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PlaneX&gt; CreatePlaneX(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p3<br/>
+&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PlaneY&gt; CreatePlaneY(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p3<br/>
+&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PlaneZ&gt; CreatePlaneZ(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p3<br/>
+&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Calculates the error between plane and coordinat<br/>
 &nbsp;&nbsp;<a href="CppDouble.htm">Double</a> CalcError(<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; coordinat) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
@@ -219,24 +237,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PlaneX&gt; CreatePlaneX(<b><a href="CppConst.htm">const</a></b> <a href="CppDouble.htm">Double</a>s&amp; coefficients_x) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PlaneY&gt; CreatePlaneY(<b><a href="CppConst.htm">const</a></b> <a href="CppDouble.htm">Double</a>s&amp; coefficients_y) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PlaneZ&gt; CreatePlaneZ(<b><a href="CppConst.htm">const</a></b> <a href="CppDouble.htm">Double</a>s&amp; coefficients_z) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PlaneX&gt; CreatePlaneX(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p1,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p2,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p3<br/>
-&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PlaneY&gt; CreatePlaneY(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p1,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p2,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p3<br/>
-&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PlaneZ&gt; CreatePlaneZ(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p1,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p2,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p3<br/>
-&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>

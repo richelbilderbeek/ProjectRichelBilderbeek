@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ManyDigitNewick, Newick class
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -160,7 +160,7 @@ int ribi::ManyDigitNewickIndexer::CalculateReserved(const NewickVector& n) const
   const int n_elements
     = std::count_if(v.begin(),v.end(),
       std::bind2nd(std::greater<int>(),0));
-  const int max_element = *std::max_element(v.begin(),v.end());
+  const int max_element = *std::max_element(std::begin(v),std::end(v));
   //\todo: +1 needed?
   return n_elements + max_element + 1;
 }

@@ -215,16 +215,18 @@ void ribi::cmap::QtNode::EnableAll()
   this->setVisible(true);
 }
 
-void ribi::cmap::QtNode::focusInEvent(QFocusEvent*)
+void ribi::cmap::QtNode::focusInEvent(QFocusEvent* e) noexcept
 {
+  QtRoundedEditRectItem::focusInEvent(e);
   //m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen()); //Updates itself
   //assert(!m_display_strategy->hasFocus());
   ///?maybe update?
   assert(hasFocus());
 }
 
-void ribi::cmap::QtNode::focusOutEvent(QFocusEvent*)
+void ribi::cmap::QtNode::focusOutEvent(QFocusEvent* e) noexcept
 {
+  QtRoundedEditRectItem::focusOutEvent(e);
   //m_display_strategy->SetContourPen(m_display_strategy->GetContourPen()); //Updates itself
   //m_signal_item_has_updated(0); //causes Examples to get hidden
   ///?maybe update?
@@ -547,7 +549,11 @@ void ribi::cmap::QtNode::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  QtRoundedEditRectItem();
+  {
+    Container();
+    QtRoundedEditRectItem();
+    QtNodeFactory().GetTest(1);
+  }
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QmakeWatcher, tool to watch qmake's .pro to Makefile conversion
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ ribi::About ribi::QmakeWatcherMenuDialog::GetAbout() const noexcept
     "QmakeWatcher",
     "tool to watch qmake's .pro to Makefile conversion",
     "the 20th of September 2013",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolQmakeWatcher.htm",
     GetVersion(),
     GetVersionHistory()

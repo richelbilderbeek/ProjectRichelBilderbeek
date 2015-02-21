@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "conceptmapcenternode.h"
 #include "conceptmapedge.h"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 #include "qtconceptmapexamplesitem.h"
 #include "conceptmaphelper.h"
 #include "conceptmapedge.h"
@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnodefactory.h"
 #include "conceptmapfactory.h"
 #include "qtconceptmapcenternode.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -77,7 +77,7 @@ ribi::cmap::QtDisplayConceptMap::QtDisplayConceptMap(
   //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
-
+#ifdef NOT_NOW_20141111
 ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
@@ -91,7 +91,6 @@ ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   assert(from != to);
   QtEdge * const qtedge = new QtEdge(
     edge,
-    //qtconcept,
     from,
     to
   );
@@ -138,6 +137,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   #endif
   return qtedge;
 }
+#endif // NOT_NOW_20141111
 
 ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::shared_ptr<Node> node)
 {
@@ -149,12 +149,13 @@ ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::share
   QtNode * const qtnode {
     IsCenterNode(node)
     ? new QtCenterNode(boost::dynamic_pointer_cast<CenterNode>(node))
-    : new QtNode(node,GetDisplayStrategy(node->GetConcept()))
+    : new QtNode(node)
   };
   assert(qtnode);
   assert(IsCenterNode(qtnode->GetNode()) == IsQtCenterNode(qtnode)
     && "Should be equivalent");
 
+  #ifdef NOT_NOW_20141111
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(
    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
@@ -162,6 +163,7 @@ ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::share
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtnode->m_signal_request_scene_update.connect(
     boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
+  #endif // NOT_NOW_20141111
 
   assert(!qtnode->scene());
   this->scene()->addItem(qtnode);
@@ -172,8 +174,6 @@ ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::share
     node) == 1 && "Assume Node is already in the concept map");
   //this->GetConceptMap()->AddNode(node);
 
-  assert(qtnode->pos().x() == node->GetX());
-  assert(qtnode->pos().y() == node->GetY());
 
   //Cannot test this: during construction, the nodes will be put in one-by-one
   //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
@@ -210,7 +210,7 @@ void ribi::cmap::QtDisplayConceptMap::CleanMe()
 std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtDisplayConceptMap::CreateNewDerived() const
 {
   const boost::shared_ptr<ConceptMap> concept_map
-    = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+    = ribi::cmap::ConceptMapFactory().DeepCopy(this->GetConceptMap());
   assert(concept_map);
   std::unique_ptr<QtConceptMap> p(new QtDisplayConceptMap(concept_map));
   assert(p);
@@ -240,7 +240,9 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
       edge_concept,node_x,node_y
     ),node_from,true,node_to,true
   );
+  #ifdef NOT_NOW_20141111
   this->AddEdge(edge);
+  #endif // NOT_NOW_20141111
   const int n_edges_after = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
   const int n_nodes_after = boost::numeric_cast<int>(GetConceptMap()->GetNodes().size());
   assert(n_edges_after > n_edges_before);
@@ -248,6 +250,7 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
 }
 #endif
 
+#ifdef NOT_NOW_20141111
 const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtDisplayConceptMap::GetDisplayStrategy(
   const boost::shared_ptr<Concept> concept) const noexcept
 {
@@ -258,6 +261,7 @@ const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtDisplay
   assert(display_strategy);
   return display_strategy;
 }
+#endif // NOT_NOW_20141111
 
 void ribi::cmap::QtDisplayConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
@@ -267,10 +271,9 @@ void ribi::cmap::QtDisplayConceptMap::OnItemRequestUpdateImpl(const QGraphicsIte
 
   assert(GetExamplesItem());
   assert(item);
-  assert(dynamic_cast<const QtConceptMapElement*>(item));
   if (GetExamplesItem()->GetBuddyItem() != item)
   {
-    GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
+    GetExamplesItem()->SetBuddyItem(item);
     assert(this->scene());
     scene()->update();
   }

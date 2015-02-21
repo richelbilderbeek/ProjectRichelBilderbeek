@@ -7,6 +7,6 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppPolyFile/CppPolyFile.pri)
 
-include(../../Tools/ToolTestPolyFile/ToolTestPolyFileConsole.pri)
+include(ToolTestPolyFileConsole.pri)
 
 SOURCES += main.cpp

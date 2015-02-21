@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2014 Richel Bilderbeek
+Copyright (C) 2007-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,32 +37,28 @@ struct SpriteMoving;
 ///SpriteNonMoving are obstacles.
 ///Obstacles are grey per default
 ///and can only be deleted by boost::checked_delete
-struct SpriteNonMoving : public Sprite
+struct SpriteNonMoving final : public Sprite
 {
-  SpriteNonMoving(
+  explicit SpriteNonMoving(
     const double x,
     const double y,
     const int size = 32,
     const unsigned char r = 255,
     const unsigned char g = 255,
-    const unsigned char b = 255)
-    : Sprite(x,y,size,r,g,b)
-  {
-
-  }
+    const unsigned char b = 255
+  );
 
   public:
   void setX(const double x) { m_x = x; }
   void setY(const double y) { m_y = y; }
-  static void Collision(SpriteNonMoving * const p1, SpriteMoving * const p2);
 
-  ///SpriteNonMoving is no base class
-  void dummy_make_me_abstract() const {}
+  ///A non-moving sprite, like an object, will not change
+  static void Collision(const SpriteNonMoving& p1, SpriteMoving& p2);
 
   private:
-  ///Ensure SpriteNonMoving can only be deleted by boost::checked_delete
-  virtual ~SpriteNonMoving() noexcept {}
-  friend void boost::checked_delete<>(SpriteNonMoving* x);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace Boenken

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2014 Richel Bilderbeek
+Copyright (C) 2007-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ namespace Boenken {
 ///Sprite is the ABC of anything that must be drawn on screen
 struct Sprite
 {
-  Sprite(
+  explicit Sprite(
     const double x,
     const double y,
     const int size,
@@ -47,6 +47,7 @@ struct Sprite
     const unsigned char b);
   Sprite(const Sprite&) = delete;
   Sprite& operator=(const Sprite&) = delete;
+  virtual ~Sprite() = default;
 
   ///The size (width==height) in pixels
   const int m_size;
@@ -54,8 +55,10 @@ struct Sprite
   ///The globe part of the Sprite
   const QPixmap m_pixmap;
 
-  double getX() const noexcept { return m_x; }
-  double getY() const noexcept { return m_y; }
+  double getX() const noexcept { return GetX(); }
+  double getY() const noexcept { return GetY(); }
+  double GetX() const noexcept { return m_x; }
+  double GetY() const noexcept { return m_y; }
 
   ///The x,y,w,h of the sprite
   QRect rect() const;
@@ -71,6 +74,8 @@ struct Sprite
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  static bool IsCollision(const Sprite& p1, const Sprite& p2) noexcept;
+
   ///Sets the arena size,
   ///that is Sprite::m_maxx and Sprite::m_maxy.
   ///SpriteBall::SetGoalPoles defines the vertical
@@ -78,10 +83,10 @@ struct Sprite
   ///Every sprite must be within the arena
   static void setArenaSize(const int width, const int height);
 
-  ///dummy_make_me_abstract ensures that
-  ///Sprite and SpriteMoving
-  ///are abstract base classes
-  virtual void dummy_make_me_abstract() const = 0;
+  void setX(const double x) noexcept { SetX(x); }
+  void setY(const double y) noexcept { SetY(y); }
+  void SetX(const double x) noexcept { m_x  = x; }
+  void SetY(const double y) noexcept { m_y  = y; }
 
   protected:
   double m_x;
@@ -89,10 +94,6 @@ struct Sprite
   static int m_maxx;
   static int m_maxy;
 
-  //private:
-  //Ensure Sprite can only be deleted by boost::checked_delete
-  virtual ~Sprite() noexcept {}
-  //friend void boost::checked_delete<>(Sprite* x);
 
   ///Draws a globe with a nice 3D effect\n
   ///From http://www.richelbilderbeek.nl/CppDrawGlobe.htm

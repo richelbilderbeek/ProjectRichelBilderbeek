@@ -39,7 +39,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "gtsttest.h"
 #include "gtstserver.h"
-//#include "trace.h"
+#include "gtstvotingoption.h"
+#include "trace.h"
 
 void ribi::gtst::Test::CreateParameterFile1()
 {
@@ -1244,6 +1245,19 @@ void ribi::gtst::Test::TestParameterParsing()
     assert(parameters->GetViewResultsGroup()->GetRepeatAssigner()->Assign() == 7);
     assert(parameters->GetViewResultsVoting()->GetDuration() == 30);
     assert(parameters->GetVoting()->GetDuration() == 60);
+    #ifndef NDEBUG
+    if(parameters->GetVoting()->GetOptions().size() != 3)
+    {
+      TRACE("ERROR");
+      const auto sz = parameters->GetVoting()->GetOptions().size();
+      for (const auto& v: parameters->GetVoting()->GetOptions())
+      {
+        TRACE(v->GetDescription());
+      }
+      TRACE(sz);
+      TRACE("BREAK");
+    }
+    #endif //NDEBUG
     assert(parameters->GetVoting()->GetOptions().size() == 3);
     {
       std::vector<std::string> v;

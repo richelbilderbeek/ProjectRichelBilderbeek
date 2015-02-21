@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtRoundedRectItem, rectangular-shaped QGraphicsItem
-Copyright (C) 2012-2014 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek and Claudio Tiecher
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <QPainter>
+#include <QGraphicsScene>
 
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -51,7 +52,8 @@ ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
-    | QGraphicsItem::ItemIsSelectable);
+    | QGraphicsItem::ItemIsSelectable
+    );
   this->SetContourPen(QPen(QColor(0,0,0),2.0));
   this->SetFocusPen(QPen(QColor(0,0,0),3.0,Qt::DashLine));
   const double height = 32.0;
@@ -82,7 +84,9 @@ void ribi::QtRoundedRectItem::dragMoveEvent(QGraphicsSceneDragDropEvent *) noexc
 
 double ribi::QtRoundedRectItem::GetInnerHeight() const noexcept
 {
-  const double pen_width = GetCurrentPen().widthF();
+  const double pen_width = GetFocusPen().widthF() > GetContourPen().widthF()
+                         ? GetFocusPen().widthF()
+                         : GetContourPen().widthF();
   return GetOuterHeight() - (2.0 * pen_width);
 }
 
@@ -98,7 +102,9 @@ QRectF ribi::QtRoundedRectItem::GetInnerRect() const noexcept
 
 double ribi::QtRoundedRectItem::GetInnerWidth() const noexcept
 {
-  const double pen_width = GetCurrentPen().widthF();
+  const double pen_width = GetFocusPen().widthF() > GetContourPen().widthF()
+                         ? GetFocusPen().widthF()
+                         : GetContourPen().widthF();
   return GetOuterWidth() - (2.0 * pen_width);
 }
 
@@ -112,7 +118,7 @@ QRectF ribi::QtRoundedRectItem::GetOuterRect() const noexcept
 
 std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
-  return "1.9";
+  return "1.10";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
@@ -127,7 +133,8 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2014-06-22: version 1.6: allow setting the inner and outer rectangle",
     "2014-08-07: version 1.7: renamed IncludingPen member functions to Outer",
     "2014-08-08: version 1.8: removed using with rectangles from interface, as it led to incorrectness and confusion",
-    "2014-08-09: version 1.9: increased use of TDD, fixed bug"
+    "2014-08-09: version 1.9: increased use of TDD, fixed bug",
+    "2015-02-08: version 1.10: gaining/losing focus for different pen widths work correctly"
   };
 }
 
@@ -136,33 +143,38 @@ void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) no
 {
   QGraphicsRectItem::mouseMoveEvent(event);
   this->update();
+  this->scene()->update(); //HIERO
   m_signal_pos_changed(this);
 }
 
 void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept
 {
   painter->setBrush(brush());
-  const double width{GetOuterWidth()};
+
+  const QPen thickest_pen = GetContourPen().widthF() > GetFocusPen().widthF()
+                         ? GetContourPen()
+                         : GetFocusPen();
+
   if (this->isSelected() || this->hasFocus())
   {
     painter->setPen(m_focus_pen);
+    assert(painter->pen() == m_focus_pen);
   }
   else
   {
     painter->setPen(m_contour_pen);
+    assert(painter->pen() == m_contour_pen);
   }
-  const double width_diff = width - GetCurrentPen().widthF();
+
+  const double w{GetOuterWidth() - (2 * thickest_pen.widthF()) + this->GetCurrentPen().widthF()};
+  const double h{GetOuterHeight() - (2 * thickest_pen.widthF()) + this->GetCurrentPen().widthF()};
+
   painter->drawRoundedRect(
     QRectF(
-      -0.5 * GetOuterWidth(),
-      -0.5 * GetOuterHeight(),
-       1.0 * GetOuterWidth(), //Width
-       1.0 * GetOuterHeight() //Height
-    ).adjusted( //Adjust to stay within rect
-      ( 1.0 * width) - width_diff, //+ 1.0,
-      ( 1.0 * width) - width_diff, //+ 1.0,
-      (-1.0 * width) + width_diff, //- 1.0,
-      (-1.0 * width) + width_diff  //- 1.0
+      -0.5 * w,
+      -0.5 * h,
+       1.0 * w, //Width
+       1.0 * h //Height
     ),
     m_radius_x,m_radius_y
   );
@@ -264,15 +276,21 @@ void ribi::QtRoundedRectItem::SetFocusPen(const QPen& pen) noexcept
 
 void ribi::QtRoundedRectItem::SetInnerHeight(const double height) noexcept
 {
+  const double pen_width = GetFocusPen().widthF() > GetContourPen().widthF()
+                         ? GetFocusPen().widthF()
+                         : GetContourPen().widthF();
   SetOuterHeight(
-    height + (2.0 * GetCurrentPen().widthF())
+    height + (2.0 * pen_width)
   );
 }
 
 void ribi::QtRoundedRectItem::SetInnerWidth(const double width) noexcept
 {
+  const double pen_width = GetFocusPen().widthF() > GetContourPen().widthF()
+                         ? GetFocusPen().widthF()
+                         : GetContourPen().widthF();
   SetOuterWidth(
-    width + (2.0 * GetCurrentPen().widthF())
+    width + (2.0 * pen_width)
   );
 }
 
@@ -337,11 +355,11 @@ bool ribi::operator==(const QtRoundedRectItem& lhs, const QtRoundedRectItem& rhs
 {
   return
        lhs.GetContourPen() == rhs.GetContourPen()
-    && lhs.GetFocusPen() == lhs.GetFocusPen()
-    && lhs.GetRadiusX() == lhs.GetRadiusX()
-    && lhs.GetRadiusY() == lhs.GetRadiusY()
-    && lhs.GetInnerWidth() == lhs.GetInnerWidth()
-    && lhs.GetInnerHeight() == lhs.GetInnerHeight()
+    && lhs.GetFocusPen() == rhs.GetFocusPen()
+    && lhs.GetRadiusX() == rhs.GetRadiusX()
+    && lhs.GetRadiusY() == rhs.GetRadiusY()
+    && lhs.GetInnerWidth() == rhs.GetInnerWidth()
+    && lhs.GetInnerHeight() == rhs.GetInnerHeight()
   ;
 }
 

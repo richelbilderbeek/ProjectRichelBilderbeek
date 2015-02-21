@@ -47,7 +47,7 @@ class TriangleMeshBuilder
   //TriangleMeshBuilder& operator=(      TriangleMeshBuilder&&) = delete;
   ~TriangleMeshBuilder() noexcept;
 
-  boost::shared_ptr<TriangleMeshBuilderImpl> m_impl;
+  const std::unique_ptr<TriangleMeshBuilderImpl> m_impl;
 
   #ifndef NDEBUG
   static void Test() noexcept;

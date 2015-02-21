@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtQuadBezierArrowItem, an quadratic Bezier arrow QGraphicsItem
-Copyright (C) 2012-2014 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -95,7 +95,11 @@ GetLineLineIntersections(
   typedef boost::geometry::model::d2::point_xy<T> Point;
   std::vector<Point> points;
   boost::geometry::intersection(line1,line2,points);
-  assert(points.empty() || points.size() == 1);
+
+  assert((points.empty() || points.size() == 1 || points.size() == 2)
+         && "0: The lines are parallel and not on top of each other"
+         && "1: The lines are crossing"
+         && "2: The lines are on top of each other"); //edit claudio_04122014
   return points;
 }
 
@@ -107,7 +111,7 @@ CreateLine(const std::vector<boost::geometry::model::d2::point_xy<T> >& v)
 {
   return boost::geometry::model::linestring<
     boost::geometry::model::d2::point_xy<T>
-  >(v.begin(),v.end());
+  >(std::begin(v),std::end(v));
 }
 
 ///Obtain the zero, one or two intersections between a line and a rectanle
@@ -146,13 +150,22 @@ GetLineRectIntersections(
       CreateLine(std::vector<Point>( {p2,p3} ))
     };
   std::vector<Point> points;
-  std::for_each(rect_sides.begin(),rect_sides.end(),
-    [&points,line](const Line& side)
+  for (const auto side: rect_sides)
+  {
+    const std::vector<Point> v = GetLineLineIntersections(line,side);
+    std::copy(v.begin(),v.end(),std::back_inserter(points));
+  }
+
+  //claudio edit_05122014
+  //the vector points must be sorted before deleting the duplicates
+  //because std::unique works on consecutive elements
+  std::sort( points.begin(),points.end(),
+    [](const Point& lhs, const Point& rhs)
     {
-      const std::vector<Point> v = GetLineLineIntersections(line,side);
-      std::copy(v.begin(),v.end(),std::back_inserter(points));
+      return lhs.x() == rhs.x() && lhs.y() == rhs.y();
     }
   );
+
   //Remove doublures
   //Put 'typename' before 'std::vector<Point>::iteratortype' to prevent getting the error below:
   //error: need 'typename' before 'std::vector<boost::geometry::model::d2::point_xy<T> >::iterator'
@@ -163,9 +176,14 @@ GetLineRectIntersections(
       return lhs.x() == rhs.x() && lhs.y() == rhs.y();
     }
   );
+
   points.erase(new_end,points.end());
 
-  assert(points.size() <= 2);
+  assert(points.size() <= 2
+         && "0: The line does not cross the rectangle"
+         && "1: The line crosses one edge or one corner of the rectangle"
+         && "2: The line is on top of one edge or crosses two edges of the rectangle"
+         ); // edit claudio_04122014
 
   return points;
 }
@@ -230,7 +248,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const noexcept
 
 QPointF ribi::QtQuadBezierArrowItem::GetCenter() const noexcept
 {
-  const QPointF center((m_from->pos() + m_to->pos()) / 2.0);
+  const QPointF center(GetToItem()->pos() + GetFromItem()->pos() / 2.0);
   return center;
 }
 
@@ -239,6 +257,9 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::linestring<Point> Line;
   typedef boost::geometry::model::box<Point> Rect;
+
+  //const bool debug = true;
+
 
   const QPointF beyond = GetBeyond();
 
@@ -250,6 +271,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
       }
     )
   );
+
 
   const QRectF qr_to = m_to->boundingRect().translated(m_to->pos());
 
@@ -270,15 +292,16 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
     //Yes,it happens, when the line does not leave the rectangle
     //this happens when the two node rectanges overlap
     assert(!p_head_end.empty());
-    assert(p_head_end.size() == 1); ///BUG?
+    assert(p_head_end.size() == 1); ///BUG? claudio does not think this is a bug:
+                                    ///one element is added two lines above
     return QPointF(p_head_end[0].x(),p_head_end[0].y());
   }
   else
   {
     assert(p_head_end.size() == 2);
     //Choose point closest to beyond
-    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[0].x(),p_head_end[0].x());
-    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[1].x(),p_head_end[1].x());
+    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[0].x(),p_head_end[0].y());
+    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[1].x(),p_head_end[1].y());
     if (d1 <= d2)
     {
       return QPointF(p_head_end[0].x(),p_head_end[0].y());
@@ -333,8 +356,8 @@ QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
   {
     assert(p_tail_end.size() == 2);
     //Choose point closest to beyond
-    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[0].x(),p_tail_end[0].x());
-    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[1].x(),p_tail_end[1].x());
+    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[0].x(),p_tail_end[0].y());
+    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[1].x(),p_tail_end[1].y());
     if (d1 <= d2)
     {
       return QPointF(p_tail_end[0].x(),p_tail_end[0].y());
@@ -411,8 +434,6 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
 {
   painter->setRenderHint(QPainter::Antialiasing);
 
-  if (GetMidItem()) painter->drawEllipse(GetMidItem()->pos(),1,1);
-
   if (this->isSelected() || this->hasFocus())
   {
     painter->setPen(m_focus_pen);
@@ -426,14 +447,23 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
   // - define point 'center' as the middle between from and to
   // - define point 'beyond' as the mirror point of 'center', using mid_pos as a mirror
 
-  const QPointF beyond{GetBeyond()};
-  const QPointF p_tail_end{GetTail()};
-  const QPointF p_head_end{GetHead()};
+  const QPointF p_end_head{GetHead()};
+  const QPointF p_end_tail{GetTail()};
+
+  const QPointF p_center((p_end_tail + p_end_head) / 2.0);
+  const double dx_mid_center = GetMidItem() ? (GetMidItem()->pos().x() - p_center.x()) : 0.0;
+  const double dy_mid_center = GetMidItem() ? (GetMidItem()->pos().y() - p_center.y()) : 0.0;
+  const QPointF p_beyond(p_center.x() + dx_mid_center + dx_mid_center, p_center.y() + dy_mid_center + dy_mid_center);
 
   QPainterPath curve;
-  curve.moveTo(p_tail_end);
-  curve.quadTo(beyond,p_head_end);
+  curve.moveTo(p_end_tail);
+  curve.quadTo(p_beyond,p_end_head);
   painter->drawPath(curve);
+
+  if (GetMidItem())
+  {
+    painter->drawEllipse(GetMidItem()->pos(),1,1);
+  }
 
   {
     const double sz = 10.0; //pixels
@@ -442,13 +472,31 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       //The angle from midpoint to tail
       //Thanks goes out to Toine van den Bogaart and Theo van den Bogaart for being happy to help with the math
       const double pi{boost::math::constants::pi<double>()};
-      const double dx{beyond.x() - m_from->pos().x()};
-      const double dy{beyond.y() - m_from->pos().y()};
+      //#define USE_RICHEL_EDIT_20141204
+      #ifdef USE_RICHEL_EDIT_20141204
+      const double dx{p_beyond.x() - m_from->pos().x()};
+      const double dy{p_beyond.y() - m_from->pos().y()};
       const double arrowangle{0.1*pi};
       double angle1{0.5*pi + arrowangle - Geometry().GetAngleClockScreen(-dx,-dy)};
       double angle2{0.5*pi + arrowangle - Geometry().GetAngleClockScreen(-dx,-dy)};
+      #endif // USE_RICHEL_EDIT_20141204
+      #define USE_CLAUDIO_EDIT_20141205
+      #ifdef USE_CLAUDIO_EDIT_20141205
+      const double dx{p_end_tail.x() - p_beyond.x()};
+      const double dy{p_end_tail.y() - p_beyond.y()};
+      double angle1{0.6*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
+      double angle2{0.4*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
+      #endif // USE_CLAUDIO_EDIT_20141205
+      //#define USE_RICHEL_EDIT_20150209
+      #ifdef USE_RICHEL_EDIT_20150209
+      const double dx{p_end_tail.x() - p_beyond.x()};
+      const double dy{p_end_tail.y() - p_beyond.y()};
+      double angle1{0.5*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
+      double angle2{0.5*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
+      #endif
 
-      const QPointF p0{p_tail_end.x(),p_tail_end.y()};
+      const QPointF p0{p_end_tail.x(),p_end_tail.y()};
+      #ifdef USE_RICHEL_2014
       const QPointF p1
         = p0 + QPointF(
            std::cos(angle1) * sz,
@@ -457,6 +505,16 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
         = p0 + QPointF(
            std::cos(angle2) * sz,
            -std::sin(angle2) * sz);
+      #else // USE_RICHEL_2014
+      const QPointF p1
+        = p0 + QPointF(
+           std::sin(angle1) * sz,
+           -std::cos(angle1) * sz);
+      const QPointF p2
+        = p0 + QPointF(
+           std::sin(angle2) * sz,
+           -std::cos(angle2) * sz);
+      #endif // USE_ORIGINAL
       painter->drawPolygon(QPolygonF() << p0 << p1 << p2);
     }
     if (m_head)
@@ -464,12 +522,12 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       //The angle from midpoint to head
       //Thanks goes out to Toine van den Bogaart and Theo van den Bogaart for being happy to help with the math
       const double pi{boost::math::constants::pi<double>()};
-      const double dx{m_to->pos().x() - beyond.x()};
-      const double dy{(m_to->pos().y() - beyond.y())};
+      const double dx{p_end_head.x() - p_beyond.x()};
+      const double dy{(p_end_head.y() - p_beyond.y())};
       double angle1{0.6*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
       double angle2{0.4*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
 
-      const QPointF p0(p_head_end.x(),p_head_end.y());
+      const QPointF p0(p_end_head.x(),p_end_head.y());
       const QPointF p1
         = p0 + QPointF( 
            std::cos(angle1) * sz,
@@ -564,13 +622,17 @@ void ribi::QtQuadBezierArrowItem::SetToPos(const QPointF& pos) noexcept
 
 QPainterPath ribi::QtQuadBezierArrowItem::shape() const noexcept
 {
-  const QPointF beyond = GetBeyond();
-  const QPointF p_tail_end = GetTail();
-  const QPointF p_head_end = GetHead();
+  const QPointF p_end_tail = GetHead();
+  const QPointF p_end_head = GetTail();
+
+  const QPointF p_center((p_end_tail + p_end_head) / 2.0);
+  const double dx_mid_center = GetMidItem() ? (GetMidItem()->pos().x() - p_center.x()) : 0.0;
+  const double dy_mid_center = GetMidItem() ? (GetMidItem()->pos().y() - p_center.y()) : 0.0;
+  const QPointF p_beyond(p_center.x() + dx_mid_center + dx_mid_center, p_center.y() + dy_mid_center + dy_mid_center);
 
   QPainterPath curve;
-  curve.moveTo(p_tail_end);
-  curve.quadTo(beyond,p_head_end);
+  curve.moveTo(p_end_tail);
+  curve.quadTo(p_beyond,p_end_head);
 
   QPainterPathStroker stroker;
   stroker.setWidth(m_click_easy_width);
@@ -585,8 +647,48 @@ void ribi::QtQuadBezierArrowItem::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  Geometry();
+  {
+    Geometry();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+
+  /*
+  //Render one QtQuadBezierArrowItem
+  {
+    std::unique_ptr<QGraphicsScene> my_scene{new QGraphicsScene};
+    std::vector<QGraphicsRectItem *> rects;
+    const int n_items = 3;
+    const double ray = 100;
+    for (int i=0; i!=n_items; ++i)
+    {
+      const double pi = boost::math::constants::pi<double>();
+      const double angle = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
+      const double x1 =  std::sin(angle) * ray;
+      const double y1 = -std::cos(angle) * ray;
+      QGraphicsRectItem * const rect = new QGraphicsRectItem;
+      rect->setRect(-8.0,-4.0,16.0,8.0);
+      rect->setPos(x1,y1);
+      assert(!rect->scene());
+      my_scene->addItem(rect);
+      rects.push_back(rect);
+    }
+    for (int i=0; i<n_items-2; i+=3)
+    {
+      assert(i + 2 < n_items);
+      QtQuadBezierArrowItem * const item = new QtQuadBezierArrowItem(
+        rects[(i+0) % n_items],
+        false,
+        rects[(i+1) % n_items],
+        true,
+        rects[(i+2) % n_items]);
+      assert(!item->scene());
+      my_scene->addItem(item);
+    }
+    QGraphicsScene().render(
+    //my_scene->
+    QGraphicsScene q;
+  }
+  */
 }
 #endif
 

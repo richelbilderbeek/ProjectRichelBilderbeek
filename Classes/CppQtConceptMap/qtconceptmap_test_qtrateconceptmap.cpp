@@ -24,13 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtrateconceptmap.h"
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <QGraphicsItem>
 
 #include "conceptmapfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -42,14 +39,9 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   //Test base class
   {
-    const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
+    const auto v = ribi::cmap::ConceptMapFactory().GetAllTests();
     for (const boost::shared_ptr<ConceptMap> concept_map: v)
     {
       boost::shared_ptr<QtConceptMap> widget(new This_t(concept_map));
@@ -57,6 +49,7 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept
       QtConceptMap::Test(widget);
     }
   }
+  const TestTimer test_timer{__func__,__FILE__,0.1};
   /*
   {
     const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
@@ -72,12 +65,7 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept
     }
   }
   */
-  TRACE("ribi::cmap::QtConceptMapRateWidget::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
+
 }
 #endif
 

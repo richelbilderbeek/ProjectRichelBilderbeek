@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeBreaker, code breaking class
-Copyright (C) 2014-2014 Richel Bilderbeek
+Copyright (C) 2014-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -348,7 +348,7 @@ int ribi::CodeBreaker::GuessCaesarCipherKey(
     }
   }
   //The lower the value the better
-  return std::distance(v.begin(),std::min_element(v.begin(),v.end()));
+  return std::distance(v.begin(),std::min_element(std::begin(v),std::end(v)));
 }
 
 int ribi::CodeBreaker::GuessVigenereCipherKeyLength(const std::string& secret_text) const noexcept

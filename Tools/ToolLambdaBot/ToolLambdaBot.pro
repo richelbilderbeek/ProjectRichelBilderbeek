@@ -1,16 +1,8 @@
-TEMPLATE = app
-CONFIG += console
-CONFIG -= app_bundle
-CONFIG -= qt
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
+include(../../ConsoleApplication.pri)
+include(../../Libraries/Boost.pri)
+include(../../Libraries/GeneralConsole.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppIrcBot
+include(../../Classes/CppIrcBot/CppIrcBot.pri)
 
-SOURCES += \
-    main.cpp \
-    ../../Classes/CppIrcBot/ircbot.cpp
-
-HEADERS += \
-    ../../Classes/CppIrcBot/ircbot.h
+SOURCES += main.cpp
 

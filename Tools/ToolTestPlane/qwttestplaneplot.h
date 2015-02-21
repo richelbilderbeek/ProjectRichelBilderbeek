@@ -37,14 +37,15 @@ public:
   QwtTestPlanePlot(const QwtTestPlanePlot&) = delete;
   QwtTestPlanePlot& operator=(const QwtTestPlanePlot&) = delete;
 
-public slots:
-
   void SetData(
-  const boost::shared_ptr<Plane>& plane,
-  const std::function<Coordinat3D(const double, const double)>& f,
+    const boost::shared_ptr<Plane>& plane,
+    const std::function<Coordinat3D(const double, const double)>& f,
     const double miny, const double maxy,
     const double minz, const double maxz
   );
+
+public slots:
+
 
 private:
   QwtPlotSpectrogram * const m_spectrogram;

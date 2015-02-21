@@ -12,7 +12,6 @@
 #include <QKeyEvent>
 #include <QTimer>
 
-
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
@@ -23,6 +22,7 @@
 #include "hometrainermaindialog.h"
 #include "qtopenquestiondialog.h"
 #include "questiondialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qthometrainermaindialog.h"
 
@@ -134,7 +134,8 @@ void ribi::QtHometrainerMainDialog::OnSubmitted(const bool is_correct)
 
   QTimer::singleShot(
     is_correct ? 1000 : 5000,
-    this,SLOT(NewQuestion()));
+    this,SLOT(NewQuestion())
+  );
 
 }
 
@@ -178,7 +179,7 @@ void ribi::QtHometrainerMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtHometrainerMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   std::vector<boost::shared_ptr<const Question> > v;
   {
     const boost::shared_ptr<const Question> q {
@@ -198,10 +199,5 @@ void ribi::QtHometrainerMainDialog::Test() noexcept
   };
 
   QtHometrainerMainDialog d(dialog);
-  TRACE("Finished ribi::QtHometrainerMainDialog::Test successfully");
 }
 #endif
-
-
-
-

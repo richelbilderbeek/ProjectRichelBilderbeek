@@ -137,7 +137,7 @@ void ribi::gtst::ServerStateGroupAssign::Start()
   std::for_each(ps.begin(),ps.end(),
     [this](const boost::shared_ptr<const Participant>& p)
     {
-      StateGroupAssign * const state
+      const StateGroupAssign * const state
         = dynamic_cast<const StateGroupAssign*>(this);
       assert(state);
       this->FindParticipant(p)->SetState(state);

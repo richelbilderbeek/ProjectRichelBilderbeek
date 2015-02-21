@@ -39,9 +39,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnode.h"
 #include "qtconceptmapcenternode.h"
 #include "qtconceptmapdisplaystrategy.h"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 #include "qtconceptmapexamplesitem.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmaprateconceptdialognewname.h"
 #include "qtconceptmaprateexamplesdialognewname.h"
 #include "qtconceptmapratestrategy.h"
@@ -86,6 +86,7 @@ ribi::cmap::QtRateConceptMap::QtRateConceptMap(
   //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
+#ifdef NOT_NOW_20141111
 ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
@@ -164,21 +165,25 @@ ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetNode()->GetY()) < epsilon);
   return qtedge;
 }
+#endif // NOT_NOW_20141111
 
 ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_ptr<Node> node)
 {
   //const boost::shared_ptr<QtRateStrategy> display_strategy(new QtRateStrategy(node->GetConcept()));
   //assert(display_strategy);
   //QtNode * const qtnode = new QtNode(node,display_strategy);
+
   QtNode * const qtnode {
     IsCenterNode(node)
     ? new QtCenterNode(boost::dynamic_pointer_cast<CenterNode>(node))
-    : new QtNode(node,GetDisplayStrategy(node->GetConcept()))
+    : new QtNode(node)
   };
+
   assert(qtnode);
   assert(IsCenterNode(qtnode->GetNode()) == IsQtCenterNode(qtnode)
     && "Should be equivalent");
 
+  #ifdef NOT_NOW_20141111
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(
    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
@@ -198,6 +203,7 @@ ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_p
     boost::bind(
       &ribi::cmap::QtRateConceptMap::OnNodeRequestsRateExamples,
       this, boost::lambda::_1)); //Do not forget the placeholder!
+  #endif // NOT_NOW_20141111
 
   assert(!qtnode->scene());
   this->scene()->addItem(qtnode);
@@ -207,9 +213,6 @@ ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_p
     GetConceptMap()->GetNodes().end(),
     node) == 1 && "Assume Node is already in the concept map");
   //this->GetConceptMap()->AddNode(node);
-
-  assert(qtnode->pos().x() == node->GetX());
-  assert(qtnode->pos().y() == node->GetY());
 
   //Cannot test this: during construction not all nodes are put in
   //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
@@ -248,7 +251,7 @@ void ribi::cmap::QtRateConceptMap::CleanMe()
 std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtRateConceptMap::CreateNewDerived() const
 {
   const boost::shared_ptr<ConceptMap> concept_map
-    = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+    = ribi::cmap::ConceptMapFactory().DeepCopy(this->GetConceptMap());
   assert(concept_map);
   std::unique_ptr<QtConceptMap> p(new This_t(concept_map));
   return p;
@@ -311,7 +314,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptMap::Cr
     edges.push_back(edge);
   }
   assert(ConceptMap::CanConstruct(nodes,edges));
-  const boost::shared_ptr<ConceptMap> concept_map(cmap::ConceptMapFactory::Create(nodes,edges));
+  const boost::shared_ptr<ConceptMap> concept_map(cmap::ConceptMapFactory().Create(nodes,edges));
   assert(concept_map);
   assert(focal_node == concept_map->GetFocalNode());
 
@@ -330,6 +333,7 @@ void ribi::cmap::QtRateConceptMap::DoRandomStuff()
 }
 #endif
 
+#ifdef NOT_NOW_20141111
 const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtRateConceptMap::GetDisplayStrategy(
   const boost::shared_ptr<Concept> concept) const noexcept
 {
@@ -340,6 +344,7 @@ const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtRateCon
   assert(display_strategy);
   return display_strategy;
 }
+#endif // NOT_NOW_20141111
 
 void ribi::cmap::QtRateConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
@@ -347,7 +352,7 @@ void ribi::cmap::QtRateConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* 
   //This allows to omit showing these in the PDF versions used for printing (#205)
   if (!GetExamplesItem()) return;
 
-  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
+  GetExamplesItem()->SetBuddyItem(item);
   scene()->update();
 }
 

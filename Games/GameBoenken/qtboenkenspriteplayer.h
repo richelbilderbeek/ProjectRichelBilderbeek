@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2014 Richel Bilderbeek
+Copyright (C) 2007-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ namespace Boenken {
 
 ///SpritePlayer is a MovingSprite that can respond to input
 ///and can only be deleted by boost::checked_delete
-struct SpritePlayer : public Boenken::SpriteMoving
+struct SpritePlayer final : public SpriteMoving
 {
   SpritePlayer(
     const double x,
@@ -42,25 +42,26 @@ struct SpritePlayer : public Boenken::SpriteMoving
     const int size,
     const unsigned char r,
     const unsigned char g,
-    const unsigned char b);
+    const unsigned char b
+  );
+  ~SpritePlayer();
 
   void Accelerate() noexcept;
-  void Draw(QPainter& painter) const;
-  void Move() noexcept;
+  void Draw(QPainter& painter) const override;
+  double GetAngle() const noexcept { return m_angle; }
+  void Move() noexcept override;
+  void SetSpeed(const double dx, const double dy) noexcept override;
   void TurnRight() noexcept;
 
   ///The SpritePlayer's ID
   const int m_id;
 
   private:
-  ///Ensure SpritePlayer can only be deleted by boost::checked_delete
-  ~SpritePlayer() noexcept;
-  friend void boost::checked_delete<>(SpritePlayer* x);
-
+  ///Direction the player looks to
+  ///Angle following the clock (0 = 12 o'clock, 0.5*pi = 3 o'clock)
+  ///Note: the actual moving is done by m_dx and m_dy
   double m_angle;
 
-  ///SpritePlayer is no base class
-  void dummy_make_me_abstract() const {}
   static const double m_acceleration;
   static const double m_turnspeed;
   static int ms_n_players;

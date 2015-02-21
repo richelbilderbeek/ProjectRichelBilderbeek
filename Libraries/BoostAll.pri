@@ -7,6 +7,7 @@ win32 {
     -L/../../Libraries/boost_1_55_0/bin.v2/libs \
     -lboost_date_time \
     -lboost_filesystem \
+    -lboost_locale \
     -lboost_program_options \
     -lboost_regex \
     -lboost_signals \
@@ -21,6 +22,7 @@ macx {
   LIBS += \
     -lboost_date_time \
     -lboost_filesystem \
+    -lboost_locale \
     -lboost_program_options \
     -lboost_regex \
     -lboost_signals \
@@ -35,6 +37,7 @@ unix:!macx{
   LIBS += \
     -lboost_date_time \
     -lboost_filesystem \
+    -lboost_locale \
     -lboost_program_options \
     -lboost_regex \
     -lboost_signals \ #Deprecated
@@ -47,6 +50,7 @@ cross_compile {
   LIBS += \
     -lboost_date_time \
     -lboost_filesystem \
+    -lboost_locale \
     -lboost_program_options \
     -lboost_regex \
     -lboost_signals \

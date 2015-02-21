@@ -21,8 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPCONCEPTMAP_H
 #define QTCONCEPTMAPCONCEPTMAP_H
 
-#ifdef NOT_NOW_20140810
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -94,7 +92,9 @@ protected:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
+  #ifdef NOT_NOW_20141111
   virtual QtEdge * AddEdge(const boost::shared_ptr<Edge> edge) = 0;
+  #endif // NOT_NOW_20141111
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
@@ -113,7 +113,8 @@ protected:
   void DeleteEdge(QtEdge * const edge);
 
   ///Delete a Node
-  void DeleteNode(const boost::shared_ptr<QtNode>& node);
+  //void DeleteNode(const boost::shared_ptr<QtNode>& node);
+  void DeleteNode(const QtNode * const node);
 
   ///Get all the edges connected to the concept
   std::vector<QtEdge*> FindEdges(const QtNode * const from) const noexcept;
@@ -185,8 +186,11 @@ private:
   ///- Display/read-only concept map: DisplayStrategy
   ///- Editable: EditStrategy
   ///- Rateable: RateStrategy
-  virtual const boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
-    const boost::shared_ptr<Concept> concept) const noexcept = 0;
+  #ifdef NOT_NOW_20141111
+  virtual boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
+    const boost::shared_ptr<Concept> concept
+  ) const noexcept = 0;
+  #endif // NOT_NOW_20141111
 
 public slots:
 
@@ -205,8 +209,4 @@ public slots:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // NOT_NOW_20140810
-
 #endif // QTCONCEPTMAPCONCEPTMAP_H
-
-#endif // NOT_NOW_20140810

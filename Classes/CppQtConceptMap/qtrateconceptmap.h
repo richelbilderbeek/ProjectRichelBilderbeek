@@ -26,7 +26,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapfwd.h"
 
 namespace ribi {
-
 namespace cmap {
 
 ///Rateable QtConceptMap with a low-level interface
@@ -60,8 +59,10 @@ struct QtRateConceptMap : public QtConceptMap
 
 private:
 
+  #ifdef NOT_NOW_20141111
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
+  #endif // NOT_NOW_20141111
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///For rating and editing, the node must be non-cost
@@ -75,9 +76,11 @@ private:
   ///Item is non-const, as all items can be edited in other contexts
   const boost::shared_ptr<ConceptMap> CreateSubConceptMap(QtNode * const item);
 
+  #ifdef NOT_NOW_20141111
   ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
   const boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
     const boost::shared_ptr<Concept> concept) const noexcept;
+  #endif // NOT_NOW_20141111
 
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted

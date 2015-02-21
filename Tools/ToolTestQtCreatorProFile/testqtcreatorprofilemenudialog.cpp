@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQtCreatorProFile, tool to test the QtCreatorProFile class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout() const noexcept
     "TestQtCreatorProFile",
     "tool to test the QtCreatorProFile class",
     "the 18th May 2013",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolTestQtCreatorProFile.htm",
     GetVersion(),
     GetVersionHistory());

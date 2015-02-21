@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ImageCanvas, class to convert an image to ASCII art
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ ribi::ImageCanvas::ImageCanvas(
   const std::string& filename,
   const int n_cols,
   const ribi::CanvasColorSystem colorSystem,
-  const ribi::CanvasCoordinatSystem coordinatSystem)
+  const ribi::CanvasCoordinatSystem coordinatSystem) noexcept
   : m_canvas{ConvertToGreyYx(filename)},
     m_color_system(colorSystem),
     m_coordinat_system(coordinatSystem),
@@ -167,7 +167,7 @@ std::vector<std::vector<double>>
   return v;
 }
 
-std::vector<std::vector<double> >
+std::vector<std::vector<double>>
   ribi::ImageCanvas::ConvertToGreyYx(const std::string& filename) noexcept
 {
   const boost::scoped_ptr<QImage> qimage{

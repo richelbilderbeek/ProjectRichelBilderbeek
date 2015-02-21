@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 SurfacePlotter, plots a bivariate function
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -136,7 +136,9 @@ void ribi::QtSurfacePlotterRibiDialog::OnAnyChange()
     double operator()(const double x, const double y) const noexcept
     {
       const double xs[2] = { x,y };
-      const double z = m_f.Eval(xs);
+      //FunctionParser::Eval is not const, although it does not change
+      //the state of the FunctionParser itself
+      const double z{const_cast<FunctionParser&>(m_f).Eval(xs)};
       return m_f.EvalError() ? 0.0 : z;
     }
     private:

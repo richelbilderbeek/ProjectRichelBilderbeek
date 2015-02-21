@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -166,7 +166,7 @@ void ribi::c2h::Test()
     std::vector<std::string> v = result;
     v.push_back("x.txt"); //Text files should be filtered away
     v.push_back("y.txt"); //Text files should be filtered away
-    std::random_shuffle(v.begin(),v.end());
+    std::random_shuffle(std::begin(v),std::end(v));
     v = SortFiles(FilterFiles(v));
     assert(v == result);
   }

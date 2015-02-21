@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestNewickVector, GUI tool to test NewickVector
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,16 +32,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 /// \version 2.0
 /// \date    2011-02-21
 ///
-//---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-//---------------------------------------------------------------------------
+
 #include <iomanip>
 #include "newick.h"
 #include "newickvector.h"
-//---------------------------------------------------------------------------
+
 int main(int argc, char *argv[])
 {
   if (argc != 3)
@@ -58,7 +53,7 @@ int main(int argc, char *argv[])
     return 1;
   }
   const std::string newick = argv[1];
-  if (!Newick::IsNewick(newick))
+  if (!ribi::Newick::IsNewick(newick))
   {
     std::cout
       << "Invalid Newick format. Use for example:\n"
@@ -78,7 +73,6 @@ int main(int argc, char *argv[])
 
   }
   const double theta = boost::lexical_cast<double>(argv[2]);
-  const double p = NewickVector::CalculateProbability(newick,theta);
+  const double p = ribi::NewickVector::CalculateProbability(newick,theta);
   std::cout << std::setprecision(99) << p << '\n';
 }
-//---------------------------------------------------------------------------

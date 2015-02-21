@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 NewickVector, class to store a Newick as a std::vector<int>
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -224,7 +224,7 @@ const std::vector<ribi::NewickVector> ribi::NewickVector::GetSimplerNewicks() co
 {
   assert(Newick::IsNewick(m_v));
   const std::vector<std::vector<int> > v = Newick::GetSimplerBinaryNewicks(m_v);
-  std::vector<NewickVector> w(v.begin(),v.end());
+  std::vector<NewickVector> w(std::begin(v),std::end(v));
   return w;
 }
 

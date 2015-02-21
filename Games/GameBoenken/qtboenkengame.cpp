@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2014 Richel Bilderbeek
+Copyright (C) 2007-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtboenkenspritemoving.h"
 #include "qtboenkenspritenonmoving.h"
 #include "qtboenkenspriteplayer.h"
+#include "testtimer.h"
 
 #pragma GCC diagnostic pop
 
@@ -213,6 +214,7 @@ void ribi::Boenken::Game::Test() noexcept
     ArenaSettings arena_settings;
     const Controls controls;
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 
 ///Moves all sprites
@@ -245,7 +247,7 @@ void ribi::Boenken::Game::tick()
     {
       for(SpriteMoving* const s2: m_moving_sprites)
       {
-        SpriteNonMoving::Collision(s1.get(),s2);
+        SpriteNonMoving::Collision(*s1,*s2);
       }
     }
   }

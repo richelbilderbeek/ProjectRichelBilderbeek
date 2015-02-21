@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2014 Richel Bilderbeek
+Copyright (C) 2007-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPixmap>
 
 #include "geometry.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ///The maximum x coordinat a Sprite can have
@@ -89,6 +90,15 @@ std::vector<std::string> ribi::Boenken::Sprite::GetVersionHistory() noexcept
   };
 }
 
+bool ribi::Boenken::Sprite::IsCollision(const Sprite& p1, const Sprite& p2) noexcept
+{
+  const double dx = p2.getX() - p1.getX();
+  const double dy = p2.getY() - p1.getY();
+  const double distance = std::sqrt((dy * dy) + (dx * dx));
+  const double collision_distance
+    = boost::numeric_cast<double>(p1.m_size + p2.m_size) / 2.0;
+  return distance < collision_distance;
+}
 
 void ribi::Boenken::Sprite::setArenaSize(const int width, const int height)
 {
@@ -104,6 +114,7 @@ void ribi::Boenken::Sprite::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test GetAngle
   const double pi = boost::math::constants::pi<double>();
   {
@@ -145,6 +156,10 @@ void ribi::Boenken::Sprite::Test() noexcept
     const double angle =  GetAngle(-1.0,-1.0); //North-West
     const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
+  }
+  //IsCollision
+  {
+
   }
 }
 #endif

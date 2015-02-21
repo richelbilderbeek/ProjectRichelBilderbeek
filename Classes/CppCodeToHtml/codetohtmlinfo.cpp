@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -2123,6 +2123,37 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppGetRandomNormal",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetRandomNormal.htm\">GetRandomNormal</a> is a ",
+        "  <a href=\"CppRandom.htm\">random</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to draw a value from a normal distribution with average 'mean' and a",
+        "  standard deviation of 'sigma'.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppGetRandomUniform",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetRandomUniform.htm\">GetRandomUniform</a> is a ",
+        "  <a href=\"CppRandom.htm\">random</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to draw a value from 0.0 to (and not including) 1.0.",
+        "  All values have an equal likelyhood to be drawn.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppGetRegexMatches",
       {
@@ -2174,6 +2205,27 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"CppBoost.htm\">Boost</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
         "  <li><img src=\"PicStl.png\" alt=\"STL\"/> <a href=\"CppStl.htm\">STL</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppGetToday",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetToday.htm\">GetToday</a> is a <a href=\"CppTime.htm\">time</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a> to obtain today its date.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetToday.htm\">GetToday</a> can depend on two different <a href=\"CppLibrary.htm\">libraries</a>:",
+        "</p>",
+        "<ul>",
+        "  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"CppBoostDate_Time.htm\">Boost.Date_Time</a></li>",
+        "  <li><img src=\"PicStl.png\" alt=\"STL\"/> <a href=\"CppStl.htm\">STL</a></li>",
         "</ul>"
       }
     }
@@ -7660,6 +7712,35 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppStdRandom_shuffle",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdRandom_shuffle.htm\">std::random_shuffle</a> is an <a href=\"CppStl.htm\">STL</a>",
+        "  <a href=\"CppAlgorithm.htm\">algorithm</a> to shuffle all elements in a <a href=\"CppContainer.htm\">container</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdRandom_shuffle.htm\">std::random_shuffle</a> is labelled deprecated in the C++14",
+        "  Standard [1] and is planned for removal in C++17. Use <a href=\"CppStdShuffle.htm\">std::shuffle</a> instead.",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"CppReferences.htm\">References</a></h2>",
+        "<p>&nbsp;</p>",
+        "<ol>",
+        "  <li><!--  1 --><!-- C++14 -->Working Draft, Standard for Programming Language C++. 2014-08-22. N3936. Paragraph D.12. 'The function templates random_shuffle are deprecated'</li>",
+        "</ol>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppStdSetExample1",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -7726,6 +7807,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppStdSetExample6.htm\">std::set example 6</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdShuffle",
+      {
+        "<p><img src=\"PicCpp14.png\" alt=\"C++14\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdShuffle.htm\">std::shuffle</a> is an <a href=\"CppStl.htm\">STL</a>",
+        "  <a href=\"CppAlgorithm.htm\">algorithm</a> to shuffle all elements in a <a href=\"CppContainer.htm\">container</a>.",
         "</p>"
       }
     }
@@ -13564,7 +13658,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
         "<table summary=\"Hometrainer example file\" border = \"1\"><tr><td><code>",
-        "Hometrainer (C) 2009-2014 Richel Bilderbeek<br/>",
+        "Hometrainer (C) 2009-2015 Richel Bilderbeek<br/>",
         "Humanbody.bmp,Which line points to the liver?,1,2,3,4<br/>",
         "Humanbody.bmp,Which line points to the liver?,1/one/One<br/>",
         "Humanbody.bmp,Which organ does line 1 point to?,The liver/the liver/Liver/liver<br/>",
@@ -13724,7 +13818,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
         "<table summary=\"Hometrainer example file\" border = \"1\"><tr><td><code>",
-        "Hometrainer (C) 2009-2014 Richel Bilderbeek<br/>",
+        "Hometrainer (C) 2009-2015 Richel Bilderbeek<br/>",
         "Humanbody.bmp,Which line points to the liver?,1,2,3,4<br/>",
         "Humanbody.bmp,Which line points to the liver?,1/one/One<br/>",
         "Humanbody.bmp,Which organ does line 1 point to?,The liver/the liver/Liver/liver<br/>",

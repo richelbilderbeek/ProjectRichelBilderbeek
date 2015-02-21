@@ -16,7 +16,7 @@ namespace Ui {
 namespace ribi {
 namespace taba {
 
-struct QtGameWidget;
+struct QtArenaWidget;
 
 
 class QtTankBattalionGameDialog : public QDialog
@@ -30,7 +30,7 @@ public:
   ~QtTankBattalionGameDialog();
 
 private:
-  boost::shared_ptr<QtGameWidget> m_game;
+  boost::shared_ptr<QtArenaWidget> m_game;
   Ui::QtTankBattalionGameDialog *ui;
 
   #ifndef NDEBUG
@@ -39,7 +39,7 @@ private:
 
   void keyPressEvent(QKeyEvent *);
   void keyReleaseEvent(QKeyEvent *);
-  //void paintEvent(QPaintEvent *);
+  void paintEvent(QPaintEvent *);
   //void resizeEvent(QResizeEvent *);
 };
 

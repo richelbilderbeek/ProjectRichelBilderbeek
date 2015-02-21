@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Classes/CppCanvas
+    ../../Classes/CppIrcBot
 
 SOURCES += \
-    ../../Classes/CppCanvas/canvas.cpp
+    ../../Classes/CppIrcBot/ircbot.cpp
 
 HEADERS  += \
-    ../../Classes/CppCanvas/canvas.h
+    ../../Classes/CppIrcBot/ircbot.h
 
 OTHER_FILES += \
-    ../../Classes/CppCanvas/Licence.txt
+    ../../Classes/CppIrcBot/Licence.txt
 

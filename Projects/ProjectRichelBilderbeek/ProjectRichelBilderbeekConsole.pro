@@ -1,4 +1,4 @@
-include(../../ConsoleApplication.pri)
+include(../../ConsoleApplicationNoWeffcpp.pri)
 
 include(../../Libraries/Apfloat.pri)
 include(../../Libraries/BigInteger.pri)
@@ -80,6 +80,7 @@ include(../../Classes/CppSimpleLinearRegression/CppSimpleLinearRegression.pri)
 include(../../Classes/CppSortedBinaryNewickVector/CppSortedBinaryNewickVector.pri)
 include(../../Classes/CppStateObserver/CppStateObserver.pri)
 include(../../Classes/CppStopwatch/CppStopwatch.pri)
+include(../../Classes/CppTempLocale/CppTempLocale.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 include(../../Classes/CppTicTacToe/CppTicTacToe.pri)
 include(../../Classes/CppToggleButton/CppToggleButton.pri)

@@ -18,72 +18,34 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppConstexpr.htm">constexpr</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicCpp11.png" alt="C++11"/> <a href="CppConstexpr.htm">constexpr</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppConstexpr.htm">constexpr</a> is a <a href="CppKeyword.htm">keyword</a> 
-that has different meanings, depending on the <a href="CppStandard.htm">standard</a> used:</p>
+<p>
+  <a href="CppConstexpr.htm">constexpr</a> is a <a href="Cpp11.htm">C++11</a> <a href="CppKeyword.htm">keyword</a> for
+  generalized constant expressions. In other words, <a href="CppConstexpr.htm">constexpr</a> indicates
+  that an expression will always <a href="CppReturn.htm">return</a> the same values, thus rendering 
+  this <a href="CppReturn.htm">return</a> value a compile-time
+  constant. 
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppExamples.htm">Examples</a></h2>
+<p>&nbsp;</p>
 <ul>
-  <li>
-    <img src="PicCpp98.png" alt="C++98"/> 
-    <a href="CppConstexpr.htm">constexpr</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
-  </li>
-  <li>
-    <img src="PicCpp11.png" alt="C++11"/> 
-    <a href="CppConstexpr.htm">constexpr</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
-  </li>
+  <li><a href="CppConstexprExample1.htm">constexpr example 1: use constexpr to set an array its size</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>
-  <img src="PicCpp98.png" alt="C++98"/> 
-  <a href="CppConstexpr.htm">constexpr</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
-</h2>
-<p>&nbsp;</p>
-<p><a href="CppConstexpr.htm">constexpr</a> is not supported in <a href="Cpp98.htm">C++98</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>
-  <img src="PicCpp11.png" alt="C++11"/> 
-  <a href="CppConstexpr.htm">constexpr</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
-</h2>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppConstexpr.zip">Download the Qt Creator project 'CppConstexpr' (zip)</a></li>
-</ul>
-<p>&nbsp;</p>
-<p>An <a href="CppConstexpr.htm">constexpr</a> is a <a href="CppKeyword.htm">keyword</a> for
-generalized constant expressions. In other words, <a href="CppConstexpr.htm">constexpr</a> indicates
-that an expression will always <a href="CppReturn.htm">return</a> the same values, thus rendering 
-this <a href="CppReturn.htm">return</a> value a compile-time
-constant. The example below shows that such a compile-time constant can be used to indicate an 
-<a href="CppArray.htm">array</a> size:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppConstexpr.htm">constexpr</a></b> <b><a href="CppInt.htm">int</a></b> get_size() { <b><a href="CppReturn.htm">return</a></b> 3; }<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> my_array[ get_size() ];<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>If a <a href="CppFunction.htm">function</a> may have to be evaluated at <a href="CppCompileTime.htm">compile time</a>, declare it <a href="CppConstexpr.htm">constexpr</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Examples</h2>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="CppConstexprExample1.htm">constexpr example 1: creating a std::array and boost:array</a></li>
+  <li>Use constexpr whenever possible [2,3]</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -95,6 +57,7 @@ constant. The example below shows that such a compile-time constant can be used 
 <ol>
   <li><!--  1 --><a href="http://gcc.gnu.org/projects/cxx0x.html">GCC page about C++0x support</a></li>
   <li><!--  2 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 12.7. Advice. page 341: '[5] If a function may have to be evaluated at compile time, declare it constexpr'</li>
+  <li><!--  3 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective Modern C++ (1st Edition). 2014. ISBN: 978-1-491-90399-5. Item 15 'Use constexpr whenever possible'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

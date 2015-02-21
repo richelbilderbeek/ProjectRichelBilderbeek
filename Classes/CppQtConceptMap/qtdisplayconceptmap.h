@@ -58,10 +58,12 @@ struct QtDisplayConceptMap : public QtConceptMap
   #endif
 
 private:
+  #ifdef NOT_NOW_20141111
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as it has a Concept on it that the user might want to edit
   ///In this derived class, I promise not to change the Edge
   QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
+  #endif // NOT_NOW_20141111
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///In this derived class, I promise not to change the Node
@@ -69,9 +71,11 @@ private:
 
   void CleanMe();
 
+  #ifdef NOT_NOW_20141111
   ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
-  const boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
+  boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
     const boost::shared_ptr<Concept> concept) const noexcept;
+  #endif // NOT_NOW_20141111
 
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted

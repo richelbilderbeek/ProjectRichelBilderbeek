@@ -16,8 +16,8 @@ struct Bar
     const std::vector<Note>& notes);
 
   private:
-  const std::pair<int,int> m_time_signature;
   const std::vector<Note> m_notes;
+  const std::pair<int,int> m_time_signature;
 };
 
 } //~namespace Music

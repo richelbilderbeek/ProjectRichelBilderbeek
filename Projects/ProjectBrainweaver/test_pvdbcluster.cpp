@@ -26,11 +26,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
-
-#ifdef MXE_SUPPORTS_THREADS
-#include <thread>
-#endif
-
 #include <vector>
 #include <boost/shared_ptr.hpp>
 
@@ -42,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexamples.h"
 #include "conceptmapexample.h"
 #include "conceptmapconceptfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -53,13 +49,10 @@ void ribi::pvdb::Cluster::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-    {
-  #endif
-
-  TRACE("Cluster::Test started");
+  {
+    TestHelperFunctions();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test operator== and operator!=
   {
     const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_1 = ribi::pvdb::ClusterFactory::GetTests();
@@ -126,12 +119,5 @@ void ribi::pvdb::Cluster::Test() noexcept
       }
     );
   }
-  TRACE("Cluster::Test finished successfully");
-
-  #ifdef MXE_SUPPORTS_THREADS
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif

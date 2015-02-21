@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RibiRegex, class for working with regular expressions
-Copyright (C) 2014-2014 Richel Bilderbeek
+Copyright (C) 2014-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -55,6 +55,7 @@ struct Regex
     const std::string& regex_str
   ) const noexcept;
 
+  std::string GetRegexDutchFloat() const noexcept;
   std::string GetRegexDutchPostalCode() const noexcept;
   std::string GetRegexPolygon() const noexcept;
   std::string GetRegexShapes() const noexcept;

@@ -22,7 +22,7 @@ unix:!macx {
 cross_compile {
   # Crosscompile only
   message("Desktop application, built for cross-compiling from Linux to Windows")
-  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+  QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra -Weffc++
 }
 
 

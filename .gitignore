@@ -2448,3 +2448,8 @@ Tools/ToolTestPolyFile/ToolTestPolyFileConsole
 Tools/ToolTestPlane/ToolTestPlaneConsole
 Tools/ToolTestOpenQuestion/ToolTestOpenQuestionDesktop
 Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekNlSitemapGeneratorConsole
+.RHistorybiopp/
+fwdpp/
+biopp/
+libsequence/
+*.qmlproject.user

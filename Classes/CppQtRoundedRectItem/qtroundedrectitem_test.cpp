@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtRoundedRectItem, rectangular-shaped QGraphicsItem
-Copyright (C) 2012-2014 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QCoreApplication>
 #include <QGraphicsSceneMouseEvent>
+#include <QGraphicsScene>
 
 #include "counter.h"
 #include "testtimer.h"
@@ -169,6 +170,79 @@ void ribi::QtRoundedRectItem::Test() noexcept
     //QCoreApplication::sendEvent(&i,event);
     //assert(c.Get() > 0);
   }
+  if (verbose) { TRACE("Bug #244: Changing pens does not resize the raw QRect"); }
+  #ifdef NOT_NOW_20150112
+  {
+    //Set contour pen to width 20
+    {
+      auto contour_pen = i.GetContourPen();
+      contour_pen.setWidth(20);
+      i.SetContourPen(contour_pen);
+    }
+    //Set focus pen to width 1
+    {
+      auto focus_pen = i.GetFocusPen();
+      focus_pen.setWidth(1);
+      i.SetFocusPen(focus_pen);
+      assert(i.GetFocusPen().width() == 1);
+    }
+    assert(i.GetContourPen().width() == 20);
+    assert(i.GetCurrentPen().width() == 20);
+    assert(i.GetFocusPen().width() == 1);
+
+    //OK: inner width + 2 * contour pen width = outer width
+    {
+      const auto expected_outer_width
+        = i.GetInnerWidth() + (2 * i.GetContourPen().width());
+      const auto real_outer_width = i.GetOuterWidth();
+      assert(std::abs(expected_outer_width - real_outer_width) < 4
+        && "inner_width + 2 * contour_pen_width should be about the outer width"
+      );
+    }
+    //big_rect_width is the outer rectangle of the QItem, as it is drawn
+    const auto big_rect_width = i.GetRawRect().width();
+    TRACE("PAY ATTENTION!");
+    //Set focus to QtNode
+    i.setSelected(true);
+    assert(i.GetCurrentPen() == i.GetFocusPen()
+      && "Be sure that QtNode has focus now");
+    assert(!i.scene()); //Not added to a scene yet
+    //Force a redraw (won't fail without it)
+    i.update();
+    qApp->processEvents(); //Really, really let it repaint
+
+    //ERROR: inner width + 2 * focus pen width != outer width
+    {
+      const auto expected_outer_width
+        = i.GetInnerWidth() + (2 * i.GetFocusPen().width());
+      const auto real_outer_width = i.GetOuterWidth();
+      assert(std::abs(expected_outer_width - real_outer_width) < 4
+        && "inner_width + 2 * focus_pen_width should be about the outer width"
+      );
+    }
+    assert(i.GetContourPen().width() == 20);
+    assert(i.GetCurrentPen().width() == 1);
+    assert(i.GetFocusPen().width() == 1);
+
+    //small_rect_width is the outer rectangle of the QItem, as it is drawn
+    //
+    //
+    //   v---v   = small_rect_width
+    // v-------v = big_rect_width
+    //
+    // +-------+
+    // |       |
+    // | +---+ |
+    // | | X | |
+    // | +---+ |
+    // |       |
+    // +-------+
+
+    const auto small_rect_width = i.GetRawRect().width();
+    assert(small_rect_width + 4 < big_rect_width);
+    assert(!"Fixed, refactor, then check in");
+  }
+  #endif // NOT_NOW_20150112
 }
 #endif
 

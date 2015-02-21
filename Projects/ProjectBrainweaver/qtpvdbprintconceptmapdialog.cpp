@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapconcept.h"
 #include "conceptmap.h"
 #include "conceptmapfactory.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapratedconceptdialog.h"
 #include "qtpvdbfiledialog.h"
@@ -205,11 +205,13 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     m_widget->fitInView(all_items_rect); //Does not work
     //m_widget->ensureVisible(all_items_rect,0,0); //Does not work
 
+    #ifdef NOT_HERE_20141224
     assert(m_widget->scene()->items().count()
       >= boost::numeric_cast<int>(
         m_widget->GetConceptMap()->GetNodes().size()
         + m_widget->GetConceptMap()->GetEdges().size()));
 
+    #endif // NOT_HERE_20141224
   }
   //Concept map as text
   {

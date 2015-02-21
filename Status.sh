@@ -60,7 +60,8 @@ do
         #rm *_plugin_import.cpp
 
         case $type in
-        0) myqmake="i686-pc-mingw32.static-qmake-qt5" mytypestr="Qt5LubuntuToWindows" ;;
+
+        0) myqmake="i686-w64-mingw32.static-qmake-qt5" mytypestr="Qt5LubuntuToWindows" ;;
         1) myqmake="qmake" mytypestr="LubuntuLaptop" ;;
         esac
 

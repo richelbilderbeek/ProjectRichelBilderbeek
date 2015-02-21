@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelBilderbeek::Program, class for a program by Richel Bilderbeek
-Copyright (C) 2012-2014 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -190,7 +190,6 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::testQtModels: p.reset(new ProgramTestQtModels); break;
     case ProgramType::testQtRoundedEditRectItem: p.reset(new ProgramTestQtRoundedEditRectItem); break;
     case ProgramType::testQtRoundedRectItem: p.reset(new ProgramTestQtRoundedRectItem); break;
-    //case ProgramType::testQtRoundedTextRectItem: p.reset(new ProgramTestQtRoundedTextRectItem); break;
     case ProgramType::testQuestion: p.reset(new ProgramTestQuestion); break;
     case ProgramType::testReversi: p.reset(new ProgramTestReversi); break;
     case ProgramType::testSelectFileDialog: p.reset(new ProgramTestSelectFileDialog); break;

@@ -1,11 +1,11 @@
 #include "tankbattalionarena.h"
 
 #include <cassert>
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/lexical_cast.hpp>
 #pragma GCC diagnostic pop
 
 ribi::taba::Arena::Arena(const int level)
@@ -16,9 +16,9 @@ ribi::taba::Arena::Arena(const int level)
   #endif
 }
 
-std::array<std::array<int,ribi::taba::Arena::sm_n_columns>,ribi::taba::Arena::sm_n_rows> ribi::taba::Arena::CreateArena(const int level) noexcept
+std::array<std::array<ribi::taba::SpriteType,ribi::taba::Arena::sm_n_columns>,ribi::taba::Arena::sm_n_rows> ribi::taba::Arena::CreateArena(const int level) noexcept
 {
-  std::array<std::array<int,sm_n_columns>,sm_n_rows> v;
+  std::array<std::array<SpriteType,sm_n_columns>,sm_n_rows> v;
   std::string s;
   switch (level)
   {
@@ -59,22 +59,21 @@ std::array<std::array<int,ribi::taba::Arena::sm_n_columns>,ribi::taba::Arena::sm
       assert(y < static_cast<int>(v.size()));
       assert(x < static_cast<int>(v[y].size()));
       assert(index < static_cast<int>(s.size()));
-      v[y][x] = static_cast<int>(s[index]);
+      const int i{boost::lexical_cast<int>(s[index])};
+      switch(i)
+      {
+        case 0: v[y][x] = SpriteType::no_bricks; break;
+        case 1: v[y][x] = SpriteType::bricks; break;
+        case 2: v[y][x] = SpriteType::flag; break;
+        default: assert(!"Unimplemented sprite");
+      }
       ++index;
     }
   }
   return v;
 }
 
-/*
-QPixmap ribi::taba::Arena::CreatePixmap() const noexcept
-{
-  QPixmap p(GetColumns() * 8,GetRows() * 8);
-
-}
-*/
-
-int ribi::taba::Arena::Get(const int x, const int y) const noexcept
+ribi::taba::SpriteType ribi::taba::Arena::Get(const int x, const int y) const noexcept
 {
   assert(x >= 0);
   assert(x < sm_n_columns);

@@ -33,6 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QMessageBox>
 
+#include "qtpvdbconceptmapdialog.h"
 #include "conceptmapcenternodefactory.h"
 #include "conceptmapcenternode.h"
 #include "conceptmapcompetency.h"

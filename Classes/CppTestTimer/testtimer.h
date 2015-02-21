@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestTimer, times tests
-Copyright (C) 2014-2014 Richel Bilderbeek
+TestTimer, class that measures time a test takes
+Copyright (C) 2014-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace ribi {
 
@@ -38,12 +39,13 @@ struct TestTimer
   TestTimer(const TestTimer&) = delete;
   TestTimer& operator=(const TestTimer&) = delete;
   ~TestTimer() noexcept; //But might terminate the program instead
+  static int GetMaxCnt() noexcept;
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
   static void SetMaxCnt(const int max_cnt) noexcept;
 
   private:
-  TestTimerImpl * const m_impl;
+  const std::unique_ptr<TestTimerImpl> m_impl;
 };
 
 } //~namespace ribi

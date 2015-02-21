@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ManyDigitNewick, Newick class
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -78,7 +78,7 @@ bool ribi::ManyDigitNewickCoordinat::IsValid() const
 
 const std::vector<int> ribi::ManyDigitNewickCoordinat::Sort(std::vector<int> v)
 {
-  std::sort(v.begin(),v.end());
+  std::sort(std::begin(v),std::end(v));
   return v;
 }
 

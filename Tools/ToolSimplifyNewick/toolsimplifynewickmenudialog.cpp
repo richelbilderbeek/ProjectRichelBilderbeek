@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 SimplifyNewick, tool to randomly simplify Newick phylogenies
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ ribi::About ribi::ToolSimplifyNewickMenuDialog::GetAbout() const noexcept
     "SimplifyNewick",
     "tool to randomly simplify Newick phylogenies",
     "the 19th of September 2013",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolSimplifyNewick.htm",
     GetVersion(),
     GetVersionHistory());

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ImageCanvas, class to convert an image to ASCII art
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -48,7 +48,10 @@ struct ImageCanvas : public Canvas
     const int n_cols,
     const CanvasColorSystem colorSystem         = CanvasColorSystem::normal,
     const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen
-  );
+  ) noexcept;
+  ImageCanvas(const ImageCanvas&) = delete;
+  ImageCanvas& operator=(const ImageCanvas&) = delete;
+  ~ImageCanvas() = default;
 
   ///The color system used:
   ///- normal: full/drawn is displayed by M
@@ -60,13 +63,13 @@ struct ImageCanvas : public Canvas
   ///- graph: origin is at bottom-left of the screen
   CanvasCoordinatSystem GetCoordinatSystem() const noexcept { return m_coordinat_system; }
 
-  int GetHeight() const noexcept;
+  int GetHeight() const noexcept override;
 
   static std::string GetVersion() noexcept;
 
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-  int GetWidth() const noexcept { return m_n_cols; }
+  int GetWidth() const noexcept override { return m_n_cols; }
 
   ///Set the color system used
   void SetColorSystem(const CanvasColorSystem color_system) noexcept;
@@ -74,12 +77,13 @@ struct ImageCanvas : public Canvas
   ///Set the coordinat system used
   void SetCoordinatSystem(const CanvasCoordinatSystem coordinat_system) noexcept;
 
-  std::vector<std::string> ToStrings() const noexcept;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
+  std::vector<std::string> ToStrings() const noexcept override;
 
   private:
-  ~ImageCanvas() noexcept {}
-  friend void boost::checked_delete<>(ImageCanvas* x);
-
   ///Canvas is the original image its greynesses
   const std::vector<std::vector<double>> m_canvas;
 
@@ -151,9 +155,6 @@ struct ImageCanvas : public Canvas
     const int x2,
     const int y2) noexcept;
 
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
 
   friend std::ostream& operator<<(std::ostream& os, const ImageCanvas& canvas) noexcept;
 };

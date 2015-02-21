@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2014 Richel Bilderbeek
+Copyright (C) 2007-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,6 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/math/constants/constants.hpp>
+
+#include "geometry.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 int ribi::Boenken::SpriteMoving::sm_n_moving_sprites = 0;
@@ -52,14 +55,20 @@ ribi::Boenken::SpriteMoving::SpriteMoving(
   ++sm_n_moving_sprites;
 }
 
+ribi::Boenken::SpriteMoving::~SpriteMoving()
+{
+  --sm_n_moving_sprites;
+}
+
 double ribi::Boenken::SpriteMoving::CalcImpulseAngle() const noexcept
 {
-  return GetAngle(m_dx,m_dy);
+  return Geometry().GetAngleClockScreen(m_dx,m_dy);
 }
 
 double ribi::Boenken::SpriteMoving::CalcImpulseSpeed() const noexcept
 {
-  return std::sqrt( (m_dx * m_dx) + (m_dy * m_dy) );
+
+  return Geometry().GetDistance(m_dx,m_dy);
 }
 
 void ribi::Boenken::SpriteMoving::SetFriction(const double friction)

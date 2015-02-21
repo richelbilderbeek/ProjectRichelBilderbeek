@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Newick, Newick functions
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -78,19 +78,20 @@ Out Copy_if(In first, In last, Out res, Pred Pr)
 }
 
 //From http://www.richelbilderbeek.nl/CppFunctorIncrease.htm
-struct Increase //: public std::unary_function<void,int>
+struct Increase
 {
-  explicit Increase(const int& initValue = 0) noexcept : mValue(initValue) {}
+  explicit Increase(const int& init_value = 0) noexcept : m_value(init_value) {}
   void operator()(int& anything) noexcept
   {
-    anything = mValue;
-    ++mValue;
+    anything = m_value;
+    ++m_value;
   }
   private:
-  int mValue;
+  int m_value;
 };
 
 
+/*
 bool ribi::Newick::AllAboutEqual(
   const std::vector<double>& v,
   const double tolerance)
@@ -100,9 +101,11 @@ bool ribi::Newick::AllAboutEqual(
     v.begin(),
     v.end(),
     std::bind2nd(fuzzy_equal_to(tolerance),v[0]))
-    == boost::numeric_cast<int>(v.size());
+    == boost::numeric_cast<int>(v.size()
+  );
 
 }
+*/
 
 BigInteger ribi::Newick::CalcComplexity(const std::vector<int>& v)
 {
@@ -190,7 +193,7 @@ BigInteger ribi::Newick::CalcNumOfSymmetriesBinary(std::vector<int> v)
   if (v.size() == 4) return (v[1] > 0 && v[1]==v[2] ? 1 : 0);
 
   const int n_reserved
-    = *std::max_element(v.begin(),v.end())
+    = *std::max_element(std::begin(v),std::end(v))
     + std::count_if(v.begin(), v.end(), std::bind2nd(std::greater<int>(),0));
 
   BigInteger n_symmetries = 0;

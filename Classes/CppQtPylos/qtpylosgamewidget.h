@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PylosWidget, widget to display Pylos class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,6 +47,7 @@ public:
   QtPylosGameWidget();
   QtPylosGameWidget(const QtPylosGameWidget&) = delete;
   QtPylosGameWidget& operator=(const QtPylosGameWidget&) = delete;
+  ~QtPylosGameWidget() noexcept;
 
   ///CanRemove specifies if current player can remove one or
   ///two marble(s) at the requested position(s).
@@ -111,17 +112,13 @@ public:
   ///Transfer lets current player tranfer his marble to a new, higher position
   void Transfer(
     const pylos::Coordinat& from,
-    const pylos::Coordinat& to);
-
+    const pylos::Coordinat& to
+  );
 
 private:
-  ~QtPylosGameWidget() noexcept;
-  friend void boost::checked_delete<>(      QtPylosGameWidget*);
-  friend void boost::checked_delete<>(const QtPylosGameWidget*);
-
   ///The pylos::Game class displayed and interacted with
+  ///The Game acts as a Model, where this class is a View of
   boost::shared_ptr<pylos::Game> m_pylos;
-
 };
 
 } //~namespace pylos

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 FileIo, class with file I/O functions
-Copyright (C) 2013-2014 Richel Bilderbeek
+Copyright (C) 2013-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -644,7 +644,7 @@ std::string ribi::fileio::FileIo::RemovePath(const std::string& filename) const
   const auto b = filename.rfind("/",filename.size());
   if (b != std::string::npos) v.push_back(b);
   if (v.empty()) return filename;
-  const auto i = *std::max_element(v.begin(),v.end());
+  const auto i = *std::max_element(std::begin(v),std::end(v));
   assert(i < filename.size());
   const auto j = i + 1;
   assert(j < filename.size());

@@ -18,7 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
 //---------------------------------------------------------------------------
-#ifdef NOT_NOW_20140805_1204
+#define NOT_NOW_20140805_1204
+#ifdef  NOT_NOW_20140805_1204
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -52,9 +53,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qteditconceptmap.h"
 #include "qtconceptmapelement.h"
 #include "qtconceptmap.h"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 #include "qtpvdbfiledialog.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
@@ -115,10 +116,12 @@ ribi::pvdb::QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
     this->move( screen.center() - this->rect().center() );
   }
 
+  #ifdef NOT_NOW_20141111
   m_widget->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
       &ribi::pvdb::QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit,
       this,boost::lambda::_1));
+  #endif
 }
 
 ribi::pvdb::QtPvdbConceptMapDialog::~QtPvdbConceptMapDialog() noexcept
@@ -150,7 +153,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::QtPvdbConceptMapDial
   assert(v.size() + 1 == nodes.size()
     && "Assume the ConceptMap has as much nodes as the cluster has concepts + one focal question");
   const boost::shared_ptr<ConceptMap> p {
-    ConceptMapFactory::Create(nodes,edges)
+    ConceptMapFactory().Create(nodes,edges)
   };
   assert(p);
   assert(p->IsValid());
@@ -213,7 +216,7 @@ ribi::cmap::QtEditConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(
     assert( file->GetConceptMap());
   }
 
-  cmap::QtEditConceptMap * const widget = new cmap::QtEditConceptMap(file->GetConceptMap());
+  ribi::cmap::QtEditConceptMap * const widget = new ribi::cmap::QtEditConceptMap(file->GetConceptMap());
   assert(widget);
   return widget;
 }
@@ -221,6 +224,7 @@ ribi::cmap::QtEditConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(
 #ifndef NDEBUG
 void ribi::pvdb::QtPvdbConceptMapDialog::DoRandomStuff()
 {
+  #ifdef NOT_NOW_20141224
   //Do random stuff
   assert(m_file);
   assert(m_file->GetConceptMap());
@@ -235,6 +239,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::DoRandomStuff()
   const int n_nodes_after = boost::numeric_cast<int>(m_file->GetConceptMap()->GetNodes().size());
   assert(n_edges_after > n_edges_before);
   assert(n_nodes_after > n_nodes_before);
+  #endif // NOT_NOW_20141224
 }
 #endif
 
@@ -298,6 +303,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::on_button_print_clicked()
   this->ShowChild(&d);
 }
 
+#ifdef NOT_NOW_20141111
 void ribi::pvdb::QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit(cmap::QtConceptMapElement* const item)
 {
   assert(item);
@@ -312,6 +318,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit(cmap::QtCo
   item->m_signal_item_has_updated(item);
   item->update();
 }
+#endif // NOT_NOW_20141111
 
 void ribi::pvdb::QtPvdbConceptMapDialog::on_button_save_clicked()
 {

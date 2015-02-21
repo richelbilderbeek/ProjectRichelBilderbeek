@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QuestionDialog, dialog for Question
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ struct QuestionDialog
   mutable boost::signals2::signal<void (bool)> m_signal_submitted;
 
   protected:
-  virtual ~QuestionDialog() noexcept {}
+  virtual ~QuestionDialog() = default;
   friend void boost::checked_delete<>(QuestionDialog*);
   friend void boost::checked_delete<>(const QuestionDialog*);
 

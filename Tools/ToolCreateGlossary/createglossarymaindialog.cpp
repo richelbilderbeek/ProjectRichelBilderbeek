@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateGlossary, tool to create my glossaries
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
 {
   const std::string website_folder {
   #ifndef _WIN32
-    "/home/richel/GitHubs/richelbilderbeek/develop/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",
+    "/home/richel/GitHubs/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",
   #else
     "D:\\Projects\\Projects\\RichelbilderbeekNl",
   #endif

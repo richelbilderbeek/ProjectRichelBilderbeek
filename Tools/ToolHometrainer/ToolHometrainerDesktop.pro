@@ -7,6 +7,7 @@ include(../../Libraries/GeneralDesktop.pri)
 #Specific
 include(../../Classes/CppRectangle/CppRectangle.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppExercise/CppExercise.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
@@ -19,6 +20,7 @@ include(../../Classes/CppQtOpenQuestionDialog/CppQtOpenQuestionDialog.pri)
 include(../../Classes/CppQtQuestionDialog/CppQtQuestionDialog.pri)
 include(../../Classes/CppQuestion/CppQuestion.pri)
 include(../../Classes/CppQuestionDialog/CppQuestionDialog.pri)
+include(../../Classes/CppTribool/CppTribool.pri)
 
 include(ToolHometrainerDesktop.pri)
 

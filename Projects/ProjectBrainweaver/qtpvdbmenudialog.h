@@ -72,11 +72,12 @@ public slots:
   void on_button_test_conceptmaps_clicked();
   void on_button_test_create_sub_concept_map_clicked() noexcept;
   void on_button_test_qtroundededitrectitem_clicked() noexcept;
-  void on_button_test_qtroundedtextrectitem_clicked() noexcept;
   void on_button_view_files_clicked() noexcept;
 
 private slots:
   void keyPressEvent(QKeyEvent* e) noexcept;
+
+  void on_button_test_qtroundedrectitem_clicked();
 
 private:
   Ui::QtPvdbMenuDialog *ui;

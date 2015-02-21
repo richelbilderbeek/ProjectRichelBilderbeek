@@ -27,8 +27,9 @@
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapratestrategy.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestdisplayconceptmapdialog.h"
 #pragma GCC diagnostic pop
@@ -38,7 +39,7 @@ ribi::cmap::QtTestDisplayConceptMapDialog::QtTestDisplayConceptMapDialog(QWidget
   ui(new Ui::QtTestDisplayConceptMapDialog),
   m_concept_map(
     new QtDisplayConceptMap(
-      ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+      ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15)
     )
   )
 {
@@ -68,10 +69,10 @@ void ribi::cmap::QtTestDisplayConceptMapDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtTestDisplayConceptMapDialog::Test started");
+  const TestTimer test_timer{__func__,__FILE__,0.1};
   QtTestDisplayConceptMapDialog d;
   for (int i=0; i!=100; ++i) d.on_button_test_modify_clicked();
-  TRACE("ribi::cmap::QtTestDisplayConceptMapDialog::Test finished successfully");
+
 }
 #endif
 

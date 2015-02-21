@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
   The Rampal Etienne Project, calculates the probability of a phylogeny
-  (C) 2009-2014 Richel Bilderbeek
+  (C) 2009-2015 Richel Bilderbeek
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -372,7 +372,7 @@ const std::vector<int> ribi::SortedBinaryNewickVector::Sort(
   //    static_cast<int>(Newick::bracket_close)))
   //  == v.end()); //v must not contain brackets close
 
-  std::sort(v.begin(),v.end()); //v only contains values
+  std::sort(std::begin(v),std::end(v)); //v only contains values
   std::sort(v_sub.begin(),v_sub.end(),NewickCompare);
 
   //TRACE("Level 0 entries: " + ToString(v,false));

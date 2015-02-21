@@ -1,5 +1,6 @@
 #include "tankbattalionspritetypes.h"
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::taba::SpriteTypes::SpriteTypes()
@@ -17,7 +18,6 @@ void ribi::taba::SpriteTypes::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::fileio::FileIo::Test");
-  TRACE("Finished ribi::fileio::FileIo::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

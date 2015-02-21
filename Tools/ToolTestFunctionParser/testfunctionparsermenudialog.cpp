@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestFunctionParser, tool to demonstrate Warp's FunctionParser class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "fparser.hh"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "testtimer.h"
@@ -48,8 +49,8 @@ ribi::About ribi::TestFunctionParserMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestFunctionParser",
     "tool to demonstrate Warp's FunctionParser class",
-    "the 22nd of April 2013",
-    "2010-2014",
+    "the 3rd of Januari 2015",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolTestFunctionParser.htm",
     GetVersion(),
     GetVersionHistory());
@@ -85,7 +86,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestFunctionParserMenuDialog::GetPr
 }
 std::string ribi::TestFunctionParserMenuDialog::GetVersion() const noexcept
 {
-  return "2.5";
+  return "2.6";
 }
 
 std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory() const noexcept
@@ -97,7 +98,8 @@ std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory()
     "2011-08-31: Version 2.2: added image to Welcome to web version",
     "2013-04-22: Version 2.3: added image to Welcome to desktop version",
     "2013-11-05: version 2.4: conformized for ProjectRichelBilderbeekConsole",
-    "2014-07-04: version 2.5: added console version"
+    "2014-07-04: version 2.5: added console version",
+    "2015-01-03: version 2.6: set locale to English in Desktop version" //SET_LOCALE_TO_ENGLISH_QTTESTFUNCTIONPARSERMAINDIALOG
   };
 }
 
@@ -110,5 +112,21 @@ void ribi::TestFunctionParserMenuDialog::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  //Test the parsing of the FunctionParser
+  {
+    FunctionParser f;
+    f.Parse("sin(x)","x");
+    assert(f.GetParseErrorType() == FunctionParser::FP_NO_ERROR);
+  }
+  {
+    FunctionParser f;
+    f.Parse("0.0","x");
+    assert(f.GetParseErrorType() == FunctionParser::FP_NO_ERROR);
+  }
+  {
+    FunctionParser f;
+    f.Parse("0,0","x"); //Dutch, should fail!
+    assert(f.GetParseErrorType() != FunctionParser::FP_NO_ERROR);
+  }
 }
 #endif

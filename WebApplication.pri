@@ -14,6 +14,7 @@ macx {
 unix:!macx{
   # Linux only
   message("Web application, built for Linux")
+  greaterThan(QT_MAJOR_VERSION, 4): QT += svg sql printsupport
   #Cannot use -Weffc++ nor -Werror with Wt
   QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra
 }

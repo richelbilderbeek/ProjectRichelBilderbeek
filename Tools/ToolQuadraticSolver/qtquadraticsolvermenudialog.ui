@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>334</width>
-    <height>219</height>
+    <width>420</width>
+    <height>355</height>
    </rect>
   </property>
   <property name="font">
@@ -27,17 +27,7 @@ QPushButton { color: rgb(0,0,0); }
 QPushButton { font: 48px, &quot;monospace&quot; }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="0">
-    <widget class="QPushButton" name="button_about">
-     <property name="text">
-      <string>About</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
+   <item row="5" column="0">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>
@@ -47,13 +37,36 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
+   <item row="1" column="0">
     <widget class="QPushButton" name="button_start">
      <property name="text">
       <string>Start</string>
      </property>
      <property name="flat">
       <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="button_about">
+     <property name="text">
+      <string>About</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolQuadraticSolver.qrc">:/ToolQuadraticSolver/images/ToolQuadraticSolverFormula.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -64,6 +77,8 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="ToolQuadraticSolver.qrc"/>
+ </resources>
  <connections/>
 </ui>

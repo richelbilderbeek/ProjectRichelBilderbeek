@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Approximator, class for approximating values by interpolation
-Copyright (C) 2013-2014 Richel Bilderbeek
+Copyright (C) 2013-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ struct ExceptionNoExtrapolation : public std::exception
   }
   bool IsAboveMax() const noexcept { return m_is_above_max; }
   bool IsBelowMin() const noexcept { return m_is_below_min; }
-  const char * what() const throw() { return m_what.c_str(); }
+  const char * what() const throw() override { return m_what.c_str(); }
   private:
 
   const bool m_is_above_max;

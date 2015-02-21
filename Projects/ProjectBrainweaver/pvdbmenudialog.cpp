@@ -56,7 +56,7 @@ int ribi::pvdb::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv
 ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
 {
   About a(
-    "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
+    "The Brainweaver Team",
     "Brainweaver",
     "tool to create and assess concept maps",
     "the 18th of May 2014",

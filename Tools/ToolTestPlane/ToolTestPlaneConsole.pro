@@ -2,7 +2,7 @@ include(../../ConsoleApplication.pri)
 
 include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
-include(../../Libraries/FParser.pri)
+include(../../Libraries/Fparser.pri)
 include(../../Libraries/GeneralConsole.pri)
 
 #Specific, console

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 pylos::Coordinat, Pylos/Phyraos coordinat class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -66,6 +66,7 @@ struct Coordinat
   std::string ToStr() const noexcept;
 
   private:
+  ///Not const, so that copying is possible
   int m_layer;
   int m_x;
   int m_y;

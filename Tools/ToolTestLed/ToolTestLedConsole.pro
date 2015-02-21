@@ -1,4 +1,5 @@
 include(../../ConsoleApplication.pri)
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 
 #General, console
@@ -12,7 +13,6 @@ include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppLed/CppLed.pri)
 include(../../Classes/CppLedWidget/CppLedWidget.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
-include(../../Classes/CppRectangle/CppRectangle.pri)
 include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 include(../../Classes/CppWidget/CppWidget.pri)

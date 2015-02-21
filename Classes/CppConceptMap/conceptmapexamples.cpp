@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <QRegExp>
+#include "counter.h"
 #include "conceptmaphelper.h"
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
@@ -135,6 +136,7 @@ void ribi::cmap::Examples::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  Counter();
   ExampleFactory().GetTest(0);
   ExamplesFactory();
   ExamplesFactory().GetTest(0);

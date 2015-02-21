@@ -67,6 +67,9 @@ struct SpriteMover
 };
 
 /*
+#if __cplusplus >= 201103L
+[[deprecated]]
+#endif
 struct SpriteDrawer : public std::unary_function<void,Sprite>
 {
   SpriteDrawer(Area& area) : mArea(area) {}

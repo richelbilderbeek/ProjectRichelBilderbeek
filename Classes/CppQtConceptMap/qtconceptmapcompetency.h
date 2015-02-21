@@ -39,17 +39,19 @@ namespace cmap {
 ///Class to convert cmap::Competency to QColor and vice versa
 struct QtCompetency
 {
+  QtCompetency();
+
   ///Convert a QColor to a cmap::Competency
-  static cmap::Competency ColorToCompetency(const QColor& color);
+  cmap::Competency ColorToCompetency(const QColor& color) const;
 
   ///Convert a cmap::Competency to a QColor
-  static const QColor CompetencyToColor(const cmap::Competency competency);
+  QColor CompetencyToColor(const cmap::Competency competency) const;
 
   ///Convert a cmap::Competency to a QIcon
-  static const QIcon CompetencyToIcon(const cmap::Competency competency);
+  QIcon CompetencyToIcon(const cmap::Competency competency) const;
 
   ///Convert a QIcon to a cmap::Competency
-  static cmap::Competency IconToCompetency(const QIcon& icon);
+  cmap::Competency IconToCompetency(const QIcon& icon) const;
 
   private:
   ///The map between cmap::Competency and QColor

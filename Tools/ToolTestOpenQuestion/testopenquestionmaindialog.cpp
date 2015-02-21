@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestOpenQuestion, tool to test the OpenQuestion and OpenQuestionDialog classes
-Copyright (C) 2013-2014 Richel Bilderbeek
+Copyright (C) 2013-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -55,7 +55,7 @@ std::vector<boost::shared_ptr<ribi::QuestionDialog>> ribi::TestOpenQuestionMainD
       { "2", "two" }
     )
   );
-  std::random_shuffle(v.begin(),v.end());
+  std::random_shuffle(std::begin(v),std::end(v));
   return v;
 }
 

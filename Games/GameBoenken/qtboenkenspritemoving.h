@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2014 Richel Bilderbeek
+Copyright (C) 2007-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,9 +28,8 @@ namespace ribi {
 
 namespace Boenken {
 
-///SpriteMoving is an abstract base class,
-///thanks to dummy_make_me_abstract
-struct SpriteMoving : public Sprite
+///SpriteMoving is an abstract base class
+struct SpriteMoving: public Sprite
 {
   SpriteMoving(
     const double x,
@@ -39,13 +38,19 @@ struct SpriteMoving : public Sprite
     const unsigned char r,
     const unsigned char g,
     const unsigned char b);
+  virtual ~SpriteMoving();
 
   double CalcImpulseAngle() const noexcept;
   double CalcImpulseSpeed() const noexcept;
-  virtual void Draw(QPainter& painter) const;
+  virtual void Draw(QPainter& painter) const override;
+  double GetDeltaX() const noexcept { return m_dx; }
+  double GetDeltaY() const noexcept { return m_dy; }
   virtual void Move() = 0;
   void Move(const double dx, const double dy) { m_dx += dx; m_dy += dy; }
-  void SetSpeed(const double dx, const double dy) { m_dx = dx; m_dy = dy; }
+
+  //void SetDeltaX(const double dx) noexcept { m_dx = dx; }
+  //void SetDeltaY(const double dy) noexcept { m_dy = dy; }
+  virtual void SetSpeed(const double dx, const double dy) noexcept { m_dx = dx; m_dy = dy; }
 
   static void SetFriction(const double friction);
   static void Collision(SpriteMoving * const p1, SpriteMoving * const p2);
@@ -59,14 +64,10 @@ struct SpriteMoving : public Sprite
   static double m_friction;
   static int sm_n_moving_sprites;
 
-  //private:
-  //Ensure SpriteMoving can only be deleted by boost::checked_delete
-  virtual ~SpriteMoving() noexcept
-  {
-    --sm_n_moving_sprites;
-  }
-  //friend void boost::checked_delete<>(SpriteMoving* x);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace Boenken

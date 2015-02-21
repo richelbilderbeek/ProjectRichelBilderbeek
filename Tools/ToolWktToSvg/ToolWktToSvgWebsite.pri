@@ -1,4 +1,4 @@
-include(../../Tools/ToolTestTriangle/ToolTestTriangleConsole.pri)
+include(../../Tools/ToolWktToSvg/ToolWktToSvgConsole.pri)
 
 HEADERS +=
 

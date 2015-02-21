@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2014 Richel Bilderbeek
+Copyright (C) 2007-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,19 +31,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/timer.hpp>
 
-#include "boenkenmenudialog.h"
 #include "boenkenarenasettings.h"
-#include "qtboenkengame.h"
+#include "boenkenmenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtboenkenarenadialog.h"
 #include "qtboenkencontrolsdialog.h"
+#include "qtboenkengame.h"
 #include "qtboenkenmaindialog.h"
-#include "testtimer.h"
 #include "qtboenkenplayersdialog.h"
 #include "qtboenkenspriteball.h"
 #include "qtboenkenspritemoving.h"
 #include "qtboenkenspritenonmoving.h"
 #include "qtboenkenspriteplayer.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtboenkenmenudialog.h"
 
@@ -337,7 +337,6 @@ void ribi::QtBoenkenMenuDialog::Test() noexcept
     is_tested = true;
   }
   Boenken::MenuDialog();
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
 
     Boenken::ArenaSettings a;
@@ -354,5 +353,6 @@ void ribi::QtBoenkenMenuDialog::Test() noexcept
     assert(b);
     QtBoenkenMainDialog d(0,b);
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

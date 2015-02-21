@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QSerialPortExample1Cpp98</title>
+  <meta name="description" content="C++ QSerialPortExample1Cpp98"/>
+  <meta name="keywords" content="C++ QSerialPortExample1Cpp98 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQSerialPortExample1Cpp98.htm">QSerialPortExample1Cpp98</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppQSerialPortExample1Cpp98-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.10 (utopic)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.1.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.9.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.3.0 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.9.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppQSerialPortExample1Cpp98/CppQSerialPortExample1Cpp98.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQSerialPortExample1Cpp98/CppQSerialPortExample1Cpp98.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s serialport<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog.cpp<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= dialog.h<br/>
+<a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= dialog.ui<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQSerialPortExample1Cpp98/dialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQSerialPortExample1Cpp98/dialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> DIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> DIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> QSerialPort;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~Dialog();<br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppTime.htm">Time</a>r();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog *ui;<br/>
+&nbsp;&nbsp;QSerialPort * <b><a href="CppConst.htm">const</a></b> m_serial;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> QSerialPort * AcquireSerialPort();<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQSerialPortExample1Cpp98/dialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQSerialPortExample1Cpp98/dialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDebug.htm">QDebug</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>SerialPort/QSerialPort&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>SerialPort/QSerialPortInfo&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "dialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_dialog.h"<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppConstructor.htm">Constructor</a><br/>
+<a href="CppComment.htm">//</a>Let it be<br/>
+Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog),<br/>
+&nbsp;&nbsp;m_serial(AcquireSerialPort())<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_serial)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle("No serial port found");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppTime.htm">Time</a>r()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;setInterval(100);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;start();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppDestructor.htm">Destructor</a><br/>
+<a href="CppComment.htm">//</a>Let it be<br/>
+Dialog::~Dialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> m_serial;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppMemberFunction.htm">Member function</a> to get access to the serial port<br/>
+<a href="CppComment.htm">//</a>Let it be<br/>
+QSerialPort * Dialog::AcquireSerialPort()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">foreach</a>(<b><a href="CppConst.htm">const</a></b> QSerialPortInfo &amp;info, QSerialPortInfo::availablePorts())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QSerialPort * <b><a href="CppConst.htm">const</a></b> serial(<b><a href="CppNew.htm">new</a></b> QSerialPort);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;serial-&gt;setPort(info);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (serial-&gt;open(QIODevice::ReadWrite))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> serial;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Change <b><a href="CppThis.htm">this</a></b> code<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog::On<a href="CppTime.htm">Time</a>r()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read data from the serial port<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> QByte<a href="CppArray.htm">Array</a> b <a href="CppOperatorAssign.htm">=</a> m_serial-&gt;readAll();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>If nothing is read, <b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (b.isEmpty()) <b><a href="CppReturn.htm">return</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> the raw data to a string<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s(b);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Because we know the string can also be <a href="CppConvert.htm">convert</a>ed to an <b><a href="CppInt.htm">int</a></b>, <b><a href="CppDo.htm">do</a></b> so<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppStdAtoi.htm">std::atoi</a>(b);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the <b><a href="CppInt.htm">int</a></b> as the value in the progress bar<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ui-&gt;progressBar-&gt;setValue(i);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQSerialPortExample1Cpp98/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQSerialPortExample1Cpp98/main.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a> Upload <b><a href="CppThis.htm">this</a></b> code to the Arduino:<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pin_read <a href="CppOperatorAssign.htm">=</a> A0;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> read_every_msec <a href="CppOperatorAssign.htm">=</a> 100;<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> setup() {<br/>
+&nbsp;&nbsp;Serial.begin(9600);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> loop() {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sensorValue <a href="CppOperatorAssign.htm">=</a> analogRead(pin_read);<br/>
+&nbsp;&nbsp;Serial.println(sensorValue);<br/>
+&nbsp;&nbsp;delay(read_every_msec);<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "dialog.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;Dialog w;<br/>
+&nbsp;&nbsp;w.show();&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

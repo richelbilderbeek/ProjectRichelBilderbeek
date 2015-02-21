@@ -109,7 +109,7 @@ void ribi::pvdb::QtDisplay::DisplayExamples(
     {
       const cmap::Competency competency = static_cast<cmap::Competency>(i + 1); //Skip 0 == uninitialized
       const std::string text = cmap::Competencies().ToStrDutch(competency);
-      const QIcon icon = cmap::QtCompetency::CompetencyToIcon(competency);
+      const QIcon icon = cmap::QtCompetency().CompetencyToIcon(competency);
       QTableWidgetItem * const item = new QTableWidgetItem;
       item->setText(text.c_str());
       item->setIcon(icon);

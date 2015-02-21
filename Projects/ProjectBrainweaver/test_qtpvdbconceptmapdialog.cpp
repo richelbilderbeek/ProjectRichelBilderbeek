@@ -49,10 +49,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pvdbcluster.h"
 #include "pvdbfile.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 #include "qtconceptmapelement.h"
 #include "qtconceptmap.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -64,17 +65,15 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
+  const TestTimer test_timer{__func__,__FILE__,1.0};
+  const int test_depth = 1; //Increase for more tests
 
   //typedef std::vector<boost::shared_ptr<ribi::cmap::Edge> > Edges;
   typedef std::vector<boost::shared_ptr<ribi::cmap::Node> > Nodes;
 
   //If this dialog is fed with a file with only a focal question, it will create a one-node concept map
   {
+
     using namespace cmap;
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
@@ -181,7 +180,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<Edge> edge_c(EdgeFactory().Create(NodeFactory().Create(concept_f,3.4,5.6),nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(
+      ribi::cmap::ConceptMapFactory().Create(
         nodes,
         { edge_a, edge_b, edge_c }
       )
@@ -210,6 +209,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
   //If this dialog is fed with a file without a cluster, but with concept map
   //it will read the concept map
   {
+
     using namespace cmap;
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<File> file(new File);
@@ -238,7 +238,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<Edge> edge_c(EdgeFactory().Create(NodeFactory().Create(concept_f,3.4,5.6),nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(
+      ribi::cmap::ConceptMapFactory().Create(
         nodes,
         { edge_a, edge_b, edge_c }
       )
@@ -269,6 +269,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
   //it will read the concept map and alter the node positions. If the dialog is
   //fed with this second concept map, it will keep the nodes in the same place
   {
+
     using namespace cmap;
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
@@ -298,7 +299,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<Edge> edge_c(EdgeFactory().Create(NodeFactory().Create(concept_f,3.4,5.6),nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(
+      ribi::cmap::ConceptMapFactory().Create(
         nodes,
         { edge_a, edge_b, edge_c }
       )
@@ -348,8 +349,10 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     std::remove(pvdb::File::GetTestFileName().c_str());
   }
 
+  if (test_depth > 1)
   {
-    const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::File::GetTests();
+
+    std::vector<boost::shared_ptr<pvdb::File>> v = pvdb::File::GetTests();
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<pvdb::File>& file)
       {
@@ -383,7 +386,9 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
   //When putting in each of the heteromorphous concept maps, shuffling it, saving it, loading
   //it, the resulting concept map must be homomorphous with the input map
   {
-    const auto v = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps();
+
+    auto v = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps();
+    if (test_depth < 2) { v.resize(2); }
     const int sz = v.size();
     for (int i = 0; i!=sz; ++i)
     {
@@ -410,11 +415,5 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
   {
     //Done with Shuffle above
   }
-  TRACE("ribi::pvdb::QtPvdbConceptMapDialog::Test completed successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif

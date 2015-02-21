@@ -1,15 +1,17 @@
 include(../../Games/GameTankBattalion/GameTankBattalionConsole.pri)
 
 SOURCES += \
-    ../../Games/GameTankBattalion/qttankbattaliongamewidget.cpp \
+    ../../Games/GameTankBattalion/qttankbattalionarenawidget.cpp \
     ../../Games/GameTankBattalion/qttankbattaliongamedialog.cpp \
-    ../../Games/GameTankBattalion/qttankbattalionarena.cpp
+    ../../Games/GameTankBattalion/qttankbattalionarena.cpp \
+    qttankbattalionsprite.cpp
 
 HEADERS  += \
-    ../../Games/GameTankBattalion/qttankbattaliongamewidget.h \
+    ../../Games/GameTankBattalion/qttankbattalionarenawidget.h \
     ../../Games/GameTankBattalion/qttankbattaliongamedialog.h \
-    ../../Games/GameTankBattalion/qttankbattalionarena.h
+    ../../Games/GameTankBattalion/qttankbattalionarena.h \
+    qttankbattalionsprite.h
 
 FORMS += \
-    ../../Games/GameTankBattalion/qttankbattaliongamedialog.ui
+    ../../Games/GameTankBattalion/qttankbattalionarenadialog.ui
 

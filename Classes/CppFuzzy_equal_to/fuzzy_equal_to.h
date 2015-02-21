@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 fuzzy_equal_to, fuzzy equal_to predicate
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,12 +28,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-//Temporarily suppress Weffc++ warning below, because I won't change std::binary_function
-//error: base class 'struct std::binary_function<double, double, bool>' has a non-virtual destructor [-Werror=effc++]
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 
 namespace ribi {
 
@@ -42,6 +36,48 @@ namespace ribi {
 ///an exact match is requested. Note that the value of 0.0 cannot
 ///be compared fuzzily.
 ///From http://www.richelbilderbeek.nl/CppFuzzy_equal_to.htm
+struct fuzzy_equal_to
+{
+  explicit fuzzy_equal_to(const double tolerance = std::numeric_limits<double>::epsilon())
+    : m_tolerance(tolerance)
+  {
+    assert(tolerance >= 0.0);
+  }
+  bool operator()(const double lhs, const double rhs) const
+  {
+    assert(lhs != 0.0);
+    return rhs > (1.0 - m_tolerance) * lhs
+        && rhs < (1.0 + m_tolerance) * lhs;
+  }
+  const double m_tolerance;
+
+  static std::string GetVersion()
+  {
+    return "1.4";
+  }
+  static std::vector<std::string> GetVersionHistory()
+  {
+    return {
+      "2011-02-24: version 1.0: initial version",
+      "2012-11-14: version 1.1: set default tolerance to std::numeric_limits<double>::epsilon()",
+      "2012-11-18: version 1.2: added #pragma's to file to suppress -Weffc++ warnings",
+      "2012-11-18: version 1.3: added #include <limits>",
+      "2014-12-27: version 1.4: do not inherit from deprecated std::binary_function"
+    };
+  }
+};
+
+/*
+//Temporarily suppress Weffc++ warning below, because I won't change std::binary_function
+//error: base class 'struct std::binary_function<double, double, bool>' has a non-virtual destructor [-Werror=effc++]
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+
+#if __cplusplus >= 201103L
+[[deprecated]]
+#endif
 struct fuzzy_equal_to
   : public std::binary_function<double,double,bool>
 {
@@ -72,9 +108,7 @@ struct fuzzy_equal_to
     };
   }
 };
-
-//Get back -Weffc++ warnings again
-#pragma GCC diagnostic pop
+*/
 
 ///fuzzy_equal_to_abs is a predicate to test two doubles for equality
 ///by allowing a certain absolute difference between the two values

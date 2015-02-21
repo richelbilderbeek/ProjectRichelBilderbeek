@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtRoundedRectItem, rectangular-shaped QGraphicsItem
-Copyright (C) 2012-2014 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek and Claudio Tiecher
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -101,12 +101,16 @@ class QtRoundedRectItem : public QGraphicsRectItem
   double GetCenterY() const noexcept { return GetCenterPos().y(); }
 
   double GetInnerHeight() const noexcept;
+
+  ///Gets the rectangle within/excluding the pen, use GetRawRect the get the raw QRectF
   QRectF GetInnerRect() const noexcept;
   double GetInnerWidth() const noexcept;
 
   double GetOuterHeight() const noexcept { return QGraphicsRectItem::rect().height(); }
+  ///Gets the rectangle with/including the pen, use GetRawRect the get the raw QRectF
   QRectF GetOuterRect() const noexcept;
   double GetOuterWidth() const noexcept { return QGraphicsRectItem::rect().width(); }
+
 
   ///Get the rounded rect corner x radius
   double GetRadiusX() const noexcept{ return m_radius_x; }
@@ -173,7 +177,8 @@ protected:
   ///To make it private, use GetPos instead
   QPointF pos() = delete;
   ///To make it private, use GetRect instead
-  QRectF rect() = delete;
+
+  QRectF rect() = delete; //#244
   ///To make it private, use SetPos instead
   void setPos(qreal x, qreal y) = delete;
   void setPos(const QPointF&) = delete;

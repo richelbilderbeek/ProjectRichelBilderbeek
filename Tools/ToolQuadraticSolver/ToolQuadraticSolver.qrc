@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/ToolQuadraticSolver/images">
+        <file>ToolQuadraticSolverFormula.svg</file>
+        <file>ToolQuadraticSolverFormula.png</file>
+    </qresource>
+</RCC>

@@ -25,7 +25,7 @@ const std::string AbcFile::ToStr() const
     << "T"  << std::get<0>(m_tempo) << "/" << std::get<1>(m_tempo) << "=" << std::get<2>(m_tempo) << '\n'
     << "V:V1 clef=treble" << '\n'
     << "V:V2 clef=bass" << '\n';
-
+  return s.str();
 }
 
 

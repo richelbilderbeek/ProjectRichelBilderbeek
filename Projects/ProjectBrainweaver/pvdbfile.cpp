@@ -36,19 +36,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #include <QRegExp>
 
-#include "conceptmapcenternode.h"
+#include "counter.h"
+#include "conceptmapregex.h"
 #include "conceptmapcenternodefactory.h"
-#include "pvdbclusterfactory.h"
-#include "pvdbcluster.h"
-#include "conceptmapconcept.h"
-#include "testtimer.h"
+#include "conceptmapcenternode.h"
 #include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
+#include "conceptmapnode.h"
 #include "fileio.h"
+#include "pvdbclusterfactory.h"
+#include "pvdbcluster.h"
 #include "pvdbfilefactory.h"
 #include "pvdbhelper.h"
-#include "conceptmapnode.h"
+#include "pvdbregex.h"
+#include "ribi_regex.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -314,11 +317,6 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::string &fi
     const std::vector<std::string> v = pvdb::SafeFileToVector(filename);
     //FileToVector allowed an empty line after text, due to difference in line ending
     //SafeFileToVector should remove this line
-<<<<<<< HEAD
-    //assert(v.size() == 1);
-    //xml = v[0];
-=======
->>>>>>> develop
 
     for (const auto& s: v) { xml+=s; }
 
@@ -331,11 +329,6 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::string &fi
     assert(std::count(xml.begin(),xml.end(),'\t')==0);
     assert(std::count(xml.begin(),xml.end(),'\r')==0);
     assert(std::count(xml.begin(),xml.end(),'\b')==0);
-<<<<<<< HEAD
-=======
-    //assert(v.size() == 1);
-    //xml = v[0];
->>>>>>> develop
   }
   //Backwards compatiblity with file format version 0.1
   {
@@ -455,14 +448,25 @@ void ribi::pvdb::File::SetStudentName(const std::string& student_name)
 void ribi::pvdb::File::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  {
+    Counter();
+    ribi::fileio::FileIo();
+    ribi::Regex();
+    ribi::pvdb::Regex();
+    ribi::cmap::Regex();
+    File::CreateConceptMap("Focal question?");
+    ClusterFactory();
+    ClusterFactory().GetTest( {0} );
+  }
+  const TestTimer test_timer(__func__,__FILE__,2.0);
   const std::string tmp_filename = ribi::pvdb::File::GetTempFileName();
   //Test copy constructor
   {
+
     const boost::shared_ptr<pvdb::File> f(new File);
     f->SetAssessorName("debug assessor name");
     f->SetStudentName("debug student name");
@@ -481,6 +485,7 @@ void ribi::pvdb::File::Test() noexcept
   }
   //Test Save/Load on empty File
   {
+
     boost::shared_ptr<pvdb::File> firstfile(new File);
     firstfile->Save(tmp_filename);
     const boost::shared_ptr<pvdb::File> secondfile(File::Load(tmp_filename));
@@ -493,6 +498,7 @@ void ribi::pvdb::File::Test() noexcept
   }
   //Test Save/Load on file
   {
+
     boost::shared_ptr<pvdb::File> firstfile(new pvdb::File);
     firstfile->SetStudentName("Richel Bilderbeek");
     const std::string question = "Focal question?";
@@ -518,6 +524,7 @@ void ribi::pvdb::File::Test() noexcept
     assert(!operator==(*firstfile,*second_file));
   }
   {
+
     ///Continue loop until no file is found
     for (int i=0; i!=100; ++i)
     {
@@ -556,22 +563,12 @@ void ribi::pvdb::File::Test() noexcept
           | QFile::ExeOther
           );
         assert(success);
-        file.open(QFile::ReadWrite);
-        assert(file.isOpen());
-        assert(file.isReadable());
-        assert(file.isWritable());
-        assert(file.size() > 0);
-        file.close();
-
-        assert(fileio::FileIo().IsRegularFile(filename));
         ribi::pvdb::File::Load(filename);
         std::remove(filename.c_str());
-
-        assert(!fileio::FileIo().IsRegularFile(filename));
       }
     }
   }
-  TRACE("File::Test finished successfully");
+  //ISSUE 184 HERE
 }
 #endif
 

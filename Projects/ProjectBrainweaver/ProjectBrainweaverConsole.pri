@@ -10,7 +10,7 @@ SOURCES += \
     ../../Projects/ProjectBrainweaver/pvdbhelper.cpp \
     ../../Projects/ProjectBrainweaver/pvdbmenudialog.cpp \
     ../../Projects/ProjectBrainweaver/test_pvdbcluster.cpp \
-    ../ProjectBrainweaver/pvdbregex.cpp
+    ../../Projects/ProjectBrainweaver/pvdbregex.cpp
 
 HEADERS  += \
     ../../Projects/ProjectBrainweaver/pvdbcluster.h \
@@ -20,7 +20,7 @@ HEADERS  += \
     ../../Projects/ProjectBrainweaver/pvdbfwd.h \
     ../../Projects/ProjectBrainweaver/pvdbhelper.h \
     ../../Projects/ProjectBrainweaver/pvdbmenudialog.h \
-    ../ProjectBrainweaver/pvdbregex.h
+    ../../Projects/ProjectBrainweaver/pvdbregex.h
 
 RESOURCES += \
     ../../Projects/ProjectBrainweaver/Brainweaver.qrc

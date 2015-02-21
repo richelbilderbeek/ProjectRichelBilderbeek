@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtRoundedEditRectItem, editable rectangular-shaped QGraphicsItem
-Copyright (C) 2012-2014 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -95,8 +95,8 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
   if (verbose) { TRACE("A padded text rectangle of a multi-line text, line 1/3 must have its center above origin"); }
   {
     const auto center = QtRoundedEditRectItem::GetPaddedTextRectAtLine("ABCDEFG",QFont(),0,3).center();
-    TRACE(center.x());
-    TRACE(center.y());
+    //TRACE(center.x());
+    //TRACE(center.y());
     assert(center.x() >= -2.0);
     assert(center.x() <=  2.0);
     assert(center.y() <   0.0);
@@ -104,8 +104,8 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
   if (verbose) { TRACE("A padded text rectangle of a multi-line text, line 3/3 must have its center above origin"); }
   {
     const auto center = QtRoundedEditRectItem::GetPaddedTextRectAtLine("ABCDEFG",QFont(),2,3).center();
-    TRACE(center.x());
-    TRACE(center.y());
+    //TRACE(center.x());
+    //TRACE(center.y());
     assert(center.x() >= -2.0);
     assert(center.x() <=  2.0);
     assert(center.y() >   0.0);
@@ -115,7 +115,6 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
     assert(GetTextRectAtOrigin("X",QFont()).width() > 0.0);
     assert(GetPaddedTextRectAtOrigin("X",QFont()).width() >= GetTextRectAtOrigin("X",QFont()).width());
   }
-  //assert(!"Refactor");
 }
 #endif
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Newick, Newick functions
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -55,10 +55,7 @@ namespace Newick
   ///an exact match is requested. Note that the value of 0.0 cannot
   ///be compared fuzzily.
   //From http://www.richelbilderbeek.nl/CppFuzzy_equal_to.htm
-
-  #pragma GCC diagnostic push
-  #pragma GCC diagnostic ignored "-Weffc++"
-  struct fuzzy_equal_to : public std::binary_function<double,double,bool>
+  struct fuzzy_equal_to
   {
     fuzzy_equal_to(const double tolerance = 0.01)
       : m_tolerance(tolerance)
@@ -73,7 +70,6 @@ namespace Newick
     }
     const double m_tolerance;
   };
-  #pragma GCC diagnostic pop
 
   ///CreateVector creates a std::vector from three arguments
   ///From http://www.richelbilderbeek.nl/CppCreateVector.htm
@@ -91,7 +87,7 @@ namespace Newick
 
   ///AllAboutEqual tests if all values in a std::vector are about equal.
   ///From http://www.richelbilderbeek.nl/CppAllAboutEqual.htm
-  bool AllAboutEqual(const std::vector<double>& v,const double tolerance = 0.01);
+  //bool AllAboutEqual(const std::vector<double>& v,const double tolerance = 0.01);
 
   ///CalcComplexity calculates the complexity of a Newick.
   ///From http://www.richelbilderbeek.nl/CppCalcComplexity.htm

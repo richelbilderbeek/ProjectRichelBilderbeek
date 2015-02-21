@@ -1,8 +1,10 @@
+# Attempt to port Triangle to C++
+
 INCLUDEPATH += \
     ../../Tools/ToolTriangleCpp
 
 SOURCES += \
-    ../../Tools/ToolTriangleCpp/trianglecppmain.cpp \
+    # ../../Tools/ToolTriangleCpp/trianglecppmain.cpp \
     ../../Tools/ToolTriangleCpp/trianglecppmesh.cpp \
     ../../Tools/ToolTriangleCpp/trianglecppmemorypool.cpp \
     ../../Tools/ToolTriangleCpp/trianglecpparguments.cpp \

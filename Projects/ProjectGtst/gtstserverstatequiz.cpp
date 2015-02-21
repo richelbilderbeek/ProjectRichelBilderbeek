@@ -124,7 +124,7 @@ void ribi::gtst::ServerStateQuiz::Start()
   {
     assert(p);
     m_has_voted[p] = false;
-    StateQuiz * const state = dynamic_cast<const StateQuiz*>(this);
+    const StateQuiz * const state = dynamic_cast<const StateQuiz*>(this);
     assert(state);
     FindParticipant(p)->SetState(state);
   }

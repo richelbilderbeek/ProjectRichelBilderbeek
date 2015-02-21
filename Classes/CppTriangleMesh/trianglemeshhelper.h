@@ -190,7 +190,7 @@ std::vector<boost::shared_ptr<const T>> AddConst(
   const std::vector<boost::shared_ptr<T>> v) noexcept
 {
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
-  const std::vector<boost::shared_ptr<const T>> w(v.begin(),v.end());
+  const std::vector<boost::shared_ptr<const T>> w(std::begin(v),std::end(v));
   assert(std::count(w.begin(),w.end(),nullptr) == 0);
   return w;
 }

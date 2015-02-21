@@ -29,7 +29,7 @@ template <class T>
 std::vector<boost::shared_ptr<const T>> AddConst(
   const std::vector<boost::shared_ptr<T>> v)
 {
-  return std::vector<boost::shared_ptr<const T>>(v.begin(),v.end());
+  return std::vector<boost::shared_ptr<const T>>(std::begin(v),std::end(v));
 }
 
 std::string ToStr(const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) noexcept;

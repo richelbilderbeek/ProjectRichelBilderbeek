@@ -6,6 +6,7 @@ include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 
 include(../../Classes/CppContainer/CppContainer.pri)
+include(../../Classes/CppCounter/CppCounter.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppRibiRandom/CppRibiRandom.pri)

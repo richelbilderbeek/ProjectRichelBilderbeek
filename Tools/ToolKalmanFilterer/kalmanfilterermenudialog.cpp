@@ -41,8 +41,8 @@ ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "KalmanFilterer",
     "tool to work with Kalman filters",
-    "the 10th of August 2014",
-    "2013-2014",
+    "the 3rd of January 2015",
+    "2013-2015",
     "http://www.richelbilderbeek.nl/ToolKalmanFilterer.htm",
     GetVersion(),
     GetVersionHistory()
@@ -90,7 +90,7 @@ boost::shared_ptr<const ribi::Program> ribi::kalman::KalmanFiltererMenuDialog::G
 
 std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion() const noexcept
 {
-  return "1.16";
+  return "1.17";
 }
 
 std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory() const noexcept
@@ -112,7 +112,9 @@ std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHisto
     "2013-07-05: version 1.13: added simple statistics",
     "2013-07-08: version 1.14: display statistics and value tables correctly, allow editing of context, tables resize to the number of rows",
     "2013-07-17: version 1.15: allow copying from and pasting to parameter tables, transitioned to Qt5, GCC 4.8.0 and Boost 1.54.0, able to crosscompile again",
-    "2014-08-10: version 1.16: increased use of TDD"
+    "2014-08-10: version 1.16: increased use of TDD",
+    "2015-01-03: version 1.17: set locale to English in Desktop version", //SET_LOCALE_TO_ENGLISH_MODELFUNCTIONPARSER
+    "2015-01-04: version 1.18: made locale local"
   };
 }
 

@@ -1,1 +1,0 @@
-<?php$v = array('a', 'b', 'c');$s = implode(",", $v);$expected = "a,b,c";assert($expected == $s);?>

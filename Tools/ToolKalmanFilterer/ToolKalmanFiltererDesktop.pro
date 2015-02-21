@@ -12,6 +12,8 @@ include(../../Classes/CppMatrix/CppMatrix.pri)
 include(../../Classes/CppQtMatrix/CppQtMatrix.pri)
 include(../../Classes/CppQtModel/CppQtModel.pri)
 include(../../Classes/CppRibiRandom/CppRibiRandom.pri)
+include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
+include(../../Classes/CppTempLocale/CppTempLocale.pri)
 include(ToolKalmanFiltererDesktop.pri)
 
 SOURCES += qtmain.cpp

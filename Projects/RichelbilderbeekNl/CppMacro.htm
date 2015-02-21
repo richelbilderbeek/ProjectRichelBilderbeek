@@ -20,11 +20,28 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppMacro.htm">Macro</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppMacro.htm">Macros</a> are <a href="CppPreprocessor.htm">preprocessor</a> statements. 
-Avoid <a href="CppMacro.htm">macros</a> [1,8], except <a href="CppAssert.htm">assert</a> [2-6].
-Avoid using <a href="CppPreprocessor.htm">preprocessor</a> <a href="CppMacro.htm">macros</a> in <a href="CppHeaderFile.htm">header (.h) files</a> except as
-<a href="CppIncludeGuard.htm">include guards</a> [7]. If you must use <a href="CppMacro.htm">macros</a>, use ugly names with lots of capital letters [9]</p>
+<p>
+  <a href="CppMacro.htm">Macros</a> are <a href="CppPreprocessor.htm">preprocessor</a> statements. 
 </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<ul>
+  <li>
+    Avoid <a href="CppMacro.htm">macros</a> [1,8], except <a href="CppAssert.htm">assert</a> [2-6]
+  </li>
+  <li>
+    Avoid using <a href="CppPreprocessor.htm">preprocessor</a> <a href="CppMacro.htm">macros</a> in <a href="CppHeaderFile.htm">header (.h) files</a> 
+    except as <a href="CppIncludeGuard.htm">include guards</a> [7]
+  </li>
+  <li>
+    Use uppercase letters to name a <a href="CppMacro.htm">macro</a> [9,10]
+  </li>
+  <li>Add a unique prefix to macro names [11]</li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -42,6 +59,8 @@ Avoid using <a href="CppPreprocessor.htm">preprocessor</a> <a href="CppMacro.htm
   <li><!--  7 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 2.3.4</li>
   <li><!--  8 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 12.7. Advice. page 341: '[22] Avoid macros'</li>
   <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 12.7. Advice. page 341: '[23] If you must use macros, use ugly names with lots of capital letters'</li>
+  <li><!-- 10 -->Trevor Misfeldt, Gregory Bumgardner, Andrew Gray. The elements of C++ style. 2004. ISBN: 978-0-521-89308-4. Chapter 4.1, page 17: 'Use UPPERCASE and underscores for preprocessor macro names'</li>
+  <li><!-- 11 -->Trevor Misfeldt, Gregory Bumgardner, Andrew Gray. The elements of C++ style. 2004. ISBN: 978-0-521-89308-4. Chapter 4.1, page 17: 'Add a unique prefix to macro names'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -54,8 +73,3 @@ Avoid using <a href="CppPreprocessor.htm">preprocessor</a> <a href="CppMacro.htm
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
 </html>
-
-
-
-
-

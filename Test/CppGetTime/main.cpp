@@ -12,7 +12,7 @@
 
 ///TimeToStr converts std::time_t to std::string.
 ///From http://www.richelbilderbeek.nl/CppTimeToStr.htm
-const std::string TimeToStr(const std::time_t& time)
+std::string TimeToStr(const std::time_t& time) noexcept
 {
   std::string s { std::ctime(&time) };
   assert(s.back() == '\n');
@@ -21,19 +21,19 @@ const std::string TimeToStr(const std::time_t& time)
 }
 
 //From http://www.richelbilderbeek.nl/CppGetTime.htm
-std::time_t GetTimeT()
+std::time_t GetTimeT() noexcept
 {
   return std::time(0);
 }
 
 //From http://www.richelbilderbeek.nl/CppGetTime.htm
-const std::string GetTimeStl()
+std::string GetTimeStl() noexcept
 {
   return TimeToStr(GetTimeT());
 }
 
 //From http://www.richelbilderbeek.nl/CppGetTime.htm
-const std::string GetTimeBoost()
+std::string GetTimeBoost() noexcept
 {
   //Get the local time
   boost::posix_time::ptime now

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MultipleChoiceQuestionDialog, dialog for MultipleChoiceQuestion
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
   const boost::shared_ptr<const MultipleChoiceQuestion> question)
   : m_signal_mc_question_changed{},
+    m_answer_in_progress{-1},
     m_question(question)
 {
   #ifndef NDEBUG
@@ -47,6 +48,7 @@ ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
 
 ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(const std::string& question)
   : m_signal_mc_question_changed{},
+    m_answer_in_progress{-1},
     m_question(new MultipleChoiceQuestion(question))
 {
   #ifndef NDEBUG
@@ -132,9 +134,10 @@ void ribi::MultipleChoiceQuestionDialog::Test() noexcept
       new MultipleChoiceQuestion(s)
     };
     assert(q);
-    const boost::scoped_ptr<MultipleChoiceQuestionDialog> d {
-      new MultipleChoiceQuestionDialog(q)
-    };
+    const auto d = std::make_unique<MultipleChoiceQuestionDialog>(q);
+    //const boost::scoped_ptr<MultipleChoiceQuestionDialog> d {
+    //  new MultipleChoiceQuestionDialog(q)
+    //};
     assert(d);
     assert(!d->HasSubmitted() );
   }

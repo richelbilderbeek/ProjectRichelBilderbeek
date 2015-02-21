@@ -1,0 +1,826 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SimTopPredatorPrey</title>
+  <meta name="description" content="C++ SimTopPredatorPrey"/>
+  <meta name="keywords" content="C++ SimTopPredatorPrey "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolSimTopPredatorPrey.htm">SimTopPredatorPrey</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name ToolSimTopPredatorPrey-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.10 (utopic)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.1.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.9.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.9.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./ToolSimTopPredatorPrey/ToolSimTopPredatorPrey.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/ToolSimTopPredatorPrey.pro" border = "1"><tr><td><code>
+include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>.pri)<br/>
+<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/GeneralConsole.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/GeneralDesktop.pri)<br/>
+<br/>
+include(../../<a href="CppClass.htm">Classes</a>/CppBiology/CppBiology.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/CppRibiRandom/CppRibiRandom.pri)<br/>
+#include(../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>.pri)<br/>
+#include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">CppQrcFile</a>.pri)<br/>
+#include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>.pri)<br/>
+<br/>
+include(ToolSimTopPredatorPreyDesktop.pri)<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += qt<a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimTopPredatorPrey/ToolSimTopPredatorPreyDesktop.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/ToolSimTopPredatorPreyDesktop.pri" border = "1"><tr><td><code>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtsimtoppredatorpray<a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtsimpredatorpray<a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtfractionimage.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+=&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtsimtoppredatorpray<a href="CppMain.htm">main</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtsimpredatorpray<a href="CppMain.htm">main</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtfractionimage.h<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtsimtoppredatorpray<a href="CppMain.htm">main</a>dialog.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtsimpredatorpray<a href="CppMain.htm">main</a>dialog.ui<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimTopPredatorPrey/ToolSimTopPredatorPrey.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/ToolSimTopPredatorPrey.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtsimpredatorpraymaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimTopPredatorPrey/qtfractionimage.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/qtfractionimage.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTFRACTIONIMAGE_H<br/>
+<a href="CppDefine.htm">#define</a> QTFRACTIONIMAGE_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQImage.htm">QImage</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppComment.htm">///</a>Displays fractions<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>FractionImage : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Grid;<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>FractionImage(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> GetWidth() { <b><a href="CppReturn.htm">return</a></b> m_width; }<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> GetHeight() { <b><a href="CppReturn.htm">return</a></b> m_height; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set(<b><a href="CppConst.htm">const</a></b> Grid&amp; grid);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppQtSignals.htm">signals</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_width{128};<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_height{128};<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> m_image;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTFRACTIONIMAGE_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimTopPredatorPrey/qtfractionimage.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/qtfractionimage.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qtfractionimage.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQImage.htm">QImage</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>FractionImage::<a href="CppQt.htm">Qt</a>FractionImage(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_image{}<br/>
+{<br/>
+&nbsp;&nbsp;m_image <a href="CppOperatorAssign.htm">=</a> <a href="CppQImage.htm">QImage</a>(m_width,m_height,<a href="CppQImage.htm">QImage</a>::Format::Format_RGB32);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>FractionImage::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;painter.drawPixmap(0,0,m_width,m_height,<a href="CppQPixmap.htm">QPixmap</a>::fromImage(m_image));<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>FractionImage::Set(<b><a href="CppConst.htm">const</a></b> Grid&amp; grid)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(grid.size()) <a href="CppOperatorEqual.htm">==</a> m_height);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(grid[0].size()) <a href="CppOperatorEqual.htm">==</a> m_width);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>m_height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>m_width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(grid[y][x] <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(grid[y][x] <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color_angle{grid[y][x] * 270.0};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQColor.htm">QColor</a> color;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color.setHsv(color_angle,254,254);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> r,g,b;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color.getRgb(&amp;r,&amp;g,&amp;b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_image.setPixel(x,y,qRgb(r,g,b));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;repaint();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimTopPredatorPrey/qtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/qtmain.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qtsimpredatorpraymaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimTopPredatorPrey/qtsimpredatorpraymaindialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/qtsimpredatorpraymaindialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTSIMPREDATORPRAYMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTSIMPREDATORPRAYMAINDIALOG_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>FractionImage;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Grid;<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>FractionImage * <b><a href="CppConst.htm">const</a></b> m_<a href="CppWidget.htm">widget</a>_prey;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>FractionImage * <b><a href="CppConst.htm">const</a></b> m_<a href="CppWidget.htm">widget</a>_pred;<br/>
+&nbsp;&nbsp;Grid m_grid_prey;<br/>
+&nbsp;&nbsp;Grid m_grid_pred;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Creates a delta-density grid based on diffusion<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> Grid CreateDiffusion(<b><a href="CppConst.htm">const</a></b> Grid&amp; grid) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> Grid CreateGrid() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> Fraction of area with predators<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConstexpr.htm">constexpr</a></b> <b><a href="CppDouble.htm">double</a></b> m_frac_pred{0.01};<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConstexpr.htm">constexpr</a></b> <b><a href="CppDouble.htm">double</a></b> m_diffusion_coefficient{0.005};<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> Limit(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppTime.htm">Time</a>r() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSIMPREDATORPRAYMAINDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimTopPredatorPrey/qtsimpredatorpraymaindialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/qtsimpredatorpraymaindialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qtsimpredatorpraymaindialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQHBoxLayout.htm">QHBoxLayout</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "biology.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtfractionimage.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppRibi.htm">ribi</a>_random.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtsimpredatorpraymaindialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+ :&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_prey{<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>FractionImage},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_pred{<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>FractionImage},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_grid_prey{CreateGrid()},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_grid_pred{CreateGrid()}<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;24 <a href="CppOperatorPlus.htm">+</a> (3 * <a href="CppQt.htm">Qt</a>FractionImage::GetWidth()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;16 <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>FractionImage::GetHeight()<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<b><a href="CppThis.htm">this</a></b>-&gt;layout());<br/>
+&nbsp;&nbsp;<a href="CppQLayout.htm">QLayout</a> * <b><a href="CppConst.htm">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQHBoxLayout.htm">QHBoxLayout</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setLayout(layout);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget(m_<a href="CppWidget.htm">widget</a>_prey);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget(m_<a href="CppWidget.htm">widget</a>_pred);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put dialog at screen center<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInitialize.htm">Initialize</a> the grids<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w{<a href="CppQt.htm">Qt</a>FractionImage::GetWidth()};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> h{<a href="CppQt.htm">Qt</a>FractionImage::GetHeight()};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_prey[y][x] <a href="CppOperatorAssign.htm">=</a> 0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_pred[y][x]<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::Random().GetFraction() &lt; m_frac_pred ? 0.1 : 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start the <a href="CppTime.htm">time</a>r<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppTime.htm">time</a>r{<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(<b><a href="CppThis.htm">this</a></b>)};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppTime.htm">Time</a>r()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;setInterval(0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;start();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog::~<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog::Grid <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog::CreateDiffusion(<b><a href="CppConst.htm">const</a></b> Grid&amp; grid) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w{<a href="CppQt.htm">Qt</a>FractionImage::GetWidth()};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> h{<a href="CppQt.htm">Qt</a>FractionImage::GetHeight()};<br/>
+&nbsp;&nbsp;Grid diffusion{CreateGrid()};<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_left&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp;&nbsp;&nbsp; 0 ? w-1 : x-1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_right <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorEqual.htm">==</a> w <a href="CppOperatorMinus.htm">-</a> 1 ?&nbsp;&nbsp; 0 : x+1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y_above <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp; 0 ? h-1 : y-1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y_below <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorEqual.htm">==</a> h-1 ?&nbsp;&nbsp; 0 : y+1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> here{grid[y][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> above{grid[y_above][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> below{grid[y_below][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> left{grid[y][x_left]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> right{grid[y][x_right]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diffusion[y][x] <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(above <a href="CppOperatorMinus.htm">-</a> here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (right <a href="CppOperatorMinus.htm">-</a> here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (below <a href="CppOperatorMinus.htm">-</a> here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (left <a href="CppOperatorMinus.htm">-</a> here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* m_diffusion_coefficient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> diffusion;<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog::Grid<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog::CreateGrid() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<a href="CppStdSize_t.htm">std::size_t</a>&gt;(<a href="CppQt.htm">Qt</a>FractionImage::GetHeight()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppQt.htm">Qt</a>FractionImage::GetWidth(),0.0)<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog::Limit(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; 0.0) <b><a href="CppReturn.htm">return</a></b> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &gt; 1.0) <b><a href="CppReturn.htm">return</a></b> 1.0;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog::On<a href="CppTime.htm">Time</a>r() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w{<a href="CppQt.htm">Qt</a>FractionImage::GetWidth()};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> h{<a href="CppQt.htm">Qt</a>FractionImage::GetHeight()};<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Grid prey_diffuse{CreateDiffusion(m_grid_prey)};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Grid pred_diffuse{CreateDiffusion(m_grid_pred)};<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Top-Pred-Prey interaction<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_prey[y][x] <a href="CppOperatorAssign.htm">=</a> Limit(m_grid_prey[y][x] <a href="CppOperatorPlus.htm">+</a> prey_diffuse[y][x]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_pred[y][x] <a href="CppOperatorAssign.htm">=</a> Limit(m_grid_pred[y][x] <a href="CppOperatorPlus.htm">+</a> pred_diffuse[y][x]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;Grid prey_interact{CreateGrid()};<br/>
+&nbsp;&nbsp;Grid pred_interact{CreateGrid()};<br/>
+&nbsp;&nbsp;Grid top_interact{CreateGrid()};<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> prey{m_grid_prey[y][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred{m_grid_pred[y][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prey <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pred <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prey <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pred <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred_efficiency{1.0};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> prey_growth{Biology().LogisticGrowth(1.0,prey,1.0)};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> prey_eaten{prey*pred};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred_growth{(prey_eaten*0.5) * (1.0 <a href="CppOperatorMinus.htm">-</a> pred <a href="CppOperatorMinus.htm">-</a> (0.5 * pred))};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred_death{0.1 * pred};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred_eaten{0.0};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> new_prey{prey <a href="CppOperatorPlus.htm">+</a> (prey_growth <a href="CppOperatorMinus.htm">-</a> prey_eaten)};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> new_pred{pred <a href="CppOperatorPlus.htm">+</a> (pred_growth <a href="CppOperatorMinus.htm">-</a> pred_eaten) <a href="CppOperatorMinus.htm">-</a> pred_death};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_prey <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_pred <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_prey <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_pred <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prey_interact[y][x] <a href="CppOperatorAssign.htm">=</a> new_prey;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pred_interact[y][x] <a href="CppOperatorAssign.htm">=</a> new_pred;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Top-Pred-Prey interaction<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> prey{prey_interact[y][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred{pred_interact[y][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prey <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pred <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prey <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pred <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_prey[y][x] <a href="CppOperatorAssign.htm">=</a> prey;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_pred[y][x] <a href="CppOperatorAssign.htm">=</a> pred;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_prey-&gt;Set(m_grid_prey);<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_pred-&gt;Set(m_grid_pred);<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SimPredatorPrayMainDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;Biology();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
+<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimTopPredatorPrey/qtsimtoppredatorpraymaindialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/qtsimtoppredatorpraymaindialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTSIMTOPPREDATORPRAYMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTSIMTOPPREDATORPRAYMAINDIALOG_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>FractionImage;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Grid;<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>FractionImage * <b><a href="CppConst.htm">const</a></b> m_<a href="CppWidget.htm">widget</a>_prey;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>FractionImage * <b><a href="CppConst.htm">const</a></b> m_<a href="CppWidget.htm">widget</a>_pred;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>FractionImage * <b><a href="CppConst.htm">const</a></b> m_<a href="CppWidget.htm">widget</a>_top;<br/>
+&nbsp;&nbsp;Grid m_grid_prey;<br/>
+&nbsp;&nbsp;Grid m_grid_pred;<br/>
+&nbsp;&nbsp;Grid m_grid_top;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Creates a delta-density grid based on diffusion<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> Grid CreateDiffusion(<b><a href="CppConst.htm">const</a></b> Grid&amp; grid) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> Grid CreateGrid() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> Fraction of area with predators<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConstexpr.htm">constexpr</a></b> <b><a href="CppDouble.htm">double</a></b> m_frac_pred{0.1};<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> Fraction of area with toppredators<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConstexpr.htm">constexpr</a></b> <b><a href="CppDouble.htm">double</a></b> m_frac_top{0.1};<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConstexpr.htm">constexpr</a></b> <b><a href="CppDouble.htm">double</a></b> m_diffusion_coefficient{0.05};<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> Limit(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x);<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppTime.htm">Time</a>r() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSIMTOPPREDATORPRAYMAINDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimTopPredatorPrey/qtsimtoppredatorpraymaindialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimTopPredatorPrey/qtsimtoppredatorpraymaindialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qtsimtoppredatorpraymaindialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQHBoxLayout.htm">QHBoxLayout</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtsimtoppredatorpraymaindialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "qtfractionimage.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog::<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_prey{<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>FractionImage},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_pred{<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>FractionImage},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_top{<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>FractionImage},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_grid_prey{CreateGrid()},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_grid_pred{CreateGrid()},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_grid_top{CreateGrid()}<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;24 <a href="CppOperatorPlus.htm">+</a> (3 * <a href="CppQt.htm">Qt</a>FractionImage::GetWidth()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;16 <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>FractionImage::GetHeight()<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<b><a href="CppThis.htm">this</a></b>-&gt;layout());<br/>
+&nbsp;&nbsp;<a href="CppQLayout.htm">QLayout</a> * <b><a href="CppConst.htm">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQHBoxLayout.htm">QHBoxLayout</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setLayout(layout);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget(m_<a href="CppWidget.htm">widget</a>_prey);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget(m_<a href="CppWidget.htm">widget</a>_pred);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget(m_<a href="CppWidget.htm">widget</a>_top);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put dialog at screen center<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInitialize.htm">Initialize</a> the grids<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w{<a href="CppQt.htm">Qt</a>FractionImage::GetWidth()};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> h{<a href="CppQt.htm">Qt</a>FractionImage::GetHeight()};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_prey[y][x] <a href="CppOperatorAssign.htm">=</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_pred[y][x]<a href="CppOperatorAssign.htm">=</a> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>() &lt; m_frac_pred ? 0.1 : 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_top[y][x] <a href="CppOperatorAssign.htm">=</a> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>() &lt; m_frac_top ? 0.1 : 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start the <a href="CppTime.htm">time</a>r<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppTime.htm">time</a>r{<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(<b><a href="CppThis.htm">this</a></b>)};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppTime.htm">Time</a>r()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;setInterval(0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;start();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog::~<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog::Grid <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog::CreateDiffusion(<b><a href="CppConst.htm">const</a></b> Grid&amp; grid) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w{<a href="CppQt.htm">Qt</a>FractionImage::GetWidth()};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> h{<a href="CppQt.htm">Qt</a>FractionImage::GetHeight()};<br/>
+&nbsp;&nbsp;Grid diffusion{CreateGrid()};<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_left&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp;&nbsp;&nbsp; 0 ? w-1 : x-1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_right <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorEqual.htm">==</a> w <a href="CppOperatorMinus.htm">-</a> 1 ?&nbsp;&nbsp; 0 : x+1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y_above <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp; 0 ? h-1 : y-1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y_below <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorEqual.htm">==</a> h-1 ?&nbsp;&nbsp; 0 : y+1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> here{grid[y][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> above{grid[y_above][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> below{grid[y_below][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> left{grid[y][x_left]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> right{grid[y][x_right]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diffusion[y][x] <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(above <a href="CppOperatorMinus.htm">-</a> here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (right <a href="CppOperatorMinus.htm">-</a> here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (below <a href="CppOperatorMinus.htm">-</a> here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (left <a href="CppOperatorMinus.htm">-</a> here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* m_diffusion_coefficient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> diffusion;<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog::Grid <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog::CreateGrid() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<a href="CppStdSize_t.htm">std::size_t</a>&gt;(<a href="CppQt.htm">Qt</a>FractionImage::GetHeight()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppQt.htm">Qt</a>FractionImage::GetWidth(),0.0)<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog::<a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppStdRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
+}<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog::Limit(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; 0.0) <b><a href="CppReturn.htm">return</a></b> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &gt; 1.0) <b><a href="CppReturn.htm">return</a></b> 1.0;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>SimTopPredatorPrayMainDialog::On<a href="CppTime.htm">Time</a>r() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w{<a href="CppQt.htm">Qt</a>FractionImage::GetWidth()};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> h{<a href="CppQt.htm">Qt</a>FractionImage::GetHeight()};<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Grid prey_diffuse{CreateDiffusion(m_grid_prey)};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Grid pred_diffuse{CreateDiffusion(m_grid_pred)};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Grid top_diffuse{CreateDiffusion(m_grid_top)};<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Top-Pred-Prey interaction<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_prey[y][x] <a href="CppOperatorAssign.htm">=</a> Limit(m_grid_prey[y][x] <a href="CppOperatorPlus.htm">+</a> prey_diffuse[y][x]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_pred[y][x] <a href="CppOperatorAssign.htm">=</a> Limit(m_grid_pred[y][x] <a href="CppOperatorPlus.htm">+</a> pred_diffuse[y][x]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_top[y][x] <a href="CppOperatorAssign.htm">=</a> Limit(m_grid_top[y][x] <a href="CppOperatorPlus.htm">+</a> top_diffuse[y][x]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;Grid prey_interact{CreateGrid()};<br/>
+&nbsp;&nbsp;Grid pred_interact{CreateGrid()};<br/>
+&nbsp;&nbsp;Grid top_interact{CreateGrid()};<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> prey{m_grid_prey[y][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred{m_grid_pred[y][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> top{m_grid_top[y][x]};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prey <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pred <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(top <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prey <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pred <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(top <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred_efficiency{0.5};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> top_efficiency{0.5};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> r_prey{10.0};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> prey_growth{prey * (1.0 <a href="CppOperatorMinus.htm">-</a> prey)};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> prey_eaten{prey*pred*pred_efficiency/(1.0 <a href="CppOperatorPlus.htm">+</a> (pred_efficiency*prey))};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred_growth{prey_eaten*0.2};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pred_eaten{pred*top*top_efficiency/(1.0 <a href="CppOperatorPlus.htm">+</a> (top_efficiency*pred))};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> top_growth{pred_eaten*0.1};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> top_eaten{0.0};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> new_prey{prey <a href="CppOperatorPlus.htm">+</a> prey_growth <a href="CppOperatorMinus.htm">-</a> prey_eaten};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> new_pred{pred <a href="CppOperatorPlus.htm">+</a> pred_growth <a href="CppOperatorMinus.htm">-</a> pred_eaten};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> new_top { top <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;top_growth <a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;top_eaten};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_prey <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <a href="CppOperatorMinus.htm">-</a>0.1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_pred <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <a href="CppOperatorMinus.htm">-</a>0.1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_top <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <a href="CppOperatorMinus.htm">-</a>0.1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_prey <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_pred <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_top <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prey_interact[y][x] <a href="CppOperatorAssign.htm">=</a> Limit(new_prey);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pred_interact[y][x] <a href="CppOperatorAssign.htm">=</a> Limit(new_pred);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top_interact[y][x] <a href="CppOperatorAssign.htm">=</a> Limit(new_top);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Top-Pred-Prey interaction<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y{0}; y<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x{0}; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_prey[y][x] <a href="CppOperatorAssign.htm">=</a> prey_interact[y][x];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_pred[y][x] <a href="CppOperatorAssign.htm">=</a> pred_interact[y][x];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_grid_top[y][x] <a href="CppOperatorAssign.htm">=</a> top_interact[y][x];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_prey-&gt;Set(m_grid_prey);<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_pred-&gt;Set(m_grid_pred);<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>_top-&gt;Set(m_grid_top);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

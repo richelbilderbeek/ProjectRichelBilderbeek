@@ -116,7 +116,7 @@ void ribi::gtst::ServerStateChooseAction::Start()
     assert(!GetServer()->GetGroups()->CollectParticipants(false,false,true,false).empty());
     assert(p);
     m_has_chosen_action.insert(std::make_pair(p,false));
-    StateChooseAction * const state = dynamic_cast<const StateChooseAction*>(this);
+    const StateChooseAction * const state = dynamic_cast<const StateChooseAction*>(this);
     assert(state);
     FindParticipant(p)->SetState(state);
   }

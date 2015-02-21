@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 pylos::Game, class for a game of Pylos/Phyraos
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -214,7 +214,7 @@ ribi::pylos::Winner ribi::pylos::Game::PlayRandomGame(const boost::shared_ptr<Bo
       if (p->CanTransfer(c))
       {
         std::vector<pylos::Coordinat> v = pylos::GetAllCoordinats();
-        std::random_shuffle(v.begin(),v.end());
+        std::random_shuffle(std::begin(v),std::end(v));
         const std::size_t sz = v.size();
         for (std::size_t i = 0; i!=sz; ++i)
         {

@@ -29,8 +29,6 @@ ribi::QtCanvas::QtCanvas(const boost::shared_ptr<ribi::Canvas> canvas)
 
 ribi::QtCanvas::~QtCanvas() noexcept
 {
-  TRACE_FUNC();
-
   m_canvas->m_signal_changed.disconnect(
     boost::bind(
       &ribi::QtCanvas::ShowCanvas,this,
@@ -44,7 +42,6 @@ void ribi::QtCanvas::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape)
   {
-    TRACE("m_signal_on_destroy()");
     m_signal_on_destroy();
     close();
     return;

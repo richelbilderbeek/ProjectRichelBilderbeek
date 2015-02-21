@@ -165,9 +165,9 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
   }
   {
     const int index = 18;
-    assert(index < static_cast<int>(ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().size()));
+    assert(index < static_cast<int>(ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().size()));
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(index);
+      = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(index);
     assert(concept_map);
     QtHideAndShowDialog* p(new cmap::QtRateConceptDialogNewName(concept_map));
     assert(p);
@@ -175,9 +175,9 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
   }
   {
     const int index = 18;
-    assert(index < static_cast<int>(ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().size()));
+    assert(index < static_cast<int>(ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().size()));
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(index);
+      = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(index);
     assert(concept_map);
     QtHideAndShowDialog* p(new cmap::QtRateConceptTallyDialogNewName(concept_map));
     assert(p);

@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>BioppExample1</title>
+  <meta name="description" content="C++ BioppExample1"/>
+  <meta name="keywords" content="C++ BioppExample1 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBioppExample1.htm">BioppExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppBioppExample1-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.10 (utopic)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.1.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.9.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.9.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppBioppExample1/CppBioppExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppBioppExample1/CppBioppExample1.pro" border = "1"><tr><td><code>
+#include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>NoWeffcpp.pri)<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">Boost</a>All.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Biopp.pri)<br/>
+<br/>
+#<a href="CppQmakeLibs.htm">LIBS</a> += -lgsl<br/>
+#<a href="CppQmakeLibs.htm">LIBS</a> += -lgslcblas<br/>
+#<a href="CppQmakeLibs.htm">LIBS</a> += -lz<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppBioppExample1/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppBioppExample1/main.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+ * We start by including what we'll need, and sort the inclusions a bit:<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * From the <a href="CppStl.htm">STL</a>:<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt; <a href="CppComment.htm">//</a>to be able to output stuff in the terminal.<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * We'll use the standard <b><a href="CppTemplate.htm">template</a></b> <a href="CppLibrary.htm">library</a> <b><a href="CppNamespace.htm">namespace</a></b>:<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppStd.htm">std</a>;<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * From SeqLib:<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Seq/Alphabet.all&gt; <a href="CppComment.htm">/*</a> <b><a href="CppThis.htm">this</a></b> includes all alphabets in one shot <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Seq/<a href="CppContainer.htm">Container</a>.all&gt; <a href="CppComment.htm">/*</a> <b><a href="CppThis.htm">this</a></b> includes all <a href="CppContainer.htm">container</a>s <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Seq/Io.all&gt; <a href="CppComment.htm">/*</a> <b><a href="CppThis.htm">this</a></b> includes all sequence readers and writers <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * From PhylLib:<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;Bpp/Phyl/trees&gt; <a href="CppComment.htm">/*</a> <b><a href="CppThis.htm">this</a></b> includes <b><a href="CppClass.htm">classes</a></b> <b><a href="CppFor.htm">for</a></b> tree manipulations <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Phyl/Model.all&gt; <a href="CppComment.htm">/*</a> <b><a href="CppThis.htm">this</a></b> includes all models <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Phyl/Io.all&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Phyl/Distance.all&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Phyl/Likelihood.all&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Phyl/Optimization<a href="Tools.htm">Tools</a>.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Phyl/Simulation.all&gt;<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * From NumCalc:<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/Numeric/Prob.all&gt; <a href="CppComment.htm">/*</a> include all probability distributions <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * We'll need a few <a href="Tools.htm">tools</a> from the Bio<a href="CppOperatorIncrement.htm">++</a> Utils <a href="CppLibrary.htm">library</a>:<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;Bpp/App/<a href="CppApplication.htm">Application</a><a href="Tools.htm">Tools</a>.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * All Bio<a href="CppOperatorIncrement.htm">++</a> <a href="CppFunction.htm">function</a>s are also in a <b><a href="CppNamespace.htm">namespace</a></b>, so we'll use it:<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> bpp;<br/>
+<br/>
+<a href="CppComment.htm">/*</a>----------------------------------------------------------------------------------------------------<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">/*</a><br/>
+ * Now starts the real stuff...<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> args, <b><a href="CppChar.htm">char</a></b> ** <a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * We surround our code with a <b><a href="CppTry.htm">try</a></b>-<b><a href="CppCatch.htm">catch</a></b> block, in <b><a href="CppCase.htm">case</a></b> some error occurs:<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppHelloWorld.htm">Hello World</a>!" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * In <b><a href="CppThis.htm">this</a></b> <a href="CppExercise.htm">exercise</a> we're going to work with models.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * This mainly mean distance and maximum likelihood <a href="CppMemberFunction.htm">member function</a>s.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * An important <b><a href="CppClass.htm">class</a></b> in Bio<a href="CppOperatorIncrement.htm">++</a> PhylLib is the SubstitutionModel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * <b><a href="CppClass.htm">class</a></b>. It describes the model of transitions between<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * nucleotides, amino-acids, words or codons. It is hence in tight<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * connection with the Alphabet <b><a href="CppClass.htm">classes</a></b> we saw before.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Here is how it works. We will create a <b><a href="CppNew.htm">new</a></b> <a href="CppInstance.htm">instance</a> of Kimura's 2 parameter model:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> SubstitutionModel *model <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> K80(&amp;Alphabet<a href="Tools.htm">Tools</a>::DNA_ALPHABET, 2.5);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * SubstitutionModel objects are quite <b><a href="CppCompl.htm">compl</a></b>ex. To keep things <b><a href="CppShort.htm">short</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> They implement the Parametrizable <a href="CppInterface.htm">interface</a>, which basically means that they have Parameter<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; objects that can be retrieved and modified.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> They compute the probability of transitions between all states in the alphabet.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * You can give a look at the <a href="CppDocumentation.htm">documentation</a> <b><a href="CppFor.htm">for</a></b> <b><a href="CppClass.htm">classes</a></b> SubstitutionModel, Parametrizable, ParameterList and Parameter.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Then <b><a href="CppTry.htm">try</a></b> the following:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "This model has " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> model-&gt;getNumberOf<a href="CppState.htm">State</a>s() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " states." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> ParameterList pl <a href="CppOperatorAssign.htm">=</a> model-&gt;getParameters();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "This model has " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> pl.size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " parameters." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> pl.printParameters(cout);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> pl.getParameter("K80.kappa").setValue(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> pl.printParameters(cout);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> Apply the parameter change: <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> model-&gt;setParametersValues(pl);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> And what <a href="CppAbout.htm">about</a> that? <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; pl.getParameter("kappa").setValue(-1);<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <b><a href="CppDouble.htm">double</a></b> t <a href="CppOperatorAssign.htm">=</a> 0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; (<b><a href="CppInt.htm">int</a></b>)model-&gt;getNumberOf<a href="CppState.htm">State</a>s(); i<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; <b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> j <a href="CppOperatorAssign.htm">=</a> 0; j &lt; (<b><a href="CppInt.htm">int</a></b>)model-&gt;getNumberOf<a href="CppState.htm">State</a>s(); j<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp; cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Probability of change from ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp; cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> model-&gt;getAlphabet()-&gt;<b><a href="CppInt.htm">int</a></b>ToChar(i) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " to ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp; cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> model-&gt;getAlphabet()-&gt;<b><a href="CppInt.htm">int</a></b>ToChar(j) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " is ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp; cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> model-&gt;Pij_t(i, j, t) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <b><a href="CppFor.htm">for</a></b> a branch of length ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp; cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> }<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> <a href="CppOperatorDecrement.htm">--</a>------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * QUESTION 1: Verify that the sum over of all Pij_t is equal to 1!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppOperatorDecrement.htm">--</a>------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Another important object <b><a href="CppIf.htm">if</a></b> the DiscreteDistribution ones.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * They are also Parametrizable object, and so share a lot of <a href="CppMemberFunction.htm">member function</a>s with SubstitutionModel object.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Practially, they are used here for modeling rate across site heterogeneity, but we will ocnsider a Constant distribution <b><a href="CppFor.htm">for</a></b> now:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> DiscreteDistribution *rateDist <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> ConstantDistribution(1.);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * We wil now use these model to first build a distance <a href="CppMatrix.htm">matrix</a> and then a BioNJ tree:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Fasta seqReader;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Sequence<a href="CppContainer.htm">Container</a> *sequences <a href="CppOperatorAssign.htm">=</a> seqReader.read("GGPS1.fa", &amp;Alphabet<a href="Tools.htm">Tools</a>::DNA_ALPHABET);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Site<a href="CppContainer.htm">Container</a> *sites <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> VectorSite<a href="CppContainer.htm">Container</a>(*sequences);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <b><a href="CppDelete.htm">delete</a></b> sequences;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "There are " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> sites-&gt;getNumberOfSites() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " positions in the alignment." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Site<a href="CppContainer.htm">Container</a><a href="Tools.htm">Tools</a>::changeGapsToUnknown<a href="CppChar.htm">Character</a>s(*sites);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Computing distance <a href="CppMatrix.htm">matrix</a>..." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> DistanceEstimation distance<a href="CppMemberFunction.htm">Member function</a>(model, rateDist, sites);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Now we retrieve the omputed distances:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Distance<a href="CppMatrix.htm">Matrix</a> *distances <a href="CppOperatorAssign.htm">=</a> distance<a href="CppMemberFunction.htm">Member function</a>.get<a href="CppMatrix.htm">Matrix</a>();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Now we will build a BioNJ tree:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Computing tree..." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> BioNJ bionj(*distances);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Tree *tree <a href="CppOperatorAssign.htm">=</a> bionj.getTree();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * And write it to a file:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppNewick.htm">Newick</a> treeWriter;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> treeWriter.write(*tree, "GGPS1_BioNJ.dnd");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> <a href="CppOperatorDecrement.htm">--</a>------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * QUESTION 2: Modify the previous code to build a tree with a Tamura 92 model and a gamma distribution <b><a href="CppFor.htm">for</a></b> substitution rates.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppOperatorDecrement.htm">--</a>------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * We will now use that tree to build a Maximum Likelihood tree.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> NNIHomogeneousTreeLikelihood *tl <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> NNIHomogeneousTreeLikelihood(*tree, *sites, model, rateDist);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> tl-&gt;<a href="CppInitialize.htm">initialize</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> ParameterList pl2=tl-&gt;getParameters();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Log likelihood before: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl-&gt;getLogLikelihood() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> tl <a href="CppOperatorAssign.htm">=</a> Optimization<a href="Tools.htm">Tools</a>::optimizeTreeNNI(tl, pl2, <b><a href="CppTrue.htm">true</a></b>, 100, 100, 1000000, 1, <a href="CppNULL.htm">NULL</a>, <a href="CppNULL.htm">NULL</a>, <b><a href="CppFalse.htm">false</a></b>, 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Log likelihood after: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl-&gt;getLogLikelihood() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> pl2.printParameters(cout);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <b><a href="CppConst.htm">const</a></b> Tree *mlTree <a href="CppOperatorAssign.htm">=</a> &amp;tl-&gt;getTree();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> treeWriter.write(*tree, "GGPS1_ML.dnd");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> <a href="CppOperatorDecrement.htm">--</a>------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * QUESTION 3: Compare various models on <b><a href="CppThis.htm">this</a></b> data set, <b><a href="CppFor.htm">for</a></b> <a href="CppInstance.htm">instance</a> K80, HKY85, GTR <a href="CppOperatorPlus.htm">+</a>/<a href="CppOperatorMinus.htm">-</a> Gamma.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Tip: In <b><a href="CppClass.htm">class</a></b> Random<a href="Tools.htm">Tools</a> (Numeric), there are <a href="Tools.htm">tools</a> to deal with a chi2 distribution...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppOperatorDecrement.htm">--</a>------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Last but not least, we will now simulate data from the estimated model:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> TreeTemplate&lt;Node&gt; *mlTreeTT <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> TreeTemplate&lt;Node&gt;(*mlTree);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> HomogeneousSequenceSimulator *simulator <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> HomogeneousSequenceSimulator(model, rateDist, mlTreeTT);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> numberOfSites <a href="CppOperatorAssign.htm">=</a> 500;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Site<a href="CppContainer.htm">Container</a> *simSites <a href="CppOperatorAssign.htm">=</a> simulator-&gt;simulate(numberOfSites);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Fasta seqWriter;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> seqWriter.write("Simulations.fasta", *simSites);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> <a href="CppOperatorDecrement.htm">--</a>------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * QUESTION 4: Assess some properties of the model <b><a href="CppUsing.htm">using</a></b> simulations (parametric bootstrap)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Simulate a hundred sites <b><a href="CppUsing.htm">using</a></b> a previously fitted GTR+Gamma model,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * then reestimate a tree and model parameters on the simulated data set.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Then compute the mean and variance of the estimates obtained, and compare to the real values.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * BONUS QUESTION 1: compare results between a parametric and a non-parametric <a href="CppBoost.htm">boost</a>rap.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * BONUS QUESTION 2: also compute the consensus tree with bootstrap values (browse the <a href="CppDocumentation.htm">documentation</a> first!)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppOperatorDecrement.htm">--</a>------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">Exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Bio<a href="CppOperatorIncrement.htm">++</a> <a href="CppException.htm">exception</a>:" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>(-1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Any other <a href="CppException.htm">exception</a>:" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>(-1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>(0);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>191</width>
-    <height>204</height>
+    <width>443</width>
+    <height>419</height>
    </rect>
   </property>
   <property name="font">
@@ -32,6 +32,19 @@ QLabel { font: 24px, &quot;Courier&quot; }
 QPushButton { font: 24px, &quot;Courier&quot; }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolQuadraticSolver.qrc">:/ToolQuadraticSolver/images/ToolQuadraticSolverFormula.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
@@ -115,6 +128,8 @@ QPushButton { font: 24px, &quot;Courier&quot; }</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="ToolQuadraticSolver.qrc"/>
+ </resources>
  <connections/>
 </ui>

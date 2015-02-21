@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 pylos::Board, class for a Pylos/Phyraos board
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -45,6 +45,7 @@ struct Board
   typedef std::vector<std::vector<PositionState> > Layer;
 
   Board() noexcept;
+  virtual ~Board();
 
   ///CanDo determines if a Pylos notation move is valid
   bool CanDo(const std::string& s, const Player player) const;
@@ -74,7 +75,7 @@ struct Board
   bool CanSet(const Coordinat& c, const Player player) const;
 
   ///Clone a derived class of Board.
-  virtual boost::shared_ptr<Board> Clone() const = 0;
+  virtual std::unique_ptr<Board> Clone() const = 0;
 
   ///Count counts the requested state at the specified coordinats
   int Count(const std::vector<Coordinat>& coordinats, const PositionState state) const;
@@ -84,10 +85,10 @@ struct Board
   int Count(const PositionState state) const;
 
   ///Create a BoardAdvanced
-  static boost::shared_ptr<Board> CreateAdvancedBoard() noexcept;
+  static std::unique_ptr<Board> CreateAdvancedBoard() noexcept;
 
   ///Create a BoardBasic
-  static boost::shared_ptr<Board> CreateBasicBoard() noexcept;
+  static std::unique_ptr<Board> CreateBasicBoard() noexcept;
 
   ///Do performs a move in Pylos notation
   void Do(const std::string& s, const Player player);
@@ -129,7 +130,8 @@ struct Board
   virtual void Set(
     const Coordinat& c,
     const Player player,
-    MustRemoveState& must_remove) = 0;
+    MustRemoveState& must_remove
+  ) = 0;
 
 
   ///Display the board as a std::string
@@ -149,7 +151,6 @@ struct Board
 
 
   protected:
-  virtual ~Board() noexcept {}
 
   ///m_board holds the board structure.\n
   ///m_board[0]: bottom 4x4 layer\n
@@ -165,11 +166,7 @@ struct Board
   ///RemoveMarble removes one marble.
   void Remove(const Coordinat& c, const Player player);
 
-
   private:
-  friend void boost::checked_delete<>(      Board*);
-  friend void boost::checked_delete<>(const Board*);
-
   ///CreateEmptyBoard created an empty board.
   std::vector<Layer> CreateEmptyBoard() const noexcept;
 
@@ -190,12 +187,13 @@ struct Board
 ///- a player creates a 2x2 square of marbles of his/her color
 ///- a player creates a 1x4 (bottom layer) or 1x3 (one-but-bottom layer)
 ///  line of marbles of his/her color
-struct BoardAdvanced : public Board
+struct BoardAdvanced final : public Board
 {
   BoardAdvanced() noexcept;
+  ~BoardAdvanced();
 
   ///Clone a derived class of Board.
-  boost::shared_ptr<Board> Clone() const noexcept;
+  std::unique_ptr<Board> Clone() const noexcept override;
 
   ///Load loads a game in Pylos notation
   //void Load(const std::string& s);
@@ -207,10 +205,6 @@ struct BoardAdvanced : public Board
   //const std::string ToStr() const;
 
   private:
-  ~BoardAdvanced() noexcept {}
-  friend void boost::checked_delete<>(      BoardAdvanced*);
-  friend void boost::checked_delete<>(const BoardAdvanced*);
-
   ///Set sets the state of the given location.
   ///must_remove is set to true if the current player is allowed
   ///to remove one or two marbles.
@@ -222,12 +216,13 @@ struct BoardAdvanced : public Board
 
 ///A BoardBasic lets a player remove one or two marbles when
 ///- a player creates a 2x2 square of marbles of his/her color
-struct BoardBasic : public Board
+struct BoardBasic final : public Board
 {
   BoardBasic() noexcept;
+  ~BoardBasic();
 
   ///Clone a derived class of Pylos.
-  boost::shared_ptr<Board> Clone() const noexcept;
+  std::unique_ptr<Board> Clone() const noexcept override;
 
   ///Load loads a game in Pylos notation
   //void Load(const std::string& s);
@@ -239,10 +234,6 @@ struct BoardBasic : public Board
   //const std::string ToStr() const;
 
   private:
-  ~BoardBasic() noexcept {}
-  friend void boost::checked_delete<>(      BoardBasic*);
-  friend void boost::checked_delete<>(const BoardBasic*);
-
   ///Set sets the state of the given location.
   ///must_remove is set to true if the current player is allowed
   ///to remove one or two marbles.

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtOpenQuestionDialog, Qt dialog for OpenQuestionDialog
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ public:
   boost::shared_ptr<const QuestionDialog> GetDialog() const;
   void SetDialog(const boost::shared_ptr<QuestionDialog>& dialog);
 
-  void SetOpenQuestionDialog(const boost::shared_ptr<OpenQuestionDialog>& dialog) { SetOpenQuestionDialog(dialog); }
+  void SetOpenQuestionDialog(const boost::shared_ptr<OpenQuestionDialog>& dialog) noexcept;
 
 
   static std::string GetVersion() noexcept;

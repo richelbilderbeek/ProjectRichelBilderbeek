@@ -1,7 +1,9 @@
-include(../../DesktopApplication.pri)
+# -Weffc++ does not go with Qwt
+include(../../DesktopApplicationNoWeffcpp.pri)
 
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/Qwt.pri)
 

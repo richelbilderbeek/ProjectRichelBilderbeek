@@ -1,6 +1,7 @@
 include(../../ConsoleApplication.pri)
 
 include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 
 include(../../Classes/CppApproximator/CppApproximator.pri)

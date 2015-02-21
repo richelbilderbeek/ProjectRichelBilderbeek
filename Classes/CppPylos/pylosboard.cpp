@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 pylos::Board, class for a Pylos/Phyraos board
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -62,6 +62,11 @@ ribi::pylos::Board::Board() noexcept
   assert(m_board[2][1].size() == 2);
   assert(m_board[3].size() == 1);
   assert(m_board[3][0].size() == 1);
+}
+
+ribi::pylos::Board::~Board()
+{
+  //OK
 }
 
 bool ribi::pylos::Board::CanDo(const pylos::Move& m, const Player player) const
@@ -261,14 +266,14 @@ int ribi::pylos::Board::Count(const PositionState state) const
   return Count(v,state);
 }
 
-boost::shared_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateAdvancedBoard() noexcept
+std::unique_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateAdvancedBoard() noexcept
 {
-  return boost::shared_ptr<Board>(new BoardAdvanced);
+  return std::make_unique<BoardAdvanced>();
 }
 
-boost::shared_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateBasicBoard() noexcept
+std::unique_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateBasicBoard() noexcept
 {
-  return boost::shared_ptr<Board>(new BoardBasic);
+  return std::make_unique<BoardBasic>();
 }
 
 std::vector<ribi::pylos::Board::Layer> ribi::pylos::Board::CreateEmptyBoard() const noexcept
@@ -1070,13 +1075,14 @@ ribi::pylos::BoardAdvanced::BoardAdvanced() noexcept
 
 }
 
-boost::shared_ptr<ribi::pylos::Board> ribi::pylos::BoardAdvanced::Clone() const noexcept
+ribi::pylos::BoardAdvanced::~BoardAdvanced()
 {
-  BoardAdvanced * const p = new BoardAdvanced;
-  p->m_board = m_board;
-  boost::shared_ptr<Board> sp(p);
-  assert(*sp == *this);
-  return sp;
+  //OK
+}
+
+std::unique_ptr<ribi::pylos::Board> ribi::pylos::BoardAdvanced::Clone() const noexcept
+{
+  return std::make_unique<BoardAdvanced>(*this);
 }
 
 void ribi::pylos::BoardAdvanced::Set(
@@ -1145,13 +1151,14 @@ ribi::pylos::BoardBasic::BoardBasic() noexcept
 
 }
 
-boost::shared_ptr<ribi::pylos::Board> ribi::pylos::BoardBasic::Clone() const noexcept
+ribi::pylos::BoardBasic::~BoardBasic()
 {
-  BoardBasic * const p = new BoardBasic;
-  p->m_board = m_board;
-  boost::shared_ptr<Board> sp(p);
-  assert(*sp == *this);
-  return sp;
+  //OK
+}
+
+std::unique_ptr<ribi::pylos::Board> ribi::pylos::BoardBasic::Clone() const noexcept
+{
+  return std::make_unique<BoardBasic>(*this);
 }
 
 void ribi::pylos::BoardBasic::Set(

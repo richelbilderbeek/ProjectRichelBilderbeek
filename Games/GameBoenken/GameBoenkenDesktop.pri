@@ -1,8 +1,5 @@
 include(../../Games/GameBoenken/GameBoenkenConsole.pri)
 
-INCLUDEPATH +=
-#    ../../Games/GameBoenken
-
 SOURCES += \
     ../../Games/GameBoenken/qtboenkenarenadialog.cpp \
     ../../Games/GameBoenken/qtboenkencontrolsdialog.cpp \
@@ -42,8 +39,3 @@ FORMS += \
     ../../Games/GameBoenken/qtboenkenpresskeydialog.ui \
     ../../Games/GameBoenken/qtboenkentraindialog.ui
 
-RESOURCES += \
-    ../../Games/GameBoenken/GameBoenken.qrc
-
-OTHER_FILES +=
-#    ../../Games/GameBoenken/Licence.txt

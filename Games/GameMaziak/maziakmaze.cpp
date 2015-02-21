@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "ribi_random.h"
 #include "testtimer.h"
 #include "maziakintmaze.h"
 #include "trace.h"
@@ -179,24 +180,34 @@ const std::vector<std::vector<ribi::maziak::MazeSquare> > ribi::maziak::Maze::Cr
 
   {
     //Set a minimum distance for the player to travel
-    while (1)
+    //while (1)
+    for (int i=0; ;++i)
     {
+      if (static_cast<int>(std::log10(i)) != static_cast<int>(std::log10(i + 1)))
+      {
+        TRACE(i + 1);
+      }
       const double x1 = static_cast<double>(dead_ends[0].first );
       const double y1 = static_cast<double>(dead_ends[0].second);
       const double x2 = static_cast<double>(dead_ends[1].first );
       const double y2 = static_cast<double>(dead_ends[1].second);
       const double a = x1 - x2;
       const double b = y1 - y2;
-      const double minDist = 0.75 * static_cast<double>(sz);
+      // Use 0.65, as 0.75 could not always be solved
+      const double minDist = 0.60 * static_cast<double>(sz);
       if (std::sqrt( (a * a) + (b * b) ) > minDist)
       {
         break;
       }
       else
       {
-
-        std::swap(dead_ends[0],dead_ends[std::rand() % nDeadEnds]);
-        std::swap(dead_ends[1],dead_ends[std::rand() % nDeadEnds]);
+        Random r;
+        const int de_a{r.GetInt(0,nDeadEnds-1)};
+        const int de_b{r.GetInt(0,nDeadEnds-1)};
+        assert(de_a < static_cast<int>(dead_ends.size()));
+        assert(de_b < static_cast<int>(dead_ends.size()));
+        std::swap(dead_ends[0],dead_ends[de_a]);
+        std::swap(dead_ends[1],dead_ends[de_b]);
       }
     }
   }
@@ -303,6 +314,9 @@ void ribi::maziak::Maze::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    Random();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

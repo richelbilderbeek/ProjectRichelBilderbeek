@@ -44,7 +44,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexample.h"
 #include "conceptmapedge.h"
 #include "conceptmapexamples.h"
-#include "conceptmaprating.h"
+#include "testtimer.h"
+#include "qtconceptmaprating.h"
 #include "trace.h"
 #include "ui_qtconceptmaprateconcepttallydialognewname.h"
 #pragma GCC diagnostic pop
@@ -271,13 +272,15 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   const boost::shared_ptr<Node> node_other(NodeFactory().Create(concept_node_other));
 
   const boost::shared_ptr<ConceptMap> sub_concept_map(
-    ConceptMapFactory::Create(
+    ConceptMapFactory().Create(
       {
         node_focal,
         node_other
       } ,
       {
-        EdgeFactory().Create(NodeFactory().Create(concept_edge,1.2,3.4),node_focal,true,node_other,true)
+        EdgeFactory().Create(
+          NodeFactory().Create(concept_edge,1.2,3.4),node_focal,true,node_other,true
+        )
       }
     )
   );
@@ -451,7 +454,7 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::OnCellChanged(int row_index, i
 
 void ribi::cmap::QtRateConceptTallyDialogNewName::resizeEvent(QResizeEvent *)
 {
-  const int small_col_width = 20;
+  const int small_col_width = 28;
   ui->table->setColumnWidth(0, small_col_width);
   ui->table->setColumnWidth(1, small_col_width);
   ui->table->setColumnWidth(2, small_col_width);
@@ -472,7 +475,7 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtRateConceptTallyDialog::Test");
+  const TestTimer test_timer{__func__,__FILE__,0.1};
   //Empty table
   {
     const boost::shared_ptr<ConceptMap> concept_map;
@@ -575,6 +578,5 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
   assert(d.ui->table->item(2,2)->checkState() == (edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(2,3)->text() == QString(edge->GetNode()->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
 
-  TRACE("Finished ribi::cmap::QtRateConceptTallyDialog::Test successfully");
 }
 #endif

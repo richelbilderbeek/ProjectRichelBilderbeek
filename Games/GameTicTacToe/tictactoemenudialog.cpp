@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -102,7 +102,7 @@ ribi::About ribi::tictactoe::TicTacToeMenuDialog::GetAbout() const noexcept
     "TicTacToe",
     "tic-tac-toe game",
     "the 5th of June 2014",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/GameTicTacToe.htm",
     GetVersion(),
     GetVersionHistory()

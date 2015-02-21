@@ -68,7 +68,7 @@ std::vector<std::string> ribi::MultiCanvas::ToStrings() const noexcept
   std::vector<std::vector<std::string>> v;
   for (const auto& c: m_canvases) { v.push_back(c->ToStrings()); }
   //Let the first canvas be drawn last, to give it the heighest Z order
-  std::reverse(v.begin(),v.end());
+  std::reverse(std::begin(v),std::end(v));
 
   std::vector<std::string> w;
   for (int y=0; y!=maxy; ++y)
