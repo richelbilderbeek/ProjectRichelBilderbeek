@@ -260,7 +260,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     assert(image_before != image_after);
   }
   #endif // NOT_NOW_20150112
-  #ifdef NOT_NOW_20141208
   if (verbose) { TRACE("If the head arrow head of an QtEdge its Edge is changed, the Item must be updated"); }
   {
     dialog.GetQtEdge()->GetEdge()->SetHeadArrow(true);
@@ -277,7 +276,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     const QImage image_after{dialog.GetUiView()};
     assert(image_before != image_after);
   }
-  #endif // NOT_NOW_20141208
   if (verbose) { TRACE("If the source/'from' of an QtEdge is made invisible, this will show in a screenshot"); }
   {
     assert(dialog.m_from->isVisible());
