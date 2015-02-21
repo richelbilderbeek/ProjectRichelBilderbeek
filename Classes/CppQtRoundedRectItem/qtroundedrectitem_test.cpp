@@ -189,21 +189,58 @@ void ribi::QtRoundedRectItem::Test() noexcept
     assert(before == after);
     scene.removeItem(&i); //Otherwise i gets deleted
   }
-  //#define NOT_NOW_20150112
-  #ifdef NOT_NOW_20150112
-  if (verbose) { TRACE("GetInnerRect should not change if width of contour pen changes"); }
+  if (verbose) { TRACE("GetInnerRect should not change if width of focus pen changes"); }
   {
     QGraphicsScene scene;
     scene.addItem(&i);
+    i.setSelected(false);
+    i.clearFocus();
+    assert(!i.hasFocus() && !i.isSelected()
+      && "Assume no focus, otherwise this test has no use");
     const auto before = i.GetInnerRect();
     const QPen old_pen{i.GetContourPen()};
     QPen new_pen{old_pen};
     new_pen.setWidth((old_pen.width() * 10) + 10);
-    i.SetContourPen(new_pen);
+    i.SetFocusPen(new_pen);
     const auto after = i.GetInnerRect();
     assert(before == after);
     scene.removeItem(&i); //Otherwise i gets deleted
+  }
+  //#define NOT_NOW_20150112
+  #ifdef NOT_NOW_20150112
+  if (verbose) { TRACE("GetInnerRect should not change if width of focus pen changes and given focus"); }
+  {
+    QGraphicsScene scene;
+    scene.addItem(&i);
+    i.setSelected(false);
+    i.clearFocus();
+    assert(!i.hasFocus() && !i.isSelected()
+      && "Assume no focus, otherwise this test has no use");
+    const auto before = i.GetInnerRect();
+    const QPen old_pen{i.GetContourPen()};
+    QPen new_pen{old_pen};
+    new_pen.setWidth((old_pen.width() * 10) + 10);
 
+    i.SetFocusPen(new_pen);
+    i.setFocus();
+    i.setSelected(true);
+    // Force repaint
+    {
+      //Create an image of the item
+      QImage image(scene.sceneRect().size().toSize(), QImage::Format_ARGB32);
+      // Start all pixels transparent
+      image.fill(Qt::transparent);
+      QPainter painter(&image);
+      scene.render(&painter);
+      image.save("tmp_bug244_pre.png");
+    }
+    assert(i.hasFocus());
+    assert(i.isSelected());
+    assert(i.hasFocus() && i.isSelected()
+      && "Assume focus, otherwise this test has no use");
+    const auto after = i.GetInnerRect();
+    assert(before == after);
+    scene.removeItem(&i); //Otherwise i gets deleted
   }
   if (verbose) { TRACE("Bug #244: Changing pens does not resize the raw QRect"); }
   // The GetInnerRect should always remain the same
@@ -253,12 +290,12 @@ void ribi::QtRoundedRectItem::Test() noexcept
     //Paint it to file, to force a redraw
     {
       //Create an image of before
-      QImage image_before(scene.sceneRect().size().toSize(), QImage::Format_ARGB32);
+      QImage image(scene.sceneRect().size().toSize(), QImage::Format_ARGB32);
       // Start all pixels transparent
-      image_before.fill(Qt::transparent);
-      QPainter painter(&image_before);
+      image.fill(Qt::transparent);
+      QPainter painter(&image);
       scene.render(&painter);
-      image_before.save("tmp_bug244.png");
+      image.save("tmp_bug244.png");
     }
 
     //ERROR: inner width + 2 * focus pen width != outer width
