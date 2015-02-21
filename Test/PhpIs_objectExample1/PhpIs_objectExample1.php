@@ -1,1 +1,0 @@
-<?phpclass MyClass {};$something = new MyClass;$integer = 42;$nothing = null;assert( is_object($something));assert(!is_object($integer));assert(!is_object($nothing));/* Screen output: none */?>

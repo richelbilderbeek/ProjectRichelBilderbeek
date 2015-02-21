@@ -1,1 +1,0 @@
-<?php//Recursive var_dumpclass Sibling {   public $brother;  public $sister;};$joe = new Sibling();$jane = new Sibling();$joe->sister = $jane;$jane->brother = $joe;var_dump($joe);/* Screen output:object(Sibling)#1 (2) {  ["brother"]=>  NULL  ["sister"]=>  object(Sibling)#2 (2) {    ["brother"]=>    *RECURSION*    ["sister"]=>    NULL  }}*/?>
