@@ -3149,7 +3149,7 @@ boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDialog::
 
 std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersionStatic() noexcept
 {
-  return "1.17";
+  return "1.19";
 }
 
 std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistoryStatic() noexcept
@@ -3211,7 +3211,8 @@ std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHist
     "2014-04-22: Version 1.15: added CaesarCipher, CodeBreaker and VigenereCipher",
     "2014-08-14: Version 1.16: increased use of TDD in console version",
     "2014-08-17: Version 1.17: removed code-that-might-once-be-added",
-    "2015-01-04: Version 1.18: made placeholder dialogs look nice"
+    "2015-01-04: Version 1.18: made placeholder dialogs look nice",
+    "2015-02-22: Version 1.19: after splitting codebase up in multiple GitHubs"
   };
 }
 

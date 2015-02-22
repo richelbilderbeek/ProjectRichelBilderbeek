@@ -35,7 +35,7 @@ QCheckBox { font: 20px,  &quot;Courier&quot; }</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc">:/images/PicRed.png</pixmap>
+        <pixmap resource="../ToolKalmanFilterer/ToolKalmanFilterer.qrc">:/images/PicRed.png</pixmap>
        </property>
       </widget>
      </item>
@@ -189,7 +189,7 @@ QCheckBox { font: 20px,  &quot;Courier&quot; }</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc">:/images/PicGreen.png</pixmap>
+        <pixmap resource="../ToolKalmanFilterer/ToolKalmanFilterer.qrc">:/images/PicGreen.png</pixmap>
        </property>
       </widget>
      </item>
@@ -434,7 +434,7 @@ QCheckBox { font: 20px,  &quot;Courier&quot; }</string>
  </customwidgets>
  <resources>
   <include location="../../Games/GameBoenken/GameBoenken.qrc"/>
-  <include location="../../Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc"/>
+  <include location="../ToolKalmanFilterer/ToolKalmanFilterer.qrc"/>
  </resources>
  <connections/>
 </ui>

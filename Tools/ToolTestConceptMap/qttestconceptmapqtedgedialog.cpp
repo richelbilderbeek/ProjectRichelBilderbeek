@@ -32,6 +32,7 @@
 #include "qtconceptmapqtedgedialog.h"
 #include "qtconceptmapqtedgefactory.h"
 #include "qtconceptmapratestrategy.h"
+#include "qtimage.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "testtimer.h"
@@ -117,12 +118,12 @@ int ribi::cmap::QtTestQtEdgeDialog::GetUiTestIndex() const noexcept
 }
 
 QImage ribi::cmap::QtTestQtEdgeDialog::GetUiView() const noexcept
-{
+{ 
   const auto scene = this->m_view_left->scene();
   // Create the image with the exact size of the shrunk scene
   const QSize old_size{scene->sceneRect().size().toSize()};
   //Rescaled by a factor two to fix BUG_260
-  //const QSize new_size(old_size.scaled(2,2, Qt::KeepAspectRatio));
+  //const QSize new_size(old_size.scaled(2,2, Qt::KeepAspectRatio)); //Adding this introduces a new bug
   QImage image(old_size, QImage::Format_ARGB32);
   // Start all pixels transparent
   image.fill(Qt::transparent);

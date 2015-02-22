@@ -461,9 +461,13 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
   #ifdef FIXING_BUG_260
   //if (show_bounding_rect)
   {
+    const QPen prev_pen = painter->pen();
+    const QBrush prev_brush = painter->brush();
     painter->setPen(QPen(QColor(0,0,96)));
     painter->setBrush(QBrush(QColor(0,0,255,64)));
     painter->drawRect(this->boundingRect().adjusted(1.0,1.0,-1.0,-1.0));
+    painter->setPen(prev_pen);
+    painter->setBrush(prev_brush);
   }
   #endif
 }

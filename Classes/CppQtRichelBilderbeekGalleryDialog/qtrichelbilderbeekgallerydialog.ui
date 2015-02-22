@@ -20,7 +20,7 @@
    <string>Richel Bilderbeek's gallery</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../Website/qtrichelbilderbeekgalleryresources.qrc">
+   <iconset resource="../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeek.qrc">
     <normaloff>:/images/PicR.png</normaloff>:/images/PicR.png</iconset>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
@@ -84,7 +84,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../Website/qtrichelbilderbeekgalleryresources.qrc"/>
+  <include location="../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeek.qrc"/>
  </resources>
  <connections/>
 </ui>

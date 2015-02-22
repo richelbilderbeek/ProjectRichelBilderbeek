@@ -19,7 +19,7 @@
    <string>Richel Bilderbeek's gallery menu</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc">
+   <iconset resource="../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeek.qrc">
     <normaloff>:/images/PicR.png</normaloff>:/images/PicR.png</iconset>
   </property>
   <property name="styleSheet">
@@ -96,7 +96,7 @@ QPushButton { font: 32px, &quot;Courier&quot; }</string>
   </layout>
  </widget>
  <resources>
-  <include location="../../Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc"/>
+  <include location="../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeek.qrc"/>
  </resources>
  <connections/>
 </ui>
