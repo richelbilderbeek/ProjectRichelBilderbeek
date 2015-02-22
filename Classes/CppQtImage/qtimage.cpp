@@ -6,6 +6,8 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <QGraphicsItem>
+#include <QGraphicsScene>
 #include <QPainter>
 
 #include "testtimer.h"
@@ -42,6 +44,41 @@ std::vector<std::string> ribi::QtImage::GetVersionHistory() noexcept
   };
 }
 
+QImage ribi::QtImage::Paint(const QGraphicsItem& item) noexcept
+{
+  if (item.scene())
+  {
+    QGraphicsScene scene = *item.scene();
+    // Create the image with the exact size of the shrunk scene
+    const QSize old_size{scene->sceneRect().size().toSize()};
+    //Rescaled by a factor two to fix BUG_260
+    //const QSize new_size(old_size.scaled(2,2, Qt::KeepAspectRatio));
+    QImage image(old_size, QImage::Format_ARGB32);
+    // Start all pixels transparent
+    image.fill(Qt::transparent);
+    QPainter painter(&image);
+    scene->render(&painter);
+    return image;
+  }
+  else
+  {
+    QGraphicsScene scene;
+    scene.addItem(&item); //Temporarily add the item
+
+    const QSize old_size{scene->sceneRect().size().toSize()};
+    //Rescaled by a factor two to fix BUG_260
+    //const QSize new_size(old_size.scaled(2,2, Qt::KeepAspectRatio));
+    QImage image(old_size, QImage::Format_ARGB32);
+    // Start all pixels transparent
+    image.fill(Qt::transparent);
+    QPainter painter(&image);
+    scene->render(&painter);
+    scene.removeItem(&item); //Prevent item being deleted
+    return image;
+  }
+}
+
+
 #ifndef NDEBUG
 void ribi::QtImage::Test() noexcept
 {
@@ -61,6 +98,16 @@ void ribi::QtImage::Test() noexcept
     QImage q(1,1,QImage::Format_RGB32);
     q.setPixel(0,0,qRgb(1,2,3));
     assert(q.pixel(0,0) == qRgb(1,2,3));
+  }
+  if (verbose) { TRACE("QGraphicsItem rendering"); }
+  {
+    QGraphicsSimpleTextItem item;
+    item.setText(__func__);
+    QImage image{QtImage().Paint(item)};
+    assert(image.width() > 1);
+    assert(image.height() > 1);
+    image.save("tmp_ribi_QtImage_Test.png";
+    assert(!"Check in");
   }
 }
 #endif

@@ -21,6 +21,10 @@ struct QtImage
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  //Render a QGraphicsItem to a QImage
+  QImage Paint(const QGraphicsItem& item) noexcept;
+
+
   QImage Xor(const QImage& base, const QImage& to_xor) noexcept;
   private:
   #ifndef NDEBUG
