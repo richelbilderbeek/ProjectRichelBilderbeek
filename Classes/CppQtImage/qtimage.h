@@ -11,6 +11,8 @@
 #include <QImage>
 #pragma GCC diagnostic pop
 
+struct QGraphicsItem;
+
 namespace ribi {
 
 ///Some handy functions on QImage
@@ -23,7 +25,6 @@ struct QtImage
 
   //Render a QGraphicsItem to a QImage
   QImage Paint(const QGraphicsItem& item) noexcept;
-
 
   QImage Xor(const QImage& base, const QImage& to_xor) noexcept;
   private:

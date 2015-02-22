@@ -48,32 +48,32 @@ QImage ribi::QtImage::Paint(const QGraphicsItem& item) noexcept
 {
   if (item.scene())
   {
-    QGraphicsScene scene = *item.scene();
+    auto& scene = *item.scene();
     // Create the image with the exact size of the shrunk scene
-    const QSize old_size{scene->sceneRect().size().toSize()};
+    const QSize old_size{scene.sceneRect().size().toSize()};
     //Rescaled by a factor two to fix BUG_260
     //const QSize new_size(old_size.scaled(2,2, Qt::KeepAspectRatio));
     QImage image(old_size, QImage::Format_ARGB32);
     // Start all pixels transparent
     image.fill(Qt::transparent);
     QPainter painter(&image);
-    scene->render(&painter);
+    scene.render(&painter);
     return image;
   }
   else
   {
     QGraphicsScene scene;
-    scene.addItem(&item); //Temporarily add the item
+    scene.addItem(&const_cast<QGraphicsItem&>(item)); //Temporarily add the item, won't modify it
 
-    const QSize old_size{scene->sceneRect().size().toSize()};
+    const QSize old_size{scene.sceneRect().size().toSize()};
     //Rescaled by a factor two to fix BUG_260
     //const QSize new_size(old_size.scaled(2,2, Qt::KeepAspectRatio));
     QImage image(old_size, QImage::Format_ARGB32);
     // Start all pixels transparent
     image.fill(Qt::transparent);
     QPainter painter(&image);
-    scene->render(&painter);
-    scene.removeItem(&item); //Prevent item being deleted
+    scene.render(&painter);
+    scene.removeItem(&const_cast<QGraphicsItem&>(item)); //Prevent item being deleted
     return image;
   }
 }
@@ -106,8 +106,7 @@ void ribi::QtImage::Test() noexcept
     QImage image{QtImage().Paint(item)};
     assert(image.width() > 1);
     assert(image.height() > 1);
-    image.save("tmp_ribi_QtImage_Test.png";
-    assert(!"Check in");
+    image.save("tmp_ribi_QtImage_Test.png");
   }
 }
 #endif
