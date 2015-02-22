@@ -450,6 +450,16 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
   };
   m_arrow->SetPen(pen);
   m_qtnode->setPen(pen);
+
+  #define FIXING_BUG_260
+  #ifdef FIXING_BUG_260
+  //if (show_bounding_rect)
+  {
+    painter->setPen(QPen(QColor(0,0,96)));
+    painter->setBrush(QBrush(QColor(0,0,255,64)));
+    painter->drawRect(this->boundingRect().adjusted(1.0,1.0,-1.0,-1.0));
+  }
+  #endif
 }
 
 void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
