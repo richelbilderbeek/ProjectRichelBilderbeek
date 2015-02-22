@@ -1,0 +1,36 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ToolTestToggleButton_1_4.png</file>
+        <file>ToolTestTwoDigitNewick_2_2.png</file>
+        <file>ToolTestTextPositionWidget_1_4.png</file>
+        <file>ToolTestTextCanvas_1_0.png</file>
+        <file>ToolTestSimpleLinearRegression_1_2.png</file>
+        <file>ToolTestShinyButton_2_1.png</file>
+        <file>ToolTestShape_2_1.png</file>
+        <file>ToolTestReversi_0_1.png</file>
+        <file>ToolTestQtRoundedTextRectItem_1_2.png</file>
+        <file>ToolTestQuestion_3_1.png</file>
+        <file>ToolTestQtRoundedRectItem_1_2.png</file>
+        <file>ToolTestQtRoundedEditRectItem_1_2.png</file>
+        <file>ToolTestQtHideAndShowDialog_0_1.png</file>
+        <file>ToolTestKeyboardFriendlyGraphicsView_0_4.png</file>
+        <file>ToolTestQtModels_1_2.png</file>
+        <file>ToolTestQtCreatorProFile_1_4.png</file>
+        <file>ToolTestQrcFile_1_3.png</file>
+        <file>ToolTestOpenQuestion_1_0.png</file>
+        <file>ToolTestPlane_1_0.png</file>
+        <file>ToolTestNewickVector_3_2.png</file>
+        <file>ToolTestMultipleChoiceQuestionDialog_1_0.png</file>
+        <file>ToolTestManyDigitNewick_1_0.png</file>
+        <file>ToolTestMultiCanvas_1_0.png</file>
+        <file>ToolTestGraphicsProxyWidget_0_1.png</file>
+        <file>ToolTestImageCanvas_1_0.png</file>
+        <file>ToolTestGravityWidget_0_1.png</file>
+        <file>ToolTestConceptMap_1_0.png</file>
+        <file>ToolTestDial_2_3.png</file>
+        <file>ToolTestDrawCanvas_1_2.png</file>
+        <file>ToolTriangleMeshCreator_1_2.png</file>
+        <file>ToolTestPlane_1_1.png</file>
+        <file>ToolWktToSvg_1_3.png</file>
+    </qresource>
+</RCC>

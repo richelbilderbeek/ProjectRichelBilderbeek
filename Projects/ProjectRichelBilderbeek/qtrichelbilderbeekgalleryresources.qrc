@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>CppGnuplotInterface.png</file>
+        <file>PicBlack.png</file>
+        <file>PicCl.png</file>
+        <file>PicDesktop.png</file>
+        <file>PicGreen.png</file>
+        <file>PicLinux.png</file>
+        <file>PicMac.png</file>
+        <file>PicOrange.png</file>
+        <file>PicR.png</file>
+        <file>PicRed.png</file>
+        <file>PicWeb.png</file>
+        <file>PicWindows.png</file>
+        <file>PicYellow.png</file>
+        <file>RichelbilderbeekNlBackground.png</file>
+    </qresource>
+</RCC>

@@ -120,7 +120,10 @@ QImage ribi::cmap::QtTestQtEdgeDialog::GetUiView() const noexcept
 {
   const auto scene = this->m_view_left->scene();
   // Create the image with the exact size of the shrunk scene
-  QImage image(scene->sceneRect().size().toSize(), QImage::Format_ARGB32); //HIERO
+  const QSize old_size{scene->sceneRect().size().toSize()};
+  //Rescaled by a factor two to fix BUG_260
+  //const QSize new_size(old_size.scaled(2,2, Qt::KeepAspectRatio));
+  QImage image(old_size, QImage::Format_ARGB32);
   // Start all pixels transparent
   image.fill(Qt::transparent);
   QPainter painter(&image);
@@ -248,6 +251,7 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     const QImage image_after{dialog.GetUiView()};
     assert(image_before == image_after);
   }
+  //#define FIX_BUG_260
   #ifdef FIX_BUG_260
   if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
   {

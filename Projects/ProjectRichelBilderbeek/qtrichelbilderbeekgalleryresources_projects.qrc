@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ProjectBochumGaborFiltersResults.png</file>
+        <file>ProjectBristol_1_0.png</file>
+        <file>ProjectChrisWiley_1_0.png</file>
+        <file>ProjectCrossPoll3.png</file>
+        <file>ProjectGtst_1_2.png</file>
+        <file>ProjectMuscaDomestica_1_0.png</file>
+        <file>ProjectThorVeen_0_9.png</file>
+        <file>ProjectWtWebsiteBep.png</file>
+        <file>ProjectRichelBilderbeek_1_14.png</file>
+    </qresource>
+</RCC>
