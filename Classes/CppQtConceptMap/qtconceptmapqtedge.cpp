@@ -186,10 +186,16 @@ ribi::cmap::QtEdge::~QtEdge() noexcept
 
 QRectF ribi::cmap::QtEdge::boundingRect() const
 {
-  return m_qtnode->boundingRect() //Bypassed going via m_concept_item
-    .united(m_arrow->boundingRect().translated(-m_qtnode->GetCenterPos()));
-  //return m_concept_item->boundingRect()
-  //  .united(m_arrow->boundingRect().translated(-this->pos()));
+  //Goes around arrow
+  //return m_qtnode->boundingRect().translated(-m_qtnode->GetCenterPos())
+  //  .united(m_arrow->boundingRect());
+
+  //Goes around arrow
+  return m_qtnode->boundingRect()
+    .united(m_arrow->boundingRect());
+
+  //return m_qtnode->boundingRect()
+  //  .united(m_arrow->boundingRect().translated(-m_qtnode->GetCenterPos()));
 }
 
 void ribi::cmap::QtEdge::DisableAll() noexcept
