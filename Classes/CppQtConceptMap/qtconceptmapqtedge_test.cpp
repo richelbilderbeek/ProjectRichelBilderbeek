@@ -119,7 +119,6 @@ void ribi::cmap::QtEdge::Test() noexcept
     qtedge->GetEdge()->SetHeadArrow(true);
     assert(qtedge->GetArrow()->HasHead());
   }
-
   //Tail arrow
   if (verbose) { TRACE("An Edge's tail arrow and it QtQuadBezierArrowItem must match at creation"); }
   {
