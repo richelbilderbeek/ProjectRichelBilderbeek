@@ -8,6 +8,8 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
 
   QGraphicsScene scene;
+  QGraphicsView view(&scene);
+  view.setGeometry(100,100,400,100);
 
   QGraphicsRectItem item;
   item.setFlags(
@@ -21,14 +23,25 @@ int main(int argc, char *argv[])
 
   assert(item.flags() && QGraphicsItem::ItemIsSelectable);
   assert(item.flags() && QGraphicsItem::ItemIsFocusable);
+  assert(item.scene());
+  assert(item.isVisible());
 
   assert(!item.hasFocus()); //No focus yet
-  item.setFocus();          //Set focus
-  assert(item.hasFocus());  //Why does this fail?
 
-  QGraphicsView view(&scene);
-  view.setGeometry(100,100,400,100);
-  view.show();
+  item.setFocus();          //Set focus
+
+  view.show();              //Show it
+
+  //Force paint of item
+  {
+    QImage image(scene.sceneRect().size().toSize(), QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
+    QPainter painter(&image);
+    scene.render(&painter);
+    image.save("tmp.png");
+  }
+
+  assert(item.hasFocus());  //Why does this fail?
 
   return a.exec();
 }
