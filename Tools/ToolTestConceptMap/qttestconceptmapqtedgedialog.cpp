@@ -257,7 +257,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     const QImage image_after{dialog.GetUiView()};
     assert(image_before != image_after);
   }
-  #ifdef NOT_NOW_20150215
   if (verbose) { TRACE("If the head arrow head of an QtEdge its Edge is changed, the Item must be updated"); }
   {
     dialog.GetQtEdge()->GetEdge()->SetHeadArrow(true);
@@ -270,10 +269,9 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
       image_after.save( "tmp_after.png");
       image_before.save("tmp.png");
     }
-
     assert(image_before != image_after);
+    assert(!"Fixed, check it in");
   }
-  #endif // NOT_NOW_20150215
   if (verbose) { TRACE("If the tail arrow head of an QtEdge its Edge is changed, the Item must be updated"); }
   {
     dialog.GetQtEdge()->GetEdge()->SetTailArrow(true);

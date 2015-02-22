@@ -127,7 +127,33 @@ void ribi::cmap::QtEdge::Test() noexcept
     const bool arrow_has_tail{qtedge->GetArrow()->HasTail()};
     assert(edge_has_tail == arrow_has_tail);
   }
-
+  if (verbose) { TRACE("If a QtEdge its Edge's tail arrow is changed, a signal must be emitted by Edge"); }
+  {
+    Counter c{0}; //For receiving the signal
+    qtedge->GetEdge()->m_signal_tail_arrow_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    qtedge->GetEdge()->SetTailArrow(true);
+    qtedge->GetEdge()->SetTailArrow(false);
+    assert(c.Get() > 0);
+  }
+  if (verbose) { TRACE("If a QtEdge its Edge's tail arrow is changed, a signal must be emitted by QtEdge"); }
+  {
+    Counter c{0}; //For receiving the signal
+    qtedge->m_signal_edge_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    qtedge->GetEdge()->SetTailArrow(false);
+    qtedge->GetEdge()->SetTailArrow(true);
+    assert(c.Get() > 0);
+  }
+  if (verbose) { TRACE("If a QtEdge its Edge's tail arrow is changed, it QtQuadBezier must match"); }
+  {
+    qtedge->GetEdge()->SetTailArrow(false);
+    assert(!qtedge->GetArrow()->HasTail());
+    qtedge->GetEdge()->SetTailArrow(true);
+    assert(qtedge->GetArrow()->HasTail());
+  }
   //Text
   if (verbose) { TRACE("Text of QtEdge must be one line"); }
   {
