@@ -7,7 +7,7 @@
 
 #include <boost/math/constants/constants.hpp>
 
-Edge::Edge(Node *sourceNode, Node *destNode)
+Edge::Edge(Node * const sourceNode, Node * const destNode)
   :
     m_source_node{sourceNode},
     m_dest_node{destNode},
@@ -21,12 +21,12 @@ Edge::Edge(Node *sourceNode, Node *destNode)
   adjust();
 }
 
-Node * Edge::sourceNode() const
+Node * Edge::sourceNode() const noexcept
 {
   return m_source_node;
 }
 
-Node * Edge::destNode() const
+Node * Edge::destNode() const noexcept
 {
   return m_dest_node;
 }
@@ -77,20 +77,23 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 
 
   const QLineF line(m_source_point, m_dest_point);
+
   if (qFuzzyCompare(line.length(), 0.0)) return;
 
   // Draw the line itself
-  painter->setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+  painter->setPen(QPen(Qt::black, 1.0, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
   painter->drawLine(line);
 
   // Draw the arrows
   double angle = std::acos(line.dx() / line.length());
   if (line.dy() >= 0) angle = tau - angle;
 
-  const QPointF sourceArrowP1{m_source_point + QPointF(sin(angle + pi / 3) * m_arrow_size,cos(angle + pi / 3) * m_arrow_size)};
-  const QPointF sourceArrowP2 = m_source_point + QPointF(sin(angle + pi - pi / 3) * m_arrow_size,cos(angle + pi - pi / 3) * m_arrow_size);
-  const QPointF destArrowP1 = m_dest_point + QPointF(sin(angle - pi / 3) * m_arrow_size,cos(angle - pi / 3) * m_arrow_size);
-  const QPointF destArrowP2 = m_dest_point + QPointF(sin(angle - pi + pi / 3) * m_arrow_size,cos(angle - pi + pi / 3) * m_arrow_size);
+  using std::sin;
+  using std::cos;
+  const QPointF sourceArrowP1{m_source_point + QPointF(sin(angle + pi / 3.0) * m_arrow_size,cos(angle + pi / 3.0) * m_arrow_size)};
+  const QPointF sourceArrowP2{m_source_point + QPointF(sin(angle + pi - pi / 3.0) * m_arrow_size,cos(angle + pi - pi / 3.0) * m_arrow_size)};
+  const QPointF destArrowP1{m_dest_point + QPointF(sin(angle - pi / 3.0) * m_arrow_size,cos(angle - pi / 3.0) * m_arrow_size)};
+  const QPointF destArrowP2{m_dest_point + QPointF(sin(angle - pi + pi / 3.0) * m_arrow_size,cos(angle - pi + pi / 3.0) * m_arrow_size)};
 
   painter->setBrush(Qt::black);
   painter->drawPolygon(QPolygonF() << line.p1() << sourceArrowP1 << sourceArrowP2);

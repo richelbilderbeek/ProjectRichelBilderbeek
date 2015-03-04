@@ -14,7 +14,7 @@ GraphWidget::GraphWidget(QWidget *parent)
   m_timer_id{0},
   m_centerNode{new Node(this)}
 {
-  QGraphicsScene *scene = new QGraphicsScene(this);
+  QGraphicsScene * const scene = new QGraphicsScene(this);
   scene->setItemIndexMethod(QGraphicsScene::NoIndex);
   scene->setSceneRect(-200, -200, 400, 400);
   setScene(scene);
@@ -22,7 +22,7 @@ GraphWidget::GraphWidget(QWidget *parent)
   setViewportUpdateMode(BoundingRectViewportUpdate);
   setRenderHint(QPainter::Antialiasing);
   setTransformationAnchor(AnchorUnderMouse);
-  scale(qreal(0.8), qreal(0.8));
+  scale(0.8, 0.8);
   setMinimumSize(400, 400);
   setWindowTitle(tr("Elastic Nodes"));
 
@@ -111,18 +111,18 @@ void GraphWidget::timerEvent(QTimerEvent *)
   QList<Node *> nodes;
   foreach (QGraphicsItem *item, scene()->items())
   {
-    if (Node *node = qgraphicsitem_cast<Node *>(item))
+    if (Node * const node = qgraphicsitem_cast<Node *>(item))
     {
       nodes << node;
     }
   }
-  foreach (Node *node, nodes)
+  foreach (Node * const node, nodes)
   {
     node->calculateForces();
   }
 
   bool itemsMoved = false;
-  foreach (Node *node, nodes)
+  foreach (Node * const node, nodes)
   {
     if (node->advance())
     itemsMoved = true;
@@ -137,13 +137,13 @@ void GraphWidget::timerEvent(QTimerEvent *)
 
 void GraphWidget::wheelEvent(QWheelEvent *event)
 {
-  scaleView(pow((double)2, -event->delta() / 240.0));
+  scaleView(std::pow(2.0, -event->delta() / 240.0));
 }
 
 void GraphWidget::drawBackground(QPainter *painter, const QRectF &rect)
 {
   // Shadow
-  const QRectF sceneRect = this->sceneRect();
+  const QRectF sceneRect{this->sceneRect()};
   const QRectF rightShadow(sceneRect.right(), sceneRect.top() + 5, 5, sceneRect.height());
   const QRectF bottomShadow(sceneRect.left() + 5, sceneRect.bottom(), sceneRect.width(), 5);
   if (rightShadow.intersects(rect) || rightShadow.contains(rect))
@@ -163,7 +163,6 @@ void GraphWidget::drawBackground(QPainter *painter, const QRectF &rect)
   painter->setBrush(Qt::NoBrush);
   painter->drawRect(sceneRect);
 
-  #if !defined(Q_OS_SYMBIAN) && !defined(Q_WS_MAEMO_5)
   // Text
   const QRectF textRect(sceneRect.left() + 4, sceneRect.top() + 4,
   sceneRect.width() - 4, sceneRect.height() - 4);
@@ -178,7 +177,6 @@ void GraphWidget::drawBackground(QPainter *painter, const QRectF &rect)
   painter->drawText(textRect.translated(2, 2), message);
   painter->setPen(Qt::black);
   painter->drawText(textRect, message);
-  #endif
 }
 
 void GraphWidget::scaleView(qreal scaleFactor)
@@ -186,17 +184,21 @@ void GraphWidget::scaleView(qreal scaleFactor)
   const double factor{
     transform().scale(scaleFactor, scaleFactor).mapRect(QRectF(0, 0, 1, 1)).width()
   };
-  if (factor < 0.07 || factor > 100) { return; }
+  if (factor < 0.07 || factor > 100) return;
 
   scale(scaleFactor, scaleFactor);
 }
 
 void GraphWidget::shuffle()
 {
-  foreach (QGraphicsItem *item, scene()->items()) {
+  foreach (QGraphicsItem * const item, scene()->items())
+  {
     if (qgraphicsitem_cast<Node *>(item))
     {
-      item->setPos(-150 + qrand() % 300, -150 + qrand() % 300);
+      item->setPos(
+        static_cast<double>(-150 + (qrand() % 300)),
+        static_cast<double>(-150 + (qrand() % 300))
+      );
     }
   }
 }

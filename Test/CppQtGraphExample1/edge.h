@@ -11,12 +11,12 @@ class Node;
 class Edge : public QGraphicsItem
 {
 public:
-  Edge(Node *sourceNode, Node *destNode);
+  Edge(Node * const sourceNode, Node * const destNode);
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
 
-  Node *sourceNode() const;
-  Node *destNode() const;
+  Node *sourceNode() const noexcept;
+  Node *destNode() const noexcept;
 
   void adjust();
 
@@ -33,7 +33,7 @@ private:
 
   QPointF m_source_point;
   QPointF m_dest_point;
-  qreal m_arrow_size;
+  const double m_arrow_size;
 };
 
  #endif
