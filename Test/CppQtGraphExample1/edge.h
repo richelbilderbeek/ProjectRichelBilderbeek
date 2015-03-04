@@ -28,8 +28,8 @@ protected:
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 private:
-  Node *m_source_node;
-  Node *m_dest_node;
+  Node * const m_source_node;
+  Node * const m_dest_node;
 
   QPointF m_source_point;
   QPointF m_dest_point;

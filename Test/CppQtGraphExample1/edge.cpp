@@ -21,12 +21,12 @@ Edge::Edge(Node *sourceNode, Node *destNode)
   adjust();
 }
 
-Node *Edge::sourceNode() const
+Node * Edge::sourceNode() const
 {
   return m_source_node;
 }
 
-Node *Edge::destNode() const
+Node * Edge::destNode() const
 {
   return m_dest_node;
 }
@@ -35,14 +35,14 @@ void Edge::adjust()
 {
   if (!m_source_node || !m_dest_node) return;
 
-  QLineF line(mapFromItem(m_source_node, 0, 0), mapFromItem(m_dest_node, 0, 0));
-  qreal length = line.length();
+  const QLineF line(mapFromItem(m_source_node, 0, 0), mapFromItem(m_dest_node, 0, 0));
+  const double length{line.length()};
 
   prepareGeometryChange();
 
-  if (length > qreal(20.0))
+  if (length > 20.0)
   {
-    QPointF edgeOffset((line.dx() * 10) / length, (line.dy() * 10) / length);
+    const QPointF edgeOffset((line.dx() * 10) / length, (line.dy() * 10) / length);
     m_source_point = line.p1() + edgeOffset;
     m_dest_point = line.p2() - edgeOffset;
   }
@@ -59,10 +59,13 @@ QRectF Edge::boundingRect() const
   const double penWidth{1.0};
   const double extra{(penWidth + m_arrow_size) / 2.0};
 
-  return QRectF(m_source_point, QSizeF(m_dest_point.x() - m_source_point.x(),
-  m_dest_point.y() - m_source_point.y()))
-  .normalized()
-  .adjusted(-extra, -extra, extra, extra);
+  return QRectF(
+    m_source_point,
+    QSizeF(m_dest_point.x() - m_source_point.x(),
+      m_dest_point.y() - m_source_point.y()
+    )
+  ).normalized()
+   .adjusted(-extra, -extra, extra, extra);
 }
 
 void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
@@ -73,21 +76,18 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
   const double tau{boost::math::constants::two_pi<double>()};
 
 
-  QLineF line(m_source_point, m_dest_point);
-  if (qFuzzyCompare(line.length(), qreal(0.0)))
-  return;
+  const QLineF line(m_source_point, m_dest_point);
+  if (qFuzzyCompare(line.length(), 0.0)) return;
 
   // Draw the line itself
   painter->setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
   painter->drawLine(line);
 
   // Draw the arrows
-  double angle = ::acos(line.dx() / line.length());
+  double angle = std::acos(line.dx() / line.length());
   if (line.dy() >= 0) angle = tau - angle;
 
-
-
-  const QPointF sourceArrowP1 = m_source_point + QPointF(sin(angle + pi / 3) * m_arrow_size,cos(angle + pi / 3) * m_arrow_size);
+  const QPointF sourceArrowP1{m_source_point + QPointF(sin(angle + pi / 3) * m_arrow_size,cos(angle + pi / 3) * m_arrow_size)};
   const QPointF sourceArrowP2 = m_source_point + QPointF(sin(angle + pi - pi / 3) * m_arrow_size,cos(angle + pi - pi / 3) * m_arrow_size);
   const QPointF destArrowP1 = m_dest_point + QPointF(sin(angle - pi / 3) * m_arrow_size,cos(angle - pi / 3) * m_arrow_size);
   const QPointF destArrowP2 = m_dest_point + QPointF(sin(angle - pi + pi / 3) * m_arrow_size,cos(angle - pi + pi / 3) * m_arrow_size);

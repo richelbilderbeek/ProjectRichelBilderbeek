@@ -34,7 +34,7 @@ protected:
 
 private:
   int m_timer_id;
-  Node * m_centerNode;
+  Node * const m_centerNode;
 };
 
 #endif

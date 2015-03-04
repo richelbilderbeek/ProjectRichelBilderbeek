@@ -39,7 +39,7 @@ public:
   private:
   QList<Edge*> m_edges;
   QPointF m_new_pos;
-  GraphWidget * m_graph;
+  GraphWidget * const m_graph;
 };
 
 #endif
