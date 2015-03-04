@@ -84,19 +84,6 @@ struct QtNode : public QtRoundedEditRectItem
   mutable boost::signals2::signal<void (QtNode *)> m_signal_node_changed;
   //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;
   //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_examples;
-  /*
-  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_base_changed;
-  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_font_changed;
-  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_padding_changed;
-  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_text_changed;
-  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_text_pen_changed;
-  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
-  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;
-  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_pos_changed;
-  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_x_changed;
-  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_y_changed;
-  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_rect_changed;
-  */
   ///No other signals, these are present in the ConceptItems
 
   virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept final;

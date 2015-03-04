@@ -151,7 +151,8 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   //General: inform an Observer that this item has changed
   //Signal #6
   qtedge->m_signal_item_has_updated.connect(
-   boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
+   boost::bind(&QtConceptMap::
+   ,this,boost::lambda::_1));
 
   //Signal #7
   //General: inform an Observer that a QGraphicsScene needs to be updated
@@ -303,7 +304,9 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
 
   //Signal #1
   //General: inform an Observer that this item has changed
+  #define NOT_NOW_20141111 //20150303
   #ifdef NOT_NOW_20141111
+  qtnode->m_si
   qtnode->m_signal_item_has_updated.connect(
    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
 

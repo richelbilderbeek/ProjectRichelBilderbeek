@@ -206,7 +206,7 @@ void ribi::QtRoundedRectItem::Test() noexcept
     assert(before == after);
     scene.removeItem(&i); //Otherwise i gets deleted
   }
-  #ifdef NOT_NOW_20150112_AND_CAN_FORCE_FOCUS
+  #ifdef ISSUE_261_GIVE_UP_ON_TESTING_FOCUS
   if (verbose) { TRACE("GetInnerRect should not change if width of focus pen changes and given focus"); }
   {
     QGraphicsScene scene;
@@ -332,7 +332,7 @@ void ribi::QtRoundedRectItem::Test() noexcept
     assert(!"Fixed, refactor, then check in");
   }
   assert(1==2);
-  #endif // NOT_NOW_20150112
+  #endif // ISSUE_261_GIVE_UP_ON_TESTING_FOCUS
 }
 #endif
 

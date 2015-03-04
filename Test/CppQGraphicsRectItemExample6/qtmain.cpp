@@ -1,7 +1,8 @@
 #include <cassert>
 #include <QApplication>
-#include <QGraphicsView>
 #include <QGraphicsRectItem>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 
 int main(int argc, char *argv[])
 {

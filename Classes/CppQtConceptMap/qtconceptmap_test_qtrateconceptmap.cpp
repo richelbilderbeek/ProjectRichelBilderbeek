@@ -50,22 +50,6 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept
     }
   }
   const TestTimer test_timer{__func__,__FILE__,0.1};
-  /*
-  {
-    const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
-    for (const boost::shared_ptr<ConceptMap> concept_map: v)
-    {
-      boost::shared_ptr<QtConceptMap> widget(new This_t(concept_map));
-      assert(widget);
-      for(QGraphicsItem * const item: widget->items())
-      {
-        assert(item);
-        item->setFocus();
-      }
-    }
-  }
-  */
-
 }
 #endif
 
