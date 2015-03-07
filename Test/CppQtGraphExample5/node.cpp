@@ -14,8 +14,9 @@ Node::Node(GraphWidget *graphWidget)
   :
     m_signal_focus_changed{},
     m_edges{},
+    m_graph(graphWidget),
     m_new_pos{},
-    m_graph(graphWidget)
+    m_show_bounding_rect{false}
 {
   setFlag(ItemIsMovable);
   setFlag(ItemSendsGeometryChanges);
@@ -178,9 +179,12 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
   painter->drawEllipse(-10, -10, 20, 20);
 
   //Draw the bounding rectangle
-  painter->setBrush(QBrush(QColor(255,0,0,32)));
-  painter->setPen(QPen(QColor(255,0,0,64)));
-  painter->drawRect(this->boundingRect());
+  if (m_show_bounding_rect)
+  {
+    painter->setBrush(QBrush(QColor(255,0,0,32)));
+    painter->setPen(QPen(QColor(255,0,0,64)));
+    painter->drawRect(this->boundingRect());
+  }
 }
 
 QPainterPath Node::shape() const noexcept

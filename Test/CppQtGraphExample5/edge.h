@@ -28,12 +28,12 @@ protected:
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 private:
-  Node * const m_source_node;
-  Node * const m_dest_node;
-
-  QPointF m_source_point;
-  QPointF m_dest_point;
   const double m_arrow_size;
+  Node * const m_dest_node;
+  QPointF m_dest_point;
+  bool m_show_bounding_rect;
+  Node * const m_source_node;
+  QPointF m_source_point;
 };
 
  #endif

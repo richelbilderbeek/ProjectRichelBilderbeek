@@ -12,7 +12,7 @@
 GraphWidget::GraphWidget(QWidget *parent)
 : QGraphicsView(parent),
   m_timer_id{0},
-  m_center_node{new Node(this)}
+  m_active_node{new Node(this)}
 {
   QGraphicsScene * const scene = new QGraphicsScene(this);
   scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -26,48 +26,42 @@ GraphWidget::GraphWidget(QWidget *parent)
   scale(0.8, 0.8);
   setMinimumSize(400, 400);
   setWindowTitle(tr("Elastic Nodes"));
-  Node * const node1{new Node(this)};
-  Node * const node2{new Node(this)};
-  Node * const node3{new Node(this)};
-  Node * const node4{new Node(this)};
-  Node * const node6{new Node(this)};
-  Node * const node7{new Node(this)};
-  Node * const node8{new Node(this)};
-  Node * const node9{new Node(this)};
-  scene->addItem(node1);
-  scene->addItem(node2);
-  scene->addItem(node3);
-  scene->addItem(node4);
-  scene->addItem(m_center_node);
-  scene->addItem(node6);
-  scene->addItem(node7);
-  scene->addItem(node8);
-  scene->addItem(node9);
-  scene->addItem(new Edge(node1, node2));
-  scene->addItem(new Edge(node2, node3));
-  scene->addItem(new Edge(node2, m_center_node));
-  scene->addItem(new Edge(node3, node6));
-  scene->addItem(new Edge(node4, node1));
-  scene->addItem(new Edge(node4, m_center_node));
-  scene->addItem(new Edge(m_center_node, node6));
-  scene->addItem(new Edge(m_center_node, node8));
-  scene->addItem(new Edge(node6, node9));
-  scene->addItem(new Edge(node7, node4));
-  scene->addItem(new Edge(node8, node7));
-  scene->addItem(new Edge(node9, node8));
 
-  node1->setPos(-50, -50);
-  node2->setPos(0, -50);
-  node3->setPos(50, -50);
-  node4->setPos(-50, 0);
-  m_center_node->setPos(0, 0);
-  node6->setPos(50, 0);
-  node7->setPos(-50, 50);
-  node8->setPos(0, 50);
-  node9->setPos(50, 50);
+  std::vector<Node*> nodes;
+  for (int y=-1; y!=2; ++y)
+  {
+    for (int x=-1; x!=2; ++x)
+    {
+      const auto node = createNode();
+      node->setPos(static_cast<double>(x) * 50.0, static_cast<double>(y) * 50.0);
+      nodes.push_back(node);
+    }
+
+  }
+  m_active_node = nodes[4];
+  scene->addItem(new Edge(nodes[0],nodes[1]));
+  scene->addItem(new Edge(nodes[0],nodes[3]));
+  scene->addItem(new Edge(nodes[1],nodes[2]));
+  scene->addItem(new Edge(nodes[1],nodes[4]));
+  scene->addItem(new Edge(nodes[2],nodes[5]));
+  scene->addItem(new Edge(nodes[3],nodes[4]));
+  scene->addItem(new Edge(nodes[3],nodes[6]));
+  scene->addItem(new Edge(nodes[4],nodes[5]));
+  scene->addItem(new Edge(nodes[4],nodes[7]));
+  scene->addItem(new Edge(nodes[5],nodes[8]));
+  scene->addItem(new Edge(nodes[6],nodes[7]));
+  scene->addItem(new Edge(nodes[7],nodes[8]));
+
 }
 
-void GraphWidget::itemMoved()
+Node* GraphWidget::createNode() noexcept
+{
+  Node * const new_node{new Node(this)};
+  this->scene()->addItem(new_node);
+  return new_node;
+}
+
+void GraphWidget::itemMoved() noexcept
 {
   if (!m_timer_id)
   {
@@ -75,21 +69,21 @@ void GraphWidget::itemMoved()
   }
 }
 
-void GraphWidget::keyPressEvent(QKeyEvent *event)
+void GraphWidget::keyPressEvent(QKeyEvent *event) noexcept
 {
   switch (event->key())
   {
     case Qt::Key_Up:
-      m_center_node->moveBy(0, -20);
+      m_active_node->moveBy(0, -20);
     break;
     case Qt::Key_Down:
-      m_center_node->moveBy(0, 20);
+      m_active_node->moveBy(0, 20);
     break;
     case Qt::Key_Left:
-      m_center_node->moveBy(-20, 0);
+      m_active_node->moveBy(-20, 0);
     break;
     case Qt::Key_Right:
-      m_center_node->moveBy(20, 0);
+      m_active_node->moveBy(20, 0);
     break;
     case Qt::Key_Plus:
       zoomIn();
@@ -106,7 +100,7 @@ void GraphWidget::keyPressEvent(QKeyEvent *event)
   }
 }
 
-void GraphWidget::timerEvent(QTimerEvent *)
+void GraphWidget::timerEvent(QTimerEvent *) noexcept
 {  
   QList<Node *> nodes;
   foreach (QGraphicsItem *item, scene()->items())
@@ -135,12 +129,12 @@ void GraphWidget::timerEvent(QTimerEvent *)
   }
 }
 
-void GraphWidget::wheelEvent(QWheelEvent *event)
+void GraphWidget::wheelEvent(QWheelEvent *event) noexcept
 {
   scaleView(std::pow(2.0, -event->delta() / 240.0));
 }
 
-void GraphWidget::scaleView(qreal scaleFactor)
+void GraphWidget::scaleView(qreal scaleFactor) noexcept
 {
   const double factor{
     transform().scale(scaleFactor, scaleFactor)
@@ -151,7 +145,7 @@ void GraphWidget::scaleView(qreal scaleFactor)
   scale(scaleFactor, scaleFactor);
 }
 
-void GraphWidget::shuffle()
+void GraphWidget::shuffle() noexcept
 {
   foreach (QGraphicsItem * const item, scene()->items())
   {
@@ -165,12 +159,12 @@ void GraphWidget::shuffle()
   }
 }
 
-void GraphWidget::zoomIn()
+void GraphWidget::zoomIn() noexcept
 {
   scaleView(1.2);
 }
 
-void GraphWidget::zoomOut()
+void GraphWidget::zoomOut() noexcept
 {
   scaleView(1.0/1.2);
 }

@@ -17,22 +17,25 @@ public:
   GraphWidget(const GraphWidget&) = delete;
   GraphWidget& operator=(const GraphWidget&) = delete;
 
-  void itemMoved();
+  ///Create a new node. The Node* is managed by GraphWidget
+  Node* createNode() noexcept;
+
+  void itemMoved() noexcept;
 
 public slots:
-  void shuffle();
-  void zoomIn();
-  void zoomOut();
+  void shuffle() noexcept;
+  void zoomIn() noexcept;
+  void zoomOut() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent *event);
-  void timerEvent(QTimerEvent *event);
-  void wheelEvent(QWheelEvent *event);
-  void scaleView(qreal scaleFactor);
+  void keyPressEvent(QKeyEvent *event) noexcept override;
+  void timerEvent(QTimerEvent *event) noexcept override;
+  void wheelEvent(QWheelEvent *event) noexcept override;
+  void scaleView(qreal scaleFactor) noexcept;
 
 private:
   int m_timer_id;
-  Node * const m_center_node;
+  Node * m_active_node; //The current active node
 };
 
 #endif

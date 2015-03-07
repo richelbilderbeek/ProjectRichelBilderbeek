@@ -44,8 +44,9 @@ public:
 
   private:
   QList<Edge*> m_edges;
-  QPointF m_new_pos;
   GraphWidget * const m_graph;
+  QPointF m_new_pos;
+  bool m_show_bounding_rect;
 };
 
 #endif

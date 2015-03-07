@@ -11,11 +11,12 @@
 
 Edge::Edge(Node * const source_node, Node * const dest_node)
   :
-    m_source_node{source_node},
+    m_arrow_size{10.0},
     m_dest_node{dest_node},
-    m_source_point{0.0,0.0},
     m_dest_point{0.0,0.0},
-    m_arrow_size{10.0}
+    m_show_bounding_rect{false},
+    m_source_node{source_node},
+    m_source_point{0.0,0.0}
 {
   this->setFlags(
       ItemIsFocusable
@@ -126,7 +127,10 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem * option, QWi
   painter->drawPolygon(QPolygonF() << line.p2() << destArrowP1 << destArrowP2);
 
   //Draw the bounding rectangle
-  painter->setBrush(QBrush(QColor(0,0,255,32)));
-  painter->setPen(QPen(QColor(0,0,255,64)));
-  painter->drawRect(this->boundingRect());
+  if (m_show_bounding_rect)
+  {
+    painter->setBrush(QBrush(QColor(0,0,255,32)));
+    painter->setPen(QPen(QColor(0,0,255,64)));
+    painter->drawRect(this->boundingRect());
+  }
 }
