@@ -4,6 +4,9 @@
 #include "graphwidget.h"
 #include <cmath>
 
+#include <boost/lambda/lambda.hpp>
+
+#include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QKeyEvent>
 
@@ -13,9 +16,14 @@
 GraphWidget::GraphWidget(QWidget *parent)
 : QGraphicsView(parent),
   m_timer_id{0},
-  m_active_node{new Node(this)}
+  m_active_node{new Node(this)},
+  m_focus_item{new QGraphicsRectItem} //Will be owned by scene
 {
   QGraphicsScene * const scene = new QGraphicsScene(this);
+  scene->addItem(m_focus_item); //Transfer ownership
+  m_focus_item->setRect(-8.0,-8.0,16.0,16.0);
+  m_focus_item->setVisible(false);
+
   scene->setItemIndexMethod(QGraphicsScene::NoIndex);
   //Make the scene infinitely large
   //scene->setSceneRect(-200, -200, 400, 400);
@@ -58,6 +66,9 @@ GraphWidget::GraphWidget(QWidget *parent)
 Node* GraphWidget::createNode() noexcept
 {
   Node * const new_node{new Node(this)};
+  new_node->m_signal_focus_changed.connect(
+    boost::bind(&GraphWidget::OnNodeFocusChangedEvent,this, boost::lambda::_1)
+  );
   this->scene()->addItem(new_node);
   return new_node;
 }
@@ -116,8 +127,47 @@ void GraphWidget::keyPressEvent(QKeyEvent *event) noexcept
   }
 }
 
+void GraphWidget::OnNodeFocusChangedEvent(Node* const node) noexcept
+{
+  assert(node);
+  if (node->isSelected() || node->hasFocus())
+  {
+    m_focus_item->setVisible(true);
+    m_focus_item->setPos(node->pos() + QPointF(25.0,-25.0));
+  }
+  else
+  {
+    m_focus_item->setVisible(false);
+  }
+}
+
+void GraphWidget::scaleView(qreal scaleFactor) noexcept
+{
+  const double factor{
+    transform().scale(scaleFactor, scaleFactor)
+      .mapRect(QRectF(0.0, 0.0, 1.0, 1.0)).width()
+  };
+  if (factor < 0.07 || factor > 100.0) return;
+
+  scale(scaleFactor, scaleFactor);
+}
+
+void GraphWidget::shuffle() noexcept
+{
+  foreach (QGraphicsItem * const item, scene()->items())
+  {
+    if (qgraphicsitem_cast<Node *>(item))
+    {
+      item->setPos(
+        static_cast<double>(-150 + (qrand() % 300)),
+        static_cast<double>(-150 + (qrand() % 300))
+      );
+    }
+  }
+}
+
 void GraphWidget::timerEvent(QTimerEvent *) noexcept
-{  
+{
   QList<Node *> nodes;
   foreach (QGraphicsItem *item, scene()->items())
   {
@@ -148,31 +198,6 @@ void GraphWidget::timerEvent(QTimerEvent *) noexcept
 void GraphWidget::wheelEvent(QWheelEvent *event) noexcept
 {
   scaleView(std::pow(2.0, -event->delta() / 240.0));
-}
-
-void GraphWidget::scaleView(qreal scaleFactor) noexcept
-{
-  const double factor{
-    transform().scale(scaleFactor, scaleFactor)
-      .mapRect(QRectF(0.0, 0.0, 1.0, 1.0)).width()
-  };
-  if (factor < 0.07 || factor > 100.0) return;
-
-  scale(scaleFactor, scaleFactor);
-}
-
-void GraphWidget::shuffle() noexcept
-{
-  foreach (QGraphicsItem * const item, scene()->items())
-  {
-    if (qgraphicsitem_cast<Node *>(item))
-    {
-      item->setPos(
-        static_cast<double>(-150 + (qrand() % 300)),
-        static_cast<double>(-150 + (qrand() % 300))
-      );
-    }
-  }
 }
 
 void GraphWidget::zoomIn() noexcept
