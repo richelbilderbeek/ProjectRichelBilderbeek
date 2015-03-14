@@ -36,10 +36,11 @@ protected:
 
 private:
   int m_timer_id;
-  PopUp * const m_focus_item;
+  PopUp * const m_popup;
   void OnNodeFocusInEvent(Node* const node) noexcept;
   void OnNodeFocusOutEvent(Node* const node) noexcept;
   void OnNodePositionChangedEvent(Node* const node) noexcept;
+  void OnPopUpClicked(PopUp* const popup) noexcept;
 };
 
 #endif

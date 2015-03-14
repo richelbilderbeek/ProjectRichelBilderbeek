@@ -6,6 +6,8 @@
 
 #include <boost/lambda/lambda.hpp>
 
+#include <QApplication>
+#include <QDesktopWidget>
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QKeyEvent>
@@ -17,24 +19,23 @@
 GraphWidget::GraphWidget(QWidget *parent)
 : QGraphicsView(parent),
   m_timer_id{0},
-  m_focus_item{new PopUp} //Will be owned by scene
+  m_popup{new PopUp} //Will be owned by scene
 {
   QGraphicsScene * const scene = new QGraphicsScene(this);
-  scene->addItem(m_focus_item); //Transfer ownership
-  m_focus_item->setRect(-8.0,-8.0,16.0,16.0);
-  m_focus_item->setVisible(false);
+  scene->addItem(m_popup); //Transfer ownership
+  m_popup->setRect(-8.0,-8.0,16.0,16.0);
+  m_popup->setVisible(false);
+  m_popup->m_signal_clicked.connect(
+    boost::bind(&GraphWidget::OnPopUpClicked,this, boost::lambda::_1)
+  );
 
   scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-  //Make the scene infinitely large
-  //scene->setSceneRect(-200, -200, 400, 400);
   setScene(scene);
   setCacheMode(CacheBackground);
   setViewportUpdateMode(BoundingRectViewportUpdate);
   setRenderHint(QPainter::Antialiasing);
   setTransformationAnchor(AnchorUnderMouse);
-  scale(0.8, 0.8);
-  setMinimumSize(400, 400);
-  setWindowTitle(tr("Elastic Nodes"));
+  scale(3.0,3.0);
 
   std::vector<Node*> nodes;
   for (int y=-1; y!=2; ++y)
@@ -60,7 +61,13 @@ GraphWidget::GraphWidget(QWidget *parent)
   scene->addItem(new Edge(nodes[5],nodes[8]));
   scene->addItem(new Edge(nodes[6],nodes[7]));
   scene->addItem(new Edge(nodes[7],nodes[8]));
-  //m_active_node->setSelected(true);
+
+  {
+    //Put the dialog, at size 80%, in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,screen.width() * 8 / 10, screen.height() * 8 / 10);
+    this->move( screen.center() - this->rect().center() );
+  }
 }
 
 Node* GraphWidget::createNode() noexcept
@@ -136,14 +143,16 @@ void GraphWidget::keyPressEvent(QKeyEvent *event) noexcept
 void GraphWidget::OnNodeFocusInEvent(Node* const node) noexcept
 {
   assert(node);
-  m_focus_item->setVisible(true);
-  m_focus_item->setPos(node->pos() + QPointF(25.0,-25.0));
+  m_popup->StartFadeIn();
+  m_popup->SetNode(node);
+  m_popup->setPos(node->pos() + QPointF(25.0,-25.0));
 }
 
 void GraphWidget::OnNodeFocusOutEvent(Node* const node) noexcept
 {
   assert(node);
-  m_focus_item->setVisible(false);
+  m_popup->StartFadeOut();
+  //m_popup->setVisible(false);
 }
 
 void GraphWidget::OnNodePositionChangedEvent(Node* const node) noexcept
@@ -151,7 +160,16 @@ void GraphWidget::OnNodePositionChangedEvent(Node* const node) noexcept
   assert(node);
   if (node->isSelected() || node->hasFocus())
   {
-    m_focus_item->setPos(node->pos() + QPointF(25.0,-25.0));
+    m_popup->setPos(node->pos() + QPointF(25.0,-25.0));
+  }
+}
+
+void GraphWidget::OnPopUpClicked(PopUp* const popup) noexcept
+{
+  const auto node = popup->GetNode();
+  if (node)
+  {
+    node->setScale(popup->GetNode()->scale() * 2.0);
   }
 }
 
@@ -198,8 +216,7 @@ void GraphWidget::timerEvent(QTimerEvent *) noexcept
   bool itemsMoved = false;
   foreach (Node * const node, nodes)
   {
-    if (node->advance())
-    itemsMoved = true;
+    if (node->advance()) itemsMoved = true;
   }
 
   if (!itemsMoved)

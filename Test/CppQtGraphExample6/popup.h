@@ -4,6 +4,9 @@
 #include <boost/signals2.hpp>
 #include <QGraphicsRectItem>
 
+struct Node;
+struct QTimer;
+
 class PopUp : public QGraphicsRectItem
 {
 public:
@@ -11,9 +14,20 @@ public:
   PopUp(const PopUp&) = delete;
   PopUp& operator=(const PopUp&) = delete;
   boost::signals2::signal<void(PopUp * const)> m_signal_clicked;
-  //Node * GetNode() const noexcept;
+  void SetNode(Node * const node);
+  Node * GetNode() const noexcept { return m_node; }
+  void StartFadeIn();
+  void StartFadeOut();
 protected:
   void mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept;
+private:
+  enum class FadeMode { in, out } m_fademode;
+  Node * m_node; //The Node the PopUp belongs to
+  const QTimer * const m_timer;
+  int m_transparancy; //Alpha value, 255: opaque
+
+private slots:
+  void OnTimer();
 };
 
 #endif // POPUP_H
