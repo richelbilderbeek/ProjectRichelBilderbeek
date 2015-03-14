@@ -5,9 +5,11 @@ SOURCES += \
     edge.cpp \
     graphwidget.cpp \
     main.cpp \
-    node.cpp
+    node.cpp \
+    popup.cpp
 
 HEADERS += \
     edge.h \
     graphwidget.h \
-    node.h
+    node.h \
+    popup.h

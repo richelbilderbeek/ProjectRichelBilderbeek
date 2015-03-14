@@ -7,6 +7,7 @@
 #include <QGraphicsView>
 
 class Node;
+class PopUp;
 
 class GraphWidget : public QGraphicsView
 {
@@ -35,9 +36,10 @@ protected:
 
 private:
   int m_timer_id;
-  Node * m_active_node; //The current active node
-  QGraphicsRectItem * const m_focus_item;
-  void OnNodeFocusChangedEvent(Node* const node) noexcept;
+  PopUp * const m_focus_item;
+  void OnNodeFocusInEvent(Node* const node) noexcept;
+  void OnNodeFocusOutEvent(Node* const node) noexcept;
+  void OnNodePositionChangedEvent(Node* const node) noexcept;
 };
 
 #endif

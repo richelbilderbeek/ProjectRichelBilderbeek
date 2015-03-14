@@ -31,7 +31,9 @@ public:
   QPainterPath shape() const noexcept override;
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept override;
   void setShowBoundingRect(const bool show_bounding_rect) noexcept;
-  boost::signals2::signal<void(Node * const)> m_signal_focus_changed;
+  boost::signals2::signal<void(Node * const)> m_signal_focus_in;
+  boost::signals2::signal<void(Node * const)> m_signal_focus_out;
+  boost::signals2::signal<void(Node * const)> m_signal_position_changed;
   //signals:
   //void signal_focus_changed(Node * const);
 

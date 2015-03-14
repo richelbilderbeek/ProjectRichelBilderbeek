@@ -12,12 +12,12 @@
 
 #include "edge.h"
 #include "node.h"
+#include "popup.h"
 
 GraphWidget::GraphWidget(QWidget *parent)
 : QGraphicsView(parent),
   m_timer_id{0},
-  m_active_node{new Node(this)},
-  m_focus_item{new QGraphicsRectItem} //Will be owned by scene
+  m_focus_item{new PopUp} //Will be owned by scene
 {
   QGraphicsScene * const scene = new QGraphicsScene(this);
   scene->addItem(m_focus_item); //Transfer ownership
@@ -47,7 +47,7 @@ GraphWidget::GraphWidget(QWidget *parent)
     }
 
   }
-  m_active_node = nodes[4];
+  //m_active_node = nodes[4];
   scene->addItem(new Edge(nodes[0],nodes[1]));
   scene->addItem(new Edge(nodes[0],nodes[3]));
   scene->addItem(new Edge(nodes[1],nodes[2]));
@@ -60,14 +60,20 @@ GraphWidget::GraphWidget(QWidget *parent)
   scene->addItem(new Edge(nodes[5],nodes[8]));
   scene->addItem(new Edge(nodes[6],nodes[7]));
   scene->addItem(new Edge(nodes[7],nodes[8]));
-  m_active_node->setSelected(true);
+  //m_active_node->setSelected(true);
 }
 
 Node* GraphWidget::createNode() noexcept
 {
   Node * const new_node{new Node(this)};
-  new_node->m_signal_focus_changed.connect(
-    boost::bind(&GraphWidget::OnNodeFocusChangedEvent,this, boost::lambda::_1)
+  new_node->m_signal_focus_in.connect(
+    boost::bind(&GraphWidget::OnNodeFocusInEvent,this, boost::lambda::_1)
+  );
+  new_node->m_signal_focus_out.connect(
+    boost::bind(&GraphWidget::OnNodeFocusOutEvent,this, boost::lambda::_1)
+  );
+  new_node->m_signal_position_changed.connect(
+    boost::bind(&GraphWidget::OnNodePositionChangedEvent,this, boost::lambda::_1)
   );
   this->scene()->addItem(new_node);
   return new_node;
@@ -127,17 +133,25 @@ void GraphWidget::keyPressEvent(QKeyEvent *event) noexcept
   }
 }
 
-void GraphWidget::OnNodeFocusChangedEvent(Node* const node) noexcept
+void GraphWidget::OnNodeFocusInEvent(Node* const node) noexcept
+{
+  assert(node);
+  m_focus_item->setVisible(true);
+  m_focus_item->setPos(node->pos() + QPointF(25.0,-25.0));
+}
+
+void GraphWidget::OnNodeFocusOutEvent(Node* const node) noexcept
+{
+  assert(node);
+  m_focus_item->setVisible(false);
+}
+
+void GraphWidget::OnNodePositionChangedEvent(Node* const node) noexcept
 {
   assert(node);
   if (node->isSelected() || node->hasFocus())
   {
-    m_focus_item->setVisible(true);
     m_focus_item->setPos(node->pos() + QPointF(25.0,-25.0));
-  }
-  else
-  {
-    m_focus_item->setVisible(false);
   }
 }
 

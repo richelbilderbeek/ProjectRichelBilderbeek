@@ -12,7 +12,9 @@
 
 Node::Node(GraphWidget *graphWidget)
   :
-    m_signal_focus_changed{},
+    m_signal_focus_in{},
+    m_signal_focus_out{},
+    m_signal_position_changed{},
     m_edges{},
     m_graph(graphWidget),
     m_new_pos{},
@@ -110,12 +112,12 @@ QList<Edge *> Node::edges() const noexcept
 
 void Node::focusInEvent(QFocusEvent *) noexcept
 {
-  m_signal_focus_changed(this);
+  m_signal_focus_in(this);
 }
 
 void Node::focusOutEvent(QFocusEvent *) noexcept
 {
-  m_signal_focus_changed(this);
+  m_signal_focus_out(this);
 }
 
 QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value) noexcept
@@ -126,8 +128,13 @@ QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value) noex
       foreach (Edge *edge, m_edges)
       edge->adjust();
       m_graph->itemMoved();
+      m_signal_position_changed(this);
     }
     break;
+    //case ItemSelectedChange:
+    //{
+    //  m_signal_focus_changed(this);
+    //}
     default:
     break;
   }
