@@ -18,6 +18,7 @@ Node::Node(GraphWidget *graphWidget)
     m_edges{},
     m_graph(graphWidget),
     m_new_pos{},
+    m_ray{10.0},
     m_show_bounding_rect{false}
 {
   setFlag(ItemIsMovable);
@@ -46,10 +47,10 @@ QRectF Node::boundingRect() const noexcept
 {
   const double adjust{2.0};
   return QRectF(
-    -10.0 - adjust,
-    -10.0 - adjust,
-     23.0 + adjust,
-     23.0 + adjust
+    -m_ray - adjust,
+    -m_ray - adjust,
+     (2.0 * m_ray) + 3.0 + adjust,
+     (2.0 * m_ray) + 3.0 + adjust
    );
 }
 
@@ -131,10 +132,6 @@ QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value) noex
       m_signal_position_changed(this);
     }
     break;
-    //case ItemSelectedChange:
-    //{
-    //  m_signal_focus_changed(this);
-    //}
     default:
     break;
   }
@@ -159,7 +156,7 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
   //Draw the shadow
   painter->setPen(Qt::NoPen);
   painter->setBrush(Qt::darkGray);
-  painter->drawEllipse(-7, -7, 20, 20);
+  painter->drawEllipse(-m_ray + 3.0,-m_ray + 3.0, 2.0 * m_ray, 2.0 * m_ray);
 
   QRadialGradient gradient(-3, -3, 10);
 
@@ -186,7 +183,7 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
       is_selected ? Qt::DashLine : Qt::SolidLine
     )
   );
-  painter->drawEllipse(-10, -10, 20, 20);
+  painter->drawEllipse(-m_ray, -m_ray, 2.0 * m_ray, 2.0 * m_ray);
 
   //Draw the bounding rectangle
   if (m_show_bounding_rect)
@@ -197,10 +194,16 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
   }
 }
 
+void Node::SetRay(const double ray)
+{
+  m_ray = ray;
+  this->update();
+}
+
 QPainterPath Node::shape() const noexcept
 {
   QPainterPath path;
-  path.addEllipse(-10.0, -10.0, 20.0, 20.0);
+  path.addEllipse(-m_ray, -m_ray, 2.0*m_ray, 2.0*m_ray);
   return path;
 }
 

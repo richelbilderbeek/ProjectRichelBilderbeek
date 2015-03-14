@@ -14,23 +14,24 @@ class QGraphicsSceneMouseEvent;
 class Node : public QGraphicsItem
 {
 public:
+  enum { Type = UserType + 1 };
+
   Node(GraphWidget *graphWidget);
   Node(const Node&) = delete;
   Node& operator=(const Node&) = delete;
 
   void addEdge(Edge *edge) noexcept;
+  bool advance() noexcept;
+  QRectF boundingRect() const noexcept override;
+  void calculateForces() noexcept;
   QList<Edge *> edges() const noexcept;
-
-  enum { Type = UserType + 1 };
+  double GetRay() const noexcept { return m_ray; }
+  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept override;
+  void SetRay(const double ray);
+  void setShowBoundingRect(const bool show_bounding_rect) noexcept;
+  QPainterPath shape() const noexcept override;
   int type() const noexcept override { return Type; }
 
-  void calculateForces() noexcept;
-  bool advance() noexcept;
-
-  QRectF boundingRect() const noexcept override;
-  QPainterPath shape() const noexcept override;
-  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept override;
-  void setShowBoundingRect(const bool show_bounding_rect) noexcept;
   boost::signals2::signal<void(Node * const)> m_signal_focus_in;
   boost::signals2::signal<void(Node * const)> m_signal_focus_out;
   boost::signals2::signal<void(Node * const)> m_signal_position_changed;
@@ -38,10 +39,10 @@ public:
   //void signal_focus_changed(Node * const);
 
 protected:
-  QVariant itemChange(GraphicsItemChange change, const QVariant &value) noexcept override;
 
   void focusInEvent(QFocusEvent *event) noexcept override;
   void focusOutEvent(QFocusEvent *event) noexcept override;
+  QVariant itemChange(GraphicsItemChange change, const QVariant &value) noexcept override;
   void mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept override;
   void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) noexcept override;
 
@@ -49,6 +50,7 @@ protected:
   QList<Edge*> m_edges;
   GraphWidget * const m_graph;
   QPointF m_new_pos;
+  double m_ray; //The ray of the circle
   bool m_show_bounding_rect;
 };
 

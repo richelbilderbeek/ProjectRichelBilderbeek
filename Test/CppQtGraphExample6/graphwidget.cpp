@@ -169,7 +169,8 @@ void GraphWidget::OnPopUpClicked(PopUp* const popup) noexcept
   const auto node = popup->GetNode();
   if (node)
   {
-    node->setScale(popup->GetNode()->scale() * 2.0);
+    node->SetRay(node->GetRay() * 2.0);
+    //node->setScale(popup->GetNode()->scale() * 2.0);
   }
 }
 

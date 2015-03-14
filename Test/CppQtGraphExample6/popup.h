@@ -23,11 +23,7 @@ protected:
 private:
   enum class FadeMode { in, out } m_fademode;
   Node * m_node; //The Node the PopUp belongs to
-  const QTimer * const m_timer;
   int m_transparancy; //Alpha value, 255: opaque
-
-private slots:
-  void OnTimer();
 };
 
 #endif // POPUP_H
