@@ -10,13 +10,13 @@
 #include "node.h"
 #include "graphwidget.h"
 
-Node::Node(GraphWidget *graphWidget)
+Node::Node(GraphWidget * const graphWidget)
   :
     m_signal_focus_in{},
     m_signal_focus_out{},
     m_signal_position_changed{},
     m_edges{},
-    m_graph(graphWidget),
+    m_graph{graphWidget},
     m_new_pos{},
     m_ray{10.0},
     m_show_bounding_rect{false}

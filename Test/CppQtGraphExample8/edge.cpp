@@ -9,9 +9,10 @@
 
 #include <boost/math/constants/constants.hpp>
 
-Edge::Edge(Node * const source_node, Node * const dest_node)
+Edge::Edge(Node * const source_node, Node * const dest_node, GraphWidget * const graphWidget)
   :
     m_arrow_size{10.0},
+    m_center_node{new Node(graphWidget)},
     m_dest_node{dest_node},
     m_dest_point{0.0,0.0},
     m_show_bounding_rect{true},

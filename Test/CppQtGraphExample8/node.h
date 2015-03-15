@@ -16,7 +16,7 @@ class Node : public QGraphicsItem
 public:
   enum { Type = UserType + 1 };
 
-  Node(GraphWidget *graphWidget);
+  Node(GraphWidget * const graphWidget);
   Node(const Node&) = delete;
   Node& operator=(const Node&) = delete;
 

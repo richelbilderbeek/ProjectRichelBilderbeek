@@ -47,19 +47,18 @@ GraphWidget::GraphWidget(QWidget *parent)
     }
 
   }
-  //m_active_node = nodes[4];
-  scene->addItem(new Edge(nodes[0],nodes[1]));
-  scene->addItem(new Edge(nodes[0],nodes[3]));
-  scene->addItem(new Edge(nodes[1],nodes[2]));
-  scene->addItem(new Edge(nodes[1],nodes[4]));
-  scene->addItem(new Edge(nodes[2],nodes[5]));
-  scene->addItem(new Edge(nodes[3],nodes[4]));
-  scene->addItem(new Edge(nodes[3],nodes[6]));
-  scene->addItem(new Edge(nodes[4],nodes[5]));
-  scene->addItem(new Edge(nodes[4],nodes[7]));
-  scene->addItem(new Edge(nodes[5],nodes[8]));
-  scene->addItem(new Edge(nodes[6],nodes[7]));
-  scene->addItem(new Edge(nodes[7],nodes[8]));
+  scene->addItem(new Edge(nodes[0],nodes[1],this));
+  scene->addItem(new Edge(nodes[0],nodes[3],this));
+  scene->addItem(new Edge(nodes[1],nodes[2],this));
+  scene->addItem(new Edge(nodes[1],nodes[4],this));
+  scene->addItem(new Edge(nodes[2],nodes[5],this));
+  scene->addItem(new Edge(nodes[3],nodes[4],this));
+  scene->addItem(new Edge(nodes[3],nodes[6],this));
+  scene->addItem(new Edge(nodes[4],nodes[5],this));
+  scene->addItem(new Edge(nodes[4],nodes[7],this));
+  scene->addItem(new Edge(nodes[5],nodes[8],this));
+  scene->addItem(new Edge(nodes[6],nodes[7],this));
+  scene->addItem(new Edge(nodes[7],nodes[8],this));
 
   {
     //Put the dialog, at size 80%, in the screen center
