@@ -42,7 +42,8 @@ ribi::cmap::QtTool::QtTool()
 
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
-    | QGraphicsItem::ItemIsSelectable);
+    | QGraphicsItem::ItemIsSelectable
+  );
 
   //Allow mouse tracking
   this->setAcceptHoverEvents(true);
