@@ -16,6 +16,7 @@ public:
   ~PongDialog();
 protected:
   void keyPressEvent(QKeyEvent *);
+  void timerEvent(QTimerEvent *);
 private:
   Ui::PongDialog *ui;
 };

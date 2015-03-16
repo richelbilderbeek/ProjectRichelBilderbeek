@@ -70,19 +70,24 @@ void Node::calculateForces() noexcept
     Node * const node = qgraphicsitem_cast<Node *>(item);
 
     if (!node) continue;
+    if (node == this) continue;
 
     const QPointF vec{mapToItem(node, 0.0, 0.0)};
     const double dx{vec.x()};
     const double dy{vec.y()};
-    const double l{2.0 * (dx * dx + dy * dy)};
-    if (l > 0.0)
+    const double distance{std::sqrt( (dx*dx) + (dy*dy) )};
+    //const double l{2.0 * (dx * dx + dy * dy)};
+    //const double l = 1.0;
+    //if (l > 0.0)
+    if (distance < 20.0)
     {
-      xvel += (dx * 150.0) / l;
-      yvel += (dy * 150.0) / l;
+      xvel -= (0.1 * (10.0 - dx));
+      yvel -= (0.1 * (10.0 - dy));
     }
   }
 
   // Now subtract all forces pulling items together
+  /*
   const double weight = static_cast<double>(m_edges.size() + 1) * 10.0;
   foreach (Edge *edge, m_edges)
   {
@@ -94,7 +99,7 @@ void Node::calculateForces() noexcept
     xvel -= vec.x() / weight;
     yvel -= vec.y() / weight;
   }
-
+  */
   if (qAbs(xvel) < 0.1 && qAbs(yvel) < 0.1)
   {
     xvel = yvel = 0.0;

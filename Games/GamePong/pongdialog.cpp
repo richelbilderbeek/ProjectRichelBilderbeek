@@ -10,6 +10,7 @@ PongDialog::PongDialog(QWidget *parent) :
   ui(new Ui::PongDialog)
 {
   ui->setupUi(this);
+  this->startTimer(100);
 }
 
 PongDialog::~PongDialog()
@@ -27,4 +28,11 @@ void PongDialog::keyPressEvent(QKeyEvent * e)
       );
     break;
   }
+}
+
+void PongDialog::timerEvent(QTimerEvent *)
+{
+  ui->player_right->setGeometry(
+    ui->player_right->geometry().translated(0,1)
+  );
 }

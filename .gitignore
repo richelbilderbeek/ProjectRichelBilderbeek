@@ -44,6 +44,7 @@ Libraries/cln-1.3.3
 Libraries/cln*
 Libraries/CMakeFiles/
 Libraries/CMakeCache.txt
+Libraries/cinder/
 Libraries/dmalloc-5.5.2/
 Libraries/dmalloc-*
 Libraries/ircbot_fsx/
