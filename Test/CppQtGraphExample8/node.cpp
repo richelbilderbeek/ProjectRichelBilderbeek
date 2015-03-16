@@ -76,30 +76,13 @@ void Node::calculateForces() noexcept
     const double dx{vec.x()};
     const double dy{vec.y()};
     const double distance{std::sqrt( (dx*dx) + (dy*dy) )};
-    //const double l{2.0 * (dx * dx + dy * dy)};
-    //const double l = 1.0;
-    //if (l > 0.0)
-    if (distance < 20.0)
+    if (distance < this->GetRay() + node->GetRay())
     {
       xvel -= (0.1 * (10.0 - dx));
       yvel -= (0.1 * (10.0 - dy));
     }
   }
 
-  // Now subtract all forces pulling items together
-  /*
-  const double weight = static_cast<double>(m_edges.size() + 1) * 10.0;
-  foreach (Edge *edge, m_edges)
-  {
-    const QPointF vec
-      = edge->sourceNode() == this
-      ? mapToItem(edge->destNode(), 0, 0)
-      : mapToItem(edge->sourceNode(), 0, 0)
-    ;
-    xvel -= vec.x() / weight;
-    yvel -= vec.y() / weight;
-  }
-  */
   if (qAbs(xvel) < 0.1 && qAbs(yvel) < 0.1)
   {
     xvel = yvel = 0.0;
