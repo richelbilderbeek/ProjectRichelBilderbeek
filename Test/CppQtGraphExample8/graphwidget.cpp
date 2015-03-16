@@ -41,12 +41,13 @@ GraphWidget::GraphWidget(QWidget *parent)
   {
     for (int x=-1; x!=2; ++x)
     {
-      const auto node = createNode();
+      const auto node = CreateNode();
       node->setPos(static_cast<double>(x) * 50.0, static_cast<double>(y) * 50.0);
       nodes.push_back(node);
     }
 
   }
+  /*
   scene->addItem(new Edge(nodes[0],nodes[1],this));
   scene->addItem(new Edge(nodes[0],nodes[3],this));
   scene->addItem(new Edge(nodes[1],nodes[2],this));
@@ -59,6 +60,20 @@ GraphWidget::GraphWidget(QWidget *parent)
   scene->addItem(new Edge(nodes[5],nodes[8],this));
   scene->addItem(new Edge(nodes[6],nodes[7],this));
   scene->addItem(new Edge(nodes[7],nodes[8],this));
+  */
+
+  CreateEdge(nodes[0],nodes[1]);
+  CreateEdge(nodes[0],nodes[3]);
+  CreateEdge(nodes[1],nodes[2]);
+  CreateEdge(nodes[1],nodes[4]);
+  CreateEdge(nodes[2],nodes[5]);
+  CreateEdge(nodes[3],nodes[4]);
+  CreateEdge(nodes[3],nodes[6]);
+  CreateEdge(nodes[4],nodes[5]);
+  CreateEdge(nodes[4],nodes[7]);
+  CreateEdge(nodes[5],nodes[8]);
+  CreateEdge(nodes[6],nodes[7]);
+  CreateEdge(nodes[7],nodes[8]);
 
   {
     //Put the dialog, at size 80%, in the screen center
@@ -68,7 +83,30 @@ GraphWidget::GraphWidget(QWidget *parent)
   }
 }
 
-Node* GraphWidget::createNode() noexcept
+Edge* GraphWidget::CreateEdge(
+  Node * const from_node,
+  Node * const to_node
+) noexcept
+{
+  assert(from_node);
+  assert(to_node);
+  Edge * const new_edge{new Edge(from_node,to_node,this)};
+  /*
+  new_node->m_signal_focus_in.connect(
+    boost::bind(&GraphWidget::OnNodeFocusInEvent,this, boost::lambda::_1)
+  );
+  new_node->m_signal_focus_out.connect(
+    boost::bind(&GraphWidget::OnNodeFocusOutEvent,this, boost::lambda::_1)
+  );
+  new_node->m_signal_position_changed.connect(
+    boost::bind(&GraphWidget::OnNodePositionChangedEvent,this, boost::lambda::_1)
+  );
+  */
+  this->scene()->addItem(new_edge);
+  return new_edge;
+}
+
+Node* GraphWidget::CreateNode() noexcept
 {
   Node * const new_node{new Node(this)};
   new_node->m_signal_focus_in.connect(
@@ -168,11 +206,15 @@ void GraphWidget::OnPopUpClicked(PopUp* const popup) noexcept
   if (node)
   {
     node->SetRay(node->GetRay() * 2.0);
-    //node->setScale(popup->GetNode()->scale() * 2.0);
+
+    //It might be that the node has increased in size
+    //that much, that it collides with another object.
+    //itemMoved takes care of handling this collision
+    this->itemMoved();
   }
 }
 
-void GraphWidget::scaleView(qreal scaleFactor) noexcept
+void GraphWidget::scaleView(const double scaleFactor) noexcept
 {
   const double factor{
     transform().scale(scaleFactor, scaleFactor)

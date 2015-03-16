@@ -62,7 +62,7 @@ void Node::calculateForces() noexcept
     return;
   }
 
-  // Sum up all forces pushing this item away
+  // Sum up all forces pushing this item
   double xvel = 0.0;
   double yvel = 0.0;
   foreach (QGraphicsItem *item, scene()->items())
@@ -90,8 +90,12 @@ void Node::calculateForces() noexcept
 
   const QRectF sceneRect = scene()->sceneRect();
   m_new_pos = pos() + QPointF(xvel, yvel);
-  m_new_pos.setX(qMin(qMax(m_new_pos.x(), sceneRect.left() + 10), sceneRect.right() - 10));
-  m_new_pos.setY(qMin(qMax(m_new_pos.y(), sceneRect.top() + 10), sceneRect.bottom() - 10));
+  m_new_pos.setX(
+    qMin(qMax(m_new_pos.x(), sceneRect.left() + 10), sceneRect.right() - 10)
+  );
+  m_new_pos.setY(
+    qMin(qMax(m_new_pos.y(), sceneRect.top() + 10), sceneRect.bottom() - 10)
+  );
 }
 
 void DrawNode(
@@ -102,7 +106,6 @@ void DrawNode(
 {
   assert(node);
   const auto ray = node->GetRay();
-
 
   //Draw the shadow
   painter->setPen(Qt::NoPen);

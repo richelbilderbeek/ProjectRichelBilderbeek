@@ -6,8 +6,9 @@
 
 #include <QGraphicsView>
 
-class Node;
-class PopUp;
+struct Edge;
+struct Node;
+struct PopUp;
 
 class GraphWidget : public QGraphicsView
 {
@@ -18,8 +19,10 @@ public:
   GraphWidget(const GraphWidget&) = delete;
   GraphWidget& operator=(const GraphWidget&) = delete;
 
+  ///Create a new edge. The Edge* is managed by GraphWidget
+  Edge* CreateEdge(Node * const from_node, Node * const to_node) noexcept;
   ///Create a new node. The Node* is managed by GraphWidget
-  Node* createNode() noexcept;
+  Node* CreateNode() noexcept;
 
   void itemMoved() noexcept;
 
@@ -30,7 +33,7 @@ public slots:
 
 protected:
   void keyPressEvent(QKeyEvent *event) noexcept override;
-  void scaleView(qreal scaleFactor) noexcept;
+  void scaleView(const double scaleFactor) noexcept;
   void timerEvent(QTimerEvent *event) noexcept override;
   void wheelEvent(QWheelEvent *event) noexcept override;
 
