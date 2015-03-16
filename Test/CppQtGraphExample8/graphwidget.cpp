@@ -90,7 +90,15 @@ Edge* GraphWidget::CreateEdge(
 {
   assert(from_node);
   assert(to_node);
-  Edge * const new_edge{new Edge(from_node,to_node,this)};
+  Node * const center_node = CreateNode();
+  center_node->setPos(
+    (from_node->pos() + to_node->pos()) / 2.0
+  );
+  center_node->SetRay(center_node->GetRay() / 2.0);
+  center_node->SetHasShadow(false);
+
+  Edge * const new_edge{new Edge(from_node,center_node,to_node)};
+  new_edge->setZValue(-2.0);
   /*
   new_node->m_signal_focus_in.connect(
     boost::bind(&GraphWidget::OnNodeFocusInEvent,this, boost::lambda::_1)

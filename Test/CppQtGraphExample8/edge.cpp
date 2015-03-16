@@ -9,10 +9,14 @@
 
 #include <boost/math/constants/constants.hpp>
 
-Edge::Edge(Node * const source_node, Node * const dest_node, GraphWidget * const graphWidget)
+Edge::Edge(
+  Node * const source_node,
+  Node * const center_node,
+  Node * const dest_node
+)
   :
     m_arrow_size{10.0},
-    m_center_node{new Node(graphWidget)},
+    m_center_node{center_node},
     m_dest_node{dest_node},
     m_dest_point{0.0,0.0},
     m_show_bounding_rect{true},
@@ -44,6 +48,11 @@ void Edge::adjust() noexcept
 
   const QLineF line(mapFromItem(m_source_node, 0, 0), mapFromItem(m_dest_node, 0, 0));
   const double length{line.length()};
+
+  //Keep the center node in the center
+  m_center_node->setPos(
+    (m_source_node->pos() + m_dest_node->pos()) / 2.0
+  );
 
   prepareGeometryChange();
 

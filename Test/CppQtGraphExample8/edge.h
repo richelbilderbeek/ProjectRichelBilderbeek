@@ -14,8 +14,8 @@ class Edge : public QGraphicsItem
 public:
   Edge(
     Node * const source_node,
-    Node * const dest_node,
-    GraphWidget * const graphWidget
+    Node * const center_node,
+    Node * const dest_node
   );
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;

@@ -25,9 +25,11 @@ public:
   QRectF boundingRect() const noexcept override;
   void calculateForces() noexcept;
   QList<Edge *> edges() const noexcept;
+  bool GetHasShadow() const noexcept { return m_has_shadow; }
   double GetRay() const noexcept { return m_ray; }
   bool GetShowBoundingRect() const noexcept { return m_show_bounding_rect; }
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept override;
+  void SetHasShadow(const bool has_shadow) noexcept { m_has_shadow = has_shadow; }
   void SetRay(const double ray);
   void setShowBoundingRect(const bool show_bounding_rect) noexcept;
   QPainterPath shape() const noexcept override;
@@ -36,8 +38,6 @@ public:
   boost::signals2::signal<void(Node * const)> m_signal_focus_in;
   boost::signals2::signal<void(Node * const)> m_signal_focus_out;
   boost::signals2::signal<void(Node * const)> m_signal_position_changed;
-  //signals:
-  //void signal_focus_changed(Node * const);
 
 protected:
 
@@ -50,6 +50,7 @@ protected:
   private:
   QList<Edge*> m_edges;
   GraphWidget * const m_graph;
+  bool m_has_shadow;
   QPointF m_new_pos;
   double m_ray; //The ray of the circle
   bool m_show_bounding_rect;

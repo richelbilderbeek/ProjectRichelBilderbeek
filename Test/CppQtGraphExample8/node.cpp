@@ -17,6 +17,7 @@ Node::Node(GraphWidget * const graphWidget)
     m_signal_position_changed{},
     m_edges{},
     m_graph{graphWidget},
+    m_has_shadow{true},
     m_new_pos{},
     m_ray{10.0},
     m_show_bounding_rect{false}
@@ -107,10 +108,13 @@ void DrawNode(
   assert(node);
   const auto ray = node->GetRay();
 
-  //Draw the shadow
-  painter->setPen(Qt::NoPen);
-  painter->setBrush(Qt::darkGray);
-  painter->drawEllipse(-ray + 3.0,-ray + 3.0, 2.0 * ray, 2.0 * ray);
+  if (node->GetHasShadow())
+  {
+    //Draw the shadow
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(Qt::darkGray);
+    painter->drawEllipse(-ray + 3.0,-ray + 3.0, 2.0 * ray, 2.0 * ray);
+  }
 
   QRadialGradient gradient(-3, -3, 10);
 
