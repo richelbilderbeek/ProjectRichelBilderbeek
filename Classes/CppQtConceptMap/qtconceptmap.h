@@ -137,6 +137,7 @@ protected:
 
   ///Obtain the center node
   const QtNode * GetCenterNode() const noexcept;
+        QtNode * GetCenterNode()       noexcept;
 
   ///Obtain the read-and-write Qt edge items
   ///The read-only Qt edge items is already supplied by QtConceptMap

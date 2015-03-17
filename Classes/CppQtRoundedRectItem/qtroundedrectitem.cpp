@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <QPainter>
 #include <QGraphicsScene>
+#include <QKeyEvent>
 
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -137,7 +138,6 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2015-02-08: version 1.10: gaining/losing focus for different pen widths work correctly"
   };
 }
-
 
 void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) noexcept
 {

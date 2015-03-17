@@ -489,6 +489,20 @@ const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const noexc
   return center_node;
 }
 
+ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() noexcept
+{
+  //Calls the const version of this member function
+  //To avoid duplication in const and non-const member functions [1]
+  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
+  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
+  QtNode * const qtnode(
+    const_cast<QtNode *>(
+      dynamic_cast<const QtConceptMap*>(this)->GetCenterNode()
+    )
+  );
+  return qtnode;
+}
+
 const ribi::cmap::QtExamplesItem * ribi::cmap::QtConceptMap::GetExamplesItem() const
 {
   assert(m_examples_item || !m_examples_item);

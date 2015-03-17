@@ -55,6 +55,7 @@ ribi::cmap::QtNode::QtNode(
   : QtRoundedEditRectItem(),
     //m_signal_display_changed{},
     m_signal_base_changed{},
+    m_signal_key_down_pressed{},
     m_signal_node_changed{},
     //m_signal_node_requests_rate_concept{},
     //m_signal_node_requests_rate_examples{},
@@ -260,15 +261,7 @@ void ribi::cmap::QtNode::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
 
 void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event) noexcept
 {
-  //assert(m_display_strategy);
-  //assert(m_display_strategy->GetConcept());
-  //m_display_strategy->keyPressEvent(event);
-  switch (event->key())
-  {
-    case Qt::Key_F1:
-    case Qt::Key_F2:
-    return;
-  }
+  m_signal_key_down_pressed(this,event->key());
   Base::keyPressEvent(event);
 }
 

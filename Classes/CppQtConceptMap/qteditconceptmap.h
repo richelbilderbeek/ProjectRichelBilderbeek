@@ -84,9 +84,7 @@ private:
   QtTool * m_tools;
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
-  #ifdef NOT_NOW_20141111
   QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
-  #endif // NOT_NOW_20141111
 
   ///Add a new edge
   QtEdge * AddEdge(QtNode * const from, QtNode* const to);
@@ -97,18 +95,12 @@ private:
   ///Remove all Qt and non-Qt items
   void CleanMe();
 
-  ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
-  #ifdef NOT_NOW_20141111
-  boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
-    const boost::shared_ptr<Concept> concept) const noexcept;
-  #endif // NOT_NOW_20141111
-
   ///Obtain the read-and-write Qt node items
   ///The read-only Qt node items is already supplied by QtConceptMap
-  const std::vector<QtNode *> GetQtNodes();
+  std::vector<QtNode *> GetQtNodes();
 
   ///Called when an item wants to be edited
-  void OnConceptMapItemRequestsEdit(QtConceptMapElement * const item);
+  void OnKeyDownPressed(QtNode* const item, const int key);
 
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted
