@@ -55,13 +55,15 @@ ribi::cmap::QtNode::QtNode(
   : QtRoundedEditRectItem(),
     //m_signal_display_changed{},
     m_signal_base_changed{},
+    m_signal_focus_in_event{},
     m_signal_key_down_pressed{},
     m_signal_node_changed{},
     //m_signal_node_requests_rate_concept{},
     //m_signal_node_requests_rate_examples{},
     //m_contour_pen(concept_item->GetContourPen()),
     //m_focus_pen(concept_item->GetFocusPen()),
-    m_node{}
+    m_node{},
+    m_show_bounding_rect{true}
 {
   #ifndef NDEBUG
   Test();
@@ -219,6 +221,7 @@ void ribi::cmap::QtNode::EnableAll()
 void ribi::cmap::QtNode::focusInEvent(QFocusEvent* e) noexcept
 {
   QtRoundedEditRectItem::focusInEvent(e);
+  m_signal_focus_in_event(this);
   //m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen()); //Updates itself
   //assert(!m_display_strategy->hasFocus());
   ///?maybe update?
@@ -407,6 +410,16 @@ void ribi::cmap::QtNode::paint(
     );
   }
   #endif
+  if (m_show_bounding_rect)
+  {
+    const QPen prev_pen = painter->pen();
+    const QBrush prev_brush = painter->brush();
+    painter->setPen(QPen(QColor(0,0,96)));
+    painter->setBrush(QBrush(QColor(0,0,255,64)));
+    painter->drawRect(this->boundingRect().adjusted(1.0,1.0,-1.0,-1.0));
+    painter->setPen(prev_pen);
+    painter->setBrush(prev_brush);
+  }
 }
 
 void ribi::cmap::QtNode::SetNode(const boost::shared_ptr<Node>& node) noexcept

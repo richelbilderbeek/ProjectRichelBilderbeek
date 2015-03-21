@@ -133,6 +133,8 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   ///Set the regular pen used to draw the arrow
   void SetPen(const QPen& pen) noexcept;
 
+  void SetShowBoundingRect(const bool show_bounding_rect) noexcept;
+
   ///Set the position of the from item
   void SetToPos(const QPointF& pos) noexcept;
   void SetToPos(const double x, const double y) noexcept { SetToPos(QPointF(x,y)); }
@@ -168,6 +170,9 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
 
   ///The regular pen
   QPen m_pen;
+
+  ///Show the bounding rectangle, used in debugging
+  bool m_show_bounding_rect;
 
   ///Show arrow at tail
   bool m_tail;

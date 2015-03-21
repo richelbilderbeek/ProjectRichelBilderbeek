@@ -270,7 +270,7 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
     const auto qtto = QtNodeFactory().Create(to);
     const auto edge = EdgeFactory().GetTest(1,from,to);
     //QtEdge(edge,qtfrom.get(),qtto.get());
-    QtEdge(edge,qtfrom,qtto);
+    QtEdge(edge,qtfrom.get(),qtto.get());
   }
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
@@ -286,8 +286,8 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
   const auto edge = EdgeFactory().GetTest(1,from,to);
   const auto qtfrom = QtNodeFactory().Create(from);
   const auto qtto = QtNodeFactory().Create(to);
-  //const boost::shared_ptr<QtEdge> qtedge(new QtEdge(edge,qtfrom.get(),qtto.get()));
-  const boost::shared_ptr<QtEdge> qtedge(new QtEdge(edge,qtfrom,qtto));
+  const boost::shared_ptr<QtEdge> qtedge(new QtEdge(edge,qtfrom.get(),qtto.get()));
+  //const boost::shared_ptr<QtEdge> qtedge(new QtEdge(edge,qtfrom,qtto));
   dialog.SetQtEdge(qtedge);
 
   if (verbose) { TRACE("SetX and GetX must be symmetric"); }

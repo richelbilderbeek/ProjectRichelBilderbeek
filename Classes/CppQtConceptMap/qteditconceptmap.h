@@ -100,7 +100,10 @@ private:
   std::vector<QtNode *> GetQtNodes();
 
   ///Called when an item wants to be edited
-  void OnKeyDownPressed(QtNode* const item, const int key);
+  void OnEdgeKeyDownPressed(QtEdge * const item, const int key);
+
+  ///Called when an item wants to be edited
+  void OnNodeKeyDownPressed(QtNode* const item, const int key);
 
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted

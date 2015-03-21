@@ -20,10 +20,10 @@ struct QtEdgeFactory
 
   boost::shared_ptr<QtEdge> Create(
     const boost::shared_ptr<Edge>& node,
-    const boost::shared_ptr<QtNode>& from,
-    //QtNode* const from,
-    const boost::shared_ptr<QtNode>& to
-    //QtNode* const to
+    QtNode* const from,
+    //const boost::shared_ptr<QtNode>& from,
+    QtNode* const to
+    //const boost::shared_ptr<QtNode>& to
   ) const noexcept;
 
 

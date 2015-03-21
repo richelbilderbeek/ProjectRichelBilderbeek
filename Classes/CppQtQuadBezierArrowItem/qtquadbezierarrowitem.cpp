@@ -205,6 +205,7 @@ ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
     m_head{head},
     m_mid{mid},
     m_pen{QPen(QColor(0,0,0))},
+    m_show_bounding_rect{true},
     m_tail{tail},
     m_to{to}
 {
@@ -539,6 +540,17 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
 
       painter->drawPolygon(QPolygonF() << p0 << p1 << p2);
     }
+  }
+
+  if (m_show_bounding_rect)
+  {
+    const QPen prev_pen = painter->pen();
+    const QBrush prev_brush = painter->brush();
+    painter->setPen(QPen(QColor(0,0,96)));
+    painter->setBrush(QBrush(QColor(0,0,255,64)));
+    painter->drawRect(this->boundingRect().adjusted(1.0,1.0,-1.0,-1.0));
+    painter->setPen(prev_pen);
+    painter->setBrush(prev_brush);
   }
 }
 

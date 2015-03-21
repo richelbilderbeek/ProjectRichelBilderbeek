@@ -49,8 +49,10 @@ ribi::cmap::QtEdge::QtEdge(
 )
   : m_signal_base_changed{},
     m_signal_edge_changed{},
-    m_arrow{new QtQuadBezierArrowItem(from.get(),edge->HasTailArrow(),this,edge->HasHeadArrow(),to.get())},
-    //m_arrow{new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to)},
+    m_signal_focus_in_event{},
+    m_signal_key_down_pressed{},
+    //m_arrow{new QtQuadBezierArrowItem(from.get(),edge->HasTailArrow(),this,edge->HasHeadArrow(),to.get())},
+    m_arrow{new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to)},
     m_edge{}, //Will be initialized by setEdge
     m_from{from},
     m_qtnode{new QtNode(edge->GetNode())},
@@ -258,14 +260,15 @@ void ribi::cmap::QtEdge::dragMoveEvent(QGraphicsSceneDragDropEvent *) noexcept
   //if (scene()) { scene()->update(); }
   //update();
 }
-
+*/
 void ribi::cmap::QtEdge::focusInEvent(QFocusEvent*) noexcept
 {
+  m_signal_focus_in_event(this);
   //Lose focus of arrow
-  m_arrow->SetPen(QPen(QColor(0,0,0)));
+  //m_arrow->SetPen(QPen(QColor(0,0,0)));
   //m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen()); //Updates itself
 }
-
+/*
 void ribi::cmap::QtEdge::focusOutEvent(QFocusEvent*) noexcept
 {
   m_arrow->SetPen(QPen(QColor(0,0,0)));
@@ -273,17 +276,13 @@ void ribi::cmap::QtEdge::focusOutEvent(QFocusEvent*) noexcept
 }
 */
 
+
 void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event) noexcept
 {
   assert(m_arrow);
   assert(m_edge);
-  //m_display_strategy->keyPressEvent(event);
-  switch (event->key())
-  {
-    case Qt::Key_F1:
-    case Qt::Key_F2:
-    return;
-  }
+  m_signal_key_down_pressed(this,event->key());
+  /*
   if (m_arrow->isEnabled())
   {
     m_arrow->keyPressEvent(event);
@@ -293,7 +292,8 @@ void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event) noexcept
     assert(m_edge->HasHeadArrow() == m_arrow->HasHead());
     assert(m_edge->HasTailArrow() == m_arrow->HasTail());
   }
-  //QtConceptMapElement::keyPressEvent(event);
+  */
+  QGraphicsItem::keyPressEvent(event);
 }
 
 void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept

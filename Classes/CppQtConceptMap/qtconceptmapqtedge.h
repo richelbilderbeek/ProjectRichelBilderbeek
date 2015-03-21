@@ -46,8 +46,8 @@ struct QtEdge : public QGraphicsItem
   typedef boost::shared_ptr<const QtQuadBezierArrowItem> ReadOnlyArrow;
   typedef boost::shared_ptr<Node> NodePtr;
   typedef boost::shared_ptr<const Node> ReadOnlyNodePtr;
-  typedef boost::shared_ptr<QtNode> QtNodePtr;
-  typedef boost::shared_ptr<const QtNode> ReadOnlyQtNodePtr;
+  typedef QtNode * QtNodePtr;
+  typedef const QtNode * ReadOnlyQtNodePtr;
   typedef boost::shared_ptr<Edge> EdgePtr;
   typedef boost::shared_ptr<const Edge> ReadOnlyEdgePtr;
 
@@ -103,8 +103,11 @@ struct QtEdge : public QGraphicsItem
 
   mutable boost::signals2::signal<void (QtEdge *)> m_signal_base_changed;
   mutable boost::signals2::signal<void (QtEdge *)> m_signal_edge_changed;
+  mutable boost::signals2::signal<void (QtEdge *)> m_signal_focus_in_event;
+  mutable boost::signals2::signal<void (QtEdge *,const int key)> m_signal_key_down_pressed;
 
 protected:
+  void focusInEvent(QFocusEvent *event) noexcept override final;
   void keyPressEvent(QKeyEvent *event) noexcept override final;
   void mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept override final;
   void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept override final;

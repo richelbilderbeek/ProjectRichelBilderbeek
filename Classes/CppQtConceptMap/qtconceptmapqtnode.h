@@ -81,6 +81,7 @@ struct QtNode : public QtRoundedEditRectItem
   ///of the Node its QtRateConceptItem
   //boost::signals2::signal<void (QtNode *)> m_signal_display_changed;
   mutable boost::signals2::signal<void (QtNode *)> m_signal_base_changed;
+  mutable boost::signals2::signal<void (QtNode *)> m_signal_focus_in_event;
   mutable boost::signals2::signal<void (QtNode *,const int key)> m_signal_key_down_pressed;
   mutable boost::signals2::signal<void (QtNode *)> m_signal_node_changed;
   //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;
@@ -109,6 +110,8 @@ private:
 
   ///The node being edited, or displayed and not changed, or rated
   boost::shared_ptr<Node> m_node;
+
+  bool m_show_bounding_rect;
 
   void OnItemHasUpdated();
   void OnPosChanged(const QtRoundedRectItem * const item) noexcept;

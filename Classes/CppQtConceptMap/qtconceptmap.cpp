@@ -411,7 +411,8 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
 const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdgeConst(
   const QtEdge* const edge) const noexcept
 {
-  return FindQtEdgeConst(edge->GetFrom().get(),edge->GetTo().get());
+  //return FindQtEdgeConst(edge->GetFrom().get(),edge->GetTo().get());
+  return FindQtEdgeConst(edge->GetFrom(),edge->GetTo());
 }
 
 const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdgeConst(
