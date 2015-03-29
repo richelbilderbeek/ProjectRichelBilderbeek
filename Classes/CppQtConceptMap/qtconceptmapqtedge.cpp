@@ -438,12 +438,11 @@ void ribi::cmap::QtEdge::OnRequestSceneUpdate()
 
 void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
-  painter->translate(m_qtnode->GetCenterPos());
+  //painter->translate(m_qtnode->GetCenterPos());
   if (m_arrow->isVisible())
   {
     m_arrow->paint(painter,option,widget);
   }
-
   if (m_qtnode->isVisible())
   {
     m_qtnode->paint(painter,option,widget);

@@ -369,10 +369,6 @@ void ribi::cmap::QtNode::paint(
   }
   */
 
-  //assert(this->boundingRect() == m_display_strategy->boundingRect()
-  //  && "Keep bounding rects in sync (but is this check still relevent?) 2013-07-06");
-
-  //m_display_strategy->paint(painter,item,widget);
   Base::paint(painter,item,widget);
   /*
   if (!GetNode()->GetConcept()->GetExamples()->Get().empty())
