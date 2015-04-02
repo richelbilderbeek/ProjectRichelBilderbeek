@@ -9,6 +9,7 @@ else
 fi
 
 cd libcvautomation
+./autogen.sh
 ./configure
 make
 make install
