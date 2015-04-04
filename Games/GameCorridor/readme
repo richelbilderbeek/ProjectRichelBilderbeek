@@ -1,7 +1,0 @@
-required development packages of:
-	*SDL_ttf
-	*SDL_image
-	*SDL
-build command:
-$ sh build.sh
-
