@@ -22,7 +22,7 @@ void Individual::Test() noexcept
   {
     const std::shared_ptr<Pedigree> parent_pedigree{Pedigree::Create("X")};
     Individual parent(
-      Dna(mutation_rate,rnd_engine,Dna::CreateRandomDna(dna_length)),parent_pedigree
+      Dna(mutation_rate,rnd_engine,dna_length),parent_pedigree
     );
     const Individual kid{parent.CreateOffspring("A")};
 
@@ -43,7 +43,7 @@ void Individual::Test() noexcept
     */
     const auto root_pedigree = Pedigree::Create("X");
     Individual root(
-      Dna(mutation_rate,rnd_engine,Dna::CreateRandomDna(dna_length)),root_pedigree
+      Dna(mutation_rate,rnd_engine,dna_length),root_pedigree
     );
     const Individual a{root.CreateOffspring("A")};
     const Individual b{root.CreateOffspring("B")};
@@ -67,7 +67,7 @@ void Individual::Test() noexcept
     */
     const auto root_pedigree = Pedigree::Create("X");
     Individual root(
-      Dna(mutation_rate,rnd_engine,Dna::CreateRandomDna(dna_length)),root_pedigree
+      Dna(mutation_rate,rnd_engine,dna_length),root_pedigree
     );
     auto a = root.CreateOffspring("A");
     auto b = root.CreateOffspring("B");

@@ -31,10 +31,10 @@ int main()
   for (int i=0; i!=n_generations; ++i)
   {
     simulation.NextGeneration();
-    if (!simulation.GetSequences().empty())
+    if (!simulation.GetCurrentSequences().empty())
     {
       //Only show the sequence of the first individual
-      std::cout << i << ": " << simulation.GetSequences()[0].GetSequence() << '\n';
+      std::cout << i << ": " << simulation.GetCurrentSequences()[0].GetSequence() << '\n';
     }
     std::cout << simulation.GetPedigree() << std::endl;
   }

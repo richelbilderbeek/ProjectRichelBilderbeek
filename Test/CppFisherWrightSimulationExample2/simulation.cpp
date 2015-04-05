@@ -13,7 +13,7 @@
 
 Simulation::Simulation(
   const Parameters& parameters,
-  const std::vector<Individual>& individuals
+  const Generation& generation
 )
   : m_generations{},
     m_parameters{parameters},
@@ -23,10 +23,10 @@ Simulation::Simulation(
   Test();
   #endif
 
-  m_generations.push_back(individuals);
+  m_generations.push_back(generation);
 }
 
-std::vector<Individual> Simulation::CreateIndividuals(
+Generation Simulation::CreateFirstGeneration(
   const Parameters& parameters
 ) noexcept
 {
@@ -41,20 +41,21 @@ std::vector<Individual> Simulation::CreateIndividuals(
     [dna_length,mutation_rate,this]()
     {
       return Individual(
-        Dna(mutation_rate,m_rnd_engine,Dna::CreateRandomDna(dna_length)),
+        Dna(mutation_rate,m_rnd_engine,dna_length),
           Pedigree::Create()
         );
     }
   );
-  return v;
+  Generation g(v);
+  return g;
 }
 
 
-std::vector<Individual> Simulation::CreateNextGeneration(
-  std::vector<Individual>& current_generation
+Generation Simulation::CreateNextGeneration(
+  Generation& current_generation
   ) noexcept
 {
-  std::vector<Individual> next_generation;
+  std::vector<Individual> individuals;
 
   const int n{m_parameters.GetPopSize()};
   for (int i=0; i!=n; ++i)
@@ -64,8 +65,9 @@ std::vector<Individual> Simulation::CreateNextGeneration(
     assert(index < static_cast<int>(current_generation.size()));
     Individual& parent{current_generation[index]};
     const Individual kid{parent.CreateOffspring()};
-    next_generation.push_back(kid);
+    individuals.push_back(kid);
   }
+  const Generation next_generation(individuals);
   return next_generation;
 }
 
@@ -99,55 +101,26 @@ std::vector<Parameters> Simulation::CreateTestParameters() noexcept
   return v;
 }
 
+std::vector<Sequence> Simulation::GetCurrentSequences() const noexcept
+{
+  return GetGenerations().back().GetSequences();
+}
+
 std::string Simulation::GetPedigree() const noexcept
 {
   //Take the first individual from the first generation
   if (this->m_generations.empty()) return "";
   if (this->m_generations.back().empty()) return "";
   return m_generations[0][0].GetPedigree()->ToNewick();
-
-  /*
-  if (!simulation.GetGenerations().back().empty())
-  {
-    const Individual& first_individual{simulation.GetGenerations().back().front() };
-    std::shared_ptr<const Pedigree> first_pedigree{
-      first_individual.GetPedigree()
-    };
-    assert(first_pedigree);
-    for (int i=0; i!=n_generations; ++i)
-    {
-      std::shared_ptr<const Pedigree> parent_pedigree{
-        first_individual.GetPedigree()->GetParent().lock()
-      };
-      if (parent_pedigree) { first_pedigree = parent_pedigree; }
-      else { break; }
-    }
-    assert(first_pedigree);
-    std::cout << first_pedigree->ToNewick() << std::endl;
-
-  }
-  */
   return "TODO";
 }
 
+/*
 std::vector<Sequence> Simulation::GetSequences() const noexcept
 {
-  std::vector<Sequence> alignments;
-  const std::vector<Individual>& current_generation = m_generations.back();
-  std::transform(
-    std::begin(current_generation),
-    std::end(current_generation),
-    std::back_inserter(alignments),
-    [](const Individual& i)
-    {
-      const std::string description = std::to_string(i.GetIndex());
-      assert(std::stoi(description) == i.GetIndex());
-      return Sequence(description,i.GetDna().GetSequence());
-    }
-  );
-
-  return alignments;
+  return m_generations.back().GetSequences();
 }
+*/
 
 void Simulation::NextGeneration() noexcept
 {
@@ -177,7 +150,7 @@ void Simulation::Test() noexcept
 
     //Sample the alignments
     const std::vector<Sequence> alignments{
-      simulation.GetSequences()
+      simulation.GetCurrentSequences()
     };
     assert(parameters.GetPopSize() == static_cast<int>(alignments.size()));
   }
@@ -188,12 +161,12 @@ void Simulation::Test() noexcept
     const double mutation_rate{0.0};
     const Parameters p(dna_length,mutation_rate,n_generations,1,42);
     const Individual i(
-      Dna(mutation_rate,rnd_engine,Dna::CreateRandomDna(dna_length)),Pedigree::Create());
+      Dna(mutation_rate,rnd_engine,dna_length),Pedigree::Create());
     std::vector<Individual> is;
     is.push_back(i);
     Simulation s(p,is);
     for (int i=0; i!=n_generations; ++i) { s.NextGeneration(); }
-    assert(s.GetGenerations().back() == is);
+    assert(s.GetGenerations().back().m_individuals == is);
   }
 }
 #endif

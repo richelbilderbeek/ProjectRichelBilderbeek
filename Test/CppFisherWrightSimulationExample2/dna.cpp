@@ -58,6 +58,7 @@ std::string Dna::CreateRandomDna(
   const int dna_length
 ) noexcept
 {
+  assert(dna_length >= 0);
   std::string s(dna_length,0);
   std::generate(std::begin(s),std::end(s),CreateRandomBasePair);
   return s;

@@ -10,7 +10,8 @@ SOURCES += \
     helper.cpp \
     sequence.cpp \
     dna.cpp \
-    individual_test.cpp
+    individual_test.cpp \
+    generation.cpp
 
 
 HEADERS += \
@@ -19,4 +20,5 @@ HEADERS += \
     individual.h \
     helper.h \
     sequence.h \
-    dna.h
+    dna.h \
+    generation.h

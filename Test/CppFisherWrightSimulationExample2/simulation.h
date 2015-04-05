@@ -4,6 +4,7 @@
 #include <random>
 #include <vector>
 
+#include "generation.h"
 #include "individual.h"
 #include "parameters.h"
 #include "sequence.h"
@@ -13,46 +14,45 @@
 struct Simulation
 {
   ///Use randomly created individuals
-  Simulation(
-    const Parameters& parameters
-  ) : Simulation(parameters,CreateIndividuals(parameters)) {}
-
-  ///Put in your own individuals
-  Simulation(
-    const Parameters& parameters,
-    const std::vector<Individual>& individuals
-  );
+  Simulation(const Parameters& parameters) : Simulation(parameters,CreateFirstGeneration(parameters)) {}
 
   std::string GetPedigree() const noexcept;
 
-  const std::vector<std::vector<Individual>>& GetGenerations() const noexcept { return m_generations; }
+  const std::vector<Generation>& GetGenerations() const noexcept { return m_generations; }
 
-  std::vector<Sequence> GetSequences() const noexcept;
+  ///Obtain the sequences of the current (most recent) simulation
+  ///Equivalent to simulation.GetGenerations().back().GetSequences()
+  std::vector<Sequence> GetCurrentSequences() const noexcept;
 
   //Go to the next generation
   void NextGeneration() noexcept;
 
   private:
-  std::vector<std::vector<Individual>> m_generations;
+  std::vector<Generation> m_generations;
 
   const Parameters m_parameters;
 
   ///Random number generator engine
   std::mt19937 m_rnd_engine;
 
+  ///Put in your own individuals
+  Simulation(
+    const Parameters& parameters,
+    const Generation& generation
+  );
+
   ///Create initial population of individuals with random DNA sequences
-  std::vector<Individual> CreateIndividuals(
+  Generation CreateFirstGeneration(
     const Parameters& parameters
   ) noexcept;
 
   ///Create initial population of individuals with random DNA sequences
   ///Non-const, because random numbers are used
-  std::vector<Individual> CreateNextGeneration(
-    std::vector<Individual>& current_generation
+  Generation CreateNextGeneration(
+    Generation& current_generation
   ) noexcept;
 
   static std::vector<Parameters> CreateTestParameters() noexcept;
-
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -23,8 +23,6 @@ struct Parameters
   int GetPopSize() const noexcept { return m_pop_size; }
   int GetSeed() const noexcept { return m_seed; }
 
-  //void Save(const std::string& filename) const noexcept;
-
   private:
   const int m_dna_length;
   const double m_mutation_rate;
