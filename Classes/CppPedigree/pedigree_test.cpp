@@ -88,7 +88,7 @@ void Pedigree::Test() noexcept
   {
     const auto root = Pedigree::Create("X");
     const std::string expected{"(X);"};
-    if (root->ToNewick() != expected) { std::clog << root->ToNewick() << '\n'; }
+    if (root->ToNewick() != expected) { std::cerr << root->ToNewick() << '\n'; }
     assert(root->ToNewick() == expected);
   }
   //Single lineage, one generation

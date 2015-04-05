@@ -29,7 +29,6 @@ void Individual::Test() noexcept
     assert(kid.GetPedigree()->GetParent().lock());
     assert(kid.GetPedigree()->GetParent().lock() == parent_pedigree);
     assert(parent_pedigree->ToNewick() == kid.GetPedigree()->GetParent().lock()->ToNewick());
-    std::clog << parent_pedigree->ToNewick() << '\n';
   }
   {
     /*

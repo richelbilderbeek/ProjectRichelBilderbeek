@@ -8,6 +8,8 @@
 #include "parameters.h"
 #include "simulation.h"
 
+#include "newickutils.h"
+
 int main()
 {
   //1) Read parameters from file
@@ -38,6 +40,6 @@ int main()
     }
     std::cout << simulation.GetPedigree() << std::endl;
   }
-
+  NewickUtils().Display(simulation.GetPedigree());
 }
 

@@ -13,6 +13,8 @@ struct Generation
     : m_individuals{individuals} {}
   bool empty() const noexcept { return m_individuals.empty(); }
 
+  std::vector<Individual>& GetIndividuals() noexcept { return m_individuals; }
+  const std::vector<Individual>& GetIndividuals() const noexcept { return m_individuals; }
   std::vector<Sequence> GetSequences() const noexcept;
 
   std::vector<Individual>::size_type size() const noexcept { return m_individuals.size(); }

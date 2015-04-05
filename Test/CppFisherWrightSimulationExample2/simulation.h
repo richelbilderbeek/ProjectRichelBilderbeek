@@ -16,7 +16,7 @@ struct Simulation
   ///Use randomly created individuals
   Simulation(const Parameters& parameters) : Simulation(parameters,CreateFirstGeneration(parameters)) {}
 
-  std::string GetPedigree() const noexcept;
+  std::string GetPedigree() noexcept;
 
   const std::vector<Generation>& GetGenerations() const noexcept { return m_generations; }
 

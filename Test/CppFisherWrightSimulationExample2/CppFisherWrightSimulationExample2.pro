@@ -1,5 +1,6 @@
 include(../../ConsoleApplication.pri)
 include(../../Libraries/BoostAll.pri)
+include(../../Classes/CppNewickUtils/CppNewickUtils.pri)
 include(../../Classes/CppPedigree/CppPedigree.pri)
 
 SOURCES += \

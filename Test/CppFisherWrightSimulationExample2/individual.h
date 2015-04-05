@@ -22,6 +22,7 @@ struct Individual
   const Dna& GetDna() const noexcept { return m_dna; }
   int GetIndex() const noexcept { return m_index; }
   std::shared_ptr<const Pedigree> GetPedigree() const noexcept { return m_pedigree; }
+  std::shared_ptr<Pedigree> GetPedigree() noexcept { return m_pedigree; }
   void SetName(const std::string& name) noexcept;
 
   private:

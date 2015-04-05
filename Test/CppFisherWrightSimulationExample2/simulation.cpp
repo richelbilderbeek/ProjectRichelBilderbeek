@@ -106,21 +106,21 @@ std::vector<Sequence> Simulation::GetCurrentSequences() const noexcept
   return GetGenerations().back().GetSequences();
 }
 
-std::string Simulation::GetPedigree() const noexcept
+std::string Simulation::GetPedigree() noexcept
 {
   //Take the first individual from the first generation
   if (this->m_generations.empty()) return "";
   if (this->m_generations.back().empty()) return "";
-  return m_generations[0][0].GetPedigree()->ToNewick();
-  return "TODO";
-}
 
-/*
-std::vector<Sequence> Simulation::GetSequences() const noexcept
-{
-  return m_generations.back().GetSequences();
+  std::shared_ptr<const Pedigree> pedigree = m_generations.back().GetIndividuals()[0].GetPedigree();
+  while (1)
+  {
+    std::shared_ptr<const Pedigree> parent = pedigree->GetParent().lock();
+    if (!parent) break;
+    pedigree = parent;
+  }
+  return pedigree->ToNewick();
 }
-*/
 
 void Simulation::NextGeneration() noexcept
 {
