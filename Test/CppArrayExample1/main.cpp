@@ -10,7 +10,7 @@ int main()
     //const int w[3] = { 0,1 }; //Does compile: too few elements is not checked in assignment
     //const int x[3] = { 0,1,2,3 }; //Does not compile: too many elements is checked in assignment
 
-    const int v[3] { 0,1,2 };
+    const int v[3] = { 0,1,2 };
 
     static_assert(sizeof(v) / sizeof(int) == 3,"");
     assert(v[1] == 1);
@@ -20,9 +20,9 @@ int main()
     int * const v { new int(3) }; //Cannot initialize directly
     v[0] = 0; v[1] = 1; v[2] = 2;
 
-    static_assert(sizeof(v) / sizeof(int) == 1,
+    static_assert(sizeof(v) / sizeof(int) == 1 || sizeof(v) / sizeof(int) == 2,
       "WARNING: you might have expected this to be 3");
-    assert(sizeof(v) / sizeof(int) == 1
+    assert((sizeof(v) / sizeof(int) == 1 || sizeof(v) / sizeof(int) == 2)
       && "WARNING: you might have expected this to be 3");
 
     assert(v[1] == 1);

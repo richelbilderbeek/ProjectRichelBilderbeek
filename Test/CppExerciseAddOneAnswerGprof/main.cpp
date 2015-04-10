@@ -537,9 +537,14 @@ void TestFunctions(const std::vector<Function>& functions_original)
 //From http://www.richelbilderbeek.nl/CppExerciseAddOneAnswer.htm
 int main()
 {
+  #ifndef NDEBUG
+  std::cout << "Set program to release mode, otherwise benchmark gives misleading results\n";\
+  return 0;
+  #else
+
   boost::timer t;
 
-  const int size = 1000000;
+  const int size = 100000000;
   const int nTimes = 10;
   std::vector<Function> functions = GetFunctions();
   TestFunctions(functions);
@@ -583,8 +588,8 @@ int main()
   );
 
 
-
   std::cout << "Total running time: " << t.elapsed() << " seconds." << std::endl;
+  #endif
 }
 
 /*
@@ -656,3 +661,77 @@ For-loop, pre-increment, non-const size: 0.48
 For-loop, pre-increment, const size: 0.49
 Total running time: 25.16 seconds.
 */
+
+/* 2015-04-10: Differences are very small
+
+Size std::vector: 10000000
+Repeats: 100
+Timer minimal interval: 1e-06
+Results (best result first):
+C++11 ranged for loop, post-increment: 0.606102
+Algorithm, std::plus, std::bind1st: 0.607189
+BOOST_FOREACH, post-increment: 0.607494
+Boost.Lambda, increase: 0.607584
+Algorithm, inline function, assignment 2nd: 0.607798
+Algorithm, non-inline function, pre-increment: 0.608403
+Algorithm, inline function, pre-increment: 0.608423
+Boost.Lambda, assignment 1st: 0.608449
+BOOST_FOREACH, increase: 0.608545
+Algorithm, functor, inline, pre-increment: 0.608674
+Algorithm, functor, non-inline, pre-increment: 0.608743
+Iterator, increase, non-const end: 0.608774
+Boost.Lambda, pre-increment: 0.60902
+For-loop, post-increment, non-const size: 0.60909
+Algorithm, functor, non-inline, post-increment: 0.609102
+For-loop, pre-increment, const size: 0.609103
+Iterator, post-increment, non-const end: 0.609108
+For-loop, assignment 2nd, const size: 0.609204
+BOOST_FOREACH, assignment 2nd: 0.609284
+Algorithm, non-inline function, increase: 0.609377
+C++11 ranged for loop, pre-increment: 0.609492
+Iterator, pre-increment, const end: 0.609536
+Algorithm, non-inline function, post-increment: 0.609639
+Iterator, increase, const end: 0.609649
+C++11 lambda expression, assignment 2nd: 0.609673
+BOOST_FOREACH, pre-increment: 0.609676
+C++11 lambda expression, assignment 1st: 0.609685
+C++11 ranged for loop, increase: 0.609724
+Algorithm, non-inline function, assignment 1st: 0.609897
+Boost.Lambda, assignment 2nd: 0.610001
+Algorithm, non-inline function, assignment 2nd: 0.610085
+Iterator, assignment 2nd, const end: 0.610213
+C++11 ranged for loop, assignment 1st: 0.610294
+Iterator, assignment 1st, const end: 0.610415
+For-loop, post-increment, const size: 0.610618
+Algorithm, functor, inline, post-increment: 0.610623
+Algorithm, functor, inline, assignment 1st: 0.610693
+Algorithm, inline function, assignment 1st: 0.61088
+Iterator, post-increment, const end: 0.61091
+For-loop, assignment 1st, const size: 0.611026
+For-loop, increase, non-const size: 0.611066
+For-loop, assignment 2nd, non-const size: 0.611367
+Iterator, assignment 1st, non-const end: 0.611531
+C++11 lambda expression, pre-increment: 0.611675
+For-loop, assignment 1st, non-const size: 0.611689
+Algorithm, functor, non-inline, assignment 2nd: 0.611726
+Algorithm, functor, inline, increase: 0.611765
+BOOST_FOREACH, assignment 1st: 0.611871
+Algorithm, inline function, increase: 0.612154
+C++11 lambda expression, increase: 0.612166
+For-loop, pre-increment, non-const size: 0.612224
+For-loop, increase, const size: 0.612383
+Algorithm, functor, non-inline, increase: 0.612502
+C++11 ranged for loop, assignment 2nd: 0.61253
+Algorithm, functor, non-inline, assignment 1st: 0.612554
+Boost.Lambda, post-increment: 0.612612
+Iterator, assignment 2nd, non-const end: 0.612879
+Algorithm, std::plus, std::bind2nd: 0.613106
+Algorithm, functor, inline, assignment 2nd: 0.613279
+Iterator, pre-increment, non-const end: 0.61335
+Algorithm, inline function, post-increment: 0.613957
+C++11 lambda expression, post-increment: 0.614741
+Total running time: 37.8573 seconds.
+
+*/
+
+
