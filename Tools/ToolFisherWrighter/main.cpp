@@ -16,7 +16,7 @@ int main()
   const int dna_length{10};
   const double mutation_rate{0.01};
   const int n_generations{10};
-  const int pop_size{100000};
+  const int pop_size{1000};
   const int seed{42};
   const Parameters parameters(
     dna_length,
