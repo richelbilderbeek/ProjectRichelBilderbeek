@@ -20,11 +20,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "counter.h"
 
-#include <cassert>
-
-#include "testtimer.h"
-#include "trace.h"
-
 ribi::Counter::Counter(const int initial_count) noexcept
   : m_count(initial_count)
 {
@@ -43,43 +38,17 @@ std::vector<std::string> ribi::Counter::GetVersionHistory() noexcept
   return {
     "2011-08-20: Version 1.0: initial version",
     "2014-08-01: Version 1.1: added tests",
-    "2014-04-18: Version 1.2: added prefix increment operator"
+    "2014-04-18: Version 1.2: added operator++, operator== and operator!="
   };
 }
 
-#ifndef NDEBUG
-void ribi::Counter::Test() noexcept
+bool ribi::operator==(const ribi::Counter& lhs, const ribi::Counter& rhs) noexcept
 {
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-  const bool verbose{false};
-  if (verbose) { TRACE("Default-construction must have value zero"); }
-  {
-    const Counter c;
-    assert(c.Get() == 0);
-  }
-  if (verbose) { TRACE("Construction with value must return it"); }
-  {
-    const Counter c(42);
-    assert(c.Get() == 42);
-  }
-  if (verbose) { TRACE("Increment must increment"); }
-  {
-    Counter c;
-    const int old_value = c.Get();
-    c.Inc();
-    assert(c.Get() == old_value + 1);
-  }
-  if (verbose) { TRACE("operator++ must increment"); }
-  {
-    Counter c;
-    const int old_value = c.Get();
-    ++c;
-    assert(c.Get() == old_value + 1);
-  }
+  return lhs.Get() == rhs.Get();
 }
-#endif
+
+bool ribi::operator!=(const ribi::Counter& lhs, const ribi::Counter& rhs) noexcept
+{
+  return !(lhs == rhs);
+}
+

@@ -7,6 +7,8 @@
 #include "dna.h"
 #include "pedigree.h"
 
+namespace ribi { struct Counter; }
+
 struct Individual
 {
   //Pedigree can only be created by parent using CreateOffspring
@@ -14,7 +16,8 @@ struct Individual
   //Must use std::shared_ptr, due to use of std::weak_ptr
   Individual(
     const Dna& dna,
-    const std::shared_ptr<Pedigree>& pedigree
+    const std::shared_ptr<Pedigree>& pedigree,
+    ribi::Counter& counter
   );
 
   Individual CreateOffspring(const std::string& name = "") noexcept;
@@ -25,19 +28,15 @@ struct Individual
   std::shared_ptr<Pedigree> GetPedigree() noexcept { return m_pedigree; }
   void SetName(const std::string& name) noexcept;
 
-  ///Sets the index counter (incremented at each constructor)
-  //static void ResetIndex() { sm_index = 0; }
-
   private:
+  ribi::Counter& m_counter;
+
   Dna m_dna; //Non-const, because RNG is passed on
 
   /// Unique index as long as there are less than (2^32)/2 Individuals
   const int m_index;
 
   const std::shared_ptr<Pedigree> m_pedigree;
-
-  /// Counter that increases when an Individual is constructed
-  static int sm_index;
 
   #ifndef NDEBUG
   static void Test() noexcept;

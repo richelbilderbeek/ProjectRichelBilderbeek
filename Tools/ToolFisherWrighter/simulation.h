@@ -4,6 +4,7 @@
 #include <random>
 #include <vector>
 
+#include "counter.h"
 #include "generation.h"
 #include "individual.h"
 #include "parameters.h"
@@ -31,6 +32,8 @@ struct Simulation
   void NextGeneration() noexcept;
 
   private:
+  ribi::Counter m_counter;
+
   std::vector<Generation> m_generations;
 
   const Parameters m_parameters;

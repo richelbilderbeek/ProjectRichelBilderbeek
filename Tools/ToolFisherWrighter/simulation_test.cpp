@@ -13,7 +13,6 @@ void Simulation::Test() noexcept
     is_tested = true;
   }
   //If random number generator seed is equal, simulations should yield equal results
-  #ifdef FIX_ISSUE_268
   {
     const int dna_length{4};
     const int n_generations{2};
@@ -31,32 +30,13 @@ void Simulation::Test() noexcept
       assert(parent1.GetDna() == parent2.GetDna());
       assert(parent1.GetDna().GetSequence() == parent2.GetDna().GetSequence());
     }
-    TRACE("START");
     for (int i=1; i!=n_generations; ++i) //Start at 1, because initial generation is already present
     {
       s.NextGeneration();
       t.NextGeneration();
     }
-    assert(s.GetGenerations().size() == n_generations);
-    assert(t.GetGenerations().size() == n_generations);
-    assert(s.GetGenerations().front().GetIndividuals().size() == pop_size);
-    assert(t.GetGenerations().front().GetIndividuals().size() == pop_size);
-    const auto kid1 = s.GetGenerations().back().GetIndividuals()[0];
-    const auto kid2 = t.GetGenerations().back().GetIndividuals()[0];
-    assert(kid1 == kid1);
-    assert(kid2 == kid2);
-    if (kid1.GetDna().GetSequence() != kid2.GetDna().GetSequence())
-    {
-      TRACE(kid1.GetDna().GetSequence());
-      TRACE(kid2.GetDna().GetSequence());
-    }
-    assert(kid1.GetDna().GetSequence() == kid2.GetDna().GetSequence());
-    assert(kid1.GetDna() == kid2.GetDna());
-    assert(kid1 == kid2);
-    assert(s.GetGenerations() == t.GetGenerations());
     assert(s == t);
   }
-  #endif
   {
     const int dna_length{10};
     const int n_generations{10};
@@ -98,8 +78,9 @@ void Simulation::Test() noexcept
     const int n_generations{100};
     const double mutation_rate{0.0};
     const Parameters p(dna_length,mutation_rate,n_generations,1,42);
+    ribi::Counter counter;
     const Individual i(
-      Dna(mutation_rate,rnd_engine,dna_length),Pedigree::Create());
+      Dna(mutation_rate,rnd_engine,dna_length),Pedigree::Create(),counter);
     std::vector<Individual> is;
     is.push_back(i);
     Simulation s(p,is);

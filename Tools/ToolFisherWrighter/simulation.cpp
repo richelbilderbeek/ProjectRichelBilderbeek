@@ -44,14 +44,16 @@ Simulation::Simulation(
   const int dna_length{parameters.GetDnaLength()};
   const double mutation_rate{parameters.GetMutationRate()};
   std::mt19937& rnd_engine{m_rnd_engine};
+  ribi::Counter& counter{m_counter};
   std::generate_n(
     std::back_inserter(v),
     parameters.GetPopSize(),
-    [dna_length,mutation_rate,&rnd_engine]()
+    [&counter,dna_length,mutation_rate,&rnd_engine]()
     {
       return Individual(
-        Dna(mutation_rate,rnd_engine,dna_length),
-          Pedigree::Create()
+          Dna(mutation_rate,rnd_engine,dna_length),
+          Pedigree::Create(),
+          counter
         );
     }
   );

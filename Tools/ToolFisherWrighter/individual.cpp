@@ -2,30 +2,34 @@
 
 #include <cassert>
 
+#include "counter.h"
 #include "dna.h"
 #include "parameters.h"
 
-int Individual::sm_index = 0;
-
 Individual::Individual(
   const Dna& dna,
-  const std::shared_ptr<Pedigree>& pedigree
+  const std::shared_ptr<Pedigree>& pedigree,
+  ribi::Counter& counter
   )
-  : m_dna{dna},
-    m_index{sm_index++}, //Use the previous value
+  : m_counter{counter},
+    m_dna{dna},
+    m_index{counter.Get()}, //Use the previous value
     m_pedigree{pedigree}
 {
   #ifndef NDEBUG
   Test();
   #endif
   assert(m_pedigree);
+
+  ++counter;
 }
 
 Individual Individual::CreateOffspring(const std::string& name) noexcept
 {
   Individual kid(
     m_dna.CreateOffspring(),
-    m_pedigree->CreateOffspring(name)
+    m_pedigree->CreateOffspring(name),
+    m_counter
   );
   if (name.empty())
   {

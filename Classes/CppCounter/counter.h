@@ -58,6 +58,9 @@ struct Counter
   #endif
 };
 
+bool operator==(const Counter& lhs, const Counter& rhs) noexcept;
+bool operator!=(const Counter& lhs, const Counter& rhs) noexcept;
+
 } //~namespace ribi
 
 #endif // COUNTER_H

@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "counter.h"
 #include "dna.h"
 #include "sequence.h"
 #include "parameters.h"
@@ -33,8 +34,11 @@ void Individual::Test() noexcept
     assert(dna1 == dna2);
     assert(*pedigree1 == *pedigree2);
     assert(sequence1 == sequence2);
-    const Individual a(dna1,pedigree1);
-    const Individual b(dna2,pedigree2);
+    ribi::Counter counter1;
+    ribi::Counter counter2;
+    assert(counter1 == counter2);
+    const Individual a(dna1,pedigree1,counter1);
+    const Individual b(dna2,pedigree2,counter2);
     assert(a == b);
   }
   //GetIndex
@@ -43,8 +47,9 @@ void Individual::Test() noexcept
     std::mt19937 rnd_engine;
     const Dna dna(mutation_rate,rnd_engine,"ACGTACGTACGT");
     const auto pedigree = Pedigree::Create("X");
-    const Individual a(dna,pedigree);
-    const Individual b(dna,pedigree);
+    ribi::Counter counter;
+    const Individual a(dna,pedigree,counter);
+    const Individual b(dna,pedigree,counter);
     assert(a.GetIndex() == a.GetIndex());
     assert(b.GetIndex() == b.GetIndex());
     assert(a.GetIndex() != b.GetIndex());
@@ -53,12 +58,15 @@ void Individual::Test() noexcept
   const int dna_length{10000};
   const int n_generations{100};
   const double mutation_rate{0.0};
+  ribi::Counter counter;
   const Parameters p(dna_length,mutation_rate,n_generations,1,42);
   //Pedigree can be formed, 1 kid
   {
     const std::shared_ptr<Pedigree> parent_pedigree{Pedigree::Create("X")};
     Individual parent(
-      Dna(mutation_rate,rnd_engine,dna_length),parent_pedigree
+      Dna(mutation_rate,rnd_engine,dna_length),
+      parent_pedigree,
+      counter
     );
     const Individual kid{parent.CreateOffspring("A")};
 
@@ -78,7 +86,7 @@ void Individual::Test() noexcept
     */
     const auto root_pedigree = Pedigree::Create("X");
     Individual root(
-      Dna(mutation_rate,rnd_engine,dna_length),root_pedigree
+      Dna(mutation_rate,rnd_engine,dna_length),root_pedigree,counter
     );
     const Individual a{root.CreateOffspring("A")};
     const Individual b{root.CreateOffspring("B")};
@@ -102,7 +110,7 @@ void Individual::Test() noexcept
     */
     const auto root_pedigree = Pedigree::Create("X");
     Individual root(
-      Dna(mutation_rate,rnd_engine,dna_length),root_pedigree
+      Dna(mutation_rate,rnd_engine,dna_length),root_pedigree,counter
     );
     auto a = root.CreateOffspring("A");
     auto b = root.CreateOffspring("B");
@@ -132,8 +140,11 @@ void Individual::Test() noexcept
     assert(dna1 == dna2);
     assert(*pedigree1 == *pedigree2);
     assert(sequence1 == sequence2);
-    Individual parent1(dna1,pedigree1);
-    Individual parent2(dna2,pedigree2);
+    ribi::Counter counter1;
+    ribi::Counter counter2;
+    assert(counter1 == counter2);
+    Individual parent1(dna1,pedigree1,counter1);
+    Individual parent2(dna2,pedigree2,counter2);
     assert(parent1 == parent2);
     Individual kid1{parent1.CreateOffspring()};
     Individual kid2{parent2.CreateOffspring()};
@@ -160,8 +171,11 @@ void Individual::Test() noexcept
     assert(dna1 == dna2);
     assert(*pedigree1 == *pedigree2);
     assert(sequence1 == sequence2);
-    Individual parent1(dna1,pedigree1);
-    Individual parent2(dna2,pedigree2);
+    ribi::Counter counter1;
+    ribi::Counter counter2;
+    assert(counter1 == counter2);
+    Individual parent1(dna1,pedigree1,counter1);
+    Individual parent2(dna2,pedigree2,counter2);
     assert(parent1 == parent2);
     const Individual kid1{parent1.CreateOffspring()};
     const Individual kid2{parent2.CreateOffspring()};
