@@ -76,25 +76,6 @@ std::vector<std::pair<std::string,int>> Helper::CreateTally(
   return w;
 }
 
-///FileToVector reads a file and converts it to a std::vector<std::string>
-///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-std::vector<std::string> Helper::FileToVector(
-  const std::string& filename
-) const noexcept
-{
-  assert(IsRegularFileStl(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
-}
-
-
 std::string Helper::GetFileBasenameBoostFilesystem(const std::string& filename) const noexcept
 {
   return boost::filesystem::basename(filename);
@@ -113,18 +94,6 @@ std::string Helper::GetFileBasenameBoostXpressive(const std::string& filename) c
   }
 
   return "";
-}
-
-
-///Determines if a filename is a regular file
-///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-bool Helper::IsRegularFileStl(
-  const std::string& filename
-) const noexcept
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
 }
 
 

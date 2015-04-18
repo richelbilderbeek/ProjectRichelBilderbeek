@@ -11,9 +11,7 @@ struct Helper
   std::string ContainerToStr(const std::vector<std::string>& s, const std::string& seperator = " ") const noexcept;
   std::map<std::string,int> CreateSortedTally(const std::vector<std::string>& v) const noexcept;
   std::vector<std::pair<std::string,int>> CreateTally(const std::vector<std::string>& v) const noexcept;
-  std::vector<std::string> FileToVector(const std::string& filename) const noexcept;
   std::string GetFileBasename(const std::string& filename) const noexcept { return GetFileBasenameBoostXpressive(filename); }
-  bool IsRegularFileStl(const std::string& filename) const noexcept;
 
   private:
   ///Most concise

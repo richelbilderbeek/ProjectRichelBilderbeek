@@ -6,35 +6,37 @@
 
 struct PhylogenyR
 {
+  enum class GraphicsFormat { png, svg };
 
   PhylogenyR();
 
+  ///Plot Newick as a Lineages Through Time Plot in PNG format
+  void NewickToLttPlot(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format
+  ) const;
+
+  ///Plot Newick as a phylogeny in a graphics format
+  void NewickToPhylogeny(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format
+  ) const;
+
+  ///Plot Newick as a phylogeny in PNG format
   void NewickToPhylogenyPng(
     const std::string& newick,
     const std::string& png_filename
   ) const;
 
+  ///Plot Newick as a phylogeny in SVG format
   void NewickToPhylogenySvg(
     const std::string& newick,
     const std::string& svg_filename
   ) const;
 
   private:
-
-  enum class GraphicsFormat { png, svg };
-
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  bool IsRegularFileStl(
-    const std::string& filename
-  ) const noexcept;
-
-  ///Handles both NewickToPhylogenyPng and NewickToPhylogenySvg
-  void NewickToPhylogenyImpl(
-    const std::string& newick,
-    const std::string& filename,
-    const GraphicsFormat graphics_format
-  ) const;
 
   #ifndef NDEBUG
   static void Test() noexcept;

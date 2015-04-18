@@ -14,18 +14,81 @@ PhylogenyR::PhylogenyR()
   #endif
 }
 
-///Determines if a filename is a regular file
-///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-bool PhylogenyR::IsRegularFileStl(
-  const std::string& filename
-) const noexcept
+void PhylogenyR::NewickToLttPlot(
+  const std::string& newick,
+  const std::string& filename,
+  const PhylogenyR::GraphicsFormat graphics_format
+) const
 {
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
+  assert(!newick.empty());
+  assert(!filename.empty());
+
+  //TODO: Test if the user has all required packages
+
+  const std::string temp_r_filename{
+    ribi::fileio::FileIo().GetTempFileName(".R")
+  };
+
+  //Create the R script
+  {
+    std::ofstream f(temp_r_filename.c_str());
+    f
+      << "library(ape)" << '\n'
+      << "library(geiger)" << '\n'
+    ;
+    switch (graphics_format)
+    {
+      case GraphicsFormat::png:
+        f << "png(filename=\"" << filename << "\")" << '\n';
+      break;
+      case GraphicsFormat::svg:
+        f << "svg(filename=\"" << filename << "\")" << '\n';
+      break;
+    }
+
+    f
+      << "newick <- \"" << newick << "\"" << '\n'
+      << "phylogeny <- read.tree(text = newick)" << '\n'
+      << "ltt.plot(phylogeny)" << '\n'
+      << "dev.off()" << '\n';
+    ;
+  }
+
+  if (!ribi::fileio::FileIo().IsRegularFile(temp_r_filename))
+  {
+    std::stringstream s;
+    s << "PhylogenyR::NewickToPhylogenySvg: "
+      << "Could not create temporary R script file "
+      << "with filename '" << temp_r_filename << "'";
+    throw std::runtime_error(s.str().c_str());
+  }
+
+  //Execute the R script
+  {
+    std::stringstream cmd;
+    cmd << "Rscript " << temp_r_filename;
+    std::system(cmd.str().c_str());
+  }
+
+  if (!ribi::fileio::FileIo().IsRegularFile(filename))
+  {
+    std::stringstream s;
+    s << "PhylogenyR::NewickToPhylogenySvg: "
+      << "Could not create SVG "
+      << "with filename '" << filename << "'. "
+      << "Perhaps not all packages (ape, geiger) needed are installed? "
+      << "You can try to run the temporary R script file '"
+      << temp_r_filename
+      << "' yourself to see which error it gives"
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
+
+  //Delete the temporary R file
+  ribi::fileio::FileIo().DeleteFile(temp_r_filename);
 }
 
-void PhylogenyR::NewickToPhylogenyImpl(
+void PhylogenyR::NewickToPhylogeny(
   const std::string& newick,
   const std::string& filename,
   const PhylogenyR::GraphicsFormat graphics_format
@@ -64,7 +127,8 @@ void PhylogenyR::NewickToPhylogenyImpl(
       << "dev.off()" << '\n';
     ;
   }
-  if (!PhylogenyR().IsRegularFileStl(temp_r_filename))
+
+  if (!ribi::fileio::FileIo().IsRegularFile(temp_r_filename))
   {
     std::stringstream s;
     s << "PhylogenyR::NewickToPhylogenySvg: "
@@ -80,7 +144,7 @@ void PhylogenyR::NewickToPhylogenyImpl(
     std::system(cmd.str().c_str());
   }
 
-  if (!PhylogenyR().IsRegularFileStl(filename))
+  if (!ribi::fileio::FileIo().IsRegularFile(filename))
   {
     std::stringstream s;
     s << "PhylogenyR::NewickToPhylogenySvg: "
@@ -103,7 +167,7 @@ void PhylogenyR::NewickToPhylogenyPng(
   const std::string& png_filename
 ) const
 {
-  NewickToPhylogenyImpl(newick,png_filename,GraphicsFormat::png);
+  NewickToPhylogeny(newick,png_filename,GraphicsFormat::png);
 }
 
 void PhylogenyR::NewickToPhylogenySvg(
@@ -111,6 +175,6 @@ void PhylogenyR::NewickToPhylogenySvg(
   const std::string& svg_filename
 ) const
 {
-  NewickToPhylogenyImpl(newick,svg_filename,GraphicsFormat::svg);
+  NewickToPhylogeny(newick,svg_filename,GraphicsFormat::svg);
 }
 
