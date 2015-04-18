@@ -106,22 +106,6 @@ void Simulation::Test() noexcept
     for (int i=0; i!=n_generations; ++i) { s.NextGeneration(); }
     assert(s.GetGenerations().back().GetIndividuals() == is);
   }
-  //Simulation should create equal FirstGeneration
-  {
-    const int dna_length{10};
-    const int n_generations{1};
-    const double mutation_rate{0.1};
-    const int pop_size{1};
-    const int seed{42};
-    const Parameters p(dna_length,mutation_rate,n_generations,pop_size,seed);
-    const Generation g1(Simulation::CreateFirstGeneration(p));
-    const Generation g2(Simulation::CreateFirstGeneration(p));
-    const auto kid1 = g1[0];
-    const auto kid2 = g2[0];
-    assert(kid1.GetDna() == kid2.GetDna());
-    assert(kid1 == kid2);
-    assert(g1 == g2);
-  }
   //Simulations should be equal at construction from same parameters
   {
     const int dna_length{10};

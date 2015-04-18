@@ -14,7 +14,7 @@
 
 Simulation::Simulation(
   const Parameters& parameters,
-  const Generation& generation
+  const Generation& first_generation
 )
   : m_generations{},
     m_parameters{parameters},
@@ -24,22 +24,26 @@ Simulation::Simulation(
   Test();
   #endif
 
-  m_generations.push_back(generation);
+  m_generations.push_back(first_generation);
 }
 
-Generation Simulation::CreateFirstGeneration(
+Simulation::Simulation(
   const Parameters& parameters
-) noexcept
+)
+  : m_generations{},
+    m_parameters{parameters},
+    m_rnd_engine{static_cast<unsigned int>(parameters.GetSeed())}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   //Create parameters.GetPopSize() individuals
   // with DNA length of parameters.GetDnaLength()
-  std::mt19937 rnd_engine{
-    static_cast<unsigned int>(parameters.GetSeed())
-  };
-
   std::vector<Individual> v;
   const int dna_length{parameters.GetDnaLength()};
   const double mutation_rate{parameters.GetMutationRate()};
+  std::mt19937& rnd_engine{m_rnd_engine};
   std::generate_n(
     std::back_inserter(v),
     parameters.GetPopSize(),
@@ -51,8 +55,9 @@ Generation Simulation::CreateFirstGeneration(
         );
     }
   );
-  Generation g(v);
-  return g;
+  const Generation first_generation(v);
+
+  m_generations.push_back(first_generation);
 }
 
 

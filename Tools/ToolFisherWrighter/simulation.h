@@ -14,7 +14,7 @@
 struct Simulation
 {
   ///Use randomly created individuals
-  Simulation(const Parameters& parameters) : Simulation(parameters,CreateFirstGeneration(parameters)) {}
+  Simulation(const Parameters& parameters);
 
   std::string GetPedigree() noexcept;
 
@@ -43,11 +43,6 @@ struct Simulation
     const Parameters& parameters,
     const Generation& generation
   );
-
-  ///Create initial population of individuals with random DNA sequences
-  static Generation CreateFirstGeneration(
-    const Parameters& parameters
-  ) noexcept;
 
   ///Create initial population of individuals with random DNA sequences
   ///Non-const, because random numbers are used
