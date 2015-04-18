@@ -20,8 +20,6 @@ struct NewickUtils
     const std::string& filename
   ) const noexcept;
 
-  bool IsRegularFileStl(const std::string& filename) const noexcept;
-
   static const std::string sm_newick_utils_path;
 
   #ifndef NDEBUG

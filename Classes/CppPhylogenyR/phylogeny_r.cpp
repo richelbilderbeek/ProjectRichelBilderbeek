@@ -95,7 +95,7 @@ void PhylogenyR::NewickToPhylogenyImpl(
   }
 
   //Delete the temporary R file
-  std::remove(temp_r_filename.c_str());
+  ribi::fileio::FileIo().DeleteFile(temp_r_filename);
 }
 
 void PhylogenyR::NewickToPhylogenyPng(

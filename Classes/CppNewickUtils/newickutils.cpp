@@ -15,7 +15,7 @@ NewickUtils::NewickUtils()
   Test();
   #endif
   const std::string executable{sm_newick_utils_path + "/nw_display"};
-  if (!IsRegularFileStl(executable))
+  if (!ribi::fileio::FileIo().IsRegularFile(executable))
   {
     std::stringstream s;
     s
@@ -30,7 +30,7 @@ NewickUtils::NewickUtils()
 void NewickUtils::Display(const std::string& newick)
 {
   const std::string executable{sm_newick_utils_path + "/nw_display"};
-  assert(IsRegularFileStl(executable) && "Checked in constructor");
+  assert(ribi::fileio::FileIo().IsRegularFile(executable) && "Checked in constructor");
   const std::string cmd{"echo \""+ newick + "\" | " + executable +" -"};
   std::system(cmd.c_str());
 }
@@ -41,7 +41,7 @@ std::vector<std::string> NewickUtils::FileToVector(
   const std::string& filename
 ) const noexcept
 {
-  assert(IsRegularFileStl(filename));
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
@@ -56,11 +56,11 @@ std::vector<std::string> NewickUtils::FileToVector(
 std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
 {
   const std::string executable{sm_newick_utils_path + "/nw_display"};
-  assert(IsRegularFileStl(executable) && "Checked in constructor");
+  assert(ribi::fileio::FileIo().IsRegularFile(executable) && "Checked in constructor");
   const std::string tmp_filename{
     ribi::fileio::FileIo().GetTempFileName(".txt")
   };
-  assert(!IsRegularFileStl(tmp_filename));
+  assert(!ribi::fileio::FileIo().IsRegularFile(tmp_filename));
   const std::string cmd{"echo \""+ newick + "\" | " + executable +" - > " + tmp_filename};
   std::system(cmd.c_str());
 
@@ -70,21 +70,9 @@ std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
   };
 
   //Clean up
-  std::remove(tmp_filename.c_str());
-  assert(!IsRegularFileStl(tmp_filename));
+  ribi::fileio::FileIo().DeleteFile(tmp_filename);
 
   return v;
-}
-
-///Determines if a filename is a regular file
-///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-bool NewickUtils::IsRegularFileStl(
-  const std::string& filename
-) const noexcept
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
 }
 
 #ifndef NDEBUG

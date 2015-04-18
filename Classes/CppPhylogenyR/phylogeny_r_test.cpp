@@ -21,9 +21,7 @@ void PhylogenyR::Test() noexcept
     PhylogenyR().NewickToPhylogenySvg(newick,temp_svg_filename);
     assert(PhylogenyR().IsRegularFileStl(temp_svg_filename));
     //Clean up
-    std::remove(temp_svg_filename.c_str());
-    assert(!PhylogenyR().IsRegularFileStl(temp_svg_filename)
-      && "Temporary file may not exist anymore");
+    ribi::fileio::FileIo().DeleteFile(temp_svg_filename);
   }
   //NewickToPhylogenyPng
   {
@@ -34,9 +32,7 @@ void PhylogenyR::Test() noexcept
     PhylogenyR().NewickToPhylogenyPng(newick,temp_png_filename);
     assert(PhylogenyR().IsRegularFileStl(temp_png_filename));
     //Clean up
-    std::remove(temp_png_filename.c_str());
-    assert(!PhylogenyR().IsRegularFileStl(temp_png_filename)
-      && "Temporary file may not exist anymore");
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
   }
   //NewickToPhylogenyPng on hard phylogeny
   {
