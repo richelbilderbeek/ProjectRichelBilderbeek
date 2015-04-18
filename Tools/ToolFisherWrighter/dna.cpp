@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <cassert>
 
+#include "trace.h"
+
 Dna::Dna(
   const double mutation_rate,
   std::mt19937& rnd_engine,
@@ -31,7 +33,8 @@ Dna Dna::CreateOffspring() noexcept
     {
       assert(i >= 0);
       assert(i < static_cast<int>(next_sequence.size()));
-      next_sequence[i] = CreateRandomBasePair();
+      const char c{CreateRandomBasePair()};
+      next_sequence[i] = c;
     }
   }
   const Dna offspring(
@@ -42,9 +45,12 @@ Dna Dna::CreateOffspring() noexcept
   return offspring;
 }
 
-char Dna::CreateRandomBasePair() noexcept
+
+char Dna::CreateRandomBasePair(std::mt19937& rnd_engine) noexcept
 {
-  switch (std::rand() % 4)
+  std::uniform_int_distribution<int> d(0,3);
+  const int i{d(rnd_engine)};
+  switch (i)
   {
     case 0: return 'A';
     case 1: return 'C';
@@ -54,18 +60,35 @@ char Dna::CreateRandomBasePair() noexcept
   assert(!"Should not get here");
 }
 
+char Dna::CreateRandomBasePair() noexcept
+{
+  return CreateRandomBasePair(m_rnd_engine);
+}
+
+
 std::string Dna::CreateRandomDna(
-  const int dna_length
+  const int dna_length,
+  std::mt19937& rnd_engine
 ) noexcept
 {
   assert(dna_length >= 0);
   std::string s(dna_length,0);
-  std::generate(std::begin(s),std::end(s),CreateRandomBasePair);
+  std::generate(std::begin(s),std::end(s),
+    [&rnd_engine]() { return Dna::CreateRandomBasePair(rnd_engine); }
+  );
   return s;
+}
+
+std::string Dna::CreateRandomDna(
+  const int dna_length
+) noexcept
+{
+  return CreateRandomDna(dna_length,m_rnd_engine);
 }
 
 double Dna::GetRandomFraction() noexcept
 {
+  //Can use static here? Added to Dna::Test
   static std::uniform_real_distribution<double> d(0.0,1.0);
   //The random value x gets drawn here
   const double f{d(m_rnd_engine)};
@@ -76,23 +99,6 @@ double Dna::GetRandomFraction() noexcept
 }
 
 
-#ifndef NDEBUG
-void Dna::Test() noexcept
-{
-  {
-    static bool is_tested = false;
-    if (is_tested) return;
-    is_tested = true;
-  }
-  //Create random DNA
-  std::mt19937 rnd_engine;
-  {
-    const int dna_length{3};
-    const std::string dna{Dna::CreateRandomDna(dna_length)};
-    assert(dna_length == static_cast<int>(dna.size()));
-  }
-}
-#endif
 
 bool operator==(const Dna& lhs, const Dna& rhs) noexcept
 {
@@ -100,4 +106,9 @@ bool operator==(const Dna& lhs, const Dna& rhs) noexcept
        lhs.GetSequence() == rhs.GetSequence() //Sequence first, because that is expected to vary more
     && lhs.GetMutationRate() == rhs.GetMutationRate()
   ;
+}
+
+bool operator!=(const Dna& lhs, const Dna& rhs) noexcept
+{
+  return !(lhs == rhs);
 }

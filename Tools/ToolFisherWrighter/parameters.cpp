@@ -5,9 +5,6 @@
 #include <stdexcept>
 #include <sstream>
 
-
-
-
 Parameters::Parameters(
   const int dna_length,
   const double mutation_rate,
@@ -96,60 +93,6 @@ Parameters Parameters::CreateParameters(const std::string& filename)
 }
 
 
-
-#ifndef NDEBUG
-void Parameters::Test() noexcept
-{
-  {
-    static bool is_tested {false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  //Test recovery of parameters
-  {
-    const int dna_length{3495};
-    const double mutation_rate{0.34758};
-    const int n_generations{63223};
-    const int pop_size{2376};
-    const int seed{234};
-    Parameters p(
-      dna_length,
-      mutation_rate,
-      n_generations,
-      pop_size,
-      seed
-    );
-    assert(p.GetDnaLength() == dna_length);
-    assert(p.GetMutationRate() == mutation_rate);
-    assert(p.GetNumberOfGenerations() == n_generations);
-    assert(p.GetPopSize() == pop_size);
-    assert(p.GetSeed() == seed);
-  }
-  {
-    const int dna_length{345};
-    const double mutation_rate{0.34758};
-    const int n_generations{63223};
-    const int pop_size{2376};
-    const int seed{43};
-    Parameters original(
-      dna_length,
-      mutation_rate,
-      n_generations,
-      pop_size,
-      seed
-    );
-    const std::string filename{"tmp.txt"};
-    { std::ofstream f(filename.c_str()); f << original; }
-    const Parameters p(Parameters::CreateParameters(filename));
-    assert(p.GetDnaLength() == dna_length);
-    assert(p.GetMutationRate() == mutation_rate);
-    assert(p.GetNumberOfGenerations() == n_generations);
-    assert(p.GetPopSize() == pop_size);
-    assert(p.GetSeed() == seed);
-  }
-}
-#endif
-
 std::ostream& operator<<(std::ostream& os, const Parameters& parameters)
 {
   os
@@ -160,4 +103,20 @@ std::ostream& operator<<(std::ostream& os, const Parameters& parameters)
     << "seed " << parameters.GetSeed() << '\n'
   ;
   return os;
+}
+
+bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept
+{
+  return
+       lhs.GetDnaLength() == rhs.GetDnaLength()
+    && lhs.GetMutationRate() == rhs.GetMutationRate()
+    && lhs.GetNumberOfGenerations() == rhs.GetNumberOfGenerations()
+    && lhs.GetPopSize() == rhs.GetPopSize()
+    && lhs.GetSeed() == rhs.GetSeed()
+  ;
+}
+
+bool operator!=(const Parameters& lhs, const Parameters& rhs) noexcept
+{
+  return !(lhs == rhs);
 }

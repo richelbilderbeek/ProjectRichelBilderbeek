@@ -99,3 +99,9 @@ int QtFisherWrighterMainDialog::ReadNumberOfGenerations() const noexcept
   const int n_generations{ui->box_n_generation->value()};
   return n_generations;
 }
+
+void QtFisherWrighterMainDialog::on_button_run_next_clicked()
+{
+  ui->box_seed->setValue(ui->box_seed->value() + 1);
+  ui->button_run->click();
+}

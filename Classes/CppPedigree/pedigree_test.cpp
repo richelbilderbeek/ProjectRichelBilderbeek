@@ -13,6 +13,19 @@ void Pedigree::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  //operator==
+  {
+    const std::string name = "Eve";
+    const auto pedigree1 = Pedigree::Create(name);
+    const auto pedigree2 = Pedigree::Create(name);
+    assert(*pedigree1 == *pedigree2);
+  }
+  //operator!=
+  {
+    const auto pedigree1 = Pedigree::Create("Adam");
+    const auto pedigree2 = Pedigree::Create("Eve");
+    assert(*pedigree1 != *pedigree2);
+  }
   //Single parent construction
   {
     const std::string name = "Eve";

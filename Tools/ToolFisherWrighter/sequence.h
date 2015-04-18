@@ -20,5 +20,6 @@ struct Sequence
 };
 
 bool operator==(const Sequence& lhs, const Sequence& rhs) noexcept;
+bool operator!=(const Sequence& lhs, const Sequence& rhs) noexcept;
 
 #endif // SEQUENCE_H

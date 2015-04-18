@@ -19,6 +19,8 @@ public:
 private slots:
   void on_button_run_clicked();
 
+  void on_button_run_next_clicked();
+
 private:
   Ui::QtFisherWrighterMainDialog *ui;
   int ReadNumberOfGenerations() const noexcept;

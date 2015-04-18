@@ -3,6 +3,8 @@
 #include <cassert>
 #include <iostream>
 
+#include "dna.h"
+#include "sequence.h"
 #include "parameters.h"
 
 #ifndef NDEBUG
@@ -12,6 +14,28 @@ void Individual::Test() noexcept
     static bool is_tested {false};
     if (is_tested) return;
     is_tested = true;
+  }
+  //operator==
+  {
+    const double mutation_rate1{0.123};
+    const double mutation_rate2{0.123};
+    std::mt19937 rnd_engine1;
+    std::mt19937 rnd_engine2;
+    const Sequence sequence1("description","ACGTACGTACGT");
+    const Sequence sequence2("description","ACGTACGTACGT");
+    assert(mutation_rate1 == mutation_rate2);
+    assert(rnd_engine1 == rnd_engine2);
+    assert(sequence1 == sequence2);
+    const Dna dna1(mutation_rate1,rnd_engine1,sequence1.GetSequence());
+    const Dna dna2(mutation_rate2,rnd_engine2,sequence2.GetSequence());
+    const auto pedigree1 = Pedigree::Create("X");
+    const auto pedigree2 = Pedigree::Create("X");
+    assert(dna1 == dna2);
+    assert(*pedigree1 == *pedigree2);
+    assert(sequence1 == sequence2);
+    const Individual a(dna1,pedigree1);
+    const Individual b(dna2,pedigree2);
+    assert(a == b);
   }
   std::mt19937 rnd_engine;
   const int dna_length{10000};
@@ -77,6 +101,59 @@ void Individual::Test() noexcept
     const std::string found{root.GetPedigree()->ToNewick()};
     if (found != expected) { std::cerr << found << '\n'; }
     assert(found == expected);
+  }
+  //CreateOffspring with same RNGs
+  {
+    const double mutation_rate1{0.123};
+    const double mutation_rate2{0.123};
+    std::mt19937 rnd_engine1{42};
+    std::mt19937 rnd_engine2{42};
+    const Sequence sequence1("description","ACGTACGTACGT");
+    const Sequence sequence2("description","ACGTACGTACGT");
+    assert(mutation_rate1 == mutation_rate2);
+    assert(rnd_engine1 == rnd_engine2);
+    assert(sequence1 == sequence2);
+    const Dna dna1(mutation_rate1,rnd_engine1,sequence1.GetSequence());
+    const Dna dna2(mutation_rate2,rnd_engine2,sequence2.GetSequence());
+    const auto pedigree1 = Pedigree::Create("X");
+    const auto pedigree2 = Pedigree::Create("X");
+    assert(dna1 == dna2);
+    assert(*pedigree1 == *pedigree2);
+    assert(sequence1 == sequence2);
+    Individual parent1(dna1,pedigree1);
+    Individual parent2(dna2,pedigree2);
+    assert(parent1 == parent2);
+    Individual kid1{parent1.CreateOffspring()};
+    Individual kid2{parent2.CreateOffspring()};
+    assert(kid1 == kid2);
+    const Individual kid3{kid1.CreateOffspring()};
+    const Individual kid4{kid2.CreateOffspring()};
+    assert(kid3 == kid4);
+  }
+  //CreateOffspring with different RNGs
+  {
+    const double mutation_rate1{0.123};
+    const double mutation_rate2{0.123};
+    std::mt19937 rnd_engine1{42};
+    std::mt19937 rnd_engine2{69};
+    const Sequence sequence1("description","ACGTACGTACGT");
+    const Sequence sequence2("description","ACGTACGTACGT");
+    assert(mutation_rate1 == mutation_rate2);
+    assert(rnd_engine1 != rnd_engine2);
+    assert(sequence1 == sequence2);
+    const Dna dna1(mutation_rate1,rnd_engine1,sequence1.GetSequence());
+    const Dna dna2(mutation_rate2,rnd_engine2,sequence2.GetSequence());
+    const auto pedigree1 = Pedigree::Create("X");
+    const auto pedigree2 = Pedigree::Create("X");
+    assert(dna1 == dna2);
+    assert(*pedigree1 == *pedigree2);
+    assert(sequence1 == sequence2);
+    Individual parent1(dna1,pedigree1);
+    Individual parent2(dna2,pedigree2);
+    assert(parent1 == parent2);
+    const Individual kid1{parent1.CreateOffspring()};
+    const Individual kid2{parent2.CreateOffspring()};
+    assert(kid1 != kid2);
   }
 }
 #endif

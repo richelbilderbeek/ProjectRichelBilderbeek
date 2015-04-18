@@ -37,5 +37,8 @@ struct Parameters
 
 std::ostream& operator<<(std::ostream& os, const Parameters& parameters);
 
+bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept;
+bool operator!=(const Parameters& lhs, const Parameters& rhs) noexcept;
+
 
 #endif // PARAMETERS_H

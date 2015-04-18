@@ -3,6 +3,14 @@
 #include <algorithm>
 #include <cassert>
 
+Generation::Generation(const std::vector<Individual>& individuals)
+  : m_individuals{individuals}
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 
 std::vector<Sequence> Generation::GetSequences() const noexcept
 {
@@ -34,4 +42,11 @@ Individual& Generation::operator[](const int index) noexcept
   assert(index >= 0);
   assert(index < static_cast<int>(m_individuals.size()));
   return m_individuals[index];
+}
+
+bool operator==(const Generation& lhs, const Generation& rhs) noexcept
+{
+  return
+    lhs.GetIndividuals() == rhs.GetIndividuals()
+  ;
 }

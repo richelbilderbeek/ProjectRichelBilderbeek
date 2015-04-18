@@ -6,18 +6,19 @@
 
 struct Dna
 {
+  ///Put in your own sequence
   explicit Dna(
     const double mutation_rate,
     std::mt19937& rnd_engine,
     const std::string& sequence
   );
 
-  //Creates random DNA
+  ///Creates random DNA sequence
   explicit Dna(
     const double mutation_rate,
     std::mt19937& rnd_engine,
     const int dna_length
-  ) : Dna(mutation_rate,rnd_engine,CreateRandomDna(dna_length)) {}
+  ) : Dna(mutation_rate,rnd_engine,CreateRandomDna(dna_length,rnd_engine)) {}
 
   Dna CreateOffspring() noexcept;
 
@@ -33,8 +34,15 @@ struct Dna
   std::mt19937& m_rnd_engine;
   const std::string m_sequence;
 
-  static char CreateRandomBasePair() noexcept;
-  static std::string CreateRandomDna(const int dna_length) noexcept;
+  ///Must be static, because this is used in the constructor
+  static char CreateRandomBasePair(std::mt19937& rnd_engine) noexcept;
+
+  char CreateRandomBasePair() noexcept;
+  std::string CreateRandomDna(const int dna_length) noexcept;
+
+  ///Must be static, because this is used in the constructor
+  static std::string CreateRandomDna(const int dna_length,std::mt19937& rnd_engine) noexcept;
+
   double GetRandomFraction() noexcept;
 
   #ifndef NDEBUG
@@ -45,5 +53,6 @@ struct Dna
 ///Checks if different DNA have the same attributes (DNA and mutation rate)
 ///This does not take the random number generator into accoun
 bool operator==(const Dna& lhs, const Dna& rhs) noexcept;
+bool operator!=(const Dna& lhs, const Dna& rhs) noexcept;
 
 #endif // DNA_H

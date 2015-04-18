@@ -18,11 +18,14 @@ struct Simulation
 
   std::string GetPedigree() noexcept;
 
-  const std::vector<Generation>& GetGenerations() const noexcept { return m_generations; }
 
   ///Obtain the sequences of the current (most recent) simulation
   ///Equivalent to simulation.GetGenerations().back().GetSequences()
   std::vector<Sequence> GetCurrentSequences() const noexcept;
+
+  const std::vector<Generation>& GetGenerations() const noexcept { return m_generations; }
+
+  const Parameters& GetParameters() const noexcept { return m_parameters; }
 
   //Go to the next generation
   void NextGeneration() noexcept;
@@ -42,7 +45,7 @@ struct Simulation
   );
 
   ///Create initial population of individuals with random DNA sequences
-  Generation CreateFirstGeneration(
+  static Generation CreateFirstGeneration(
     const Parameters& parameters
   ) noexcept;
 
@@ -58,5 +61,8 @@ struct Simulation
   static void Test() noexcept;
   #endif
 };
+
+bool operator==(const Simulation& lhs, const Simulation& rhs) noexcept;
+bool operator!=(const Simulation& lhs, const Simulation& rhs) noexcept;
 
 #endif // SIMULATION_H

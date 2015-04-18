@@ -119,8 +119,21 @@
       </item>
       <item row="5" column="0" colspan="2">
        <widget class="QPushButton" name="button_run">
+        <property name="toolTip">
+         <string>Run simulation with these settings</string>
+        </property>
         <property name="text">
          <string>&amp;Run</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="2">
+       <widget class="QPushButton" name="button_run_next">
+        <property name="toolTip">
+         <string>Add one to the seed, then run</string>
+        </property>
+        <property name="text">
+         <string>Run &amp;next</string>
         </property>
        </widget>
       </item>
@@ -157,7 +170,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="label_full_pedigree_as_png">
          <property name="text">
           <string>Full pedigree</string>
          </property>
@@ -174,7 +187,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="label_full_pedigree_as_txt">
          <property name="text">
           <string>Full pedigree as text phylogeny</string>
          </property>
@@ -193,13 +206,6 @@
         </widget>
        </item>
       </layout>
-      <zorder>tabWidget</zorder>
-      <zorder>label_newick</zorder>
-      <zorder>line_newick</zorder>
-      <zorder>label</zorder>
-      <zorder>png_pedigree</zorder>
-      <zorder>label_2</zorder>
-      <zorder>text_newick</zorder>
      </widget>
     </widget>
    </item>

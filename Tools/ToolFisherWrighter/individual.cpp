@@ -51,3 +51,8 @@ bool operator==(const Individual& lhs, const Individual& rhs) noexcept
 {
   return lhs.GetDna() == rhs.GetDna();
 }
+
+bool operator!=(const Individual& lhs, const Individual& rhs) noexcept
+{
+  return !(lhs == rhs);
+}

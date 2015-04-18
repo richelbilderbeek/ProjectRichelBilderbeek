@@ -57,6 +57,9 @@ struct Pedigree : public std::enable_shared_from_this<Pedigree>
   #endif
 };
 
+bool operator==(const Pedigree& lhs, const Pedigree& rhs) noexcept;
+bool operator!=(const Pedigree& lhs, const Pedigree& rhs) noexcept;
+
 /*
 newick <- "(A):0;" # OK, but not plottable
 newick <- "(A:0);" # OK, but not plottable

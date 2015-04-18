@@ -9,7 +9,12 @@ SOURCES += \
     ../../Tools/ToolFisherWrighter/sequence.cpp \
     ../../Tools/ToolFisherWrighter/dna.cpp \
     ../../Tools/ToolFisherWrighter/individual_test.cpp \
-    ../../Tools/ToolFisherWrighter/generation.cpp
+    ../../Tools/ToolFisherWrighter/generation.cpp \
+    simulation_test.cpp \
+    parameters_test.cpp \
+    generation_test.cpp \
+    sequence_test.cpp \
+    dna_test.cpp
 
 
 HEADERS += \

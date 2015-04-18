@@ -25,34 +25,6 @@ Sequence::Sequence(const std::string& description, const std::string& sequence)
   }
 }
 
-#ifndef NDEBUG
-void Sequence::Test() noexcept
-{
-  {
-    static bool is_tested {false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  {
-    const std::string description{"description"};
-    const std::string sequence{"ACGT"};
-    const Sequence s(description,sequence);
-    assert(s.GetDescription() == description);
-    assert(s.GetSequence() == sequence);
-  }
-  {
-    try
-    {
-      Sequence s("description","incorrect_sequence");
-      assert(!"Should not get here");
-    }
-    catch (std::logic_error&)
-    {
-      //Well detected!
-    }
-  }
-}
-#endif
 
 bool operator==(const Sequence& lhs, const Sequence& rhs) noexcept
 {
@@ -60,4 +32,9 @@ bool operator==(const Sequence& lhs, const Sequence& rhs) noexcept
     lhs.GetDescription() == rhs.GetDescription()
     && lhs.GetSequence() == rhs.GetSequence()
   ;
+}
+
+bool operator!=(const Sequence& lhs, const Sequence& rhs) noexcept
+{
+  return !(lhs == rhs);
 }

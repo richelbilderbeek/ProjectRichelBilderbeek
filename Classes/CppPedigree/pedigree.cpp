@@ -126,3 +126,13 @@ std::pair<std::string,int> Pedigree::CollectNameDepthPair() const noexcept
   }
   return std::make_pair("",0);
 }
+
+bool operator==(const Pedigree& lhs, const Pedigree& rhs) noexcept
+{
+  return lhs.ToNewick() == rhs.ToNewick();
+}
+
+bool operator!=(const Pedigree& lhs, const Pedigree& rhs) noexcept
+{
+  return !(lhs == rhs);
+}

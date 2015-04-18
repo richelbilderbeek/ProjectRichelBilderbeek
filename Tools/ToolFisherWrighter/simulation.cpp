@@ -10,6 +10,7 @@
 
 #include "dna.h"
 #include "individual.h"
+#include "trace.h"
 
 Simulation::Simulation(
   const Parameters& parameters,
@@ -32,16 +33,20 @@ Generation Simulation::CreateFirstGeneration(
 {
   //Create parameters.GetPopSize() individuals
   // with DNA length of parameters.GetDnaLength()
+  std::mt19937 rnd_engine{
+    static_cast<unsigned int>(parameters.GetSeed())
+  };
+
   std::vector<Individual> v;
   const int dna_length{parameters.GetDnaLength()};
   const double mutation_rate{parameters.GetMutationRate()};
   std::generate_n(
     std::back_inserter(v),
     parameters.GetPopSize(),
-    [dna_length,mutation_rate,this]()
+    [dna_length,mutation_rate,&rnd_engine]()
     {
       return Individual(
-        Dna(mutation_rate,m_rnd_engine,dna_length),
+        Dna(mutation_rate,rnd_engine,dna_length),
           Pedigree::Create()
         );
     }
@@ -58,9 +63,11 @@ Generation Simulation::CreateNextGeneration(
   std::vector<Individual> individuals;
 
   const int n{m_parameters.GetPopSize()};
+
+  std::uniform_int_distribution<int> d(0,n-1); //-1 because uniform_int_distribution uses symmetric range
   for (int i=0; i!=n; ++i)
-  {
-    const int index = std::rand() % n;
+  {  
+    const int index{d(m_rnd_engine)};
     assert(index >= 0);
     assert(index < static_cast<int>(current_generation.size()));
     Individual& parent{current_generation[index]};
@@ -124,49 +131,22 @@ std::string Simulation::GetPedigree() noexcept
 
 void Simulation::NextGeneration() noexcept
 {
+  assert(!m_generations.empty());
   m_generations.push_back(
     CreateNextGeneration(m_generations.back())
   );
 }
 
-#ifndef NDEBUG
-void Simulation::Test() noexcept
+bool operator==(const Simulation& lhs, const Simulation& rhs) noexcept
 {
-  {
-    static bool is_tested = false;
-    if (is_tested) return;
-    is_tested = true;
-  }
-  std::mt19937 rnd_engine;
-  for (const auto parameters: CreateTestParameters())
-  {
-    //Run simulation
-    Simulation simulation(parameters);
-    const int n_generations{parameters.GetNumberOfGenerations()};
-    for (int i=0; i!=n_generations; ++i)
-    {
-      simulation.NextGeneration();
-    }
-
-    //Sample the alignments
-    const std::vector<Sequence> alignments{
-      simulation.GetCurrentSequences()
-    };
-    assert(parameters.GetPopSize() == static_cast<int>(alignments.size()));
-  }
-  //If mutation rate is zero, a population of one individuals remains the same
-  {
-    const int dna_length{10000};
-    const int n_generations{100};
-    const double mutation_rate{0.0};
-    const Parameters p(dna_length,mutation_rate,n_generations,1,42);
-    const Individual i(
-      Dna(mutation_rate,rnd_engine,dna_length),Pedigree::Create());
-    std::vector<Individual> is;
-    is.push_back(i);
-    Simulation s(p,is);
-    for (int i=0; i!=n_generations; ++i) { s.NextGeneration(); }
-    assert(s.GetGenerations().back().m_individuals == is);
-  }
+  return
+       lhs.GetParameters() == rhs.GetParameters()
+    && lhs.GetGenerations() == rhs.GetGenerations()
+  ;
 }
-#endif
+
+bool operator!=(const Simulation& lhs, const Simulation& rhs) noexcept
+{
+  return !(lhs == rhs);
+}
+

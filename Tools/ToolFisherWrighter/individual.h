@@ -46,5 +46,6 @@ struct Individual
 ///This does not take the index of the Individuals into account, as
 ///these are all (semi)unique
 bool operator==(const Individual& lhs, const Individual& rhs) noexcept;
+bool operator!=(const Individual& lhs, const Individual& rhs) noexcept;
 
 #endif // INDIVIDUAL_H
