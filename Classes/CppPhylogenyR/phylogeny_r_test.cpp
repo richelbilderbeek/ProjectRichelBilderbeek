@@ -18,7 +18,11 @@ void PhylogenyR::Test() noexcept
       ribi::fileio::FileIo().GetTempFileName(".svg")
     };
     const std::string newick{"((F:2,G:2):1,H:3);"};
-    PhylogenyR().NewickToPhylogenySvg(newick,temp_svg_filename);
+    PhylogenyR().NewickToPhylogeny(
+      newick,
+      temp_svg_filename,
+      PhylogenyR::GraphicsFormat::svg
+    );
     assert(ribi::fileio::FileIo().IsRegularFile(temp_svg_filename));
     //Clean up
     ribi::fileio::FileIo().DeleteFile(temp_svg_filename);
@@ -29,7 +33,11 @@ void PhylogenyR::Test() noexcept
       ribi::fileio::FileIo().GetTempFileName(".png")
     };
     const std::string newick{"((F:2,G:2):1,H:3);"};
-    PhylogenyR().NewickToPhylogenyPng(newick,temp_png_filename);
+    PhylogenyR().NewickToPhylogeny(
+      newick,
+      temp_png_filename,
+      PhylogenyR::GraphicsFormat::png
+    );
     assert(ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
     //Clean up
     ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());

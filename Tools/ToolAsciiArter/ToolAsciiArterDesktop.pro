@@ -7,7 +7,7 @@ include(../../Libraries/GeneralDesktop.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
-#
+
 include(ToolAsciiArterDesktop.pri)
 
 SOURCES += qtmain.cpp

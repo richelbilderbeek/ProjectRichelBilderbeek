@@ -13,8 +13,17 @@
   <property name="windowTitle">
    <string>FisherWrighter</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_6">
-   <item>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #ffff00, stop: 1 #00ff00);
+}
+
+QWidget#results { 
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #ffff00, stop: 1 #00ff00);
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <widget class="QGroupBox" name="box_parameters">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -113,7 +122,7 @@
          <number>999999999</number>
         </property>
         <property name="value">
-         <number>42</number>
+         <number>43</number>
         </property>
        </widget>
       </item>
@@ -140,44 +149,23 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="0" column="1">
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
+     <widget class="QWidget" name="results">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>666</width>
+        <width>670</width>
         <height>412</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label_newick">
-         <property name="text">
-          <string>Full predigree as Newick</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="line_newick">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_full_pedigree_as_png">
-         <property name="text">
-          <string>Full pedigree</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="png_pedigree">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="3" column="0">
+        <widget class="QLabel" name="image_phylogeny">
          <property name="text">
           <string>[PNG]</string>
          </property>
@@ -186,14 +174,37 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QLabel" name="label_full_pedigree_as_txt">
+       <item row="3" column="1">
+        <widget class="QLabel" name="image_phylogeny_extant">
          <property name="text">
-          <string>Full pedigree as text phylogeny</string>
+          <string>[PNG]</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="image_lttPlot">
+         <property name="text">
+          <string>[PNG]</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLabel" name="image_lttPlot_extant">
+         <property name="text">
+          <string>[PNG]</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
         <widget class="QPlainTextEdit" name="text_newick">
          <property name="font">
           <font>
@@ -202,6 +213,53 @@
          </property>
          <property name="readOnly">
           <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QPlainTextEdit" name="text_newick_extant"/>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLineEdit" name="line_newick">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_newick">
+         <property name="text">
+          <string>Full predigree as Newick</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QLabel" name="label_full_pedigree_as_png">
+         <property name="text">
+          <string>Pedigree</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QLabel" name="label_lttPlot">
+         <property name="text">
+          <string>LTT Plot</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="2">
+        <widget class="QLabel" name="label_full_pedigree_as_txt">
+         <property name="text">
+          <string>Phylogeny in text</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>

@@ -66,14 +66,7 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
   {
     ui->line_newick->setText(newick_pedigree.c_str());
   }
-  //Display newick pedigree as text phylogeny
-  {
-    std::stringstream s;
-    const auto v = NewickUtils().GetPhylogeny(newick_pedigree);
-    std::copy(std::begin(v),std::end(v),std::ostream_iterator<std::string>(s,"\n"));
-    ui->text_newick->setPlainText(s.str().c_str());
-  }
-  //Display newick pedigree as .SVG
+  //Display newick phylogeny
   try
   {
 
@@ -81,17 +74,85 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
       ribi::fileio::FileIo().GetTempFileName(".png")
     };
     assert(!ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
-    PhylogenyR().NewickToPhylogenyPng(newick_pedigree,temp_png_filename);
-    ui->png_pedigree->setPixmap(QPixmap(temp_png_filename.c_str()));
+    PhylogenyR().NewickToPhylogeny(
+      newick_pedigree,
+      temp_png_filename,
+      PhylogenyR::GraphicsFormat::png
+    );
+    ui->image_phylogeny->setPixmap(QPixmap(temp_png_filename.c_str()));
     //Delete the temporary file
     ribi::fileio::FileIo().DeleteFile(temp_png_filename);
   }
   catch (std::runtime_error& e)
   {
     std::clog << e.what() << '\n';
-    ui->png_pedigree->setText("No pedigree");
+    ui->image_phylogeny->setText("No phylogeny");
   }
+  //Display newick phylogeny of extant species
+  try
+  {
 
+    const std::string temp_png_filename{
+      ribi::fileio::FileIo().GetTempFileName(".png")
+    };
+    PhylogenyR().NewickToPhylogeny(
+      newick_pedigree,
+      temp_png_filename,
+      PhylogenyR::GraphicsFormat::png,
+      false //plot_fossils
+    );
+    ui->image_phylogeny_extant->setPixmap(QPixmap(temp_png_filename.c_str()));
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    std::clog << e.what() << '\n';
+    ui->image_phylogeny_extant->setText("No phylogeny");
+  }
+  //NewickToLttPlot
+  {
+    const std::string temp_png_filename{
+      ribi::fileio::FileIo().GetTempFileName(".png")
+    };
+    try
+    {
+      PhylogenyR().NewickToLttPlot(newick_pedigree,temp_png_filename,PhylogenyR::GraphicsFormat::png);
+      ui->image_lttPlot->setPixmap(QPixmap(temp_png_filename.c_str()));
+      ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+    }
+    catch (std::runtime_error& e)
+    {
+      ui->image_lttPlot->setText(e.what());
+    }
+  }
+  //NewickToLttPlot for extant species
+  {
+    const std::string temp_png_filename{
+      ribi::fileio::FileIo().GetTempFileName(".png")
+    };
+    try
+    {
+      PhylogenyR().NewickToLttPlot(
+        newick_pedigree,
+        temp_png_filename,
+        PhylogenyR::GraphicsFormat::png,
+        false //show_fossils
+      );
+      ui->image_lttPlot_extant->setPixmap(QPixmap(temp_png_filename.c_str()));
+      ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+    }
+    catch (std::runtime_error& e)
+    {
+      ui->image_lttPlot_extant->setText(e.what());
+    }
+  }
+  //Display newick pedigree as text phylogeny
+  {
+    std::stringstream s;
+    const auto v = NewickUtils().GetPhylogeny(newick_pedigree);
+    std::copy(std::begin(v),std::end(v),std::ostream_iterator<std::string>(s,"\n"));
+    ui->text_newick->setPlainText(s.str().c_str());
+  }
 }
 
 int QtFisherWrighterMainDialog::ReadNumberOfGenerations() const noexcept

@@ -14,26 +14,16 @@ struct PhylogenyR
   void NewickToLttPlot(
     const std::string& newick,
     const std::string& filename,
-    const GraphicsFormat graphics_format
+    const GraphicsFormat graphics_format,
+    const bool plot_fossils = true
   ) const;
 
   ///Plot Newick as a phylogeny in a graphics format
   void NewickToPhylogeny(
     const std::string& newick,
     const std::string& filename,
-    const GraphicsFormat graphics_format
-  ) const;
-
-  ///Plot Newick as a phylogeny in PNG format
-  void NewickToPhylogenyPng(
-    const std::string& newick,
-    const std::string& png_filename
-  ) const;
-
-  ///Plot Newick as a phylogeny in SVG format
-  void NewickToPhylogenySvg(
-    const std::string& newick,
-    const std::string& svg_filename
+    const GraphicsFormat graphics_format,
+    const bool plot_fossils = true
   ) const;
 
   private:

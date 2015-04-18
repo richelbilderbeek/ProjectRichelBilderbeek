@@ -17,7 +17,8 @@ PhylogenyR::PhylogenyR()
 void PhylogenyR::NewickToLttPlot(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const PhylogenyR::GraphicsFormat graphics_format,
+  const bool plot_fossils
 ) const
 {
   assert(!newick.empty());
@@ -49,6 +50,12 @@ void PhylogenyR::NewickToLttPlot(
     f
       << "newick <- \"" << newick << "\"" << '\n'
       << "phylogeny <- read.tree(text = newick)" << '\n'
+    ;
+    if (!plot_fossils)
+    {
+      f << "phylogeny <- drop.extinct(phylogeny)" << '\n';
+    }
+    f
       << "ltt.plot(phylogeny)" << '\n'
       << "dev.off()" << '\n';
     ;
@@ -91,7 +98,8 @@ void PhylogenyR::NewickToLttPlot(
 void PhylogenyR::NewickToPhylogeny(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const PhylogenyR::GraphicsFormat graphics_format,
+  const bool plot_fossils
 ) const
 {
   assert(!newick.empty());
@@ -123,6 +131,12 @@ void PhylogenyR::NewickToPhylogeny(
     f
       << "newick <- \"" << newick << "\"" << '\n'
       << "phylogeny <- read.tree(text = newick)" << '\n'
+    ;
+    if (!plot_fossils)
+    {
+      f << "phylogeny <- drop.extinct(phylogeny)" << '\n';
+    }
+    f
       << "plot(phylogeny)" << '\n'
       << "dev.off()" << '\n';
     ;
@@ -161,20 +175,3 @@ void PhylogenyR::NewickToPhylogeny(
   //Delete the temporary R file
   ribi::fileio::FileIo().DeleteFile(temp_r_filename);
 }
-
-void PhylogenyR::NewickToPhylogenyPng(
-  const std::string& newick,
-  const std::string& png_filename
-) const
-{
-  NewickToPhylogeny(newick,png_filename,GraphicsFormat::png);
-}
-
-void PhylogenyR::NewickToPhylogenySvg(
-  const std::string& newick,
-  const std::string& svg_filename
-) const
-{
-  NewickToPhylogeny(newick,svg_filename,GraphicsFormat::svg);
-}
-

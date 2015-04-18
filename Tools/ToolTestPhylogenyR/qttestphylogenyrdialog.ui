@@ -28,46 +28,63 @@
         <height>398</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
+      <layout class="QFormLayout" name="formLayout">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+       </property>
+       <item row="0" column="0" colspan="2">
         <widget class="QLabel" name="label_NewickToPhylogenyPng">
          <property name="text">
-          <string>NewickToPhylogenyPng</string>
+          <string>NewickToPhylogeny</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Full tree</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Extant species only</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
         <widget class="QLabel" name="image_NewickToPhylogenyPng">
          <property name="text">
-          <string>image_NewickToPhylogenyPng</string>
+          <string>[PNG]</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QLabel" name="label_NewickToPhylogenySvg">
+       <item row="2" column="1">
+        <widget class="QLabel" name="image_NewickToPhylogenyExtant">
          <property name="text">
-          <string>NewickToPhylogenySvg</string>
+          <string>[PNG]</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QLabel" name="image_NewickToPhylogenySvg">
-         <property name="text">
-          <string>image_NewickToPhylogenySvg</string>
-         </property>
-        </widget>
-       </item>
-       <item>
+       <item row="5" column="0" colspan="2">
         <widget class="QLabel" name="label_NewickToLttPlot">
          <property name="text">
           <string>NewickToLttPlot</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="6" column="0">
         <widget class="QLabel" name="image_NewickToLttPlot">
          <property name="text">
-          <string>image_NewickToLttPlot</string>
+          <string>[PNG]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLabel" name="image_NewickToLttPlotExtant">
+         <property name="text">
+          <string>[PNG]</string>
          </property>
         </widget>
        </item>
