@@ -37,6 +37,18 @@ void Individual::Test() noexcept
     const Individual b(dna2,pedigree2);
     assert(a == b);
   }
+  //GetIndex
+  {
+    const double mutation_rate{0.123};
+    std::mt19937 rnd_engine;
+    const Dna dna(mutation_rate,rnd_engine,"ACGTACGTACGT");
+    const auto pedigree = Pedigree::Create("X");
+    const Individual a(dna,pedigree);
+    const Individual b(dna,pedigree);
+    assert(a.GetIndex() == a.GetIndex());
+    assert(b.GetIndex() == b.GetIndex());
+    assert(a.GetIndex() != b.GetIndex());
+  }
   std::mt19937 rnd_engine;
   const int dna_length{10000};
   const int n_generations{100};
