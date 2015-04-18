@@ -25,6 +25,9 @@ struct Individual
   std::shared_ptr<Pedigree> GetPedigree() noexcept { return m_pedigree; }
   void SetName(const std::string& name) noexcept;
 
+  ///Sets the index counter (incremented at each constructor)
+  //static void ResetIndex() { sm_index = 0; }
+
   private:
   Dna m_dna; //Non-const, because RNG is passed on
 

@@ -36,6 +36,13 @@ struct Counter
   ///Increments count
   void Inc() noexcept { ++m_count; }
 
+  //Prefix
+  Counter& operator++()
+  {
+    Inc();
+    return *this;
+  }
+
   ///Get the count
   int Get() const noexcept { return m_count; }
 

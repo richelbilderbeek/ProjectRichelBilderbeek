@@ -35,14 +35,15 @@ ribi::Counter::Counter(const int initial_count) noexcept
 
 std::string ribi::Counter::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::Counter::GetVersionHistory() noexcept
 {
   return {
     "2011-08-20: Version 1.0: initial version",
-    "2014-08-01: Version 1.1: added tests"
+    "2014-08-01: Version 1.1: added tests",
+    "2014-04-18: Version 1.2: added prefix increment operator"
   };
 }
 
@@ -73,6 +74,12 @@ void ribi::Counter::Test() noexcept
     c.Inc();
     assert(c.Get() == old_value + 1);
   }
-
+  if (verbose) { TRACE("operator++ must increment"); }
+  {
+    Counter c;
+    const int old_value = c.Get();
+    ++c;
+    assert(c.Get() == old_value + 1);
+  }
 }
 #endif
