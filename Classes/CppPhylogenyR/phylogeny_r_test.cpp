@@ -47,6 +47,17 @@ void PhylogenyR::Test() noexcept
     ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
   }
   #endif
+  //NewickToLttPlot
+  {
+    const std::string temp_png_filename{
+      ribi::fileio::FileIo().GetTempFileName(".png")
+    };
+    const std::string newick{"((F:2,G:2):1,H:3);"};
+    PhylogenyR().NewickToLttPlot(newick,temp_png_filename,GraphicsFormat::png);
+    assert(ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    //Clean up
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
+  }
 }
 #endif
 

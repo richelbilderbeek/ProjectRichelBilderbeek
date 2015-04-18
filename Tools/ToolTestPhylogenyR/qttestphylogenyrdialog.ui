@@ -57,6 +57,20 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QLabel" name="label_NewickToLttPlot">
+         <property name="text">
+          <string>NewickToLttPlot</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="image_NewickToLttPlot">
+         <property name="text">
+          <string>image_NewickToLttPlot</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>

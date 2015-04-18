@@ -128,73 +128,79 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget_right" native="true">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QTabWidget" name="tabWidget">
-        <property name="currentIndex">
-         <number>1</number>
-        </property>
-        <widget class="QWidget" name="tab_text">
-         <attribute name="title">
-          <string>Text</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="line_newick">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_newick">
-            <property name="text">
-             <string>Full predigree as Newick</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QPlainTextEdit" name="text_newick">
-            <property name="font">
-             <font>
-              <family>Courier New</family>
-             </font>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Full pedigree as text phylogeny</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>666</width>
+        <height>412</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_newick">
+         <property name="text">
+          <string>Full predigree as Newick</string>
+         </property>
         </widget>
-        <widget class="QWidget" name="tab_png">
-         <attribute name="title">
-          <string>PNG</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <widget class="QLabel" name="png_pedigree">
-            <property name="text">
-             <string>[PNG]</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="line_newick">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
         </widget>
-       </widget>
-      </item>
-     </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Full pedigree</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="png_pedigree">
+         <property name="text">
+          <string>[PNG]</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Full pedigree as text phylogeny</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="text_newick">
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+          </font>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+      <zorder>tabWidget</zorder>
+      <zorder>label_newick</zorder>
+      <zorder>line_newick</zorder>
+      <zorder>label</zorder>
+      <zorder>png_pedigree</zorder>
+      <zorder>label_2</zorder>
+      <zorder>text_newick</zorder>
+     </widget>
     </widget>
    </item>
   </layout>

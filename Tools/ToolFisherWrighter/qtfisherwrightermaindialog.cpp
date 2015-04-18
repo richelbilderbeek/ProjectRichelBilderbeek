@@ -4,6 +4,8 @@
 #include <iostream>
 #include <sstream>
 
+#include <QDesktopWidget>
+
 #include "fileio.h"
 #include "newickutils.h"
 #include "ui_qtfisherwrightermaindialog.h"
@@ -15,6 +17,13 @@ QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
   ui(new Ui::QtFisherWrighterMainDialog)
 {
   ui->setupUi(this);
+  ui->button_run->click();
+  //Put the dialog in the screen center
+  {
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,screen.width() * 8 / 10, screen.height() * 8 / 10);
+    this->move( screen.center() - this->rect().center() );
+  }
 }
 
 QtFisherWrighterMainDialog::~QtFisherWrighterMainDialog()
