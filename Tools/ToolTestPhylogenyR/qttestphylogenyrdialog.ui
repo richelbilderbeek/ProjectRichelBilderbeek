@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestPhylogenyRdialog</class>
+ <widget class="QDialog" name="QtTestPhylogenyRdialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>680</width>
+    <height>418</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QtTestPhylogenyRdialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>660</width>
+        <height>398</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_NewickToPhylogenyPng">
+         <property name="text">
+          <string>NewickToPhylogenyPng</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="image_NewickToPhylogenyPng">
+         <property name="text">
+          <string>image_NewickToPhylogenyPng</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_NewickToPhylogenySvg">
+         <property name="text">
+          <string>NewickToPhylogenySvg</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="image_NewickToPhylogenySvg">
+         <property name="text">
+          <string>image_NewickToPhylogenySvg</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

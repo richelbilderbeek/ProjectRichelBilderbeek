@@ -9,18 +9,32 @@ struct PhylogenyR
 
   PhylogenyR();
 
+  void NewickToPhylogenyPng(
+    const std::string& newick,
+    const std::string& png_filename
+  ) const;
+
   void NewickToPhylogenySvg(
     const std::string& newick,
     const std::string& svg_filename
-  ) const noexcept;
+  ) const;
 
   private:
+
+  enum class GraphicsFormat { png, svg };
 
   ///Determines if a filename is a regular file
   ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
   bool IsRegularFileStl(
     const std::string& filename
   ) const noexcept;
+
+  ///Handles both NewickToPhylogenyPng and NewickToPhylogenySvg
+  void NewickToPhylogenyImpl(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format
+  ) const;
 
   #ifndef NDEBUG
   static void Test() noexcept;

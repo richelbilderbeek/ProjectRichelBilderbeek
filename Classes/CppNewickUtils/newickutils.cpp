@@ -5,6 +5,8 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "fileio.h"
+
 const std::string NewickUtils::sm_newick_utils_path{"../../Libraries/newick_utils/src"};
 
 NewickUtils::NewickUtils()
@@ -55,10 +57,23 @@ std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
 {
   const std::string executable{sm_newick_utils_path + "/nw_display"};
   assert(IsRegularFileStl(executable) && "Checked in constructor");
-  const std::string tmp_filename{"tmp.txt"};
+  const std::string tmp_filename{
+    ribi::fileio::FileIo().GetTempFileName(".txt")
+  };
+  assert(!IsRegularFileStl(tmp_filename));
   const std::string cmd{"echo \""+ newick + "\" | " + executable +" - > " + tmp_filename};
   std::system(cmd.c_str());
-  return FileToVector(tmp_filename);
+
+  //Result
+  const std::vector<std::string> v{
+    FileToVector(tmp_filename)
+  };
+
+  //Clean up
+  std::remove(tmp_filename.c_str());
+  assert(!IsRegularFileStl(tmp_filename));
+
+  return v;
 }
 
 ///Determines if a filename is a regular file

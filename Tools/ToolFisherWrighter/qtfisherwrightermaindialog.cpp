@@ -1,7 +1,10 @@
 #include "qtfisherwrightermaindialog.h"
 
+#include <cassert>
+#include <iostream>
 #include <sstream>
 
+#include "fileio.h"
 #include "newickutils.h"
 #include "ui_qtfisherwrightermaindialog.h"
 #include "simulation.h"
@@ -62,12 +65,25 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
     ui->text_newick->setPlainText(s.str().c_str());
   }
   //Display newick pedigree as .SVG
+  try
   {
-    const std::string temp_svg_filename{"tmp.svg"};
-    PhylogenyR().NewickToPhylogenySvg(newick_pedigree,temp_svg_filename);
 
-    ui->svg_pedigree->setPixmap(QPixmap(temp_svg_filename.c_str()));
+    const std::string temp_png_filename{
+      ribi::fileio::FileIo().GetTempFileName(".png")
+    };
+    assert(!ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    PhylogenyR().NewickToPhylogenyPng(newick_pedigree,temp_png_filename);
+    ui->png_pedigree->setPixmap(QPixmap(temp_png_filename.c_str()));
+    //Delete the temporary file
+    std::remove(temp_png_filename.c_str());
+    assert(!ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
   }
+  catch (std::runtime_error& e)
+  {
+    std::clog << e.what() << '\n';
+    ui->png_pedigree->setText("No pedigree");
+  }
+
 }
 
 int QtFisherWrighterMainDialog::ReadNumberOfGenerations() const noexcept

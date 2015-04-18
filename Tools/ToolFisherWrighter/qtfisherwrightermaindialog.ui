@@ -175,15 +175,15 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_svg">
+        <widget class="QWidget" name="tab_png">
          <attribute name="title">
-          <string>SVG</string>
+          <string>PNG</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
-           <widget class="QLabel" name="svg_pedigree">
+           <widget class="QLabel" name="png_pedigree">
             <property name="text">
-             <string>[SVG]</string>
+             <string>[PNG]</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
