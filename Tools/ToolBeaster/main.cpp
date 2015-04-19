@@ -63,7 +63,7 @@ int main()
     const std::string beast_xml_output_filename{alignment_base_filename + ".xml"};
     const std::string fasta_output_filename{alignment_base_filename + ".fas"};
 
-    if (verbose) { TRACE("3)Create BEAST2 XML parameter file"); }
+    if (verbose) { TRACE("3) Create BEAST2 XML parameter file"); }
 
     const BeastParameterFile beast_parameter_file(
       simulation.GetSequences(),
