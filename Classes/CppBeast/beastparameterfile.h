@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>
 
-//#include "dnasequence.h"
-
 namespace ribi { struct DnaSequence; }
 
 ///Creates a BEAST XML parameter file
