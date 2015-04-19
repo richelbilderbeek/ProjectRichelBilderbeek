@@ -87,7 +87,13 @@ int main()
     std::cout << fasta_file << std::endl;
 
     if (verbose) { TRACE("Start BEAST2"); }
-    Beast().Run(beast_xml_output_filename);
+
+
+    Beast().Run(
+      beast_xml_output_filename,
+      alignment_base_filename + ".log",
+      alignment_base_filename + ".trees"
+    );
     assert(ribi::fileio::FileIo().IsRegularFile(beast_xml_output_filename));
   }
 

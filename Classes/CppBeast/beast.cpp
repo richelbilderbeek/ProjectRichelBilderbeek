@@ -10,7 +10,6 @@
 
 const std::string Beast::sm_beast_path{"../../../../Programs/BEAST/bin"};
 
-
 Beast::Beast()
 {
   #ifndef NDEBUG
@@ -28,41 +27,33 @@ Beast::Beast()
   }
 }
 
-void Beast::Run(const std::string& output_filename) const noexcept
+void Beast::Run(
+  const std::string& xml_input_filename,
+  const std::string& log_output_filename,
+  const std::string& trees_output_filename
+) const noexcept
 {
   const ribi::fileio::FileIo fileio;
   const std::string executable{sm_beast_path + "/beast"};
   assert(ribi::fileio::FileIo().IsRegularFile(executable)
     && "Checked in constructor");
 
-  const std::string cmd{executable + " -overwrite " + output_filename};
+  const std::string cmd{executable + " -overwrite " + xml_input_filename};
   std::system(cmd.c_str());
 
-  assert(fileio.IsRegularFile(output_filename));
+  assert(fileio.IsRegularFile(xml_input_filename));
 
-  const std::string file_basename{fileio.GetFileBasename(output_filename)};
 
   if (fileio.IsRegularFile("alignment.log"))
   {
-    fileio.CopyFile("alignment.log",file_basename+".log");
+    fileio.CopyFile("alignment.log",log_output_filename);
+    //fileio.CopyFile("alignment.log",file_basename+".log");
     fileio.DeleteFile("alignment.log");
   }
   if (fileio.IsRegularFile("alignment.trees"))
   {
-    fileio.CopyFile("alignment.trees",file_basename+".trees");
+    fileio.CopyFile("alignment.trees",trees_output_filename);
+    //fileio.CopyFile("alignment.trees",file_basename+".trees");
     fileio.DeleteFile("alignment.trees");
   }
-  /*
-
-  if [ -e alignment.log ]; then
-    cp alignment.log $mybasename".log"
-    rm alignment.log
-
-  fi
-
-  if [ -e alignment.trees ]; then
-    cp alignment.trees $mybasename".trees"
-    rm alignment.trees
-  fi
-  */
 }
