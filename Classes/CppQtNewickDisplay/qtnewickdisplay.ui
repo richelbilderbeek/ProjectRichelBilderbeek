@@ -14,7 +14,17 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="10" column="0">
+   <item row="4" column="0">
+    <widget class="QLabel" name="image_phylogeny_newickutils_all">
+     <property name="text">
+      <string>[PNG]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
     <widget class="QLabel" name="image_lttPlot">
      <property name="text">
       <string>[PNG]</string>
@@ -24,7 +34,7 @@
      </property>
     </widget>
    </item>
-   <item row="10" column="1">
+   <item row="12" column="1">
     <widget class="QLabel" name="image_lttPlot_extant">
      <property name="text">
       <string>[PNG]</string>
@@ -34,7 +44,7 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="0" colspan="2">
+   <item row="11" column="0" colspan="2">
     <widget class="QLabel" name="label_lttPlot">
      <property name="text">
       <string>LTT Plot</string>
@@ -71,7 +81,7 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="0" colspan="2">
+   <item row="7" column="0" colspan="2">
     <widget class="QLabel" name="label_full_pedigree_as_png">
      <property name="text">
       <string>Phylogeny (using PhylogenyR)</string>
@@ -88,48 +98,8 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_all">
-     <property name="text">
-      <string>All (extinct and extant)</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
-    <widget class="QLabel" name="image_phylogeny">
-     <property name="text">
-      <string>[PNG]</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <widget class="QLabel" name="image_phylogeny_extant">
-     <property name="text">
-      <string>[PNG]</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="image_phylogeny_newickutils">
-     <property name="text">
-      <string>[PNG]</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
    <item row="4" column="1">
-    <widget class="QLabel" name="image_phylogeny_extant_newickutils">
+    <widget class="QLabel" name="image_phylogeny_newickutils_extant">
      <property name="text">
       <string>[PNG]</string>
      </property>
@@ -142,6 +112,66 @@
     <widget class="QLabel" name="label_full_pedigree_as_txt">
      <property name="text">
       <string>Phylogeny (using newick_utils)</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_all">
+     <property name="text">
+      <string>All (extinct and extant)</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="image_phylogeny_phylogenyr_all">
+     <property name="text">
+      <string>[PNG]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLabel" name="image_phylogeny_phylogenyr_extant">
+     <property name="text">
+      <string>[PNG]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="image_branch_lengths_all">
+     <property name="text">
+      <string>[PNG]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLabel" name="image_branch_lengths_extant">
+     <property name="text">
+      <string>[PNG]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QLabel" name="label_branch_lengths">
+     <property name="text">
+      <string>Branch lengths histogram</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

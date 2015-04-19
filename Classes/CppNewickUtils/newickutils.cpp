@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -34,7 +35,11 @@ void NewickUtils::Display(const std::string& newick)
   const std::string executable{sm_newick_utils_path + "/nw_display"};
   assert(ribi::fileio::FileIo().IsRegularFile(executable) && "Checked in constructor");
   const std::string cmd{"echo \""+ newick + "\" | " + executable +" -"};
-  std::system(cmd.c_str());
+  const int error = std::system(cmd.c_str());
+  if (error)
+  {
+    std::clog << __func__ << ": error " << error << '\n';
+  }
 }
 
 std::string NewickUtils::DropExtinct(const std::string& newick) const
@@ -51,7 +56,11 @@ std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
   };
   assert(!ribi::fileio::FileIo().IsRegularFile(tmp_filename));
   const std::string cmd{"echo \""+ newick + "\" | " + executable +" - > " + tmp_filename};
-  std::system(cmd.c_str());
+  const int error = std::system(cmd.c_str());
+  if (error)
+  {
+    std::clog << __func__ << ": error " << error << '\n';
+  }
 
   //Result
   const std::vector<std::string> v{
@@ -72,6 +81,10 @@ void NewickUtils::NewickToPhylogeny(
 ) const
 {
   assert(graphics_format == GraphicsFormat::svg);
+  if (graphics_format != GraphicsFormat::svg)
+  {
+    throw std::logic_error("NewickUtils::NewickToPhylogeny: not yet implemented this GraphicsFormat");
+  }
   if (plot_fossils == false)
   {
     newick = DropExtinct(newick);
@@ -79,7 +92,11 @@ void NewickUtils::NewickToPhylogeny(
   const std::string executable{sm_newick_utils_path + "/nw_display"};
   assert(ribi::fileio::FileIo().IsRegularFile(executable) && "Checked in constructor");
   const std::string cmd{"echo \""+ newick + "\" | " + executable +" - -s > " + filename};
-  std::system(cmd.c_str());
+  const int error = std::system(cmd.c_str());
+  if (error)
+  {
+    std::clog << __func__ << ": error " << error << '\n';
+  }
   assert(ribi::fileio::FileIo().IsRegularFile(filename));
 }
 

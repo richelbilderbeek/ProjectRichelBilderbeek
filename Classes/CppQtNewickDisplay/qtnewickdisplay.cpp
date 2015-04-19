@@ -1,6 +1,7 @@
 #include "qtnewickdisplay.h"
 
 #include <cassert>
+#include <functional>
 #include <QLabel>
 
 #include "fileio.h"
@@ -22,7 +23,28 @@ QtNewickDisplay::~QtNewickDisplay()
   delete ui;
 }
 
-void QtNewickDisplay::DisplayNewick(const std::string& newick) noexcept
+/*
+void QtNewickDisplay::DisplayBranchLengthsAll(const std::string& newick) noexcept
+{
+  QLabel * const label{ui->image_branch_lengths_all};
+  const std::string temp_png_filename{
+    ribi::fileio::FileIo().GetTempFileName(".png")
+  };
+  try
+  {
+    PhylogenyR().NewickToBranchLengths(newick,temp_png_filename,PhylogenyR::GraphicsFormat::png);
+    label->setPixmap(QPixmap(temp_png_filename.c_str()));
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    //label->setText(e.what());
+    label->setText(sm_fail.c_str());
+  }
+}
+*/
+
+void QtNewickDisplay::DisplayNewickAll(const std::string& newick) noexcept
 {
   ui->line_newick->setText(newick.c_str());
 }
@@ -40,7 +62,7 @@ void QtNewickDisplay::DisplayNewickExtant(const std::string& newick_all) noexcep
   }
 }
 
-void QtNewickDisplay::DisplayNewickToLttPlot(const std::string& newick) noexcept
+void QtNewickDisplay::DisplayNewickToLttPlotAll(const std::string& newick) noexcept
 {
   QLabel * const label{ui->image_lttPlot};
   const std::string temp_png_filename{
@@ -83,6 +105,86 @@ void QtNewickDisplay::DisplayNewickToLttPlotExtant(const std::string& newick) no
   }
 }
 
+void QtNewickDisplay::DisplayPhylogeny(
+  const std::string& newick,
+  const Lineages lineages,
+  const Tool tool
+) noexcept
+{
+  QLabel * label{nullptr};
+  std::function<void(const std::string&, const std::string&)> f;
+  if (lineages == Lineages::all && tool == Tool::NewickUtils)
+  {
+    label = ui->image_phylogeny_newickutils_all;
+    f = [](const std::string& newick, const std::string& filename)
+    {
+      NewickUtils().NewickToPhylogeny(
+      newick,
+      filename,
+      NewickUtils::GraphicsFormat::svg,
+      true //plot_fossils
+      );
+    };
+  }
+  if (lineages == Lineages::extant && tool == Tool::NewickUtils)
+  {
+    label = ui->image_phylogeny_newickutils_extant;
+    f = [](const std::string& newick, const std::string& filename)
+    {
+      NewickUtils().NewickToPhylogeny(
+      newick,
+      filename,
+      NewickUtils::GraphicsFormat::svg,
+      false //plot_fossils
+      );
+    };
+  }
+  if (lineages == Lineages::all && tool == Tool::PhylogenyR)
+  {
+    label = ui->image_phylogeny_phylogenyr_all;
+    f = [](const std::string& newick, const std::string& filename)
+    {
+      PhylogenyR().NewickToPhylogeny(
+      newick,
+      filename,
+      PhylogenyR::GraphicsFormat::png,
+      true //plot_fossils
+      );
+    };
+  }
+  if (lineages == Lineages::extant && tool == Tool::PhylogenyR)
+  {
+    label = ui->image_phylogeny_phylogenyr_extant;
+    f = [](const std::string& newick, const std::string& filename)
+    {
+      PhylogenyR().NewickToPhylogeny(
+      newick,
+      filename,
+      PhylogenyR::GraphicsFormat::png,
+      false //plot_fossils
+      );
+    };
+  }
+  assert(label);
+  try
+  {
+    const std::string temp_filename{
+      ribi::fileio::FileIo().GetTempFileName("") //Cannot put .svg or .png here, as images won't display then
+    };
+    assert(!ribi::fileio::FileIo().IsRegularFile(temp_filename));
+    f(newick,temp_filename);
+    label->setPixmap(QPixmap(temp_filename.c_str()));
+    //Delete the temporary file
+    ribi::fileio::FileIo().DeleteFile(temp_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    //std::clog << e.what() << '\n';
+    label->setText(sm_fail.c_str());
+  }
+}
+
+/*
 void QtNewickDisplay::DisplayPhylogenyNewickUtilsAll(const std::string& newick) noexcept
 {
   QLabel * const label{ui->image_phylogeny_newickutils};
@@ -189,12 +291,13 @@ void QtNewickDisplay::DisplayPhylogenyRextant(const std::string& newick) noexcep
   }
 
 }
-
+*/
 void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
 {
-  DisplayNewick(newick);
+  DisplayNewickAll(newick);
   this->repaint();
-  DisplayPhylogenyNewickUtilsAll(newick);
+  //DisplayPhylogenyNewickUtilsAll(newick);
+  DisplayPhylogeny(newick,Lineages::all,Tool::NewickUtils);
   this->repaint();
   DisplayNewickExtant(newick);
   this->repaint();
@@ -202,18 +305,21 @@ void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
   {
     ui->image_lttPlot->setText(sm_fail.c_str());
     ui->image_lttPlot_extant->setText(sm_fail.c_str());
-    ui->image_phylogeny->setText(sm_fail.c_str());
-    ui->image_phylogeny_extant->setText(sm_fail.c_str());
-    ui->image_phylogeny_extant_newickutils->setText(sm_fail.c_str());
+    ui->image_phylogeny_newickutils_extant->setText(sm_fail.c_str());
+    ui->image_phylogeny_phylogenyr_all->setText(sm_fail.c_str());
+    ui->image_phylogeny_phylogenyr_extant->setText(sm_fail.c_str());
     return;
   }
-  DisplayPhylogenyNewickUtilsExtant(newick);
+  //DisplayPhylogenyNewickUtilsExtant(newick);
+  DisplayPhylogeny(newick,Lineages::extant,Tool::NewickUtils);
   this->repaint();
-  DisplayPhylogenyRall(newick);
+  //DisplayPhylogenyRall(newick);
+  DisplayPhylogeny(newick,Lineages::all,Tool::PhylogenyR);
   this->repaint();
-  DisplayPhylogenyRextant(newick);
+  //DisplayPhylogenyRextant(newick);
+  DisplayPhylogeny(newick,Lineages::extant,Tool::PhylogenyR);
   this->repaint();
-  DisplayNewickToLttPlot(newick);
+  DisplayNewickToLttPlotAll(newick);
   this->repaint();
   DisplayNewickToLttPlotExtant(newick);
   this->repaint();

@@ -22,15 +22,28 @@ public:
 private:
   Ui::QtNewickDisplay *ui;
 
+  enum class Lineages { all, extant };
+  enum class Tool { NewickUtils, PhylogenyR };
 
-  void DisplayNewick(const std::string& newick) noexcept;
+  void DisplayPhylogeny(
+    const std::string& newick,
+    const Lineages lineages,
+    const Tool tool
+  ) noexcept;
+
+
+  void DisplayBranchLengthsAll(const std::string& newick) noexcept;
+  void DisplayBranchLengthsExtant(const std::string& newick) noexcept;
+  void DisplayNewickAll(const std::string& newick) noexcept;
   void DisplayNewickExtant(const std::string& newick) noexcept;
-  void DisplayNewickToLttPlot(const std::string& newick) noexcept;
+  void DisplayNewickToLttPlotAll(const std::string& newick) noexcept;
   void DisplayNewickToLttPlotExtant(const std::string& newick) noexcept;
+  /*
   void DisplayPhylogenyNewickUtilsAll(const std::string& newick) noexcept;
   void DisplayPhylogenyNewickUtilsExtant(const std::string& newick) noexcept;
   void DisplayPhylogenyRall(const std::string& newick) noexcept;
   void DisplayPhylogenyRextant(const std::string& newick) noexcept;
+  */
   static const std::string sm_fail;
 };
 
