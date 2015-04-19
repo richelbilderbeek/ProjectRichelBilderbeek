@@ -9,6 +9,8 @@ class QtTestQtDnaSequencesDisplay;
 
 struct QtDnaSequencesDisplay;
 
+namespace ribi { struct DnaSequence; }
+
 class QtTestQtDnaSequencesDisplay : public QDialog
 {
   Q_OBJECT
@@ -24,10 +26,14 @@ private slots:
 
   void on_button_display_clicked();
 
+  void on_button_fasta_clicked();
+
 private:
   Ui::QtTestQtDnaSequencesDisplay *ui;
 
   QtDnaSequencesDisplay * const m_display;
+
+  std::vector<ribi::DnaSequence> GetSequences() const noexcept;
 };
 
 #endif // QTTESTQTDNADISPLAY_H

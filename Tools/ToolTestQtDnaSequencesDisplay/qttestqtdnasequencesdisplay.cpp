@@ -2,10 +2,13 @@
 
 #include <QDesktopWidget>
 #include <QPixmap>
+#include <QFileDialog>
 
 #include <cassert>
+#include <fstream>
 
 #include "dnasequence.h"
+#include "fastafile.h"
 #include "fileio.h"
 #include "qtdnasequencesdisplay.h"
 #include "ui_qttestqtdnasequencesdisplay.h"
@@ -34,8 +37,7 @@ QtTestQtDnaSequencesDisplay::~QtTestQtDnaSequencesDisplay()
   delete ui;
 }
 
-
-void QtTestQtDnaSequencesDisplay::on_button_display_clicked()
+std::vector<ribi::DnaSequence> QtTestQtDnaSequencesDisplay::GetSequences() const noexcept
 {
   using ribi::DnaSequence;
   std::vector<DnaSequence> sequences;
@@ -43,5 +45,18 @@ void QtTestQtDnaSequencesDisplay::on_button_display_clicked()
   sequences.push_back(DnaSequence(ui->edit_name_2->text().toStdString(),ui->edit_sequence_2->text().toStdString()));
   sequences.push_back(DnaSequence(ui->edit_name_3->text().toStdString(),ui->edit_sequence_3->text().toStdString()));
   sequences.push_back(DnaSequence(ui->edit_name_4->text().toStdString(),ui->edit_sequence_4->text().toStdString()));
-  this->m_display->SetDnaSequences(sequences);
+  return sequences;
+}
+
+void QtTestQtDnaSequencesDisplay::on_button_display_clicked()
+{
+  this->m_display->SetDnaSequences(GetSequences());
+}
+
+void QtTestQtDnaSequencesDisplay::on_button_fasta_clicked()
+{
+  FastaFile f(GetSequences());
+  const std::string filename {QFileDialog::getSaveFileName().toStdString()};
+  std::ofstream file(filename.c_str());
+  file << f;
 }

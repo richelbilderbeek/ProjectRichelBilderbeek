@@ -92,10 +92,17 @@
      </widget>
     </widget>
    </item>
-   <item row="4" column="0" colspan="2">
+   <item row="4" column="0">
     <widget class="QPushButton" name="button_display">
      <property name="text">
       <string>&amp;Display</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QPushButton" name="button_fasta">
+     <property name="text">
+      <string>&amp;Save as fasta</string>
      </property>
     </widget>
    </item>

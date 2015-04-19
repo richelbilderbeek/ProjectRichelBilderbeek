@@ -7,7 +7,8 @@
 #include <sstream>
 
 #include "dnasequence.h"
-#include "helper.h"
+#include "fileio.h"
+//#include "helper.h"
 
 FastaFile::FastaFile(
   const std::vector<ribi::DnaSequence>& sequences
@@ -21,7 +22,7 @@ FastaFile::FastaFile(
 std::vector<ribi::DnaSequence> FastaFile::ReadSequencesFromFile(const std::string& filename)
 {
   std::vector<std::string> text{
-    Helper().FileToVector(filename)
+    ribi::fileio::FileIo().FileToVector(filename)
   };
   const int n_lines{static_cast<int>(text.size())};
   std::vector<ribi::DnaSequence> sequences;
