@@ -25,7 +25,7 @@
     </widget>
    </item>
    <item row="12" column="0">
-    <widget class="QLabel" name="image_lttPlot">
+    <widget class="QLabel" name="image_lttPlot_all">
      <property name="text">
       <string>[PNG]</string>
      </property>
