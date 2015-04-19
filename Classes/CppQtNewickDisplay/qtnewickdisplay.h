@@ -1,35 +1,25 @@
-#ifndef QTFISHERWRIGHTERMAINDIALOG_H
-#define QTFISHERWRIGHTERMAINDIALOG_H
+#ifndef QTNEWICKDISPLAY_H
+#define QTNEWICKDISPLAY_H
 
-#include <QDialog>
-#include "parameters.h"
+#include <QWidget>
 
 namespace Ui {
-  class QtFisherWrighterMainDialog;
+class QtNewickDisplay;
 }
 
-struct QtNewickDisplay;
-
-class QtFisherWrighterMainDialog : public QDialog
+class QtNewickDisplay : public QWidget
 {
   Q_OBJECT
 
 public:
-  explicit QtFisherWrighterMainDialog(QWidget *parent = 0);
-  ~QtFisherWrighterMainDialog();
+  explicit QtNewickDisplay(QWidget *parent = 0);
+  ~QtNewickDisplay();
 
-private slots:
-  void on_button_run_clicked();
-
-  void on_button_run_next_clicked();
+  void SetNewick(const std::string& newick) noexcept;
 
 private:
-  Ui::QtFisherWrighterMainDialog *ui;
+  Ui::QtNewickDisplay *ui;
 
-  QtNewickDisplay * const m_newick_display;
-
-  int ReadNumberOfGenerations() const noexcept;
-  /*
   void DisplayNewick(const std::string& newick) noexcept;
   void DisplayNewickExtant(const std::string& newick) noexcept;
   void DisplayNewickToLttPlot(const std::string& newick) noexcept;
@@ -38,7 +28,7 @@ private:
   void DisplayPhylogenyNewickUtilsExtant(const std::string& newick) noexcept;
   void DisplayPhylogenyRall(const std::string& newick) noexcept;
   void DisplayPhylogenyRextant(const std::string& newick) noexcept;
-  */
+
 };
 
-#endif // QTFISHERWRIGHTERMAINDIALOG_H
+#endif // QTNEWICKDISPLAY_H

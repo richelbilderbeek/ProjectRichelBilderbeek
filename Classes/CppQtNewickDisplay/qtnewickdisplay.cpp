@@ -1,51 +1,31 @@
-#include "qtfisherwrightermaindialog.h"
-
-#include <cassert>
-#include <iostream>
-#include <sstream>
-
-#include <QDesktopWidget>
-
-#include "fileio.h"
-#include "newickutils.h"
-#include "ui_qtfisherwrightermaindialog.h"
-#include "simulation.h"
-#include "phylogeny_r.h"
 #include "qtnewickdisplay.h"
 
-QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtFisherWrighterMainDialog),
-  m_newick_display{new QtNewickDisplay(this)}
+#include <cassert>
+#include <QLabel>
+
+#include "fileio.h"
+#include "ui_qtnewickdisplay.h"
+#include "phylogeny_r.h"
+#include "newickutils.h"
+
+QtNewickDisplay::QtNewickDisplay(QWidget *parent) :
+  QWidget(parent),
+  ui(new Ui::QtNewickDisplay)
 {
   ui->setupUi(this);
-
-  assert(!ui->area_results->layout());
-  assert(ui->results->layout());
-  ui->results->layout()->addWidget(m_newick_display);
-
-  ui->button_run->click();
-
-
-  //Put the dialog in the screen center
-  {
-    const QRect screen = QApplication::desktop()->screenGeometry();
-    this->setGeometry(0,0,screen.width() * 8 / 10, screen.height() * 8 / 10);
-    this->move( screen.center() - this->rect().center() );
-  }
 }
 
-QtFisherWrighterMainDialog::~QtFisherWrighterMainDialog()
+QtNewickDisplay::~QtNewickDisplay()
 {
   delete ui;
 }
-/*
-void QtFisherWrighterMainDialog::DisplayNewick(const std::string& newick) noexcept
+
+void QtNewickDisplay::DisplayNewick(const std::string& newick) noexcept
 {
   ui->line_newick->setText(newick.c_str());
 }
 
-void QtFisherWrighterMainDialog::DisplayNewickExtant(const std::string& newick_all) noexcept
+void QtNewickDisplay::DisplayNewickExtant(const std::string& newick_all) noexcept
 {
   try
   {
@@ -58,7 +38,7 @@ void QtFisherWrighterMainDialog::DisplayNewickExtant(const std::string& newick_a
   }
 }
 
-void QtFisherWrighterMainDialog::DisplayNewickToLttPlot(const std::string& newick) noexcept
+void QtNewickDisplay::DisplayNewickToLttPlot(const std::string& newick) noexcept
 {
   QLabel * const label{ui->image_lttPlot};
   const std::string temp_png_filename{
@@ -77,7 +57,7 @@ void QtFisherWrighterMainDialog::DisplayNewickToLttPlot(const std::string& newic
   }
 }
 
-void QtFisherWrighterMainDialog::DisplayNewickToLttPlotExtant(const std::string& newick) noexcept
+void QtNewickDisplay::DisplayNewickToLttPlotExtant(const std::string& newick) noexcept
 {
   QLabel * const label{ui->image_lttPlot_extant};
   const std::string temp_png_filename{
@@ -101,7 +81,7 @@ void QtFisherWrighterMainDialog::DisplayNewickToLttPlotExtant(const std::string&
   }
 }
 
-void QtFisherWrighterMainDialog::DisplayPhylogenyNewickUtilsAll(const std::string& newick) noexcept
+void QtNewickDisplay::DisplayPhylogenyNewickUtilsAll(const std::string& newick) noexcept
 {
   QLabel * const label{ui->image_phylogeny_newickutils};
   try
@@ -127,7 +107,7 @@ void QtFisherWrighterMainDialog::DisplayPhylogenyNewickUtilsAll(const std::strin
 
 }
 
-void QtFisherWrighterMainDialog::DisplayPhylogenyNewickUtilsExtant(const std::string& newick) noexcept
+void QtNewickDisplay::DisplayPhylogenyNewickUtilsExtant(const std::string& newick) noexcept
 {
   QLabel * const label{ui->image_phylogeny_extant_newickutils};
   try
@@ -159,7 +139,7 @@ void QtFisherWrighterMainDialog::DisplayPhylogenyNewickUtilsExtant(const std::st
 
 }
 
-void QtFisherWrighterMainDialog::DisplayPhylogenyRall(const std::string& newick) noexcept
+void QtNewickDisplay::DisplayPhylogenyRall(const std::string& newick) noexcept
 {
   QLabel * const label{ui->image_phylogeny};
   try
@@ -184,7 +164,7 @@ void QtFisherWrighterMainDialog::DisplayPhylogenyRall(const std::string& newick)
   }
 }
 
-void QtFisherWrighterMainDialog::DisplayPhylogenyRextant(const std::string& newick) noexcept
+void QtNewickDisplay::DisplayPhylogenyRextant(const std::string& newick) noexcept
 {
   QLabel * const label{ui->image_phylogeny_extant};
   try
@@ -208,60 +188,15 @@ void QtFisherWrighterMainDialog::DisplayPhylogenyRextant(const std::string& newi
   }
 
 }
-*/
-void QtFisherWrighterMainDialog::on_button_run_clicked()
+
+void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
 {
-  //1) Read parameters from file
-  const int dna_length{this->ui->box_dna_length->value()};
-  const double mutation_rate{ui->box_mutation_rate->value()};
-  const int n_generations{ReadNumberOfGenerations()};
-  const int pop_size{ui->box_pop_size->value()};
-  const int seed{ui->box_seed->value()};
-  const Parameters parameters(
-    dna_length,
-    mutation_rate,
-    n_generations,
-    pop_size,
-    seed
-  );
-
-  //2) Run simulation
-  Simulation simulation(parameters);
-  //Loop n_generations
-  //const int n_generations{ReadNumberOfGenerations()};
-  for (int i=0; i!=n_generations; ++i)
-  {
-    simulation.NextGeneration();
-    if (!simulation.GetCurrentSequences().empty())
-    {
-      //Only show the sequence of the first individual
-      //std::cout << i << ": " << simulation.GetCurrentSequences()[0].GetSequence() << '\n';
-    }
-  }
-  const std::string newick{simulation.GetPedigree()};
-
-  //Display newick pedigree
-  this->m_newick_display->SetNewick(newick);
-  /*
   DisplayNewick(newick);
   DisplayNewickExtant(newick);
-  this->DisplayPhylogenyRall(newick);
-  this->DisplayPhylogenyRextant(newick);
-  this->DisplayPhylogenyNewickUtilsAll(newick);
-  this->DisplayPhylogenyNewickUtilsExtant(newick);
-  this->DisplayNewickToLttPlot(newick);
-  this->DisplayNewickToLttPlotExtant(newick);
-  */
-}
-
-int QtFisherWrighterMainDialog::ReadNumberOfGenerations() const noexcept
-{
-  const int n_generations{ui->box_n_generation->value()};
-  return n_generations;
-}
-
-void QtFisherWrighterMainDialog::on_button_run_next_clicked()
-{
-  ui->box_seed->setValue(ui->box_seed->value() + 1);
-  ui->button_run->click();
+  DisplayPhylogenyRall(newick);
+  DisplayPhylogenyRextant(newick);
+  DisplayPhylogenyNewickUtilsAll(newick);
+  DisplayPhylogenyNewickUtilsExtant(newick);
+  DisplayNewickToLttPlot(newick);
+  DisplayNewickToLttPlotExtant(newick);
 }
