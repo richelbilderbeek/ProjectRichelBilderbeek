@@ -14,7 +14,7 @@ PhylogenyR::PhylogenyR()
   #endif
 }
 
-std::string PhylogenyR::DropExtict(const std::string& newick) const
+std::string PhylogenyR::DropExtinct(const std::string& newick) const
 {
   assert(!newick.empty());
 

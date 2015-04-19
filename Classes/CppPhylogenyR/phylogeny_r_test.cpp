@@ -3,6 +3,8 @@
 #include <cassert>
 
 #include "fileio.h"
+#include "testtimer.h"
+#include "trace.h"
 
 #ifndef NDEBUG
 void PhylogenyR::Test() noexcept
@@ -12,7 +14,12 @@ void PhylogenyR::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  //NewickToPhylogeny as SVG of extinct and extant species
+  {
+    ribi::fileio::FileIo();
+  }
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+  if (verbose) { TRACE("NewickToPhylogeny as SVG of extinct and extant species"); }
   {
     const std::string temp_svg_filename{
       ribi::fileio::FileIo().GetTempFileName(".svg")
@@ -29,7 +36,7 @@ void PhylogenyR::Test() noexcept
     //Clean up
     ribi::fileio::FileIo().DeleteFile(temp_svg_filename);
   }
-  //NewickToPhylogeny as PNG of extinct and extant species
+  if (verbose) { TRACE("NewickToPhylogeny as PNG of extinct and extant species"); }
   {
     const std::string temp_png_filename{
       ribi::fileio::FileIo().GetTempFileName(".png")
@@ -46,7 +53,7 @@ void PhylogenyR::Test() noexcept
     //Clean up
     ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
   }
-  //NewickToPhylogeny as PNG of extant species
+  if (verbose) { TRACE("NewickToPhylogeny as PNG of extant species"); }
   {
     const std::string temp_png_filename{
       ribi::fileio::FileIo().GetTempFileName(".png")
@@ -63,8 +70,8 @@ void PhylogenyR::Test() noexcept
     //Clean up
     ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
   }
-  //NewickToPhylogenyPng on hard phylogeny
   #ifdef FIX_ISSUE_267
+  if (verbose) { TRACE("NewickToPhylogenyPng on hard phylogeny"); }
   {
     const std::string temp_png_filename{
       ribi::fileio::FileIo().GetTempFileName(".png")
@@ -76,7 +83,7 @@ void PhylogenyR::Test() noexcept
     ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
   }
   #endif
-  //NewickToLttPlot
+  if (verbose) { TRACE("NewickToLttPlot"); }
   {
     const std::string temp_png_filename{
       ribi::fileio::FileIo().GetTempFileName(".png")
@@ -87,9 +94,10 @@ void PhylogenyR::Test() noexcept
     //Clean up
     ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
   }
+  if (verbose) { TRACE("DropExtinct"); }
   {
     assert(
-      PhylogenyR().DropExtict(
+      PhylogenyR().DropExtinct(
         "(L:1,(((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):1,(GD:1,ID:1):1,BD:1):3,(AC:1,EC:1):1,(((TC:1,FD:2):1,QC:1,RC:1):1,((((AE:1,BE:1):1,(WD:1,YD:1):1):1,HD:1):2,MC:1):1):1):3);"
       ) == "((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):4,((AE:1,BE:1):1,(WD:1,YD:1):1):5);"
     );

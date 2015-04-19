@@ -12,7 +12,7 @@ struct PhylogenyR
 
   ///Remove the lineages that are extinct at the present time
   ///Throws std::runtime_error if R script fails
-  std::string DropExtict(
+  std::string DropExtinct(
     const std::string& newick
   ) const;
 

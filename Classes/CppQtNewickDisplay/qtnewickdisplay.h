@@ -20,6 +20,7 @@ public:
 private:
   Ui::QtNewickDisplay *ui;
 
+
   void DisplayNewick(const std::string& newick) noexcept;
   void DisplayNewickExtant(const std::string& newick) noexcept;
   void DisplayNewickToLttPlot(const std::string& newick) noexcept;

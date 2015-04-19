@@ -4,6 +4,8 @@
 
 #include "fileio.h"
 #include "phylogeny_r.h"
+#include "testtimer.h"
+#include "trace.h"
 
 #ifndef NDEBUG
 void NewickUtils::Test() noexcept
@@ -13,13 +15,15 @@ void NewickUtils::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  //GetPhylogeny
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+  if (verbose) { TRACE("GetPhylogeny"); }
   {
     const std::string newick{"(1,2);"};
     std::vector<std::string> v{NewickUtils().GetPhylogeny(newick)};
     assert(!v.empty());
   }
-  //DropExtinct
+  if (verbose) { TRACE("DropExtinct"); }
   {
     assert(
       NewickUtils().DropExtinct(
@@ -27,7 +31,7 @@ void NewickUtils::Test() noexcept
       ) == "((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):4,((AE:1,BE:1):1,(WD:1,YD:1):1):5);"
     );
   }
-  //NewickToPhylogeny on easy phylogeny
+  if (verbose) { TRACE("NewickToPhylogeny on easy phylogeny"); }
   {
     const std::string temp_svg_filename{
       ribi::fileio::FileIo().GetTempFileName(".svg")
@@ -44,7 +48,7 @@ void NewickUtils::Test() noexcept
     //Clean up
     ribi::fileio::FileIo().DeleteFile(temp_svg_filename.c_str());
   }
-  //NewickToPhylogeny on hard phylogeny
+  if (verbose) { TRACE("NewickToPhylogeny on hard phylogeny"); }
   //ISSUE_267 does affect PhylogenyR, but not this class
   {
     const std::string newick{

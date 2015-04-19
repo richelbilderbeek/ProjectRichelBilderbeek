@@ -39,7 +39,7 @@ void NewickUtils::Display(const std::string& newick)
 
 std::string NewickUtils::DropExtinct(const std::string& newick) const
 {
-  return PhylogenyR().DropExtict(newick);
+  return PhylogenyR().DropExtinct(newick);
 }
 
 std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)

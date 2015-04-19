@@ -29,7 +29,7 @@ void QtNewickDisplay::DisplayNewickExtant(const std::string& newick_all) noexcep
 {
   try
   {
-    const std::string newick_extant{PhylogenyR().DropExtict(newick_all)};
+    const std::string newick_extant{PhylogenyR().DropExtinct(newick_all)};
     ui->line_newick_extant->setText(newick_extant.c_str());
   }
   catch (std::runtime_error& e)
@@ -154,7 +154,6 @@ void QtNewickDisplay::DisplayPhylogenyRall(const std::string& newick) noexcept
       PhylogenyR::GraphicsFormat::png
     );
     label->setPixmap(QPixmap(temp_png_filename.c_str()));
-    //Delete the temporary file
     ribi::fileio::FileIo().DeleteFile(temp_png_filename);
   }
   catch (std::runtime_error& e)
@@ -192,11 +191,19 @@ void QtNewickDisplay::DisplayPhylogenyRextant(const std::string& newick) noexcep
 void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
 {
   DisplayNewick(newick);
+  this->repaint();
   DisplayNewickExtant(newick);
+  this->repaint();
   DisplayPhylogenyRall(newick);
+  this->repaint();
   DisplayPhylogenyRextant(newick);
+  this->repaint();
   DisplayPhylogenyNewickUtilsAll(newick);
+  this->repaint();
   DisplayPhylogenyNewickUtilsExtant(newick);
+  this->repaint();
   DisplayNewickToLttPlot(newick);
+  this->repaint();
   DisplayNewickToLttPlotExtant(newick);
+  this->repaint();
 }
