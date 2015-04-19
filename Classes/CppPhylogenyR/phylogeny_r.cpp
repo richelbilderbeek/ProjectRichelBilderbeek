@@ -59,7 +59,7 @@ std::string PhylogenyR::DropExtict(const std::string& newick) const
   if (!ribi::fileio::FileIo().IsRegularFile(temp_newick_filename))
   {
     std::stringstream s;
-    s << "PhylogenyR::NewickToPhylogenySvg: "
+    s << "PhylogenyR::DropExtict: "
       << "Could not create temporary Newick file "
       << "with filename '" << temp_newick_filename << "'. "
       << "Perhaps not all packages (ape, geiger) needed are installed? "
@@ -132,7 +132,7 @@ void PhylogenyR::NewickToLttPlot(
   if (!ribi::fileio::FileIo().IsRegularFile(temp_r_filename))
   {
     std::stringstream s;
-    s << "PhylogenyR::NewickToPhylogenySvg: "
+    s << "PhylogenyR::NewickToLttPlot: "
       << "Could not create temporary R script file "
       << "with filename '" << temp_r_filename << "'";
     throw std::runtime_error(s.str().c_str());
@@ -148,7 +148,7 @@ void PhylogenyR::NewickToLttPlot(
   if (!ribi::fileio::FileIo().IsRegularFile(filename))
   {
     std::stringstream s;
-    s << "PhylogenyR::NewickToPhylogenySvg: "
+    s << "PhylogenyR::NewickToLttPlot: "
       << "Could not create SVG "
       << "with filename '" << filename << "'. "
       << "Perhaps not all packages (ape, geiger) needed are installed? "
@@ -213,7 +213,7 @@ void PhylogenyR::NewickToPhylogeny(
   if (!ribi::fileio::FileIo().IsRegularFile(temp_r_filename))
   {
     std::stringstream s;
-    s << "PhylogenyR::NewickToPhylogenySvg: "
+    s << "PhylogenyR::NewickToPhylogeny: "
       << "Could not create temporary R script file "
       << "with filename '" << temp_r_filename << "'";
     throw std::runtime_error(s.str().c_str());
@@ -229,7 +229,7 @@ void PhylogenyR::NewickToPhylogeny(
   if (!ribi::fileio::FileIo().IsRegularFile(filename))
   {
     std::stringstream s;
-    s << "PhylogenyR::NewickToPhylogenySvg: "
+    s << "PhylogenyR::NewickToPhylogeny: "
       << "Could not create SVG "
       << "with filename '" << filename << "'. "
       << "Perhaps not all packages (ape, geiger) needed are installed? "

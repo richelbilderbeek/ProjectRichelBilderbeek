@@ -12,31 +12,52 @@ void PhylogenyR::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  //NewickToPhylogenySvg
+  //NewickToPhylogeny as SVG of extinct and extant species
   {
     const std::string temp_svg_filename{
       ribi::fileio::FileIo().GetTempFileName(".svg")
     };
+    const bool plot_fossils{true};
     const std::string newick{"((F:2,G:2):1,H:3);"};
     PhylogenyR().NewickToPhylogeny(
       newick,
       temp_svg_filename,
-      PhylogenyR::GraphicsFormat::svg
+      PhylogenyR::GraphicsFormat::svg,
+      plot_fossils
     );
     assert(ribi::fileio::FileIo().IsRegularFile(temp_svg_filename));
     //Clean up
     ribi::fileio::FileIo().DeleteFile(temp_svg_filename);
   }
-  //NewickToPhylogenyPng
+  //NewickToPhylogeny as PNG of extinct and extant species
   {
     const std::string temp_png_filename{
       ribi::fileio::FileIo().GetTempFileName(".png")
     };
+    const bool plot_fossils{false};
     const std::string newick{"((F:2,G:2):1,H:3);"};
     PhylogenyR().NewickToPhylogeny(
       newick,
       temp_png_filename,
-      PhylogenyR::GraphicsFormat::png
+      PhylogenyR::GraphicsFormat::png,
+      plot_fossils
+    );
+    assert(ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    //Clean up
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
+  }
+  //NewickToPhylogeny as PNG of extant species
+  {
+    const std::string temp_png_filename{
+      ribi::fileio::FileIo().GetTempFileName(".png")
+    };
+    const bool plot_fossils{true};
+    const std::string newick{"((F:2,G:2):1,H:3);"};
+    PhylogenyR().NewickToPhylogeny(
+      newick,
+      temp_png_filename,
+      PhylogenyR::GraphicsFormat::png,
+      plot_fossils
     );
     assert(ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
     //Clean up

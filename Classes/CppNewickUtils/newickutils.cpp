@@ -7,6 +7,8 @@
 
 #include "fileio.h"
 #include "trace.h"
+#include "phylogeny_r.h"
+
 const std::string NewickUtils::sm_newick_utils_path{"../../Libraries/newick_utils/src"};
 
 NewickUtils::NewickUtils()
@@ -33,6 +35,11 @@ void NewickUtils::Display(const std::string& newick)
   assert(ribi::fileio::FileIo().IsRegularFile(executable) && "Checked in constructor");
   const std::string cmd{"echo \""+ newick + "\" | " + executable +" -"};
   std::system(cmd.c_str());
+}
+
+std::string NewickUtils::DropExtinct(const std::string& newick) const
+{
+  return PhylogenyR().DropExtict(newick);
 }
 
 ///FileToVector reads a file and converts it to a std::vector<std::string>
@@ -76,43 +83,21 @@ std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
 }
 
 void NewickUtils::NewickToPhylogeny(
-  const std::string& newick,
+  std::string newick,
   const std::string& filename,
   const GraphicsFormat graphics_format,
   const bool plot_fossils
 ) const
 {
-  if (graphics_format == GraphicsFormat::png)
-  {
-    throw std::logic_error("NewickUtils::NewickToPhylogeny: PNG not (yet) supported");
-  }
+  assert(graphics_format == GraphicsFormat::svg);
   if (plot_fossils == false)
   {
-    throw std::logic_error("NewickUtils::NewickToPhylogeny: plot_fossils == false is not (yet) supported");
+    newick = DropExtinct(newick);
   }
   const std::string executable{sm_newick_utils_path + "/nw_display"};
   assert(ribi::fileio::FileIo().IsRegularFile(executable) && "Checked in constructor");
   const std::string cmd{"echo \""+ newick + "\" | " + executable +" - -s > " + filename};
-  TRACE(cmd);
   std::system(cmd.c_str());
   assert(ribi::fileio::FileIo().IsRegularFile(filename));
-
-
 }
 
-#ifndef NDEBUG
-void NewickUtils::Test() noexcept
-{
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  //GetPhylogeny
-  {
-    const std::string newick{"(1,2);"};
-    std::vector<std::string> v{NewickUtils().GetPhylogeny(newick)};
-    assert(!v.empty());
-  }
-}
-#endif

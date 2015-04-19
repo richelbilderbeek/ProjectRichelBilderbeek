@@ -38,8 +38,15 @@ void QtFisherWrighterMainDialog::DisplayNewick(const std::string& newick) noexce
 
 void QtFisherWrighterMainDialog::DisplayNewickExtant(const std::string& newick_all) noexcept
 {
-  const std::string newick_extant{PhylogenyR().DropExtict(newick_all)};
-  ui->line_newick_extant->setText(newick_extant.c_str());
+  try
+  {
+    const std::string newick_extant{PhylogenyR().DropExtict(newick_all)};
+    ui->line_newick_extant->setText(newick_extant.c_str());
+  }
+  catch (std::runtime_error& e)
+  {
+    ui->line_newick_extant->setText(":-(");
+  }
 }
 
 void QtFisherWrighterMainDialog::DisplayNewickToLttPlot(const std::string& newick) noexcept
@@ -116,19 +123,19 @@ void QtFisherWrighterMainDialog::DisplayPhylogenyNewickUtilsExtant(const std::st
   QLabel * const label{ui->image_phylogeny_extant_newickutils};
   try
   {
-    const std::string temp_png_filename{
-      ribi::fileio::FileIo().GetTempFileName(".png")
+    const std::string temp_filename{
+      ribi::fileio::FileIo().GetTempFileName(".svg")
     };
-    assert(!ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    assert(!ribi::fileio::FileIo().IsRegularFile(temp_filename));
     NewickUtils().NewickToPhylogeny(
       newick,
-      temp_png_filename,
-      NewickUtils::GraphicsFormat::png,
+      temp_filename,
+      NewickUtils::GraphicsFormat::svg,
       false //plot_fossils
     );
-    label->setPixmap(QPixmap(temp_png_filename.c_str()));
+    label->setPixmap(QPixmap(temp_filename.c_str()));
     //Delete the temporary file
-    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+    ribi::fileio::FileIo().DeleteFile(temp_filename);
   }
   catch (std::runtime_error& e)
   {
@@ -222,16 +229,17 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
       //std::cout << i << ": " << simulation.GetCurrentSequences()[0].GetSequence() << '\n';
     }
   }
-  const std::string newick_pedigree{simulation.GetPedigree()};
+  const std::string newick{simulation.GetPedigree()};
 
   //Display newick pedigree
-  DisplayNewick(newick_pedigree);
-  this->DisplayPhylogenyRall(newick_pedigree);
-  this->DisplayPhylogenyRextant(newick_pedigree);
-  this->DisplayPhylogenyNewickUtilsAll(newick_pedigree);
-  //this->DisplayPhylogenyNewickUtilsExtant(newick_pedigree);
-  this->DisplayNewickToLttPlot(newick_pedigree);
-  this->DisplayNewickToLttPlotExtant(newick_pedigree);
+  DisplayNewick(newick);
+  DisplayNewickExtant(newick);
+  this->DisplayPhylogenyRall(newick);
+  this->DisplayPhylogenyRextant(newick);
+  this->DisplayPhylogenyNewickUtilsAll(newick);
+  this->DisplayPhylogenyNewickUtilsExtant(newick);
+  this->DisplayNewickToLttPlot(newick);
+  this->DisplayNewickToLttPlotExtant(newick);
 }
 
 int QtFisherWrighterMainDialog::ReadNumberOfGenerations() const noexcept
