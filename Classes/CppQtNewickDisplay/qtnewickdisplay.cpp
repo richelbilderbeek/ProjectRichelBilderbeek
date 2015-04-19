@@ -8,6 +8,8 @@
 #include "phylogeny_r.h"
 #include "newickutils.h"
 
+const std::string QtNewickDisplay::sm_fail{":-("};
+
 QtNewickDisplay::QtNewickDisplay(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtNewickDisplay)
@@ -34,7 +36,7 @@ void QtNewickDisplay::DisplayNewickExtant(const std::string& newick_all) noexcep
   }
   catch (std::runtime_error& e)
   {
-    ui->line_newick_extant->setText(":-(");
+    ui->line_newick_extant->setText(sm_fail.c_str());
   }
 }
 
@@ -53,7 +55,7 @@ void QtNewickDisplay::DisplayNewickToLttPlot(const std::string& newick) noexcept
   catch (std::runtime_error& e)
   {
     //label->setText(e.what());
-    label->setText(":-(");
+    label->setText(sm_fail.c_str());
   }
 }
 
@@ -76,7 +78,7 @@ void QtNewickDisplay::DisplayNewickToLttPlotExtant(const std::string& newick) no
   }
   catch (std::runtime_error& e)
   {
-    label->setText(":-(");
+    label->setText(sm_fail.c_str());
     //label->setText(e.what());
   }
 }
@@ -102,7 +104,7 @@ void QtNewickDisplay::DisplayPhylogenyNewickUtilsAll(const std::string& newick) 
   catch (std::runtime_error& e)
   {
     //std::clog << e.what() << '\n';
-    label->setText(":-(");
+    label->setText(sm_fail.c_str());
   }
 
 }
@@ -129,12 +131,12 @@ void QtNewickDisplay::DisplayPhylogenyNewickUtilsExtant(const std::string& newic
   catch (std::runtime_error& e)
   {
     //std::clog << e.what() << '\n';
-    label->setText(":-(");
+    label->setText(sm_fail.c_str());
   }
   catch (std::logic_error& e)
   {
     //std::clog << e.what() << '\n';
-    label->setText(":-(");
+    label->setText(sm_fail.c_str());
   }
 
 }
@@ -159,7 +161,7 @@ void QtNewickDisplay::DisplayPhylogenyRall(const std::string& newick) noexcept
   catch (std::runtime_error& e)
   {
     //std::clog << e.what() << '\n';
-    label->setText(":-(");
+    label->setText(sm_fail.c_str());
   }
 }
 
@@ -182,7 +184,7 @@ void QtNewickDisplay::DisplayPhylogenyRextant(const std::string& newick) noexcep
   }
   catch (std::runtime_error& e)
   {
-    label->setText(":-(");
+    label->setText(sm_fail.c_str());
     //std::clog << e.what() << '\n';
   }
 
@@ -192,15 +194,24 @@ void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
 {
   DisplayNewick(newick);
   this->repaint();
+  DisplayPhylogenyNewickUtilsAll(newick);
+  this->repaint();
   DisplayNewickExtant(newick);
+  this->repaint();
+  if (ui->line_newick_extant->text().toStdString() == sm_fail)
+  {
+    ui->image_lttPlot->setText(sm_fail.c_str());
+    ui->image_lttPlot_extant->setText(sm_fail.c_str());
+    ui->image_phylogeny->setText(sm_fail.c_str());
+    ui->image_phylogeny_extant->setText(sm_fail.c_str());
+    ui->image_phylogeny_extant_newickutils->setText(sm_fail.c_str());
+    return;
+  }
+  DisplayPhylogenyNewickUtilsExtant(newick);
   this->repaint();
   DisplayPhylogenyRall(newick);
   this->repaint();
   DisplayPhylogenyRextant(newick);
-  this->repaint();
-  DisplayPhylogenyNewickUtilsAll(newick);
-  this->repaint();
-  DisplayPhylogenyNewickUtilsExtant(newick);
   this->repaint();
   DisplayNewickToLttPlot(newick);
   this->repaint();

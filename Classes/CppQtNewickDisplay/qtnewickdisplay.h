@@ -31,7 +31,7 @@ private:
   void DisplayPhylogenyNewickUtilsExtant(const std::string& newick) noexcept;
   void DisplayPhylogenyRall(const std::string& newick) noexcept;
   void DisplayPhylogenyRextant(const std::string& newick) noexcept;
-
+  static const std::string sm_fail;
 };
 
 #endif // QTNEWICKDISPLAY_H
