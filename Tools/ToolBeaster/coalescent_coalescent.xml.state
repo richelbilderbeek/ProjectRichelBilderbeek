@@ -1,0 +1,20 @@
+<itsabeastystatewerein version='2.0' sample='10000'>
+<statenode id='Tree.t:coalescent_coalescent'>((((0:1.9731487278617976,(2:0.02385862495086483,5:0.02385862495086483)12:1.9492901029109329)17:0.5602600580639896,(1:0.15558418773033483,6:0.15558418773033483)10:2.377824598195452)13:3.54396556997399,(3:0.8046576734483606,9:0.8046576734483606)16:5.272716682451416)11:6.921407992888125,((4:0.6362512899069979,8:0.6362512899069979)14:2.317725193372067,7:2.9539764832790647)15:10.044805865508838)18:0.0</statenode>
+<statenode id='RBcount.s:coalescent_coalescent'>RBcount.s:coalescent_coalescent[1 1] (0,5): 1 </statenode>
+<statenode id='RBrates.s:coalescent_coalescent'>RBrates.s:coalescent_coalescent[5 1] (0.01,100.0): 0.23132701641187525 1.657609536938711 0.439309067785706 0.8175615492373255 0.5083458236172506 </statenode>
+<statenode id='popSize.t:coalescent_coalescent'>popSize.t:coalescent_coalescent[1 1] (-Infinity,Infinity): 8.965749070849592 </statenode>
+</itsabeastystatewerein>
+<!--
+{operators:[
+{id:"treeScaler.t:coalescent_coalescent", p:0.5, accept:145, reject:260, acceptFC:0, rejectFC:0, rejectIv:0, rejectOp:0},
+{id:"treeRootScaler.t:coalescent_coalescent", p:0.5, accept:203, reject:202, acceptFC:0, rejectFC:0, rejectIv:45, rejectOp:45},
+{id:"UniformOperator.t:coalescent_coalescent", p:NaN, accept:1970, reject:1955, acceptFC:0, rejectFC:0, rejectIv:0, rejectOp:0},
+{id:"SubtreeSlide.t:coalescent_coalescent", p:1.0, accept:991, reject:997, acceptFC:0, rejectFC:0, rejectIv:440, rejectOp:440},
+{id:"narrow.t:coalescent_coalescent", p:NaN, accept:1245, reject:599, acceptFC:0, rejectFC:0, rejectIv:0, rejectOp:0},
+{id:"wide.t:coalescent_coalescent", p:NaN, accept:81, reject:312, acceptFC:0, rejectFC:0, rejectIv:207, rejectOp:207},
+{id:"WilsonBalding.t:coalescent_coalescent", p:NaN, accept:54, reject:333, acceptFC:0, rejectFC:0, rejectIv:108, rejectOp:108},
+{id:"RBOperator.s:coalescent_coalescent", p:NaN, accept:50, reject:94, acceptFC:0, rejectFC:0, rejectIv:57, rejectOp:57},
+{id:"RBratescaler.s:coalescent_coalescent", p:0.5, accept:43, reject:70, acceptFC:0, rejectFC:0, rejectIv:46, rejectOp:46},
+{id:"PopSizeScaler.t:coalescent_coalescent", p:0.75, accept:325, reject:72, acceptFC:0, rejectFC:0, rejectIv:0, rejectOp:0}
+]}
+-->

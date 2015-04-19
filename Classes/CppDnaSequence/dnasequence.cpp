@@ -5,7 +5,7 @@
 #include <sstream>
 #include <stdexcept>
 
-DnaSequence::DnaSequence(const std::string& description, const std::string& sequence)
+ribi::DnaSequence::DnaSequence(const std::string& description, const std::string& sequence)
   : m_description{description},
     m_sequence{sequence}
 {
@@ -26,7 +26,7 @@ DnaSequence::DnaSequence(const std::string& description, const std::string& sequ
 }
 
 
-bool operator==(const DnaSequence& lhs, const DnaSequence& rhs) noexcept
+bool ribi::operator==(const DnaSequence& lhs, const DnaSequence& rhs) noexcept
 {
   return
     lhs.GetDescription() == rhs.GetDescription()
@@ -34,7 +34,7 @@ bool operator==(const DnaSequence& lhs, const DnaSequence& rhs) noexcept
   ;
 }
 
-bool operator!=(const DnaSequence& lhs, const DnaSequence& rhs) noexcept
+bool ribi::operator!=(const DnaSequence& lhs, const DnaSequence& rhs) noexcept
 {
   return !(lhs == rhs);
 }

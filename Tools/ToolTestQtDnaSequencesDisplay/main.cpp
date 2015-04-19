@@ -1,10 +1,12 @@
-#include "qttestqtdnadisplay.h"
+#include "qttestqtdnasequencesdisplay.h"
+#include "dna_r.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtTestQtDnaDisplay w;
+  DnaR();
+  QtTestQtDnaSequencesDisplay w;
   w.show();
 
   return a.exec();

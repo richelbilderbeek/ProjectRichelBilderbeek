@@ -3,8 +3,6 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Tools/ToolFisherWrighter/dna.cpp \
-    ../../Tools/ToolFisherWrighter/dnasequence.cpp \
-    ../../Tools/ToolFisherWrighter/dnasequence_test.cpp \
     ../../Tools/ToolFisherWrighter/dna_test.cpp \
     ../../Tools/ToolFisherWrighter/generation.cpp \
     ../../Tools/ToolFisherWrighter/generation_test.cpp \
@@ -19,7 +17,6 @@ SOURCES += \
 
 HEADERS += \
     ../../Tools/ToolFisherWrighter/dna.h \
-    ../../Tools/ToolFisherWrighter/dnasequence.h \
     ../../Tools/ToolFisherWrighter/generation.h \
     ../../Tools/ToolFisherWrighter/helper.h \
     ../../Tools/ToolFisherWrighter/individual.h \

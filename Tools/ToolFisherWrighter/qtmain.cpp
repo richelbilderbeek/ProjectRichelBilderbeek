@@ -6,6 +6,7 @@
 #include <future>
 #include "qtfisherwrightermaindialog.h"
 #include "counter.h"
+#include "dna_r.h"
 #include "phylogeny_r.h"
 #include "newickutils.h"
 #pragma GCC diagnostic pop
@@ -14,6 +15,7 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
 
+  std::async([](){ DnaR();} );
   std::async([](){ PhylogenyR();} );
   std::async([](){ NewickUtils();} );
   std::async([](){ ribi::Counter();} );

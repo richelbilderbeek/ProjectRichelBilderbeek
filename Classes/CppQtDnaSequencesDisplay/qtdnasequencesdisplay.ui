@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtDnaDisplay</class>
- <widget class="QWidget" name="QtDnaDisplay">
+ <class>QtDnaSequencesDisplay</class>
+ <widget class="QWidget" name="QtDnaSequencesDisplay">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="image_dna">
+    <widget class="QLabel" name="image_dna_sequences">
      <property name="text">
       <string>[PNG]</string>
      </property>

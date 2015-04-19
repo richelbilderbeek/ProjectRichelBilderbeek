@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" version="2.0">
+
+
+    <data
+id="test_output_1"
+name="alignment">
+                    <sequence id="seq_1" taxon="1" totalcount="4" value="CCATACGCCC"/>
+                    <sequence id="seq_2" taxon="2" totalcount="4" value="CCATACGCCG"/>
+                    <sequence id="seq_3" taxon="3" totalcount="4" value="CCATACGCCC"/>
+                </data>
+
+
+    
+
+
+    
+
+
+    
+<map name="Beta">beast.math.distributions.Beta</map>
+<map name="Exponential">beast.math.distributions.Exponential</map>
+<map name="InverseGamma">beast.math.distributions.InverseGamma</map>
+<map name="LogNormal">beast.math.distributions.LogNormalDistributionModel</map>
+<map name="Gamma">beast.math.distributions.Gamma</map>
+<map name="Uniform">beast.math.distributions.Uniform</map>
+<map name="prior">beast.math.distributions.Prior</map>
+<map name="LaplaceDistribution">beast.math.distributions.LaplaceDistribution</map>
+<map name="OneOnX">beast.math.distributions.OneOnX</map>
+<map name="Normal">beast.math.distributions.Normal</map>
+
+
+<run chainLength="10000000" id="mcmc" spec="MCMC">
+    <state id="state" storeEvery="5000">
+        <tree id="Tree.t:test_output_1" name="stateNode">
+            <taxonset id="TaxonSet.test_output_1" spec="TaxonSet">
+                <data
+idref="test_output_1"
+name="alignment"/>
+            </taxonset>
+        </tree>
+        <stateNode id="RBcount.s:test_output_1" lower="0" spec="parameter.IntegerParameter" upper="5">5</stateNode>
+        <parameter dimension="5" id="RBrates.s:test_output_1" lower="0.01" name="stateNode" upper="100.0">1.0</parameter>
+        <parameter id="popSize.t:test_output_1" name="stateNode">0.3</parameter>
+    </state>
+
+    <init estimate="false" id="RandomTree.t:test_output_1" initial="@Tree.t:test_output_1" spec="beast.evolution.tree.RandomTree" taxa="@test_output_1">
+        <populationModel id="ConstantPopulation0.t:test_output_1" spec="ConstantPopulation">
+            <parameter id="randomPopSize.t:test_output_1" name="popSize">1.0</parameter>
+        </populationModel>
+    </init>
+
+    <distribution id="posterior" spec="util.CompoundDistribution">
+        <distribution id="prior" spec="util.CompoundDistribution">
+            <distribution id="CoalescentConstant.t:test_output_1" spec="Coalescent">
+                <populationModel id="ConstantPopulation.t:test_output_1" popSize="@popSize.t:test_output_1" spec="ConstantPopulation"/>
+                <treeIntervals id="TreeIntervals.t:test_output_1" spec="TreeIntervals" tree="@Tree.t:test_output_1"/>
+            </distribution>
+            <distribution count="@RBcount.s:test_output_1" id="RBprior.s:test_output_1" spec="beast.math.distributions.RBPrior" x="@RBrates.s:test_output_1">
+                <Gamma id="Gamma.0" name="distr">
+                    <parameter id="RealParameter.0" lower="0.0" name="alpha" upper="0.0">0.2</parameter>
+                    <parameter id="RealParameter.01" lower="0.0" name="beta" upper="0.0">5.0</parameter>
+                </Gamma>
+            </distribution>
+            <prior id="PopSizePrior.t:test_output_1" name="distribution" x="@popSize.t:test_output_1">
+                <OneOnX id="OneOnX.0" name="distr"/>
+            </prior>
+        </distribution>
+        <distribution id="likelihood" spec="util.CompoundDistribution">
+            <distribution data="@test_output_1" id="treeLikelihood.test_output_1" spec="TreeLikelihood" tree="@Tree.t:test_output_1">
+                <siteModel id="SiteModel.s:test_output_1" spec="SiteModel">
+                    <parameter estimate="false" id="mutationRate.s:test_output_1" name="mutationRate">1.0</parameter>
+                    <parameter estimate="false" id="gammaShape.s:test_output_1" name="shape">1.0</parameter>
+                    <parameter estimate="false" id="proportionInvariant.s:test_output_1" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                    <substModel count="@RBcount.s:test_output_1" id="RB.s:test_output_1" rates="@RBrates.s:test_output_1" spec="RB">
+                        <frequencies data="@test_output_1" id="freqs.s:test_output_1" spec="Frequencies"/>
+                    </substModel>
+                </siteModel>
+                <branchRateModel id="StrictClock.c:test_output_1" spec="beast.evolution.branchratemodel.StrictClockModel">
+                    <parameter estimate="false" id="clockRate.c:test_output_1" name="clock.rate">1.0</parameter>
+                </branchRateModel>
+            </distribution>
+        </distribution>
+        <distribution id="fossilCalibrations" spec="util.CompoundDistribution"/>
+    </distribution>
+
+    <operator id="treeScaler.t:test_output_1" scaleFactor="0.5" spec="ScaleOperator" tree="@Tree.t:test_output_1" weight="3.0"/>
+
+    <operator id="treeRootScaler.t:test_output_1" rootOnly="true" scaleFactor="0.5" spec="ScaleOperator" tree="@Tree.t:test_output_1" weight="3.0"/>
+
+    <operator id="UniformOperator.t:test_output_1" spec="Uniform" tree="@Tree.t:test_output_1" weight="30.0"/>
+
+    <operator id="SubtreeSlide.t:test_output_1" spec="SubtreeSlide" tree="@Tree.t:test_output_1" weight="15.0"/>
+
+    <operator id="narrow.t:test_output_1" spec="Exchange" tree="@Tree.t:test_output_1" weight="15.0"/>
+
+    <operator id="wide.t:test_output_1" isNarrow="false" spec="Exchange" tree="@Tree.t:test_output_1" weight="3.0"/>
+
+    <operator id="WilsonBalding.t:test_output_1" spec="WilsonBalding" tree="@Tree.t:test_output_1" weight="3.0"/>
+
+    <operator count="@RBcount.s:test_output_1" id="RBOperator.s:test_output_1" rates="@RBrates.s:test_output_1" spec="RBOperator" weight="1.0"/>
+
+    <operator count="@RBcount.s:test_output_1" id="RBratescaler.s:test_output_1" parameter="@RBrates.s:test_output_1" scaleFactor="0.5" spec="RBScaleOperator" weight="1.0"/>
+
+    <operator id="PopSizeScaler.t:test_output_1" parameter="@popSize.t:test_output_1" scaleFactor="0.75" spec="ScaleOperator" weight="3.0"/>
+
+    <logger fileName="test_output_1.log" id="tracelog" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+        <log idref="treeLikelihood.test_output_1"/>
+        <log id="TreeHeight.t:test_output_1" spec="beast.evolution.tree.TreeHeightLogger" tree="@Tree.t:test_output_1"/>
+        <log idref="RBcount.s:test_output_1"/>
+        <parameter idref="RBrates.s:test_output_1" name="log"/>
+        <parameter idref="popSize.t:test_output_1" name="log"/>
+        <log idref="CoalescentConstant.t:test_output_1"/>
+    </logger>
+
+    <logger id="screenlog" logEvery="1000">
+        <log idref="posterior"/>
+        <log arg="@posterior" id="ESS.0" spec="util.ESS"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+    </logger>
+
+    <logger fileName="$(tree).trees" id="treelog.t:test_output_1" logEvery="1000" mode="tree">
+        <log id="TreeWithMetaDataLogger.t:test_output_1" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:test_output_1"/>
+    </logger>
+
+</run>
+
+</beast>

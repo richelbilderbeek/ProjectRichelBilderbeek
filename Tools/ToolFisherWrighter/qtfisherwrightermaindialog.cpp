@@ -12,17 +12,20 @@
 #include "ui_qtfisherwrightermaindialog.h"
 #include "simulation.h"
 #include "phylogeny_r.h"
+#include "qtdnasequencesdisplay.h"
 #include "qtnewickdisplay.h"
 
 QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtFisherWrighterMainDialog),
+  m_dna_sequences_display{new QtDnaSequencesDisplay(this)},
   m_newick_display{new QtNewickDisplay(this)}
 {
   ui->setupUi(this);
 
   assert(!ui->area_results->layout());
   assert(ui->results->layout());
+  ui->results->layout()->addWidget(m_dna_sequences_display);
   ui->results->layout()->addWidget(m_newick_display);
 
   //Put the dialog in the screen center
@@ -32,7 +35,7 @@ QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
     this->move( screen.center() - this->rect().center() );
   }
 
-  QTimer::singleShot(1000,this,SLOT(on_button_run_clicked()));
+  //QTimer::singleShot(1000,this,SLOT(on_button_run_clicked()));
 }
 
 QtFisherWrighterMainDialog::~QtFisherWrighterMainDialog()
@@ -71,8 +74,13 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
   }
   const std::string newick{simulation.GetPedigree()};
 
+  this->m_dna_sequences_display->SetDnaSequences(simulation.GetCurrentSequences());
+
+  this->repaint();
+
   //Display newick
   this->m_newick_display->SetNewick(newick);
+
 }
 
 int QtFisherWrighterMainDialog::ReadNumberOfGenerations() const noexcept

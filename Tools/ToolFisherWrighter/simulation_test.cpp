@@ -67,7 +67,7 @@ void Simulation::Test() noexcept
     }
 
     //Sample the alignments
-    const std::vector<DnaSequence> alignments{
+    const std::vector<ribi::DnaSequence> alignments{
       simulation.GetCurrentSequences()
     };
     assert(parameters.GetPopSize() == static_cast<int>(alignments.size()));

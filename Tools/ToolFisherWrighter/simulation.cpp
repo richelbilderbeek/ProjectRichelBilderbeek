@@ -115,7 +115,7 @@ std::vector<Parameters> Simulation::CreateTestParameters() noexcept
   return v;
 }
 
-std::vector<DnaSequence> Simulation::GetCurrentSequences() const noexcept
+std::vector<ribi::DnaSequence> Simulation::GetCurrentSequences() const noexcept
 {
   return GetGenerations().back().GetSequences();
 }

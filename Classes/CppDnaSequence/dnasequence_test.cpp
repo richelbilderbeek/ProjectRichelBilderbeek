@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 #ifndef NDEBUG
-void DnaSequence::Test() noexcept
+void ribi::DnaSequence::Test() noexcept
 {
   {
     static bool is_tested {false};

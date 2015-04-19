@@ -8,7 +8,7 @@
 #include "generation.h"
 #include "individual.h"
 #include "parameters.h"
-#include "sequence.h"
+#include "dnasequence.h"
 
 ///Fisher-Wright simulation
 ///with individuals that only have DNA
@@ -22,7 +22,7 @@ struct Simulation
 
   ///Obtain the sequences of the current (most recent) simulation
   ///Equivalent to simulation.GetGenerations().back().GetSequences()
-  std::vector<DnaSequence> GetCurrentSequences() const noexcept;
+  std::vector<ribi::DnaSequence> GetCurrentSequences() const noexcept;
 
   const std::vector<Generation>& GetGenerations() const noexcept { return m_generations; }
 

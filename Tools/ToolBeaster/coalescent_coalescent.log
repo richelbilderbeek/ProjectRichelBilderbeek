@@ -1,0 +1,58 @@
+#
+#model:
+#
+#<?xml version="1.0" encoding="UTF-8" standalone="no"?><input id="posterior" spec="beast.core.util.CompoundDistribution">
+#    <distribution id="prior" spec="beast.core.util.CompoundDistribution">
+#        <distribution id="CoalescentConstant.t:coalescent_coalescent" spec="beast.evolution.tree.coalescent.Coalescent">
+#            <populationModel id="ConstantPopulation.t:coalescent_coalescent" spec="beast.evolution.tree.coalescent.ConstantPopulation">
+#                <parameter id="popSize.t:coalescent_coalescent" name="popSize">0.3</parameter>
+#            </populationModel>
+#            <treeIntervals id="TreeIntervals.t:coalescent_coalescent" spec="beast.evolution.tree.coalescent.TreeIntervals">
+#                <tree id="Tree.t:coalescent_coalescent">
+#                    <taxonset id="TaxonSet.coalescent_coalescent" spec="beast.evolution.alignment.TaxonSet">
+#                    </taxonset>
+#                </tree>
+#            </treeIntervals>
+#        </distribution>
+#        <distribution id="RBprior.s:coalescent_coalescent" spec="beast.math.distributions.RBPrior">
+#            <count id="RBcount.s:coalescent_coalescent" lower="0" spec="beast.core.parameter.IntegerParameter" upper="5">5</count>
+#            <parameter dimension="5" id="RBrates.s:coalescent_coalescent" lower="0.01" name="x" upper="100.0">1.0</parameter>
+#            <Gamma id="Gamma.0" name="distr">
+#                <parameter id="RealParameter.0" lower="0.0" name="alpha" upper="0.0">0.2</parameter>
+#                <parameter id="RealParameter.01" lower="0.0" name="beta" upper="0.0">5.0</parameter>
+#            </Gamma>
+#        </distribution>
+#        <prior id="PopSizePrior.t:coalescent_coalescent" name="distribution" x="@popSize.t:coalescent_coalescent">
+#            <OneOnX id="OneOnX.0" name="distr"/>
+#        </prior>
+#    </distribution>
+#    <distribution id="likelihood" spec="beast.core.util.CompoundDistribution">
+#        <distribution data="@coalescent_coalescent" id="treeLikelihood.coalescent_coalescent" spec="beast.evolution.likelihood.TreeLikelihood" tree="@Tree.t:coalescent_coalescent">
+#            <siteModel id="SiteModel.s:coalescent_coalescent" spec="beast.evolution.sitemodel.SiteModel">
+#                <parameter estimate="false" id="mutationRate.s:coalescent_coalescent" name="mutationRate">1.0</parameter>
+#                <parameter estimate="false" id="gammaShape.s:coalescent_coalescent" name="shape">1.0</parameter>
+#                <parameter estimate="false" id="proportionInvariant.s:coalescent_coalescent" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+#                <substModel count="@RBcount.s:coalescent_coalescent" id="RB.s:coalescent_coalescent" rates="@RBrates.s:coalescent_coalescent" spec="beast.evolution.substitutionmodel.RB">
+#                    <frequencies data="@coalescent_coalescent" id="freqs.s:coalescent_coalescent" spec="beast.evolution.substitutionmodel.Frequencies"/>
+#                </substModel>
+#            </siteModel>
+#            <branchRateModel id="StrictClock.c:coalescent_coalescent" spec="beast.evolution.branchratemodel.StrictClockModel">
+#                <parameter estimate="false" id="clockRate.c:coalescent_coalescent" name="clock.rate">1.0</parameter>
+#            </branchRateModel>
+#        </distribution>
+#    </distribution>
+#    <distribution id="fossilCalibrations" spec="beast.core.util.CompoundDistribution"/>
+#</input>
+#
+Sample	posterior	likelihood	prior	treeLikelihood	TreeHeight	RBcount	RBrates.1	RBrates.2	RBrates.3	RBrates.4	RBrates.5	popSize	CoalescentConstant	
+0	-413.4128660458178	-389.12919206656545	-24.283673979252338	-389.12919206656545	1.6089585367516919	5	1.0	1.0	1.0	1.0	1.0	0.3	-15.257889758990256	
+1000	-269.0635363135614	-243.74312388228466	-25.32041243127674	-243.74312388228466	10.446576628874377	1	0.8142163685397494	0.8050151449053166	0.10380616347812315	1.0	1.4526476577428866	3.5036820750344684	-22.222226627131082	
+2000	-274.2786628186822	-244.73753291402855	-29.541129904653662	-244.73753291402855	12.644669866600697	1	0.9739518529870884	3.4840212836284783	0.10380616347812315	1.0	1.4526476577428866	6.282460448100343	-25.683741161340137	
+3000	-269.0325851998188	-243.9938297469351	-25.038755452883745	-243.9938297469351	5.020915942142939	0	0.9249321668961669	1.8977480655967702	0.10380616347812315	1.0	1.4526476577428866	5.04909144810414	-23.419547137048955	
+4000	-273.2579452660916	-243.50163253760095	-29.756312728490663	-243.50163253760095	6.328273810640802	0	0.9249321668961669	1.8977480655967702	0.10380616347812315	1.0	1.4526476577428866	6.812855156335001	-27.83750143682018	
+5000	-267.7923466736113	-241.684359645512	-26.10798702809928	-241.684359645512	6.446339867673825	0	0.9459819009054228	1.8977480655967702	0.10380616347812315	1.0	1.4526476577428866	4.730285661417467	-24.554001433884707	
+6000	-269.77133554930924	-239.32036452288483	-30.450971026424387	-239.32036452288483	7.202723962931979	5	0.7301502694578936	0.35720195402999755	1.0840033902024442	0.35372479558393544	0.0664517237780367	3.985245665937343	-23.33135940242714	
+7000	-276.9080568900516	-243.7234378701936	-33.18461901985799	-243.7234378701936	6.848149533059985	5	0.33133982992328886	0.5760540322708726	1.0840033902024442	0.8175615492373255	0.5083458236172506	4.985695809740387	-23.64764884565151	
+8000	-271.71843899441814	-242.54659463419844	-29.171844360219673	-242.54659463419844	8.222670508237377	1	0.9366897157093839	0.5760540322708726	1.0840033902024442	0.8175615492373255	0.5083458236172506	6.8711185518811035	-25.2635506607965	
+9000	-270.61385777387767	-241.12385509699922	-29.490002676878433	-241.12385509699922	10.329304877421029	0	0.9268499599588388	1.657609536938711	0.439309067785706	0.8175615492373255	0.5083458236172506	7.171990640328593	-27.519819426165874	
+10000	-267.1007417611015	-237.2229549238684	-29.877786837233142	-237.2229549238684	12.998782348787902	1	0.23132701641187525	1.657609536938711	0.439309067785706	0.8175615492373255	0.5083458236172506	8.965749070849592	-26.963296701710508	

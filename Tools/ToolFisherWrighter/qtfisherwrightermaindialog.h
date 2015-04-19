@@ -1,6 +1,7 @@
 #ifndef QTFISHERWRIGHTERMAINDIALOG_H
 #define QTFISHERWRIGHTERMAINDIALOG_H
 
+#include <vector>
 #include <QDialog>
 #include "parameters.h"
 
@@ -9,6 +10,8 @@ namespace Ui {
 }
 
 struct QtNewickDisplay;
+struct QtDnaSequencesDisplay;
+
 
 class QtFisherWrighterMainDialog : public QDialog
 {
@@ -25,6 +28,8 @@ private slots:
 private:
   Ui::QtFisherWrighterMainDialog *ui;
 
+  ///Displays the resulting DnaSequences
+  QtDnaSequencesDisplay * const m_dna_sequences_display;
 
   ///Displays the resulting Newick
   QtNewickDisplay * const m_newick_display;

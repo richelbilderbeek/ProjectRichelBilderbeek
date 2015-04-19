@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "individual.h"
-#include "sequence.h"
+#include "dnasequence.h"
 
 //Just a collection of Individuals
 struct Generation
@@ -15,7 +15,7 @@ struct Generation
 
   std::vector<Individual>& GetIndividuals() noexcept { return m_individuals; }
   const std::vector<Individual>& GetIndividuals() const noexcept { return m_individuals; }
-  std::vector<DnaSequence> GetSequences() const noexcept;
+  std::vector<ribi::DnaSequence> GetSequences() const noexcept;
 
   std::vector<Individual>::size_type size() const noexcept { return m_individuals.size(); }
   const Individual& operator[](const int index) const noexcept;

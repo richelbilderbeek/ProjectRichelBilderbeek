@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace ribi {
+
 struct DnaSequence
 {
   explicit DnaSequence(const std::string& description, const std::string& sequence);
@@ -22,4 +24,5 @@ struct DnaSequence
 bool operator==(const DnaSequence& lhs, const DnaSequence& rhs) noexcept;
 bool operator!=(const DnaSequence& lhs, const DnaSequence& rhs) noexcept;
 
+} //~namespace ribi
 #endif // RIBI_DNASEQUENCE_H

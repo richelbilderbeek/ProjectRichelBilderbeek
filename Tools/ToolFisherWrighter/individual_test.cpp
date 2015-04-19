@@ -4,8 +4,8 @@
 #include <iostream>
 
 #include "counter.h"
+#include "dnasequence.h"
 #include "dna.h"
-#include "sequence.h"
 #include "parameters.h"
 
 #ifndef NDEBUG
@@ -16,6 +16,7 @@ void Individual::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  using ribi::DnaSequence;
   //operator==
   {
     const double mutation_rate1{0.123};
