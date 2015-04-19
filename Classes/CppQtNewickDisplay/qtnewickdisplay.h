@@ -13,6 +13,8 @@ class QtNewickDisplay : public QWidget
 
 public:
   explicit QtNewickDisplay(QWidget *parent = 0);
+  QtNewickDisplay(const QtNewickDisplay&) = delete;
+  QtNewickDisplay& operator=(const QtNewickDisplay&) = delete;
   ~QtNewickDisplay();
 
   void SetNewick(const std::string& newick) noexcept;
