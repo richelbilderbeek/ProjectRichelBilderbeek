@@ -175,12 +175,14 @@ void QtNewickDisplay::DisplayPhylogeny(
 
 void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
 {
-  DisplayNewick(newick,Lineages::all);
-  this->repaint();
-  DisplayPhylogeny(newick,Lineages::all,Tool::NewickUtils);
-  this->repaint();
-  DisplayNewick(newick,Lineages::extant);
-  this->repaint();
+  {
+    const std::vector<std::function<void()>> fs = {
+      [this,newick]() { DisplayNewick(newick,Lineages::all); },
+      [this,newick]() { DisplayPhylogeny(newick,Lineages::all,Tool::NewickUtils); },
+      [this,newick]() { DisplayNewick(newick,Lineages::extant); }
+    };
+    for (const auto f: fs) { f(); this->repaint();}
+  }
   //Take a shortcut if extant species cannot be calculated by the R ape package
   if (ui->line_newick_extant->text().toStdString() == sm_fail)
   {
@@ -191,14 +193,17 @@ void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
     ui->image_phylogeny_phylogenyr_extant->setText(sm_fail.c_str());
     return;
   }
-  DisplayPhylogeny(newick,Lineages::extant,Tool::NewickUtils);
-  this->repaint();
-  DisplayPhylogeny(newick,Lineages::all,Tool::PhylogenyR);
-  this->repaint();
-  DisplayPhylogeny(newick,Lineages::extant,Tool::PhylogenyR);
-  this->repaint();
-  DisplayNewickToLttPlot(newick,Lineages::all);
-  this->repaint();
-  DisplayNewickToLttPlot(newick,Lineages::extant);
-  this->repaint();
+  //Do all functions that do work
+  {
+    const std::vector<std::function<void()>> fs = {
+      [this,newick]() { DisplayPhylogeny(newick,Lineages::extant,Tool::NewickUtils); },
+      [this,newick]() { DisplayPhylogeny(newick,Lineages::all,Tool::PhylogenyR); },
+      [this,newick]() { DisplayPhylogeny(newick,Lineages::extant,Tool::PhylogenyR); },
+      [this,newick]() { DisplayNewickToLttPlot(newick,Lineages::all); },
+      [this,newick]() { DisplayNewickToLttPlot(newick,Lineages::extant); },
+      [this,newick]() {   },
+      [this,newick]() {   },
+    };
+    for (const auto f: fs) { f(); this->repaint();}
+  }
 }
