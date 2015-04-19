@@ -90,10 +90,6 @@ int main()
     Beast().Run(beast_xml_output_filename);
     assert(ribi::fileio::FileIo().IsRegularFile(beast_xml_output_filename));
   }
-  if (verbose) { TRACE("Create BeastStateFile for unknown purposes"); }
-
-  assert(ribi::fileio::FileIo().IsRegularFile("birthdeath_birthdeath.xml.state"));
-  BeastStateFile("birthdeath_birthdeath.xml.state");
 
   if (verbose) { TRACE("Interpret BEAST2 results"); }
   {
