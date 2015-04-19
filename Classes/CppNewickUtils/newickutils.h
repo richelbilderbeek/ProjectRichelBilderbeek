@@ -31,10 +31,6 @@ struct NewickUtils
   ) const;
 
   private:
-  std::vector<std::string> FileToVector(
-    const std::string& filename
-  ) const noexcept;
-
   static const std::string sm_newick_utils_path;
 
   #ifndef NDEBUG

@@ -42,24 +42,6 @@ std::string NewickUtils::DropExtinct(const std::string& newick) const
   return PhylogenyR().DropExtict(newick);
 }
 
-///FileToVector reads a file and converts it to a std::vector<std::string>
-///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-std::vector<std::string> NewickUtils::FileToVector(
-  const std::string& filename
-) const noexcept
-{
-  assert(ribi::fileio::FileIo().IsRegularFile(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
-}
-
 std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
 {
   const std::string executable{sm_newick_utils_path + "/nw_display"};
@@ -73,7 +55,7 @@ std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
 
   //Result
   const std::vector<std::string> v{
-    FileToVector(tmp_filename)
+    ribi::fileio::FileIo().FileToVector(tmp_filename)
   };
 
   //Clean up
