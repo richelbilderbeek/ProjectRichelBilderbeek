@@ -22,8 +22,8 @@ void Individual::Test() noexcept
     const double mutation_rate2{0.123};
     std::mt19937 rnd_engine1;
     std::mt19937 rnd_engine2;
-    const Sequence sequence1("description","ACGTACGTACGT");
-    const Sequence sequence2("description","ACGTACGTACGT");
+    const DnaSequence sequence1("description","ACGTACGTACGT");
+    const DnaSequence sequence2("description","ACGTACGTACGT");
     assert(mutation_rate1 == mutation_rate2);
     assert(rnd_engine1 == rnd_engine2);
     assert(sequence1 == sequence2);
@@ -128,8 +128,8 @@ void Individual::Test() noexcept
     const double mutation_rate2{0.123};
     std::mt19937 rnd_engine1{42};
     std::mt19937 rnd_engine2{42};
-    const Sequence sequence1("description","ACGTACGTACGT");
-    const Sequence sequence2("description","ACGTACGTACGT");
+    const DnaSequence sequence1("description","ACGTACGTACGT");
+    const DnaSequence sequence2("description","ACGTACGTACGT");
     assert(mutation_rate1 == mutation_rate2);
     assert(rnd_engine1 == rnd_engine2);
     assert(sequence1 == sequence2);
@@ -159,8 +159,8 @@ void Individual::Test() noexcept
     const double mutation_rate2{0.123};
     std::mt19937 rnd_engine1{42};
     std::mt19937 rnd_engine2{69};
-    const Sequence sequence1("description","ACGTACGTACGT");
-    const Sequence sequence2("description","ACGTACGTACGT");
+    const DnaSequence sequence1("description","ACGTACGTACGT");
+    const DnaSequence sequence2("description","ACGTACGTACGT");
     assert(mutation_rate1 == mutation_rate2);
     assert(rnd_engine1 != rnd_engine2);
     assert(sequence1 == sequence2);

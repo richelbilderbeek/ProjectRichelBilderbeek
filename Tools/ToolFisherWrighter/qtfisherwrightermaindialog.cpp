@@ -5,6 +5,7 @@
 #include <sstream>
 
 #include <QDesktopWidget>
+#include <QTimer>
 
 #include "fileio.h"
 #include "newickutils.h"
@@ -24,15 +25,14 @@ QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
   assert(ui->results->layout());
   ui->results->layout()->addWidget(m_newick_display);
 
-  ui->button_run->click();
-
-
   //Put the dialog in the screen center
   {
     const QRect screen = QApplication::desktop()->screenGeometry();
     this->setGeometry(0,0,screen.width() * 8 / 10, screen.height() * 8 / 10);
     this->move( screen.center() - this->rect().center() );
   }
+
+  QTimer::singleShot(1000,this,SLOT(on_button_run_clicked()));
 }
 
 QtFisherWrighterMainDialog::~QtFisherWrighterMainDialog()
@@ -86,3 +86,4 @@ void QtFisherWrighterMainDialog::on_button_run_next_clicked()
   ui->box_seed->setValue(ui->box_seed->value() + 1);
   ui->button_run->click();
 }
+

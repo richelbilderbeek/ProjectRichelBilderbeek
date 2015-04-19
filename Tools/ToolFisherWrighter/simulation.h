@@ -22,7 +22,7 @@ struct Simulation
 
   ///Obtain the sequences of the current (most recent) simulation
   ///Equivalent to simulation.GetGenerations().back().GetSequences()
-  std::vector<Sequence> GetCurrentSequences() const noexcept;
+  std::vector<DnaSequence> GetCurrentSequences() const noexcept;
 
   const std::vector<Generation>& GetGenerations() const noexcept { return m_generations; }
 

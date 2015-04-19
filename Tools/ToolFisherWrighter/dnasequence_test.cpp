@@ -1,10 +1,10 @@
-#include "sequence.h"
+#include "dnasequence.h"
 
 #include <cassert>
 #include <stdexcept>
 
 #ifndef NDEBUG
-void Sequence::Test() noexcept
+void DnaSequence::Test() noexcept
 {
   {
     static bool is_tested {false};
@@ -15,7 +15,7 @@ void Sequence::Test() noexcept
   {
     const std::string description{"description"};
     const std::string sequence{"ACGT"};
-    const Sequence s(description,sequence);
+    const DnaSequence s(description,sequence);
     assert(s.GetDescription() == description);
     assert(s.GetSequence() == sequence);
   }
@@ -23,28 +23,28 @@ void Sequence::Test() noexcept
   {
     const std::string description{"description"};
     const std::string sequence{"ACGT"};
-    const Sequence s(description,sequence);
-    const Sequence t(description,sequence);
+    const DnaSequence s(description,sequence);
+    const DnaSequence t(description,sequence);
     assert(s == t);
   }
   //operator!= on different description
   {
     const std::string sequence{"ACGT"};
-    const Sequence s("description1",sequence);
-    const Sequence t("description2",sequence);
+    const DnaSequence s("description1",sequence);
+    const DnaSequence t("description2",sequence);
     assert(s != t);
   }
   //operator!= on different sequence
   {
     const std::string description{"description"};
-    const Sequence s(description,"ACGT");
-    const Sequence t(description,"ACGTT");
+    const DnaSequence s(description,"ACGT");
+    const DnaSequence t(description,"ACGTT");
     assert(s != t);
   }
   {
     try
     {
-      Sequence s("description","incorrect_sequence");
+      DnaSequence s("description","incorrect_sequence");
       assert(!"Should not get here");
     }
     catch (std::logic_error&)

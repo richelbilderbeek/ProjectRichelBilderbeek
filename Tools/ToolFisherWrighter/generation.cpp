@@ -12,9 +12,9 @@ Generation::Generation(const std::vector<Individual>& individuals)
 }
 
 
-std::vector<Sequence> Generation::GetSequences() const noexcept
+std::vector<DnaSequence> Generation::GetSequences() const noexcept
 {
-  std::vector<Sequence> alignments;
+  std::vector<DnaSequence> alignments;
   std::transform(
     std::begin(m_individuals),
     std::end(m_individuals),
@@ -23,7 +23,7 @@ std::vector<Sequence> Generation::GetSequences() const noexcept
     {
       const std::string description = std::to_string(i.GetIndex());
       assert(std::stoi(description) == i.GetIndex());
-      return Sequence(description,i.GetDna().GetSequence());
+      return DnaSequence(description,i.GetDna().GetSequence());
     }
   );
 

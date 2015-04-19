@@ -1,11 +1,11 @@
-#include "sequence.h"
+#include "dnasequence.h"
 
 #include <algorithm>
 #include <cassert>
 #include <sstream>
 #include <stdexcept>
 
-Sequence::Sequence(const std::string& description, const std::string& sequence)
+DnaSequence::DnaSequence(const std::string& description, const std::string& sequence)
   : m_description{description},
     m_sequence{sequence}
 {
@@ -26,7 +26,7 @@ Sequence::Sequence(const std::string& description, const std::string& sequence)
 }
 
 
-bool operator==(const Sequence& lhs, const Sequence& rhs) noexcept
+bool operator==(const DnaSequence& lhs, const DnaSequence& rhs) noexcept
 {
   return
     lhs.GetDescription() == rhs.GetDescription()
@@ -34,7 +34,7 @@ bool operator==(const Sequence& lhs, const Sequence& rhs) noexcept
   ;
 }
 
-bool operator!=(const Sequence& lhs, const Sequence& rhs) noexcept
+bool operator!=(const DnaSequence& lhs, const DnaSequence& rhs) noexcept
 {
   return !(lhs == rhs);
 }

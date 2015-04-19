@@ -19,6 +19,12 @@ void PhylogenyR::Test() noexcept
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
+  const bool test_throughly{false};
+  if (!test_throughly)
+  {
+    TRACE("PhylogenyR not thoroughly tested");
+    return;
+  }
   if (verbose) { TRACE("NewickToPhylogeny as SVG of extinct and extant species"); }
   {
     const std::string temp_svg_filename{

@@ -15,7 +15,7 @@ struct Generation
 
   std::vector<Individual>& GetIndividuals() noexcept { return m_individuals; }
   const std::vector<Individual>& GetIndividuals() const noexcept { return m_individuals; }
-  std::vector<Sequence> GetSequences() const noexcept;
+  std::vector<DnaSequence> GetSequences() const noexcept;
 
   std::vector<Individual>::size_type size() const noexcept { return m_individuals.size(); }
   const Individual& operator[](const int index) const noexcept;
