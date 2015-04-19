@@ -6,7 +6,7 @@
 #include <stdexcept>
 
 #include "fileio.h"
-
+#include "trace.h"
 const std::string NewickUtils::sm_newick_utils_path{"../../Libraries/newick_utils/src"};
 
 NewickUtils::NewickUtils()
@@ -73,6 +73,31 @@ std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
   ribi::fileio::FileIo().DeleteFile(tmp_filename);
 
   return v;
+}
+
+void NewickUtils::NewickToPhylogeny(
+  const std::string& newick,
+  const std::string& filename,
+  const GraphicsFormat graphics_format,
+  const bool plot_fossils
+) const
+{
+  if (graphics_format == GraphicsFormat::png)
+  {
+    throw std::logic_error("NewickUtils::NewickToPhylogeny: PNG not (yet) supported");
+  }
+  if (plot_fossils == false)
+  {
+    throw std::logic_error("NewickUtils::NewickToPhylogeny: plot_fossils == false is not (yet) supported");
+  }
+  const std::string executable{sm_newick_utils_path + "/nw_display"};
+  assert(ribi::fileio::FileIo().IsRegularFile(executable) && "Checked in constructor");
+  const std::string cmd{"echo \""+ newick + "\" | " + executable +" - -s > " + filename};
+  TRACE(cmd);
+  std::system(cmd.c_str());
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
+
+
 }
 
 #ifndef NDEBUG

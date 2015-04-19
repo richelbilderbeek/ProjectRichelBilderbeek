@@ -21,6 +21,7 @@ public:
   QtStyleSheetSetterMenuDialog(const QtStyleSheetSetterMenuDialog&) = delete;
   QtStyleSheetSetterMenuDialog& operator=(const QtStyleSheetSetterMenuDialog&) = delete;
   ~QtStyleSheetSetterMenuDialog() noexcept;
+  std::string GetExampleStylesheet() const noexcept;
 
 private slots:
   void on_button_about_clicked();

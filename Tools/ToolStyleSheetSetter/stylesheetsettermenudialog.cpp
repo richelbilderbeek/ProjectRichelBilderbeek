@@ -27,9 +27,9 @@ ribi::About ribi::StyleSheetSetterMenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "StyleSheetSetter",
-    "",
-    "the 29th of November 2013",
-    "2013-2014",
+    "tool to experiment with Qt stylesheets",
+    "the 19th of April 2015",
+    "2013-2015",
     "http://www.richelbilderbeek.nl/ToolStyleSheetSetter.htm",
     GetVersion(),
     GetVersionHistory());
@@ -62,14 +62,15 @@ boost::shared_ptr<const ribi::Program> ribi::StyleSheetSetterMenuDialog::GetProg
 
 std::string ribi::StyleSheetSetterMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::StyleSheetSetterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
    "2013-01-09: version 0.1: initial version with a main dialog only",
-   "2013-11-29: version 1.0: conformized to ProjectRichelBilderbeek"
+   "2013-11-29: version 1.0: conformized to ProjectRichelBilderbeek",
+   "2015-04-19: version 1.1: start with a nice example stylesheet"
   };
 }
 

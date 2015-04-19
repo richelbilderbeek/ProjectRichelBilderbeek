@@ -20,7 +20,14 @@
 
 QWidget#results { 
   background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #ffff00, stop: 1 #00ff00);
-}</string>
+}
+
+QPushButton
+{
+  color: #000;
+  background-color: qradialgradient(cx: 0.5, cy: 0.5,fx: 0.5, fy: 0.5,radius: 0.5, stop: 0 #ff0, stop: 1 #0f0);
+}
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -164,38 +171,8 @@ QWidget#results {
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="3" column="0">
-        <widget class="QLabel" name="image_phylogeny">
-         <property name="text">
-          <string>[PNG]</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLabel" name="image_phylogeny_extant">
-         <property name="text">
-          <string>[PNG]</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="image_lttPlot">
-         <property name="text">
-          <string>[PNG]</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLabel" name="image_lttPlot_extant">
+       <item row="9" column="1">
+        <widget class="QLabel" name="image_phylogeny_extant_newickutils">
          <property name="text">
           <string>[PNG]</string>
          </property>
@@ -205,45 +182,66 @@ QWidget#results {
         </widget>
        </item>
        <item row="7" column="0">
-        <widget class="QPlainTextEdit" name="text_newick">
-         <property name="font">
-          <font>
-           <family>Courier New</family>
-          </font>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1">
-        <widget class="QPlainTextEdit" name="text_newick_extant"/>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QLineEdit" name="line_newick">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="label_newick">
+        <widget class="QLabel" name="image_lttPlot">
          <property name="text">
-          <string>Full predigree as Newick</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="2">
-        <widget class="QLabel" name="label_full_pedigree_as_png">
-         <property name="text">
-          <string>Pedigree</string>
+          <string>[PNG]</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="2">
+       <item row="5" column="0">
+        <widget class="QLabel" name="image_phylogeny">
+         <property name="text">
+          <string>[PNG]</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLabel" name="image_phylogeny_extant">
+         <property name="text">
+          <string>[PNG]</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0" colspan="2">
+        <widget class="QLabel" name="label_full_pedigree_as_txt">
+         <property name="text">
+          <string>Phylogeny (using newick_utils)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="image_phylogeny_newickutils">
+         <property name="text">
+          <string>[PNG]</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_extant">
+         <property name="text">
+          <string>Extant only</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="2">
         <widget class="QLabel" name="label_lttPlot">
          <property name="text">
           <string>LTT Plot</string>
@@ -253,10 +251,50 @@ QWidget#results {
          </property>
         </widget>
        </item>
-       <item row="6" column="0" colspan="2">
-        <widget class="QLabel" name="label_full_pedigree_as_txt">
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="line_newick_extant"/>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QLabel" name="label_full_pedigree_as_png">
          <property name="text">
-          <string>Phylogeny in text</string>
+          <string>Phylogeny (using PhylogenyR)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLabel" name="image_lttPlot_extant">
+         <property name="text">
+          <string>[PNG]</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_all">
+         <property name="text">
+          <string>All (extinct and extant)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLineEdit" name="line_newick">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QLabel" name="label_newick">
+         <property name="text">
+          <string>Newick</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

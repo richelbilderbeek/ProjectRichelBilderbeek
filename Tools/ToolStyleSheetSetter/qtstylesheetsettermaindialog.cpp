@@ -2,6 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtstylesheetsettermaindialog.h"
 
+#include <QDesktopWidget>
 #include <QKeyEvent>
 
 #include "testtimer.h"
@@ -20,6 +21,12 @@ ribi::QtStyleSheetSetterMainDialog::QtStyleSheetSetterMainDialog(
   #endif
   ui->setupUi(this);
   ui->stylesheet->setPlainText(m_stylesheet.c_str());
+  //Put the dialog in the screen center
+  {
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,screen.width() * 8 / 10, screen.height() * 8 / 10);
+    this->move( screen.center() - this->rect().center() );
+  }
 }
 
 ribi::QtStyleSheetSetterMainDialog::~QtStyleSheetSetterMainDialog() noexcept

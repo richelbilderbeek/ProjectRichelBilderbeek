@@ -10,6 +10,11 @@ struct PhylogenyR
 
   PhylogenyR();
 
+  ///Remove the lineages that are extinct at the present time
+  std::string DropExtict(
+    const std::string& newick
+  ) const;
+
   ///Plot Newick as a Lineages Through Time Plot in PNG format
   void NewickToLttPlot(
     const std::string& newick,
@@ -19,6 +24,7 @@ struct PhylogenyR
   ) const;
 
   ///Plot Newick as a phylogeny in a graphics format
+  ///same interface is followed by NewickUtils
   void NewickToPhylogeny(
     const std::string& newick,
     const std::string& filename,

@@ -31,6 +31,168 @@ QtFisherWrighterMainDialog::~QtFisherWrighterMainDialog()
   delete ui;
 }
 
+void QtFisherWrighterMainDialog::DisplayNewick(const std::string& newick) noexcept
+{
+  ui->line_newick->setText(newick.c_str());
+}
+
+void QtFisherWrighterMainDialog::DisplayNewickExtant(const std::string& newick_all) noexcept
+{
+  const std::string newick_extant{PhylogenyR().DropExtict(newick_all)};
+  ui->line_newick_extant->setText(newick_extant.c_str());
+}
+
+void QtFisherWrighterMainDialog::DisplayNewickToLttPlot(const std::string& newick) noexcept
+{
+  QLabel * const label{ui->image_lttPlot};
+  const std::string temp_png_filename{
+    ribi::fileio::FileIo().GetTempFileName(".png")
+  };
+  try
+  {
+    PhylogenyR().NewickToLttPlot(newick,temp_png_filename,PhylogenyR::GraphicsFormat::png);
+    label->setPixmap(QPixmap(temp_png_filename.c_str()));
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    //label->setText(e.what());
+    label->setText(":-(");
+  }
+}
+
+void QtFisherWrighterMainDialog::DisplayNewickToLttPlotExtant(const std::string& newick) noexcept
+{
+  QLabel * const label{ui->image_lttPlot_extant};
+  const std::string temp_png_filename{
+    ribi::fileio::FileIo().GetTempFileName(".png")
+  };
+  try
+  {
+    PhylogenyR().NewickToLttPlot(
+      newick,
+      temp_png_filename,
+      PhylogenyR::GraphicsFormat::png,
+      false //show_fossils
+    );
+    label->setPixmap(QPixmap(temp_png_filename.c_str()));
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    label->setText(":-(");
+    //label->setText(e.what());
+  }
+}
+
+void QtFisherWrighterMainDialog::DisplayPhylogenyNewickUtilsAll(const std::string& newick) noexcept
+{
+  QLabel * const label{ui->image_phylogeny_newickutils};
+  try
+  {
+    const std::string temp_svg_filename{
+      ribi::fileio::FileIo().GetTempFileName(".svg")
+    };
+    assert(!ribi::fileio::FileIo().IsRegularFile(temp_svg_filename));
+    NewickUtils().NewickToPhylogeny(
+      newick,
+      temp_svg_filename,
+      NewickUtils::GraphicsFormat::svg
+    );
+    label->setPixmap(QPixmap(temp_svg_filename.c_str()));
+    //Delete the temporary file
+    ribi::fileio::FileIo().DeleteFile(temp_svg_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    //std::clog << e.what() << '\n';
+    label->setText(":-(");
+  }
+
+}
+
+void QtFisherWrighterMainDialog::DisplayPhylogenyNewickUtilsExtant(const std::string& newick) noexcept
+{
+  QLabel * const label{ui->image_phylogeny_extant_newickutils};
+  try
+  {
+    const std::string temp_png_filename{
+      ribi::fileio::FileIo().GetTempFileName(".png")
+    };
+    assert(!ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    NewickUtils().NewickToPhylogeny(
+      newick,
+      temp_png_filename,
+      NewickUtils::GraphicsFormat::png,
+      false //plot_fossils
+    );
+    label->setPixmap(QPixmap(temp_png_filename.c_str()));
+    //Delete the temporary file
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    //std::clog << e.what() << '\n';
+    label->setText(":-(");
+  }
+  catch (std::logic_error& e)
+  {
+    //std::clog << e.what() << '\n';
+    label->setText(":-(");
+  }
+
+}
+
+void QtFisherWrighterMainDialog::DisplayPhylogenyRall(const std::string& newick) noexcept
+{
+  QLabel * const label{ui->image_phylogeny};
+  try
+  {
+    const std::string temp_png_filename{
+      ribi::fileio::FileIo().GetTempFileName(".png")
+    };
+    assert(!ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    PhylogenyR().NewickToPhylogeny(
+      newick,
+      temp_png_filename,
+      PhylogenyR::GraphicsFormat::png
+    );
+    label->setPixmap(QPixmap(temp_png_filename.c_str()));
+    //Delete the temporary file
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    //std::clog << e.what() << '\n';
+    label->setText(":-(");
+  }
+}
+
+void QtFisherWrighterMainDialog::DisplayPhylogenyRextant(const std::string& newick) noexcept
+{
+  QLabel * const label{ui->image_phylogeny_extant};
+  try
+  {
+    const std::string temp_png_filename{
+      ribi::fileio::FileIo().GetTempFileName(".png")
+    };
+    PhylogenyR().NewickToPhylogeny(
+      newick,
+      temp_png_filename,
+      PhylogenyR::GraphicsFormat::png,
+      false //plot_fossils
+    );
+    label->setPixmap(QPixmap(temp_png_filename.c_str()));
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    label->setText(":-(");
+    //std::clog << e.what() << '\n';
+  }
+
+}
+
 void QtFisherWrighterMainDialog::on_button_run_clicked()
 {
   //1) Read parameters from file
@@ -63,96 +225,13 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
   const std::string newick_pedigree{simulation.GetPedigree()};
 
   //Display newick pedigree
-  {
-    ui->line_newick->setText(newick_pedigree.c_str());
-  }
-  //Display newick phylogeny
-  try
-  {
-
-    const std::string temp_png_filename{
-      ribi::fileio::FileIo().GetTempFileName(".png")
-    };
-    assert(!ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
-    PhylogenyR().NewickToPhylogeny(
-      newick_pedigree,
-      temp_png_filename,
-      PhylogenyR::GraphicsFormat::png
-    );
-    ui->image_phylogeny->setPixmap(QPixmap(temp_png_filename.c_str()));
-    //Delete the temporary file
-    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
-  }
-  catch (std::runtime_error& e)
-  {
-    std::clog << e.what() << '\n';
-    ui->image_phylogeny->setText("No phylogeny");
-  }
-  //Display newick phylogeny of extant species
-  try
-  {
-
-    const std::string temp_png_filename{
-      ribi::fileio::FileIo().GetTempFileName(".png")
-    };
-    PhylogenyR().NewickToPhylogeny(
-      newick_pedigree,
-      temp_png_filename,
-      PhylogenyR::GraphicsFormat::png,
-      false //plot_fossils
-    );
-    ui->image_phylogeny_extant->setPixmap(QPixmap(temp_png_filename.c_str()));
-    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
-  }
-  catch (std::runtime_error& e)
-  {
-    std::clog << e.what() << '\n';
-    ui->image_phylogeny_extant->setText("No phylogeny");
-  }
-  //NewickToLttPlot
-  {
-    const std::string temp_png_filename{
-      ribi::fileio::FileIo().GetTempFileName(".png")
-    };
-    try
-    {
-      PhylogenyR().NewickToLttPlot(newick_pedigree,temp_png_filename,PhylogenyR::GraphicsFormat::png);
-      ui->image_lttPlot->setPixmap(QPixmap(temp_png_filename.c_str()));
-      ribi::fileio::FileIo().DeleteFile(temp_png_filename);
-    }
-    catch (std::runtime_error& e)
-    {
-      ui->image_lttPlot->setText(e.what());
-    }
-  }
-  //NewickToLttPlot for extant species
-  {
-    const std::string temp_png_filename{
-      ribi::fileio::FileIo().GetTempFileName(".png")
-    };
-    try
-    {
-      PhylogenyR().NewickToLttPlot(
-        newick_pedigree,
-        temp_png_filename,
-        PhylogenyR::GraphicsFormat::png,
-        false //show_fossils
-      );
-      ui->image_lttPlot_extant->setPixmap(QPixmap(temp_png_filename.c_str()));
-      ribi::fileio::FileIo().DeleteFile(temp_png_filename);
-    }
-    catch (std::runtime_error& e)
-    {
-      ui->image_lttPlot_extant->setText(e.what());
-    }
-  }
-  //Display newick pedigree as text phylogeny
-  {
-    std::stringstream s;
-    const auto v = NewickUtils().GetPhylogeny(newick_pedigree);
-    std::copy(std::begin(v),std::end(v),std::ostream_iterator<std::string>(s,"\n"));
-    ui->text_newick->setPlainText(s.str().c_str());
-  }
+  DisplayNewick(newick_pedigree);
+  this->DisplayPhylogenyRall(newick_pedigree);
+  this->DisplayPhylogenyRextant(newick_pedigree);
+  this->DisplayPhylogenyNewickUtilsAll(newick_pedigree);
+  //this->DisplayPhylogenyNewickUtilsExtant(newick_pedigree);
+  this->DisplayNewickToLttPlot(newick_pedigree);
+  this->DisplayNewickToLttPlotExtant(newick_pedigree);
 }
 
 int QtFisherWrighterMainDialog::ReadNumberOfGenerations() const noexcept

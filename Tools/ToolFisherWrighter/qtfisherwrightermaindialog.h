@@ -24,6 +24,16 @@ private slots:
 private:
   Ui::QtFisherWrighterMainDialog *ui;
   int ReadNumberOfGenerations() const noexcept;
+
+  void DisplayNewick(const std::string& newick) noexcept;
+  void DisplayNewickExtant(const std::string& newick) noexcept;
+  void DisplayNewickToLttPlot(const std::string& newick) noexcept;
+  void DisplayNewickToLttPlotExtant(const std::string& newick) noexcept;
+  void DisplayPhylogenyNewickUtilsAll(const std::string& newick) noexcept;
+  void DisplayPhylogenyNewickUtilsExtant(const std::string& newick) noexcept;
+  void DisplayPhylogenyRall(const std::string& newick) noexcept;
+  void DisplayPhylogenyRextant(const std::string& newick) noexcept;
+
 };
 
 #endif // QTFISHERWRIGHTERMAINDIALOG_H
