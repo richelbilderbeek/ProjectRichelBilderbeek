@@ -23,6 +23,78 @@ QtNewickDisplay::~QtNewickDisplay()
   delete ui;
 }
 
+void QtNewickDisplay::DisplayBranchingTimes(
+  std::string newick,
+  const QtNewickDisplay::Lineages lineages
+) noexcept
+{
+  QLabel * label{nullptr};
+  switch (lineages)
+  {
+    case Lineages::all: label = ui->image_branching_times_all; break;
+    case Lineages::extant: label = ui->image_branching_times_extant; break;
+  }
+  assert(label);
+  const std::string temp_png_filename{
+    ribi::fileio::FileIo().GetTempFileName(".png")
+  };
+  try
+  {
+    if (lineages == Lineages::extant)
+    {
+      newick = PhylogenyR().DropExtinct(newick);
+    }
+
+    PhylogenyR().NewickToBranchingTimes(
+      newick,
+      temp_png_filename,
+      PhylogenyR::GraphicsFormat::png
+    );
+    label->setPixmap(QPixmap(temp_png_filename.c_str()));
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    label->setText(sm_fail.c_str());
+    //label->setText(e.what());
+  }
+}
+
+void QtNewickDisplay::DisplayBranchLengths(
+  std::string newick,
+  const QtNewickDisplay::Lineages lineages
+) noexcept
+{
+  QLabel * label{nullptr};
+  switch (lineages)
+  {
+    case QtNewickDisplay::Lineages::all: label = ui->image_branch_lengths_all; break;
+    case QtNewickDisplay::Lineages::extant: label = ui->image_branch_lengths_extant; break;
+  }
+  assert(label);
+  const std::string temp_png_filename{
+    ribi::fileio::FileIo().GetTempFileName(".png")
+  };
+  try
+  {
+    if (lineages == Lineages::extant)
+    {
+      newick = PhylogenyR().DropExtinct(newick);
+    }
+    PhylogenyR().NewickToBranchLengths(
+      newick,
+      temp_png_filename,
+      PhylogenyR::GraphicsFormat::png
+    );
+    label->setPixmap(QPixmap(temp_png_filename.c_str()));
+    ribi::fileio::FileIo().DeleteFile(temp_png_filename);
+  }
+  catch (std::runtime_error& e)
+  {
+    label->setText(sm_fail.c_str());
+    //label->setText(e.what());
+  }
+}
 void QtNewickDisplay::DisplayNewick(
   const std::string& newick,
   const QtNewickDisplay::Lineages lineages
@@ -179,7 +251,11 @@ void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
     const std::vector<std::function<void()>> fs = {
       [this,newick]() { DisplayNewick(newick,Lineages::all); },
       [this,newick]() { DisplayPhylogeny(newick,Lineages::all,Tool::NewickUtils); },
-      [this,newick]() { DisplayNewick(newick,Lineages::extant); }
+      [this,newick]() { DisplayNewick(newick,Lineages::extant); },
+      [this,newick]() { DisplayBranchingTimes(newick,Lineages::all); },
+      [this,newick]() { DisplayBranchingTimes(newick,Lineages::extant); },
+      [this,newick]() { DisplayBranchLengths(newick,Lineages::all); },
+      [this,newick]() { DisplayBranchLengths(newick,Lineages::extant); }
     };
     for (const auto f: fs) { f(); this->repaint();}
   }
@@ -200,9 +276,7 @@ void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
       [this,newick]() { DisplayPhylogeny(newick,Lineages::all,Tool::PhylogenyR); },
       [this,newick]() { DisplayPhylogeny(newick,Lineages::extant,Tool::PhylogenyR); },
       [this,newick]() { DisplayNewickToLttPlot(newick,Lineages::all); },
-      [this,newick]() { DisplayNewickToLttPlot(newick,Lineages::extant); },
-      [this,newick]() {   },
-      [this,newick]() {   },
+      [this,newick]() { DisplayNewickToLttPlot(newick,Lineages::extant); }
     };
     for (const auto f: fs) { f(); this->repaint();}
   }

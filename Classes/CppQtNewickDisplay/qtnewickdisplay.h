@@ -25,8 +25,13 @@ private:
   enum class Lineages { all, extant };
   enum class Tool { NewickUtils, PhylogenyR };
 
+  void DisplayBranchingTimes(
+    std::string newick,
+    const Lineages lineages
+  ) noexcept;
+
   void DisplayBranchLengths(
-    const std::string& newick,
+    std::string newick,
     const Lineages lineages
   ) noexcept;
 

@@ -16,6 +16,20 @@ struct PhylogenyR
     const std::string& newick
   ) const;
 
+  ///Make a histogram of the branching times
+  void NewickToBranchingTimes(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format
+  ) const;
+
+  ///Make a histogram of the branch length
+  void NewickToBranchLengths(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format
+  ) const;
+
   ///Plot Newick as a Lineages Through Time Plot in PNG format
   void NewickToLttPlot(
     const std::string& newick,

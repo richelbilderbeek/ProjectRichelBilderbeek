@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <stdexcept>
 
 #include "trace.h"
 
@@ -58,6 +59,7 @@ char Dna::CreateRandomBasePair(std::mt19937& rnd_engine) noexcept
     case 3: return 'T';
   }
   assert(!"Should not get here");
+  throw std::logic_error("Dna::CreateRandomBasePair: should not get here");
 }
 
 char Dna::CreateRandomBasePair() noexcept
