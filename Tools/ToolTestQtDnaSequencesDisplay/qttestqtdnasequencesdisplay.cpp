@@ -11,15 +11,21 @@
 #include "fastafile.h"
 #include "fileio.h"
 #include "qtdnasequencesdisplay.h"
+#include "qtdnasequencesdialog.h"
 #include "ui_qttestqtdnasequencesdisplay.h"
 
 QtTestQtDnaSequencesDisplay::QtTestQtDnaSequencesDisplay(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestQtDnaSequencesDisplay),
+  m_dialog{new QtDnaSequencesDialog(this)},
   m_display{new QtDnaSequencesDisplay(this)}
 {
   ui->setupUi(this);
-  assert(ui->area_content->layout());
+
+  //assert(ui->formLayout->layout());
+
+  assert(ui->area_content->layout());  
+  ui->area_content->layout()->addWidget(m_dialog);
   ui->area_content->layout()->addWidget(m_display);
 
   ui->button_display->click();
@@ -39,18 +45,15 @@ QtTestQtDnaSequencesDisplay::~QtTestQtDnaSequencesDisplay()
 
 std::vector<ribi::DnaSequence> QtTestQtDnaSequencesDisplay::GetSequences() const noexcept
 {
-  using ribi::DnaSequence;
-  std::vector<DnaSequence> sequences;
-  sequences.push_back(DnaSequence(ui->edit_name_1->text().toStdString(),ui->edit_sequence_1->text().toStdString()));
-  sequences.push_back(DnaSequence(ui->edit_name_2->text().toStdString(),ui->edit_sequence_2->text().toStdString()));
-  sequences.push_back(DnaSequence(ui->edit_name_3->text().toStdString(),ui->edit_sequence_3->text().toStdString()));
-  sequences.push_back(DnaSequence(ui->edit_name_4->text().toStdString(),ui->edit_sequence_4->text().toStdString()));
-  return sequences;
+  assert(m_dialog);
+  return m_dialog->GetSequences();
 }
 
 void QtTestQtDnaSequencesDisplay::on_button_display_clicked()
 {
-  this->m_display->SetDnaSequences(GetSequences());
+  this->m_display->SetDnaSequences(
+    GetSequences()
+  );
 }
 
 void QtTestQtDnaSequencesDisplay::on_button_fasta_clicked()

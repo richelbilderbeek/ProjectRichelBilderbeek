@@ -7,6 +7,7 @@ namespace Ui {
 class QtTestQtDnaSequencesDisplay;
 }
 
+struct QtDnaSequencesDialog;
 struct QtDnaSequencesDisplay;
 
 namespace ribi { struct DnaSequence; }
@@ -31,6 +32,10 @@ private slots:
 private:
   Ui::QtTestQtDnaSequencesDisplay *ui;
 
+  ///Input of DNA sequences
+  QtDnaSequencesDialog * const m_dialog;
+
+  ///Analysis of DNA sequences
   QtDnaSequencesDisplay * const m_display;
 
   std::vector<ribi::DnaSequence> GetSequences() const noexcept;
