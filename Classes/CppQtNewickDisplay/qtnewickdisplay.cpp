@@ -16,11 +16,49 @@ QtNewickDisplay::QtNewickDisplay(QWidget *parent) :
   ui(new Ui::QtNewickDisplay)
 {
   ui->setupUi(this);
+
+  for (const auto& box:
+    {
+      ui->box_display_all,
+      ui->box_display_branch_lengths,
+      ui->box_display_branching_times,
+      ui->box_display_extant,
+      ui->box_display_lttplots,
+      ui->box_display_phylogeny_newickutils,
+      ui->box_display_phylogeny_phylogenyr
+    }
+  )
+  {
+    QObject::connect(box,SIGNAL(clicked()),this,SLOT(OnBoxClicked()));
+  }
+  OnBoxClicked();
 }
 
 QtNewickDisplay::~QtNewickDisplay()
 {
   delete ui;
+}
+
+std::vector<QLabel*> QtNewickDisplay::CollectExtinctAndExtantImages()
+{
+  return {
+    ui->image_branching_times_all,
+    ui->image_branch_lengths_all,
+    ui->image_lttPlot_all,
+    ui->image_phylogeny_newickutils_all,
+    ui->image_phylogeny_phylogenyr_all
+  };
+}
+
+std::vector<QLabel*> QtNewickDisplay::CollectExtantImages()
+{
+  return {
+    ui->image_branching_times_extant,
+    ui->image_branch_lengths_extant,
+    ui->image_lttPlot_extant,
+    ui->image_phylogeny_newickutils_extant,
+    ui->image_phylogeny_phylogenyr_extant
+  };
 }
 
 void QtNewickDisplay::DisplayBranchingTimes(
@@ -35,6 +73,7 @@ void QtNewickDisplay::DisplayBranchingTimes(
     case Lineages::extant: label = ui->image_branching_times_extant; break;
   }
   assert(label);
+  if (!label->isVisible()) return;
   const std::string temp_png_filename{
     ribi::fileio::FileIo().GetTempFileName(".png")
   };
@@ -72,6 +111,8 @@ void QtNewickDisplay::DisplayBranchLengths(
     case QtNewickDisplay::Lineages::extant: label = ui->image_branch_lengths_extant; break;
   }
   assert(label);
+  if (!label->isVisible()) return;
+
   const std::string temp_png_filename{
     ribi::fileio::FileIo().GetTempFileName(".png")
   };
@@ -103,11 +144,13 @@ void QtNewickDisplay::DisplayNewick(
   switch (lineages)
   {
     case Lineages::all:
+      if (!ui->line_newick->isVisible()) return;
       ui->line_newick->setText(newick.c_str());
       return;
     break;
     case Lineages::extant:
     {
+      if (!ui->line_newick_extant->isVisible()) return;
       try
       {
         const std::string newick_extant{PhylogenyR().DropExtinct(newick)};
@@ -145,6 +188,9 @@ void QtNewickDisplay::DisplayNewickToLttPlot(
     label = ui->image_lttPlot_extant;
     show_fossils = false; //Changes
   }
+  assert(label);
+  if (!label->isVisible()) return;
+
   const std::string temp_png_filename{
     ribi::fileio::FileIo().GetTempFileName(".png")
   };
@@ -227,6 +273,7 @@ void QtNewickDisplay::DisplayPhylogeny(
     };
   }
   assert(label);
+  if (!label->isVisible()) return;
   try
   {
     const std::string temp_filename{
@@ -242,6 +289,41 @@ void QtNewickDisplay::DisplayPhylogeny(
   {
     //std::clog << e.what() << '\n';
     label->setText(sm_fail.c_str());
+  }
+}
+
+void QtNewickDisplay::OnBoxClicked()
+{
+  ui->line_newick->setVisible(ui->box_display_all->isChecked());
+  ui->line_newick_extant->setVisible(ui->box_display_extant->isChecked());
+
+  for (auto image: CollectExtinctAndExtantImages())
+  {
+    image->setVisible(ui->box_display_all->isChecked());
+  }
+  for (auto image: CollectExtantImages())
+  {
+    image->setVisible(ui->box_display_extant->isChecked());
+  }
+  for (auto image: { ui->image_branching_times_all, ui->image_branching_times_extant } )
+  {
+    if (!ui->box_display_branching_times->isChecked()) image->setVisible(false);
+  }
+  for (auto image: { ui->image_branch_lengths_all, ui->image_branch_lengths_extant } )
+  {
+    if (!ui->box_display_branch_lengths->isChecked()) image->setVisible(false);
+  }
+  for (auto image: { ui->image_lttPlot_all, ui->image_lttPlot_extant } )
+  {
+    if (!ui->box_display_lttplots->isChecked()) image->setVisible(false);
+  }
+  for (auto image: { ui->image_phylogeny_newickutils_all, ui->image_phylogeny_newickutils_extant } )
+  {
+    if (!ui->box_display_phylogeny_newickutils->isChecked()) image->setVisible(false);
+  }
+  for (auto image: { ui->image_phylogeny_phylogenyr_all, ui->image_phylogeny_phylogenyr_extant } )
+  {
+    if (!ui->box_display_phylogeny_phylogenyr->isChecked()) image->setVisible(false);
   }
 }
 

@@ -3,9 +3,9 @@
 
 #include <QWidget>
 
-namespace Ui {
-class QtNewickDisplay;
-}
+namespace Ui { class QtNewickDisplay; }
+
+struct QLabel;
 
 class QtNewickDisplay : public QWidget
 {
@@ -18,6 +18,9 @@ public:
   ~QtNewickDisplay();
 
   void SetNewick(const std::string& newick) noexcept;
+
+private slots:
+  void OnBoxClicked();
 
 private:
   Ui::QtNewickDisplay *ui;
@@ -52,6 +55,8 @@ private:
   ) noexcept;
 
 
+  std::vector<QLabel*> CollectExtinctAndExtantImages();
+  std::vector<QLabel*> CollectExtantImages();
 
   static const std::string sm_fail;
 };
