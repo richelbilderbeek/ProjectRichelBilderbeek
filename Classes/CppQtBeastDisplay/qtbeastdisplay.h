@@ -30,12 +30,10 @@ private:
     const std::vector<ribi::DnaSequence>& sequences,
     const int mcmc_chainlength
   ) noexcept;
-  /*
   void AnalyzeCoalescent(
     const std::vector<ribi::DnaSequence>& sequences,
     const int mcmc_chainlength
   ) noexcept;
-  */
 };
 
 #endif // QTBEASTDISPLAY_H

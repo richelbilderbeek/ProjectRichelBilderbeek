@@ -3,6 +3,7 @@
 
 #include <cassert>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
 #include <QFile>
@@ -62,7 +63,11 @@ void BeastParameterFile::Test() noexcept
     if (fileio.FileToVector(temp_filename) != fileio.FileToVector(beast_filename_birth_death_0))
     {
       std::stringstream cmd; cmd << "diff -w " << temp_filename << " " << beast_filename_birth_death_0;
-      std::system(cmd.str().c_str());
+      const int error{std::system(cmd.str().c_str())};
+      if (error)
+      {
+        std::clog << __FILE__ << ": error " << error << '\n';
+      }
     }
     assert(
       fileio.FileToVector(temp_filename) == fileio.FileToVector(beast_filename_birth_death_0)
@@ -85,7 +90,11 @@ void BeastParameterFile::Test() noexcept
     if (fileio.FileToVector(temp_filename) != fileio.FileToVector(beast_filename_birth_death_1))
     {
       std::stringstream cmd; cmd << "diff -w " << temp_filename << " " << beast_filename_birth_death_1;
-      std::system(cmd.str().c_str());
+      const int error{std::system(cmd.str().c_str())};
+      if (error)
+      {
+        std::clog << __FILE__ << ": error " << error << '\n';
+      }
     }
     assert(
       fileio.FileToVector(temp_filename) == fileio.FileToVector(beast_filename_birth_death_1)
@@ -108,7 +117,11 @@ void BeastParameterFile::Test() noexcept
     if (fileio.FileToVector(temp_filename) != fileio.FileToVector(coalescent_constant_population_0))
     {
       std::stringstream cmd; cmd << "diff " << temp_filename << " " << coalescent_constant_population_0;
-      std::system(cmd.str().c_str());
+      const int error{std::system(cmd.str().c_str())};
+      if (error)
+      {
+        std::clog << __FILE__ << ": error " << error << '\n';
+      }
     }
     assert(
       fileio.FileToVector(temp_filename) == fileio.FileToVector(coalescent_constant_population_0)
@@ -131,7 +144,12 @@ void BeastParameterFile::Test() noexcept
     if (fileio.FileToVector(temp_filename) != fileio.FileToVector(coalescent_constant_population_1))
     {
       std::stringstream cmd; cmd << "diff " << temp_filename << " " << coalescent_constant_population_1;
-      std::system(cmd.str().c_str());
+      const int error{std::system(cmd.str().c_str())};
+      if (error)
+      {
+        std::clog << __FILE__ << ": error " << error << '\n';
+      }
+
     }
     assert(
       fileio.FileToVector(temp_filename) == fileio.FileToVector(coalescent_constant_population_1)

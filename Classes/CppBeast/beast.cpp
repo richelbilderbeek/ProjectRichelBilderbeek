@@ -185,7 +185,11 @@ void Beast::Run(
     && "Checked in constructor");
 
   const std::string cmd{executable + " -overwrite " + xml_input_filename};
-  std::system(cmd.c_str());
+  const int error{std::system(cmd.c_str())};
+  if (error)
+  {
+    std::clog << __FILE__ << ": error " << error << '\n';
+  }
 
   assert(fileio.IsRegularFile(xml_input_filename));
 

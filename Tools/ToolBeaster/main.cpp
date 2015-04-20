@@ -105,7 +105,11 @@ int main()
       QFile((std::string(":/files/") + s).c_str()).copy(s.c_str());
     }
     assert(Helper().IsRegularFileStl(s));
-    std::system("Rscript Beaster.R");
+    const int error{std::system("Rscript Beaster.R")};
+    if (error)
+    {
+      std::clog << __FILE__ << ": error " << error << '\n';
+    }
   }
 
   if (verbose) { TRACE("Check BEAST2 results"); }

@@ -33,7 +33,7 @@ void QtBeastDisplay::Analyze(
 ) noexcept
 {
   AnalyzeBirthDeath(sequences,mcmc_chainlength);
-  //AnalyzeCoalescent(sequences,mcmc_chainlength);
+  AnalyzeCoalescent(sequences,mcmc_chainlength);
 }
 
 void QtBeastDisplay::AnalyzeBirthDeath(
@@ -49,12 +49,9 @@ void QtBeastDisplay::AnalyzeBirthDeath(
     "birthdeath_birthdeath"
   };
   const std::string beast_input_parameters_filename{alignment_base_filename + ".xml"};
-
   const std::string beast_output_log_filename{alignment_base_filename + ".log"};
   const std::string beast_output_trees_filename{alignment_base_filename + ".trees"};
   const std::string output_png_filename{alignment_base_filename + ".png"};
-
-  //const std::string fasta_output_filename{alignment_base_filename + ".fas"};
 
   const BeastParameterFile beast_parameter_file(
     sequences,
@@ -67,17 +64,6 @@ void QtBeastDisplay::AnalyzeBirthDeath(
     std::ofstream f(beast_input_parameters_filename.c_str());
     f << beast_parameter_file;
   }
-
-  /*
-  const FastaFile fasta_file(
-    sequences
-  );
-  {
-    std::ofstream f(fasta_output_filename);
-    f << fasta_file;
-  }
-  std::cout << fasta_file << std::endl;
-  */
 
   assert(FileIo().IsRegularFile(beast_input_parameters_filename));
 
@@ -104,68 +90,72 @@ void QtBeastDisplay::AnalyzeBirthDeath(
   );
 }
 
-/*
+
 void QtBeastDisplay::AnalyzeCoalescent(
   const std::vector<ribi::DnaSequence>& sequences,
   const int mcmc_chainlength
 ) noexcept
 {
-  const bool verbose{true};
+  using ribi::fileio::FileIo;
   const BeastParameterFile::TreePrior tree_prior{
     BeastParameterFile::TreePrior::coalescent_constant_population
   };
+  const std::string alignment_base_filename{
+    "coalescent_coalescent"
+  };
+  const std::string beast_input_parameters_filename{alignment_base_filename + ".xml"};
+  const std::string beast_output_log_filename{alignment_base_filename + ".log"};
+  const std::string beast_output_trees_filename{alignment_base_filename + ".trees"};
+  const std::string output_png_coalescent_constant_filename{alignment_base_filename + "_coalescent_constant.png"};
+  const std::string output_png_popsize_filename{alignment_base_filename + "_popsize.png"};
+
+  const BeastParameterFile beast_parameter_file(
+    sequences,
+    alignment_base_filename,
+    mcmc_chainlength,
+    tree_prior
+
+  );
   {
-    const std::string alignment_base_filename{
-      tree_prior == BeastParameterFile::TreePrior::birth_death
-        ? "birthdeath_birthdeath"
-        : "coalescent_coalescent"
-    };
-    const std::string beast_xml_output_filename{alignment_base_filename + ".xml"};
-    const std::string fasta_output_filename{alignment_base_filename + ".fas"};
-
-    if (verbose) { TRACE("3) Create BEAST2 XML parameter file"); }
-
-    const BeastParameterFile beast_parameter_file(
-      sequences,
-      alignment_base_filename,
-      mcmc_chainlength,
-      tree_prior
-
-    );
-    {
-      std::ofstream f(beast_xml_output_filename.c_str());
-      f << beast_parameter_file;
-    }
-
-    Beast().Run(
-      beast_xml_output_filename,
-      alignment_base_filename + ".log",
-      alignment_base_filename + ".trees"
-    );
-    assert(ribi::fileio::FileIo().IsRegularFile(beast_xml_output_filename));
+    std::ofstream f(beast_input_parameters_filename.c_str());
+    f << beast_parameter_file;
   }
 
-  if (verbose) { TRACE("Interpret BEAST2 results"); }
-  {
-    const std::string s{"Beaster.R"};
-    if (!Helper().IsRegularFileStl(s))
-    {
-      QFile((std::string(":/files/") + s).c_str()).copy(s.c_str());
-    }
-    assert(Helper().IsRegularFileStl(s));
-    std::system("Rscript Beaster.R");
-  }
+  assert(FileIo().IsRegularFile(beast_input_parameters_filename));
 
-  if (verbose) { TRACE("Check BEAST2 results"); }
-  if ( Helper().IsRegularFileStl("coalescent_coalescent.svg")
-    && Helper().IsRegularFileStl("birthdeath_birthdeath.svg")
-  )
+  Beast().Run(
+    beast_input_parameters_filename,
+    beast_output_log_filename,
+    beast_output_trees_filename
+  );
+
+  assert(FileIo().IsRegularFile(beast_output_log_filename));
+  assert(FileIo().IsRegularFile(beast_output_trees_filename));
+
+  Beast().AnalyzeCoalescent(
+    beast_output_log_filename,
+    output_png_coalescent_constant_filename,
+    output_png_popsize_filename
+  );
+
+  if (!FileIo().IsRegularFile(output_png_coalescent_constant_filename))
   {
-    std::clog << "OK" << std::endl;
+    ui->image_coalescent_coalescent_constant->setText(sm_fail.c_str());
   }
   else
   {
-    std::clog << "ERROR: final SVGs not created" << std::endl;
+    ui->image_coalescent_coalescent_constant->setPixmap(
+      QPixmap(output_png_coalescent_constant_filename.c_str())
+    );
+  }
+  if (!FileIo().IsRegularFile(output_png_popsize_filename))
+  {
+    ui->image_coalescent_popsize->setText(sm_fail.c_str());
+  }
+  else
+  {
+    ui->image_coalescent_popsize->setPixmap(
+      QPixmap(output_png_popsize_filename.c_str())
+    );
   }
 }
-*/
