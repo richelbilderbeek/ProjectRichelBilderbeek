@@ -11,7 +11,7 @@ namespace Ui {
 
 struct QtNewickDisplay;
 struct QtDnaSequencesDisplay;
-
+struct QtBeastDisplay;
 
 class QtFisherWrighterMainDialog : public QDialog
 {
@@ -27,6 +27,9 @@ private slots:
 
 private:
   Ui::QtFisherWrighterMainDialog *ui;
+
+  ///Displays the result of the BEAST analysis
+  QtBeastDisplay * const m_beast_display;
 
   ///Displays the resulting DnaSequences
   QtDnaSequencesDisplay * const m_dna_sequences_display;

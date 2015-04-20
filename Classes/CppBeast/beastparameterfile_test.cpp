@@ -8,7 +8,9 @@
 
 #include <QFile>
 
+//TODO: Move FastaFile check to FastaFile::Test
 #include "fastafile.h"
+
 #include "fileio.h"
 
 void BeastParameterFile::Test() noexcept

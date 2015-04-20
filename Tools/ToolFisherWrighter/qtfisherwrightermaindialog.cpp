@@ -13,11 +13,13 @@
 #include "simulation.h"
 #include "phylogeny_r.h"
 #include "qtdnasequencesdisplay.h"
+#include "qtbeastdisplay.h"
 #include "qtnewickdisplay.h"
 
 QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtFisherWrighterMainDialog),
+  m_beast_display{new QtBeastDisplay(this)},
   m_dna_sequences_display{new QtDnaSequencesDisplay(this)},
   m_newick_display{new QtNewickDisplay(this)}
 {
@@ -26,6 +28,7 @@ QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
   assert(!ui->area_results->layout());
   assert(ui->results->layout());
   ui->results->layout()->addWidget(m_dna_sequences_display);
+  ui->results->layout()->addWidget(m_beast_display);
   ui->results->layout()->addWidget(m_newick_display);
 
   //Put the dialog in the screen center
@@ -73,6 +76,13 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
     }
   }
   const std::string newick{simulation.GetPedigree()};
+
+  this->m_beast_display->Analyze(
+    simulation.GetCurrentSequences(),
+    ui->box_mcmc_chainlength->value()
+  );
+
+  this->repaint();
 
   this->m_dna_sequences_display->SetDnaSequences(simulation.GetCurrentSequences());
 

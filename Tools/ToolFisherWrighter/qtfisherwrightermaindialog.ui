@@ -134,7 +134,7 @@ QPushButton
         </property>
        </widget>
       </item>
-      <item row="5" column="0" colspan="2">
+      <item row="6" column="0" colspan="2">
        <widget class="QPushButton" name="button_run">
         <property name="toolTip">
          <string>Run simulation with these settings</string>
@@ -144,13 +144,30 @@ QPushButton
         </property>
        </widget>
       </item>
-      <item row="6" column="0" colspan="2">
+      <item row="7" column="0" colspan="2">
        <widget class="QPushButton" name="button_run_next">
         <property name="toolTip">
          <string>Add one to the seed, then run</string>
         </property>
         <property name="text">
          <string>Run &amp;next</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_mcmc_chainlength">
+        <property name="text">
+         <string>MCMC chainlength</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QSpinBox" name="box_mcmc_chainlength">
+        <property name="maximum">
+         <number>1000000</number>
+        </property>
+        <property name="value">
+         <number>10000</number>
         </property>
        </widget>
       </item>
@@ -167,7 +184,7 @@ QPushButton
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>670</width>
+        <width>645</width>
         <height>412</height>
        </rect>
       </property>
