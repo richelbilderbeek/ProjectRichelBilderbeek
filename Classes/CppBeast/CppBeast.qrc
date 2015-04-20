@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/CppBeast">
+        <file>birth_death_0.xml</file>
+        <file>birth_death_1.xml</file>
+        <file>coalescent_constant_population_0.xml</file>
+        <file>coalescent_constant_population_1.xml</file>
+        <file>test_output_0.fas</file>
+        <file>test_output_1.fas</file>
+    </qresource>
+</RCC>

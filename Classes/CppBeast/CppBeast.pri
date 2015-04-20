@@ -5,7 +5,9 @@ SOURCES += \
     ../../Classes/CppBeast/beast.cpp \
     ../../Classes/CppBeast/beastparameterfile.cpp \
     ../../Classes/CppBeast/beaststatefile.cpp \
-    ../../Classes/CppBeast/beast_test.cpp
+    ../../Classes/CppBeast/beast_test.cpp \
+    ../../Classes/CppBeast/beastparameterfile_test.cpp \
+    ../../Classes/CppBeast/beaststatefile_test.cpp
 
 HEADERS  += \
     ../../Classes/CppBeast/beast.h \
@@ -14,4 +16,7 @@ HEADERS  += \
 
 OTHER_FILES += \
     ../../Classes/CppBeast/Licence.txt
+
+RESOURCES += \
+    ../../Classes/CppBeast/CppBeast.qrc
 

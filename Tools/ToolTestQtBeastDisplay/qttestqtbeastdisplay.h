@@ -8,6 +8,7 @@ class QtTestQtBeastDisplay;
 }
 
 struct QtBeastDisplay;
+struct QtDnaSequencesDialog;
 
 class QtTestQtBeastDisplay : public QDialog
 {
@@ -20,12 +21,14 @@ public:
   ~QtTestQtBeastDisplay();
 
 private slots:
-  void on_edit_newick_returnPressed();
+
+  void on_button_run_clicked();
 
 private:
   Ui::QtTestQtBeastDisplay *ui;
 
-  QtBeastDisplay * const m_display;
+  QtBeastDisplay * const m_beast_output;
+  QtDnaSequencesDialog * const m_dna_sequences_input;
 };
 
 #endif // QTTESTQTBEASTDISPLAY_H

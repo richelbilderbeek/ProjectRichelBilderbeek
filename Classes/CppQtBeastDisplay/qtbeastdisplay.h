@@ -1,27 +1,41 @@
-#ifndef QTDNADISPLAY_H
-#define QTDNADISPLAY_H
+#ifndef QTBEASTDISPLAY_H
+#define QTBEASTDISPLAY_H
 
 #include <QWidget>
 
 namespace ribi { struct DnaSequence; }
-namespace Ui { class QtDnaSequencesDisplay; }
+namespace Ui { class QtBeastDisplay; }
 
-class QtDnaSequencesDisplay : public QWidget
+class QtBeastDisplay : public QWidget
 {
   Q_OBJECT
 
 public:
-  explicit QtDnaSequencesDisplay(QWidget *parent = 0);
-  QtDnaSequencesDisplay(const QtDnaSequencesDisplay&) = delete;
-  QtDnaSequencesDisplay& operator=(const QtDnaSequencesDisplay&) = delete;
-  ~QtDnaSequencesDisplay();
+  explicit QtBeastDisplay(QWidget *parent = 0);
+  QtBeastDisplay(const QtBeastDisplay&) = delete;
+  QtBeastDisplay& operator=(const QtBeastDisplay&) = delete;
+  ~QtBeastDisplay();
 
-  void SetDnaSequences(const std::vector<ribi::DnaSequence>& sequences) noexcept;
+  void Analyze(
+    const std::vector<ribi::DnaSequence>& sequences,
+    const int mcmc_chainlength
+  ) noexcept;
 
 private:
-  Ui::QtDnaSequencesDisplay *ui;
+  Ui::QtBeastDisplay *ui;
 
   static const std::string sm_fail;
+
+  void AnalyzeBirthDeath(
+    const std::vector<ribi::DnaSequence>& sequences,
+    const int mcmc_chainlength
+  ) noexcept;
+  /*
+  void AnalyzeCoalescent(
+    const std::vector<ribi::DnaSequence>& sequences,
+    const int mcmc_chainlength
+  ) noexcept;
+  */
 };
 
-#endif // QTDNADISPLAY_H
+#endif // QTBEASTDISPLAY_H

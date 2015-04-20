@@ -27,6 +27,152 @@ Beast::Beast()
   }
 }
 
+void Beast::AnalyzeBirthDeath(
+  const std::string& log_file,
+  const std::string png_filename
+) const
+{
+  using ribi::fileio::FileIo;
+  assert(FileIo().IsRegularFile(log_file));
+
+  //TODO: Test if the user has all required packages
+
+  const std::string temp_r_filename{
+    FileIo().GetTempFileName(".R")
+  };
+
+  //Create the R script
+  {
+    std::ofstream f(temp_r_filename.c_str());
+    f
+      << "library(ape)" << '\n'
+      << "library(geiger)" << '\n'
+      << "library(phangorn)" << '\n'
+      << "data_raw <- read.table(\"" << log_file << "\",header = TRUE)" << '\n'
+      << "data <- tail(data_raw,n = nrow(data_raw) * 0.9)" << '\n'
+      << "png(filename=\"" << png_filename << "\")" << '\n'
+      << "hist(data$BirthDeath)" << '\n'
+      << "dev.off()" << '\n'
+    ;
+  }
+
+  if (!FileIo().IsRegularFile(temp_r_filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create temporary R script file "
+      << "with filename '" << temp_r_filename << "'";
+    throw std::runtime_error(s.str().c_str());
+  }
+
+  //Execute the R script
+  {
+    std::stringstream cmd;
+    cmd << "Rscript " << temp_r_filename;
+    const int error{std::system(cmd.str().c_str())};
+    if (error)
+    {
+      std::clog << __FILE__ << ": error " << error << '\n';
+    }
+  }
+
+  if (!FileIo().IsRegularFile(png_filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create SVG file "
+      << "with filename '" << png_filename << "'. "
+      << "Perhaps not all packages (ape) needed are installed? "
+      << "You can try to run the temporary R script file '"
+      << temp_r_filename
+      << "' yourself to see which error it gives"
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
+  //After detection. so user can check script
+  FileIo().DeleteFile(temp_r_filename);
+}
+
+void Beast::AnalyzeCoalescent(
+  const std::string& log_file,
+  const std::string png_filename_coalescent_constant,
+  const std::string png_filename_popsize
+) const
+{
+  using ribi::fileio::FileIo;
+
+  //TODO: Test if the user has all required packages
+
+  const std::string temp_r_filename{
+    FileIo().GetTempFileName(".R")
+  };
+
+  //Create the R script
+  {
+    std::ofstream f(temp_r_filename.c_str());
+    f
+      << "library(ape)" << '\n'
+      << "library(geiger)" << '\n'
+      << "library(phangorn)" << '\n'
+      << "data_raw <- read.table(\"" << log_file << "\",header = TRUE)" << '\n'
+      << "data <- tail(data_raw,n = nrow(data_raw) * 0.9)" << '\n'
+      << "png(filename=\"" << png_filename_popsize << "\")" << '\n'
+      << "hist(data$popSize)" << '\n'
+      << "dev.off()" << '\n'
+      << "png(filename=\"" << png_filename_coalescent_constant << "\")" << '\n'
+      << "hist(data$CoalescentConstant)" << '\n'
+      << "dev.off()" << '\n'
+    ;
+  }
+
+  if (!FileIo().IsRegularFile(temp_r_filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create temporary R script file "
+      << "with filename '" << temp_r_filename << "'";
+    throw std::runtime_error(s.str().c_str());
+  }
+
+  //Execute the R script
+  {
+    std::stringstream cmd;
+    cmd << "Rscript " << temp_r_filename;
+    const int error{std::system(cmd.str().c_str())};
+    if (error)
+    {
+      std::clog << __FILE__ << ": error " << error << '\n';
+    }
+  }
+
+  if (!FileIo().IsRegularFile(png_filename_coalescent_constant))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create SVG file "
+      << "with filename '" << png_filename_coalescent_constant << "'. "
+      << "You can try to run the temporary R script file '"
+      << temp_r_filename
+      << "' yourself to see which error it gives"
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
+  if (!FileIo().IsRegularFile(png_filename_popsize))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create SVG file "
+      << "with filename '" << png_filename_popsize << "'. "
+      << "You can try to run the temporary R script file '"
+      << temp_r_filename
+      << "' yourself to see which error it gives"
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
+  //After detection. so user can check script
+  FileIo().DeleteFile(temp_r_filename);
+}
+
 void Beast::Run(
   const std::string& xml_input_filename,
   const std::string& log_output_filename,

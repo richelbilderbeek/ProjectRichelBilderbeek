@@ -9,6 +9,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/xpressive/xpressive.hpp>
 
+/*
 template <class Container>
 std::string ContainerToStrImpl(const Container& c, const std::string& seperator)
 {
@@ -17,6 +18,7 @@ std::string ContainerToStrImpl(const Container& c, const std::string& seperator)
     std::ostream_iterator<typename Container::value_type>(s,seperator.c_str()));
   return s.str();
 }
+*/
 
 Helper::Helper() noexcept
 {
@@ -25,6 +27,7 @@ Helper::Helper() noexcept
   #endif
 }
 
+/*
 std::string Helper::ContainerToStr(
   const std::vector<std::string>& s,
   const std::string& seperator
@@ -32,7 +35,7 @@ std::string Helper::ContainerToStr(
 {
   return ContainerToStrImpl(s,seperator);
 }
-
+*/
 
 std::map<std::string,int> Helper::CreateSortedTally(
   const std::vector<std::string>& v

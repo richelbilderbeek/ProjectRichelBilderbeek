@@ -3,6 +3,7 @@ CONFIG += console
 CONFIG -= app_bundle
 CONFIG += qt
 
+include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppDnaSequence/CppDnaSequence.pri)
 include(../../Classes/CppBeast/CppBeast.pri)
 include(../../Classes/CppFastaFile/CppFastaFile.pri)

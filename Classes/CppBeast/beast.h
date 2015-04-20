@@ -10,6 +10,17 @@ struct Beast
   //Throws if BEAST2 cannot be found
   Beast();
 
+  void AnalyzeBirthDeath(
+    const std::string& log_file,
+    const std::string png_filename
+  ) const;
+
+  void AnalyzeCoalescent(
+    const std::string& log_file,
+    const std::string png_filename_coalescent_constant,
+    const std::string png_filename_popsize
+  ) const;
+
   void Run(
     const std::string& xml_input_filename,
     const std::string& log_output_filename,

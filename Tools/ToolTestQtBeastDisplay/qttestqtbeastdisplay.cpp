@@ -1,24 +1,24 @@
 #include "qttestqtbeastdisplay.h"
 
 #include <QDesktopWidget>
-#include <QPixmap>
 
 #include <cassert>
 
-#include "fileio.h"
+#include "dnasequence.h"
 #include "qtbeastdisplay.h"
+#include "qtdnasequencesdialog.h"
 #include "ui_qttestqtbeastdisplay.h"
 
 QtTestQtBeastDisplay::QtTestQtBeastDisplay(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestQtBeastDisplay),
-  m_display{new QtBeastDisplay(this)}
+  m_beast_output{new QtBeastDisplay(this)},
+  m_dna_sequences_input{new QtDnaSequencesDialog(this)}
 {
   ui->setupUi(this);
   assert(ui->area_content->layout());
-  ui->area_content->layout()->addWidget(m_display);
-
-  on_edit_beast_returnPressed();
+  ui->area_content->layout()->addWidget(m_dna_sequences_input);
+  ui->area_content->layout()->addWidget(m_beast_output);
 
   //Put the dialog in the screen center
   {
@@ -33,7 +33,10 @@ QtTestQtBeastDisplay::~QtTestQtBeastDisplay()
   delete ui;
 }
 
-void QtTestQtBeastDisplay::on_edit_beast_returnPressed()
+void QtTestQtBeastDisplay::on_button_run_clicked()
 {
-  this->m_display->SetBeast(ui->edit_beast->text().toStdString());
+  m_beast_output->Analyze(
+    m_dna_sequences_input->GetSequences(),
+    ui->box_mcmc_chainlength->value()
+  );
 }

@@ -43,6 +43,9 @@ struct Container
   ///Concatenate concatenates the strings, with a certain seperator
   std::string Concatenate(const std::vector<std::string>& v, const std::string& seperator = "") const noexcept;
 
+  ///TODO: Merge with ToStr
+  std::string ContainerToStr(const std::vector<std::string>& s, const std::string& seperator = " ") const noexcept;
+
   ///std::count(t.begin(),t.end(),u
   template <class T, class U>
   static int Count(const T& t, const U& u) noexcept
@@ -70,6 +73,7 @@ struct Container
     str = "{" + str + "}";
     return str;
   }
+
 
   template <class T>
   static std::string ToStr(const std::vector<T>& v) noexcept

@@ -30,6 +30,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+template <class Container>
+std::string ContainerToStrImpl(const Container& c, const std::string& seperator)
+{
+  std::stringstream s;
+  std::copy(c.begin(),c.end(),
+    std::ostream_iterator<typename Container::value_type>(s,seperator.c_str()));
+  return s.str();
+}
+
 ribi::Container::Container()
 {
   #ifndef NDEBUG
@@ -48,6 +57,14 @@ std::string ribi::Container::Concatenate(const std::vector<std::string>& v, cons
     str.resize(str.size() - seperator.size());
   }
   return str;
+}
+
+std::string ribi::Container::ContainerToStr(
+  const std::vector<std::string>& s,
+  const std::string& seperator
+) const noexcept
+{
+  return ContainerToStrImpl(s,seperator);
 }
 
 
