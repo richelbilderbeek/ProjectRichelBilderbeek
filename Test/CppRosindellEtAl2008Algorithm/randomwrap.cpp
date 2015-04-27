@@ -1,17 +1,20 @@
 #include "randomwrap.h"
 
 #include "randomwrap.h"
-#include <stdlib.h>
-//#include "Rosindell_etal_2007.h"
-using namespace std;
+#include <cstdlib>
+
 RandomWrap::RandomWrap()
 {
+
 }
 void RandomWrap::set_seed(long seed)
 {
-    srand ( seed );
+  std::srand (seed);
 }
 double RandomWrap::d01()
 {
-    return(double(rand())/double(RAND_MAX));
+  return(
+    static_cast<double>(std::rand())
+    /static_cast<double>(RAND_MAX)
+  );
 }

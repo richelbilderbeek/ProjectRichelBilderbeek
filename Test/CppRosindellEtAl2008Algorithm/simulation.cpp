@@ -1,5 +1,6 @@
 #include "simulation.h"
 
+#include <algorithm>
 #include <cassert>
 #include <fstream>
 #include <iostream>
@@ -13,8 +14,10 @@
 Simulation::Simulation(
   const std::vector<Task>& tasks,
   const std::vector<double>& specset,
-  const std::string& result_output_filename
-)
+  const std::string& result_output_filename,
+  const int seed,
+  const bool verbose
+) : m_verbose{verbose}
 {
   #ifndef NDEBUG
   Test();
@@ -22,16 +25,12 @@ Simulation::Simulation(
 
   // setup tree object
   tree test;
-  test.setseed(4);
+  test.setseed(seed);
   // find minimum speciation rate required
-  double minspec = 1.0;
-  for (int i = 0 ; i < boost::numeric_cast<int>(specset.size()) ; ++i)
-  {
-    if (minspec > specset[i])
-    {
-      minspec = specset[i];}
-  }
 
+  const double minspec{
+    *std::min_element(std::begin(specset),std::end(specset))
+  };
   // do the calculations in a big double loop
   std::ofstream out;
   out.open(result_output_filename);
@@ -60,7 +59,7 @@ Simulation::Simulation(
       );
       m_results.push_back(result);
       out << result;
-      std::cout << result;
+      if (m_verbose) { std::cout << result; }
     }
   }
   out.close();

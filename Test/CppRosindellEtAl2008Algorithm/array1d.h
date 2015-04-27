@@ -10,7 +10,8 @@ class array1D {
 public:
     array1D();
     ~array1D();
-    void SetSize(int n);int size();
+    void SetSize(int n);
+    int size();
     X& operator[](int index);
 private:
     int entries; // stores the number of entries

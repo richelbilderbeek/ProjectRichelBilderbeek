@@ -5,6 +5,8 @@
 #include "nrrand.h"
 #include "array1d.h"
 
+#include "rng.h"
+
 /************************************************************
 TREE OBJECT
 ************************************************************/
@@ -61,7 +63,9 @@ public:
         unsigned int steps;
         // the number of generations (chances of speciation)
         // between this individual and its parent in the tree
-    };class datapoint
+    };
+
+    class datapoint
             // this is a data object used in the routine for caluating the coalescence tree
             // but does not form part of the output itself
             // it is meant as a tool for performing the coalescence itself

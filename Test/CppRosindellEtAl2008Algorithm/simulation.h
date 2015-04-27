@@ -31,8 +31,11 @@ struct Simulation
   Simulation(
     const std::vector<Task>& tasks,
     const std::vector<double>& speciation_rates,
-    const std::string& result_output_filename = "resultsfile.txt"
+    const std::string& result_output_filename = "resultsfile.txt",
+    const int seed = 4,
+    const bool verbose = true
   );
+
 
   std::vector<Result> GetResults() const noexcept { return m_results; }
 
@@ -41,7 +44,10 @@ struct Simulation
   #endif
 
   private:
+
   std::vector<Result> m_results;
+
+  const bool m_verbose;
 
 };
 

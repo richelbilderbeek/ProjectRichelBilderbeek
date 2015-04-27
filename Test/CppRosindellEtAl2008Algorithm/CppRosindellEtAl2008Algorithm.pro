@@ -17,7 +17,8 @@ SOURCES += \
     task.cpp \
     result.cpp \
     simulation_test.cpp \
-    main.cpp
+    main.cpp \
+    rng.cpp
 
 QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
 
@@ -32,4 +33,5 @@ HEADERS += \
     globals.h \
     simulation.h \
     task.h \
-    result.h
+    result.h \
+    rng.h
