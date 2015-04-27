@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <cmath>
+#include <iostream>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "treedatapoint.h"
@@ -42,6 +43,7 @@ void Tree::maketree(
   // data - this will store the coalescence tree itself
   // there can only be a maximum of twice as many nodes as there are
   // initially free branches so we can set the size of our data object
+
   m_nodes.resize(2*area1*area2+1,TreeNode(true));
   m_enddata = 0; // 0 is reserved as null
   // this means that data is empty and that data[1] is where the first
@@ -58,19 +60,27 @@ void Tree::maketree(
       m_nodes[m_enddata] = TreeNode(true); // generation number = 1
     }
   }
+  /*
+  std::vector<TreeNode> nodes_too(2*area1*area2+1,TreeNode(true));
+  assert(m_nodes.size() == nodes_too.size());
+  for (int i=0; i!=(2*area1*area2+1); ++i)
+  {
+    if(m_nodes[i] != nodes_too[i])
+    {
+      std::cout << '\n' << i << " " << m_nodes[i] << " and " << nodes_too[i] << std::endl;
+    }
+    assert(m_nodes[i] == nodes_too[i]);
+  }
+  assert(m_nodes == nodes_too);
+  */
+
   // grid - this is an internal variable
   // this is necessary for calculations - initialise it as all zeros
   // it will store integers that refer to places in datapoint array "active"
-  int thegridsize = sm_gridsize;
-  if (thegridsize < area1*2)
-  {
-    thegridsize = area1*2;
-  }
-  if (thegridsize < area2*2)
-  {
-    thegridsize = area2*2;
-  }
-
+  const int thegridsize
+    = sm_gridsize < area1*2 ? area1*2
+    : (sm_gridsize < area2*2 ? area2*2 : sm_gridsize)
+  ;
 
   std::vector<std::vector<int>> grid(thegridsize,std::vector<int>(thegridsize,0));
   // "active" stores all the required information for any
@@ -295,12 +305,6 @@ void Tree::maketree(
 
 
 
-
-
-/************************************************************
-CLASS TREE - THE MAIN CLASS
-************************************************************/
-
 /************************************************************
 RICHNESS CALCULATION METHODS
 ************************************************************/
@@ -400,9 +404,10 @@ std::vector<double> Tree::get_richnessint(const double spec)
     return result;
   }
 }
+
 double Tree::get_richness(double spec)
-// this returns the midpoint between the maximum and minimum richness estimates
 {
+  // this returns the midpoint between the maximum and minimum richness estimates
   std::vector<double> richnessresult = get_richnessint(spec);
   return (richnessresult[0]+richnessresult[1])/2.0;
 }

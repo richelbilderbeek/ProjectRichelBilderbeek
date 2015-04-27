@@ -38,16 +38,22 @@ struct TreeDataPoint
 private:
   int m_xpos;
   int m_ypos;
+
   ///Number of horizontal wraps around the torus
   int m_xindex;
+
   ///Number of vertical wraps around the torus
   int m_yindex;
+
   /// the next individual in the loop of those that have the same xypos
   int m_next;
+
   /// the last individual in the loop 0 means the only one
   int m_last;
+
   /// points to the position in output of this lineage
   int m_mpos;
+
   /// the probability of not having speciated yet
   /// this is to allow the coalescence tree calculation to be stopped
   /// prematurely - saving many calculations with minimal loss in accuracy

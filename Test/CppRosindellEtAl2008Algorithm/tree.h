@@ -31,9 +31,12 @@ public:
       int dispersal,
       double tol,
       bool normflag
-    );// this returns an interval within which the true mean richness must lie
+    );
+
+    // this returns an interval within which the true mean richness must lie
     std::vector<double> get_richnessint(double spec);
-    // this returns the midpoint between the maximum and minimum richness estimates
+
+    //this returns the midpoint between the maximum and minimum richness estimates
     double get_richness(double spec);
 
 
