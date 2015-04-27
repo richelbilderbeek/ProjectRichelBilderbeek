@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "task.h"
-//struct Task;
+#include "result.h"
 
 std::vector<double> ReadSpeciationRatesFromFile(
   const std::string& speciation_input_filename
@@ -34,14 +34,14 @@ struct Simulation
     const std::string& result_output_filename = "resultsfile.txt"
   );
 
-  std::vector<double> GetSpeciesRichnesses() const noexcept { return m_species_richnesses; }
+  std::vector<Result> GetResults() const noexcept { return m_results; }
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
   private:
-  std::vector<double> m_species_richnesses;
+  std::vector<Result> m_results;
 
 };
 

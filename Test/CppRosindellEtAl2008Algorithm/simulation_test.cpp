@@ -26,22 +26,21 @@ void Simulation::Test() noexcept
 
   Simulation simulation(tasks,specset);
 
-  const std::vector<double> species_richnesses{
-    simulation.GetSpeciesRichnesses()
+  const std::vector<Result> results{
+    simulation.GetResults()
   };
-  assert(species_richnesses.size() == 12);
-  assert(std::abs(species_richnesses[ 0]-34.0484) < 0.0001);
-  assert(std::abs(species_richnesses[ 1]-16.6893) < 0.0001);
-  assert(std::abs(species_richnesses[ 2]-71.3487) < 0.0001);
-  assert(std::abs(species_richnesses[ 3]-23.975 ) < 0.0001);
-  assert(std::abs(species_richnesses[ 4]-70.9428) < 0.0001);
-  assert(std::abs(species_richnesses[ 5]-23.4636) < 0.0001);
-  assert(std::abs(species_richnesses[ 6]-48.4659) < 0.0001);
-  assert(std::abs(species_richnesses[ 7]-23.7277) < 0.0001);
-  assert(std::abs(species_richnesses[ 8]-37.5131) < 0.0001);
-  assert(std::abs(species_richnesses[ 9]-12.9071) < 0.0001);
-  assert(std::abs(species_richnesses[10]-38.2425) < 0.0001);
-  assert(std::abs(species_richnesses[11]-14.5789) < 0.0001);
-  assert(1==289);
+  assert(results.size() == 12);
+  assert(std::abs(results[ 0].GetSpeciesRichness()-34.0484) < 0.0001);
+  assert(std::abs(results[ 1].GetSpeciesRichness()-16.6893) < 0.0001);
+  assert(std::abs(results[ 2].GetSpeciesRichness()-71.3487) < 0.0001);
+  assert(std::abs(results[ 3].GetSpeciesRichness()-23.975 ) < 0.0001);
+  assert(std::abs(results[ 4].GetSpeciesRichness()-70.9428) < 0.0001);
+  assert(std::abs(results[ 5].GetSpeciesRichness()-23.4636) < 0.0001);
+  assert(std::abs(results[ 6].GetSpeciesRichness()-48.4659) < 0.0001);
+  assert(std::abs(results[ 7].GetSpeciesRichness()-23.7277) < 0.0001);
+  assert(std::abs(results[ 8].GetSpeciesRichness()-37.5131) < 0.0001);
+  assert(std::abs(results[ 9].GetSpeciesRichness()-12.9071) < 0.0001);
+  assert(std::abs(results[10].GetSpeciesRichness()-38.2425) < 0.0001);
+  assert(std::abs(results[11].GetSpeciesRichness()-14.5789) < 0.0001);
 }
 #endif

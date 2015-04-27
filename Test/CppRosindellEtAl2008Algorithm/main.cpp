@@ -20,6 +20,8 @@ int main()
   {
     std::cerr << e.what() << '\n';
   }
-  assert(1==2);
+  #ifndef NDEBUG
+  std::cout << "Done (debug)" << std::endl;
+  #endif
 }
 

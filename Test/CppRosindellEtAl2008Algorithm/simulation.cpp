@@ -8,6 +8,7 @@
 #include "fileio.h"
 #include "task.h"
 #include "tree.h"
+#include "result.h"
 
 Simulation::Simulation(
   const std::vector<Task>& tasks,
@@ -30,8 +31,8 @@ Simulation::Simulation(
     {
       minspec = specset[i];}
   }
-  // do the calculations in a big double loop
 
+  // do the calculations in a big double loop
   std::ofstream out;
   out.open(result_output_filename);
   for (int i = 0 ; i < boost::numeric_cast<int>(tasks.size()) ; ++i)
@@ -49,49 +50,17 @@ Simulation::Simulation(
     {
       // evaluate species richness for a variety of different speciation rates
       const double temprichness = test.get_richness(specset[j]);
-      m_species_richnesses.push_back(temprichness);
-      if (tasks[i].type)
-      {
-        out
-          << tasks[i].area1 << " "
-          << tasks[i].area2 << " "
-          << specset[j] << " "
-          << tasks[i].L << " "
-          << " normal "
-          << temprichness
-          << " \n"
-        ;
-        std::cout
-          << tasks[i].area1 << " "
-          << tasks[i].area2 << " "
-          << specset[j] << " "
-          << tasks[i].L << " "
-          << " normal "
-          << temprichness
-          << " \n"
-        ;
-      }
-      else
-      {
-        out
-          << tasks[i].area1 << " "
-          << tasks[i].area2 << " "
-          << specset[j] << " "
-          << tasks[i].L << " "
-          << " square "
-          << temprichness
-          << " \n"
-        ;
-        std::cout
-          << tasks[i].area1 << " "
-          << tasks[i].area2 << " "
-          << specset[j] << " "
-          << tasks[i].L << " "
-          << " square "
-          << temprichness
-          << " \n"
-        ;
-      }
+      const Result result(
+        tasks[i].area1,
+        tasks[i].area2,
+        specset[j],
+        tasks[i].L,
+        tasks[i].type,
+        temprichness
+      );
+      m_results.push_back(result);
+      out << result;
+      std::cout << result;
     }
   }
   out.close();
