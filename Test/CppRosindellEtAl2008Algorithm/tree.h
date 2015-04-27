@@ -24,7 +24,7 @@ public:
     // dispersal = dispersal distance (dispersal kernel width)
     // tol = tolerance in results (0.01 means 1% error - 0.5% either side)
     // typeflag deals with the type of dispersal in the model (true means normal)
-    void maketree(int area1 , int area2 , double minspec , int dispersal , double tol, bool normflag);// this returns an interval within which the true mean richness must lie
+    void maketree(int area1, int area2, double minspec, int dispersal , double tol, bool normflag);// this returns an interval within which the true mean richness must lie
     std::vector<double> get_richnessint(double spec);
     // this returns the midpoint between the maximum and minimum richness estimates
     double get_richness(double spec);
@@ -68,27 +68,27 @@ public:
         datapoint();
         void setup(unsigned short x , unsigned short y , unsigned int z);
         void setup(datapoint datin);
-        void set_pos(unsigned short x , unsigned short y);
-        void set_index( short x , short y);
-        void set_mpos(unsigned int z);
-        void set_next(unsigned int x);
-        void set_last(unsigned int x);
-        void set_prob(double x);
-        unsigned short get_xpos();
-        unsigned short get_ypos();
-        short get_xindex();
-        short get_yindex();
-        unsigned int get_mpos();
-        unsigned int get_next();
-        unsigned int get_last();
-        double get_prob();
+        void set_pos(unsigned short any_xpos, unsigned short any_ypos) noexcept { xpos = any_xpos; ypos = any_ypos; }
+        void set_index( short x , short y) noexcept { xindex = x; yindex = y; }
+        void set_mpos(unsigned int z) { mpos = z; }
+        void set_next(unsigned int x) { next = x; }
+        void set_last(unsigned int x) { last = x; }
+        void set_prob(double x) { prob = x; }
+        unsigned short get_xpos() const noexcept { return xpos; }
+        unsigned short get_ypos() const noexcept { return ypos; }
+        short get_xindex() const noexcept { return xindex; }
+        short get_yindex() const noexcept { return yindex; }
+        unsigned int get_mpos() const noexcept { return mpos; }
+        unsigned int get_next() const noexcept { return next; }
+        unsigned int get_last() const noexcept { return last; }
+        double get_prob() const noexcept { return prob; }
         // checks for coalescence with another datapoint
         bool match(datapoint x );
         // update the position of this datapoint
         // this implements the indexing system
         void move(short x , short y , double z);
     private:
-        unsigned short xpos;// x position
+        unsigned short xpos;
         unsigned short ypos;
         // y position
         short xindex;
@@ -107,27 +107,21 @@ public:
         // prematurely - saving many calculations with minimal loss in accuracy
     };
 private:
-    std::vector<treenode> data;
-    // stores the coalescence tree itself
-    unsigned int enddata;
-    // marks the end of the data array
-    // this is so that size can be expanded and contracted easily up to a maximum size
-    double minspecsetup;
-    // when producing a coalescence tree, we do so with a minimal speciation rate
-    // in mind (to save a lot of computational expense in growing the full tree)
-    // when true some messages will be printed out for debub purposes
-    Rng NR;
-    // this is a portable random number generator object
-    // please see the separate file for indtructions on use
-    // you may use any random number generator, but numerical recipes
-    // solutions are highly recommended
-    bool seeded;
-    // a variable that is true when the random number generator seed is set
-    std::vector< std::vector<int> > children;
-    // this vector stores the extra information needed for Newick outputs
-    // it is left clear as standard and only used when needed
+  std::vector<treenode> m_data;
+  // stores the coalescence tree itself
+  unsigned int m_enddata;
+  // marks the end of the data array
+  // this is so that size can be expanded and contracted easily up to a maximum size
+  double m_minspecsetup;
+  // when producing a coalescence tree, we do so with a minimal speciation rate
+  // in mind (to save a lot of computational expense in growing the full tree)
+  // when true some messages will be printed out for debub purposes
+  Rng m_rnd;
+  // this is a portable random number generator object
+  // please see the separate file for indtructions on use
+  // you may use any random number generator, but numerical recipes
+  // solutions are highly recommended
 
-
-  static const int gridsize = 4000;
+  static const int sm_gridsize = 4000;
 };
 #endif // TREE_H

@@ -10,13 +10,13 @@ CONFIG += qt
 SOURCES += \
     tree.cpp \
     nrrand.cpp \
-    array2d.cpp \
     simulation.cpp \
     task.cpp \
     result.cpp \
     simulation_test.cpp \
     main.cpp \
-    rng.cpp
+    rng.cpp \
+    tree_datapoint.cpp
 
 QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
 
@@ -25,7 +25,6 @@ LIBS += -lboost_filesystem -lboost_system
 HEADERS += \
     tree.h \
     nrrand.h \
-    array2d.h \
     simulation.h \
     task.h \
     result.h \
