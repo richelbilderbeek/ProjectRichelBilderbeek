@@ -23,37 +23,35 @@ Simulation::Simulation(
   Test();
   #endif
 
-  // setup tree object
   tree test(seed);
 
-  // find minimum speciation rate required
+  // minimum speciation rate required
   const double minspec{
     *std::min_element(std::begin(specset),std::end(specset))
   };
-  // do the calculations in a big double loop
+
   std::ofstream out;
   out.open(result_output_filename);
-  for (int i = 0 ; i < boost::numeric_cast<int>(tasks.size()) ; ++i)
+  for (const Task& task:tasks)
   {
-    // produce tree
     test.maketree(
-      tasks[i].area1,
-      tasks[i].area2,
+      task.area1,
+      task.area2,
       minspec,
-      tasks[i].L,
-      tasks[i].tol,
-      tasks[i].type
+      task.L,
+      task.tol,
+      task.type
     );
-    for (int j = 0 ; j < boost::numeric_cast<int>(specset.size()) ; j ++)
+    for (const double spec:specset)
     {
       // evaluate species richness for a variety of different speciation rates
-      const double temprichness = test.get_richness(specset[j]);
+      const double temprichness = test.get_richness(spec);
       const Result result(
-        tasks[i].area1,
-        tasks[i].area2,
-        specset[j],
-        tasks[i].L,
-        tasks[i].type,
+        task.area1,
+        task.area2,
+        spec,
+        task.L,
+        task.type,
         temprichness
       );
       m_results.push_back(result);

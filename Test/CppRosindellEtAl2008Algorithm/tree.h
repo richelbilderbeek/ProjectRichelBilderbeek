@@ -117,7 +117,6 @@ private:
     // when producing a coalescence tree, we do so with a minimal speciation rate
     // in mind (to save a lot of computational expense in growing the full tree)
     // when true some messages will be printed out for debub purposes
-    //NRrand NR;
     Rng NR;
     // this is a portable random number generator object
     // please see the separate file for indtructions on use

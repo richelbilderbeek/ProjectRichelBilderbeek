@@ -1,14 +1,11 @@
 #ifndef NRRAND_H
 #define NRRAND_H
 
-#include "randomwrap.h"
-
 class NRrand
 {
 public:
     // constructor
     NRrand(const long seed);
-    //void set_seed(long seed);
     // returns a uniform random number in (0,1)
     double d01();
     // returns an integer between 0 and max
