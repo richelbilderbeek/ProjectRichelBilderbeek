@@ -32,5 +32,7 @@ std::vector<Task> ReadTasksFromFile(
   const std::string& tasks_input_filename = "tasksfile.txt"
 );
 
+std::ostream& operator<<(std::ostream& os, const Task& task);
+
 
 #endif // TASK_H

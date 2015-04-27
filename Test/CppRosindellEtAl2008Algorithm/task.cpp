@@ -65,3 +65,15 @@ std::vector<Task> ReadTasksFromFile(
   ifdata.close();
   return tasks;
 }
+
+std::ostream& operator<<(std::ostream& os, const Task& task)
+{
+  os
+    << task.area1 << " "
+    << task.area2 << " "
+    << task.L     << " "
+    << task.type  << " "
+    << task.tol   << " "
+  ;
+  return os;
+}
