@@ -33,7 +33,7 @@ public:
             data=new array1D<X>[Yin];
             for (int i=0;i<Yin;i++)
             {
-                data[i].SetSize(Xin);
+                data[i].resize(Xin);
             }
         }
         else

@@ -1,16 +1,20 @@
 #ifndef ARRAY1D_H
 #define ARRAY1D_H
 
-/************************************************************
-ARRAY DATA STRUCTURE OBJECT
-************************************************************/
+#define USE_STD_VECTOR
+#ifdef USE_STD_VECTOR
+#include <vector>
+
+template<typename T>
+using array1D = std::vector<T>;
+#else
 // Template class array1D
 template<class X>
 class array1D {
 public:
     array1D();
     ~array1D();
-    void SetSize(int n);
+    void resize(int n); //Old name: SetSize
     int size();
     X& operator[](int index);
 private:
@@ -22,7 +26,7 @@ private:
 template<class X>
 array1D<X>::array1D():data(0)
 {
-    SetSize(0);
+    resize(0);
 }
 // destructor
 template<class X>
@@ -31,7 +35,7 @@ array1D<X>::~array1D()
 }
 // setter for size
 template<class X>
-void array1D<X>::SetSize(int n)
+void array1D<X>::resize(int n)
 {
     if(data)
     {
@@ -65,5 +69,7 @@ X& array1D<X>::operator[](int index)
     index = index % entries;
     return data[index];
 }
+#endif
+
 
 #endif // ARRAY1D_H
