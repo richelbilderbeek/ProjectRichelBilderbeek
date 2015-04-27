@@ -2,7 +2,31 @@
 #define ARRAY2D_H
 
 #include "array1d.h"
+#include <cassert>
+#include <vector>
 
+template<class T>
+struct array2D_Bilderbeek {
+  void SetSize(int Yin, int Xin)
+  {
+    data.resize(Yin,array1D<T>(Xin,0));
+  }
+
+  array1D<T>& operator[](const int index)
+  {
+    const int size = static_cast<int>(data.size());
+    const int valid_index = (index + size) % size;
+    assert(valid_index >= 0);
+    assert(valid_index < static_cast<int>(data.size()));
+    return data[valid_index];
+  }
+
+  private:
+  std::vector<array1D<T>> data;
+
+};
+
+#ifdef DEFINE_ARRAY2D_ROSINDELL
 // Template class array2D as an array of rows
 template<class X>
 class array2D_Rosindell {
@@ -56,8 +80,8 @@ public:
         return data[index];
     }
 };
+#endif // DEFINE_ARRAY2D_ROSINDELL
 
-
-template<typename T> using array2D = array2D_Rosindell<T>;
+template<typename T> using array2D = array2D_Bilderbeek<T>;
 
 #endif // ARRAY2D_H

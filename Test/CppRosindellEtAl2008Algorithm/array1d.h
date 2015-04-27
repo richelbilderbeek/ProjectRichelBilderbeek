@@ -8,6 +8,10 @@ class array1D_Bilderbeek
 {
 public:
   array1D_Bilderbeek() {}
+  array1D_Bilderbeek(const int size, const T& initial_value)
+    : m_data(size,initial_value)
+  {
+  }
   ~array1D_Bilderbeek() {}
   void SetSize(int n) { m_data.resize(n); }
   int size() { return m_data.size(); }

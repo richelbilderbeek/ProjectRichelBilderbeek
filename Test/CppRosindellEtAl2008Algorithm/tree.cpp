@@ -69,7 +69,7 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
   {
     thegridsize = area2*2;
   }
-  array2D_Rosindell<unsigned int> grid;
+  array2D<unsigned int> grid;
   grid.SetSize(thegridsize,thegridsize);
   for (int i = 0 ; i < thegridsize ; ++i)
   {
