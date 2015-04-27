@@ -4,15 +4,17 @@
 #include <cmath>
 #include <boost/numeric/conversion/cast.hpp>
 
-tree::tree(const long theseed)
-  : m_rnd(theseed)
+Tree::Tree(const long seed)
+  :
+    m_minspecsetup{2},
+    m_rnd(seed)
 {
-  m_minspecsetup = 2;
+
 }
 
 
 //PRODUCING A COALESCENCE TREE IN CLASS TREE
-void tree::maketree(
+void Tree::maketree(
   const int area1,
   const int area2,
   const double minspec,
@@ -38,7 +40,7 @@ void tree::maketree(
   // data - this will store the coalescence tree itself
   // there can only be a maximum of twice as many nodes as there are
   // initially free branches so we can set the size of our data object
-  m_data.resize(2*area1*area2+1);
+  m_nodes.resize(2*area1*area2+1);
   m_enddata = 0; // 0 is reserved as null
   // this means that data is empty and that data[1] is where the first
   // piece of data will be recorded
@@ -48,8 +50,8 @@ void tree::maketree(
     {
       // looping over the entire survey area
       // setup the data variable
-      m_enddata ++;
-      m_data[m_enddata].setup(true); // generation number = 1
+      ++m_enddata;
+      m_nodes[m_enddata].setup(true); // generation number = 1
     }
   }
   // grid - this is an internal variable
@@ -59,7 +61,8 @@ void tree::maketree(
   if (thegridsize < area1*2)
   {
     thegridsize = area1*2;
-  }if (thegridsize < area2*2)
+  }
+  if (thegridsize < area2*2)
   {
     thegridsize = area2*2;
   }
@@ -88,8 +91,8 @@ void tree::maketree(
     }
   }
   // other variables to be initialised
-  //int time = 0;
-  int steps = 0;double error = 1000.0;
+  int steps = 0;
+  double error = 1000.0;
   // these three variables store information for STRs
   // has a lineage in our survey moved?
   // now do the calculations required to set up the tree
@@ -99,7 +102,7 @@ void tree::maketree(
     // increment steps
     ++steps;
     // choose a random lineage to die and be reborn out of those currently active
-    int chosen = m_rnd.i0(endactive-1) + 1; // cannot be 0
+    const int chosen = m_rnd.i0(endactive-1) + 1; // cannot be 0
     // remember there is no speciation included in this part of the programme
     // choose movement of chosen lineage
     int movex = 0; // will store x direction movement
@@ -119,7 +122,8 @@ void tree::maketree(
     else
     {
       // square distribtion kernel
-      while ((movex == 0)&&(movey == 0)){
+      while (movex == 0 && movey == 0)
+      {
         // loop to ensure we don't pick a individual to be its own parent
         movex += (m_rnd.i0(dispersal*2)-dispersal);
         movey += (m_rnd.i0(dispersal*2)-dispersal);
@@ -167,7 +171,7 @@ void tree::maketree(
     // now actually do the move
     richness += minspec*(active[chosen].get_prob());
     active[chosen].move(movex,movey,minspec);
-    m_data[active[chosen].get_mpos()].inc_steps();
+    m_nodes[active[chosen].get_mpos()].inc_steps();
     // record the new position
     int activex = active[chosen].get_xpos();
     int activey = active[chosen].get_ypos();
@@ -188,7 +192,7 @@ void tree::maketree(
       // check around the ring for coalescence
       assert(activex >= 0);
       assert(activex < static_cast<int>(grid.size()));
-      int start = grid[activex][activey]; // starting here
+      const int start = grid[activex][activey]; // starting here
       // this is how far around the loop we have got checking for coalescence
       // we start at "start" and then move around methodically
       // the loops usually contain 1 individual but we must allow code for any number
@@ -201,10 +205,10 @@ void tree::maketree(
           {
             // we have coalescence, update variables// update data
             m_enddata++;
-            m_data[m_enddata].setup(false);
+            m_nodes[m_enddata].setup(false);
             // update data
-            m_data[active[chosen].get_mpos()].set_parent(m_enddata);
-            m_data[active[current].get_mpos()].set_parent(m_enddata);
+            m_nodes[active[chosen].get_mpos()].set_parent(m_enddata);
+            m_nodes[active[current].get_mpos()].set_parent(m_enddata);
             // update active
             active[current].set_mpos(m_enddata);
             double tempprob = active[chosen].get_prob();
@@ -285,46 +289,6 @@ void tree::maketree(
 
 
 
-tree::treenode::treenode()
-{
-}
-void tree::treenode::setup(bool root_)
-// sets up variables with initial conditions
-{
-  root = root_;
-  parent = 0;
-  steps = 0;
-}// standard setters
-void tree::treenode::set_root(bool root_)
-{
-  root = root_;
-}
-void tree::treenode::set_parent(unsigned int x)
-{
-  parent = x;
-}
-void tree::treenode::set_steps(unsigned int x)
-{
-  steps = x;
-}
-// standard getters
-bool tree::treenode::get_root()
-{
-  return root;
-}
-unsigned int tree::treenode::get_parent()
-{
-  return parent;
-}
-int tree::treenode::get_steps()
-{
-  return (steps);
-}
-// increments the steps by one
-void tree::treenode::inc_steps()
-{
-  steps++;
-}
 
 /************************************************************
 CLASS TREE - THE MAIN CLASS
@@ -333,13 +297,10 @@ CLASS TREE - THE MAIN CLASS
 /************************************************************
 RICHNESS CALCULATION METHODS
 ************************************************************/
-std::vector<double> tree::get_richnessint(double spec)
+std::vector<double> Tree::get_richnessint(const double spec)
 // this returns an interval within which the true mean ricness must lie
 {
-  std::vector<double> result;
-  result.resize(2);
-  result[0] = 0.0;
-  result[1] = 0.0;
+  std::vector<double> result(2,0.0);
   if (m_minspecsetup <= spec)
     // check that the tree was calculated for a small enough speciation rate
     // it is possible to override this check by commenting out if required
@@ -350,7 +311,7 @@ std::vector<double> tree::get_richnessint(double spec)
     for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
       // loop over all nodes and initialise the relating element in probarray
     {
-      if (m_data[i].get_root() == false)
+      if (m_nodes[i].get_root() == false)
         // a value of -2.0 indicates an internal node
         // that has thus far not been pruned at all
       {
@@ -374,7 +335,7 @@ std::vector<double> tree::get_richnessint(double spec)
         if (probarray[i] >= 0.0)
         {
           // it is complete so use it to complete the info on in its parents
-          int theparent = m_data[i].get_parent();
+          int theparent = m_nodes[i].get_parent();
           if ((probarray[theparent] < 0.0) && (theparent != 0))
           {
             // only do anything if the parents have not already been completed
@@ -383,7 +344,7 @@ std::vector<double> tree::get_richnessint(double spec)
             if (probarray[theparent] <= -1.5)
             {
               // parent not at all complete
-              double temprob = (pow(1-spec,double(m_data[i].get_steps())));
+              const double temprob = (pow(1-spec,double(m_nodes[i].get_steps())));
               result[0] += probarray[i]*(1-temprob);
               // we store probabilities as negative in a node if they
               // refer only to one of the two branches of the node
@@ -394,11 +355,11 @@ std::vector<double> tree::get_richnessint(double spec)
             else
             {
               // parent partailly complete
-              double temprob = (pow(1-spec,double(m_data[i].get_steps())));// update Smin
-              result[0] += probarray[i]*(1-temprob);
+              double temprob = (pow(1.0-spec,double(m_nodes[i].get_steps())));// update Smin
+              result[0] += probarray[i]*(1.0-temprob);
               // update the probability array
               temprob = temprob*probarray[i];
-              double temprob2 = probarray[theparent]*-1.0;
+              const double temprob2 = probarray[theparent]*-1.0;
               probarray[theparent]=(temprob+temprob2-temprob*temprob2);
             }
           }
@@ -413,10 +374,10 @@ std::vector<double> tree::get_richnessint(double spec)
     for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
     {
       // here we are dealing with all the last branches after prooning all nodes
-      if (m_data[i].get_parent() == 0)
+      if (m_nodes[i].get_parent() == 0)
       {
-        result[0] += probarray[i]*(1-pow(1-spec,double(m_data[i].get_steps())));
-        result[1] += probarray[i]*pow(1-spec,double(m_data[i].get_steps()));
+        result[0] += probarray[i]*(1-pow(1-spec,double(m_nodes[i].get_steps())));
+        result[1] += probarray[i]*pow(1-spec,double(m_nodes[i].get_steps()));
       }
     }
     // return the result
@@ -432,7 +393,7 @@ std::vector<double> tree::get_richnessint(double spec)
     return result;
   }
 }
-double tree::get_richness(double spec)
+double Tree::get_richness(double spec)
 // this returns the midpoint between the maximum and minimum richness estimates
 {
   std::vector<double> richnessresult = get_richnessint(spec);

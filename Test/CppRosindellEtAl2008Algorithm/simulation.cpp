@@ -23,7 +23,7 @@ Simulation::Simulation(
   Test();
   #endif
 
-  tree test(seed);
+  Tree test(seed);
 
   // minimum speciation rate required
   const double minspec{

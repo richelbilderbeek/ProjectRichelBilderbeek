@@ -1,12 +1,12 @@
 #include "tree.h"
 
-tree::datapoint::datapoint()
+Tree::datapoint::datapoint()
 {
 
 }
 
 // setup all varibles
-void tree::datapoint::setup(
+void Tree::datapoint::setup(
   unsigned short x ,
   unsigned short y ,
   unsigned int z)
@@ -22,7 +22,7 @@ void tree::datapoint::setup(
 }
 // setup all varibles from another datapoint
 
-void tree::datapoint::setup(datapoint datin)
+void Tree::datapoint::setup(datapoint datin)
 {
   xpos = datin.get_xpos();
   ypos = datin.get_ypos();
@@ -35,7 +35,7 @@ void tree::datapoint::setup(datapoint datin)
 }
 
 // checks for coalescence with another datapoint
-bool tree::datapoint::match(datapoint x ){
+bool Tree::datapoint::match(datapoint x ){
   bool result = true;
   if (xpos != x.get_xpos()) result = false;
   if (ypos != x.get_ypos()) result = false;
@@ -43,7 +43,7 @@ bool tree::datapoint::match(datapoint x ){
 }
 // update the position of this datapoint
 // this implements the indexing system
-void tree::datapoint::move(short x , short y , double z)
+void Tree::datapoint::move(short x , short y , double z)
 {
   int newxpos = xpos + x;
   int newypos = ypos + y;

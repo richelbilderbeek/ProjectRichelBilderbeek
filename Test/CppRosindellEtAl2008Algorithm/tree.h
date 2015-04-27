@@ -6,7 +6,7 @@
 
 #include "rng.h"
 
-class tree
+class Tree
         // this object represents the output coalescence tree itself
         // and has all the useful functions - everything above this point is just a tool
         // that is required for this object
@@ -14,7 +14,7 @@ class tree
         // use that object to do all their calculations
 {
 public:
-    tree(const long theseed);
+    Tree(const long seed);
     //PRODUCING A COALESCENCE TREE IN CLASS TREE
     // this is the part of the code that actually creates the colescence tree
     // input variables are described in detail below
@@ -29,30 +29,30 @@ public:
     // this returns the midpoint between the maximum and minimum richness estimates
     double get_richness(double spec);
     class treenode
-            // this is a data storage object for the coalescence tree
-            // an array of these objects is required to store the whole tree
-            // we include a few simple functions that prove useful later
+    // this is a data storage object for the coalescence tree
+    // an array of these objects is required to store the whole tree
+    // we include a few simple functions that prove useful later
     {
     public:
         treenode();
-        void setup(bool root_);
-        void set_root(bool root_);
-        void set_parent(unsigned int x);
-        void set_steps(unsigned int x);
-        bool get_root();
-        unsigned int get_parent();
-        int get_steps();
+        void setup(bool root);
+        void set_root(bool root) { m_root = root; }
+        void set_parent(unsigned int x) { m_parent = x; }
+        void set_steps(unsigned int x) noexcept { m_steps = x; }
+        bool get_root() const noexcept { return m_root; }
+        unsigned int get_parent() const noexcept { return m_parent; }
+        int get_steps() const noexcept { return m_steps; }
         // increments the steps by one
-        void inc_steps();
+        void inc_steps() noexcept { ++m_steps; }
     private:
-        bool root;
+        bool m_root;
         // is this node at the end of the tree (true)
         // or just here to mark a coalescense (false)
-        unsigned int parent;
+        unsigned int m_parent;
         // this stores the parent of the individual
         // 0 means there is no parent - we are at the end of the tree
         // (as far as has been calculated)
-        unsigned int steps;
+        unsigned int m_steps;
         // the number of generations (chances of speciation)
         // between this individual and its parent in the tree
     };
@@ -107,7 +107,7 @@ public:
         // prematurely - saving many calculations with minimal loss in accuracy
     };
 private:
-  std::vector<treenode> m_data;
+  std::vector<treenode> m_nodes;
   // stores the coalescence tree itself
   unsigned int m_enddata;
   // marks the end of the data array
