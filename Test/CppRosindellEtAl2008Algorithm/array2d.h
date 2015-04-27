@@ -7,9 +7,9 @@
 
 template<class T>
 struct array2D_Bilderbeek {
-  void SetSize(int Yin, int Xin)
+  array2D_Bilderbeek(const int size, const array1D<T>& initial_value)
+    : data(size,initial_value)
   {
-    data.resize(Yin,array1D<T>(Xin,0));
   }
 
   array1D<T>& operator[](const int index)

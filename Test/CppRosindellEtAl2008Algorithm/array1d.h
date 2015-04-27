@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#ifdef DEFINE_ARRAY1D_BILDERBEEK
+
 template<class T>
 class array1D_Bilderbeek
 {
@@ -13,12 +15,14 @@ public:
   {
   }
   ~array1D_Bilderbeek() {}
+  void resize(int n) { m_data.resize(n); }
   void SetSize(int n) { m_data.resize(n); }
   int size() { return m_data.size(); }
   T& operator[](int index) { return m_data[index]; }
 private:
   std::vector<T> m_data; // stores the entries themselves
 };
+#endif // DEFINE_ARRAY1D_BILDERBEEK
 
 #ifdef DEFINE_ARRAY1D_ROSINDELL
 // Template class array1D
@@ -84,6 +88,6 @@ X& array1D_Rosindell<X>::operator[](int index)
 }
 #endif // DEFINE_ARRAY1D_ROSINDELL
 
-template<typename T> using array1D = array1D_Bilderbeek<T>;
+template<typename T> using array1D = std::vector<T>;
 
 #endif // ARRAY1D_H
