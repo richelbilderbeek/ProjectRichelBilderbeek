@@ -14,18 +14,18 @@
 struct Task
 {
   Task(
-    int any_area1,
-    int any_area2,
-    int any_L,
-    bool any_type,
-    double any_tol
+    const int survey_area_width,
+    const int survey_area_length,
+    const int dispersal_distance,
+    const bool dispersal_kernel_type,
+    const double tolerance
   );
 
-  int area1;
-  int area2;
-  int L;
-  bool type;
-  double tol;
+  int m_survey_area_width;
+  int m_survey_area_length;
+  int m_dispersal_distance;
+  bool m_dispersal_kernel_type;
+  double m_tolerance;
 };
 
 std::vector<Task> ReadTasksFromFile(

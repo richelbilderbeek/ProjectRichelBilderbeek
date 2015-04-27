@@ -16,8 +16,8 @@ SOURCES += \
     simulation_test.cpp \
     main.cpp \
     rng.cpp \
-    tree_datapoint.cpp \
-    tree_node.cpp
+    treedatapoint.cpp \
+    treenode.cpp
 
 QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
 
@@ -29,4 +29,6 @@ HEADERS += \
     simulation.h \
     task.h \
     result.h \
-    rng.h
+    rng.h \
+    treedatapoint.h \
+    treenode.h

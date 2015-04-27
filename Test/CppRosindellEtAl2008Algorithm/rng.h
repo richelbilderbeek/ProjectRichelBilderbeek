@@ -11,11 +11,11 @@ struct Rng
   //Interface as NRrand class
 
   // returns a uniform random number in (0,1)
-  double d01();
+  double GetRandomFraction();
   // returns an integer between 0 and max
-  long i0(long max);
+  long GetRandomInt(long max);
   // returns normal deviates
-  double norm();
+  double GetRandomNormal();
 
   private:
   const int m_seed;

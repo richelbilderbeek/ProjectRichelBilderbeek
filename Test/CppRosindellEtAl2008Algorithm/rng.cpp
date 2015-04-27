@@ -9,29 +9,29 @@ Rng::Rng(const long seed, const Type type)
 {
 }
 
-double Rng::d01()
+double Rng::GetRandomFraction()
 {
   switch (m_type)
   {
-    case Type::rosindell: return m_nrrand.d01();
+    case Type::rosindell: return m_nrrand.GetRandomFraction();
     case Type::bilderbeek: assert(!"Not implemented yet");
   }
 }
 
-long Rng::i0(long max)
+long Rng::GetRandomInt(long max)
 {
   switch (m_type)
   {
-    case Type::rosindell: return m_nrrand.i0(max);
+    case Type::rosindell: return m_nrrand.GetRandomInt(max);
     case Type::bilderbeek: assert(!"Not implemented yet");
   }
 
 }
-double Rng::norm()
+double Rng::GetRandomNormal()
 {
   switch (m_type)
   {
-    case Type::rosindell: return m_nrrand.norm();
+    case Type::rosindell: return m_nrrand.GetRandomNormal();
     case Type::bilderbeek: assert(!"Not implemented yet");
   }
 }

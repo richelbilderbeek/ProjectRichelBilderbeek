@@ -1,10 +1,10 @@
-#include "tree.h"
+#include "treenode.h"
 
-Tree::treenode::treenode()
+TreeNode::TreeNode()
 {
 
 }
-void Tree::treenode::setup(bool root)
+void TreeNode::setup(bool root)
 // sets up variables with initial conditions
 {
   m_root = root;

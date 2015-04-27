@@ -7,28 +7,22 @@
 struct Result
 {
   Result(
-    const int area1,
-    const int area2,
-    const double specset,
-    const double L,
-    const bool type,
-    const double temprichness
+    const int survey_area_width,
+    const int m_survey_area_height,
+    const double m_speciation_rate,
+    const double m_dispersal_distance,
+    const bool m_dispersal_kernel_type,
+    const double m_species_richness
   );
 
-  double GetSpeciesRichness() const noexcept { return temprichness; }
+  double GetSpeciesRichness() const noexcept { return m_species_richness; }
 
-  /// 1.) width of survey area
-  int area1;
-  /// 2.) length of survey area
-  int area2;
-  /// 3.) speciation rate
-  double specset;
-  /// 4.) dispersal distance
-  double L;
-  /// 5.) dispersal kernel type
-  bool type;
-  /// 6.) species richness result
-  double temprichness;
+  const int m_survey_area_width;
+  const int m_survey_area_height;
+  const double m_speciation_rate;
+  const double m_dispersal_distance;
+  const bool m_dispersal_kernel_type;
+  const double m_species_richness; //The result
 };
 
 std::ostream& operator<<(std::ostream& os,const Result& result);

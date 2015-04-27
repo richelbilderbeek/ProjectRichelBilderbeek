@@ -35,28 +35,28 @@ Simulation::Simulation(
   for (const Task& task:tasks)
   {
     test.maketree(
-      task.area1,
-      task.area2,
+      task.m_survey_area_width,
+      task.m_survey_area_length,
       minspec,
-      task.L,
-      task.tol,
-      task.type
+      task.m_dispersal_distance,
+      task.m_tolerance,
+      task.m_dispersal_kernel_type
     );
     for (const double spec:specset)
     {
       // evaluate species richness for a variety of different speciation rates
       const double temprichness = test.get_richness(spec);
       const Result result(
-        task.area1,
-        task.area2,
+        task.m_survey_area_width,
+        task.m_survey_area_length,
         spec,
-        task.L,
-        task.type,
+        task.m_dispersal_distance,
+        task.m_dispersal_kernel_type,
         temprichness
       );
       m_results.push_back(result);
-      out << result;
-      if (m_verbose) { std::cout << result; }
+      out << result << '\n';
+      if (m_verbose) { std::cout << result << std::endl; }
     }
   }
   out.close();

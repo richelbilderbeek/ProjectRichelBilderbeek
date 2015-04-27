@@ -2,18 +2,18 @@
 #include <ostream>
 
 Result::Result(
-  const int any_area1,
-  const int any_area2,
-  const double any_specset,
-  const double any_L,
-  const bool any_type,
-  const double any_temprichness
-) : area1{any_area1},
-    area2{any_area2},
-    specset{any_specset},
-    L{any_L},
-    type{any_type},
-    temprichness{any_temprichness}
+  const int survey_area_width,
+  const int survey_area_height,
+  const double speciation_rate,
+  const double dispersal_distance,
+  const bool dispersal_kernel_type,
+  const double species_richness
+) : m_survey_area_width{survey_area_width},
+    m_survey_area_height{survey_area_height},
+    m_speciation_rate{speciation_rate},
+    m_dispersal_distance{dispersal_distance},
+    m_dispersal_kernel_type{dispersal_kernel_type},
+    m_species_richness{species_richness}
 
 {
 }
@@ -21,13 +21,12 @@ Result::Result(
 std::ostream& operator<<(std::ostream& os,const Result& result)
 {
   os
-    << result.area1 << " "
-    << result.area2 << " "
-    << result.specset << " "
-    << result.L << " "
-    << (result.type ? " normal " : " square ")
-    << result.temprichness
-    << " \n"
+    << result.m_survey_area_width << " "
+    << result.m_survey_area_height << " "
+    << result.m_speciation_rate << " "
+    << result.m_dispersal_distance << " "
+    << (result.m_dispersal_kernel_type ? " normal " : " square ")
+    << result.m_species_richness
   ;
   return os;
 }

@@ -5,16 +5,16 @@
 #include "fileio.h"
 
 Task::Task(
-  int any_area1,
-  int any_area2,
-  int any_L,
-  bool any_type,
-  double any_tol
-) : area1{any_area1},
-    area2{any_area2},
-    L{any_L},
-    type{any_type},
-    tol{any_tol}
+  const int survey_area_width,
+  const int survey_area_length,
+  const int dispersal_distance,
+  const bool dispersal_kernel_type,
+  const double tolerance
+) : m_survey_area_width{survey_area_width},
+    m_survey_area_length{survey_area_length},
+    m_dispersal_distance{dispersal_distance},
+    m_dispersal_kernel_type{dispersal_kernel_type},
+    m_tolerance{tolerance}
 {
 
 }
@@ -69,11 +69,11 @@ std::vector<Task> ReadTasksFromFile(
 std::ostream& operator<<(std::ostream& os, const Task& task)
 {
   os
-    << task.area1 << " "
-    << task.area2 << " "
-    << task.L     << " "
-    << task.type  << " "
-    << task.tol   << " "
+    << task.m_survey_area_width << " "
+    << task.m_survey_area_length << " "
+    << task.m_dispersal_distance << " "
+    << task.m_dispersal_kernel_type << " "
+    << task.m_tolerance
   ;
   return os;
 }

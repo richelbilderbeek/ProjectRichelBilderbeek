@@ -111,6 +111,5 @@ void Simulation::Test() noexcept
     assert(std::abs(results[10].GetSpeciesRichness()-38.2425) < 0.0001);
     assert(std::abs(results[11].GetSpeciesRichness()-14.5789) < 0.0001);
   }
-  assert(!"OK");
 }
 #endif

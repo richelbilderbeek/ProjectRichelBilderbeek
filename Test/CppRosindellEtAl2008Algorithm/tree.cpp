@@ -4,6 +4,8 @@
 #include <cmath>
 #include <boost/numeric/conversion/cast.hpp>
 
+#include "treedatapoint.h"
+
 Tree::Tree(const long seed)
   :
     m_minspecsetup{2},
@@ -72,7 +74,7 @@ void Tree::maketree(
   // "active" stores all the required information for any
   // lineages that have not yet speciated, this is in the
   // form of an array of "datapoint" objects
-  std::vector<datapoint> active;
+  std::vector<TreeDataPoint> active;
   // again we know this array has the same maximum size as "data"
   active.resize(2*area1*area2+1);
   // this marks the end of the active vector
@@ -82,12 +84,12 @@ void Tree::maketree(
     for (int ty = 0 ; ty < area2 ; ty++)
     {
       // looping over the survey area, we initialise both grid and active
-      endactive ++;
-      active[endactive].setup(tx,ty,endactive);
+      ++endactive;
+      //active[endactive].setup(tx,ty,endactive);
+      active[endactive] = TreeDataPoint(tx,ty,endactive);
       assert(tx >= 0);
       assert(tx < static_cast<int>(grid.size()));
       grid[tx][ty] = endactive;
-      // mpos = endactive - points to the corresponding place in data
     }
   }
   // other variables to be initialised
@@ -102,7 +104,7 @@ void Tree::maketree(
     // increment steps
     ++steps;
     // choose a random lineage to die and be reborn out of those currently active
-    const int chosen = m_rnd.i0(endactive-1) + 1; // cannot be 0
+    const int chosen = m_rnd.GetRandomInt(endactive-1) + 1; // cannot be 0
     // remember there is no speciation included in this part of the programme
     // choose movement of chosen lineage
     int movex = 0; // will store x direction movement
@@ -115,8 +117,8 @@ void Tree::maketree(
       while ((movex == 0)&&(movey == 0))
       {
         // loop to ensure we don't pick a individual to be its own parent
-        movex += int(floor((m_rnd.norm()*dispersal)+0.5));
-        movey += int(floor((m_rnd.norm()*dispersal)+0.5));
+        movex += int(floor((m_rnd.GetRandomNormal()*dispersal)+0.5));
+        movey += int(floor((m_rnd.GetRandomNormal()*dispersal)+0.5));
       }
     }
     else
@@ -125,18 +127,18 @@ void Tree::maketree(
       while (movex == 0 && movey == 0)
       {
         // loop to ensure we don't pick a individual to be its own parent
-        movex += (m_rnd.i0(dispersal*2)-dispersal);
-        movey += (m_rnd.i0(dispersal*2)-dispersal);
+        movex += (m_rnd.GetRandomInt(dispersal*2)-dispersal);
+        movey += (m_rnd.GetRandomInt(dispersal*2)-dispersal);
       }
     }
     // note this piece of code can easily be edited for any dispersal kernel
     // record old position of lineage
-    const int oldx = active[chosen].get_xpos();
-    const int oldy = active[chosen].get_ypos();
+    const int oldx = active[chosen].GetXpos();
+    const int oldy = active[chosen].GetYpos();
     assert(oldx >= 0);
     assert(oldx < static_cast<int>(grid.size()));
     // update grid to reflect new data
-    grid[oldx][oldy] = active[chosen].get_next();
+    grid[oldx][oldy] = active[chosen].GetNext();
     // if current individual is the only one in the space then it will hold
     // 0 in its data for next and last and this will still be correct
     // the next and last variables indicate the next and last in a ring
@@ -149,32 +151,32 @@ void Tree::maketree(
     if (grid[oldx][oldy] > 0)
     {
       // then we have an individual to set its next and last variables correctly
-      if ( grid[oldx][oldy] == active[chosen].get_last() )
+      if ( grid[oldx][oldy] == active[chosen].GetLast() )
       {
         assert(oldx >= 0);
         assert(oldx < static_cast<int>(grid.size()));
         // the ring contained 2 individuals
-        active[grid[oldx][oldy]].set_last(0);
-        active[grid[oldx][oldy]].set_next(0);
+        active[grid[oldx][oldy]].SetLast(0);
+        active[grid[oldx][oldy]].SetNext(0);
       }
       else
       {
         // the ring contained 3 or more individuals
         assert(oldx >= 0);
         assert(oldx < static_cast<int>(grid.size()));
-        active[grid[oldx][oldy]].set_last(active[chosen].get_last());
-        active[active[chosen].get_last()].set_next(active[chosen].get_next());
+        active[grid[oldx][oldy]].SetLast(active[chosen].GetLast());
+        active[active[chosen].GetLast()].SetNext(active[chosen].GetNext());
       }
     }// now we have completely purged the grid of the old position of our chosen lineage
-    active[chosen].set_next(0);
-    active[chosen].set_last(0);
+    active[chosen].SetNext(0);
+    active[chosen].SetLast(0);
     // now actually do the move
-    richness += minspec*(active[chosen].get_prob());
-    active[chosen].move(movex,movey,minspec);
-    m_nodes[active[chosen].get_mpos()].inc_steps();
+    richness += minspec*(active[chosen].GetProbability());
+    active[chosen].Move(movex,movey,minspec);
+    m_nodes[active[chosen].GetMpos()].inc_steps();
     // record the new position
-    int activex = active[chosen].get_xpos();
-    int activey = active[chosen].get_ypos();
+    int activex = active[chosen].GetXpos();
+    int activey = active[chosen].GetYpos();
     // check for coalescence
     assert(activex >= 0);
     assert(activex < static_cast<int>(grid.size()));
@@ -199,34 +201,34 @@ void Tree::maketree(
       int current = start;
       while(loop)
       {
-        if (active[chosen].get_xindex() == active[current].get_xindex())
+        if (active[chosen].GetXindex() == active[current].GetXindex())
         {
-          if (active[chosen].get_yindex() == active[current].get_yindex())
+          if (active[chosen].GetYindex() == active[current].GetYindex())
           {
             // we have coalescence, update variables// update data
             m_enddata++;
             m_nodes[m_enddata].setup(false);
             // update data
-            m_nodes[active[chosen].get_mpos()].set_parent(m_enddata);
-            m_nodes[active[current].get_mpos()].set_parent(m_enddata);
+            m_nodes[active[chosen].GetMpos()].set_parent(m_enddata);
+            m_nodes[active[current].GetMpos()].set_parent(m_enddata);
             // update active
-            active[current].set_mpos(m_enddata);
-            double tempprob = active[chosen].get_prob();
-            tempprob = tempprob + active[current].get_prob()*(1.0-tempprob);
-            active[current].set_prob(tempprob);
-            active[chosen].setup(active[endactive]);
-            int oldx = active[endactive].get_xpos();
-            int oldy = active[endactive].get_ypos();
+            active[current].SetMpos(m_enddata);
+            double tempprob = active[chosen].GetProbability();
+            tempprob = tempprob + active[current].GetProbability()*(1.0-tempprob);
+            active[current].SetProbability(tempprob);
+            active[chosen] = active[endactive];
+            int oldx = active[endactive].GetXpos();
+            int oldy = active[endactive].GetYpos();
             assert(oldx >= 0);
             assert(oldx < static_cast<int>(grid.size()));
             if (boost::numeric_cast<int>(grid[oldx][oldy]) == endactive)
             {
               grid[oldx][oldy] = chosen;
             }
-            if (active[endactive].get_next() >0)
+            if (active[endactive].GetNext() >0)
             {
-              active[active[endactive].get_next()].set_last(chosen);
-              active[active[endactive].get_last()].set_next(chosen);
+              active[active[endactive].GetNext()].SetLast(chosen);
+              active[active[endactive].GetLast()].SetNext(chosen);
             }
             endactive --;
             // update grid not necessary as
@@ -237,16 +239,16 @@ void Tree::maketree(
         if (loop)
         {
           // move to the next place in the loop ready for another check
-          current = active[current].get_next();
+          current = active[current].GetNext();
           if (current == 0){
             // the loop was only of size one and there was no coalescence
             // this is most likely
             assert(activex >= 0);
             assert(activex < static_cast<int>(grid.size()));
-            active[grid[activex][activey]].set_next(chosen);
-            active[grid[activex][activey]].set_last(chosen);
-            active[chosen].set_next(grid[activex][activey]);
-            active[chosen].set_last(grid[activex][activey]);
+            active[grid[activex][activey]].SetNext(chosen);
+            active[grid[activex][activey]].SetLast(chosen);
+            active[chosen].SetNext(grid[activex][activey]);
+            active[chosen].SetLast(grid[activex][activey]);
             loop = false;
           }
           else
@@ -257,11 +259,11 @@ void Tree::maketree(
               // there was no coalescence but we still have to add the new position in
               assert(activex >= 0);
               assert(activex < static_cast<int>(grid.size()));
-              int addlast = active[grid[activex][activey]].get_last();
-              active[addlast].set_next(chosen);
-              active[chosen].set_last(addlast);
-              active[chosen].set_next(grid[activex][activey]);
-              active[grid[activex][activey]].set_last(chosen);
+              int addlast = active[grid[activex][activey]].GetLast();
+              active[addlast].SetNext(chosen);
+              active[chosen].SetLast(addlast);
+              active[chosen].SetNext(grid[activex][activey]);
+              active[grid[activex][activey]].SetLast(chosen);
               loop = false;
             }
           }
@@ -279,7 +281,7 @@ void Tree::maketree(
       {
         assert(i >= 0);
         assert(i < static_cast<int>(active.size()));
-        error += active[i].get_prob();
+        error += active[i].GetProbability();
       }
     }
   }
