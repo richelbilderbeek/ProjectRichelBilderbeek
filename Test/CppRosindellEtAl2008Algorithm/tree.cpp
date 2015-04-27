@@ -17,19 +17,11 @@ Tree::Tree(
   const bool normflag
   )
   :
+    m_nodes{std::vector<TreeNode>(2*area1*area2+1,TreeNode(true))},
+    m_enddata{area1 * area2},
     m_minspecsetup{2},
     m_rnd{rng}
 {
-  // this is the part of the code that actually creates the colescence tree
-  // input variables are described in detail below
-  // area1 = width of survey area (in trees)
-  // area2 = length of survey area (int trees)
-  // minspec = smallest speciation rate required
-  // dispersal = dispersal distance (dispersal kernel width)
-  // tol = tolerance in results (0.01 means 1% error - 0.5% either side)
-  // typeflag deals with the type of dispersal in the model (true means normal){
-  // setup the internal variables first
-  // richness needs to be initialised
   double richness = 0.0;
   // the time interval - ensure this is at least 0
   // a value of 0 gives a basic SAR only for maxintsetup
@@ -38,36 +30,6 @@ Tree::Tree(
   // data - this will store the coalescence tree itself
   // there can only be a maximum of twice as many nodes as there are
   // initially free branches so we can set the size of our data object
-
-  m_nodes.resize(2*area1*area2+1,TreeNode(true));
-  m_enddata = 0; // 0 is reserved as null
-  // this means that data is empty and that data[1] is where the first
-  // piece of data will be recorded
-  for (int tx = 0 ; tx < area1 ; tx++)
-  {
-    for (int ty = 0 ; ty < area2 ; ty++)
-    {
-      // looping over the entire survey area
-      // setup the data variable
-      ++m_enddata;
-      assert(m_enddata >= 0);
-      assert(m_enddata < static_cast<int>(m_nodes.size()));
-      m_nodes[m_enddata] = TreeNode(true); // generation number = 1
-    }
-  }
-  /*
-  std::vector<TreeNode> nodes_too(2*area1*area2+1,TreeNode(true));
-  assert(m_nodes.size() == nodes_too.size());
-  for (int i=0; i!=(2*area1*area2+1); ++i)
-  {
-    if(m_nodes[i] != nodes_too[i])
-    {
-      std::cout << '\n' << i << " " << m_nodes[i] << " and " << nodes_too[i] << std::endl;
-    }
-    assert(m_nodes[i] == nodes_too[i]);
-  }
-  assert(m_nodes == nodes_too);
-  */
 
   // grid - this is an internal variable
   // this is necessary for calculations - initialise it as all zeros
@@ -82,8 +44,10 @@ Tree::Tree(
   // lineages that have not yet speciated, this is in the
   // form of an array of "datapoint" objects
   std::vector<TreeDataPoint> active;
+
   // again we know this array has the same maximum size as "data"
   active.resize(2*area1*area2+1);
+
   // this marks the end of the active vector
   int endactive = 0; // 0 is reserved as null
   for (int tx = 0 ; tx < area1 ; tx++)
@@ -92,7 +56,6 @@ Tree::Tree(
     {
       // looping over the survey area, we initialise both grid and active
       ++endactive;
-      //active[endactive].setup(tx,ty,endactive);
       active[endactive] = TreeDataPoint(tx,ty,endactive);
       assert(tx >= 0);
       assert(tx < static_cast<int>(grid.size()));
@@ -106,7 +69,7 @@ Tree::Tree(
   // has a lineage in our survey moved?
   // now do the calculations required to set up the tree
   // loop while error is too large or not included the full time interval
-  while (error > (richness*tol))
+  while (error > richness*tol)
   {
     // increment steps
     ++steps;
@@ -121,7 +84,7 @@ Tree::Tree(
     if (normflag)
     {
       // normally distributed dispersal kernel
-      while ((movex == 0)&&(movey == 0))
+      while (movex == 0 && movey == 0)
       {
         // loop to ensure we don't pick a individual to be its own parent
         movex += int(floor((m_rnd.GetRandomNormal()*dispersal)+0.5));
@@ -182,8 +145,8 @@ Tree::Tree(
     active[chosen].Move(movex,movey,minspec);
     m_nodes[active[chosen].GetMpos()].inc_steps();
     // record the new position
-    int activex = active[chosen].GetXpos();
-    int activey = active[chosen].GetYpos();
+    const int activex = active[chosen].GetXpos();
+    const int activey = active[chosen].GetYpos();
     // check for coalescence
     assert(activex >= 0);
     assert(activex < static_cast<int>(grid.size()));
@@ -212,23 +175,24 @@ Tree::Tree(
         {
           if (active[chosen].GetYindex() == active[current].GetYindex())
           {
-            // we have coalescence, update variables// update data
-            m_enddata++;
+            // we have coalescence
+            ++m_enddata;
 
             m_nodes[m_enddata] = TreeNode(false);
 
-            //m_nodes[m_enddata].setup(false);
-            // update data
             m_nodes[active[chosen].GetMpos()].set_parent(m_enddata);
             m_nodes[active[current].GetMpos()].set_parent(m_enddata);
+
             // update active
             active[current].SetMpos(m_enddata);
-            double tempprob = active[chosen].GetProbability();
-            tempprob = tempprob + active[current].GetProbability()*(1.0-tempprob);
+
+
+            const double tempprob = active[chosen].GetProbability() + active[current].GetProbability()*(1.0- active[chosen].GetProbability() );
+
             active[current].SetProbability(tempprob);
             active[chosen] = active[endactive];
-            int oldx = active[endactive].GetXpos();
-            int oldy = active[endactive].GetYpos();
+            const int oldx = active[endactive].GetXpos();
+            const int oldy = active[endactive].GetYpos();
             assert(oldx >= 0);
             assert(oldx < static_cast<int>(grid.size()));
             if (boost::numeric_cast<int>(grid[oldx][oldy]) == endactive)
@@ -240,7 +204,7 @@ Tree::Tree(
               active[active[endactive].GetNext()].SetLast(chosen);
               active[active[endactive].GetLast()].SetNext(chosen);
             }
-            endactive --;
+            --endactive;
             // update grid not necessary as
             // we already purged the old lineage from the grid and loops
             loop = false;
@@ -250,7 +214,8 @@ Tree::Tree(
         {
           // move to the next place in the loop ready for another check
           current = active[current].GetNext();
-          if (current == 0){
+          if (current == 0)
+          {
             // the loop was only of size one and there was no coalescence
             // this is most likely
             assert(activex >= 0);
@@ -280,7 +245,7 @@ Tree::Tree(
         }
       }
     }
-    // this peice of code updates the error
+    // this piece of code updates the error
     // but only does so every community turnover
     // this is so that not too long is spent on this
     if (steps%(area1*area2*250) == 0)
