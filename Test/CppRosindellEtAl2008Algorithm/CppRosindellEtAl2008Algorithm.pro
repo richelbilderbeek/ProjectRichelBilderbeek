@@ -30,7 +30,6 @@ HEADERS += \
     tree.h \
     nrrand.h \
     array2d.h \
-    globals.h \
     simulation.h \
     task.h \
     result.h \

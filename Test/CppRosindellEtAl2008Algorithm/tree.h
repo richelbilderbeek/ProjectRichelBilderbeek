@@ -7,9 +7,6 @@
 
 #include "rng.h"
 
-/************************************************************
-TREE OBJECT
-************************************************************/
 class tree
         // this object represents the output coalescence tree itself
         // and has all the useful functions - everything above this point is just a tool
@@ -135,5 +132,8 @@ private:
     std::vector< std::vector<int> > children;
     // this vector stores the extra information needed for Newick outputs
     // it is left clear as standard and only used when needed
+
+
+  static const int gridsize = 4000;
 };
 #endif // TREE_H

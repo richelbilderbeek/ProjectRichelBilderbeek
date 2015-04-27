@@ -1,9 +1,9 @@
 #include "tree.h"
 
 #include "array2d.h"
-#include "globals.h"
 #include <cmath>
 #include <boost/numeric/conversion/cast.hpp>
+
 
 tree::tree()
 // initialisor
