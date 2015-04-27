@@ -1,18 +1,20 @@
 #ifndef ARRAY2D_H
 #define ARRAY2D_H
 
-#include "array1d.h"
-#include <cassert>
 #include <vector>
+
+#ifdef DEFINE_ARRAY2D_BILDERBEEK
+#include <cassert>
 
 template<class T>
 struct array2D_Bilderbeek {
-  array2D_Bilderbeek(const int size, const array1D<T>& initial_value)
+  array2D_Bilderbeek(const int size, const std::vector<T>& initial_value)
     : data(size,initial_value)
   {
   }
-
-  array1D<T>& operator[](const int index)
+  int size() const { return data.size(); }
+  private:
+  std::vector<T>& operator[](const int index)
   {
     const int size = static_cast<int>(data.size());
     const int valid_index = (index + size) % size;
@@ -22,9 +24,12 @@ struct array2D_Bilderbeek {
   }
 
   private:
-  std::vector<array1D<T>> data;
+  std::vector<std::vector<T>> data;
+  friend class tree;
 
 };
+
+#endif // DEFINE_ARRAY2D_BILDERBEEK
 
 #ifdef DEFINE_ARRAY2D_ROSINDELL
 // Template class array2D as an array of rows
@@ -82,6 +87,8 @@ public:
 };
 #endif // DEFINE_ARRAY2D_ROSINDELL
 
-template<typename T> using array2D = array2D_Bilderbeek<T>;
+//template<typename T> using array2D = array2D_Bilderbeek<T>;
+
+template<typename T> using array2D = std::vector<std::vector<T>>;
 
 #endif // ARRAY2D_H

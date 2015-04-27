@@ -8,7 +8,6 @@ CONFIG -= app_bundle
 CONFIG += qt
 
 SOURCES += \
-    array1d.cpp \
     tree.cpp \
     nrrand.cpp \
     array2d.cpp \
@@ -24,7 +23,6 @@ QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
 LIBS += -lboost_filesystem -lboost_system
 
 HEADERS += \
-    array1d.h \
     tree.h \
     nrrand.h \
     array2d.h \

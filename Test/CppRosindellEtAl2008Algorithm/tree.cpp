@@ -1,6 +1,8 @@
 #include "tree.h"
 
 #include "array2d.h"
+
+#include <cassert>
 #include <cmath>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -61,11 +63,11 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
     thegridsize = area2*2;
   }
 
-  array2D<unsigned int> grid(thegridsize,array1D<unsigned int>(thegridsize,0));
+  std::vector<std::vector<unsigned int>> grid(thegridsize,std::vector<unsigned int>(thegridsize,0));
   // "active" stores all the required information for any
   // lineages that have not yet speciated, this is in the
   // form of an array of "datapoint" objects
-  array1D<datapoint> active;
+  std::vector<datapoint> active;
   // again we know this array has the same maximum size as "data"
   active.resize(2*area1*area2+1);
   // this marks the end of the active vector
@@ -77,6 +79,8 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
       // looping over the survey area, we initialise both grid and active
       endactive ++;
       active[endactive].setup(tx,ty,endactive);
+      assert(tx >= 0);
+      assert(tx < static_cast<int>(grid.size()));
       grid[tx][ty] = endactive;
       // mpos = endactive - points to the corresponding place in data
     }
@@ -123,6 +127,8 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
     // record old position of lineage
     int oldx = active[chosen].get_xpos();
     int oldy = active[chosen].get_ypos();
+    assert(oldx >= 0);
+    assert(oldx < grid.size());
     // update grid to reflect new data
     grid[oldx][oldy] = active[chosen].get_next();
     // if current individual is the only one in the space then it will hold
@@ -132,11 +138,15 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
     // of course they would have different indexes and so be in different
     // physical positions. The use of a ring in this way makes
     // it really easy to check if two individuals coalesce
+    assert(oldx >= 0);
+    assert(oldx < grid.size());
     if (grid[oldx][oldy] > 0)
     {
       // then we have an individual to set its next and last variables correctly
       if ( grid[oldx][oldy] == active[chosen].get_last() )
       {
+        assert(oldx >= 0);
+        assert(oldx < grid.size());
         // the ring contained 2 individuals
         active[grid[oldx][oldy]].set_last(0);
         active[grid[oldx][oldy]].set_next(0);
@@ -144,6 +154,8 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
       else
       {
         // the ring contained 3 or more individuals
+        assert(oldx >= 0);
+        assert(oldx < grid.size());
         active[grid[oldx][oldy]].set_last(active[chosen].get_last());
         active[active[chosen].get_last()].set_next(active[chosen].get_next());
       }
@@ -158,9 +170,13 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
     int activex = active[chosen].get_xpos();
     int activey = active[chosen].get_ypos();
     // check for coalescence
+    assert(activex >= 0);
+    assert(activex < grid.size());
     if ( grid[activex][activey] == 0)
     {
       // no coalescence possible
+      assert(activex >= 0);
+      assert(activex < grid.size());
       grid[activex][activey] = chosen;
     }
     else
@@ -168,6 +184,8 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
       //coalescence possible
       bool loop = true;
       // check around the ring for coalescence
+      assert(activex >= 0);
+      assert(activex < grid.size());
       int start = grid[activex][activey]; // starting here
       // this is how far around the loop we have got checking for coalescence
       // we start at "start" and then move around methodically
@@ -193,6 +211,8 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
             active[chosen].setup(active[endactive]);
             int oldx = active[endactive].get_xpos();
             int oldy = active[endactive].get_ypos();
+            assert(oldx >= 0);
+            assert(oldx < grid.size());
             if (boost::numeric_cast<int>(grid[oldx][oldy]) == endactive)
             {
               grid[oldx][oldy] = chosen;
@@ -215,6 +235,8 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
           if (current == 0){
             // the loop was only of size one and there was no coalescence
             // this is most likely
+            assert(activex >= 0);
+            assert(activex < grid.size());
             active[grid[activex][activey]].set_next(chosen);
             active[grid[activex][activey]].set_last(chosen);
             active[chosen].set_next(grid[activex][activey]);
@@ -227,6 +249,8 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
             {
               // we have made one complete check of the loop and found
               // there was no coalescence but we still have to add the new position in
+              assert(activex >= 0);
+              assert(activex < grid.size());
               int addlast = active[grid[activex][activey]].get_last();
               active[addlast].set_next(chosen);
               active[chosen].set_last(addlast);
@@ -427,10 +451,10 @@ CLASS TREE - THE MAIN CLASS
 /************************************************************
 RICHNESS CALCULATION METHODS
 ************************************************************/
-array1D<double> tree::get_richnessint(double spec)
+std::vector<double> tree::get_richnessint(double spec)
 // this returns an interval within which the true mean ricness must lie
 {
-  array1D<double> result;
+  std::vector<double> result;
   result.resize(2);
   result[0] = 0.0;
   result[1] = 0.0;
@@ -439,7 +463,7 @@ array1D<double> tree::get_richnessint(double spec)
     // it is possible to override this check by commenting out if required
   {
     // probarray stores, for each node, a probability that is required in the calculation
-    array1D<double> probarray;
+    std::vector<double> probarray;
     probarray.resize(enddata+1);
     for (int i = 1 ; i <= boost::numeric_cast<int>(enddata) ; ++i)
       // loop over all nodes and initialise the relating element in probarray
@@ -529,6 +553,6 @@ array1D<double> tree::get_richnessint(double spec)
 double tree::get_richness(double spec)
 // this returns the midpoint between the maximum and minimum richness estimates
 {
-  array1D<double> richnessresult = get_richnessint(spec);
+  std::vector<double> richnessresult = get_richnessint(spec);
   return (richnessresult[0]+richnessresult[1])/2.0;
 }
