@@ -91,6 +91,7 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppSortedBinaryNewickVector
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppStateObserver
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppStopwatch
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppTempLocale
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppTextCanvas
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppTicTacToe
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppToggleButton
@@ -123,8 +124,11 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppWtToggleButtonWidget
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppXml
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameBeerWanter
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameBoenken
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameConnectThree
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameDasWahreSchlagerfest
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameK3OpEenRij
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameMaziak
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GamePylos
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameReversi
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Games/GameRubiksClock
@@ -136,7 +140,6 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Projects/ProjectBrainweaver
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Projects/ProjectGtst
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Projects/ProjectRichelBilderbeek
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolAsciiArter
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolCaesarCipher
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolCodeBreaker
