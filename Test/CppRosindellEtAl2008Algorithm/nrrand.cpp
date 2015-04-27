@@ -1,29 +1,29 @@
 #include "nrrand.h"
 
 #include <cmath>
-/************************************************************
-RANDOM NUMBER GENERATOR WRAPPER OBJECT
-************************************************************/
-// constructor
-NRrand::NRrand()
+#include <cstdlib>
+
+NRrand::NRrand(const long seed)
 {
-    normflag = true;
+  std::srand(seed);
+  normflag = true;
 }
-// setter for seed
-void NRrand::set_seed(long seed)
-{
-    X.set_seed(seed);
-}
+
 // returns a uniform random number in (0,1)
 double NRrand::d01()
 {
-    return X.d01();
+  return(
+    static_cast<double>(std::rand())
+    /static_cast<double>(RAND_MAX)
+  );
 }
+
 // returns an integer between 0 and max
 long NRrand::i0(long max)
 {
     return (long(floor(d01()*(max+1))));
 }
+
 // returns normal deviates
 double NRrand::norm()
 {

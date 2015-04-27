@@ -7,8 +7,8 @@ class NRrand
 {
 public:
     // constructor
-    NRrand();
-    void set_seed(long seed);
+    NRrand(const long seed);
+    //void set_seed(long seed);
     // returns a uniform random number in (0,1)
     double d01();
     // returns an integer between 0 and max
@@ -16,8 +16,6 @@ public:
     // returns normal deviates
     double norm();
 private:
-    // an object that contains the random number generator of choice
-    RandomWrap X;
     // the last result (for normal deviates)
     double lastresult;
     // when doing normal deviates and values are in pairs

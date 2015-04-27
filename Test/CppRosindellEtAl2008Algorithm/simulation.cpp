@@ -24,10 +24,9 @@ Simulation::Simulation(
   #endif
 
   // setup tree object
-  tree test;
-  test.setseed(seed);
-  // find minimum speciation rate required
+  tree test(seed);
 
+  // find minimum speciation rate required
   const double minspec{
     *std::min_element(std::begin(specset),std::end(specset))
   };

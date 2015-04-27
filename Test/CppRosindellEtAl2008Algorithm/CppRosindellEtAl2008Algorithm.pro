@@ -8,7 +8,6 @@ CONFIG -= app_bundle
 CONFIG += qt
 
 SOURCES += \
-    randomwrap.cpp \
     array1d.cpp \
     tree.cpp \
     nrrand.cpp \
@@ -25,7 +24,6 @@ QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
 LIBS += -lboost_filesystem -lboost_system
 
 HEADERS += \
-    randomwrap.h \
     array1d.h \
     tree.h \
     nrrand.h \

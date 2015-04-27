@@ -15,11 +15,7 @@ class tree
         // use that object to do all their calculations
 {
 public:
-    tree();
-    // set the seed manually (only works once)
-    // the seed, once set is marked indelibly in the object
-    // this prevents repeated simulations of the same seed
-    void setseed(long theseed);
+    tree(const long theseed);
     //PRODUCING A COALESCENCE TREE IN CLASS TREE
     // this is the part of the code that actually creates the colescence tree
     // input variables are described in detail below

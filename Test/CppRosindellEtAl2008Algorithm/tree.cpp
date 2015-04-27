@@ -5,13 +5,15 @@
 #include <boost/numeric/conversion/cast.hpp>
 
 
-tree::tree()
-// initialisor
+tree::tree(const long theseed)
+  : NR(theseed)
 {
   minspecsetup = 2;
   seeded = false;
   children.clear();
 }
+
+/*
 void tree::setseed(long theseed)
 // set the seed manually (only works once)
 // the seed, once set is marked indelibly in the object
@@ -23,6 +25,8 @@ void tree::setseed(long theseed)
     seeded = true;
   }
 }
+*/
+
 //PRODUCING A COALESCENCE TREE IN CLASS TREE
 void tree::maketree(int area1 , int area2 , double minspec , int dispersal , double tol, bool normflag)
 {
