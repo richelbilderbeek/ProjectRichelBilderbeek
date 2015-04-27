@@ -7,23 +7,18 @@
 
 #include "treedatapoint.h"
 
-Tree::Tree(const int seed)
-  :
-    m_minspecsetup{2},
-    m_rnd(seed)
-{
-
-}
-
-
-//PRODUCING A COALESCENCE TREE IN CLASS TREE
-void Tree::maketree(
+Tree::Tree(
+  Rng& rng,
   const int area1,
   const int area2,
   const double minspec,
   const int dispersal,
   const double tol,
-  const bool normflag)
+  const bool normflag
+  )
+  :
+    m_minspecsetup{2},
+    m_rnd{rng}
 {
   // this is the part of the code that actually creates the colescence tree
   // input variables are described in detail below
@@ -302,14 +297,8 @@ void Tree::maketree(
   }
 }
 
-
-
-
-/************************************************************
-RICHNESS CALCULATION METHODS
-************************************************************/
-std::vector<double> Tree::get_richnessint(const double spec)
 // this returns an interval within which the true mean ricness must lie
+std::vector<double> Tree::get_richnessint(const double spec)
 {
   std::vector<double> result(2,0.0);
   if (m_minspecsetup <= spec)

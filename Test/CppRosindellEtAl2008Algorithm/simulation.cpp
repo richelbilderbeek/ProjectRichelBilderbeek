@@ -23,7 +23,7 @@ Simulation::Simulation(
   Test();
   #endif
 
-  Tree test(seed);
+  Rng rng(seed);
 
   // minimum speciation rate required
   const double minspec{
@@ -34,7 +34,8 @@ Simulation::Simulation(
   out.open(result_output_filename);
   for (const Task& task:tasks)
   {
-    test.maketree(
+    Tree tree(
+      rng,
       task.m_survey_area_width,
       task.m_survey_area_length,
       minspec,
@@ -45,7 +46,7 @@ Simulation::Simulation(
     for (const double spec:specset)
     {
       // evaluate species richness for a variety of different speciation rates
-      const double temprichness = test.get_richness(spec);
+      const double temprichness = tree.get_richness(spec);
       const Result result(
         task.m_survey_area_width,
         task.m_survey_area_length,
