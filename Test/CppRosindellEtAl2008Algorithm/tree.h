@@ -34,7 +34,7 @@ public:
 private:
   std::vector<TreeNode> m_nodes;
   // stores the coalescence tree itself
-  unsigned int m_enddata;
+  int m_enddata;
   // marks the end of the data array
   // this is so that size can be expanded and contracted easily up to a maximum size
   double m_minspecsetup;

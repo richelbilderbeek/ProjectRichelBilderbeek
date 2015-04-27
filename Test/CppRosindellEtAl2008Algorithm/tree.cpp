@@ -42,7 +42,7 @@ void Tree::maketree(
   // data - this will store the coalescence tree itself
   // there can only be a maximum of twice as many nodes as there are
   // initially free branches so we can set the size of our data object
-  m_nodes.resize(2*area1*area2+1);
+  m_nodes.resize(2*area1*area2+1,TreeNode(true));
   m_enddata = 0; // 0 is reserved as null
   // this means that data is empty and that data[1] is where the first
   // piece of data will be recorded
@@ -53,7 +53,9 @@ void Tree::maketree(
       // looping over the entire survey area
       // setup the data variable
       ++m_enddata;
-      m_nodes[m_enddata].setup(true); // generation number = 1
+      assert(m_enddata >= 0);
+      assert(m_enddata < static_cast<int>(m_nodes.size()));
+      m_nodes[m_enddata] = TreeNode(true); // generation number = 1
     }
   }
   // grid - this is an internal variable
@@ -70,7 +72,7 @@ void Tree::maketree(
   }
 
 
-  std::vector<std::vector<unsigned int>> grid(thegridsize,std::vector<unsigned int>(thegridsize,0));
+  std::vector<std::vector<int>> grid(thegridsize,std::vector<int>(thegridsize,0));
   // "active" stores all the required information for any
   // lineages that have not yet speciated, this is in the
   // form of an array of "datapoint" objects
@@ -207,7 +209,10 @@ void Tree::maketree(
           {
             // we have coalescence, update variables// update data
             m_enddata++;
-            m_nodes[m_enddata].setup(false);
+
+            m_nodes[m_enddata] = TreeNode(false);
+
+            //m_nodes[m_enddata].setup(false);
             // update data
             m_nodes[active[chosen].GetMpos()].set_parent(m_enddata);
             m_nodes[active[current].GetMpos()].set_parent(m_enddata);

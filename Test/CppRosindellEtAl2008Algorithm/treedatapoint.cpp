@@ -5,9 +5,9 @@
 #include "tree.h"
 
 TreeDataPoint::TreeDataPoint(
-  const unsigned short x,
-  const unsigned short y,
-  const unsigned int z
+  const int x,
+  const int y,
+  const int mpos
 )
   :
   m_xpos{x},
@@ -16,7 +16,7 @@ TreeDataPoint::TreeDataPoint(
   m_yindex{0},
   m_next{0},
   m_last{0},
-  m_mpos{z},
+  m_mpos{mpos},
   m_probability{1.0}
 {
   static_assert(TreeDataPoint::sm_gridsize == Tree::sm_gridsize,"");
@@ -56,8 +56,8 @@ TreeDataPoint& TreeDataPoint::operator=(
 // update the position of this datapoint
 // this implements the indexing system
 void TreeDataPoint::Move(
-  const short x,
-  const short y,
+  const int x,
+  const int y,
   const double z
 )
 {

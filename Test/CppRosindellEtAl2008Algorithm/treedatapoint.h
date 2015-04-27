@@ -10,44 +10,44 @@
 struct TreeDataPoint
 {
   TreeDataPoint(
-    const unsigned short x = 0,
-    const unsigned short y = 0,
-    const unsigned int z = 0
+    const int x = 0,
+    const int y = 0,
+    const int mpos = 0
   );
   TreeDataPoint(const TreeDataPoint&);
   TreeDataPoint& operator=(const TreeDataPoint&);
 
-  void SetPos(unsigned short any_xpos, unsigned short any_ypos) noexcept { m_xpos = any_xpos; m_ypos = any_ypos; }
-  void SetIndex( short x , short y) noexcept { m_xindex = x; m_yindex = y; }
-  void SetMpos(unsigned int z) { m_mpos = z; }
-  void SetNext(unsigned int x) { m_next = x; }
-  void SetLast(unsigned int x) { m_last = x; }
-  void SetProbability(double x) { m_probability = x; }
-  unsigned short GetXpos() const noexcept { return m_xpos; }
-  unsigned short GetYpos() const noexcept { return m_ypos; }
-  short GetXindex() const noexcept { return m_xindex; }
-  short GetYindex() const noexcept { return m_yindex; }
-  unsigned int GetMpos() const noexcept { return m_mpos; }
-  unsigned int GetNext() const noexcept { return m_next; }
-  unsigned int GetLast() const noexcept { return m_last; }
+  void SetPos(const int xpos, const int ypos) noexcept { m_xpos = xpos; m_ypos = ypos; }
+  void SetIndex(const int x, const int y) noexcept { m_xindex = x; m_yindex = y; }
+  void SetMpos(const int mpos) noexcept { m_mpos = mpos; }
+  void SetNext(const int next) noexcept { m_next = next; }
+  void SetLast(const int last) noexcept { m_last = last; }
+  void SetProbability(const double probability) { m_probability = probability; }
+  int GetXpos() const noexcept { return m_xpos; }
+  int GetYpos() const noexcept { return m_ypos; }
+  int GetXindex() const noexcept { return m_xindex; }
+  int GetYindex() const noexcept { return m_yindex; }
+  int GetMpos() const noexcept { return m_mpos; }
+  int GetNext() const noexcept { return m_next; }
+  int GetLast() const noexcept { return m_last; }
   double GetProbability() const noexcept { return m_probability; }
   // checks for coalescence with another datapoint
   // update the position of this datapoint
   // this implements the indexing system
-  void Move(const short x,const short y,const double z);
+  void Move(const int x, const int y, const double z);
 private:
-  unsigned short m_xpos;
-  unsigned short m_ypos;
-  /// number of wraps of x around the torus
-  short m_xindex;
-  /// number of wraps of y around the torus
-  short m_yindex;
+  int m_xpos;
+  int m_ypos;
+  ///Number of horizontal wraps around the torus
+  int m_xindex;
+  ///Number of vertical wraps around the torus
+  int m_yindex;
   /// the next individual in the loop of those that have the same xypos
-  unsigned int m_next;
+  int m_next;
   /// the last individual in the loop 0 means the only one
-  unsigned int m_last;
+  int m_last;
   /// points to the position in output of this lineage
-  unsigned int m_mpos;
+  int m_mpos;
   /// the probability of not having speciated yet
   /// this is to allow the coalescence tree calculation to be stopped
   /// prematurely - saving many calculations with minimal loss in accuracy
