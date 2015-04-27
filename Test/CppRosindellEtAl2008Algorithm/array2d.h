@@ -5,7 +5,7 @@
 
 // Template class array2D as an array of rows
 template<class X>
-class array2D {
+class array2D_Rosindell {
 private:
     // number of entries in the two dimensions
     int entriesX, entriesY;
@@ -13,12 +13,12 @@ private:
     array1D<X>* data;
 public:
     // constructor
-    array2D(): data(0)
+    array2D_Rosindell(): data(0)
     {
         SetSize(0,0);
     }
     // destructor
-    ~array2D()
+    ~array2D_Rosindell()
     {
         delete[] data;
     }
@@ -33,7 +33,7 @@ public:
             data=new array1D<X>[Yin];
             for (int i=0;i<Yin;i++)
             {
-                data[i].resize(Xin);
+                data[i].SetSize(Xin);
             }
         }
         else
@@ -56,5 +56,8 @@ public:
         return data[index];
     }
 };
+
+
+template<typename T> using array2D = array2D_Rosindell<T>;
 
 #endif // ARRAY2D_H

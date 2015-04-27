@@ -44,7 +44,7 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
   // data - this will store the coalescence tree itself
   // there can only be a maximum of twice as many nodes as there are
   // initially free branches so we can set the size of our data object
-  data.resize(2*area1*area2+1);
+  data.SetSize(2*area1*area2+1);
   enddata = 0; // 0 is reserved as null
   // this means that data is empty and that data[1] is where the first
   // piece of data will be recorded
@@ -69,7 +69,7 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
   {
     thegridsize = area2*2;
   }
-  array2D<unsigned int> grid;
+  array2D_Rosindell<unsigned int> grid;
   grid.SetSize(thegridsize,thegridsize);
   for (int i = 0 ; i < thegridsize ; ++i)
   {
@@ -83,7 +83,7 @@ void tree::maketree(int area1 , int area2 , double minspec , int dispersal , dou
   // form of an array of "datapoint" objects
   array1D<datapoint> active;
   // again we know this array has the same maximum size as "data"
-  active.resize(2*area1*area2+1);
+  active.SetSize(2*area1*area2+1);
   // this marks the end of the active vector
   int endactive = 0; // 0 is reserved as null
   for (int tx = 0 ; tx < area1 ; tx++)
@@ -450,7 +450,7 @@ array1D<double> tree::get_richnessint(double spec)
 // this returns an interval within which the true mean ricness must lie
 {
   array1D<double> result;
-  result.resize(2);
+  result.SetSize(2);
   result[0] = 0.0;
   result[1] = 0.0;
   if (minspecsetup <= spec)
@@ -459,7 +459,7 @@ array1D<double> tree::get_richnessint(double spec)
   {
     // probarray stores, for each node, a probability that is required in the calculation
     array1D<double> probarray;
-    probarray.resize(enddata+1);
+    probarray.SetSize(enddata+1);
     for (int i = 1 ; i <= boost::numeric_cast<int>(enddata) ; ++i)
       // loop over all nodes and initialise the relating element in probarray
     {

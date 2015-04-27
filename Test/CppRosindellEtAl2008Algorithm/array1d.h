@@ -1,20 +1,29 @@
 #ifndef ARRAY1D_H
 #define ARRAY1D_H
 
-#define USE_STD_VECTOR
-#ifdef USE_STD_VECTOR
 #include <vector>
 
-template<typename T>
-using array1D = std::vector<T>;
-#else
+template<class T>
+class array1D_Bilderbeek
+{
+public:
+  array1D_Bilderbeek() {}
+  ~array1D_Bilderbeek() {}
+  void SetSize(int n) { m_data.resize(n); }
+  int size() { return m_data.size(); }
+  T& operator[](int index) { return m_data[index]; }
+private:
+  std::vector<T> m_data; // stores the entries themselves
+};
+
+#ifdef DEFINE_ARRAY1D_ROSINDELL
 // Template class array1D
 template<class X>
-class array1D {
+class array1D_Rosindell {
 public:
-    array1D();
-    ~array1D();
-    void resize(int n); //Old name: SetSize
+    array1D_Rosindell();
+    ~array1D_Rosindell();
+    void SetSize(int n); //Old name: SetSize
     int size();
     X& operator[](int index);
 private:
@@ -24,18 +33,18 @@ private:
 
 // Template class array1D
 template<class X>
-array1D<X>::array1D():data(0)
+array1D_Rosindell<X>::array1D_Rosindell():data(0)
 {
-    resize(0);
+    SetSize(0);
 }
 // destructor
 template<class X>
-array1D<X>::~array1D()
+array1D_Rosindell<X>::~array1D_Rosindell()
 {delete[] data;
 }
 // setter for size
 template<class X>
-void array1D<X>::resize(int n)
+void array1D_Rosindell<X>::SetSize(int n)
 {
     if(data)
     {
@@ -53,13 +62,13 @@ void array1D<X>::resize(int n)
 }
 // getter for size
 template<class X>
-int array1D<X>::size()
+int array1D_Rosindell<X>::size()
 {
     return entries;
 }
 // [] operator
 template<class X>
-X& array1D<X>::operator[](int index)
+X& array1D_Rosindell<X>::operator[](int index)
 {
     if (index < 0)
     {
@@ -69,7 +78,8 @@ X& array1D<X>::operator[](int index)
     index = index % entries;
     return data[index];
 }
-#endif
+#endif // DEFINE_ARRAY1D_ROSINDELL
 
+template<typename T> using array1D = array1D_Bilderbeek<T>;
 
 #endif // ARRAY1D_H
