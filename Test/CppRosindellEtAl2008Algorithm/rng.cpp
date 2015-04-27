@@ -2,11 +2,12 @@
 
 #include <cassert>
 
-Rng::Rng(const long seed, const Type type)
+Rng::Rng(const int seed, const Type type)
   : m_seed{seed},
     m_type{type},
     m_nrrand(seed)
 {
+
 }
 
 double Rng::GetRandomFraction()
@@ -18,7 +19,7 @@ double Rng::GetRandomFraction()
   }
 }
 
-long Rng::GetRandomInt(long max)
+int Rng::GetRandomInt(const int max)
 {
   switch (m_type)
   {

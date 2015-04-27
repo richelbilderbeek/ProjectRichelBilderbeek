@@ -14,7 +14,7 @@ class Tree
         // use that object to do all their calculations
 {
 public:
-    Tree(const long seed);
+    Tree(const int seed);
     //PRODUCING A COALESCENCE TREE IN CLASS TREE
     // this is the part of the code that actually creates the colescence tree
     // input variables are described in detail below
@@ -24,7 +24,14 @@ public:
     // dispersal = dispersal distance (dispersal kernel width)
     // tol = tolerance in results (0.01 means 1% error - 0.5% either side)
     // typeflag deals with the type of dispersal in the model (true means normal)
-    void maketree(int area1, int area2, double minspec, int dispersal , double tol, bool normflag);// this returns an interval within which the true mean richness must lie
+    void maketree(
+      int area1,
+      int area2,
+      double minspec,
+      int dispersal,
+      double tol,
+      bool normflag
+    );// this returns an interval within which the true mean richness must lie
     std::vector<double> get_richnessint(double spec);
     // this returns the midpoint between the maximum and minimum richness estimates
     double get_richness(double spec);

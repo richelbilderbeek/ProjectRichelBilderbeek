@@ -5,11 +5,11 @@ class NRrand
 {
 public:
     // constructor
-    NRrand(const long seed);
+    NRrand(const int seed);
     // returns a uniform random number in (0,1)
     double GetRandomFraction();
     // returns an integer between 0 and max
-    long GetRandomInt(long max);
+    int GetRandomInt(const int max);
     // returns normal deviates
     double GetRandomNormal();
 private:

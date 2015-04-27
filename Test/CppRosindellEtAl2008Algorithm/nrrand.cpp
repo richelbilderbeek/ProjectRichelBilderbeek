@@ -2,8 +2,8 @@
 
 #include <cmath>
 #include <cstdlib>
-
-NRrand::NRrand(const long seed)
+#include <boost/numeric/conversion/cast.hpp>
+NRrand::NRrand(const int seed)
 {
   std::srand(seed);
   m_normflag = true;
@@ -19,9 +19,12 @@ double NRrand::GetRandomFraction()
 }
 
 // returns an integer between 0 and max
-long NRrand::GetRandomInt(long max)
+int NRrand::GetRandomInt(const int max)
 {
-    return (long(floor(GetRandomFraction()*(max+1))));
+  return
+    boost::numeric_cast<int>(
+      std::floor(GetRandomFraction()*(max+1))
+    );
 }
 
 // returns normal deviates

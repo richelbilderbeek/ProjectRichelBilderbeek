@@ -6,7 +6,7 @@
 
 #include "treedatapoint.h"
 
-Tree::Tree(const long seed)
+Tree::Tree(const int seed)
   :
     m_minspecsetup{2},
     m_rnd(seed)
