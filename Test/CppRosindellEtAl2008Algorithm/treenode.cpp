@@ -13,9 +13,9 @@ TreeNode::TreeNode(const bool root)
 bool operator==(const TreeNode& lhs, const TreeNode& rhs) noexcept
 {
   return
-       lhs.get_parent()  == rhs.get_parent()
-    && lhs.get_root() == rhs.get_root()
-    && lhs.get_steps() == rhs.get_steps()
+       lhs.GetParent()  == rhs.GetParent()
+    && lhs.GetRoot() == rhs.GetRoot()
+    && lhs.GetSteps() == rhs.GetSteps()
   ;
 }
 
@@ -27,9 +27,9 @@ bool operator!=(const TreeNode& lhs, const TreeNode& rhs) noexcept
 std::ostream& operator<<(std::ostream& os, const TreeNode& node)
 {
   os
-    << node.get_root() << " "
-    << node.get_parent() << " "
-    << node.get_steps()
+    << node.GetRoot() << " "
+    << node.GetParent() << " "
+    << node.GetSteps()
   ;
   return os;
 }

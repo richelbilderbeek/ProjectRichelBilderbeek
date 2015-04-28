@@ -6,6 +6,7 @@
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "treedatapoint.h"
+#include "treenode.h"
 
 template <class Container>
 bool IsValid(const int index, const Container& container)
@@ -120,7 +121,7 @@ Tree::Tree(
     chosen.Move(move.first,move.second,min_speciation_rate);
 
     assert(IsValid(chosen.GetMpos(),m_nodes));
-    m_nodes[chosen.GetMpos()].inc_steps();
+    m_nodes[chosen.GetMpos()].IncSteps();
 
     //New position
     const int active_x = chosen.GetXpos();
@@ -157,11 +158,11 @@ Tree::Tree(
             ++m_enddata;
             m_nodes[m_enddata] = TreeNode(false);
 
-            m_nodes[chosen.GetMpos()].set_parent(m_enddata);
+            m_nodes[chosen.GetMpos()].SetParent(m_enddata);
             assert(IsValid(current,active));
             assert(IsValid(active[current].GetMpos(),m_nodes));
             assert(current != 0 && "Skip zero");
-            m_nodes[active[current].GetMpos()].set_parent(m_enddata);
+            m_nodes[active[current].GetMpos()].SetParent(m_enddata);
 
             // update active
             assert(IsValid(current,active));
@@ -345,7 +346,7 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
     // -2.0: an internal node that has thus far not been pruned at all
     assert(IsValid(i,m_nodes));
     assert(IsValid(i,ps));
-    ps[i] = m_nodes[i].get_root() ? 1.0 : -2.0;
+    ps[i] = m_nodes[i].GetRoot() ? 1.0 : -2.0;
   }
 
   bool loop = true;
@@ -359,7 +360,7 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
       if (ps[i] >= 0.0)
       {
         // it is complete so use it to complete the info on in its parents
-        const int theparent = m_nodes[i].get_parent();
+        const int theparent{m_nodes[i].GetParent()};
         assert(IsValid(theparent,ps));
         if (ps[theparent] < 0.0 && theparent != 0)
         {
@@ -369,7 +370,13 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
           if (ps[theparent] <= -1.5)
           {
             // parent not at all complete
-            const double temprob = (pow(1-speciation_rate,double(m_nodes[i].get_steps())));
+            const double steps{static_cast<double>(m_nodes[i].GetSteps())};
+            const double temprob{
+              std::pow(
+                1-speciation_rate,
+                steps//static_cast<double>(m_nodes[i].GetSteps())
+              )
+            };
             result[0] += ps[i]*(1-temprob);
             // we store probabilities as negative in a node if they
             // refer only to one of the two branches of the node
@@ -380,7 +387,14 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
           else
           {
             // parent partailly complete
-            double temprob = (pow(1.0-speciation_rate,double(m_nodes[i].get_steps())));// update Smin
+            // update Smin
+            const double steps{static_cast<double>(m_nodes[i].GetSteps())};
+            double temprob{
+              std::pow(
+                1.0-speciation_rate,
+                steps //static_cast<double>(m_nodes[i].GetSteps())
+              )
+            };
             result[0] += ps[i]*(1.0-temprob);
             // update the probability array
             temprob = temprob*ps[i];
@@ -400,10 +414,11 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
   {
     // here we are dealing with all the last branches after prooning all nodes
     assert(IsValid(i,m_nodes));
-    if (m_nodes[i].get_parent() == 0)
+    if (m_nodes[i].GetParent() == 0)
     {
-      result[0] += ps[i]*(1-pow(1-speciation_rate,double(m_nodes[i].get_steps())));
-      result[1] += ps[i]*pow(1-speciation_rate,double(m_nodes[i].get_steps()));
+      const double steps{static_cast<double>(m_nodes[i].GetSteps())};
+      result[0] += ps[i] * (1.0 - std::pow(1.0 - speciation_rate,steps) );
+      result[1] += ps[i] * (      std::pow(1.0 - speciation_rate,steps) );
     }
   }
   result[1] += result[0];

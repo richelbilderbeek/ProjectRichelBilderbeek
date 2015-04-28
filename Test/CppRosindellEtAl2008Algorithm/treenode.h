@@ -9,15 +9,13 @@ struct TreeNode
 // we include a few simple functions that prove useful later
 {
   TreeNode(const bool root);
-  void set_root(const bool root) { m_root = root; }
-  void set_parent(const int parent) { m_parent = parent; }
-  void set_steps(const int steps) noexcept { m_steps = steps; }
-  bool get_root() const noexcept { return m_root; }
-  int get_parent() const noexcept { return m_parent; }
-  int get_steps() const noexcept { return m_steps; }
-  // increments the steps by one
-  void inc_steps() noexcept { ++m_steps; }
+  void SetParent(const int parent) { m_parent = parent; }
+  bool GetRoot() const noexcept { return m_root; }
+  int GetParent() const noexcept { return m_parent; }
+  int GetSteps() const noexcept { return m_steps; }
+  void IncSteps() noexcept { ++m_steps; }
 private:
+
   /// is this node at the end of the tree (true)
   /// or just here to mark a coalescense (false)
   bool m_root;
