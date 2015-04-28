@@ -65,7 +65,7 @@ Tree::Tree(
 
     // choose a random lineage to die and be reborn out of those currently active
     const int chosen_index = m_rnd.GetRandomInt(endactive-1) + 1; // cannot be 0
-    assert(chosen_index != 0 && "Skip zero?");
+    assert(chosen_index != 0 && "Skip zero");
     assert(IsValid(chosen_index,active));
     TreeDataPoint& chosen = active[chosen_index];
 
@@ -79,6 +79,7 @@ Tree::Tree(
     int& from = grid[from_x][from_y];
     // update grid to reflect new data
     from = chosen.GetNext();
+    assert(from >= 0);
     // if current individual is the only one in the space then it will hold
     // 0 in its data for next and last and this will still be correct
     // the next and last variables indicate the next and last in a ring
@@ -91,7 +92,7 @@ Tree::Tree(
       // then we have an individual to set its next and last variables correctly
       if (from == chosen.GetLast() )
       {
-        assert(from != 0 && "Skip zero?");
+        assert(from != 0 && "Skip zero");
         assert(IsValid(from,active));
         //The ring contained 2 individuals
         active[from].SetLast(0);
@@ -101,10 +102,10 @@ Tree::Tree(
       {
         //The ring contained 3 or more individuals
         assert(IsValid(from,active));
-        assert(from != 0 && "Skip zero?");
+        assert(from != 0 && "Skip zero");
         active[from].SetLast(chosen.GetLast());
         assert(IsValid(chosen.GetLast(),active));
-        assert(chosen.GetLast() != 0 && "Skip zero?");
+        assert(chosen.GetLast() != 0 && "Skip zero");
         active[chosen.GetLast()].SetNext(chosen.GetNext());
       }
     }
@@ -145,11 +146,11 @@ Tree::Tree(
       while(loop)
       {
         assert(IsValid(current,active));
-        assert(current != 0 && "Skip zero?");
+        assert(current != 0 && "Skip zero");
         if (chosen.GetXindex() == active[current].GetXindex())
         {
           assert(IsValid(current,active));
-          assert(current != 0 && "Skip zero?");
+          assert(current != 0 && "Skip zero");
           if (chosen.GetYindex() == active[current].GetYindex())
           {
             // we have coalescence
@@ -159,12 +160,12 @@ Tree::Tree(
             m_nodes[chosen.GetMpos()].set_parent(m_enddata);
             assert(IsValid(current,active));
             assert(IsValid(active[current].GetMpos(),m_nodes));
-            assert(current != 0 && "Skip zero?");
+            assert(current != 0 && "Skip zero");
             m_nodes[active[current].GetMpos()].set_parent(m_enddata);
 
             // update active
             assert(IsValid(current,active));
-            assert(current != 0 && "Skip zero?");
+            assert(current != 0 && "Skip zero");
             active[current].SetMpos(m_enddata);
 
             const double probability{
@@ -174,15 +175,15 @@ Tree::Tree(
             };
 
             assert(IsValid(current,active));
-            assert(current != 0 && "Skip zero?");
+            assert(current != 0 && "Skip zero");
             active[current].SetProbability(probability);
 
             assert(IsValid(endactive,active));
-            assert(endactive != 0 && "Skip zero?");
+            assert(endactive != 0 && "Skip zero");
             chosen = active[endactive];
 
             assert(IsValid(endactive,active));
-            assert(endactive != 0 && "Skip zero?");
+            assert(endactive != 0 && "Skip zero");
             const int newx = active[endactive].GetXpos();
             const int newy = active[endactive].GetYpos();
 
@@ -193,19 +194,19 @@ Tree::Tree(
               to = chosen_index;
             }
             assert(IsValid(endactive,active));
-            assert(endactive != 0 && "Skip zero?");
+            assert(endactive != 0 && "Skip zero");
             if (active[endactive].GetNext() > 0)
             {
               assert(IsValid(endactive,active));
               assert(IsValid(active[endactive].GetNext(),active));
-              assert(endactive != 0 && "Skip zero?");
-              assert(active[endactive].GetNext() != 0 && "Skip zero?");
+              assert(endactive != 0 && "Skip zero");
+              assert(active[endactive].GetNext() != 0 && "Skip zero");
               active[active[endactive].GetNext()].SetLast(chosen_index);
 
               assert(IsValid(endactive,active));
               assert(IsValid(active[endactive].GetNext(),active));
-              assert(endactive != 0 && "Skip zero?");
-              assert(active[endactive].GetLast() != 0 && "Skip zero?");
+              assert(endactive != 0 && "Skip zero");
+              assert(active[endactive].GetLast() != 0 && "Skip zero");
               active[active[endactive].GetLast()].SetNext(chosen_index);
             }
             --endactive;
@@ -218,17 +219,17 @@ Tree::Tree(
         if (loop)
         {
           // move to the next place in the loop ready for another check
-          assert(current != 0 && "Skip zero?");
+          assert(current != 0 && "Skip zero");
           current = active[current].GetNext();
           if (current == 0)
           {
             // the loop was only of size one and there was no coalescence
             // this is most likely
             assert(IsValid(grid_active,active));
-            assert(grid_active != 0 && "Skip zero?");
+            assert(grid_active != 0 && "Skip zero");
             active[grid_active].SetNext(chosen_index);
             assert(IsValid(grid_active,active));
-            assert(grid_active != 0 && "Skip zero?");
+            assert(grid_active != 0 && "Skip zero");
             active[grid_active].SetLast(chosen_index);
             assert(IsValid(chosen_index,active));
             chosen.SetNext(grid_active);
@@ -244,13 +245,13 @@ Tree::Tree(
               assert(IsValid(grid_active,active));
               const int addlast = active[grid_active].GetLast();
               assert(IsValid(addlast,active));
-              assert(addlast != 0 && "Skip zero?");
+              assert(addlast != 0 && "Skip zero");
               active[addlast].SetNext(chosen_index);
               assert(IsValid(chosen_index,active));
               chosen.SetLast(addlast);
               chosen.SetNext(grid_active);
               assert(IsValid(grid_active,active));
-              assert(grid_active != 0 && "Skip zero?");
+              assert(grid_active != 0 && "Skip zero");
               active[grid_active].SetLast(chosen_index);
               loop = false;
             }
@@ -267,7 +268,7 @@ Tree::Tree(
       error = 0.0;
       for (int i = 1 ; i <= endactive ; ++i)
       {
-        assert(i != 0 && "Skip zero?");
+        assert(i != 0 && "Skip zero");
         assert(IsValid(i,active));
         error += active[i].GetProbability();
       }
