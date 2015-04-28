@@ -59,25 +59,17 @@ Tree::Tree(
   int steps = 0;
   double error = 1000.0;
 
-  // these three variables store information for STRs
-  // has a lineage in our survey moved?
-  // now do the calculations required to set up the tree
-  // loop while error is too large or not included the full time interval
   while (error > richness * tolerance)
   {
     ++steps;
 
     // choose a random lineage to die and be reborn out of those currently active
     const int chosen_index = m_rnd.GetRandomInt(endactive-1) + 1; // cannot be 0
+    assert(chosen_index != 0 && "Skip zero?");
     assert(IsValid(chosen_index,active));
     TreeDataPoint& chosen = active[chosen_index];
 
-    // remember there is no speciation included in this part of the programme
-    // choose movement of chosen lineage
-    const std::pair<int,int> move{GetMove(dispersal_kernel,m_rnd,dispersal_distance)};
-    const int movex = move.first; // will store x direction movement
-    const int movey = move.second; // will store y direction movement
-    assert(movex != 0 || movey != 0);
+    //Note: there is no speciation included in this part of the program
 
     // record old position of lineage
     assert(IsValid(chosen_index,active));
@@ -99,52 +91,65 @@ Tree::Tree(
       // then we have an individual to set its next and last variables correctly
       if (from == chosen.GetLast() )
       {
+        assert(from != 0 && "Skip zero?");
         assert(IsValid(from,active));
-        // the ring contained 2 individuals
+        //The ring contained 2 individuals
         active[from].SetLast(0);
         active[from].SetNext(0);
       }
       else
       {
-        // the ring contained 3 or more individuals
-        assert(IsValid(from_x,from_y,grid));
+        //The ring contained 3 or more individuals
+        assert(IsValid(from,active));
+        assert(from != 0 && "Skip zero?");
         active[from].SetLast(chosen.GetLast());
+        assert(IsValid(chosen.GetLast(),active));
+        assert(chosen.GetLast() != 0 && "Skip zero?");
         active[chosen.GetLast()].SetNext(chosen.GetNext());
       }
     }
 
-    // now we have completely purged the grid of the old position of our chosen lineage
+    //Done purging the grid of the old position of our chosen lineage
     chosen.SetNext(0);
     chosen.SetLast(0);
-    // now actually do the move
     richness += min_speciation_rate*(chosen.GetProbability());
-    chosen.Move(movex,movey,min_speciation_rate);
+
+    //Do the move
+    const std::pair<int,int> move{GetMove(dispersal_kernel,m_rnd,dispersal_distance)};
+    chosen.Move(move.first,move.second,min_speciation_rate);
+
+    assert(IsValid(chosen.GetMpos(),m_nodes));
     m_nodes[chosen.GetMpos()].inc_steps();
-    // record the new position
-    const int activex = chosen.GetXpos();
-    const int activey = chosen.GetYpos();
+
+    //New position
+    const int active_x = chosen.GetXpos();
+    const int active_y = chosen.GetYpos();
+    assert(IsValid(active_x,active_y,grid));
+    int& grid_active{grid[active_x][active_y]};
     // check for coalescence
-    assert(IsValid(activex,activey,grid));
-    if ( grid[activex][activey] == 0)
+    if (grid_active == 0)
     {
       // no coalescence possible
-      grid[activex][activey] = chosen_index;
+      grid_active = chosen_index;
     }
     else
     {
       //coalescence possible
       bool loop = true;
       // check around the ring for coalescence
-      assert(IsValid(activex,activey,grid));
-      const int start = grid[activex][activey]; // starting here
+      const int start = grid_active; // starting here
       // this is how far around the loop we have got checking for coalescence
       // we start at "start" and then move around methodically
       // the loops usually contain 1 individual but we must allow code for any number
       int current = start;
       while(loop)
       {
+        assert(IsValid(current,active));
+        assert(current != 0 && "Skip zero?");
         if (chosen.GetXindex() == active[current].GetXindex())
         {
+          assert(IsValid(current,active));
+          assert(current != 0 && "Skip zero?");
           if (chosen.GetYindex() == active[current].GetYindex())
           {
             // we have coalescence
@@ -152,30 +157,59 @@ Tree::Tree(
             m_nodes[m_enddata] = TreeNode(false);
 
             m_nodes[chosen.GetMpos()].set_parent(m_enddata);
+            assert(IsValid(current,active));
+            assert(IsValid(active[current].GetMpos(),m_nodes));
+            assert(current != 0 && "Skip zero?");
             m_nodes[active[current].GetMpos()].set_parent(m_enddata);
 
             // update active
+            assert(IsValid(current,active));
+            assert(current != 0 && "Skip zero?");
             active[current].SetMpos(m_enddata);
 
+            const double probability{
+              chosen.GetProbability()
+              + active[current].GetProbability()
+              * (1.0-chosen.GetProbability())
+            };
 
-            const double tempprob = chosen.GetProbability() + active[current].GetProbability()*(1.0- chosen.GetProbability() );
+            assert(IsValid(current,active));
+            assert(current != 0 && "Skip zero?");
+            active[current].SetProbability(probability);
 
-            active[current].SetProbability(tempprob);
+            assert(IsValid(endactive,active));
+            assert(endactive != 0 && "Skip zero?");
             chosen = active[endactive];
+
+            assert(IsValid(endactive,active));
+            assert(endactive != 0 && "Skip zero?");
             const int newx = active[endactive].GetXpos();
             const int newy = active[endactive].GetYpos();
-            int& to = grid[newx][newy];
+
             assert(IsValid(newx,newy,grid));
+            int& to = grid[newx][newy];
             if (to == endactive)
             {
               to = chosen_index;
             }
-            if (active[endactive].GetNext() >0)
+            assert(IsValid(endactive,active));
+            assert(endactive != 0 && "Skip zero?");
+            if (active[endactive].GetNext() > 0)
             {
+              assert(IsValid(endactive,active));
+              assert(IsValid(active[endactive].GetNext(),active));
+              assert(endactive != 0 && "Skip zero?");
+              assert(active[endactive].GetNext() != 0 && "Skip zero?");
               active[active[endactive].GetNext()].SetLast(chosen_index);
+
+              assert(IsValid(endactive,active));
+              assert(IsValid(active[endactive].GetNext(),active));
+              assert(endactive != 0 && "Skip zero?");
+              assert(active[endactive].GetLast() != 0 && "Skip zero?");
               active[active[endactive].GetLast()].SetNext(chosen_index);
             }
             --endactive;
+            assert(endactive >= 0);
             // update grid not necessary as
             // we already purged the old lineage from the grid and loops
             loop = false;
@@ -184,18 +218,21 @@ Tree::Tree(
         if (loop)
         {
           // move to the next place in the loop ready for another check
+          assert(current != 0 && "Skip zero?");
           current = active[current].GetNext();
           if (current == 0)
           {
             // the loop was only of size one and there was no coalescence
             // this is most likely
-            assert(IsValid(activex,activey,grid));
-            assert(IsValid(grid[activex][activey],active));
-            active[grid[activex][activey]].SetNext(chosen_index);
-            active[grid[activex][activey]].SetLast(chosen_index);
+            assert(IsValid(grid_active,active));
+            assert(grid_active != 0 && "Skip zero?");
+            active[grid_active].SetNext(chosen_index);
+            assert(IsValid(grid_active,active));
+            assert(grid_active != 0 && "Skip zero?");
+            active[grid_active].SetLast(chosen_index);
             assert(IsValid(chosen_index,active));
-            chosen.SetNext(grid[activex][activey]);
-            chosen.SetLast(grid[activex][activey]);
+            chosen.SetNext(grid_active);
+            chosen.SetLast(grid_active);
             loop = false;
           }
           else
@@ -204,15 +241,17 @@ Tree::Tree(
             {
               // we have made one complete check of the loop and found
               // there was no coalescence but we still have to add the new position in
-              assert(IsValid(activex,activey,grid));
-              assert(IsValid(grid[activex][activey],active));
-              const int addlast = active[grid[activex][activey]].GetLast();
+              assert(IsValid(grid_active,active));
+              const int addlast = active[grid_active].GetLast();
               assert(IsValid(addlast,active));
+              assert(addlast != 0 && "Skip zero?");
               active[addlast].SetNext(chosen_index);
               assert(IsValid(chosen_index,active));
               chosen.SetLast(addlast);
-              chosen.SetNext(grid[activex][activey]);
-              active[grid[activex][activey]].SetLast(chosen_index);
+              chosen.SetNext(grid_active);
+              assert(IsValid(grid_active,active));
+              assert(grid_active != 0 && "Skip zero?");
+              active[grid_active].SetLast(chosen_index);
               loop = false;
             }
           }
@@ -228,6 +267,7 @@ Tree::Tree(
       error = 0.0;
       for (int i = 1 ; i <= endactive ; ++i)
       {
+        assert(i != 0 && "Skip zero?");
         assert(IsValid(i,active));
         error += active[i].GetProbability();
       }
@@ -244,12 +284,13 @@ std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int ar
   v.resize(2*area_width*area_length+1);
 
   int i = 0;
-  for (int tx = 0 ; tx != area_width ; ++tx)
+  for (int x=0; x!=area_width; ++x)
   {
-    for (int ty = 0 ; ty != area_length ; ++ty)
+    for (int y=0; y!=area_length; ++y)
     {
       ++i;
-      v[i] = TreeDataPoint(tx,ty,i);
+      v[i] = TreeDataPoint(x,y,i);
+      //v.push_back(TreeDataPoint(tx,ty,i)); //NOT YET
     }
   }
   return v;
