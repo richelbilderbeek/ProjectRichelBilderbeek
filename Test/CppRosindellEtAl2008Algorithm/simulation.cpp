@@ -15,6 +15,7 @@
 Simulation::Simulation(
   const std::vector<Task>& tasks,
   const std::vector<double>& speciation_rates,
+  const Rng::Type rng_type,
   const std::string& result_output_filename,
   const int seed,
   const bool verbose
@@ -24,7 +25,7 @@ Simulation::Simulation(
   Test();
   #endif
 
-  Rng rng(seed);
+  Rng rng(seed,rng_type);
 
   const double minimum_speciation_rate{
     *std::min_element(std::begin(speciation_rates),std::end(speciation_rates))

@@ -32,6 +32,7 @@ void Simulation::Test() noexcept
     Simulation simulation(
       tasks,
       specset,
+      Rng::Type::rosindell,
       "resultsfile.txt", //results_output_filename
       4, //seed
       true //verbose
@@ -81,14 +82,6 @@ void Simulation::Test() noexcept
       tasks.push_back(Task(10,10,2,DispersalKernel::normal,0.1));
       tasks.push_back(Task(10,10,1,DispersalKernel::square,0.1));
       tasks.push_back(Task(10,10,1,DispersalKernel::normal,0.01));
-      /*
-      tasks.push_back(Task(10,10,1,true,0.1));
-      tasks.push_back(Task(20,10,1,true,0.1));
-      tasks.push_back(Task(10,20,1,true,0.1));
-      tasks.push_back(Task(10,10,2,true,0.1));
-      tasks.push_back(Task(10,10,1,false,0.1));
-      tasks.push_back(Task(10,10,1,true,0.01));
-      */
       std::ofstream f(tasks_input_filename);
       std::copy(std::begin(tasks),std::end(tasks),std::ostream_iterator<Task>(f,"\n"));
     }
@@ -96,6 +89,7 @@ void Simulation::Test() noexcept
     assert(FileIo().IsRegularFile(tasks_input_filename));
 
     Simulation simulation(
+      Rng::Type::rosindell,
       tasks_input_filename,
       speciation_input_filename,
       results_output_filename
@@ -118,6 +112,33 @@ void Simulation::Test() noexcept
     assert(std::abs(results[ 9].GetSpeciesRichness()-12.9071) < 0.0001);
     assert(std::abs(results[10].GetSpeciesRichness()-38.2425) < 0.0001);
     assert(std::abs(results[11].GetSpeciesRichness()-14.5789) < 0.0001);
+  }
+  {
+    std::vector<double> specset;
+    {
+      specset.push_back(0.1);
+      specset.push_back(0.01);
+    }
+    std::vector<Task> tasks;
+    tasks.push_back(Task(10,10,1,DispersalKernel::normal,0.1));
+    tasks.push_back(Task(20,10,1,DispersalKernel::normal,0.1));
+    tasks.push_back(Task(10,20,1,DispersalKernel::normal,0.1));
+    tasks.push_back(Task(10,10,2,DispersalKernel::normal,0.1));
+    tasks.push_back(Task(10,10,1,DispersalKernel::square,0.1));
+    tasks.push_back(Task(10,10,1,DispersalKernel::normal,0.01));
+
+    Simulation simulation(
+      tasks,
+      specset,
+      Rng::Type::bilderbeek,
+      "resultsfile.txt", //results_output_filename
+      4, //seed
+      true //verbose
+    );
+
+    const std::vector<Result> results{
+      simulation.GetResults()
+    };
   }
 }
 #endif

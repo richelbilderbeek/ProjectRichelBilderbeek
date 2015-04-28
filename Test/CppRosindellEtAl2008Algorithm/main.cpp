@@ -12,7 +12,7 @@
 #include <stdexcept>
 #include "simulation.h"
 
-int main()
+int main(int argc, char **)
 {
   #ifndef NDEBUG
   Simulation::Test();
@@ -20,7 +20,9 @@ int main()
 
   try
   {
-    Simulation simulation;
+    Simulation simulation(
+      argc == 1 ? Rng::Type::rosindell : Rng::Type::bilderbeek
+    );
   }
   catch (std::runtime_error& e)
   {

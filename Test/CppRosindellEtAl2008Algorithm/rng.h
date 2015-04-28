@@ -2,11 +2,12 @@
 #define RNG_H
 
 #include "nrrand.h"
+#include <random>
 
 struct Rng
 {
   enum class Type { rosindell, bilderbeek };
-  Rng(const int seed, const Type type = Type::rosindell) noexcept;
+  Rng(const int seed, const Type type) noexcept;
 
   // returns a uniform random number in (0,1)
   double GetRandomFraction() noexcept;
@@ -18,6 +19,9 @@ struct Rng
   private:
   const int m_seed;
   const Type m_type;
+
+  //mt generates random numbers
+  std::mt19937 m_mt;
 
   ///Rosindell implementation
   NRrand m_nrrand;
