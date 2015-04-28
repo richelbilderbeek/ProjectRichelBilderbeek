@@ -11,6 +11,10 @@ NRrand::NRrand(const int seed) noexcept
 
 double NRrand::GetRandomFraction() noexcept
 {
+  //Avoid using std::rand:
+  // [1] Bjarne Stroustrup. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. 40.8[15]: 'Prefer a random number class for a particular distribution over direct use of rand()'
+  // [2] Stephan T. Lavavej. 'rand() Considered Harmful'. 2013. GoingNative 2013
+  // [3] Bjarne Stroustrup. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. 40.7.4: 'Producing a random number generator isn't easy, and unfortunately not all systems deliver a good rand()'
   return(
     static_cast<double>(std::rand())
     /static_cast<double>(RAND_MAX)

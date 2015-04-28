@@ -7,6 +7,20 @@
 
 #include "treedatapoint.h"
 
+template <class Container>
+bool IsValid(const int index, const Container& container)
+{
+  return index >= 0 && index < static_cast<int>(container.size());
+}
+
+template <class Container>
+bool IsValid(const int index1, const int index2, const Container& container)
+{
+  if (!IsValid(index1,container)) return false;
+  assert(!container.empty());
+  return IsValid(index2,container[0]);
+}
+
 Tree::Tree(
   Rng& rng,
   const int area1,
@@ -50,15 +64,14 @@ Tree::Tree(
 
   // this marks the end of the active vector
   int endactive = 0; // 0 is reserved as null
-  for (int tx = 0 ; tx < area1 ; tx++)
+  for (int tx = 0 ; tx != area1 ; ++tx)
   {
-    for (int ty = 0 ; ty < area2 ; ty++)
+    for (int ty = 0 ; ty != area2 ; ++ty)
     {
       // looping over the survey area, we initialise both grid and active
       ++endactive;
       active[endactive] = TreeDataPoint(tx,ty,endactive);
-      assert(tx >= 0);
-      assert(tx < static_cast<int>(grid.size()));
+      assert(IsValid(tx,ty,grid));
       grid[tx][ty] = endactive;
     }
   }
@@ -79,8 +92,6 @@ Tree::Tree(
     // choose movement of chosen lineage
     int movex = 0; // will store x direction movement
     int movey = 0; // will store y direction movement
-    // typeflag = false square
-    // typeflag = true normal
     if (normflag)
     {
       // normally distributed dispersal kernel
@@ -103,10 +114,10 @@ Tree::Tree(
     }
     // note this piece of code can easily be edited for any dispersal kernel
     // record old position of lineage
+    assert(IsValid(chosen,active));
     const int oldx = active[chosen].GetXpos();
     const int oldy = active[chosen].GetYpos();
-    assert(oldx >= 0);
-    assert(oldx < static_cast<int>(grid.size()));
+    assert(IsValid(oldx,oldy,grid));
     // update grid to reflect new data
     grid[oldx][oldy] = active[chosen].GetNext();
     // if current individual is the only one in the space then it will hold
@@ -116,15 +127,14 @@ Tree::Tree(
     // of course they would have different indexes and so be in different
     // physical positions. The use of a ring in this way makes
     // it really easy to check if two individuals coalesce
-    assert(oldx >= 0);
-    assert(oldx < static_cast<int>(grid.size()));
+    assert(IsValid(oldx,oldy,grid));
     if (grid[oldx][oldy] > 0)
     {
       // then we have an individual to set its next and last variables correctly
       if ( grid[oldx][oldy] == active[chosen].GetLast() )
       {
-        assert(oldx >= 0);
-        assert(oldx < static_cast<int>(grid.size()));
+        assert(IsValid(oldx,oldy,grid));
+        assert(IsValid(grid[oldx][oldy],active));
         // the ring contained 2 individuals
         active[grid[oldx][oldy]].SetLast(0);
         active[grid[oldx][oldy]].SetNext(0);
@@ -132,8 +142,7 @@ Tree::Tree(
       else
       {
         // the ring contained 3 or more individuals
-        assert(oldx >= 0);
-        assert(oldx < static_cast<int>(grid.size()));
+        assert(IsValid(oldx,oldy,grid));
         active[grid[oldx][oldy]].SetLast(active[chosen].GetLast());
         active[active[chosen].GetLast()].SetNext(active[chosen].GetNext());
       }
@@ -148,13 +157,10 @@ Tree::Tree(
     const int activex = active[chosen].GetXpos();
     const int activey = active[chosen].GetYpos();
     // check for coalescence
-    assert(activex >= 0);
-    assert(activex < static_cast<int>(grid.size()));
+    assert(IsValid(activex,activey,grid));
     if ( grid[activex][activey] == 0)
     {
       // no coalescence possible
-      assert(activex >= 0);
-      assert(activex < static_cast<int>(grid.size()));
       grid[activex][activey] = chosen;
     }
     else
@@ -162,8 +168,7 @@ Tree::Tree(
       //coalescence possible
       bool loop = true;
       // check around the ring for coalescence
-      assert(activex >= 0);
-      assert(activex < static_cast<int>(grid.size()));
+      assert(IsValid(activex,activey,grid));
       const int start = grid[activex][activey]; // starting here
       // this is how far around the loop we have got checking for coalescence
       // we start at "start" and then move around methodically
@@ -193,8 +198,7 @@ Tree::Tree(
             active[chosen] = active[endactive];
             const int oldx = active[endactive].GetXpos();
             const int oldy = active[endactive].GetYpos();
-            assert(oldx >= 0);
-            assert(oldx < static_cast<int>(grid.size()));
+            assert(IsValid(oldx,oldy,grid));
             if (boost::numeric_cast<int>(grid[oldx][oldy]) == endactive)
             {
               grid[oldx][oldy] = chosen;
@@ -218,10 +222,11 @@ Tree::Tree(
           {
             // the loop was only of size one and there was no coalescence
             // this is most likely
-            assert(activex >= 0);
-            assert(activex < static_cast<int>(grid.size()));
+            assert(IsValid(activex,activey,grid));
+            assert(IsValid(grid[activex][activey],active));
             active[grid[activex][activey]].SetNext(chosen);
             active[grid[activex][activey]].SetLast(chosen);
+            assert(IsValid(chosen,active));
             active[chosen].SetNext(grid[activex][activey]);
             active[chosen].SetLast(grid[activex][activey]);
             loop = false;
@@ -232,10 +237,12 @@ Tree::Tree(
             {
               // we have made one complete check of the loop and found
               // there was no coalescence but we still have to add the new position in
-              assert(activex >= 0);
-              assert(activex < static_cast<int>(grid.size()));
-              int addlast = active[grid[activex][activey]].GetLast();
+              assert(IsValid(activex,activey,grid));
+              assert(IsValid(grid[activex][activey],active));
+              const int addlast = active[grid[activex][activey]].GetLast();
+              assert(IsValid(addlast,active));
               active[addlast].SetNext(chosen);
+              assert(IsValid(chosen,active));
               active[chosen].SetLast(addlast);
               active[chosen].SetNext(grid[activex][activey]);
               active[grid[activex][activey]].SetLast(chosen);
@@ -254,8 +261,7 @@ Tree::Tree(
       error = 0.0;
       for (int i = 1 ; i <= endactive ; ++i)
       {
-        assert(i >= 0);
-        assert(i < static_cast<int>(active.size()));
+        assert(IsValid(i,active));
         error += active[i].GetProbability();
       }
     }
