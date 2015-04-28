@@ -118,8 +118,9 @@ Tree::Tree(
     const int oldx = active[chosen].GetXpos();
     const int oldy = active[chosen].GetYpos();
     assert(IsValid(oldx,oldy,grid));
+    int& from = grid[oldx][oldy];
     // update grid to reflect new data
-    grid[oldx][oldy] = active[chosen].GetNext();
+    from = active[chosen].GetNext();
     // if current individual is the only one in the space then it will hold
     // 0 in its data for next and last and this will still be correct
     // the next and last variables indicate the next and last in a ring
@@ -128,22 +129,22 @@ Tree::Tree(
     // physical positions. The use of a ring in this way makes
     // it really easy to check if two individuals coalesce
     assert(IsValid(oldx,oldy,grid));
-    if (grid[oldx][oldy] > 0)
+    if (from > 0)
     {
       // then we have an individual to set its next and last variables correctly
-      if ( grid[oldx][oldy] == active[chosen].GetLast() )
+      if (from == active[chosen].GetLast() )
       {
         assert(IsValid(oldx,oldy,grid));
-        assert(IsValid(grid[oldx][oldy],active));
+        assert(IsValid(from,active));
         // the ring contained 2 individuals
-        active[grid[oldx][oldy]].SetLast(0);
-        active[grid[oldx][oldy]].SetNext(0);
+        active[from].SetLast(0);
+        active[from].SetNext(0);
       }
       else
       {
         // the ring contained 3 or more individuals
         assert(IsValid(oldx,oldy,grid));
-        active[grid[oldx][oldy]].SetLast(active[chosen].GetLast());
+        active[from].SetLast(active[chosen].GetLast());
         active[active[chosen].GetLast()].SetNext(active[chosen].GetNext());
       }
     }// now we have completely purged the grid of the old position of our chosen lineage
@@ -196,12 +197,13 @@ Tree::Tree(
 
             active[current].SetProbability(tempprob);
             active[chosen] = active[endactive];
-            const int oldx = active[endactive].GetXpos();
-            const int oldy = active[endactive].GetYpos();
-            assert(IsValid(oldx,oldy,grid));
-            if (boost::numeric_cast<int>(grid[oldx][oldy]) == endactive)
+            const int newx = active[endactive].GetXpos();
+            const int newy = active[endactive].GetYpos();
+            int& to = grid[newx][newy];
+            assert(IsValid(newx,newy,grid));
+            if (to == endactive)
             {
-              grid[oldx][oldy] = chosen;
+              to = chosen;
             }
             if (active[endactive].GetNext() >0)
             {
