@@ -14,9 +14,8 @@
 // that is required for this object
 // the end user should initialise one instance of "tree" and
 // use that object to do all their calculations
-class Tree
+struct Tree
 {
-public:
   // area_width = width of survey area (in number of trees)
   // area_length = length of survey area (in number of trees)
   // min_speciation_rate = smallest speciation rate required
@@ -64,8 +63,6 @@ private:
 
   ///Interval within which the true mean richness must lie
   std::array<double,2> GetRichnessInterval(double spec);
-
-
 
   static const int sm_gridsize = 4000;
   friend class TreeDataPoint;

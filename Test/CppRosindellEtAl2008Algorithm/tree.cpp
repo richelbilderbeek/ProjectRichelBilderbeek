@@ -159,10 +159,13 @@ Tree::Tree(
             m_nodes[m_enddata] = TreeNode(false);
 
             m_nodes[chosen.GetMpos()].SetParent(m_enddata);
+            //m_nodes[chosen.GetMpos()].SetParentNode(&m_nodes[m_enddata]);
+
             assert(IsValid(current,active));
             assert(IsValid(active[current].GetMpos(),m_nodes));
             assert(current != 0 && "Skip zero");
             m_nodes[active[current].GetMpos()].SetParent(m_enddata);
+            //m_nodes[active[current].GetMpos()].SetParentNode(&m_nodes[m_enddata]);
 
             // update active
             assert(IsValid(current,active));

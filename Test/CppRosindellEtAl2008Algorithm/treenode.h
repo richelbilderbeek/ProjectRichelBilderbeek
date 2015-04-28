@@ -10,8 +10,10 @@ struct TreeNode
 {
   TreeNode(const bool root);
   void SetParent(const int parent) { m_parent = parent; }
+  //void SetParentNode(TreeNode * const parent) { m_parent_node = parent; }
   bool GetRoot() const noexcept { return m_root; }
   int GetParent() const noexcept { return m_parent; }
+  //TreeNode * GetParentNode() const noexcept { return m_parent_node; }
   int GetSteps() const noexcept { return m_steps; }
   void IncSteps() noexcept { ++m_steps; }
 private:
@@ -24,6 +26,8 @@ private:
   /// 0 means there is no parent - we are at the end of the tree
   /// (as far as has been calculated)
   int m_parent;
+
+  //TreeNode * m_parent_node;
 
   /// the number of generations (chances of speciation)
   /// between this individual and its parent in the tree
