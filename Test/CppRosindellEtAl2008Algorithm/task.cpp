@@ -56,22 +56,18 @@ std::ostream& operator<<(std::ostream& os, const Task& task)
 
 std::istream& operator>>(std::istream& is, Task& task)
 {
-  int area_width;
-  int area_height;
-  int dispersal_distance;
-  bool dispersal_kernel_type;
-  double tolerance;
-  is >> area_width;
-  is >> area_height;
-  is >> dispersal_distance;
-  dispersal_kernel_type = true;
-  int temptypeint;
-  is >> temptypeint;
-  if (temptypeint == 0)
-  {
-    dispersal_kernel_type = false;
-  }
-  is >> tolerance;
+  int area_width = 0;
+  int area_height = 0;
+  int dispersal_distance = 0;
+  bool dispersal_kernel_type = false;
+  double tolerance = 0.0;
+  is
+    >> area_width
+    >> area_height
+    >> dispersal_distance
+    >> dispersal_kernel_type
+    >> tolerance
+  ;
   task = Task(
     area_width,
     area_height,
