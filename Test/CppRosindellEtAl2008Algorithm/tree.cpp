@@ -23,16 +23,16 @@ bool IsValid(const int index1, const int index2, const Container& container)
 
 Tree::Tree(
   Rng& rng,
-  const int area1,
-  const int area2,
-  const double minspec,
-  const int dispersal,
-  const double tol,
-  const DispersalKernel normflag
+  const int area_width,
+  const int area_length,
+  const double min_speciation_rate,
+  const int dispersal_distance,
+  const double tolerance,
+  const DispersalKernel dispersal_kernel
   )
   :
-    m_nodes{std::vector<TreeNode>(2*area1*area2+1,TreeNode(true))},
-    m_enddata{area1 * area2},
+    m_nodes{std::vector<TreeNode>(2*area_width*area_length+1,TreeNode(true))},
+    m_enddata{area_width * area_length},
     m_minspecsetup{2},
     m_rnd{rng}
 {
@@ -40,7 +40,7 @@ Tree::Tree(
   // the time interval - ensure this is at least 0
   // a value of 0 gives a basic SAR only for maxintsetup
   // the minimal speciation rate that we are preparing the tree for
-  m_minspecsetup = minspec;
+  m_minspecsetup = min_speciation_rate;
   // data - this will store the coalescence tree itself
   // there can only be a maximum of twice as many nodes as there are
   // initially free branches so we can set the size of our data object
@@ -48,71 +48,53 @@ Tree::Tree(
   // grid - this is an internal variable
   // this is necessary for calculations - initialise it as all zeros
   // it will store integers that refer to places in datapoint array "active"
-  const int thegridsize
-    = sm_gridsize < area1*2 ? area1*2
-    : (sm_gridsize < area2*2 ? area2*2 : sm_gridsize)
-  ;
+  std::vector<std::vector<int>> grid{
+    CreateGrid(area_width,area_length)
+  };
 
-  std::vector<std::vector<int>> grid(thegridsize,std::vector<int>(thegridsize,0));
   // "active" stores all the required information for any
-  // lineages that have not yet speciated, this is in the
-  // form of an array of "datapoint" objects
+  // lineages that have not yet speciated
   std::vector<TreeDataPoint> active;
 
   // again we know this array has the same maximum size as "data"
-  active.resize(2*area1*area2+1);
+  active.resize(2*area_width*area_length+1);
 
   // this marks the end of the active vector
   int endactive = 0; // 0 is reserved as null
-  for (int tx = 0 ; tx != area1 ; ++tx)
+  for (int tx = 0 ; tx != area_width ; ++tx)
   {
-    for (int ty = 0 ; ty != area2 ; ++ty)
+    for (int ty = 0 ; ty != area_length ; ++ty)
     {
       // looping over the survey area, we initialise both grid and active
       ++endactive;
       active[endactive] = TreeDataPoint(tx,ty,endactive);
-      assert(IsValid(tx,ty,grid));
-      grid[tx][ty] = endactive;
     }
   }
-  // other variables to be initialised
+  assert(endactive == area_width * area_length);
+
   int steps = 0;
   double error = 1000.0;
+
   // these three variables store information for STRs
   // has a lineage in our survey moved?
   // now do the calculations required to set up the tree
   // loop while error is too large or not included the full time interval
-  while (error > richness*tol)
+  while (error > richness * tolerance)
   {
-    // increment steps
     ++steps;
+
     // choose a random lineage to die and be reborn out of those currently active
     const int chosen_index = m_rnd.GetRandomInt(endactive-1) + 1; // cannot be 0
     assert(IsValid(chosen_index,active));
     TreeDataPoint& chosen = active[chosen_index];
+
     // remember there is no speciation included in this part of the programme
     // choose movement of chosen lineage
-    int movex = 0; // will store x direction movement
-    int movey = 0; // will store y direction movement
-    if (normflag == DispersalKernel::normal)
-    {
-      while (movex == 0 && movey == 0)
-      {
-        // loop to ensure we don't pick a individual to be its own parent
-        movex += int(floor((m_rnd.GetRandomNormal()*dispersal)+0.5));
-        movey += int(floor((m_rnd.GetRandomNormal()*dispersal)+0.5));
-      }
-    }
-    else
-    {
-      while (movex == 0 && movey == 0)
-      {
-        // loop to ensure we don't pick a individual to be its own parent
-        movex += (m_rnd.GetRandomInt(dispersal*2)-dispersal);
-        movey += (m_rnd.GetRandomInt(dispersal*2)-dispersal);
-      }
-    }
-    // note this piece of code can easily be edited for any dispersal kernel
+    const std::pair<int,int> move{GetMove(dispersal_kernel,m_rnd,dispersal_distance)};
+    const int movex = move.first; // will store x direction movement
+    const int movey = move.second; // will store y direction movement
+    assert(movex != 0 || movey != 0);
+
     // record old position of lineage
     assert(IsValid(chosen_index,active));
     const int from_x = chosen.GetXpos();
@@ -128,13 +110,11 @@ Tree::Tree(
     // of course they would have different indexes and so be in different
     // physical positions. The use of a ring in this way makes
     // it really easy to check if two individuals coalesce
-    assert(IsValid(from_x,from_y,grid));
     if (from > 0)
     {
       // then we have an individual to set its next and last variables correctly
       if (from == chosen.GetLast() )
       {
-        assert(IsValid(from_x,from_y,grid));
         assert(IsValid(from,active));
         // the ring contained 2 individuals
         active[from].SetLast(0);
@@ -147,12 +127,14 @@ Tree::Tree(
         active[from].SetLast(chosen.GetLast());
         active[chosen.GetLast()].SetNext(chosen.GetNext());
       }
-    }// now we have completely purged the grid of the old position of our chosen lineage
+    }
+
+    // now we have completely purged the grid of the old position of our chosen lineage
     chosen.SetNext(0);
     chosen.SetLast(0);
     // now actually do the move
-    richness += minspec*(chosen.GetProbability());
-    chosen.Move(movex,movey,minspec);
+    richness += min_speciation_rate*(chosen.GetProbability());
+    chosen.Move(movex,movey,min_speciation_rate);
     m_nodes[chosen.GetMpos()].inc_steps();
     // record the new position
     const int activex = chosen.GetXpos();
@@ -257,7 +239,7 @@ Tree::Tree(
     // this piece of code updates the error
     // but only does so every community turnover
     // this is so that not too long is spent on this
-    if (steps%(area1*area2*250) == 0)
+    if (steps%(area_width*area_length*250) == 0)
     {
       // check errors and update
       error = 0.0;
@@ -270,8 +252,36 @@ Tree::Tree(
   }
 }
 
+std::vector<std::vector<int>>
+  Tree::CreateGrid(const int area_width, const int area_length
+)
+{
+  assert(area_width > 0);
+  assert(area_length > 0);
+
+  const int thegridsize
+    = sm_gridsize < area_width*2 ? area_width*2
+    : (sm_gridsize < area_length*2 ? area_length*2 : sm_gridsize)
+  ;
+
+  std::vector<std::vector<int>> v(thegridsize,std::vector<int>(thegridsize,0));
+
+  int i=0;
+  for (int tx = 0 ; tx != area_width ; ++tx)
+  {
+    for (int ty = 0 ; ty != area_length ; ++ty)
+    {
+      // looping over the survey area, we initialise both grid and active
+      ++i;
+      v[tx][ty] = i;
+    }
+  }
+
+  return v;
+}
+
 // this returns an interval within which the true mean ricness must lie
-std::vector<double> Tree::get_richnessint(const double spec)
+std::vector<double> Tree::GetRichnessInterval(const double spec)
 {
   std::vector<double> result(2,0.0);
   if (m_minspecsetup <= spec)
@@ -367,9 +377,38 @@ std::vector<double> Tree::get_richnessint(const double spec)
   }
 }
 
+std::pair<int,int> Tree::GetMove(
+  const DispersalKernel dispersal_kernel,
+  Rng& rnd,
+  const int dispersal
+)
+{
+  int x = 0;
+  int y = 0;
+  if (dispersal_kernel == DispersalKernel::normal)
+  {
+    while (x == 0 && y == 0)
+    {
+      // loop to ensure we don't pick a individual to be its own parent
+      x = int(floor((rnd.GetRandomNormal()*dispersal)+0.5));
+      y = int(floor((rnd.GetRandomNormal()*dispersal)+0.5));
+    }
+  }
+  else
+  {
+    while (x == 0 && y == 0)
+    {
+      // loop to ensure we don't pick a individual to be its own parent
+      x = (rnd.GetRandomInt(dispersal*2)-dispersal);
+      y = (rnd.GetRandomInt(dispersal*2)-dispersal);
+    }
+  }
+  return std::make_pair(x,y);
+}
+
 double Tree::get_richness(double spec)
 {
   // this returns the midpoint between the maximum and minimum richness estimates
-  std::vector<double> richnessresult = get_richnessint(spec);
+  std::vector<double> richnessresult = GetRichnessInterval(spec);
   return (richnessresult[0]+richnessresult[1])/2.0;
 }

@@ -8,8 +8,6 @@ struct Rng
   enum class Type { rosindell, bilderbeek };
   Rng(const int seed, const Type type = Type::rosindell) noexcept;
 
-  //Interface as NRrand class
-
   // returns a uniform random number in (0,1)
   double GetRandomFraction() noexcept;
   // returns an integer between 0 and max

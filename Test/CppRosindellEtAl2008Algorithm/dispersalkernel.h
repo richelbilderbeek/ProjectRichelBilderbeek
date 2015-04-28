@@ -3,7 +3,6 @@
 
 #include <iosfwd>
 
-// 4.) dispersal kernel type (square if 0, normal if 1)
 enum class DispersalKernel { square, normal };
 
 std::string ToStr(const DispersalKernel kernel) noexcept;

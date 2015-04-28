@@ -15,27 +15,21 @@
 class Tree
 {
 public:
-  //PRODUCING A COALESCENCE TREE IN CLASS TREE
-  // this is the part of the code that actually creates the colescence tree
-  // input variables are described in detail below
-  // area1 = width of survey area (in trees)
-  // area2 = length of survey area (int trees)
-  // minspec = smallest speciation rate required
-  // dispersal = dispersal distance (dispersal kernel width)
-  // tol = tolerance in results (0.01 means 1% error - 0.5% either side)
-  // typeflag deals with the type of dispersal in the model (true means normal)
+  // area_width = width of survey area (in number of trees)
+  // area_length = length of survey area (in number of trees)
+  // min_speciation_rate = smallest speciation rate required
   Tree(
     Rng& rng,
-    const int area1,
-    const int area2,
-    const double minspec,
-    const int dispersal,
-    const double tol,
-    const DispersalKernel normflag
+    const int area_width,
+    const int area_length,
+    const double min_speciation_rate,
+    const int dispersal_distance,
+    const double tolerance,
+    const DispersalKernel dispersal_kernel
   );
 
   // this returns an interval within which the true mean richness must lie
-  std::vector<double> get_richnessint(double spec);
+  std::vector<double> GetRichnessInterval(double spec);
 
   //this returns the midpoint between the maximum and minimum richness estimates
   double get_richness(double spec);
@@ -55,6 +49,17 @@ private:
   // please see the separate file for indtructions on use
   // you may use any random number generator, but numerical recipes
   // solutions are highly recommended
+
+  static std::pair<int,int> GetMove(
+    const DispersalKernel kernel,
+    Rng& rng,
+    const int dispersal
+  );
+
+  static std::vector<std::vector<int>>
+    CreateGrid(const int area_width, const int area_length
+  );
+
 
   static const int sm_gridsize = 4000;
   friend class TreeDataPoint;
