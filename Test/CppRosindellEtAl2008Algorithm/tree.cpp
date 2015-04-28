@@ -394,27 +394,30 @@ std::pair<int,int> Tree::GetMove(
   const int dispersal
 )
 {
-  int x = 0;
-  int y = 0;
   if (dispersal_kernel == DispersalKernel::normal)
   {
-    while (x == 0 && y == 0)
+    while (1)
     {
-      // loop to ensure we don't pick a individual to be its own parent
-      x = int(floor((rnd.GetRandomNormal()*dispersal)+0.5));
-      y = int(floor((rnd.GetRandomNormal()*dispersal)+0.5));
+      const int x = int(floor((rnd.GetRandomNormal()*dispersal)+0.5));
+      const int y = int(floor((rnd.GetRandomNormal()*dispersal)+0.5));
+      if (x != 0 || y != 0)
+      {
+        return std::make_pair(x,y);
+      }
     }
   }
   else
   {
-    while (x == 0 && y == 0)
+    while (1)
     {
-      // loop to ensure we don't pick a individual to be its own parent
-      x = (rnd.GetRandomInt(dispersal*2)-dispersal);
-      y = (rnd.GetRandomInt(dispersal*2)-dispersal);
+      const int x = (rnd.GetRandomInt(dispersal*2)-dispersal);
+      const int y = (rnd.GetRandomInt(dispersal*2)-dispersal);
+      if (x != 0 || y != 0)
+      {
+        return std::make_pair(x,y);
+      }
     }
   }
-  return std::make_pair(x,y);
 }
 
 double Tree::get_richness(double spec)
