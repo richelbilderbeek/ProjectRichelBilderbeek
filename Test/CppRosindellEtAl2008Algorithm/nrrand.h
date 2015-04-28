@@ -5,13 +5,13 @@ class NRrand
 {
 public:
     // constructor
-    NRrand(const int seed);
+    NRrand(const int seed) noexcept;
     // returns a uniform random number in (0,1)
-    double GetRandomFraction();
+    double GetRandomFraction() noexcept;
     // returns an integer between 0 and max
-    int GetRandomInt(const int max);
+    int GetRandomInt(const int max) noexcept;
     // returns normal deviates
-    double GetRandomNormal();
+    double GetRandomNormal() noexcept;
 private:
     // the last result (for normal deviates)
     double m_lastresult;

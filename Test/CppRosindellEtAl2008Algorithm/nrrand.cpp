@@ -3,14 +3,13 @@
 #include <cmath>
 #include <cstdlib>
 #include <boost/numeric/conversion/cast.hpp>
-NRrand::NRrand(const int seed)
+NRrand::NRrand(const int seed) noexcept
 {
   std::srand(seed);
   m_normflag = true;
 }
 
-// returns a uniform random number in (0,1)
-double NRrand::GetRandomFraction()
+double NRrand::GetRandomFraction() noexcept
 {
   return(
     static_cast<double>(std::rand())
@@ -18,8 +17,7 @@ double NRrand::GetRandomFraction()
   );
 }
 
-// returns an integer between 0 and max
-int NRrand::GetRandomInt(const int max)
+int NRrand::GetRandomInt(const int max) noexcept
 {
   return
     boost::numeric_cast<int>(
@@ -27,28 +25,27 @@ int NRrand::GetRandomInt(const int max)
     );
 }
 
-// returns normal deviates
-double NRrand::GetRandomNormal()
+double NRrand::GetRandomNormal() noexcept
 {
-    if (m_normflag)
+  if (m_normflag)
+  {
+    double r2 = 2;
+    double xx;double yy;
+    while (r2>1)
     {
-        double r2 = 2;
-        double xx;double yy;
-        while (r2>1)
-        {
-            xx=2.0*GetRandomFraction()-1.0;
-            yy=2.0*GetRandomFraction()-1.0;
-            r2=(xx*xx)+(yy*yy);
-        }
-        double fac=sqrt(-2.0*log(r2)/r2);
-        m_lastresult = xx*fac;
-        double result = yy*fac;
-        m_normflag = false;
-        return result;
+      xx=2.0*GetRandomFraction()-1.0;
+      yy=2.0*GetRandomFraction()-1.0;
+      r2=(xx*xx)+(yy*yy);
     }
-    else
-    {
-        m_normflag = true;
-        return m_lastresult;
-    }
+    const double fac=sqrt(-2.0*log(r2)/r2);
+    m_lastresult = xx*fac;
+    const double result = yy*fac;
+    m_normflag = false;
+    return result;
+  }
+  else
+  {
+    m_normflag = true;
+    return m_lastresult;
+  }
 }

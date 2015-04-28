@@ -10,7 +10,9 @@
 
 int main()
 {
+  #ifndef NDEBUG
   Simulation::Test();
+  #endif
 
   try
   {

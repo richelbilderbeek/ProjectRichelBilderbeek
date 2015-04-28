@@ -1,11 +1,6 @@
-include(../../Libraries/Boost.pri)
+include(../../Libraries/BoostAll.pri)
 include(../../Libraries/GeneralConsole.pri)
-
-
-TEMPLATE = app
-CONFIG += console
-CONFIG -= app_bundle
-CONFIG += qt
+include(../../ConsoleApplicationNoWeffcpp.pri)
 
 SOURCES += \
     tree.cpp \
@@ -19,9 +14,9 @@ SOURCES += \
     treedatapoint.cpp \
     treenode.cpp
 
-QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
+#QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
 
-LIBS += -lboost_filesystem -lboost_system
+#LIBS += -lboost_filesystem -lboost_system
 
 HEADERS += \
     tree.h \
