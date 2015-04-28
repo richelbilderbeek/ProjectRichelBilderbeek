@@ -398,8 +398,16 @@ std::pair<int,int> Tree::GetMove(
   {
     while (1)
     {
-      const int x = int(floor((rnd.GetRandomNormal()*dispersal)+0.5));
-      const int y = int(floor((rnd.GetRandomNormal()*dispersal)+0.5));
+      const int x{
+        static_cast<int>(
+          std::floor((rnd.GetRandomNormal()*dispersal)+0.5)
+        )
+      };
+      const int y{
+        static_cast<int>(
+          std::floor((rnd.GetRandomNormal()*dispersal)+0.5)
+        )
+      };
       if (x != 0 || y != 0)
       {
         return std::make_pair(x,y);
@@ -410,8 +418,8 @@ std::pair<int,int> Tree::GetMove(
   {
     while (1)
     {
-      const int x = (rnd.GetRandomInt(dispersal*2)-dispersal);
-      const int y = (rnd.GetRandomInt(dispersal*2)-dispersal);
+      const int x{rnd.GetRandomInt(dispersal*2)-dispersal};
+      const int y{rnd.GetRandomInt(dispersal*2)-dispersal};
       if (x != 0 || y != 0)
       {
         return std::make_pair(x,y);
