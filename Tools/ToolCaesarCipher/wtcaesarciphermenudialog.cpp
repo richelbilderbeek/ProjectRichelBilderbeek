@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Encranger, tool to test the Encranger class
+CaesarCipher, tool to test the CaesarCipher class
 Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolEncranger.htm
+//From http://www.richelbilderbeek.nl/CaesarCipher.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -35,25 +35,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WWidget>
 
 #include "about.h"
-#include "toolencrangermenudialog.h"
+#include "caesarciphermenudialog.h"
 #include "wtautoconfig.h"
 #include "wtaboutdialog.h"
-#include "wttoolencrangermaindialog.h"
-#include "wttoolencrangermenudialog.h"
+#include "wtcaesarciphermaindialog.h"
+#include "wtcaesarciphermenudialog.h"
 
 #include <QFile>
 #pragma GCC diagnostic pop
 
-ribi::WtEncrangerMenuDialog::WtEncrangerMenuDialog()
+ribi::WtCaesarCipherMenuDialog::WtCaesarCipherMenuDialog()
 {
   //Create resources
   {
     std::vector<std::string> image_names;
-    image_names.push_back("ToolEncrangerArrowDown16x16.png");
-    image_names.push_back("ToolEncrangerArrowDown34x34.png");
-    image_names.push_back("ToolEncrangerArrowUp16x16.png");
-    image_names.push_back("ToolEncrangerArrowUp34x34.png");
-    image_names.push_back("ToolEncrangerWelcome.png");
+    image_names.push_back("CaesarCipherArrowDown16x16.png");
+    image_names.push_back("CaesarCipherArrowDown34x34.png");
+    image_names.push_back("CaesarCipherArrowUp16x16.png");
+    image_names.push_back("CaesarCipherArrowUp34x34.png");
+    image_names.push_back("CaesarCipherWelcome.png");
     BOOST_FOREACH(const std::string& filename,image_names)
     {
       if (!(QFile::exists(filename.c_str())))
@@ -72,7 +72,7 @@ ribi::WtEncrangerMenuDialog::WtEncrangerMenuDialog()
   this->setContentAlignment(Wt::AlignCenter);
 
   {
-    Wt::WLabel * const title = new Wt::WLabel("Encranger");
+    Wt::WLabel * const title = new Wt::WLabel("CaesarCipher");
     title->setStyleClass("title");
     this->addWidget(title);
   }
@@ -108,35 +108,35 @@ ribi::WtEncrangerMenuDialog::WtEncrangerMenuDialog()
   }
 }
 
-Wt::WWidget * ribi::WtEncrangerMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtCaesarCipherMenuDialog::CreateNewAboutDialog() const
 {
-  About a = ToolEncrangerMenuDialog::GetAbout();
+  About a = CaesarCipherMenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   assert(d);
   return d;
 }
 
-Wt::WWidget * ribi::WtEncrangerMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtCaesarCipherMenuDialog::CreateNewMainDialog() const
 {
-  WtEncrangerMainDialog * const d = new WtEncrangerMainDialog;
+  WtCaesarCipherMainDialog * const d = new WtCaesarCipherMainDialog;
   assert(d);
   return d;
 }
 
-Wt::WWidget * ribi::WtEncrangerMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtCaesarCipherMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
   dialog->addWidget(new Wt::WBreak);
-  new Wt::WLabel("Welcome to Encranger",dialog);
+  new Wt::WLabel("Welcome to CaesarCipher",dialog);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  new Wt::WLabel("Encranger demonstrates the Encranger encryption and de-encryption algorithm",dialog);
+  new Wt::WLabel("CaesarCipher demonstrates the CaesarCipher encryption and de-encryption algorithm",dialog);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
   Wt::WGroupBox * const box = new Wt::WGroupBox("Explanation",dialog);
-  box->addWidget(new Wt::WImage("ToolEncrangerWelcome.png"));
+  box->addWidget(new Wt::WImage("CaesarCipherWelcome.png"));
   return dialog;
 }
 

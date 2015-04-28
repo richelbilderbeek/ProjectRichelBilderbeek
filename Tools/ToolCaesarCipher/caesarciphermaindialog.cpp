@@ -36,12 +36,26 @@ ribi::CaesarCipherMainDialog::CaesarCipherMainDialog(const int key) noexcept
 
 void ribi::CaesarCipherMainDialog::Deencrypt() noexcept
 {
-  m_plain_text = m_caesarcipher->Deencrypt(m_encrypted_text);
+  if (m_caesarcipher->IsClean(m_encrypted_text))
+  {
+    m_plain_text = m_caesarcipher->Deencrypt(m_encrypted_text);
+  }
+  else
+  {
+    m_plain_text = "ERROR: encrypted text not clean";
+  }
 }
 
 void ribi::CaesarCipherMainDialog::Encrypt() noexcept
 {
-  m_encrypted_text = m_caesarcipher->Encrypt(m_plain_text);
+  if (m_caesarcipher->IsClean(m_plain_text))
+  {
+    m_encrypted_text = m_caesarcipher->Encrypt(m_plain_text);
+  }
+  else
+  {
+    m_encrypted_text = "ERROR: plain text not clean";
+  }
 }
 
 void ribi::CaesarCipherMainDialog::SetEncryptedText(const std::string& s) noexcept
