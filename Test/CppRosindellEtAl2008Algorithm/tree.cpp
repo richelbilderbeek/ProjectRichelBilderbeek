@@ -288,93 +288,82 @@ std::vector<std::vector<int>>
 // this returns an interval within which the true mean ricness must lie
 std::array<double,2> Tree::GetRichnessInterval(const double spec)
 {
-  std::array<double,2> result = {0.0,0.0};
   // check that the tree was calculated for a small enough speciation rate
   // it is possible to override this check by commenting out if required
-  if (m_min_speciation_rate <= spec)
-  {
-    // probarray stores, for each node, a probability that is required in the calculation
-    std::vector<double> probarray(m_enddata+1);
-    for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
-      // loop over all nodes and initialise the relating element in probarray
-    {
-      if (m_nodes[i].get_root() == false)
-        // a value of -2.0 indicates an internal node
-        // that has thus far not been pruned at all
-      {
-        probarray[i] = -2.0;
-      }
-      else
-        // a value of 1.0 is assigned to every free branch
-        // this is because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place
-      {
-        probarray[i] = 1.0;
-      }
-    }
-    bool loop = true;
-    while (loop)
-      // continue looping until we have completed our calculations
-    {
-      loop = false;
-      for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
-      {
-        // check to see if that part of the array is complete
-        if (probarray[i] >= 0.0)
-        {
-          // it is complete so use it to complete the info on in its parents
-          int theparent = m_nodes[i].get_parent();
-          if ((probarray[theparent] < 0.0) && (theparent != 0))
-          {
-            // only do anything if the parents have not already been completed
-            loop = true;
-            // be sure to go round again if the parents have not been completed
-            if (probarray[theparent] <= -1.5)
-            {
-              // parent not at all complete
-              const double temprob = (pow(1-spec,double(m_nodes[i].get_steps())));
-              result[0] += probarray[i]*(1-temprob);
-              // we store probabilities as negative in a node if they
-              // refer only to one of the two branches of the node
-              // we then wait until we have both branches of the node
-              // before continuing to complete the full calculation
-              probarray[theparent]= -1.0*probarray[i]*temprob;
-            }
-            else
-            {
-              // parent partailly complete
-              double temprob = (pow(1.0-spec,double(m_nodes[i].get_steps())));// update Smin
-              result[0] += probarray[i]*(1.0-temprob);
-              // update the probability array
-              temprob = temprob*probarray[i];
-              const double temprob2 = probarray[theparent]*-1.0;
-              probarray[theparent]=(temprob+temprob2-temprob*temprob2);
-            }
-          }
-        }
-        else
-        {
-          // be sure to repeat the loop unless all calculations are fully compelted
-          loop = true;
-        }
-      }
-    }
-    for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
-    {
-      // here we are dealing with all the last branches after prooning all nodes
-      if (m_nodes[i].get_parent() == 0)
-      {
-        result[0] += probarray[i]*(1-pow(1-spec,double(m_nodes[i].get_steps())));
-        result[1] += probarray[i]*pow(1-spec,double(m_nodes[i].get_steps()));
-      }
-    }
-    // return the result
-    result[1] += result[0];
-    return result;
-  }
-  else
+  if (m_min_speciation_rate > spec)
   {
     throw std::logic_error("Tree::GetRichnessInterval: could not calculate result");
   }
+
+  std::array<double,2> result = {0.0,0.0};
+
+  //The probabilities at each node
+  std::vector<double> ps(m_enddata+1);
+  for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
+  {
+    //  1.0: free branch, because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place
+    // -2.0: an internal node that has thus far not been pruned at all
+    ps[i] = m_nodes[i].get_root() ? 1.0 : -2.0;
+  }
+
+  bool loop = true;
+  while (loop)
+  {
+    loop = false;
+    for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
+    {
+      // check to see if that part of the array is complete
+      if (ps[i] >= 0.0)
+      {
+        // it is complete so use it to complete the info on in its parents
+        int theparent = m_nodes[i].get_parent();
+        if ((ps[theparent] < 0.0) && (theparent != 0))
+        {
+          // only do anything if the parents have not already been completed
+          loop = true;
+          // be sure to go round again if the parents have not been completed
+          if (ps[theparent] <= -1.5)
+          {
+            // parent not at all complete
+            const double temprob = (pow(1-spec,double(m_nodes[i].get_steps())));
+            result[0] += ps[i]*(1-temprob);
+            // we store probabilities as negative in a node if they
+            // refer only to one of the two branches of the node
+            // we then wait until we have both branches of the node
+            // before continuing to complete the full calculation
+            ps[theparent]= -1.0*ps[i]*temprob;
+          }
+          else
+          {
+            // parent partailly complete
+            double temprob = (pow(1.0-spec,double(m_nodes[i].get_steps())));// update Smin
+            result[0] += ps[i]*(1.0-temprob);
+            // update the probability array
+            temprob = temprob*ps[i];
+            const double temprob2 = ps[theparent]*-1.0;
+            ps[theparent]=(temprob+temprob2-temprob*temprob2);
+          }
+        }
+      }
+      else
+      {
+        // be sure to repeat the loop unless all calculations are fully compelted
+        loop = true;
+      }
+    }
+  }
+  for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
+  {
+    // here we are dealing with all the last branches after prooning all nodes
+    if (m_nodes[i].get_parent() == 0)
+    {
+      result[0] += ps[i]*(1-pow(1-spec,double(m_nodes[i].get_steps())));
+      result[1] += ps[i]*pow(1-spec,double(m_nodes[i].get_steps()));
+    }
+  }
+  // return the result
+  result[1] += result[0];
+  return result;
 }
 
 std::pair<int,int> Tree::GetMove(
