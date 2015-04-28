@@ -241,10 +241,8 @@ std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int ar
   assert(area_width > 0);
   assert(area_length > 0);
 
-  // again we know this array has the same maximum size as "data"
   v.resize(2*area_width*area_length+1);
 
-  // this marks the end of the active vector
   int i = 0;
   for (int tx = 0 ; tx != area_width ; ++tx)
   {
@@ -264,19 +262,18 @@ std::vector<std::vector<int>>
   assert(area_width > 0);
   assert(area_length > 0);
 
-  const int thegridsize
+  const int sz
     = sm_gridsize < area_width*2 ? area_width*2
     : (sm_gridsize < area_length*2 ? area_length*2 : sm_gridsize)
   ;
 
-  std::vector<std::vector<int>> v(thegridsize,std::vector<int>(thegridsize,0));
+  std::vector<std::vector<int>> v(sz,std::vector<int>(sz,0));
 
   int i=0;
   for (int tx = 0 ; tx != area_width ; ++tx)
   {
     for (int ty = 0 ; ty != area_length ; ++ty)
     {
-      // looping over the survey area, we initialise both grid and active
       ++i;
       v[tx][ty] = i;
     }
@@ -286,11 +283,11 @@ std::vector<std::vector<int>>
 }
 
 // this returns an interval within which the true mean ricness must lie
-std::array<double,2> Tree::GetRichnessInterval(const double spec)
+std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
 {
   // check that the tree was calculated for a small enough speciation rate
   // it is possible to override this check by commenting out if required
-  if (m_min_speciation_rate > spec)
+  if (m_min_speciation_rate > speciation_rate)
   {
     throw std::logic_error("Tree::GetRichnessInterval: could not calculate result");
   }
@@ -298,11 +295,14 @@ std::array<double,2> Tree::GetRichnessInterval(const double spec)
   std::array<double,2> result = {0.0,0.0};
 
   //The probabilities at each node
-  std::vector<double> ps(m_enddata+1);
-  for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
+  const int sz{m_enddata};
+  std::vector<double> ps(sz+1);
+  for (int i = 1; i<=sz; ++i)
   {
     //  1.0: free branch, because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place
     // -2.0: an internal node that has thus far not been pruned at all
+    assert(IsValid(i,m_nodes));
+    assert(IsValid(i,ps));
     ps[i] = m_nodes[i].get_root() ? 1.0 : -2.0;
   }
 
@@ -310,14 +310,16 @@ std::array<double,2> Tree::GetRichnessInterval(const double spec)
   while (loop)
   {
     loop = false;
-    for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
+    for (int i = 1; i<=sz; ++i)
     {
       // check to see if that part of the array is complete
+      assert(IsValid(i,ps));
       if (ps[i] >= 0.0)
       {
         // it is complete so use it to complete the info on in its parents
-        int theparent = m_nodes[i].get_parent();
-        if ((ps[theparent] < 0.0) && (theparent != 0))
+        const int theparent = m_nodes[i].get_parent();
+        assert(IsValid(theparent,ps));
+        if (ps[theparent] < 0.0 && theparent != 0)
         {
           // only do anything if the parents have not already been completed
           loop = true;
@@ -325,7 +327,7 @@ std::array<double,2> Tree::GetRichnessInterval(const double spec)
           if (ps[theparent] <= -1.5)
           {
             // parent not at all complete
-            const double temprob = (pow(1-spec,double(m_nodes[i].get_steps())));
+            const double temprob = (pow(1-speciation_rate,double(m_nodes[i].get_steps())));
             result[0] += ps[i]*(1-temprob);
             // we store probabilities as negative in a node if they
             // refer only to one of the two branches of the node
@@ -336,7 +338,7 @@ std::array<double,2> Tree::GetRichnessInterval(const double spec)
           else
           {
             // parent partailly complete
-            double temprob = (pow(1.0-spec,double(m_nodes[i].get_steps())));// update Smin
+            double temprob = (pow(1.0-speciation_rate,double(m_nodes[i].get_steps())));// update Smin
             result[0] += ps[i]*(1.0-temprob);
             // update the probability array
             temprob = temprob*ps[i];
@@ -352,16 +354,16 @@ std::array<double,2> Tree::GetRichnessInterval(const double spec)
       }
     }
   }
-  for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
+  for (int i = 1; i<=sz; ++i)
   {
     // here we are dealing with all the last branches after prooning all nodes
+    assert(IsValid(i,m_nodes));
     if (m_nodes[i].get_parent() == 0)
     {
-      result[0] += ps[i]*(1-pow(1-spec,double(m_nodes[i].get_steps())));
-      result[1] += ps[i]*pow(1-spec,double(m_nodes[i].get_steps()));
+      result[0] += ps[i]*(1-pow(1-speciation_rate,double(m_nodes[i].get_steps())));
+      result[1] += ps[i]*pow(1-speciation_rate,double(m_nodes[i].get_steps()));
     }
   }
-  // return the result
   result[1] += result[0];
   return result;
 }
