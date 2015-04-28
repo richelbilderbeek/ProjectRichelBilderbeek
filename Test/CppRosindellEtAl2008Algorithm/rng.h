@@ -6,6 +6,12 @@
 
 struct Rng
 {
+  #ifndef NDEBUG
+  ///Must be called before Rng construction,
+  ///due to Rosindell implementation calling std::srand
+  static void Test() noexcept;
+  #endif
+
   enum class Type { rosindell, bilderbeek };
   Rng(const int seed, const Type type) noexcept;
 

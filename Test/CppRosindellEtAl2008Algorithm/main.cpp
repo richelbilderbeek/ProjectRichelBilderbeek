@@ -15,6 +15,7 @@
 int main(int argc, char **)
 {
   #ifndef NDEBUG
+  Rng::Test();
   Simulation::Test();
   #endif
 
