@@ -12,7 +12,8 @@ SOURCES += \
     main.cpp \
     rng.cpp \
     treedatapoint.cpp \
-    treenode.cpp
+    treenode.cpp \
+    task_test.cpp
 
 #QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
 

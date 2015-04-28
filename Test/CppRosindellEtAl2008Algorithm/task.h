@@ -20,12 +20,20 @@ struct Task
     const bool dispersal_kernel_type,
     const double tolerance
   );
-
+  int GetSurveyAreaWidth() const noexcept { return m_survey_area_width; }
+  int GetSurveyAreaLength() const noexcept { return m_survey_area_length; }
+  int GetDispersalDistance() const noexcept { return m_dispersal_distance; }
+  bool GetDispersalKernelType() const noexcept { return m_dispersal_kernel_type; }
+  double GetTolerance() const noexcept { return m_tolerance; }
   int m_survey_area_width;
   int m_survey_area_length;
   int m_dispersal_distance;
   bool m_dispersal_kernel_type;
   double m_tolerance;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 std::vector<Task> ReadTasksFromFile(
@@ -33,6 +41,10 @@ std::vector<Task> ReadTasksFromFile(
 );
 
 std::ostream& operator<<(std::ostream& os, const Task& task);
+std::istream& operator>>(std::istream& os, Task& task);
+
+bool operator==(const Task& lhs, const Task& rhs) noexcept;
+bool operator!=(const Task& lhs, const Task& rhs) noexcept;
 
 
 #endif // TASK_H

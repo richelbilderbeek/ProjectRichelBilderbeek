@@ -1,3 +1,4 @@
+#ifndef NDEBUG
 #include "simulation.h"
 
 #include <cassert>
@@ -6,7 +7,6 @@
 #include <iterator>
 
 #include "fileio.h"
-#ifndef NDEBUG
 void Simulation::Test() noexcept
 {
   {

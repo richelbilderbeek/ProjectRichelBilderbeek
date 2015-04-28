@@ -16,7 +16,9 @@ Task::Task(
     m_dispersal_kernel_type{dispersal_kernel_type},
     m_tolerance{tolerance}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 std::vector<Task> ReadTasksFromFile(
@@ -29,40 +31,14 @@ std::vector<Task> ReadTasksFromFile(
   );
 
   std::vector<Task> tasks;
-  std::ifstream ifdata;
-  ifdata.open(tasks_input_filename);
-  int temparea1;
-  int temparea2;
-  int tempL;
-  bool temptype;
-  double temptol;
-  ifdata >> temparea1;
-  ifdata >> temparea2;
-  ifdata >> tempL;
-  temptype = true;
-  int temptypeint;
-  ifdata >> temptypeint;
-  if (temptypeint == 0)
+  std::ifstream f(tasks_input_filename);
+  while(!f.eof())
   {
-    temptype = false;
+    Task task(0,0,0,0,0);
+    f >> task;
+    tasks.emplace_back(task);
   }
-  ifdata >> temptol;
-  while(!ifdata.eof())
-  {
-    tasks.push_back(Task(temparea1,temparea2,tempL,temptype,temptol));
-    ifdata >> temparea1;
-    ifdata >> temparea2;
-    ifdata >> tempL;
-    temptype = true;
-    int temptypeint;
-    ifdata >> temptypeint;
-    if (temptypeint == 0)
-    {
-      temptype = false;
-    }
-    ifdata >> temptol;
-  }
-  ifdata.close();
+  if (!tasks.empty()) { tasks.pop_back(); }
   return tasks;
 }
 
@@ -76,4 +52,48 @@ std::ostream& operator<<(std::ostream& os, const Task& task)
     << task.m_tolerance
   ;
   return os;
+}
+
+std::istream& operator>>(std::istream& is, Task& task)
+{
+  int area_width;
+  int area_height;
+  int dispersal_distance;
+  bool dispersal_kernel_type;
+  double tolerance;
+  is >> area_width;
+  is >> area_height;
+  is >> dispersal_distance;
+  dispersal_kernel_type = true;
+  int temptypeint;
+  is >> temptypeint;
+  if (temptypeint == 0)
+  {
+    dispersal_kernel_type = false;
+  }
+  is >> tolerance;
+  task = Task(
+    area_width,
+    area_height,
+    dispersal_distance,
+    dispersal_kernel_type,
+    tolerance
+  );
+  return is;
+}
+
+bool operator==(const Task& lhs, const Task& rhs) noexcept
+{
+  return
+       lhs.GetDispersalDistance()   == rhs.GetDispersalDistance()
+    && lhs.GetDispersalKernelType() == rhs.GetDispersalKernelType()
+    && lhs.GetSurveyAreaLength()    == rhs.GetSurveyAreaLength()
+    && lhs.GetSurveyAreaWidth()     == rhs.GetSurveyAreaWidth()
+    && lhs.GetTolerance()           == rhs.GetTolerance()
+  ;
+}
+
+bool operator!=(const Task& lhs, const Task& rhs) noexcept
+{
+  return !(lhs == rhs);
 }

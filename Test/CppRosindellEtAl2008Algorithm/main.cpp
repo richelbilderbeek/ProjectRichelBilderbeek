@@ -1,4 +1,8 @@
-// Code inspired on:
+// RosindellEtAl2008, refactoring of code of Rosindell et al., 2008
+// (C) 2015 Richel Bilderbeek
+//
+// The original source code is writtem by James Rosindell
+// and accompanies the following article:
 //
 // "A COALESCENCE APPROACH TO SPATIAL NEUTRAL ECOLOGY"
 // James Rosindell, Yan Wong, Rampal Etienne
@@ -26,4 +30,3 @@ int main()
   std::cout << "Done (debug)" << std::endl;
   #endif
 }
-
