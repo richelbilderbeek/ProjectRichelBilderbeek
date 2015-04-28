@@ -12,9 +12,6 @@ FORMS    += \
     ../../Tools/ToolCaesarCipher/qtcaesarciphermaindialog.ui \
     ../../Tools/ToolCaesarCipher/qtcaesarciphermenudialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolCaesarCipher/ToolCaesarCipher.qrc
-
 OTHER_FILES += \
     ../../Tools/ToolCaesarCipher/Licence.txt
 

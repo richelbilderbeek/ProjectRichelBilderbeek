@@ -113,8 +113,8 @@ ribi::About ribi::CaesarCipherMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "CaesarCipher",
     "Caesar cipher tool",
-    "the 1st of April 2014",
-    "2014-2014",
+    "April 28th of 2015",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/ToolCaesarCipher.htm",
     GetVersion(),
     GetVersionHistory());
@@ -153,13 +153,14 @@ boost::shared_ptr<const ribi::Program> ribi::CaesarCipherMenuDialog::GetProgram(
 
 std::string ribi::CaesarCipherMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::CaesarCipherMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2014-04-01: Version 1.0: initial version, copied from CaesarCipher"
+    "2014-04-01: Version 1.0: initial version, copied from CaesarCipher",
+    "2015-04-28: Version 1.1: added nice menu screen to desktop version"
   };
 }
 

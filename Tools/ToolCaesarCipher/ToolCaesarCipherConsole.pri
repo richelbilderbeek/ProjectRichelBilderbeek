@@ -11,3 +11,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolCaesarCipher/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolCaesarCipher/ToolCaesarCipher.qrc
