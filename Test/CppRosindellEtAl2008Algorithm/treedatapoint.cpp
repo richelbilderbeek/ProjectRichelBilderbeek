@@ -96,3 +96,17 @@ void TreeDataPoint::Move(
   assert(m_probability <= 1.0);
 }
 
+bool operator==(const TreeDataPoint& lhs, const TreeDataPoint& rhs) noexcept
+{
+  return
+       lhs.GetXpos() == rhs.GetXpos()
+    && lhs.GetYpos() == rhs.GetYpos()
+    && lhs.GetXindex() == rhs.GetXindex()
+    && lhs.GetYindex() == rhs.GetYindex()
+    && lhs.GetMpos() == rhs.GetMpos()
+    && lhs.GetNext() == rhs.GetNext()
+    && lhs.GetLast() == rhs.GetLast()
+    && lhs.GetProbability() == rhs.GetProbability()
+  ;
+}
+

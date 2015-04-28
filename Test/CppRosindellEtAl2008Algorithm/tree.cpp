@@ -37,13 +37,11 @@ Tree::Tree(
     m_rnd{rng}
 {
   double richness = 0.0;
+
   // the time interval - ensure this is at least 0
   // a value of 0 gives a basic SAR only for maxintsetup
   // the minimal speciation rate that we are preparing the tree for
   m_minspecsetup = min_speciation_rate;
-  // data - this will store the coalescence tree itself
-  // there can only be a maximum of twice as many nodes as there are
-  // initially free branches so we can set the size of our data object
 
   // grid - this is an internal variable
   // this is necessary for calculations - initialise it as all zeros
@@ -52,25 +50,16 @@ Tree::Tree(
     CreateGrid(area_width,area_length)
   };
 
-  // "active" stores all the required information for any
-  // lineages that have not yet speciated
-  std::vector<TreeDataPoint> active;
+  // Store the coalescence tree itself
+  // there can only be a maximum of twice as many nodes as there are
+  // initially free branches so we can set the size of our data object
+  std::vector<TreeDataPoint> active{
+    CreateActive(area_width,area_length)
+  };
 
-  // again we know this array has the same maximum size as "data"
-  active.resize(2*area_width*area_length+1);
-
-  // this marks the end of the active vector
-  int endactive = 0; // 0 is reserved as null
-  for (int tx = 0 ; tx != area_width ; ++tx)
-  {
-    for (int ty = 0 ; ty != area_length ; ++ty)
-    {
-      // looping over the survey area, we initialise both grid and active
-      ++endactive;
-      active[endactive] = TreeDataPoint(tx,ty,endactive);
-    }
-  }
+  int endactive = area_width * area_length;
   assert(endactive == area_width * area_length);
+
 
   int steps = 0;
   double error = 1000.0;
@@ -250,6 +239,28 @@ Tree::Tree(
       }
     }
   }
+}
+
+std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int area_length)
+{
+  std::vector<TreeDataPoint> v;
+  assert(area_width > 0);
+  assert(area_length > 0);
+
+  // again we know this array has the same maximum size as "data"
+  v.resize(2*area_width*area_length+1);
+
+  // this marks the end of the active vector
+  int i = 0;
+  for (int tx = 0 ; tx != area_width ; ++tx)
+  {
+    for (int ty = 0 ; ty != area_length ; ++ty)
+    {
+      ++i;
+      v[i] = TreeDataPoint(tx,ty,i);
+    }
+  }
+  return v;
 }
 
 std::vector<std::vector<int>>

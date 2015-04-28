@@ -17,12 +17,6 @@ struct TreeDataPoint
   TreeDataPoint(const TreeDataPoint&);
   TreeDataPoint& operator=(const TreeDataPoint&);
 
-  void SetPos(const int xpos, const int ypos) noexcept { m_xpos = xpos; m_ypos = ypos; }
-  void SetIndex(const int x, const int y) noexcept { m_xindex = x; m_yindex = y; }
-  void SetMpos(const int mpos) noexcept { m_mpos = mpos; }
-  void SetNext(const int next) noexcept { m_next = next; }
-  void SetLast(const int last) noexcept { m_last = last; }
-  void SetProbability(const double probability) { m_probability = probability; }
   int GetXpos() const noexcept { return m_xpos; }
   int GetYpos() const noexcept { return m_ypos; }
   int GetXindex() const noexcept { return m_xindex; }
@@ -31,6 +25,13 @@ struct TreeDataPoint
   int GetNext() const noexcept { return m_next; }
   int GetLast() const noexcept { return m_last; }
   double GetProbability() const noexcept { return m_probability; }
+
+  void SetPos(const int xpos, const int ypos) noexcept { m_xpos = xpos; m_ypos = ypos; }
+  void SetIndex(const int x, const int y) noexcept { m_xindex = x; m_yindex = y; }
+  void SetMpos(const int mpos) noexcept { m_mpos = mpos; }
+  void SetNext(const int next) noexcept { m_next = next; }
+  void SetLast(const int last) noexcept { m_last = last; }
+  void SetProbability(const double probability) { m_probability = probability; }
   // checks for coalescence with another datapoint
   // update the position of this datapoint
   // this implements the indexing system
@@ -61,4 +62,8 @@ private:
 
   static const int sm_gridsize = 4000;
 };
+
+bool operator==(const TreeDataPoint& lhs, const TreeDataPoint& rhs) noexcept;
+
+
 #endif // TREEDATAPOINT_H

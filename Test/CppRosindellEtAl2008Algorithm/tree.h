@@ -4,6 +4,7 @@
 #include <vector>
 #include "nrrand.h"
 #include "treenode.h"
+#include "treedatapoint.h"
 #include "dispersalkernel.h"
 #include "rng.h"
 
@@ -55,6 +56,8 @@ private:
     Rng& rng,
     const int dispersal
   );
+
+  static std::vector<TreeDataPoint> CreateActive(const int area_width, const int area_length);
 
   static std::vector<std::vector<int>>
     CreateGrid(const int area_width, const int area_length
