@@ -1,3 +1,4 @@
+
 include(../../Libraries/BoostAll.pri)
 include(../../Libraries/Wt.pri)
 include(../../WebApplication.pri)
@@ -7,6 +8,7 @@ include(../../Libraries/GeneralWeb.pri)
 
 #Specific, console
 include(../../Classes/CppCodeToHtml/CppCodeToHtml.pri)
+include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppQrcFile/CppQrcFile.pri)
 include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
 
