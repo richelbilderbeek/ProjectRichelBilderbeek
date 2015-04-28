@@ -8,7 +8,7 @@ Task::Task(
   const int survey_area_width,
   const int survey_area_length,
   const int dispersal_distance,
-  const bool dispersal_kernel_type,
+  const DispersalKernel dispersal_kernel_type,
   const double tolerance
 ) : m_survey_area_width{survey_area_width},
     m_survey_area_length{survey_area_length},
@@ -34,7 +34,7 @@ std::vector<Task> ReadTasksFromFile(
   std::ifstream f(tasks_input_filename);
   while(!f.eof())
   {
-    Task task(0,0,0,0,0);
+    Task task(0,0,0,DispersalKernel::square,0);
     f >> task;
     tasks.emplace_back(task);
   }
@@ -59,7 +59,7 @@ std::istream& operator>>(std::istream& is, Task& task)
   int area_width = 0;
   int area_height = 0;
   int dispersal_distance = 0;
-  bool dispersal_kernel_type = false;
+  DispersalKernel dispersal_kernel_type = DispersalKernel::square;
   double tolerance = 0.0;
   is
     >> area_width

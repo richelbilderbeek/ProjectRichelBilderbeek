@@ -22,12 +22,12 @@ void Simulation::Test() noexcept
       specset.push_back(0.01);
     }
     std::vector<Task> tasks;
-    tasks.push_back(Task(10,10,1,true,0.1));
-    tasks.push_back(Task(20,10,1,true,0.1));
-    tasks.push_back(Task(10,20,1,true,0.1));
-    tasks.push_back(Task(10,10,2,true,0.1));
-    tasks.push_back(Task(10,10,1,false,0.1));
-    tasks.push_back(Task(10,10,1,true,0.01));
+    tasks.push_back(Task(10,10,1,DispersalKernel::normal,0.1));
+    tasks.push_back(Task(20,10,1,DispersalKernel::normal,0.1));
+    tasks.push_back(Task(10,20,1,DispersalKernel::normal,0.1));
+    tasks.push_back(Task(10,10,2,DispersalKernel::normal,0.1));
+    tasks.push_back(Task(10,10,1,DispersalKernel::square,0.1));
+    tasks.push_back(Task(10,10,1,DispersalKernel::normal,0.01));
 
     Simulation simulation(
       tasks,
@@ -75,12 +75,20 @@ void Simulation::Test() noexcept
 
     {
       std::vector<Task> tasks;
+      tasks.push_back(Task(10,10,1,DispersalKernel::normal,0.1));
+      tasks.push_back(Task(20,10,1,DispersalKernel::normal,0.1));
+      tasks.push_back(Task(10,20,1,DispersalKernel::normal,0.1));
+      tasks.push_back(Task(10,10,2,DispersalKernel::normal,0.1));
+      tasks.push_back(Task(10,10,1,DispersalKernel::square,0.1));
+      tasks.push_back(Task(10,10,1,DispersalKernel::normal,0.01));
+      /*
       tasks.push_back(Task(10,10,1,true,0.1));
       tasks.push_back(Task(20,10,1,true,0.1));
       tasks.push_back(Task(10,20,1,true,0.1));
       tasks.push_back(Task(10,10,2,true,0.1));
       tasks.push_back(Task(10,10,1,false,0.1));
       tasks.push_back(Task(10,10,1,true,0.01));
+      */
       std::ofstream f(tasks_input_filename);
       std::copy(std::begin(tasks),std::end(tasks),std::ostream_iterator<Task>(f,"\n"));
     }

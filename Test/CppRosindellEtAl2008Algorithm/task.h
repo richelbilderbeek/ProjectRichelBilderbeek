@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "dispersalkernel.h"
+
 // read in list of tasks
 // tasks file should consists of rows each of which has 5 entries
 // 1.) width of survey area
@@ -19,18 +21,18 @@ struct Task
     const int survey_area_width,
     const int survey_area_length,
     const int dispersal_distance,
-    const bool dispersal_kernel_type,
+    const DispersalKernel dispersal_kernel_type,
     const double tolerance
   );
   int GetSurveyAreaWidth() const noexcept { return m_survey_area_width; }
   int GetSurveyAreaLength() const noexcept { return m_survey_area_length; }
   int GetDispersalDistance() const noexcept { return m_dispersal_distance; }
-  bool GetDispersalKernelType() const noexcept { return m_dispersal_kernel_type; }
+  DispersalKernel GetDispersalKernelType() const noexcept { return m_dispersal_kernel_type; }
   double GetTolerance() const noexcept { return m_tolerance; }
   int m_survey_area_width;
   int m_survey_area_length;
   int m_dispersal_distance;
-  bool m_dispersal_kernel_type;
+  DispersalKernel m_dispersal_kernel_type;
   double m_tolerance;
 
   #ifndef NDEBUG

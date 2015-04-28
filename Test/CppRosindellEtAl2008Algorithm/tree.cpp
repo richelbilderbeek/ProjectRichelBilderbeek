@@ -28,7 +28,7 @@ Tree::Tree(
   const double minspec,
   const int dispersal,
   const double tol,
-  const bool normflag
+  const DispersalKernel normflag
   )
   :
     m_nodes{std::vector<TreeNode>(2*area1*area2+1,TreeNode(true))},
@@ -94,9 +94,8 @@ Tree::Tree(
     // choose movement of chosen lineage
     int movex = 0; // will store x direction movement
     int movey = 0; // will store y direction movement
-    if (normflag)
+    if (normflag == DispersalKernel::normal)
     {
-      // normally distributed dispersal kernel
       while (movex == 0 && movey == 0)
       {
         // loop to ensure we don't pick a individual to be its own parent
@@ -106,7 +105,6 @@ Tree::Tree(
     }
     else
     {
-      // square distribtion kernel
       while (movex == 0 && movey == 0)
       {
         // loop to ensure we don't pick a individual to be its own parent

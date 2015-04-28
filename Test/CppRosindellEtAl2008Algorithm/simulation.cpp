@@ -53,7 +53,7 @@ Simulation::Simulation(
         task.m_survey_area_length,
         spec,
         task.m_dispersal_distance,
-        task.m_dispersal_kernel_type == 0 ? DispersalKernel::square : DispersalKernel::normal,
+        task.m_dispersal_kernel_type,
         temprichness
       );
       m_results.push_back(result);

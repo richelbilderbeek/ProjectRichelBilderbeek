@@ -4,6 +4,7 @@
 #include <vector>
 #include "nrrand.h"
 #include "treenode.h"
+#include "dispersalkernel.h"
 #include "rng.h"
 
 // this object represents the output coalescence tree itself
@@ -30,7 +31,7 @@ public:
     const double minspec,
     const int dispersal,
     const double tol,
-    const bool normflag
+    const DispersalKernel normflag
   );
 
   // this returns an interval within which the true mean richness must lie
