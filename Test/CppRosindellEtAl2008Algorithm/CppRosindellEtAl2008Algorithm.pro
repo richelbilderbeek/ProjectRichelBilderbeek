@@ -13,7 +13,8 @@ SOURCES += \
     rng.cpp \
     treedatapoint.cpp \
     treenode.cpp \
-    task_test.cpp
+    task_test.cpp \
+    dispersalkernel.cpp
 
 #QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
 
@@ -27,4 +28,5 @@ HEADERS += \
     result.h \
     rng.h \
     treedatapoint.h \
-    treenode.h
+    treenode.h \
+    dispersalkernel.h

@@ -10,6 +10,7 @@
 #include "task.h"
 #include "tree.h"
 #include "result.h"
+#include "dispersalkernel.h"
 
 Simulation::Simulation(
   const std::vector<Task>& tasks,
@@ -52,7 +53,7 @@ Simulation::Simulation(
         task.m_survey_area_length,
         spec,
         task.m_dispersal_distance,
-        task.m_dispersal_kernel_type,
+        task.m_dispersal_kernel_type == 0 ? DispersalKernel::square : DispersalKernel::normal,
         temprichness
       );
       m_results.push_back(result);

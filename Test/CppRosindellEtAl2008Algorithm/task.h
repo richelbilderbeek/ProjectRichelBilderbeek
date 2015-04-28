@@ -13,6 +13,8 @@
 // 5.) tolerance (if 0.01 then result is correct to ±0.5%)
 struct Task
 {
+  //square if 0 normal if 1)
+
   Task(
     const int survey_area_width,
     const int survey_area_length,

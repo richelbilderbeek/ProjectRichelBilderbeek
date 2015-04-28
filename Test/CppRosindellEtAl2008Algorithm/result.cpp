@@ -6,7 +6,7 @@ Result::Result(
   const int survey_area_height,
   const double speciation_rate,
   const double dispersal_distance,
-  const bool dispersal_kernel_type,
+  const DispersalKernel dispersal_kernel_type,
   const double species_richness
 ) : m_survey_area_width{survey_area_width},
     m_survey_area_height{survey_area_height},
@@ -16,6 +16,7 @@ Result::Result(
     m_species_richness{species_richness}
 
 {
+
 }
 
 std::ostream& operator<<(std::ostream& os,const Result& result)
@@ -25,7 +26,7 @@ std::ostream& operator<<(std::ostream& os,const Result& result)
     << result.m_survey_area_height << " "
     << result.m_speciation_rate << " "
     << result.m_dispersal_distance << " "
-    << (result.m_dispersal_kernel_type ? " normal " : " square ")
+    << ToStr(result.m_dispersal_kernel_type) << " "
     << result.m_species_richness
   ;
   return os;

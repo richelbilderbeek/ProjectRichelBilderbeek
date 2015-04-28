@@ -2,8 +2,8 @@
 #define RESULT_H
 
 #include <iosfwd>
+#include "dispersalkernel.h"
 
-// results file will contain all the results in rows of 6 entries
 struct Result
 {
   Result(
@@ -11,7 +11,7 @@ struct Result
     const int m_survey_area_height,
     const double m_speciation_rate,
     const double m_dispersal_distance,
-    const bool m_dispersal_kernel_type,
+    const DispersalKernel m_dispersal_kernel_type,
     const double m_species_richness
   );
 
@@ -21,7 +21,7 @@ struct Result
   const int m_survey_area_height;
   const double m_speciation_rate;
   const double m_dispersal_distance;
-  const bool m_dispersal_kernel_type;
+  const DispersalKernel m_dispersal_kernel_type;
   const double m_species_richness; //The result
 };
 
