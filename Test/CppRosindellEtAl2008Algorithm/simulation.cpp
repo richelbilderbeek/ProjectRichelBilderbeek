@@ -14,7 +14,7 @@
 
 Simulation::Simulation(
   const std::vector<Task>& tasks,
-  const std::vector<double>& specset,
+  const std::vector<double>& speciation_rates,
   const std::string& result_output_filename,
   const int seed,
   const bool verbose
@@ -26,42 +26,38 @@ Simulation::Simulation(
 
   Rng rng(seed);
 
-  // minimum speciation rate required
-  const double minspec{
-    *std::min_element(std::begin(specset),std::end(specset))
+  const double minimum_speciation_rate{
+    *std::min_element(std::begin(speciation_rates),std::end(speciation_rates))
   };
 
-  std::ofstream out;
-  out.open(result_output_filename);
+  std::ofstream out(result_output_filename);
   for (const Task& task:tasks)
   {
     Tree tree(
       rng,
       task.m_survey_area_width,
       task.m_survey_area_length,
-      minspec,
+      minimum_speciation_rate,
       task.m_dispersal_distance,
       task.m_tolerance,
       task.m_dispersal_kernel_type
     );
-    for (const double spec:specset)
+    for (const double spec:speciation_rates)
     {
-      // evaluate species richness for a variety of different speciation rates
-      const double temprichness = tree.get_richness(spec);
+      const double richness{tree.GetRichness(spec)};
       const Result result(
         task.m_survey_area_width,
         task.m_survey_area_length,
         spec,
         task.m_dispersal_distance,
         task.m_dispersal_kernel_type,
-        temprichness
+        richness
       );
       m_results.push_back(result);
       out << result << '\n';
       if (m_verbose) { std::cout << result << std::endl; }
     }
   }
-  out.close();
 }
 
 
@@ -76,17 +72,14 @@ std::vector<double> ReadSpeciationRatesFromFile(
     s << "speciation_input_filename '" << speciation_input_filename << "' not found" << '\n';
     throw std::runtime_error(s.str());
   }
-  std::vector<double> specset;
-  std::ifstream ifdata;
-  ifdata.open(speciation_input_filename);
-  double tempspec;
-  ifdata >> tempspec;
-  while(!ifdata.eof())
+  std::vector<double> speciation_rates;
+  std::ifstream f(speciation_input_filename);
+  while(!f.eof())
   {
-    specset.push_back(tempspec);
-    ifdata >> tempspec;
+    double speciation_rate = 0.0;
+    f >> speciation_rate;
+    speciation_rates.push_back(speciation_rate);
   }
-  ifdata.close();
-  return specset;
-
+  if (!speciation_rates.empty()) { speciation_rates.pop_back(); }
+  return speciation_rates;
 }

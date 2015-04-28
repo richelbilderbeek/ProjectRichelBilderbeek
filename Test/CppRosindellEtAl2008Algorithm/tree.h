@@ -1,6 +1,7 @@
 #ifndef TREE_H
 #define TREE_H
 
+#include <array>
 #include <vector>
 #include "nrrand.h"
 #include "treenode.h"
@@ -29,39 +30,41 @@ public:
     const DispersalKernel dispersal_kernel
   );
 
-  // this returns an interval within which the true mean richness must lie
-  std::vector<double> GetRichnessInterval(double spec);
 
   //this returns the midpoint between the maximum and minimum richness estimates
-  double get_richness(double spec);
+  double GetRichness(const double speciation_rate);
 
 private:
+
+  ///The coalescence tree
   std::vector<TreeNode> m_nodes;
-  // stores the coalescence tree itself
-  int m_enddata;
+
   // marks the end of the data array
   // this is so that size can be expanded and contracted easily up to a maximum size
-  double m_minspecsetup;
+  int m_enddata;
+
   // when producing a coalescence tree, we do so with a minimal speciation rate
   // in mind (to save a lot of computational expense in growing the full tree)
-  // when true some messages will be printed out for debub purposes
-  Rng& m_rnd;
-  // this is a portable random number generator object
-  // please see the separate file for indtructions on use
-  // you may use any random number generator, but numerical recipes
-  // solutions are highly recommended
+  double m_min_speciation_rate;
 
-  static std::pair<int,int> GetMove(
-    const DispersalKernel kernel,
-    Rng& rng,
-    const int dispersal
-  );
+  Rng& m_rnd;
 
   static std::vector<TreeDataPoint> CreateActive(const int area_width, const int area_length);
 
   static std::vector<std::vector<int>>
     CreateGrid(const int area_width, const int area_length
   );
+
+  ///Where will the next position be?
+  static std::pair<int,int> GetMove(
+    const DispersalKernel kernel,
+    Rng& rng,
+    const int dispersal
+  );
+
+  ///Interval within which the true mean richness must lie
+  std::array<double,2> GetRichnessInterval(double spec);
+
 
 
   static const int sm_gridsize = 4000;

@@ -33,15 +33,10 @@ Tree::Tree(
   :
     m_nodes{std::vector<TreeNode>(2*area_width*area_length+1,TreeNode(true))},
     m_enddata{area_width * area_length},
-    m_minspecsetup{2},
+    m_min_speciation_rate{min_speciation_rate},
     m_rnd{rng}
 {
   double richness = 0.0;
-
-  // the time interval - ensure this is at least 0
-  // a value of 0 gives a basic SAR only for maxintsetup
-  // the minimal speciation rate that we are preparing the tree for
-  m_minspecsetup = min_speciation_rate;
 
   // grid - this is an internal variable
   // this is necessary for calculations - initialise it as all zeros
@@ -154,7 +149,6 @@ Tree::Tree(
           {
             // we have coalescence
             ++m_enddata;
-
             m_nodes[m_enddata] = TreeNode(false);
 
             m_nodes[chosen.GetMpos()].set_parent(m_enddata);
@@ -292,16 +286,15 @@ std::vector<std::vector<int>>
 }
 
 // this returns an interval within which the true mean ricness must lie
-std::vector<double> Tree::GetRichnessInterval(const double spec)
+std::array<double,2> Tree::GetRichnessInterval(const double spec)
 {
-  std::vector<double> result(2,0.0);
-  if (m_minspecsetup <= spec)
-    // check that the tree was calculated for a small enough speciation rate
-    // it is possible to override this check by commenting out if required
+  std::array<double,2> result = {0.0,0.0};
+  // check that the tree was calculated for a small enough speciation rate
+  // it is possible to override this check by commenting out if required
+  if (m_min_speciation_rate <= spec)
   {
     // probarray stores, for each node, a probability that is required in the calculation
-    std::vector<double> probarray;
-    probarray.resize(m_enddata+1);
+    std::vector<double> probarray(m_enddata+1);
     for (int i = 1 ; i <= boost::numeric_cast<int>(m_enddata) ; ++i)
       // loop over all nodes and initialise the relating element in probarray
     {
@@ -380,11 +373,7 @@ std::vector<double> Tree::GetRichnessInterval(const double spec)
   }
   else
   {
-    // return a default error result to indicate
-    // the tree was unsutable for the requested calculations
-    result[0] = -1.0;
-    result[1] = -1.0;
-    return result;
+    throw std::logic_error("Tree::GetRichnessInterval: could not calculate result");
   }
 }
 
@@ -428,9 +417,8 @@ std::pair<int,int> Tree::GetMove(
   }
 }
 
-double Tree::get_richness(double spec)
+double Tree::GetRichness(const double speciation_rate)
 {
-  // this returns the midpoint between the maximum and minimum richness estimates
-  std::vector<double> richnessresult = GetRichnessInterval(spec);
-  return (richnessresult[0]+richnessresult[1])/2.0;
+  const auto& v = GetRichnessInterval(speciation_rate);
+  return (v[0]+v[1])/2.0;
 }
