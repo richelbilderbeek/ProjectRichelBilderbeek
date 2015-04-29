@@ -9,6 +9,7 @@ NRrand::NRrand(const int seed) noexcept
   m_normflag = true;
 }
 
+
 double NRrand::GetRandomFraction() noexcept
 {
   //Avoid using std::rand:

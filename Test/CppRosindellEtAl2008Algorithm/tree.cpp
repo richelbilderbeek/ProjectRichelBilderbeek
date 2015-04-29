@@ -62,8 +62,6 @@ Tree::Tree(
     ++steps;
 
     // choose a random lineage to die and be reborn out of those currently active
-    //const int enddata{static_cast<int>(m_nodes.size()) - 1};
-    //assert(enddata <= m_enddata);
     const int last_active_index{static_cast<int>(active.size()) - 1};
     const int chosen_index{m_rnd.GetRandomInt(last_active_index-1) + 1}; // cannot be 0, WHY?
     assert(chosen_index != 0 && "Skip zero");

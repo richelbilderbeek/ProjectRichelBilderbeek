@@ -16,6 +16,7 @@ Rng::Rng(const int seed, const Type type) noexcept
   #endif
 }
 
+/*
 double Rng::GetRandomFraction() noexcept
 {
   switch (m_type)
@@ -30,6 +31,7 @@ double Rng::GetRandomFraction() noexcept
   }
   throw std::logic_error("Rng::GetRandomFraction"); //Yes, the program will crash, due to noexcept
 }
+*/
 
 int Rng::GetRandomInt(const int max) noexcept
 {
