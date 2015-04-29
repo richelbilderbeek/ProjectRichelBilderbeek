@@ -7,6 +7,7 @@
 
 #include "treedatapoint.h"
 #include "treenode.h"
+#include "trace.h"
 
 template <class Container>
 bool IsValid(const int index, const Container& container)
@@ -54,7 +55,10 @@ Tree::Tree(
   };
 
   int endactive = area_width * area_length;
+
   assert(endactive == area_width * area_length);
+  assert(endactive + 1 == static_cast<int>(active.size()));
+  assert(endactive  == static_cast<int>(active.size()) - 1);
 
 
   int steps = 0;
@@ -65,6 +69,9 @@ Tree::Tree(
     ++steps;
 
     // choose a random lineage to die and be reborn out of those currently active
+    assert(endactive < static_cast<int>(active.size()));
+    assert(endactive + 1 == static_cast<int>(active.size()));
+    assert(endactive  == static_cast<int>(active.size()) - 1);
     const int chosen_index = m_rnd.GetRandomInt(endactive-1) + 1; // cannot be 0
     assert(chosen_index != 0 && "Skip zero");
     assert(IsValid(chosen_index,active));
@@ -214,6 +221,9 @@ Tree::Tree(
               active[active[endactive].GetLast()].SetNext(chosen_index);
             }
             --endactive;
+            active.pop_back(); //NEW
+            assert(endactive + 1 == static_cast<int>(active.size()));
+            assert(endactive == static_cast<int>(active.size()) - 1);
             assert(endactive >= 0);
             // update grid not necessary as
             // we already purged the old lineage from the grid and loops
@@ -285,17 +295,15 @@ std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int ar
   std::vector<TreeDataPoint> v;
   assert(area_width > 0);
   assert(area_length > 0);
-
-  v.resize(2*area_width*area_length+1);
-
+  //Index 0 is systematically avoided, unknown why
+  v.push_back(TreeDataPoint(0,0,0));
   int i = 0;
   for (int x=0; x!=area_width; ++x)
   {
     for (int y=0; y!=area_length; ++y)
     {
       ++i;
-      v[i] = TreeDataPoint(x,y,i);
-      //v.push_back(TreeDataPoint(tx,ty,i)); //NOT YET
+      v.push_back(TreeDataPoint(x,y,i));
     }
   }
   return v;

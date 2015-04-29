@@ -28,7 +28,7 @@ double Rng::GetRandomFraction() noexcept
       return x;
     }
   }
-  std::exit(1);
+  throw std::logic_error("Rng::GetRandomFraction"); //Yes, the program will crash, due to noexcept
 }
 
 int Rng::GetRandomInt(const int max) noexcept
@@ -43,7 +43,7 @@ int Rng::GetRandomInt(const int max) noexcept
       return x;
     }
   }
-  std::exit(1);
+  throw std::logic_error("Rng::GetRandomInt"); //Yes, the program will crash, due to noexcept
 }
 
 double Rng::GetRandomNormal() noexcept
@@ -65,5 +65,5 @@ double Rng::GetRandomNormal() noexcept
       #endif
     }
   }
-  std::exit(1);
+  throw std::logic_error("Rng::GetRandomNormal"); //Yes, the program will crash, due to noexcept
 }

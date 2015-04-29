@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <cassert>
+#include <stdexcept>
 
 std::string ToStr(const DispersalKernel kernel) noexcept
 {
@@ -11,8 +12,7 @@ std::string ToStr(const DispersalKernel kernel) noexcept
     case DispersalKernel::normal: return "normal";
     case DispersalKernel::square: return "square";
   }
-  assert(!"Should not get here");
-  exit(1);
+  throw std::logic_error("ToStr(const DispersalKernel kernel)");
 }
 
 std::ostream& operator<<(std::ostream& os, const DispersalKernel kernel) noexcept
