@@ -61,9 +61,10 @@ Tree::Tree(
   {
     ++steps;
 
-    // choose a random lineage to die and be reborn out of those currently active
+    //Choose a random lineage to die and be reborn out of those currently active
     const int last_active_index{static_cast<int>(active.size()) - 1};
-    const int chosen_index{m_rnd.GetRandomInt(last_active_index-1) + 1}; // cannot be 0, WHY?
+    //NOTE: chosen_index be 0, WHY?
+    const int chosen_index{1 + m_rnd.GetRandomInt(last_active_index-1)};
     assert(chosen_index != 0 && "Skip zero");
     assert(IsValid(chosen_index,active));
     TreeDataPoint& chosen = active[chosen_index];
@@ -209,7 +210,11 @@ Tree::Tree(
               assert(active[last_active_index].GetLast() != 0 && "Skip zero");
               active[active[last_active_index].GetLast()].SetNext(chosen_index);
             }
+
+            assert(active.back().GetNext() == 0);
+            assert(active.back().GetLast() == 0);
             active.pop_back();
+
             // update grid not necessary as
             // we already purged the old lineage from the grid and loops
             loop = false;
