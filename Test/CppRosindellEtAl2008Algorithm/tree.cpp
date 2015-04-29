@@ -54,13 +54,6 @@ Tree::Tree(
     CreateActive(area_width,area_length)
   };
 
-  int endactive = area_width * area_length;
-
-  assert(endactive == area_width * area_length);
-  assert(endactive + 1 == static_cast<int>(active.size()));
-  assert(endactive  == static_cast<int>(active.size()) - 1);
-
-
   int steps = 0;
   double error = 1000.0;
 
@@ -69,10 +62,10 @@ Tree::Tree(
     ++steps;
 
     // choose a random lineage to die and be reborn out of those currently active
-    assert(endactive < static_cast<int>(active.size()));
-    assert(endactive + 1 == static_cast<int>(active.size()));
-    assert(endactive  == static_cast<int>(active.size()) - 1);
-    const int chosen_index = m_rnd.GetRandomInt(endactive-1) + 1; // cannot be 0
+    //const int enddata{static_cast<int>(m_nodes.size()) - 1};
+    //assert(enddata <= m_enddata);
+    const int last_active_index{static_cast<int>(active.size()) - 1};
+    const int chosen_index{m_rnd.GetRandomInt(last_active_index-1) + 1}; // cannot be 0, WHY?
     assert(chosen_index != 0 && "Skip zero");
     assert(IsValid(chosen_index,active));
     TreeDataPoint& chosen = active[chosen_index];
@@ -166,13 +159,11 @@ Tree::Tree(
             m_nodes[m_enddata] = TreeNode(false);
 
             m_nodes[chosen.GetMpos()].SetParent(m_enddata);
-            //m_nodes[chosen.GetMpos()].SetParentNode(&m_nodes[m_enddata]);
 
             assert(IsValid(current,active));
             assert(IsValid(active[current].GetMpos(),m_nodes));
             assert(current != 0 && "Skip zero");
             m_nodes[active[current].GetMpos()].SetParent(m_enddata);
-            //m_nodes[active[current].GetMpos()].SetParentNode(&m_nodes[m_enddata]);
 
             // update active
             assert(IsValid(current,active));
@@ -189,42 +180,38 @@ Tree::Tree(
             assert(current != 0 && "Skip zero");
             active[current].SetProbability(probability);
 
-            assert(IsValid(endactive,active));
-            assert(endactive != 0 && "Skip zero");
-            chosen = active[endactive];
+            assert(IsValid(last_active_index,active));
+            assert(last_active_index != 0 && "Skip zero");
+            chosen = active[last_active_index];
 
-            assert(IsValid(endactive,active));
-            assert(endactive != 0 && "Skip zero");
-            const int newx = active[endactive].GetXpos();
-            const int newy = active[endactive].GetYpos();
+            assert(IsValid(last_active_index,active));
+            assert(last_active_index != 0 && "Skip zero");
+            const int newx = active[last_active_index].GetXpos();
+            const int newy = active[last_active_index].GetYpos();
 
             assert(IsValid(newx,newy,grid));
             int& to = grid[newx][newy];
-            if (to == endactive)
+            if (to == last_active_index)
             {
               to = chosen_index;
             }
-            assert(IsValid(endactive,active));
-            assert(endactive != 0 && "Skip zero");
-            if (active[endactive].GetNext() > 0)
+            assert(IsValid(last_active_index,active));
+            assert(last_active_index != 0 && "Skip zero");
+            if (active[last_active_index].GetNext() > 0)
             {
-              assert(IsValid(endactive,active));
-              assert(IsValid(active[endactive].GetNext(),active));
-              assert(endactive != 0 && "Skip zero");
-              assert(active[endactive].GetNext() != 0 && "Skip zero");
-              active[active[endactive].GetNext()].SetLast(chosen_index);
+              assert(IsValid(last_active_index,active));
+              assert(IsValid(active[last_active_index].GetNext(),active));
+              assert(last_active_index != 0 && "Skip zero");
+              assert(active[last_active_index].GetNext() != 0 && "Skip zero");
+              active[active[last_active_index].GetNext()].SetLast(chosen_index);
 
-              assert(IsValid(endactive,active));
-              assert(IsValid(active[endactive].GetNext(),active));
-              assert(endactive != 0 && "Skip zero");
-              assert(active[endactive].GetLast() != 0 && "Skip zero");
-              active[active[endactive].GetLast()].SetNext(chosen_index);
+              assert(IsValid(last_active_index,active));
+              assert(IsValid(active[last_active_index].GetNext(),active));
+              assert(last_active_index != 0 && "Skip zero");
+              assert(active[last_active_index].GetLast() != 0 && "Skip zero");
+              active[active[last_active_index].GetLast()].SetNext(chosen_index);
             }
-            --endactive;
-            active.pop_back(); //NEW
-            assert(endactive + 1 == static_cast<int>(active.size()));
-            assert(endactive == static_cast<int>(active.size()) - 1);
-            assert(endactive >= 0);
+            active.pop_back();
             // update grid not necessary as
             // we already purged the old lineage from the grid and loops
             loop = false;
@@ -280,7 +267,7 @@ Tree::Tree(
     {
       // check errors and update
       error = 0.0;
-      for (int i = 1 ; i <= endactive ; ++i)
+      for (int i = 1 ; i <= last_active_index ; ++i)
       {
         assert(i != 0 && "Skip zero");
         assert(IsValid(i,active));
@@ -320,19 +307,21 @@ std::vector<std::vector<int>>
     = sm_gridsize < area_width*2 ? area_width*2
     : (sm_gridsize < area_length*2 ? area_length*2 : sm_gridsize)
   ;
+  assert(sz > 0);
 
+  //FAILS std::vector<std::vector<int>> v(area_width,std::vector<int>(area_length,0));
+  //FAILS std::vector<std::vector<int>> v(area_width * 2,std::vector<int>(area_length * 2,0));
   std::vector<std::vector<int>> v(sz,std::vector<int>(sz,0));
 
   int i=0;
-  for (int tx = 0 ; tx != area_width ; ++tx)
+  for (int x = 0 ; x != area_width ; ++x)
   {
-    for (int ty = 0 ; ty != area_length ; ++ty)
+    for (int y = 0 ; y != area_length ; ++y)
     {
       ++i;
-      v[tx][ty] = i;
+      v[x][y] = i;
     }
   }
-
   return v;
 }
 
