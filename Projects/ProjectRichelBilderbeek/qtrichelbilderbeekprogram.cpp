@@ -167,7 +167,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::bristol: break;
     case ProgramType::caesarCipher: p = new QtCaesarCipherMenuDialog; break;
     case ProgramType::chrisWiley: break;
-    case ProgramType::codeBreaker: break; //p = new QtCodeBreakerMenuDialog; break;
+    //case ProgramType::codeBreaker: break; //p = new QtCodeBreakerMenuDialog; break;
     case ProgramType::codeToHtml: p = new c2h::QtCodeToHtmlMenuDialog; break;
     case ProgramType::connectThree: p = new con3::QtConnectThreeMenuDialog; break;
     case ProgramType::corridor: break;

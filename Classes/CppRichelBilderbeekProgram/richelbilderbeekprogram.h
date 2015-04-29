@@ -323,6 +323,7 @@ struct ProgramChrisWiley : public ProgramProject
   std::string GetUrl() const noexcept override final { return "ProjectChrisWiley.htm"; }
 };
 
+/*
 struct ProgramCodeBreaker : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept override final { return ""; }
@@ -337,6 +338,7 @@ struct ProgramCodeBreaker : public ProgramTool
   ProgramType GetType() const noexcept override final { return ProgramType::codeBreaker; }
   std::string GetUrl() const noexcept override final { return "ToolCodeBreaker.htm"; }
 };
+*/
 
 struct ProgramCodeToHtml : public ProgramTool
 {

@@ -42,7 +42,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "chessgame.h"
 #include "chesswidget.h"
 #endif // INCLUDE_CHESS_20140617
-#include "codebreakermenudialog.h"
 #include "codetohtmlmenudialog.h"
 #ifdef INCLUDE_CONCEPTMAP_20140811
 #include "conceptmap.h"
@@ -54,8 +53,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "container.h"
 #include "copy_if.h"
 #include "counter.h"
-#include "createglossarymenudialog.h"
 #include "createqtprojectzipfilemenudialog.h"
+#include "createglossarymenudialog.h"
 #include "daswahreschlagerfestmenudialog.h"
 #include "dial.h"
 #include "dialwidget.h"
@@ -128,6 +127,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qmakewatchermenudialog.h"
 #include "qmakewatchermenudialog.h"
 #include "qrcfile.h"
+#include "qtcreatorprofilezipscript.h"
 #include "qtcreatorprofile.h"
 #include "qtstdvectorfunctionmodel.h"
 #include "qtstdvectorstringmodel.h"
@@ -723,7 +723,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::codeBreaker: p.reset(new CodeBreakerMenuDialog); break;
+      //case ProgramType::codeBreaker: p.reset(new CodeBreakerMenuDialog); break;
       case ProgramType::codeToHtml: p.reset(new c2h::CodeToHtmlMenuDialog); break;
       case ProgramType::connectThree: p.reset(new con3::ConnectThreeMenuDialog); break;
       case ProgramType::corridor:

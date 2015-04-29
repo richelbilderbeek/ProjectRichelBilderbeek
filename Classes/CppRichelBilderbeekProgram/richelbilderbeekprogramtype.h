@@ -41,7 +41,7 @@ enum class ProgramType
   bristol,
   caesarCipher,
   chrisWiley,
-  codeBreaker,
+  //codeBreaker,
   codeToHtml,
   connectThree,
   corridor,
