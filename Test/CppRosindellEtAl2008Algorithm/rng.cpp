@@ -16,23 +16,6 @@ Rng::Rng(const int seed, const Type type) noexcept
   #endif
 }
 
-/*
-double Rng::GetRandomFraction() noexcept
-{
-  switch (m_type)
-  {
-    case Type::rosindell: return m_nrrand.GetRandomFraction();
-    case Type::bilderbeek:
-    {
-      static std::uniform_real_distribution<double> d(0.0,1.0);
-      const double x{d(m_mt)};
-      return x;
-    }
-  }
-  throw std::logic_error("Rng::GetRandomFraction"); //Yes, the program will crash, due to noexcept
-}
-*/
-
 int Rng::GetRandomInt(const int max) noexcept
 {
   switch (m_type)
@@ -55,16 +38,11 @@ double Rng::GetRandomNormal() noexcept
     case Type::rosindell: return m_nrrand.GetRandomNormal();
     case Type::bilderbeek:
     {
-      #ifdef FIX_ISSUE
-      //Unknown which sigma to use
       static const double mean{0.0};
-      static const double sigma{2.0};
+      static const double sigma{1.0};
       static std::normal_distribution<double> d(mean,sigma);
       const double x{d(m_mt)};
       return x;
-      #else
-      return m_nrrand.GetRandomNormal();
-      #endif
     }
   }
   throw std::logic_error("Rng::GetRandomNormal"); //Yes, the program will crash, due to noexcept

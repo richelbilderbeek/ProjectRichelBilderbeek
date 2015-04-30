@@ -34,17 +34,18 @@ double NRrand::GetRandomNormal() noexcept
 {
   if (m_normflag)
   {
-    double r2 = 2;
-    double xx;double yy;
-    while (r2>1)
+    double r2{2.0};
+    double xx{0.0};
+    double yy{0.0};
+    while (r2>1.0)
     {
       xx=2.0*GetRandomFraction()-1.0;
       yy=2.0*GetRandomFraction()-1.0;
       r2=(xx*xx)+(yy*yy);
     }
-    const double fac=sqrt(-2.0*log(r2)/r2);
+    const double fac{std::sqrt(-2.0*log(r2)/r2)};
     m_lastresult = xx*fac;
-    const double result = yy*fac;
+    const double result{yy*fac};
     m_normflag = false;
     return result;
   }
