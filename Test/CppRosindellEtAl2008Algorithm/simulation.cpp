@@ -43,13 +43,24 @@ Simulation::Simulation(
       task.m_tolerance,
       task.m_dispersal_kernel_type
     );
-    for (const double spec:speciation_rates)
+    for (int i=1; ;++i)
     {
-      const double richness{tree.GetRichness(spec)};
+      tree.Update();
+      if (i %
+          (task.m_survey_area_width*task.m_survey_area_length*250)
+        == 0
+      )
+      {
+        if (tree.IsDone()) { break; }
+      }
+    }
+    for (const double speciation_rate:speciation_rates)
+    {
+      const double richness{tree.GetRichness(speciation_rate)};
       const Result result(
         task.m_survey_area_width,
         task.m_survey_area_length,
-        spec,
+        speciation_rate,
         task.m_dispersal_distance,
         task.m_dispersal_kernel_type,
         richness

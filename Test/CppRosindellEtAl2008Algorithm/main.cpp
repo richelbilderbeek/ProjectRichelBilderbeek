@@ -16,12 +16,6 @@
 
 int main(int argc, char **)
 {
-  {
-    std::ofstream f("tmp.txt");
-    Rng r(4,Rng::Type::bilderbeek);
-    //NRrand r(4);
-    for (int i=0; i!=1000; ++i) f << r.GetRandomNormal() << '\n';
-  }
   #ifndef NDEBUG
   Rng::Test();
   Simulation::Test();
