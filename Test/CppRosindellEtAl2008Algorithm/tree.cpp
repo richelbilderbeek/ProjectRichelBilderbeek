@@ -47,7 +47,7 @@ Tree::Tree(
   #ifndef NDEBUG
   Test();
   #endif
-
+  /*
   for (int i=1; ;++i)
   {
     Update();
@@ -59,7 +59,7 @@ Tree::Tree(
       if (IsDone()) { break; }
     }
   }
-
+  */
 }
 
 std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int area_length)

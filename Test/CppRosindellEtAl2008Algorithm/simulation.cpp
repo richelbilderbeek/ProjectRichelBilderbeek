@@ -44,7 +44,7 @@ Simulation::Simulation(
       task.m_tolerance,
       task.m_dispersal_kernel_type
     );
-    /*
+
     for (int i=1; ;++i)
     {
       tree.Update();
@@ -56,7 +56,7 @@ Simulation::Simulation(
         if (tree.IsDone()) { break; }
       }
     }
-    */
+
     for (const double speciation_rate:speciation_rates)
     {
       const double richness{tree.GetRichness(speciation_rate)};

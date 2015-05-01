@@ -35,7 +35,7 @@ void Tree::Test() noexcept
     tolerance,
     dispersal_kernel
   );
-  assert(tree.IsDone());
+  assert(!tree.IsDone());
 }
 
 #endif
