@@ -47,6 +47,14 @@ Tree::Tree(
   #ifndef NDEBUG
   Test();
   #endif
+  if (m_dispersal_distance == 0)
+  {
+    throw std::logic_error("Tree::Tree: dispersal distance must be non-zero");
+  }
+  if (m_dispersal_distance < 0)
+  {
+    throw std::logic_error("Tree::Tree: dispersal distance must be positive");
+  }
 }
 
 std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int area_length)
@@ -102,7 +110,7 @@ void Tree::DisplayActive(std::ostream& os) const noexcept
   std::copy(
     std::begin(m_active),
     std::end(m_active),
-    std::ostream_iterator<TreeDataPoint>(os,"\n")
+    std::ostream_iterator<TreeDataPoint>(os," - ")
   );
 }
 
@@ -142,6 +150,7 @@ std::pair<int,int> Tree::GetMove(
   const int dispersal
 )
 {
+  assert(dispersal > 0);
   if (dispersal_kernel == DispersalKernel::normal)
   {
     while (1)

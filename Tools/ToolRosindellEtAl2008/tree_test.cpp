@@ -20,7 +20,7 @@ void Tree::Test() noexcept
   Rng rng(0,Rng::Type::bilderbeek);
   const int area_width{4};
   const int area_length{1};
-  const double min_speciation_rate{0.01};
+  const double min_speciation_rate{0.0};
   const int dispersal_distance{1};
   const double tolerance{0.1};
   const DispersalKernel dispersal_kernel{
@@ -37,9 +37,19 @@ void Tree::Test() noexcept
     dispersal_kernel
   );
   assert(!tree.IsDone());
-  tree.DisplayActive(std::cout);
-  //tree.DisplayGrid(std::cout);
-  assert(!"DONE");
+  std::vector<TreeDataPoint> active_now{tree.GetActive()};
+  for (int i=0; i!=20; ++i)
+  {
+    tree.Update();
+    const std::vector<TreeDataPoint>& active_new{tree.GetActive()};
+    if (active_now != active_new)
+    {
+      active_now = active_new;
+      tree.DisplayActive(std::cout);
+      std::cout << std::endl;
+    }
+    if (tree.IsDone()) break;
+  }
 }
 
 #endif

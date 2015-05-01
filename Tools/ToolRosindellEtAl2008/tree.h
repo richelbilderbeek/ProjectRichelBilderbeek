@@ -32,6 +32,8 @@ struct Tree
   void DisplayActive(std::ostream& os) const noexcept;
   void DisplayGrid(std::ostream& os) const noexcept;
 
+  const std::vector<TreeDataPoint>& GetActive() const noexcept { return m_active; }
+
   double GetError() const noexcept;
 
   //this returns the midpoint between the maximum and minimum richness estimates

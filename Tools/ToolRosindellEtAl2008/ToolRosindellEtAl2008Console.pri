@@ -1,7 +1,3 @@
-include(../../Libraries/BoostAll.pri)
-include(../../Libraries/GeneralConsole.pri)
-include(../../ConsoleApplicationNoWeffcpp.pri)
-
 SOURCES += \
     tree.cpp \
     nrrand.cpp \
@@ -9,7 +5,6 @@ SOURCES += \
     task.cpp \
     result.cpp \
     simulation_test.cpp \
-    main.cpp \
     rng.cpp \
     treedatapoint.cpp \
     treenode.cpp \
@@ -17,10 +12,6 @@ SOURCES += \
     dispersalkernel.cpp \
     rng_test.cpp \
     tree_test.cpp
-
-#QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
-
-#LIBS += -lboost_filesystem -lboost_system
 
 HEADERS += \
     tree.h \
