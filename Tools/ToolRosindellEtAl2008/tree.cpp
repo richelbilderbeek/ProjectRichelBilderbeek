@@ -63,14 +63,14 @@ std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int ar
   assert(area_width > 0);
   assert(area_length > 0);
   //Index 0 is systematically avoided, unknown why
-  //v.push_back(TreeDataPoint(-123,-234,-345));
+  v.push_back(TreeDataPoint(0,0,0));
   int i = 0;
   for (int x=0; x!=area_width; ++x)
   {
     for (int y=0; y!=area_length; ++y)
     {
-      v.push_back(TreeDataPoint(x,y,i));
       ++i;
+      v.push_back(TreeDataPoint(x,y,i));
     }
   }
   return v;
@@ -98,8 +98,8 @@ std::vector<std::vector<int>>
   {
     for (int y = 0 ; y != area_length ; ++y)
     {
-      v[x][y] = i;
       ++i;
+      v[x][y] = i;
     }
   }
   return v;
@@ -135,8 +135,9 @@ double Tree::GetError(
 {
   const int last_active_index{static_cast<int>(m_active.size()) - 1};
   double error = 0.0;
-  for (int i = 0 ; i != last_active_index ; ++i)
+  for (int i = 1 ; i <= last_active_index ; ++i)
   {
+    assert(i != 0 && "Skip zero");
     assert(IsValid(i,m_active));
     error += m_active[i].GetProbability();
   }
@@ -299,7 +300,8 @@ bool Tree::IsDone() const noexcept
 void Tree::Update()
 {
   //NOTE: chosen_index be 0, WHY?
-  const int chosen_index{0 + m_rnd.GetRandomInt(m_active.size() - 1)};
+  const int chosen_index{1 + m_rnd.GetRandomInt(m_active.size() - 1 - 1)};
+  assert(chosen_index != 0 && "Skip zero?");
   assert(IsValid(chosen_index,m_active));
   TreeDataPoint& chosen = m_active[chosen_index];
 
@@ -326,6 +328,7 @@ void Tree::Update()
     // then we have an individual to set its next and last variables correctly
     if (from == chosen.GetLast() )
     {
+      assert(from != 0 && "Skip zero");
       assert(IsValid(from,m_active));
       //The ring contained 2 individuals
       m_active[from].SetLast(0);
@@ -335,8 +338,10 @@ void Tree::Update()
     {
       //The ring contained 3 or more individuals
       assert(IsValid(from,m_active));
+      assert(from != 0 && "Skip zero");
       m_active[from].SetLast(chosen.GetLast());
       assert(IsValid(chosen.GetLast(),m_active));
+      assert(chosen.GetLast() != 0 && "Skip zero");
       m_active[chosen.GetLast()].SetNext(chosen.GetNext());
     }
   }
@@ -380,9 +385,11 @@ void Tree::Update()
     while(loop)
     {
       assert(IsValid(current,m_active));
+      assert(current != 0 && "Skip zero");
       if (chosen.GetXindex() == m_active[current].GetXindex())
       {
         assert(IsValid(current,m_active));
+        assert(current != 0 && "Skip zero");
         if (chosen.GetYindex() == m_active[current].GetYindex())
         {
           // we have coalescence
@@ -393,10 +400,12 @@ void Tree::Update()
 
           assert(IsValid(current,m_active));
           assert(IsValid(m_active[current].GetMpos(),m_nodes));
+          assert(current != 0 && "Skip zero");
           m_nodes[m_active[current].GetMpos()].SetParent(m_enddata);
 
           // update active
           assert(IsValid(current,m_active));
+          assert(current != 0 && "Skip zero");
           m_active[current].SetMpos(m_enddata);
 
           const double probability{
@@ -406,14 +415,17 @@ void Tree::Update()
           };
 
           assert(IsValid(current,m_active));
+          assert(current != 0 && "Skip zero");
           m_active[current].SetProbability(probability);
 
           assert(IsValid(m_active.size() - 1,m_active));
+          assert(m_active.size() - 1 != 0 && "Skip zero");
           chosen = m_active[m_active.size() - 1];
           //chosen = m_active[last_active_index];
 
 
           assert(IsValid(m_active.size() - 1,m_active));
+          assert(m_active.size() - 1 != 0 && "Skip zero");
 
           const int newx = m_active[m_active.size() - 1].GetXpos();
           //const int newx = m_active[last_active_index].GetXpos();
@@ -429,18 +441,23 @@ void Tree::Update()
             to = chosen_index;
           }
           assert(IsValid(m_active.size() - 1,m_active));
+          assert(m_active.size() - 1 != 0 && "Skip zero");
 
           if (m_active[m_active.size() - 1].GetNext() > 0)
           //if (m_active[last_active_index].GetNext() > 0)
           {
             assert(IsValid(m_active.size() - 1,m_active));
             assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
+            assert(m_active.size() - 1 != 0 && "Skip zero");
+            assert(m_active[m_active.size() - 1].GetNext() != 0 && "Skip zero");
 
             m_active[m_active[m_active.size() - 1].GetNext()].SetLast(chosen_index);
             //m_active[m_active[last_active_index].GetNext()].SetLast(chosen_index);
 
             assert(IsValid(m_active.size() - 1,m_active));
             assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
+            assert(m_active.size() - 1 != 0 && "Skip zero");
+            assert(m_active[m_active.size() - 1].GetLast() != 0 && "Skip zero");
             m_active[m_active[m_active.size() - 1].GetLast()].SetNext(chosen_index);
             //m_active[m_active[last_active_index].GetLast()].SetNext(chosen_index);
           }
@@ -457,14 +474,17 @@ void Tree::Update()
       if (loop)
       {
         // move to the next place in the loop ready for another check
+        assert(current != 0 && "Skip zero");
         current = m_active[current].GetNext();
         if (current == 0)
         {
           // the loop was only of size one and there was no coalescence
           // this is most likely
           assert(IsValid(grid_active,m_active));
+          assert(grid_active != 0 && "Skip zero");
           m_active[grid_active].SetNext(chosen_index);
           assert(IsValid(grid_active,m_active));
+          assert(grid_active != 0 && "Skip zero");
           m_active[grid_active].SetLast(chosen_index);
           assert(IsValid(chosen_index,m_active));
           chosen.SetNext(grid_active);
@@ -480,11 +500,13 @@ void Tree::Update()
             assert(IsValid(grid_active,m_active));
             const int addlast = m_active[grid_active].GetLast();
             assert(IsValid(addlast,m_active));
+            assert(addlast != 0 && "Skip zero");
             m_active[addlast].SetNext(chosen_index);
             assert(IsValid(chosen_index,m_active));
             chosen.SetLast(addlast);
             chosen.SetNext(grid_active);
             assert(IsValid(grid_active,m_active));
+            assert(grid_active != 0 && "Skip zero");
             m_active[grid_active].SetLast(chosen_index);
             loop = false;
           }
