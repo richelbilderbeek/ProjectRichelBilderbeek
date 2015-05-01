@@ -47,19 +47,6 @@ Tree::Tree(
   #ifndef NDEBUG
   Test();
   #endif
-  /*
-  for (int i=1; ;++i)
-  {
-    Update();
-    if (i %
-        (area_width*area_length*250)
-      == 0
-    )
-    {
-      if (IsDone()) { break; }
-    }
-  }
-  */
 }
 
 std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int area_length)
@@ -108,6 +95,91 @@ std::vector<std::vector<int>>
     }
   }
   return v;
+}
+
+void Tree::DisplayActive(std::ostream& os) const noexcept
+{
+  std::copy(
+    std::begin(m_active),
+    std::end(m_active),
+    std::ostream_iterator<TreeDataPoint>(os,"\n")
+  );
+}
+
+void Tree::DisplayGrid(std::ostream& os) const noexcept
+{
+  for (const auto line: m_grid)
+  {
+    std::copy(
+      std::begin(line),
+      std::end(line),
+      std::ostream_iterator<int>(os," ")
+    );
+    os << '\n';
+  }
+}
+
+
+
+double Tree::GetError(
+  //const std::vector<TreeDataPoint>& m_active
+) const noexcept
+{
+  const int last_active_index{static_cast<int>(m_active.size()) - 1};
+  double error = 0.0;
+  for (int i = 1 ; i <= last_active_index ; ++i)
+  {
+    assert(i != 0 && "Skip zero");
+    assert(IsValid(i,m_active));
+    error += m_active[i].GetProbability();
+  }
+  return error;
+}
+
+std::pair<int,int> Tree::GetMove(
+  const DispersalKernel dispersal_kernel,
+  Rng& rnd,
+  const int dispersal
+)
+{
+  if (dispersal_kernel == DispersalKernel::normal)
+  {
+    while (1)
+    {
+      const int x{
+        static_cast<int>(
+          std::floor((rnd.GetRandomNormal()*dispersal)+0.5)
+        )
+      };
+      const int y{
+        static_cast<int>(
+          std::floor((rnd.GetRandomNormal()*dispersal)+0.5)
+        )
+      };
+      if (x != 0 || y != 0)
+      {
+        return std::make_pair(x,y);
+      }
+    }
+  }
+  else
+  {
+    while (1)
+    {
+      const int x{rnd.GetRandomInt(dispersal*2)-dispersal};
+      const int y{rnd.GetRandomInt(dispersal*2)-dispersal};
+      if (x != 0 || y != 0)
+      {
+        return std::make_pair(x,y);
+      }
+    }
+  }
+}
+
+double Tree::GetRichness(const double speciation_rate)
+{
+  const auto& v = GetRichnessInterval(speciation_rate);
+  return (v[0]+v[1])/2.0;
 }
 
 // this returns an interval within which the true mean ricness must lie
@@ -210,67 +282,6 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
   return result;
 }
 
-double Tree::GetError(
-  //const std::vector<TreeDataPoint>& m_active
-) const noexcept
-{
-  const int last_active_index{static_cast<int>(m_active.size()) - 1};
-  double error = 0.0;
-  for (int i = 1 ; i <= last_active_index ; ++i)
-  {
-    assert(i != 0 && "Skip zero");
-    assert(IsValid(i,m_active));
-    error += m_active[i].GetProbability();
-  }
-  return error;
-}
-
-std::pair<int,int> Tree::GetMove(
-  const DispersalKernel dispersal_kernel,
-  Rng& rnd,
-  const int dispersal
-)
-{
-  if (dispersal_kernel == DispersalKernel::normal)
-  {
-    while (1)
-    {
-      const int x{
-        static_cast<int>(
-          std::floor((rnd.GetRandomNormal()*dispersal)+0.5)
-        )
-      };
-      const int y{
-        static_cast<int>(
-          std::floor((rnd.GetRandomNormal()*dispersal)+0.5)
-        )
-      };
-      if (x != 0 || y != 0)
-      {
-        return std::make_pair(x,y);
-      }
-    }
-  }
-  else
-  {
-    while (1)
-    {
-      const int x{rnd.GetRandomInt(dispersal*2)-dispersal};
-      const int y{rnd.GetRandomInt(dispersal*2)-dispersal};
-      if (x != 0 || y != 0)
-      {
-        return std::make_pair(x,y);
-      }
-    }
-  }
-}
-
-double Tree::GetRichness(const double speciation_rate)
-{
-  const auto& v = GetRichnessInterval(speciation_rate);
-  return (v[0]+v[1])/2.0;
-}
-
 bool Tree::IsDone() const noexcept
 {
   const double error{GetError()};
@@ -279,11 +290,9 @@ bool Tree::IsDone() const noexcept
 
 void Tree::Update()
 {
-  //Choose a random lineage to die and be reborn out of those currently active
-  const int last_active_index{static_cast<int>(m_active.size()) - 1};
   //NOTE: chosen_index be 0, WHY?
-  const int chosen_index{1 + m_rnd.GetRandomInt(last_active_index-1)};
-  assert(chosen_index != 0 && "Skip zero");
+  const int chosen_index{1 + m_rnd.GetRandomInt(m_active.size() - 1 - 1)};
+  assert(chosen_index != 0 && "Skip zero?");
   assert(IsValid(chosen_index,m_active));
   TreeDataPoint& chosen = m_active[chosen_index];
 
@@ -400,36 +409,48 @@ void Tree::Update()
           assert(current != 0 && "Skip zero");
           m_active[current].SetProbability(probability);
 
-          assert(IsValid(last_active_index,m_active));
-          assert(last_active_index != 0 && "Skip zero");
-          chosen = m_active[last_active_index];
+          assert(IsValid(m_active.size() - 1,m_active));
+          assert(m_active.size() - 1 != 0 && "Skip zero");
+          chosen = m_active[m_active.size() - 1];
+          //chosen = m_active[last_active_index];
 
-          assert(IsValid(last_active_index,m_active));
-          assert(last_active_index != 0 && "Skip zero");
-          const int newx = m_active[last_active_index].GetXpos();
-          const int newy = m_active[last_active_index].GetYpos();
+
+          assert(IsValid(m_active.size() - 1,m_active));
+          assert(m_active.size() - 1 != 0 && "Skip zero");
+
+          const int newx = m_active[m_active.size() - 1].GetXpos();
+          //const int newx = m_active[last_active_index].GetXpos();
+          const int newy = m_active[m_active.size() - 1].GetYpos();
+          //const int newy = m_active[last_active_index].GetYpos();
 
           assert(IsValid(newx,newy,m_grid));
           int& to = m_grid[newx][newy];
-          if (to == last_active_index)
+
+          if (to == static_cast<int>(m_active.size()) - 1)
+          //if (to == last_active_index)
           {
             to = chosen_index;
           }
-          assert(IsValid(last_active_index,m_active));
-          assert(last_active_index != 0 && "Skip zero");
-          if (m_active[last_active_index].GetNext() > 0)
-          {
-            assert(IsValid(last_active_index,m_active));
-            assert(IsValid(m_active[last_active_index].GetNext(),m_active));
-            assert(last_active_index != 0 && "Skip zero");
-            assert(m_active[last_active_index].GetNext() != 0 && "Skip zero");
-            m_active[m_active[last_active_index].GetNext()].SetLast(chosen_index);
+          assert(IsValid(m_active.size() - 1,m_active));
+          assert(m_active.size() - 1 != 0 && "Skip zero");
 
-            assert(IsValid(last_active_index,m_active));
-            assert(IsValid(m_active[last_active_index].GetNext(),m_active));
-            assert(last_active_index != 0 && "Skip zero");
-            assert(m_active[last_active_index].GetLast() != 0 && "Skip zero");
-            m_active[m_active[last_active_index].GetLast()].SetNext(chosen_index);
+          if (m_active[m_active.size() - 1].GetNext() > 0)
+          //if (m_active[last_active_index].GetNext() > 0)
+          {
+            assert(IsValid(m_active.size() - 1,m_active));
+            assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
+            assert(m_active.size() - 1 != 0 && "Skip zero");
+            assert(m_active[m_active.size() - 1].GetNext() != 0 && "Skip zero");
+
+            m_active[m_active[m_active.size() - 1].GetNext()].SetLast(chosen_index);
+            //m_active[m_active[last_active_index].GetNext()].SetLast(chosen_index);
+
+            assert(IsValid(m_active.size() - 1,m_active));
+            assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
+            assert(m_active.size() - 1 != 0 && "Skip zero");
+            assert(m_active[m_active.size() - 1].GetLast() != 0 && "Skip zero");
+            m_active[m_active[m_active.size() - 1].GetLast()].SetNext(chosen_index);
+            //m_active[m_active[last_active_index].GetLast()].SetNext(chosen_index);
           }
 
           assert(m_active.back().GetNext() == 0);

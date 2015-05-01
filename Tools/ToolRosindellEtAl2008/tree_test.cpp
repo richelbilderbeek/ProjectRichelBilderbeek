@@ -2,6 +2,7 @@
 #include "tree.h"
 
 #include <cassert>
+#include <iostream>
 
 #include "testtimer.h"
 
@@ -36,6 +37,9 @@ void Tree::Test() noexcept
     dispersal_kernel
   );
   assert(!tree.IsDone());
+  tree.DisplayActive(std::cout);
+  //tree.DisplayGrid(std::cout);
+  assert(!"DONE");
 }
 
 #endif

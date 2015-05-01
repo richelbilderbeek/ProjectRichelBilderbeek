@@ -1,6 +1,7 @@
 #include "treedatapoint.h"
 
 #include <cassert>
+#include <ostream>
 
 #include "tree.h"
 
@@ -110,3 +111,17 @@ bool operator==(const TreeDataPoint& lhs, const TreeDataPoint& rhs) noexcept
   ;
 }
 
+std::ostream& operator<<(std::ostream& os, const TreeDataPoint& point) noexcept
+{
+  os
+    << point.GetXpos() << " "
+    << point.GetYpos() << " "
+    << point.GetXindex() << " "
+    << point.GetYindex() << " "
+    << point.GetMpos() << " "
+    << point.GetNext() << " "
+    << point.GetLast() << " "
+    << point.GetProbability()
+  ;
+  return os;
+}

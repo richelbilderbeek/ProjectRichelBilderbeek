@@ -29,6 +29,9 @@ struct Tree
     const DispersalKernel dispersal_kernel
   );
 
+  void DisplayActive(std::ostream& os) const noexcept;
+  void DisplayGrid(std::ostream& os) const noexcept;
+
   double GetError() const noexcept;
 
   //this returns the midpoint between the maximum and minimum richness estimates

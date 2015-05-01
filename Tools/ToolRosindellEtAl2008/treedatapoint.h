@@ -1,6 +1,8 @@
 #ifndef TREEDATAPOINT_H
 #define TREEDATAPOINT_H
 
+#include <iosfwd>
+
 // this is a data object used in the routine for
 // calculating the coalescence tree
 // but does not form part of the output itself
@@ -64,6 +66,6 @@ private:
 };
 
 bool operator==(const TreeDataPoint& lhs, const TreeDataPoint& rhs) noexcept;
-
+std::ostream& operator<<(std::ostream& os, const TreeDataPoint& point) noexcept;
 
 #endif // TREEDATAPOINT_H
