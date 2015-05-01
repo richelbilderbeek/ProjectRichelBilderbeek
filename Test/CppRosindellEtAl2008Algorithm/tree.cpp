@@ -30,8 +30,7 @@ Tree::Tree(
   const double min_speciation_rate,
   const int dispersal_distance,
   const double tolerance,
-  const DispersalKernel dispersal_kernel,
-  const bool
+  const DispersalKernel dispersal_kernel
   )
   :
     m_active{CreateActive(area_width,area_length)},
@@ -45,6 +44,21 @@ Tree::Tree(
     m_rnd{rng},
     m_tolerance{tolerance}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
+  for (int i=1; ;++i)
+  {
+    Update();
+    if (i %
+        (area_width*area_length*250)
+      == 0
+    )
+    {
+      if (IsDone()) { break; }
+    }
+  }
 
 }
 

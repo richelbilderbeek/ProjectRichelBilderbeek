@@ -13,12 +13,14 @@
 #include <stdexcept>
 #include "simulation.h"
 #include "nrrand.h"
+#include "tree.h"
 
 int main(int argc, char **)
 {
   #ifndef NDEBUG
   Rng::Test();
   Simulation::Test();
+  //Tree::Test();
   #endif
 
   try

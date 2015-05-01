@@ -7,6 +7,9 @@
 #include <iterator>
 
 #include "fileio.h"
+#include "testtimer.h"
+#include "tree.h"
+
 void Simulation::Test() noexcept
 {
   {
@@ -14,6 +17,12 @@ void Simulation::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    ribi::fileio::FileIo();
+    Rng::Test();
+    Tree::Test();
+  }
+  const ribi::TestTimer test_timer(__func__,__FILE__,5.0);
   //Test some known runs
   {
     std::vector<double> specset;
@@ -92,7 +101,9 @@ void Simulation::Test() noexcept
       Rng::Type::rosindell,
       tasks_input_filename,
       speciation_input_filename,
-      results_output_filename
+      results_output_filename,
+      4,
+      true
     );
 
 

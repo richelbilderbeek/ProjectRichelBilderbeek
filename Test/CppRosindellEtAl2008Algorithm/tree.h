@@ -26,8 +26,7 @@ struct Tree
     const double min_speciation_rate,
     const int dispersal_distance,
     const double tolerance,
-    const DispersalKernel dispersal_kernel,
-    const bool verbose = false
+    const DispersalKernel dispersal_kernel
   );
 
   double GetError() const noexcept;
@@ -36,6 +35,10 @@ struct Tree
   double GetRichness(const double speciation_rate);
 
   bool IsDone() const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
   ///
   void Update();

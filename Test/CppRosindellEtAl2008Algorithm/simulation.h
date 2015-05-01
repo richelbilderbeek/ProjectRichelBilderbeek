@@ -22,12 +22,17 @@ struct Simulation
     const Rng::Type rng_type,
     const std::string& tasks_input_filename = "tasksfile.txt",
     const std::string& speciation_input_filename = "speciationrates.txt",
-    const std::string& result_output_filename = "resultsfile.txt"
+    const std::string& result_output_filename = "resultsfile.txt",
+    const int seed = 4,
+    const bool verbose = true
   ) : Simulation(
     ReadTasksFromFile(tasks_input_filename),
     ReadSpeciationRatesFromFile(speciation_input_filename),
     rng_type,
-    result_output_filename)
+    result_output_filename,
+    seed,
+    verbose
+  )
   {}
 
   ///Cleaner interface

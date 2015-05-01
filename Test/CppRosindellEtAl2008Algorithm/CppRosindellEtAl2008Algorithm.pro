@@ -15,7 +15,8 @@ SOURCES += \
     treenode.cpp \
     task_test.cpp \
     dispersalkernel.cpp \
-    rng_test.cpp
+    rng_test.cpp \
+    tree_test.cpp
 
 #QMAKE_CXXFLAGS += -std=c++1y # -Wall -Wextra -Werror
 
