@@ -5,14 +5,10 @@
 #include <numeric>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/units/systems/si/prefixes.hpp>
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/io.hpp>
 #include <boost/units/physical_dimensions/area.hpp>
-#pragma GCC diagnostic pop
 
 struct Distance
 {

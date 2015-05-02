@@ -128,7 +128,11 @@ QPlainTextEdit {
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="box_initial_organic_matter_density"/>
+       <widget class="QDoubleSpinBox" name="box_initial_organic_matter_density">
+        <property name="maximum">
+         <double>10000000.000000000000000</double>
+        </property>
+       </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_init_seagrass_density">
@@ -146,7 +150,7 @@ QPlainTextEdit {
          <double>0.000000000000000</double>
         </property>
         <property name="maximum">
-         <double>1.000000000000000</double>
+         <double>1000000.000000000000000</double>
         </property>
         <property name="singleStep">
          <double>0.100000000000000</double>
@@ -164,7 +168,11 @@ QPlainTextEdit {
        </widget>
       </item>
       <item row="5" column="1">
-       <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration"/>
+       <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration">
+        <property name="maximum">
+         <double>1000000.000000000000000</double>
+        </property>
+       </widget>
       </item>
       <item row="6" column="0">
        <widget class="QLabel" name="label_loripes_density">
@@ -236,7 +244,7 @@ QPlainTextEdit {
       <item row="9" column="1">
        <widget class="QDoubleSpinBox" name="box_seagrass_carrying_capacity">
         <property name="maximum">
-         <double>100.000000000000000</double>
+         <double>1000000.000000000000000</double>
         </property>
         <property name="value">
          <double>1.000000000000000</double>
@@ -323,6 +331,13 @@ QPlainTextEdit {
         </property>
         <property name="value">
          <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="0" colspan="2">
+       <widget class="QPushButton" name="button_fix_zoom">
+        <property name="text">
+         <string>&amp;Fix zoom</string>
         </property>
        </widget>
       </item>

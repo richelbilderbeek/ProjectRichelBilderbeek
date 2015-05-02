@@ -22,12 +22,16 @@ public:
 private slots:
   void Run();
 
+  void on_button_fix_zoom_clicked();
+
 private:
   Ui::QtDialog *ui;
 
   QwtPlotCurve * const m_curve_seagrass_density;
   QwtPlotCurve * const m_curve_sulfide_concentration;
   QwtPlotCurve * const m_curve_organic_matter_density;
+
+  void FixZoom();
 };
 
 #endif // QTDIALOG_H

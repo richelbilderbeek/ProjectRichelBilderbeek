@@ -1,16 +1,10 @@
 #include <iostream>
 #include <iomanip>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
-//#include <boost/units/base_units/angle/radian.hpp>
-//#include <boost/units/base_units/angle/degree.hpp>
 #include <boost/units/systems/angle/degrees.hpp>
- #include <boost/units/systems/si/plane_angle.hpp>
+#include <boost/units/systems/si/plane_angle.hpp>
 #include <boost/units/systems/si/io.hpp>
-#pragma GCC diagnostic pop
 
 int main()
 {

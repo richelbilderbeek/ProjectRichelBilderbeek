@@ -14,6 +14,7 @@ void Simulation::Run() noexcept
   const int n_timesteps{m_parameters.n_timesteps};
   const double t_end{static_cast<double>(n_timesteps)};
   const double delta_t{m_parameters.delta_t};
+  const int n_steps_per_time_unit{static_cast<int>(1.0 / m_parameters.delta_t)};
 
   const double b{m_parameters.organic_matter_to_sulfide_rate};
   const double c{m_parameters.sulfide_consumption_by_loripes_rate};
@@ -31,6 +32,7 @@ void Simulation::Run() noexcept
   double sulfide_concentration{m_parameters.initial_sulfide_concentration};
   double organic_matter_density{m_parameters.initial_organic_matter_density};
 
+  int i=0;
   for (double t=0.0; t<t_end; t+=delta_t)
   {
     const double n{seagrass_density};
@@ -61,9 +63,13 @@ void Simulation::Run() noexcept
       sulfide_concentration += (delta_s * delta_t);
 
     }
-    m_timeseries.push_back(static_cast<double>(t));
-    m_seagrass_densities.push_back(seagrass_density);
-    m_sulfide_concentrations.push_back(sulfide_concentration);
-    m_organic_matter_densities.push_back(organic_matter_density);
+    if (i % n_steps_per_time_unit)
+    {
+      m_timeseries.push_back(static_cast<double>(t));
+      m_seagrass_densities.push_back(seagrass_density);
+      m_sulfide_concentrations.push_back(sulfide_concentration);
+      m_organic_matter_densities.push_back(organic_matter_density);
+    }
+    ++i;
   }
 }

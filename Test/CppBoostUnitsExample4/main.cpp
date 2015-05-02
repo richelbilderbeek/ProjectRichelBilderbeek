@@ -2,14 +2,10 @@
 #include <iostream>
 #include <iomanip>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/units/systems/si/prefixes.hpp>
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/io.hpp>
 #include <boost/units/physical_dimensions/area.hpp>
-#pragma GCC diagnostic pop
 
 struct Length
 {
@@ -76,5 +72,6 @@ int main()
     << std::setprecision(20)
     << "Length: " << my_length << '\n'
     << "Width: "  << my_width << '\n'
-    << "Area: "   << my_area << '\n';
+    << "Area: "   << my_area << '\n'
+  ;
 }
