@@ -30,6 +30,7 @@ private:
 
   QwtPlotCurve * const m_curve_seagrass_density;
   QwtPlotCurve * const m_curve_sulfide_concentration;
+  QwtPlotCurve * const m_curve_oxygen_concentration;
 };
 
 #endif // QTDIALOG_H

@@ -6,21 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>946</width>
-    <height>501</height>
+    <width>816</width>
+    <height>731</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MutualBreakdowner</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #bbf, stop: 1 #fff);
+  border: 1px solid black
+}
+
+QSpinBox,QDoubleSpinBox,QComboBox { 
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #bbb, stop: 1 #fff);
+  border: 1px solid black
+}
+
+QPushButton
+{
+  color: #000;
+  background-color: qradialgradient(cx: 0.5, cy: 0.5,fx: 0.5, fy: 0.5,radius: 0.5, stop: 0 #fff, stop: 1 #aaa);
+  border: 1px solid black
+}
+
+QPlainTextEdit {
+  font: 18px bold &quot;Courier&quot; courier monospace
+}</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
-    <widget class="QwtPlot" name="plot_seagrass_density" native="true"/>
-   </item>
-   <item row="1" column="1">
-    <widget class="QwtPlot" name="plot_sulfide_concentration" native="true"/>
-   </item>
-   <item row="0" column="0" rowspan="2">
+   <item row="0" column="0">
     <widget class="QWidget" name="widget" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -29,6 +45,23 @@
       </sizepolicy>
      </property>
      <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>#timesteps</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="box_n_timesteps">
+        <property name="maximum">
+         <number>999999999</number>
+        </property>
+        <property name="value">
+         <number>2000</number>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_init_seagrass_density">
         <property name="text">
@@ -53,30 +86,13 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="label_initial_sulfide">
-        <property name="text">
-         <string>(S) Initial sulfide concentration (mol/liters)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration">
-        <property name="decimals">
-         <number>4</number>
-        </property>
-        <property name="maximum">
-         <double>100.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
        <widget class="QLabel" name="label_seagrass_growth_rate">
         <property name="text">
          <string>(rN) Seagrass growth rate</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
+      <item row="2" column="1">
        <widget class="QDoubleSpinBox" name="box_seagrass_growth_rate">
         <property name="decimals">
          <number>4</number>
@@ -92,10 +108,106 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="3" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
          <string>Seagrass senescense (0-1)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QDoubleSpinBox" name="box_seagrass_senescense">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.040000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Sulfide per seagrass (mol/density)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QDoubleSpinBox" name="box_sulfide_mol_per_seagrass_density">
+        <property name="maximum">
+         <double>100.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Sulfide toxicity (decline seagrass/mol)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QDoubleSpinBox" name="box_sulfide_toxicity">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>100.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.010000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>(alpha) oxygen inhibition strength</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QDoubleSpinBox" name="box_oxygen_inhibition_strength">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>100.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Oxygen production per seagrass density</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QDoubleSpinBox" name="box_oxygen_production">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.100000000000000</double>
         </property>
        </widget>
       </item>
@@ -133,88 +245,17 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QDoubleSpinBox" name="box_seagrass_senescense">
-        <property name="decimals">
-         <number>4</number>
-        </property>
-        <property name="maximum">
-         <double>1.000000000000000</double>
-        </property>
-        <property name="singleStep">
-         <double>0.100000000000000</double>
-        </property>
-        <property name="value">
-         <double>0.100000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Sulfide per seagrass (mol/density)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="QDoubleSpinBox" name="box_sulfide_mol_per_seagrass_density">
-        <property name="maximum">
-         <double>100.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>1.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>#timesteps</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QSpinBox" name="box_n_timesteps">
-        <property name="maximum">
-         <number>999999999</number>
-        </property>
-        <property name="value">
-         <number>2000</number>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>(alpha) oxygen inhibition strength</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QDoubleSpinBox" name="box_oxygen_inhibition_strength">
-        <property name="decimals">
-         <number>4</number>
-        </property>
-        <property name="maximum">
-         <double>100.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>1.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>(O) initial oxygen concentration</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="box_initial_oxygen_concentration"/>
-      </item>
      </layout>
     </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QwtPlot" name="plot_seagrass_density" native="true"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QwtPlot" name="plot_oxygen_concentration" native="true"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QwtPlot" name="plot_sulfide_concentration" native="true"/>
    </item>
   </layout>
  </widget>
@@ -230,12 +271,12 @@
  <tabstops>
   <tabstop>box_n_timesteps</tabstop>
   <tabstop>box_initial_seagrass_density</tabstop>
-  <tabstop>box_initial_sulfide_concentration</tabstop>
-  <tabstop>box_initial_oxygen_concentration</tabstop>
   <tabstop>box_seagrass_growth_rate</tabstop>
   <tabstop>box_seagrass_senescense</tabstop>
   <tabstop>box_sulfide_mol_per_seagrass_density</tabstop>
+  <tabstop>box_sulfide_toxicity</tabstop>
   <tabstop>box_oxygen_inhibition_strength</tabstop>
+  <tabstop>box_oxygen_production</tabstop>
   <tabstop>doubleSpinBox_4</tabstop>
   <tabstop>doubleSpinBox_5</tabstop>
  </tabstops>
