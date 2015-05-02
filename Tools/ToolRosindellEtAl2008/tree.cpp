@@ -93,14 +93,22 @@ Tree::GridType
   assert(width > 0);
   assert(height > 0);
   assert(!datapoints.empty());
-  const int sz
+  const int grid_size
     = sm_gridsize < width*2 ? width*2
     : (sm_gridsize < height*2 ? height*2 : sm_gridsize)
   ;
-  assert(sz > 0);
+  assert(grid_size > 0);
 
-  std::vector<std::vector<int>> v(sz,std::vector<int>(sz,0));
+  std::vector<std::vector<int>> v(grid_size,std::vector<int>(grid_size,0));
 
+  const int sz{static_cast<int>(datapoints.size())};
+  //Skip 0, 0 denotes 'no-one here'
+  for (int i=1; i!=sz; ++i)
+  {
+    const TreeDataPoint& p{datapoints[i]};
+    v[p.GetXpos()][p.GetYpos()] = i;
+  }
+  /*
   int i=0;
   for (int x = 0 ; x != width ; ++x)
   {
@@ -110,6 +118,7 @@ Tree::GridType
       v[x][y] = i; //Skip zero, as zero denotes 'no active node present'
     }
   }
+  */
   return v;
 }
 
