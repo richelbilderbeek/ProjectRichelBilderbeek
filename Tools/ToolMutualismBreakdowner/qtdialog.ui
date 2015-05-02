@@ -234,9 +234,6 @@ QPlainTextEdit {
    <item row="0" column="1">
     <widget class="QwtPlot" name="plot_seagrass_density" native="true"/>
    </item>
-   <item row="1" column="0">
-    <widget class="QwtPlot" name="plot_oxygen_concentration" native="true"/>
-   </item>
    <item row="1" column="1">
     <widget class="QwtPlot" name="plot_sulfide_concentration" native="true"/>
    </item>

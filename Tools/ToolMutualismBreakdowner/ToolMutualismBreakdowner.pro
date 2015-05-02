@@ -6,9 +6,14 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets concurrent opengl printsupport
 
 SOURCES += \
     main.cpp \
-    qtdialog.cpp
+    qtdialog.cpp \
+    simulation.cpp \
+    simulation_test.cpp \
+    parameters.cpp
 
-HEADERS  += qtdialog.h
+HEADERS  += qtdialog.h \
+    simulation.h \
+    parameters.h
 
 FORMS    += qtdialog.ui
 
