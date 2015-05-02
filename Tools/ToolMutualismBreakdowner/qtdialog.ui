@@ -81,7 +81,7 @@ QPlainTextEdit {
          <double>0.100000000000000</double>
         </property>
         <property name="value">
-         <double>0.100000000000000</double>
+         <double>1.000000000000000</double>
         </property>
        </widget>
       </item>
@@ -111,12 +111,12 @@ QPlainTextEdit {
       <item row="3" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Seagrass senescense (0-1)</string>
+         <string>Desiccation stress (0-1)</string>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="box_seagrass_senescense">
+       <widget class="QDoubleSpinBox" name="box_desiccation_stress">
         <property name="decimals">
          <number>4</number>
         </property>
@@ -228,23 +228,6 @@ QPlainTextEdit {
         </property>
        </widget>
       </item>
-      <item row="9" column="0">
-       <widget class="QLabel" name="label_desiccation_stress">
-        <property name="text">
-         <string>(d) Desiccation stress (0-1)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="1">
-       <widget class="QDoubleSpinBox" name="doubleSpinBox_5">
-        <property name="decimals">
-         <number>4</number>
-        </property>
-        <property name="maximum">
-         <double>1.000000000000000</double>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -272,13 +255,12 @@ QPlainTextEdit {
   <tabstop>box_n_timesteps</tabstop>
   <tabstop>box_initial_seagrass_density</tabstop>
   <tabstop>box_seagrass_growth_rate</tabstop>
-  <tabstop>box_seagrass_senescense</tabstop>
+  <tabstop>box_desiccation_stress</tabstop>
   <tabstop>box_sulfide_mol_per_seagrass_density</tabstop>
   <tabstop>box_sulfide_toxicity</tabstop>
   <tabstop>box_oxygen_inhibition_strength</tabstop>
   <tabstop>box_oxygen_production</tabstop>
   <tabstop>doubleSpinBox_4</tabstop>
-  <tabstop>doubleSpinBox_5</tabstop>
  </tabstops>
  <resources/>
  <connections/>

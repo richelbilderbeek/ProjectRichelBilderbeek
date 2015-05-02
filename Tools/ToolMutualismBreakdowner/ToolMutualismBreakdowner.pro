@@ -6,11 +6,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets concurrent opengl printsupport
 
 SOURCES += \
     main.cpp \
-    qtdialog.cpp \
-    alphabetafilter.cpp
+    qtdialog.cpp
 
-HEADERS  += qtdialog.h \
-    alphabetafilter.h
+HEADERS  += qtdialog.h
 
 FORMS    += qtdialog.ui
 

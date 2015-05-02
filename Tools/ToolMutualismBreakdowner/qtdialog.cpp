@@ -3,7 +3,6 @@
 #include "qwt_plot.h"
 #include "qwt_plot_curve.h"
 
-#include "alphabetafilter.h"
 #include "ui_qtdialog.h"
 
 #if QWT_VERSION >= 0x060100 || !WIN32
@@ -24,6 +23,7 @@ QtDialog::QtDialog(QWidget *parent) :
   ui->plot_oxygen_concentration->setTitle("Oxygen concentration");
 
   ui->plot_seagrass_density->setCanvasBackground(QColor(226,255,226));
+  ui->plot_seagrass_density->setAxisScale(QwtPlot::yLeft,0.0,1.0);
   ui->plot_sulfide_concentration->setCanvasBackground(QColor(255,226,226));
   ui->plot_oxygen_concentration->setCanvasBackground(QColor(226,226,255));
 
@@ -55,7 +55,7 @@ QtDialog::QtDialog(QWidget *parent) :
     this,SLOT(Run())
   );
   QObject::connect(
-    ui->box_seagrass_senescense,SIGNAL(valueChanged(double)),
+    ui->box_desiccation_stress,SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
   QObject::connect(
@@ -101,8 +101,8 @@ void QtDialog::Run()
   const double seagrass_growth_rate{
     ui->box_seagrass_growth_rate->value()
   };
-  const double seagrass_senescence{
-    ui->box_seagrass_senescense->value()
+  const double desiccation_stress{
+    ui->box_desiccation_stress->value()
   };
   const double sulfide_mol_per_seagrass_density{
     ui->box_sulfide_mol_per_seagrass_density->value()
@@ -132,7 +132,7 @@ void QtDialog::Run()
       const double r{seagrass_growth_rate};
       const double k{seagrass_carrying_capacity};
       const double n{seagrass_density};
-      const double m{seagrass_senescence};
+      const double m{desiccation_stress};
       const double t{sulfide_toxicity};
       const double s{sulfide_concentration};
       seagrass_density
@@ -144,7 +144,7 @@ void QtDialog::Run()
     {
       using std::exp;
       const double n{seagrass_density};
-      const double m{seagrass_senescence};
+      const double m{desiccation_stress};
       const double f{sulfide_mol_per_seagrass_density};
       const double a{oxygen_inhibition_strength};
       const double p{oxygen_production};
