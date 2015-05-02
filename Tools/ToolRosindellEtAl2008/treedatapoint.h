@@ -3,7 +3,11 @@
 
 #include <iosfwd>
 
-/// A TreeDataPoint allows for a high number of positions,
+/// Tracks a lineage in probability and space
+/// Probability: how likely is this lineage to exist?
+/// Space: the lineage goes through individuals in a two-dimensional space
+
+/// A Lineage allows for a high number of positions,
 /// by supply a position within a tile
 /// and a tile index
 

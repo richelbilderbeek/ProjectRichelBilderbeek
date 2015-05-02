@@ -332,43 +332,11 @@ void Tree::Update()
   const int from_x = chosen.GetXpos();
   const int from_y = chosen.GetYpos();
 
-  m_grid[from_x][from_y] = chosen.GetNext();
+  //Remove active indidual from old spot
+  int& grid_spot_from{m_grid[from_x][from_y]};
+  grid_spot_from = 0;
 
-  /*
-  int& from = m_grid[from_x][from_y];
-
-  // update grid to reflect new data
-  assert(from >= 0);
-  // if current individual is the only one in the space then it will hold
-  // 0 in its data for next and last and this will still be correct
-  // the next and last variables indicate the next and last in a ring
-  // the ring holds together every individual lineage in the same grid postion
-  // of course they would have different indexes and so be in different
-  // physical positions. The use of a ring in this way makes
-  // it really easy to check if two individuals coalesce
-  if (from > 0)
-  {
-    // then we have an individual to set its next and last variables correctly
-    if (from == chosen.GetLast() )
-    {
-      assert(from != 0 && "Skip zero");
-      assert(IsValid(from,m_active));
-      //The ring contained 2 individuals
-      m_active[from].SetLast(0);
-      m_active[from].SetNext(0);
-    }
-    else
-    {
-      //The ring contained 3 or more individuals
-      assert(IsValid(from,m_active));
-      assert(from != 0 && "Skip zero");
-      m_active[from].SetLast(chosen.GetLast());
-      assert(IsValid(chosen.GetLast(),m_active));
-      assert(chosen.GetLast() != 0 && "Skip zero");
-      m_active[chosen.GetLast()].SetNext(chosen.GetNext());
-    }
-  }
-  */
+  //?
   m_richness += m_min_speciation_rate*(chosen.GetProbability());
 
   //Do the move, also tracks that the lineage did not speciate
@@ -382,18 +350,19 @@ void Tree::Update()
   m_nodes[chosen.GetMpos()].IncSteps();
 
   //New position
-  const int active_x = chosen.GetXpos();
-  const int active_y = chosen.GetYpos();
-  assert(IsValid(active_x,active_y,m_grid));
+  const int to_x = chosen.GetXpos();
+  const int to_y = chosen.GetYpos();
+  assert(IsValid(to_x,to_y,m_grid));
 
-  int& grid_active{m_grid[active_x][active_y]};
+  int& grid_spot_to{m_grid[to_x][to_y]};
   //int& grid_active{m_grid[active_x][active_y].first};
 
   //If there an individual at the dispersed-to spot?
-  if (grid_active == 0)
+  if (grid_spot_to == 0)
   {
     //Just move the individual
-    grid_active = chosen_index;
+    grid_spot_from = 0;
+    grid_spot_to = chosen_index;
     //Nope, this timestep is done
     return;
   }
@@ -403,35 +372,34 @@ void Tree::Update()
   //Let these two coalesce
 
   // check around the ring for coalescence
-  const int start = grid_active; // starting here
+  //const int start = grid_spot_to; // starting here
   // this is how far around the loop we have got checking for coalescence
   // we start at "start" and then move around methodically
   // the loops usually contain 1 individual but we must allow code for any number
-  int current = start;
 
   ++m_enddata;
   m_nodes[m_enddata] = TreeNode(false);
   m_nodes[chosen.GetMpos()].SetParent(m_enddata);
 
-  assert(IsValid(current,m_active));
-  assert(IsValid(m_active[current].GetMpos(),m_nodes));
-  assert(current != 0 && "Skip zero");
-  m_nodes[m_active[current].GetMpos()].SetParent(m_enddata);
+  assert(IsValid(grid_spot_to,m_active));
+  assert(IsValid(m_active[grid_spot_to].GetMpos(),m_nodes));
+  assert(grid_spot_to != 0 && "Skip zero");
+  m_nodes[m_active[grid_spot_to].GetMpos()].SetParent(m_enddata);
 
   // update active
-  assert(IsValid(current,m_active));
-  assert(current != 0 && "Skip zero");
-  m_active[current].SetMpos(m_enddata);
+  assert(IsValid(grid_spot_to,m_active));
+  assert(grid_spot_to != 0 && "Skip zero");
+  m_active[grid_spot_to].SetMpos(m_enddata);
 
   const double probability{
     chosen.GetProbability()
-    + m_active[current].GetProbability()
+    + m_active[grid_spot_to].GetProbability()
     * (1.0-chosen.GetProbability())
   };
 
-  assert(IsValid(current,m_active));
-  assert(current != 0 && "Skip zero");
-  m_active[current].SetProbability(probability);
+  assert(IsValid(grid_spot_to,m_active));
+  assert(grid_spot_to != 0 && "Skip zero");
+  m_active[grid_spot_to].SetProbability(probability);
 
   assert(m_active.size() - 1 != 0 && "Skip zero");
   chosen = m_active[m_active.size() - 1];
@@ -444,7 +412,6 @@ void Tree::Update()
   assert(IsValid(newx,newy,m_grid));
 
   int& to = m_grid[newx][newy];
-  //int& to = m_grid[newx][newy].first;
 
   if (to == static_cast<int>(m_active.size()) - 1)
   {
@@ -454,7 +421,6 @@ void Tree::Update()
   assert(m_active.size() - 1 != 0 && "Skip zero");
 
   if (m_active[m_active.size() - 1].GetNext() > 0)
-  //if (m_active[last_active_index].GetNext() > 0)
   {
     assert(IsValid(m_active.size() - 1,m_active));
     assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
