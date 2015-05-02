@@ -39,11 +39,9 @@ QtDialog::QtDialog(QWidget *parent) :
     SIGNAL(valueChanged(int)),
     this,SLOT(Run())
   );
-  QObject::connect(    ui->box_initial_seagrass_density,
-    SIGNAL(valueChanged(double)),
-    this,SLOT(Run())
-  );
-  QObject::connect(    ui->box_loripes_density,
+  QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+  QObject::connect(ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+  QObject::connect(ui->box_loripes_density,
     SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
@@ -98,7 +96,7 @@ Parameters QtDialog::GetParameters() const noexcept
     ui->box_delta_t->value(),
     ui->box_desiccation_stress->value(),
     ui->box_initial_seagrass_density->value(),
-    0.0, //const double any_initial_sulfide_density,
+    ui->box_initial_sulfide_concentration->value(),
     ui->box_loripes_density->value(),
     ui->box_oxygen_production->value(),
     1.0, //any_seagrass_carrying_capacity,

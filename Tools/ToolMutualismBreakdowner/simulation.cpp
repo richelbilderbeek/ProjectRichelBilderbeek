@@ -17,7 +17,7 @@ void Simulation::Run() noexcept
 
   //Initialize sim
   double seagrass_density{m_parameters.initial_seagrass_density};
-  double sulfide_concentration{0.0};
+  double sulfide_concentration{m_parameters.initial_sulfide_concentration};
   for (double t=0.0; t<t_end; t+=delta_t)
   {
     m_timeseries.push_back(static_cast<double>(t));
@@ -31,7 +31,7 @@ void Simulation::Run() noexcept
       const double t{m_parameters.sulfide_toxicity};
       const double delta_n{
         r*n*(1.0-(n/k)) //Growth
-        - (t*s)
+        - (t*s*n)
         - (d*n)  //Desiccation stress
       };
       seagrass_density += (delta_n * delta_t);
@@ -48,7 +48,9 @@ void Simulation::Run() noexcept
       const double s{sulfide_concentration};
       const double t{m_parameters.sulfide_toxicity};
       const double delta_s{
-        f*t*s - f*d*n - c*l*p*n
+          f*t*s*n //Degradation of organic matter via toxicity
+        + f*d*n   //Degradation of organic matter via desiccation
+        - c*l*p*n //Consumption of sulfide by loripes
       };
       sulfide_concentration += (delta_s * delta_t);
 

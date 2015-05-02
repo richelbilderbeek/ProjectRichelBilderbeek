@@ -28,9 +28,11 @@ Parameters::Parameters(
     sulfide_toxicity{any_sulfide_toxicity},
     n_timesteps{any_n_timesteps}
 {
-  assert(initial_seagrass_density == 1.0);
-  assert(initial_sulfide_concentration == 0.0);
+  assert(initial_seagrass_density >= 0.0);
+  assert(initial_seagrass_density <= 1.0);
+  assert(initial_sulfide_concentration >= 0.0);
   assert(seagrass_growth_rate >= 0.0);
-  assert(seagrass_carrying_capacity == 1.0);
+  assert(seagrass_carrying_capacity >= 0.0);
+  assert(seagrass_carrying_capacity <= 1.0);
   assert(oxygen_production >= 0.0);
 }
