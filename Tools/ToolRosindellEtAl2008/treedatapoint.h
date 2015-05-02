@@ -3,12 +3,22 @@
 
 #include <iosfwd>
 
-// this is a data object used in the routine for
-// calculating the coalescence tree
-// but does not form part of the output itself
-// it is meant as a tool for performing the coalescence itself
-// this object includes all the mechanism required for the indexing system
-// indexing is what allows infinite areas to be simulated efficiently
+/// A TreeDataPoint allows for a high number of positions,
+/// by supply a position within a tile
+/// and a tile index
+
+/// For example, the spot marked X may have:
+/// PosX == 2, PosY == 1
+/// TileX == 42, TileY == 23
+///
+///  |     |
+/// -+-----+-
+///  |     |
+///  |  X  |
+///  |     |
+///  |     |
+/// -+-----+-
+///  |     |
 struct TreeDataPoint
 {
   TreeDataPoint(
@@ -21,8 +31,8 @@ struct TreeDataPoint
 
   int GetXpos() const noexcept { return m_xpos; }
   int GetYpos() const noexcept { return m_ypos; }
-  int GetXindex() const noexcept { return m_xindex; }
-  int GetYindex() const noexcept { return m_yindex; }
+  int GetTileX() const noexcept { return m_xindex; }
+  int GetTileY() const noexcept { return m_yindex; }
   int GetMpos() const noexcept { return m_mpos; }
   int GetNext() const noexcept { return m_next; }
   int GetLast() const noexcept { return m_last; }

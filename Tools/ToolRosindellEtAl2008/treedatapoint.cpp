@@ -29,8 +29,8 @@ TreeDataPoint::TreeDataPoint(
   :
   m_xpos{other.GetXpos()},
   m_ypos{other.GetYpos()},
-  m_xindex{other.GetXindex()},
-  m_yindex{other.GetYindex()},
+  m_xindex{other.GetTileX()},
+  m_yindex{other.GetTileY()},
   m_next{other.GetNext()},
   m_last{other.GetLast()},
   m_mpos{other.GetMpos()},
@@ -45,8 +45,8 @@ TreeDataPoint& TreeDataPoint::operator=(
 {
   this->m_xpos = other.GetXpos();
   this->m_ypos = other.GetYpos();
-  this->m_xindex = other.GetXindex();
-  this->m_yindex = other.GetYindex();
+  this->m_xindex = other.GetTileX();
+  this->m_yindex = other.GetTileY();
   this->m_next = other.GetNext();
   this->m_last = other.GetLast();
   this->m_mpos = other.GetMpos();
@@ -102,8 +102,8 @@ bool operator==(const TreeDataPoint& lhs, const TreeDataPoint& rhs) noexcept
   return
        lhs.GetXpos() == rhs.GetXpos()
     && lhs.GetYpos() == rhs.GetYpos()
-    && lhs.GetXindex() == rhs.GetXindex()
-    && lhs.GetYindex() == rhs.GetYindex()
+    && lhs.GetTileX() == rhs.GetTileX()
+    && lhs.GetTileY() == rhs.GetTileY()
     && lhs.GetMpos() == rhs.GetMpos()
     && lhs.GetNext() == rhs.GetNext()
     && lhs.GetLast() == rhs.GetLast()
@@ -116,8 +116,8 @@ std::ostream& operator<<(std::ostream& os, const TreeDataPoint& point) noexcept
   os
     << point.GetXpos() << " "
     << point.GetYpos() << " "
-    << point.GetXindex() << " "
-    << point.GetYindex() << " "
+    << point.GetTileX() << " "
+    << point.GetTileY() << " "
     << point.GetMpos() << " "
     << point.GetNext() << " "
     << point.GetLast() << " "
