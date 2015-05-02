@@ -45,6 +45,12 @@ QtDialog::QtDialog(QWidget *parent) :
     this,SLOT(Run())
   );
   QObject::connect(
+    ui->box_loripes_density,
+    SIGNAL(valueChanged(double)),
+    this,SLOT(Run())
+  );
+
+  QObject::connect(
     ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
@@ -58,10 +64,6 @@ QtDialog::QtDialog(QWidget *parent) :
   );
   QObject::connect(
     ui->box_sulfide_toxicity,SIGNAL(valueChanged(double)),
-    this,SLOT(Run())
-  );
-  QObject::connect(
-    ui->box_oxygen_inhibition_strength,SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
   QObject::connect(
@@ -80,18 +82,36 @@ QtDialog::~QtDialog()
 
 Parameters QtDialog::GetParameters() const noexcept
 {
-  return Parameters(
+  /*
+    const double any_desiccation_stress,
+    const double any_initial_seagrass_density,
+    const double any_initial_sulfide_density,
+    const double any_loripes_density,
+    const double any_oxygen_inhibition_strength,
+    const double any_oxygen_production,
+    const double any_seagrass_carrying_capacity,
+    const double any_seagrass_growth_rate,
+    const double any_sulfide_consumption_by_loripes,
+    const double any_sulfide_mol_per_seagrass_density,
+    const double any_sulfide_toxicity,
+    const int any_n_timesteps
+
+  */
+  Parameters p(
     ui->box_desiccation_stress->value(),
     ui->box_initial_seagrass_density->value(),
     0.0, //const double any_initial_sulfide_density,
-    ui->box_oxygen_inhibition_strength->value(),
+    ui->box_loripes_density->value(),
     ui->box_oxygen_production->value(),
     1.0, //any_seagrass_carrying_capacity,
     ui->box_seagrass_growth_rate->value(),
+    ui->box_sulfide_consumption_by_loripes->value(),
     ui->box_sulfide_mol_per_seagrass_density->value(),
     ui->box_sulfide_toxicity->value(),
     ui->box_n_timesteps->value()
   );
+
+  return p;
 }
 
 void QtDialog::Run()

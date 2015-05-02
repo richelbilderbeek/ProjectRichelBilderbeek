@@ -10,6 +10,7 @@ void Simulation::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  //
 }
 
 #endif

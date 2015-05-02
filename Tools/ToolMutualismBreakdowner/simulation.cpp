@@ -54,27 +54,31 @@ void Simulation::Run() noexcept
     m_timeseries.push_back(static_cast<double>(i));
     //Sim here
     {
-      const double r{m_parameters.seagrass_growth_rate};
+      const double d{m_parameters.desiccation_stress};
       const double k{m_parameters.seagrass_carrying_capacity};
       const double n{seagrass_density};
-      const double m{m_parameters.desiccation_stress};
-      const double t{m_parameters.sulfide_toxicity};
+      const double r{m_parameters.seagrass_growth_rate};
       const double s{sulfide_concentration};
+      const double t{m_parameters.sulfide_toxicity};
       seagrass_density
         += r*n*(1.0-(n/k)) //Growth
-        - (n*m) //Leaf loss
         - (t*s)
+        - (n*d) //Desiccation stress
       ;
     }
     {
       using std::exp;
-      const double n{seagrass_density};
-      const double m{m_parameters.desiccation_stress};
+      //const double a{m_parameters.oxygen_inhibition_strength};
+      const double c{m_parameters.sulfide_consumption_by_loripes};
+      const double d{m_parameters.desiccation_stress};
       const double f{m_parameters.sulfide_mol_per_seagrass_density};
-      const double a{m_parameters.oxygen_inhibition_strength};
+      const double l{m_parameters.loripes_density};
+      const double n{seagrass_density};
       const double p{m_parameters.oxygen_production};
+      const double s{sulfide_concentration};
+      const double t{m_parameters.sulfide_toxicity};
       sulfide_concentration
-        += (n*m*f*exp(-a*p*n))
+        += f*t*s - f*d*n - c*l*p*n
       ;
 
     }
