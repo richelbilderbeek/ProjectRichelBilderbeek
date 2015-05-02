@@ -404,6 +404,7 @@ void Tree::Update()
     //Nope, this timestep is done
     return;
   }
+
   //There is an individual at the dispersed-to-spot!
   //Let these two coalesce
 
@@ -414,99 +415,67 @@ void Tree::Update()
   // the loops usually contain 1 individual but we must allow code for any number
   int current = start;
 
+  ++m_enddata;
+  m_nodes[m_enddata] = TreeNode(false);
+  m_nodes[chosen.GetMpos()].SetParent(m_enddata);
+
+  assert(IsValid(current,m_active));
+  assert(IsValid(m_active[current].GetMpos(),m_nodes));
+  assert(current != 0 && "Skip zero");
+  m_nodes[m_active[current].GetMpos()].SetParent(m_enddata);
+
+  // update active
+  assert(IsValid(current,m_active));
+  assert(current != 0 && "Skip zero");
+  m_active[current].SetMpos(m_enddata);
+
+  const double probability{
+    chosen.GetProbability()
+    + m_active[current].GetProbability()
+    * (1.0-chosen.GetProbability())
+  };
+
+  assert(IsValid(current,m_active));
+  assert(current != 0 && "Skip zero");
+  m_active[current].SetProbability(probability);
+
+  assert(m_active.size() - 1 != 0 && "Skip zero");
+  chosen = m_active[m_active.size() - 1];
+
+
+  assert(m_active.size() - 1 != 0 && "Skip zero");
+  const int newx = m_active[m_active.size() - 1].GetXpos();
+  const int newy = m_active[m_active.size() - 1].GetYpos();
+
+  assert(IsValid(newx,newy,m_grid));
+
+  int& to = m_grid[newx][newy];
+  //int& to = m_grid[newx][newy].first;
+
+  if (to == static_cast<int>(m_active.size()) - 1)
   {
-    // we have coalescence
-    ++m_enddata;
-    m_nodes[m_enddata] = TreeNode(false);
+    to = chosen_index;
+  }
+  assert(IsValid(m_active.size() - 1,m_active));
+  assert(m_active.size() - 1 != 0 && "Skip zero");
 
-    m_nodes[chosen.GetMpos()].SetParent(m_enddata);
-
-    assert(IsValid(current,m_active));
-    assert(IsValid(m_active[current].GetMpos(),m_nodes));
-    assert(current != 0 && "Skip zero");
-    m_nodes[m_active[current].GetMpos()].SetParent(m_enddata);
-
-    // update active
-    assert(IsValid(current,m_active));
-    assert(current != 0 && "Skip zero");
-    m_active[current].SetMpos(m_enddata);
-
-    const double probability{
-      chosen.GetProbability()
-      + m_active[current].GetProbability()
-      * (1.0-chosen.GetProbability())
-    };
-
-    assert(IsValid(current,m_active));
-    assert(current != 0 && "Skip zero");
-    m_active[current].SetProbability(probability);
-
-    assert(m_active.size() - 1 != 0 && "Skip zero");
-    chosen = m_active[m_active.size() - 1];
-
-
-    assert(m_active.size() - 1 != 0 && "Skip zero");
-    const int newx = m_active[m_active.size() - 1].GetXpos();
-    const int newy = m_active[m_active.size() - 1].GetYpos();
-
-    assert(IsValid(newx,newy,m_grid));
-
-    int& to = m_grid[newx][newy];
-    //int& to = m_grid[newx][newy].first;
-
-    if (to == static_cast<int>(m_active.size()) - 1)
-    {
-      to = chosen_index;
-    }
+  if (m_active[m_active.size() - 1].GetNext() > 0)
+  //if (m_active[last_active_index].GetNext() > 0)
+  {
     assert(IsValid(m_active.size() - 1,m_active));
+    assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
     assert(m_active.size() - 1 != 0 && "Skip zero");
+    assert(m_active[m_active.size() - 1].GetNext() != 0 && "Skip zero");
 
-    if (m_active[m_active.size() - 1].GetNext() > 0)
-    //if (m_active[last_active_index].GetNext() > 0)
-    {
-      assert(IsValid(m_active.size() - 1,m_active));
-      assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
-      assert(m_active.size() - 1 != 0 && "Skip zero");
-      assert(m_active[m_active.size() - 1].GetNext() != 0 && "Skip zero");
+    m_active[m_active[m_active.size() - 1].GetNext()].SetLast(chosen_index);
+    //m_active[m_active[last_active_index].GetNext()].SetLast(chosen_index);
 
-      m_active[m_active[m_active.size() - 1].GetNext()].SetLast(chosen_index);
-      //m_active[m_active[last_active_index].GetNext()].SetLast(chosen_index);
-
-      assert(IsValid(m_active.size() - 1,m_active));
-      assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
-      assert(m_active.size() - 1 != 0 && "Skip zero");
-      assert(m_active[m_active.size() - 1].GetLast() != 0 && "Skip zero");
-      m_active[m_active[m_active.size() - 1].GetLast()].SetNext(chosen_index);
-      //m_active[m_active[last_active_index].GetLast()].SetNext(chosen_index);
-    }
-
-    m_active.pop_back();
-    return;
+    assert(IsValid(m_active.size() - 1,m_active));
+    assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
+    assert(m_active.size() - 1 != 0 && "Skip zero");
+    assert(m_active[m_active.size() - 1].GetLast() != 0 && "Skip zero");
+    m_active[m_active[m_active.size() - 1].GetLast()].SetNext(chosen_index);
+    //m_active[m_active[last_active_index].GetLast()].SetNext(chosen_index);
   }
-  return;
-  /*
-  {
-    // move to the next place in the loop ready for another check
-    assert(current != 0 && "Skip zero");
-    current = m_active[current].GetNext();
-
-    assert(current != 0);
-    assert(current == start);
-
-    // we have made one complete check of the loop and found
-    // there was no coalescence but we still have to add the new position in
-    assert(IsValid(grid_active,m_active));
-    const int addlast = m_active[grid_active].GetLast();
-    assert(IsValid(addlast,m_active));
-    assert(addlast != 0 && "Skip zero");
-    m_active[addlast].SetNext(chosen_index);
-    assert(IsValid(chosen_index,m_active));
-    chosen.SetLast(addlast);
-    chosen.SetNext(grid_active);
-    assert(IsValid(grid_active,m_active));
-    assert(grid_active != 0 && "Skip zero");
-    m_active[grid_active].SetLast(chosen_index);
-    return;
-  }
-  */
+  m_active.pop_back();
 }
