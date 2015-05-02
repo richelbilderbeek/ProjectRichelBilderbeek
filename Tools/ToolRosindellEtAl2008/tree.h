@@ -17,6 +17,8 @@
 // use that object to do all their calculations
 struct Tree
 {
+  using GridType = std::vector<std::vector<int>>;
+
   // area_width = width of survey area (in number of trees)
   // area_length = length of survey area (in number of trees)
   // min_speciation_rate = smallest speciation rate required
@@ -69,7 +71,7 @@ private:
   // grid - this is an internal variable
   // this is necessary for calculations - initialise it as all zeros
   // it will store integers that refer to places in datapoint array "active"
-  std::vector<std::vector<int>> m_grid;
+  GridType m_grid;
   Grid m_grid_too;
 
   // when producing a coalescence tree, we do so with a minimal speciation rate
@@ -88,8 +90,11 @@ private:
 
   static std::vector<TreeDataPoint> CreateActive(const int area_width, const int area_length);
 
-  static std::vector<std::vector<int>>
-    CreateGrid(const int area_width, const int area_length
+  static GridType
+    CreateGrid(
+      const int area_width,
+      const int area_length,
+      std::vector<TreeDataPoint>& datapoints
   );
 
   ///Where will the next position be?

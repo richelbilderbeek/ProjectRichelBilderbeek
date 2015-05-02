@@ -40,7 +40,7 @@ Tree::Tree(
     m_dispersal_distance{dispersal_distance},
     m_dispersal_kernel{dispersal_kernel},
     m_enddata{area_width * area_length},
-    m_grid{CreateGrid(area_width,area_length)},
+    m_grid{},
     m_min_speciation_rate{min_speciation_rate},
     m_nodes{std::vector<TreeNode>(2*area_width*area_length+1,TreeNode(true))},
     m_richness{0.0},
@@ -60,6 +60,7 @@ Tree::Tree(
   {
     throw std::logic_error("Tree::Tree: dispersal distance must be positive");
   }
+  m_grid = CreateGrid(area_width,area_length,m_active);
   m_grid_too = Grid(area_width,area_length,m_active);
 }
 
@@ -82,27 +83,28 @@ std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int ar
   return v;
 }
 
-std::vector<std::vector<int>>
-  Tree::CreateGrid(const int area_width, const int area_length
+Tree::GridType
+  Tree::CreateGrid(
+    const int width,
+    const int height,
+    std::vector<TreeDataPoint>& datapoints
 )
 {
-  assert(area_width > 0);
-  assert(area_length > 0);
-
+  assert(width > 0);
+  assert(height > 0);
+  assert(!datapoints.empty());
   const int sz
-    = sm_gridsize < area_width*2 ? area_width*2
-    : (sm_gridsize < area_length*2 ? area_length*2 : sm_gridsize)
+    = sm_gridsize < width*2 ? width*2
+    : (sm_gridsize < height*2 ? height*2 : sm_gridsize)
   ;
   assert(sz > 0);
 
-  //FAILS std::vector<std::vector<int>> v(area_width,std::vector<int>(area_length,0));
-  //FAILS std::vector<std::vector<int>> v(area_width * 2,std::vector<int>(area_length * 2,0));
   std::vector<std::vector<int>> v(sz,std::vector<int>(sz,0));
 
   int i=0;
-  for (int x = 0 ; x != area_width ; ++x)
+  for (int x = 0 ; x != width ; ++x)
   {
-    for (int y = 0 ; y != area_length ; ++y)
+    for (int y = 0 ; y != height ; ++y)
     {
       ++i;
       v[x][y] = i; //Skip zero, as zero denotes 'no active node present'
