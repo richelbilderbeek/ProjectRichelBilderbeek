@@ -29,6 +29,11 @@ QtDialog::QtDialog(QWidget *parent) :
   m_curve_sulfide_concentration->setPen(QPen(QColor(255,0,0)));
 
   QObject::connect(
+    ui->box_n_timesteps,
+    SIGNAL(valueChanged(int)),
+    this,SLOT(Run())
+  );
+  QObject::connect(
     ui->box_initial_seagrass_density,
     SIGNAL(valueChanged(double)),
     this,SLOT(Run())
@@ -41,6 +46,14 @@ QtDialog::QtDialog(QWidget *parent) :
     ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
+  QObject::connect(
+    ui->box_seagrass_senescense,SIGNAL(valueChanged(double)),
+    this,SLOT(Run())
+  );
+  QObject::connect(
+    ui->box_sulfide_mol_per_seagrass_density,SIGNAL(valueChanged(double)),
+    this,SLOT(Run())
+  );
   Run();
 }
 
@@ -51,7 +64,9 @@ QtDialog::~QtDialog()
 
 void QtDialog::Run()
 {
-  const int timesteps{100};
+  const int n_timesteps{
+    ui->box_n_timesteps->value()
+  };
   std::vector<double> seagrass_densities;
   std::vector<double> sulfide_concentrations;
   std::vector<double> timeseries;
@@ -66,11 +81,17 @@ void QtDialog::Run()
   const double seagrass_growth_rate{
     ui->box_seagrass_growth_rate->value()
   };
+  const double seagrass_senescence{
+    ui->box_seagrass_senescense->value()
+  };
+  const double sulfide_mol_per_seagrass_density{
+    ui->box_sulfide_mol_per_seagrass_density->value()
+  };
 
   //Initialize sim
   double seagrass_density{initial_seagrass_density};
   double sulfide_concentration{initial_sulfide_concentration};
-  for (int i=0; i!=timesteps; ++i)
+  for (int i=0; i!=n_timesteps; ++i)
   {
     timeseries.push_back(static_cast<double>(i));
     //Sim here
@@ -78,10 +99,21 @@ void QtDialog::Run()
       const double r{seagrass_growth_rate};
       const double k{seagrass_carrying_capacity};
       const double n{seagrass_density};
-      seagrass_density += r*n*(1.0-(n/k));
+      const double m{seagrass_senescence};
+      seagrass_density
+        += r*n*(1.0-(n/k)) //Growth
+        - (n*m) //Leaf loss
+      ;
     }
+    {
+      const double n{seagrass_density};
+      const double m{seagrass_senescence};
+      const double f{sulfide_mol_per_seagrass_density};
 
-    sulfide_concentration += std::sin(static_cast<double>(i));
+      sulfide_concentration
+        += (n*m*f)
+      ;
+    }
 
     seagrass_densities.push_back(seagrass_density);
     sulfide_concentrations.push_back(sulfide_concentration);
