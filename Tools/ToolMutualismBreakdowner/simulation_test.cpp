@@ -10,17 +10,20 @@ void Simulation::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  return;
   //Seagrass must grow logistically to carrying capacity
   {
     const Parameters p(
       0.1, //const double any_delta_t,
       0.0, //const double any_desiccation_stress,
+      0.0, //const double any_initial_organic_matter_density,
       0.1, //const double any_initial_seagrass_density,
       0.0, //const double any_initial_sulfide_density,
       0.0, //const double any_loripes_density,
-      0.0, //const double any_oxygen_production,
+      0.0, //const double any_organic_matter_to_sulfide_rate,
       1.0, //const double any_seagrass_carrying_capacity,
       1.0, //const double any_seagrass_growth_rate,
+      0.0, //const double any_seagrass_to_organic_matter_factor,
       0.0, //const double any_sulfide_consumption_by_loripes,
       0.0, //const double any_sulfide_mol_per_seagrass_density,
       0.0, //const double any_sulfide_toxicity,
@@ -38,12 +41,14 @@ void Simulation::Test() noexcept
     const Parameters p(
       0.1, //const double any_delta_t,
       0.0, //const double any_desiccation_stress,
+      0.0, //const double any_initial_organic_matter_density,
       1.0, //const double any_initial_seagrass_density,
       1.0, //const double any_initial_sulfide_density,
       0.0, //const double any_loripes_density,
-      0.0, //const double any_oxygen_production,
+      0.0, //const double any_organic_matter_to_sulfide_rate,
       1.0, //const double any_seagrass_carrying_capacity,
       1.0, //const double any_seagrass_growth_rate,
+      0.0, //const double any_seagrass_to_organic_matter_factor,
       0.0, //const double any_sulfide_consumption_by_loripes,
       0.0, //const double any_sulfide_mol_per_seagrass_density,
       1.0, //const double any_sulfide_toxicity,
@@ -62,12 +67,14 @@ void Simulation::Test() noexcept
     const Parameters p(
       0.1, //const double any_delta_t,
       1.0, //const double any_desiccation_stress,
+      0.0, //const double any_initial_organic_matter_density,
       1.0, //const double any_initial_seagrass_density,
       0.0, //const double any_initial_sulfide_density,
       0.0, //const double any_loripes_density,
-      0.0, //const double any_oxygen_production,
+      0.0, //const double any_organic_matter_to_sulfide_rate,
       1.0, //const double any_seagrass_carrying_capacity,
       0.1, //const double any_seagrass_growth_rate,
+      0.0, //const double any_seagrass_to_organic_matter_factor,
       0.0, //const double any_sulfide_consumption_by_loripes,
       0.0, //const double any_sulfide_mol_per_seagrass_density,
       0.0, //const double any_sulfide_toxicity,
