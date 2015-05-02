@@ -328,18 +328,14 @@ void Tree::Update()
   assert(IsValid(chosen_index,m_active));
   TreeDataPoint& chosen = m_active[chosen_index];
 
-  //Note: there is no speciation included in this part of the program
-
-  // record old position of lineage
   assert(IsValid(chosen_index,m_active));
   const int from_x = chosen.GetXpos();
   const int from_y = chosen.GetYpos();
 
   m_grid[from_x][from_y] = chosen.GetNext();
-  //m_grid[from_x][from_y].first = chosen.GetNext();
 
+  /*
   int& from = m_grid[from_x][from_y];
-  //int& from = m_grid[from_x][from_y].first;
 
   // update grid to reflect new data
   assert(from >= 0);
@@ -372,13 +368,10 @@ void Tree::Update()
       m_active[chosen.GetLast()].SetNext(chosen.GetNext());
     }
   }
-
-  //Done purging the grid of the old position of our chosen lineage
-  chosen.SetNext(0);
-  chosen.SetLast(0);
+  */
   m_richness += m_min_speciation_rate*(chosen.GetProbability());
 
-  //Do the move
+  //Do the move, also tracks that the lineage did not speciate
   const std::pair<int,int> move{GetMove(m_dispersal_kernel,m_rnd,m_dispersal_distance)};
   chosen.Move(
     move.first,move.second,
@@ -405,7 +398,8 @@ void Tree::Update()
     return;
   }
 
-  //There is an individual at the dispersed-to-spot!
+  //There is an individual at the dispersed-to-spot
+
   //Let these two coalesce
 
   // check around the ring for coalescence

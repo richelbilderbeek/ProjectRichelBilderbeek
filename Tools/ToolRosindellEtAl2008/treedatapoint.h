@@ -33,21 +33,21 @@ struct TreeDataPoint
   int GetYpos() const noexcept { return m_ypos; }
   int GetTileX() const noexcept { return m_xindex; }
   int GetTileY() const noexcept { return m_yindex; }
+  int GetLast() const noexcept { return m_last; }
   int GetMpos() const noexcept { return m_mpos; }
   int GetNext() const noexcept { return m_next; }
-  int GetLast() const noexcept { return m_last; }
   double GetProbability() const noexcept { return m_probability; }
 
-  void SetPos(const int xpos, const int ypos) noexcept { m_xpos = xpos; m_ypos = ypos; }
   void SetIndex(const int x, const int y) noexcept { m_xindex = x; m_yindex = y; }
-  void SetMpos(const int mpos) noexcept { m_mpos = mpos; }
   void SetNext(const int next) noexcept { m_next = next; }
   void SetLast(const int last) noexcept { m_last = last; }
+  void SetMpos(const int mpos) noexcept { m_mpos = mpos; }
+  void SetPos(const int xpos, const int ypos) noexcept { m_xpos = xpos; m_ypos = ypos; }
   void SetProbability(const double probability) { m_probability = probability; }
   // checks for coalescence with another datapoint
   // update the position of this datapoint
   // this implements the indexing system
-  void Move(const int x, const int y, const double z);
+  void Move(const int dx, const int dy, const double p);
 private:
   int m_xpos;
   int m_ypos;

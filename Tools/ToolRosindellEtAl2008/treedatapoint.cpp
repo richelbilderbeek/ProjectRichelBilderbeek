@@ -57,13 +57,13 @@ TreeDataPoint& TreeDataPoint::operator=(
 // update the position of this datapoint
 // this implements the indexing system
 void TreeDataPoint::Move(
-  const int x,
-  const int y,
-  const double z
+  const int dx,
+  const int dy,
+  const double p
 )
 {
-  int newxpos = m_xpos + x;
-  int newypos = m_ypos + y;
+  int newxpos = m_xpos + dx;
+  int newypos = m_ypos + dy;
   while (newxpos < 0)
   {
     newxpos += sm_gridsize;
@@ -86,8 +86,8 @@ void TreeDataPoint::Move(
   }
   m_xpos = newxpos;
   m_ypos = newypos;
-  // update prob using z = minspec
-  m_probability = m_probability*(1.0-z);
+  //1.0-p : chance not to speciate
+  m_probability = m_probability*(1.0-p);
 
   assert(m_xpos >= 0);
   assert(m_xpos < sm_gridsize);
