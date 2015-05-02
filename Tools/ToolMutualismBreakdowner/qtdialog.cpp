@@ -1,13 +1,14 @@
 #include "qtdialog.h"
 
+#include <QDesktopWidget>
+
 #include <qwt_plot_zoomer.h>
 #include <qwt_plot_grid.h>
+#include <qwt_plot.h>
+#include <qwt_plot_curve.h>
 
-#include "qwt_plot.h"
-#include "qwt_plot_curve.h"
 #include"simulation.h"
 #include "ui_qtdialog.h"
-
 
 #if QWT_VERSION >= 0x060100 || !WIN32
 #include "qwt_point_data.h"
@@ -73,6 +74,13 @@ QtDialog::QtDialog(QWidget *parent) :
   QObject::connect(ui->box_sulfide_toxicity,SIGNAL(valueChanged(double)),this,SLOT(Run()));
 
   Run();
+
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,screen.width() * 8 / 10,screen.height() * 8 / 10);
+    this->move( screen.center() - this->rect().center() );
+  }
 }
 
 QtDialog::~QtDialog()
