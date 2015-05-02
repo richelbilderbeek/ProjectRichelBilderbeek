@@ -122,14 +122,21 @@ Tree::Grid
 
 void Tree::DisplayActive(std::ostream& os) const noexcept
 {
+  const std::string seperator{" | "};
+  std::ostringstream s;
+
   std::copy(
     std::begin(m_active) + 1,
     std::end(m_active),
-    std::ostream_iterator<TreeDataPoint>(os," - ")
+    std::ostream_iterator<TreeDataPoint>(s,seperator.c_str())
   );
+
+  std::string text{
+    s.str().substr(0,s.str().size() - seperator.size())
+  };
+  os << text;
 }
 
-/*
 void Tree::DisplayGrid(std::ostream& os) const noexcept
 {
 
@@ -143,7 +150,6 @@ void Tree::DisplayGrid(std::ostream& os) const noexcept
     os << '\n';
   }
 }
-*/
 
 
 double Tree::GetError(

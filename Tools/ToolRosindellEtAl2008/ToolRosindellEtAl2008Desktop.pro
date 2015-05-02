@@ -1,10 +1,10 @@
 include(../../Libraries/BoostAll.pri)
 include(../../Libraries/GeneralConsole.pri)
-include(../../ConsoleApplicationNoWeffcpp.pri)
+include(../../DesktopApplicationNoWeffcpp.pri)
 
 include(ToolRosindellEtAl2008Console.pri)
 
-SOURCES += main.cpp \
+SOURCES += qtmain.cpp \
     qttree.cpp
 
 FORMS += \
