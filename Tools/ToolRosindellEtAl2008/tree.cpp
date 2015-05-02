@@ -410,6 +410,7 @@ void Tree::Update()
   const int newx = chosen.GetXpos();
   const int newy = chosen.GetYpos();
 
+
   assert(IsValid(newx,newy,m_grid));
 
   int& to = m_grid[newx][newy];
@@ -420,21 +421,17 @@ void Tree::Update()
   }
 
   if (chosen.GetNext() > 0)
-  //if (m_active[m_active.size() - 1].GetNext() > 0)
   {
-    assert(IsValid(m_active.size() - 1,m_active));
-    assert(IsValid(m_active[m_active.size() - 1].GetNext(),m_active));
+    assert(IsValid(chosen.GetNext(),m_active));
     assert(m_active.size() - 1 != 0 && "Skip zero");
-    assert(m_active[m_active.size() - 1].GetNext() != 0 && "Skip zero");
+    assert(chosen.GetNext() != 0 && "Skip zero");
 
-    //m_active[m_active[m_active.size() - 1].GetNext()].SetLast(chosen_index);
     m_active[chosen.GetNext()].SetLast(chosen_index);
 
     assert(IsValid(chosen.GetNext(),m_active));
     assert(m_active.size() - 1 != 0 && "Skip zero");
     assert(chosen.GetLast() != 0 && "Skip zero");
     m_active[chosen.GetLast()].SetNext(chosen_index);
-    //m_active[m_active[m_active.size() - 1].GetLast()].SetNext(chosen_index);
   }
   m_active.pop_back();
 }
