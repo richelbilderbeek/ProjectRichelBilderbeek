@@ -5,6 +5,7 @@
 #include <iostream>
 #include <boost/numeric/conversion/cast.hpp>
 
+#include "grid.h"
 #include "treedatapoint.h"
 #include "treenode.h"
 #include "trace.h"
@@ -34,6 +35,8 @@ Tree::Tree(
   )
   :
     m_active{CreateActive(area_width,area_length)},
+    m_area_width{area_width},
+    m_area_length{area_length},
     m_dispersal_distance{dispersal_distance},
     m_dispersal_kernel{dispersal_kernel},
     m_enddata{area_width * area_length},
@@ -44,9 +47,11 @@ Tree::Tree(
     m_rnd{rng},
     m_tolerance{tolerance}
 {
+
   #ifndef NDEBUG
   Test();
   #endif
+
   if (m_dispersal_distance == 0)
   {
     throw std::logic_error("Tree::Tree: dispersal distance must be non-zero");
@@ -99,7 +104,7 @@ std::vector<std::vector<int>>
     for (int y = 0 ; y != area_length ; ++y)
     {
       ++i;
-      v[x][y] = i;
+      v[x][y] = i; //Skip zero, as zero denotes 'no active node present'
     }
   }
   return v;
@@ -108,14 +113,16 @@ std::vector<std::vector<int>>
 void Tree::DisplayActive(std::ostream& os) const noexcept
 {
   std::copy(
-    std::begin(m_active),
+    std::begin(m_active) + 1,
     std::end(m_active),
     std::ostream_iterator<TreeDataPoint>(os," - ")
   );
 }
 
+/*
 void Tree::DisplayGrid(std::ostream& os) const noexcept
 {
+
   for (const auto line: m_grid)
   {
     std::copy(
@@ -126,7 +133,7 @@ void Tree::DisplayGrid(std::ostream& os) const noexcept
     os << '\n';
   }
 }
-
+*/
 
 
 double Tree::GetError(
@@ -311,8 +318,18 @@ void Tree::Update()
   assert(IsValid(chosen_index,m_active));
   const int from_x = chosen.GetXpos();
   const int from_y = chosen.GetYpos();
-  assert(IsValid(from_x,from_y,m_grid));
+
+  //Grid grid(m_area_width,m_area_length,m_active);
+  //assert(IsValid(from_x,from_y,m_grid));
+  //const TreeDataPoint * const from{
+  //  grid.Find(from_x,from_y)
+  //};
   int& from = m_grid[from_x][from_y];
+  assert(from == chosen_index);
+
+  //TreeDataPoint * const from_too = m_grid_too[from_x][from_y];
+  //assert(*from_too == m_active[chosen_index]);
+
   // update grid to reflect new data
   from = chosen.GetNext();
   assert(from >= 0);
@@ -367,7 +384,7 @@ void Tree::Update()
   assert(IsValid(active_x,active_y,m_grid));
   int& grid_active{m_grid[active_x][active_y]};
   // check for coalescence
-  if (grid_active == 0)
+  if (grid_active == 0) //No other individual there
   {
     // no coalescence possible
     grid_active = chosen_index;
@@ -514,5 +531,4 @@ void Tree::Update()
       }
     }
   }
-
 }

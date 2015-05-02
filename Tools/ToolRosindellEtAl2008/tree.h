@@ -30,7 +30,7 @@ struct Tree
   );
 
   void DisplayActive(std::ostream& os) const noexcept;
-  void DisplayGrid(std::ostream& os) const noexcept;
+  //void DisplayGrid(std::ostream& os) const noexcept;
 
   const std::vector<TreeDataPoint>& GetActive() const noexcept { return m_active; }
 
@@ -54,6 +54,9 @@ private:
   // there can only be a maximum of twice as many nodes as there are
   // initially free branches so we can set the size of our data object
   std::vector<TreeDataPoint> m_active;
+
+  const int m_area_width;
+  const int m_area_length;
 
   const int m_dispersal_distance;
   const DispersalKernel m_dispersal_kernel;
@@ -86,7 +89,6 @@ private:
   static std::vector<std::vector<int>>
     CreateGrid(const int area_width, const int area_length
   );
-
 
   ///Where will the next position be?
   static std::pair<int,int> GetMove(

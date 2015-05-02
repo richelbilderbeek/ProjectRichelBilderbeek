@@ -4,4 +4,8 @@ include(../../ConsoleApplicationNoWeffcpp.pri)
 
 include(ToolRosindellEtAl2008Console.pri)
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    grid.cpp
+
+HEADERS += \
+    grid.h
