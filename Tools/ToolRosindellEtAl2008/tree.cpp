@@ -413,10 +413,17 @@ void Tree::Update()
   // we start at "start" and then move around methodically
   // the loops usually contain 1 individual but we must allow code for any number
   int current = start;
-  while(1)
+  //while(1)
   {
+    /*
     assert(IsValid(current,m_active));
     assert(current != 0 && "Skip zero");
+    assert(chosen.GetXpos() == m_active[current].GetXpos()
+      && chosen.GetYpos() == m_active[current].GetYpos()
+      && chosen.GetTileX() == m_active[current].GetTileX()
+      && chosen.GetTileY() == m_active[current].GetTileY()
+    );
+
     //First check positions in the gridtile, as these vary more
     if (
          chosen.GetXpos() == m_active[current].GetXpos()
@@ -424,6 +431,7 @@ void Tree::Update()
       && chosen.GetTileX() == m_active[current].GetTileX()
       && chosen.GetTileY() == m_active[current].GetTileY()
     )
+    */
     {
       // we have coalescence
       ++m_enddata;
