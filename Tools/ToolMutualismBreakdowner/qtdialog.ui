@@ -247,7 +247,10 @@ QPlainTextEdit {
       <item row="1" column="1">
        <widget class="QDoubleSpinBox" name="box_delta_t">
         <property name="decimals">
-         <number>4</number>
+         <number>6</number>
+        </property>
+        <property name="minimum">
+         <double>0.000001000000000</double>
         </property>
         <property name="maximum">
          <double>1.000000000000000</double>
@@ -256,7 +259,7 @@ QPlainTextEdit {
          <double>0.001000000000000</double>
         </property>
         <property name="value">
-         <double>0.100000000000000</double>
+         <double>0.001000000000000</double>
         </property>
        </widget>
       </item>
