@@ -35,37 +35,16 @@ QtDialog::QtDialog(QWidget *parent) :
   m_curve_sulfide_concentration->setPen(QPen(QColor(255,0,0)));
 
   QObject::connect(ui->box_delta_t,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(    ui->box_n_timesteps,
-    SIGNAL(valueChanged(int)),
-    this,SLOT(Run())
-  );
+  QObject::connect(ui->box_desiccation_stress,SIGNAL(valueChanged(double)),this,SLOT(Run()));
   QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(Run()));
   QObject::connect(ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_loripes_density,
-    SIGNAL(valueChanged(double)),
-    this,SLOT(Run())
-  );
-
-  QObject::connect(
-    ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),
-    this,SLOT(Run())
-  );
-  QObject::connect(ui->box_desiccation_stress,SIGNAL(valueChanged(double)),
-    this,SLOT(Run())
-  );
-  QObject::connect(
-    ui->box_sulfide_mol_per_seagrass_density,SIGNAL(valueChanged(double)),
-    this,SLOT(Run())
-  );
-  QObject::connect(
-    ui->box_sulfide_toxicity,SIGNAL(valueChanged(double)),
-    this,SLOT(Run())
-  );
-  QObject::connect(
-    ui->box_oxygen_production,SIGNAL(valueChanged(double)),
-    this,SLOT(Run())
-  );
-
+  QObject::connect(ui->box_loripes_density,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+  QObject::connect(ui->box_n_timesteps,SIGNAL(valueChanged(int)),this,SLOT(Run()));
+  QObject::connect(ui->box_oxygen_production,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+  QObject::connect(ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+  QObject::connect(ui->box_sulfide_consumption_by_loripes,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+  QObject::connect(ui->box_sulfide_mol_per_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+  QObject::connect(ui->box_sulfide_toxicity,SIGNAL(valueChanged(double)),this,SLOT(Run()));
 
   Run();
 }
@@ -77,21 +56,6 @@ QtDialog::~QtDialog()
 
 Parameters QtDialog::GetParameters() const noexcept
 {
-  /*
-    const double any_desiccation_stress,
-    const double any_initial_seagrass_density,
-    const double any_initial_sulfide_density,
-    const double any_loripes_density,
-    const double any_oxygen_inhibition_strength,
-    const double any_oxygen_production,
-    const double any_seagrass_carrying_capacity,
-    const double any_seagrass_growth_rate,
-    const double any_sulfide_consumption_by_loripes,
-    const double any_sulfide_mol_per_seagrass_density,
-    const double any_sulfide_toxicity,
-    const int any_n_timesteps
-
-  */
   Parameters p(
     ui->box_delta_t->value(),
     ui->box_desiccation_stress->value(),
