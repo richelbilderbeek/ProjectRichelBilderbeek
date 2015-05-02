@@ -320,18 +320,21 @@ void Tree::Update()
   const int from_y = chosen.GetYpos();
 
   //Grid grid(m_area_width,m_area_length,m_active);
-  //assert(IsValid(from_x,from_y,m_grid));
-  //const TreeDataPoint * const from{
-  //  grid.Find(from_x,from_y)
+  //const TreeDataPoint * const from_rip{
+  //  grid.Get(from_x,from_y)
   //};
+  //assert(from_rip);
+
+  //assert(IsValid(from_x,from_y,m_grid));
+  m_grid[from_x][from_y] = chosen.GetNext();
   int& from = m_grid[from_x][from_y];
-  assert(from == chosen_index);
+  //assert(from == chosen_index);
 
   //TreeDataPoint * const from_too = m_grid_too[from_x][from_y];
   //assert(*from_too == m_active[chosen_index]);
 
   // update grid to reflect new data
-  from = chosen.GetNext();
+  //from = chosen.GetNext();
   assert(from >= 0);
   // if current individual is the only one in the space then it will hold
   // 0 in its data for next and last and this will still be correct

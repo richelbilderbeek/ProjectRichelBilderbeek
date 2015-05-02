@@ -16,13 +16,19 @@ struct Grid
     std::vector<TreeDataPoint>& v
   );
 
-  TreeDataPoint * Find(
+  TreeDataPoint * Get(
     const int x,
     const int y
   ) const;
 
+  void Set(
+    const int x,
+    const int y,
+    TreeDataPoint * const p
+  );
+
   private:
-  const std::vector<std::vector<TreeDataPoint*>> m_v;
+  std::vector<std::vector<TreeDataPoint*>> m_v;
 
   static std::vector<std::vector<TreeDataPoint*>> CreateGrid(
     const int width,

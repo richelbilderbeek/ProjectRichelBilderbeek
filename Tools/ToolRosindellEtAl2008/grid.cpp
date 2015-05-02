@@ -39,7 +39,7 @@ std::vector<std::vector<TreeDataPoint*>>
   return v;
 }
 
-TreeDataPoint * Grid::Find(
+TreeDataPoint * Grid::Get(
   const int x,
   const int y
 ) const
@@ -49,4 +49,17 @@ TreeDataPoint * Grid::Find(
   assert(y >= 0);
   assert(y < static_cast<int>(m_v[0].size()));
   return m_v[x][y];
+}
+
+void Grid::Set(
+  const int x,
+  const int y,
+  TreeDataPoint * const p
+)
+{
+  assert(x >= 0);
+  assert(x < static_cast<int>(m_v.size()));
+  assert(y >= 0);
+  assert(y < static_cast<int>(m_v[0].size()));
+  m_v[x][y] = p;
 }
