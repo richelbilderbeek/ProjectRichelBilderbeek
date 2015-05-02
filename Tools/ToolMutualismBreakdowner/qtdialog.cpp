@@ -37,6 +37,10 @@ QtDialog::QtDialog(QWidget *parent) :
     ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
+  QObject::connect(
+    ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),
+    this,SLOT(Run())
+  );
   Run();
 }
 
@@ -58,6 +62,11 @@ void QtDialog::Run()
     ui->box_initial_sulfide_concentration->value()
   };
 
+  const double seagrass_carrying_capacity{1.0};
+  const double seagrass_growth_rate{
+    ui->box_seagrass_growth_rate->value()
+  };
+
   //Initialize sim
   double seagrass_density{initial_seagrass_density};
   double sulfide_concentration{initial_sulfide_concentration};
@@ -65,8 +74,15 @@ void QtDialog::Run()
   {
     timeseries.push_back(static_cast<double>(i));
     //Sim here
-    //seagrass_density += std::sin(static_cast<double>(i));
-    //sulfide_concentrations += std::sin(static_cast<double>(i));
+    {
+      const double r{seagrass_growth_rate};
+      const double k{seagrass_carrying_capacity};
+      const double n{seagrass_density};
+      seagrass_density += r*n*(1.0-(n/k));
+    }
+
+    sulfide_concentration += std::sin(static_cast<double>(i));
+
     seagrass_densities.push_back(seagrass_density);
     sulfide_concentrations.push_back(sulfide_concentration);
   }
