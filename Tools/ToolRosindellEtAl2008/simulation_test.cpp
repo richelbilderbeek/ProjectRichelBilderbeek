@@ -22,7 +22,7 @@ void Simulation::Test() noexcept
     Rng::Test();
     Tree::Test();
   }
-  const ribi::TestTimer test_timer(__func__,__FILE__,5.0);
+  const ribi::TestTimer test_timer(__func__,__FILE__,10.0);
   //Test some known runs
   {
     std::vector<double> specset;

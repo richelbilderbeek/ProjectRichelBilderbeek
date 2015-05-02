@@ -61,7 +61,7 @@ Tree::Tree(
     throw std::logic_error("Tree::Tree: dispersal distance must be positive");
   }
   m_grid = CreateGrid(area_width,area_length,m_active);
-  m_grid_too = Grid(area_width,area_length,m_active);
+  //m_grid_too = Grid(area_width,area_length,m_active);
 }
 
 std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int area_length)
@@ -83,7 +83,7 @@ std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int ar
   return v;
 }
 
-Tree::GridType
+Tree::Grid
   Tree::CreateGrid(
     const int width,
     const int height,
@@ -99,26 +99,24 @@ Tree::GridType
   ;
   assert(grid_size > 0);
 
-  std::vector<std::vector<int>> v(grid_size,std::vector<int>(grid_size,0));
+  Grid v(
+    grid_size,
+    std::vector<GridType>(
+      grid_size,
+      //std::make_pair(0,nullptr)
+      0
+    )
+  );
 
   const int sz{static_cast<int>(datapoints.size())};
   //Skip 0, 0 denotes 'no-one here'
   for (int i=1; i!=sz; ++i)
   {
     const TreeDataPoint& p{datapoints[i]};
-    v[p.GetXpos()][p.GetYpos()] = i;
+    v[p.GetXpos()][p.GetYpos()]
+    //  = std::make_pair(i,&datapoints[i]);
+      = i;
   }
-  /*
-  int i=0;
-  for (int x = 0 ; x != width ; ++x)
-  {
-    for (int y = 0 ; y != height ; ++y)
-    {
-      ++i;
-      v[x][y] = i; //Skip zero, as zero denotes 'no active node present'
-    }
-  }
-  */
   return v;
 }
 
@@ -318,7 +316,7 @@ bool Tree::IsDone() const noexcept
 
 void Tree::Update()
 {
-  //NOTE: chosen_index cannot be 0, WHY?
+  //NOTE: chosen_index cannot be 0, because 0 denotes 'no-one here' in the grid
   const int chosen_index{1 + m_rnd.GetRandomInt(m_active.size() - 1 - 1)};
   assert(chosen_index != 0 && "Skip zero?");
   assert(IsValid(chosen_index,m_active));
@@ -331,25 +329,13 @@ void Tree::Update()
   const int from_x = chosen.GetXpos();
   const int from_y = chosen.GetYpos();
 
-  //Grid grid(m_area_width,m_area_length,m_active);
-  //const TreeDataPoint * const from_rip{
-  //  grid.Get(from_x,from_y)
-  //};
-  //assert(from_rip);
-
-  //assert(IsValid(from_x,from_y,m_grid));
   m_grid[from_x][from_y] = chosen.GetNext();
-  //m_grid_too.Set(from_x,from_y,&m_active[chosen.GetNext()]);
-  //assert(m_active[ m_grid[from_x][from_y] ] == *m_grid_too.Get(from_x,from_y));
+  //m_grid[from_x][from_y].first = chosen.GetNext();
 
   int& from = m_grid[from_x][from_y];
-  //assert(from == chosen_index);
-
-  //TreeDataPoint * const from_too = m_grid_too[from_x][from_y];
-  //assert(*from_too == m_active[chosen_index]);
+  //int& from = m_grid[from_x][from_y].first;
 
   // update grid to reflect new data
-  //from = chosen.GetNext();
   assert(from >= 0);
   // if current individual is the only one in the space then it will hold
   // 0 in its data for next and last and this will still be correct
@@ -400,7 +386,10 @@ void Tree::Update()
   const int active_x = chosen.GetXpos();
   const int active_y = chosen.GetYpos();
   assert(IsValid(active_x,active_y,m_grid));
+
   int& grid_active{m_grid[active_x][active_y]};
+  //int& grid_active{m_grid[active_x][active_y].first};
+
   // check for coalescence
   if (grid_active == 0) //No other individual there
   {
@@ -453,25 +442,20 @@ void Tree::Update()
           assert(current != 0 && "Skip zero");
           m_active[current].SetProbability(probability);
 
-          assert(IsValid(m_active.size() - 1,m_active));
           assert(m_active.size() - 1 != 0 && "Skip zero");
           chosen = m_active[m_active.size() - 1];
-          //chosen = m_active[last_active_index];
 
 
-          assert(IsValid(m_active.size() - 1,m_active));
           assert(m_active.size() - 1 != 0 && "Skip zero");
-
           const int newx = m_active[m_active.size() - 1].GetXpos();
-          //const int newx = m_active[last_active_index].GetXpos();
           const int newy = m_active[m_active.size() - 1].GetYpos();
-          //const int newy = m_active[last_active_index].GetYpos();
 
           assert(IsValid(newx,newy,m_grid));
+
           int& to = m_grid[newx][newy];
+          //int& to = m_grid[newx][newy].first;
 
           if (to == static_cast<int>(m_active.size()) - 1)
-          //if (to == last_active_index)
           {
             to = chosen_index;
           }

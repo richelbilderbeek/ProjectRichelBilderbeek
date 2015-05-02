@@ -8,7 +8,7 @@
 #include "treedatapoint.h"
 #include "dispersalkernel.h"
 #include "rng.h"
-#include "grid.h"
+//#include "grid.h"
 
 // this object represents the output coalescence tree itself
 // and has all the useful functions - everything above this point is just a tool
@@ -17,7 +17,9 @@
 // use that object to do all their calculations
 struct Tree
 {
-  using GridType = std::vector<std::vector<int>>;
+  using GridType = int;
+  //using GridType = std::pair<int,TreeDataPoint*>;
+  using Grid = std::vector<std::vector<GridType>>;
 
   // area_width = width of survey area (in number of trees)
   // area_length = length of survey area (in number of trees)
@@ -71,8 +73,8 @@ private:
   // grid - this is an internal variable
   // this is necessary for calculations - initialise it as all zeros
   // it will store integers that refer to places in datapoint array "active"
-  GridType m_grid;
-  Grid m_grid_too;
+  Grid m_grid;
+  //Grid m_grid_too;
 
   // when producing a coalescence tree, we do so with a minimal speciation rate
   // in mind (to save a lot of computational expense in growing the full tree)
@@ -90,7 +92,7 @@ private:
 
   static std::vector<TreeDataPoint> CreateActive(const int area_width, const int area_length);
 
-  static GridType
+  static Grid
     CreateGrid(
       const int area_width,
       const int area_length,
