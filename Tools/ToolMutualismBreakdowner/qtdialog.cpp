@@ -17,25 +17,26 @@ QtDialog::QtDialog(QWidget *parent) :
   m_curve_sulfide_concentration(new QwtPlotCurve("Outputs"))
 {
   ui->setupUi(this);
-  #ifdef _WIN32
-  ui->plot_seagrass_density->setCanvasBackground(QBrush(QColor(255,255,255)));
-  ui->plot_sulfide_concentration->setCanvasBackground(QBrush(QColor(255,255,255)));
-  #else
-  ui->plot_seagrass_density->setCanvasBackground(QColor(200,255,200));
-  ui->plot_sulfide_concentration->setCanvasBackground(QColor(255,200,200));
-  #endif
+  ui->plot_seagrass_density->setCanvasBackground(QColor(226,255,226));
+  ui->plot_sulfide_concentration->setCanvasBackground(QColor(255,226,226));
 
   m_curve_seagrass_density->attach(ui->plot_seagrass_density);
   m_curve_seagrass_density->setStyle(QwtPlotCurve::Lines);
-  m_curve_seagrass_density->setPen(QPen(QColor(128,255,128)));
+  m_curve_seagrass_density->setPen(QPen(QColor(0,255,0)));
 
   m_curve_sulfide_concentration->attach(ui->plot_sulfide_concentration);
   m_curve_sulfide_concentration->setStyle(QwtPlotCurve::Lines);
-  m_curve_sulfide_concentration->setPen(QPen(QColor(0,0,0)));
+  m_curve_sulfide_concentration->setPen(QPen(QColor(255,0,0)));
 
-  //QObject::connect(ui->alpha,SIGNAL(valueChanged(int)),this,SLOT(Run()));
-  //QObject::connect(ui->beta,SIGNAL(valueChanged(int)),this,SLOT(Run()));
-  //Object::connect(ui->dt,SIGNAL(valueChanged(int)),this,SLOT(Run()));
+  QObject::connect(
+    ui->box_initial_seagrass_density,
+    SIGNAL(valueChanged(double)),
+    this,SLOT(Run())
+  );
+  QObject::connect(
+    ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),
+    this,SLOT(Run())
+  );
   Run();
 }
 
@@ -50,17 +51,29 @@ void QtDialog::Run()
   std::vector<double> seagrass_densities;
   std::vector<double> sulfide_concentrations;
   std::vector<double> timeseries;
+  const double initial_seagrass_density{
+    ui->box_initial_seagrass_density->value()
+  };
+  const double initial_sulfide_concentration{
+    ui->box_initial_sulfide_concentration->value()
+  };
+
+  //Initialize sim
+  double seagrass_density{initial_seagrass_density};
+  double sulfide_concentration{initial_sulfide_concentration};
   for (int i=0; i!=timesteps; ++i)
   {
-    seagrass_densities.push_back(0.1);
-    sulfide_concentrations.push_back(0.2);
     timeseries.push_back(static_cast<double>(i));
-
+    //Sim here
+    //seagrass_density += std::sin(static_cast<double>(i));
+    //sulfide_concentrations += std::sin(static_cast<double>(i));
+    seagrass_densities.push_back(seagrass_density);
+    sulfide_concentrations.push_back(sulfide_concentration);
   }
-  m_curve_sulfide_concentration->setData(
+  m_curve_seagrass_density->setData(
     new QwtPointArrayData(&timeseries[0],&seagrass_densities[0],seagrass_densities.size())
   );
-  m_curve_seagrass_density->setData(
+  m_curve_sulfide_concentration->setData(
     new QwtPointArrayData(&timeseries[0],&sulfide_concentrations[0],sulfide_concentrations.size())
   );
   ui->plot_seagrass_density->replot();
