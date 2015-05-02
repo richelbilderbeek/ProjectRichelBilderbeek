@@ -34,18 +34,16 @@ QtDialog::QtDialog(QWidget *parent) :
   m_curve_sulfide_concentration->setStyle(QwtPlotCurve::Lines);
   m_curve_sulfide_concentration->setPen(QPen(QColor(255,0,0)));
 
-  QObject::connect(
-    ui->box_n_timesteps,
+  QObject::connect(ui->box_delta_t,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+  QObject::connect(    ui->box_n_timesteps,
     SIGNAL(valueChanged(int)),
     this,SLOT(Run())
   );
-  QObject::connect(
-    ui->box_initial_seagrass_density,
+  QObject::connect(    ui->box_initial_seagrass_density,
     SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
-  QObject::connect(
-    ui->box_loripes_density,
+  QObject::connect(    ui->box_loripes_density,
     SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
@@ -54,8 +52,7 @@ QtDialog::QtDialog(QWidget *parent) :
     ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
-  QObject::connect(
-    ui->box_desiccation_stress,SIGNAL(valueChanged(double)),
+  QObject::connect(ui->box_desiccation_stress,SIGNAL(valueChanged(double)),
     this,SLOT(Run())
   );
   QObject::connect(
@@ -98,6 +95,7 @@ Parameters QtDialog::GetParameters() const noexcept
 
   */
   Parameters p(
+    ui->box_delta_t->value(),
     ui->box_desiccation_stress->value(),
     ui->box_initial_seagrass_density->value(),
     0.0, //const double any_initial_sulfide_density,

@@ -2,6 +2,7 @@
 #include <cassert>
 
 Parameters::Parameters(
+  const double any_delta_t,
   const double any_desiccation_stress,
   const double any_initial_seagrass_density,
   const double any_initial_sulfide_density,
@@ -14,6 +15,7 @@ Parameters::Parameters(
   const double any_sulfide_toxicity,
   const int any_n_timesteps
 ) :
+    delta_t{any_delta_t},
     desiccation_stress{any_desiccation_stress},
     initial_seagrass_density{any_initial_seagrass_density},
     initial_sulfide_concentration{any_initial_sulfide_density},

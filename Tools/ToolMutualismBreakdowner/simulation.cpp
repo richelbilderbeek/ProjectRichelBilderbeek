@@ -12,46 +12,15 @@ Simulation::Simulation(const Parameters& parameters)
 void Simulation::Run() noexcept
 {
   const int n_timesteps{m_parameters.n_timesteps};
-  /*
-  const int n_timesteps{
-    ui->box_n_timesteps->value()
-  };
-  std::vector<double> seagrass_densities;
-  std::vector<double> sulfide_concentrations;
-  const double initial_seagrass_density{
-    ui->box_initial_seagrass_density->value()
-  };
-
-  const double seagrass_carrying_capacity{1.0};
-  const double seagrass_growth_rate{
-    ui->box_seagrass_growth_rate->value()
-  };
-  const double desiccation_stress{
-    ui->box_desiccation_stress->value()
-  };
-  const double sulfide_mol_per_seagrass_density{
-    ui->box_sulfide_mol_per_seagrass_density->value()
-  };
-
-  const double sulfide_toxicity{
-    ui->box_sulfide_toxicity->value()
-  };
-
-  const double oxygen_inhibition_strength{
-    ui->box_oxygen_inhibition_strength->value()
-  };
-  const double oxygen_production{
-    ui->box_oxygen_production->value()
-  };
-  */
+  const double t_end{static_cast<double>(n_timesteps)};
+  const double delta_t{m_parameters.delta_t};
 
   //Initialize sim
   double seagrass_density{m_parameters.initial_seagrass_density};
   double sulfide_concentration{0.0};
-  //double oxygen_concentration{initial_oxygen_concentration};
-  for (int i=0; i!=n_timesteps; ++i)
+  for (double t=0.0; t<t_end; t+=delta_t)
   {
-    m_timeseries.push_back(static_cast<double>(i));
+    m_timeseries.push_back(static_cast<double>(t));
     //Sim here
     {
       const double d{m_parameters.desiccation_stress};
@@ -60,11 +29,12 @@ void Simulation::Run() noexcept
       const double r{m_parameters.seagrass_growth_rate};
       const double s{sulfide_concentration};
       const double t{m_parameters.sulfide_toxicity};
-      seagrass_density
-        += r*n*(1.0-(n/k)) //Growth
+      const double delta_n{
+        r*n*(1.0-(n/k)) //Growth
         - (t*s)
-        - (n*d) //Desiccation stress
-      ;
+        - (d*n)  //Desiccation stress
+      };
+      seagrass_density += (delta_n * delta_t);
     }
     {
       using std::exp;
@@ -77,9 +47,10 @@ void Simulation::Run() noexcept
       const double p{m_parameters.oxygen_production};
       const double s{sulfide_concentration};
       const double t{m_parameters.sulfide_toxicity};
-      sulfide_concentration
-        += f*t*s - f*d*n - c*l*p*n
-      ;
+      const double delta_s{
+        f*t*s - f*d*n - c*l*p*n
+      };
+      sulfide_concentration += (delta_s * delta_t);
 
     }
     m_seagrass_densities.push_back(seagrass_density);
