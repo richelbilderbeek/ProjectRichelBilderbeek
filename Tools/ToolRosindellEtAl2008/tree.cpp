@@ -416,11 +416,13 @@ void Tree::Update()
     {
       assert(IsValid(current,m_active));
       assert(current != 0 && "Skip zero");
-      if (chosen.GetXindex() == m_active[current].GetXindex())
+      if (chosen.GetXpos() == m_active[current].GetXpos())
+      //if (chosen.GetXindex() == m_active[current].GetXindex())
       {
         assert(IsValid(current,m_active));
         assert(current != 0 && "Skip zero");
-        if (chosen.GetYindex() == m_active[current].GetYindex())
+        if (chosen.GetYpos() == m_active[current].GetYpos())
+        //if (chosen.GetYindex() == m_active[current].GetYindex())
         {
           // we have coalescence
           ++m_enddata;
