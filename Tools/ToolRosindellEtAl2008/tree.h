@@ -8,6 +8,7 @@
 #include "treedatapoint.h"
 #include "dispersalkernel.h"
 #include "rng.h"
+#include "grid.h"
 
 // this object represents the output coalescence tree itself
 // and has all the useful functions - everything above this point is just a tool
@@ -69,6 +70,7 @@ private:
   // this is necessary for calculations - initialise it as all zeros
   // it will store integers that refer to places in datapoint array "active"
   std::vector<std::vector<int>> m_grid;
+  Grid m_grid_too;
 
   // when producing a coalescence tree, we do so with a minimal speciation rate
   // in mind (to save a lot of computational expense in growing the full tree)

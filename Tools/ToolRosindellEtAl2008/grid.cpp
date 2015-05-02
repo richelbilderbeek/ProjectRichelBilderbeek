@@ -10,6 +10,18 @@ Grid::Grid(
 {
 }
 
+Grid::Grid(const Grid& other)
+  : m_v{other.m_v}
+{
+
+}
+
+Grid& Grid::operator=(const Grid& other)
+{
+  m_v = other.m_v;
+  return *this;
+}
+
 std::vector<std::vector<TreeDataPoint*>>
   Grid::CreateGrid(
     const int width,

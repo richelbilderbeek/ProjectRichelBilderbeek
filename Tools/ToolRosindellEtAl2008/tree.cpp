@@ -60,6 +60,7 @@ Tree::Tree(
   {
     throw std::logic_error("Tree::Tree: dispersal distance must be positive");
   }
+  m_grid_too = Grid(area_width,area_length,m_active);
 }
 
 std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int area_length)
@@ -306,7 +307,7 @@ bool Tree::IsDone() const noexcept
 
 void Tree::Update()
 {
-  //NOTE: chosen_index be 0, WHY?
+  //NOTE: chosen_index cannot be 0, WHY?
   const int chosen_index{1 + m_rnd.GetRandomInt(m_active.size() - 1 - 1)};
   assert(chosen_index != 0 && "Skip zero?");
   assert(IsValid(chosen_index,m_active));
@@ -327,6 +328,9 @@ void Tree::Update()
 
   //assert(IsValid(from_x,from_y,m_grid));
   m_grid[from_x][from_y] = chosen.GetNext();
+  //m_grid_too.Set(from_x,from_y,&m_active[chosen.GetNext()]);
+  //assert(m_active[ m_grid[from_x][from_y] ] == *m_grid_too.Get(from_x,from_y));
+
   int& from = m_grid[from_x][from_y];
   //assert(from == chosen_index);
 

@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "treedatapoint.h"
+
 struct TreeDataPoint;
 //#include "treedatapoint.h"
 
@@ -10,6 +12,10 @@ struct TreeDataPoint;
 ///and the ability to index them
 struct Grid
 {
+  Grid() {}
+  Grid(const Grid& other);
+  Grid& operator=(const Grid& other);
+
   Grid(
     const int width,
     const int height,
