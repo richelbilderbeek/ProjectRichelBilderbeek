@@ -42,7 +42,7 @@ Tree::Tree(
     m_enddata{area_width * area_length},
     m_grid{},
     m_min_speciation_rate{min_speciation_rate},
-    m_nodes{std::vector<TreeNode>(2*area_width*area_length+1,TreeNode(true))},
+    m_nodes{},
     m_richness{0.0},
     m_rnd{rng},
     m_tolerance{tolerance}
@@ -60,6 +60,8 @@ Tree::Tree(
   {
     throw std::logic_error("Tree::Tree: dispersal distance must be positive");
   }
+  m_nodes.reserve(2*area_width*area_length+1); //KEEP THIS IN
+  m_nodes = std::vector<TreeNode>(2*area_width*area_length+1,TreeNode(true));
   m_active = CreateActive(area_width,area_length,m_nodes);
   m_grid = CreateGrid(area_width,area_length,m_active);
 }
@@ -358,12 +360,10 @@ void Tree::Update()
   //Let these two coalesce
   ++m_enddata;
   m_nodes[m_enddata] = TreeNode(false);
-  chosen.GetNode()->SetParent(&m_nodes[m_enddata]);
-
-  //assert(IsValid(grid_spot_to->GetMpos(),m_nodes));
-  grid_spot_to->GetNode()->SetParent(&m_nodes[m_enddata]);
-
-  grid_spot_to->SetNode(&m_nodes[m_enddata]);
+  const TreeNode::Parent new_node{&m_nodes[m_enddata]};
+  chosen.GetNode()->SetParent(new_node);
+  grid_spot_to->GetNode()->SetParent(new_node);
+  grid_spot_to->SetNode(new_node);
 
   const double probability{
     chosen.GetProbability()
