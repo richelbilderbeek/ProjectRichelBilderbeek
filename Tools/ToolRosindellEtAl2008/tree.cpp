@@ -135,21 +135,6 @@ void Tree::DisplayActive(std::ostream& os) const noexcept
   os << text;
 }
 
-void Tree::DisplayGrid(std::ostream& os) const noexcept
-{
-
-  for (const auto line: m_grid)
-  {
-    std::copy(
-      std::begin(line),
-      std::end(line),
-      std::ostream_iterator<int>(os," ")
-    );
-    os << '\n';
-  }
-}
-
-
 double Tree::GetError(
   //const std::vector<TreeDataPoint>& m_active
 ) const noexcept
@@ -348,7 +333,7 @@ void Tree::Update()
   const int to_y = chosen.GetYpos();
   assert(IsValid(to_x,to_y,m_grid));
 
-  int& grid_spot_to{m_grid[to_x][to_y]};
+  GridType& grid_spot_to{m_grid[to_x][to_y]};
 
   //If there an individual at the dispersed-to spot?
   if (grid_spot_to == 0)
@@ -408,7 +393,7 @@ void Tree::Update()
 
   assert(IsValid(last_active_x,last_active_y,m_grid));
 
-  int& last_active_spot = m_grid[last_active_x][last_active_y];
+  GridType& last_active_spot = m_grid[last_active_x][last_active_y];
 
   if (last_active_spot == static_cast<int>(m_active.size()) - 1)
   {

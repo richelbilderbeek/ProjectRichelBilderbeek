@@ -18,7 +18,6 @@
 struct Tree
 {
   using GridType = int;
-  //using GridType = std::pair<int,TreeDataPoint*>;
   using Grid = std::vector<std::vector<GridType>>;
 
   // area_width = width of survey area (in number of trees)
@@ -35,7 +34,6 @@ struct Tree
   );
 
   void DisplayActive(std::ostream& os) const noexcept;
-  void DisplayGrid(std::ostream& os) const noexcept;
 
   const std::vector<TreeDataPoint>& GetActive() const noexcept { return m_active; }
 
