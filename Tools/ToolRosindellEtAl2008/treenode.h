@@ -10,22 +10,33 @@ struct TreeNode
 {
   using Parent = TreeNode*;
 
-  TreeNode(const bool root = true);
+  TreeNode(
+    TreeNode * const kid_left = nullptr,
+    TreeNode * const kid_right = nullptr
+  );
+
+  double GetBranchLength() const noexcept {
+    return static_cast<double>(m_branch_length);
+  }
 
   Parent GetParent() const noexcept { return m_parent; }
   double GetProbability() const noexcept { return m_p; }
-  bool GetRoot() const noexcept { return m_root; }
-  int GetSteps() const noexcept { return m_steps; }
 
-  void IncSteps() noexcept { ++m_steps; }
+  ///Does this node connect to the present,
+  ///or is it created at a coalescent event?
+  bool IsRootNode() const noexcept { return m_kid_left == nullptr; }
+
+  void IncreaseBranchLength() noexcept { ++m_branch_length; }
   void SetParent(const Parent parent) noexcept { m_parent = parent; }
   void SetProbability(const double p) noexcept { m_p = p; }
 
 private:
 
-  /// is this node at the end of the tree (true)
-  /// or just here to mark a coalescense (false)
-  const bool m_root;
+  ///Node connect to the present have no kids,
+  ///Nodes created at a coalescent event have two kids:
+  ///the lineages that coalesced
+  TreeNode * const m_kid_left;
+  TreeNode * const m_kid_right;
 
   /// this stores the parent of the individual
   /// 0 means there is no parent - we are at the end of the tree
@@ -34,7 +45,7 @@ private:
 
   /// the number of generations (chances of speciation)
   /// between this individual and its parent in the tree
-  int m_steps;
+  int m_branch_length;
 
   //Probability
   //  1.0: free branch, because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place

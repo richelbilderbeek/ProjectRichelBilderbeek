@@ -218,7 +218,7 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
     //  1.0: free branch, because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place
     // -2.0: an internal node that has thus far not been pruned at all
     //assert(node.GetProbability() == (node.GetRoot() ? 1.0 : -2.0)); //FAILS, because this calculation repeats itself
-    node.SetProbability(node.GetRoot() ? 1.0 : -2.0);
+    node.SetProbability(node.IsRootNode() ? 1.0 : -2.0);
   }
 
   while (1)
@@ -233,7 +233,7 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
       if (node.GetProbability() >= 0.0)
       {
         // it is complete so use it to complete the info on in its parents
-        const TreeNode::Parent parent{node.GetParent()};
+        TreeNode * const parent{node.GetParent()};
         //assert(IsValid(theparent,ps));
         if (parent && parent->GetProbability() < 0.0)
         {
@@ -243,11 +243,10 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
           if (parent->GetProbability() <= -1.5)
           {
             // parent not at all complete
-            const double branch_length{static_cast<double>(node.GetSteps())};
             const double probability{
               std::pow(
                 1.0-speciation_rate,
-                branch_length
+                node.GetBranchLength()
               )
             };
             result[0] += node.GetProbability()*(1.0-probability);
@@ -261,13 +260,11 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
           }
           else
           {
-            // parent partailly complete
-            // update Smin
-            const double branch_length{static_cast<double>(node.GetSteps())};
+            //Parent partially complete
             double probability_1{
               std::pow(
                 1.0-speciation_rate,
-                branch_length
+                node.GetBranchLength()
               )
             };
             result[0] += node.GetProbability()*(1.0-probability_1);
@@ -296,11 +293,11 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
       // here we are dealing with all the last branches after prooning all nodes
       assert(IsValid(i,m_nodes));
       const TreeNode& node{m_nodes[i]};
-      if (node.GetParent() == 0)
+      if (node.GetParent() == nullptr)
       {
-        const double steps{static_cast<double>(node.GetSteps())};
-        result[0] += node.GetProbability() * (1.0 - std::pow(1.0 - speciation_rate,steps) );
-        result[1] += node.GetProbability() * (      std::pow(1.0 - speciation_rate,steps) );
+        const double branch_length{node.GetBranchLength()};
+        result[0] += node.GetProbability() * (1.0 - std::pow(1.0 - speciation_rate,branch_length) );
+        result[1] += node.GetProbability() * (      std::pow(1.0 - speciation_rate,branch_length) );
       }
     }
   }
@@ -337,7 +334,7 @@ void Tree::Update()
 
   //?
   //assert(IsValid(chosen.GetMpos(),m_nodes));
-  chosen.GetNode()->IncSteps();
+  chosen.GetNode()->IncreaseBranchLength();
 
   const int to_x = chosen.GetXpos();
   const int to_y = chosen.GetYpos();
@@ -363,11 +360,16 @@ void Tree::Update()
 
   //Let these two coalesce
   //++m_enddata;
-  m_nodes.push_back(TreeNode(false));
+  m_nodes.push_back(
+    TreeNode(
+      chosen.GetNode(),
+      grid_spot_to->GetNode()
+    )
+  );
   //assert(m_nodes[m_enddata] == TreeNode(false));
 
   //const TreeNode::Parent new_node{&m_nodes[m_enddata]};
-  const TreeNode::Parent new_node{&m_nodes.back()};
+  TreeNode * const new_node{&m_nodes.back()};
   chosen.GetNode()->SetParent(new_node);
   grid_spot_to->GetNode()->SetParent(new_node);
   grid_spot_to->SetNode(new_node);
