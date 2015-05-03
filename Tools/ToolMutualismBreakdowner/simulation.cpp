@@ -43,7 +43,7 @@ void Simulation::Run() noexcept
     {
       const double delta_n{
           (r*n*(1.0-(n/k))) //Growth
-        - (t*s*n)
+        - (p*s*n)
         - (d*n)  //Desiccation stress
       };
       seagrass_density += (delta_n * delta_t);
