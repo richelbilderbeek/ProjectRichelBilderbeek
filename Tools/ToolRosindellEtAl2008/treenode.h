@@ -11,18 +11,21 @@ struct TreeNode
   using Parent = TreeNode*;
 
   TreeNode(const bool root = true);
-  void SetParent(const Parent parent) { m_parent = parent; }
-  bool GetRoot() const noexcept { return m_root; }
-  double GetProbability() const noexcept { return m_p; }
+
   Parent GetParent() const noexcept { return m_parent; }
+  double GetProbability() const noexcept { return m_p; }
+  bool GetRoot() const noexcept { return m_root; }
   int GetSteps() const noexcept { return m_steps; }
+
   void IncSteps() noexcept { ++m_steps; }
-  void SetProbability(const double p) { m_p = p; }
+  void SetParent(const Parent parent) noexcept { m_parent = parent; }
+  void SetProbability(const double p) noexcept { m_p = p; }
+
 private:
 
   /// is this node at the end of the tree (true)
   /// or just here to mark a coalescense (false)
-  bool m_root;
+  const bool m_root;
 
   /// this stores the parent of the individual
   /// 0 means there is no parent - we are at the end of the tree
@@ -34,6 +37,8 @@ private:
   int m_steps;
 
   //Probability
+  //  1.0: free branch, because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place
+  // -2.0: an internal node that has thus far not been pruned at all
   double m_p;
 };
 

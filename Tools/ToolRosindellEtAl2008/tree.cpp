@@ -110,7 +110,7 @@ Tree::Grid
     grid_size,
     std::vector<GridType>(
       grid_size,
-      0
+      nullptr
     )
   );
 
@@ -121,7 +121,6 @@ Tree::Grid
     const TreeDataPoint& p{datapoints[i]};
     v[p.GetXpos()][p.GetYpos()]
       = &datapoints[i];
-      // = i;
   }
   return v;
 }
@@ -143,13 +142,11 @@ void Tree::DisplayActive(std::ostream& os) const noexcept
   os << text;
 }
 
-double Tree::GetError(
-  //const std::vector<TreeDataPoint>& m_active
-) const noexcept
+double Tree::GetError() const noexcept
 {
-  const int last_active_index{static_cast<int>(m_active.size()) - 1};
+  const int sz{static_cast<int>(m_active.size()) };
   double error = 0.0;
-  for (int i = 1 ; i <= last_active_index ; ++i)
+  for (int i = 1; i != sz; ++i)
   {
     assert(i != 0 && "Skip zero");
     assert(IsValid(i,m_active));
@@ -216,11 +213,11 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
   }
 
   std::array<double,2> result = {0.0,0.0};
-
   for (TreeNode& node: m_nodes)
   {
     //  1.0: free branch, because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place
     // -2.0: an internal node that has thus far not been pruned at all
+    //assert(node.GetProbability() == (node.GetRoot() ? 1.0 : -2.0)); //FAILS, because this calculation repeats itself
     node.SetProbability(node.GetRoot() ? 1.0 : -2.0);
   }
 
@@ -246,37 +243,40 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
           if (parent->GetProbability() <= -1.5)
           {
             // parent not at all complete
-            const double steps{static_cast<double>(node.GetSteps())};
-            const double temprob{
+            const double branch_length{static_cast<double>(node.GetSteps())};
+            const double probability{
               std::pow(
-                1-speciation_rate,
-                steps
+                1.0-speciation_rate,
+                branch_length
               )
             };
-            result[0] += node.GetProbability()*(1-temprob);
+            result[0] += node.GetProbability()*(1.0-probability);
             // we store probabilities as negative in a node if they
             // refer only to one of the two branches of the node
             // we then wait until we have both branches of the node
             // before continuing to complete the full calculation
             parent->SetProbability(
-              -1.0*node.GetProbability()*temprob);
+              -1.0 * node.GetProbability() * probability
+            );
           }
           else
           {
             // parent partailly complete
             // update Smin
-            const double steps{static_cast<double>(node.GetSteps())};
-            double temprob{
+            const double branch_length{static_cast<double>(node.GetSteps())};
+            double probability_1{
               std::pow(
                 1.0-speciation_rate,
-                steps //static_cast<double>(node.GetSteps())
+                branch_length
               )
             };
-            result[0] += node.GetProbability()*(1.0-temprob);
-            // update the probability array
-            temprob = temprob*node.GetProbability();
-            const double temprob2 = parent->GetProbability()*-1.0;
-            parent->SetProbability(temprob+temprob2-temprob*temprob2);
+            result[0] += node.GetProbability()*(1.0-probability_1);
+            probability_1 *= node.GetProbability();
+            const double probability_2 = parent->GetProbability()*-1.0;
+            parent->SetProbability(
+               probability_1 + probability_2
+             - probability_1 * probability_2
+            );
           }
         }
       }
