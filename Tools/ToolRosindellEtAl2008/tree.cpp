@@ -315,12 +315,15 @@ void Tree::Update()
 {
   //NOTE: chosen_index cannot be 0, because 0 denotes 'no-one here' in the grid
   const int chosen_index{1 + m_rnd.GetRandomInt(m_active.size() - 1 - 1)};
-  assert(chosen_index != 0 && "Skip zero");
   assert(IsValid(chosen_index,m_active));
   TreeDataPoint& chosen = m_active[chosen_index];
 
-  const int from_x = chosen.GetXpos();
-  const int from_y = chosen.GetYpos();
+   //Remove active indidual from old spot
+   {
+    const int x = chosen.GetXpos();
+    const int y = chosen.GetYpos();
+    m_grid[x][y] = nullptr;
+  }
 
   //?
   m_richness += m_min_speciation_rate*(chosen.GetProbability());
@@ -345,8 +348,6 @@ void Tree::Update()
   //If there an individual at the dispersed-to spot?
   if (grid_spot_to == nullptr)
   {
-    //Remove active indidual from old spot
-    m_grid[from_x][from_y] = nullptr;
     //Just move the individual
     grid_spot_to = &chosen;
     //Nope, this timestep is done
@@ -354,11 +355,12 @@ void Tree::Update()
   }
 
   //Remove active indidual from old spot
-  m_grid[from_x][from_y] = nullptr;
+  //m_grid[from_x][from_y] = nullptr;
 
   //There is an individual at the dispersed-to-spot
 
   //Let these two coalesce
+  //Create a new node to celebrate this event
 
   m_nodes.push_back(
     TreeNode(
@@ -380,16 +382,18 @@ void Tree::Update()
 
   grid_spot_to->SetProbability(probability);
 
-  TreeDataPoint& last_active = m_active.back();
-  m_active[chosen_index] = last_active;
+  //Overwrite chosen by last
+  TreeDataPoint& last = m_active.back();
+  chosen = last;
 
-  const int last_active_x = last_active.GetXpos();
-  const int last_active_y = last_active.GetYpos();
 
-  assert(IsValid(last_active_x,last_active_y,m_grid));
-  GridType& last_active_spot = m_grid[last_active_x][last_active_y];
+  const int last_x = last.GetXpos();
+  const int last_y = last.GetYpos();
 
-  if (last_active_spot == &(m_active.back()))
+  assert(IsValid(last_x,last_y,m_grid));
+  GridType& last_active_spot = m_grid[last_x][last_y];
+
+  if (last_active_spot == &last)
   {
     last_active_spot = &chosen;
   }
