@@ -34,7 +34,7 @@ Tree::Tree(
   const DispersalKernel dispersal_kernel
   )
   :
-    m_active{CreateActive(area_width,area_length)},
+    m_active{},
     m_area_width{area_width},
     m_area_length{area_length},
     m_dispersal_distance{dispersal_distance},
@@ -60,10 +60,15 @@ Tree::Tree(
   {
     throw std::logic_error("Tree::Tree: dispersal distance must be positive");
   }
+  m_active = CreateActive(area_width,area_length,m_nodes);
   m_grid = CreateGrid(area_width,area_length,m_active);
 }
 
-std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int area_length)
+std::vector<TreeDataPoint> Tree::CreateActive(
+  const int area_width,
+  const int area_length,
+  TreeNodes& nodes
+)
 {
   std::vector<TreeDataPoint> v;
   assert(area_width > 0);
@@ -76,7 +81,7 @@ std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int ar
     for (int y=0; y!=area_length; ++y)
     {
       ++i;
-      v.push_back(TreeDataPoint(x,y,i));
+      v.push_back(TreeDataPoint(x,y,&nodes[i]));
     }
   }
   return v;
@@ -326,8 +331,8 @@ void Tree::Update()
   );
 
   //?
-  assert(IsValid(chosen.GetMpos(),m_nodes));
-  m_nodes[chosen.GetMpos()].IncSteps();
+  //assert(IsValid(chosen.GetMpos(),m_nodes));
+  chosen.GetMpos()->IncSteps();
 
   const int to_x = chosen.GetXpos();
   const int to_y = chosen.GetYpos();
@@ -354,12 +359,12 @@ void Tree::Update()
   //Let these two coalesce
   ++m_enddata;
   m_nodes[m_enddata] = TreeNode(false);
-  m_nodes[chosen.GetMpos()].SetParent(m_enddata);
+  chosen.GetMpos()->SetParent(m_enddata);
 
-  assert(IsValid(grid_spot_to->GetMpos(),m_nodes));
-  m_nodes[grid_spot_to->GetMpos()].SetParent(m_enddata);
+  //assert(IsValid(grid_spot_to->GetMpos(),m_nodes));
+  grid_spot_to->GetMpos()->SetParent(m_enddata);
 
-  grid_spot_to->SetMpos(m_enddata);
+  grid_spot_to->SetMpos(&m_nodes[m_enddata]);
 
   const double probability{
     chosen.GetProbability()

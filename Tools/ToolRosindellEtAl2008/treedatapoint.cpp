@@ -8,7 +8,7 @@
 TreeDataPoint::TreeDataPoint(
   const int x,
   const int y,
-  const int mpos
+  const Mpos mpos
 )
   :
   m_xpos{x},

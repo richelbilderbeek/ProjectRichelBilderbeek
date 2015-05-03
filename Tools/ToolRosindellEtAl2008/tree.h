@@ -20,6 +20,7 @@ struct Tree
   //using GridType = int;
   using GridType = TreeDataPoint*;
   using Grid = std::vector<std::vector<GridType>>;
+  using TreeNodes = std::vector<TreeNode>;
 
   // area_width = width of survey area (in number of trees)
   // area_length = length of survey area (in number of trees)
@@ -89,7 +90,11 @@ private:
 
   const double m_tolerance;
 
-  static std::vector<TreeDataPoint> CreateActive(const int area_width, const int area_length);
+  static std::vector<TreeDataPoint> CreateActive(
+    const int area_width,
+    const int area_length,
+    TreeNodes& nodes
+  );
 
   static Grid
     CreateGrid(

@@ -27,12 +27,12 @@ struct TreeNode;
 ///  |     |
 struct TreeDataPoint
 {
-  using Mpos = int;
+  using Mpos = TreeNode*;
 
   TreeDataPoint(
     const int x = 0,
     const int y = 0,
-    const int mpos = 0
+    const Mpos mpos = nullptr
   );
   TreeDataPoint(const TreeDataPoint&);
   TreeDataPoint& operator=(const TreeDataPoint&);
