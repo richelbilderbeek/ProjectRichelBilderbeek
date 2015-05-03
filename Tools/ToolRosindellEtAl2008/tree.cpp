@@ -61,7 +61,6 @@ Tree::Tree(
     throw std::logic_error("Tree::Tree: dispersal distance must be positive");
   }
   m_grid = CreateGrid(area_width,area_length,m_active);
-  //m_grid_too = Grid(area_width,area_length,m_active);
 }
 
 std::vector<TreeDataPoint> Tree::CreateActive(const int area_width, const int area_length)
@@ -103,7 +102,6 @@ Tree::Grid
     grid_size,
     std::vector<GridType>(
       grid_size,
-      //std::make_pair(0,nullptr)
       0
     )
   );
@@ -324,17 +322,13 @@ void Tree::Update()
 {
   //NOTE: chosen_index cannot be 0, because 0 denotes 'no-one here' in the grid
   const int chosen_index{1 + m_rnd.GetRandomInt(m_active.size() - 1 - 1)};
-  assert(chosen_index != 0 && "Skip zero?");
+  assert(chosen_index != 0 && "Skip zero");
   assert(IsValid(chosen_index,m_active));
   TreeDataPoint& chosen = m_active[chosen_index];
 
   assert(IsValid(chosen_index,m_active));
   const int from_x = chosen.GetXpos();
   const int from_y = chosen.GetYpos();
-
-  //Remove active indidual from old spot
-  int& grid_spot_from{m_grid[from_x][from_y]};
-  grid_spot_from = 0;
 
   //?
   m_richness += m_min_speciation_rate*(chosen.GetProbability());
@@ -359,12 +353,16 @@ void Tree::Update()
   //If there an individual at the dispersed-to spot?
   if (grid_spot_to == 0)
   {
+    //Remove active indidual from old spot
+    m_grid[from_x][from_y] = 0;
     //Just move the individual
-    grid_spot_from = 0; //Redundant for now, as already done
     grid_spot_to = chosen_index;
     //Nope, this timestep is done
     return;
   }
+
+  //Remove active indidual from old spot
+  m_grid[from_x][from_y] = 0;
 
   //There is an individual at the dispersed-to-spot
 
