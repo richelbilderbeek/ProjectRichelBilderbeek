@@ -39,12 +39,8 @@ struct TreeDataPoint
   int GetTileY() const noexcept { return m_yindex; }
   int GetMpos() const noexcept { return m_mpos; }
   double GetProbability() const noexcept { return m_probability; }
-  int GetLast() const noexcept { return m_last; }
-  int GetNext() const noexcept { return m_next; }
 
   void SetIndex(const int x, const int y) noexcept { m_xindex = x; m_yindex = y; }
-  void SetNext(const int next) noexcept { m_next = next; }
-  void SetLast(const int last) noexcept { m_last = last; }
   void SetMpos(const int mpos) noexcept { m_mpos = mpos; }
   void SetPos(const int xpos, const int ypos) noexcept { m_xpos = xpos; m_ypos = ypos; }
   void SetProbability(const double probability) { m_probability = probability; }
@@ -62,12 +58,6 @@ private:
 
   ///Number of vertical wraps around the torus
   int m_yindex;
-
-  /// the next individual in the loop of those that have the same xypos
-  int m_next;
-
-  /// the last individual in the loop 0 means the only one
-  int m_last;
 
   /// points to the position in output of this lineage
   int m_mpos;

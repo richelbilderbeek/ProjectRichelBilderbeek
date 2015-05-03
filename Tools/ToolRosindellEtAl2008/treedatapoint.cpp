@@ -15,8 +15,6 @@ TreeDataPoint::TreeDataPoint(
   m_ypos{y},
   m_xindex{0},
   m_yindex{0},
-  m_next{0},
-  m_last{0},
   m_mpos{mpos},
   m_probability{1.0}
 {
@@ -31,8 +29,6 @@ TreeDataPoint::TreeDataPoint(
   m_ypos{other.GetYpos()},
   m_xindex{other.GetTileX()},
   m_yindex{other.GetTileY()},
-  m_next{other.GetNext()},
-  m_last{other.GetLast()},
   m_mpos{other.GetMpos()},
   m_probability{other.GetProbability()}
 {
@@ -47,8 +43,6 @@ TreeDataPoint& TreeDataPoint::operator=(
   this->m_ypos = other.GetYpos();
   this->m_xindex = other.GetTileX();
   this->m_yindex = other.GetTileY();
-  this->m_next = other.GetNext();
-  this->m_last = other.GetLast();
   this->m_mpos = other.GetMpos();
   this->m_probability = other.GetProbability();
   return *this;
@@ -105,8 +99,6 @@ bool operator==(const TreeDataPoint& lhs, const TreeDataPoint& rhs) noexcept
     && lhs.GetTileX() == rhs.GetTileX()
     && lhs.GetTileY() == rhs.GetTileY()
     && lhs.GetMpos() == rhs.GetMpos()
-    && lhs.GetNext() == rhs.GetNext()
-    && lhs.GetLast() == rhs.GetLast()
     && lhs.GetProbability() == rhs.GetProbability()
   ;
 }
@@ -119,8 +111,6 @@ std::ostream& operator<<(std::ostream& os, const TreeDataPoint& point) noexcept
     << point.GetTileX() << " "
     << point.GetTileY() << " "
     << point.GetMpos() << " "
-    << point.GetNext() << " "
-    << point.GetLast() << " "
     << point.GetProbability()
   ;
   return os;
