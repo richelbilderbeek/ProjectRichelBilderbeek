@@ -355,7 +355,6 @@ void Tree::Update()
   assert(IsValid(to_x,to_y,m_grid));
 
   int& grid_spot_to{m_grid[to_x][to_y]};
-  //int& grid_active{m_grid[active_x][active_y].first};
 
   //If there an individual at the dispersed-to spot?
   if (grid_spot_to == 0)
@@ -403,35 +402,19 @@ void Tree::Update()
 
   assert(m_active.size() - 1 != 0 && "Skip zero");
 
-  chosen = m_active.back();
+  TreeDataPoint& last_active = m_active.back();
+  m_active[chosen_index] = last_active;
 
-  assert(m_active.size() - 1 != 0 && "Skip zero");
+  const int last_active_x = last_active.GetXpos();
+  const int last_active_y = last_active.GetYpos();
 
-  const int newx = chosen.GetXpos();
-  const int newy = chosen.GetYpos();
+  assert(IsValid(last_active_x,last_active_y,m_grid));
 
+  int& last_active_spot = m_grid[last_active_x][last_active_y];
 
-  assert(IsValid(newx,newy,m_grid));
-
-  int& to = m_grid[newx][newy];
-
-  if (to == static_cast<int>(m_active.size()) - 1)
+  if (last_active_spot == static_cast<int>(m_active.size()) - 1)
   {
-    to = chosen_index;
-  }
-
-  if (chosen.GetNext() > 0)
-  {
-    assert(IsValid(chosen.GetNext(),m_active));
-    assert(m_active.size() - 1 != 0 && "Skip zero");
-    assert(chosen.GetNext() != 0 && "Skip zero");
-
-    m_active[chosen.GetNext()].SetLast(chosen_index);
-
-    assert(IsValid(chosen.GetNext(),m_active));
-    assert(m_active.size() - 1 != 0 && "Skip zero");
-    assert(chosen.GetLast() != 0 && "Skip zero");
-    m_active[chosen.GetLast()].SetNext(chosen_index);
+    last_active_spot = chosen_index;
   }
   m_active.pop_back();
 }

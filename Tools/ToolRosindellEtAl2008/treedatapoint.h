@@ -37,10 +37,10 @@ struct TreeDataPoint
   int GetYpos() const noexcept { return m_ypos; }
   int GetTileX() const noexcept { return m_xindex; }
   int GetTileY() const noexcept { return m_yindex; }
-  int GetLast() const noexcept { return m_last; }
   int GetMpos() const noexcept { return m_mpos; }
-  int GetNext() const noexcept { return m_next; }
   double GetProbability() const noexcept { return m_probability; }
+  int GetLast() const noexcept { return m_last; }
+  int GetNext() const noexcept { return m_next; }
 
   void SetIndex(const int x, const int y) noexcept { m_xindex = x; m_yindex = y; }
   void SetNext(const int next) noexcept { m_next = next; }
@@ -53,6 +53,7 @@ struct TreeDataPoint
   // this implements the indexing system
   void Move(const int dx, const int dy, const double p);
 private:
+
   int m_xpos;
   int m_ypos;
 
