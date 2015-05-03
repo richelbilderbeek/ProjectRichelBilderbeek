@@ -316,7 +316,6 @@ void Tree::Update()
   assert(IsValid(chosen_index,m_active));
   TreeDataPoint& chosen = m_active[chosen_index];
 
-  assert(IsValid(chosen_index,m_active));
   const int from_x = chosen.GetXpos();
   const int from_y = chosen.GetYpos();
 
@@ -332,7 +331,7 @@ void Tree::Update()
 
   //?
   //assert(IsValid(chosen.GetMpos(),m_nodes));
-  chosen.GetMpos()->IncSteps();
+  chosen.GetNode()->IncSteps();
 
   const int to_x = chosen.GetXpos();
   const int to_y = chosen.GetYpos();
@@ -359,12 +358,12 @@ void Tree::Update()
   //Let these two coalesce
   ++m_enddata;
   m_nodes[m_enddata] = TreeNode(false);
-  chosen.GetMpos()->SetParent(m_enddata);
+  chosen.GetNode()->SetParent(m_enddata);
 
   //assert(IsValid(grid_spot_to->GetMpos(),m_nodes));
-  grid_spot_to->GetMpos()->SetParent(m_enddata);
+  grid_spot_to->GetNode()->SetParent(m_enddata);
 
-  grid_spot_to->SetMpos(&m_nodes[m_enddata]);
+  grid_spot_to->SetNode(&m_nodes[m_enddata]);
 
   const double probability{
     chosen.GetProbability()
@@ -374,8 +373,6 @@ void Tree::Update()
 
   grid_spot_to->SetProbability(probability);
 
-  assert(m_active.size() - 1 != 0 && "Skip zero");
-
   TreeDataPoint& last_active = m_active.back();
   m_active[chosen_index] = last_active;
 
@@ -383,7 +380,6 @@ void Tree::Update()
   const int last_active_y = last_active.GetYpos();
 
   assert(IsValid(last_active_x,last_active_y,m_grid));
-
   GridType& last_active_spot = m_grid[last_active_x][last_active_y];
 
   if (last_active_spot == &(m_active.back()))

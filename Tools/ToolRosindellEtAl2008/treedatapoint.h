@@ -27,12 +27,12 @@ struct TreeNode;
 ///  |     |
 struct TreeDataPoint
 {
-  using Mpos = TreeNode*;
+
 
   TreeDataPoint(
     const int x = 0,
     const int y = 0,
-    const Mpos mpos = nullptr
+    TreeNode * node = nullptr
   );
   TreeDataPoint(const TreeDataPoint&);
   TreeDataPoint& operator=(const TreeDataPoint&);
@@ -41,11 +41,11 @@ struct TreeDataPoint
   int GetYpos() const noexcept { return m_ypos; }
   int GetTileX() const noexcept { return m_xindex; }
   int GetTileY() const noexcept { return m_yindex; }
-  Mpos GetMpos() const noexcept { return m_mpos; }
+  TreeNode *  GetNode() const noexcept { return m_node; }
   double GetProbability() const noexcept { return m_probability; }
 
   void SetIndex(const int x, const int y) noexcept { m_xindex = x; m_yindex = y; }
-  void SetMpos(const Mpos mpos) noexcept { m_mpos = mpos; }
+  void SetNode(TreeNode * const node) noexcept { m_node = node; }
   void SetPos(const int xpos, const int ypos) noexcept { m_xpos = xpos; m_ypos = ypos; }
   void SetProbability(const double probability) { m_probability = probability; }
 
@@ -62,8 +62,8 @@ private:
   ///Number of vertical wraps around the torus
   int m_yindex;
 
-  /// points to the position in output of this lineage
-  Mpos m_mpos;
+  ///Output of this lineage
+  TreeNode * m_node;
 
   /// the probability of not having speciated yet
   /// this is to allow the coalescence tree calculation to be stopped
