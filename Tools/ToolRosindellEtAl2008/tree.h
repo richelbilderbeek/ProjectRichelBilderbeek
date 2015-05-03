@@ -17,7 +17,8 @@
 // use that object to do all their calculations
 struct Tree
 {
-  using GridType = int;
+  //using GridType = int;
+  using GridType = TreeDataPoint*;
   using Grid = std::vector<std::vector<GridType>>;
 
   // area_width = width of survey area (in number of trees)

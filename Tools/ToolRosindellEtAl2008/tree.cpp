@@ -112,8 +112,8 @@ Tree::Grid
   {
     const TreeDataPoint& p{datapoints[i]};
     v[p.GetXpos()][p.GetYpos()]
-    //  = std::make_pair(i,&datapoints[i]);
-      = i;
+      = &datapoints[i];
+      // = i;
   }
   return v;
 }
@@ -336,12 +336,12 @@ void Tree::Update()
   GridType& grid_spot_to{m_grid[to_x][to_y]};
 
   //If there an individual at the dispersed-to spot?
-  if (grid_spot_to == 0)
+  if (grid_spot_to == nullptr)
   {
     //Remove active indidual from old spot
     m_grid[from_x][from_y] = 0;
     //Just move the individual
-    grid_spot_to = chosen_index;
+    grid_spot_to = &chosen;
     //Nope, this timestep is done
     return;
   }
@@ -363,25 +363,25 @@ void Tree::Update()
   m_nodes[m_enddata] = TreeNode(false);
   m_nodes[chosen.GetMpos()].SetParent(m_enddata);
 
-  assert(IsValid(grid_spot_to,m_active));
-  assert(IsValid(m_active[grid_spot_to].GetMpos(),m_nodes));
+  //assert(IsValid(grid_spot_to,m_active));
+  //assert(IsValid(m_active[grid_spot_to].GetMpos(),m_nodes));
   assert(grid_spot_to != 0 && "Skip zero");
-  m_nodes[m_active[grid_spot_to].GetMpos()].SetParent(m_enddata);
+  m_nodes[grid_spot_to->GetMpos()].SetParent(m_enddata);
 
-  assert(IsValid(grid_spot_to,m_active));
+  //assert(IsValid(grid_spot_to,m_active));
   assert(grid_spot_to != 0 && "Skip zero");
-  m_active[grid_spot_to].SetMpos(m_enddata);
+  grid_spot_to->SetMpos(m_enddata);
 
   const double probability{
     chosen.GetProbability()
-    + m_active[grid_spot_to].GetProbability()
+    + grid_spot_to->GetProbability()
     * (1.0-chosen.GetProbability())
   };
 
-  assert(IsValid(grid_spot_to,m_active));
+  //assert(IsValid(grid_spot_to,m_active));
   assert(grid_spot_to != 0 && "Skip zero");
 
-  m_active[grid_spot_to].SetProbability(probability);
+  grid_spot_to->SetProbability(probability);
 
   assert(m_active.size() - 1 != 0 && "Skip zero");
 
@@ -395,9 +395,9 @@ void Tree::Update()
 
   GridType& last_active_spot = m_grid[last_active_x][last_active_y];
 
-  if (last_active_spot == static_cast<int>(m_active.size()) - 1)
+  if (last_active_spot == &(m_active.back()))
   {
-    last_active_spot = chosen_index;
+    last_active_spot = &chosen;
   }
   m_active.pop_back();
 }
