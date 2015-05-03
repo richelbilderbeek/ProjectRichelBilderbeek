@@ -339,7 +339,7 @@ void Tree::Update()
   if (grid_spot_to == nullptr)
   {
     //Remove active indidual from old spot
-    m_grid[from_x][from_y] = 0;
+    m_grid[from_x][from_y] = nullptr;
     //Just move the individual
     grid_spot_to = &chosen;
     //Nope, this timestep is done
@@ -352,24 +352,13 @@ void Tree::Update()
   //There is an individual at the dispersed-to-spot
 
   //Let these two coalesce
-
-  // check around the ring for coalescence
-
-  // this is how far around the loop we have got checking for coalescence
-  // we start at "start" and then move around methodically
-  // the loops usually contain 1 individual but we must allow code for any number
-
   ++m_enddata;
   m_nodes[m_enddata] = TreeNode(false);
   m_nodes[chosen.GetMpos()].SetParent(m_enddata);
 
-  //assert(IsValid(grid_spot_to,m_active));
-  //assert(IsValid(m_active[grid_spot_to].GetMpos(),m_nodes));
-  assert(grid_spot_to != 0 && "Skip zero");
+  assert(IsValid(grid_spot_to->GetMpos(),m_nodes));
   m_nodes[grid_spot_to->GetMpos()].SetParent(m_enddata);
 
-  //assert(IsValid(grid_spot_to,m_active));
-  assert(grid_spot_to != 0 && "Skip zero");
   grid_spot_to->SetMpos(m_enddata);
 
   const double probability{
@@ -377,9 +366,6 @@ void Tree::Update()
     + grid_spot_to->GetProbability()
     * (1.0-chosen.GetProbability())
   };
-
-  //assert(IsValid(grid_spot_to,m_active));
-  assert(grid_spot_to != 0 && "Skip zero");
 
   grid_spot_to->SetProbability(probability);
 
