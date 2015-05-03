@@ -226,9 +226,9 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
 
   while (1)
   {
-    const int sz{static_cast<int>(m_nodes.size()) - 1};
+    const int sz{static_cast<int>(m_nodes.size())};
     bool loop = false;
-    for (int i = 1; i<=sz; ++i)
+    for (int i = 1; i!=sz; ++i)
     {
       //check to see if that part of the array is complete
       assert(IsValid(i,m_nodes));
@@ -290,8 +290,8 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
   }
 
   {
-    const int sz{static_cast<int>(m_nodes.size()) - 1};
-    for (int i = 1; i<=sz; ++i)
+    const int sz{static_cast<int>(m_nodes.size())};
+    for (int i = 1; i!=sz; ++i)
     {
       // here we are dealing with all the last branches after prooning all nodes
       assert(IsValid(i,m_nodes));
