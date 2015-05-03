@@ -14,6 +14,7 @@ TreeNode::TreeNode(
     m_branch_length{0},
     m_p{0.0}
 {
+
 }
 
 bool operator==(const TreeNode& lhs, const TreeNode& rhs) noexcept
