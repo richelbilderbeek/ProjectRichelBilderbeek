@@ -26,13 +26,14 @@ void Parameters::Test() noexcept
     0.10, //const double any_seagrass_growth_rate,
     0.11, //const double any_seagrass_to_organic_matter_factor,
     0.12, //const double any_sulfide_consumption_by_loripes,
-    0.13, //const double any_sulfide_toxicity,
-    14 //const int any_n_timesteps
+    0.13, //const double any_sulfide_diffusion_rate,
+    0.14, //const double any_sulfide_toxicity,
+    15    //const int any_n_timesteps
   );
   {
     Parameters p(parameters);
     assert(p == parameters);
-    p.delta_t += 1;
+    p.sulfide_diffusion_rate += 0.1;
     assert(p != parameters);
   }
   {

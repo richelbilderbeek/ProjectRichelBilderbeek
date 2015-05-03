@@ -76,6 +76,7 @@ QtDialog::QtDialog(QWidget *parent) :
   QObject::connect(ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),this,SLOT(Run()));
   QObject::connect(ui->box_seagrass_to_organic_matter_factor,SIGNAL(valueChanged(double)),this,SLOT(Run()));
   QObject::connect(ui->box_sulfide_consumption_by_loripes,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+  QObject::connect(ui->box_sulfide_diffusion_rate,SIGNAL(valueChanged(double)),this,SLOT(Run()));
   QObject::connect(ui->box_organic_matter_to_sulfide_rate,SIGNAL(valueChanged(double)),this,SLOT(Run()));
   QObject::connect(ui->box_sulfide_toxicity,SIGNAL(valueChanged(double)),this,SLOT(Run()));
 
@@ -136,6 +137,7 @@ Parameters QtDialog::GetParameters() const noexcept
     ui->box_seagrass_growth_rate->value(),
     ui->box_seagrass_to_organic_matter_factor->value(),
     ui->box_sulfide_consumption_by_loripes->value(),
+    ui->box_sulfide_diffusion_rate->value(),
     ui->box_sulfide_toxicity->value(),
     ui->box_n_timesteps->value()
   );
@@ -157,6 +159,7 @@ void QtDialog::SetParameters(const Parameters& parameters) noexcept
   ui->box_seagrass_growth_rate->setValue(parameters.seagrass_growth_rate);
   ui->box_seagrass_to_organic_matter_factor->setValue(parameters.seagrass_to_organic_matter_factor);
   ui->box_sulfide_consumption_by_loripes->setValue(parameters.sulfide_consumption_by_loripes_rate);
+  ui->box_sulfide_diffusion_rate->setValue(parameters.sulfide_diffusion_rate);
   ui->box_sulfide_toxicity->setValue(parameters.sulfide_toxicity);
   ui->box_n_timesteps->setValue(parameters.n_timesteps);
 }

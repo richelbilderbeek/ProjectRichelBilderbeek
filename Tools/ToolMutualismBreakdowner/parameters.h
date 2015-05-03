@@ -19,6 +19,7 @@ struct Parameters
     const double any_seagrass_growth_rate,
     const double any_seagrass_to_organic_matter_factor,
     const double any_sulfide_consumption_by_loripes,
+    const double any_sulfide_diffusion_rate,
     const double any_sulfide_toxicity,
     const int any_n_timesteps
   );
@@ -34,6 +35,7 @@ struct Parameters
   double seagrass_growth_rate;
   double seagrass_to_organic_matter_factor;
   double sulfide_consumption_by_loripes_rate;
+  double sulfide_diffusion_rate;
   double sulfide_toxicity;
   int n_timesteps;
 

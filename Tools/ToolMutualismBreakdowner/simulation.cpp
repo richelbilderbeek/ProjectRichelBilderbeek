@@ -20,6 +20,7 @@ void Simulation::Run() noexcept
   const double c{m_parameters.sulfide_consumption_by_loripes_rate};
   const double d{m_parameters.desiccation_stress};
   const double f{m_parameters.organic_matter_to_sulfide_factor};
+  const double g{m_parameters.sulfide_diffusion_rate};
   const double k{m_parameters.seagrass_carrying_capacity};
   const double l{m_parameters.loripes_density};
   //const double p{m_parameters.oxygen_production};
@@ -30,6 +31,7 @@ void Simulation::Run() noexcept
   //Initialize sim
   double seagrass_density{m_parameters.initial_seagrass_density};
   double sulfide_concentration{m_parameters.initial_sulfide_concentration};
+
   double organic_matter_density{m_parameters.initial_organic_matter_density};
 
   int i=0;
@@ -55,7 +57,6 @@ void Simulation::Run() noexcept
     }
     {
       using std::exp;
-      const double g{0.0001}; //Diffusion rate of sulfide in environment
       const double delta_s{
           (f*b*m)   //Conversion from organic matter
         - (c*l*s*n) //Consumption of sulfide by loripes

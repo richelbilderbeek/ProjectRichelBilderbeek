@@ -17,6 +17,7 @@ Parameters::Parameters(
   const double any_seagrass_growth_rate,
   const double any_seagrass_to_organic_matter_factor,
   const double any_sulfide_consumption_by_loripes,
+  const double any_sulfide_diffusion_rate,
   const double any_sulfide_toxicity,
   const int any_n_timesteps
 ) :
@@ -32,6 +33,7 @@ Parameters::Parameters(
     seagrass_growth_rate{any_seagrass_growth_rate},
     seagrass_to_organic_matter_factor{any_seagrass_to_organic_matter_factor},
     sulfide_consumption_by_loripes_rate{any_sulfide_consumption_by_loripes},
+    sulfide_diffusion_rate{any_sulfide_diffusion_rate},
     sulfide_toxicity{any_sulfide_toxicity},
     n_timesteps{any_n_timesteps}
 {
@@ -60,6 +62,7 @@ std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
     << parameter.seagrass_growth_rate << " "
     << parameter.seagrass_to_organic_matter_factor << " "
     << parameter.sulfide_consumption_by_loripes_rate << " "
+    << parameter.sulfide_diffusion_rate << " "
     << parameter.sulfide_toxicity << " "
     << parameter.n_timesteps << '\n'
   ;
@@ -81,6 +84,7 @@ std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept
     >> parameter.seagrass_growth_rate
     >> parameter.seagrass_to_organic_matter_factor
     >> parameter.sulfide_consumption_by_loripes_rate
+    >> parameter.sulfide_diffusion_rate
     >> parameter.sulfide_toxicity
     >> parameter.n_timesteps
   ;
@@ -102,6 +106,7 @@ bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept
     && lhs.seagrass_growth_rate == rhs.seagrass_growth_rate
     && lhs.seagrass_to_organic_matter_factor == rhs.seagrass_to_organic_matter_factor
     && lhs.sulfide_consumption_by_loripes_rate == rhs.sulfide_consumption_by_loripes_rate
+    && lhs.sulfide_diffusion_rate == rhs.sulfide_diffusion_rate
     && lhs.sulfide_toxicity == rhs.sulfide_toxicity
     && lhs.n_timesteps == rhs.n_timesteps
   ;

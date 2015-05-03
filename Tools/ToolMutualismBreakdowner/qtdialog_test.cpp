@@ -26,8 +26,9 @@ void QtDialog::Test() noexcept
     0.90, //const double any_seagrass_growth_rate,
     0.01, //const double any_seagrass_to_organic_matter_factor,
     0.22, //const double any_sulfide_consumption_by_loripes,
-    0.23, //const double any_sulfide_toxicity,
-    14 //const int any_n_timesteps
+    0.23, //const double any_sulfide_diffusion_rate,
+    0.24, //const double any_sulfide_toxicity,
+    25 //const int any_n_timesteps
   );
   {
     QtDialog d;
