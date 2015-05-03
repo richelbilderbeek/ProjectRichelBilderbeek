@@ -17,6 +17,7 @@ struct Simulation
 
   private:
   const Parameters m_parameters;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

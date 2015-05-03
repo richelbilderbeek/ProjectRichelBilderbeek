@@ -18,11 +18,18 @@ public:
   explicit QtDialog(QWidget *parent = 0);
   ~QtDialog();
   Parameters GetParameters() const noexcept;
+  void SetParameters(const Parameters& parameters) noexcept;
 
 private slots:
   void Run();
 
   void on_button_fix_zoom_clicked();
+
+  void on_button_set_random_values_clicked();
+
+  void on_button_save_clicked();
+
+  void on_button_load_clicked();
 
 private:
   Ui::QtDialog *ui;
@@ -32,6 +39,11 @@ private:
   QwtPlotCurve * const m_curve_organic_matter_density;
 
   void FixZoom();
+  double GetRandom() const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 #endif // QTDIALOG_H

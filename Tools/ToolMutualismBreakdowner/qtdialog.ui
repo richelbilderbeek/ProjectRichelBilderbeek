@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>816</width>
-    <height>457</height>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
- background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #bbf, stop: 1 #fff);
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #bbf, stop: 0.2  #bbf, stop: 0.5 #bfb, stop: 0.8 #fbb, stop: 1 #fbb);
   border: 1px solid black
 }
 
@@ -61,17 +61,17 @@ QPlainTextEdit {
       <item row="0" column="1">
        <widget class="QSpinBox" name="box_n_timesteps">
         <property name="maximum">
-         <number>999999999</number>
+         <number>1000000000</number>
         </property>
         <property name="value">
-         <number>10</number>
+         <number>100</number>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_5">
         <property name="text">
-         <string>delta t</string>
+         <string>Delta t</string>
         </property>
        </widget>
       </item>
@@ -90,14 +90,14 @@ QPlainTextEdit {
          <double>0.001000000000000</double>
         </property>
         <property name="value">
-         <double>0.001000000000000</double>
+         <double>0.010000000000000</double>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Desiccation stress (0-1)</string>
+         <string>(d) Desiccation stress</string>
         </property>
        </widget>
       </item>
@@ -120,7 +120,7 @@ QPlainTextEdit {
       <item row="3" column="0">
        <widget class="QLabel" name="label_10">
         <property name="text">
-         <string>Initial organic matter density</string>
+         <string>(m0) Initial organic matter density</string>
         </property>
        </widget>
       </item>
@@ -134,7 +134,7 @@ QPlainTextEdit {
       <item row="4" column="0">
        <widget class="QLabel" name="label_init_seagrass_density">
         <property name="text">
-         <string>Initial seagrass density</string>
+         <string>(n0) Initial seagrass density</string>
         </property>
        </widget>
       </item>
@@ -160,7 +160,7 @@ QPlainTextEdit {
       <item row="5" column="0">
        <widget class="QLabel" name="label_8">
         <property name="text">
-         <string>Initial sulfide concentration</string>
+         <string>(s0) Initial sulfide concentration</string>
         </property>
        </widget>
       </item>
@@ -174,7 +174,7 @@ QPlainTextEdit {
       <item row="6" column="0">
        <widget class="QLabel" name="label_loripes_density">
         <property name="text">
-         <string>Loripes density</string>
+         <string>(l) Loripes density</string>
         </property>
        </widget>
       </item>
@@ -197,7 +197,7 @@ QPlainTextEdit {
       <item row="7" column="0">
        <widget class="QLabel" name="label_organic_matter_to_sulfide_factor">
         <property name="text">
-         <string>organic_matter_to_sulfide_factor</string>
+         <string>(f) Organic matter to sulfide factor</string>
         </property>
        </widget>
       </item>
@@ -217,7 +217,7 @@ QPlainTextEdit {
       <item row="8" column="0">
        <widget class="QLabel" name="label_organic_matter_to_sulfide_rate">
         <property name="text">
-         <string>organic_matter_to_sulfide_rate</string>
+         <string>(b) Organic matter to sulfide rate</string>
         </property>
        </widget>
       </item>
@@ -234,7 +234,7 @@ QPlainTextEdit {
       <item row="9" column="0">
        <widget class="QLabel" name="label_9">
         <property name="text">
-         <string>Seagrass carrying capacity</string>
+         <string>(k) Seagrass carrying capacity</string>
         </property>
        </widget>
       </item>
@@ -251,7 +251,7 @@ QPlainTextEdit {
       <item row="10" column="0">
        <widget class="QLabel" name="label_seagrass_growth_rate">
         <property name="text">
-         <string>Seagrass growth rate</string>
+         <string>(r) Seagrass growth rate</string>
         </property>
        </widget>
       </item>
@@ -274,7 +274,7 @@ QPlainTextEdit {
       <item row="11" column="0">
        <widget class="QLabel" name="label_seagrass_to_organic_matter_factor">
         <property name="text">
-         <string>seagrass_to_organic_matter_factor</string>
+         <string>(z) Seagrass to organic matter factor</string>
         </property>
        </widget>
       </item>
@@ -288,7 +288,7 @@ QPlainTextEdit {
       <item row="12" column="0">
        <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>Sulfide toxicity (decline seagrass/mol)</string>
+         <string>(p) Sulfide toxicity</string>
         </property>
        </widget>
       </item>
@@ -311,7 +311,7 @@ QPlainTextEdit {
       <item row="13" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>Sulfide consumption by loripes</string>
+         <string>(c) Sulfide consumption by loripes</string>
         </property>
        </widget>
       </item>
@@ -331,10 +331,31 @@ QPlainTextEdit {
         </property>
        </widget>
       </item>
-      <item row="14" column="0" colspan="2">
+      <item row="17" column="0" colspan="2">
        <widget class="QPushButton" name="button_fix_zoom">
         <property name="text">
          <string>&amp;Fix zoom</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="0" colspan="2">
+       <widget class="QPushButton" name="button_set_random_values">
+        <property name="text">
+         <string>Set &amp;random values</string>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="0" colspan="2">
+       <widget class="QPushButton" name="button_save">
+        <property name="text">
+         <string>&amp;Save parameters</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="0" colspan="2">
+       <widget class="QPushButton" name="button_load">
+        <property name="text">
+         <string>&amp;Load parameters</string>
         </property>
        </widget>
       </item>

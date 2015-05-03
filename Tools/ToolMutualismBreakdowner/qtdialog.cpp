@@ -1,13 +1,15 @@
 #include "qtdialog.h"
 
+#include <fstream>
 #include <QDesktopWidget>
+#include <QFileDialog>
 
 #include <qwt_plot_zoomer.h>
 #include <qwt_plot_grid.h>
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 
-#include"simulation.h"
+#include "simulation.h"
 #include "ui_qtdialog.h"
 
 #if QWT_VERSION >= 0x060100 || !WIN32
@@ -21,6 +23,10 @@ QtDialog::QtDialog(QWidget *parent) :
   m_curve_sulfide_concentration(new QwtPlotCurve),
   m_curve_organic_matter_density(new QwtPlotCurve)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 
   ui->plot_seagrass_density->setTitle("Seagrass density");
@@ -137,6 +143,40 @@ Parameters QtDialog::GetParameters() const noexcept
   return p;
 }
 
+void QtDialog::SetParameters(const Parameters& parameters) noexcept
+{
+  ui->box_delta_t->setValue(parameters.delta_t);
+  ui->box_desiccation_stress->setValue(parameters.desiccation_stress);
+  ui->box_initial_organic_matter_density->setValue(parameters.initial_organic_matter_density);
+  ui->box_initial_seagrass_density->setValue(parameters.initial_seagrass_density);
+  ui->box_initial_sulfide_concentration->setValue(parameters.initial_sulfide_concentration);
+  ui->box_loripes_density->setValue(parameters.loripes_density);
+  ui->box_organic_matter_to_sulfide_factor->setValue(parameters.organic_matter_to_sulfide_factor);
+  ui->box_organic_matter_to_sulfide_rate->setValue(parameters.organic_matter_to_sulfide_rate);
+  ui->box_seagrass_carrying_capacity->setValue(parameters.seagrass_carrying_capacity);
+  ui->box_seagrass_growth_rate->setValue(parameters.seagrass_growth_rate);
+  ui->box_seagrass_to_organic_matter_factor->setValue(parameters.seagrass_to_organic_matter_factor);
+  ui->box_sulfide_consumption_by_loripes->setValue(parameters.sulfide_consumption_by_loripes_rate);
+  ui->box_sulfide_toxicity->setValue(parameters.sulfide_toxicity);
+  ui->box_n_timesteps->setValue(parameters.n_timesteps);
+}
+
+double QtDialog::GetRandom() const noexcept
+{
+  switch (std::rand() % 8)
+  {
+    case 0: return 10.0;
+    case 1: return  5.0;
+    case 2: return  1.0;
+    case 3: return  0.1;
+    case 4: return  0.5;
+    case 5: return  0.01;
+    case 6: return  0.005;
+    case 7: return  0.001;
+  }
+  return 0.0;
+}
+
 void QtDialog::Run()
 {
   Simulation simulation(GetParameters());
@@ -162,4 +202,42 @@ void QtDialog::Run()
 void QtDialog::on_button_fix_zoom_clicked()
 {
   FixZoom();
+}
+
+void QtDialog::on_button_set_random_values_clicked()
+{
+  ui->box_desiccation_stress->setValue(GetRandom());
+  ui->box_initial_organic_matter_density->setValue(GetRandom());
+  ui->box_initial_seagrass_density->setValue(GetRandom());
+  ui->box_initial_sulfide_concentration->setValue(GetRandom());
+  ui->box_loripes_density->setValue(GetRandom());
+  ui->box_organic_matter_to_sulfide_factor->setValue(GetRandom());
+  ui->box_organic_matter_to_sulfide_rate->setValue(GetRandom());
+  ui->box_seagrass_carrying_capacity->setValue(GetRandom());
+  ui->box_seagrass_growth_rate->setValue(GetRandom());
+  ui->box_seagrass_to_organic_matter_factor->setValue(GetRandom());
+  ui->box_sulfide_consumption_by_loripes->setValue(GetRandom());
+  ui->box_sulfide_toxicity->setValue(GetRandom());
+}
+
+void QtDialog::on_button_save_clicked()
+{
+  const std::string filename{
+    QFileDialog::getSaveFileName().toStdString()
+  };
+  if (filename.empty()) return;
+  std::ofstream f(filename);
+  f << GetParameters();
+}
+
+void QtDialog::on_button_load_clicked()
+{
+  const std::string filename{
+    QFileDialog::getOpenFileName().toStdString()
+  };
+  if (filename.empty()) return;
+  std::ifstream f(filename);
+  Parameters parameters;
+  f >> parameters;
+  SetParameters(parameters);
 }

@@ -55,10 +55,11 @@ void Simulation::Run() noexcept
     }
     {
       using std::exp;
-      //const double a{m_parameters.oxygen_inhibition_strength};
+      const double g{0.0001}; //Diffusion rate of sulfide in environment
       const double delta_s{
-          f*b*m
-        - c*l*s*n //Consumption of sulfide by loripes
+          (f*b*m)   //Conversion from organic matter
+        - (c*l*s*n) //Consumption of sulfide by loripes
+        - (g*s)     //Diffusion of sulfide into the environment
       };
       sulfide_concentration += (delta_s * delta_t);
 
@@ -72,4 +73,5 @@ void Simulation::Run() noexcept
     }
     ++i;
   }
+
 }
