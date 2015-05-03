@@ -14,9 +14,11 @@ struct TreeNode
   TreeNode(const bool root);
   void SetParent(const Parent parent) { m_parent = parent; }
   bool GetRoot() const noexcept { return m_root; }
+  double GetProbability() const noexcept { return m_p; }
   Parent GetParent() const noexcept { return m_parent; }
   int GetSteps() const noexcept { return m_steps; }
   void IncSteps() noexcept { ++m_steps; }
+  void SetProbability(const double p) { m_p = p; }
 private:
 
   /// is this node at the end of the tree (true)
@@ -31,6 +33,9 @@ private:
   /// the number of generations (chances of speciation)
   /// between this individual and its parent in the tree
   int m_steps;
+
+  //Probability
+  double m_p;
 };
 
 bool operator==(const TreeNode& lhs, const TreeNode& rhs) noexcept;

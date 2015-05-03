@@ -216,14 +216,13 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
 
   //The probabilities at each node
   const int sz{m_enddata};
-  std::vector<double> ps(sz+1);
+  //std::vector<double> ps(sz+1);
   for (int i = 1; i<=sz; ++i)
   {
     //  1.0: free branch, because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place
     // -2.0: an internal node that has thus far not been pruned at all
     assert(IsValid(i,m_nodes));
-    assert(IsValid(i,ps));
-    ps[i] = m_nodes[i].GetRoot() ? 1.0 : -2.0;
+    m_nodes[i].SetProbability(m_nodes[i].GetRoot() ? 1.0 : -2.0);
   }
 
   bool loop = true;
@@ -233,18 +232,18 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
     for (int i = 1; i<=sz; ++i)
     {
       // check to see if that part of the array is complete
-      assert(IsValid(i,ps));
-      if (ps[i] >= 0.0)
+      //assert(IsValid(i,ps));
+      if (m_nodes[i].GetProbability() >= 0.0)
       {
         // it is complete so use it to complete the info on in its parents
         const int theparent{m_nodes[i].GetParent()};
-        assert(IsValid(theparent,ps));
-        if (ps[theparent] < 0.0 && theparent != 0)
+        //assert(IsValid(theparent,ps));
+        if (m_nodes[theparent].GetProbability() < 0.0 && theparent != 0)
         {
           // only do anything if the parents have not already been completed
           loop = true;
           // be sure to go round again if the parents have not been completed
-          if (ps[theparent] <= -1.5)
+          if (m_nodes[theparent].GetProbability() <= -1.5)
           {
             // parent not at all complete
             const double steps{static_cast<double>(m_nodes[i].GetSteps())};
@@ -254,12 +253,13 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
                 steps//static_cast<double>(m_nodes[i].GetSteps())
               )
             };
-            result[0] += ps[i]*(1-temprob);
+            result[0] += m_nodes[i].GetProbability()*(1-temprob);
             // we store probabilities as negative in a node if they
             // refer only to one of the two branches of the node
             // we then wait until we have both branches of the node
             // before continuing to complete the full calculation
-            ps[theparent]= -1.0*ps[i]*temprob;
+            m_nodes[theparent].SetProbability(
+              -1.0*m_nodes[i].GetProbability()*temprob);
           }
           else
           {
@@ -272,11 +272,11 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
                 steps //static_cast<double>(m_nodes[i].GetSteps())
               )
             };
-            result[0] += ps[i]*(1.0-temprob);
+            result[0] += m_nodes[i].GetProbability()*(1.0-temprob);
             // update the probability array
-            temprob = temprob*ps[i];
-            const double temprob2 = ps[theparent]*-1.0;
-            ps[theparent]=(temprob+temprob2-temprob*temprob2);
+            temprob = temprob*m_nodes[i].GetProbability();
+            const double temprob2 = m_nodes[theparent].GetProbability()*-1.0;
+            m_nodes[theparent].SetProbability(temprob+temprob2-temprob*temprob2);
           }
         }
       }
@@ -294,8 +294,8 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
     if (m_nodes[i].GetParent() == 0)
     {
       const double steps{static_cast<double>(m_nodes[i].GetSteps())};
-      result[0] += ps[i] * (1.0 - std::pow(1.0 - speciation_rate,steps) );
-      result[1] += ps[i] * (      std::pow(1.0 - speciation_rate,steps) );
+      result[0] += m_nodes[i].GetProbability() * (1.0 - std::pow(1.0 - speciation_rate,steps) );
+      result[1] += m_nodes[i].GetProbability() * (      std::pow(1.0 - speciation_rate,steps) );
     }
   }
   result[1] += result[0];
