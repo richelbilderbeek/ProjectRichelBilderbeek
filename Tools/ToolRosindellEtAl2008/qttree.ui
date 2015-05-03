@@ -267,6 +267,9 @@ QPlainTextEdit {
    </item>
    <item row="0" column="1" rowspan="4">
     <widget class="QPlainTextEdit" name="text">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
      <property name="plainText">
       <string>[CLICK START]</string>
      </property>

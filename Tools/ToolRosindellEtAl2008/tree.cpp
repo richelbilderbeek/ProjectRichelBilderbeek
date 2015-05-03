@@ -347,7 +347,7 @@ void Tree::Update()
   }
 
   //Remove active indidual from old spot
-  m_grid[from_x][from_y] = 0;
+  m_grid[from_x][from_y] = nullptr;
 
   //There is an individual at the dispersed-to-spot
 
