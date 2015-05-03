@@ -14,7 +14,6 @@ TreeNode::TreeNode(
     m_branch_length{0},
     m_p{0.0}
 {
-  //assert(GetProbability() == (GetRoot() ? 1.0 : -2.0));
 }
 
 bool operator==(const TreeNode& lhs, const TreeNode& rhs) noexcept

@@ -359,17 +359,15 @@ void Tree::Update()
   //There is an individual at the dispersed-to-spot
 
   //Let these two coalesce
-  //++m_enddata;
+
   m_nodes.push_back(
     TreeNode(
       chosen.GetNode(),
       grid_spot_to->GetNode()
     )
   );
-  //assert(m_nodes[m_enddata] == TreeNode(false));
-
-  //const TreeNode::Parent new_node{&m_nodes[m_enddata]};
   TreeNode * const new_node{&m_nodes.back()};
+
   chosen.GetNode()->SetParent(new_node);
   grid_spot_to->GetNode()->SetParent(new_node);
   grid_spot_to->SetNode(new_node);
