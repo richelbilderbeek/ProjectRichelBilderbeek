@@ -39,7 +39,6 @@ Tree::Tree(
     m_area_length{area_length},
     m_dispersal_distance{dispersal_distance},
     m_dispersal_kernel{dispersal_kernel},
-    m_enddata{area_width * area_length},
     m_grid{},
     m_min_speciation_rate{min_speciation_rate},
     m_nodes{},
@@ -60,8 +59,10 @@ Tree::Tree(
   {
     throw std::logic_error("Tree::Tree: dispersal distance must be positive");
   }
-  m_nodes.reserve(2*area_width*area_length+1); //KEEP THIS IN
-  m_nodes = std::vector<TreeNode>(2*area_width*area_length+1,TreeNode(true));
+  //Reserving m_nodes is important: due to pointer,
+  //we must prevent a copy of the nodes
+  m_nodes.reserve(2*area_width*area_length+1); //These are reserved
+  m_nodes.resize(area_width*area_length+1); //These are used
   m_active = CreateActive(area_width,area_length,m_nodes);
   m_grid = CreateGrid(area_width,area_length,m_active);
 }
@@ -217,8 +218,7 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
   std::array<double,2> result = {0.0,0.0};
 
   //The probabilities at each node
-  const int sz{m_enddata};
-  //std::vector<double> ps(sz+1);
+  const int sz{static_cast<int>(m_nodes.size()) - 1};
   for (int i = 1; i<=sz; ++i)
   {
     //  1.0: free branch, because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place
@@ -358,9 +358,12 @@ void Tree::Update()
   //There is an individual at the dispersed-to-spot
 
   //Let these two coalesce
-  ++m_enddata;
-  m_nodes[m_enddata] = TreeNode(false);
-  const TreeNode::Parent new_node{&m_nodes[m_enddata]};
+  //++m_enddata;
+  m_nodes.push_back(TreeNode(false));
+  //assert(m_nodes[m_enddata] == TreeNode(false));
+
+  //const TreeNode::Parent new_node{&m_nodes[m_enddata]};
+  const TreeNode::Parent new_node{&m_nodes.back()};
   chosen.GetNode()->SetParent(new_node);
   grid_spot_to->GetNode()->SetParent(new_node);
   grid_spot_to->SetNode(new_node);

@@ -66,10 +66,6 @@ private:
   const int m_dispersal_distance;
   const DispersalKernel m_dispersal_kernel;
 
-  // marks the end of the data array
-  // this is so that size can be expanded and contracted easily up to a maximum size
-  int m_enddata;
-
   // grid - this is an internal variable
   // this is necessary for calculations - initialise it as all zeros
   // it will store integers that refer to places in datapoint array "active"

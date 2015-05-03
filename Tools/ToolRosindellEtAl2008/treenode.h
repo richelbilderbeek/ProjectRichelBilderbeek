@@ -10,7 +10,7 @@ struct TreeNode
 {
   using Parent = TreeNode*;
 
-  TreeNode(const bool root);
+  TreeNode(const bool root = true);
   void SetParent(const Parent parent) { m_parent = parent; }
   bool GetRoot() const noexcept { return m_root; }
   double GetProbability() const noexcept { return m_p; }
