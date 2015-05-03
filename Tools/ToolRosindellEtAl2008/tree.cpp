@@ -236,14 +236,14 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
       if (m_nodes[i].GetProbability() >= 0.0)
       {
         // it is complete so use it to complete the info on in its parents
-        const int theparent{m_nodes[i].GetParent()};
+        const TreeNode::Parent theparent{m_nodes[i].GetParent()};
         //assert(IsValid(theparent,ps));
-        if (m_nodes[theparent].GetProbability() < 0.0 && theparent != 0)
+        if (theparent && theparent->GetProbability() < 0.0)
         {
           // only do anything if the parents have not already been completed
           loop = true;
           // be sure to go round again if the parents have not been completed
-          if (m_nodes[theparent].GetProbability() <= -1.5)
+          if (theparent->GetProbability() <= -1.5)
           {
             // parent not at all complete
             const double steps{static_cast<double>(m_nodes[i].GetSteps())};
@@ -258,7 +258,7 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
             // refer only to one of the two branches of the node
             // we then wait until we have both branches of the node
             // before continuing to complete the full calculation
-            m_nodes[theparent].SetProbability(
+            theparent->SetProbability(
               -1.0*m_nodes[i].GetProbability()*temprob);
           }
           else
@@ -275,8 +275,8 @@ std::array<double,2> Tree::GetRichnessInterval(const double speciation_rate)
             result[0] += m_nodes[i].GetProbability()*(1.0-temprob);
             // update the probability array
             temprob = temprob*m_nodes[i].GetProbability();
-            const double temprob2 = m_nodes[theparent].GetProbability()*-1.0;
-            m_nodes[theparent].SetProbability(temprob+temprob2-temprob*temprob2);
+            const double temprob2 = theparent->GetProbability()*-1.0;
+            theparent->SetProbability(temprob+temprob2-temprob*temprob2);
           }
         }
       }
@@ -358,10 +358,10 @@ void Tree::Update()
   //Let these two coalesce
   ++m_enddata;
   m_nodes[m_enddata] = TreeNode(false);
-  chosen.GetNode()->SetParent(m_enddata);
+  chosen.GetNode()->SetParent(&m_nodes[m_enddata]);
 
   //assert(IsValid(grid_spot_to->GetMpos(),m_nodes));
-  grid_spot_to->GetNode()->SetParent(m_enddata);
+  grid_spot_to->GetNode()->SetParent(&m_nodes[m_enddata]);
 
   grid_spot_to->SetNode(&m_nodes[m_enddata]);
 

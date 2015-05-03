@@ -8,8 +8,7 @@ struct TreeNode
 // an array of these objects is required to store the whole tree
 // we include a few simple functions that prove useful later
 {
-  using Parent = int;
-  //using Parent = TreeNode*;
+  using Parent = TreeNode*;
 
   TreeNode(const bool root);
   void SetParent(const Parent parent) { m_parent = parent; }
