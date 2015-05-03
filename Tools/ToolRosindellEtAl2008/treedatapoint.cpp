@@ -48,8 +48,6 @@ TreeDataPoint& TreeDataPoint::operator=(
   return *this;
 }
 
-// update the position of this datapoint
-// this implements the indexing system
 void TreeDataPoint::Move(
   const int dx,
   const int dy,

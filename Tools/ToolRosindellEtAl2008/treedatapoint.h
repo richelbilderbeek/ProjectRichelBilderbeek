@@ -3,6 +3,8 @@
 
 #include <iosfwd>
 
+struct TreeNode;
+
 /// Tracks a lineage in probability and space
 /// Probability: how likely is this lineage to exist?
 /// Space: the lineage goes through individuals in a two-dimensional space
@@ -25,6 +27,8 @@
 ///  |     |
 struct TreeDataPoint
 {
+  using Mpos = int;
+
   TreeDataPoint(
     const int x = 0,
     const int y = 0,
@@ -37,16 +41,15 @@ struct TreeDataPoint
   int GetYpos() const noexcept { return m_ypos; }
   int GetTileX() const noexcept { return m_xindex; }
   int GetTileY() const noexcept { return m_yindex; }
-  int GetMpos() const noexcept { return m_mpos; }
+  Mpos GetMpos() const noexcept { return m_mpos; }
   double GetProbability() const noexcept { return m_probability; }
 
   void SetIndex(const int x, const int y) noexcept { m_xindex = x; m_yindex = y; }
-  void SetMpos(const int mpos) noexcept { m_mpos = mpos; }
+  void SetMpos(const Mpos mpos) noexcept { m_mpos = mpos; }
   void SetPos(const int xpos, const int ypos) noexcept { m_xpos = xpos; m_ypos = ypos; }
   void SetProbability(const double probability) { m_probability = probability; }
-  // checks for coalescence with another datapoint
-  // update the position of this datapoint
-  // this implements the indexing system
+
+  //Move the data point and update its probability
   void Move(const int dx, const int dy, const double p);
 private:
 
@@ -60,7 +63,7 @@ private:
   int m_yindex;
 
   /// points to the position in output of this lineage
-  int m_mpos;
+  Mpos m_mpos;
 
   /// the probability of not having speciated yet
   /// this is to allow the coalescence tree calculation to be stopped
