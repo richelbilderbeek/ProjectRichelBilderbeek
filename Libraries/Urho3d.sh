@@ -5,7 +5,6 @@ then
   git clone https://github.com/richelbilderbeek/Urho3D
 fi
 
-
 cd Urho3D 
 cmake .
 make

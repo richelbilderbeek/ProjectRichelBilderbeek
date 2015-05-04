@@ -25,7 +25,8 @@ apt-get install \
   libxtst-dev \
   libgsl0-dev \
   openjdk-7-jre \
-  libasound2-dev
+  libasound2-dev \
+  libbullet-dev
 
 #From MXE
 apt-get install autoconf automake autopoint bash bison bzip2 \
