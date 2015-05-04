@@ -79,20 +79,15 @@ void CameraMaster::Stop()
 
 void CameraMaster::SetupViewport()
 {
-    //ResourceCache* cache = GetSubsystem<ResourceCache>();
-    Renderer* renderer = GetSubsystem<Renderer>();
+  Renderer * const renderer = GetSubsystem<Renderer>();
 
-    //Set up a viewport to the Renderer subsystem so that the 3D scene can be seen
-    SharedPtr<Viewport> viewport(new Viewport(context_, masterControl_->world_.scene, camera_));
-    viewport_ = viewport;
+  //Set up a viewport to the Renderer subsystem so that the 3D scene can be seen
+  SharedPtr<Viewport> viewport(new Viewport(context_, masterControl_->world_.scene, camera_));
+  viewport_ = viewport;
 
-    //Add anti-asliasing
-    /*effectRenderPath = viewport_->GetRenderPath()->Clone();
-    effectRenderPath->Append(cache->GetResource<XMLFile>("PostProcess/FXAA3.xml"));
-    effectRenderPath->SetEnabled("FXAA3", true);*/
-
-    viewport_->SetRenderPath(effectRenderPath);
-    renderer->SetViewport(0, viewport);
+  //Add anti-aliasing
+  viewport_->SetRenderPath(effectRenderPath);
+  renderer->SetViewport(0, viewport);
 }
 
 Vector3 CameraMaster::GetWorldPosition()

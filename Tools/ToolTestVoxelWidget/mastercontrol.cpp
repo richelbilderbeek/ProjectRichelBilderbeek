@@ -30,6 +30,7 @@
 #include <Urho3D/Graphics/Octree.h>
 #include <Urho3D/Graphics/OctreeQuery.h>
 #include <Urho3D/Graphics/RenderPath.h>
+#include <Urho3D/Graphics/Skybox.h>
 #include <Urho3D/Graphics/StaticModel.h>
 #include <Urho3D/Graphics/VertexBuffer.h>
 #include <Urho3D/IO/FileSystem.h>
@@ -277,18 +278,17 @@ void MasterControl::CreateUI()
 
 void MasterControl::CreateBackground()
 {
+  for (int i = -2; i <= 2; i++)
   {
-    for (int i = -2; i <= 2; i++)
+    for (int j = -2; j <= 2; j++)
     {
-      for (int j = -2; j <= 2; j++)
-      {
-          world_.backgroundNode = world_.scene->CreateChild("BackPlane");
-          world_.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
-          world_.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
-          StaticModel* backgroundObject = world_.backgroundNode->CreateComponent<StaticModel>();
-          backgroundObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
-          //backgroundObject->SetMaterial(cache_->GetResource<Material>("Resources/Materials/dreamsky.xml"));
-      }
+        world_.backgroundNode = world_.scene->CreateChild("BackPlane");
+        world_.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
+        world_.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
+        StaticModel* backgroundObject = world_.backgroundNode->CreateComponent<StaticModel>();
+        backgroundObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
+        //backgroundObject->SetMaterial(cache_->GetResource<Material>("Materials/LitSmoke.xml"));
+        backgroundObject->SetMaterial(cache_->GetResource<Material>("Materials/JackEnvMap.xml"));
     }
   }
 }
@@ -324,9 +324,20 @@ void MasterControl::CreateScene()
   world_.voidNode->SetScale(Vector3(1000.0f, 1.0f, 1000.0f));
   StaticModel* planeModel = world_.voidNode->CreateComponent<StaticModel>();
   planeModel->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
-  planeModel->SetMaterial(cache_->GetResource<Material>("Materials/Stone.xml"));
+  planeModel->SetMaterial(cache_->GetResource<Material>("Materials/Terrain.xml"));
 
   CreateBackground();
+
+  {
+    // Create skybox. The Skybox component is used like StaticModel, but it will be always located at the camera, giving the
+    // illusion of the box planes being far away. Use just the ordinary Box model and a suitable material, whose shader will
+    // generate the necessary 3D texture coordinates for cube mapping
+    Node* skyNode = world_.scene->CreateChild("Sky");
+    skyNode->SetScale(500.0f); // The scale actually does not matter
+    Skybox* skybox = skyNode->CreateComponent<Skybox>();
+    skybox->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
+    skybox->SetMaterial(cache_->GetResource<Material>("Materials/Skybox.xml"));
+  }
 
   //Create a directional light to the world. Enable cascaded shadows on it
   {
@@ -355,22 +366,33 @@ void MasterControl::CreateScene()
     light->SetShadowBias(BiasParameters(0.00025f, 0.5f));
   }
 
-  //CreatePyramid(Vector3(0,0,0));
-
-  //Create a box
-  for (int i=-5; i!=6; ++i)
+  //Create boxes
+  for (int z=0; z!=6; ++z)
   {
-    Node * const node{world_.scene->CreateChild()};
-    node->SetPosition(Vector3(static_cast<double>(i) * 1.1, 1.0,5.0));
-    StaticModel * const model = node->CreateComponent<StaticModel>();
-    model->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
-    model->SetCastShadows(true);
+    for (int y=-5; y!=6; ++y)
+    {
+      for (int x=-5; x!=6; ++x)
+      {
+        Node * const node{world_.scene->CreateChild()};
+        node->SetPosition(
+          Vector3(
+            static_cast<double>(x) * 1.1,
+            static_cast<double>(z) * 1.1,
+            static_cast<double>(y) * 1.1
+          )
+        );
+        StaticModel * const model = node->CreateComponent<StaticModel>();
+        model->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
+        model->SetCastShadows(true);
 
-    Material * const material = cache_->GetResource<Material>("Materials/Stone.xml");
-    material->SetShaderParameter("DiffColor", "1.0 0.0 0.0");
-    model->SetMaterial(material);
+        Material * const material = cache_->GetResource<Material>("Materials/Stone.xml");
+        material->SetShaderParameter("DiffColor", "1.0 0.0 0.0");
+        model->SetMaterial(material);
 
+      }
+    }
   }
+
   //Create camera
   world_.camera = new CameraMaster(context_, this);
 }
