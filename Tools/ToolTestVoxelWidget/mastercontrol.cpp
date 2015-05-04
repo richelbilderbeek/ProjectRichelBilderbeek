@@ -355,8 +355,22 @@ void MasterControl::CreateScene()
     light->SetShadowBias(BiasParameters(0.00025f, 0.5f));
   }
 
-  CreatePyramid(Vector3(0,0,0));
+  //CreatePyramid(Vector3(0,0,0));
 
+  //Create a box
+  for (int i=-5; i!=6; ++i)
+  {
+    Node * const node{world_.scene->CreateChild()};
+    node->SetPosition(Vector3(static_cast<double>(i) * 1.1, 1.0,5.0));
+    StaticModel * const model = node->CreateComponent<StaticModel>();
+    model->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
+    model->SetCastShadows(true);
+
+    Material * const material = cache_->GetResource<Material>("Materials/Stone.xml");
+    material->SetShaderParameter("DiffColor", "1.0 0.0 0.0");
+    model->SetMaterial(material);
+
+  }
   //Create camera
   world_.camera = new CameraMaster(context_, this);
 }
