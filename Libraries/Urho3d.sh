@@ -8,3 +8,8 @@ fi
 cd Urho3D 
 cmake .
 make
+./cmake_generic.sh
+cd Source
+cd ThirdParty
+cd Bullet
+make
