@@ -42,21 +42,20 @@ typedef struct HitInfo
 } HitInfo;
 
 namespace {
-StringHash const N_VOID = StringHash("Void");
-StringHash const N_CURSOR = StringHash("Cursor");
-StringHash const N_TILEPART = StringHash("TilePart");
-StringHash const N_SLOT = StringHash("Slot");
+  StringHash const N_VOID = StringHash("Void");
+  StringHash const N_CURSOR = StringHash("Cursor");
+  StringHash const N_TILEPART = StringHash("TilePart");
+  StringHash const N_SLOT = StringHash("Slot");
 }
 
 class MasterControl : public Application
 {
-    /// Enable type information.
     OBJECT(MasterControl);
     friend class InputMaster;
+
 public:
-    /// Constructor.
-    MasterControl(Context* context);
-    GameWorld world;
+    explicit MasterControl(Context* context);
+    GameWorld world_;
     SharedPtr<ResourceCache> cache_;
     SharedPtr<Graphics> graphics_;
 
@@ -99,7 +98,7 @@ private:
     bool CursorRayCast(double maxDistance, PODVector<RayQueryResult> &hitResults);
 
     /// Pause flag
-    bool paused_;
+    //bool paused_;
 };
 
 

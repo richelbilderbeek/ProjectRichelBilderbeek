@@ -24,3 +24,6 @@ HEADERS += \
     mastercontrol.h \
     oneirocam.h \
     inputmaster.h
+
+RESOURCES += \
+    ToolTestVoxelWidget.qrc

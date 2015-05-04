@@ -28,7 +28,6 @@ public:
 
 private:
     MasterControl* masterControl_;
-
     Input* input_;
     void HandleMouseDown(StringHash eventType, VariantMap &eventData);
     void HandleKeyDown(StringHash eventType, VariantMap &eventData);

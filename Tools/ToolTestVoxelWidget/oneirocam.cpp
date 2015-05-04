@@ -41,7 +41,7 @@ OneiroCam::OneiroCam(Context *context, MasterControl *masterControl):
     SubscribeToEvent(E_SCENEUPDATE, HANDLER(OneiroCam, HandleSceneUpdate));
 
     //Create the camera. Limit far clip distance to match the fog
-    translationNode_ = masterControl_->world.scene->CreateChild("CamTrans");
+    translationNode_ = masterControl_->world_.scene->CreateChild("CamTrans");
     rotationNode_ = translationNode_->CreateChild("CamRot");
     camera_ = rotationNode_->CreateComponent<Camera>();
     camera_->SetFarClip(1024.0f);
@@ -81,7 +81,7 @@ void OneiroCam::SetupViewport()
     Renderer* renderer = GetSubsystem<Renderer>();
 
     //Set up a viewport to the Renderer subsystem so that the 3D scene can be seen
-    SharedPtr<Viewport> viewport(new Viewport(context_, masterControl_->world.scene, camera_));
+    SharedPtr<Viewport> viewport(new Viewport(context_, masterControl_->world_.scene, camera_));
     viewport_ = viewport;
 
     //Add anti-asliasing

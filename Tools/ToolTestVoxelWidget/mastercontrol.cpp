@@ -1,5 +1,9 @@
 //Music from https://www.jamendo.com/en/list/a142918/meditations
 
+#include <vector>
+
+#include <QFile>
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -46,8 +50,9 @@
 DEFINE_APPLICATION_MAIN(MasterControl);
 
 MasterControl::MasterControl(Context *context):
-    Application(context),
-    paused_(false)
+    Application(context)
+    //,
+    //paused_(false)
 {
   std::system("ln -s ../../Libraries/Urho3D/bin/Data");
   std::system("ln -s ../../Libraries/Urho3D/bin/CoreData");
@@ -84,16 +89,27 @@ void MasterControl::Start()
     //Hook up to the frame update and render post-update events
     SubscribeToEvents();
 
-    //Sound* music = cache_->GetResource<Sound>("Resources/Music/Macroform_-_Compassion.ogg"); //Main menu
-    //Sound* music = cache_->GetResource<Sound>("Resources/Music/Macroform_-_Dreaming.ogg");
-    /*
-    Sound* music = cache_->GetResource<Sound>("Resources/Music/Macroform_-_Root.ogg"); //Battle
+
+    for (const std::string& resource:
+      {
+        "MacroformDreaming.ogg"
+      }
+    )
+    {
+      if (!QFile::exists(resource.c_str()))
+      {
+        QFile f( (":/files/"+resource).c_str());
+        f.copy(resource.c_str());
+      }
+      assert(QFile::exists(resource.c_str()));
+    }
+
+    Sound * const music = cache_->GetResource<Sound>("MacroformDreaming.ogg");
     music->SetLooped(true);
-    Node* musicNode = world.scene->CreateChild("Music");
-    SoundSource* musicSource = musicNode->CreateComponent<SoundSource>();
+    Node * const musicNode = world_.scene->CreateChild("Music");
+    SoundSource * const musicSource = musicNode->CreateComponent<SoundSource>();
     musicSource->SetSoundType(SOUND_MUSIC);
     musicSource->Play(music);
-    */
 }
 void MasterControl::Stop()
 {
@@ -140,12 +156,12 @@ void MasterControl::CreateUI()
     UI* ui = GetSubsystem<UI>();
 
     //Create a Cursor UI element because we want to be able to hide and show it at will. When hidden, the mouse cursor will control the camera
-    world.cursor.uiCursor = new Cursor(context_);
-    world.cursor.uiCursor->SetVisible(false);
-    ui->SetCursor(world.cursor.uiCursor);
+    world_.cursor.uiCursor = new Cursor(context_);
+    world_.cursor.uiCursor->SetVisible(false);
+    ui->SetCursor(world_.cursor.uiCursor);
 
     //Set starting position of the cursor at the rendering window center
-    world.cursor.uiCursor->SetPosition(graphics_->GetWidth()/2, graphics_->GetHeight()/2);
+    world_.cursor.uiCursor->SetPosition(graphics_->GetWidth()/2, graphics_->GetHeight()/2);
 
     //Construct new Text object, set string to display and font to use
     Text* instructionText = ui->GetRoot()->CreateChild<Text>();
@@ -161,37 +177,37 @@ void MasterControl::CreateUI()
 
 void MasterControl::CreateScene()
 {
-    world.scene = new Scene(context_);
+    world_.scene = new Scene(context_);
 
     //Create octree, use default volume (-1000, -1000, -1000) to (1000,1000,1000)
-    /*Octree* octree = */world.scene->CreateComponent<Octree>();
+    /*Octree* octree = */world_.scene->CreateComponent<Octree>();
     //octree->SetSize(BoundingBox(Vector3(-10000, -100, -10000), Vector3(10000, 1000, 10000)), 1024);
-    PhysicsWorld* physicsWorld = world.scene->CreateComponent<PhysicsWorld>();
+    PhysicsWorld* physicsWorld = world_.scene->CreateComponent<PhysicsWorld>();
     physicsWorld->SetGravity(Vector3::ZERO);
-    world.scene->CreateComponent<DebugRenderer>();
+    world_.scene->CreateComponent<DebugRenderer>();
 
     //Create cursor
-    world.cursor.sceneCursor = world.scene->CreateChild("Cursor");
-    world.cursor.sceneCursor->SetPosition(Vector3(0.0f,0.0f,0.0f));
-    StaticModel* cursorModel = world.cursor.sceneCursor->CreateComponent<StaticModel>();
+    world_.cursor.sceneCursor = world_.scene->CreateChild("Cursor");
+    world_.cursor.sceneCursor->SetPosition(Vector3(0.0f,0.0f,0.0f));
+    StaticModel* cursorModel = world_.cursor.sceneCursor->CreateComponent<StaticModel>();
     cursorModel->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
     cursorModel->SetMaterial(cache_->GetResource<Material>("Materials/Jack.xml"));
 
     //Create an invisible plane for mouse raycasting
-    world.voidNode = world.scene->CreateChild("Void");
+    world_.voidNode = world_.scene->CreateChild("Void");
     //Location is set in update since the plane moves with the camera.
-    world.voidNode->SetScale(Vector3(1000.0f, 1.0f, 1000.0f));
-    StaticModel* planeModel = world.voidNode->CreateComponent<StaticModel>();
+    world_.voidNode->SetScale(Vector3(1000.0f, 1.0f, 1000.0f));
+    StaticModel* planeModel = world_.voidNode->CreateComponent<StaticModel>();
     planeModel->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
     planeModel->SetMaterial(cache_->GetResource<Material>("Materials/Jack.xml"));
 
     //Create background
     for (int i = -2; i <= 2; i++){
         for (int j = -2; j <= 2; j++){
-            world.backgroundNode = world.scene->CreateChild("BackPlane");
-            world.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
-            world.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
-            StaticModel* backgroundObject = world.backgroundNode->CreateComponent<StaticModel>();
+            world_.backgroundNode = world_.scene->CreateChild("BackPlane");
+            world_.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
+            world_.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
+            StaticModel* backgroundObject = world_.backgroundNode->CreateComponent<StaticModel>();
             backgroundObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
             //backgroundObject->SetMaterial(cache_->GetResource<Material>("Resources/Materials/dreamsky.xml"));
         }
@@ -206,7 +222,7 @@ void MasterControl::CreateScene()
     zone->SetFogEnd(110.0f);*/
 
     //Create a directional light to the world. Enable cascaded shadows on it
-    Node* lightNode = world.scene->CreateChild("DirectionalLight");
+    Node* lightNode = world_.scene->CreateChild("DirectionalLight");
     lightNode->SetDirection(Vector3(0.0f, -1.0f, 0.0f));
     Light* light = lightNode->CreateComponent<Light>();
     light->SetLightType(LIGHT_DIRECTIONAL);
@@ -216,7 +232,7 @@ void MasterControl::CreateScene()
     light->SetShadowBias(BiasParameters(0.00025f, 0.5f));
 
     //Create a second directional light without shadows
-    Node* lightNode2 = world.scene->CreateChild("DirectionalLight");
+    Node* lightNode2 = world_.scene->CreateChild("DirectionalLight");
     lightNode2->SetDirection(Vector3(0.0f, 1.0f, 0.0f));
     Light* light2 = lightNode2->CreateComponent<Light>();
     light2->SetLightType(LIGHT_DIRECTIONAL);
@@ -229,7 +245,7 @@ void MasterControl::CreateScene()
     light->SetShadowCascade(CascadeParameters(7.0f, 23.0f, 42.0f, 500.0f, 0.8f));
 
     //Create camera
-    world.camera = new OneiroCam(context_, this);
+    world_.camera = new OneiroCam(context_, this);
 }
 
 
@@ -242,24 +258,24 @@ void MasterControl::HandleSceneUpdate(StringHash /* eventType */, VariantMap &ev
 {
     using namespace Update;
     double timeStep = eventData[P_TIMESTEP].GetFloat();
-    world.voidNode->SetPosition((2.0f*Vector3::DOWN) + (world.camera->GetWorldPosition()*Vector3(1.0f,0.0f,1.0f)));
+    world_.voidNode->SetPosition((2.0f*Vector3::DOWN) + (world_.camera->GetWorldPosition()*Vector3(1.0f,0.0f,1.0f)));
     UpdateCursor(timeStep);
 }
 
 void MasterControl::UpdateCursor(double timeStep)
 {
-    world.cursor.sceneCursor->Rotate(Quaternion(0.0f,100.0f*timeStep,0.0f));
-    world.cursor.sceneCursor->SetScale((world.cursor.sceneCursor->GetWorldPosition() - world.camera->GetWorldPosition()).Length()*0.05f);
-    if (CursorRayCast(250.0f, world.cursor.hitResults))
+    world_.cursor.sceneCursor->Rotate(Quaternion(0.0f,100.0f*timeStep,0.0f));
+    world_.cursor.sceneCursor->SetScale((world_.cursor.sceneCursor->GetWorldPosition() - world_.camera->GetWorldPosition()).Length()*0.05f);
+    if (CursorRayCast(250.0f, world_.cursor.hitResults))
     {
-        for (int i = 0; i != static_cast<int>(world.cursor.hitResults.Size()); ++i)
+        for (int i = 0; i != static_cast<int>(world_.cursor.hitResults.Size()); ++i)
         {
-            if (world.cursor.hitResults[i].node_->GetNameHash() == N_VOID)
+            if (world_.cursor.hitResults[i].node_->GetNameHash() == N_VOID)
             {
-                Vector3 camHitDifference = world.camera->translationNode_->GetWorldPosition() - world.cursor.hitResults[i].position_;
-                camHitDifference /= world.camera->translationNode_->GetWorldPosition().y_ - world.voidNode->GetPosition().y_;
-                camHitDifference *= world.camera->translationNode_->GetWorldPosition().y_;
-                world.cursor.sceneCursor->SetWorldPosition(world.camera->translationNode_->GetWorldPosition()-camHitDifference);
+                Vector3 camHitDifference = world_.camera->translationNode_->GetWorldPosition() - world_.cursor.hitResults[i].position_;
+                camHitDifference /= world_.camera->translationNode_->GetWorldPosition().y_ - world_.voidNode->GetPosition().y_;
+                camHitDifference *= world_.camera->translationNode_->GetWorldPosition().y_;
+                world_.cursor.sceneCursor->SetWorldPosition(world_.camera->translationNode_->GetWorldPosition()-camHitDifference);
             }
         }
     }
@@ -267,9 +283,9 @@ void MasterControl::UpdateCursor(double timeStep)
 
 bool MasterControl::CursorRayCast(double maxDistance, PODVector<RayQueryResult> &hitResults)
 {
-    Ray cameraRay = world.camera->camera_->GetScreenRay(0.5f,0.5f);
+    Ray cameraRay = world_.camera->camera_->GetScreenRay(0.5f,0.5f);
     RayOctreeQuery query(hitResults, cameraRay, RAY_TRIANGLE, maxDistance, DRAWABLE_GEOMETRY);
-    world.scene->GetComponent<Octree>()->Raycast(query);
+    world_.scene->GetComponent<Octree>()->Raycast(query);
     if (hitResults.Size()) return true;
     else return false;
 }
