@@ -21,7 +21,7 @@
 
 #pragma GCC diagnostic pop
 
-#include "oneirocam.h"
+#include "cameramaster.h"
 
 
 Vector3 Scale(const Vector3& lhs, const Vector3& rhs)
@@ -34,11 +34,11 @@ Vector3 Scale(const Vector3& lhs, const Vector3& rhs)
 }
 
 
-OneiroCam::OneiroCam(Context *context, MasterControl *masterControl):
+CameraMaster::CameraMaster(Context *context, MasterControl *masterControl):
     Object(context)
 {
     masterControl_ = masterControl;
-    SubscribeToEvent(E_SCENEUPDATE, HANDLER(OneiroCam, HandleSceneUpdate));
+    SubscribeToEvent(E_SCENEUPDATE, HANDLER(CameraMaster, HandleSceneUpdate));
 
     //Create the camera. Limit far clip distance to match the fog
     translationNode_ = masterControl_->world_.scene->CreateChild("CamTrans");
@@ -67,15 +67,15 @@ OneiroCam::OneiroCam(Context *context, MasterControl *masterControl):
 
 
 
-void OneiroCam::Start()
+void CameraMaster::Start()
 {
 }
 
-void OneiroCam::Stop()
+void CameraMaster::Stop()
 {
 }
 
-void OneiroCam::SetupViewport()
+void CameraMaster::SetupViewport()
 {
     //ResourceCache* cache = GetSubsystem<ResourceCache>();
     Renderer* renderer = GetSubsystem<Renderer>();
@@ -93,17 +93,17 @@ void OneiroCam::SetupViewport()
     renderer->SetViewport(0, viewport);
 }
 
-Vector3 OneiroCam::GetWorldPosition()
+Vector3 CameraMaster::GetWorldPosition()
 {
     return translationNode_->GetWorldPosition();
 }
 
-Quaternion OneiroCam::GetRotation()
+Quaternion CameraMaster::GetRotation()
 {
     return rotationNode_->GetRotation();
 }
 
-void OneiroCam::HandleSceneUpdate(StringHash /* eventType */, VariantMap &eventData)
+void CameraMaster::HandleSceneUpdate(StringHash /* eventType */, VariantMap &eventData)
 {
     using namespace Update;
 

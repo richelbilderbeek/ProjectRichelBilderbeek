@@ -44,7 +44,7 @@
 #pragma GCC diagnostic pop
 
 #include "mastercontrol.h"
-#include "oneirocam.h"
+#include "cameramaster.h"
 #include "inputmaster.h"
 
 DEFINE_APPLICATION_MAIN(MasterControl);
@@ -245,7 +245,7 @@ void MasterControl::CreateScene()
     light->SetShadowCascade(CascadeParameters(7.0f, 23.0f, 42.0f, 500.0f, 0.8f));
 
     //Create camera
-    world_.camera = new OneiroCam(context_, this);
+    world_.camera = new CameraMaster(context_, this);
 }
 
 

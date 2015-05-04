@@ -11,16 +11,19 @@
 #pragma GCC diagnostic pop
 
 #include "inputmaster.h"
-#include "oneirocam.h"
+#include "cameramaster.h"
 
-InputMaster::InputMaster(Context* context, MasterControl* masterControl) : Object(context)
+InputMaster::InputMaster(
+  Context* context,
+  MasterControl* masterControl)
+  : Object(context),
+    masterControl_{masterControl},
+    input_{GetSubsystem<Input>()}
 {
-    masterControl_ = masterControl;
-    input_ = GetSubsystem<Input>();
-    //Subscribe mouse down event
-    SubscribeToEvent(E_MOUSEBUTTONDOWN, HANDLER(InputMaster, HandleMouseDown));
-    //Subscribe key down event.
-    SubscribeToEvent(E_KEYDOWN, HANDLER(InputMaster, HandleKeyDown));
+  //Subscribe mouse down event
+  SubscribeToEvent(E_MOUSEBUTTONDOWN, HANDLER(InputMaster, HandleMouseDown));
+  //Subscribe key down event.
+  SubscribeToEvent(E_KEYDOWN, HANDLER(InputMaster, HandleKeyDown));
 }
 
 void InputMaster::HandleMouseDown(
@@ -42,22 +45,26 @@ void InputMaster::HandleMouseUp(
 void InputMaster::HandleKeyDown(
   StringHash /* eventType */, VariantMap &eventData)
 {
-    using namespace KeyDown;
-    int key = eventData[P_KEY].GetInt();
+  using namespace KeyDown;
+  const int key = eventData[P_KEY].GetInt();
 
-    //Exit when ESC is pressed
+  //Exit when ESC is pressed
+  if (key == KEY_ESC)
+  {
+    masterControl_->Exit();
+  }
 
-    //Take screenshot
-    if (key == KEY_9)
-    {
-        Graphics* graphics = GetSubsystem<Graphics>();
-        Image screenshot(context_);
-        graphics->TakeScreenShot(screenshot);
-        //Here we save in the Data folder with date and time appended
-        String fileName = GetSubsystem<FileSystem>()->GetProgramDir() + "Screenshots/Screenshot_" +
-                Time::GetTimeStamp().Replaced(':', '_').Replaced('.', '_').Replaced(' ', '_')+".png";
-        //Log::Write(1, fileName);
-        screenshot.SavePNG(fileName);
-    }
+  //Take screenshot
+  if (key == KEY_9)
+  {
+    Graphics* const graphics = GetSubsystem<Graphics>();
+    Image screenshot(context_);
+    graphics->TakeScreenShot(screenshot);
+    //Here we save in the Data folder with date and time appended
+    String fileName = GetSubsystem<FileSystem>()->GetProgramDir() + "Screenshots/Screenshot_" +
+            Time::GetTimeStamp().Replaced(':', '_').Replaced('.', '_').Replaced(' ', '_')+".png";
+    //Log::Write(1, fileName);
+    screenshot.SavePNG(fileName);
+  }
 }
 

@@ -17,13 +17,13 @@ LIBS += \
 
 SOURCES += \
     mastercontrol.cpp \
-    oneirocam.cpp \
-    inputmaster.cpp
+    inputmaster.cpp \
+    cameramaster.cpp
 
 HEADERS += \
     mastercontrol.h \
-    oneirocam.h \
-    inputmaster.h
+    inputmaster.h \
+    cameramaster.h
 
 RESOURCES += \
     ToolTestVoxelWidget.qrc

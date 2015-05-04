@@ -17,12 +17,12 @@ class Sprite;
 
 using namespace Urho3D;
 
-class OneiroCam;
+class CameraMaster;
 class InputMaster;
 
 typedef struct GameWorld
 {
-    SharedPtr<OneiroCam> camera;
+    SharedPtr<CameraMaster> camera;
     SharedPtr<Scene> scene;
     SharedPtr<Node> backgroundNode;
     SharedPtr<Node> voidNode;

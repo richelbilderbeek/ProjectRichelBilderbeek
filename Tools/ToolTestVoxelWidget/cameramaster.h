@@ -15,13 +15,13 @@ namespace Urho3D {
 
 using namespace Urho3D;
 
-class OneiroCam : public Object
+class CameraMaster : public Object
 {
-    OBJECT(OneiroCam);
+    OBJECT(CameraMaster);
     friend class MasterControl;
     friend class InputMaster;
 public:
-    OneiroCam(Context *context, MasterControl* masterControl);
+    CameraMaster(Context *context, MasterControl* masterControl);
 
     virtual void Start();
     virtual void Stop();
