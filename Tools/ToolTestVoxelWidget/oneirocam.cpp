@@ -6,6 +6,7 @@
 #include <Urho3D/Graphics/RenderPath.h>
 #include <Urho3D/Graphics/Light.h>
 #include <Urho3D/Physics/CollisionShape.h>
+#include <Urho3D/Physics/RigidBody.h>
 #include <Urho3D/Scene/Scene.h>
 #include <Urho3D/Resource/ResourceCache.h>
 #include <Urho3D/Resource/XMLFile.h>
@@ -13,6 +14,17 @@
 #include <Urho3D/Input/Input.h>
 
 #include "oneirocam.h"
+
+
+Vector3 Scale(const Vector3& lhs, const Vector3& rhs)
+{
+  return Vector3(
+    lhs.x_ * rhs.x_,
+    lhs.y_ * rhs.y_,
+    lhs.z_ * rhs.z_
+  );
+}
+
 
 OneiroCam::OneiroCam(Context *context, MasterControl *masterControl):
     Object(context)
@@ -108,10 +120,10 @@ void OneiroCam::HandleSceneUpdate(StringHash eventType, VariantMap &eventData)
 
     //Read WASD keys and move the camera scene node to the corresponding direction if they are pressed
     Vector3 camForce = Vector3::ZERO;
-    if (input->GetKeyDown('W')) camForce += Vector3::Scale( rotationNode_->GetDirection(), Vector3(1.0f,0.0f,1.0f) ).Normalized();
-    if (input->GetKeyDown('S')) camForce += Vector3::Scale( rotationNode_->GetDirection(), Vector3(-1.0f,0.0f,-1.0f) ).Normalized();
-    if (input->GetKeyDown('D')) camForce += Vector3::Scale( rotationNode_->GetRight(), Vector3(1.0f,0.0f,1.0f) ).Normalized();
-    if (input->GetKeyDown('A')) camForce += Vector3::Scale( rotationNode_->GetRight(), Vector3(-1.0f,0.0f,-1.0f) ).Normalized();
+    if (input->GetKeyDown('W')) camForce += Scale(rotationNode_->GetDirection(), Vector3(1.0f,0.0f,1.0f) ).Normalized();
+    if (input->GetKeyDown('S')) camForce += Scale(rotationNode_->GetDirection(), Vector3(-1.0f,0.0f,-1.0f) ).Normalized();
+    if (input->GetKeyDown('D')) camForce += Scale(rotationNode_->GetRight(), Vector3(1.0f,0.0f,1.0f) ).Normalized();
+    if (input->GetKeyDown('A')) camForce += Scale(rotationNode_->GetRight(), Vector3(-1.0f,0.0f,-1.0f) ).Normalized();
     if (input->GetKeyDown('E')) camForce += Vector3::UP;
     if (input->GetKeyDown('Q') && translationNode_->GetPosition().y_ > 1.0f) camForce += Vector3::DOWN;
     camForce = camForce.Normalized() * MOVE_SPEED * timeStep;
@@ -123,7 +135,7 @@ void OneiroCam::HandleSceneUpdate(StringHash eventType, VariantMap &eventData)
 
     if (translationNode_->GetPosition().y_ < 1.0f)
     {
-        translationNode_->SetPosition(translationNode_->GetPosition().x_, 1.0f, translationNode_->GetPosition().z_);
+        translationNode_->SetPosition(Vector3(translationNode_->GetPosition().x_, 1.0f, translationNode_->GetPosition().z_));
         rigidBody_->SetLinearVelocity(Vector3(rigidBody_->GetLinearVelocity().x_, 0.0f, rigidBody_->GetLinearVelocity().z_));
     }
 }

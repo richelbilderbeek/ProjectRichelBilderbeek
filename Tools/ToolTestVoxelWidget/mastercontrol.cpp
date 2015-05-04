@@ -30,7 +30,7 @@
 #include <Urho3D/UI/Text.h>
 #include <Urho3D/UI/Font.h>
 #include <Urho3D/Scene/Scene.h>
-//#include <Urho3D/Physics/PhysicsWorld.h>
+#include <Urho3D/Physics/PhysicsWorld.h>
 #include <Urho3D/Physics/CollisionShape.h>
 #include <Urho3D/Graphics/Model.h>
 #include <Urho3D/Graphics/StaticModel.h>
@@ -61,6 +61,8 @@ MasterControl::MasterControl(Context *context):
     Application(context),
     paused_(false)
 {
+  std::system("ln -s ../../Libraries/Urho3D/bin/Data");
+  std::system("ln -s ../../Libraries/Urho3D/bin/CoreData");
 }
 
 
@@ -200,7 +202,7 @@ void MasterControl::CreateScene()
         for (int j = -2; j <= 2; j++){
             world.backgroundNode = world.scene->CreateChild("BackPlane");
             world.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
-            world.backgroundNode->SetPosition(512.0f*i, -200.0f, 512.0f*j);
+            world.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
             StaticModel* backgroundObject = world.backgroundNode->CreateComponent<StaticModel>();
             backgroundObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
             //backgroundObject->SetMaterial(cache_->GetResource<Material>("Resources/Materials/dreamsky.xml"));
@@ -292,40 +294,3 @@ void MasterControl::HandlePostRenderUpdate(StringHash eventType, VariantMap &eve
 {
     //world.scene->GetComponent<PhysicsWorld>()->DrawDebugGeometry(true);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

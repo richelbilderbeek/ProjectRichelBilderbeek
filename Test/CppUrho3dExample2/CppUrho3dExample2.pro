@@ -1,4 +1,4 @@
-include(../../Libraries/Urho3D/Urho3d.pri)
+include(../../Libraries/Urho3d.pri)
 
 QMAKE_CXXFLAGS += -std=c++11
 

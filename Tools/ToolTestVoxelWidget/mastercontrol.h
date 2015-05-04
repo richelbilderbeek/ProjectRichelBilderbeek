@@ -28,7 +28,7 @@
 #include <Urho3D/Graphics/Viewport.h>
 #include <Urho3D/Graphics/Renderer.h>
 #include <Urho3D/UI/UI.h>
-#include <Urho3D/Physics/RigidBody.h>
+//#include <Urho3D/Physics/RigidBody.h>
 
 namespace Urho3D {
 class Drawable;

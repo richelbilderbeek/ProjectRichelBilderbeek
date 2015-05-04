@@ -3,7 +3,7 @@ include(../../Libraries/Urho3d.pri)
 LIBS += \
      #/home/frode/Sync/Source/Urho3D/lib/libUrho3D.a \
     -lpthread \
-    -lSDL \
+    -lSDL2 \ #Otherwise use -lSDL
     -ldl \
     -lGL
 
