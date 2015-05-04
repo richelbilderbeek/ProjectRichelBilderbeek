@@ -11,35 +11,38 @@
 #define BT_INFINITY
 
 #include <Urho3D/Urho3D.h>
-#include <Urho3D/Engine/Engine.h>
-#include <Urho3D/Engine/Console.h>
-#include <Urho3D/Graphics/Graphics.h>
-#include <Urho3D/Graphics/DebugRenderer.h>
-#include <Urho3D/Engine/DebugHud.h>
-#include <Urho3D/DebugNew.h>
-#include <Urho3D/UI/Text.h>
-#include <Urho3D/UI/Font.h>
-#include <Urho3D/Scene/Scene.h>
-#include <Urho3D/Physics/PhysicsWorld.h>
-#include <Urho3D/Physics/CollisionShape.h>
-#include <Urho3D/Graphics/Model.h>
-#include <Urho3D/Graphics/StaticModel.h>
-#include <Urho3D/Graphics/Light.h>
-#include <Urho3D/Graphics/Camera.h>
-#include <Urho3D/Graphics/Material.h>
-#include <Urho3D/Graphics/RenderPath.h>
-#include <Urho3D/IO/FileSystem.h>
-#include <Urho3D/Resource/ResourceCache.h>
-#include <Urho3D/Resource/XMLFile.h>
-#include <Urho3D/Resource/Resource.h>
+
 #include <Urho3D/Audio/Sound.h>
 #include <Urho3D/Audio/SoundSource.h>
-
-#include <Urho3D/IO/Log.h>
-#include <Urho3D/Scene/SceneEvents.h>
 #include <Urho3D/Core/CoreEvents.h>
+#include <Urho3D/DebugNew.h>
+#include <Urho3D/Engine/Console.h>
+#include <Urho3D/Engine/DebugHud.h>
+#include <Urho3D/Engine/Engine.h>
+#include <Urho3D/Graphics/Camera.h>
+#include <Urho3D/Graphics/DebugRenderer.h>
+#include <Urho3D/Graphics/Geometry.h>
+#include <Urho3D/Graphics/Graphics.h>
+#include <Urho3D/Graphics/IndexBuffer.h>
+#include <Urho3D/Graphics/Light.h>
+#include <Urho3D/Graphics/Material.h>
+#include <Urho3D/Graphics/Model.h>
 #include <Urho3D/Graphics/Octree.h>
 #include <Urho3D/Graphics/OctreeQuery.h>
+#include <Urho3D/Graphics/RenderPath.h>
+#include <Urho3D/Graphics/StaticModel.h>
+#include <Urho3D/Graphics/VertexBuffer.h>
+#include <Urho3D/IO/FileSystem.h>
+#include <Urho3D/IO/Log.h>
+#include <Urho3D/Physics/CollisionShape.h>
+#include <Urho3D/Physics/PhysicsWorld.h>
+#include <Urho3D/Resource/ResourceCache.h>
+#include <Urho3D/Resource/Resource.h>
+#include <Urho3D/Resource/XMLFile.h>
+#include <Urho3D/Scene/SceneEvents.h>
+#include <Urho3D/Scene/Scene.h>
+#include <Urho3D/UI/Font.h>
+#include <Urho3D/UI/Text.h>
 
 #pragma GCC diagnostic pop
 
@@ -151,6 +154,99 @@ void MasterControl::CreateConsoleAndDebugHud()
   debugHud->SetDefaultStyle(defaultStyle_);
 }
 
+void MasterControl::CreatePyramid(const Vector3& position)
+{
+  {
+    const unsigned numVertices = 18;
+
+
+    float vertexData[] = {
+      // Position             Normal
+      0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, 0.5f,      0.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, -0.5f,     0.0f, 0.0f, 0.0f,
+
+      0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, 0.5f,     0.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, 0.5f,      0.0f, 0.0f, 0.0f,
+
+      0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f,    0.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, 0.5f,     0.0f, 0.0f, 0.0f,
+
+      0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, -0.5f,     0.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f,    0.0f, 0.0f, 0.0f,
+
+      0.5f, -0.5f, -0.5f,     0.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, 0.5f,      0.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, 0.5f,     0.0f, 0.0f, 0.0f,
+
+      0.5f, -0.5f, -0.5f,     0.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, 0.5f,     0.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f,    0.0f, 0.0f, 0.0f
+    };
+
+    const unsigned short indexData[] = {
+      0, 1, 2,
+      3, 4, 5,
+      6, 7, 8,
+      9, 10, 11,
+      12, 13, 14,
+      15, 16, 17
+    };
+
+    // Calculate face normals now
+    for (unsigned i = 0; i < numVertices; i += 3)
+      {
+        Vector3& v1 = *(reinterpret_cast<Vector3*>(&vertexData[6 * i]));
+        Vector3& v2 = *(reinterpret_cast<Vector3*>(&vertexData[6 * (i + 1)]));
+        Vector3& v3 = *(reinterpret_cast<Vector3*>(&vertexData[6 * (i + 2)]));
+        Vector3& n1 = *(reinterpret_cast<Vector3*>(&vertexData[6 * i + 3]));
+        Vector3& n2 = *(reinterpret_cast<Vector3*>(&vertexData[6 * (i + 1) + 3]));
+        Vector3& n3 = *(reinterpret_cast<Vector3*>(&vertexData[6 * (i + 2) + 3]));
+
+        Vector3 edge1 = v1 - v2;
+        Vector3 edge2 = v1 - v3;
+        n1 = n2 = n3 = edge1.CrossProduct(edge2).Normalized();
+      }
+
+    SharedPtr<Model> fromScratchModel(new Model(context_));
+    SharedPtr<VertexBuffer> vb(new VertexBuffer(context_));
+    SharedPtr<IndexBuffer> ib(new IndexBuffer(context_));
+    SharedPtr<Geometry> geom(new Geometry(context_));
+
+    // Shadowed buffer needed for raycasts to work, and so that data can be automatically restored on device loss
+    vb->SetShadowed(true);
+    vb->SetSize(numVertices, MASK_POSITION|MASK_NORMAL);
+    vb->SetData(vertexData);
+
+    ib->SetShadowed(true);
+    ib->SetSize(numVertices, false);
+    ib->SetData(indexData);
+
+    geom->SetVertexBuffer(0, vb);
+    geom->SetIndexBuffer(ib);
+    geom->SetDrawRange(TRIANGLE_LIST, 0, numVertices);
+
+    fromScratchModel->SetNumGeometries(1);
+    fromScratchModel->SetGeometry(0, 0, geom);
+    fromScratchModel->SetBoundingBox(BoundingBox(Vector3(-0.5f, -0.5f, -0.5f), Vector3(0.5f, 0.5f, 0.5f)));
+
+    Node * const node = world_.scene->CreateChild("FromScratchObject");
+    node->SetPosition(position);
+    node->SetScale(0.5f);
+    StaticModel * const staticModel = node->CreateComponent<StaticModel>();
+    staticModel->SetModel(fromScratchModel);
+    staticModel->SetCastShadows(true);
+
+    Material * const material = cache_->GetResource<Material>("Materials/Jack.xml");
+    material->SetShaderParameter("DiffColor", "1.0 0.0 0.0");
+    staticModel->SetMaterial(material);
+  }
+}
+
+
 void MasterControl::CreateUI()
 {
   //ResourceCache* cache = GetSubsystem<ResourceCache>();
@@ -179,23 +275,48 @@ void MasterControl::CreateUI()
   }
 }
 
+void MasterControl::CreateBackground()
+{
+  {
+    for (int i = -2; i <= 2; i++)
+    {
+      for (int j = -2; j <= 2; j++)
+      {
+          world_.backgroundNode = world_.scene->CreateChild("BackPlane");
+          world_.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
+          world_.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
+          StaticModel* backgroundObject = world_.backgroundNode->CreateComponent<StaticModel>();
+          backgroundObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
+          //backgroundObject->SetMaterial(cache_->GetResource<Material>("Resources/Materials/dreamsky.xml"));
+      }
+    }
+  }
+}
+
 void MasterControl::CreateScene()
 {
   world_.scene = new Scene(context_);
 
   //Create octree, use default volume (-1000, -1000, -1000) to (1000,1000,1000)
-  /*Octree* octree = */world_.scene->CreateComponent<Octree>();
-  //octree->SetSize(BoundingBox(Vector3(-10000, -100, -10000), Vector3(10000, 1000, 10000)), 1024);
-  PhysicsWorld* physicsWorld = world_.scene->CreateComponent<PhysicsWorld>();
-  physicsWorld->SetGravity(Vector3::ZERO);
+  {
+    world_.scene->CreateComponent<Octree>();
+  }
+  //Create the physics
+  {
+    PhysicsWorld * const physicsWorld = world_.scene->CreateComponent<PhysicsWorld>();
+    physicsWorld->SetGravity(Vector3::ZERO);
+  }
+
   world_.scene->CreateComponent<DebugRenderer>();
 
   //Create cursor
-  world_.cursor.sceneCursor = world_.scene->CreateChild("Cursor");
-  world_.cursor.sceneCursor->SetPosition(Vector3(0.0f,0.0f,0.0f));
-  StaticModel* cursorModel = world_.cursor.sceneCursor->CreateComponent<StaticModel>();
-  cursorModel->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
-  cursorModel->SetMaterial(cache_->GetResource<Material>("Materials/Jack.xml"));
+  {
+    world_.cursor.sceneCursor = world_.scene->CreateChild("Cursor");
+    world_.cursor.sceneCursor->SetPosition(Vector3(0.0f,0.0f,0.0f));
+    StaticModel * const cursorModel = world_.cursor.sceneCursor->CreateComponent<StaticModel>();
+    cursorModel->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
+    cursorModel->SetMaterial(cache_->GetResource<Material>("Materials/Water.xml"));
+  }
 
   //Create an invisible plane for mouse raycasting
   world_.voidNode = world_.scene->CreateChild("Void");
@@ -205,25 +326,7 @@ void MasterControl::CreateScene()
   planeModel->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
   planeModel->SetMaterial(cache_->GetResource<Material>("Materials/Stone.xml"));
 
-  //Create background
-  for (int i = -2; i <= 2; i++){
-      for (int j = -2; j <= 2; j++){
-          world_.backgroundNode = world_.scene->CreateChild("BackPlane");
-          world_.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
-          world_.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
-          StaticModel* backgroundObject = world_.backgroundNode->CreateComponent<StaticModel>();
-          backgroundObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
-          //backgroundObject->SetMaterial(cache_->GetResource<Material>("Resources/Materials/dreamsky.xml"));
-      }
-  }
-  //Create a Zone component for ambient lighting & fog control
-  /*Node* zoneNode = world.scene_->CreateChild("Zone");
-  Zone* zone = zoneNode->CreateComponent<Zone>();
-  zone->SetBoundingBox(BoundingBox(Vector3(-1000.0f, -10.0f, -1000.0f),Vector3(1000.0f, 20.0f, 1000.0f)));
-  zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
-  zone->SetFogColor(Color(0.2f, 0.1f, 0.3f));
-  zone->SetFogStart(100.0f);
-  zone->SetFogEnd(110.0f);*/
+  CreateBackground();
 
   //Create a directional light to the world. Enable cascaded shadows on it
   {
@@ -242,16 +345,17 @@ void MasterControl::CreateScene()
 
   //Create a second directional light without shadows
   {
-    Node* lightNode2 = world_.scene->CreateChild("DirectionalLight");
-    lightNode2->SetDirection(Vector3(0.0f, 1.0f, 0.0f));
-    Light* light2 = lightNode2->CreateComponent<Light>();
-    light2->SetLightType(LIGHT_DIRECTIONAL);
-    light2->SetBrightness(0.25f);
-    light2->SetColor(Color(1.0f, 1.0f, 0.9f));
-    light2->SetCastShadows(true);
-    light2->SetShadowBias(BiasParameters(0.00025f, 0.5f));
+    Node * const lightNode = world_.scene->CreateChild("DirectionalLight");
+    lightNode->SetDirection(Vector3(0.0f, 1.0f, 0.0f));
+    Light * const light = lightNode->CreateComponent<Light>();
+    light->SetLightType(LIGHT_DIRECTIONAL);
+    light->SetBrightness(0.25f);
+    light->SetColor(Color(1.0f, 1.0f, 0.9f));
+    light->SetCastShadows(true);
+    light->SetShadowBias(BiasParameters(0.00025f, 0.5f));
   }
 
+  CreatePyramid(Vector3(0,0,0));
 
   //Create camera
   world_.camera = new CameraMaster(context_, this);
@@ -280,7 +384,8 @@ void MasterControl::UpdateCursor(double timeStep)
   //world_.cursor.sceneCursor->SetScale((world_.cursor.sceneCursor->GetWorldPosition() - world_.camera->GetWorldPosition()).Length()*0.05f);
   if (CursorRayCast(250.0f, world_.cursor.hitResults))
   {
-    for (int i = 0; i != static_cast<int>(world_.cursor.hitResults.Size()); ++i)
+    const int n_hits{static_cast<int>(world_.cursor.hitResults.Size())};
+    for (int i = 0; i!=n_hits; ++i)
     {
       if (world_.cursor.hitResults[i].node_->GetNameHash() == N_VOID)
       {

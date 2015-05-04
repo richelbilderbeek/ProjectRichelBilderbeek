@@ -67,6 +67,7 @@ public:
     /// Cleanup after the main loop. Called by Application.
     virtual void Stop();
     void Exit();
+    void CreateBackground();
 private:
     SharedPtr<UI> ui_;
     SharedPtr<Renderer> renderer_;
@@ -76,6 +77,8 @@ private:
     void SetWindowTitleAndIcon();
     /// Create console and debug HUD
     void CreateConsoleAndDebugHud();
+
+    void CreatePyramid(const Vector3& position);
 
     /// Construct the scene content.
     void CreateScene();
