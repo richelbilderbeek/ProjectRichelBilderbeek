@@ -33,7 +33,7 @@ public:
     Vector3 GetWorldPosition();
     Quaternion GetRotation();
 private:
-    MasterControl* masterControl_;
+    MasterControl * const masterControl_;
     void HandleSceneUpdate(StringHash eventType, VariantMap &eventData);
     SharedPtr<Node> translationNode_;
     SharedPtr<Node> rotationNode_;

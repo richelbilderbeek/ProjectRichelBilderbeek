@@ -14,15 +14,13 @@
 #include "cameramaster.h"
 
 InputMaster::InputMaster(
-  Context* context,
-  MasterControl* masterControl)
+  Context * const context,
+  MasterControl * const masterControl
+)
   : Object(context),
-    masterControl_{masterControl},
-    input_{GetSubsystem<Input>()}
+    masterControl_{masterControl}
 {
-  //Subscribe mouse down event
   SubscribeToEvent(E_MOUSEBUTTONDOWN, HANDLER(InputMaster, HandleMouseDown));
-  //Subscribe key down event.
   SubscribeToEvent(E_KEYDOWN, HANDLER(InputMaster, HandleKeyDown));
 }
 
@@ -57,14 +55,12 @@ void InputMaster::HandleKeyDown(
   //Take screenshot
   if (key == KEY_9)
   {
-    Graphics* const graphics = GetSubsystem<Graphics>();
+    Graphics * const graphics{GetSubsystem<Graphics>()};
     Image screenshot(context_);
     graphics->TakeScreenShot(screenshot);
     //Here we save in the Data folder with date and time appended
-    String fileName = GetSubsystem<FileSystem>()->GetProgramDir() + "Screenshots/Screenshot_" +
-            Time::GetTimeStamp().Replaced(':', '_').Replaced('.', '_').Replaced(' ', '_')+".png";
+    const String fileName{"screenshot.png"};
     //Log::Write(1, fileName);
     screenshot.SavePNG(fileName);
   }
 }
-

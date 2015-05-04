@@ -51,8 +51,6 @@ DEFINE_APPLICATION_MAIN(MasterControl);
 
 MasterControl::MasterControl(Context *context):
     Application(context)
-    //,
-    //paused_(false)
 {
   std::system("ln -s ../../Libraries/Urho3D/bin/Data");
   std::system("ln -s ../../Libraries/Urho3D/bin/CoreData");
@@ -61,118 +59,122 @@ MasterControl::MasterControl(Context *context):
 
 void MasterControl::Setup()
 {
-    // Modify engine startup parameters.
-    //Set custom window title and icon.
-    engineParameters_["WindowTitle"] = "TestVoxelWidget";
-    engineParameters_["LogName"] = GetSubsystem<FileSystem>()->GetAppPreferencesDir("urho3d", "logs")+"TestVoxelWidget.log";
-    engineParameters_["FullScreen"] = false;
-    engineParameters_["Headless"] = false;
-    engineParameters_["WindowWidth"] = 1024;
-    engineParameters_["WindowHeight"] = 600;
+  // Modify engine startup parameters.
+  //Set custom window title and icon.
+  engineParameters_["WindowTitle"] = "TestVoxelWidget";
+  engineParameters_["LogName"] = GetSubsystem<FileSystem>()->GetAppPreferencesDir("urho3d", "logs")+"TestVoxelWidget.log";
+  engineParameters_["FullScreen"] = false;
+  engineParameters_["Headless"] = false;
+  engineParameters_["WindowWidth"] = 1024;
+  engineParameters_["WindowHeight"] = 600;
 }
+
 void MasterControl::Start()
 {
-    new InputMaster(context_, this);
-    cache_ = GetSubsystem<ResourceCache>();
-    graphics_ = GetSubsystem<Graphics>();
-    renderer_ = GetSubsystem<Renderer>();
+  new InputMaster(context_, this);
+  cache_ = GetSubsystem<ResourceCache>();
+  graphics_ = GetSubsystem<Graphics>();
+  renderer_ = GetSubsystem<Renderer>();
 
-    // Get default style
-    defaultStyle_ = cache_->GetResource<XMLFile>("UI/DefaultStyle.xml");
-    SetWindowTitleAndIcon();
-    //Create console and debug HUD.
-    CreateConsoleAndDebugHud();
-    //Create the scene content
-    CreateScene();
-    //Create the UI content
-    CreateUI();
-    //Hook up to the frame update and render post-update events
-    SubscribeToEvents();
+  // Get default style
+  defaultStyle_ = cache_->GetResource<XMLFile>("UI/DefaultStyle.xml");
+  SetWindowTitleAndIcon();
+  //Create console and debug HUD.
+  CreateConsoleAndDebugHud();
+  //Create the scene content
+  CreateScene();
+  //Create the UI content
+  CreateUI();
+  //Hook up to the frame update and render post-update events
+  SubscribeToEvents();
 
 
-    for (const std::string& resource:
-      {
-        "MacroformDreaming.ogg"
-      }
-    )
+  for (const std::string& resource:
     {
-      if (!QFile::exists(resource.c_str()))
-      {
-        QFile f( (":/files/"+resource).c_str());
-        f.copy(resource.c_str());
-      }
-      assert(QFile::exists(resource.c_str()));
+      "MacroformDreaming.ogg"
     }
+  )
+  {
+    if (!QFile::exists(resource.c_str()))
+    {
+      QFile f( (":/files/"+resource).c_str());
+      f.copy(resource.c_str());
+    }
+    assert(QFile::exists(resource.c_str()));
+  }
 
+  {
     Sound * const music = cache_->GetResource<Sound>("MacroformDreaming.ogg");
     music->SetLooped(true);
     Node * const musicNode = world_.scene->CreateChild("Music");
     SoundSource * const musicSource = musicNode->CreateComponent<SoundSource>();
     musicSource->SetSoundType(SOUND_MUSIC);
     musicSource->Play(music);
+  }
 }
 void MasterControl::Stop()
 {
-    engine_->DumpResources(true);
+  engine_->DumpResources(true);
 }
 
 void MasterControl::SubscribeToEvents()
 {
-    //Subscribe scene update event.
-    SubscribeToEvent(E_SCENEUPDATE, HANDLER(MasterControl, HandleSceneUpdate));
-    //Subscribe HandleUpdate() function for processing update events
-    SubscribeToEvent(E_UPDATE, HANDLER(MasterControl, HandleUpdate));
-    //Subscribe scene update event.
-    SubscribeToEvent(E_SCENEUPDATE, HANDLER(MasterControl, HandleSceneUpdate));
+  //Subscribe scene update event.
+  SubscribeToEvent(E_SCENEUPDATE, HANDLER(MasterControl, HandleSceneUpdate));
+  //Subscribe HandleUpdate() function for processing update events
+  SubscribeToEvent(E_UPDATE, HANDLER(MasterControl, HandleUpdate));
+  //Subscribe scene update event.
+  SubscribeToEvent(E_SCENEUPDATE, HANDLER(MasterControl, HandleSceneUpdate));
 }
 
 void MasterControl::SetWindowTitleAndIcon()
 {
-    //Create console
-    Console* console = engine_->CreateConsole();
-    console->SetDefaultStyle(defaultStyle_);
-    console->GetBackground()->SetOpacity(0.0f);
+  //Create console
+  Console* console = engine_->CreateConsole();
+  console->SetDefaultStyle(defaultStyle_);
+  console->GetBackground()->SetOpacity(0.0f);
 
-    //Create debug HUD
-    DebugHud* debugHud = engine_->CreateDebugHud();
-    debugHud->SetDefaultStyle(defaultStyle_);
+  //Create debug HUD
+  DebugHud* debugHud = engine_->CreateDebugHud();
+  debugHud->SetDefaultStyle(defaultStyle_);
 }
 
 void MasterControl::CreateConsoleAndDebugHud()
 {
-    // Create console
-    Console* console = engine_->CreateConsole();
-    console->SetDefaultStyle(defaultStyle_);
-    console->GetBackground()->SetOpacity(0.8f);
+  // Create console
+  Console* console = engine_->CreateConsole();
+  console->SetDefaultStyle(defaultStyle_);
+  console->GetBackground()->SetOpacity(0.8f);
 
-    // Create debug HUD.
-    DebugHud* debugHud = engine_->CreateDebugHud();
-    debugHud->SetDefaultStyle(defaultStyle_);
+  // Create debug HUD.
+  DebugHud* debugHud = engine_->CreateDebugHud();
+  debugHud->SetDefaultStyle(defaultStyle_);
 }
 
 void MasterControl::CreateUI()
 {
-    //ResourceCache* cache = GetSubsystem<ResourceCache>();
-    UI* ui = GetSubsystem<UI>();
+  //ResourceCache* cache = GetSubsystem<ResourceCache>();
+  UI* const ui = GetSubsystem<UI>();
 
-    //Create a Cursor UI element because we want to be able to hide and show it at will. When hidden, the mouse cursor will control the camera
-    world_.cursor.uiCursor = new Cursor(context_);
-    world_.cursor.uiCursor->SetVisible(false);
-    ui->SetCursor(world_.cursor.uiCursor);
+  //Create a Cursor UI element because we want to be able to hide and show it at will. When hidden, the mouse cursor will control the camera
+  world_.cursor.uiCursor = new Cursor(context_);
+  world_.cursor.uiCursor->SetVisible(false);
+  ui->SetCursor(world_.cursor.uiCursor);
 
-    //Set starting position of the cursor at the rendering window center
-    world_.cursor.uiCursor->SetPosition(graphics_->GetWidth()/2, graphics_->GetHeight()/2);
+  //Set starting position of the cursor at the rendering window center
+  world_.cursor.uiCursor->SetPosition(graphics_->GetWidth()/2, graphics_->GetHeight()/2);
 
-    //Construct new Text object, set string to display and font to use
-    Text* instructionText = ui->GetRoot()->CreateChild<Text>();
-    instructionText->SetText(
-                "TestVoxelWidget"
-                );
-    //instructionText->SetFont(cache->GetResource<Font>("Resources/Fonts/Riau.ttf"), 32);
-    //The text has multiple rows. Center them in relation to each other
-    instructionText->SetHorizontalAlignment(HA_CENTER);
-    instructionText->SetVerticalAlignment(VA_CENTER);
-    instructionText->SetPosition(0, ui->GetRoot()->GetHeight()/2.1);
+  //Construct new Text object, set string to display and font to use
+  Text* const instructionText = ui->GetRoot()->CreateChild<Text>();
+  instructionText->SetText("TestVoxelWidget");
+  instructionText->SetFont(cache_->GetResource<Font>("Fonts/Anonymous Pro.ttf"), 32);
+  instructionText->SetColor(Color(1.0,0.5,0.0));
+  //The text has multiple rows. Center them in relation to each other
+  instructionText->SetHorizontalAlignment(HA_CENTER);
+  instructionText->SetVerticalAlignment(VA_CENTER);
+  instructionText->SetPosition(0,
+    ui->GetRoot()->GetHeight() / 8
+  );
 }
 
 void MasterControl::CreateScene()

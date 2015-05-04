@@ -33,36 +33,38 @@ Vector3 Scale(const Vector3& lhs, const Vector3& rhs)
   );
 }
 
-
-CameraMaster::CameraMaster(Context *context, MasterControl *masterControl):
-    Object(context)
+CameraMaster::CameraMaster(
+  Context *context,
+  MasterControl *masterControl
+) :
+    Object(context),
+    masterControl_{masterControl}
 {
-    masterControl_ = masterControl;
-    SubscribeToEvent(E_SCENEUPDATE, HANDLER(CameraMaster, HandleSceneUpdate));
+  SubscribeToEvent(E_SCENEUPDATE, HANDLER(CameraMaster, HandleSceneUpdate));
 
-    //Create the camera. Limit far clip distance to match the fog
-    translationNode_ = masterControl_->world_.scene->CreateChild("CamTrans");
-    rotationNode_ = translationNode_->CreateChild("CamRot");
-    camera_ = rotationNode_->CreateComponent<Camera>();
-    camera_->SetFarClip(1024.0f);
-    //Set an initial position for the camera scene node above the origin
-    translationNode_->SetPosition(Vector3(0.0f, 3.0f, 0.0f));
-    rotationNode_->SetRotation(Quaternion(0.0f, 90.0f, 0.0f));
-    rigidBody_ = translationNode_->CreateComponent<RigidBody>();
-    rigidBody_->SetAngularDamping(10.0f);
-    CollisionShape* collisionShape = translationNode_->CreateComponent<CollisionShape>();
-    collisionShape->SetSphere(0.1f);
-    rigidBody_->SetMass(1.0f);
+  //Create the camera. Limit far clip distance to match the fog
+  translationNode_ = masterControl_->world_.scene->CreateChild("CamTrans");
+  rotationNode_ = translationNode_->CreateChild("CamRot");
+  camera_ = rotationNode_->CreateComponent<Camera>();
+  camera_->SetFarClip(1024.0f);
+  //Set an initial position for the camera scene node above the origin
+  translationNode_->SetPosition(Vector3(0.0f, 3.0f, 0.0f));
+  rotationNode_->SetRotation(Quaternion(0.0f, 90.0f, 0.0f));
+  rigidBody_ = translationNode_->CreateComponent<RigidBody>();
+  rigidBody_->SetAngularDamping(10.0f);
+  CollisionShape* collisionShape = translationNode_->CreateComponent<CollisionShape>();
+  collisionShape->SetSphere(0.1f);
+  rigidBody_->SetMass(1.0f);
 
-    Node* lightNode = translationNode_->CreateChild("DirectionalLight");
-    lightNode->SetDirection(Vector3(0.0f, -1.0f, 0.0f));
-    Light* light = lightNode->CreateComponent<Light>();
-    light->SetLightType(LIGHT_POINT);
-    light->SetBrightness(0.5f);
-    light->SetColor(Color(0.7f, 0.9f, 0.6f));
-    light->SetCastShadows(false);
+  Node* lightNode = translationNode_->CreateChild("DirectionalLight");
+  lightNode->SetDirection(Vector3(0.0f, -1.0f, 0.0f));
+  Light* light = lightNode->CreateComponent<Light>();
+  light->SetLightType(LIGHT_POINT);
+  light->SetBrightness(0.5f);
+  light->SetColor(Color(0.7f, 0.9f, 0.6f));
+  light->SetCastShadows(false);
 
-    SetupViewport();
+  SetupViewport();
 }
 
 
