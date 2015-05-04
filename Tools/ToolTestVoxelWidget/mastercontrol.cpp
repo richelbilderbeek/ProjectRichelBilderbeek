@@ -164,66 +164,69 @@ void MasterControl::CreateUI()
   //Set starting position of the cursor at the rendering window center
   world_.cursor.uiCursor->SetPosition(graphics_->GetWidth()/2, graphics_->GetHeight()/2);
 
-  //Construct new Text object, set string to display and font to use
-  Text* const instructionText = ui->GetRoot()->CreateChild<Text>();
-  instructionText->SetText("TestVoxelWidget");
-  instructionText->SetFont(cache_->GetResource<Font>("Fonts/Anonymous Pro.ttf"), 32);
-  instructionText->SetColor(Color(1.0,0.5,0.0));
-  //The text has multiple rows. Center them in relation to each other
-  instructionText->SetHorizontalAlignment(HA_CENTER);
-  instructionText->SetVerticalAlignment(VA_CENTER);
-  instructionText->SetPosition(0,
-    ui->GetRoot()->GetHeight() / 8
-  );
+  {
+    //Construct new Text object, set string to display and font to use
+    Text* const instructionText = ui->GetRoot()->CreateChild<Text>();
+    instructionText->SetText("TestVoxelWidget");
+    instructionText->SetFont(cache_->GetResource<Font>("Fonts/Anonymous Pro.ttf"), 32);
+    instructionText->SetColor(Color(1.0,0.5,0.0));
+    //The text has multiple rows. Center them in relation to each other
+    instructionText->SetHorizontalAlignment(HA_CENTER);
+    instructionText->SetVerticalAlignment(VA_CENTER);
+    instructionText->SetPosition(0,
+      ui->GetRoot()->GetHeight() / 8
+    );
+  }
 }
 
 void MasterControl::CreateScene()
 {
-    world_.scene = new Scene(context_);
+  world_.scene = new Scene(context_);
 
-    //Create octree, use default volume (-1000, -1000, -1000) to (1000,1000,1000)
-    /*Octree* octree = */world_.scene->CreateComponent<Octree>();
-    //octree->SetSize(BoundingBox(Vector3(-10000, -100, -10000), Vector3(10000, 1000, 10000)), 1024);
-    PhysicsWorld* physicsWorld = world_.scene->CreateComponent<PhysicsWorld>();
-    physicsWorld->SetGravity(Vector3::ZERO);
-    world_.scene->CreateComponent<DebugRenderer>();
+  //Create octree, use default volume (-1000, -1000, -1000) to (1000,1000,1000)
+  /*Octree* octree = */world_.scene->CreateComponent<Octree>();
+  //octree->SetSize(BoundingBox(Vector3(-10000, -100, -10000), Vector3(10000, 1000, 10000)), 1024);
+  PhysicsWorld* physicsWorld = world_.scene->CreateComponent<PhysicsWorld>();
+  physicsWorld->SetGravity(Vector3::ZERO);
+  world_.scene->CreateComponent<DebugRenderer>();
 
-    //Create cursor
-    world_.cursor.sceneCursor = world_.scene->CreateChild("Cursor");
-    world_.cursor.sceneCursor->SetPosition(Vector3(0.0f,0.0f,0.0f));
-    StaticModel* cursorModel = world_.cursor.sceneCursor->CreateComponent<StaticModel>();
-    cursorModel->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
-    cursorModel->SetMaterial(cache_->GetResource<Material>("Materials/Jack.xml"));
+  //Create cursor
+  world_.cursor.sceneCursor = world_.scene->CreateChild("Cursor");
+  world_.cursor.sceneCursor->SetPosition(Vector3(0.0f,0.0f,0.0f));
+  StaticModel* cursorModel = world_.cursor.sceneCursor->CreateComponent<StaticModel>();
+  cursorModel->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
+  cursorModel->SetMaterial(cache_->GetResource<Material>("Materials/Jack.xml"));
 
-    //Create an invisible plane for mouse raycasting
-    world_.voidNode = world_.scene->CreateChild("Void");
-    //Location is set in update since the plane moves with the camera.
-    world_.voidNode->SetScale(Vector3(1000.0f, 1.0f, 1000.0f));
-    StaticModel* planeModel = world_.voidNode->CreateComponent<StaticModel>();
-    planeModel->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
-    planeModel->SetMaterial(cache_->GetResource<Material>("Materials/Jack.xml"));
+  //Create an invisible plane for mouse raycasting
+  world_.voidNode = world_.scene->CreateChild("Void");
+  //Location is set in update since the plane moves with the camera.
+  world_.voidNode->SetScale(Vector3(1000.0f, 1.0f, 1000.0f));
+  StaticModel* planeModel = world_.voidNode->CreateComponent<StaticModel>();
+  planeModel->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
+  planeModel->SetMaterial(cache_->GetResource<Material>("Materials/Stone.xml"));
 
-    //Create background
-    for (int i = -2; i <= 2; i++){
-        for (int j = -2; j <= 2; j++){
-            world_.backgroundNode = world_.scene->CreateChild("BackPlane");
-            world_.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
-            world_.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
-            StaticModel* backgroundObject = world_.backgroundNode->CreateComponent<StaticModel>();
-            backgroundObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
-            //backgroundObject->SetMaterial(cache_->GetResource<Material>("Resources/Materials/dreamsky.xml"));
-        }
-    }
-    //Create a Zone component for ambient lighting & fog control
-    /*Node* zoneNode = world.scene_->CreateChild("Zone");
-    Zone* zone = zoneNode->CreateComponent<Zone>();
-    zone->SetBoundingBox(BoundingBox(Vector3(-1000.0f, -10.0f, -1000.0f),Vector3(1000.0f, 20.0f, 1000.0f)));
-    zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
-    zone->SetFogColor(Color(0.2f, 0.1f, 0.3f));
-    zone->SetFogStart(100.0f);
-    zone->SetFogEnd(110.0f);*/
+  //Create background
+  for (int i = -2; i <= 2; i++){
+      for (int j = -2; j <= 2; j++){
+          world_.backgroundNode = world_.scene->CreateChild("BackPlane");
+          world_.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
+          world_.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
+          StaticModel* backgroundObject = world_.backgroundNode->CreateComponent<StaticModel>();
+          backgroundObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
+          //backgroundObject->SetMaterial(cache_->GetResource<Material>("Resources/Materials/dreamsky.xml"));
+      }
+  }
+  //Create a Zone component for ambient lighting & fog control
+  /*Node* zoneNode = world.scene_->CreateChild("Zone");
+  Zone* zone = zoneNode->CreateComponent<Zone>();
+  zone->SetBoundingBox(BoundingBox(Vector3(-1000.0f, -10.0f, -1000.0f),Vector3(1000.0f, 20.0f, 1000.0f)));
+  zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
+  zone->SetFogColor(Color(0.2f, 0.1f, 0.3f));
+  zone->SetFogStart(100.0f);
+  zone->SetFogEnd(110.0f);*/
 
-    //Create a directional light to the world. Enable cascaded shadows on it
+  //Create a directional light to the world. Enable cascaded shadows on it
+  {
     Node* lightNode = world_.scene->CreateChild("DirectionalLight");
     lightNode->SetDirection(Vector3(0.0f, -1.0f, 0.0f));
     Light* light = lightNode->CreateComponent<Light>();
@@ -233,7 +236,12 @@ void MasterControl::CreateScene()
     light->SetCastShadows(true);
     light->SetShadowBias(BiasParameters(0.00025f, 0.5f));
 
-    //Create a second directional light without shadows
+    //Set cascade splits at 10, 50, 200 world unitys, fade shadows at 80% of maximum shadow distance
+    light->SetShadowCascade(CascadeParameters(7.0f, 23.0f, 42.0f, 500.0f, 0.8f));
+  }
+
+  //Create a second directional light without shadows
+  {
     Node* lightNode2 = world_.scene->CreateChild("DirectionalLight");
     lightNode2->SetDirection(Vector3(0.0f, 1.0f, 0.0f));
     Light* light2 = lightNode2->CreateComponent<Light>();
@@ -242,12 +250,11 @@ void MasterControl::CreateScene()
     light2->SetColor(Color(1.0f, 1.0f, 0.9f));
     light2->SetCastShadows(true);
     light2->SetShadowBias(BiasParameters(0.00025f, 0.5f));
+  }
 
-    //Set cascade splits at 10, 50, 200 world unitys, fade shadows at 80% of maximum shadow distance
-    light->SetShadowCascade(CascadeParameters(7.0f, 23.0f, 42.0f, 500.0f, 0.8f));
 
-    //Create camera
-    world_.camera = new CameraMaster(context_, this);
+  //Create camera
+  world_.camera = new CameraMaster(context_, this);
 }
 
 
@@ -258,46 +265,48 @@ void MasterControl::HandleUpdate(StringHash /* eventType */, VariantMap & /* eve
 
 void MasterControl::HandleSceneUpdate(StringHash /* eventType */, VariantMap &eventData)
 {
-    using namespace Update;
-    double timeStep = eventData[P_TIMESTEP].GetFloat();
-    world_.voidNode->SetPosition((2.0f*Vector3::DOWN) + (world_.camera->GetWorldPosition()*Vector3(1.0f,0.0f,1.0f)));
-    UpdateCursor(timeStep);
+  using namespace Update;
+  double timeStep = eventData[P_TIMESTEP].GetFloat();
+  //Let world move along
+  //world_.voidNode->SetPosition((2.0f*Vector3::DOWN) + (world_.camera->GetWorldPosition()*Vector3(1.0f,0.0f,1.0f)));
+  UpdateCursor(timeStep);
 }
 
 void MasterControl::UpdateCursor(double timeStep)
 {
-    world_.cursor.sceneCursor->Rotate(Quaternion(0.0f,100.0f*timeStep,0.0f));
-    world_.cursor.sceneCursor->SetScale((world_.cursor.sceneCursor->GetWorldPosition() - world_.camera->GetWorldPosition()).Length()*0.05f);
-    if (CursorRayCast(250.0f, world_.cursor.hitResults))
+  world_.cursor.sceneCursor->Rotate(Quaternion(0.0f,100.0f*timeStep,0.0f));
+
+  //Keep the raycasted cursor a constant size
+  //world_.cursor.sceneCursor->SetScale((world_.cursor.sceneCursor->GetWorldPosition() - world_.camera->GetWorldPosition()).Length()*0.05f);
+  if (CursorRayCast(250.0f, world_.cursor.hitResults))
+  {
+    for (int i = 0; i != static_cast<int>(world_.cursor.hitResults.Size()); ++i)
     {
-        for (int i = 0; i != static_cast<int>(world_.cursor.hitResults.Size()); ++i)
-        {
-            if (world_.cursor.hitResults[i].node_->GetNameHash() == N_VOID)
-            {
-                Vector3 camHitDifference = world_.camera->translationNode_->GetWorldPosition() - world_.cursor.hitResults[i].position_;
-                camHitDifference /= world_.camera->translationNode_->GetWorldPosition().y_ - world_.voidNode->GetPosition().y_;
-                camHitDifference *= world_.camera->translationNode_->GetWorldPosition().y_;
-                world_.cursor.sceneCursor->SetWorldPosition(world_.camera->translationNode_->GetWorldPosition()-camHitDifference);
-            }
-        }
+      if (world_.cursor.hitResults[i].node_->GetNameHash() == N_VOID)
+      {
+        Vector3 camHitDifference = world_.camera->translationNode_->GetWorldPosition() - world_.cursor.hitResults[i].position_;
+        camHitDifference /= world_.camera->translationNode_->GetWorldPosition().y_ - world_.voidNode->GetPosition().y_;
+        camHitDifference *= world_.camera->translationNode_->GetWorldPosition().y_;
+        world_.cursor.sceneCursor->SetWorldPosition(world_.camera->translationNode_->GetWorldPosition()-camHitDifference);
+      }
     }
+  }
 }
 
 bool MasterControl::CursorRayCast(double maxDistance, PODVector<RayQueryResult> &hitResults)
 {
-    Ray cameraRay = world_.camera->camera_->GetScreenRay(0.5f,0.5f);
-    RayOctreeQuery query(hitResults, cameraRay, RAY_TRIANGLE, maxDistance, DRAWABLE_GEOMETRY);
-    world_.scene->GetComponent<Octree>()->Raycast(query);
-    if (hitResults.Size()) return true;
-    else return false;
+  Ray cameraRay = world_.camera->camera_->GetScreenRay(0.5f,0.5f);
+  RayOctreeQuery query(hitResults, cameraRay, RAY_TRIANGLE, maxDistance, DRAWABLE_GEOMETRY);
+  world_.scene->GetComponent<Octree>()->Raycast(query);
+  return hitResults.Size();
 }
 
 void MasterControl::Exit()
 {
-    engine_->Exit();
+  engine_->Exit();
 }
 
 void MasterControl::HandlePostRenderUpdate(StringHash /* eventType */, VariantMap & /* eventData */)
 {
-    //world.scene->GetComponent<PhysicsWorld>()->DrawDebugGeometry(true);
+  //world.scene->GetComponent<PhysicsWorld>()->DrawDebugGeometry(true);
 }
