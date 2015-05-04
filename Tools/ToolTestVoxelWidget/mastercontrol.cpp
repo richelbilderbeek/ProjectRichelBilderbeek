@@ -155,99 +155,6 @@ void MasterControl::CreateConsoleAndDebugHud()
   debugHud->SetDefaultStyle(defaultStyle_);
 }
 
-void MasterControl::CreatePyramid(const Vector3& position)
-{
-  {
-    const unsigned numVertices = 18;
-
-
-    float vertexData[] = {
-      // Position             Normal
-      0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,
-      0.5f, -0.5f, 0.5f,      0.0f, 0.0f, 0.0f,
-      0.5f, -0.5f, -0.5f,     0.0f, 0.0f, 0.0f,
-
-      0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,
-      -0.5f, -0.5f, 0.5f,     0.0f, 0.0f, 0.0f,
-      0.5f, -0.5f, 0.5f,      0.0f, 0.0f, 0.0f,
-
-      0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,
-      -0.5f, -0.5f, -0.5f,    0.0f, 0.0f, 0.0f,
-      -0.5f, -0.5f, 0.5f,     0.0f, 0.0f, 0.0f,
-
-      0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,
-      0.5f, -0.5f, -0.5f,     0.0f, 0.0f, 0.0f,
-      -0.5f, -0.5f, -0.5f,    0.0f, 0.0f, 0.0f,
-
-      0.5f, -0.5f, -0.5f,     0.0f, 0.0f, 0.0f,
-      0.5f, -0.5f, 0.5f,      0.0f, 0.0f, 0.0f,
-      -0.5f, -0.5f, 0.5f,     0.0f, 0.0f, 0.0f,
-
-      0.5f, -0.5f, -0.5f,     0.0f, 0.0f, 0.0f,
-      -0.5f, -0.5f, 0.5f,     0.0f, 0.0f, 0.0f,
-      -0.5f, -0.5f, -0.5f,    0.0f, 0.0f, 0.0f
-    };
-
-    const unsigned short indexData[] = {
-      0, 1, 2,
-      3, 4, 5,
-      6, 7, 8,
-      9, 10, 11,
-      12, 13, 14,
-      15, 16, 17
-    };
-
-    // Calculate face normals now
-    for (unsigned i = 0; i < numVertices; i += 3)
-      {
-        Vector3& v1 = *(reinterpret_cast<Vector3*>(&vertexData[6 * i]));
-        Vector3& v2 = *(reinterpret_cast<Vector3*>(&vertexData[6 * (i + 1)]));
-        Vector3& v3 = *(reinterpret_cast<Vector3*>(&vertexData[6 * (i + 2)]));
-        Vector3& n1 = *(reinterpret_cast<Vector3*>(&vertexData[6 * i + 3]));
-        Vector3& n2 = *(reinterpret_cast<Vector3*>(&vertexData[6 * (i + 1) + 3]));
-        Vector3& n3 = *(reinterpret_cast<Vector3*>(&vertexData[6 * (i + 2) + 3]));
-
-        Vector3 edge1 = v1 - v2;
-        Vector3 edge2 = v1 - v3;
-        n1 = n2 = n3 = edge1.CrossProduct(edge2).Normalized();
-      }
-
-    SharedPtr<Model> fromScratchModel(new Model(context_));
-    SharedPtr<VertexBuffer> vb(new VertexBuffer(context_));
-    SharedPtr<IndexBuffer> ib(new IndexBuffer(context_));
-    SharedPtr<Geometry> geom(new Geometry(context_));
-
-    // Shadowed buffer needed for raycasts to work, and so that data can be automatically restored on device loss
-    vb->SetShadowed(true);
-    vb->SetSize(numVertices, MASK_POSITION|MASK_NORMAL);
-    vb->SetData(vertexData);
-
-    ib->SetShadowed(true);
-    ib->SetSize(numVertices, false);
-    ib->SetData(indexData);
-
-    geom->SetVertexBuffer(0, vb);
-    geom->SetIndexBuffer(ib);
-    geom->SetDrawRange(TRIANGLE_LIST, 0, numVertices);
-
-    fromScratchModel->SetNumGeometries(1);
-    fromScratchModel->SetGeometry(0, 0, geom);
-    fromScratchModel->SetBoundingBox(BoundingBox(Vector3(-0.5f, -0.5f, -0.5f), Vector3(0.5f, 0.5f, 0.5f)));
-
-    Node * const node = world_.scene->CreateChild("FromScratchObject");
-    node->SetPosition(position);
-    node->SetScale(0.5f);
-    StaticModel * const staticModel = node->CreateComponent<StaticModel>();
-    staticModel->SetModel(fromScratchModel);
-    staticModel->SetCastShadows(true);
-
-    Material * const material = cache_->GetResource<Material>("Materials/Jack.xml");
-    material->SetShaderParameter("DiffColor", "1.0 0.0 0.0");
-    staticModel->SetMaterial(material);
-  }
-}
-
-
 void MasterControl::CreateUI()
 {
   //ResourceCache* cache = GetSubsystem<ResourceCache>();
@@ -367,18 +274,18 @@ void MasterControl::CreateScene()
   }
 
   //Create boxes
-  for (int z=0; z!=6; ++z)
+  for (int z=-4; z!=5; ++z)
   {
-    for (int y=-5; y!=6; ++y)
+    for (int y=0; y!=8; ++y)
     {
-      for (int x=-5; x!=6; ++x)
+      for (int x=-4; x!=5; ++x)
       {
         Node * const node{world_.scene->CreateChild()};
         node->SetPosition(
           Vector3(
             static_cast<double>(x) * 1.1,
-            static_cast<double>(z) * 1.1,
-            static_cast<double>(y) * 1.1
+            static_cast<double>(y) * 1.1,
+            static_cast<double>(z) * 1.1
           )
         );
         StaticModel * const model = node->CreateComponent<StaticModel>();
