@@ -1,3 +1,9 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#define BT_INFINITY
+
 #include <Urho3D/Urho3D.h>
 #include <Urho3D/Core/CoreEvents.h>
 #include <Urho3D/Scene/SceneEvents.h>
@@ -12,6 +18,8 @@
 #include <Urho3D/Resource/XMLFile.h>
 #include <Urho3D/Math/MathDefs.h>
 #include <Urho3D/Input/Input.h>
+
+#pragma GCC diagnostic pop
 
 #include "oneirocam.h"
 
@@ -69,7 +77,7 @@ void OneiroCam::Stop()
 
 void OneiroCam::SetupViewport()
 {
-    ResourceCache* cache = GetSubsystem<ResourceCache>();
+    //ResourceCache* cache = GetSubsystem<ResourceCache>();
     Renderer* renderer = GetSubsystem<Renderer>();
 
     //Set up a viewport to the Renderer subsystem so that the 3D scene can be seen
@@ -95,7 +103,7 @@ Quaternion OneiroCam::GetRotation()
     return rotationNode_->GetRotation();
 }
 
-void OneiroCam::HandleSceneUpdate(StringHash eventType, VariantMap &eventData)
+void OneiroCam::HandleSceneUpdate(StringHash /* eventType */, VariantMap &eventData)
 {
     using namespace Update;
 

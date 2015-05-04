@@ -1,8 +1,14 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#define BT_INFINITY
 #include <Urho3D/Urho3D.h>
 #include <Urho3D/Scene/Node.h>
 #include <Urho3D/Graphics/Graphics.h>
 #include <Urho3D/Graphics/OctreeQuery.h>
 #include <Urho3D/IO/FileSystem.h>
+#pragma GCC diagnostic pop
 
 #include "inputmaster.h"
 #include "oneirocam.h"
@@ -17,21 +23,24 @@ InputMaster::InputMaster(Context* context, MasterControl* masterControl) : Objec
     SubscribeToEvent(E_KEYDOWN, HANDLER(InputMaster, HandleKeyDown));
 }
 
-void InputMaster::HandleMouseDown(StringHash eventType, VariantMap &eventData)
+void InputMaster::HandleMouseDown(
+  StringHash /* eventType */, VariantMap & /* eventData */)
 {
     using namespace MouseButtonDown;
-    int button = eventData[P_BUTTON].GetInt();
+    //int button = eventData[P_BUTTON].GetInt();
 }
 
 
-void InputMaster::HandleMouseUp(StringHash eventType, VariantMap &eventData)
+void InputMaster::HandleMouseUp(
+  StringHash /* eventType */, VariantMap &eventData)
 {
     using namespace MouseButtonUp;
     int button = eventData[P_BUTTON].GetInt();
     if (button == MOUSEB_LEFT) {}//Deselect when mouse did not move during click on N_VOID
 }
 
-void InputMaster::HandleKeyDown(StringHash eventType, VariantMap &eventData)
+void InputMaster::HandleKeyDown(
+  StringHash /* eventType */, VariantMap &eventData)
 {
     using namespace KeyDown;
     int key = eventData[P_KEY].GetInt();

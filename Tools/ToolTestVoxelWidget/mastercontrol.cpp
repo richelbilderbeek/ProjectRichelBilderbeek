@@ -1,24 +1,10 @@
-//
-// Copyright (c) 2008-2015 the Urho3D project.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-//
+//Music from https://www.jamendo.com/en/list/a142918/meditations
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#define BT_INFINITY
 
 #include <Urho3D/Urho3D.h>
 #include <Urho3D/Engine/Engine.h>
@@ -51,6 +37,8 @@
 #include <Urho3D/Graphics/Octree.h>
 #include <Urho3D/Graphics/OctreeQuery.h>
 
+#pragma GCC diagnostic pop
+
 #include "mastercontrol.h"
 #include "oneirocam.h"
 #include "inputmaster.h"
@@ -72,10 +60,10 @@ void MasterControl::Setup()
     //Set custom window title and icon.
     engineParameters_["WindowTitle"] = "TestVoxelWidget";
     engineParameters_["LogName"] = GetSubsystem<FileSystem>()->GetAppPreferencesDir("urho3d", "logs")+"TestVoxelWidget.log";
-    engineParameters_["FullScreen"] = true;
+    engineParameters_["FullScreen"] = false;
     engineParameters_["Headless"] = false;
-    engineParameters_["WindowWidth"] = 1980;
-    engineParameters_["WindowHeight"] = 1080;
+    engineParameters_["WindowWidth"] = 1024;
+    engineParameters_["WindowHeight"] = 600;
 }
 void MasterControl::Start()
 {
@@ -148,7 +136,7 @@ void MasterControl::CreateConsoleAndDebugHud()
 
 void MasterControl::CreateUI()
 {
-    ResourceCache* cache = GetSubsystem<ResourceCache>();
+    //ResourceCache* cache = GetSubsystem<ResourceCache>();
     UI* ui = GetSubsystem<UI>();
 
     //Create a Cursor UI element because we want to be able to hide and show it at will. When hidden, the mouse cursor will control the camera
@@ -185,17 +173,17 @@ void MasterControl::CreateScene()
     //Create cursor
     world.cursor.sceneCursor = world.scene->CreateChild("Cursor");
     world.cursor.sceneCursor->SetPosition(Vector3(0.0f,0.0f,0.0f));
-    StaticModel* cursorObject = world.cursor.sceneCursor->CreateComponent<StaticModel>();
-    //cursorObject->SetModel(cache_->GetResource<Model>("Resources/Models/Cursor.mdl"));
-    //cursorObject->SetMaterial(cache_->GetResource<Material>("Resources/Materials/glow.xml"));
+    StaticModel* cursorModel = world.cursor.sceneCursor->CreateComponent<StaticModel>();
+    cursorModel->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
+    cursorModel->SetMaterial(cache_->GetResource<Material>("Materials/Jack.xml"));
 
     //Create an invisible plane for mouse raycasting
     world.voidNode = world.scene->CreateChild("Void");
     //Location is set in update since the plane moves with the camera.
     world.voidNode->SetScale(Vector3(1000.0f, 1.0f, 1000.0f));
-    StaticModel* planeObject = world.voidNode->CreateComponent<StaticModel>();
-    //planeObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
-    //planeObject->SetMaterial(cache_->GetResource<Material>("Resources/Materials/invisible.xml"));
+    StaticModel* planeModel = world.voidNode->CreateComponent<StaticModel>();
+    planeModel->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
+    planeModel->SetMaterial(cache_->GetResource<Material>("Materials/Jack.xml"));
 
     //Create background
     for (int i = -2; i <= 2; i++){
@@ -244,12 +232,13 @@ void MasterControl::CreateScene()
     world.camera = new OneiroCam(context_, this);
 }
 
-void MasterControl::HandleUpdate(StringHash eventType, VariantMap &eventData)
+
+void MasterControl::HandleUpdate(StringHash /* eventType */, VariantMap & /* eventData */)
 {
 
 }
 
-void MasterControl::HandleSceneUpdate(StringHash eventType, VariantMap &eventData)
+void MasterControl::HandleSceneUpdate(StringHash /* eventType */, VariantMap &eventData)
 {
     using namespace Update;
     double timeStep = eventData[P_TIMESTEP].GetFloat();
@@ -263,7 +252,7 @@ void MasterControl::UpdateCursor(double timeStep)
     world.cursor.sceneCursor->SetScale((world.cursor.sceneCursor->GetWorldPosition() - world.camera->GetWorldPosition()).Length()*0.05f);
     if (CursorRayCast(250.0f, world.cursor.hitResults))
     {
-        for (int i = 0; i < world.cursor.hitResults.Size(); i++)
+        for (int i = 0; i != static_cast<int>(world.cursor.hitResults.Size()); ++i)
         {
             if (world.cursor.hitResults[i].node_->GetNameHash() == N_VOID)
             {
@@ -290,7 +279,7 @@ void MasterControl::Exit()
     engine_->Exit();
 }
 
-void MasterControl::HandlePostRenderUpdate(StringHash eventType, VariantMap &eventData)
+void MasterControl::HandlePostRenderUpdate(StringHash /* eventType */, VariantMap & /* eventData */)
 {
     //world.scene->GetComponent<PhysicsWorld>()->DrawDebugGeometry(true);
 }
