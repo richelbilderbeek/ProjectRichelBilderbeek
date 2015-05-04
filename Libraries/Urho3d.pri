@@ -1,7 +1,3 @@
-exists(../../Libraries) {
-  message("Console application, built for Windows")
-}
-
 INCLUDEPATH += \
     ../../Libraries/Urho3D/include \
     ../../Libraries/Urho3D/Source/ThirdParty
