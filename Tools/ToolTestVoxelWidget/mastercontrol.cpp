@@ -30,7 +30,7 @@
 #include <Urho3D/UI/Text.h>
 #include <Urho3D/UI/Font.h>
 #include <Urho3D/Scene/Scene.h>
-#include <Urho3D/Physics/PhysicsWorld.h>
+//#include <Urho3D/Physics/PhysicsWorld.h>
 #include <Urho3D/Physics/CollisionShape.h>
 #include <Urho3D/Graphics/Model.h>
 #include <Urho3D/Graphics/StaticModel.h>
