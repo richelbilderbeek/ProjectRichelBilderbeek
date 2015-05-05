@@ -2,7 +2,12 @@
 #include <cmath>
 
 Simulation::Simulation(const Parameters& parameters)
-  : m_parameters{parameters}
+  : m_parameters{parameters},
+    m_seagrass_densities{},
+    m_sulfide_concentrations{},
+    m_organic_matter_densities{},
+    m_timeseries{}
+
 {
   #ifndef NDEBUG
   Test();

@@ -93,6 +93,7 @@ enum class ProgramType
   multiEncrangerVcl,
   muscaDomestica,
   musicTheory,
+  mutualismBreakdowner,
   ndsmake,
   paperRockScissorsVcl,
   pause,

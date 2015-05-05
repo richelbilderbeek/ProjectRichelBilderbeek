@@ -1,11 +1,11 @@
 #ifndef NDEBUG
-#include "qtdialog.h"
+#include "qtmutualismbreakdownermaindialog.h"
 
 #include <cassert>
 #include <fstream>
 #include "fileio.h"
 
-void QtDialog::Test() noexcept
+void QtMutualismBreakdownerMainDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
@@ -31,7 +31,7 @@ void QtDialog::Test() noexcept
     25 //const int any_n_timesteps
   );
   {
-    QtDialog d;
+    QtMutualismBreakdownerMainDialog d;
     d.SetParameters(parameters);
     assert(d.GetParameters() == parameters);
   }

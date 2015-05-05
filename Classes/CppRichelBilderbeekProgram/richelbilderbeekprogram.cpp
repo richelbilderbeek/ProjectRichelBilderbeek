@@ -101,6 +101,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::multiEncrangerVcl: p.reset(new ProgramMultiEncrangerVcl); break;
     case ProgramType::muscaDomestica: p.reset(new ProgramMuscaDomestica); break;
     case ProgramType::musicTheory: p.reset(new ProgramMusicTheory); break;
+    case ProgramType::mutualismBreakdowner: p.reset(new ProgramMutualismBreakdowner); break;
     case ProgramType::ndsmake: p.reset(new ProgramNdsmake); break;
     case ProgramType::paperRockScissorsVcl: p.reset(new ProgramPaperRockScissorsVcl); break;
     case ProgramType::pause: p.reset(new ProgramPause); break;

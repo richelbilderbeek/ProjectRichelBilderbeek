@@ -1124,6 +1124,21 @@ struct ProgramMusicTheory : public ProgramTool
   std::string GetUrl() const noexcept override final { return "ToolMusicTheory.htm"; }
 };
 
+struct ProgramMutualismBreakdowner : public ProgramTool
+{
+  std::string GetFilenameConsole() const noexcept override final { return ""; }
+  std::string GetFilenameDesktop() const noexcept override final { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
+  std::string GetFilenameWeb() const noexcept override final { return ""; }
+  std::string GetScreenName() const noexcept override final { return "MutualismBreakdowner"; }
+  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept override final { return ProgramType::mutualismBreakdowner; }
+  std::string GetUrl() const noexcept override final { return "ToolMutualismBreakdowner.htm"; }
+};
+
 struct ProgramNdsmake : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept override final { return ""; }

@@ -1,22 +1,22 @@
-#ifndef QTDIALOG_H
-#define QTDIALOG_H
+#ifndef QTMUTUALISMBREAKDOWNERMAINDIALOG_H_H
+#define QTMUTUALISMBREAKDOWNERMAINDIALOG_H_H
 
 #include "parameters.h"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 struct QwtPlotCurve;
 
 namespace Ui {
-  class QtDialog;
+  class QtMutualismBreakdownerMainDialog;
 }
 
-class QtDialog : public QDialog
+class QtMutualismBreakdownerMainDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtDialog(QWidget *parent = 0);
-  ~QtDialog();
+  explicit QtMutualismBreakdownerMainDialog(QWidget *parent = 0);
+  ~QtMutualismBreakdownerMainDialog();
   Parameters GetParameters() const noexcept;
   void SetParameters(const Parameters& parameters) noexcept;
 
@@ -32,7 +32,7 @@ private slots:
   void on_button_load_clicked();
 
 private:
-  Ui::QtDialog *ui;
+  Ui::QtMutualismBreakdownerMainDialog *ui;
 
   QwtPlotCurve * const m_curve_seagrass_density;
   QwtPlotCurve * const m_curve_sulfide_concentration;
@@ -46,4 +46,4 @@ private:
   #endif
 };
 
-#endif // QTDIALOG_H
+#endif // QTMUTUALISMBREAKDOWNERMAINDIALOG_H_H
