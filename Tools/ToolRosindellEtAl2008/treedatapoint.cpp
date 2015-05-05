@@ -48,6 +48,16 @@ TreeDataPoint& TreeDataPoint::operator=(
   return *this;
 }
 
+int TreeDataPoint::GetAbsoluteXpos() const noexcept
+{
+  return GetXpos() + (GetTileX() * sm_gridsize);
+}
+
+int TreeDataPoint::GetAbsoluteYpos() const noexcept
+{
+  return GetYpos() + (GetTileY() * sm_gridsize);
+}
+
 void TreeDataPoint::Move(
   const int dx,
   const int dy,

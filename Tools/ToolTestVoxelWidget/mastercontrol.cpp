@@ -264,15 +264,14 @@ void MasterControl::CreateScene()
   //Create a second directional light without shadows
   {
     Node * const lightNode = world_.scene->CreateChild("DirectionalLight");
-    lightNode->SetDirection(Vector3(0.0f, 1.0f, 0.0f));
+    lightNode->SetDirection(Vector3(0.0, 1.0, 0.0));
     Light * const light = lightNode->CreateComponent<Light>();
     light->SetLightType(LIGHT_DIRECTIONAL);
-    light->SetBrightness(0.25f);
-    light->SetColor(Color(1.0f, 1.0f, 0.9f));
+    light->SetBrightness(0.25);
+    light->SetColor(Color(1.0, 1.0, 1.0));
     light->SetCastShadows(true);
     light->SetShadowBias(BiasParameters(0.00025f, 0.5f));
   }
-
   //Create boxes
   for (int z=-4; z!=5; ++z)
   {
@@ -280,12 +279,13 @@ void MasterControl::CreateScene()
     {
       for (int x=-4; x!=5; ++x)
       {
+        if (std::rand() % 2) continue;
         Node * const node{world_.scene->CreateChild()};
         node->SetPosition(
           Vector3(
-            static_cast<double>(x) * 1.1,
-            static_cast<double>(y) * 1.1,
-            static_cast<double>(z) * 1.1
+            0.5 + (static_cast<double>(x) * 1.0),
+            0.5 + (static_cast<double>(y) * 1.0),
+            0.5 + (static_cast<double>(z) * 1.0)
           )
         );
         StaticModel * const model = node->CreateComponent<StaticModel>();

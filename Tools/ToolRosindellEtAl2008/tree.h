@@ -38,6 +38,7 @@ struct Tree
   void DisplayActive(std::ostream& os) const noexcept;
 
   const std::vector<TreeDataPoint>& GetActive() const noexcept { return m_active; }
+  std::vector<TreeDataPoint> GetRelevantActive() const noexcept;
 
   double GetError() const noexcept;
 

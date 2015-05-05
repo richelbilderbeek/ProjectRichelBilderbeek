@@ -77,9 +77,6 @@ private:
     void SetWindowTitleAndIcon();
     /// Create console and debug HUD
     void CreateConsoleAndDebugHud();
-
-    void CreatePyramid(const Vector3& position);
-
     /// Construct the scene content.
     void CreateScene();
     /// Construct user interface elements.
@@ -94,14 +91,9 @@ private:
     /// Handle the post-render update event.
     void HandlePostRenderUpdate(StringHash eventType, VariantMap& eventData);
 
-    /// Create a mushroom object at position.
-    void CreatePlatform(const Vector3 pos);
     void UpdateCursor(double timeStep);
     /// Utility function to raycast to the cursor position. Return true if hit.
     bool CursorRayCast(double maxDistance, PODVector<RayQueryResult> &hitResults);
-
-    /// Pause flag
-    //bool paused_;
 };
 
 

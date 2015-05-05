@@ -196,6 +196,15 @@ std::pair<int,int> Tree::GetMove(
   }
 }
 
+std::vector<TreeDataPoint> Tree::GetRelevantActive() const noexcept
+{
+  std::vector<TreeDataPoint> v(
+    std::begin(m_active) + 1,
+    std::end(m_active)
+  );
+  return v;
+}
+
 double Tree::GetRichness(const double speciation_rate)
 {
   const auto& v = GetRichnessInterval(speciation_rate);

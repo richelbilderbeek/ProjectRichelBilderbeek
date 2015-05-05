@@ -37,6 +37,8 @@ struct TreeDataPoint
   TreeDataPoint(const TreeDataPoint&);
   TreeDataPoint& operator=(const TreeDataPoint&);
 
+  int GetAbsoluteXpos() const noexcept;
+  int GetAbsoluteYpos() const noexcept;
   int GetXpos() const noexcept { return m_xpos; }
   int GetYpos() const noexcept { return m_ypos; }
   int GetTileX() const noexcept { return m_xindex; }
