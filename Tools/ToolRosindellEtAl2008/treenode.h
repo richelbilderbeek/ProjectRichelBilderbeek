@@ -1,12 +1,37 @@
+//---------------------------------------------------------------------------
+/*
+RosindellEtAl2008, refactoring an extension of Rosindel at al., 2008 [1]
+Copyright (C) 2015 Richel Bilderbeek
+Original version by James Rosindell
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ToolRosindellEtAl2008.htm
+//
+//Article with original code:
+//
+// [1] Rosindell, James, Yan Wong, and Rampal S. Etienne.
+//     "A coalescence approach to spatial neutral ecology."
+//      Ecological Informatics 3.3 (2008): 259-271.
+//---------------------------------------------------------------------------
 #ifndef TREENODE_H
 #define TREENODE_H
 
 #include <iosfwd>
 
+///Nodes in a tree
 struct TreeNode
-// this is a data storage object for the coalescence tree
-// an array of these objects is required to store the whole tree
-// we include a few simple functions that prove useful later
 {
   using Parent = TreeNode*;
 
@@ -38,18 +63,18 @@ private:
   TreeNode * const m_kid_left;
   TreeNode * const m_kid_right;
 
-  /// this stores the parent of the individual
-  /// 0 means there is no parent - we are at the end of the tree
-  /// (as far as has been calculated)
+  ///The parent of this Node
+  ///If m_parent == nullptr, this Node has no Parent, i.e. it is a the root of the tree
   Parent m_parent;
 
-  /// the number of generations (chances of speciation)
-  /// between this individual and its parent in the tree
+  ////The number of generations
+  ////between this individual and its parent in the tree
   int m_branch_length;
 
-  //Probability
-  //  1.0: free branch, because it is certain that the lineages have not encountered speciaiton// when they are at the very end and no pruning has so far taken place
-  // -2.0: an internal node that has thus far not been pruned at all
+  ///Probability
+  ///  1.0: free branch, because it is certain that the lineages have not encountered speciaiton
+  ///       when they are at the very end and no pruning has so far taken place
+  /// -2.0: an internal node that has thus far not been pruned at all
   double m_p;
 };
 
