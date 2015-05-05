@@ -3,6 +3,8 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
+#include <iterator>
+#include <sstream>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "grid.h"
@@ -196,14 +198,6 @@ std::pair<int,int> Tree::GetMove(
   }
 }
 
-std::vector<TreeDataPoint> Tree::GetRelevantActive() const noexcept
-{
-  std::vector<TreeDataPoint> v(
-    std::begin(m_active) + 1,
-    std::end(m_active)
-  );
-  return v;
-}
 
 double Tree::GetRichness(const double speciation_rate)
 {
@@ -407,4 +401,13 @@ void Tree::Update()
     last_active_spot = &chosen;
   }
   m_active.pop_back();
+}
+
+std::vector<TreeDataPoint> GetRelevantActive(const Tree& tree) noexcept
+{
+  std::vector<TreeDataPoint> v(
+    std::begin(tree.GetActive()) + 1,
+    std::end(tree.GetActive())
+  );
+  return v;
 }

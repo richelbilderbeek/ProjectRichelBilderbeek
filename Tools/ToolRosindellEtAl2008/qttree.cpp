@@ -14,9 +14,11 @@ QtTree::QtTree(QWidget *parent) :
   m_rng{nullptr},
   m_tree{nullptr}
 {
+  #ifndef NDEBUG
   Rng::Test();
   Tree::Test();
   Simulation::Test();
+  #endif
 
   ui->setupUi(this);
   {
@@ -50,6 +52,7 @@ DispersalKernel QtTree::GetDispersalKernel() const noexcept
   if (ui->box_dispersal_type->currentText() == "Square") return DispersalKernel::square;
   if (ui->box_dispersal_type->currentText() == "Normal") return DispersalKernel::normal;
   assert(!"Should not get here");
+  throw std::logic_error("QtTree::GetDispersalKernel: unknown text"); //Crashes the program on purpose
 }
 
 int QtTree::GetLength() const noexcept
@@ -82,6 +85,7 @@ Rng::Type QtTree::GetRngType() const noexcept
   if (ui->box_rng_type->currentText() == "Bilderbeek") { return Rng::Type::bilderbeek;  }
   if (ui->box_rng_type->currentText() == "Rosindell" ) { return Rng::Type::rosindell;  }
   assert(!"Should not get here");
+  throw std::logic_error("QtTree::GetRngType: unknown text"); //Crashes the program on purpose
 }
 
 int QtTree::GetWidth() const noexcept

@@ -2,6 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wunused-variable"
+#pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #define BT_INFINITY
 
 #include <Urho3D/Urho3D.h>

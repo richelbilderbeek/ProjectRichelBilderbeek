@@ -38,7 +38,6 @@ struct Tree
   void DisplayActive(std::ostream& os) const noexcept;
 
   const std::vector<TreeDataPoint>& GetActive() const noexcept { return m_active; }
-  std::vector<TreeDataPoint> GetRelevantActive() const noexcept;
 
   double GetError() const noexcept;
 
@@ -71,7 +70,6 @@ private:
   // this is necessary for calculations - initialise it as all zeros
   // it will store integers that refer to places in datapoint array "active"
   Grid m_grid;
-  //Grid m_grid_too;
 
   // when producing a coalescence tree, we do so with a minimal speciation rate
   // in mind (to save a lot of computational expense in growing the full tree)
@@ -115,3 +113,5 @@ private:
   friend class TreeDataPoint;
 };
 #endif // TREE_H
+
+std::vector<TreeDataPoint> GetRelevantActive(const Tree& tree) noexcept;

@@ -8,6 +8,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wunused-variable"
+#pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #define BT_INFINITY
 
 #include <Urho3D/Urho3D.h>
@@ -59,8 +60,14 @@ DEFINE_APPLICATION_MAIN(MasterControl);
 MasterControl::MasterControl(Context *context):
     Application(context)
 {
-  std::system("ln -s ../../Libraries/Urho3D/bin/Data");
-  std::system("ln -s ../../Libraries/Urho3D/bin/CoreData");
+  {
+    const int error{std::system("ln -s ../../Libraries/Urho3D/bin/Data")};
+    if (error) {}
+  }
+  {
+    const int error{std::system("ln -s ../../Libraries/Urho3D/bin/CoreData")};
+    if (error) {}
+  }
 }
 
 
@@ -267,7 +274,7 @@ void MasterControl::CreateScene()
     for (int t=0; t!=1000; ++t)
     {
       //Draw all active nodes
-      for (const TreeDataPoint& p: tree.GetRelevantActive())
+      for (const TreeDataPoint& p: GetRelevantActive(tree))
       {
         const int x{p.GetAbsoluteXpos()};
         const int y{p.GetAbsoluteYpos()};

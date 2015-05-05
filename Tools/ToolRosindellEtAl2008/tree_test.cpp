@@ -16,7 +16,7 @@ void Tree::Test() noexcept
   {
     Rng::Test();
   }
-  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
+  const ribi::TestTimer test_timer(__func__,__FILE__,2.0);
   Rng rng(0,Rng::Type::bilderbeek);
   const int area_width{4};
   const int area_length{1};
@@ -42,12 +42,14 @@ void Tree::Test() noexcept
   {
     tree.Update();
     const std::vector<TreeDataPoint>& active_new{tree.GetActive()};
+    /*
     if (active_now != active_new)
     {
       active_now = active_new;
       tree.DisplayActive(std::cout);
       std::cout << std::endl;
     }
+    */
     if (tree.IsDone()) break;
   }
 }

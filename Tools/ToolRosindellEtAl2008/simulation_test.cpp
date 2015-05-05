@@ -22,7 +22,8 @@ void Simulation::Test() noexcept
     Rng::Test();
     Tree::Test();
   }
-  const ribi::TestTimer test_timer(__func__,__FILE__,10.0);
+  const bool thorough{true};
+  const ribi::TestTimer test_timer(__func__,__FILE__,thorough ? 20.0 : 10.0);
   //Test some known runs
   {
     std::vector<double> specset;
@@ -65,6 +66,7 @@ void Simulation::Test() noexcept
     assert(std::abs(results[11].GetSpeciesRichness()-14.5789) < 0.0001);
   }
   //Test some known runs from file
+  if (thorough)
   {
     using ribi::fileio::FileIo;
 
