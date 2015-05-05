@@ -68,8 +68,8 @@ void MasterControl::Setup()
 {
   // Modify engine startup parameters.
   //Set custom window title and icon.
-  engineParameters_["WindowTitle"] = "TestVoxelWidget";
-  engineParameters_["LogName"] = GetSubsystem<FileSystem>()->GetAppPreferencesDir("urho3d", "logs")+"TestVoxelWidget.log";
+  engineParameters_["WindowTitle"] = "RosindellEtAl2008";
+  engineParameters_["LogName"] = GetSubsystem<FileSystem>()->GetAppPreferencesDir("urho3d", "logs")+"RosindellEtAl2008.log";
   engineParameters_["FullScreen"] = false;
   engineParameters_["Headless"] = false;
   engineParameters_["WindowWidth"] = 1024;
@@ -160,7 +160,6 @@ void MasterControl::CreateConsoleAndDebugHud()
 
 void MasterControl::CreateUI()
 {
-  //ResourceCache* cache = GetSubsystem<ResourceCache>();
   UI* const ui = GetSubsystem<UI>();
 
   //Create a Cursor UI element because we want to be able to hide and show it at will. When hidden, the mouse cursor will control the camera
@@ -171,19 +170,6 @@ void MasterControl::CreateUI()
   //Set starting position of the cursor at the rendering window center
   world_.cursor.uiCursor->SetPosition(graphics_->GetWidth()/2, graphics_->GetHeight()/2);
 
-  {
-    //Construct new Text object, set string to display and font to use
-    Text* const instructionText = ui->GetRoot()->CreateChild<Text>();
-    instructionText->SetText("TestVoxelWidget");
-    instructionText->SetFont(cache_->GetResource<Font>("Fonts/Anonymous Pro.ttf"), 32);
-    instructionText->SetColor(Color(1.0,0.5,0.0));
-    //The text has multiple rows. Center them in relation to each other
-    instructionText->SetHorizontalAlignment(HA_CENTER);
-    instructionText->SetVerticalAlignment(VA_CENTER);
-    instructionText->SetPosition(0,
-      ui->GetRoot()->GetHeight() / 8
-    );
-  }
 }
 
 void MasterControl::CreateBackground()
@@ -194,10 +180,9 @@ void MasterControl::CreateBackground()
     {
         world_.backgroundNode = world_.scene->CreateChild("BackPlane");
         world_.backgroundNode->SetScale(Vector3(512.0f, 1.0f, 512.0f));
-        world_.backgroundNode->SetPosition(Vector3(512.0f*i, -200.0f, 512.0f*j));
+        world_.backgroundNode->SetPosition(Vector3(512.0*i, -1000.0, 512.0*j));
         StaticModel* backgroundObject = world_.backgroundNode->CreateComponent<StaticModel>();
         backgroundObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
-        //backgroundObject->SetMaterial(cache_->GetResource<Material>("Materials/LitSmoke.xml"));
         backgroundObject->SetMaterial(cache_->GetResource<Material>("Materials/JackEnvMap.xml"));
     }
   }
@@ -218,17 +203,6 @@ void MasterControl::CreateScene()
   }
 
   world_.scene->CreateComponent<DebugRenderer>();
-
-  //Create cursor
-  /*
-  {
-    world_.cursor.sceneCursor = world_.scene->CreateChild("Cursor");
-    world_.cursor.sceneCursor->SetPosition(Vector3(0.0f,0.0f,0.0f));
-    StaticModel * const cursorModel = world_.cursor.sceneCursor->CreateComponent<StaticModel>();
-    cursorModel->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
-    cursorModel->SetMaterial(cache_->GetResource<Material>("Materials/Water.xml"));
-  }
-  */
 
   //Create an invisible plane for mouse raycasting
   world_.voidNode = world_.scene->CreateChild("Void");
@@ -301,7 +275,7 @@ void MasterControl::CreateScene()
     );
     assert(!tree.IsDone());
 
-    for (int t=0; t!=100 && !tree.IsDone(); ++t)
+    for (int t=0; t!=1000; ++t)
     {
       //Draw all active nodes
       for (const TreeDataPoint& p: tree.GetRelevantActive())
@@ -324,35 +298,6 @@ void MasterControl::CreateScene()
     }
 
   }
-  //Create boxes
-  /*
-  for (int z=-4; z!=5; ++z)
-  {
-    for (int y=0; y!=8; ++y)
-    {
-      for (int x=-4; x!=5; ++x)
-      {
-        if (std::rand() % 2) continue;
-        Node * const node{world_.scene->CreateChild()};
-        node->SetPosition(
-          Vector3(
-            0.5 + (static_cast<double>(x) * 1.0),
-            0.5 + (static_cast<double>(y) * 1.0),
-            0.5 + (static_cast<double>(z) * 1.0)
-          )
-        );
-        StaticModel * const model = node->CreateComponent<StaticModel>();
-        model->SetModel(cache_->GetResource<Model>("Models/Box.mdl"));
-        model->SetCastShadows(true);
-
-        Material * const material = cache_->GetResource<Material>("Materials/Stone.xml");
-        material->SetShaderParameter("DiffColor", "1.0 0.0 0.0");
-        model->SetMaterial(material);
-
-      }
-    }
-  }
-  */
 
   //Create camera
   world_.camera = new CameraMaster(context_, this);
@@ -364,48 +309,14 @@ void MasterControl::HandleUpdate(StringHash /* eventType */, VariantMap & /* eve
 
 }
 
-void MasterControl::HandleSceneUpdate(StringHash /* eventType */, VariantMap &eventData)
+void MasterControl::HandleSceneUpdate(StringHash /* eventType */, VariantMap & /* eventData */)
 {
-  using namespace Update;
-  double timeStep = eventData[P_TIMESTEP].GetFloat();
+  //using namespace Update;
+  //double timeStep = eventData[P_TIMESTEP].GetFloat();
   //Let world move along
   //world_.voidNode->SetPosition((2.0f*Vector3::DOWN) + (world_.camera->GetWorldPosition()*Vector3(1.0f,0.0f,1.0f)));
-  UpdateCursor(timeStep);
+  //UpdateCursor(timeStep);
 }
-
-void MasterControl::UpdateCursor(double /* timeStep */)
-{
-  //world_.cursor.sceneCursor->Rotate(Quaternion(0.0f,100.0f*timeStep,0.0f));
-
-  //Keep the raycasted cursor a constant size
-  //world_.cursor.sceneCursor->SetScale((world_.cursor.sceneCursor->GetWorldPosition() - world_.camera->GetWorldPosition()).Length()*0.05f);
-  /*
-  if (CursorRayCast(250.0f, world_.cursor.hitResults))
-  {
-    const int n_hits{static_cast<int>(world_.cursor.hitResults.Size())};
-    for (int i = 0; i!=n_hits; ++i)
-    {
-      if (world_.cursor.hitResults[i].node_->GetNameHash() == N_VOID)
-      {
-        Vector3 camHitDifference = world_.camera->translationNode_->GetWorldPosition() - world_.cursor.hitResults[i].position_;
-        camHitDifference /= world_.camera->translationNode_->GetWorldPosition().y_ - world_.voidNode->GetPosition().y_;
-        camHitDifference *= world_.camera->translationNode_->GetWorldPosition().y_;
-        world_.cursor.sceneCursor->SetWorldPosition(world_.camera->translationNode_->GetWorldPosition()-camHitDifference);
-      }
-    }
-  }
-  */
-}
-
-/*
-bool MasterControl::CursorRayCast(double maxDistance, PODVector<RayQueryResult> &hitResults)
-{
-  Ray cameraRay = world_.camera->camera_->GetScreenRay(0.5f,0.5f);
-  RayOctreeQuery query(hitResults, cameraRay, RAY_TRIANGLE, maxDistance, DRAWABLE_GEOMETRY);
-  world_.scene->GetComponent<Octree>()->Raycast(query);
-  return hitResults.Size();
-}
-*/
 
 void MasterControl::Exit()
 {
@@ -414,5 +325,4 @@ void MasterControl::Exit()
 
 void MasterControl::HandlePostRenderUpdate(StringHash /* eventType */, VariantMap & /* eventData */)
 {
-  //world.scene->GetComponent<PhysicsWorld>()->DrawDebugGeometry(true);
 }

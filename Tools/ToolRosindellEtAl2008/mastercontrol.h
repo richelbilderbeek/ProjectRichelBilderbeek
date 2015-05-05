@@ -90,8 +90,4 @@ private:
     void HandleUpdate(StringHash eventType, VariantMap& eventData);
     /// Handle the post-render update event.
     void HandlePostRenderUpdate(StringHash eventType, VariantMap& eventData);
-
-    void UpdateCursor(double timeStep);
-    /// Utility function to raycast to the cursor position. Return true if hit.
-    //bool CursorRayCast(double maxDistance, PODVector<RayQueryResult> &hitResults);
 };
