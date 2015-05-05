@@ -17,7 +17,7 @@ macx {
 unix:!macx{
   # Linux only
   message("Desktop application, no effc++, built for Linux")
-  greaterThan(QT_MAJOR_VERSION, 4): QT +=  svg concurrent opengl printsupport
+  greaterThan(QT_MAJOR_VERSION, 4): QT +=  concurrent opengl printsupport svg
   QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra -Werror #-Weffc++
 }
 
