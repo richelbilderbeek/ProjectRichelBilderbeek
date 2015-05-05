@@ -91,7 +91,14 @@ ribi::TestTimer::TestTimer(
   const std::string& function_name,
   const std::string& file_name,
   const double max_time_sec
-) : m_impl(std::make_unique<TestTimerImpl>(function_name,file_name,max_time_sec))
+)
+
+#if __cplusplus >= 201402L
+  : m_impl(std::make_unique<TestTimerImpl>(function_name,file_name,max_time_sec))
+#endif
+#if __cplusplus < 201402L
+  : m_impl(new TestTimerImpl(function_name,file_name,max_time_sec))
+#endif
 {
   std::clog
     << std::string(m_impl->m_cnt - 1,' ')
