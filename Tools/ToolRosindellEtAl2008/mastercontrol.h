@@ -81,13 +81,4 @@ private:
     void CreateScene();
     /// Construct user interface elements.
     void CreateUI();
-    /// Subscribe to application-wide logic update and post-render update events.
-    void SubscribeToEvents();
-
-    /// Handle scene update event to control camera's pitch and yaw.
-    void HandleSceneUpdate(StringHash eventType, VariantMap& eventData);
-    /// Handle the logic update event.
-    void HandleUpdate(StringHash eventType, VariantMap& eventData);
-    /// Handle the post-render update event.
-    void HandlePostRenderUpdate(StringHash eventType, VariantMap& eventData);
 };

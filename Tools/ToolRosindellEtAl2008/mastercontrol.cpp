@@ -93,7 +93,6 @@ void MasterControl::Start()
   //Create the UI content
   CreateUI();
   //Hook up to the frame update and render post-update events
-  SubscribeToEvents();
 
 
   for (const std::string& resource:
@@ -122,16 +121,6 @@ void MasterControl::Start()
 void MasterControl::Stop()
 {
   engine_->DumpResources(true);
-}
-
-void MasterControl::SubscribeToEvents()
-{
-  //Subscribe scene update event.
-  SubscribeToEvent(E_SCENEUPDATE, HANDLER(MasterControl, HandleSceneUpdate));
-  //Subscribe HandleUpdate() function for processing update events
-  SubscribeToEvent(E_UPDATE, HANDLER(MasterControl, HandleUpdate));
-  //Subscribe scene update event.
-  SubscribeToEvent(E_SCENEUPDATE, HANDLER(MasterControl, HandleSceneUpdate));
 }
 
 void MasterControl::SetWindowTitleAndIcon()
@@ -304,25 +293,7 @@ void MasterControl::CreateScene()
 }
 
 
-void MasterControl::HandleUpdate(StringHash /* eventType */, VariantMap & /* eventData */)
-{
-
-}
-
-void MasterControl::HandleSceneUpdate(StringHash /* eventType */, VariantMap & /* eventData */)
-{
-  //using namespace Update;
-  //double timeStep = eventData[P_TIMESTEP].GetFloat();
-  //Let world move along
-  //world_.voidNode->SetPosition((2.0f*Vector3::DOWN) + (world_.camera->GetWorldPosition()*Vector3(1.0f,0.0f,1.0f)));
-  //UpdateCursor(timeStep);
-}
-
 void MasterControl::Exit()
 {
   engine_->Exit();
-}
-
-void MasterControl::HandlePostRenderUpdate(StringHash /* eventType */, VariantMap & /* eventData */)
-{
 }
