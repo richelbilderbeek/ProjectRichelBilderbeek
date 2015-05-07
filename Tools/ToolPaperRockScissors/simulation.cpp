@@ -44,7 +44,7 @@ void Simulation::Next()
       //Down
       neighbours[2] = m_grid[(y+1)%height][x];
       //Left
-      neighbours[3] = m_grid[(x-1+width)%width][x];
+      neighbours[3] = m_grid[y][(x-1+width)%width];
       int n_paper{0};
       int n_rock{0};
       int n_scissor{0};
@@ -54,7 +54,7 @@ void Simulation::Next()
         else if (t == CellType::rock) ++n_rock;
         else ++n_scissor;
       }
-      next[y][x] = m_grid[x][y];
+      next[y][x] = m_grid[y][x];
       switch (m_grid[y][x])
       {
         case CellType::paper: if (n_scissor >= 2) { next[y][x] = CellType::scissors; } break;
