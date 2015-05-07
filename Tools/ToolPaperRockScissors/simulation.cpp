@@ -1,8 +1,11 @@
 #include "simulation.h"
 
 #include <array>
+#include <cassert>
 #include <algorithm>
 #include <cstdlib>
+
+#include "celltypes.h"
 
 Simulation::Simulation(const int width, const int height)
   : m_grid{
@@ -25,6 +28,18 @@ Simulation::Simulation(const int width, const int height)
       }
     }
   }
+
+  assert(DoesBeat(CellType::paper,CellType::rock));
+  assert(DoesBeat(CellType::rock,CellType::scissors));
+  assert(DoesBeat(CellType::scissors,CellType::paper));
+
+  assert(!DoesBeat(CellType::rock,CellType::paper));
+  assert(!DoesBeat(CellType::scissors,CellType::rock));
+  assert(!DoesBeat(CellType::paper,CellType::scissors));
+
+  assert(!DoesBeat(CellType::rock,CellType::rock));
+  assert(!DoesBeat(CellType::scissors,CellType::scissors));
+  assert(!DoesBeat(CellType::paper,CellType::paper));
 }
 
 void Simulation::Next()
@@ -36,31 +51,18 @@ void Simulation::Next()
   {
     for (int x=0; x!=width; ++x)
     {
-      std::array<CellType,4> neighbours;
-      //Up
-      neighbours[0] = m_grid[(y-1+height)%height][x];
-      //Right
-      neighbours[1] = m_grid[y][(x+1)%width];
-      //Down
-      neighbours[2] = m_grid[(y+1)%height][x];
-      //Left
-      neighbours[3] = m_grid[y][(x-1+width)%width];
-      int n_paper{0};
-      int n_rock{0};
-      int n_scissor{0};
-      for(const CellType t: neighbours)
+      int dx{0};
+      int dy{0};
+      switch (rand() % 4)
       {
-        if (t == CellType::paper) ++n_paper;
-        else if (t == CellType::rock) ++n_rock;
-        else ++n_scissor;
+        case 0: --dy; break;
+        case 1: ++dx; break;
+        case 2: ++dy; break;
+        case 3: --dx; break;
       }
-      next[y][x] = m_grid[y][x];
-      switch (m_grid[y][x])
-      {
-        case CellType::paper: if (n_scissor >= 2) { next[y][x] = CellType::scissors; } break;
-        case CellType::rock: if (n_paper >= 2) { next[y][x] = CellType::paper; } break;
-        case CellType::scissors: if (n_rock >= 2) { next[y][x] = CellType::rock; } break;
-      }
+      CellType& here{m_grid[y][x]};
+      const CellType& neighbour{m_grid[(y+dy+height)%height][(x+dx+width)%width]};
+      next[y][x] = DoesBeat(neighbour,here) ? neighbour : here;
     }
   }
   std::swap(m_grid,next);
