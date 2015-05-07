@@ -68,8 +68,8 @@ void Tree::Test() noexcept
   for (int i=0; i!=20; ++i)
   {
     tree.Update();
-    const std::vector<TreeDataPoint>& active_new{tree.GetActive()};
     /*
+    const std::vector<TreeDataPoint>& active_new{tree.GetActive()};
     if (active_now != active_new)
     {
       active_now = active_new;
