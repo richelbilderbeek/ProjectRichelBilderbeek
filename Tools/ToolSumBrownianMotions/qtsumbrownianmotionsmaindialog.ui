@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtSumBrownianMotionsMainDialog</class>
+ <widget class="QDialog" name="QtSumBrownianMotionsMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>816</width>
+    <height>535</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SumBrownianMotions</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #bbf, stop: 0.2  #bbf, stop: 0.5 #bfb, stop: 0.8 #fbb, stop: 1 #fbb);
+  border: 1px solid black
+}
+
+QSpinBox,QDoubleSpinBox,QComboBox { 
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #bbb, stop: 1 #fff);
+  border: 1px solid black
+}
+
+QPushButton
+{
+  color: #000;
+  background-color: qradialgradient(cx: 0.5, cy: 0.5,fx: 0.5, fy: 0.5,radius: 0.5, stop: 0 #fff, stop: 1 #aaa);
+  border: 1px solid black
+}
+
+QPlainTextEdit {
+  font: 18px bold &quot;Courier&quot; courier monospace
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="1">
+    <widget class="QwtPlot" name="plot_a" native="true"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QwtPlot" name="plot_b" native="true"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QWidget" name="widget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>n</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="box_n">
+        <property name="maximum">
+         <number>1000000000</number>
+        </property>
+        <property name="value">
+         <number>1000</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Mean a</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="box_mean_a">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="minimum">
+         <double>-1000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Stddev a</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QDoubleSpinBox" name="box_stddev_a">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>Mean b</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QDoubleSpinBox" name="box_mean_b">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="minimum">
+         <double>-1000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_init_seagrass_density">
+        <property name="text">
+         <string>Stddev b</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QDoubleSpinBox" name="box_stddev_b">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="minimum">
+         <double>0.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QwtPlot" name="plot_sum" native="true"/>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QWidget</extends>
+   <header>qwt_plot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>box_n</tabstop>
+  <tabstop>box_mean_a</tabstop>
+  <tabstop>box_stddev_a</tabstop>
+  <tabstop>box_mean_b</tabstop>
+  <tabstop>box_stddev_b</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -24,7 +24,7 @@ QtWidget::QtWidget(
   {
     QTimer * const timer{new QTimer(this)};
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(OnTimer()));
-    timer->setInterval(100);
+    timer->setInterval(1);
     timer->start();
   }
 }
@@ -66,6 +66,6 @@ void QtWidget::paintEvent(QPaintEvent *)
   QPainter painter(this);
   painter.drawPixmap(
     this->rect(),
-    m_pixmap//QPixmap::fromImage(*m_image)
+    m_pixmap
   );
 }
