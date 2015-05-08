@@ -5,7 +5,7 @@
 #include <iostream>
 
 Parameters::Parameters(
-  const double any_n,
+  const int any_n,
   const double any_mean_a,
   const double any_stddev_a,
   const double any_mean_b,

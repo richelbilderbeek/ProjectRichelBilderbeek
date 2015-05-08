@@ -6,6 +6,6 @@ include(../../Libraries/Qwt.pri)
 
 #Specific, console
 include(../../Classes/CppHistogram/CppHistogram.pri)
-include(ToolSumBrownianMotionsDesktop.pri)
+include(ToolTestHistogramDesktop.pri)
 
 SOURCES += qtmain.cpp

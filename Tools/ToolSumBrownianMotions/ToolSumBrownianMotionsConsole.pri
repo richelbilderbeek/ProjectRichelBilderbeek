@@ -12,3 +12,6 @@ HEADERS  += \
     ../../Tools/ToolSumBrownianMotions/parameters.h \
     ../../Tools/ToolSumBrownianMotions/sumbrownianmotionsmenudialog.h
 
+RESOURCES += \
+    ToolSumBrownianMotions.qrc
+

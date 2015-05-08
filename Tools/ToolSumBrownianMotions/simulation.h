@@ -2,11 +2,16 @@
 #define SIMULATION_H
 
 #include <vector>
+#include "histogram.h"
 #include "parameters.h"
 
 struct Simulation
 {
   Simulation(const Parameters& parameters);
+
+  const Histogram& GetA() const noexcept { return m_a; }
+  const Histogram& GetB() const noexcept { return m_b; }
+  const Histogram& GetSum() const noexcept { return m_sum; }
 
   const std::vector<double>& GetAxs() const noexcept { return m_axs; }
   const std::vector<double>& GetAys() const noexcept { return m_ays; }
@@ -30,6 +35,9 @@ struct Simulation
   std::vector<double> m_bys;
   std::vector<double> m_sumxs;
   std::vector<double> m_sumys;
+  Histogram m_a;
+  Histogram m_b;
+  Histogram m_sum;
 };
 
 #endif // SIMULATION_H

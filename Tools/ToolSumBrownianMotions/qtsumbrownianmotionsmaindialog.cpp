@@ -86,17 +86,6 @@ QtSumBrownianMotionsMainDialog::~QtSumBrownianMotionsMainDialog()
   delete ui;
 }
 
-void QtSumBrownianMotionsMainDialog::FixZoom()
-{
-  ui->plot_b->setAxisScale(QwtPlot::yLeft,0.0,1.0);
-  ui->plot_a->setAxisScale(QwtPlot::yLeft,0.0,1.0);
-  ui->plot_sum->setAxisScale(QwtPlot::yLeft,0.0,1.0);
-
-  ui->plot_a->replot();
-  ui->plot_b->replot();
-  ui->plot_sum->replot();
-
-}
 
 Parameters QtSumBrownianMotionsMainDialog::GetParameters() const noexcept
 {
@@ -117,7 +106,7 @@ void QtSumBrownianMotionsMainDialog::SetParameters(const Parameters& parameters)
   ui->box_stddev_a->setValue(parameters.stddev_a);
   ui->box_mean_b->setValue(parameters.mean_b);
   ui->box_stddev_b->setValue(parameters.stddev_b);
-  ui->box_n->setValue(parameters.n_timesteps);
+  ui->box_n->setValue(parameters.n);
 }
 
 void QtSumBrownianMotionsMainDialog::Run()
@@ -135,10 +124,9 @@ void QtSumBrownianMotionsMainDialog::Run()
   m_curve_a->setData(new QwtPointArrayData(&axs[0],&ays[0],ays.size()));
   m_curve_b->setData(new QwtPointArrayData(&bxs[0],&bys[0],bys.size()));
   m_curve_sum->setData(new QwtPointArrayData(&sumxs[0],&sumys[0],sumys.size()));
-  FixZoom();
-}
 
-void QtSumBrownianMotionsMainDialog::on_button_fix_zoom_clicked()
-{
-  FixZoom();
+
+  ui->plot_a->replot();
+  ui->plot_b->replot();
+  ui->plot_sum->replot();
 }

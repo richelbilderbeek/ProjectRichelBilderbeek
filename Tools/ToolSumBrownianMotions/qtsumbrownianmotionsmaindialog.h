@@ -23,8 +23,6 @@ public:
 private slots:
   void Run();
 
-  void on_button_fix_zoom_clicked();
-
 private:
   Ui::QtSumBrownianMotionsMainDialog *ui;
 
@@ -32,7 +30,6 @@ private:
   QwtPlotCurve * const m_curve_b;
   QwtPlotCurve * const m_curve_sum;
 
-  void FixZoom();
 
   #ifndef NDEBUG
   static void Test() noexcept;

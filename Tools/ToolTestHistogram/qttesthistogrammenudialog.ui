@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtSumBrownianMotionsMenuDialog</class>
- <widget class="QDialog" name="QtSumBrownianMotionsMenuDialog">
+ <class>QtTestHistogramMenuDialog</class>
+ <widget class="QDialog" name="QtTestHistogramMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>310</width>
-    <height>403</height>
+    <width>341</width>
+    <height>395</height>
    </rect>
   </property>
   <property name="font">
@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>SumBrownianMotions</string>
+   <string>TestHistogram</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
@@ -47,7 +47,7 @@ QPlainTextEdit {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolSumBrownianMotions.qrc">:/images/ToolSumBrownianMotions.png</pixmap>
+      <pixmap resource="ToolTestHistogram.qrc">:/images/ToolTestHistogramHistogram.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -88,7 +88,7 @@ QPlainTextEdit {
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="ToolSumBrownianMotions.qrc"/>
+  <include location="ToolTestHistogram.qrc"/>
  </resources>
  <connections/>
 </ui>
