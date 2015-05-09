@@ -1,0 +1,5 @@
+#ifndef MOLECULEAMOUNT_H
+#define MOLECULEAMOUNT_H
+
+
+#endif // MOLECULEAMOUNT_H
