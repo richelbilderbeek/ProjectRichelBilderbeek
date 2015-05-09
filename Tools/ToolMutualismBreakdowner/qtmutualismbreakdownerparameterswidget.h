@@ -18,6 +18,10 @@ public:
   Parameters GetParameters() const noexcept;
   void SetParameters(const Parameters& parameters) noexcept;
 
+signals:
+  void signal_parameters_changed() const;
+
+
 private slots:
 
   void OnAnyChange();

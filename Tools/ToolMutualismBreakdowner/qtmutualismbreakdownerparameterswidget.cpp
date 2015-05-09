@@ -94,7 +94,7 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
 
 void QtMutualismBreakdownerParametersWidget::OnAnyChange()
 {
-
+  emit signal_parameters_changed();
 }
 
 void QtMutualismBreakdownerParametersWidget::on_button_set_random_values_clicked()

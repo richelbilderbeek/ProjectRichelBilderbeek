@@ -73,6 +73,8 @@ QtMutualismBreakdownerTimePlotDialog::QtMutualismBreakdownerTimePlotDialog(QWidg
 
   on_button_run_clicked();
 
+  QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(on_button_run_clicked()));
+
   {
     //Put the dialog in the screen center
     const QRect screen = QApplication::desktop()->screenGeometry();
