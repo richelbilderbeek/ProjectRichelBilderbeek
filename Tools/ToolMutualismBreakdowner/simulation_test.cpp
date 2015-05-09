@@ -19,7 +19,7 @@ void Simulation::Test() noexcept
       0.0, //const double any_initial_organic_matter_density,
       0.1, //const double any_initial_seagrass_density,
       0.0, //const double any_initial_sulfide_density,
-      0.0, //const double any_loripes_density,
+      //0.0, //const double any_loripes_density,
       0.0, //const double any_organic_matter_to_sulfide_rate,
       1.0, //const double any_seagrass_carrying_capacity,
       1.0, //const double any_seagrass_growth_rate,
@@ -27,7 +27,7 @@ void Simulation::Test() noexcept
       0.0, //const double any_sulfide_consumption_by_loripes,
       0.0, //const double any_sulfide_diffusion_rate,
       0.0, //const double any_sulfide_mol_per_seagrass_density,
-      0.0, //const double any_sulfide_toxicity,
+      //0.0, //const double any_sulfide_toxicity,
       10 //const int any_n_timesteps
     );
     Simulation simulation(p);
@@ -45,7 +45,7 @@ void Simulation::Test() noexcept
       0.0, //const double any_initial_organic_matter_density,
       1.0, //const double any_initial_seagrass_density,
       1.0, //const double any_initial_sulfide_density,
-      0.0, //const double any_loripes_density,
+      //0.0, //const double any_loripes_density,
       0.0, //const double any_organic_matter_to_sulfide_rate,
       1.0, //const double any_seagrass_carrying_capacity,
       1.0, //const double any_seagrass_growth_rate,
@@ -53,7 +53,7 @@ void Simulation::Test() noexcept
       0.0, //const double any_sulfide_consumption_by_loripes,
       0.0, //const double any_sulfide_diffusion_rate,
       0.0, //const double any_sulfide_mol_per_seagrass_density,
-      1.0, //const double any_sulfide_toxicity,
+      //1.0, //const double any_sulfide_toxicity,
       10 //const int any_n_timesteps
     );
     Simulation simulation(p);
@@ -72,7 +72,7 @@ void Simulation::Test() noexcept
       0.0, //const double any_initial_organic_matter_density,
       1.0, //const double any_initial_seagrass_density,
       0.0, //const double any_initial_sulfide_density,
-      0.0, //const double any_loripes_density,
+      //0.0, //const double any_loripes_density,
       0.0, //const double any_organic_matter_to_sulfide_rate,
       1.0, //const double any_seagrass_carrying_capacity,
       0.1, //const double any_seagrass_growth_rate,
@@ -80,7 +80,7 @@ void Simulation::Test() noexcept
       0.0, //const double any_sulfide_consumption_by_loripes,
       0.0, //const double any_sulfide_diffusion_rate,
       0.0, //const double any_sulfide_mol_per_seagrass_density,
-      0.0, //const double any_sulfide_toxicity,
+      //0.0, //const double any_sulfide_toxicity,
       10 //const int any_n_timesteps
     );
     Simulation simulation(p);

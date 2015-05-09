@@ -42,7 +42,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
     ui->box_initial_organic_matter_density->value(),
     ui->box_initial_seagrass_density->value(),
     ui->box_initial_sulfide_concentration->value(),
-    ui->box_loripes_density->value(),
+    //ui->box_loripes_density->value(),
     ui->box_organic_matter_to_sulfide_factor->value(),
     ui->box_organic_matter_to_sulfide_rate->value(),
     ui->box_seagrass_carrying_capacity->value(),
@@ -50,7 +50,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
     ui->box_seagrass_to_organic_matter_factor->value(),
     ui->box_sulfide_consumption_by_loripes->value(),
     ui->box_sulfide_diffusion_rate->value(),
-    ui->box_sulfide_toxicity->value(),
+    //ui->box_sulfide_toxicity->value(),
     ui->box_n_timesteps->value()
   );
 
@@ -80,7 +80,7 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   ui->box_initial_organic_matter_density->setValue(parameters.initial_organic_matter_density);
   ui->box_initial_seagrass_density->setValue(parameters.initial_seagrass_density);
   ui->box_initial_sulfide_concentration->setValue(parameters.initial_sulfide_concentration);
-  ui->box_loripes_density->setValue(parameters.loripes_density);
+  //ui->box_loripes_density->setValue(parameters.loripes_density);
   ui->box_organic_matter_to_sulfide_factor->setValue(parameters.organic_matter_to_sulfide_factor);
   ui->box_organic_matter_to_sulfide_rate->setValue(parameters.organic_matter_to_sulfide_rate);
   ui->box_seagrass_carrying_capacity->setValue(parameters.seagrass_carrying_capacity);
@@ -88,7 +88,7 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   ui->box_seagrass_to_organic_matter_factor->setValue(parameters.seagrass_to_organic_matter_factor);
   ui->box_sulfide_consumption_by_loripes->setValue(parameters.sulfide_consumption_by_loripes_rate);
   ui->box_sulfide_diffusion_rate->setValue(parameters.sulfide_diffusion_rate);
-  ui->box_sulfide_toxicity->setValue(parameters.sulfide_toxicity);
+  //ui->box_sulfide_toxicity->setValue(parameters.sulfide_toxicity);
   ui->box_n_timesteps->setValue(parameters.n_timesteps);
 }
 
