@@ -12,16 +12,14 @@ void PoisoningFunction::Test() noexcept
     is_tested = true;
   }
   {
-    InvertLogisticPoisoning p;
+    const InvertLogisticPoisoning p;
     assert(std::abs(p(    0.0)) <= 1.0);
     assert(std::abs(p(    1.0)-0.83208) < 0.0001);
     assert(std::abs(p(   10.0)-0.820456) < 0.0001);
     assert(std::abs(p(  100.0)-0.670277) < 0.0001);
     assert(std::abs(p( 1000.0)-0.000616669) < 0.0001);
     assert(std::abs(p(10000.0)-2.45572e-17) < 0.0001);
-
   }
-  assert(!"DOEN");
 }
 
 double InvertLogisticPoisoning::operator()(const double seagrass_density) const noexcept

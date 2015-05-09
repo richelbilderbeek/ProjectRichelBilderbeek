@@ -1,6 +1,8 @@
 #include "simulation.h"
 #include <cmath>
 
+#include "poisoningfunction.h"
+
 Simulation::Simulation(const Parameters& parameters)
   : m_parameters{parameters},
     m_seagrass_densities{},
@@ -28,15 +30,15 @@ void Simulation::Run() noexcept
   const double g{m_parameters.sulfide_diffusion_rate};
   const double k{m_parameters.seagrass_carrying_capacity};
   const double l{m_parameters.loripes_density};
-  //const double p{m_parameters.oxygen_production};
   const double r{m_parameters.seagrass_growth_rate};
-  const double p{m_parameters.sulfide_toxicity};
+  //const double p{m_parameters.sulfide_toxicity};
   const double z{m_parameters.seagrass_to_organic_matter_factor};
+
+  InvertLogisticPoisoning p;
 
   //Initialize sim
   double seagrass_density{m_parameters.initial_seagrass_density};
   double sulfide_concentration{m_parameters.initial_sulfide_concentration};
-
   double organic_matter_density{m_parameters.initial_organic_matter_density};
 
   int i=0;
@@ -48,14 +50,14 @@ void Simulation::Run() noexcept
     {
       const double delta_n{
           (r*n*(1.0-(n/k))) //Growth
-        - (p*s*n)
+        - (p(n)*s*n)
         - (d*n)  //Desiccation stress
       };
       seagrass_density += (delta_n * delta_t);
     }
     {
       const double delta_m{
-          (((p*s*n) + (d*n)) * z)
+          (((p(n)*s*n) + (d*n)) * z)
         - b * m
       };
       organic_matter_density += (delta_m * delta_t);

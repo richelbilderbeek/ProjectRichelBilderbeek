@@ -6,13 +6,15 @@ SOURCES += \
     ../../Tools/ToolMutualismBreakdowner/parameters.cpp \
     ../../Tools/ToolMutualismBreakdowner/parameters_test.cpp \
     ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownermenudialog.cpp \
-    poisoningfunction.cpp
+    poisoningfunction.cpp \
+    loripesconsumptionfunction.cpp
 
 HEADERS  += \
     ../../Tools/ToolMutualismBreakdowner/simulation.h \
     ../../Tools/ToolMutualismBreakdowner/parameters.h \
     ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownermenudialog.h \
-    poisoningfunction.h
+    poisoningfunction.h \
+    loripesconsumptionfunction.h
 
 RESOURCES += \
     ../../Tools/ToolMutualismBreakdowner/ToolMutualismBreakdowner.qrc
