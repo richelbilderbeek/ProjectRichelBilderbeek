@@ -5,6 +5,7 @@
 #include "qthideandshowdialog.h"
 
 struct QwtPlotCurve;
+struct QtMutualismBreakdownerParametersWidget;
 
 namespace Ui {
   class QtMutualismBreakdownerEquilibriumDialog;
@@ -22,10 +23,7 @@ public:
 
 private slots:
 
-  void on_button_load_clicked();
   void on_button_run_clicked();
-  void on_button_save_clicked();
-  void on_button_set_random_values_clicked();
 
 private:
   Ui::QtMutualismBreakdownerEquilibriumDialog *ui;
@@ -33,7 +31,7 @@ private:
   QwtPlotCurve * const m_curve_equilbrium_from_low;
   QwtPlotCurve * const m_curve_equilbrium_from_high;
 
-  double GetRandom() const noexcept;
+  QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
 
   #ifndef NDEBUG
   static void Test() noexcept {}

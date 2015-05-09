@@ -1,5 +1,5 @@
 #ifndef NDEBUG
-#include "qtmutualismbreakdownermaindialog.h"
+#include "qtmutualismbreakdownertimeplotdialog.h"
 
 #include <cassert>
 #include <fstream>

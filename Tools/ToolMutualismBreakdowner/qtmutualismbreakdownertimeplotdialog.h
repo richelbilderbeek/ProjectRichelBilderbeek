@@ -5,6 +5,7 @@
 #include "qthideandshowdialog.h"
 
 struct QwtPlotCurve;
+struct QtMutualismBreakdownerParametersWidget;
 
 namespace Ui {
   class QtMutualismBreakdownerTimePlotDialog;
@@ -21,15 +22,9 @@ public:
   void SetParameters(const Parameters& parameters) noexcept;
 
 private slots:
-  void Run();
 
   void on_button_fix_zoom_clicked();
-
-  void on_button_set_random_values_clicked();
-
-  void on_button_save_clicked();
-
-  void on_button_load_clicked();
+  void on_button_run_clicked();
 
 private:
   Ui::QtMutualismBreakdownerTimePlotDialog *ui;
@@ -37,9 +32,8 @@ private:
   QwtPlotCurve * const m_curve_seagrass_density;
   QwtPlotCurve * const m_curve_sulfide_concentration;
   QwtPlotCurve * const m_curve_organic_matter_density;
-
+  QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
   void FixZoom();
-  double GetRandom() const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
