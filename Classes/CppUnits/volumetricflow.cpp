@@ -33,60 +33,21 @@ void ribi::units::TestVolumetricFlow() noexcept
     const VolumetricFlow phi_v{volume / time};
   }
 
+  //VolumetricFlow can be converted to MassFlow
+  {
+    using Volume = boost::units::quantity<boost::units::si::volume>;
+    using MassFlow = boost::units::quantity<boost::units::si::mass_flow>;
+    using Density = boost::units::quantity<boost::units::si::mass_density>;
 
-
-  ///Question: what is the mass flow of a liquid with density 5.0 gram per cubic centimeter
-  ///that flows with 2.0 liter per 3.0 seconds?
-
-  using boost::units::quantity;
-  using boost::units::si::cubic_meter;
-  using boost::units::si::deci;
-  using boost::units::si::centi;
-  using boost::units::si::second;
-  using boost::units::si::meter;
-  using boost::units::si::cubic_meter_per_second;
-  using boost::units::si::volume;
-  using boost::units::si::mass_flow;
-  using boost::units::si::volumetric_flow;
-  using boost::units::si::time;
-  using boost::units::si::mass_density;
-  using boost::units::si::kilogram;
-  using boost::units::si::kilogram_per_second;
-  using boost::units::si::kilogrammes_per_cubic_metre;
-  using Volume = boost::units::quantity<boost::units::si::volume>;
-  typedef quantity<mass_density> Density;
-  typedef quantity<time> Time;
-  using VolumetricFlow = boost::units::quantity<boost::units::si::volumetric_flow>;
-  typedef quantity<mass_flow> MassFlow;
-
-
-  const Volume v(2.0 * deci * meter * deci * meter * deci * meter); //2.0 liter = 2.0 decimeter^3
-  const Time t(3.0 * second);
-  const VolumetricFlow phi_v(v / t);
-
-  const Density d(5.0 * 0.001 * kilogram / (1.0 * centi * meter * centi * meter * centi * meter));
-
-  const MassFlow phi_m(
-      (phi_v / cubic_meter_per_second)
-    * (d / kilogrammes_per_cubic_metre)
-    * kilogram_per_second);
-
-  //DOES NOT COMPILE??? If you know how to be able to write this
-  //preferred systax, please contact me
-  //const MassFlow m(f * d);
-
-  std::cout
-    << "Volumetric flow = volume / time\n"
-    << "phi_v = V / t\n"
-    << "phi_v = " << phi_v << '\n'
-    << "V = " << v << '\n'
-    << "t = " << t << '\n'
-    << '\n'
-    << "Mass flow = volume flow * mass density\n"
-    << "phi_m = phi_v * d\n"
-    << "phi_m = " << phi_m << '\n'
-    << "phi_v = " << phi_v << '\n'
-    << "d = " << d << '\n';
+    const Volume v{1.0 * boost::units::si::cubic_meter};
+    const Time t{1.0 * boost::units::si::second};
+    const VolumetricFlow phi_v{v / t};
+    const Density d{
+      1.0
+       * boost::units::si::kilogram / boost::units::si::cubic_meter
+    };
+    const MassFlow phi_m{phi_v * d};
+  }
 
 }
 #endif
