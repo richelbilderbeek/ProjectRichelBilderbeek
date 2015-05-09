@@ -1,13 +1,16 @@
-INCLUDEPATH += ../../Tools/ToolSumBrownianMotion
+INCLUDEPATH += ../../Tools/ToolMutualismBreakdowner
 
 SOURCES += \
-    ../../Tools/ToolSumBrownianMotion/simulation.cpp \
-    ../../Tools/ToolSumBrownianMotion/simulation_test.cpp \
-    ../../Tools/ToolSumBrownianMotion/parameters.cpp \
-    ../../Tools/ToolSumBrownianMotion/parameters_test.cpp \
-    ../../Tools/ToolSumBrownianMotion/sumbrownianmotionmenudialog.cpp
+    ../../Tools/ToolMutualismBreakdowner/simulation.cpp \
+    ../../Tools/ToolMutualismBreakdowner/simulation_test.cpp \
+    ../../Tools/ToolMutualismBreakdowner/parameters.cpp \
+    ../../Tools/ToolMutualismBreakdowner/parameters_test.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownermenudialog.cpp
 
 HEADERS  += \
-    ../../Tools/ToolSumBrownianMotion/simulation.h \
-    ../../Tools/ToolSumBrownianMotion/parameters.h \
-    ../../Tools/ToolSumBrownianMotion/sumbrownianmotionmenudialog.h
+    ../../Tools/ToolMutualismBreakdowner/simulation.h \
+    ../../Tools/ToolMutualismBreakdowner/parameters.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownermenudialog.h
+
+RESOURCES += \
+    ../../Tools/ToolMutualismBreakdowner/ToolMutualismBreakdowner.qrc

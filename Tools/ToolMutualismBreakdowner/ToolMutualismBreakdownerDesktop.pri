@@ -1,16 +1,22 @@
 include(../../Tools/ToolMutualismBreakdowner/ToolMutualismBreakdownerConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermaindialog.cpp \
-    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermaindialog_test.cpp \
-    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermenudialog.cpp
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownertimeplotdialog.cpp \
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownertimeplotdialog_test.cpp \
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermenudialog.cpp \
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.cpp \
+    qtmutualismbreakdownerparameterswidget.cpp
 
 
 HEADERS  += \
-    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermaindialog.h \
-    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermenudialog.h
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownertimeplotdialog.h \
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermenudialog.h \
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.h \
+    qtmutualismbreakdownerparameterswidget.h
 
 FORMS += \
-    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermaindialog.ui \
-    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermenudialog.ui
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownertimeplotdialog.ui \
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermenudialog.ui \
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.ui \
+    qtmutualismbreakdownerparameterswidget.ui
 

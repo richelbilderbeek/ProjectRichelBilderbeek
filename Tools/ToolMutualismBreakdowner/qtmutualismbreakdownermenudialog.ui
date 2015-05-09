@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>432</width>
-    <height>569</height>
+    <width>464</width>
+    <height>658</height>
    </rect>
   </property>
   <property name="font">
@@ -55,9 +55,9 @@ QPlainTextEdit {
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_start">
+    <widget class="QPushButton" name="button_start_time_plot">
      <property name="text">
-      <string>Start</string>
+      <string>&amp;Time plot</string>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -74,6 +74,13 @@ QPlainTextEdit {
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_start_equilibrium_plot">
+     <property name="text">
+      <string>&amp;Equilibrium plot</string>
      </property>
     </widget>
    </item>

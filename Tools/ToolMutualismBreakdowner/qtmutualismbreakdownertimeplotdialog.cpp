@@ -1,4 +1,4 @@
-#include "qtmutualismbreakdownermaindialog.h"
+#include "qtmutualismbreakdownertimeplotdialog.h"
 
 #include <fstream>
 #include <QDesktopWidget>
@@ -10,15 +10,15 @@
 #include <qwt_plot_curve.h>
 
 #include "simulation.h"
-#include "ui_qtmutualismbreakdownermaindialog.h"
+#include "ui_qtmutualismbreakdownertimeplotdialog.h"
 
 #if QWT_VERSION >= 0x060100 || !WIN32
 #include "qwt_point_data.h"
 #endif
 
-QtMutualismBreakdownerMainDialog::QtMutualismBreakdownerMainDialog(QWidget *parent) :
+QtMutualismBreakdownerTimePlotDialog::QtMutualismBreakdownerTimePlotDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtMutualismBreakdownerMainDialog),
+  ui(new Ui::QtMutualismBreakdownerTimePlotDialog),
   m_curve_seagrass_density(new QwtPlotCurve),
   m_curve_sulfide_concentration(new QwtPlotCurve),
   m_curve_organic_matter_density(new QwtPlotCurve)
@@ -90,12 +90,12 @@ QtMutualismBreakdownerMainDialog::QtMutualismBreakdownerMainDialog(QWidget *pare
   }
 }
 
-QtMutualismBreakdownerMainDialog::~QtMutualismBreakdownerMainDialog()
+QtMutualismBreakdownerTimePlotDialog::~QtMutualismBreakdownerTimePlotDialog()
 {
   delete ui;
 }
 
-void QtMutualismBreakdownerMainDialog::FixZoom()
+void QtMutualismBreakdownerTimePlotDialog::FixZoom()
 {
   ui->plot_seagrass_density->setAxisScale(
     QwtPlot::xBottom,0.0,
@@ -122,7 +122,7 @@ void QtMutualismBreakdownerMainDialog::FixZoom()
 
 }
 
-Parameters QtMutualismBreakdownerMainDialog::GetParameters() const noexcept
+Parameters QtMutualismBreakdownerTimePlotDialog::GetParameters() const noexcept
 {
   Parameters p(
     ui->box_delta_t->value(),
@@ -145,7 +145,7 @@ Parameters QtMutualismBreakdownerMainDialog::GetParameters() const noexcept
   return p;
 }
 
-void QtMutualismBreakdownerMainDialog::SetParameters(const Parameters& parameters) noexcept
+void QtMutualismBreakdownerTimePlotDialog::SetParameters(const Parameters& parameters) noexcept
 {
   ui->box_delta_t->setValue(parameters.delta_t);
   ui->box_desiccation_stress->setValue(parameters.desiccation_stress);
@@ -164,7 +164,7 @@ void QtMutualismBreakdownerMainDialog::SetParameters(const Parameters& parameter
   ui->box_n_timesteps->setValue(parameters.n_timesteps);
 }
 
-double QtMutualismBreakdownerMainDialog::GetRandom() const noexcept
+double QtMutualismBreakdownerTimePlotDialog::GetRandom() const noexcept
 {
   switch (std::rand() % 8)
   {
@@ -180,7 +180,7 @@ double QtMutualismBreakdownerMainDialog::GetRandom() const noexcept
   return 0.0;
 }
 
-void QtMutualismBreakdownerMainDialog::Run()
+void QtMutualismBreakdownerTimePlotDialog::Run()
 {
   Simulation simulation(GetParameters());
   simulation.Run();
@@ -202,12 +202,12 @@ void QtMutualismBreakdownerMainDialog::Run()
   FixZoom();
 }
 
-void QtMutualismBreakdownerMainDialog::on_button_fix_zoom_clicked()
+void QtMutualismBreakdownerTimePlotDialog::on_button_fix_zoom_clicked()
 {
   FixZoom();
 }
 
-void QtMutualismBreakdownerMainDialog::on_button_set_random_values_clicked()
+void QtMutualismBreakdownerTimePlotDialog::on_button_set_random_values_clicked()
 {
   ui->box_desiccation_stress->setValue(GetRandom());
   ui->box_initial_organic_matter_density->setValue(GetRandom());
@@ -223,7 +223,7 @@ void QtMutualismBreakdownerMainDialog::on_button_set_random_values_clicked()
   ui->box_sulfide_toxicity->setValue(GetRandom());
 }
 
-void QtMutualismBreakdownerMainDialog::on_button_save_clicked()
+void QtMutualismBreakdownerTimePlotDialog::on_button_save_clicked()
 {
   const std::string filename{
     QFileDialog::getSaveFileName().toStdString()
@@ -233,7 +233,7 @@ void QtMutualismBreakdownerMainDialog::on_button_save_clicked()
   f << GetParameters();
 }
 
-void QtMutualismBreakdownerMainDialog::on_button_load_clicked()
+void QtMutualismBreakdownerTimePlotDialog::on_button_load_clicked()
 {
   const std::string filename{
     QFileDialog::getOpenFileName().toStdString()

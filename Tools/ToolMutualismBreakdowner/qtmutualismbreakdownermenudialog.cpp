@@ -6,7 +6,8 @@
 
 #include "qtaboutdialog.h"
 #include "mutualismbreakdownermenudialog.h"
-#include "qtmutualismbreakdownermaindialog.h"
+#include "qtmutualismbreakdownertimeplotdialog.h"
+#include "qtmutualismbreakdownerequilibriumdialog.h"
 #include "trace.h"
 #include "testtimer.h"
 #include "ui_qtmutualismbreakdownermenudialog.h"
@@ -30,11 +31,6 @@ void ribi::QtMutualismBreakdownerMenuDialog::keyPressEvent(QKeyEvent * event)
   if (event->key() == Qt::Key_Escape) close();
 }
 
-void ribi::QtMutualismBreakdownerMenuDialog::on_button_start_clicked()
-{
-  QtMutualismBreakdownerMainDialog d;
-  ShowChild(&d);
-}
 
 void ribi::QtMutualismBreakdownerMenuDialog::on_button_about_clicked()
 {
@@ -65,3 +61,16 @@ void ribi::QtMutualismBreakdownerMenuDialog::Test() noexcept
   QtMutualismBreakdownerMenuDialog();
 }
 #endif
+
+void ribi::QtMutualismBreakdownerMenuDialog::on_button_start_time_plot_clicked()
+{
+  QtMutualismBreakdownerTimePlotDialog d;
+  ShowChild(&d);
+
+}
+
+void ribi::QtMutualismBreakdownerMenuDialog::on_button_start_equilibrium_plot_clicked()
+{
+  QtMutualismBreakdownerEquilibriumDialog d;
+  ShowChild(&d);
+}

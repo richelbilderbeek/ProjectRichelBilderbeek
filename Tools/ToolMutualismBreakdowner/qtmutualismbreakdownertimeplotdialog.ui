@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtMutualismBreakdownerTimePlotDialog</class>
+ <widget class="QDialog" name="QtMutualismBreakdownerTimePlotDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>816</width>
+    <height>535</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MutualismBreakdowner</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #bbf, stop: 0.2  #bbf, stop: 0.5 #bfb, stop: 0.8 #fbb, stop: 1 #fbb);
+  border: 1px solid black
+}
+
+QSpinBox,QDoubleSpinBox,QComboBox { 
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #bbb, stop: 1 #fff);
+  border: 1px solid black
+}
+
+QPushButton
+{
+  color: #000;
+  background-color: qradialgradient(cx: 0.5, cy: 0.5,fx: 0.5, fy: 0.5,radius: 0.5, stop: 0 #fff, stop: 1 #aaa);
+  border: 1px solid black
+}
+
+QPlainTextEdit {
+  font: 18px bold &quot;Courier&quot; courier monospace
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="1">
+    <widget class="QwtPlot" name="plot_seagrass_density" native="true"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QwtPlot" name="plot_organic_matter_density" native="true"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QWidget" name="widget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>#timesteps</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="box_n_timesteps">
+        <property name="maximum">
+         <number>1000000000</number>
+        </property>
+        <property name="value">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Delta t</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="box_delta_t">
+        <property name="decimals">
+         <number>6</number>
+        </property>
+        <property name="minimum">
+         <double>0.000001000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.001000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.010000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>(d) Desiccation stress</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QDoubleSpinBox" name="box_desiccation_stress">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.040000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>(m0) Initial organic matter density</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QDoubleSpinBox" name="box_initial_organic_matter_density">
+        <property name="maximum">
+         <double>10000000.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_init_seagrass_density">
+        <property name="text">
+         <string>(n0) Initial seagrass density</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QDoubleSpinBox" name="box_initial_seagrass_density">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="minimum">
+         <double>0.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>(s0) Initial sulfide concentration</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration">
+        <property name="maximum">
+         <double>1000000.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_loripes_density">
+        <property name="text">
+         <string>(l) Loripes density</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QDoubleSpinBox" name="box_loripes_density">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_organic_matter_to_sulfide_factor">
+        <property name="text">
+         <string>(f) Organic matter to sulfide factor</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QDoubleSpinBox" name="box_organic_matter_to_sulfide_factor">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="label_organic_matter_to_sulfide_rate">
+        <property name="text">
+         <string>(b) Organic matter to sulfide rate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QDoubleSpinBox" name="box_organic_matter_to_sulfide_rate">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>100.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>(k) Seagrass carrying capacity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QDoubleSpinBox" name="box_seagrass_carrying_capacity">
+        <property name="maximum">
+         <double>1000000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="label_seagrass_growth_rate">
+        <property name="text">
+         <string>(r) Seagrass growth rate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QDoubleSpinBox" name="box_seagrass_growth_rate">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>100.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="label_seagrass_to_organic_matter_factor">
+        <property name="text">
+         <string>(z) Seagrass to organic matter factor</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QDoubleSpinBox" name="box_seagrass_to_organic_matter_factor">
+        <property name="value">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>(p) Sulfide toxicity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="1">
+       <widget class="QDoubleSpinBox" name="box_sulfide_toxicity">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>100.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.010000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>(c) Sulfide consumption by loripes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="1">
+       <widget class="QDoubleSpinBox" name="box_sulfide_consumption_by_loripes">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="18" column="0" colspan="2">
+       <widget class="QPushButton" name="button_fix_zoom">
+        <property name="text">
+         <string>&amp;Fix zoom</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="0" colspan="2">
+       <widget class="QPushButton" name="button_set_random_values">
+        <property name="text">
+         <string>Set &amp;random values</string>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="0" colspan="2">
+       <widget class="QPushButton" name="button_save">
+        <property name="text">
+         <string>&amp;Save parameters</string>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="0" colspan="2">
+       <widget class="QPushButton" name="button_load">
+        <property name="text">
+         <string>&amp;Load parameters</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="0">
+       <widget class="QLabel" name="label_sulfide_diffusion_rate">
+        <property name="text">
+         <string>(g) sulfide diffusion rate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QDoubleSpinBox" name="box_sulfide_diffusion_rate">
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>100000000000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QwtPlot" name="plot_sulfide_concentration" native="true"/>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QWidget</extends>
+   <header>qwt_plot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>box_n_timesteps</tabstop>
+  <tabstop>box_delta_t</tabstop>
+  <tabstop>box_desiccation_stress</tabstop>
+  <tabstop>box_initial_organic_matter_density</tabstop>
+  <tabstop>box_initial_seagrass_density</tabstop>
+  <tabstop>box_initial_sulfide_concentration</tabstop>
+  <tabstop>box_loripes_density</tabstop>
+  <tabstop>box_organic_matter_to_sulfide_factor</tabstop>
+  <tabstop>box_organic_matter_to_sulfide_rate</tabstop>
+  <tabstop>box_seagrass_carrying_capacity</tabstop>
+  <tabstop>box_seagrass_growth_rate</tabstop>
+  <tabstop>box_seagrass_to_organic_matter_factor</tabstop>
+  <tabstop>box_sulfide_toxicity</tabstop>
+  <tabstop>box_sulfide_diffusion_rate</tabstop>
+  <tabstop>box_sulfide_consumption_by_loripes</tabstop>
+  <tabstop>button_set_random_values</tabstop>
+  <tabstop>button_load</tabstop>
+  <tabstop>button_save</tabstop>
+  <tabstop>button_fix_zoom</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

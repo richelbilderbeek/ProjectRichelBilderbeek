@@ -5,7 +5,7 @@
 #include <fstream>
 #include "fileio.h"
 
-void QtMutualismBreakdownerMainDialog::Test() noexcept
+void QtMutualismBreakdownerTimePlotDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
@@ -31,7 +31,7 @@ void QtMutualismBreakdownerMainDialog::Test() noexcept
     25 //const int any_n_timesteps
   );
   {
-    QtMutualismBreakdownerMainDialog d;
+    QtMutualismBreakdownerTimePlotDialog d;
     d.SetParameters(parameters);
     assert(d.GetParameters() == parameters);
   }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtMutualismBreakdownerMainDialog</class>
- <widget class="QDialog" name="QtMutualismBreakdownerMainDialog">
+ <class>QtMutualismBreakdownerEquilibriumDialog</class>
+ <widget class="QDialog" name="QtMutualismBreakdownerEquilibriumDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -37,10 +37,14 @@ QPlainTextEdit {
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="1">
-    <widget class="QwtPlot" name="plot_seagrass_density" native="true"/>
+    <widget class="QwtPlot" name="plot_equilibrium" native="true"/>
    </item>
-   <item row="0" column="2">
-    <widget class="QwtPlot" name="plot_organic_matter_density" native="true"/>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="button_run">
+     <property name="text">
+      <string>&amp;Run</string>
+     </property>
+    </widget>
    </item>
    <item row="0" column="0">
     <widget class="QWidget" name="widget" native="true">
@@ -95,7 +99,10 @@ QPlainTextEdit {
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="label_desiccation_stress">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>(d) Desiccation stress</string>
         </property>
@@ -103,6 +110,9 @@ QPlainTextEdit {
       </item>
       <item row="2" column="1">
        <widget class="QDoubleSpinBox" name="box_desiccation_stress">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="decimals">
          <number>4</number>
         </property>
@@ -334,13 +344,6 @@ QPlainTextEdit {
         </property>
        </widget>
       </item>
-      <item row="18" column="0" colspan="2">
-       <widget class="QPushButton" name="button_fix_zoom">
-        <property name="text">
-         <string>&amp;Fix zoom</string>
-        </property>
-       </widget>
-      </item>
       <item row="15" column="0" colspan="2">
        <widget class="QPushButton" name="button_set_random_values">
         <property name="text">
@@ -385,8 +388,12 @@ QPlainTextEdit {
      </layout>
     </widget>
    </item>
-   <item row="0" column="3">
-    <widget class="QwtPlot" name="plot_sulfide_concentration" native="true"/>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="button_fix_zoom">
+     <property name="text">
+      <string>&amp;Fix zoom</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -418,7 +425,6 @@ QPlainTextEdit {
   <tabstop>button_set_random_values</tabstop>
   <tabstop>button_load</tabstop>
   <tabstop>button_save</tabstop>
-  <tabstop>button_fix_zoom</tabstop>
  </tabstops>
  <resources/>
  <connections/>
