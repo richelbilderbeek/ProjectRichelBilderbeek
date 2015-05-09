@@ -14,7 +14,6 @@ void PoisoningFunction::Test() noexcept
   }
   {
     const InvertLogisticPoisoning p;
-    std::cout << p(100.0) << std::endl;
     assert(std::abs(p(    0.0)-1.0) < 0.1);
     assert(std::abs(p(    1.0)-1.0) < 0.1);
     assert(std::abs(p(   23.0)-0.5) < 0.1);
