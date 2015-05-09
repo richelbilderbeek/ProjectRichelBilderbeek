@@ -50,9 +50,9 @@ void QtWidget::OnTimer()
       auto color = qRgb(0,0,0);
       switch (celltype)
       {
-        case CellType::paper: color = qRgb(255,0,0); break;
-        case CellType::rock: color = qRgb(0,255,0); break;
-        case CellType::scissors: color = qRgb(0,0,255); break;
+        case CellType::paper: color = qRgb(255,255,255); break;
+        case CellType::rock: color = qRgb(0,0,0); break;
+        case CellType::scissors: color = qRgb(128,128,128); break;
       }
       image.setPixel(x,y,color);
     }
