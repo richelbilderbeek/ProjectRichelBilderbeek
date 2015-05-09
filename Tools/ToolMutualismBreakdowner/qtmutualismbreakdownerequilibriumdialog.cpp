@@ -51,10 +51,13 @@ QtMutualismBreakdownerEquilibriumDialog::QtMutualismBreakdownerEquilibriumDialog
 
   m_curve_equilbrium_from_low->attach(ui->plot_equilibrium);
   m_curve_equilbrium_from_low->setStyle(QwtPlotCurve::Lines);
-  m_curve_equilbrium_from_low->setPen(QColor(0,0,0));
+  m_curve_equilbrium_from_low->setPen(QColor(255,0,0));
   m_curve_equilbrium_from_high->attach(ui->plot_equilibrium);
   m_curve_equilbrium_from_high->setStyle(QwtPlotCurve::Lines);
-  m_curve_equilbrium_from_high->setPen(QColor(0,0,0));
+  m_curve_equilbrium_from_high->setPen(QColor(0,0,255));
+
+  QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(on_button_run_clicked()));
+  on_button_run_clicked();
 
   {
     //Put the dialog in the screen center
@@ -92,6 +95,7 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
 
   for (double d=0.0; d<=1.0; d+=0.01)
   {
+    ds.push_back(d);
     parameters.desiccation_stress = d;
     //From low
     {
@@ -99,7 +103,6 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
       Simulation simulation(parameters);
       simulation.Run();
       const double n_end{simulation.GetSeagrassDensities().back()};
-      ds.push_back(d);
       ns_from_low.push_back(n_end);
     }
     //From high
@@ -108,7 +111,6 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
       Simulation simulation(parameters);
       simulation.Run();
       const double n_end{simulation.GetSeagrassDensities().back()};
-      ds.push_back(d);
       ns_from_high.push_back(n_end);
     }
   }
@@ -120,4 +122,5 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
     new QwtPointArrayData(&ds[0],&ns_from_high[0],ns_from_high.size())
   );
   ui->plot_equilibrium->replot();
+
 }
