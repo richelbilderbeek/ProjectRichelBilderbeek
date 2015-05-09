@@ -1,7 +1,11 @@
 #include "simulation.h"
+
+#include <cassert>
 #include <cmath>
+#include <iostream>
 
 #include "poisoningfunction.h"
+#include "loripesconsumptionfunction.h"
 
 Simulation::Simulation(const Parameters& parameters)
   : m_parameters{parameters},
@@ -34,7 +38,8 @@ void Simulation::Run() noexcept
   //const double p{m_parameters.sulfide_toxicity};
   const double z{m_parameters.seagrass_to_organic_matter_factor};
 
-  InvertLogisticPoisoning p;
+  InvertLogisticPoisoning P;
+  InvertedExponentialConsumption L;
 
   //Initialize sim
   double seagrass_density{m_parameters.initial_seagrass_density};
@@ -50,14 +55,20 @@ void Simulation::Run() noexcept
     {
       const double delta_n{
           (r*n*(1.0-(n/k))) //Growth
-        - (p(n)*s*n)
+        - (P(n)*s*n)
         - (d*n)  //Desiccation stress
       };
       seagrass_density += (delta_n * delta_t);
+      if (seagrass_density < 0.0)
+      {
+        std::cerr << seagrass_density << std::endl;
+        std::cerr << m_parameters << std::endl;
+      }
+      assert(seagrass_density >= 0.0);
     }
     {
       const double delta_m{
-          (((p(n)*s*n) + (d*n)) * z)
+          (((P(n)*s*n) + (d*n)) * z)
         - b * m
       };
       organic_matter_density += (delta_m * delta_t);
@@ -66,7 +77,7 @@ void Simulation::Run() noexcept
       using std::exp;
       const double delta_s{
           (f*b*m)   //Conversion from organic matter
-        - (c*l*s*n) //Consumption of sulfide by loripes
+        - (c*l*s*L(n)) //Consumption of sulfide by loripes
         - (g*s)     //Diffusion of sulfide into the environment
       };
       sulfide_concentration += (delta_s * delta_t);

@@ -53,14 +53,14 @@ struct LethalPoisoning : public PoisoningFunction
 struct InvertLogisticPoisoning : public PoisoningFunction
 {
   InvertLogisticPoisoning(
-    const double x0 = 0.2,
-    const double r = 0.009
+    const double r = 0.2,
+    const double x0 = 0.009
   )
-    : m_x0{x0}, m_r{r} {}
+    : m_r{r}, m_x0{x0} {}
   ~InvertLogisticPoisoning() {}
   double operator()(const double seagrass_density) const noexcept override;
-  const double m_x0;
   const double m_r;
+  const double m_x0;
 };
 
 
