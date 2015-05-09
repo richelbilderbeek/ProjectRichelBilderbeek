@@ -31,7 +31,6 @@ struct Parameters
     const double any_initial_organic_matter_density,
     const double any_initial_seagrass_density,
     const double any_initial_sulfide_density,
-    //const double any_loripes_density,
     const double any_organic_matter_to_sulfide_factor,
     const double any_organic_matter_to_sulfide_rate,
     const double any_seagrass_carrying_capacity,
@@ -39,7 +38,6 @@ struct Parameters
     const double any_seagrass_to_organic_matter_factor,
     const double any_sulfide_consumption_by_loripes,
     const double any_sulfide_diffusion_rate,
-    //const double any_sulfide_toxicity,
     const int any_n_timesteps
   );
   double delta_t;
@@ -47,7 +45,6 @@ struct Parameters
   double initial_organic_matter_density;
   double initial_seagrass_density;
   double initial_sulfide_concentration;
-  //double loripes_density;
   double organic_matter_to_sulfide_factor;
   double organic_matter_to_sulfide_rate;
   double seagrass_carrying_capacity;
@@ -55,12 +52,18 @@ struct Parameters
   double seagrass_to_organic_matter_factor;
   double sulfide_consumption_by_loripes_rate;
   double sulfide_diffusion_rate;
-  //double sulfide_toxicity;
   int n_timesteps;
+
+
+  ///Set these parameters to random values
+  void SetRandom();
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  private:
+  double GetRandom() const noexcept;
 };
 
 bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept;

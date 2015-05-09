@@ -33,10 +33,8 @@ void Simulation::Run() noexcept
   const double f{m_parameters.organic_matter_to_sulfide_factor};
   const double g{m_parameters.sulfide_diffusion_rate};
   const double k{m_parameters.seagrass_carrying_capacity};
-  //const double l{m_parameters.loripes_density};
   const double l{1.0}; //loripes_density
   const double r{m_parameters.seagrass_growth_rate};
-  //const double p{m_parameters.sulfide_toxicity};
   const double z{m_parameters.seagrass_to_organic_matter_factor};
 
   InvertLogisticPoisoning P;
