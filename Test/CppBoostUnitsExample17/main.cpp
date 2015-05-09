@@ -10,6 +10,7 @@ namespace boost {
     struct sulfide_molecule_amount_dimension_tag : base_dimension<boost::units::amount_base_dimension,1>{};
     struct hydrogen_molecule_amount_dimension_tag : base_dimension<boost::units::amount_base_dimension,1>{};
 
+
     typedef derived_dimension<sulfide_molecule_amount_dimension_tag,1>::type sulfide_molecule_amount_dimension;
     typedef derived_dimension<hydrogen_molecule_amount_dimension_tag,1>::type hydrogen_molecule_amount_dimension;
   } // namespace units

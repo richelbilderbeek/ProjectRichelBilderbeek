@@ -1,9 +1,7 @@
 #ifndef HYDROGENMOLECULEAMOUNT_H
 #define HYDROGENMOLECULEAMOUNT_H
 
-#include <boost/units/io.hpp>
 #include <boost/units/systems/si.hpp>
-#include <boost/units/systems/si/prefixes.hpp>
 
 namespace boost {
   namespace units {

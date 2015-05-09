@@ -5,7 +5,8 @@ SOURCES += \
     ../../Classes/CppUnits/units.cpp \
     ../../Classes/CppUnits/moleculeamount.cpp \
     ../../Classes/CppUnits/sulfidemoleculeamount.cpp \
-    ../../Classes/CppUnits/hydrogenmoleculeamount.cpp
+    ../../Classes/CppUnits/hydrogenmoleculeamount.cpp \
+    ../../Classes/CppUnits/units_test.cpp
 
 HEADERS  += \
     ../../Classes/CppUnits/units.h \
