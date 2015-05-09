@@ -5,8 +5,13 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+
+#include <boost/units/systems/si.hpp>
+#include <boost/units/io.hpp>
+
 #include "poisoningfunction.h"
 #include "loripesconsumptionfunction.h"
+#include "speciesdensity.h"
 
 Simulation::Simulation(const Parameters& parameters)
   : m_parameters{parameters},
@@ -42,7 +47,7 @@ void Simulation::Run() noexcept
   InvertedExponentialConsumption L;
 
   //Initialize sim
-  double seagrass_density{m_parameters.initial_seagrass_density};
+  auto seagrass_density = m_parameters.initial_seagrass_density;
   double sulfide_concentration{m_parameters.initial_sulfide_concentration};
   double organic_matter_density{m_parameters.initial_organic_matter_density};
   {
@@ -53,22 +58,22 @@ void Simulation::Run() noexcept
   int i=0;
   for (double t=0.0; t<t_end; t+=delta_t)
   {
-    const double n{seagrass_density};
+    const auto n = seagrass_density;
     const double s{sulfide_concentration};
     const double m{organic_matter_density};
     {
-      const double delta_n{
-          (r*n*(1.0-(n/k))) //Growth
-        - (P(n)*s*n)
-        - (d*n)  //Desiccation stress
-      };
+      const auto delta_n
+        = (r*n.value()*(1.0-(n.value()/k))) //Growth
+        - (P(n.value())*s*n.value())
+        - (d*n.value())  //Desiccation stress
+      ;
       if (std::isnan(delta_n)) return;
       assert(!std::isnan(delta_n));
-      seagrass_density += (delta_n * delta_t);
+      seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
     }
     {
       const double delta_m{
-          (((P(n)*s*n) + (d*n)) * z)
+          (((P(n.value())*s*n.value()) + (d*n.value())) * z)
         - b * m
       };
       organic_matter_density += (delta_m * delta_t);
@@ -77,7 +82,7 @@ void Simulation::Run() noexcept
       using std::exp;
       const double delta_s{
           (f*b*m)   //Conversion from organic matter
-        - (c*l*s*L(n)) //Consumption of sulfide by loripes
+        - (c*l*s*L(n.value())) //Consumption of sulfide by loripes
         - (g*s)     //Diffusion of sulfide into the environment
       };
       sulfide_concentration += (delta_s * delta_t);
@@ -101,7 +106,7 @@ std::ostream& operator<<(std::ostream& os, const Simulation& simulation) noexcep
     << simulation.GetParameters() << '\n'
   ;
   const std::vector<double>& t{simulation.GetTimeSeries()};
-  const std::vector<double>& n{simulation.GetSeagrassDensities()};
+  const auto& n = simulation.GetSeagrassDensities();
   const std::vector<double>& s{simulation.GetSulfideConcentrations()};
   const std::vector<double>& m{simulation.GetOrganicMatterDensities()};
   std::stringstream stream;

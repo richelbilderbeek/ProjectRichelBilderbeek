@@ -3,7 +3,7 @@
 
 #include <iosfwd>
 #include <memory>
-
+#include "speciesdensity.h"
 struct LoripesConsumptionFunction;
 
 struct Parameters
@@ -13,7 +13,7 @@ struct Parameters
     const double any_delta_t,
     const double any_desiccation_stress,
     const double any_initial_organic_matter_density,
-    const double any_initial_seagrass_density,
+    const ribi::units::SpeciesDensity initial_seagrass_density,
     const double any_initial_sulfide_density,
     const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
     const double any_organic_matter_to_sulfide_factor,
@@ -28,7 +28,8 @@ struct Parameters
   double delta_t;
   double desiccation_stress;
   double initial_organic_matter_density;
-  double initial_seagrass_density;
+  ribi::units::SpeciesDensity initial_seagrass_density;
+  //double initial_seagrass_density;
   double initial_sulfide_concentration;
   std::shared_ptr<LoripesConsumptionFunction> loripes_consumption_function;
   double organic_matter_to_sulfide_factor;

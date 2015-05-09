@@ -1,8 +1,8 @@
 #include "parameters.h"
 
 #include <cassert>
-
 #include <iostream>
+#include <boost/units/io.hpp>
 
 #include "loripesconsumptionfunction.h"
 
@@ -11,7 +11,7 @@ Parameters::Parameters()
     delta_t{0.0},
     desiccation_stress{0.0},
     initial_organic_matter_density{0.0},
-    initial_seagrass_density{0.0},
+    initial_seagrass_density{0.0 * boost::units::si::species_per_square_meters},
     initial_sulfide_concentration{0.0},
     loripes_consumption_function{new InvertedExponentialConsumption},
     organic_matter_to_sulfide_factor{0.0},
@@ -23,14 +23,16 @@ Parameters::Parameters()
     sulfide_diffusion_rate{0.0},
     n_timesteps{0}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 Parameters::Parameters(
   const double any_delta_t,
   const double any_desiccation_stress,
   const double any_initial_organic_matter_density,
-  const double any_initial_seagrass_density,
+  const ribi::units::SpeciesDensity any_initial_seagrass_density,
   const double any_initial_sulfide_density,
   const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
   const double any_organic_matter_to_sulfide_factor,
@@ -61,7 +63,7 @@ Parameters::Parameters(
   Test();
   #endif
   assert(delta_t > 0.0);
-  assert(initial_seagrass_density >= 0.0);
+  assert(initial_seagrass_density >= 0.0 * boost::units::si::species_per_square_meter);
   assert(initial_sulfide_concentration >= 0.0);
   assert(seagrass_carrying_capacity >= 0.0);
   assert(seagrass_growth_rate >= 0.0);
@@ -88,7 +90,7 @@ void Parameters::SetRandom()
   delta_t = GetRandom();
   desiccation_stress = GetRandom();
   initial_organic_matter_density = GetRandom();
-  initial_seagrass_density = GetRandom();
+  initial_seagrass_density = GetRandom() * boost::units::si::species_per_square_meter;
   initial_sulfide_concentration = GetRandom();
   organic_matter_to_sulfide_factor = GetRandom();
   organic_matter_to_sulfide_rate = GetRandom();
