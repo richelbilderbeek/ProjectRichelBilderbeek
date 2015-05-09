@@ -5,8 +5,10 @@
 #include <QWidget>
 
 namespace Ui {
-class QtMutualismBreakdownerParametersWidget;
+  class QtMutualismBreakdownerParametersWidget;
 }
+
+struct QtLoripesConsumptionFunctionWidget;
 
 class QtMutualismBreakdownerParametersWidget : public QWidget
 {
@@ -32,6 +34,8 @@ private slots:
 
 private:
   Ui::QtMutualismBreakdownerParametersWidget *ui;
+
+  QtLoripesConsumptionFunctionWidget * const m_qtconsumptionwidget;
 
   double GetRandom() const noexcept;
 };

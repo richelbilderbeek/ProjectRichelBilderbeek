@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>441</width>
-    <height>606</height>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -271,25 +271,39 @@
      </property>
     </widget>
    </item>
-   <item row="13" column="0" colspan="2">
+   <item row="14" column="0" colspan="2">
     <widget class="QPushButton" name="button_set_random_values">
      <property name="text">
       <string>Set &amp;random values</string>
      </property>
     </widget>
    </item>
-   <item row="14" column="0" colspan="2">
+   <item row="15" column="0" colspan="2">
     <widget class="QPushButton" name="button_load">
      <property name="text">
       <string>&amp;Load parameters</string>
      </property>
     </widget>
    </item>
-   <item row="15" column="0" colspan="2">
+   <item row="16" column="0" colspan="2">
     <widget class="QPushButton" name="button_save">
      <property name="text">
       <string>&amp;Save parameters</string>
      </property>
+    </widget>
+   </item>
+   <item row="13" column="0" colspan="2">
+    <widget class="QGroupBox" name="box_consumption_by_loripes">
+     <property name="title">
+      <string>Sulfide consumption by Loripes</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout"/>
     </widget>
    </item>
   </layout>

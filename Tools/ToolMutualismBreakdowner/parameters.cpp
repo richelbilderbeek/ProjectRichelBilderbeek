@@ -4,12 +4,35 @@
 
 #include <iostream>
 
+#include "loripesconsumptionfunction.h"
+
+Parameters::Parameters()
+  :
+    delta_t{0.0},
+    desiccation_stress{0.0},
+    initial_organic_matter_density{0.0},
+    initial_seagrass_density{0.0},
+    initial_sulfide_concentration{0.0},
+    loripes_consumption_function{new InvertedExponentialConsumption},
+    organic_matter_to_sulfide_factor{0.0},
+    organic_matter_to_sulfide_rate{0.0},
+    seagrass_carrying_capacity{0.0},
+    seagrass_growth_rate{0.0},
+    seagrass_to_organic_matter_factor{0.0},
+    sulfide_consumption_by_loripes_rate{0.0},
+    sulfide_diffusion_rate{0.0},
+    n_timesteps{0}
+{
+
+}
+
 Parameters::Parameters(
   const double any_delta_t,
   const double any_desiccation_stress,
   const double any_initial_organic_matter_density,
   const double any_initial_seagrass_density,
   const double any_initial_sulfide_density,
+  const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
   const double any_organic_matter_to_sulfide_factor,
   const double any_organic_matter_to_sulfide_rate,
   const double any_seagrass_carrying_capacity,
@@ -24,6 +47,7 @@ Parameters::Parameters(
     initial_organic_matter_density{any_initial_organic_matter_density},
     initial_seagrass_density{any_initial_seagrass_density},
     initial_sulfide_concentration{any_initial_sulfide_density},
+    loripes_consumption_function{any_loripes_consumption_function},
     organic_matter_to_sulfide_factor{any_organic_matter_to_sulfide_factor},
     organic_matter_to_sulfide_rate{any_organic_matter_to_sulfide_rate},
     seagrass_carrying_capacity{any_seagrass_carrying_capacity},
@@ -85,6 +109,7 @@ std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
     << parameter.initial_organic_matter_density << " "
     << parameter.initial_seagrass_density << " "
     << parameter.initial_sulfide_concentration << " "
+    << *parameter.loripes_consumption_function << " "
     << parameter.organic_matter_to_sulfide_factor << " "
     << parameter.organic_matter_to_sulfide_rate << " "
     << parameter.seagrass_carrying_capacity << " "
@@ -105,6 +130,7 @@ std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept
     >> parameter.initial_organic_matter_density
     >> parameter.initial_seagrass_density
     >> parameter.initial_sulfide_concentration
+    >> parameter.loripes_consumption_function
     >> parameter.organic_matter_to_sulfide_factor
     >> parameter.organic_matter_to_sulfide_rate
     >> parameter.seagrass_carrying_capacity

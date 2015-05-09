@@ -1,15 +1,25 @@
 #include "qtmutualismbreakdownerparameterswidget.h"
 
+#include <cassert>
 #include <fstream>
 #include <QFileDialog>
+
+#include "qtloripesconsumptionfunctionwidget.h"
 
 #include "ui_qtmutualismbreakdownerparameterswidget.h"
 
 QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
   QWidget(parent),
-  ui(new Ui::QtMutualismBreakdownerParametersWidget)
+  ui(new Ui::QtMutualismBreakdownerParametersWidget),
+  m_qtconsumptionwidget{new QtLoripesConsumptionFunctionWidget}
 {
   ui->setupUi(this);
+
+  {
+    QLayout * const my_layout{ui->box_consumption_by_loripes->layout()};
+    assert(my_layout);
+    my_layout->addWidget(m_qtconsumptionwidget);
+  }
 
   QObject::connect(ui->box_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_desiccation_stress,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
@@ -39,6 +49,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
     ui->box_initial_organic_matter_density->value(),
     ui->box_initial_seagrass_density->value(),
     ui->box_initial_sulfide_concentration->value(),
+    m_qtconsumptionwidget->GetFunction(),
     ui->box_organic_matter_to_sulfide_factor->value(),
     ui->box_organic_matter_to_sulfide_rate->value(),
     ui->box_seagrass_carrying_capacity->value(),
