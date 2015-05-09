@@ -3,7 +3,7 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
-
+#include <fstream>
 #include "poisoningfunction.h"
 #include "loripesconsumptionfunction.h"
 
@@ -45,6 +45,10 @@ void Simulation::Run() noexcept
   double seagrass_density{m_parameters.initial_seagrass_density};
   double sulfide_concentration{m_parameters.initial_sulfide_concentration};
   double organic_matter_density{m_parameters.initial_organic_matter_density};
+  {
+    std::ofstream f("tmp.txt");
+    f << m_parameters;
+  }
 
   int i=0;
   for (double t=0.0; t<t_end; t+=delta_t)
@@ -58,6 +62,7 @@ void Simulation::Run() noexcept
         - (P(n)*s*n)
         - (d*n)  //Desiccation stress
       };
+      if (std::isnan(delta_n)) return;
       assert(!std::isnan(delta_n));
       seagrass_density += (delta_n * delta_t);
     }

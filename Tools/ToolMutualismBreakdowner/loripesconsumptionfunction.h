@@ -35,7 +35,7 @@ struct LoripesConsumptionFunction
 
 struct InvertedExponentialConsumption : LoripesConsumptionFunction
 {
-  InvertedExponentialConsumption(const double r = 0.05) : m_r{r} {}
+  InvertedExponentialConsumption(const double r = 0.05);
   ~InvertedExponentialConsumption() {}
   ///The fraction that will survive
   double operator()(const double seagrass_density) const noexcept override;
