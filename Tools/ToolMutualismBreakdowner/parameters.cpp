@@ -117,7 +117,7 @@ std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
     << parameter.seagrass_to_organic_matter_factor << " "
     << parameter.sulfide_consumption_by_loripes_rate << " "
     << parameter.sulfide_diffusion_rate << " "
-    << parameter.n_timesteps << '\n'
+    << parameter.n_timesteps
   ;
   return os;
 }

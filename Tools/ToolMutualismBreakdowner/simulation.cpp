@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "poisoningfunction.h"
 #include "loripesconsumptionfunction.h"
 
@@ -92,4 +93,28 @@ void Simulation::Run() noexcept
     ++i;
   }
 
+}
+
+std::ostream& operator<<(std::ostream& os, const Simulation& simulation) noexcept
+{
+  os
+    << simulation.GetParameters() << '\n'
+  ;
+  const std::vector<double>& t{simulation.GetTimeSeries()};
+  const std::vector<double>& n{simulation.GetSeagrassDensities()};
+  const std::vector<double>& s{simulation.GetSulfideConcentrations()};
+  const std::vector<double>& m{simulation.GetOrganicMatterDensities()};
+  std::stringstream stream;
+  assert(t.size() == n.size());
+  assert(t.size() == s.size());
+  assert(t.size() == m.size());
+  const int sz{static_cast<int>(t.size())};
+  for (int i = 0; i!=sz; ++i)
+  {
+    stream << t[i] << " " << n[i] << " " << m[i] << " " << s[i] << '\n';
+  }
+  std::string str{stream.str()};
+  if (!str.empty()) str.pop_back();
+  os << str;
+  return os;
 }
