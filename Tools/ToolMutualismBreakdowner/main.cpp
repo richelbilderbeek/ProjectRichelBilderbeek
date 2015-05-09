@@ -1,10 +1,13 @@
 #include "parameters.h"
 #include "simulation.h"
+#include "units.h"
 
 #include <iostream>
 
 int main()
 {
+  ribi::units::Test();
+  ribi::units::TestSpeciesDensity();
   Parameters p;
   p.SetRandom();
   p.n_timesteps = 10;

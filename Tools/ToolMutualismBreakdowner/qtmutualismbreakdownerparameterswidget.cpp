@@ -47,7 +47,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
     ui->box_delta_t->value(),
     ui->box_desiccation_stress->value(),
     ui->box_initial_organic_matter_density->value(),
-    ui->box_initial_seagrass_density->value(),
+    ui->box_initial_seagrass_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_sulfide_concentration->value(),
     m_qtconsumptionwidget->GetFunction(),
     ui->box_organic_matter_to_sulfide_factor->value(),
@@ -68,7 +68,7 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   ui->box_delta_t->setValue(parameters.delta_t);
   ui->box_desiccation_stress->setValue(parameters.desiccation_stress);
   ui->box_initial_organic_matter_density->setValue(parameters.initial_organic_matter_density);
-  ui->box_initial_seagrass_density->setValue(parameters.initial_seagrass_density);
+  ui->box_initial_seagrass_density->setValue(parameters.initial_seagrass_density.value());
   ui->box_initial_sulfide_concentration->setValue(parameters.initial_sulfide_concentration);
   ui->box_organic_matter_to_sulfide_factor->setValue(parameters.organic_matter_to_sulfide_factor);
   ui->box_organic_matter_to_sulfide_rate->setValue(parameters.organic_matter_to_sulfide_rate);

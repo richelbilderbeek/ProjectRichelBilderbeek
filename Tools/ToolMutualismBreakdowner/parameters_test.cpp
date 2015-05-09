@@ -3,6 +3,10 @@
 
 #include <cassert>
 #include <fstream>
+#include <iostream>
+
+#include <boost/units/io.hpp>
+
 #include "fileio.h"
 
 void Parameters::Test() noexcept
@@ -37,7 +41,7 @@ void Parameters::Test() noexcept
   //File I/O of initial_species_density
   {
 
-    ribi::units::SpeciesDensity d{
+    const ribi::units::SpeciesDensity d{
       23.45 * boost::units::si::species_per_square_meter
     };
     parameters.initial_seagrass_density = d;
@@ -52,8 +56,14 @@ void Parameters::Test() noexcept
     std::ifstream f(filename);
     Parameters parameters_too;
     f >> parameters_too;
-    assert(parameters_too == parameters);
+    if (parameters_too.initial_seagrass_density != d)
+    {
+      std::cerr << parameters_too.initial_seagrass_density << " "
+        << d << '\n'
+      ;
+    }
     assert(parameters_too.initial_seagrass_density == d);
+    assert(parameters_too == parameters);
   }
 }
 #endif

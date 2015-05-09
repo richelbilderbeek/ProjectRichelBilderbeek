@@ -105,7 +105,7 @@ void QtMutualismBreakdownerTimePlotDialog::FixZoom()
   ui->plot_seagrass_density->setAxisScale(
     QwtPlot::yLeft,0.0,
     std::max(
-      GetParameters().initial_seagrass_density,
+      GetParameters().initial_seagrass_density.value(),
       GetParameters().seagrass_carrying_capacity
     )
   );
@@ -136,9 +136,17 @@ void QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
   simulation.Run();
 
   const std::vector<double>& timeseries{simulation.GetTimeSeries()};
-  const std::vector<double>& seagrass_densities{simulation.GetSeagrassDensities()};
+  const auto& seagrass_densities_with_unit = simulation.GetSeagrassDensities();
   const std::vector<double>& sulfide_concentrations{simulation.GetSulfideConcentrations()};
   const std::vector<double>& organic_matter_densities{simulation.GetOrganicMatterDensities()};
+
+  std::vector<double> seagrass_densities;
+  std::transform(
+    std::begin(seagrass_densities_with_unit),
+    std::end(seagrass_densities_with_unit),
+    std::back_inserter(seagrass_densities),
+    [](const auto& d){ return d.value(); }
+  );
 
   m_curve_seagrass_density->setData(
     new QwtPointArrayData(&timeseries[0],&seagrass_densities[0],seagrass_densities.size())
