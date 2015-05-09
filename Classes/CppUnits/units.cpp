@@ -8,6 +8,8 @@
 #include "moleculeamount.h"
 #include "hydrogenmoleculeamount.h"
 #include "sulfidemoleculeamount.h"
+#include "massflow.h"
+#include "volumetricflow.h"
 
 void ribi::units::Test() noexcept
 {
@@ -16,10 +18,12 @@ void ribi::units::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TestMoleculeAmount();
   TestHydrogenMoleculeAmount();
-  TestSulfideMoleculeAmount();
+  TestMassFlow();
+  TestMoleculeAmount();
   TestSpeciesDensity();
+  TestSulfideMoleculeAmount();
+  TestVolumetricFlow();
 
   #ifdef MUST_NOT_COMPILE_CREATE_HYDROGEN_FROM_SULFIDE
   //Cannot create hydrogen from sulfide
