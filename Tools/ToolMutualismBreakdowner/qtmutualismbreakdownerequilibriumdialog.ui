@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>816</width>
-    <height>535</height>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,16 +36,6 @@ QPlainTextEdit {
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
-    <widget class="QwtPlot" name="plot_equilibrium" native="true"/>
-   </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="button_run">
-     <property name="text">
-      <string>&amp;Run</string>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0">
     <widget class="QWidget" name="widget" native="true">
      <property name="sizePolicy">
@@ -388,10 +378,13 @@ QPlainTextEdit {
      </layout>
     </widget>
    </item>
+   <item row="0" column="1">
+    <widget class="QwtPlot" name="plot_equilibrium" native="true"/>
+   </item>
    <item row="1" column="0">
-    <widget class="QPushButton" name="button_fix_zoom">
+    <widget class="QPushButton" name="button_run">
      <property name="text">
-      <string>&amp;Fix zoom</string>
+      <string>&amp;Run</string>
      </property>
     </widget>
    </item>

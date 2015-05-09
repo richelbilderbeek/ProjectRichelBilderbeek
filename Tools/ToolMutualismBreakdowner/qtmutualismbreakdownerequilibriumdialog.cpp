@@ -19,7 +19,8 @@
 QtMutualismBreakdownerEquilibriumDialog::QtMutualismBreakdownerEquilibriumDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtMutualismBreakdownerEquilibriumDialog),
-  m_curve_equilbrium(new QwtPlotCurve)
+  m_curve_equilbrium_from_low(new QwtPlotCurve),
+  m_curve_equilbrium_from_high(new QwtPlotCurve)
 {
   #ifndef NDEBUG
   Test();
@@ -37,34 +38,19 @@ QtMutualismBreakdownerEquilibriumDialog::QtMutualismBreakdownerEquilibriumDialog
   )
   {
     QwtPlotGrid * const grid = new QwtPlotGrid;
-    grid->setPen(QPen(QColor(128,128,128)));
+    grid->setPen(QPen(QColor(196,196,196)));
     grid->attach(plot);
     new QwtPlotZoomer(plot->canvas());
   }
 
-  ui->plot_equilibrium->setCanvasBackground(QColor(226,255,226));
+  ui->plot_equilibrium->setCanvasBackground(QColor(255,255,255));
 
-  m_curve_equilbrium->attach(ui->plot_equilibrium);
-  m_curve_equilbrium->setStyle(QwtPlotCurve::Lines);
-  m_curve_equilbrium->setPen(QPen(QColor(0,255,0)));
-
-  QObject::connect(ui->box_delta_t,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_desiccation_stress,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_initial_organic_matter_density  ,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_loripes_density,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_n_timesteps,SIGNAL(valueChanged(int)),this,SLOT(Run()));
-  QObject::connect(ui->box_organic_matter_to_sulfide_factor,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_seagrass_carrying_capacity,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_seagrass_to_organic_matter_factor,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_sulfide_consumption_by_loripes,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_sulfide_diffusion_rate,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_organic_matter_to_sulfide_rate,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_sulfide_toxicity,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-
-  Run();
+  m_curve_equilbrium_from_low->attach(ui->plot_equilibrium);
+  m_curve_equilbrium_from_low->setStyle(QwtPlotCurve::Lines);
+  m_curve_equilbrium_from_low->setPen(QColor(0,0,0));
+  m_curve_equilbrium_from_high->attach(ui->plot_equilibrium);
+  m_curve_equilbrium_from_high->setStyle(QwtPlotCurve::Lines);
+  m_curve_equilbrium_from_high->setPen(QColor(0,0,0));
 
   {
     //Put the dialog in the screen center
@@ -79,22 +65,6 @@ QtMutualismBreakdownerEquilibriumDialog::~QtMutualismBreakdownerEquilibriumDialo
   delete ui;
 }
 
-void QtMutualismBreakdownerEquilibriumDialog::FixZoom()
-{
-  ui->plot_equilibrium->setAxisScale(
-    QwtPlot::xBottom,0.0,
-    static_cast<double>(GetParameters().n_timesteps)
-  );
-
-  ui->plot_equilibrium->setAxisScale(
-    QwtPlot::yLeft,0.0,
-    std::max(
-      GetParameters().initial_seagrass_density,
-      GetParameters().seagrass_carrying_capacity
-    )
-  );
-  ui->plot_equilibrium->replot();
-}
 
 Parameters QtMutualismBreakdownerEquilibriumDialog::GetParameters() const noexcept
 {
@@ -154,25 +124,6 @@ double QtMutualismBreakdownerEquilibriumDialog::GetRandom() const noexcept
   return 0.0;
 }
 
-void QtMutualismBreakdownerEquilibriumDialog::Run()
-{
-  Simulation simulation(GetParameters());
-  simulation.Run();
-
-  const std::vector<double>& timeseries{simulation.GetTimeSeries()};
-  const std::vector<double>& seagrass_densities{simulation.GetSeagrassDensities()};
-
-  m_curve_equilbrium->setData(
-    new QwtPointArrayData(&timeseries[0],&seagrass_densities[0],seagrass_densities.size())
-  );
-  FixZoom();
-}
-
-void QtMutualismBreakdownerEquilibriumDialog::on_button_fix_zoom_clicked()
-{
-  FixZoom();
-}
-
 void QtMutualismBreakdownerEquilibriumDialog::on_button_set_random_values_clicked()
 {
   ui->box_desiccation_stress->setValue(GetRandom());
@@ -209,4 +160,44 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_load_clicked()
   Parameters parameters;
   f >> parameters;
   SetParameters(parameters);
+}
+
+void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
+{
+  Parameters parameters{GetParameters()};
+
+  std::vector<double> ds; //desiccation stresses
+  std::vector<double> ns_from_low; //seagrass equilibrium densities
+  std::vector<double> ns_from_high; //seagrass equilibrium densities
+
+  for (double d=0.0; d<=1.0; d+=0.01)
+  {
+    parameters.desiccation_stress = d;
+    //From low
+    {
+      parameters.initial_seagrass_density = 0.1; //Low
+      Simulation simulation(parameters);
+      simulation.Run();
+      const double n_end{simulation.GetSeagrassDensities().back()};
+      ds.push_back(d);
+      ns_from_low.push_back(n_end);
+    }
+    //From high
+    {
+      parameters.initial_seagrass_density = 1.0; //High
+      Simulation simulation(parameters);
+      simulation.Run();
+      const double n_end{simulation.GetSeagrassDensities().back()};
+      ds.push_back(d);
+      ns_from_high.push_back(n_end);
+    }
+  }
+
+  m_curve_equilbrium_from_low->setData(
+    new QwtPointArrayData(&ds[0],&ns_from_low[0],ns_from_low.size())
+  );
+  m_curve_equilbrium_from_high->setData(
+    new QwtPointArrayData(&ds[0],&ns_from_high[0],ns_from_high.size())
+  );
+  ui->plot_equilibrium->replot();
 }

@@ -21,22 +21,18 @@ public:
   void SetParameters(const Parameters& parameters) noexcept;
 
 private slots:
-  void Run();
-
-  void on_button_fix_zoom_clicked();
-
-  void on_button_set_random_values_clicked();
-
-  void on_button_save_clicked();
 
   void on_button_load_clicked();
+  void on_button_run_clicked();
+  void on_button_save_clicked();
+  void on_button_set_random_values_clicked();
 
 private:
   Ui::QtMutualismBreakdownerEquilibriumDialog *ui;
 
-  QwtPlotCurve * const m_curve_equilbrium;
+  QwtPlotCurve * const m_curve_equilbrium_from_low;
+  QwtPlotCurve * const m_curve_equilbrium_from_high;
 
-  void FixZoom();
   double GetRandom() const noexcept;
 
   #ifndef NDEBUG
