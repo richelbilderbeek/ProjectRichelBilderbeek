@@ -13,12 +13,6 @@ void LoripesConsumptionFunction::Test() noexcept
   }
   {
     const InvertedExponentialConsumption p;
-    assert(std::abs(p(    0.0)-0.0) < 0.0001);
-    assert(std::abs(p(    1.0)-0.0487706) < 0.0001);
-    assert(std::abs(p(   10.0)-0.393469) < 0.0001);
-    assert(std::abs(p(  100.0)-0.993262) < 0.0001);
-    assert(std::abs(p( 1000.0)-1.0) < 0.0001);
-    assert(std::abs(p(10000.0)-1.0) < 0.0001);
   }
 }
 

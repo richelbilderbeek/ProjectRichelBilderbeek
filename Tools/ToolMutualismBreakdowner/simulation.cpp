@@ -58,13 +58,8 @@ void Simulation::Run() noexcept
         - (P(n)*s*n)
         - (d*n)  //Desiccation stress
       };
+      assert(!std::isnan(delta_n));
       seagrass_density += (delta_n * delta_t);
-      if (seagrass_density < 0.0)
-      {
-        std::cerr << seagrass_density << std::endl;
-        std::cerr << m_parameters << std::endl;
-      }
-      assert(seagrass_density >= 0.0);
     }
     {
       const double delta_m{

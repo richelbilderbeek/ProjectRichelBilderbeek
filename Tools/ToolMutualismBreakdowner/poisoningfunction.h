@@ -1,6 +1,8 @@
 #ifndef POISONINGFUNCTION_H
 #define POISONINGFUNCTION_H
 
+#include <string>
+
 ///A strategy
 ///It returns the fraction of seagrass that will die per sulfide concentration
 ///The idea is that lone seagrass will die,
@@ -24,29 +26,11 @@ struct PoisoningFunction
   }
   virtual ~PoisoningFunction() {}
   ///The fraction that will survive
-  virtual double operator()(const double seagrass_density) const noexcept = 0;
+  virtual double operator()(const double seagrass_density) const = 0;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-};
-
-///All will survive
-struct NoPoisoning : public PoisoningFunction
-{
-  ~NoPoisoning() {}
-  ///All will survive
-  double operator()(const double /* seagrass_density */) const noexcept override
-    { return 0.0; }
-};
-
-///All will die
-struct LethalPoisoning : public PoisoningFunction
-{
-  ~LethalPoisoning() {}
-  ///All will die
-  double operator()(const double /* seagrass_density */) const noexcept override
-    { return 1.0; }
 };
 
 ///Suggested by Fivash & Martinez
@@ -58,7 +42,8 @@ struct InvertLogisticPoisoning : public PoisoningFunction
   )
     : m_r{r}, m_x0{x0} {}
   ~InvertLogisticPoisoning() {}
-  double operator()(const double seagrass_density) const noexcept override;
+  double operator()(const double seagrass_density) const override;
+  std::string ToStr() const noexcept;
   const double m_r;
   const double m_x0;
 };
