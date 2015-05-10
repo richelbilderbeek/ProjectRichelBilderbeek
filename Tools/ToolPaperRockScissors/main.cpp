@@ -1,10 +1,11 @@
 #include "qtwidget.h"
 #include <QApplication>
 #include <QDesktopWidget>
-
+#include "paper_rock_scissors.h"
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
+  TestPaperRockScissors();
   QtWidget w;
   {
     const QRect screen = QApplication::desktop()->screenGeometry();

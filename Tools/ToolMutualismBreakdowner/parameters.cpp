@@ -8,7 +8,7 @@
 
 Parameters::Parameters()
   :
-    delta_t{0.0},
+    delta_t{0.1},
     desiccation_stress{0.0},
     initial_organic_matter_density{0.0},
     initial_seagrass_density{0.0 * boost::units::si::species_per_square_meters},
@@ -16,13 +16,12 @@ Parameters::Parameters()
     loripes_consumption_function{new InvertedExponentialConsumption},
     organic_matter_to_sulfide_factor{0.0},
     organic_matter_to_sulfide_rate{0.0},
-    rng_seed{0},
     seagrass_carrying_capacity{0.0 * boost::units::si::species_per_square_meters},
     seagrass_growth_rate{0.0},
     seagrass_to_organic_matter_factor{0.0},
     sulfide_consumption_by_loripes_rate{0.0},
     sulfide_diffusion_rate{0.0},
-    n_timesteps{0}
+    n_timesteps{1}
 {
   #ifndef NDEBUG
   Test();
@@ -38,7 +37,6 @@ Parameters::Parameters(
   const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
   const double any_organic_matter_to_sulfide_factor,
   const double any_organic_matter_to_sulfide_rate,
-  const int any_rng_seed,
   const ribi::units::SpeciesDensity any_seagrass_carrying_capacity,
   const double any_seagrass_growth_rate,
   const double any_seagrass_to_organic_matter_factor,
@@ -54,7 +52,6 @@ Parameters::Parameters(
     loripes_consumption_function{any_loripes_consumption_function},
     organic_matter_to_sulfide_factor{any_organic_matter_to_sulfide_factor},
     organic_matter_to_sulfide_rate{any_organic_matter_to_sulfide_rate},
-    rng_seed{any_rng_seed},
     seagrass_carrying_capacity{any_seagrass_carrying_capacity},
     seagrass_growth_rate{any_seagrass_growth_rate},
     seagrass_to_organic_matter_factor{any_seagrass_to_organic_matter_factor},
@@ -88,7 +85,6 @@ Parameters Parameters::GetTest(const int /* i */)
     loripes_consumption_function,
     0.1, //const double any_organic_matter_to_sulfide_factor,
     0.1, //const double any_organic_matter_to_sulfide_rate,
-    0, //const int any_rng_seed,
     1.0 * species_per_square_meters, //any_seagrass_carrying_capacity,
     0.1, //const double any_seagrass_growth_rate,
     0.1, //any_seagrass_to_organic_matter_factor,
@@ -99,10 +95,22 @@ Parameters Parameters::GetTest(const int /* i */)
   return p;
 }
 
+void Parameters::SetDeltaT(const double any_delta_t)
+{
+  if (any_delta_t <= 0.0)
+  {
+    std::stringstream s;
+    s << "Parameters::SetDeltaT: "
+      << "any_delta_t cannot be less or equal to zero, "
+      << "obtained value " << any_delta_t;
+    throw std::logic_error(s.str());
+  }
+}
+
 std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
 {
   os
-    << parameter.delta_t << " "
+    << parameter.GetDeltaT() << " "
     << parameter.desiccation_stress << " "
     << parameter.initial_organic_matter_density << " "
     << parameter.initial_seagrass_density << " "
@@ -122,8 +130,12 @@ std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
 
 std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept
 {
+  {
+    double delta_t{0.0};
+    is >> delta_t;
+    parameter.SetDeltaT(delta_t);
+  }
   is
-    >> parameter.delta_t
     >> parameter.desiccation_stress
     >> parameter.initial_organic_matter_density
     >> parameter.initial_seagrass_density
@@ -144,7 +156,7 @@ std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept
 bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept
 {
   return
-       lhs.delta_t == rhs.delta_t
+       lhs.GetDeltaT() == rhs.GetDeltaT()
     && lhs.desiccation_stress == rhs.desiccation_stress
     && lhs.initial_organic_matter_density == rhs.initial_organic_matter_density
     && lhs.initial_seagrass_density == rhs.initial_seagrass_density

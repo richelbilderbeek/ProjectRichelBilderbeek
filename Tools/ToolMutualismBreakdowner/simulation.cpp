@@ -32,8 +32,8 @@ void Simulation::Run()
   const int n_timesteps{m_parameters.n_timesteps};
   assert(n_timesteps >= 0);
   const double t_end{static_cast<double>(n_timesteps)};
-  assert(t_end >= 0.0);
-  const double delta_t{m_parameters.delta_t};
+  assert(t_end > 0.0);
+  const double delta_t{m_parameters.GetDeltaT()};
   assert(delta_t > 0.0);
   const int sz{static_cast<int>(t_end / delta_t)};
   assert(sz > 0);
@@ -53,9 +53,12 @@ void Simulation::Run()
   const double l{1.0}; //loripes_density
   const double r{m_parameters.seagrass_growth_rate};
   const double z{m_parameters.seagrass_to_organic_matter_factor};
+  const auto L = m_parameters.loripes_consumption_function;
+
+  assert(L);
+  assert(L.get());
 
   const InvertLogisticPoisoning P;
-  const InvertedExponentialConsumption L;
 
   //Initialize sim
   auto seagrass_density = m_parameters.initial_seagrass_density;
@@ -106,7 +109,7 @@ void Simulation::Run()
       using std::exp;
       const double delta_s{
           (f*b*m)   //Conversion from organic matter
-        - (c*l*s*L.CalculateConsumptionRate(n)) //Consumption of sulfide by loripes
+        - (c*l*s*L->CalculateConsumptionRate(n)) //Consumption of sulfide by loripes
         - (g*s)     //Diffusion of sulfide into the environment
       };
       sulfide_concentration += (delta_s * delta_t);

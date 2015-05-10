@@ -36,6 +36,8 @@ QtWidget::~QtWidget()
 
 void QtWidget::OnTimer()
 {
+  using CellType = PaperRockScissors;
+
   m_simulation.Next();
 
   const int height{m_pixmap.height()};
@@ -46,7 +48,7 @@ void QtWidget::OnTimer()
   {
     for (int x=0; x!=width; ++x)
     {
-      const CellType celltype = grid[y][x];
+      const auto celltype = grid[y][x];
       auto color = qRgb(0,0,0);
       switch (celltype)
       {

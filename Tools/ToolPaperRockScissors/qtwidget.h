@@ -20,7 +20,10 @@ public:
   explicit QtWidget(
     const int width = 600,
     const int height = 400,
-    QWidget *parent = 0);
+    QWidget *parent = 0
+  );
+  QtWidget(const QtWidget&) = delete;
+  QtWidget& operator=(const QtWidget&) = delete;
   ~QtWidget();
 
 protected:

@@ -2,10 +2,11 @@
 #define SIMULATION_H
 
 #include <vector>
-#include "celltype.h"
+#include "paper_rock_scissors.h"
 
 struct Simulation
 {
+  using CellType = PaperRockScissors;
   Simulation(const int width, const int height);
 
   ///Y-X ordered grid

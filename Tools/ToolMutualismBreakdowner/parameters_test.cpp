@@ -37,7 +37,21 @@ void Parameters::Test() noexcept
     assert(p.loripes_consumption_function->CalculateConsumptionRate(
       p.initial_seagrass_density
     ) >= 0.0);
-
+  }
+  //Does loripes_consumption_function work after copying?
+  {
+    const Parameters p = Parameters::GetTest(0);
+    assert(p.loripes_consumption_function);
+    assert(p.loripes_consumption_function.get());
+    assert(p.loripes_consumption_function->CalculateConsumptionRate(
+      p.initial_seagrass_density
+    ) >= 0.0);
+    const Parameters q(p);
+    assert(q.loripes_consumption_function);
+    assert(q.loripes_consumption_function.get());
+    assert(q.loripes_consumption_function->CalculateConsumptionRate(
+      q.initial_seagrass_density
+    ) >= 0.0);
   }
   //Set same loripes_consumption_function
   {

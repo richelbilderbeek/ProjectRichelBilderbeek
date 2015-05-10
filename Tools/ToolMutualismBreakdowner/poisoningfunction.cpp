@@ -40,6 +40,15 @@ double InvertLogisticPoisoning::CalculateSurvivalFraction(const ribi::units::Spe
     ;
     throw std::logic_error(s.str());
   }
+  if (std::isnan(seagrass_density.value()))
+  {
+    std::stringstream s;
+    s << "InvertLogisticPoisoning::operator(): "
+      << "Seagrass density must be a number, "
+      << "value supplied was " << seagrass_density
+    ;
+    throw std::logic_error(s.str());
+  }
   assert(seagrass_density >= 0.0 * boost::units::si::species_per_square_meters);
   const double n{seagrass_density.value()};
   assert(n >= 0.0);

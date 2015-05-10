@@ -1,19 +1,11 @@
-QT       += core gui
+include(../../DesktopApplication.pri)
+include(../../Classes/CppPaperRockScissors/CppPaperRockScissors.pri)
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++1y
-
-SOURCES += main.cpp\
+SOURCES += main.cpp \
         qtwidget.cpp \
-    simulation.cpp \
-    celltypes.cpp \
-    celltype.cpp
+    simulation.cpp
 
 HEADERS  += qtwidget.h \
-    simulation.h \
-    celltypes.h \
-    celltype.h
+    simulation.h
 
 FORMS    += qtwidget.ui

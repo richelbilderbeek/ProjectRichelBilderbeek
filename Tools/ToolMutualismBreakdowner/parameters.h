@@ -18,7 +18,6 @@ struct Parameters
     const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
     const double any_organic_matter_to_sulfide_factor,
     const double any_organic_matter_to_sulfide_rate,
-    const int any_rng_seed,
     const ribi::units::SpeciesDensity any_seagrass_carrying_capacity,
     const double any_seagrass_growth_rate,
     const double any_seagrass_to_organic_matter_factor,
@@ -26,7 +25,13 @@ struct Parameters
     const double any_sulfide_diffusion_rate,
     const int any_n_timesteps
   );
+
+  double GetDeltaT() const noexcept { return delta_t; }
+  void SetDeltaT(const double any_delta_t);
+
+  private:
   double delta_t;
+  public:
   double desiccation_stress;
   double initial_organic_matter_density;
   ribi::units::SpeciesDensity initial_seagrass_density;
@@ -34,7 +39,6 @@ struct Parameters
   std::shared_ptr<LoripesConsumptionFunction> loripes_consumption_function;
   double organic_matter_to_sulfide_factor;
   double organic_matter_to_sulfide_rate;
-  int rng_seed;
   ribi::units::SpeciesDensity seagrass_carrying_capacity;
   double seagrass_growth_rate;
   double seagrass_to_organic_matter_factor;

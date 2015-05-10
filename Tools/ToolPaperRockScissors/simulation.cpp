@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <cstdlib>
 
-#include "celltypes.h"
 
 Simulation::Simulation(const int width, const int height)
   : m_grid{
@@ -41,18 +40,6 @@ Simulation::Simulation(const int width, const int height)
       }
     }
   }
-
-  assert(DoesBeat(CellType::paper,CellType::rock));
-  assert(DoesBeat(CellType::rock,CellType::scissors));
-  assert(DoesBeat(CellType::scissors,CellType::paper));
-
-  assert(!DoesBeat(CellType::rock,CellType::paper));
-  assert(!DoesBeat(CellType::scissors,CellType::rock));
-  assert(!DoesBeat(CellType::paper,CellType::scissors));
-
-  assert(!DoesBeat(CellType::rock,CellType::rock));
-  assert(!DoesBeat(CellType::scissors,CellType::scissors));
-  assert(!DoesBeat(CellType::paper,CellType::paper));
 }
 
 void Simulation::Next()

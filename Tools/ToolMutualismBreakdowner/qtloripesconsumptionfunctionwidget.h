@@ -19,6 +19,7 @@ public:
   explicit QtLoripesConsumptionFunctionWidget(QWidget *parent = 0);
   ~QtLoripesConsumptionFunctionWidget();
   std::shared_ptr<LoripesConsumptionFunction> GetFunction() const noexcept;
+  void SetFunction(const std::shared_ptr<LoripesConsumptionFunction>& f) noexcept;
 
 private:
   Ui::QtLoripesConsumptionFunctionWidget *ui;

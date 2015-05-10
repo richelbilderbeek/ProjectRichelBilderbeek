@@ -90,14 +90,17 @@ void QtMutualismBreakdownerTestConsumptionFunctionDialog::Run()
 {
   const auto f
     = m_parameters_widget->GetParameters().loripes_consumption_function;
-
+  assert(f);
+  assert(f.get());
   std::vector<double> seagrass_densities;
   std::vector<double> consumptions;
 
-  for (double seagrass_density = 0.0; seagrass_density != 100.0; seagrass_density += 1.0)
+  for (double n = 0.0; n != 100.0; n += 1.0)
   {
-    seagrass_densities.push_back(seagrass_density);
-    const double consumption{ (*f)(seagrass_density)};
+    seagrass_densities.push_back(n);
+    const auto seagrass_density
+      = n * boost::units::si::species_per_square_meter;
+    const double consumption{ f->CalculateConsumptionRate(seagrass_density)};
     consumptions.push_back(consumption);
   }
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>441</width>
-    <height>540</height>
+    <height>582</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="label_n_timesteps">
      <property name="text">
       <string>#timesteps</string>
      </property>
@@ -32,7 +32,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="label_delta_t">
      <property name="text">
       <string>Delta t</string>
      </property>
@@ -44,7 +44,7 @@
       <number>6</number>
      </property>
      <property name="minimum">
-      <double>0.000001000000000</double>
+      <double>0.000000000000000</double>
      </property>
      <property name="maximum">
       <double>1.000000000000000</double>
@@ -271,6 +271,20 @@
      </property>
     </widget>
    </item>
+   <item row="13" column="0" colspan="2">
+    <widget class="QGroupBox" name="box_consumption_by_loripes">
+     <property name="title">
+      <string>Sulfide consumption by Loripes</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout"/>
+    </widget>
+   </item>
    <item row="14" column="0" colspan="2">
     <widget class="QPushButton" name="button_set_random_values">
      <property name="text">
@@ -290,20 +304,6 @@
      <property name="text">
       <string>&amp;Save parameters</string>
      </property>
-    </widget>
-   </item>
-   <item row="13" column="0" colspan="2">
-    <widget class="QGroupBox" name="box_consumption_by_loripes">
-     <property name="title">
-      <string>Sulfide consumption by Loripes</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-     <layout class="QGridLayout" name="gridLayout"/>
     </widget>
    </item>
   </layout>

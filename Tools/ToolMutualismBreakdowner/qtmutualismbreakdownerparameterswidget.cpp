@@ -65,7 +65,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
 
 void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters) noexcept
 {
-  ui->box_delta_t->setValue(parameters.delta_t);
+  ui->box_delta_t->setValue(parameters.GetDeltaT());
   ui->box_desiccation_stress->setValue(parameters.desiccation_stress);
   ui->box_initial_organic_matter_density->setValue(parameters.initial_organic_matter_density);
   ui->box_initial_seagrass_density->setValue(parameters.initial_seagrass_density.value());
@@ -78,6 +78,7 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   ui->box_sulfide_consumption_by_loripes->setValue(parameters.sulfide_consumption_by_loripes_rate);
   ui->box_sulfide_diffusion_rate->setValue(parameters.sulfide_diffusion_rate);
   ui->box_n_timesteps->setValue(parameters.n_timesteps);
+  this->m_qtconsumptionwidget->SetFunction(parameters.loripes_consumption_function);
 }
 
 void QtMutualismBreakdownerParametersWidget::OnAnyChange()
@@ -87,8 +88,7 @@ void QtMutualismBreakdownerParametersWidget::OnAnyChange()
 
 void QtMutualismBreakdownerParametersWidget::on_button_set_random_values_clicked()
 {
-  auto p = GetParameters();
-  p.SetRandom();
+  auto p = Parameters::GetTest(0);
   this->SetParameters(p);
 }
 
