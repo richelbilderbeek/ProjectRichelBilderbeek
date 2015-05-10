@@ -4,6 +4,8 @@
 #include <boost/units/io.hpp>
 #include <sstream>
 
+#include "testtimer.h"
+
 void ribi::units::TestSulfideMoleculeAmount() noexcept
 {
   {
@@ -11,6 +13,10 @@ void ribi::units::TestSulfideMoleculeAmount() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    //ribi::fileio::FileIo();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   using SulfideMoleculeAmount = boost::units::quantity<boost::units::si::sulfide_molecule_amount>;
   //Sulfide molecule amounts can be displayed
   {

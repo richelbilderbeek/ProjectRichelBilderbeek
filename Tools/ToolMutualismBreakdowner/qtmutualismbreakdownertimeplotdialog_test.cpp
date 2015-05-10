@@ -3,6 +3,8 @@
 
 #include <cassert>
 #include <fstream>
+#include <iostream>
+
 #include "fileio.h"
 
 void QtMutualismBreakdownerTimePlotDialog::Test() noexcept
@@ -13,10 +15,16 @@ void QtMutualismBreakdownerTimePlotDialog::Test() noexcept
     is_tested = true;
   }
   using ribi::fileio::FileIo;
-  Parameters parameters; parameters.SetRandom();
   {
     QtMutualismBreakdownerTimePlotDialog d;
+    Parameters parameters;
     d.SetParameters(parameters);
+    if (d.GetParameters() != parameters)
+    {
+      std::cerr << d.GetParameters() << '\n'
+        << parameters << '\n'
+      ;
+    }
     assert(d.GetParameters() == parameters);
   }
 }

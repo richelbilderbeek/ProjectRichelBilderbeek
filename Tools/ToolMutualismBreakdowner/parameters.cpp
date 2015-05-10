@@ -153,6 +153,7 @@ bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept
     && lhs.initial_organic_matter_density == rhs.initial_organic_matter_density
     && lhs.initial_seagrass_density == rhs.initial_seagrass_density
     && lhs.initial_sulfide_concentration == rhs.initial_sulfide_concentration
+    && lhs.loripes_consumption_function->ToStr() == rhs.loripes_consumption_function->ToStr()
     && lhs.organic_matter_to_sulfide_factor == rhs.organic_matter_to_sulfide_factor
     && lhs.organic_matter_to_sulfide_rate == rhs.organic_matter_to_sulfide_rate
     && lhs.seagrass_carrying_capacity == rhs.seagrass_carrying_capacity

@@ -5,6 +5,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "testtimer.h"
+
 void PoisoningFunction::Test() noexcept
 {
   {
@@ -12,6 +14,7 @@ void PoisoningFunction::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const InvertLogisticPoisoning p;
     assert(std::abs(p(    0.0)-1.0) < 0.1);

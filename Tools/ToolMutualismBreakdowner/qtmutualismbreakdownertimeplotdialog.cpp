@@ -117,11 +117,13 @@ void QtMutualismBreakdownerTimePlotDialog::FixZoom()
 
 Parameters QtMutualismBreakdownerTimePlotDialog::GetParameters() const noexcept
 {
+  assert(m_parameters_widget);
   return m_parameters_widget->GetParameters();
 }
 
 void QtMutualismBreakdownerTimePlotDialog::SetParameters(const Parameters& parameters) noexcept
 {
+  assert(m_parameters_widget);
   m_parameters_widget->SetParameters(parameters);
 }
 

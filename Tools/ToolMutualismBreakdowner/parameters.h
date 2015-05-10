@@ -29,7 +29,6 @@ struct Parameters
   double desiccation_stress;
   double initial_organic_matter_density;
   ribi::units::SpeciesDensity initial_seagrass_density;
-  //double initial_seagrass_density;
   double initial_sulfide_concentration;
   std::shared_ptr<LoripesConsumptionFunction> loripes_consumption_function;
   double organic_matter_to_sulfide_factor;

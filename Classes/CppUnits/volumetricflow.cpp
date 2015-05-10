@@ -4,6 +4,7 @@
 #include <boost/units/io.hpp>
 #include <sstream>
 #include "massflow.h"
+#include "testtimer.h"
 
 void ribi::units::TestVolumetricFlow() noexcept
 {
@@ -12,6 +13,11 @@ void ribi::units::TestVolumetricFlow() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+
+  //Allow one extra TestTimer, to test MassFlow <-> VolumetricFlow
+  test_timer.SetMaxCnt(2);
+
   using VolumetricFlow = boost::units::quantity<boost::units::si::volumetric_flow>;
   using Volume = boost::units::quantity<boost::units::si::volume>;
   using Time = boost::units::quantity<boost::units::si::time>;
@@ -48,7 +54,7 @@ void ribi::units::TestVolumetricFlow() noexcept
     };
     const MassFlow phi_m{phi_v * d};
   }
-
+  test_timer.SetMaxCnt(1);
 }
 #endif
 

@@ -10,6 +10,7 @@
 #include "sulfidemoleculeamount.h"
 #include "massflow.h"
 #include "volumetricflow.h"
+#include "testtimer.h"
 
 void ribi::units::Test() noexcept
 {
@@ -18,12 +19,15 @@ void ribi::units::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TestHydrogenMoleculeAmount();
-  TestMassFlow();
-  TestMoleculeAmount();
-  TestSpeciesDensity();
-  TestSulfideMoleculeAmount();
-  TestVolumetricFlow();
+  {
+    TestHydrogenMoleculeAmount();
+    TestMassFlow();
+    TestMoleculeAmount();
+    TestSpeciesDensity();
+    TestSulfideMoleculeAmount();
+    TestVolumetricFlow();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 
   #ifdef MUST_NOT_COMPILE_CREATE_HYDROGEN_FROM_SULFIDE
   //Cannot create hydrogen from sulfide

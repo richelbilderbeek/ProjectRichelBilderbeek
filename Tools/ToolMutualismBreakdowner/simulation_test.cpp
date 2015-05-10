@@ -2,6 +2,7 @@
 #include "simulation.h"
 
 #include <cassert>
+#include "testtimer.h"
 
 void Simulation::Test() noexcept
 {
@@ -10,6 +11,7 @@ void Simulation::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
 }
 
 #endif
