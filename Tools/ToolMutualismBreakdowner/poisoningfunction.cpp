@@ -1,13 +1,16 @@
+
 #include "poisoningfunction.h"
 
 #include <cassert>
 #include <cmath>
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 
 #include <boost/units/io.hpp>
 
+#include "fileio.h"
 #include "testtimer.h"
 
 void PoisoningFunction::Test() noexcept
@@ -18,7 +21,7 @@ void PoisoningFunction::Test() noexcept
     is_tested = true;
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
-
+  using ribi::fileio::FileIo;
   {
     const InvertedExponentialPoisoning f;
   }
@@ -32,6 +35,29 @@ void PoisoningFunction::Test() noexcept
     assert(std::abs(f.CalculateSurvivalFraction(50.0)-0.0) < 0.1);
   }
   */
+  //File I/O
+  {
+    const double r{12.34};
+    InvertedExponentialPoisoning c(r);
+    const std::string filename{FileIo().GetTempFileName(".txt")};
+    {
+      std::ofstream f(filename);
+      f << c;
+    }
+    std::ifstream f(filename);
+    std::shared_ptr<PoisoningFunction> d;
+    f >> d;
+    assert(d);
+    if (c.ToStr() != d->ToStr())
+    {
+      std::cerr
+        << c.ToStr() << '\n'
+        << d->ToStr() << '\n'
+      ;
+    }
+    assert(c.ToStr() == d->ToStr());
+    FileIo().DeleteFile(filename);
+  }
 }
 
 double InvertedExponentialPoisoning::CalculateSurvivalFraction(
@@ -68,6 +94,29 @@ double InvertedExponentialPoisoning::CalculateSurvivalFraction(
 std::string InvertedExponentialPoisoning::ToStr() const noexcept
 {
   std::stringstream s;
-  s << "max: " << m_max << ", r:" << m_r;
+  s
+    << "InvertedExponentialPoisoning" << " "
+    << m_r << " "
+    << m_max
+  ;
   return s.str();
+}
+
+std::ostream& operator<<(std::ostream& os, const PoisoningFunction& f) noexcept
+{
+  os << f.ToStr();
+  return os;
+}
+
+std::istream& operator>>(std::istream& is, std::shared_ptr<PoisoningFunction>& f) noexcept
+{
+  std::string type_str;
+  is >> type_str;
+  assert(type_str == "InvertedExponentialPoisoning");
+  double r{0.0};
+  is >> r;
+  double max{0.0};
+  is >> max;
+  f = std::make_shared<InvertedExponentialPoisoning>(r,max);
+  return is;
 }

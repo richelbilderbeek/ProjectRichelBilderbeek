@@ -5,6 +5,7 @@
 #include <memory>
 #include "speciesdensity.h"
 struct LoripesConsumptionFunction;
+struct PoisoningFunction;
 
 struct Parameters
 {
@@ -19,6 +20,7 @@ struct Parameters
     const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
     const double any_organic_matter_to_sulfide_factor,
     const double any_organic_matter_to_sulfide_rate,
+    const std::shared_ptr<PoisoningFunction>& any_poisoning_function,
     const ribi::units::SpeciesDensity any_seagrass_carrying_capacity,
     const double any_seagrass_growth_rate,
     const double any_seagrass_to_organic_matter_factor,
@@ -41,6 +43,7 @@ struct Parameters
   std::shared_ptr<LoripesConsumptionFunction> loripes_consumption_function;
   double organic_matter_to_sulfide_factor;
   double organic_matter_to_sulfide_rate;
+  std::shared_ptr<PoisoningFunction> poisoning_function;
   ribi::units::SpeciesDensity seagrass_carrying_capacity;
   double seagrass_growth_rate;
   double seagrass_to_organic_matter_factor;

@@ -5,7 +5,7 @@
 #include <boost/units/io.hpp>
 
 #include "loripesconsumptionfunction.h"
-
+#include "poisoningfunction.h"
 Parameters::Parameters()
   :
     delta_t{0.1},
@@ -17,6 +17,7 @@ Parameters::Parameters()
     loripes_consumption_function{new InvertedExponentialConsumption},
     organic_matter_to_sulfide_factor{0.0},
     organic_matter_to_sulfide_rate{0.0},
+    poisoning_function{new InvertedExponentialPoisoning},
     seagrass_carrying_capacity{0.0 * boost::units::si::species_per_square_meters},
     seagrass_growth_rate{0.0},
     seagrass_to_organic_matter_factor{0.0},
@@ -39,6 +40,7 @@ Parameters::Parameters(
   const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
   const double any_organic_matter_to_sulfide_factor,
   const double any_organic_matter_to_sulfide_rate,
+  const std::shared_ptr<PoisoningFunction>& any_poisoning_function,
   const ribi::units::SpeciesDensity any_seagrass_carrying_capacity,
   const double any_seagrass_growth_rate,
   const double any_seagrass_to_organic_matter_factor,
@@ -55,6 +57,7 @@ Parameters::Parameters(
     loripes_consumption_function{any_loripes_consumption_function},
     organic_matter_to_sulfide_factor{any_organic_matter_to_sulfide_factor},
     organic_matter_to_sulfide_rate{any_organic_matter_to_sulfide_rate},
+    poisoning_function{any_poisoning_function},
     seagrass_carrying_capacity{any_seagrass_carrying_capacity},
     seagrass_growth_rate{any_seagrass_growth_rate},
     seagrass_to_organic_matter_factor{any_seagrass_to_organic_matter_factor},
@@ -71,6 +74,8 @@ Parameters::Parameters(
   assert(initial_sulfide_concentration >= 0.0);
   assert(seagrass_carrying_capacity >= 0.0 * boost::units::si::species_per_square_meter);
   assert(seagrass_growth_rate >= 0.0);
+  assert(loripes_consumption_function);
+  assert(poisoning_function);
 }
 
 Parameters Parameters::GetTest(const int /* i */)
@@ -79,6 +84,10 @@ Parameters Parameters::GetTest(const int /* i */)
     = std::make_shared<InvertedExponentialConsumption>(0.05);
   assert(loripes_consumption_function);
   assert(loripes_consumption_function.get());
+  const auto poisoning_function
+    = std::make_shared<InvertedExponentialPoisoning>(0.05,1.0);
+  assert(poisoning_function);
+  assert(poisoning_function.get());
   using boost::units::si::species_per_square_meters;
   const Parameters p(
     0.1, //any_delta_t,
@@ -90,6 +99,7 @@ Parameters Parameters::GetTest(const int /* i */)
     loripes_consumption_function,
     0.1, //const double any_organic_matter_to_sulfide_factor,
     0.1, //const double any_organic_matter_to_sulfide_rate,
+    poisoning_function,
     1.0 * species_per_square_meters, //any_seagrass_carrying_capacity,
     0.1, //const double any_seagrass_growth_rate,
     0.1, //any_seagrass_to_organic_matter_factor,
@@ -124,6 +134,7 @@ std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
     << *parameter.loripes_consumption_function << " "
     << parameter.organic_matter_to_sulfide_factor << " "
     << parameter.organic_matter_to_sulfide_rate << " "
+    << *parameter.poisoning_function << " "
     << parameter.seagrass_carrying_capacity << " "
     << parameter.seagrass_growth_rate << " "
     << parameter.seagrass_to_organic_matter_factor << " "
@@ -150,6 +161,7 @@ std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept
     >> parameter.loripes_consumption_function
     >> parameter.organic_matter_to_sulfide_factor
     >> parameter.organic_matter_to_sulfide_rate
+    >> parameter.poisoning_function
     >> parameter.seagrass_carrying_capacity
     >> parameter.seagrass_growth_rate
     >> parameter.seagrass_to_organic_matter_factor
@@ -172,6 +184,7 @@ bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept
     && lhs.loripes_consumption_function->ToStr() == rhs.loripes_consumption_function->ToStr()
     && lhs.organic_matter_to_sulfide_factor == rhs.organic_matter_to_sulfide_factor
     && lhs.organic_matter_to_sulfide_rate == rhs.organic_matter_to_sulfide_rate
+    && lhs.poisoning_function->ToStr() == rhs.poisoning_function->ToStr()
     && lhs.seagrass_carrying_capacity == rhs.seagrass_carrying_capacity
     && lhs.seagrass_growth_rate == rhs.seagrass_growth_rate
     && lhs.seagrass_to_organic_matter_factor == rhs.seagrass_to_organic_matter_factor

@@ -2,22 +2,11 @@
 #define POISONINGFUNCTION_H
 
 #include <string>
+#include <memory>
 
 #include "speciesdensity.h"
 
 ///A strategy
-///It returns the fraction of seagrass that will die per sulfide concentration
-///The idea is that lone seagrass will die,
-///where higher abundances will have a better survival
-/*
-
-   |
- 1 +---+        <- all will die
-   |    \
-   |     \
- 0 +------+---  <- all will survive
-
-*/
 struct PoisoningFunction
 {
   PoisoningFunction()
@@ -31,12 +20,13 @@ struct PoisoningFunction
   ///Will throw if seagrass_density is less than zero
   virtual double CalculateSurvivalFraction(const double sulfide_concentration) const = 0;
 
+  virtual std::string ToStr() const noexcept = 0;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 };
 
-///Suggested by Fivash & Martinez
 /*
 
  Survival
@@ -60,11 +50,13 @@ struct InvertedExponentialPoisoning : public PoisoningFunction
   ///The fraction that will survive
   ///Will throw if seagrass_density is less than zero
   double CalculateSurvivalFraction(const double sulfide_concentration) const override;
-  std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept override;
   const double m_r;
   const double m_max;
 };
 
+std::ostream& operator<<(std::ostream& os, const PoisoningFunction& f) noexcept;
+std::istream& operator>>(std::istream& is, std::shared_ptr<PoisoningFunction>& f) noexcept;
 
 
 #endif // POISONINGFUNCTION_H
