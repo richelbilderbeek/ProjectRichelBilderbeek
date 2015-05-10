@@ -50,11 +50,11 @@ QtMutualismBreakdownerTestPoisoningFunctionDialog::QtMutualismBreakdownerTestPoi
     new QwtPlotZoomer(plot->canvas());
   }
 
-  ui->plot->setCanvasBackground(QColor(226,255,226));
+  ui->plot->setCanvasBackground(QColor(255,255,255));
 
   m_curve->attach(ui->plot);
   m_curve->setStyle(QwtPlotCurve::Lines);
-  m_curve->setPen(QPen(QColor(0,255,0)));
+  m_curve->setPen(QPen(QColor(0,0,0)));
 
 
  Run();
@@ -90,26 +90,25 @@ void QtMutualismBreakdownerTestPoisoningFunctionDialog::SetParameters(const Para
 
 void QtMutualismBreakdownerTestPoisoningFunctionDialog::Run()
 {
-  /*
   const auto f
     = m_parameters_widget->GetParameters().poisoning_function
+  ;
   assert(f);
   assert(f.get());
-  std::vector<double> seagrass_densities;
-  std::vector<double> poisonings;
+  std::vector<double> sulfide_concentrations;
+  std::vector<double> survivals;
 
-  for (double n = 0.0; n != 100.0; n += 1.0)
+  for (double s = 0.0; s != 100.0; s += 1.0)
   {
-    seagrass_densities.push_back(n);
-    const auto seagrass_density
-      = n * boost::units::si::species_per_square_meter;
-    const double poisoning{ f->CalculatePoisoningRate(seagrass_density)};
-    poisonings.push_back(poisoning);
+    sulfide_concentrations.push_back(s);
+    const auto sulfilde_concentration
+      = s * boost::units::si::mole / boost::units::si::cubic_meter;
+    const double poisoning{ f->CalculateSurvivalFraction(sulfilde_concentration)};
+    survivals.push_back(poisoning);
   }
 
   m_curve->setData(
-    new QwtPointArrayData(&seagrass_densities[0],&poisonings[0],poisonings.size())
+    new QwtPointArrayData(&sulfide_concentrations[0],&survivals[0],survivals.size())
   );
   ui->plot->replot();
-  */
 }

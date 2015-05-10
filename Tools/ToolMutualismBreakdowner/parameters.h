@@ -4,6 +4,8 @@
 #include <iosfwd>
 #include <memory>
 #include "speciesdensity.h"
+#include "concentration.h"
+
 struct LoripesConsumptionFunction;
 struct PoisoningFunction;
 
@@ -16,7 +18,7 @@ struct Parameters
     const ribi::units::SpeciesDensity initial_loripes_density,
     const double any_initial_organic_matter_density,
     const ribi::units::SpeciesDensity initial_seagrass_density,
-    const double any_initial_sulfide_density,
+    const ribi::units::Concentration any_initial_sulfide_density,
     const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
     const double any_organic_matter_to_sulfide_factor,
     const double any_organic_matter_to_sulfide_rate,
@@ -39,7 +41,7 @@ struct Parameters
   ribi::units::SpeciesDensity initial_loripes_density;
   double initial_organic_matter_density;
   ribi::units::SpeciesDensity initial_seagrass_density;
-  double initial_sulfide_concentration;
+  ribi::units::Concentration initial_sulfide_concentration;
   std::shared_ptr<LoripesConsumptionFunction> loripes_consumption_function;
   double organic_matter_to_sulfide_factor;
   double organic_matter_to_sulfide_rate;

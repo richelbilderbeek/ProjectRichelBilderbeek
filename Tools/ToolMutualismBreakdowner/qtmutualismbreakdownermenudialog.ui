@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>769</width>
-    <height>631</height>
+    <width>709</width>
+    <height>730</height>
    </rect>
   </property>
   <property name="font">
@@ -31,28 +31,28 @@ QSpinBox,QDoubleSpinBox,QComboBox {
 
 QPushButton
 {
-  font: 32px bold &quot;Courier&quot; courier monospace;
+  font: 24px bold &quot;Courier&quot; courier monospace;
   color: #000;
   background-color: qradialgradient(cx: 0.5, cy: 0.5,fx: 0.5, fy: 0.5,radius: 0.5, stop: 0 #fff, stop: 1 #aaa);
   border: 1px solid black
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+   <item row="0" column="0" colspan="2">
     <widget class="QPushButton" name="button_consumption">
      <property name="text">
       <string>&amp;Consumption</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
+   <item row="0" column="2">
     <widget class="QPushButton" name="button_poisoning">
      <property name="text">
       <string>&amp;Poisoning</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="1" column="0" colspan="2">
     <widget class="QLabel" name="image_consumption">
      <property name="text">
       <string/>
@@ -65,7 +65,7 @@ QPushButton
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="1" column="2">
     <widget class="QLabel" name="image_poisoning">
      <property name="text">
       <string>[POISONING PICTURE]</string>
@@ -75,24 +75,7 @@ QPushButton
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="button_start_time_plot">
-     <property name="text">
-      <string>&amp;Time plot</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="button_start_equilibrium_plot">
-     <property name="text">
-      <string>&amp;Equilibrium plot</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
+   <item row="3" column="0" rowspan="2" colspan="2">
     <widget class="QLabel" name="image_timeplot">
      <property name="text">
       <string/>
@@ -105,7 +88,34 @@ QPushButton
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
+   <item row="5" column="0" colspan="2">
+    <widget class="QPushButton" name="button_system">
+     <property name="text">
+      <string>&amp;System</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QPushButton" name="button_start_time_plot">
+     <property name="text">
+      <string>&amp;Time plot</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="button_start_equilibrium_plot">
+     <property name="text">
+      <string>&amp;Equilibrium plot</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2" rowspan="2">
     <widget class="QLabel" name="image_equilibrium">
      <property name="text">
       <string/>
@@ -118,7 +128,20 @@ QPushButton
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="6" column="0" colspan="2">
+    <widget class="QLabel" name="image_system">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolMutualismBreakdowner.qrc">:/images/SystemSmallest.jpg</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
     <widget class="QPushButton" name="button_about">
      <property name="text">
       <string>About</string>
@@ -128,7 +151,7 @@ QPushButton
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
+   <item row="8" column="0" colspan="3">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>

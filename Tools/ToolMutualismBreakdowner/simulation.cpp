@@ -59,7 +59,7 @@ void Simulation::Run()
 
   //Initialize sim
   auto seagrass_density = m_parameters.initial_seagrass_density;
-  double sulfide_concentration{m_parameters.initial_sulfide_concentration};
+  auto sulfide_concentration = m_parameters.initial_sulfide_concentration;
   double organic_matter_density{m_parameters.initial_organic_matter_density};
   auto loripes_density = m_parameters.initial_loripes_density;
   {
@@ -74,47 +74,76 @@ void Simulation::Run()
     //std::cerr << i << std::endl;
     const auto n = seagrass_density;
     const auto l = loripes_density;
-    const double s{sulfide_concentration};
+    const auto s = sulfide_concentration;
     const double m{organic_matter_density};
+    //Seagrass
+    try
     {
-      try
-      {
-        const auto delta_n
-          = (r*n.value()*(1.0-(n/k))) //Growth
-          - (poisoning_function->CalculateSurvivalFraction(n.value() /* STILL INCORRECT */)*n.value())
-        ;
-        seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
-      }
-      catch (std::logic_error& e)
-      {
-        std::stringstream s;
-        s << "Simulation::Run(), calculating seagrass density: " << e.what();
-        std::clog << s.str() << std::endl;
-        return;
-      }
+      const auto delta_n
+        = (r*n.value()*(1.0-(n/k))) //Growth
+        - (poisoning_function->CalculateSurvivalFraction(s)*n.value())
+      ;
+      seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
     }
+    catch (std::logic_error& e)
+    {
+      std::stringstream s;
+      s << "Simulation::Run(), calculating seagrass density: " << e.what();
+      std::clog << s.str() << std::endl;
+      return;
+    }
+    //Organic matter
+    try
     {
       const double delta_m{
-          (((poisoning_function->CalculateSurvivalFraction(n.value() /* STILL INCORRECT */ )*s*n.value()) + (d*n.value())) * z)
+          (((poisoning_function->CalculateSurvivalFraction(s)* s.value() * n.value()) + (d*n.value())) * z)
         - b * m
       };
       organic_matter_density += (delta_m * delta_t);
     }
+    catch (std::logic_error& e)
+    {
+      std::stringstream s;
+      s << "Simulation::Run(), calculating organic matter density: " << e.what();
+      std::clog << s.str() << std::endl;
+      return;
+    }
+    //Sulfide
+    try
     {
       using std::exp;
       const double delta_s{
           (f*b*m)   //Conversion from organic matter
-        - (c*s*loripes_consumption_function->CalculateConsumptionRate(n)) //Consumption of sulfide by loripes
-        - (g*s)     //Diffusion of sulfide into the environment
+        - (c*s.value()*loripes_consumption_function->CalculateConsumptionRate(n)) //Consumption of sulfide by loripes
+        - (g*s.value())     //Diffusion of sulfide into the environment
       };
-      sulfide_concentration += (delta_s * delta_t);
+      sulfide_concentration += (
+          delta_s * (boost::units::si::mole / boost::units::si::cubic_meter)
+        * delta_t
+      );
 
     }
+    catch (std::logic_error& e)
+    {
+      std::stringstream s;
+      s << "Simulation::Run(), calculating sulfide concentration: " << e.what();
+      std::clog << s.str() << std::endl;
+      return;
+    }
+    //Loripes density
+    try
     {
       const auto delta_l
         = l
       ;
       loripes_density += (delta_l * delta_t);
+    }
+    catch (std::logic_error& e)
+    {
+      std::stringstream s;
+      s << "Simulation::Run(), calculating loripes density: " << e.what();
+      std::clog << s.str() << std::endl;
+      return;
     }
     if (i % track_after == 0)
     {
@@ -134,7 +163,7 @@ std::ostream& operator<<(std::ostream& os, const Simulation& simulation) noexcep
   const std::vector<double>& t{simulation.GetTimeSeries()};
   const auto& n = simulation.GetSeagrassDensities();
   const auto& l = simulation.GetLoripesDensities();
-  const std::vector<double>& s{simulation.GetSulfideConcentrations()};
+  const auto& s = simulation.GetSulfideConcentrations();
   const std::vector<double>& m{simulation.GetOrganicMatterDensities()};
   std::stringstream stream;
   assert(t.size() == n.size());

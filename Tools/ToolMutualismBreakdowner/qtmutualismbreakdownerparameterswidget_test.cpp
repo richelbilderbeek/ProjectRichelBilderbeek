@@ -23,6 +23,7 @@ void QtMutualismBreakdownerParametersWidget::Test() noexcept
     const auto q = d.GetParameters();
     assert(p == q);
   }
+  //Initial Loripes density
   {
     QtMutualismBreakdownerParametersWidget d;
     const auto p = d.GetParameters();

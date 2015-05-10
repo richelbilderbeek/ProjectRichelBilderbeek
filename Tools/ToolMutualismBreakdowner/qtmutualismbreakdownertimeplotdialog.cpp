@@ -120,7 +120,7 @@ void QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
   const std::vector<double>& timeseries{simulation.GetTimeSeries()};
   const auto& loripes_densities_with_unit = simulation.GetLoripesDensities();
   const auto& seagrass_densities_with_unit = simulation.GetSeagrassDensities();
-  const std::vector<double>& sulfide_concentrations{simulation.GetSulfideConcentrations()};
+  const auto& sulfide_concentrations_with_unit = simulation.GetSulfideConcentrations();
   const std::vector<double>& organic_matter_densities{simulation.GetOrganicMatterDensities()};
 
   std::vector<double> loripes_densities;
@@ -135,6 +135,14 @@ void QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
     std::begin(seagrass_densities_with_unit),
     std::end(seagrass_densities_with_unit),
     std::back_inserter(seagrass_densities),
+    [](const auto& d){ return d.value(); }
+  );
+
+  std::vector<double> sulfide_concentrations;
+  std::transform(
+    std::begin(sulfide_concentrations_with_unit),
+    std::end(sulfide_concentrations_with_unit),
+    std::back_inserter(sulfide_concentrations),
     [](const auto& d){ return d.value(); }
   );
 

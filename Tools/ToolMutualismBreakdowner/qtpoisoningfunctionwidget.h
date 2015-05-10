@@ -27,6 +27,10 @@ signals:
 private:
   Ui::QtPoisoningFunctionWidget *ui;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void OnAnyChange();
 };

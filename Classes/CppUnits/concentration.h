@@ -33,6 +33,9 @@ namespace boost {
 #ifndef NDEBUG
 namespace ribi {
   namespace units {
+
+    using Concentration = boost::units::si::Concentration;
+
     ///All I can do on them, is test them
     void TestConcentration() noexcept;
   } //~namespace units

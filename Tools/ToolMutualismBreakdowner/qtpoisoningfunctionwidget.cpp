@@ -9,9 +9,13 @@ QtPoisoningFunctionWidget::QtPoisoningFunctionWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtPoisoningFunctionWidget)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   QObject::connect(ui->box_ie_r,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_ie_max,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 }
 
 QtPoisoningFunctionWidget::~QtPoisoningFunctionWidget()
@@ -22,7 +26,8 @@ QtPoisoningFunctionWidget::~QtPoisoningFunctionWidget()
 std::shared_ptr<PoisoningFunction> QtPoisoningFunctionWidget::GetFunction() const noexcept
 {
   return std::make_shared<InvertedExponentialPoisoning>(
-    ui->box_ie_r->value()
+    ui->box_ie_r->value(),
+    ui->box_ie_max->value()
   );
 }
 

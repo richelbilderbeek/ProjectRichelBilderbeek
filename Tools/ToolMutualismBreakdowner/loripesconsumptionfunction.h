@@ -31,7 +31,7 @@ struct LoripesConsumptionFunction
   }
   virtual ~LoripesConsumptionFunction() {}
   ///The rate at which Loripes consumes sulfide
-  virtual double CalculateConsumptionRate(const ribi::units::SpeciesDensity seagrass_density) const noexcept = 0;
+  virtual double CalculateConsumptionRate(const ribi::units::SpeciesDensity seagrass_density) const = 0;
   virtual std::string ToStr() const noexcept = 0;
 
   #ifndef NDEBUG
@@ -44,7 +44,7 @@ struct InvertedExponentialConsumption : LoripesConsumptionFunction
   InvertedExponentialConsumption(const double r = 0.05);
   ~InvertedExponentialConsumption() {}
   ///The rate at which Loripes consumes sulfide
-  double CalculateConsumptionRate(const ribi::units::SpeciesDensity seagrass_density) const noexcept override;
+  double CalculateConsumptionRate(const ribi::units::SpeciesDensity seagrass_density) const override;
   std::string ToStr() const noexcept override;
   const double m_r;
 };

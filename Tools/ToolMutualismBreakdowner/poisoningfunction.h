@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 
-#include "speciesdensity.h"
+#include "concentration.h"
 
 ///A strategy
 struct PoisoningFunction
@@ -18,7 +18,7 @@ struct PoisoningFunction
   virtual ~PoisoningFunction() {}
   ///The fraction that will survive
   ///Will throw if seagrass_density is less than zero
-  virtual double CalculateSurvivalFraction(const double sulfide_concentration) const = 0;
+  virtual double CalculateSurvivalFraction(const ribi::units::Concentration sulfide_concentration) const = 0;
 
   virtual std::string ToStr() const noexcept = 0;
 
@@ -49,7 +49,7 @@ struct InvertedExponentialPoisoning : public PoisoningFunction
   ~InvertedExponentialPoisoning() {}
   ///The fraction that will survive
   ///Will throw if seagrass_density is less than zero
-  double CalculateSurvivalFraction(const double sulfide_concentration) const override;
+  double CalculateSurvivalFraction(const ribi::units::Concentration sulfide_concentration) const override;
   std::string ToStr() const noexcept override;
   const double m_r;
   const double m_max;

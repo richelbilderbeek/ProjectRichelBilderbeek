@@ -59,13 +59,16 @@ QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget(
 
 Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcept
 {
+  using boost::units::si::species_per_square_meter;
+  using boost::units::si::mole;
+  using boost::units::si::cubic_meter;
   Parameters p(
     ui->box_delta_t->value(),
     ui->box_desiccation_stress->value(),
     ui->box_initial_loripes_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_organic_matter_density->value(),
     ui->box_initial_seagrass_density->value() * boost::units::si::species_per_square_meter,
-    ui->box_initial_sulfide_concentration->value(),
+    ui->box_initial_sulfide_concentration->value() * mole / cubic_meter,
     m_qtconsumptionwidget->GetFunction(),
     ui->box_organic_matter_to_sulfide_factor->value(),
     ui->box_organic_matter_to_sulfide_rate->value(),
@@ -88,7 +91,7 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   ui->box_initial_loripes_density->setValue(parameters.initial_loripes_density.value());
   ui->box_initial_organic_matter_density->setValue(parameters.initial_organic_matter_density);
   ui->box_initial_seagrass_density->setValue(parameters.initial_seagrass_density.value());
-  ui->box_initial_sulfide_concentration->setValue(parameters.initial_sulfide_concentration);
+  ui->box_initial_sulfide_concentration->setValue(parameters.initial_sulfide_concentration.value());
   ui->box_organic_matter_to_sulfide_factor->setValue(parameters.organic_matter_to_sulfide_factor);
   ui->box_organic_matter_to_sulfide_rate->setValue(parameters.organic_matter_to_sulfide_rate);
   ui->box_seagrass_carrying_capacity->setValue(parameters.seagrass_carrying_capacity.value());

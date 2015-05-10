@@ -6,6 +6,8 @@
 #include <iostream>
 #include <sstream>
 
+#include <boost/units/io.hpp>
+
 #include "fileio.h"
 #include "testtimer.h"
 
@@ -67,20 +69,32 @@ InvertedExponentialConsumption::InvertedExponentialConsumption(
 
 double InvertedExponentialConsumption::CalculateConsumptionRate(
   const ribi::units::SpeciesDensity seagrass_density
-) const noexcept
+) const
 {
+  if (seagrass_density < 0.0 * boost::units::si::species_per_square_meter)
+  {
+    std::stringstream s;
+    s << "InvertedExponentialConsumption::CalculateConsumptionRate: "
+      << "seagrass_density must be positive, "
+      << "value supplied was " << seagrass_density
+    ;
+    throw std::logic_error(s.str());
+  }
+  if (std::isnan(seagrass_density.value()))
+  {
+    std::stringstream s;
+    s << "InvertedExponentialConsumption::CalculateConsumptionRate: "
+      << "seagrass_density must be a number, "
+      << "value supplied was " << seagrass_density.value()
+    ;
+    throw std::logic_error(s.str());
+  }
   assert(seagrass_density >= 0.0 * boost::units::si::species_per_square_meters);
   const double n{seagrass_density.value()};
   assert(n >= 0.0);
   const double result{
     1.0 - std::exp(-m_r * n)
   };
-  /*
-  if (result < 0.0)
-  {
-    return 0.0;
-  }
-  */
   assert(result >= 0.0);
   assert(result <= 1.0);
   return result;

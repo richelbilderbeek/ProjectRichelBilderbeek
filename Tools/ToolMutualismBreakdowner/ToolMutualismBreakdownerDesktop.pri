@@ -10,7 +10,8 @@ SOURCES += \
     qtmutualismbreakdownertestconsumptionfunctiondialog.cpp \
     qtmutualismbreakdownerparameterswidget_test.cpp \
     qtpoisoningfunctionwidget.cpp \
-    qtmutualismbreakdownertestpoisoningfunctiondialog.cpp
+    qtmutualismbreakdownertestpoisoningfunctiondialog.cpp \
+    qtpoisoningfunctionwidget_test.cpp
 
 
 HEADERS  += \

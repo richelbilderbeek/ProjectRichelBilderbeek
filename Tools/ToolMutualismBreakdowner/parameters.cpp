@@ -13,7 +13,7 @@ Parameters::Parameters()
     initial_loripes_density{0.0 * boost::units::si::species_per_square_meters},
     initial_organic_matter_density{0.0},
     initial_seagrass_density{0.0 * boost::units::si::species_per_square_meters},
-    initial_sulfide_concentration{0.0},
+    initial_sulfide_concentration{0.0 * boost::units::si::mole / boost::units::si::cubic_meter},
     loripes_consumption_function{new InvertedExponentialConsumption},
     organic_matter_to_sulfide_factor{0.0},
     organic_matter_to_sulfide_rate{0.0},
@@ -36,7 +36,7 @@ Parameters::Parameters(
   const ribi::units::SpeciesDensity any_initial_loripes_density,
   const double any_initial_organic_matter_density,
   const ribi::units::SpeciesDensity any_initial_seagrass_density,
-  const double any_initial_sulfide_density,
+  const ribi::units::Concentration any_initial_sulfide_density,
   const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
   const double any_organic_matter_to_sulfide_factor,
   const double any_organic_matter_to_sulfide_rate,
@@ -68,11 +68,14 @@ Parameters::Parameters(
   #ifndef NDEBUG
   Test();
   #endif
+  using boost::units::si::species_per_square_meter;
+  using boost::units::si::mole;
+  using boost::units::si::cubic_meter;
   assert(delta_t > 0.0);
-  assert(initial_loripes_density >= 0.0 * boost::units::si::species_per_square_meter);
-  assert(initial_seagrass_density >= 0.0 * boost::units::si::species_per_square_meter);
-  assert(initial_sulfide_concentration >= 0.0);
-  assert(seagrass_carrying_capacity >= 0.0 * boost::units::si::species_per_square_meter);
+  assert(initial_loripes_density >= 0.0 * species_per_square_meter);
+  assert(initial_seagrass_density >= 0.0 * species_per_square_meter);
+  assert(initial_sulfide_concentration >= 0.0 * mole / cubic_meter);
+  assert(seagrass_carrying_capacity >= 0.0 * species_per_square_meter);
   assert(seagrass_growth_rate >= 0.0);
   assert(loripes_consumption_function);
   assert(poisoning_function);
@@ -89,13 +92,15 @@ Parameters Parameters::GetTest(const int /* i */)
   assert(poisoning_function);
   assert(poisoning_function.get());
   using boost::units::si::species_per_square_meters;
+  using boost::units::si::mole;
+  using boost::units::si::cubic_meter;
   const Parameters p(
     0.1, //any_delta_t,
     0.1, //any_desiccation_stress,
     0.1 * species_per_square_meters, //initial_loripes_density,
     0.0, //any_initial_organic_matter_density,
     0.1 * species_per_square_meters, //initial_seagrass_density,
-    0.0, //any_initial_sulfide_density,
+    0.0 * mole / cubic_meter, //any_initial_sulfide_density,
     loripes_consumption_function,
     0.1, //const double any_organic_matter_to_sulfide_factor,
     0.1, //const double any_organic_matter_to_sulfide_rate,

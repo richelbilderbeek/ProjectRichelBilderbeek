@@ -64,10 +64,10 @@ void PoisoningFunction::Test() noexcept
 }
 
 double InvertedExponentialPoisoning::CalculateSurvivalFraction(
-  const double sulfide_concentration
+  const ribi::units::Concentration sulfide_concentration
 ) const
 {
-  if (sulfide_concentration < 0.0)
+  if (sulfide_concentration < 0.0 * boost::units::si::mole / boost::units::si::cubic_meter)
   {
     std::stringstream s;
     s << "InvertLogisticPoisoning::operator(): "
@@ -76,17 +76,17 @@ double InvertedExponentialPoisoning::CalculateSurvivalFraction(
     ;
     throw std::logic_error(s.str());
   }
-  if (std::isnan(sulfide_concentration))
+  if (std::isnan(sulfide_concentration.value()))
   {
     std::stringstream s;
     s << "InvertLogisticPoisoning::operator(): "
       << "sulfide_concentration must be a number, "
-      << "value supplied was " << sulfide_concentration
+      << "value supplied was " << sulfide_concentration.value()
     ;
     throw std::logic_error(s.str());
   }
-  assert(sulfide_concentration >= 0.0);
-  const double s{sulfide_concentration};
+  assert(sulfide_concentration >= 0.0 * boost::units::si::mole / boost::units::si::cubic_meter);
+  const double s{sulfide_concentration.value()};
   assert(s >= 0.0);
   const double p_survive{
     m_max * (1.0 - std::exp(-m_r * s))
