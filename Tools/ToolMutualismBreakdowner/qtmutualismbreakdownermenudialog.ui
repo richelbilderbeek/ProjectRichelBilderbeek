@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1060</width>
-    <height>377</height>
+    <width>769</width>
+    <height>631</height>
    </rect>
   </property>
   <property name="font">
@@ -46,24 +46,14 @@ QPushButton
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QPushButton" name="button_start_time_plot">
+    <widget class="QPushButton" name="button_poisoning">
      <property name="text">
-      <string>&amp;Time plot</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QPushButton" name="button_start_equilibrium_plot">
-     <property name="text">
-      <string>&amp;Equilibrium plot</string>
+      <string>&amp;Poisoning</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="image_top">
+    <widget class="QLabel" name="image_consumption">
      <property name="text">
       <string/>
      </property>
@@ -76,7 +66,34 @@ QPushButton
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QLabel" name="image_bottom">
+    <widget class="QLabel" name="image_poisoning">
+     <property name="text">
+      <string>[POISONING PICTURE]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="button_start_time_plot">
+     <property name="text">
+      <string>&amp;Time plot</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="button_start_equilibrium_plot">
+     <property name="text">
+      <string>&amp;Equilibrium plot</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="image_timeplot">
      <property name="text">
       <string/>
      </property>
@@ -88,8 +105,8 @@ QPushButton
      </property>
     </widget>
    </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="image_bottom_2">
+   <item row="3" column="1">
+    <widget class="QLabel" name="image_equilibrium">
      <property name="text">
       <string/>
      </property>
@@ -101,20 +118,20 @@ QPushButton
      </property>
     </widget>
    </item>
-   <item row="3" column="2">
-    <widget class="QPushButton" name="button_quit">
+   <item row="4" column="0">
+    <widget class="QPushButton" name="button_about">
      <property name="text">
-      <string>Quit</string>
+      <string>About</string>
      </property>
      <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2">
-    <widget class="QPushButton" name="button_about">
+   <item row="4" column="1">
+    <widget class="QPushButton" name="button_quit">
      <property name="text">
-      <string>About</string>
+      <string>Quit</string>
      </property>
      <property name="flat">
       <bool>true</bool>

@@ -44,7 +44,7 @@ void ribi::units::TestSpeciesDensity() noexcept
   }
   //Species density uses a dot as a seperator
   {
-    const SpeciesDensity d{12.34 * boost::units::si::species_per_square_meter};
+    const SpeciesDensity d{12.34 * boost::units::si::species_per_square_meters};
     std::stringstream s;
     s << d;
     const std::string t{s.str()};
@@ -61,7 +61,7 @@ void ribi::units::TestSpeciesDensity() noexcept
     const std::string t{s.str()};
     assert(t.substr(t.size() - 13, 13) == "dimensionless");
   }
-  //Species density file I/O
+  //Species density file I/O, one SpeciesDensity
   {
     const SpeciesDensity d{12.34 * boost::units::si::species_per_square_meter};
     const std::string filename{FileIo().GetTempFileName(".txt")};
@@ -79,6 +79,34 @@ void ribi::units::TestSpeciesDensity() noexcept
       ;
     }
     assert(d == d_too);
+  }
+  //Species density file I/O, two SpeciesDensity
+  {
+    const SpeciesDensity a{12.34 * boost::units::si::species_per_square_meter};
+    const SpeciesDensity b{23.45 * boost::units::si::species_per_square_meter};
+    const std::string filename{FileIo().GetTempFileName(".txt")};
+    {
+      std::ofstream f{filename};
+      f << a << " " << b;
+    }
+    std::ifstream f{filename};
+    SpeciesDensity a_too;
+    SpeciesDensity b_too;
+    f >> a_too >> b_too;
+    if (a != a_too)
+    {
+      std::cerr << a << '\n'
+        << a_too << '\n'
+      ;
+    }
+    assert(a == a_too);
+    if (b != b_too)
+    {
+      std::cerr << b << '\n'
+        << b_too << '\n'
+      ;
+    }
+    assert(b == b_too);
   }
 }
 #endif

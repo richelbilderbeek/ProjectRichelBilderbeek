@@ -49,14 +49,14 @@ struct PoisoningFunction
  +--------------------- Sulfide concentration
 
 */
-struct InvertExponentialPoisoning : public PoisoningFunction
+struct InvertedExponentialPoisoning : public PoisoningFunction
 {
-  InvertExponentialPoisoning(
+  InvertedExponentialPoisoning(
     const double r = 0.2,
     const double max = 0.009
   )
     : m_r{r}, m_max{max} {}
-  ~InvertExponentialPoisoning() {}
+  ~InvertedExponentialPoisoning() {}
   ///The fraction that will survive
   ///Will throw if seagrass_density is less than zero
   double CalculateSurvivalFraction(const double sulfide_concentration) const override;

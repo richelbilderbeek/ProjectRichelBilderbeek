@@ -53,7 +53,7 @@ void Simulation::Run()
   assert(loripes_consumption_function);
   assert(loripes_consumption_function.get());
 
-  const InvertLogisticPoisoning P;
+  const InvertedExponentialPoisoning P;
 
   //Initialize sim
   auto seagrass_density = m_parameters.initial_seagrass_density;
@@ -79,7 +79,7 @@ void Simulation::Run()
       {
         const auto delta_n
           = (r*n.value()*(1.0-(n/k))) //Growth
-          - (P.CalculateSurvivalFraction(n)*n.value())
+          - (P.CalculateSurvivalFraction(n.value() /* STILL INCORRECT */)*n.value())
         ;
         seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
       }
@@ -93,7 +93,7 @@ void Simulation::Run()
     }
     {
       const double delta_m{
-          (((P.CalculateSurvivalFraction(n)*s*n.value()) + (d*n.value())) * z)
+          (((P.CalculateSurvivalFraction(n.value() /* STILL INCORRECT */ )*s*n.value()) + (d*n.value())) * z)
         - b * m
       };
       organic_matter_density += (delta_m * delta_t);

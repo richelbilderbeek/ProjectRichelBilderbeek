@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
   QtMutualismBreakdownerTimePlotDialog();
   QtMutualismBreakdownerEquilibriumDialog();
   ribi::units::Test();
-  InvertLogisticPoisoning();
+  InvertedExponentialPoisoning();
   InvertedExponentialConsumption();
   Parameters();
   ribi::QtMutualismBreakdownerMenuDialog w;
