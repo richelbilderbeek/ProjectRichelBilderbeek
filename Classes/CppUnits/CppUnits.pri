@@ -9,7 +9,8 @@ SOURCES += \
     ../../Classes/CppUnits/moleculeamount.cpp \
     ../../Classes/CppUnits/volumetricflow.cpp \
     ../../Classes/CppUnits/massflow.cpp \
-    ../../Classes/CppUnits/massdensity.cpp
+    ../../Classes/CppUnits/massdensity.cpp \
+    ../../Classes/CppUnits/concentration.cpp
 
 HEADERS  += \
     ../../Classes/CppUnits/units.h \
@@ -19,7 +20,8 @@ HEADERS  += \
     ../../Classes/CppUnits/speciesdensity.h \
     ../../Classes/CppUnits/volumetricflow.h \
     ../../Classes/CppUnits/massflow.h \
-    ../../Classes/CppUnits/massdensity.h
+    ../../Classes/CppUnits/massdensity.h \
+    ../../Classes/CppUnits/concentration.h
 
 OTHER_FILES += \
     ../../Classes/CppUnits/Licence.txt

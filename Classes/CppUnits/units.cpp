@@ -4,6 +4,7 @@
 #include <boost/units/io.hpp>
 #include <sstream>
 
+#include "concentration.h"
 #include "speciesdensity.h"
 #include "moleculeamount.h"
 #include "hydrogenmoleculeamount.h"
@@ -20,6 +21,7 @@ void ribi::units::Test() noexcept
     is_tested = true;
   }
   {
+    TestConcentration();
     TestHydrogenMoleculeAmount();
     TestMassFlow();
     TestMoleculeAmount();

@@ -1,6 +1,5 @@
 #ifndef NDEBUG
 
-#ifdef RIBI_USE_MASS_DENSITY
 #include "massdensity.h"
 
 #include <boost/units/io.hpp>
@@ -12,6 +11,7 @@
 #include "fileio.h"
 #include "testtimer.h"
 
+#ifdef RIBI_USE_MASS_DENSITY
 std::istream& boost::units::si::operator>>(std::istream& is, MassDensity& sd)
 {
   double value = 0.0;
@@ -22,6 +22,7 @@ std::istream& boost::units::si::operator>>(std::istream& is, MassDensity& sd)
   sd = MassDensity(value * boost::units::si::mass_per_square_meter);
   return is;
 }
+#endif
 
 void ribi::units::TestMassDensity() noexcept
 {
@@ -34,6 +35,7 @@ void ribi::units::TestMassDensity() noexcept
     ribi::fileio::FileIo();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  #ifdef RIBI_USE_MASS_DENSITY
   using ribi::fileio::FileIo;
   using MassDensity = boost::units::quantity<boost::units::si::mass_density>;
   //Mass density is in mass per square meter
@@ -82,7 +84,7 @@ void ribi::units::TestMassDensity() noexcept
     }
     assert(d == d_too);
   }
+  #endif // RIBI_USE_MASS_DENSITY
 }
-#endif // RIBI_USE_MASS_DENSITY
 
 #endif

@@ -29,7 +29,7 @@ struct PoisoningFunction
   virtual ~PoisoningFunction() {}
   ///The fraction that will survive
   ///Will throw if seagrass_density is less than zero
-  virtual double CalculateSurvivalFraction(const ribi::units::SpeciesDensity seagrass_density) const = 0;
+  virtual double CalculateSurvivalFraction(const double sulfide_concentration) const = 0;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -37,20 +37,32 @@ struct PoisoningFunction
 };
 
 ///Suggested by Fivash & Martinez
-struct InvertLogisticPoisoning : public PoisoningFunction
+/*
+
+ Survival
+
+ +
+ |\
+ | \_
+ |   \__
+ |      ----________
+ +--------------------- Sulfide concentration
+
+*/
+struct InvertExponentialPoisoning : public PoisoningFunction
 {
-  InvertLogisticPoisoning(
+  InvertExponentialPoisoning(
     const double r = 0.2,
-    const double x0 = 0.009
+    const double max = 0.009
   )
-    : m_r{r}, m_x0{x0} {}
-  ~InvertLogisticPoisoning() {}
+    : m_r{r}, m_max{max} {}
+  ~InvertExponentialPoisoning() {}
   ///The fraction that will survive
   ///Will throw if seagrass_density is less than zero
-  double CalculateSurvivalFraction(const ribi::units::SpeciesDensity seagrass_density) const override;
+  double CalculateSurvivalFraction(const double sulfide_concentration) const override;
   std::string ToStr() const noexcept;
   const double m_r;
-  const double m_x0;
+  const double m_max;
 };
 
 

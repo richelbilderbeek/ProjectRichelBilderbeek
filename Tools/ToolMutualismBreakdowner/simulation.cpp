@@ -79,8 +79,7 @@ void Simulation::Run()
       {
         const auto delta_n
           = (r*n.value()*(1.0-(n/k))) //Growth
-          - (P.CalculateSurvivalFraction(n)*s*n.value())
-          - (d*n.value())  //Desiccation stress
+          - (P.CalculateSurvivalFraction(n)*n.value())
         ;
         seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
       }
