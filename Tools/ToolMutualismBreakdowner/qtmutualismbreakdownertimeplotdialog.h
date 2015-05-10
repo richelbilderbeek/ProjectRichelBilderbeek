@@ -23,17 +23,16 @@ public:
 
 private slots:
 
-  void on_button_fix_zoom_clicked();
   void on_button_run_clicked();
 
 private:
   Ui::QtMutualismBreakdownerTimePlotDialog *ui;
 
+  QwtPlotCurve * const m_curve_loripes_density;
   QwtPlotCurve * const m_curve_seagrass_density;
   QwtPlotCurve * const m_curve_sulfide_concentration;
   QwtPlotCurve * const m_curve_organic_matter_density;
   QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
-  void FixZoom();
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -37,7 +37,9 @@ private:
 
   QtLoripesConsumptionFunctionWidget * const m_qtconsumptionwidget;
 
-  double GetRandom() const noexcept;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 #endif // QTMUTUALISMBREAKDOWNERPARAMETERSWIDGET_H

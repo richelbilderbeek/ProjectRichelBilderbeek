@@ -85,8 +85,21 @@ void Parameters::Test() noexcept
   {
     Parameters p;
     Parameters q;
-    q.sulfide_diffusion_rate += 0.1;
+    q.sulfide_diffusion_rate
+      = p.sulfide_diffusion_rate + 0.1
+    ;
     assert(p != q);
+  }
+  //Change of initial_loripes_density
+  {
+    Parameters p;
+    Parameters q;
+    q.initial_loripes_density
+      = p.initial_loripes_density
+      + (0.1 * boost::units::si::species_per_square_meter)
+    ;
+    assert(p != q);
+
   }
   //File I/O
   {

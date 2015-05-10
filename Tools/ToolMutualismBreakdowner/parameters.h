@@ -12,6 +12,7 @@ struct Parameters
   Parameters(
     const double any_delta_t,
     const double any_desiccation_stress,
+    const ribi::units::SpeciesDensity initial_loripes_density,
     const double any_initial_organic_matter_density,
     const ribi::units::SpeciesDensity initial_seagrass_density,
     const double any_initial_sulfide_density,
@@ -33,6 +34,7 @@ struct Parameters
   double delta_t;
   public:
   double desiccation_stress;
+  ribi::units::SpeciesDensity initial_loripes_density;
   double initial_organic_matter_density;
   ribi::units::SpeciesDensity initial_seagrass_density;
   double initial_sulfide_concentration;

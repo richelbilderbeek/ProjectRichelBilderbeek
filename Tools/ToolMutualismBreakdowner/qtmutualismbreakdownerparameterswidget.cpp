@@ -13,6 +13,10 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
   ui(new Ui::QtMutualismBreakdownerParametersWidget),
   m_qtconsumptionwidget{new QtLoripesConsumptionFunctionWidget}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 
   {
@@ -24,7 +28,8 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
 
   QObject::connect(ui->box_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_desiccation_stress,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_initial_organic_matter_density  ,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_initial_loripes_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_initial_organic_matter_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_n_timesteps,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
@@ -49,6 +54,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
   Parameters p(
     ui->box_delta_t->value(),
     ui->box_desiccation_stress->value(),
+    ui->box_initial_loripes_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_organic_matter_density->value(),
     ui->box_initial_seagrass_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_sulfide_concentration->value(),
@@ -70,6 +76,7 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
 {
   ui->box_delta_t->setValue(parameters.GetDeltaT());
   ui->box_desiccation_stress->setValue(parameters.desiccation_stress);
+  ui->box_initial_loripes_density->setValue(parameters.initial_loripes_density.value());
   ui->box_initial_organic_matter_density->setValue(parameters.initial_organic_matter_density);
   ui->box_initial_seagrass_density->setValue(parameters.initial_seagrass_density.value());
   ui->box_initial_sulfide_concentration->setValue(parameters.initial_sulfide_concentration);

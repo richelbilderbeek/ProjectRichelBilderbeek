@@ -7,7 +7,8 @@ SOURCES += \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.cpp \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerparameterswidget.cpp \
     ../../Tools/ToolMutualismBreakdowner/qtloripesconsumptionfunctionwidget.cpp \
-    qtmutualismbreakdownertestconsumptionfunctiondialog.cpp
+    qtmutualismbreakdownertestconsumptionfunctiondialog.cpp \
+    qtmutualismbreakdownerparameterswidget_test.cpp
 
 
 HEADERS  += \

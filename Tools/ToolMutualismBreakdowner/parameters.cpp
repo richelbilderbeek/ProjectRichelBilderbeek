@@ -10,6 +10,7 @@ Parameters::Parameters()
   :
     delta_t{0.1},
     desiccation_stress{0.0},
+    initial_loripes_density{0.0 * boost::units::si::species_per_square_meters},
     initial_organic_matter_density{0.0},
     initial_seagrass_density{0.0 * boost::units::si::species_per_square_meters},
     initial_sulfide_concentration{0.0},
@@ -31,6 +32,7 @@ Parameters::Parameters()
 Parameters::Parameters(
   const double any_delta_t,
   const double any_desiccation_stress,
+  const ribi::units::SpeciesDensity any_initial_loripes_density,
   const double any_initial_organic_matter_density,
   const ribi::units::SpeciesDensity any_initial_seagrass_density,
   const double any_initial_sulfide_density,
@@ -46,6 +48,7 @@ Parameters::Parameters(
 ) :
     delta_t{any_delta_t},
     desiccation_stress{any_desiccation_stress},
+    initial_loripes_density{any_initial_loripes_density},
     initial_organic_matter_density{any_initial_organic_matter_density},
     initial_seagrass_density{any_initial_seagrass_density},
     initial_sulfide_concentration{any_initial_sulfide_density},
@@ -63,6 +66,7 @@ Parameters::Parameters(
   Test();
   #endif
   assert(delta_t > 0.0);
+  assert(initial_loripes_density >= 0.0 * boost::units::si::species_per_square_meter);
   assert(initial_seagrass_density >= 0.0 * boost::units::si::species_per_square_meter);
   assert(initial_sulfide_concentration >= 0.0);
   assert(seagrass_carrying_capacity >= 0.0 * boost::units::si::species_per_square_meter);
@@ -79,6 +83,7 @@ Parameters Parameters::GetTest(const int /* i */)
   const Parameters p(
     0.1, //any_delta_t,
     0.1, //any_desiccation_stress,
+    0.1 * species_per_square_meters, //initial_loripes_density,
     0.0, //any_initial_organic_matter_density,
     0.1 * species_per_square_meters, //initial_seagrass_density,
     0.0, //any_initial_sulfide_density,
@@ -112,6 +117,7 @@ std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
   os
     << parameter.GetDeltaT() << " "
     << parameter.desiccation_stress << " "
+    << parameter.initial_loripes_density << " "
     << parameter.initial_organic_matter_density << " "
     << parameter.initial_seagrass_density << " "
     << parameter.initial_sulfide_concentration << " "
@@ -137,6 +143,7 @@ std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept
   }
   is
     >> parameter.desiccation_stress
+    >> parameter.initial_loripes_density
     >> parameter.initial_organic_matter_density
     >> parameter.initial_seagrass_density
     >> parameter.initial_sulfide_concentration
@@ -158,6 +165,7 @@ bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept
   return
        lhs.GetDeltaT() == rhs.GetDeltaT()
     && lhs.desiccation_stress == rhs.desiccation_stress
+    && lhs.initial_loripes_density == rhs.initial_loripes_density
     && lhs.initial_organic_matter_density == rhs.initial_organic_matter_density
     && lhs.initial_seagrass_density == rhs.initial_seagrass_density
     && lhs.initial_sulfide_concentration == rhs.initial_sulfide_concentration

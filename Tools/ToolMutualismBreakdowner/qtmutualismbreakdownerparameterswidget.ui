@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>441</width>
-    <height>582</height>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,28 +80,28 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="4" column="0">
     <widget class="QLabel" name="label_initial_organic_matter_density">
      <property name="text">
       <string>(m0) Initial organic matter density</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
+   <item row="4" column="1">
     <widget class="QDoubleSpinBox" name="box_initial_organic_matter_density">
      <property name="maximum">
       <double>10000000.000000000000000</double>
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="5" column="0">
     <widget class="QLabel" name="label_init_seagrass_density">
      <property name="text">
-      <string>(n0) Initial seagrass density</string>
+      <string>(n0) Initial seagrass density (# m^-2)</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
+   <item row="5" column="1">
     <widget class="QDoubleSpinBox" name="box_initial_seagrass_density">
      <property name="decimals">
       <number>4</number>
@@ -120,28 +120,28 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="0">
+   <item row="6" column="0">
     <widget class="QLabel" name="label_initial_sulfide_concentration">
      <property name="text">
       <string>(s0) Initial sulfide concentration</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
+   <item row="6" column="1">
     <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration">
      <property name="maximum">
       <double>1000000.000000000000000</double>
      </property>
     </widget>
    </item>
-   <item row="6" column="0">
+   <item row="7" column="0">
     <widget class="QLabel" name="label_organic_matter_to_sulfide_factor">
      <property name="text">
       <string>(f) Organic matter to sulfide factor</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="1">
+   <item row="7" column="1">
     <widget class="QDoubleSpinBox" name="box_organic_matter_to_sulfide_factor">
      <property name="decimals">
       <number>4</number>
@@ -154,14 +154,14 @@
      </property>
     </widget>
    </item>
-   <item row="7" column="0">
+   <item row="8" column="0">
     <widget class="QLabel" name="label_organic_matter_to_sulfide_rate">
      <property name="text">
       <string>(b) Organic matter to sulfide rate</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="1">
+   <item row="8" column="1">
     <widget class="QDoubleSpinBox" name="box_organic_matter_to_sulfide_rate">
      <property name="decimals">
       <number>4</number>
@@ -174,14 +174,14 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="0">
+   <item row="9" column="0">
     <widget class="QLabel" name="label_seagrass_carrying_capacity">
      <property name="text">
       <string>(k) Seagrass carrying capacity</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="1">
+   <item row="9" column="1">
     <widget class="QDoubleSpinBox" name="box_seagrass_carrying_capacity">
      <property name="maximum">
       <double>1000000.000000000000000</double>
@@ -191,14 +191,14 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="0">
+   <item row="10" column="0">
     <widget class="QLabel" name="label_seagrass_growth_rate">
      <property name="text">
       <string>(r) Seagrass growth rate</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="1">
+   <item row="10" column="1">
     <widget class="QDoubleSpinBox" name="box_seagrass_growth_rate">
      <property name="decimals">
       <number>4</number>
@@ -214,28 +214,28 @@
      </property>
     </widget>
    </item>
-   <item row="10" column="0">
+   <item row="11" column="0">
     <widget class="QLabel" name="label_seagrass_to_organic_matter_factor">
      <property name="text">
       <string>(z) Seagrass to organic matter factor</string>
      </property>
     </widget>
    </item>
-   <item row="10" column="1">
+   <item row="11" column="1">
     <widget class="QDoubleSpinBox" name="box_seagrass_to_organic_matter_factor">
      <property name="value">
       <double>0.100000000000000</double>
      </property>
     </widget>
    </item>
-   <item row="11" column="0">
+   <item row="12" column="0">
     <widget class="QLabel" name="label_sulfide_diffusion_rate">
      <property name="text">
       <string>(g) sulfide diffusion rate</string>
      </property>
     </widget>
    </item>
-   <item row="11" column="1">
+   <item row="12" column="1">
     <widget class="QDoubleSpinBox" name="box_sulfide_diffusion_rate">
      <property name="decimals">
       <number>4</number>
@@ -248,14 +248,14 @@
      </property>
     </widget>
    </item>
-   <item row="12" column="0">
+   <item row="13" column="0">
     <widget class="QLabel" name="label_sulfide_consumption_by_loripes">
      <property name="text">
       <string>(c) Sulfide consumption by loripes</string>
      </property>
     </widget>
    </item>
-   <item row="12" column="1">
+   <item row="13" column="1">
     <widget class="QDoubleSpinBox" name="box_sulfide_consumption_by_loripes">
      <property name="decimals">
       <number>4</number>
@@ -271,7 +271,7 @@
      </property>
     </widget>
    </item>
-   <item row="13" column="0" colspan="2">
+   <item row="14" column="0" colspan="2">
     <widget class="QGroupBox" name="box_consumption_by_loripes">
      <property name="title">
       <string>Sulfide consumption by Loripes</string>
@@ -285,29 +285,68 @@
      <layout class="QGridLayout" name="gridLayout"/>
     </widget>
    </item>
-   <item row="14" column="0" colspan="2">
+   <item row="15" column="0" colspan="2">
     <widget class="QPushButton" name="button_set_random_values">
      <property name="text">
       <string>Set &amp;random values</string>
      </property>
     </widget>
    </item>
-   <item row="15" column="0" colspan="2">
+   <item row="16" column="0" colspan="2">
     <widget class="QPushButton" name="button_load">
      <property name="text">
       <string>&amp;Load parameters</string>
      </property>
     </widget>
    </item>
-   <item row="16" column="0" colspan="2">
+   <item row="17" column="0" colspan="2">
     <widget class="QPushButton" name="button_save">
      <property name="text">
       <string>&amp;Save parameters</string>
      </property>
     </widget>
    </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_initial_loripes_density">
+     <property name="text">
+      <string>(l0) initial loripes density (# m^-2)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QDoubleSpinBox" name="box_initial_loripes_density">
+     <property name="decimals">
+      <number>4</number>
+     </property>
+     <property name="maximum">
+      <double>1000.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>0.100000000000000</double>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>box_n_timesteps</tabstop>
+  <tabstop>box_delta_t</tabstop>
+  <tabstop>box_desiccation_stress</tabstop>
+  <tabstop>box_initial_loripes_density</tabstop>
+  <tabstop>box_initial_organic_matter_density</tabstop>
+  <tabstop>box_initial_seagrass_density</tabstop>
+  <tabstop>box_initial_sulfide_concentration</tabstop>
+  <tabstop>box_organic_matter_to_sulfide_factor</tabstop>
+  <tabstop>box_organic_matter_to_sulfide_rate</tabstop>
+  <tabstop>box_seagrass_carrying_capacity</tabstop>
+  <tabstop>box_seagrass_growth_rate</tabstop>
+  <tabstop>box_seagrass_to_organic_matter_factor</tabstop>
+  <tabstop>box_sulfide_diffusion_rate</tabstop>
+  <tabstop>box_sulfide_consumption_by_loripes</tabstop>
+  <tabstop>button_set_random_values</tabstop>
+  <tabstop>button_load</tabstop>
+  <tabstop>button_save</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
