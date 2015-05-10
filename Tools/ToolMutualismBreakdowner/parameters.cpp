@@ -102,7 +102,10 @@ Parameters::Parameters(
   using boost::units::si::species_per_square_meter;
   using boost::units::si::mole;
   using boost::units::si::cubic_meter;
-  assert(delta_t > 0.0);
+  if (delta_t <= 0.0)
+  {
+    throw std::logic_error("Parameters::Parameters: delta_t must be above zero");
+  }
   assert(initial_loripes_density >= 0.0 * species_per_square_meter);
   assert(initial_seagrass_density >= 0.0 * species_per_square_meter);
   assert(initial_sulfide_concentration >= 0.0 * mole / cubic_meter);

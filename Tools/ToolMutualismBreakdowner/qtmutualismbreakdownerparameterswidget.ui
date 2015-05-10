@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>465</width>
-    <height>385</height>
+    <width>533</width>
+    <height>1038</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,9 +23,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-482</y>
-        <width>430</width>
-        <height>888</height>
+        <y>0</y>
+        <width>513</width>
+        <height>919</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
@@ -443,9 +443,34 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>box_n_timesteps</tabstop>
+  <tabstop>box_delta_t</tabstop>
+  <tabstop>box_detoxification_max_rate</tabstop>
+  <tabstop>box_detoxification_min</tabstop>
+  <tabstop>box_detoxification_rate</tabstop>
+  <tabstop>box_initial_loripes_density</tabstop>
+  <tabstop>box_initial_organic_matter_density</tabstop>
+  <tabstop>box_initial_seagrass_density</tabstop>
+  <tabstop>box_initial_sulfide_concentration</tabstop>
+  <tabstop>box_mutualism_breakdown_max</tabstop>
+  <tabstop>box_mutualism_breakdown_r0</tabstop>
+  <tabstop>box_mutualism_breakdown_rate</tabstop>
+  <tabstop>box_organic_matter_addition</tabstop>
+  <tabstop>box_organic_matter_breakdown</tabstop>
+  <tabstop>box_organic_matter_capture</tabstop>
+  <tabstop>box_organic_matter_to_sulfide_factor</tabstop>
+  <tabstop>box_organic_matter_to_sulfide_rate</tabstop>
+  <tabstop>box_recruitment_max</tabstop>
+  <tabstop>box_recruitment_rate</tabstop>
+  <tabstop>box_seagrass_carrying_capacity</tabstop>
+  <tabstop>box_seagrass_growth_rate</tabstop>
+  <tabstop>box_seagrass_to_organic_matter_factor</tabstop>
+  <tabstop>box_sulfide_diffusion_rate</tabstop>
+  <tabstop>box_sulfide_consumption_by_loripes</tabstop>
   <tabstop>button_set_random_values</tabstop>
   <tabstop>button_load</tabstop>
   <tabstop>button_save</tabstop>
+  <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources/>
  <connections/>

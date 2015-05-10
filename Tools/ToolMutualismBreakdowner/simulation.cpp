@@ -99,7 +99,7 @@ void Simulation::Run()
       const auto capture = n.value() * m_parameters.GetOrganicMatterCapture();
       const auto addition = m_parameters.GetOrganicMatterAddition();
       const auto breakdown = m * m_parameters.GetOrganicMatterBreakdown();
-      const double delta_m = capture + addition + breakdown;
+      const double delta_m = capture + addition - breakdown;
       organic_matter_density += (delta_m * delta_t);
     }
     catch (std::logic_error& e)
