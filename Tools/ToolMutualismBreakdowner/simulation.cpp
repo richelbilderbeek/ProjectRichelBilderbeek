@@ -124,7 +124,9 @@ void Simulation::Run()
       const auto r = m_parameters.GetDetoxicationRate();
       const auto max = m_parameters.GetDetoxicationMaxRate();
       const auto detoxification
-        = max * (d0 * std::exp(r * n.value())) / (1.0 + (d0 * std::exp(r * n.value())))
+        = max
+        * (d0 * std::exp(r * n.value())) / (1.0 + (d0 * std::exp(r * n.value())))
+        * s.value()
       ;
       const auto consumption
         = m_parameters.GetLoripesConsumptionFunction()->CalculateConsumptionRate(n)
