@@ -29,9 +29,15 @@ Simulation::Simulation(const Parameters& parameters)
 void Simulation::Run() noexcept
 {
   const int n_timesteps{m_parameters.n_timesteps};
+  assert(n_timesteps >= 0);
   const double t_end{static_cast<double>(n_timesteps)};
+  assert(t_end >= 0.0);
   const double delta_t{m_parameters.delta_t};
-  const int n_steps_per_time_unit{static_cast<int>(1.0 / m_parameters.delta_t)};
+  assert(delta_t > 0.0);
+  const int sz{static_cast<int>(t_end / delta_t)};
+  assert(sz > 0);
+  const int track_after{std::min(1,sz / 1000)};
+  assert(track_after > 0);
 
   const double b{m_parameters.organic_matter_to_sulfide_rate};
   const double c{m_parameters.sulfide_consumption_by_loripes_rate};
@@ -58,6 +64,8 @@ void Simulation::Run() noexcept
   int i=0;
   for (double t=0.0; t<t_end; t+=delta_t)
   {
+    assert(i >= 0);
+    //std::cerr << i << std::endl;
     const auto n = seagrass_density;
     const double s{sulfide_concentration};
     const double m{organic_matter_density};
@@ -88,7 +96,7 @@ void Simulation::Run() noexcept
       sulfide_concentration += (delta_s * delta_t);
 
     }
-    if (i % n_steps_per_time_unit)
+    if (i % track_after)
     {
       m_timeseries.push_back(static_cast<double>(t));
       m_seagrass_densities.push_back(seagrass_density);
