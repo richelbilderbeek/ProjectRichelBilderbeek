@@ -41,7 +41,7 @@ QPushButton
    <item row="0" column="0">
     <widget class="QPushButton" name="button_consumption">
      <property name="text">
-      <string>&amp;Consuption</string>
+      <string>&amp;Consumption</string>
      </property>
     </widget>
    </item>
