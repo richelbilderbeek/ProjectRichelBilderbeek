@@ -21,8 +21,14 @@ public:
   std::shared_ptr<LoripesConsumptionFunction> GetFunction() const noexcept;
   void SetFunction(const std::shared_ptr<LoripesConsumptionFunction>& f) noexcept;
 
+signals:
+  void signal_parameters_changed() const;
+
 private:
   Ui::QtLoripesConsumptionFunctionWidget *ui;
+
+private slots:
+  void OnAnyChange();
 };
 
 #endif // QTLORIPESCONSUMPTIONFUNCTIONWIDGET_H

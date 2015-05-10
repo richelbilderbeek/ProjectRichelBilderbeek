@@ -2,6 +2,8 @@
 
 #include <cassert>
 #include <fstream>
+#include <iostream>
+
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QGridLayout>
@@ -88,6 +90,8 @@ void QtMutualismBreakdownerTestConsumptionFunctionDialog::SetParameters(const Pa
 
 void QtMutualismBreakdownerTestConsumptionFunctionDialog::Run()
 {
+  std::clog << ".";
+
   const auto f
     = m_parameters_widget->GetParameters().loripes_consumption_function;
   assert(f);

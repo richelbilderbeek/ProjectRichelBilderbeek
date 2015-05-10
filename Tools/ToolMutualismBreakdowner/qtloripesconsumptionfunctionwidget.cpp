@@ -10,6 +10,8 @@ QtLoripesConsumptionFunctionWidget::QtLoripesConsumptionFunctionWidget(QWidget *
   ui(new Ui::QtLoripesConsumptionFunctionWidget)
 {
   ui->setupUi(this);
+
+  QObject::connect(ui->box_ie_r,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 }
 
 QtLoripesConsumptionFunctionWidget::~QtLoripesConsumptionFunctionWidget()
@@ -22,6 +24,11 @@ std::shared_ptr<LoripesConsumptionFunction> QtLoripesConsumptionFunctionWidget::
   return std::make_shared<InvertedExponentialConsumption>(
     ui->box_ie_r->value()
   );
+}
+
+void QtLoripesConsumptionFunctionWidget::OnAnyChange()
+{
+  emit signal_parameters_changed();
 }
 
 void QtLoripesConsumptionFunctionWidget::SetFunction(const std::shared_ptr<LoripesConsumptionFunction>& f) noexcept

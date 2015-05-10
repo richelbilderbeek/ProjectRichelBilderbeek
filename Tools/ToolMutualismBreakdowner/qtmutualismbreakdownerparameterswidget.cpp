@@ -21,6 +21,7 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
     my_layout->addWidget(m_qtconsumptionwidget);
   }
 
+
   QObject::connect(ui->box_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_desiccation_stress,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_organic_matter_density  ,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
@@ -34,6 +35,8 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
   QObject::connect(ui->box_sulfide_consumption_by_loripes,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_sulfide_diffusion_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_organic_matter_to_sulfide_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+
+  QObject::connect(m_qtconsumptionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 }
 
 QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget()
