@@ -20,7 +20,9 @@ void QtPoisoningFunctionWidget::Test() noexcept
   {
     QtPoisoningFunctionWidget d;
     const Parameters parameters;
-    const auto f = parameters.poisoning_function;
+    assert(parameters.GetPoisoningFunction());
+    const auto f = parameters.GetPoisoningFunction();
+    assert(f);
     d.SetFunction(f);
     if (d.GetFunction()->ToStr() != f->ToStr())
     {

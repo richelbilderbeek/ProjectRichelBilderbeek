@@ -70,7 +70,7 @@ double InvertedExponentialPoisoning::CalculateSurvivalFraction(
   if (sulfide_concentration < 0.0 * boost::units::si::mole / boost::units::si::cubic_meter)
   {
     std::stringstream s;
-    s << "InvertLogisticPoisoning::operator(): "
+    s << "InvertedExponentialPoisoning::CalculateSurvivalFraction: "
       << "sulfide_concentration must be positive, "
       << "value supplied was " << sulfide_concentration
     ;
@@ -79,7 +79,7 @@ double InvertedExponentialPoisoning::CalculateSurvivalFraction(
   if (std::isnan(sulfide_concentration.value()))
   {
     std::stringstream s;
-    s << "InvertLogisticPoisoning::operator(): "
+    s << "InvertedExponentialPoisoning::CalculateSurvivalFraction: "
       << "sulfide_concentration must be a number, "
       << "value supplied was " << sulfide_concentration.value()
     ;

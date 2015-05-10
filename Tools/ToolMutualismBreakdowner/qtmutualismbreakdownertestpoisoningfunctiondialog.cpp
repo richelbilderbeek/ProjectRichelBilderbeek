@@ -91,7 +91,7 @@ void QtMutualismBreakdownerTestPoisoningFunctionDialog::SetParameters(const Para
 void QtMutualismBreakdownerTestPoisoningFunctionDialog::Run()
 {
   const auto f
-    = m_parameters_widget->GetParameters().poisoning_function
+    = m_parameters_widget->GetParameters().GetPoisoningFunction()
   ;
   assert(f);
   assert(f.get());

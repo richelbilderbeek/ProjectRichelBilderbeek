@@ -93,7 +93,7 @@ void QtMutualismBreakdownerTestConsumptionFunctionDialog::Run()
   std::clog << ".";
 
   const auto f
-    = m_parameters_widget->GetParameters().loripes_consumption_function;
+    = m_parameters_widget->GetParameters().GetLoripesConsumptionFunction();
   assert(f);
   assert(f.get());
   std::vector<double> seagrass_densities;

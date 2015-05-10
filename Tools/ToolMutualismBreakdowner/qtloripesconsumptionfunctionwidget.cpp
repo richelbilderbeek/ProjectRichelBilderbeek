@@ -1,6 +1,7 @@
 #include "qtloripesconsumptionfunctionwidget.h"
 
 #include <cassert>
+#include <iostream>
 
 #include "loripesconsumptionfunction.h"
 #include "ui_qtloripesconsumptionfunctionwidget.h"
@@ -33,6 +34,12 @@ void QtLoripesConsumptionFunctionWidget::OnAnyChange()
 
 void QtLoripesConsumptionFunctionWidget::SetFunction(const std::shared_ptr<LoripesConsumptionFunction>& f) noexcept
 {
+  #ifndef NDEBUG
+  if (!f)
+  {
+    std::cerr << "BREAK";
+  }
+  #endif
   assert(f);
   const auto iec = std::dynamic_pointer_cast<InvertedExponentialConsumption>(f);
   assert(iec);

@@ -29,6 +29,7 @@ void Parameters::Test() noexcept
     Parameters q;
     assert(p == q);
   }
+  //DeltaT
   //Does loripes_consumption_function work?
   {
     const Parameters p = Parameters::GetTest(0);
@@ -100,6 +101,38 @@ void Parameters::Test() noexcept
     ;
     assert(p != q);
 
+  }
+  //Change of organic_matter_addition
+  {
+    Parameters p;
+    Parameters q;
+    q.organic_matter_addition
+      = p.organic_matter_addition
+      + (0.1)
+    ;
+    assert(p != q);
+
+  }
+  //Change of organic_matter_to_sulfide_factor
+  {
+    Parameters p;
+    Parameters q;
+    q.organic_matter_to_sulfide_factor
+      = p.organic_matter_to_sulfide_factor
+      + (0.1)
+    ;
+    assert(p != q);
+
+  }
+  //Change of organic_matter_to_sulfide_rate
+  {
+    Parameters p;
+    Parameters q;
+    q.organic_matter_to_sulfide_factor
+      = p.organic_matter_to_sulfide_rate
+      + (0.1)
+    ;
+    assert(p != q);
   }
   //File I/O
   {

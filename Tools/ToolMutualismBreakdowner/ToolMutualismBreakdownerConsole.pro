@@ -1,4 +1,4 @@
-include(../../ConsoleApplicationNoWeffcpp.pri)
+include(../../ConsoleApplication.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
 

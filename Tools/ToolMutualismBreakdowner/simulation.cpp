@@ -15,6 +15,7 @@
 
 Simulation::Simulation(const Parameters& parameters)
   : m_parameters{parameters},
+    m_loripes_densities{},
     m_seagrass_densities{},
     m_sulfide_concentrations{},
     m_organic_matter_densities{},
@@ -39,17 +40,17 @@ void Simulation::Run()
   const int track_after{std::max(1,sz / 1000)};
   assert(track_after > 0);
 
-  const double b{m_parameters.organic_matter_to_sulfide_rate};
-  const double c{m_parameters.sulfide_consumption_by_loripes_rate};
-  const double d{m_parameters.desiccation_stress};
-  const double f{m_parameters.organic_matter_to_sulfide_factor};
-  const double g{m_parameters.sulfide_diffusion_rate};
+  //const double b{m_parameters.organic_matter_to_sulfide_rate};
+  //const double c{m_parameters.sulfide_consumption_by_loripes_rate};
+  //const double d{m_parameters.desiccation_stress};
+  //const double f{m_parameters.organic_matter_to_sulfide_factor};
+  //const double g{m_parameters.sulfide_diffusion_rate};
   const auto k = m_parameters.seagrass_carrying_capacity;
   //const double l{1.0}; //loripes_density
   const double r{m_parameters.seagrass_growth_rate};
-  const double z{m_parameters.seagrass_to_organic_matter_factor};
-  const auto loripes_consumption_function = m_parameters.loripes_consumption_function;
-  const auto poisoning_function = m_parameters.poisoning_function;
+  //const double z{m_parameters.seagrass_to_organic_matter_factor};
+  const auto loripes_consumption_function = m_parameters.GetLoripesConsumptionFunction();
+  const auto poisoning_function = m_parameters.GetPoisoningFunction();
 
   assert(loripes_consumption_function);
   assert(loripes_consumption_function.get());
@@ -58,10 +59,10 @@ void Simulation::Run()
 
 
   //Initialize sim
-  auto seagrass_density = m_parameters.initial_seagrass_density;
-  auto sulfide_concentration = m_parameters.initial_sulfide_concentration;
-  double organic_matter_density{m_parameters.initial_organic_matter_density};
-  auto loripes_density = m_parameters.initial_loripes_density;
+  auto seagrass_density = m_parameters.GetInitialSeagrassDensity();
+  auto sulfide_concentration = m_parameters.GetInitialSulfideConcentration();
+  auto organic_matter_density = m_parameters.GetInitialOrganicMatterDensity();
+  auto loripes_density = m_parameters.GetInitialLoripesDensity();
   {
     std::ofstream f("tmp.txt");
     f << m_parameters;
@@ -71,7 +72,6 @@ void Simulation::Run()
   for (double t=0.0; t<t_end; t+=delta_t)
   {
     assert(i >= 0);
-    //std::cerr << i << std::endl;
     const auto n = seagrass_density;
     const auto l = loripes_density;
     const auto s = sulfide_concentration;
@@ -79,10 +79,11 @@ void Simulation::Run()
     //Seagrass
     try
     {
-      const auto delta_n
-        = (r*n.value()*(1.0-(n/k))) //Growth
-        - (poisoning_function->CalculateSurvivalFraction(s)*n.value())
+      const auto growth = r*n.value()*(1.0-(n/k));
+      const auto death_by_sulfide
+        = poisoning_function->CalculateSurvivalFraction(s) * n.value()
       ;
+      const auto delta_n = growth - death_by_sulfide;
       seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
     }
     catch (std::logic_error& e)
@@ -95,10 +96,10 @@ void Simulation::Run()
     //Organic matter
     try
     {
-      const double delta_m{
-          (((poisoning_function->CalculateSurvivalFraction(s)* s.value() * n.value()) + (d*n.value())) * z)
-        - b * m
-      };
+      const auto capture = n.value() * m_parameters.GetOrganicMatterCapture();
+      const auto addition = m_parameters.GetOrganicMatterAddition();
+      const auto breakdown = m * m_parameters.GetOrganicMatterBreakdown();
+      const double delta_m = capture + addition + breakdown;
       organic_matter_density += (delta_m * delta_t);
     }
     catch (std::logic_error& e)
@@ -111,12 +112,32 @@ void Simulation::Run()
     //Sulfide
     try
     {
-      using std::exp;
-      const double delta_s{
-          (f*b*m)   //Conversion from organic matter
-        - (c*s.value()*loripes_consumption_function->CalculateConsumptionRate(n)) //Consumption of sulfide by loripes
-        - (g*s.value())     //Diffusion of sulfide into the environment
-      };
+      const auto organic_matter_breakdown
+        = m_parameters.GetOrganicMatterToSulfideFactor()
+        * m_parameters.GetOrganicMatterToSulfideRate()
+        * m
+      ;
+      const auto diffusion = m_parameters.sulfide_diffusion_rate
+        * s
+      ;
+      const auto d0 = m_parameters.GetDetoxicationMinimum();
+      const auto r = m_parameters.GetDetoxicationRate();
+      const auto max = m_parameters.GetDetoxicationMaxRate();
+      const auto detoxification
+        = max * (d0 * std::exp(r * n.value())) / (1.0 + (d0 * std::exp(r * n.value())))
+      ;
+      const auto consumption
+        = m_parameters.GetLoripesConsumptionFunction()->CalculateConsumptionRate(n)
+        * l.value()
+        * s.value()
+      ;
+      const double delta_s
+        = organic_matter_breakdown
+        - diffusion.value()
+        - detoxification
+        - consumption
+      ;
+
       sulfide_concentration += (
           delta_s * (boost::units::si::mole / boost::units::si::cubic_meter)
         * delta_t
@@ -133,10 +154,15 @@ void Simulation::Run()
     //Loripes density
     try
     {
-      const auto delta_l
-        = l
-      ;
-      loripes_density += (delta_l * delta_t);
+      const auto rr = m_parameters.recruitment_rate;
+      const auto rmax = m_parameters.recruitment_max;
+      const auto mr = m_parameters.GetMutualismBreakdownRate();
+      const auto mmax = m_parameters.GetMutualismBreakdownMax();
+      const auto mr0 = m_parameters.GetMutualismBreakdownR0();
+      const auto recruitment = l * rmax * (1.0 - std::exp(-rr * l.value()));
+      const auto mutualism_breakdown = l * mmax * (1.0 - ((mr0 * std::exp(mr * n.value())) / (1.0 + std::exp(mr * n.value()))));
+      const auto delta_l = recruitment.value() - mutualism_breakdown.value();
+      loripes_density += (delta_l * boost::units::si::species_per_square_meter * delta_t);
     }
     catch (std::logic_error& e)
     {

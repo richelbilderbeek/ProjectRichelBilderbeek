@@ -1,6 +1,7 @@
 #include "qtpoisoningfunctionwidget.h"
 
 #include <cassert>
+#include <iostream>
 
 #include "poisoningfunction.h"
 #include "ui_qtpoisoningfunctionwidget.h"
@@ -38,6 +39,12 @@ void QtPoisoningFunctionWidget::OnAnyChange()
 
 void QtPoisoningFunctionWidget::SetFunction(const std::shared_ptr<PoisoningFunction>& f) noexcept
 {
+  #ifndef NDEBUG
+  if (!f)
+  {
+    std::cerr << "BREAK";
+  }
+  #endif
   assert(f);
   const auto iec = std::dynamic_pointer_cast<InvertedExponentialPoisoning>(f);
   assert(iec);

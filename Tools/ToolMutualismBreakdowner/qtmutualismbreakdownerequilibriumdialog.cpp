@@ -96,11 +96,9 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
   for (double d=0.0; d<=1.0; d+=0.01)
   {
     ds.push_back(d);
-    parameters.desiccation_stress = d;
     //From low
     {
-      parameters.initial_seagrass_density
-        = 0.1 * boost::units::si::species_per_square_meter; //Low
+      parameters.SetInitialSeagrassDensity(0.1 * boost::units::si::species_per_square_meter);
       Simulation simulation(parameters);
       simulation.Run();
       const auto n_end = simulation.GetSeagrassDensities().back();
@@ -108,8 +106,7 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
     }
     //From high
     {
-      parameters.initial_seagrass_density
-        = 1.0 * boost::units::si::species_per_square_meter; //High
+      parameters.SetInitialSeagrassDensity(1.0 * boost::units::si::species_per_square_meter);
       Simulation simulation(parameters);
       simulation.Run();
       const auto n_end = simulation.GetSeagrassDensities().back();
