@@ -55,7 +55,6 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
   QObject::connect(ui->box_seagrass_carrying_capacity,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_seagrass_to_organic_matter_factor,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_sulfide_consumption_by_loripes,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_sulfide_diffusion_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_organic_matter_to_sulfide_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtconsumptionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
@@ -96,7 +95,6 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
     ui->box_seagrass_carrying_capacity->value() * boost::units::si::species_per_square_meter,
     ui->box_seagrass_growth_rate->value(),
     ui->box_seagrass_to_organic_matter_factor->value(),
-    ui->box_sulfide_consumption_by_loripes->value(),
     ui->box_sulfide_diffusion_rate->value(),
     ui->box_n_timesteps->value()
   );
@@ -127,7 +125,6 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   ui->box_seagrass_carrying_capacity->setValue(parameters.seagrass_carrying_capacity.value());
   ui->box_seagrass_growth_rate->setValue(parameters.seagrass_growth_rate);
   ui->box_seagrass_to_organic_matter_factor->setValue(parameters.seagrass_to_organic_matter_factor);
-  ui->box_sulfide_consumption_by_loripes->setValue(parameters.sulfide_consumption_by_loripes_rate);
   ui->box_sulfide_diffusion_rate->setValue(parameters.sulfide_diffusion_rate);
   ui->box_n_timesteps->setValue(parameters.n_timesteps);
   this->m_qtconsumptionwidget->SetFunction(parameters.GetLoripesConsumptionFunction());

@@ -29,6 +29,13 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
+       <item row="13" column="0">
+        <widget class="QLabel" name="label_mutualism_breakdown_rate">
+         <property name="text">
+          <string>Mutualism breakdown rate</string>
+         </property>
+        </widget>
+       </item>
        <item row="8" column="0">
         <widget class="QLabel" name="label_init_seagrass_density">
          <property name="text">
@@ -132,6 +139,13 @@
          </property>
         </widget>
        </item>
+       <item row="5" column="1">
+        <widget class="QDoubleSpinBox" name="box_detoxification_rate">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
        <item row="16" column="0">
         <widget class="QLabel" name="label_organic_matter_capture">
          <property name="text">
@@ -143,13 +157,6 @@
         <widget class="QLabel" name="label_seagrass_carrying_capacity">
          <property name="text">
           <string>Seagrass carrying capacity</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QDoubleSpinBox" name="box_detoxification_rate">
-         <property name="decimals">
-          <number>4</number>
          </property>
         </widget>
        </item>
@@ -174,29 +181,6 @@
         <widget class="QLabel" name="label_initial_sulfide_concentration">
          <property name="text">
           <string>Initial sulfide concentration</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="0">
-        <widget class="QLabel" name="label_mutualism_breakdown_rate">
-         <property name="text">
-          <string>Mutualism breakdown rate</string>
-         </property>
-        </widget>
-       </item>
-       <item row="27" column="1">
-        <widget class="QDoubleSpinBox" name="box_sulfide_consumption_by_loripes">
-         <property name="decimals">
-          <number>4</number>
-         </property>
-         <property name="maximum">
-          <double>1000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.010000000000000</double>
-         </property>
-         <property name="value">
-          <double>0.100000000000000</double>
          </property>
         </widget>
        </item>
@@ -278,10 +262,10 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="box_detoxification_min">
-         <property name="decimals">
-          <number>4</number>
+       <item row="15" column="0">
+        <widget class="QLabel" name="label_organic_matter_breakdown">
+         <property name="text">
+          <string>Organic matter breakdown</string>
          </property>
         </widget>
        </item>
@@ -298,15 +282,22 @@
          </property>
         </widget>
        </item>
-       <item row="15" column="0">
-        <widget class="QLabel" name="label_organic_matter_breakdown">
-         <property name="text">
-          <string>Organic matter breakdown</string>
+       <item row="4" column="1">
+        <widget class="QDoubleSpinBox" name="box_detoxification_min">
+         <property name="decimals">
+          <number>4</number>
          </property>
         </widget>
        </item>
        <item row="12" column="1">
         <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_r0">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="1">
+        <widget class="QDoubleSpinBox" name="box_organic_matter_capture">
          <property name="decimals">
           <number>4</number>
          </property>
@@ -319,10 +310,10 @@
          </property>
         </widget>
        </item>
-       <item row="16" column="1">
-        <widget class="QDoubleSpinBox" name="box_organic_matter_capture">
-         <property name="decimals">
-          <number>4</number>
+       <item row="21" column="0">
+        <widget class="QLabel" name="label_recruitment_rate">
+         <property name="text">
+          <string>Recruitment rate</string>
          </property>
         </widget>
        </item>
@@ -330,13 +321,6 @@
         <widget class="QLabel" name="label_organic_matter_to_sulfide_factor">
          <property name="text">
           <string>Organic matter to sulfide factor</string>
-         </property>
-        </widget>
-       </item>
-       <item row="21" column="0">
-        <widget class="QLabel" name="label_recruitment_rate">
-         <property name="text">
-          <string>Recruitment rate</string>
          </property>
         </widget>
        </item>
@@ -410,17 +394,17 @@
          </property>
         </widget>
        </item>
-       <item row="12" column="0">
-        <widget class="QLabel" name="label_mutualism_breakdown_r0">
-         <property name="text">
-          <string>Mutualism breakdown r0</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_n_timesteps">
          <property name="text">
           <string>#timesteps</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QLabel" name="label_mutualism_breakdown_r0">
+         <property name="text">
+          <string>Mutualism breakdown r0</string>
          </property>
         </widget>
        </item>
@@ -444,6 +428,13 @@
          </property>
         </widget>
        </item>
+       <item row="24" column="0">
+        <widget class="QLabel" name="label_seagrass_to_organic_matter_factor">
+         <property name="text">
+          <string>Seagrass to organic matter factor</string>
+         </property>
+        </widget>
+       </item>
        <item row="18" column="1">
         <widget class="QDoubleSpinBox" name="box_organic_matter_to_sulfide_rate">
          <property name="decimals">
@@ -454,20 +445,6 @@
          </property>
          <property name="value">
           <double>1.000000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="24" column="0">
-        <widget class="QLabel" name="label_seagrass_to_organic_matter_factor">
-         <property name="text">
-          <string>Seagrass to organic matter factor</string>
-         </property>
-        </widget>
-       </item>
-       <item row="27" column="0">
-        <widget class="QLabel" name="label_sulfide_consumption_by_loripes">
-         <property name="text">
-          <string>Sulfide consumption by loripes</string>
          </property>
         </widget>
        </item>
@@ -522,7 +499,6 @@
   <tabstop>box_seagrass_growth_rate</tabstop>
   <tabstop>box_seagrass_to_organic_matter_factor</tabstop>
   <tabstop>box_sulfide_diffusion_rate</tabstop>
-  <tabstop>box_sulfide_consumption_by_loripes</tabstop>
   <tabstop>button_set_random_values</tabstop>
   <tabstop>button_load</tabstop>
   <tabstop>button_save</tabstop>

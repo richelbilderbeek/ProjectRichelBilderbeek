@@ -161,9 +161,25 @@ void Simulation::Run()
       const auto mr = m_parameters.GetMutualismBreakdownRate();
       const auto mmax = m_parameters.GetMutualismBreakdownMax();
       const auto mr0 = m_parameters.GetMutualismBreakdownR0();
-      const auto growth = rr*l.value()*(1.0-(l.value()/rmax));
+      //GF:
+      //r * (1-(n/K))*)*(N-K) + k
+      //const auto growth
+      //  = l
+      //  * (
+      //    rmax + ((rr * (1.0-(l.value()/rmax))) * (l.value()-rmax))
+      //  )
+
+      //RF:
+      //const auto growth = l * (rmax - ((rr * l.value()) / rmax))
+      if (rmax == 0.0)
+      {
+        std::clog << "STUB" << std::endl;
+        return;
+      }
+      //Logistic growth
+      const auto growth = rr*l*(1.0-(l.value()/rmax));
       /*
-      const auto recruitment
+      const auto growth
         = 1.0 - (l.value() * rmax / (1.0 + (rmax * rr * l.value())))
       */
       /*
@@ -175,7 +191,7 @@ void Simulation::Run()
       ;
       const auto mutualism_breakdown = l * mmax * (1.0 - ((mr0 * std::exp(mr * n.value())) / (1.0 + std::exp(mr * n.value()))));
       const auto delta_l
-        = growth
+        = growth.value()
         - mutualism_breakdown.value()
       ;
       loripes_density += (delta_l * boost::units::si::species_per_square_meter * delta_t);

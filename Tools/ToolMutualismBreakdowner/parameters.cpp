@@ -31,7 +31,6 @@ Parameters::Parameters()
     seagrass_carrying_capacity{0.0 * boost::units::si::species_per_square_meters},
     seagrass_growth_rate{0.0},
     seagrass_to_organic_matter_factor{0.0},
-    sulfide_consumption_by_loripes_rate{0.0},
     sulfide_diffusion_rate{0.0},
     n_timesteps{1}
 {
@@ -65,7 +64,6 @@ Parameters::Parameters(
   const ribi::units::SpeciesDensity any_seagrass_carrying_capacity,
   const double any_seagrass_growth_rate,
   const double any_seagrass_to_organic_matter_factor,
-  const double any_sulfide_consumption_by_loripes,
   const double any_sulfide_diffusion_rate,
   const int any_n_timesteps
 ) :
@@ -92,7 +90,6 @@ Parameters::Parameters(
     seagrass_carrying_capacity{any_seagrass_carrying_capacity},
     seagrass_growth_rate{any_seagrass_growth_rate},
     seagrass_to_organic_matter_factor{any_seagrass_to_organic_matter_factor},
-    sulfide_consumption_by_loripes_rate{any_sulfide_consumption_by_loripes},
     sulfide_diffusion_rate{any_sulfide_diffusion_rate},
     n_timesteps{any_n_timesteps}
 {
@@ -152,7 +149,6 @@ Parameters Parameters::GetTest(const int /* i */)
     1.0 * species_per_square_meters, //any_seagrass_carrying_capacity,
     0.1, //const double any_seagrass_growth_rate,
     0.1, //any_seagrass_to_organic_matter_factor,
-    0.1, //any_sulfide_consumption_by_loripes,
     0.1, //any_sulfide_diffusion_rate,
     100 //any_n_timesteps
   );
@@ -184,6 +180,11 @@ void Parameters::SetInitialSeagrassDensity(const ribi::units::SpeciesDensity any
     throw std::logic_error(s.str());
   }
   initial_seagrass_density = any_initial_seagrass_density;
+}
+
+void Parameters::SetOrganicMatterAddition(const double any_organic_matter_addition) noexcept
+{
+  organic_matter_addition = any_organic_matter_addition;
 }
 
 /*
@@ -239,10 +240,6 @@ void Parameters::SetMutualismBreakdownRate(const double any_mutualism_breakdown_
   mutualism_breakdown_rate = any_mutualism_breakdown_rate;
 }
 
-void Parameters::SetOrganicMatterAddition(const double any_organic_matter_addition) noexcept
-{
-  organic_matter_addition = any_organic_matter_addition;
-}
 
 void Parameters::SetOrganicMatterBreakdown(const double any_organic_matter_breakdown) noexcept
 {
@@ -264,6 +261,8 @@ void Parameters::SetOrganicMatterToSulfideRate(const double any_organic_matter_t
   organic_matter_to_sulfide_rate = any_organic_matter_to_sulfide_rate;
 }
 
+*/
+
 void Parameters::SetPoisoningFunction(const std::shared_ptr<PoisoningFunction> any_poisoning_function)
 {
   if (!any_poisoning_function)
@@ -275,7 +274,6 @@ void Parameters::SetPoisoningFunction(const std::shared_ptr<PoisoningFunction> a
   }
   this->poisoning_function = any_poisoning_function;
 }
-*/
 
 std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
 {
@@ -295,7 +293,6 @@ std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
     << parameter.seagrass_carrying_capacity << " "
     << parameter.seagrass_growth_rate << " "
     << parameter.seagrass_to_organic_matter_factor << " "
-    << parameter.sulfide_consumption_by_loripes_rate << " "
     << parameter.sulfide_diffusion_rate << " "
     << parameter.n_timesteps
   ;
@@ -320,7 +317,6 @@ std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept
     >> parameter.seagrass_carrying_capacity
     >> parameter.seagrass_growth_rate
     >> parameter.seagrass_to_organic_matter_factor
-    >> parameter.sulfide_consumption_by_loripes_rate
     >> parameter.sulfide_diffusion_rate
     >> parameter.n_timesteps
   ;
@@ -345,7 +341,6 @@ bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept
     && lhs.seagrass_carrying_capacity == rhs.seagrass_carrying_capacity
     && lhs.seagrass_growth_rate == rhs.seagrass_growth_rate
     && lhs.seagrass_to_organic_matter_factor == rhs.seagrass_to_organic_matter_factor
-    && lhs.sulfide_consumption_by_loripes_rate == rhs.sulfide_consumption_by_loripes_rate
     && lhs.sulfide_diffusion_rate == rhs.sulfide_diffusion_rate
     && lhs.n_timesteps == rhs.n_timesteps
   ;

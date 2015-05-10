@@ -89,36 +89,51 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
 {
   Parameters parameters{GetParameters()};
 
-  std::vector<double> ds; //desiccation stresses
+  std::vector<double> thetas; //desiccation stresses
   std::vector<double> ns_from_low; //seagrass equilibrium densities
   std::vector<double> ns_from_high; //seagrass equilibrium densities
 
-  for (double d=0.0; d<=1.0; d+=0.01)
+  for (double theta=0.0; theta<=10.0; theta+=1.0)
   {
-    ds.push_back(d);
+    parameters.SetOrganicMatterAddition(theta);
+    thetas.push_back(theta);
     //From low
     {
       parameters.SetInitialSeagrassDensity(0.1 * boost::units::si::species_per_square_meter);
       Simulation simulation(parameters);
       simulation.Run();
-      const auto n_end = simulation.GetSeagrassDensities().back();
-      ns_from_low.push_back(n_end.value());
+      if (simulation.GetSeagrassDensities().empty())
+      {
+        ns_from_low.push_back(0.0);
+      }
+      else
+      {
+        const auto n_end = simulation.GetSeagrassDensities().back();
+        ns_from_low.push_back(n_end.value());
+      }
     }
     //From high
     {
       parameters.SetInitialSeagrassDensity(1.0 * boost::units::si::species_per_square_meter);
       Simulation simulation(parameters);
       simulation.Run();
-      const auto n_end = simulation.GetSeagrassDensities().back();
-      ns_from_high.push_back(n_end.value());
+      if (simulation.GetSeagrassDensities().empty())
+      {
+        ns_from_high.push_back(0.0);
+      }
+      else
+      {
+        const auto n_end = simulation.GetSeagrassDensities().back();
+        ns_from_high.push_back(n_end.value());
+      }
     }
   }
 
   m_curve_equilbrium_from_low->setData(
-    new QwtPointArrayData(&ds[0],&ns_from_low[0],ns_from_low.size())
+    new QwtPointArrayData(&thetas[0],&ns_from_low[0],ns_from_low.size())
   );
   m_curve_equilbrium_from_high->setData(
-    new QwtPointArrayData(&ds[0],&ns_from_high[0],ns_from_high.size())
+    new QwtPointArrayData(&thetas[0],&ns_from_high[0],ns_from_high.size())
   );
   ui->plot_equilibrium->replot();
 
