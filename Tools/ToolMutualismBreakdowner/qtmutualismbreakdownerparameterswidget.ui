@@ -57,6 +57,9 @@
        </item>
        <item row="7" column="1">
         <widget class="QDoubleSpinBox" name="box_initial_organic_matter_density">
+         <property name="decimals">
+          <number>4</number>
+         </property>
          <property name="maximum">
           <double>10000000.000000000000000</double>
          </property>
@@ -144,10 +147,17 @@
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QDoubleSpinBox" name="box_detoxification_rate"/>
+        <widget class="QDoubleSpinBox" name="box_detoxification_rate">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="9" column="1">
         <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration">
+         <property name="decimals">
+          <number>4</number>
+         </property>
          <property name="maximum">
           <double>1000000.000000000000000</double>
          </property>
@@ -191,7 +201,11 @@
         </widget>
        </item>
        <item row="20" column="1">
-        <widget class="QDoubleSpinBox" name="box_recruitment_max"/>
+        <widget class="QDoubleSpinBox" name="box_recruitment_max">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="23" column="0">
         <widget class="QLabel" name="label_seagrass_growth_rate">
@@ -208,7 +222,11 @@
         </widget>
        </item>
        <item row="21" column="1">
-        <widget class="QDoubleSpinBox" name="box_recruitment_rate"/>
+        <widget class="QDoubleSpinBox" name="box_recruitment_rate">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="18" column="0">
         <widget class="QLabel" name="label_organic_matter_to_sulfide_rate">
@@ -218,16 +236,32 @@
         </widget>
        </item>
        <item row="14" column="1">
-        <widget class="QDoubleSpinBox" name="box_organic_matter_addition"/>
+        <widget class="QDoubleSpinBox" name="box_organic_matter_addition">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QDoubleSpinBox" name="box_detoxification_max_rate"/>
+        <widget class="QDoubleSpinBox" name="box_detoxification_max_rate">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="15" column="1">
-        <widget class="QDoubleSpinBox" name="box_organic_matter_breakdown"/>
+        <widget class="QDoubleSpinBox" name="box_organic_matter_breakdown">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="13" column="1">
-        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_rate"/>
+        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_rate">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="19" column="0" colspan="2">
         <widget class="QGroupBox" name="box_poisoning">
@@ -245,7 +279,11 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="box_detoxification_min"/>
+        <widget class="QDoubleSpinBox" name="box_detoxification_min">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="17" column="1">
         <widget class="QDoubleSpinBox" name="box_organic_matter_to_sulfide_factor">
@@ -268,7 +306,11 @@
         </widget>
        </item>
        <item row="12" column="1">
-        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_r0"/>
+        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_r0">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="20" column="0">
         <widget class="QLabel" name="label_recruitment_max">
@@ -278,7 +320,11 @@
         </widget>
        </item>
        <item row="16" column="1">
-        <widget class="QDoubleSpinBox" name="box_organic_matter_capture"/>
+        <widget class="QDoubleSpinBox" name="box_organic_matter_capture">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="17" column="0">
         <widget class="QLabel" name="label_organic_matter_to_sulfide_factor">
@@ -332,6 +378,9 @@
        </item>
        <item row="22" column="1">
         <widget class="QDoubleSpinBox" name="box_seagrass_carrying_capacity">
+         <property name="decimals">
+          <number>4</number>
+         </property>
          <property name="maximum">
           <double>1000000.000000000000000</double>
          </property>
@@ -355,7 +404,11 @@
         </widget>
        </item>
        <item row="11" column="1">
-        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_max"/>
+        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_max">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
        </item>
        <item row="12" column="0">
         <widget class="QLabel" name="label_mutualism_breakdown_r0">
@@ -383,6 +436,9 @@
        </item>
        <item row="24" column="1">
         <widget class="QDoubleSpinBox" name="box_seagrass_to_organic_matter_factor">
+         <property name="decimals">
+          <number>4</number>
+         </property>
          <property name="value">
           <double>0.100000000000000</double>
          </property>
