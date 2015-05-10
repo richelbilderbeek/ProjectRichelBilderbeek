@@ -9,6 +9,7 @@ namespace Ui {
 }
 
 struct QtLoripesConsumptionFunctionWidget;
+struct QtPoisoningFunctionWidget;
 
 class QtMutualismBreakdownerParametersWidget : public QWidget
 {
@@ -36,6 +37,7 @@ private:
   Ui::QtMutualismBreakdownerParametersWidget *ui;
 
   QtLoripesConsumptionFunctionWidget * const m_qtconsumptionwidget;
+  QtPoisoningFunctionWidget * const m_qtpoisoningwidget;
 
   #ifndef NDEBUG
   static void Test() noexcept;

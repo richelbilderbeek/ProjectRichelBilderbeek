@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>441</width>
-    <height>615</height>
+    <width>448</width>
+    <height>767</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -271,7 +271,7 @@
      </property>
     </widget>
    </item>
-   <item row="14" column="0" colspan="2">
+   <item row="16" column="0" colspan="2">
     <widget class="QGroupBox" name="box_consumption_by_loripes">
      <property name="title">
       <string>Sulfide consumption by Loripes</string>
@@ -285,21 +285,21 @@
      <layout class="QGridLayout" name="gridLayout"/>
     </widget>
    </item>
-   <item row="15" column="0" colspan="2">
+   <item row="17" column="0" colspan="2">
     <widget class="QPushButton" name="button_set_random_values">
      <property name="text">
       <string>Set &amp;random values</string>
      </property>
     </widget>
    </item>
-   <item row="16" column="0" colspan="2">
+   <item row="18" column="0" colspan="2">
     <widget class="QPushButton" name="button_load">
      <property name="text">
       <string>&amp;Load parameters</string>
      </property>
     </widget>
    </item>
-   <item row="17" column="0" colspan="2">
+   <item row="19" column="0" colspan="2">
     <widget class="QPushButton" name="button_save">
      <property name="text">
       <string>&amp;Save parameters</string>
@@ -324,6 +324,14 @@
      <property name="singleStep">
       <double>0.100000000000000</double>
      </property>
+    </widget>
+   </item>
+   <item row="15" column="0" colspan="2">
+    <widget class="QGroupBox" name="box_poisoning">
+     <property name="title">
+      <string>Poisoning</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2"/>
     </widget>
    </item>
   </layout>
