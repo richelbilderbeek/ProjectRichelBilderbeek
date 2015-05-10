@@ -14,7 +14,7 @@ struct Simulation
   const std::vector<double>& GetOrganicMatterDensities() const noexcept { return m_organic_matter_densities; }
   const std::vector<double>& GetTimeSeries() const noexcept { return m_timeseries; }
 
-  void Run() noexcept;
+  void Run();
 
   private:
   const Parameters m_parameters;

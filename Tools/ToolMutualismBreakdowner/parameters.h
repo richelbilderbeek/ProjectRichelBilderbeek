@@ -18,7 +18,8 @@ struct Parameters
     const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
     const double any_organic_matter_to_sulfide_factor,
     const double any_organic_matter_to_sulfide_rate,
-    const double any_seagrass_carrying_capacity,
+    const int any_rng_seed,
+    const ribi::units::SpeciesDensity any_seagrass_carrying_capacity,
     const double any_seagrass_growth_rate,
     const double any_seagrass_to_organic_matter_factor,
     const double any_sulfide_consumption_by_loripes,
@@ -33,23 +34,20 @@ struct Parameters
   std::shared_ptr<LoripesConsumptionFunction> loripes_consumption_function;
   double organic_matter_to_sulfide_factor;
   double organic_matter_to_sulfide_rate;
-  double seagrass_carrying_capacity;
+  int rng_seed;
+  ribi::units::SpeciesDensity seagrass_carrying_capacity;
   double seagrass_growth_rate;
   double seagrass_to_organic_matter_factor;
   double sulfide_consumption_by_loripes_rate;
   double sulfide_diffusion_rate;
   int n_timesteps;
 
-
-  ///Set these parameters to random values
-  void SetRandom();
-
   #ifndef NDEBUG
   static void Test() noexcept;
-  #endif
 
-  private:
-  double GetRandom() const noexcept;
+  ///Create a testing parameter set
+  static Parameters GetTest(const int i);
+  #endif
 };
 
 bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept;

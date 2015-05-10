@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "speciesdensity.h"
+
 ///A strategy
 ///It returns the fraction of seagrass that will die per sulfide concentration
 ///The idea is that lone seagrass will die,
@@ -26,7 +28,8 @@ struct PoisoningFunction
   }
   virtual ~PoisoningFunction() {}
   ///The fraction that will survive
-  virtual double operator()(const double seagrass_density) const = 0;
+  ///Will throw if seagrass_density is less than zero
+  virtual double CalculateSurvivalFraction(const ribi::units::SpeciesDensity seagrass_density) const = 0;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -42,7 +45,9 @@ struct InvertLogisticPoisoning : public PoisoningFunction
   )
     : m_r{r}, m_x0{x0} {}
   ~InvertLogisticPoisoning() {}
-  double operator()(const double seagrass_density) const override;
+  ///The fraction that will survive
+  ///Will throw if seagrass_density is less than zero
+  double CalculateSurvivalFraction(const ribi::units::SpeciesDensity seagrass_density) const override;
   std::string ToStr() const noexcept;
   const double m_r;
   const double m_x0;

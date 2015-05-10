@@ -22,13 +22,17 @@ void LoripesConsumptionFunction::Test() noexcept
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   using ribi::fileio::FileIo;
+  using boost::units::si::species_per_square_meters;
+
+  //Shape of function
   {
     const InvertedExponentialConsumption p;
-    assert(std::abs(p(    0.0)-0.0) < 0.1);
-    assert(std::abs(p(   20.0)-0.6) < 0.1);
-    assert(std::abs(p(   60.0)-0.9) < 0.1);
-    assert(std::abs(p(  100.0)-1.0) < 0.1);
+    assert(std::abs(p.CalculateConsumptionRate(  0.0 * species_per_square_meters)-0.0) < 0.1);
+    assert(std::abs(p.CalculateConsumptionRate( 20.0 * species_per_square_meters)-0.6) < 0.1);
+    assert(std::abs(p.CalculateConsumptionRate( 60.0 * species_per_square_meters)-0.9) < 0.1);
+    assert(std::abs(p.CalculateConsumptionRate(100.0 * species_per_square_meters)-1.0) < 0.1);
   }
+  //File I/O
   {
     const double r{12.34};
     InvertedExponentialConsumption c(r);
@@ -61,17 +65,22 @@ InvertedExponentialConsumption::InvertedExponentialConsumption(
 }
 
 
-double InvertedExponentialConsumption::operator()(
-  const double seagrass_density
+double InvertedExponentialConsumption::CalculateConsumptionRate(
+  const ribi::units::SpeciesDensity seagrass_density
 ) const noexcept
 {
+  assert(seagrass_density >= 0.0 * boost::units::si::species_per_square_meters);
+  const double n{seagrass_density.value()};
+  assert(n >= 0.0);
   const double result{
-    1.0 - std::exp(-m_r * seagrass_density)
+    1.0 - std::exp(-m_r * n)
   };
+  /*
   if (result < 0.0)
   {
     return 0.0;
   }
+  */
   assert(result >= 0.0);
   assert(result <= 1.0);
   return result;

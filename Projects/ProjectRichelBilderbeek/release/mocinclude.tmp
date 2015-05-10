@@ -142,10 +142,9 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Projects/ProjectRichelBilderbeek
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolAsciiArter
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolCaesarCipher
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolCodeBreaker
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolCreateGlossary
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolCreateQtProjectZipFile
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolCreateGlossary
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolDotMatrix
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolDotMatrix
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolEncranger
@@ -230,9 +229,9 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include/QtGui
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include/QtCore
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/4.9.2/include/c++
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/4.9.2/include/c++/i686-w64-mingw32.static
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/4.9.2/include/c++/backward
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/4.9.2/include
--I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/4.9.2/include-fixed
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.1.0/include/c++
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.1.0/include/c++/i686-w64-mingw32.static
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.1.0/include/c++/backward
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.1.0/include
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.1.0/include-fixed
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/include

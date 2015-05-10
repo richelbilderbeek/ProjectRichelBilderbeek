@@ -29,6 +29,16 @@ void Parameters::Test() noexcept
     Parameters q;
     assert(p == q);
   }
+  //Does loripes_consumption_function work?
+  {
+    const Parameters p = Parameters::GetTest(0);
+    assert(p.loripes_consumption_function);
+    assert(p.loripes_consumption_function.get());
+    assert(p.loripes_consumption_function->CalculateConsumptionRate(
+      p.initial_seagrass_density
+    ) >= 0.0);
+
+  }
   //Set same loripes_consumption_function
   {
     Parameters p;

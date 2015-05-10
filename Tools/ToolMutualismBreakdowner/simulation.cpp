@@ -26,8 +26,9 @@ Simulation::Simulation(const Parameters& parameters)
   #endif
 }
 
-void Simulation::Run() noexcept
+void Simulation::Run()
 {
+  const bool do_log{false};
   const int n_timesteps{m_parameters.n_timesteps};
   assert(n_timesteps >= 0);
   const double t_end{static_cast<double>(n_timesteps)};
@@ -36,21 +37,25 @@ void Simulation::Run() noexcept
   assert(delta_t > 0.0);
   const int sz{static_cast<int>(t_end / delta_t)};
   assert(sz > 0);
-  const int track_after{std::min(1,sz / 1000)};
+  const int track_after{std::max(1,sz / 1000)};
   assert(track_after > 0);
+  if (do_log) {
+    std::clog << "n_timesteps: " << n_timesteps << std::endl;
+    std::clog << "track_after: " << track_after << std::endl;
+  }
 
   const double b{m_parameters.organic_matter_to_sulfide_rate};
   const double c{m_parameters.sulfide_consumption_by_loripes_rate};
   const double d{m_parameters.desiccation_stress};
   const double f{m_parameters.organic_matter_to_sulfide_factor};
   const double g{m_parameters.sulfide_diffusion_rate};
-  const double k{m_parameters.seagrass_carrying_capacity};
+  const auto k = m_parameters.seagrass_carrying_capacity;
   const double l{1.0}; //loripes_density
   const double r{m_parameters.seagrass_growth_rate};
   const double z{m_parameters.seagrass_to_organic_matter_factor};
 
-  InvertLogisticPoisoning P;
-  InvertedExponentialConsumption L;
+  const InvertLogisticPoisoning P;
+  const InvertedExponentialConsumption L;
 
   //Initialize sim
   auto seagrass_density = m_parameters.initial_seagrass_density;
@@ -64,24 +69,35 @@ void Simulation::Run() noexcept
   int i=0;
   for (double t=0.0; t<t_end; t+=delta_t)
   {
+    if (do_log) {
+      std::clog << "Start " << i << "th timestep at t=" << t << std::endl;
+    }
     assert(i >= 0);
     //std::cerr << i << std::endl;
     const auto n = seagrass_density;
     const double s{sulfide_concentration};
     const double m{organic_matter_density};
     {
-      const auto delta_n
-        = (r*n.value()*(1.0-(n.value()/k))) //Growth
-        - (P(n.value())*s*n.value())
-        - (d*n.value())  //Desiccation stress
-      ;
-      if (std::isnan(delta_n)) return;
-      assert(!std::isnan(delta_n));
-      seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
+      try
+      {
+        const auto delta_n
+          = (r*n.value()*(1.0-(n/k))) //Growth
+          - (P.CalculateSurvivalFraction(n)*s*n.value())
+          - (d*n.value())  //Desiccation stress
+        ;
+        seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
+      }
+      catch (std::logic_error& e)
+      {
+        std::stringstream s;
+        s << "Simulation::Run(), calculating seagrass density: " << e.what();
+        std::clog << s.str() << std::endl;
+        return;
+      }
     }
     {
       const double delta_m{
-          (((P(n.value())*s*n.value()) + (d*n.value())) * z)
+          (((P.CalculateSurvivalFraction(n)*s*n.value()) + (d*n.value())) * z)
         - b * m
       };
       organic_matter_density += (delta_m * delta_t);
@@ -90,7 +106,7 @@ void Simulation::Run() noexcept
       using std::exp;
       const double delta_s{
           (f*b*m)   //Conversion from organic matter
-        - (c*l*s*L(n.value())) //Consumption of sulfide by loripes
+        - (c*l*s*L.CalculateConsumptionRate(n)) //Consumption of sulfide by loripes
         - (g*s)     //Diffusion of sulfide into the environment
       };
       sulfide_concentration += (delta_s * delta_t);
@@ -98,6 +114,10 @@ void Simulation::Run() noexcept
     }
     if (i % track_after)
     {
+      if (do_log)
+      {
+        std::clog << "Track " << i << std::endl;
+      }
       m_timeseries.push_back(static_cast<double>(t));
       m_seagrass_densities.push_back(seagrass_density);
       m_sulfide_concentrations.push_back(sulfide_concentration);

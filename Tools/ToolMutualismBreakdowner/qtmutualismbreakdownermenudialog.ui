@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>464</width>
-    <height>658</height>
+    <width>1060</width>
+    <height>377</height>
    </rect>
   </property>
   <property name="font">
@@ -31,30 +31,21 @@ QSpinBox,QDoubleSpinBox,QComboBox {
 
 QPushButton
 {
+  font: 32px bold &quot;Courier&quot; courier monospace;
   color: #000;
   background-color: qradialgradient(cx: 0.5, cy: 0.5,fx: 0.5, fy: 0.5,radius: 0.5, stop: 0 #fff, stop: 1 #aaa);
   border: 1px solid black
-}
-
-QPlainTextEdit {
-  font: 18px bold &quot;Courier&quot; courier monospace
 }</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="image_gabor">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="button_consumption">
      <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="ToolMutualismBreakdowner.qrc">:/images/SystemSmaller.jpg</pixmap>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>&amp;Consuption</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="0" column="1">
     <widget class="QPushButton" name="button_start_time_plot">
      <property name="text">
       <string>&amp;Time plot</string>
@@ -64,40 +55,66 @@ QPlainTextEdit {
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="ToolMutualismBreakdowner.qrc">:/images/EquationsSmaller.jpg</pixmap>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
+   <item row="0" column="2">
     <widget class="QPushButton" name="button_start_equilibrium_plot">
      <property name="text">
       <string>&amp;Equilibrium plot</string>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QPushButton" name="button_about">
+   <item row="1" column="0">
+    <widget class="QLabel" name="image_top">
      <property name="text">
-      <string>About</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolMutualismBreakdowner.qrc">:/images/LoripesLacteus1.jpg</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="image_bottom">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolMutualismBreakdowner.qrc">:/images/ZosteraNoltiiSmall.jpg</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="image_bottom_2">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolMutualismBreakdowner.qrc">:/images/EquilibriumSmall.jpg</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>Quit</string>
      </property>
      <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QPushButton" name="button_quit">
+   <item row="3" column="0" colspan="2">
+    <widget class="QPushButton" name="button_about">
      <property name="text">
-      <string>Quit</string>
+      <string>About</string>
      </property>
      <property name="flat">
       <bool>true</bool>

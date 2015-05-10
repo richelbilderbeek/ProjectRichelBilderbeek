@@ -106,7 +106,7 @@ void QtMutualismBreakdownerTimePlotDialog::FixZoom()
     QwtPlot::yLeft,0.0,
     std::max(
       GetParameters().initial_seagrass_density.value(),
-      GetParameters().seagrass_carrying_capacity
+      GetParameters().seagrass_carrying_capacity.value()
     )
   );
   ui->plot_seagrass_density->replot();

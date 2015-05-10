@@ -3,8 +3,12 @@
 
 #include <iosfwd>
 #include <memory>
+
+#include "speciesdensity.h"
+
 ///The idea is that the more seagrass is present,
-///the more Loripes can consume sulfide, because
+///the more Loripes lucinalis can consume sulfide, because
+///
 ///the seagrass supplies it with oxygen
 /*
 
@@ -27,8 +31,8 @@ struct LoripesConsumptionFunction
     #endif
   }
   virtual ~LoripesConsumptionFunction() {}
-  ///The fraction that will survive
-  virtual double operator()(const double seagrass_density) const noexcept = 0;
+  ///The rate at which Loripes consumes sulfide
+  virtual double CalculateConsumptionRate(const ribi::units::SpeciesDensity seagrass_density) const noexcept = 0;
   virtual std::string ToStr() const noexcept = 0;
 
   #ifndef NDEBUG
@@ -40,8 +44,8 @@ struct InvertedExponentialConsumption : LoripesConsumptionFunction
 {
   InvertedExponentialConsumption(const double r = 0.05);
   ~InvertedExponentialConsumption() {}
-  ///The fraction that will survive
-  double operator()(const double seagrass_density) const noexcept override;
+  ///The rate at which Loripes consumes sulfide
+  double CalculateConsumptionRate(const ribi::units::SpeciesDensity seagrass_density) const noexcept override;
   std::string ToStr() const noexcept override;
   const double m_r;
 };

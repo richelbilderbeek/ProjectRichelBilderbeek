@@ -16,7 +16,8 @@ Parameters::Parameters()
     loripes_consumption_function{new InvertedExponentialConsumption},
     organic_matter_to_sulfide_factor{0.0},
     organic_matter_to_sulfide_rate{0.0},
-    seagrass_carrying_capacity{0.0},
+    rng_seed{0},
+    seagrass_carrying_capacity{0.0 * boost::units::si::species_per_square_meters},
     seagrass_growth_rate{0.0},
     seagrass_to_organic_matter_factor{0.0},
     sulfide_consumption_by_loripes_rate{0.0},
@@ -37,7 +38,8 @@ Parameters::Parameters(
   const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
   const double any_organic_matter_to_sulfide_factor,
   const double any_organic_matter_to_sulfide_rate,
-  const double any_seagrass_carrying_capacity,
+  const int any_rng_seed,
+  const ribi::units::SpeciesDensity any_seagrass_carrying_capacity,
   const double any_seagrass_growth_rate,
   const double any_seagrass_to_organic_matter_factor,
   const double any_sulfide_consumption_by_loripes,
@@ -52,6 +54,7 @@ Parameters::Parameters(
     loripes_consumption_function{any_loripes_consumption_function},
     organic_matter_to_sulfide_factor{any_organic_matter_to_sulfide_factor},
     organic_matter_to_sulfide_rate{any_organic_matter_to_sulfide_rate},
+    rng_seed{any_rng_seed},
     seagrass_carrying_capacity{any_seagrass_carrying_capacity},
     seagrass_growth_rate{any_seagrass_growth_rate},
     seagrass_to_organic_matter_factor{any_seagrass_to_organic_matter_factor},
@@ -65,43 +68,36 @@ Parameters::Parameters(
   assert(delta_t > 0.0);
   assert(initial_seagrass_density >= 0.0 * boost::units::si::species_per_square_meter);
   assert(initial_sulfide_concentration >= 0.0);
-  assert(seagrass_carrying_capacity >= 0.0);
+  assert(seagrass_carrying_capacity >= 0.0 * boost::units::si::species_per_square_meter);
   assert(seagrass_growth_rate >= 0.0);
 }
 
-double Parameters::GetRandom() const noexcept
+Parameters Parameters::GetTest(const int /* i */)
 {
-  switch (std::rand() % 8)
-  {
-    case 0: return 10.0;
-    case 1: return  5.0;
-    case 2: return  1.0;
-    case 3: return  0.1;
-    case 4: return  0.5;
-    case 5: return  0.01;
-    case 6: return  0.005;
-    case 7: return  0.001;
-  }
-  return 0.0;
+  const auto loripes_consumption_function
+    = std::make_shared<InvertedExponentialConsumption>(0.05);
+  assert(loripes_consumption_function);
+  assert(loripes_consumption_function.get());
+  using boost::units::si::species_per_square_meters;
+  const Parameters p(
+    0.1, //any_delta_t,
+    0.1, //any_desiccation_stress,
+    0.0, //any_initial_organic_matter_density,
+    0.1 * species_per_square_meters, //initial_seagrass_density,
+    0.0, //any_initial_sulfide_density,
+    loripes_consumption_function,
+    0.1, //const double any_organic_matter_to_sulfide_factor,
+    0.1, //const double any_organic_matter_to_sulfide_rate,
+    0, //const int any_rng_seed,
+    1.0 * species_per_square_meters, //any_seagrass_carrying_capacity,
+    0.1, //const double any_seagrass_growth_rate,
+    0.1, //any_seagrass_to_organic_matter_factor,
+    0.1, //any_sulfide_consumption_by_loripes,
+    0.1, //any_sulfide_diffusion_rate,
+    100 //any_n_timesteps
+  );
+  return p;
 }
-
-void Parameters::SetRandom()
-{
-  delta_t = GetRandom();
-  desiccation_stress = GetRandom();
-  initial_organic_matter_density = GetRandom();
-  initial_seagrass_density = GetRandom() * boost::units::si::species_per_square_meter;
-  initial_sulfide_concentration = GetRandom();
-  organic_matter_to_sulfide_factor = GetRandom();
-  organic_matter_to_sulfide_rate = GetRandom();
-  seagrass_carrying_capacity = GetRandom();
-  seagrass_growth_rate = GetRandom();
-  seagrass_to_organic_matter_factor = GetRandom();
-  sulfide_consumption_by_loripes_rate = GetRandom();
-  sulfide_diffusion_rate = GetRandom();
-  n_timesteps = GetRandom();
-}
-
 
 std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
 {
