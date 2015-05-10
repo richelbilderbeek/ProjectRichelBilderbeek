@@ -26,7 +26,7 @@ Parameters::Parameters()
     organic_matter_to_sulfide_factor{0.0},
     organic_matter_to_sulfide_rate{0.0},
     poisoning_function{new InvertedExponentialPoisoning},
-    recruitment_max{0.0},
+    recruitment_max{0.1},
     recruitment_rate{0.0},
     seagrass_carrying_capacity{0.0 * boost::units::si::species_per_square_meters},
     seagrass_growth_rate{0.0},

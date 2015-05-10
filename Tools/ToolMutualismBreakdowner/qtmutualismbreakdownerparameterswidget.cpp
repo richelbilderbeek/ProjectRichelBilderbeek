@@ -120,13 +120,13 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   ui->box_organic_matter_capture->setValue(parameters.GetOrganicMatterCapture());
   ui->box_organic_matter_to_sulfide_factor->setValue(parameters.GetOrganicMatterToSulfideFactor());
   ui->box_organic_matter_to_sulfide_rate->setValue(parameters.GetOrganicMatterToSulfideRate());
-  ui->box_recruitment_max->setValue(parameters.recruitment_max);
-  ui->box_recruitment_rate->setValue(parameters.recruitment_rate);
-  ui->box_seagrass_carrying_capacity->setValue(parameters.seagrass_carrying_capacity.value());
-  ui->box_seagrass_growth_rate->setValue(parameters.seagrass_growth_rate);
-  ui->box_seagrass_to_organic_matter_factor->setValue(parameters.seagrass_to_organic_matter_factor);
-  ui->box_sulfide_diffusion_rate->setValue(parameters.sulfide_diffusion_rate);
-  ui->box_n_timesteps->setValue(parameters.n_timesteps);
+  ui->box_recruitment_max->setValue(parameters.GetRecruitmentMax());
+  ui->box_recruitment_rate->setValue(parameters.GetRecruitmentRate());
+  ui->box_seagrass_carrying_capacity->setValue(parameters.GetSeagrassCarryingCapacity().value());
+  ui->box_seagrass_growth_rate->setValue(parameters.GetSeagrassGrowthRate());
+  ui->box_seagrass_to_organic_matter_factor->setValue(parameters.GetSeagrassToOrganicMatterFactor());
+  ui->box_sulfide_diffusion_rate->setValue(parameters.GetSulfdeDiffusionRate());
+  ui->box_n_timesteps->setValue(parameters.GetNumberOfTimesteps());
   this->m_qtconsumptionwidget->SetFunction(parameters.GetLoripesConsumptionFunction());
   this->m_qtpoisoningwidget->SetFunction(parameters.GetPoisoningFunction());
 }

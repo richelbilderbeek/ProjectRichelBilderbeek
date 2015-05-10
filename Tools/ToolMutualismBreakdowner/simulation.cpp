@@ -29,7 +29,7 @@ Simulation::Simulation(const Parameters& parameters)
 
 void Simulation::Run()
 {
-  const int n_timesteps{m_parameters.n_timesteps};
+  const int n_timesteps{m_parameters.GetNumberOfTimesteps()};
   assert(n_timesteps >= 0);
   const double t_end{static_cast<double>(n_timesteps)};
   assert(t_end > 0.0);
@@ -40,15 +40,6 @@ void Simulation::Run()
   const int track_after{std::max(1,sz / 1000)};
   assert(track_after > 0);
 
-  //const double b{m_parameters.organic_matter_to_sulfide_rate};
-  //const double c{m_parameters.sulfide_consumption_by_loripes_rate};
-  //const double d{m_parameters.desiccation_stress};
-  //const double f{m_parameters.organic_matter_to_sulfide_factor};
-  //const double g{m_parameters.sulfide_diffusion_rate};
-  const auto k = m_parameters.seagrass_carrying_capacity;
-  //const double l{1.0}; //loripes_density
-  const double r{m_parameters.seagrass_growth_rate};
-  //const double z{m_parameters.seagrass_to_organic_matter_factor};
   const auto loripes_consumption_function = m_parameters.GetLoripesConsumptionFunction();
   const auto poisoning_function = m_parameters.GetPoisoningFunction();
 
@@ -79,6 +70,8 @@ void Simulation::Run()
     //Seagrass
     try
     {
+      const auto k = m_parameters.GetSeagrassCarryingCapacity();
+      const auto r = m_parameters.GetSeagrassGrowthRate();
       const auto growth = r*n.value()*(1.0-(n/k));
       const auto death_by_sulfide
         = poisoning_function->CalculateSurvivalFraction(s) * n.value()
@@ -117,7 +110,8 @@ void Simulation::Run()
         * m_parameters.GetOrganicMatterToSulfideRate()
         * m
       ;
-      const auto diffusion = m_parameters.sulfide_diffusion_rate
+      const auto diffusion
+        = m_parameters.GetSulfdeDiffusionRate()
         * s
       ;
       const auto d0 = m_parameters.GetDetoxicationMinimum();
@@ -156,8 +150,8 @@ void Simulation::Run()
     //Loripes density
     try
     {
-      const auto rr = m_parameters.recruitment_rate;
-      const auto rmax = m_parameters.recruitment_max;
+      const auto r = m_parameters.GetRecruitmentRate();
+      const auto K = m_parameters.GetRecruitmentMax();
       const auto mr = m_parameters.GetMutualismBreakdownRate();
       const auto mmax = m_parameters.GetMutualismBreakdownMax();
       const auto mr0 = m_parameters.GetMutualismBreakdownR0();
@@ -171,13 +165,13 @@ void Simulation::Run()
 
       //RF:
       //const auto growth = l * (rmax - ((rr * l.value()) / rmax))
-      if (rmax == 0.0)
+      if (K == 0.0)
       {
         std::clog << "STUB" << std::endl;
         return;
       }
       //Logistic growth
-      const auto growth = rr*l*(1.0-(l.value()/rmax));
+      const auto growth = r*l*(1.0-(l.value()/K));
       /*
       const auto growth
         = 1.0 - (l.value() * rmax / (1.0 + (rmax * rr * l.value())))

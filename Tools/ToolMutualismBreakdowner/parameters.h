@@ -62,8 +62,16 @@ struct Parameters
 
   void SetDeltaT(const double any_delta_t);
   void SetInitialSeagrassDensity(const ribi::units::SpeciesDensity any_initial_seagrass_density) noexcept;
-
   void SetOrganicMatterAddition(const double any_organic_matter_addition) noexcept;
+
+  double GetRecruitmentMax() const noexcept { return recruitment_max; }
+  double GetRecruitmentRate() const noexcept { return recruitment_rate; }
+
+  auto GetSeagrassCarryingCapacity() const noexcept { return seagrass_carrying_capacity; }
+  auto GetSeagrassGrowthRate() const noexcept { return seagrass_growth_rate; }
+  auto GetSeagrassToOrganicMatterFactor() const noexcept { return seagrass_to_organic_matter_factor; }
+  auto GetSulfdeDiffusionRate() const noexcept { return sulfide_diffusion_rate; }
+  auto GetNumberOfTimesteps() const noexcept { return n_timesteps; }
 
   /*
   void SetDetoxificationMaxRate(const double any_detoxification_max_rate) noexcept;
@@ -82,6 +90,13 @@ struct Parameters
   void SetOrganicMatterToSulfideRate(const double any_organic_matter_to_sulfide_rate) noexcept;
   */
   void SetPoisoningFunction(const std::shared_ptr<PoisoningFunction> any_poisoning_function);
+
+  #ifndef NDEBUG
+
+  static void Test() noexcept;
+  ///Create a testing parameter set
+  static Parameters GetTest(const int i);
+  #endif
 
   private:
   double delta_t;
@@ -103,7 +118,7 @@ struct Parameters
   double organic_matter_to_sulfide_rate;
   std::shared_ptr<PoisoningFunction> poisoning_function;
 
-  public:
+  private:
 
   double recruitment_max;
   double recruitment_rate;
@@ -113,13 +128,6 @@ struct Parameters
   double seagrass_to_organic_matter_factor;
   double sulfide_diffusion_rate;
   int n_timesteps;
-
-  #ifndef NDEBUG
-  static void Test() noexcept;
-
-  ///Create a testing parameter set
-  static Parameters GetTest(const int i);
-  #endif
 
   friend std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept;
   friend std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept;
