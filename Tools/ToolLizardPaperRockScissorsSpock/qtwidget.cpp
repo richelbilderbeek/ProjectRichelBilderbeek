@@ -50,13 +50,15 @@ void QtWidget::OnTimer()
     {
       const auto celltype = grid[y][x];
       auto color = qRgb(0,0,0);
+      const int mid{0};
+      const int high{255};
       switch (celltype)
       {
-        case CellType::lizard: color = qRgb(0,128,0); break;
-        case CellType::paper: color = qRgb(255,255,255); break;
-        case CellType::rock: color = qRgb(0,0,0); break;
-        case CellType::scissors: color = qRgb(128,128,128); break;
-        case CellType::spock: color = qRgb(0,0,128); break;
+        case CellType::lizard: color = qRgb(high,mid,mid); break;
+        case CellType::paper: color = qRgb(mid,high,mid); break;
+        case CellType::rock: color = qRgb(mid,high,high); break;
+        case CellType::scissors: color = qRgb(high,mid,high); break;
+        case CellType::spock: color = qRgb(high,high,mid); break;
       }
       image.setPixel(x,y,color);
     }

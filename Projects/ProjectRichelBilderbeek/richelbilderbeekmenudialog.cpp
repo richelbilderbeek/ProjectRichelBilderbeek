@@ -1553,6 +1553,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
       break;
       case ProgramType::musicTheory: p.reset(new MusicTheoryMenuDialog); break;
+      case ProgramType::mutualismBreakdowner: p.reset(new MutualismBreakdownerMenuDialog); break;
       case ProgramType::ndsmake:
       {
         const std::string version = "x.x";

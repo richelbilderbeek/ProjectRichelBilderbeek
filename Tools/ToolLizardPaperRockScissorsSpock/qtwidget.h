@@ -18,8 +18,8 @@ class QtWidget : public QWidget
 
 public:
   explicit QtWidget(
-    const int width = 600,
-    const int height = 400,
+    const int width = 300,
+    const int height = 200,
     QWidget *parent = 0
   );
   QtWidget(const QtWidget&) = delete;

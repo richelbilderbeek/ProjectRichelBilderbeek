@@ -19,7 +19,7 @@ Simulation::Simulation(const int width, const int height)
     for (int x=0; x!=width; ++x)
     {
       CellType& celltype = m_grid[y][x];
-      const bool do_initialize_randomly{true};
+      const bool do_initialize_randomly{false};
       if (do_initialize_randomly)
       {
         switch (std::rand() % 5)
@@ -36,10 +36,10 @@ Simulation::Simulation(const int width, const int height)
         switch ((y / (height / 15)) % 5)
         {
           case 0: celltype = CellType::paper; break;
-          case 1: celltype = CellType::scissors; break;
-          case 2: celltype = CellType::rock; break;
-          case 3: celltype = CellType::spock; break;
-          case 4: celltype = CellType::lizard; break;
+          case 1: celltype = CellType::lizard; break;
+          case 2: celltype = CellType::scissors; break;
+          case 3: celltype = CellType::rock; break;
+          case 4: celltype = CellType::spock; break;
         }
       }
     }
