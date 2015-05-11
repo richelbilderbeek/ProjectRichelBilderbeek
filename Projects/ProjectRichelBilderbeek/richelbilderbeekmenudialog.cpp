@@ -104,6 +104,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "musicnote.h"
 #include "musicscale.h"
 #include "musictheorymenudialog.h"
+#include "mutualismbreakdownermenudialog.h"
 #include "mysterymachine.h"
 #include "mysterymachinewidget.h"
 #include "newick.h"

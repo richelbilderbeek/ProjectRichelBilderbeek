@@ -1,16 +1,9 @@
-#include "qtwidget.h"
-#include <QApplication>
-#include <QDesktopWidget>
-#include "lizard_paper_rock_scissors_spock.h"
+#include "lizardpaperrockscissorsspockmenudialog.h"
+#include "trace.h"
+
 int main(int argc, char *argv[])
 {
-  QApplication a(argc, argv);
-  TestLizardPaperRockScissorsSpock();
-  QtWidget w;
-  {
-    const QRect screen = QApplication::desktop()->screenGeometry();
-    w.move( screen.center() - w.rect().center() );
-  }
-  w.show();
-  return a.exec();
+  START_TRACE();
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  return ribi::LizardPaperRockScissorsSpockMenuDialog().Execute(args);
 }
