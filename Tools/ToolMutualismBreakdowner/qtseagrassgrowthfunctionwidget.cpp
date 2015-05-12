@@ -17,6 +17,7 @@ QtSeagrassGrowthFunctionWidget::QtSeagrassGrowthFunctionWidget(QWidget *parent) 
 
   QObject::connect(ui->box_seagrass_carrying_capacity,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_seagrass_stress_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 }
 
 QtSeagrassGrowthFunctionWidget::~QtSeagrassGrowthFunctionWidget()
@@ -26,9 +27,10 @@ QtSeagrassGrowthFunctionWidget::~QtSeagrassGrowthFunctionWidget()
 
 std::shared_ptr<SeagrassGrowthFunction> QtSeagrassGrowthFunctionWidget::GetFunction() const noexcept
 {
-  return std::make_shared<SeagrassLogisticGrowth>(
+  return std::make_shared<SeagrassStressedLogisticGrowth>(
     ui->box_seagrass_carrying_capacity->value() * boost::units::si::species_per_square_meter,
-    ui->box_seagrass_growth_rate->value() * boost::units::si::per_second
+    ui->box_seagrass_growth_rate->value() * boost::units::si::per_second,
+    ui->box_seagrass_stress_rate->value() * boost::units::si::per_second
   );
 }
 
@@ -46,12 +48,15 @@ void QtSeagrassGrowthFunctionWidget::SetFunction(const std::shared_ptr<SeagrassG
   }
   #endif
   assert(f);
-  const auto iec = std::dynamic_pointer_cast<SeagrassLogisticGrowth>(f);
+  const auto iec = std::dynamic_pointer_cast<SeagrassStressedLogisticGrowth>(f);
   assert(iec);
   ui->box_seagrass_growth_rate->setValue(
     iec->GetGrowthRate().value()
   );
   ui->box_seagrass_carrying_capacity->setValue(
     iec->GetCarryingCapacity().value()
+  );
+  ui->box_seagrass_stress_rate->setValue(
+    iec->GetStressRate().value()
   );
 }
