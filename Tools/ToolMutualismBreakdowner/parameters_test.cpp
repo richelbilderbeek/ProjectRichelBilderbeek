@@ -8,7 +8,7 @@
 #include <boost/units/io.hpp>
 
 #include "fileio.h"
-#include "loripesconsumptionfunction.h"
+#include "sulfideconsumptionfunction.h"
 #include "testtimer.h"
 
 void Parameters::Test() noexcept
@@ -33,36 +33,39 @@ void Parameters::Test() noexcept
   //Does loripes_consumption_function work?
   {
     const Parameters p = Parameters::GetTest(0);
-    assert(p.loripes_consumption_function);
-    assert(p.loripes_consumption_function.get());
-    assert(p.loripes_consumption_function->CalculateConsumptionRate(
-      p.initial_seagrass_density
-    ) >= 0.0);
+    assert(p.m_loripes_consumption_function);
+    assert(p.m_loripes_consumption_function.get());
+    assert(p.m_loripes_consumption_function->CalculateConsumption(
+      p.initial_sulfide_concentration,
+      p.initial_loripes_density
+    ).value() >= 0.0);
   }
   //Does loripes_consumption_function work after copying?
   {
     const Parameters p = Parameters::GetTest(0);
-    assert(p.loripes_consumption_function);
-    assert(p.loripes_consumption_function.get());
-    assert(p.loripes_consumption_function->CalculateConsumptionRate(
-      p.initial_seagrass_density
-    ) >= 0.0);
+    assert(p.m_loripes_consumption_function);
+    assert(p.m_loripes_consumption_function.get());
+    assert(p.m_loripes_consumption_function->CalculateConsumption(
+      p.initial_sulfide_concentration,
+      p.initial_loripes_density
+    ).value() >= 0.0);
     const Parameters q(p);
-    assert(q.loripes_consumption_function);
-    assert(q.loripes_consumption_function.get());
-    assert(q.loripes_consumption_function->CalculateConsumptionRate(
-      q.initial_seagrass_density
-    ) >= 0.0);
+    assert(q.m_loripes_consumption_function);
+    assert(q.m_loripes_consumption_function.get());
+    assert(q.m_loripes_consumption_function->CalculateConsumption(
+      q.initial_sulfide_concentration,
+      q.initial_loripes_density
+    ).value() >= 0.0);
   }
   //Set same loripes_consumption_function
   {
     Parameters p;
-    p.loripes_consumption_function
-      = std::make_shared<InvertedExponentialConsumption>(0.5)
+    p.m_loripes_consumption_function
+      = std::make_shared<LinearConsumption>(0.5)
     ;
     Parameters q;
-    q.loripes_consumption_function
-      = std::make_shared<InvertedExponentialConsumption>(0.5)
+    q.m_loripes_consumption_function
+      = std::make_shared<LinearConsumption>(0.5)
     ;
     if (p != q)
     {
@@ -73,12 +76,12 @@ void Parameters::Test() noexcept
   //Set different loripes_consumption_function
   {
     Parameters p;
-    p.loripes_consumption_function
-      = std::make_shared<InvertedExponentialConsumption>(0.5)
+    p.m_loripes_consumption_function
+      = std::make_shared<LinearConsumption>(0.5)
     ;
     Parameters q;
-    q.loripes_consumption_function
-      = std::make_shared<InvertedExponentialConsumption>(0.6)
+    q.m_loripes_consumption_function
+      = std::make_shared<LinearConsumption>(0.6)
     ;
     assert(p != q);
   }

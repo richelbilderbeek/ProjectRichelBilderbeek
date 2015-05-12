@@ -95,7 +95,7 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
 
   for (double theta=0.0; theta<=10.0; theta+=1.0)
   {
-    parameters.SetOrganicMatterAddition(theta);
+    //parameters.SetOrganicMatterAddition(theta);
     thetas.push_back(theta);
     //From low
     {

@@ -1,7 +1,7 @@
 #include <QApplication>
 #include "qtmutualismbreakdownermenudialog.h"
 #include "poisoningfunction.h"
-#include "loripesconsumptionfunction.h"
+#include "sulfideconsumptionfunction.h"
 #include "parameters.h"
 #include "units.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
   QtMutualismBreakdownerEquilibriumDialog();
   ribi::units::Test();
   InvertedExponentialPoisoning();
-  InvertedExponentialConsumption();
+  //InvertedExponentialConsumption();
   Parameters();
   ribi::QtMutualismBreakdownerMenuDialog w;
   w.show();

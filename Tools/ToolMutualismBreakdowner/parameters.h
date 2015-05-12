@@ -6,9 +6,10 @@
 #include "speciesdensity.h"
 #include "concentration.h"
 
-struct LoripesConsumptionFunction;
+struct SulfideConsumptionFunction;
 struct PoisoningFunction;
 struct SeagrassGrowthFunction;
+struct SulfideProductionFunction;
 
 struct Parameters
 {
@@ -22,7 +23,7 @@ struct Parameters
     const double any_initial_organic_matter_density,
     const ribi::units::SpeciesDensity initial_seagrass_density,
     const ribi::units::Concentration any_initial_sulfide_density,
-    const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
+    const std::shared_ptr<SulfideConsumptionFunction>& any_loripes_consumption_function,
     const double any_mutualism_breakdown_max,
     const double any_mutualism_breakdown_r0,
     const double any_mutualism_breakdown_rate,
@@ -39,60 +40,27 @@ struct Parameters
     const double any_seagrass_growth_rate,
     const double any_seagrass_to_organic_matter_factor,
     const double any_sulfide_diffusion_rate,
+    std::shared_ptr<SulfideProductionFunction> sulfide_production_function,
     const int any_n_timesteps
   );
 
   double GetDeltaT() const noexcept { return delta_t; }
-  double GetDetoxicationMaxRate() const noexcept { return detoxification_max_rate; }
-  double GetDetoxicationMinimum() const noexcept { return detoxification_minimum; }
-  double GetDetoxicationRate() const noexcept { return detoxification_rate; }
 
   auto GetInitialLoripesDensity() const noexcept { return initial_loripes_density; }
   auto GetInitialOrganicMatterDensity() const noexcept { return initial_organic_matter_density; }
   auto GetInitialSeagrassDensity() const noexcept { return initial_seagrass_density; }
   auto GetInitialSulfideConcentration() const noexcept { return initial_sulfide_concentration; }
-  const auto& GetLoripesConsumptionFunction() const noexcept { return loripes_consumption_function; }
-  auto GetMutualismBreakdownMax() const noexcept { return mutualism_breakdown_max; }
-  auto GetMutualismBreakdownR0() const noexcept { return mutualism_breakdown_r0; }
-  auto GetMutualismBreakdownRate() const noexcept { return mutualism_breakdown_rate; }
-  auto GetOrganicMatterAddition() const noexcept { return organic_matter_addition; }
-  auto GetOrganicMatterBreakdown() const noexcept { return organic_matter_breakdown; }
-  auto GetOrganicMatterCapture() const noexcept { return organic_matter_capture; }
-  auto GetOrganicMatterToSulfideFactor() const noexcept { return organic_matter_to_sulfide_factor; }
-  auto GetOrganicMatterToSulfideRate() const noexcept { return organic_matter_to_sulfide_rate; }
+
+  auto GetNumberOfTimesteps() const noexcept { return n_timesteps; }
+
+  const auto& GetSulfideConsumptionFunction() const noexcept { return m_loripes_consumption_function; }
   const auto& GetPoisoningFunction() const noexcept { return m_poisoning_function; }
+  const auto& GetSeagrassGrowthFunction() const noexcept { return m_seagrass_growth_function; }
+  const auto& GetSulfideProductionFunction() const noexcept { return m_sulfide_production_function; }
 
   void SetDeltaT(const double any_delta_t);
   void SetInitialSeagrassDensity(const ribi::units::SpeciesDensity any_initial_seagrass_density) noexcept;
-  void SetOrganicMatterAddition(const double any_organic_matter_addition) noexcept;
 
-  double GetRecruitmentMax() const noexcept { return recruitment_max; }
-  double GetRecruitmentRate() const noexcept { return recruitment_rate; }
-
-  const auto& GetSeagrassGrowthFunction() const noexcept { return m_seagrass_growth_function; }
-
-  auto GetSeagrassCarryingCapacity() const noexcept { return seagrass_carrying_capacity; }
-  auto GetSeagrassGrowthRate() const noexcept { return seagrass_growth_rate; }
-  auto GetSeagrassToOrganicMatterFactor() const noexcept { return seagrass_to_organic_matter_factor; }
-  auto GetSulfdeDiffusionRate() const noexcept { return sulfide_diffusion_rate; }
-  auto GetNumberOfTimesteps() const noexcept { return n_timesteps; }
-
-  /*
-  void SetDetoxificationMaxRate(const double any_detoxification_max_rate) noexcept;
-  void SetDetoxificationMinimum(const double any_detoxification_minimum) noexcept;
-  void SetDetoxificationRate(const double any_detoxification_rate) noexcept;
-  void SetInitialLoripesDensity(const ribi::units::SpeciesDensity any_initial_loripes_density) noexcept;
-  void SetInitialOrganicMatterDensity(const double any_initial_organic_matter_density) noexcept;
-  void SetInitialSulfideConcentation(const ribi::units::Concentration any_initial_sulfide_concentration) noexcept;
-  void SetLoripesConsumptionFunction(const std::shared_ptr<LoripesConsumptionFunction> any_loripes_consumption_function) noexcept;
-  void SetMutualismBreakdownMax(const double any_mutualism_breakdown_max) noexcept;
-  void SetMutualismBreakdownR0(const double any_mutualism_breakdown_r0) noexcept;
-  void SetMutualismBreakdownRate(const double any_mutualism_breakdown_rate) noexcept;
-  void SetOrganicMatterBreakdown(const double any_organic_matter_breakdown) noexcept;
-  void SetOrganicMatterCapture(const double any_organic_matter_capture) noexcept;
-  void SetOrganicMatterToSulfideFactor(const double any_organic_matter_to_sulfide_factor) noexcept;
-  void SetOrganicMatterToSulfideRate(const double any_organic_matter_to_sulfide_rate) noexcept;
-  */
   void SetPoisoningFunction(const std::shared_ptr<PoisoningFunction> any_poisoning_function);
 
   #ifndef NDEBUG
@@ -111,7 +79,7 @@ struct Parameters
   double initial_organic_matter_density;
   ribi::units::SpeciesDensity initial_seagrass_density;
   ribi::units::Concentration initial_sulfide_concentration;
-  std::shared_ptr<LoripesConsumptionFunction> loripes_consumption_function;
+  std::shared_ptr<SulfideConsumptionFunction> m_loripes_consumption_function;
   double mutualism_breakdown_max;
   double mutualism_breakdown_r0;
   double mutualism_breakdown_rate;
@@ -133,6 +101,9 @@ struct Parameters
   double seagrass_growth_rate;
   double seagrass_to_organic_matter_factor;
   double sulfide_diffusion_rate;
+
+  std::shared_ptr<SulfideProductionFunction> m_sulfide_production_function;
+
   int n_timesteps;
 
   friend std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept;

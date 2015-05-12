@@ -20,6 +20,7 @@ namespace boost {
 
       using concentration = unit<concentration_dimension,si::system>;
       BOOST_UNITS_STATIC_CONSTANT(mol_per_cubic_meter,concentration);
+      BOOST_UNITS_STATIC_CONSTANT(mole_per_cubic_meter,concentration);
 
       using Concentration = boost::units::quantity<boost::units::si::concentration>;
       std::istream& operator>>(std::istream& is,Concentration& sd);

@@ -4,9 +4,10 @@
 #include <iostream>
 #include <boost/units/io.hpp>
 
-#include "loripesconsumptionfunction.h"
+#include "sulfideconsumptionfunction.h"
 #include "poisoningfunction.h"
 #include "seagrassgrowthfunction.h"
+#include "sulfideproductionfunction.h"
 
 Parameters::Parameters()
   :
@@ -18,7 +19,7 @@ Parameters::Parameters()
     initial_organic_matter_density{0.0},
     initial_seagrass_density{0.0 * boost::units::si::species_per_square_meters},
     initial_sulfide_concentration{0.0 * boost::units::si::mole / boost::units::si::cubic_meter},
-    loripes_consumption_function{new InvertedExponentialConsumption},
+    m_loripes_consumption_function{new LinearConsumption},
     mutualism_breakdown_max{0.0},
     mutualism_breakdown_r0{0.0},
     mutualism_breakdown_rate{0.0},
@@ -35,6 +36,7 @@ Parameters::Parameters()
     seagrass_growth_rate{0.0},
     seagrass_to_organic_matter_factor{0.0},
     sulfide_diffusion_rate{0.0},
+    m_sulfide_production_function{std::make_shared<LinearSulfideProduction>()},
     n_timesteps{1}
 {
   #ifndef NDEBUG
@@ -53,7 +55,7 @@ Parameters::Parameters(
   const double any_initial_organic_matter_density,
   const ribi::units::SpeciesDensity any_initial_seagrass_density,
   const ribi::units::Concentration any_initial_sulfide_density,
-  const std::shared_ptr<LoripesConsumptionFunction>& any_loripes_consumption_function,
+  const std::shared_ptr<SulfideConsumptionFunction>& any_loripes_consumption_function,
   const double any_mutualism_breakdown_max,
   const double any_mutualism_breakdown_r0,
   const double any_mutualism_breakdown_rate,
@@ -70,6 +72,7 @@ Parameters::Parameters(
   const double any_seagrass_growth_rate,
   const double any_seagrass_to_organic_matter_factor,
   const double any_sulfide_diffusion_rate,
+  std::shared_ptr<SulfideProductionFunction> sulfide_production_function,
   const int any_n_timesteps
 ) :
     delta_t{any_delta_t},
@@ -80,7 +83,7 @@ Parameters::Parameters(
     initial_organic_matter_density{any_initial_organic_matter_density},
     initial_seagrass_density{any_initial_seagrass_density},
     initial_sulfide_concentration{any_initial_sulfide_density},
-    loripes_consumption_function{any_loripes_consumption_function},
+    m_loripes_consumption_function{any_loripes_consumption_function},
     mutualism_breakdown_max{any_mutualism_breakdown_max},
     mutualism_breakdown_r0{any_mutualism_breakdown_r0},
     mutualism_breakdown_rate{any_mutualism_breakdown_rate},
@@ -97,6 +100,7 @@ Parameters::Parameters(
     seagrass_growth_rate{any_seagrass_growth_rate},
     seagrass_to_organic_matter_factor{any_seagrass_to_organic_matter_factor},
     sulfide_diffusion_rate{any_sulfide_diffusion_rate},
+    m_sulfide_production_function{sulfide_production_function},
     n_timesteps{any_n_timesteps}
 {
   #ifndef NDEBUG
@@ -114,29 +118,30 @@ Parameters::Parameters(
   assert(initial_sulfide_concentration >= 0.0 * mole / cubic_meter);
   assert(seagrass_carrying_capacity >= 0.0 * species_per_square_meter);
   assert(seagrass_growth_rate >= 0.0);
-  assert(loripes_consumption_function);
+  assert(m_loripes_consumption_function);
   assert(m_seagrass_growth_function);
   assert(m_poisoning_function);
+  assert(m_sulfide_production_function);
 }
 
 Parameters Parameters::GetTest(const int /* i */)
 {
   const auto loripes_consumption_function
-    = std::make_shared<InvertedExponentialConsumption>(0.05);
-  assert(loripes_consumption_function);
-  assert(loripes_consumption_function.get());
+    = std::make_shared<LinearConsumption>(0.05);
   const auto poisoning_function
     = std::make_shared<InvertedExponentialPoisoning>(0.01,0.05,1.0);
-  assert(poisoning_function);
-  assert(poisoning_function.get());
   const auto seagrass_growth_function
     = std::make_shared<SeagrassStressedLogisticGrowth>(
       0.5 * boost::units::si::species_per_square_meter, //carrying_capacity
       1.1 * boost::units::si::per_second, //growth_rate
       0.1 * boost::units::si::per_second //stress_rate
     );
-  assert(seagrass_growth_function);
-  assert(seagrass_growth_function.get());
+  const auto sulfide_production_function
+    = std::make_shared<LinearSulfideProduction>(
+      0.5
+    );
+
+
   using boost::units::si::species_per_square_meters;
   using boost::units::si::mole;
   using boost::units::si::cubic_meter;
@@ -166,6 +171,7 @@ Parameters Parameters::GetTest(const int /* i */)
     0.1, //const double any_seagrass_growth_rate,
     0.1, //any_seagrass_to_organic_matter_factor,
     0.1, //any_sulfide_diffusion_rate,
+    sulfide_production_function,
     100 //any_n_timesteps
   );
   return p;
@@ -198,87 +204,6 @@ void Parameters::SetInitialSeagrassDensity(const ribi::units::SpeciesDensity any
   initial_seagrass_density = any_initial_seagrass_density;
 }
 
-void Parameters::SetOrganicMatterAddition(const double any_organic_matter_addition) noexcept
-{
-  organic_matter_addition = any_organic_matter_addition;
-}
-
-/*
-
-void Parameters::SetDetoxificationMaxRate(const double any_detoxification_max_rate) noexcept
-{
-  detoxification_max_rate = any_detoxification_max_rate;
-}
-
-void Parameters::SetDetoxificationMinimum(const double any_detoxification_minimum) noexcept
-{
-  detoxification_minimum = any_detoxification_minimum;
-}
-
-void Parameters::SetDetoxificationRate(const double any_detoxification_rate) noexcept
-{
-  detoxification_rate = any_detoxification_rate;
-}
-
-void Parameters::SetInitialLoripesDensity(const ribi::units::SpeciesDensity any_initial_loripes_density) noexcept
-{
-  initial_loripes_density = any_initial_loripes_density;
-}
-
-void Parameters::SetInitialOrganicMatterDensity(const double any_initial_organic_matter_density) noexcept
-{
-  initial_organic_matter_density = any_initial_organic_matter_density;
-}
-
-
-void Parameters::SetInitialSulfideConcentation(const ribi::units::Concentration any_initial_sulfide_concentration) noexcept
-{
-  initial_sulfide_concentration = any_initial_sulfide_concentration;
-}
-
-void Parameters::SetLoripesConsumptionFunction(const std::shared_ptr<LoripesConsumptionFunction> any_loripes_consumption_function) noexcept
-{
-  loripes_consumption_function = any_loripes_consumption_function;
-}
-
-void Parameters::SetMutualismBreakdownMax(const double any_mutualism_breakdown_max) noexcept
-{
-  mutualism_breakdown_max = any_mutualism_breakdown_max;
-}
-
-void Parameters::SetMutualismBreakdownR0(const double any_mutualism_breakdown_r0) noexcept
-{
-  mutualism_breakdown_r0 = any_mutualism_breakdown_r0;
-}
-
-void Parameters::SetMutualismBreakdownRate(const double any_mutualism_breakdown_rate) noexcept
-{
-  mutualism_breakdown_rate = any_mutualism_breakdown_rate;
-}
-
-
-void Parameters::SetOrganicMatterBreakdown(const double any_organic_matter_breakdown) noexcept
-{
-  organic_matter_breakdown = any_organic_matter_breakdown;
-}
-
-void Parameters::SetOrganicMatterCapture(const double any_organic_matter_capture) noexcept
-{
-  organic_matter_capture = any_organic_matter_capture;
-}
-
-void Parameters::SetOrganicMatterToSulfideFactor(const double any_organic_matter_to_sulfide_factor) noexcept
-{
-  organic_matter_to_sulfide_factor = any_organic_matter_to_sulfide_factor;
-}
-
-void Parameters::SetOrganicMatterToSulfideRate(const double any_organic_matter_to_sulfide_rate) noexcept
-{
-  organic_matter_to_sulfide_rate = any_organic_matter_to_sulfide_rate;
-}
-
-*/
-
 void Parameters::SetPoisoningFunction(const std::shared_ptr<PoisoningFunction> any_poisoning_function)
 {
   if (!any_poisoning_function)
@@ -299,7 +224,7 @@ std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
     << parameter.GetInitialOrganicMatterDensity() << " "
     << parameter.GetInitialSeagrassDensity() << " "
     << parameter.GetInitialSulfideConcentration() << " "
-    << *parameter.GetLoripesConsumptionFunction() << " "
+    << *parameter.GetSulfideConsumptionFunction() << " "
     << parameter.organic_matter_addition << " "
     << parameter.organic_matter_breakdown << " "
     << parameter.organic_matter_capture << " "
@@ -323,7 +248,7 @@ std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept
     >> parameter.initial_organic_matter_density
     >> parameter.initial_seagrass_density
     >> parameter.initial_sulfide_concentration
-    >> parameter.loripes_consumption_function
+    >> parameter.m_loripes_consumption_function
     >> parameter.organic_matter_addition
     >> parameter.organic_matter_breakdown
     >> parameter.organic_matter_capture
@@ -347,7 +272,7 @@ bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept
     && lhs.initial_organic_matter_density == rhs.initial_organic_matter_density
     && lhs.initial_seagrass_density == rhs.initial_seagrass_density
     && lhs.initial_sulfide_concentration == rhs.initial_sulfide_concentration
-    && lhs.loripes_consumption_function->ToStr() == rhs.loripes_consumption_function->ToStr()
+    && lhs.m_loripes_consumption_function->ToStr() == rhs.m_loripes_consumption_function->ToStr()
     && lhs.organic_matter_addition == rhs.organic_matter_addition
     && lhs.organic_matter_breakdown == rhs.organic_matter_breakdown
     && lhs.organic_matter_capture == rhs.organic_matter_capture
