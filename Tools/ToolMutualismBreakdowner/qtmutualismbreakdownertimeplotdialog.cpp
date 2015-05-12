@@ -38,6 +38,7 @@ QtMutualismBreakdownerTimePlotDialog::QtMutualismBreakdownerTimePlotDialog(QWidg
   assert(this->ui->widget->layout());
   this->ui->widget->layout()->addWidget(m_parameters_widget);
 
+
   ui->plot_loripes_density->setTitle("Loripes density");
   ui->plot_seagrass_density->setTitle("Seagrass density");
   ui->plot_sulfide_concentration->setTitle("Sulfide concentration");

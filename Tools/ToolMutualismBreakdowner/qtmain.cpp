@@ -26,6 +26,23 @@
 //  Image from NIOZ, from http://www.nioz.nl/files/afdelingen/MEE/Seagrass6.jpg
 //  The image was at the side of http://www.nioz.nl/nieuws-detail/biobouwers-structureren-het-voedselweb-in-intergetijde-kustgebieden
 
+/*
+            GROWTH             POISONING
+
+                  N              b*e^(a*N)
+dN/dt = r*N*(1 - ---) + (1 + ------------- )*m*N*S
+                  K          1 - b*e^(a*N)
+
+
+
+        SULFIDE       EXTERNAL  DIFFUSION     DETOXIFICATION
+        PRODUCTION    SULFIDE
+                      INPUT
+
+dS/dt =    b*N      +  theta   -    g*S    -       c*N*S
+
+*/
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);

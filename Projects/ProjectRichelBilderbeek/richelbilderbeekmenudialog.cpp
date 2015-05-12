@@ -112,6 +112,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "openfoammesh.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "paperrockscissorsmenudialog.h"
 #include "perfectelasticcollisionmenudialog.h"
 #include "pictocodemenudialog.h"
 #include "pixelatormenudialog.h"
@@ -1581,6 +1582,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
+      case ProgramType::paperRockScissors: p.reset(new PaperRockScissorsMenuDialog); break;
       case ProgramType::paperRockScissorsVcl:
       {
         const std::string version = "x.x";

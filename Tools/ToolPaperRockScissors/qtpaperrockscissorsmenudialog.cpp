@@ -7,7 +7,7 @@
 
 #include "qtaboutdialog.h"
 #include "paperrockscissorsmenudialog.h"
-#include "qtwidget.h"
+#include "qtpaperrockscissorswidget.h"
 #include "trace.h"
 #include "testtimer.h"
 #include "ui_qtpaperrockscissorsmenudialog.h"
@@ -33,7 +33,7 @@ void ribi::QtPaperRockScissorsMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtPaperRockScissorsMenuDialog::on_button_start_clicked()
 {
-  QtWidget * const w{new QtWidget};
+  QtPaperRockScissorsWidget * const w{new QtPaperRockScissorsWidget};
   QtHideAndShowDialog d(this);
   d.setWindowTitle("PaperRockScissors");
   QGridLayout * const my_layout{new QGridLayout};
@@ -75,7 +75,7 @@ void ribi::QtPaperRockScissorsMenuDialog::Test() noexcept
     is_tested = true;
   }
   {
-    QtWidget();
+    QtPaperRockScissorsWidget();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtPaperRockScissorsMenuDialog();

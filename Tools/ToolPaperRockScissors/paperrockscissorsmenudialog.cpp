@@ -12,8 +12,7 @@
 
 #include <QFile>
 
-//#include "paperrockscissors.h"
-#include "simulation.h"
+#include "paperrockscissorssimulation.h"
 #include "fileio.h"
 #include "richelbilderbeekprogram.h"
 #include "testtimer.h"
@@ -57,7 +56,9 @@ ribi::About ribi::PaperRockScissorsMenuDialog::GetAbout() const noexcept
 
 boost::shared_ptr<const ribi::Program> ribi::PaperRockScissorsMenuDialog::GetProgram() const noexcept
 {
-  const boost::shared_ptr<const ribi::Program> p; //(new ProgramPaperRockScissors);
+  const boost::shared_ptr<const ribi::Program> p(
+    new ProgramPaperRockScissors
+  );
   assert(p);
   return p;
 }

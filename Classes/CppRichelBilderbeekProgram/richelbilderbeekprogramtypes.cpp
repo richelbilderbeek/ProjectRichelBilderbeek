@@ -109,7 +109,9 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::multiEncrangerVcl,"multiEncrangerVcl"));
   m.insert(Pair(ProgramType::muscaDomestica,"muscaDomestica"));
   m.insert(Pair(ProgramType::musicTheory,"musicTheory"));
+  m.insert(Pair(ProgramType::mutualismBreakdowner,"mutualismBreakdowner"));
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
+  m.insert(Pair(ProgramType::paperRockScissors,"paperRockScissors"));
   m.insert(Pair(ProgramType::paperRockScissorsVcl,"paperRockScissorsVcl"));
   m.insert(Pair(ProgramType::pause,"pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"perfectElasticCollision"));
@@ -319,7 +321,9 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::multiEncrangerVcl,"MultiEncranger (VCL)"));
   m.insert(Pair(ProgramType::muscaDomestica,"MuscaDomestica"));
   m.insert(Pair(ProgramType::musicTheory,"MusicTheory"));
+  m.insert(Pair(ProgramType::mutualismBreakdowner,"MutualismBreakdowner"));
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
+  m.insert(Pair(ProgramType::paperRockScissors,"PaperRockScissors"));
   m.insert(Pair(ProgramType::paperRockScissorsVcl,"PaperRockScissors (VCL)"));
   m.insert(Pair(ProgramType::pause,"Pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"PerfectElasticCollision"));

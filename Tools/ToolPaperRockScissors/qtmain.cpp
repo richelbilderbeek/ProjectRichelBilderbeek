@@ -1,4 +1,4 @@
-#include "qtwidget.h"
+#include "qtpaperrockscissorswidget.h"
 #include <QApplication>
 #include "paper_rock_scissors.h"
 #include "qtpaperrockscissorsmenudialog.h"

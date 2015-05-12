@@ -6,44 +6,140 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>1038</height>
+    <width>450</width>
+    <height>764</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QScrollArea" name="scrollArea">
-     <property name="widgetResizable">
-      <bool>true</bool>
+  <layout class="QGridLayout" name="gridLayout_11">
+   <item row="5" column="0" colspan="2">
+    <widget class="QPushButton" name="button_save">
+     <property name="text">
+      <string>&amp;Save parameters</string>
      </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>513</width>
-        <height>919</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="13" column="0">
-        <widget class="QLabel" name="label_mutualism_breakdown_rate">
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QPushButton" name="button_set_random_values">
+     <property name="text">
+      <string>Set &amp;random values</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QSpinBox" name="box_n_timesteps">
+     <property name="maximum">
+      <number>1000000000</number>
+     </property>
+     <property name="value">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QDoubleSpinBox" name="box_delta_t">
+     <property name="decimals">
+      <number>6</number>
+     </property>
+     <property name="minimum">
+      <double>0.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>1.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>0.001000000000000</double>
+     </property>
+     <property name="value">
+      <double>0.010000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_n_timesteps">
+     <property name="text">
+      <string>#timesteps</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>500</height>
+      </size>
+     </property>
+     <property name="tabPosition">
+      <enum>QTabWidget::West</enum>
+     </property>
+     <property name="currentIndex">
+      <number>6</number>
+     </property>
+     <widget class="QWidget" name="tab_initial_condistions">
+      <attribute name="title">
+       <string>Initial conditions</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_14">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_initial_loripes_density">
          <property name="text">
-          <string>Mutualism breakdown rate</string>
+          <string>Initial loripes density (# m^-2)</string>
          </property>
         </widget>
        </item>
-       <item row="8" column="0">
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="box_initial_loripes_density">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+         <property name="maximum">
+          <double>1000.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_initial_organic_matter_density">
+         <property name="text">
+          <string>Initial organic matter density</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="box_initial_organic_matter_density">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+         <property name="maximum">
+          <double>10000000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
         <widget class="QLabel" name="label_init_seagrass_density">
          <property name="text">
           <string>Initial seagrass density (# m^-2)</string>
          </property>
         </widget>
        </item>
-       <item row="8" column="1">
+       <item row="2" column="1">
         <widget class="QDoubleSpinBox" name="box_initial_seagrass_density">
          <property name="decimals">
           <number>4</number>
@@ -62,56 +158,80 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="1">
-        <widget class="QDoubleSpinBox" name="box_initial_organic_matter_density">
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_initial_sulfide_concentration">
+         <property name="text">
+          <string>Initial sulfide concentration</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration">
          <property name="decimals">
           <number>4</number>
          </property>
          <property name="maximum">
-          <double>10000000.000000000000000</double>
+          <double>1000000.000000000000000</double>
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="label_initial_organic_matter_density">
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_detoxification">
+      <attribute name="title">
+       <string>Detoxification</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_detoxifaction_max_rate">
          <property name="text">
-          <string>Initial organic matter density</string>
+          <string>Detoxifaction max rate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="box_detoxification_max_rate">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_detoxifaction_min">
+         <property name="text">
+          <string>Detoxifaction min</string>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QDoubleSpinBox" name="box_delta_t">
-         <property name="decimals">
-          <number>6</number>
-         </property>
-         <property name="minimum">
-          <double>0.000000000000000</double>
-         </property>
-         <property name="maximum">
-          <double>1.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.001000000000000</double>
-         </property>
-         <property name="value">
-          <double>0.010000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="1">
-        <widget class="QDoubleSpinBox" name="box_initial_loripes_density">
+        <widget class="QDoubleSpinBox" name="box_detoxification_min">
          <property name="decimals">
           <number>4</number>
          </property>
-         <property name="maximum">
-          <double>1000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.100000000000000</double>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_detoxifaction_rate">
+         <property name="text">
+          <string>Detoxifaction rate</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="0" colspan="2">
+       <item row="2" column="1">
+        <widget class="QDoubleSpinBox" name="box_detoxification_rate">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_consumption">
+      <attribute name="title">
+       <string>Loripes consumption</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
         <widget class="QGroupBox" name="box_consumption_by_loripes">
          <property name="title">
           <string>Loripes sulfide consumption</string>
@@ -125,151 +245,112 @@
          <layout class="QGridLayout" name="gridLayout"/>
         </widget>
        </item>
-       <item row="11" column="0">
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Mutualism breakdown</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
         <widget class="QLabel" name="label_mutualism_breakdown_max">
          <property name="text">
           <string>Mutualism breakdown max</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_initial_loripes_density">
-         <property name="text">
-          <string>Initial loripes density (# m^-2)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QDoubleSpinBox" name="box_detoxification_rate">
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_max">
          <property name="decimals">
           <number>4</number>
          </property>
         </widget>
        </item>
-       <item row="16" column="0">
-        <widget class="QLabel" name="label_organic_matter_capture">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_mutualism_breakdown_r0">
          <property name="text">
-          <string>Organic matter capture</string>
+          <string>Mutualism breakdown r0</string>
          </property>
         </widget>
        </item>
-       <item row="22" column="0">
-        <widget class="QLabel" name="label_seagrass_carrying_capacity">
-         <property name="text">
-          <string>Seagrass carrying capacity</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration">
-         <property name="decimals">
-          <number>4</number>
-         </property>
-         <property name="maximum">
-          <double>1000000.000000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_detoxifaction_min">
-         <property name="text">
-          <string>Detoxifaction min</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0">
-        <widget class="QLabel" name="label_initial_sulfide_concentration">
-         <property name="text">
-          <string>Initial sulfide concentration</string>
-         </property>
-        </widget>
-       </item>
-       <item row="20" column="1">
-        <widget class="QDoubleSpinBox" name="box_recruitment_max">
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_r0">
          <property name="decimals">
           <number>4</number>
          </property>
         </widget>
        </item>
-       <item row="23" column="0">
-        <widget class="QLabel" name="label_seagrass_growth_rate">
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_mutualism_breakdown_rate">
          <property name="text">
-          <string>Seagrass growth rate</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_detoxifaction_rate">
-         <property name="text">
-          <string>Detoxifaction rate</string>
-         </property>
-        </widget>
-       </item>
-       <item row="21" column="1">
-        <widget class="QDoubleSpinBox" name="box_recruitment_rate">
-         <property name="decimals">
-          <number>4</number>
-         </property>
-        </widget>
-       </item>
-       <item row="18" column="0">
-        <widget class="QLabel" name="label_organic_matter_to_sulfide_rate">
-         <property name="text">
-          <string>Organic matter to sulfide rate</string>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="1">
-        <widget class="QDoubleSpinBox" name="box_organic_matter_addition">
-         <property name="decimals">
-          <number>4</number>
+          <string>Mutualism breakdown rate</string>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QDoubleSpinBox" name="box_detoxification_max_rate">
-         <property name="decimals">
-          <number>4</number>
-         </property>
-        </widget>
-       </item>
-       <item row="15" column="1">
-        <widget class="QDoubleSpinBox" name="box_organic_matter_breakdown">
-         <property name="decimals">
-          <number>4</number>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="1">
         <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_rate">
          <property name="decimals">
           <number>4</number>
          </property>
         </widget>
        </item>
-       <item row="19" column="0" colspan="2">
-        <widget class="QGroupBox" name="box_poisoning">
-         <property name="title">
-          <string>Poisoning</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2"/>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_detoxifaction_max_rate">
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_organic_matter">
+      <attribute name="title">
+       <string>Organic matter</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_9">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_organic_matter_addition">
          <property name="text">
-          <string>Detoxifaction max rate</string>
+          <string>Organic matter addition</string>
          </property>
         </widget>
        </item>
-       <item row="15" column="0">
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="box_organic_matter_addition">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
         <widget class="QLabel" name="label_organic_matter_breakdown">
          <property name="text">
           <string>Organic matter breakdown</string>
          </property>
         </widget>
        </item>
-       <item row="17" column="1">
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="box_organic_matter_breakdown">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_organic_matter_capture">
+         <property name="text">
+          <string>Organic matter capture</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QDoubleSpinBox" name="box_organic_matter_capture">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_organic_matter_to_sulfide_factor">
+         <property name="text">
+          <string>Organic matter to sulfide factor</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
         <widget class="QDoubleSpinBox" name="box_organic_matter_to_sulfide_factor">
          <property name="decimals">
           <number>4</number>
@@ -282,69 +363,111 @@
          </property>
         </widget>
        </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_organic_matter_to_sulfide_rate">
+         <property name="text">
+          <string>Organic matter to sulfide rate</string>
+         </property>
+        </widget>
+       </item>
        <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="box_detoxification_min">
+        <widget class="QDoubleSpinBox" name="box_organic_matter_to_sulfide_rate">
          <property name="decimals">
           <number>4</number>
          </property>
-        </widget>
-       </item>
-       <item row="12" column="1">
-        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_r0">
-         <property name="decimals">
-          <number>4</number>
+         <property name="maximum">
+          <double>100.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>1.000000000000000</double>
          </property>
         </widget>
        </item>
-       <item row="16" column="1">
-        <widget class="QDoubleSpinBox" name="box_organic_matter_capture">
-         <property name="decimals">
-          <number>4</number>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_poisoning">
+      <attribute name="title">
+       <string>Poisoning</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="box_poisoning">
+         <property name="title">
+          <string>Poisoning</string>
          </property>
+         <layout class="QGridLayout" name="gridLayout_2"/>
         </widget>
        </item>
-       <item row="20" column="0">
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_recruitment">
+      <attribute name="title">
+       <string>Recruitment</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0">
         <widget class="QLabel" name="label_recruitment_max">
          <property name="text">
           <string>Recruitment max</string>
          </property>
         </widget>
        </item>
-       <item row="21" column="0">
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="box_recruitment_max">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
         <widget class="QLabel" name="label_recruitment_rate">
          <property name="text">
           <string>Recruitment rate</string>
          </property>
         </widget>
        </item>
-       <item row="17" column="0">
-        <widget class="QLabel" name="label_organic_matter_to_sulfide_factor">
-         <property name="text">
-          <string>Organic matter to sulfide factor</string>
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="box_recruitment_rate">
+         <property name="decimals">
+          <number>4</number>
          </property>
         </widget>
        </item>
-       <item row="25" column="0">
-        <widget class="QLabel" name="label_sulfide_diffusion_rate">
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_seagrass">
+      <attribute name="title">
+       <string>Seagrass</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_13">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_seagrass_carrying_capacity">
          <property name="text">
-          <string>Sulfide diffusion rate</string>
+          <string>Seagrass carrying capacity</string>
          </property>
         </widget>
        </item>
-       <item row="25" column="1">
-        <widget class="QDoubleSpinBox" name="box_sulfide_diffusion_rate">
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="box_seagrass_carrying_capacity">
          <property name="decimals">
           <number>4</number>
          </property>
          <property name="maximum">
-          <double>100000000000.000000000000000</double>
+          <double>1000000.000000000000000</double>
          </property>
          <property name="value">
-          <double>0.100000000000000</double>
+          <double>1.000000000000000</double>
          </property>
         </widget>
        </item>
-       <item row="23" column="1">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_seagrass_growth_rate">
+         <property name="text">
+          <string>Seagrass growth rate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
         <widget class="QDoubleSpinBox" name="box_seagrass_growth_rate">
          <property name="decimals">
           <number>4</number>
@@ -360,65 +483,14 @@
          </property>
         </widget>
        </item>
-       <item row="22" column="1">
-        <widget class="QDoubleSpinBox" name="box_seagrass_carrying_capacity">
-         <property name="decimals">
-          <number>4</number>
-         </property>
-         <property name="maximum">
-          <double>1000000.000000000000000</double>
-         </property>
-         <property name="value">
-          <double>1.000000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="0">
-        <widget class="QLabel" name="label_organic_matter_addition">
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_seagrass_to_organic_matter_factor">
          <property name="text">
-          <string>Organic matter addition</string>
+          <string>Seagrass to organic matter factor</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_delta_t">
-         <property name="text">
-          <string>Delta t</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="1">
-        <widget class="QDoubleSpinBox" name="box_mutualism_breakdown_max">
-         <property name="decimals">
-          <number>4</number>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_n_timesteps">
-         <property name="text">
-          <string>#timesteps</string>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="0">
-        <widget class="QLabel" name="label_mutualism_breakdown_r0">
-         <property name="text">
-          <string>Mutualism breakdown r0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QSpinBox" name="box_n_timesteps">
-         <property name="maximum">
-          <number>1000000000</number>
-         </property>
-         <property name="value">
-          <number>100</number>
-         </property>
-        </widget>
-       </item>
-       <item row="24" column="1">
+       <item row="2" column="1">
         <widget class="QDoubleSpinBox" name="box_seagrass_to_organic_matter_factor">
          <property name="decimals">
           <number>4</number>
@@ -428,23 +500,30 @@
          </property>
         </widget>
        </item>
-       <item row="24" column="0">
-        <widget class="QLabel" name="label_seagrass_to_organic_matter_factor">
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_sulfide">
+      <attribute name="title">
+       <string>Sulfide</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_12">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_sulfide_diffusion_rate">
          <property name="text">
-          <string>Seagrass to organic matter factor</string>
+          <string>Sulfide diffusion rate</string>
          </property>
         </widget>
        </item>
-       <item row="18" column="1">
-        <widget class="QDoubleSpinBox" name="box_organic_matter_to_sulfide_rate">
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="box_sulfide_diffusion_rate">
          <property name="decimals">
           <number>4</number>
          </property>
          <property name="maximum">
-          <double>100.000000000000000</double>
+          <double>100000000000.000000000000000</double>
          </property>
          <property name="value">
-          <double>1.000000000000000</double>
+          <double>0.100000000000000</double>
          </property>
         </widget>
        </item>
@@ -452,57 +531,26 @@
      </widget>
     </widget>
    </item>
-   <item>
-    <widget class="QPushButton" name="button_set_random_values">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_delta_t">
      <property name="text">
-      <string>Set &amp;random values</string>
+      <string>Delta t</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="4" column="0" colspan="2">
     <widget class="QPushButton" name="button_load">
      <property name="text">
       <string>&amp;Load parameters</string>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QPushButton" name="button_save">
-     <property name="text">
-      <string>&amp;Save parameters</string>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>box_n_timesteps</tabstop>
-  <tabstop>box_delta_t</tabstop>
-  <tabstop>box_detoxification_max_rate</tabstop>
-  <tabstop>box_detoxification_min</tabstop>
-  <tabstop>box_detoxification_rate</tabstop>
-  <tabstop>box_initial_loripes_density</tabstop>
-  <tabstop>box_initial_organic_matter_density</tabstop>
-  <tabstop>box_initial_seagrass_density</tabstop>
-  <tabstop>box_initial_sulfide_concentration</tabstop>
-  <tabstop>box_mutualism_breakdown_max</tabstop>
-  <tabstop>box_mutualism_breakdown_r0</tabstop>
-  <tabstop>box_mutualism_breakdown_rate</tabstop>
-  <tabstop>box_organic_matter_addition</tabstop>
-  <tabstop>box_organic_matter_breakdown</tabstop>
-  <tabstop>box_organic_matter_capture</tabstop>
-  <tabstop>box_organic_matter_to_sulfide_factor</tabstop>
-  <tabstop>box_organic_matter_to_sulfide_rate</tabstop>
-  <tabstop>box_recruitment_max</tabstop>
-  <tabstop>box_recruitment_rate</tabstop>
-  <tabstop>box_seagrass_carrying_capacity</tabstop>
-  <tabstop>box_seagrass_growth_rate</tabstop>
-  <tabstop>box_seagrass_to_organic_matter_factor</tabstop>
-  <tabstop>box_sulfide_diffusion_rate</tabstop>
   <tabstop>button_set_random_values</tabstop>
   <tabstop>button_load</tabstop>
   <tabstop>button_save</tabstop>
-  <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources/>
  <connections/>
