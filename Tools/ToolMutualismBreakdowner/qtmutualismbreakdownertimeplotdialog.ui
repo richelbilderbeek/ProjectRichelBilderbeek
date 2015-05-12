@@ -44,15 +44,7 @@ QPlainTextEdit {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0" colspan="2">
-       <widget class="QPushButton" name="button_run">
-        <property name="text">
-         <string>&amp;Run</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <layout class="QFormLayout" name="formLayout"/>
     </widget>
    </item>
    <item row="0" column="1" rowspan="2">

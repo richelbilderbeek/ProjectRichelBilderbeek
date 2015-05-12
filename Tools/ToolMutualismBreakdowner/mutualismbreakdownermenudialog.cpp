@@ -66,10 +66,10 @@ int ribi::MutualismBreakdownerMenuDialog::ExecuteSpecific(const std::vector<std:
 ribi::About ribi::MutualismBreakdownerMenuDialog::GetAbout() const noexcept
 {
   About a(
-    "Richel Bilderbeek",
+    "Greg Fivash and Richel Bilderbeek",
     "MutualismBreakdowner",
     "simulation",
-    "the 3rd of May 2015",
+    "the 12th of May 2015",
     "2015-2015",
     "http://www.richelbilderbeek.nl/ToolMutualismBreakdowner.htm",
     GetVersion(),
@@ -95,8 +95,9 @@ std::string ribi::MutualismBreakdownerMenuDialog::GetVersion() const noexcept
 std::vector<std::string> ribi::MutualismBreakdownerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2015-05-03: Version 0.1: initial version",
-    "2015-05-05: Version 1.0: added menu screens",
+    "2015-05-03: Version 0.1: initial version with 3 ODEs",
+    "2015-05-05: Version 1.0: implemented system of 4 ODEs, added menu screens",
+    "2015-05-12: Version 2.0: implemented system of 2 ODEs"
   };
 }
 

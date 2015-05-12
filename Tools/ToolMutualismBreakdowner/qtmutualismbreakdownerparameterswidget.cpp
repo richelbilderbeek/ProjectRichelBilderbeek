@@ -127,11 +127,6 @@ void QtMutualismBreakdownerParametersWidget::OnAnyChange()
   emit signal_parameters_changed();
 }
 
-void QtMutualismBreakdownerParametersWidget::on_button_set_random_values_clicked()
-{
-  auto p = Parameters::GetTest(0);
-  this->SetParameters(p);
-}
 
 
 void QtMutualismBreakdownerParametersWidget::on_button_save_clicked()

@@ -33,7 +33,6 @@ private slots:
 
   void OnAnyChange();
 
-  void on_button_set_random_values_clicked();
   void on_button_load_clicked();
   void on_button_save_clicked();
 
