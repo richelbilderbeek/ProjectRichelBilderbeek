@@ -1,10 +1,12 @@
+#ifndef NDEBUG
 #include "moleculeamount.h"
 
-#ifndef NDEBUG
 #include "units.h"
 
-#include <boost/units/io.hpp>
+#include <iostream>
 #include <sstream>
+
+#include <boost/units/io.hpp>
 
 #include "moleculeamount.h"
 #include "testtimer.h"

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>268</width>
-    <height>311</height>
+    <height>344</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -123,6 +123,12 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>box_type</tabstop>
+  <tabstop>box_a</tabstop>
+  <tabstop>box_b</tabstop>
+  <tabstop>box_max</tabstop>
+ </tabstops>
  <resources>
   <include location="ToolMutualismBreakdowner.qrc"/>
  </resources>

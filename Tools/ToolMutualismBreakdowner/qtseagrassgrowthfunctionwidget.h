@@ -18,8 +18,8 @@ class QtSeagrassGrowthFunctionWidget : public QWidget
 public:
   explicit QtSeagrassGrowthFunctionWidget(QWidget *parent = 0);
   ~QtSeagrassGrowthFunctionWidget();
-  std::shared_ptr<SeagrassGrowthFunction> GetFunction() const noexcept;
-  void SetFunction(const std::shared_ptr<SeagrassGrowthFunction>& f) noexcept;
+  std::shared_ptr<SeagrassGrowthFunction> GetFunction() const;
+  void SetFunction(const std::shared_ptr<SeagrassGrowthFunction>& f);
 
 signals:
   void signal_parameters_changed() const;

@@ -11,6 +11,7 @@
 #include "fileio.h"
 #include "testtimer.h"
 
+#ifndef NDEBUG
 void SulfideConsumptionFunction::Test() noexcept
 {
   {
@@ -61,6 +62,7 @@ void SulfideConsumptionFunction::Test() noexcept
     FileIo().DeleteFile(filename);
   }
 }
+#endif // NDEBUG
 
 
 LinearConsumption::Change LinearConsumption::CalculateConsumption(

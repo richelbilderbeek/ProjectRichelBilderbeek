@@ -82,20 +82,41 @@ QtMutualismBreakdownerTimePlotDialog::~QtMutualismBreakdownerTimePlotDialog()
   delete ui;
 }
 
-Parameters QtMutualismBreakdownerTimePlotDialog::GetParameters() const noexcept
+Parameters QtMutualismBreakdownerTimePlotDialog::GetParameters() const
 {
   assert(m_parameters_widget);
   return m_parameters_widget->GetParameters();
 }
 
-void QtMutualismBreakdownerTimePlotDialog::SetParameters(const Parameters& parameters) noexcept
+void QtMutualismBreakdownerTimePlotDialog::SetParameters(const Parameters& parameters)
 {
-  assert(m_parameters_widget);
-  m_parameters_widget->SetParameters(parameters);
+  try
+  {
+    assert(m_parameters_widget);
+    m_parameters_widget->SetParameters(parameters);
+  }
+  catch(std::logic_error& e)
+  {
+    std::clog << e.what() << std::endl;
+  }
 }
 
 void QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
 {
+  ui->plot_seagrass_density->setEnabled(false);
+  ui->plot_sulfide_concentration->setEnabled(false);
+  try
+  {
+    const auto parameters = GetParameters();
+  }
+  catch (std::logic_error& e)
+  {
+    std::clog << e.what() << std::endl;
+    return;
+  }
+  ui->plot_seagrass_density->setEnabled(true);
+  ui->plot_sulfide_concentration->setEnabled(true);
+
   const auto parameters = GetParameters();
   std::clog << parameters << std::endl;
   Simulation simulation(parameters);

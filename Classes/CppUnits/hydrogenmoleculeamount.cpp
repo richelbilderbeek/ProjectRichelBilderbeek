@@ -1,10 +1,12 @@
 #ifndef NDEBUG
 #include "hydrogenmoleculeamount.h"
 
-#include <boost/units/io.hpp>
 #include <sstream>
+#include <iostream>
 
+#include <boost/units/io.hpp>
 
+#include "testtimer.h"
 void ribi::units::TestHydrogenMoleculeAmount() noexcept
 {
   {

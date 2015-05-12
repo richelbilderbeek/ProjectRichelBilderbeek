@@ -12,6 +12,7 @@
 #include "fileio.h"
 #include "testtimer.h"
 
+#ifndef NDEBUG
 void SulfideProductionFunction::Test() noexcept
 {
   {
@@ -51,6 +52,7 @@ void SulfideProductionFunction::Test() noexcept
     FileIo().DeleteFile(filename);
   }
 }
+#endif // NDEBUG
 
 SulfideProductionFunction::Change
   LinearSulfideProduction::CalculateProduction(

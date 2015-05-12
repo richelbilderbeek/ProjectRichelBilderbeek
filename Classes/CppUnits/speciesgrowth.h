@@ -37,17 +37,16 @@ namespace boost {
   } // namespace units
 } //namespace boost
 
-#ifndef NDEBUG
 namespace ribi {
   namespace units {
 
     using SpeciesGrowth = boost::units::quantity<boost::units::si::species_growth>;
 
-    ///All I can do on them, is test them
+    #ifndef NDEBUG
     void TestSpeciesGrowth() noexcept;
+    #endif
   } //~namespace units
 } //~namespace ribi
-#endif
 
 
 

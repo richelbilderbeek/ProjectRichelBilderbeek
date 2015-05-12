@@ -69,6 +69,9 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
 
   QObject::connect(ui->box_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_n_timesteps,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_initial_loripes_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtpoisoningwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtseagrassgrowthwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtsulfideconsumptionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
@@ -82,16 +85,16 @@ QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget(
   delete ui;
 }
 
-Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcept
+Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const
 {
   using boost::units::si::species_per_square_meter;
   using boost::units::si::mole;
   using boost::units::si::cubic_meter;
-  Parameters p(
+  const Parameters p(
     ui->box_delta_t->value(),
-    0.0 * boost::units::si::species_per_square_meter, //ui->box_initial_loripes_density->value(),
-    0.0 * boost::units::si::species_per_square_meter, //ui->box_initial_seagrass_density->value(),
-    0.0 * mole / cubic_meter, //ui->box_initial_sulfide_concentration->value(),
+    ui->box_initial_loripes_density->value() * boost::units::si::species_per_square_meter,
+    ui->box_initial_seagrass_density->value() * boost::units::si::species_per_square_meter,
+    ui->box_initial_sulfide_concentration->value() * mole / cubic_meter,
     m_qtpoisoningwidget->GetFunction(),
     m_qtseagrassgrowthwidget->GetFunction(),
     m_qtsulfideconsumptionwidget->GetFunction(),
@@ -104,10 +107,13 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
   return p;
 }
 
-void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters) noexcept
+void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters)
 {
   ui->box_delta_t->setValue(parameters.GetDeltaT());
   ui->box_n_timesteps->setValue(parameters.GetNumberOfTimesteps());
+  ui->box_initial_loripes_density->setValue(parameters.GetInitialLoripesDensity().value());
+  ui->box_initial_seagrass_density->setValue(parameters.GetInitialSeagrassDensity().value());
+  ui->box_initial_sulfide_concentration->setValue(parameters.GetInitialSulfideConcentration().value());
   this->m_qtpoisoningwidget->SetFunction(parameters.GetPoisoningFunction());
   this->m_qtseagrassgrowthwidget->SetFunction(parameters.GetSeagrassGrowthFunction());
   this->m_qtsulfideconsumptionwidget->SetFunction(parameters.GetSulfideConsumptionFunction());

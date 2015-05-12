@@ -12,6 +12,7 @@
 #include "fileio.h"
 #include "testtimer.h"
 
+#ifndef NDEBUG
 void SulfideDiffusionFunction::Test() noexcept
 {
   {
@@ -51,6 +52,7 @@ void SulfideDiffusionFunction::Test() noexcept
     FileIo().DeleteFile(filename);
   }
 }
+#endif // NDEBUG
 
 SulfideDiffusionFunction::Change
   LinearSulfideDiffusion::CalculateDiffusion(

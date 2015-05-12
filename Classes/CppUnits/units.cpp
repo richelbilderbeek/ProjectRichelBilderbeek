@@ -1,8 +1,10 @@
 #ifndef NDEBUG
 #include "units.h"
 
-#include <boost/units/io.hpp>
+#include <iostream>
 #include <sstream>
+
+#include <boost/units/io.hpp>
 
 #include "concentration.h"
 #include "hydrogenmoleculeamount.h"

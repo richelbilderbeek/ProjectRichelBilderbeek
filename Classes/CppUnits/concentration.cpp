@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
 #include <boost/units/io.hpp>
@@ -22,6 +23,7 @@ std::istream& boost::units::si::operator>>(std::istream& is, Concentration& sd)
   return is;
 }
 
+#ifndef NDEBUG
 void ribi::units::TestConcentration() noexcept
 {
   {
@@ -32,7 +34,7 @@ void ribi::units::TestConcentration() noexcept
   {
     ribi::fileio::FileIo();
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   using ribi::fileio::FileIo;
   using Concentration = boost::units::quantity<boost::units::si::concentration>;
   //Concentration is in species per square meter
@@ -102,3 +104,4 @@ void ribi::units::TestConcentration() noexcept
     assert(b == b_too);
   }
 }
+#endif

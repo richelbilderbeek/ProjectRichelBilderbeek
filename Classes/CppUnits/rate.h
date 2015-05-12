@@ -33,16 +33,15 @@ namespace boost {
   } // namespace units
 } //namespace boost
 
-#ifndef NDEBUG
 namespace ribi {
   namespace units {
 
     using Rate = boost::units::quantity<boost::units::si::rate>;
 
-    ///All I can do on them, is test them
+    #ifndef NDEBUG
     void TestRate() noexcept;
+    #endif
   } //~namespace units
 } //~namespace ribi
-#endif
 
 #endif // RATE_H

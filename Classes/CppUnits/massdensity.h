@@ -37,12 +37,12 @@ namespace boost {
 
 */
 
-#ifndef NDEBUG
 namespace ribi {
   namespace units {
 
-    ///All I can do on them, is test them
+    #ifndef NDEBUG
     void TestMassDensity() noexcept;
+    #endif
 
     //using MassDensity = boost::units::quantity<boost::units::si::mass_density>;
 
@@ -51,6 +51,5 @@ namespace ribi {
 
   } //~namespace units
 } //~namespace ribi
-#endif
 
 #endif // MASSDENSITY_H

@@ -42,9 +42,10 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
   QtMutualismBreakdownerTimePlotDialog();
   QtMutualismBreakdownerEquilibriumDialog();
+  #ifndef NDEBUG
   ribi::units::Test();
+  #endif
   InvertedExponentialPoisoning();
-  //InvertedExponentialConsumption();
   Parameters();
   ribi::QtMutualismBreakdownerMenuDialog w;
   w.show();

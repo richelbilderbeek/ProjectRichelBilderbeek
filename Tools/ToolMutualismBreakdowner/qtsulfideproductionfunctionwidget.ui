@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>408</width>
-    <height>485</height>
+    <width>206</width>
+    <height>371</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -42,7 +42,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolMutualismBreakdowner.qrc">:/images/OrganicMatter.jpg</pixmap>
+      <pixmap resource="ToolMutualismBreakdowner.qrc">:/images/OrganicMatterSmall.jpg</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -71,6 +71,10 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>box_type</tabstop>
+  <tabstop>box_a</tabstop>
+ </tabstops>
  <resources>
   <include location="ToolMutualismBreakdowner.qrc"/>
  </resources>

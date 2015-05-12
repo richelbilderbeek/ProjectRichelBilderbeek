@@ -8,8 +8,10 @@ int main()
 {
   try
   {
+    #ifndef NDEBUG
     ribi::units::Test();
     ribi::units::TestSpeciesDensity();
+    #endif // NDEBUG
     Parameters p = Parameters::GetTest(0);
     Simulation s(p);
     s.Run();

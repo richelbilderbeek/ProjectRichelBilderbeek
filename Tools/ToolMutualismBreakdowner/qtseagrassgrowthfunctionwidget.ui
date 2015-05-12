@@ -117,6 +117,12 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>box_seagrass_growth_type</tabstop>
+  <tabstop>box_seagrass_carrying_capacity</tabstop>
+  <tabstop>box_seagrass_growth_rate</tabstop>
+  <tabstop>box_seagrass_stress_rate</tabstop>
+ </tabstops>
  <resources>
   <include location="ToolMutualismBreakdowner.qrc"/>
  </resources>

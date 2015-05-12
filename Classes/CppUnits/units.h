@@ -3,13 +3,12 @@
 
 ///Collection of my own units
 
-#ifndef NDEBUG
 namespace ribi {
   namespace units {
-    ///All I can do on them, is test them
+    #ifndef NDEBUG
     void Test() noexcept;
+    #endif
   } //~namespace units
 } //~namespace ribi
-#endif
 
 #endif // RIBI_UNITS_H

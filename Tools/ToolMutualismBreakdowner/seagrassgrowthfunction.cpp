@@ -21,6 +21,7 @@ SeagrassGrowthFunction::SeagrassGrowthFunction()
 }
 
 
+#ifndef NDEBUG
 void SeagrassGrowthFunction::Test() noexcept
 {
   {
@@ -83,6 +84,7 @@ void SeagrassGrowthFunction::Test() noexcept
     FileIo().DeleteFile(filename);
   }
 }
+#endif // NDEBUG
 
 /*
 
@@ -182,7 +184,7 @@ SeagrassStressedLogisticGrowth::SeagrassStressedLogisticGrowth(
 {
   using boost::units::si::species_per_square_meter;
 
-  if (m_carrying_capacity < 0.0 * species_per_square_meter)
+  if (m_carrying_capacity <= 0.0 * species_per_square_meter)
   {
     std::stringstream s;
     s << "SeagrassStressedLogisticGrowth::SeagrassStressedLogisticGrowth: "

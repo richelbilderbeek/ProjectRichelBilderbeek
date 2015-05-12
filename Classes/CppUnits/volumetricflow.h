@@ -32,13 +32,12 @@ namespace boost {
   } // namespace units
 } //namespace boost
 
-#ifndef NDEBUG
 namespace ribi {
   namespace units {
-    ///All I can do on them, is test them
+    #ifndef NDEBUG
     void TestVolumetricFlow() noexcept;
+    #endif
   } //~namespace units
 } //~namespace ribi
-#endif
 
 #endif // VOLUMETRICFLOW_H

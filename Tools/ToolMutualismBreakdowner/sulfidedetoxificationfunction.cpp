@@ -12,6 +12,7 @@
 #include "fileio.h"
 #include "testtimer.h"
 
+#ifndef NDEBUG
 void SulfideDetoxificationFunction::Test() noexcept
 {
   {
@@ -51,6 +52,7 @@ void SulfideDetoxificationFunction::Test() noexcept
     FileIo().DeleteFile(filename);
   }
 }
+#endif // NDEBUG
 
 SulfideDetoxificationFunction::Change
   LinearSulfideDetoxification::CalculateDetoxification(

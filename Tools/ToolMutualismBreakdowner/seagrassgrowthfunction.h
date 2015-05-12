@@ -57,9 +57,9 @@ struct SeagrassStressedLogisticGrowth : public SeagrassGrowthFunction
   using Growth = ribi::units::SpeciesGrowth;
 
   SeagrassStressedLogisticGrowth(
-    const Density carrying_capacity = 0.0 * boost::units::si::species_per_square_meter,
-    const Rate growth_rate = 0.0 * boost::units::si::per_second,
-    const Rate stress_rate = 0.0 * boost::units::si::per_second
+    const Density carrying_capacity = 1.0 * boost::units::si::species_per_square_meter,
+    const Rate growth_rate = 1.0 * boost::units::si::per_second,
+    const Rate stress_rate = 0.1 * boost::units::si::per_second
   );
   Growth CalculateGrowth(
     const Density seagrass_density

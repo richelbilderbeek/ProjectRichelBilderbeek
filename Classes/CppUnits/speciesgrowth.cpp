@@ -1,14 +1,10 @@
-#ifndef NDEBUG
 #include "speciesgrowth.h"
 
-#include <boost/units/io.hpp>
-
-#include <iostream>
 #include <fstream>
 #include <sstream>
 
-#include "fileio.h"
-#include "testtimer.h"
+#include <boost/units/io.hpp>
+
 #include "speciesdensity.h"
 #include "rate.h"
 
@@ -26,6 +22,12 @@ std::istream& boost::units::si::operator>>(std::istream& is, SpeciesGrowth& sd)
     * boost::units::si::species_per_square_meter_per_second);
   return is;
 }
+
+#ifndef NDEBUG
+#include <iostream>
+
+#include "fileio.h"
+#include "testtimer.h"
 
 void ribi::units::TestSpeciesGrowth() noexcept
 {

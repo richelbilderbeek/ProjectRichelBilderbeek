@@ -1,5 +1,4 @@
 
-#ifndef NDEBUG
 #include "concentrationchange.h"
 
 #include <boost/units/io.hpp>
@@ -31,6 +30,7 @@ std::istream& boost::units::si::operator>>(std::istream& is, ConcentrationChange
   return is;
 }
 
+#ifndef NDEBUG
 void ribi::units::TestConcentrationChange() noexcept
 {
   {

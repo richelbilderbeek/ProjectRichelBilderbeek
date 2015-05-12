@@ -18,8 +18,8 @@ class QtMutualismBreakdownerTimePlotDialog : public ribi::QtHideAndShowDialog
 public:
   explicit QtMutualismBreakdownerTimePlotDialog(QWidget *parent = 0);
   ~QtMutualismBreakdownerTimePlotDialog();
-  Parameters GetParameters() const noexcept;
-  void SetParameters(const Parameters& parameters) noexcept;
+  Parameters GetParameters() const;
+  void SetParameters(const Parameters& parameters);
 
 private slots:
 

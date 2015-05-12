@@ -15,12 +15,14 @@ struct SulfideProductionFunction;
 
 struct Parameters
 {
+  using SpeciesDensity = ribi::units::SpeciesDensity;
+  using Concentration = ribi::units::Concentration;
   Parameters();
   Parameters(
     const double any_delta_t,
-    const ribi::units::SpeciesDensity m_initial_loripes_density,
-    const ribi::units::SpeciesDensity m_initial_seagrass_density,
-    const ribi::units::Concentration any_initial_loripes_density,
+    const SpeciesDensity m_initial_loripes_density,
+    const SpeciesDensity m_initial_seagrass_density,
+    const Concentration any_initial_loripes_density,
     std::shared_ptr<PoisoningFunction> any_poisoning_function,
     std::shared_ptr<SeagrassGrowthFunction> seagrass_growth_function,
     std::shared_ptr<SulfideConsumptionFunction> sulfide_consumption_function,
@@ -45,17 +47,18 @@ struct Parameters
   const auto& GetSulfideDiffusionFunction() const noexcept { return m_sulfide_diffusion_function; }
   const auto& GetSulfideProductionFunction() const noexcept { return m_sulfide_production_function; }
 
+  ///Create a testing parameter set
+  static Parameters GetTest(const int i);
+
   void SetDeltaT(const double any_delta_t);
   void SetInitialSeagrassDensity(const ribi::units::SpeciesDensity any_initial_seagrass_density) noexcept;
 
   void SetPoisoningFunction(const std::shared_ptr<PoisoningFunction> any_poisoning_function);
 
   #ifndef NDEBUG
-
   static void Test() noexcept;
-  ///Create a testing parameter set
-  static Parameters GetTest(const int i);
   #endif
+
 
   private:
   double m_delta_t;

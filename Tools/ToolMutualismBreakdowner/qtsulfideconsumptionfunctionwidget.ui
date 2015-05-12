@@ -71,6 +71,10 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>box_type</tabstop>
+  <tabstop>box_a</tabstop>
+ </tabstops>
  <resources>
   <include location="ToolMutualismBreakdowner.qrc"/>
  </resources>

@@ -31,12 +31,14 @@ Simulation::Simulation(const Parameters& parameters)
 
 void Simulation::Run()
 {
+  using Time = boost::units::quantity<boost::units::si::time>;
+  using boost::units::si::seconds;
   const int n_timesteps{m_parameters.GetNumberOfTimesteps()};
   assert(n_timesteps >= 0);
-  const double t_end{static_cast<double>(n_timesteps)};
-  assert(t_end > 0.0);
-  const double delta_t{m_parameters.GetDeltaT()};
-  assert(delta_t > 0.0);
+  const auto t_end = static_cast<double>(n_timesteps) * seconds;
+
+  const auto delta_t = m_parameters.GetDeltaT() * seconds;
+
   const int sz{static_cast<int>(t_end / delta_t)};
   assert(sz > 0);
   const int track_after{std::max(1,sz / 1000)};
@@ -54,19 +56,17 @@ void Simulation::Run()
   //Initialize sim
   auto seagrass_density = m_parameters.GetInitialSeagrassDensity();
   auto sulfide_concentration = m_parameters.GetInitialSulfideConcentration();
-  auto loripes_density = m_parameters.GetInitialLoripesDensity();
   {
     std::ofstream f("tmp.txt");
     f << m_parameters;
   }
 
   int i=0;
-  for (double t=0.0; t<t_end; t+=delta_t)
+  for (Time t=0.0 * seconds; t<t_end; t+=delta_t)
   {
     assert(i >= 0);
     const auto n = seagrass_density;
     const auto s = sulfide_concentration;
-    const auto l = loripes_density;
     //Seagrass
     try
     {
@@ -74,7 +74,7 @@ void Simulation::Run()
       const auto growth = m_parameters.GetSeagrassGrowthFunction()->CalculateGrowth(n);
       const auto poisoning = poisoning_function->CalculateDecline(n,s);
       const auto delta_n = growth - poisoning;
-      seagrass_density += (delta_n * delta_t * boost::units::si::second);
+      seagrass_density += (delta_n * delta_t);
     }
     catch (std::logic_error& e)
     {
@@ -86,10 +86,11 @@ void Simulation::Run()
     //Sulfide
     try
     {
+      const auto loripes_density = m_parameters.GetInitialLoripesDensity();
       const auto production = m_parameters.GetSulfideProductionFunction()->CalculateProduction(n);
       const auto detoxification = m_parameters.GetSulfideDetoxificationFunction()->CalculateDetoxification(n,s);
       const auto diffusion = m_parameters.GetSulfideDiffusionFunction()->CalculateDiffusion(s);
-      const auto consumption = m_parameters.GetSulfideConsumptionFunction()->CalculateConsumption(s,l);
+      const auto consumption = m_parameters.GetSulfideConsumptionFunction()->CalculateConsumption(s,loripes_density);
       const auto delta_s
         = production
         - diffusion
@@ -97,9 +98,7 @@ void Simulation::Run()
         - consumption
       ;
 
-      sulfide_concentration += (
-          delta_s * delta_t * boost::units::si::second
-      );
+      sulfide_concentration += (delta_s * delta_t);
 
     }
     catch (std::logic_error& e)
@@ -111,7 +110,7 @@ void Simulation::Run()
     }
     if (i % track_after == 0)
     {
-      m_timeseries.push_back(static_cast<double>(t));
+      m_timeseries.push_back(t.value());
       m_seagrass_densities.push_back(seagrass_density);
       m_sulfide_concentrations.push_back(sulfide_concentration);
     }

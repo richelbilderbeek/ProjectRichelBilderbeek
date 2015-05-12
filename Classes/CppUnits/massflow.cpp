@@ -1,8 +1,10 @@
 #ifndef NDEBUG
 #include "massflow.h"
 
-#include <boost/units/io.hpp>
+#include <iostream>
 #include <sstream>
+
+#include <boost/units/io.hpp>
 
 #include "testtimer.h"
 #include "volumetricflow.h"

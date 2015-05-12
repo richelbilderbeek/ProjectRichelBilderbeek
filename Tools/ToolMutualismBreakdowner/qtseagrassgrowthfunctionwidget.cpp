@@ -25,7 +25,7 @@ QtSeagrassGrowthFunctionWidget::~QtSeagrassGrowthFunctionWidget()
   delete ui;
 }
 
-std::shared_ptr<SeagrassGrowthFunction> QtSeagrassGrowthFunctionWidget::GetFunction() const noexcept
+std::shared_ptr<SeagrassGrowthFunction> QtSeagrassGrowthFunctionWidget::GetFunction() const
 {
   return std::make_shared<SeagrassStressedLogisticGrowth>(
     ui->box_seagrass_carrying_capacity->value() * boost::units::si::species_per_square_meter,
@@ -39,7 +39,7 @@ void QtSeagrassGrowthFunctionWidget::OnAnyChange()
   emit signal_parameters_changed();
 }
 
-void QtSeagrassGrowthFunctionWidget::SetFunction(const std::shared_ptr<SeagrassGrowthFunction>& f) noexcept
+void QtSeagrassGrowthFunctionWidget::SetFunction(const std::shared_ptr<SeagrassGrowthFunction>& f)
 {
   #ifndef NDEBUG
   if (!f)

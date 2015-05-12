@@ -1,14 +1,11 @@
-#ifndef NDEBUG
 #include "rate.h"
-
-#include <boost/units/io.hpp>
 
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
-#include "fileio.h"
-#include "testtimer.h"
+#include <boost/units/io.hpp>
+
 #include "speciesdensity.h"
 
 std::istream& boost::units::si::operator>>(std::istream& is, Rate& sd)
@@ -24,6 +21,9 @@ std::istream& boost::units::si::operator>>(std::istream& is, Rate& sd)
   return is;
 }
 
+#ifndef NDEBUG
+#include "fileio.h"
+#include "testtimer.h"
 void ribi::units::TestRate() noexcept
 {
   {

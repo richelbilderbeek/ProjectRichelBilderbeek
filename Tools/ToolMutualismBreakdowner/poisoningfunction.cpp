@@ -1,4 +1,3 @@
-
 #include "poisoningfunction.h"
 
 #include <cassert>
@@ -11,8 +10,9 @@
 #include <boost/units/io.hpp>
 
 #include "fileio.h"
-#include "testtimer.h"
 
+#ifndef NDEBUG
+#include "testtimer.h"
 void PoisoningFunction::Test() noexcept
 {
   {
@@ -62,6 +62,7 @@ void PoisoningFunction::Test() noexcept
     FileIo().DeleteFile(filename);
   }
 }
+#endif // NDEBUG
 
 PoisoningFunction::Growth
   InvertedExponentialPoisoning::CalculateDecline(

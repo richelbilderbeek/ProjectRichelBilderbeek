@@ -26,21 +26,17 @@ namespace boost {
   } // ~namespace units
 } // ~namespace boost
 
-#ifndef NDEBUG
 namespace ribi {
   namespace units {
 
-    ///All I can do on them, is test them
+    #ifndef NDEBUG
     void TestSpeciesDensity() noexcept;
+    #endif
 
     using SpeciesDensity = boost::units::quantity<boost::units::si::species_density>;
 
-    //std::string ToStr(const SpeciesDensity& density) noexcept;
-    //SpeciesDensity ToSpeciesDensity(const std::string& s) noexcept;
-
   } //~namespace units
 } //~namespace ribi
-#endif
 
 
 #endif // SPECIESDENSITY_H
