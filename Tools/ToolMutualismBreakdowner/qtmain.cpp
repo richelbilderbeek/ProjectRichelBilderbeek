@@ -26,40 +26,17 @@
 //  Image from NIOZ, from http://www.nioz.nl/files/afdelingen/MEE/Seagrass6.jpg
 //  The image was at the side of http://www.nioz.nl/nieuws-detail/biobouwers-structureren-het-voedselweb-in-intergetijde-kustgebieden
 
-/*
+//Sulfide production:
+// URL: http://www.marinebio.net/marinescience/04benthon/dsimg/dscuc.jpg
+// by Genny Anderon
 
-2015-05-12:
+//Diffusion:
+//  URL: http://en.wikipedia.org/wiki/Diffusion#/media/File:Blausen_0315_Diffusion.png
+//  By BruceBlaus
 
-              GROWTH WITH STRESS       POISONING
-
-                      N                      b*e^(a*N)
-dN/dt = N * ( r*(1 - ---) ) - d ) - (1 - ------------- )*m*N*S
-                      K                  1 + b*e^(a*N)
-
-
-
-dS/dt = bN - gS - vNS - cLS      = Sulfide production - Diffusion - Detoxification by SG - Consumption by Loripes
-
-
-
-2015-05-11:
-
-            GROWTH             POISONING
-
-                  N              b*e^(a*N)
-dN/dt = r*N*(1 - ---) - (1 - ------------- )*m*N*S
-                  K          1 - b*e^(a*N)
-
-
-
-        SULFIDE       EXTERNAL  DIFFUSION     DETOXIFICATION
-        PRODUCTION    SULFIDE
-                      INPUT
-
-dS/dt =    b*N      +  theta   -    g*S    -       c*N*S
-
-*/
-
+//Sulfide detoxification:
+//  Article name: The structure of Aquifex aeolicus sulfide:quinone oxidoreductase, a basis to understand sulfide detoxification and respiration
+//  URL: http://www.pnas.org/content/106/24/9625/F6.expansion.html
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
