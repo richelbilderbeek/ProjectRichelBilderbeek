@@ -6,12 +6,14 @@ SOURCES += \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermenudialog.cpp \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.cpp \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerparameterswidget.cpp \
-    ../../Tools/ToolMutualismBreakdowner/qtloripesconsumptionfunctionwidget.cpp \
-    qtmutualismbreakdownerparameterswidget_test.cpp \
-    qtpoisoningfunctionwidget.cpp \
-    qtpoisoningfunctionwidget_test.cpp \
-    qtseagrassgrowthfunctionwidget.cpp \
-    qtsulfideproductionfunctionwidget.cpp
+    ../../Tools/ToolMutualismBreakdowner/qtsulfideconsumptionfunctionwidget.cpp \
+    ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerparameterswidget_test.cpp \
+    ../../Tools/ToolMutualismBreakdowner/qtpoisoningfunctionwidget.cpp \
+    ../../Tools/ToolMutualismBreakdowner/qtpoisoningfunctionwidget_test.cpp \
+    ../../Tools/ToolMutualismBreakdowner/qtseagrassgrowthfunctionwidget.cpp \
+    ../../Tools/ToolMutualismBreakdowner/qtsulfideproductionfunctionwidget.cpp \
+    qtsulfidedetoxificationfunctionwidget.cpp \
+    qtsulfidediffusionfunctionwidget.cpp
 
 
 HEADERS  += \
@@ -19,18 +21,22 @@ HEADERS  += \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermenudialog.h \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.h \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerparameterswidget.h \
-    ../../Tools/ToolMutualismBreakdowner/qtloripesconsumptionfunctionwidget.h \
-    qtpoisoningfunctionwidget.h \
-    qtseagrassgrowthfunctionwidget.h \
-    qtsulfideproductionfunctionwidget.h
+    ../../Tools/ToolMutualismBreakdowner/qtsulfideconsumptionfunctionwidget.h \
+    ../../Tools/ToolMutualismBreakdowner/qtpoisoningfunctionwidget.h \
+    ../../Tools/ToolMutualismBreakdowner/qtseagrassgrowthfunctionwidget.h \
+    ../../Tools/ToolMutualismBreakdowner/qtsulfideproductionfunctionwidget.h \
+    qtsulfidedetoxificationfunctionwidget.h \
+    qtsulfidediffusionfunctionwidget.h
 
 FORMS += \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownertimeplotdialog.ui \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownermenudialog.ui \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.ui \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerparameterswidget.ui \
-    ../../Tools/ToolMutualismBreakdowner/qtloripesconsumptionfunctionwidget.ui \
-    qtpoisoningfunctionwidget.ui \
-    qtseagrassgrowthfunctionwidget.ui \
-    qtsulfideproductionfunctionwidget.ui
+    ../../Tools/ToolMutualismBreakdowner/qtsulfideconsumptionfunctionwidget.ui \
+    ../../Tools/ToolMutualismBreakdowner/qtpoisoningfunctionwidget.ui \
+    ../../Tools/ToolMutualismBreakdowner/qtseagrassgrowthfunctionwidget.ui \
+    ../../Tools/ToolMutualismBreakdowner/qtsulfideproductionfunctionwidget.ui \
+    qtsulfidedetoxificationfunctionwidget.ui \
+    qtsulfidediffusionfunctionwidget.ui
 

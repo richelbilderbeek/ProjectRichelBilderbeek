@@ -10,17 +10,17 @@
 #include <boost/units/io.hpp>
 
 #include "poisoningfunction.h"
-#include "sulfideconsumptionfunction.h"
 #include "speciesdensity.h"
 #include "seagrassgrowthfunction.h"
+#include "sulfideconsumptionfunction.h"
+#include "sulfidedetoxificationfunction.h"
+#include "sulfidediffusionfunction.h"
 #include "sulfideproductionfunction.h"
 
 Simulation::Simulation(const Parameters& parameters)
   : m_parameters{parameters},
-    m_loripes_densities{},
     m_seagrass_densities{},
     m_sulfide_concentrations{},
-    m_organic_matter_densities{},
     m_timeseries{}
 
 {
@@ -54,7 +54,6 @@ void Simulation::Run()
   //Initialize sim
   auto seagrass_density = m_parameters.GetInitialSeagrassDensity();
   auto sulfide_concentration = m_parameters.GetInitialSulfideConcentration();
-  auto organic_matter_density = m_parameters.GetInitialOrganicMatterDensity();
   auto loripes_density = m_parameters.GetInitialLoripesDensity();
   {
     std::ofstream f("tmp.txt");
@@ -88,12 +87,12 @@ void Simulation::Run()
     try
     {
       const auto production = m_parameters.GetSulfideProductionFunction()->CalculateProduction(n);
-      //const auto diffusion = m_parameters.GetSulfideDiffusionFunction()->CalculateDiffusion(s);
-      const auto detoxification = production;
+      const auto detoxification = m_parameters.GetSulfideDetoxificationFunction()->CalculateDetoxification(n,s);
+      const auto diffusion = m_parameters.GetSulfideDiffusionFunction()->CalculateDiffusion(s);
       const auto consumption = m_parameters.GetSulfideConsumptionFunction()->CalculateConsumption(s,l);
       const auto delta_s
         = production
-        //- diffusion
+        - diffusion
         - detoxification
         - consumption
       ;
@@ -113,10 +112,8 @@ void Simulation::Run()
     if (i % track_after == 0)
     {
       m_timeseries.push_back(static_cast<double>(t));
-      m_loripes_densities.push_back(loripes_density);
       m_seagrass_densities.push_back(seagrass_density);
       m_sulfide_concentrations.push_back(sulfide_concentration);
-      m_organic_matter_densities.push_back(organic_matter_density);
     }
     ++i;
   }
@@ -127,18 +124,14 @@ std::ostream& operator<<(std::ostream& os, const Simulation& simulation) noexcep
 {
   const std::vector<double>& t{simulation.GetTimeSeries()};
   const auto& n = simulation.GetSeagrassDensities();
-  const auto& l = simulation.GetLoripesDensities();
   const auto& s = simulation.GetSulfideConcentrations();
-  const std::vector<double>& m{simulation.GetOrganicMatterDensities()};
   std::stringstream stream;
   assert(t.size() == n.size());
   assert(t.size() == s.size());
-  assert(t.size() == m.size());
-  assert(l.size() == m.size());
   const int sz{static_cast<int>(t.size())};
   for (int i = 0; i!=sz; ++i)
   {
-    stream << t[i] << " " << n[i] << " " << m[i] << " " << s[i] << " " << l[i] <<  '\n';
+    stream << t[i] << " " << n[i] << " " << s[i] <<  '\n';
   }
   std::string str{stream.str()};
   if (!str.empty()) str.pop_back();

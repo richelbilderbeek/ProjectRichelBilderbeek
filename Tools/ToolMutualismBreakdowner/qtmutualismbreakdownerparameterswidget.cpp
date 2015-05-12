@@ -5,18 +5,22 @@
 #include <QFileDialog>
 
 #include "sulfideconsumptionfunction.h"
-#include "qtloripesconsumptionfunctionwidget.h"
 #include "qtpoisoningfunctionwidget.h"
 #include "qtseagrassgrowthfunctionwidget.h"
+#include "qtsulfideconsumptionfunctionwidget.h"
+#include "qtsulfidedetoxificationfunctionwidget.h"
+#include "qtsulfidediffusionfunctionwidget.h"
 #include "qtsulfideproductionfunctionwidget.h"
 #include "ui_qtmutualismbreakdownerparameterswidget.h"
 
 QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtMutualismBreakdownerParametersWidget),
-  m_qtconsumptionwidget{new QtLoripesConsumptionFunctionWidget},
   m_qtpoisoningwidget{new QtPoisoningFunctionWidget},
   m_qtseagrassgrowthwidget{new QtSeagrassGrowthFunctionWidget},
+  m_qtsulfideconsumptionwidget{new QtSulfideConsumptionFunctionWidget},
+  m_qtsulfidedetoxificationwidget{new QtSulfideDetoxificationFunctionWidget},
+  m_qtsulfidediffusionwidget{new QtSulfideDiffusionFunctionWidget},
   m_qtsulfideproductionwidget{new QtSulfideProductionFunctionWidget}
 {
   #ifndef NDEBUG
@@ -24,11 +28,6 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
   #endif
 
   ui->setupUi(this);
-  {
-    QLayout * const my_layout{ui->page_sulfide_consumption->layout()};
-    assert(my_layout);
-    my_layout->addWidget(m_qtconsumptionwidget);
-  }
   {
     using Layout = QGridLayout;
     Layout * const my_layout{
@@ -45,35 +44,36 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
     assert(my_layout);
     my_layout->addWidget(m_qtseagrassgrowthwidget);
   }
+  {
+    QLayout * const my_layout{ui->page_sulfide_consumption->layout()};
+    assert(my_layout);
+    my_layout->addWidget(m_qtsulfideconsumptionwidget);
+  }
+  {
+    QLayout * const my_layout{ui->page_sulfide_detoxification->layout()};
+    assert(my_layout);
+    my_layout->addWidget(m_qtsulfidedetoxificationwidget);
+  }
+  {
+    QLayout * const my_layout{ui->page_sulfide_diffusion->layout()};
+    assert(my_layout);
+    my_layout->addWidget(m_qtsulfidediffusionwidget);
+  }
+  {
+    QLayout * const my_layout{ui->page_sulfide_production->layout()};
+    assert(my_layout);
+    my_layout->addWidget(m_qtsulfideproductionwidget);
+  }
+
 
 
   QObject::connect(ui->box_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_detoxification_max_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_detoxification_min,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_detoxification_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_initial_loripes_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_initial_organic_matter_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_mutualism_breakdown_max,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_mutualism_breakdown_r0,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_mutualism_breakdown_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_n_timesteps,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_organic_matter_addition,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_organic_matter_breakdown,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_organic_matter_capture,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_organic_matter_to_sulfide_factor,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_organic_matter_to_sulfide_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_recruitment_max,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_recruitment_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  //QObject::connect(ui->box_seagrass_to_organic_matter_factor,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_sulfide_diffusion_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-
-  //QObject::connect(ui->box_organic_matter_to_sulfide_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-
-  QObject::connect(m_qtconsumptionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtpoisoningwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtseagrassgrowthwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
+  QObject::connect(m_qtsulfideconsumptionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
+  QObject::connect(m_qtsulfidedetoxificationwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
+  QObject::connect(m_qtsulfidediffusionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtsulfideproductionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 }
 
@@ -89,30 +89,14 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
   using boost::units::si::cubic_meter;
   Parameters p(
     ui->box_delta_t->value(),
-    0.0, //ui->box_detoxification_max_rate->value(),
-    0.0, //ui->box_detoxification_min->value(),
-    0.0, //ui->box_detoxification_rate->value(),
     0.0 * boost::units::si::species_per_square_meter, //ui->box_initial_loripes_density->value(),
-    0.0, //ui->box_initial_organic_matter_density->value(),
     0.0 * boost::units::si::species_per_square_meter, //ui->box_initial_seagrass_density->value(),
     0.0 * mole / cubic_meter, //ui->box_initial_sulfide_concentration->value(),
-    std::make_shared<LinearConsumption>(), //m_qtconsumptionwidget->GetFunction(),
-    0.0, //ui->box_mutualism_breakdown_max->value(),
-    0.0, //ui->box_mutualism_breakdown_r0->value(),
-    0.0, //ui->box_mutualism_breakdown_rate->value(),
-    0.0, //ui->box_organic_matter_addition->value(),
-    0.0, //ui->box_organic_matter_breakdown->value(),
-    0.0, //ui->box_organic_matter_capture->value(),
-    0.0, //ui->box_organic_matter_to_sulfide_factor->value(),
-    0.0, //ui->box_organic_matter_to_sulfide_rate->value(),
     m_qtpoisoningwidget->GetFunction(),
-    0.0, //ui->box_recruitment_max->value(),
-    0.0, //ui->box_recruitment_rate->value(),
     m_qtseagrassgrowthwidget->GetFunction(),
-    0.0 * boost::units::si::species_per_square_meter, //ui->box_seagrass_carrying_capacity->value()
-    0.0, //ui->box_seagrass_growth_rate->value(),
-    0.0, //ui->box_seagrass_to_organic_matter_factor->value(),
-    ui->box_sulfide_diffusion_rate->value(),
+    m_qtsulfideconsumptionwidget->GetFunction(),
+    m_qtsulfidedetoxificationwidget->GetFunction(),
+    m_qtsulfidediffusionwidget->GetFunction(),
     m_qtsulfideproductionwidget->GetFunction(),
     ui->box_n_timesteps->value()
   );
@@ -123,31 +107,12 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
 void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters) noexcept
 {
   ui->box_delta_t->setValue(parameters.GetDeltaT());
-  //ui->box_detoxification_max_rate->setValue(parameters.GetDetoxicationMaxRate());
-  //ui->box_detoxification_min->setValue(parameters.GetDetoxicationMinimum());
-  //ui->box_detoxification_rate->setValue(parameters.GetDetoxicationRate());
-  //ui->box_initial_loripes_density->setValue(parameters.GetInitialLoripesDensity().value());
-  //ui->box_initial_organic_matter_density->setValue(parameters.GetInitialOrganicMatterDensity());
-  //ui->box_initial_seagrass_density->setValue(parameters.GetInitialSeagrassDensity().value());
-  //ui->box_initial_sulfide_concentration->setValue(parameters.GetInitialSulfideConcentration().value());
-  //ui->box_mutualism_breakdown_max->setValue(parameters.GetMutualismBreakdownMax());
-  //ui->box_mutualism_breakdown_r0->setValue(parameters.GetMutualismBreakdownR0());
-  //ui->box_mutualism_breakdown_rate->setValue(parameters.GetMutualismBreakdownRate());
-  //ui->box_organic_matter_addition->setValue(parameters.GetOrganicMatterAddition());
-  //ui->box_organic_matter_breakdown->setValue(parameters.GetOrganicMatterBreakdown());
-  //ui->box_organic_matter_capture->setValue(parameters.GetOrganicMatterCapture());
-  //ui->box_organic_matter_to_sulfide_factor->setValue(parameters.GetOrganicMatterToSulfideFactor());
-  //ui->box_organic_matter_to_sulfide_rate->setValue(parameters.GetOrganicMatterToSulfideRate());
-  //ui->box_recruitment_max->setValue(parameters.GetRecruitmentMax());
-  //ui->box_recruitment_rate->setValue(parameters.GetRecruitmentRate());
-  //ui->box_seagrass_carrying_capacity->setValue(parameters.GetSeagrassCarryingCapacity().value());
-  //ui->box_seagrass_growth_rate->setValue(parameters.GetSeagrassGrowthRate());
-  //ui->box_seagrass_to_organic_matter_factor->setValue(parameters.GetSeagrassToOrganicMatterFactor());
-  //ui->box_sulfide_diffusion_rate->setValue(parameters.GetSulfdeDiffusionRate());
   ui->box_n_timesteps->setValue(parameters.GetNumberOfTimesteps());
-  //this->m_qtconsumptionwidget->SetFunction(parameters.GetLoripesConsumptionFunction());
   this->m_qtpoisoningwidget->SetFunction(parameters.GetPoisoningFunction());
   this->m_qtseagrassgrowthwidget->SetFunction(parameters.GetSeagrassGrowthFunction());
+  this->m_qtsulfideconsumptionwidget->SetFunction(parameters.GetSulfideConsumptionFunction());
+  this->m_qtsulfidedetoxificationwidget->SetFunction(parameters.GetSulfideDetoxificationFunction());
+  this->m_qtsulfidediffusionwidget->SetFunction(parameters.GetSulfideDiffusionFunction());
   this->m_qtsulfideproductionwidget->SetFunction(parameters.GetSulfideProductionFunction());
 }
 

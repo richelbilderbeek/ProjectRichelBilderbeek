@@ -28,10 +28,8 @@ private slots:
 private:
   Ui::QtMutualismBreakdownerTimePlotDialog *ui;
 
-  QwtPlotCurve * const m_curve_loripes_density;
   QwtPlotCurve * const m_curve_seagrass_density;
   QwtPlotCurve * const m_curve_sulfide_concentration;
-  QwtPlotCurve * const m_curve_organic_matter_density;
   QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
 
   #ifndef NDEBUG

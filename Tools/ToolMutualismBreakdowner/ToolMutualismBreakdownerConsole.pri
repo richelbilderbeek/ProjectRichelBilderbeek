@@ -9,7 +9,9 @@ SOURCES += \
     ../../Tools/ToolMutualismBreakdowner/poisoningfunction.cpp \
     ../../Tools/ToolMutualismBreakdowner/sulfideconsumptionfunction.cpp \
     ../../Tools/ToolMutualismBreakdowner/seagrassgrowthfunction.cpp \
-    ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.cpp
+    ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.cpp \
+    sulfidediffusionfunction.cpp \
+    sulfidedetoxificationfunction.cpp
 
 HEADERS  += \
     ../../Tools/ToolMutualismBreakdowner/simulation.h \
@@ -18,7 +20,9 @@ HEADERS  += \
     ../../Tools/ToolMutualismBreakdowner/poisoningfunction.h \
     ../../Tools/ToolMutualismBreakdowner/sulfideconsumptionfunction.h \
     ../../Tools/ToolMutualismBreakdowner/seagrassgrowthfunction.h \
-    ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.h
+    ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.h \
+    sulfidediffusionfunction.h \
+    sulfidedetoxificationfunction.h
 
 RESOURCES += \
     ../../Tools/ToolMutualismBreakdowner/ToolMutualismBreakdowner.qrc

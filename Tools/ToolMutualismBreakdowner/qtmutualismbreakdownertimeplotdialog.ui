@@ -36,18 +36,6 @@ QPlainTextEdit {
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
-    <widget class="QwtPlot" name="plot_seagrass_density" native="true"/>
-   </item>
-   <item row="0" column="2">
-    <widget class="QwtPlot" name="plot_organic_matter_density" native="true"/>
-   </item>
-   <item row="1" column="1">
-    <widget class="QwtPlot" name="plot_sulfide_concentration" native="true"/>
-   </item>
-   <item row="1" column="2">
-    <widget class="QwtPlot" name="plot_loripes_density" native="true"/>
-   </item>
    <item row="0" column="0" rowspan="2">
     <widget class="QWidget" name="widget" native="true">
      <property name="sizePolicy">
@@ -66,6 +54,12 @@ QPlainTextEdit {
       </item>
      </layout>
     </widget>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <widget class="QwtPlot" name="plot_seagrass_density" native="true"/>
+   </item>
+   <item row="0" column="2" rowspan="2">
+    <widget class="QwtPlot" name="plot_sulfide_concentration" native="true"/>
    </item>
   </layout>
  </widget>
