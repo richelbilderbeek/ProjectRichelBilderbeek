@@ -1,5 +1,5 @@
 #ifndef NDEBUG
-#include "speciesgrowth.h"
+#include "rate.h"
 
 #include <boost/units/io.hpp>
 
@@ -11,22 +11,20 @@
 #include "testtimer.h"
 #include "speciesdensity.h"
 
-std::istream& boost::units::si::operator>>(std::istream& is, SpeciesGrowth& sd)
+std::istream& boost::units::si::operator>>(std::istream& is, Rate& sd)
 {
   double value = 0.0;
   is >> value;
   std::string unit;
   is >> unit;
-  assert(unit == "m^-2");
-  is >> unit;
   assert(unit == "s^-1");
-  sd = SpeciesGrowth(
+  sd = Rate(
     value
-    * boost::units::si::species_per_square_meter_per_second);
+    * boost::units::si::per_second);
   return is;
 }
 
-void ribi::units::TestSpeciesGrowth() noexcept
+void ribi::units::TestRate() noexcept
 {
   {
     static bool is_tested{false};
@@ -38,29 +36,29 @@ void ribi::units::TestSpeciesGrowth() noexcept
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   using ribi::fileio::FileIo;
-  using SpeciesGrowth = boost::units::quantity<boost::units::si::species_growth>;
+  using Rate = boost::units::quantity<boost::units::si::rate>;
   //Species density is in species per square meter
   {
-    const SpeciesGrowth d{
-      1.0 * boost::units::si::species_per_square_meter_per_second};
+    const Rate d{
+      1.0 * boost::units::si::per_second};
     std::stringstream s;
     s << d;
     const std::string t{s.str()};
     //std::cerr << t << std::endl;
-    assert(t.substr(t.size() - 9, 9) == "m^-2 s^-1");
+    assert(t.substr(t.size() - 4, 4) == "s^-1");
   }
   //Species density uses a dot as a seperator
   {
-    const SpeciesGrowth d{12.34 * boost::units::si::species_per_square_meter_per_second};
+    const Rate d{12.34 * boost::units::si::per_second};
     std::stringstream s;
     s << d;
     const std::string t{s.str()};
-    assert(t == "12.34 m^-2 s^-1");
+    assert(t == "12.34 s^-1");
   }
   //Species growth can be multiplied by an area to obtain the growth rate
   {
     using Area = boost::units::quantity<boost::units::si::area>;
-    const SpeciesGrowth d{0.1 * boost::units::si::species_per_square_meter_per_second};
+    const Rate d{0.1 * boost::units::si::per_second};
     const Area a(123.4 * boost::units::si::square_meter);
     const auto n = d * a;
     std::stringstream s;
@@ -68,16 +66,16 @@ void ribi::units::TestSpeciesGrowth() noexcept
     const std::string t{s.str()};
     assert(t.substr(t.size() - 4, 4) == "s^-1");
   }
-  //Species density file I/O, one SpeciesGrowth
+  //Species density file I/O, one Rate
   {
-    const SpeciesGrowth d{12.34 * boost::units::si::species_per_square_meter_per_second};
+    const Rate d{12.34 * boost::units::si::per_second};
     const std::string filename{FileIo().GetTempFileName(".txt")};
     {
       std::ofstream f{filename};
       f << d;
     }
     std::ifstream f{filename};
-    SpeciesGrowth d_too;
+    Rate d_too;
     f >> d_too;
     if (d != d_too)
     {
@@ -87,18 +85,18 @@ void ribi::units::TestSpeciesGrowth() noexcept
     }
     assert(d == d_too);
   }
-  //Species density file I/O, two SpeciesGrowth
+  //Species density file I/O, two Rate
   {
-    const SpeciesGrowth a{12.34 * boost::units::si::species_per_square_meter_per_second};
-    const SpeciesGrowth b{23.45 * boost::units::si::species_per_square_meter_per_second};
+    const Rate a{12.34 * boost::units::si::per_second};
+    const Rate b{23.45 * boost::units::si::per_second};
     const std::string filename{FileIo().GetTempFileName(".txt")};
     {
       std::ofstream f{filename};
       f << a << " " << b;
     }
     std::ifstream f{filename};
-    SpeciesGrowth a_too;
-    SpeciesGrowth b_too;
+    Rate a_too;
+    Rate b_too;
     f >> a_too >> b_too;
     if (a != a_too)
     {

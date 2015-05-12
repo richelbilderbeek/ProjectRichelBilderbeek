@@ -28,7 +28,7 @@ namespace boost {
   namespace units {
     namespace si {
       typedef unit<species_growth_dimension,si::system> species_growth;
-      BOOST_UNITS_STATIC_CONSTANT(species_per_square_meter_per_time,species_growth);
+      BOOST_UNITS_STATIC_CONSTANT(species_per_square_meter_per_second,species_growth);
 
       using SpeciesGrowth = boost::units::quantity<boost::units::si::species_growth>;
       std::istream& operator>>(std::istream& is,SpeciesGrowth& sd);

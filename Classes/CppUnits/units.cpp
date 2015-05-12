@@ -6,6 +6,7 @@
 
 #include "concentration.h"
 #include "hydrogenmoleculeamount.h"
+#include "rate.h"
 #include "massflow.h"
 #include "moleculeamount.h"
 #include "speciesdensity.h"
@@ -25,6 +26,7 @@ void ribi::units::Test() noexcept
     TestConcentration();
     TestHydrogenMoleculeAmount();
     TestMassFlow();
+    TestRate();
     TestMoleculeAmount();
     TestSpeciesDensity();
     TestSpeciesGrowth();
