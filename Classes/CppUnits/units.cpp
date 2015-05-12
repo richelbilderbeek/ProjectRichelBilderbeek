@@ -5,13 +5,14 @@
 #include <sstream>
 
 #include "concentration.h"
-#include "speciesdensity.h"
-#include "moleculeamount.h"
 #include "hydrogenmoleculeamount.h"
-#include "sulfidemoleculeamount.h"
 #include "massflow.h"
-#include "volumetricflow.h"
+#include "moleculeamount.h"
+#include "speciesdensity.h"
+#include "speciesgrowth.h"
+#include "sulfidemoleculeamount.h"
 #include "testtimer.h"
+#include "volumetricflow.h"
 
 void ribi::units::Test() noexcept
 {
@@ -26,6 +27,7 @@ void ribi::units::Test() noexcept
     TestMassFlow();
     TestMoleculeAmount();
     TestSpeciesDensity();
+    TestSpeciesGrowth();
     TestSulfideMoleculeAmount();
     TestVolumetricFlow();
   }
