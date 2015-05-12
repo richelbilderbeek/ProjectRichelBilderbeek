@@ -15,8 +15,9 @@ QtPoisoningFunctionWidget::QtPoisoningFunctionWidget(QWidget *parent) :
   #endif
   ui->setupUi(this);
 
-  QObject::connect(ui->box_ie_r,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_ie_max,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_a,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_b,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_max,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 }
 
 QtPoisoningFunctionWidget::~QtPoisoningFunctionWidget()
@@ -27,8 +28,9 @@ QtPoisoningFunctionWidget::~QtPoisoningFunctionWidget()
 std::shared_ptr<PoisoningFunction> QtPoisoningFunctionWidget::GetFunction() const noexcept
 {
   return std::make_shared<InvertedExponentialPoisoning>(
-    ui->box_ie_r->value(),
-    ui->box_ie_max->value()
+    ui->box_a->value(),
+    ui->box_b->value(),
+    ui->box_max->value()
   );
 }
 
@@ -48,6 +50,7 @@ void QtPoisoningFunctionWidget::SetFunction(const std::shared_ptr<PoisoningFunct
   assert(f);
   const auto iec = std::dynamic_pointer_cast<InvertedExponentialPoisoning>(f);
   assert(iec);
-  ui->box_ie_r->setValue(iec->m_r);
-  ui->box_ie_max->setValue(iec->m_max);
+  ui->box_a->setValue(iec->m_a);
+  ui->box_b->setValue(iec->m_b);
+  ui->box_max->setValue(iec->m_max);
 }

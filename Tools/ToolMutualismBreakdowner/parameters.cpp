@@ -27,7 +27,7 @@ Parameters::Parameters()
     organic_matter_capture{0.0},
     organic_matter_to_sulfide_factor{0.0},
     organic_matter_to_sulfide_rate{0.0},
-    poisoning_function{new InvertedExponentialPoisoning},
+    m_poisoning_function{std::make_shared<InvertedExponentialPoisoning>()},
     recruitment_max{0.1},
     recruitment_rate{0.0},
     m_seagrass_growth_function{std::make_shared<SeagrassStressedLogisticGrowth>()},
@@ -40,7 +40,7 @@ Parameters::Parameters()
   #ifndef NDEBUG
   Test();
   #endif
-  assert(poisoning_function);
+  assert(m_poisoning_function);
   assert(m_seagrass_growth_function);
 }
 
@@ -89,7 +89,7 @@ Parameters::Parameters(
     organic_matter_capture{any_organic_matter_capture},
     organic_matter_to_sulfide_factor{any_organic_matter_to_sulfide_factor},
     organic_matter_to_sulfide_rate{any_organic_matter_to_sulfide_rate},
-    poisoning_function{any_poisoning_function},
+    m_poisoning_function{any_poisoning_function},
     recruitment_max{any_recruitment_max},
     recruitment_rate{any_recruitment_rate},
     m_seagrass_growth_function{seagrass_growth_function},
@@ -116,7 +116,7 @@ Parameters::Parameters(
   assert(seagrass_growth_rate >= 0.0);
   assert(loripes_consumption_function);
   assert(m_seagrass_growth_function);
-  assert(poisoning_function);
+  assert(m_poisoning_function);
 }
 
 Parameters Parameters::GetTest(const int /* i */)
@@ -126,7 +126,7 @@ Parameters Parameters::GetTest(const int /* i */)
   assert(loripes_consumption_function);
   assert(loripes_consumption_function.get());
   const auto poisoning_function
-    = std::make_shared<InvertedExponentialPoisoning>(0.05,1.0);
+    = std::make_shared<InvertedExponentialPoisoning>(0.01,0.05,1.0);
   assert(poisoning_function);
   assert(poisoning_function.get());
   const auto seagrass_growth_function
@@ -288,7 +288,7 @@ void Parameters::SetPoisoningFunction(const std::shared_ptr<PoisoningFunction> a
       << "any_poisoning_function must not be null";
     throw std::logic_error(s.str());
   }
-  this->poisoning_function = any_poisoning_function;
+  this->m_poisoning_function = any_poisoning_function;
 }
 
 std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept
@@ -329,7 +329,7 @@ std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept
     >> parameter.organic_matter_capture
     >> parameter.organic_matter_to_sulfide_factor
     >> parameter.organic_matter_to_sulfide_rate
-    >> parameter.poisoning_function
+    >> parameter.m_poisoning_function
     >> parameter.seagrass_carrying_capacity
     >> parameter.seagrass_growth_rate
     >> parameter.seagrass_to_organic_matter_factor

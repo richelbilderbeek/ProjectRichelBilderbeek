@@ -5,10 +5,18 @@
 #include <memory>
 
 #include "concentration.h"
+#include "speciesdensity.h"
+#include "speciesgrowth.h"
+#include "rate.h"
 
 ///A strategy
 struct PoisoningFunction
 {
+  using Concentration = ribi::units::Concentration;
+  using Density = ribi::units::SpeciesDensity;
+  using Growth = ribi::units::SpeciesGrowth;
+  using Rate = ribi::units::Rate;
+
   PoisoningFunction()
   {
     #ifndef NDEBUG
@@ -18,7 +26,11 @@ struct PoisoningFunction
   virtual ~PoisoningFunction() {}
   ///The fraction that will survive
   ///Will throw if seagrass_density is less than zero
-  virtual double CalculateSurvivalFraction(const ribi::units::Concentration sulfide_concentration) const = 0;
+  virtual Growth CalculateDecline(
+    const Density seagrass_density,
+    const Concentration sulfide_concentration
+  ) const = 0;
+
 
   virtual std::string ToStr() const noexcept = 0;
 
@@ -39,19 +51,29 @@ struct PoisoningFunction
  +--------------------- Sulfide concentration
 
 */
+/*
+                 b*e^(a*N)
+dN/dt = (1 - ------------- )*m*N*S
+             1 + b*e^(a*N)
+*/
 struct InvertedExponentialPoisoning : public PoisoningFunction
 {
   InvertedExponentialPoisoning(
-    const double r = 0.2,
+    const double a = 0.1,
+    const double b = 0.1,
     const double max = 0.009
   )
-    : m_r{r}, m_max{max} {}
+    : m_a{a}, m_b{b}, m_max{max} {}
   ~InvertedExponentialPoisoning() {}
   ///The fraction that will survive
   ///Will throw if seagrass_density is less than zero
-  double CalculateSurvivalFraction(const ribi::units::Concentration sulfide_concentration) const override;
+  Growth CalculateDecline(
+    const Density seagrass_density,
+    const Concentration sulfide_concentration
+  ) const override;
   std::string ToStr() const noexcept override;
-  const double m_r;
+  const double m_a;
+  const double m_b;
   const double m_max;
 };
 

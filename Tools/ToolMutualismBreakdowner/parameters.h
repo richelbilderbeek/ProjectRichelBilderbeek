@@ -60,7 +60,7 @@ struct Parameters
   auto GetOrganicMatterCapture() const noexcept { return organic_matter_capture; }
   auto GetOrganicMatterToSulfideFactor() const noexcept { return organic_matter_to_sulfide_factor; }
   auto GetOrganicMatterToSulfideRate() const noexcept { return organic_matter_to_sulfide_rate; }
-  const auto& GetPoisoningFunction() const noexcept { return poisoning_function; }
+  const auto& GetPoisoningFunction() const noexcept { return m_poisoning_function; }
 
   void SetDeltaT(const double any_delta_t);
   void SetInitialSeagrassDensity(const ribi::units::SpeciesDensity any_initial_seagrass_density) noexcept;
@@ -120,7 +120,7 @@ struct Parameters
   double organic_matter_capture;
   double organic_matter_to_sulfide_factor;
   double organic_matter_to_sulfide_rate;
-  std::shared_ptr<PoisoningFunction> poisoning_function;
+  std::shared_ptr<PoisoningFunction> m_poisoning_function;
 
   private:
 

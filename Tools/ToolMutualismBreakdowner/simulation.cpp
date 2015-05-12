@@ -73,11 +73,9 @@ void Simulation::Run()
       assert(m_parameters.GetSeagrassGrowthFunction());
 
       const auto growth = m_parameters.GetSeagrassGrowthFunction()->CalculateGrowth(n);
-      const auto death_by_sulfide
-        = poisoning_function->CalculateSurvivalFraction(s) * n.value()
-      ;
-      const auto delta_n = growth.value() - death_by_sulfide;
-      seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
+      const auto poisoning = poisoning_function->CalculateDecline(n,s);
+      const auto delta_n = growth - poisoning;
+      seagrass_density += (delta_n * delta_t * boost::units::si::second);
     }
     catch (std::logic_error& e)
     {

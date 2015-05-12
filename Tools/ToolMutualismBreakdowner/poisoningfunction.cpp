@@ -63,8 +63,10 @@ void PoisoningFunction::Test() noexcept
   }
 }
 
-double InvertedExponentialPoisoning::CalculateSurvivalFraction(
-  const ribi::units::Concentration sulfide_concentration
+PoisoningFunction::Growth
+  InvertedExponentialPoisoning::CalculateDecline(
+    const Density seagrass_density,
+    const Concentration sulfide_concentration
 ) const
 {
   if (sulfide_concentration < 0.0 * boost::units::si::mole / boost::units::si::cubic_meter)
@@ -86,12 +88,15 @@ double InvertedExponentialPoisoning::CalculateSurvivalFraction(
     throw std::logic_error(s.str());
   }
   assert(sulfide_concentration >= 0.0 * boost::units::si::mole / boost::units::si::cubic_meter);
-  const double s{sulfide_concentration.value()};
-  assert(s >= 0.0);
-  const double p_survive{
-    m_max * (1.0 - std::exp(-m_r * s))
-  };
-  return p_survive;
+  const auto s = sulfide_concentration;
+  const auto n = seagrass_density;
+  const auto f_num = 0.0 + (m_b * std::exp(m_a * seagrass_density.value()));
+  const auto f_den = 1.0 + (m_b * std::exp(m_a * seagrass_density.value()));
+  const auto m = m_max * boost::units::si::per_second / boost::units::si::mol_per_cubic_meter;
+  const auto decline
+    = (1.0 - (f_num / f_den)) * m * n * s
+  ;
+  return decline;
 }
 
 std::string InvertedExponentialPoisoning::ToStr() const noexcept
@@ -99,7 +104,8 @@ std::string InvertedExponentialPoisoning::ToStr() const noexcept
   std::stringstream s;
   s
     << "InvertedExponentialPoisoning" << " "
-    << m_r << " "
+    << m_a << " "
+    << m_b << " "
     << m_max
   ;
   return s.str();
@@ -116,10 +122,12 @@ std::istream& operator>>(std::istream& is, std::shared_ptr<PoisoningFunction>& f
   std::string type_str;
   is >> type_str;
   assert(type_str == "InvertedExponentialPoisoning");
-  double r{0.0};
-  is >> r;
+  double a{0.0};
+  is >> a;
+  double b{0.0};
+  is >> b;
   double max{0.0};
   is >> max;
-  f = std::make_shared<InvertedExponentialPoisoning>(r,max);
+  f = std::make_shared<InvertedExponentialPoisoning>(a,b,max);
   return is;
 }

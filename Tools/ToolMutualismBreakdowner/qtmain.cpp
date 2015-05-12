@@ -33,16 +33,12 @@
               GROWTH WITH STRESS       POISONING
 
                       N                      b*e^(a*N)
-dN/dt = N * ( r*(1 - ---) ) - d ) + (1 + ------------- )*m*N*S
-                      K                  1 - b*e^(a*N)
+dN/dt = N * ( r*(1 - ---) ) - d ) - (1 - ------------- )*m*N*S
+                      K                  1 + b*e^(a*N)
 
 
 
-        SULFIDE       EXTERNAL  DIFFUSION     DETOXIFICATION
-        PRODUCTION    SULFIDE
-                      INPUT
-
-dS/dt =    b*N      +  theta   -    g*S    -       c*N*S
+dS/dt = bN - gS - vNS - cLS      = Sulfide production - Diffusion - Detoxification by SG - Consumption by Loripes
 
 
 
@@ -51,7 +47,7 @@ dS/dt =    b*N      +  theta   -    g*S    -       c*N*S
             GROWTH             POISONING
 
                   N              b*e^(a*N)
-dN/dt = r*N*(1 - ---) + (1 + ------------- )*m*N*S
+dN/dt = r*N*(1 - ---) - (1 - ------------- )*m*N*S
                   K          1 - b*e^(a*N)
 
 

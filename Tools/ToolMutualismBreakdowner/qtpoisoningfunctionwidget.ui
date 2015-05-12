@@ -14,7 +14,46 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="4" column="0" colspan="2">
+   <item row="1" column="1">
+    <widget class="QDoubleSpinBox" name="box_a">
+     <property name="decimals">
+      <number>4</number>
+     </property>
+     <property name="maximum">
+      <double>1000.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>0.100000000000000</double>
+     </property>
+     <property name="value">
+      <double>0.100000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_max">
+     <property name="text">
+      <string>max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_a">
+     <property name="text">
+      <string>a</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QComboBox" name="box_type">
+     <item>
+      <property name="text">
+       <string>Inverted exponential</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="2">
     <widget class="QLabel" name="label">
      <property name="text">
       <string/>
@@ -27,8 +66,21 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QDoubleSpinBox" name="box_ie_max">
+   <item row="5" column="0" colspan="2">
+    <spacer name="spacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="1">
+    <widget class="QDoubleSpinBox" name="box_max">
      <property name="decimals">
       <number>4</number>
      </property>
@@ -46,13 +98,20 @@
      </property>
     </widget>
    </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_b">
+     <property name="text">
+      <string>b</string>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="1">
-    <widget class="QDoubleSpinBox" name="box_ie_r">
+    <widget class="QDoubleSpinBox" name="box_b">
      <property name="decimals">
       <number>4</number>
      </property>
      <property name="maximum">
-      <double>1000.000000000000000</double>
+      <double>10000.000000000000000</double>
      </property>
      <property name="singleStep">
       <double>0.100000000000000</double>
@@ -61,42 +120,6 @@
       <double>0.100000000000000</double>
      </property>
     </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_ie_max">
-     <property name="text">
-      <string>max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_ie_r">
-     <property name="text">
-      <string>r</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QComboBox" name="box_type">
-     <item>
-      <property name="text">
-       <string>Inverted exponential</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="2">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>

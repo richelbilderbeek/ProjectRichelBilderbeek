@@ -8,8 +8,8 @@
 #include "mutualismbreakdownermenudialog.h"
 #include "qtmutualismbreakdownertimeplotdialog.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
-#include "qtmutualismbreakdownertestconsumptionfunctiondialog.h"
-#include "qtmutualismbreakdownertestpoisoningfunctiondialog.h"
+//#include "qtmutualismbreakdownertestconsumptionfunctiondialog.h"
+//#include "qtmutualismbreakdownertestpoisoningfunctiondialog.h"
 #include "qtpoisoningfunctionwidget.h"
 #include "trace.h"
 #include "testtimer.h"
@@ -78,6 +78,7 @@ void ribi::QtMutualismBreakdownerMenuDialog::on_button_start_equilibrium_plot_cl
   ShowChild(&d);
 }
 
+/*
 void ribi::QtMutualismBreakdownerMenuDialog::on_button_consumption_clicked()
 {
   QtMutualismBreakdownerTestConsumptionFunctionDialog d;
@@ -89,3 +90,4 @@ void ribi::QtMutualismBreakdownerMenuDialog::on_button_poisoning_clicked()
   QtMutualismBreakdownerTestPoisoningFunctionDialog d;
   ShowChild(&d);
 }
+*/

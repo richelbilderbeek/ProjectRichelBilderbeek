@@ -7,10 +7,8 @@ SOURCES += \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.cpp \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerparameterswidget.cpp \
     ../../Tools/ToolMutualismBreakdowner/qtloripesconsumptionfunctionwidget.cpp \
-    qtmutualismbreakdownertestconsumptionfunctiondialog.cpp \
     qtmutualismbreakdownerparameterswidget_test.cpp \
     qtpoisoningfunctionwidget.cpp \
-    qtmutualismbreakdownertestpoisoningfunctiondialog.cpp \
     qtpoisoningfunctionwidget_test.cpp \
     qtseagrassgrowthfunctionwidget.cpp
 
@@ -21,9 +19,7 @@ HEADERS  += \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.h \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerparameterswidget.h \
     ../../Tools/ToolMutualismBreakdowner/qtloripesconsumptionfunctionwidget.h \
-    qtmutualismbreakdownertestconsumptionfunctiondialog.h \
     qtpoisoningfunctionwidget.h \
-    qtmutualismbreakdownertestpoisoningfunctiondialog.h \
     qtseagrassgrowthfunctionwidget.h
 
 FORMS += \
@@ -32,8 +28,6 @@ FORMS += \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerequilibriumdialog.ui \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownerparameterswidget.ui \
     ../../Tools/ToolMutualismBreakdowner/qtloripesconsumptionfunctionwidget.ui \
-    qtmutualismbreakdownertestconsumptionfunctiondialog.ui \
     qtpoisoningfunctionwidget.ui \
-    qtmutualismbreakdownertestpoisoningfunctiondialog.ui \
     qtseagrassgrowthfunctionwidget.ui
 

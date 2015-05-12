@@ -31,9 +31,10 @@ private slots:
   void on_button_start_equilibrium_plot_clicked();
   void on_button_start_time_plot_clicked();
 
+  /*
   void on_button_consumption_clicked();
-
   void on_button_poisoning_clicked();
+  */
 
 private:
   Ui::QtMutualismBreakdownerMenuDialog *ui;
