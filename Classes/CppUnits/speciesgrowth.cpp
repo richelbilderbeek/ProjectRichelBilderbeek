@@ -10,6 +10,7 @@
 #include "fileio.h"
 #include "testtimer.h"
 #include "speciesdensity.h"
+#include "rate.h"
 
 std::istream& boost::units::si::operator>>(std::istream& is, SpeciesGrowth& sd)
 {
@@ -35,6 +36,8 @@ void ribi::units::TestSpeciesGrowth() noexcept
   }
   {
     ribi::fileio::FileIo();
+    TestSpeciesDensity();
+    TestRate();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   using ribi::fileio::FileIo;
@@ -114,6 +117,27 @@ void ribi::units::TestSpeciesGrowth() noexcept
       ;
     }
     assert(b == b_too);
+  }
+  //Combining SpeciesDensity, SpeciesGrowth and Rate
+  //Exponential growth
+  {
+    const double n_unitless{0.7};
+    const double r_unitless{1.3};
+    const SpeciesDensity n{n_unitless * boost::units::si::species_per_square_meter};
+    const Rate r{r_unitless * boost::units::si::per_second};
+    const SpeciesGrowth dndt{n * r};
+    assert(dndt.value() == n_unitless * r_unitless);
+  }
+  //Logistic growth
+  {
+    const double n_unitless{0.7};
+    const double k_unitless{2.0};
+    const double r_unitless{1.3};
+    const SpeciesDensity n{n_unitless * boost::units::si::species_per_square_meter};
+    const SpeciesDensity k{k_unitless * boost::units::si::species_per_square_meter};
+    const Rate r{r_unitless * boost::units::si::per_second};
+    const SpeciesGrowth dndt{ n * r * (1.0 - (n / k))};
+    assert(dndt.value() == n_unitless * r_unitless * (1.0 - (n_unitless / k_unitless)));
   }
 }
 #endif
