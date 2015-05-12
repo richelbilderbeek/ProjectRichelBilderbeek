@@ -1,5 +1,4 @@
 #include "seagrassgrowthfunction.h"
-/*
 
 #include <cassert>
 #include <cmath>
@@ -11,6 +10,16 @@
 
 #include "fileio.h"
 #include "testtimer.h"
+#include "speciesdensity.h"
+#include "speciesgrowth.h"
+
+SeagrassGrowthFunction::SeagrassGrowthFunction()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 
 void SeagrassGrowthFunction::Test() noexcept
 {
@@ -25,27 +34,39 @@ void SeagrassGrowthFunction::Test() noexcept
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   using ribi::fileio::FileIo;
-  using boost::units::si::species_per_square_meters;
-
+  using boost::units::si::species_per_square_meter;
+  using boost::units::si::per_second;
+  using ribi::units::SpeciesDensity;
+  using ribi::units::SpeciesGrowth;
   //Shape of function
   {
-    const SeagrassLogisticGrowth p;
-    assert(std::abs(p.CalculateConsumptionRate(  0.0 * species_per_square_meters)-0.0) < 0.1);
-    assert(std::abs(p.CalculateConsumptionRate( 20.0 * species_per_square_meters)-0.6) < 0.1);
-    assert(std::abs(p.CalculateConsumptionRate( 60.0 * species_per_square_meters)-0.9) < 0.1);
-    assert(std::abs(p.CalculateConsumptionRate(100.0 * species_per_square_meters)-1.0) < 0.1);
+    const SeagrassLogisticGrowth f(
+      1.0 * species_per_square_meter,
+      1.1 * per_second
+    );
+    const SpeciesDensity n{
+      0.1 * species_per_square_meter
+    };
+    const SpeciesGrowth dndt{
+      f.CalculateGrowth(n)
+    };
+    assert(dndt.value() > 0.0);
   }
   //File I/O
   {
     const double r{12.34};
-    InvertedExponentialConsumption c(r);
+    const double k{23.45};
+    const SeagrassLogisticGrowth c(
+      k * species_per_square_meter,
+      r * per_second
+    );
     const std::string filename{FileIo().GetTempFileName(".txt")};
     {
       std::ofstream f(filename);
       f << c;
     }
     std::ifstream f(filename);
-    std::shared_ptr<LoripesConsumptionFunction> d;
+    std::shared_ptr<SeagrassGrowthFunction> d;
     f >> d;
     assert(d);
     if (c.ToStr() != d->ToStr())
@@ -61,18 +82,32 @@ void SeagrassGrowthFunction::Test() noexcept
 }
 
 SeagrassLogisticGrowth::SeagrassLogisticGrowth(
-  const double r)
-  : m_r{r}
+    const Density carrying_capacity,
+    const Rate growth_rate
+  )
+  : m_carrying_capacity{carrying_capacity},
+    m_growth_rate{growth_rate}
 {
-  assert(m_r >= 0.0);
+  using boost::units::si::species_per_square_meter;
+
+  if (m_carrying_capacity < 0.0 * species_per_square_meter)
+  {
+    std::stringstream s;
+    s << "SeagrassLogisticGrowth::SeagrassLogisticGrowth: "
+      << "carrying capacity must be positive, "
+      << "value supplied was " << m_carrying_capacity
+    ;
+    throw std::logic_error(s.str());
+  }
 }
 
-
-double SeagrassLogisticGrowth::CalculateGrowth(
-  const ribi::units::SpeciesDensity seagrass_density
-) const
+SeagrassLogisticGrowth::Growth
+  SeagrassLogisticGrowth::CalculateGrowth(
+    const Density seagrass_density
+  ) const
 {
-  if (seagrass_density < 0.0 * boost::units::si::species_per_square_meter)
+  using boost::units::si::species_per_square_meter;
+  if (seagrass_density < 0.0 * species_per_square_meter)
   {
     std::stringstream s;
     s << "SeagrassLogisticGrowth::CalculateGrowth: "
@@ -91,13 +126,10 @@ double SeagrassLogisticGrowth::CalculateGrowth(
     throw std::logic_error(s.str());
   }
   assert(seagrass_density >= 0.0 * boost::units::si::species_per_square_meters);
-  const double n{seagrass_density.value()};
-  assert(n >= 0.0);
-  const double result{
-    1.0 - std::exp(-m_r * n)
-  };
-  assert(result >= 0.0);
-  assert(result <= 1.0);
+  const auto r = m_growth_rate;
+  const auto k = m_carrying_capacity;
+  const auto n = seagrass_density;
+  const auto result = r * n * (1.0 - (n/k));
   return result;
 }
 
@@ -106,25 +138,28 @@ std::string SeagrassLogisticGrowth::ToStr() const noexcept
   std::stringstream s;
   s
     << "SeagrassLogisticGrowth" << " "
-    << m_r
+    << m_carrying_capacity << " "
+    << m_growth_rate
   ;
   return s.str();
 }
 
-std::ostream& operator<<(std::ostream& os, const LoripesConsumptionFunction& f) noexcept
+std::ostream& operator<<(std::ostream& os, const SeagrassGrowthFunction& f) noexcept
 {
   os << f.ToStr();
   return os;
 }
 
-std::istream& operator>>(std::istream& is, std::shared_ptr<LoripesConsumptionFunction>& f) noexcept
+std::istream& operator>>(std::istream& is, std::shared_ptr<SeagrassGrowthFunction>& f) noexcept
 {
   std::string type_str;
   is >> type_str;
   assert(type_str == "SeagrassLogisticGrowth");
-  double r{0.0};
-  is >> r;
-  f = std::make_shared<SeagrassLogisticGrowth>(r);
+  SeagrassGrowthFunction::Density carrying_capacity;
+  is >> carrying_capacity;
+  SeagrassGrowthFunction::Rate growth_rate;
+  is >> growth_rate;
+
+  f = std::make_shared<SeagrassLogisticGrowth>(carrying_capacity,growth_rate);
   return is;
 }
-*/

@@ -3,13 +3,16 @@
 
 #include <cassert>
 #include "testtimer.h"
-
+#include "seagrassgrowthfunction.h"
 void Simulation::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    SeagrassLogisticGrowth();
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
 
