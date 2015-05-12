@@ -12,7 +12,7 @@ void Simulation::Test() noexcept
     is_tested = true;
   }
   {
-    SeagrassLogisticGrowth();
+    SeagrassStressedLogisticGrowth();
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
 

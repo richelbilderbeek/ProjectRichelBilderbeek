@@ -8,8 +8,9 @@ namespace Ui {
   class QtMutualismBreakdownerParametersWidget;
 }
 
-struct QtLoripesConsumptionFunctionWidget;
+//struct QtLoripesConsumptionFunctionWidget;
 struct QtPoisoningFunctionWidget;
+struct QtSeagrassGrowthFunctionWidget;
 
 class QtMutualismBreakdownerParametersWidget : public QWidget
 {
@@ -36,8 +37,9 @@ private slots:
 private:
   Ui::QtMutualismBreakdownerParametersWidget *ui;
 
-  QtLoripesConsumptionFunctionWidget * const m_qtconsumptionwidget;
+  //QtLoripesConsumptionFunctionWidget * const m_qtconsumptionwidget;
   QtPoisoningFunctionWidget * const m_qtpoisoningwidget;
+  QtSeagrassGrowthFunctionWidget * const m_qtseagrassgrowthwidget;
 
   #ifndef NDEBUG
   static void Test() noexcept;

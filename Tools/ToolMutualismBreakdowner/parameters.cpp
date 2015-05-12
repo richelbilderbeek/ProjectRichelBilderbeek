@@ -6,6 +6,8 @@
 
 #include "loripesconsumptionfunction.h"
 #include "poisoningfunction.h"
+#include "seagrassgrowthfunction.h"
+
 Parameters::Parameters()
   :
     delta_t{0.1},
@@ -28,6 +30,7 @@ Parameters::Parameters()
     poisoning_function{new InvertedExponentialPoisoning},
     recruitment_max{0.1},
     recruitment_rate{0.0},
+    m_seagrass_growth_function{std::make_shared<SeagrassStressedLogisticGrowth>()},
     seagrass_carrying_capacity{0.0 * boost::units::si::species_per_square_meters},
     seagrass_growth_rate{0.0},
     seagrass_to_organic_matter_factor{0.0},
@@ -38,6 +41,7 @@ Parameters::Parameters()
   Test();
   #endif
   assert(poisoning_function);
+  assert(m_seagrass_growth_function);
 }
 
 Parameters::Parameters(
@@ -61,6 +65,7 @@ Parameters::Parameters(
   const std::shared_ptr<PoisoningFunction>& any_poisoning_function,
   const double any_recruitment_max,
   const double any_recruitment_rate,
+  std::shared_ptr<SeagrassGrowthFunction> seagrass_growth_function,
   const ribi::units::SpeciesDensity any_seagrass_carrying_capacity,
   const double any_seagrass_growth_rate,
   const double any_seagrass_to_organic_matter_factor,
@@ -87,6 +92,7 @@ Parameters::Parameters(
     poisoning_function{any_poisoning_function},
     recruitment_max{any_recruitment_max},
     recruitment_rate{any_recruitment_rate},
+    m_seagrass_growth_function{seagrass_growth_function},
     seagrass_carrying_capacity{any_seagrass_carrying_capacity},
     seagrass_growth_rate{any_seagrass_growth_rate},
     seagrass_to_organic_matter_factor{any_seagrass_to_organic_matter_factor},
@@ -109,6 +115,7 @@ Parameters::Parameters(
   assert(seagrass_carrying_capacity >= 0.0 * species_per_square_meter);
   assert(seagrass_growth_rate >= 0.0);
   assert(loripes_consumption_function);
+  assert(m_seagrass_growth_function);
   assert(poisoning_function);
 }
 
@@ -122,6 +129,14 @@ Parameters Parameters::GetTest(const int /* i */)
     = std::make_shared<InvertedExponentialPoisoning>(0.05,1.0);
   assert(poisoning_function);
   assert(poisoning_function.get());
+  const auto seagrass_growth_function
+    = std::make_shared<SeagrassStressedLogisticGrowth>(
+      0.5 * boost::units::si::species_per_square_meter, //carrying_capacity
+      1.1 * boost::units::si::per_second, //growth_rate
+      0.1 * boost::units::si::per_second //stress_rate
+    );
+  assert(seagrass_growth_function);
+  assert(seagrass_growth_function.get());
   using boost::units::si::species_per_square_meters;
   using boost::units::si::mole;
   using boost::units::si::cubic_meter;
@@ -146,6 +161,7 @@ Parameters Parameters::GetTest(const int /* i */)
     poisoning_function,
     0.1, //const double any_recruitment_max,
     0.1, //const double any_recruitment_rate,
+    seagrass_growth_function,
     1.0 * species_per_square_meters, //any_seagrass_carrying_capacity,
     0.1, //const double any_seagrass_growth_rate,
     0.1, //any_seagrass_to_organic_matter_factor,

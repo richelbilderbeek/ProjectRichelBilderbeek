@@ -8,6 +8,7 @@
 
 struct LoripesConsumptionFunction;
 struct PoisoningFunction;
+struct SeagrassGrowthFunction;
 
 struct Parameters
 {
@@ -33,6 +34,7 @@ struct Parameters
     const std::shared_ptr<PoisoningFunction>& any_poisoning_function,
     const double any_recruitment_max,
     const double any_recruitment_rate,
+    std::shared_ptr<SeagrassGrowthFunction> seagrass_growth_function,
     const ribi::units::SpeciesDensity any_seagrass_carrying_capacity,
     const double any_seagrass_growth_rate,
     const double any_seagrass_to_organic_matter_factor,
@@ -66,6 +68,8 @@ struct Parameters
 
   double GetRecruitmentMax() const noexcept { return recruitment_max; }
   double GetRecruitmentRate() const noexcept { return recruitment_rate; }
+
+  const auto& GetSeagrassGrowthFunction() const noexcept { return m_seagrass_growth_function; }
 
   auto GetSeagrassCarryingCapacity() const noexcept { return seagrass_carrying_capacity; }
   auto GetSeagrassGrowthRate() const noexcept { return seagrass_growth_rate; }
@@ -122,6 +126,8 @@ struct Parameters
 
   double recruitment_max;
   double recruitment_rate;
+
+  std::shared_ptr<SeagrassGrowthFunction> m_seagrass_growth_function;
 
   ribi::units::SpeciesDensity seagrass_carrying_capacity;
   double seagrass_growth_rate;

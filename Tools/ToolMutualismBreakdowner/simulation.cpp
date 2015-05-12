@@ -12,7 +12,7 @@
 #include "poisoningfunction.h"
 #include "loripesconsumptionfunction.h"
 #include "speciesdensity.h"
-
+#include "seagrassgrowthfunction.h"
 Simulation::Simulation(const Parameters& parameters)
   : m_parameters{parameters},
     m_loripes_densities{},
@@ -70,13 +70,13 @@ void Simulation::Run()
     //Seagrass
     try
     {
-      const auto k = m_parameters.GetSeagrassCarryingCapacity();
-      const auto r = m_parameters.GetSeagrassGrowthRate();
-      const auto growth = r*n.value()*(1.0-(n/k));
+      assert(m_parameters.GetSeagrassGrowthFunction());
+
+      const auto growth = m_parameters.GetSeagrassGrowthFunction()->CalculateGrowth(n);
       const auto death_by_sulfide
         = poisoning_function->CalculateSurvivalFraction(s) * n.value()
       ;
-      const auto delta_n = growth - death_by_sulfide;
+      const auto delta_n = growth.value() - death_by_sulfide;
       seagrass_density += (delta_n * boost::units::si::species_per_square_meter * delta_t);
     }
     catch (std::logic_error& e)

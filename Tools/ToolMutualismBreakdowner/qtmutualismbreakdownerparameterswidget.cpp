@@ -4,16 +4,18 @@
 #include <fstream>
 #include <QFileDialog>
 
+#include "loripesconsumptionfunction.h"
 #include "qtloripesconsumptionfunctionwidget.h"
 #include "qtpoisoningfunctionwidget.h"
-
+#include "qtseagrassgrowthfunctionwidget.h"
 #include "ui_qtmutualismbreakdownerparameterswidget.h"
 
 QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtMutualismBreakdownerParametersWidget),
-  m_qtconsumptionwidget{new QtLoripesConsumptionFunctionWidget},
-  m_qtpoisoningwidget{new QtPoisoningFunctionWidget}
+  //m_qtconsumptionwidget{new QtLoripesConsumptionFunctionWidget},
+  m_qtpoisoningwidget{new QtPoisoningFunctionWidget},
+  m_qtseagrassgrowthwidget{new QtSeagrassGrowthFunctionWidget}
 {
   #ifndef NDEBUG
   Test();
@@ -34,6 +36,14 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
     };
     assert(my_layout);
     my_layout->addWidget(m_qtpoisoningwidget);
+  }
+  {
+    using Layout = QGridLayout;
+    Layout * const my_layout{
+      dynamic_cast<Layout*>(ui->page_seagrass_growth->layout())
+    };
+    assert(my_layout);
+    my_layout->addWidget(m_qtseagrassgrowthwidget);
   }
 
 
@@ -56,13 +66,13 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
   //QObject::connect(ui->box_organic_matter_to_sulfide_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   //QObject::connect(ui->box_recruitment_max,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   //QObject::connect(ui->box_recruitment_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_seagrass_carrying_capacity,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_seagrass_growth_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   //QObject::connect(ui->box_seagrass_to_organic_matter_factor,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_sulfide_diffusion_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   //QObject::connect(ui->box_organic_matter_to_sulfide_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(m_qtconsumptionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
+  //QObject::connect(m_qtconsumptionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
+
   QObject::connect(m_qtpoisoningwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
+  QObject::connect(m_qtseagrassgrowthwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 }
 
 QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget()
@@ -84,7 +94,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
     0.0, //ui->box_initial_organic_matter_density->value(),
     0.0 * boost::units::si::species_per_square_meter, //ui->box_initial_seagrass_density->value(),
     0.0 * mole / cubic_meter, //ui->box_initial_sulfide_concentration->value(),
-    m_qtconsumptionwidget->GetFunction(),
+    std::make_shared<InvertedExponentialConsumption>(), //m_qtconsumptionwidget->GetFunction(),
     0.0, //ui->box_mutualism_breakdown_max->value(),
     0.0, //ui->box_mutualism_breakdown_r0->value(),
     0.0, //ui->box_mutualism_breakdown_rate->value(),
@@ -96,8 +106,9 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const noexcep
     m_qtpoisoningwidget->GetFunction(),
     0.0, //ui->box_recruitment_max->value(),
     0.0, //ui->box_recruitment_rate->value(),
-    ui->box_seagrass_carrying_capacity->value() * boost::units::si::species_per_square_meter,
-    ui->box_seagrass_growth_rate->value(),
+    m_qtseagrassgrowthwidget->GetFunction(),
+    0.0 * boost::units::si::species_per_square_meter, //ui->box_seagrass_carrying_capacity->value()
+    0.0, //ui->box_seagrass_growth_rate->value(),
     0.0, //ui->box_seagrass_to_organic_matter_factor->value(),
     ui->box_sulfide_diffusion_rate->value(),
     ui->box_n_timesteps->value()
@@ -126,13 +137,14 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   //ui->box_organic_matter_to_sulfide_rate->setValue(parameters.GetOrganicMatterToSulfideRate());
   //ui->box_recruitment_max->setValue(parameters.GetRecruitmentMax());
   //ui->box_recruitment_rate->setValue(parameters.GetRecruitmentRate());
-  ui->box_seagrass_carrying_capacity->setValue(parameters.GetSeagrassCarryingCapacity().value());
-  ui->box_seagrass_growth_rate->setValue(parameters.GetSeagrassGrowthRate());
+  //ui->box_seagrass_carrying_capacity->setValue(parameters.GetSeagrassCarryingCapacity().value());
+  //ui->box_seagrass_growth_rate->setValue(parameters.GetSeagrassGrowthRate());
   //ui->box_seagrass_to_organic_matter_factor->setValue(parameters.GetSeagrassToOrganicMatterFactor());
   ui->box_sulfide_diffusion_rate->setValue(parameters.GetSulfdeDiffusionRate());
   ui->box_n_timesteps->setValue(parameters.GetNumberOfTimesteps());
-  this->m_qtconsumptionwidget->SetFunction(parameters.GetLoripesConsumptionFunction());
+  //this->m_qtconsumptionwidget->SetFunction(parameters.GetLoripesConsumptionFunction());
   this->m_qtpoisoningwidget->SetFunction(parameters.GetPoisoningFunction());
+  this->m_qtseagrassgrowthwidget->SetFunction(parameters.GetSeagrassGrowthFunction());
 }
 
 void QtMutualismBreakdownerParametersWidget::OnAnyChange()

@@ -24,6 +24,7 @@ struct SeagrassGrowthFunction
   #endif
 };
 
+/*
 struct SeagrassLogisticGrowth : public SeagrassGrowthFunction
 {
   using Rate = ribi::units::Rate;
@@ -37,11 +38,43 @@ struct SeagrassLogisticGrowth : public SeagrassGrowthFunction
   Growth CalculateGrowth(
     const Density seagrass_density
   ) const override;
+
+  const auto& GetCarryingCapacity() const noexcept { return m_carrying_capacity; }
+  const auto& GetGrowthRate() const noexcept { return m_growth_rate; }
+
   std::string ToStr() const noexcept override;
   private:
 
   const Density m_carrying_capacity;
   const Rate m_growth_rate;
+};
+*/
+
+struct SeagrassStressedLogisticGrowth : public SeagrassGrowthFunction
+{
+  using Rate = ribi::units::Rate;
+  using Density = ribi::units::SpeciesDensity;
+  using Growth = ribi::units::SpeciesGrowth;
+
+  SeagrassStressedLogisticGrowth(
+    const Density carrying_capacity = 0.0 * boost::units::si::species_per_square_meter,
+    const Rate growth_rate = 0.0 * boost::units::si::per_second,
+    const Rate stress_rate = 0.0 * boost::units::si::per_second
+  );
+  Growth CalculateGrowth(
+    const Density seagrass_density
+  ) const override;
+
+  const auto& GetCarryingCapacity() const noexcept { return m_carrying_capacity; }
+  const auto& GetGrowthRate() const noexcept { return m_growth_rate; }
+  const auto& GetStressRate() const noexcept { return m_stress_rate; }
+
+  std::string ToStr() const noexcept override;
+  private:
+
+  const Density m_carrying_capacity;
+  const Rate m_growth_rate;
+  const Rate m_stress_rate;
 };
 
 std::ostream& operator<<(std::ostream& os, const SeagrassGrowthFunction& f) noexcept;

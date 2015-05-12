@@ -27,6 +27,27 @@
 //  The image was at the side of http://www.nioz.nl/nieuws-detail/biobouwers-structureren-het-voedselweb-in-intergetijde-kustgebieden
 
 /*
+
+2015-05-12:
+
+              GROWTH WITH STRESS       POISONING
+
+                      N                      b*e^(a*N)
+dN/dt = N * ( r*(1 - ---) ) - d ) + (1 + ------------- )*m*N*S
+                      K                  1 - b*e^(a*N)
+
+
+
+        SULFIDE       EXTERNAL  DIFFUSION     DETOXIFICATION
+        PRODUCTION    SULFIDE
+                      INPUT
+
+dS/dt =    b*N      +  theta   -    g*S    -       c*N*S
+
+
+
+2015-05-11:
+
             GROWTH             POISONING
 
                   N              b*e^(a*N)
