@@ -118,6 +118,7 @@ void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
   m_simulation->Change(dt);
 
   //Kill some random patch
+  /*
   {
     const int w = parameters.GetSpatialWidth();
     const int h = parameters.GetSpatialHeight();
@@ -126,6 +127,7 @@ void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
       std::rand() % h
     );
   }
+  */
 
   DisplayGrid();
 }

@@ -16,6 +16,7 @@ void SpatialSimulation::Change(const Time delta_t)
       system.Change(delta_t);
     }
   }
+
 }
 
 void SpatialSimulation::KillSeagrass(const int x, const int y)
