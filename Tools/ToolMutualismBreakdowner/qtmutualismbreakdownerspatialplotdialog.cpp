@@ -13,7 +13,7 @@
 #include "qtmutualismbreakdownerparameterswidget.h"
 #include "qtmutualismbreakdownerspatialwidget.h"
 #include "ui_qtmutualismbreakdownerspatialplotdialog.h"
-//#include "ui_qtmutualismbreakdownerparameterswidget.h"
+#include "spatialsimulation.h"
 #include "seagrassgrowthfunction.h"
 
 QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
@@ -23,7 +23,7 @@ QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog
   m_seagrass_widget{new QtMutualismBreakdownerSpatialWidget(10,10)},
   m_sulfide_widget{new QtMutualismBreakdownerSpatialWidget(10,10)},
   m_timer{new QTimer(this)},
-  m_grid{}
+  m_simulation{nullptr}
 {
   ui->setupUi(this);
 
@@ -45,6 +45,8 @@ QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog
   }
 
   QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(StartRun()));
+  QObject::connect(m_timer,SIGNAL(timeout()),this,SLOT(NextTimestep()));
+
   {
     //Put the dialog in the screen center
     const QRect screen = QApplication::desktop()->screenGeometry();
@@ -70,12 +72,13 @@ void QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
   const auto k = seagrass_growth_function->GetCarryingCapacity();
   const auto max_s = 10.0 * boost::units::si::mole_per_cubic_meter;
 
-  assert(!m_grid.empty());
-  const int height{static_cast<int>(m_grid.size())};
-  const int width{static_cast<int>(m_grid[0].size())};
+  assert(m_simulation);
+  const auto grid = m_simulation->GetGrid();
+  const int height{static_cast<int>(grid.size())};
+  const int width{static_cast<int>(grid[0].size())};
   for (int y=0; y!=height; ++y)
   {
-    const auto& line = m_grid[y];
+    const auto& line = grid[y];
     for (int x=0; x!=width; ++x)
     {
       const auto& cell = line[x];
@@ -97,6 +100,8 @@ void QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
       }
     }
   }
+  m_seagrass_widget->update();
+  m_sulfide_widget->update();
 }
 
 Parameters QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
@@ -107,16 +112,12 @@ Parameters QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
 
 void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
 {
+  std::clog << ".";
   const auto parameters = GetParameters();
   const auto dt = parameters.GetSpatialDeltaT();
-
-  for (auto& line: m_grid)
-  {
-    for (auto& system: line)
-    {
-      system.Change(dt);
-    }
-  }
+  assert(m_simulation);
+  m_simulation->Change(dt);
+  DisplayGrid();
 }
 
 void QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const Parameters& parameters)
@@ -150,14 +151,14 @@ void QtMutualismBreakdownerSpatialPlotDialog::StartRun()
   this->m_sulfide_widget->setEnabled(true);
 
   const auto parameters = GetParameters();
-  const int width = 10;
-  const int height = 10;
 
-  m_grid = Grid(height,std::vector<System>(width,System(parameters)));
+  //m_grid = Grid(height,std::vector<System>(width,System(parameters)));
+  m_simulation = std::make_unique<Simulation>(parameters);
   DisplayGrid();
 
   //SpatialSimulation simulation(parameters,width,height);
   //simulation.Run();
+  m_timer->setInterval(1);
   m_timer->start();
 
 }

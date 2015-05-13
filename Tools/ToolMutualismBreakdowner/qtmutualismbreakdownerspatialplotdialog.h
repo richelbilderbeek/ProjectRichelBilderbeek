@@ -6,10 +6,11 @@
 #include "seagrasssystem.h"
 #include "parameters.h"
 #include "qthideandshowdialog.h"
-
+#include "spatialsimulation.h"
 struct QwtPlotCurve;
 struct QtMutualismBreakdownerParametersWidget;
 struct QtMutualismBreakdownerSpatialWidget;
+struct SpatialSimulation;
 
 namespace Ui {
   class QtMutualismBreakdownerSpatialPlotDialog;
@@ -33,15 +34,17 @@ private slots:
   void NextTimestep();
 
 private:
-  using System = SeagrassSystem;
-  using Grid = std::vector<std::vector<System>>;
+  //using System = SeagrassSystem;
+  using Simulation = SpatialSimulation;
+  //using Grid = std::vector<std::vector<System>>;
 
   Ui::QtMutualismBreakdownerSpatialPlotDialog *ui;
   QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
   QtMutualismBreakdownerSpatialWidget * const m_seagrass_widget;
   QtMutualismBreakdownerSpatialWidget * const m_sulfide_widget;
   QTimer * const m_timer;
-  Grid m_grid;
+  //Grid m_grid;
+  std::unique_ptr<Simulation> m_simulation;
   void DisplayGrid();
 };
 
