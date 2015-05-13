@@ -89,7 +89,7 @@ boost::shared_ptr<const ribi::Program> ribi::MutualismBreakdownerMenuDialog::Get
 
 std::string ribi::MutualismBreakdownerMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "2.1";
 }
 
 std::vector<std::string> ribi::MutualismBreakdownerMenuDialog::GetVersionHistory() const noexcept
@@ -97,7 +97,8 @@ std::vector<std::string> ribi::MutualismBreakdownerMenuDialog::GetVersionHistory
   return {
     "2015-05-03: Version 0.1: initial version with 3 ODEs",
     "2015-05-05: Version 1.0: implemented system of 4 ODEs, added menu screens",
-    "2015-05-12: Version 2.0: implemented system of 2 ODEs"
+    "2015-05-12: Version 2.0: implemented system of 2 ODEs",
+    "2015-05-13: Version 2.1: added spatial model"
   };
 }
 

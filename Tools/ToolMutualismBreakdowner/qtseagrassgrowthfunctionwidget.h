@@ -27,10 +27,6 @@ signals:
 private:
   Ui::QtSeagrassGrowthFunctionWidget *ui;
 
-  #ifndef NDEBUG
-  //static void Test() noexcept;
-  #endif
-
 private slots:
   void OnAnyChange();
 };

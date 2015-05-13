@@ -96,7 +96,7 @@ void Parameters::Test() noexcept
     assert(p != q);
 
   }
-  //File I/O
+  //File I/O, one Parameters
   {
     Parameters parameters;
     const std::string filename{
@@ -110,6 +110,25 @@ void Parameters::Test() noexcept
     Parameters parameters_too;
     f >> parameters_too;
     assert(parameters_too == parameters);
+    FileIo().DeleteFile(filename);
+  }
+  //File I/O, two Parameters
+  {
+    Parameters parameters_a;
+    Parameters parameters_b;
+    const std::string filename{
+      FileIo().GetTempFileName(".txt")
+    };
+    {
+      std::ofstream f(filename);
+      f << parameters_a << " " << parameters_b;
+    }
+    std::ifstream f(filename);
+    Parameters parameters_a_too;
+    Parameters parameters_b_too;
+    f >> parameters_a_too >> parameters_b_too;
+    assert(parameters_a_too == parameters_a);
+    assert(parameters_b_too == parameters_b);
     FileIo().DeleteFile(filename);
   }
   //File I/O of initial_species_density

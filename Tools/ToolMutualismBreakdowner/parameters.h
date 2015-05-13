@@ -8,6 +8,7 @@
 #include "ribi_time.h"
 
 struct PoisoningFunction;
+struct SeagrassColonisationFunction;
 struct SeagrassGrowthFunction;
 struct SulfideConsumptionFunction;
 struct SulfideDetoxificationFunction;
@@ -30,6 +31,7 @@ struct Parameters
     const SpeciesDensity m_initial_seagrass_density,
     const Concentration any_initial_loripes_density,
     std::shared_ptr<PoisoningFunction> any_poisoning_function,
+    std::shared_ptr<SeagrassColonisationFunction> seagrass_colonisation_function,
     std::shared_ptr<SeagrassGrowthFunction> seagrass_growth_function,
     std::shared_ptr<SulfideConsumptionFunction> sulfide_consumption_function,
     std::shared_ptr<SulfideDetoxificationFunction> sulfide_detoxification_function,
@@ -50,6 +52,7 @@ struct Parameters
   auto GetNumberOfTimesteps() const noexcept { return n_timesteps; }
 
   const auto& GetPoisoningFunction() const noexcept { return m_poisoning_function; }
+  const auto& GetSeagrassColonisationFunction() const noexcept { return m_seagrass_colonisation_function; }
   const auto& GetSeagrassGrowthFunction() const noexcept { return m_seagrass_growth_function; }
   const auto& GetSulfideConsumptionFunction() const noexcept { return m_sulfide_consumption_function; }
   const auto& GetSulfideDetoxificationFunction() const noexcept { return m_sulfide_detoxification_function; }
@@ -79,6 +82,7 @@ struct Parameters
   ribi::units::Concentration m_initial_sulfide_concentration;
 
   std::shared_ptr<PoisoningFunction> m_poisoning_function;
+  std::shared_ptr<SeagrassColonisationFunction> m_seagrass_colonisation_function;
   std::shared_ptr<SeagrassGrowthFunction> m_seagrass_growth_function;
   std::shared_ptr<SulfideConsumptionFunction> m_sulfide_consumption_function;
   std::shared_ptr<SulfideDetoxificationFunction> m_sulfide_detoxification_function;

@@ -34,12 +34,6 @@ void QtSulfideConsumptionFunctionWidget::OnAnyChange()
 
 void QtSulfideConsumptionFunctionWidget::SetFunction(const std::shared_ptr<SulfideConsumptionFunction>& f) noexcept
 {
-  #ifndef NDEBUG
-  if (!f)
-  {
-    std::cerr << "BREAK";
-  }
-  #endif
   assert(f);
   const auto iec = std::dynamic_pointer_cast<LinearConsumption>(f);
   assert(iec);

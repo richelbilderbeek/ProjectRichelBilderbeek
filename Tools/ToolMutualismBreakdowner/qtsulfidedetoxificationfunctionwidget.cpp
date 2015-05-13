@@ -34,12 +34,6 @@ void QtSulfideDetoxificationFunctionWidget::OnAnyChange()
 
 void QtSulfideDetoxificationFunctionWidget::SetFunction(const std::shared_ptr<SulfideDetoxificationFunction>& f) noexcept
 {
-  #ifndef NDEBUG
-  if (!f)
-  {
-    std::cerr << "BREAK";
-  }
-  #endif
   assert(f);
   const auto iec = std::dynamic_pointer_cast<LinearSulfideDetoxification>(f);
   assert(iec);

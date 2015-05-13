@@ -97,6 +97,7 @@ SeagrassInvertedExponential::SeagrassInvertedExponential(
 SeagrassInvertedExponential::Growth
   SeagrassInvertedExponential::CalculateColonisation(
     const std::vector<Density>& neighbours_seagrass_densities
+    //const std::initializer_list<Density>& neighbours_seagrass_densities
   ) const
 {
   using boost::units::si::species_per_square_meter;

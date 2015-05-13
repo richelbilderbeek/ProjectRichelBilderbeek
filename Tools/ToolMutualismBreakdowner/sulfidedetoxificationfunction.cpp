@@ -60,7 +60,6 @@ SulfideDetoxificationFunction::Change
   const Concentration sulfide_concentration
 ) const
 {
-  //using boost::units::si::mole_per_cubic_meter;
   using boost::units::si::species_per_square_meter;
   using boost::units::si::second;
   const auto detoxification

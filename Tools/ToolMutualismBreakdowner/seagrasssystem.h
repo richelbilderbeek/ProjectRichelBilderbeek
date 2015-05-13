@@ -14,6 +14,7 @@ struct SeagrassSystem
 
   SeagrassSystem(const Parameters& parameters);
 
+  void AddSeagrassDensity(const SpeciesDensity seagrass_density) { m_seagrass_density += seagrass_density; }
   void Change(const Time delta_t);
 
   const Parameters& GetParameters() const noexcept { return m_parameters; }

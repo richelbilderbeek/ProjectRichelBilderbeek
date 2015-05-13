@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   QtMutualismBreakdownerTimePlotDialog();
-  QtMutualismBreakdownerEquilibriumDialog();
+  //QtMutualismBreakdownerEquilibriumDialog();
   #ifndef NDEBUG
   ribi::units::TestTime();
   ribi::units::Test();

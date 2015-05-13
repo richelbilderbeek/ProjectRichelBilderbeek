@@ -34,12 +34,6 @@ void QtSulfideProductionFunctionWidget::OnAnyChange()
 
 void QtSulfideProductionFunctionWidget::SetFunction(const std::shared_ptr<SulfideProductionFunction>& f) noexcept
 {
-  #ifndef NDEBUG
-  if (!f)
-  {
-    std::cerr << "BREAK";
-  }
-  #endif
   assert(f);
   const auto iec = std::dynamic_pointer_cast<LinearSulfideProduction>(f);
   assert(iec);

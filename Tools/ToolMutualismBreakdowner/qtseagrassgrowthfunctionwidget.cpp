@@ -10,9 +10,6 @@ QtSeagrassGrowthFunctionWidget::QtSeagrassGrowthFunctionWidget(QWidget *parent) 
   QWidget(parent),
   ui(new Ui::QtSeagrassGrowthFunctionWidget)
 {
-  #ifndef NDEBUG
-  //Test();
-  #endif
   ui->setupUi(this);
 
   QObject::connect(ui->box_seagrass_carrying_capacity,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
@@ -41,12 +38,6 @@ void QtSeagrassGrowthFunctionWidget::OnAnyChange()
 
 void QtSeagrassGrowthFunctionWidget::SetFunction(const std::shared_ptr<SeagrassGrowthFunction>& f)
 {
-  #ifndef NDEBUG
-  if (!f)
-  {
-    std::cerr << "BREAK";
-  }
-  #endif
   assert(f);
   const auto iec = std::dynamic_pointer_cast<SeagrassStressedLogisticGrowth>(f);
   assert(iec);

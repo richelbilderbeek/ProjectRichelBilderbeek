@@ -16,6 +16,7 @@ struct SeagrassColonisationFunction
   virtual ~SeagrassColonisationFunction() {}
   virtual Growth CalculateColonisation(
     const std::vector<Density>& neighbours_seagrass_densities
+    //const std::initializer_list<Density>& neighbours_seagrass_densities
   ) const = 0;
   virtual std::string ToStr() const noexcept = 0;
 
@@ -38,6 +39,7 @@ struct SeagrassInvertedExponential : public SeagrassColonisationFunction
 
   Growth CalculateColonisation(
     const std::vector<Density>& neighbours_seagrass_densities
+    //const std::initializer_list<Density>& neighbours_seagrass_densities
   ) const override;
 
   const auto& GetAlpha() const noexcept { return m_alpha; }

@@ -13,7 +13,6 @@
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 
-//#include "ui_qtmutualismbreakdownerparameterswidget.h"
 #include "timesimulation.h"
 #include "ui_qtmutualismbreakdownertimeplotdialog.h"
 #include "qtmutualismbreakdownerparameterswidget.h"
@@ -38,7 +37,6 @@ QtMutualismBreakdownerTimePlotDialog::QtMutualismBreakdownerTimePlotDialog(QWidg
   {
     assert(this->ui->widget->layout());
     this->ui->widget->layout()->addWidget(m_parameters_widget);
-    //m_parameters_widget->HideTimeplot();
   }
 
 

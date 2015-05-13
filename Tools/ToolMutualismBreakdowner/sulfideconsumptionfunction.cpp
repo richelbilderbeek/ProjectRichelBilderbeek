@@ -25,18 +25,10 @@ void SulfideConsumptionFunction::Test() noexcept
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   using ribi::fileio::FileIo;
-  //using boost::units::si::species_per_square_meters;
-  //using boost::units::si::species_per_square_meter;
 
   //Shape of function
   {
     const LinearConsumption p;
-    /*
-    assert(std::abs(p.CalculateConsumption(  0.0 * species_per_square_meters)-0.0) < 0.1);
-    assert(std::abs(p.CalculateConsumption( 20.0 * species_per_square_meters)-0.6) < 0.1);
-    assert(std::abs(p.CalculateConsumption( 60.0 * species_per_square_meters)-0.9) < 0.1);
-    assert(std::abs(p.CalculateConsumption(100.0 * species_per_square_meters)-1.0) < 0.1);
-    */
   }
   //File I/O
   {

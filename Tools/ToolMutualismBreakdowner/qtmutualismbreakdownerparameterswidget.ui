@@ -23,15 +23,15 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_timeplot">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>385</width>
-        <height>252</height>
+        <width>400</width>
+        <height>292</height>
        </rect>
       </property>
       <attribute name="label">
@@ -221,8 +221,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>399</height>
+        <width>299</width>
+        <height>140</height>
        </rect>
       </property>
       <attribute name="label">
@@ -331,8 +331,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>80</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -340,13 +340,19 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2"/>
      </widget>
+     <widget class="QWidget" name="page_seagrass_colonisation">
+      <attribute name="label">
+       <string>Seagrass colonisation</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_11"/>
+     </widget>
      <widget class="QWidget" name="page_seagrass_growth">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>400</width>
-        <height>80</height>
+        <height>79</height>
        </rect>
       </property>
       <attribute name="label">
@@ -359,8 +365,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>80</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -373,8 +379,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>80</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -387,8 +393,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>80</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -401,8 +407,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>80</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">

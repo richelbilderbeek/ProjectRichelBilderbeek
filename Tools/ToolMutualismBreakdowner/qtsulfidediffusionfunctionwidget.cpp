@@ -34,12 +34,6 @@ void QtSulfideDiffusionFunctionWidget::OnAnyChange()
 
 void QtSulfideDiffusionFunctionWidget::SetFunction(const std::shared_ptr<SulfideDiffusionFunction>& f) noexcept
 {
-  #ifndef NDEBUG
-  if (!f)
-  {
-    std::cerr << "BREAK";
-  }
-  #endif
   assert(f);
   const auto iec = std::dynamic_pointer_cast<LinearSulfideDiffusion>(f);
   assert(iec);

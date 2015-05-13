@@ -70,7 +70,7 @@ void QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
     );
   assert(seagrass_growth_function);
   const auto k = seagrass_growth_function->GetCarryingCapacity();
-  const auto max_s = 10.0 * boost::units::si::mole_per_cubic_meter;
+  const auto max_s = 1.0 * boost::units::si::mole_per_cubic_meter;
 
   assert(m_simulation);
   const auto grid = m_simulation->GetGrid();
@@ -118,7 +118,6 @@ void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
   m_simulation->Change(dt);
 
   //Kill some random patch
-  /*
   {
     const int w = parameters.GetSpatialWidth();
     const int h = parameters.GetSpatialHeight();
@@ -127,7 +126,6 @@ void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
       std::rand() % h
     );
   }
-  */
 
   DisplayGrid();
 }
@@ -170,13 +168,10 @@ void QtMutualismBreakdownerSpatialPlotDialog::StartRun()
   this->m_seagrass_widget->setEnabled(true);
   this->m_sulfide_widget->setEnabled(true);
 
-  //m_grid = Grid(height,std::vector<System>(width,System(parameters)));
   m_simulation = std::make_unique<Simulation>(parameters);
 
   DisplayGrid();
 
-  //SpatialSimulation simulation(parameters,width,height);
-  //simulation.Run();
   m_timer->setInterval(1);
   m_timer->start();
 

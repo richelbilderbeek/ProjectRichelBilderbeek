@@ -1,6 +1,6 @@
 #ifndef QTMUTUALISMBREAKDOWNEREQUILIBRIUMDIALOG_H
 #define QTMUTUALISMBREAKDOWNEREQUILIBRIUMDIALOG_H
-
+/*
 #include "parameters.h"
 #include "qthideandshowdialog.h"
 
@@ -37,5 +37,5 @@ private:
   static void Test() noexcept {}
   #endif
 };
-
+*/
 #endif // QTMUTUALISMBREAKDOWNEREQUILIBRIUMDIALOG_H

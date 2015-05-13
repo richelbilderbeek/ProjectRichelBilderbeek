@@ -6,6 +6,7 @@
 
 #include "poisoningfunction.h"
 #include "seagrassgrowthfunction.h"
+#include "seagrasscolonisationfunction.h"
 #include "sulfideconsumptionfunction.h"
 #include "sulfidedetoxificationfunction.h"
 #include "sulfidediffusionfunction.h"
@@ -21,6 +22,7 @@ Parameters::Parameters()
     m_initial_seagrass_density{0.0 * boost::units::si::species_per_square_meters},
     m_initial_sulfide_concentration{0.0 * boost::units::si::mole / boost::units::si::cubic_meter},
     m_poisoning_function{std::make_shared<InvertedExponentialPoisoning>()},
+    m_seagrass_colonisation_function{std::make_shared<SeagrassInvertedExponential>()},
     m_seagrass_growth_function{std::make_shared<SeagrassStressedLogisticGrowth>()},
     m_sulfide_consumption_function{new LinearConsumption},
     m_sulfide_detoxification_function{new LinearSulfideDetoxification},
@@ -44,6 +46,7 @@ Parameters::Parameters(
   const ribi::units::SpeciesDensity initial_seagrass_density,
   const ribi::units::Concentration initial_sulfide_concentration,
   std::shared_ptr<PoisoningFunction> poisoning_function,
+  std::shared_ptr<SeagrassColonisationFunction> seagrass_colonisation_function,
   std::shared_ptr<SeagrassGrowthFunction> seagrass_growth_function,
   std::shared_ptr<SulfideConsumptionFunction> sulfide_consumption_function,
   std::shared_ptr<SulfideDetoxificationFunction> sulfide_detoxification_function,
@@ -59,6 +62,7 @@ Parameters::Parameters(
     m_initial_seagrass_density{initial_seagrass_density},
     m_initial_sulfide_concentration{initial_sulfide_concentration},
     m_poisoning_function{poisoning_function},
+    m_seagrass_colonisation_function{seagrass_colonisation_function},
     m_seagrass_growth_function{seagrass_growth_function},
     m_sulfide_consumption_function{sulfide_consumption_function},
     m_sulfide_detoxification_function{sulfide_detoxification_function},
@@ -85,6 +89,7 @@ Parameters::Parameters(
   assert(m_initial_seagrass_density >= 0.0 * species_per_square_meter);
   assert(m_initial_sulfide_concentration >= 0.0 * mole / cubic_meter);
   assert(m_sulfide_consumption_function);
+  assert(m_seagrass_colonisation_function);
   assert(m_seagrass_growth_function);
   assert(m_poisoning_function);
   assert(m_sulfide_production_function);
@@ -94,6 +99,11 @@ Parameters Parameters::GetTest(const int /* i */)
 {
   const auto poisoning_function
     = std::make_shared<InvertedExponentialPoisoning>(0.01,0.05,1.0);
+  const auto seagrass_colonisation_function
+    = std::make_shared<SeagrassInvertedExponential>(
+      0.1, //alpha
+      0.1 * boost::units::si::per_second //growth_rate
+    );
   const auto seagrass_growth_function
     = std::make_shared<SeagrassStressedLogisticGrowth>(
       0.5 * boost::units::si::species_per_square_meter, //carrying_capacity
@@ -125,6 +135,7 @@ Parameters Parameters::GetTest(const int /* i */)
     0.1 * species_per_square_meters, //initial_seagrass_density,
     0.0 * mole / cubic_meter, //any_initial_loripes_density,
     poisoning_function,
+    seagrass_colonisation_function,
     seagrass_growth_function,
     sulfide_consumption_function,
     sulfide_detoxification_function,

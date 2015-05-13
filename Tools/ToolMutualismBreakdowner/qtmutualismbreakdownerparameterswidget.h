@@ -9,6 +9,7 @@ namespace Ui {
 }
 
 struct QtPoisoningFunctionWidget;
+struct QtSeagrassColonisationFunctionWidget;
 struct QtSeagrassGrowthFunctionWidget;
 struct QtSulfideConsumptionFunctionWidget;
 struct QtSulfideDetoxificationFunctionWidget;
@@ -40,6 +41,7 @@ private:
   Ui::QtMutualismBreakdownerParametersWidget *ui;
 
   QtPoisoningFunctionWidget * const m_qtpoisoningwidget;
+  QtSeagrassColonisationFunctionWidget * const m_qtseagrasscolonisationwidget;
   QtSeagrassGrowthFunctionWidget * const m_qtseagrassgrowthwidget;
   QtSulfideConsumptionFunctionWidget * const m_qtsulfideconsumptionwidget;
   QtSulfideDetoxificationFunctionWidget * const m_qtsulfidedetoxificationwidget;

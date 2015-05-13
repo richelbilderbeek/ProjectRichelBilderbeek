@@ -1,5 +1,7 @@
 #include "seagrasssystem.h"
 
+#include <iostream>
+
 #include "seagrassgrowthfunction.h"
 #include "poisoningfunction.h"
 #include "sulfideconsumptionfunction.h"

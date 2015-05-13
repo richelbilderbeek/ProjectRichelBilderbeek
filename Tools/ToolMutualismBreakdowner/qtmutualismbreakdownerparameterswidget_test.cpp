@@ -23,48 +23,6 @@ void QtMutualismBreakdownerParametersWidget::Test() noexcept
     const auto q = d.GetParameters();
     assert(p == q);
   }
-  //Initial Loripes density
-  /*
-  {
-    QtMutualismBreakdownerParametersWidget d;
-    const auto p = d.GetParameters();
-    d.ui->box_initial_loripes_density->setValue(
-      d.ui->box_initial_loripes_density->value() + 1.0
-    );
-    const auto q = d.GetParameters();
-    assert(p != q);
-  }
-  //Organic material breakdown
-  {
-    QtMutualismBreakdownerParametersWidget d;
-    const auto p = d.GetParameters();
-    d.ui->box_organic_matter_addition->setValue(
-      d.ui->box_organic_matter_addition->value() + 1.0
-    );
-    const auto q = d.GetParameters();
-    assert(p != q);
-  }
-  //organic_matter_to_sulfide_factor
-  {
-    QtMutualismBreakdownerParametersWidget d;
-    const auto p = d.GetParameters();
-    d.ui->box_organic_matter_to_sulfide_factor->setValue(
-      d.ui->box_organic_matter_to_sulfide_factor->value() + 1.0
-    );
-    const auto q = d.GetParameters();
-    assert(p != q);
-  }
-  //organic_matter_to_sulfide_rate
-  {
-    QtMutualismBreakdownerParametersWidget d;
-    const auto p = d.GetParameters();
-    d.ui->box_organic_matter_to_sulfide_rate->setValue(
-      d.ui->box_organic_matter_to_sulfide_rate->value() + 1.0
-    );
-    const auto q = d.GetParameters();
-    assert(p != q);
-  }
-  */
 }
 #endif
 

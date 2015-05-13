@@ -6,6 +6,7 @@
 
 #include "sulfideconsumptionfunction.h"
 #include "qtpoisoningfunctionwidget.h"
+#include "qtseagrasscolonisationfunctionwidget.h"
 #include "qtseagrassgrowthfunctionwidget.h"
 #include "qtsulfideconsumptionfunctionwidget.h"
 #include "qtsulfidedetoxificationfunctionwidget.h"
@@ -17,6 +18,7 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
   QWidget(parent),
   ui(new Ui::QtMutualismBreakdownerParametersWidget),
   m_qtpoisoningwidget{new QtPoisoningFunctionWidget},
+  m_qtseagrasscolonisationwidget{new QtSeagrassColonisationFunctionWidget},
   m_qtseagrassgrowthwidget{new QtSeagrassGrowthFunctionWidget},
   m_qtsulfideconsumptionwidget{new QtSulfideConsumptionFunctionWidget},
   m_qtsulfidedetoxificationwidget{new QtSulfideDetoxificationFunctionWidget},
@@ -35,6 +37,14 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
     };
     assert(my_layout);
     my_layout->addWidget(m_qtpoisoningwidget);
+  }
+  {
+    using Layout = QGridLayout;
+    Layout * const my_layout{
+      dynamic_cast<Layout*>(ui->page_seagrass_colonisation->layout())
+    };
+    assert(my_layout);
+    my_layout->addWidget(m_qtseagrasscolonisationwidget);
   }
   {
     using Layout = QGridLayout;
@@ -76,6 +86,7 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
   QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtpoisoningwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
+  QObject::connect(m_qtseagrasscolonisationwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtseagrassgrowthwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtsulfideconsumptionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(m_qtsulfidedetoxificationwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
@@ -103,6 +114,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const
     ui->box_initial_seagrass_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_sulfide_concentration->value() * mole / cubic_meter,
     m_qtpoisoningwidget->GetFunction(),
+    m_qtseagrasscolonisationwidget->GetFunction(),
     m_qtseagrassgrowthwidget->GetFunction(),
     m_qtsulfideconsumptionwidget->GetFunction(),
     m_qtsulfidedetoxificationwidget->GetFunction(),
@@ -125,6 +137,7 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   ui->box_initial_seagrass_density->setValue(parameters.GetInitialSeagrassDensity().value());
   ui->box_initial_sulfide_concentration->setValue(parameters.GetInitialSulfideConcentration().value());
   this->m_qtpoisoningwidget->SetFunction(parameters.GetPoisoningFunction());
+  this->m_qtseagrasscolonisationwidget->SetFunction(parameters.GetSeagrassColonisationFunction());
   this->m_qtseagrassgrowthwidget->SetFunction(parameters.GetSeagrassGrowthFunction());
   this->m_qtsulfideconsumptionwidget->SetFunction(parameters.GetSulfideConsumptionFunction());
   this->m_qtsulfidedetoxificationwidget->SetFunction(parameters.GetSulfideDetoxificationFunction());
