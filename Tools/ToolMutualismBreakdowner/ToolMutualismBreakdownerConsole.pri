@@ -12,7 +12,8 @@ SOURCES += \
     ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.cpp \
     ../../Tools/ToolMutualismBreakdowner/sulfidediffusionfunction.cpp \
     ../../Tools/ToolMutualismBreakdowner/sulfidedetoxificationfunction.cpp \
-    ../../Tools/ToolMutualismBreakdowner/seagrasssystem.cpp
+    ../../Tools/ToolMutualismBreakdowner/seagrasssystem.cpp \
+    spatialsimulation.cpp
 
 HEADERS  += \
     ../../Tools/ToolMutualismBreakdowner/timesimulation.h \
@@ -24,7 +25,8 @@ HEADERS  += \
     ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.h \
     ../../Tools/ToolMutualismBreakdowner/sulfidediffusionfunction.h \
     ../../Tools/ToolMutualismBreakdowner/sulfidedetoxificationfunction.h \
-    ../../Tools/ToolMutualismBreakdowner/seagrasssystem.h
+    ../../Tools/ToolMutualismBreakdowner/seagrasssystem.h \
+    spatialsimulation.h
 
 RESOURCES += \
     ../../Tools/ToolMutualismBreakdowner/ToolMutualismBreakdowner.qrc

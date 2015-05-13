@@ -13,7 +13,9 @@
 #include "qtmutualismbreakdownerparameterswidget.h"
 #include "qtmutualismbreakdownerspatialwidget.h"
 #include "ui_qtmutualismbreakdownerspatialplotdialog.h"
+//#include "ui_qtmutualismbreakdownerparameterswidget.h"
 #include "seagrassgrowthfunction.h"
+
 QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtMutualismBreakdownerSpatialPlotDialog),
@@ -29,6 +31,7 @@ QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog
     const auto my_layout = ui->widget_left->layout();
     assert(my_layout);
     my_layout->addWidget(m_parameters_widget);
+    //m_parameters_widget->HideTimeplot();
   }
   {
     const auto my_layout = ui->widget_mid->layout();
@@ -105,7 +108,7 @@ Parameters QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
 void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
 {
   const auto parameters = GetParameters();
-  const auto dt = parameters.GetDeltaT();
+  const auto dt = parameters.GetSpatialDeltaT();
 
   for (auto& line: m_grid)
   {

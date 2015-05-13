@@ -67,7 +67,10 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
 
 
 
-  QObject::connect(ui->box_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_spatial_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_spatial_height,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_spatial_width,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_timeplot_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_n_timesteps,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_loripes_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
@@ -92,7 +95,10 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const
   using boost::units::si::cubic_meter;
   using boost::units::si::seconds;
   const Parameters p(
-    ui->box_delta_t->value() * seconds,
+    ui->box_spatial_delta_t->value() * seconds,
+    ui->box_spatial_height->value(),
+    ui->box_spatial_width->value(),
+    ui->box_timeplot_delta_t->value() * seconds,
     ui->box_initial_loripes_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_seagrass_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_sulfide_concentration->value() * mole / cubic_meter,
@@ -110,7 +116,10 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const
 
 void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters)
 {
-  ui->box_delta_t->setValue(parameters.GetDeltaT().value());
+  ui->box_spatial_delta_t->setValue(parameters.GetSpatialDeltaT().value());
+  ui->box_spatial_height->setValue(parameters.GetSpatialHeight());
+  ui->box_spatial_width->setValue(parameters.GetSpatialWidth());
+  ui->box_timeplot_delta_t->setValue(parameters.GetTimeplotDeltaT().value());
   ui->box_n_timesteps->setValue(parameters.GetNumberOfTimesteps());
   ui->box_initial_loripes_density->setValue(parameters.GetInitialLoripesDensity().value());
   ui->box_initial_seagrass_density->setValue(parameters.GetInitialSeagrassDensity().value());

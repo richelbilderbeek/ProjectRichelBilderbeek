@@ -38,7 +38,7 @@ void TimeSimulation::Run()
   assert(n_timesteps >= 0);
   const auto t_end = static_cast<double>(n_timesteps) * seconds;
 
-  const auto delta_t = m_parameters.GetDeltaT();
+  const auto delta_t = m_parameters.GetTimeplotDeltaT();
 
   const int sz{static_cast<int>(t_end / delta_t)};
   assert(sz > 0);
