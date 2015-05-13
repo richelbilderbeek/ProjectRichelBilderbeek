@@ -112,11 +112,21 @@ Parameters QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
 
 void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
 {
-  std::clog << ".";
   const auto parameters = GetParameters();
   const auto dt = parameters.GetSpatialDeltaT();
   assert(m_simulation);
   m_simulation->Change(dt);
+
+  //Kill some random patch
+  {
+    const int w = parameters.GetSpatialWidth();
+    const int h = parameters.GetSpatialHeight();
+    m_simulation->KillSeagrass(
+      std::rand() % w,
+      std::rand() % h
+    );
+  }
+
   DisplayGrid();
 }
 
@@ -160,7 +170,6 @@ void QtMutualismBreakdownerSpatialPlotDialog::StartRun()
 
   //m_grid = Grid(height,std::vector<System>(width,System(parameters)));
   m_simulation = std::make_unique<Simulation>(parameters);
-
 
   DisplayGrid();
 

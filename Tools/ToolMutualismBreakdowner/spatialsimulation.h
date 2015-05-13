@@ -19,6 +19,8 @@ struct SpatialSimulation
 
   const auto& GetGrid() const noexcept { return m_grid; }
 
+  void KillSeagrass(const int x, const int y);
+
   private:
 
   Grid m_grid;

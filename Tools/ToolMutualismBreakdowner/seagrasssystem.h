@@ -9,14 +9,18 @@
 struct SeagrassSystem
 {
   using Time = ribi::units::Time;
+  using SpeciesDensity = ribi::units::SpeciesDensity;
+  using Concentration = ribi::units::Concentration;
 
   SeagrassSystem(const Parameters& parameters);
+
+  void Change(const Time delta_t);
 
   const Parameters& GetParameters() const noexcept { return m_parameters; }
   const auto& GetSeagrassDensity() const noexcept { return m_seagrass_density; }
   const auto& GetSulfideConcentration() const noexcept { return m_sulfide_concentration; }
-
-  void Change(const Time delta_t);
+  void SetSeagrassDensity(const SpeciesDensity seagrass_density) { m_seagrass_density = seagrass_density; }
+  void SetSulfideConcentration(const Concentration sulfide_concentration) { m_sulfide_concentration = sulfide_concentration; }
 
   private:
   const Parameters m_parameters;
@@ -25,8 +29,8 @@ struct SeagrassSystem
   static void Test() noexcept;
   #endif
 
-  ribi::units::SpeciesDensity m_seagrass_density;
-  ribi::units::Concentration m_sulfide_concentration;
+  SpeciesDensity m_seagrass_density;
+  Concentration m_sulfide_concentration;
 };
 
 #endif // SEAGRASSSYSTEM_H

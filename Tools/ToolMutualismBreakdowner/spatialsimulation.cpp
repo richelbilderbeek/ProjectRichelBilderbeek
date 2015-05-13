@@ -17,3 +17,8 @@ void SpatialSimulation::Change(const Time delta_t)
     }
   }
 }
+
+void SpatialSimulation::KillSeagrass(const int x, const int y)
+{
+  m_grid[y][x].SetSeagrassDensity(0.0 * boost::units::si::species_per_square_meter);
+}
