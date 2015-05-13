@@ -25,6 +25,7 @@ public:
   ~QtMutualismBreakdownerSpatialWidget();
 
   void SetPixel(const int x, const int y, const QColor color);
+  void SetResolution(const int width, const int height);
 
 protected:
   void paintEvent(QPaintEvent *);

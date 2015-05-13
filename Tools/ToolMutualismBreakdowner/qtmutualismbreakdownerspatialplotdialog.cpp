@@ -147,10 +147,16 @@ void QtMutualismBreakdownerSpatialPlotDialog::StartRun()
     std::clog << e.what() << std::endl;
     return;
   }
-  this->m_seagrass_widget->setEnabled(true);
-  this->m_sulfide_widget->setEnabled(true);
 
   const auto parameters = GetParameters();
+  {
+    const int w{parameters.GetSpatialWidth()};
+    const int h{parameters.GetSpatialHeight()};
+    this->m_seagrass_widget->SetResolution(w,h);
+    this->m_sulfide_widget->SetResolution(w,h);
+  }
+  this->m_seagrass_widget->setEnabled(true);
+  this->m_sulfide_widget->setEnabled(true);
 
   //m_grid = Grid(height,std::vector<System>(width,System(parameters)));
   m_simulation = std::make_unique<Simulation>(parameters);

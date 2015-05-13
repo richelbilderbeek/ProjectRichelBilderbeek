@@ -29,6 +29,11 @@ void QtMutualismBreakdownerSpatialWidget::SetPixel(const int x, const int y, con
   m_image.setPixel(x,y,color.rgb());
 }
 
+void QtMutualismBreakdownerSpatialWidget::SetResolution(const int width, const int height)
+{
+  m_image = QImage(width,height,QImage::Format_RGB32);
+}
+
 void QtMutualismBreakdownerSpatialWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
