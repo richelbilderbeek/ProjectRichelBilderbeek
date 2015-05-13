@@ -1,5 +1,5 @@
 #include "parameters.h"
-#include "simulation.h"
+#include "timesimulation.h"
 #include "units.h"
 
 #include <iostream>
@@ -13,7 +13,7 @@ int main()
     ribi::units::TestSpeciesDensity();
     #endif // NDEBUG
     Parameters p = Parameters::GetTest(0);
-    Simulation s(p);
+    TimeSimulation s(p);
     s.Run();
     std::cout << s << std::endl;
     std::cout << "SIM FINISHED SUCCESSFULLY" << std::endl;

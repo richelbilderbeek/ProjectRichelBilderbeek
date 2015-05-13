@@ -28,7 +28,8 @@ protected:
 private slots:
   void on_button_about_clicked();
   void on_button_quit_clicked();
-  void on_button_start_time_plot_clicked();
+  void on_button_start_time_clicked();
+  void on_button_start_spatial_clicked();
 
 private:
   Ui::QtMutualismBreakdownerMenuDialog *ui;

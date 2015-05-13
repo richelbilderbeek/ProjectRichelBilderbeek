@@ -90,8 +90,9 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const
   using boost::units::si::species_per_square_meter;
   using boost::units::si::mole;
   using boost::units::si::cubic_meter;
+  using boost::units::si::seconds;
   const Parameters p(
-    ui->box_delta_t->value(),
+    ui->box_delta_t->value() * seconds,
     ui->box_initial_loripes_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_seagrass_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_sulfide_concentration->value() * mole / cubic_meter,
@@ -109,7 +110,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const
 
 void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters)
 {
-  ui->box_delta_t->setValue(parameters.GetDeltaT());
+  ui->box_delta_t->setValue(parameters.GetDeltaT().value());
   ui->box_n_timesteps->setValue(parameters.GetNumberOfTimesteps());
   ui->box_initial_loripes_density->setValue(parameters.GetInitialLoripesDensity().value());
   ui->box_initial_seagrass_density->setValue(parameters.GetInitialSeagrassDensity().value());

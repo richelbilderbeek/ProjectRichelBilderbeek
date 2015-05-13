@@ -13,7 +13,8 @@ SOURCES += \
     ../../Classes/CppUnits/concentration.cpp \
     ../../Classes/CppUnits/speciesgrowth.cpp \
     ../../Classes/CppUnits/rate.cpp \
-    ../../Classes/CppUnits/concentrationchange.cpp
+    ../../Classes/CppUnits/concentrationchange.cpp \
+    ../../Classes/CppUnits/ribi_time.cpp
 
 HEADERS  += \
     ../../Classes/CppUnits/units.h \
@@ -27,7 +28,8 @@ HEADERS  += \
     ../../Classes/CppUnits/concentration.h \
     ../../Classes/CppUnits/speciesgrowth.h \
     ../../Classes/CppUnits/rate.h \
-    ../../Classes/CppUnits/concentrationchange.h
+    ../../Classes/CppUnits/concentrationchange.h \
+    ../../Classes/CppUnits/ribi_time.h
 
 OTHER_FILES += \
     ../../Classes/CppUnits/Licence.txt

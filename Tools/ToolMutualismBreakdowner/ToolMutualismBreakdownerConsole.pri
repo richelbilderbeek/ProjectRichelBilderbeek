@@ -1,8 +1,8 @@
 INCLUDEPATH += ../../Tools/ToolMutualismBreakdowner
 
 SOURCES += \
-    ../../Tools/ToolMutualismBreakdowner/simulation.cpp \
-    ../../Tools/ToolMutualismBreakdowner/simulation_test.cpp \
+    ../../Tools/ToolMutualismBreakdowner/timesimulation.cpp \
+    ../../Tools/ToolMutualismBreakdowner/timesimulation_test.cpp \
     ../../Tools/ToolMutualismBreakdowner/parameters.cpp \
     ../../Tools/ToolMutualismBreakdowner/parameters_test.cpp \
     ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownermenudialog.cpp \
@@ -10,19 +10,21 @@ SOURCES += \
     ../../Tools/ToolMutualismBreakdowner/sulfideconsumptionfunction.cpp \
     ../../Tools/ToolMutualismBreakdowner/seagrassgrowthfunction.cpp \
     ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.cpp \
-    sulfidediffusionfunction.cpp \
-    sulfidedetoxificationfunction.cpp
+    ../../Tools/ToolMutualismBreakdowner/sulfidediffusionfunction.cpp \
+    ../../Tools/ToolMutualismBreakdowner/sulfidedetoxificationfunction.cpp \
+    ../../Tools/ToolMutualismBreakdowner/seagrasssystem.cpp
 
 HEADERS  += \
-    ../../Tools/ToolMutualismBreakdowner/simulation.h \
+    ../../Tools/ToolMutualismBreakdowner/timesimulation.h \
     ../../Tools/ToolMutualismBreakdowner/parameters.h \
     ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownermenudialog.h \
     ../../Tools/ToolMutualismBreakdowner/poisoningfunction.h \
     ../../Tools/ToolMutualismBreakdowner/sulfideconsumptionfunction.h \
     ../../Tools/ToolMutualismBreakdowner/seagrassgrowthfunction.h \
     ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.h \
-    sulfidediffusionfunction.h \
-    sulfidedetoxificationfunction.h
+    ../../Tools/ToolMutualismBreakdowner/sulfidediffusionfunction.h \
+    ../../Tools/ToolMutualismBreakdowner/sulfidedetoxificationfunction.h \
+    ../../Tools/ToolMutualismBreakdowner/seagrasssystem.h
 
 RESOURCES += \
     ../../Tools/ToolMutualismBreakdowner/ToolMutualismBreakdowner.qrc

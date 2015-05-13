@@ -1,73 +1,47 @@
-#include "qtmutualismbreakdownertimeplotdialog.h"
+#include "qtmutualismbreakdownerspatialplotdialog.h"
 
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <memory>
 
 #include <QDesktopWidget>
-#include <QFileDialog>
 #include <QGridLayout>
-
-#include <qwt_plot_zoomer.h>
-#include <qwt_plot_grid.h>
-#include <qwt_plot.h>
-#include <qwt_plot_curve.h>
+#include <QTimer>
 
 #include "simulation.h"
-#include "ui_qtmutualismbreakdownertimeplotdialog.h"
 #include "qtmutualismbreakdownerparameterswidget.h"
-#if QWT_VERSION >= 0x060100 || !WIN32
-#include "qwt_point_data.h"
-#endif
-
-QtMutualismBreakdownerTimePlotDialog::QtMutualismBreakdownerTimePlotDialog(QWidget *parent) :
+#include "qtmutualismbreakdownerspatialwidget.h"
+#include "ui_qtmutualismbreakdownerspatialplotdialog.h"
+#include "seagrassgrowthfunction.h"
+QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtMutualismBreakdownerTimePlotDialog),
-  m_curve_seagrass_density(new QwtPlotCurve),
-  m_curve_sulfide_concentration(new QwtPlotCurve),
-  m_parameters_widget{new QtMutualismBreakdownerParametersWidget}
+  ui(new Ui::QtMutualismBreakdownerSpatialPlotDialog),
+  m_parameters_widget{new QtMutualismBreakdownerParametersWidget},
+  m_seagrass_widget{new QtMutualismBreakdownerSpatialWidget(10,10)},
+  m_sulfide_widget{new QtMutualismBreakdownerSpatialWidget(10,10)},
+  m_timer{new QTimer(this)},
+  m_grid{}
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
-
   ui->setupUi(this);
 
-  assert(this->ui->widget->layout());
-  this->ui->widget->layout()->addWidget(m_parameters_widget);
-
-
-  ui->plot_seagrass_density->setTitle("Seagrass density");
-  ui->plot_sulfide_concentration->setTitle("Sulfide concentration");
-
-  //Add grid
-  for (const auto plot:
-    {
-      ui->plot_seagrass_density,
-      ui->plot_sulfide_concentration
-    }
-  )
   {
-    QwtPlotGrid * const grid = new QwtPlotGrid;
-    grid->setPen(QPen(QColor(128,128,128)));
-    grid->attach(plot);
-    new QwtPlotZoomer(plot->canvas());
+    const auto my_layout = ui->widget_left->layout();
+    assert(my_layout);
+    my_layout->addWidget(m_parameters_widget);
+  }
+  {
+    const auto my_layout = ui->widget_mid->layout();
+    assert(my_layout);
+    my_layout->addWidget(m_seagrass_widget);
+  }
+  {
+    const auto my_layout = ui->widget_right->layout();
+    assert(my_layout);
+    my_layout->addWidget(m_sulfide_widget);
   }
 
-  ui->plot_seagrass_density->setCanvasBackground(QColor(226,255,226));
-  ui->plot_sulfide_concentration->setCanvasBackground(QColor(255,226,226));
-
-  m_curve_seagrass_density->attach(ui->plot_seagrass_density);
-  m_curve_seagrass_density->setStyle(QwtPlotCurve::Lines);
-  m_curve_seagrass_density->setPen(QPen(QColor(0,255,0)));
-
-  m_curve_sulfide_concentration->attach(ui->plot_sulfide_concentration);
-  m_curve_sulfide_concentration->setStyle(QwtPlotCurve::Lines);
-  m_curve_sulfide_concentration->setPen(QPen(QColor(255,0,0)));
-
-  on_button_run_clicked();
-
-  QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(on_button_run_clicked()));
+  QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(StartRun()));
 
   {
     //Put the dialog in the screen center
@@ -77,18 +51,72 @@ QtMutualismBreakdownerTimePlotDialog::QtMutualismBreakdownerTimePlotDialog(QWidg
   }
 }
 
-QtMutualismBreakdownerTimePlotDialog::~QtMutualismBreakdownerTimePlotDialog()
+QtMutualismBreakdownerSpatialPlotDialog::~QtMutualismBreakdownerSpatialPlotDialog()
 {
   delete ui;
 }
 
-Parameters QtMutualismBreakdownerTimePlotDialog::GetParameters() const
+void QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
+{
+  const auto parameters = GetParameters();
+  const auto seagrass_growth_function
+    = std::dynamic_pointer_cast<SeagrassStressedLogisticGrowth>(
+      parameters.GetSeagrassGrowthFunction()
+    );
+  assert(seagrass_growth_function);
+  const auto k = seagrass_growth_function->GetCarryingCapacity();
+  const auto max_s = 10.0 * boost::units::si::mole_per_cubic_meter;
+
+  assert(!m_grid.empty());
+  const int height{static_cast<int>(m_grid.size())};
+  const int width{static_cast<int>(m_grid[0].size())};
+  for (int y=0; y!=height; ++y)
+  {
+    const auto& line = m_grid[y];
+    for (int x=0; x!=width; ++x)
+    {
+      const auto& cell = line[x];
+      //Seagrass
+      {
+        const auto n = cell.GetSeagrassDensity();
+        int g = static_cast<int>(255.0 * n / k);
+        if (g < 0) g = 0;
+        else if (g > 255) g = 255;
+        m_seagrass_widget->SetPixel(x,y,qRgb(0,g,0));
+      }
+      //Sulfide
+      {
+        const auto s = cell.GetSulfideConcentration();
+        int r = static_cast<int>(255.0 * s / max_s);
+        if (r < 0) r = 0;
+        else if (r > 255) r = 255;
+        m_sulfide_widget->SetPixel(x,y,qRgb(r,0,0));
+      }
+    }
+  }
+}
+
+Parameters QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
 {
   assert(m_parameters_widget);
   return m_parameters_widget->GetParameters();
 }
 
-void QtMutualismBreakdownerTimePlotDialog::SetParameters(const Parameters& parameters)
+void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
+{
+  const auto parameters = GetParameters();
+  const auto dt = parameters.GetDeltaT();
+
+  for (auto& line: m_grid)
+  {
+    for (auto& system: line)
+    {
+      system.Change(dt);
+    }
+  }
+}
+
+void QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const Parameters& parameters)
 {
   try
   {
@@ -101,10 +129,11 @@ void QtMutualismBreakdownerTimePlotDialog::SetParameters(const Parameters& param
   }
 }
 
-void QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
+void QtMutualismBreakdownerSpatialPlotDialog::StartRun()
 {
-  ui->plot_seagrass_density->setEnabled(false);
-  ui->plot_sulfide_concentration->setEnabled(false);
+  m_timer->stop();
+  m_seagrass_widget->setEnabled(false);
+  m_sulfide_widget->setEnabled(false);
   try
   {
     const auto parameters = GetParameters();
@@ -114,41 +143,18 @@ void QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
     std::clog << e.what() << std::endl;
     return;
   }
-  ui->plot_seagrass_density->setEnabled(true);
-  ui->plot_sulfide_concentration->setEnabled(true);
+  this->m_seagrass_widget->setEnabled(true);
+  this->m_sulfide_widget->setEnabled(true);
 
   const auto parameters = GetParameters();
-  std::clog << parameters << std::endl;
-  Simulation simulation(parameters);
-  simulation.Run();
+  const int width = 10;
+  const int height = 10;
 
-  const std::vector<double>& timeseries{simulation.GetTimeSeries()};
-  const auto& seagrass_densities_with_unit = simulation.GetSeagrassDensities();
-  const auto& sulfide_concentrations_with_unit = simulation.GetSulfideConcentrations();
+  m_grid = Grid(height,std::vector<System>(width,System(parameters)));
+  DisplayGrid();
 
-  std::vector<double> seagrass_densities;
-  std::transform(
-    std::begin(seagrass_densities_with_unit),
-    std::end(seagrass_densities_with_unit),
-    std::back_inserter(seagrass_densities),
-    [](const auto& d){ return d.value(); }
-  );
+  //SpatialSimulation simulation(parameters,width,height);
+  //simulation.Run();
+  m_timer->start();
 
-  std::vector<double> sulfide_concentrations;
-  std::transform(
-    std::begin(sulfide_concentrations_with_unit),
-    std::end(sulfide_concentrations_with_unit),
-    std::back_inserter(sulfide_concentrations),
-    [](const auto& d){ return d.value(); }
-  );
-
-  m_curve_seagrass_density->setData(
-    new QwtPointArrayData(&timeseries[0],&seagrass_densities[0],seagrass_densities.size())
-  );
-  m_curve_sulfide_concentration->setData(
-    new QwtPointArrayData(&timeseries[0],&sulfide_concentrations[0],sulfide_concentrations.size())
-  );
-
-  ui->plot_seagrass_density->replot();
-  ui->plot_sulfide_concentration->replot();
 }

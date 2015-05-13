@@ -43,6 +43,7 @@ int main(int argc, char *argv[])
   QtMutualismBreakdownerTimePlotDialog();
   QtMutualismBreakdownerEquilibriumDialog();
   #ifndef NDEBUG
+  ribi::units::TestTime();
   ribi::units::Test();
   #endif
   InvertedExponentialPoisoning();

@@ -13,7 +13,7 @@
 
 Parameters::Parameters()
   :
-    m_delta_t{0.1},
+    m_delta_t{0.1 * boost::units::si::seconds},
     m_initial_loripes_density{0.0 * boost::units::si::species_per_square_meters},
     m_initial_seagrass_density{0.0 * boost::units::si::species_per_square_meters},
     m_initial_sulfide_concentration{0.0 * boost::units::si::mole / boost::units::si::cubic_meter},
@@ -33,7 +33,7 @@ Parameters::Parameters()
 }
 
 Parameters::Parameters(
-  const double any_delta_t,
+  const Time any_delta_t,
   const ribi::units::SpeciesDensity initial_loripes_density,
   const ribi::units::SpeciesDensity initial_seagrass_density,
   const ribi::units::Concentration initial_sulfide_concentration,
@@ -63,7 +63,8 @@ Parameters::Parameters(
   using boost::units::si::species_per_square_meter;
   using boost::units::si::mole;
   using boost::units::si::cubic_meter;
-  if (m_delta_t <= 0.0)
+  using boost::units::si::seconds;
+  if (m_delta_t <= 0.0 * seconds)
   {
     throw std::logic_error("Parameters::Parameters: delta_t must be above zero");
   }
@@ -101,8 +102,9 @@ Parameters Parameters::GetTest(const int /* i */)
   using boost::units::si::species_per_square_meters;
   using boost::units::si::mole;
   using boost::units::si::cubic_meter;
+  using boost::units::si::seconds;
   const Parameters p(
-    0.1, //any_delta_t,
+    0.1 * seconds, //any_delta_t,
     0.1 * species_per_square_meters, //initial_loripes_density,
     0.1 * species_per_square_meters, //initial_seagrass_density,
     0.0 * mole / cubic_meter, //any_initial_loripes_density,
@@ -117,9 +119,9 @@ Parameters Parameters::GetTest(const int /* i */)
   return p;
 }
 
-void Parameters::SetDeltaT(const double any_delta_t)
+void Parameters::SetDeltaT(const Time any_delta_t)
 {
-  if (any_delta_t <= 0.0)
+  if (any_delta_t <= 0.0 * boost::units::si::seconds)
   {
     std::stringstream s;
     s << "Parameters::SetDeltaT: "

@@ -13,7 +13,9 @@ SOURCES += \
     ../../Tools/ToolMutualismBreakdowner/qtseagrassgrowthfunctionwidget.cpp \
     ../../Tools/ToolMutualismBreakdowner/qtsulfideproductionfunctionwidget.cpp \
     qtsulfidedetoxificationfunctionwidget.cpp \
-    qtsulfidediffusionfunctionwidget.cpp
+    qtsulfidediffusionfunctionwidget.cpp \
+    qtmutualismbreakdownerspatialplotdialog.cpp \
+    qtmutualismbreakdownerspatialwidget.cpp
 
 
 HEADERS  += \
@@ -26,7 +28,9 @@ HEADERS  += \
     ../../Tools/ToolMutualismBreakdowner/qtseagrassgrowthfunctionwidget.h \
     ../../Tools/ToolMutualismBreakdowner/qtsulfideproductionfunctionwidget.h \
     qtsulfidedetoxificationfunctionwidget.h \
-    qtsulfidediffusionfunctionwidget.h
+    qtsulfidediffusionfunctionwidget.h \
+    qtmutualismbreakdownerspatialplotdialog.h \
+    qtmutualismbreakdownerspatialwidget.h
 
 FORMS += \
     ../../Tools/ToolMutualismBreakdowner/qtmutualismbreakdownertimeplotdialog.ui \
@@ -38,5 +42,7 @@ FORMS += \
     ../../Tools/ToolMutualismBreakdowner/qtseagrassgrowthfunctionwidget.ui \
     ../../Tools/ToolMutualismBreakdowner/qtsulfideproductionfunctionwidget.ui \
     qtsulfidedetoxificationfunctionwidget.ui \
-    qtsulfidediffusionfunctionwidget.ui
+    qtsulfidediffusionfunctionwidget.ui \
+    qtmutualismbreakdownerspatialplotdialog.ui \
+    qtmutualismbreakdownerspatialwidget.ui
 

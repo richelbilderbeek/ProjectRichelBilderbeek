@@ -1,40 +1,36 @@
-#ifndef QTPAPERROCKSCISSORSWIDGET_H
-#define QTPAPERROCKSCISSORSWIDGET_H
+#ifndef QTMUTUALISMBREAKDOWNERSPATIALWIDGET_H
+#define QTMUTUALISMBREAKDOWNERSPATIALWIDGET_H
 
 #include <QWidget>
-#include <QPixmap>
-
-#include "paperrockscissorssimulation.h"
+#include <QImage>
 
 namespace Ui {
-  class QtPaperRockScissorsWidget;
+  class QtMutualismBreakdownerSpatialWidget;
 }
 
 struct QImage;
 
-class QtPaperRockScissorsWidget : public QWidget
+class QtMutualismBreakdownerSpatialWidget : public QWidget
 {
   Q_OBJECT
 
 public:
-  explicit QtPaperRockScissorsWidget(
+  explicit QtMutualismBreakdownerSpatialWidget(
     const int width = 600,
     const int height = 400,
     QWidget *parent = 0
   );
-  QtPaperRockScissorsWidget(const QtPaperRockScissorsWidget&) = delete;
-  QtPaperRockScissorsWidget& operator=(const QtPaperRockScissorsWidget&) = delete;
-  ~QtPaperRockScissorsWidget();
+  QtMutualismBreakdownerSpatialWidget(const QtMutualismBreakdownerSpatialWidget&) = delete;
+  QtMutualismBreakdownerSpatialWidget& operator=(const QtMutualismBreakdownerSpatialWidget&) = delete;
+  ~QtMutualismBreakdownerSpatialWidget();
+
+  void SetPixel(const int x, const int y, const QColor color);
 
 protected:
   void paintEvent(QPaintEvent *);
 private:
-  Ui::QtPaperRockScissorsWidget *ui;
-  QPixmap m_pixmap;
-  PaperRockScissorsSimulation m_simulation;
-
-private slots:
-  void OnTimer();
+  Ui::QtMutualismBreakdownerSpatialWidget *ui;
+  QImage m_image;
 };
 
-#endif // QTPAPERROCKSCISSORSWIDGET_H
+#endif // QTMUTUALISMBREAKDOWNERSPATIALWIDGET_H

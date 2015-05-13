@@ -1,40 +1,48 @@
-#ifndef QTMUTUALISMBREAKDOWNERTIMEPLOTDIALOG_H
-#define QTMUTUALISMBREAKDOWNERTIMEPLOTDIALOG_H
+#ifndef QTMUTUALISMBREAKDOWNERSPATIALPLOTDIALOG_H
+#define QTMUTUALISMBREAKDOWNERSPATIALPLOTDIALOG_H
 
+#include <vector>
+
+#include "seagrasssystem.h"
 #include "parameters.h"
 #include "qthideandshowdialog.h"
 
 struct QwtPlotCurve;
 struct QtMutualismBreakdownerParametersWidget;
+struct QtMutualismBreakdownerSpatialWidget;
 
 namespace Ui {
-  class QtMutualismBreakdownerTimePlotDialog;
+  class QtMutualismBreakdownerSpatialPlotDialog;
 }
 
-class QtMutualismBreakdownerTimePlotDialog : public ribi::QtHideAndShowDialog
+class QtMutualismBreakdownerSpatialPlotDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtMutualismBreakdownerTimePlotDialog(QWidget *parent = 0);
-  ~QtMutualismBreakdownerTimePlotDialog();
+
+
+  explicit QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent = 0);
+  ~QtMutualismBreakdownerSpatialPlotDialog();
   Parameters GetParameters() const;
   void SetParameters(const Parameters& parameters);
 
 private slots:
 
-  void on_button_run_clicked();
+  void StartRun();
+  void NextTimestep();
 
 private:
-  Ui::QtMutualismBreakdownerTimePlotDialog *ui;
+  using System = SeagrassSystem;
+  using Grid = std::vector<std::vector<System>>;
 
-  QwtPlotCurve * const m_curve_seagrass_density;
-  QwtPlotCurve * const m_curve_sulfide_concentration;
+  Ui::QtMutualismBreakdownerSpatialPlotDialog *ui;
   QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
-
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
+  QtMutualismBreakdownerSpatialWidget * const m_seagrass_widget;
+  QtMutualismBreakdownerSpatialWidget * const m_sulfide_widget;
+  QTimer * const m_timer;
+  Grid m_grid;
+  void DisplayGrid();
 };
 
-#endif // QTMUTUALISMBREAKDOWNERTIMEPLOTDIALOG_H
+#endif // QTMUTUALISMBREAKDOWNERSPATIALPLOTDIALOG_H

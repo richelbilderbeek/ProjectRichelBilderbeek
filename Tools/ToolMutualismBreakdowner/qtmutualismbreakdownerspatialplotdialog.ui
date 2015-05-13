@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtMutualismBreakdownerTimePlotDialog</class>
- <widget class="QDialog" name="QtMutualismBreakdownerTimePlotDialog">
+ <class>QtMutualismBreakdownerSpatialPlotDialog</class>
+ <widget class="QDialog" name="QtMutualismBreakdownerSpatialPlotDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>603</width>
-    <height>245</height>
+    <width>778</width>
+    <height>387</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,35 +35,25 @@ QPlainTextEdit {
   font: 18px bold &quot;Courier&quot; courier monospace
 }</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" rowspan="2">
-    <widget class="QWidget" name="widget" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <layout class="QFormLayout" name="formLayout"/>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QWidget" name="widget_left" native="true">
+     <layout class="QGridLayout" name="gridLayout_4"/>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="2">
-    <widget class="QwtPlot" name="plot_seagrass_density" native="true"/>
+   <item>
+    <widget class="QWidget" name="widget_mid" native="true">
+     <layout class="QGridLayout" name="gridLayout_3"/>
+    </widget>
    </item>
-   <item row="0" column="2" rowspan="2">
-    <widget class="QwtPlot" name="plot_sulfide_concentration" native="true"/>
+   <item>
+    <widget class="QWidget" name="widget_right" native="true">
+     <layout class="QGridLayout" name="gridLayout_2"/>
+    </widget>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>QwtPlot</class>
-   <extends>QWidget</extends>
-   <header>qwt_plot.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

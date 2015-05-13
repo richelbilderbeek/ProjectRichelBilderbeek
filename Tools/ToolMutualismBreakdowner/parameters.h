@@ -1,10 +1,11 @@
-#ifndef PARAMETERS_H
-#define PARAMETERS_H
+#ifndef MUTUALISMBREAKDOWNER_PARAMETERS_H
+#define MUTUALISMBREAKDOWNER_PARAMETERS_H
 
 #include <iosfwd>
 #include <memory>
 #include "speciesdensity.h"
 #include "concentration.h"
+#include "ribi_time.h"
 
 struct PoisoningFunction;
 struct SeagrassGrowthFunction;
@@ -17,9 +18,11 @@ struct Parameters
 {
   using SpeciesDensity = ribi::units::SpeciesDensity;
   using Concentration = ribi::units::Concentration;
+  using Time = ribi::units::Time;
+
   Parameters();
   Parameters(
-    const double any_delta_t,
+    const Time any_delta_t,
     const SpeciesDensity m_initial_loripes_density,
     const SpeciesDensity m_initial_seagrass_density,
     const Concentration any_initial_loripes_density,
@@ -32,7 +35,7 @@ struct Parameters
     const int any_n_timesteps
   );
 
-  double GetDeltaT() const noexcept { return m_delta_t; }
+  auto GetDeltaT() const noexcept { return m_delta_t; }
 
   auto GetInitialLoripesDensity() const noexcept { return m_initial_loripes_density; }
   auto GetInitialSeagrassDensity() const noexcept { return m_initial_seagrass_density; }
@@ -50,7 +53,7 @@ struct Parameters
   ///Create a testing parameter set
   static Parameters GetTest(const int i);
 
-  void SetDeltaT(const double any_delta_t);
+  void SetDeltaT(const Time any_delta_t);
   void SetInitialSeagrassDensity(const ribi::units::SpeciesDensity any_initial_seagrass_density) noexcept;
 
   void SetPoisoningFunction(const std::shared_ptr<PoisoningFunction> any_poisoning_function);
@@ -61,7 +64,7 @@ struct Parameters
 
 
   private:
-  double m_delta_t;
+  Time m_delta_t;
 
   ribi::units::SpeciesDensity m_initial_loripes_density;
   ribi::units::SpeciesDensity m_initial_seagrass_density;
@@ -87,4 +90,4 @@ bool operator!=(const Parameters& lhs, const Parameters& rhs) noexcept;
 std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept;
 std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept;
 
-#endif // PARAMETERS_H
+#endif // MUTUALISMBREAKDOWNER_PARAMETERS_H

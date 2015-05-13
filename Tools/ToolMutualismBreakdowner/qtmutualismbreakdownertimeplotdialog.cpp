@@ -13,7 +13,7 @@
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 
-#include "simulation.h"
+#include "timesimulation.h"
 #include "ui_qtmutualismbreakdownertimeplotdialog.h"
 #include "qtmutualismbreakdownerparameterswidget.h"
 #if QWT_VERSION >= 0x060100 || !WIN32
@@ -119,7 +119,7 @@ void QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
 
   const auto parameters = GetParameters();
   std::clog << parameters << std::endl;
-  Simulation simulation(parameters);
+  TimeSimulation simulation(parameters);
   simulation.Run();
 
   const std::vector<double>& timeseries{simulation.GetTimeSeries()};

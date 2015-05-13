@@ -9,7 +9,7 @@
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 
-#include "simulation.h"
+#include "timesimulation.h"
 #include "qtmutualismbreakdownerparameterswidget.h"
 #include "ui_qtmutualismbreakdownerequilibriumdialog.h"
 
@@ -100,7 +100,7 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
     //From low
     {
       parameters.SetInitialSeagrassDensity(0.1 * boost::units::si::species_per_square_meter);
-      Simulation simulation(parameters);
+      TimeSimulation simulation(parameters);
       simulation.Run();
       if (simulation.GetSeagrassDensities().empty())
       {
@@ -115,7 +115,7 @@ void QtMutualismBreakdownerEquilibriumDialog::on_button_run_clicked()
     //From high
     {
       parameters.SetInitialSeagrassDensity(1.0 * boost::units::si::species_per_square_meter);
-      Simulation simulation(parameters);
+      TimeSimulation simulation(parameters);
       simulation.Run();
       if (simulation.GetSeagrassDensities().empty())
       {

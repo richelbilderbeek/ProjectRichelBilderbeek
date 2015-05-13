@@ -7,6 +7,7 @@
 #include "qtaboutdialog.h"
 #include "mutualismbreakdownermenudialog.h"
 #include "qtmutualismbreakdownertimeplotdialog.h"
+#include "qtmutualismbreakdownerspatialplotdialog.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
 #include "qtpoisoningfunctionwidget.h"
 #include "trace.h"
@@ -63,9 +64,15 @@ void ribi::QtMutualismBreakdownerMenuDialog::Test() noexcept
 }
 #endif
 
-void ribi::QtMutualismBreakdownerMenuDialog::on_button_start_time_plot_clicked()
+void ribi::QtMutualismBreakdownerMenuDialog::on_button_start_time_clicked()
 {
   QtMutualismBreakdownerTimePlotDialog d;
   ShowChild(&d);
 
+}
+
+void ribi::QtMutualismBreakdownerMenuDialog::on_button_start_spatial_clicked()
+{
+  QtMutualismBreakdownerSpatialPlotDialog d;
+  ShowChild(&d);
 }

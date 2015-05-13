@@ -15,6 +15,7 @@
 #include "speciesgrowth.h"
 #include "sulfidemoleculeamount.h"
 #include "testtimer.h"
+#include "ribi_time.h"
 #include "volumetricflow.h"
 
 void ribi::units::Test() noexcept
@@ -33,6 +34,7 @@ void ribi::units::Test() noexcept
     TestSpeciesDensity();
     TestSpeciesGrowth();
     TestSulfideMoleculeAmount();
+    TestTime();
     TestVolumetricFlow();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
