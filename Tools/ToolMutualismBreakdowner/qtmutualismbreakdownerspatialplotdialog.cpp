@@ -160,6 +160,8 @@ void QtMutualismBreakdownerSpatialPlotDialog::StartRun()
 
   //m_grid = Grid(height,std::vector<System>(width,System(parameters)));
   m_simulation = std::make_unique<Simulation>(parameters);
+
+
   DisplayGrid();
 
   //SpatialSimulation simulation(parameters,width,height);
