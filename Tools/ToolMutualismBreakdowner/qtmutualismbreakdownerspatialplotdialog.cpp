@@ -9,7 +9,7 @@
 #include <QGridLayout>
 #include <QTimer>
 
-#include "simulation.h"
+#include "timesimulation.h"
 #include "qtmutualismbreakdownerparameterswidget.h"
 #include "qtmutualismbreakdownerspatialwidget.h"
 #include "ui_qtmutualismbreakdownerspatialplotdialog.h"
@@ -42,13 +42,13 @@ QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog
   }
 
   QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(StartRun()));
-
   {
     //Put the dialog in the screen center
     const QRect screen = QApplication::desktop()->screenGeometry();
     this->setGeometry(0,0,screen.width() * 9 / 10,screen.height() * 9 / 10);
     this->move( screen.center() - this->rect().center() );
   }
+  StartRun();
 }
 
 QtMutualismBreakdownerSpatialPlotDialog::~QtMutualismBreakdownerSpatialPlotDialog()
