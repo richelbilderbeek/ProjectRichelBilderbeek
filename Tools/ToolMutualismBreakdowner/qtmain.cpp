@@ -37,6 +37,14 @@
 //Sulfide detoxification:
 //  Article name: The structure of Aquifex aeolicus sulfide:quinone oxidoreductase, a basis to understand sulfide detoxification and respiration
 //  URL: http://www.pnas.org/content/106/24/9625/F6.expansion.html
+
+//Time:
+//  URL: http://en.wikipedia.org/wiki/Time#/media/File:Wooden_hourglass_3.jpg
+//  by Arthena
+
+//Grid:
+//  URL: http://www.templates.com/blog/10-grid-web-design-tools/
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
