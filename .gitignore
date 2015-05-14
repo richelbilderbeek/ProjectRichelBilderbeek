@@ -35,6 +35,7 @@ Examples/
 Libraries/.directory
 Libraries/Arduino/
 Libraries/avr-libc-user-manual-1.8.0
+Libraries/bat/
 Libraries/bigint-2010.04.30/
 Libraries/boost_*
 Libraries/bot.sh
