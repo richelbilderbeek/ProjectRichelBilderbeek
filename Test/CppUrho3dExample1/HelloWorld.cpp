@@ -38,6 +38,10 @@ DEFINE_APPLICATION_MAIN(HelloWorld)
 HelloWorld::HelloWorld(Context* context) :
     Sample(context)
 {
+  //These lines create symbolic links to Urho3D's
+  //vital Data and CoreData folders
+  std::system("ln -s ../../Libraries/Urho3D/bin/Data");     //RJCB
+  std::system("ln -s ../../Libraries/Urho3D/bin/CoreData"); //RJCB
 }
 
 void HelloWorld::Start()
@@ -82,7 +86,7 @@ void HelloWorld::SubscribeToEvents()
     SubscribeToEvent(E_UPDATE, HANDLER(HelloWorld, HandleUpdate));
 }
 
-void HelloWorld::HandleUpdate(StringHash eventType, VariantMap& eventData)
+void HelloWorld::HandleUpdate(StringHash /* eventType */, VariantMap& /* eventData */)
 {
     // Do nothing for now, could be extended to eg. animate the display
 }

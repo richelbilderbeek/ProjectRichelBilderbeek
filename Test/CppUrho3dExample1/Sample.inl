@@ -176,7 +176,7 @@ void Sample::CreateConsoleAndDebugHud()
     debugHud->SetDefaultStyle(xmlFile);
 }
 
-void Sample::HandleKeyDown(StringHash eventType, VariantMap& eventData)
+void Sample::HandleKeyDown(StringHash /* eventType */, VariantMap& eventData)
 {
     using namespace KeyDown;
 
@@ -294,7 +294,7 @@ void Sample::HandleKeyDown(StringHash eventType, VariantMap& eventData)
     }
 }
 
-void Sample::HandleSceneUpdate(StringHash eventType, VariantMap& eventData)
+void Sample::HandleSceneUpdate(StringHash /* eventType */, VariantMap& /* eventData */)
 {
     // Move the camera by touch, if the camera node is initialized by descendant sample class
     if (touchEnabled_ && cameraNode_)
@@ -330,7 +330,7 @@ void Sample::HandleSceneUpdate(StringHash eventType, VariantMap& eventData)
     }
 }
 
-void Sample::HandleTouchBegin(StringHash eventType, VariantMap& eventData)
+void Sample::HandleTouchBegin(StringHash /* eventType */, VariantMap& /* eventData */)
 {
     // On some platforms like Windows the presence of touch input can only be detected dynamically
     InitTouchInput();

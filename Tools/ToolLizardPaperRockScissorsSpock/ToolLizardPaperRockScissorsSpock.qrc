@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/images">
-        <file>ToolLizardPaperRockScissorsSpockWelcome.png</file>
+        <file>ToolLizardPaperRockScissorsSpock.png</file>
     </qresource>
 </RCC>

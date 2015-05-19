@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>311</width>
-    <height>422</height>
+    <width>460</width>
+    <height>665</height>
    </rect>
   </property>
   <property name="font">
@@ -33,7 +33,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolLizardPaperRockScissorsSpock.qrc">:/images/ToolLizardPaperRockScissorsSpockWelcome.png</pixmap>
+      <pixmap resource="ToolLizardPaperRockScissorsSpock.qrc">:/images/ToolLizardPaperRockScissorsSpock.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

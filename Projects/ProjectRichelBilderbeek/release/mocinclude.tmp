@@ -227,7 +227,11 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolVisualAbc
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolWktToSvg
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include/QtOpenGL
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include/QtPrintSupport
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include/QtWidgets
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include/QtGui
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include/QtConcurrent
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/i686-w64-mingw32.static/qt5/include/QtCore
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.1.0/include/c++
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Libraries/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.1.0/include/c++/i686-w64-mingw32.static
