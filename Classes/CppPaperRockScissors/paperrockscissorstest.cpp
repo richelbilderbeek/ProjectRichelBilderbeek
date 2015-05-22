@@ -1,5 +1,5 @@
 #ifndef NDEBUG
-#include "paper_rock_scissors.h"
+#include "paperrockscissors.h"
 
 #include <cassert>
 

@@ -1,4 +1,4 @@
-#include "paper_rock_scissors.h"
+#include "paperrockscissors.h"
 
 bool DoesBeat(const PaperRockScissors lhs, const PaperRockScissors rhs)
 {

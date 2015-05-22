@@ -1,7 +1,7 @@
 #include "qtpaperrockscissorswidget.h"
 #include <QApplication>
-#include "paper_rock_scissors.h"
-#include "qtpaperrockscissorsmenudialog.h"
+#include "paperrockscissors.h"
+#include "qtpaperrockscissorswithtraitmenudialog.h"
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);

@@ -1,13 +1,13 @@
-include(../../Tools/ToolPaperRockScissors/ToolPaperRockScissorsConsole.pri)
+include(../../Tools/ToolPaperRockScissorsWithTrait/ToolPaperRockScissorsWithTraitConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolPaperRockScissors/qtpaperrockscissorsmenudialog.cpp \
-    ../../Tools/ToolPaperRockScissors/qtpaperrockscissorswidget.cpp
+    ../../Tools/ToolPaperRockScissorsWithTrait/qtpaperrockscissorswithtraitmenudialog.cpp \
+    ../../Tools/ToolPaperRockScissorsWithTrait/qtpaperrockscissorswithtraitmaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolPaperRockScissors/qtpaperrockscissorsmenudialog.h \
-    ../../Tools/ToolPaperRockScissors/qtpaperrockscissorswidget.h
+    ../../Tools/ToolPaperRockScissorsWithTrait/qtpaperrockscissorswithtraitmenudialog.h \
+    ../../Tools/ToolPaperRockScissorsWithTrait/qtpaperrockscissorswithtraitmaindialog.h
 
 FORMS += \
-    ../../Tools/ToolPaperRockScissors/qtpaperrockscissorsmenudialog.ui \
-    ../../Tools/ToolPaperRockScissors/qtpaperrockscissorswidget.ui
+    ../../Tools/ToolPaperRockScissorsWithTrait/qtpaperrockscissorswithtraitmenudialog.ui \
+    ../../Tools/ToolPaperRockScissorsWithTrait/qtpaperrockscissorswithtraitmaindialog.ui

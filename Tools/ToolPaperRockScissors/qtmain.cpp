@@ -1,6 +1,6 @@
 #include "qtpaperrockscissorswidget.h"
 #include <QApplication>
-#include "paper_rock_scissors.h"
+#include "paperrockscissors.h"
 #include "qtpaperrockscissorsmenudialog.h"
 int main(int argc, char *argv[])
 {

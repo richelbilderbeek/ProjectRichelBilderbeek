@@ -12,12 +12,13 @@ QtPaperRockScissorsWidget::QtPaperRockScissorsWidget(
   const int width,
   const int height,
   const Init initialization,
+  const int rng_seed,
   QWidget *parent
 )
   : QWidget(parent),
     ui(new Ui::QtPaperRockScissorsWidget),
     m_pixmap(width,height),
-    m_simulation(width,height,initialization)
+    m_simulation(width,height,initialization,rng_seed)
 {
   ui->setupUi(this);
   OnTimer();
@@ -80,14 +81,16 @@ void QtPaperRockScissorsWidget::paintEvent(QPaintEvent *)
 void QtPaperRockScissorsWidget::SetAll(
   const int width,
   const int height,
-  const Init initialization
+  const Init initialization,
+  const int rng_seed
 )
 {
   m_pixmap = QPixmap(width,height);
   m_simulation = PaperRockScissorsSimulation(
     width,
     height,
-    initialization
+    initialization,
+    rng_seed
   );
   update();
 }

@@ -1,4 +1,4 @@
-#include "paperrockscissorswithtraitmenudialog.h"
+#include "paperrockscissorsmenudialog.h"
 #include "trace.h"
 
 int main(int argc, char *argv[])

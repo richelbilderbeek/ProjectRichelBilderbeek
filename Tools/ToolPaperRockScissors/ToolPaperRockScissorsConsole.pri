@@ -2,12 +2,10 @@ INCLUDEPATH += \
     ../../Tools/ToolPaperRockScissors
 
 SOURCES += \
-    ../../Tools/ToolPaperRockScissors/paperrockscissorsmenudialog.cpp \
-    ../../Tools/ToolPaperRockScissors/paperrockscissorssimulation.cpp
+    ../../Tools/ToolPaperRockScissors/paperrockscissorsmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolPaperRockScissors/paperrockscissorsmenudialog.h \
-    ../../Tools/ToolPaperRockScissors/paperrockscissorssimulation.h
+    ../../Tools/ToolPaperRockScissors/paperrockscissorsmenudialog.h
 
 RESOURCES += \
     ../../Tools/ToolPaperRockScissors/ToolPaperRockScissors.qrc

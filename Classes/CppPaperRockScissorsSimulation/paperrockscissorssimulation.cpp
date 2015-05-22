@@ -9,7 +9,8 @@
 PaperRockScissorsSimulation::PaperRockScissorsSimulation(
   const int width,
   const int height,
-  const Initialization initialization
+  const Initialization initialization,
+  const int rng_seed
 )
   : m_grid{
       std::vector<std::vector<CellType>>(
@@ -17,13 +18,17 @@ PaperRockScissorsSimulation::PaperRockScissorsSimulation(
         std::vector<CellType>(width,CellType::paper)
       )
     },
-  m_initialization{initialization}
+  m_initialization{initialization},
+  m_rng_seed{rng_seed},
+  m_rng(rng_seed)
 {
   SetInitialization(m_initialization);
 }
 
 void PaperRockScissorsSimulation::Next()
 {
+  static std::uniform_int_distribution<int> d(0,3); //Inclusive
+
   std::vector<std::vector<CellType>> next(m_grid);
   const int height{static_cast<int>(m_grid.size())};
   const int width{static_cast<int>(m_grid[0].size())};
@@ -33,12 +38,14 @@ void PaperRockScissorsSimulation::Next()
     {
       int dx{0};
       int dy{0};
-      switch (rand() % 4)
+
+      switch (d(m_rng))
       {
         case 0: --dy; break;
         case 1: ++dx; break;
         case 2: ++dy; break;
         case 3: --dx; break;
+        default: assert(!"Should not get here");
       }
       CellType& here{m_grid[y][x]};
       const CellType& neighbour{m_grid[(y+dy+height)%height][(x+dx+width)%width]};
@@ -64,12 +71,16 @@ void PaperRockScissorsSimulation::SetInitialization(const Initialization initial
       switch(m_initialization)
       {
         case Initialization::random:
-          switch (std::rand() % 3)
+        {
+          static std::uniform_int_distribution<int> d(0,2); //Inclusive
+          switch (d(m_rng))
           {
             case 0: celltype = CellType::paper; break;
             case 1: celltype = CellType::rock; break;
             case 2: celltype = CellType::scissors; break;
+            default: assert(!"Should not get here");
           }
+        }
           break;
         case Initialization::vertical_bands:
           {

@@ -1,10 +1,10 @@
-#include "qtpaperrockscissorsmaindialog.h"
+#include "qtpaperrockscissorswithtraitmaindialog.h"
 
 #include <cassert>
 #include <iostream>
 
 #include "qtpaperrockscissorswidget.h"
-#include "ui_qtpaperrockscissorsmaindialog.h"
+#include "ui_qtpaperrockscissorswithtraitmaindialog.h"
 
 QtPaperRockScissorsMainDialog::QtPaperRockScissorsMainDialog(QWidget *parent) :
   ribi::QtHideAndShowDialog(parent),

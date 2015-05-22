@@ -1,8 +1,9 @@
 #ifndef PAPERROCKSCISSORSSIMULATION_H
 #define PAPERROCKSCISSORSSIMULATION_H
 
+#include <random>
 #include <vector>
-#include "paper_rock_scissors.h"
+#include "paperrockscissors.h"
 
 struct PaperRockScissorsSimulation
 {
@@ -17,7 +18,8 @@ struct PaperRockScissorsSimulation
   PaperRockScissorsSimulation(
     const int width,
     const int height,
-    const Initialization initialization
+    const Initialization initialization,
+    const int rng_seed
   );
 
   ///Y-X ordered grid
@@ -30,6 +32,8 @@ struct PaperRockScissorsSimulation
 
   std::vector<std::vector<CellType>> m_grid;
   Initialization m_initialization;
+  int m_rng_seed;
+  std::mt19937 m_rng;
 };
 
 #endif // PAPERROCKSCISSORSSIMULATION_H
