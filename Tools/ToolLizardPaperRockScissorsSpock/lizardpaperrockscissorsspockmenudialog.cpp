@@ -12,8 +12,7 @@
 
 #include <QFile>
 
-#include "simulation.h"
-
+#include "lizardpaperrockscissorsspocksimulation.h"
 #include "fileio.h"
 #include "richelbilderbeekprogram.h"
 #include "testtimer.h"

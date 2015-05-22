@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QPixmap>
 
-#include "simulation.h"
+#include "lizardpaperrockscissorsspocksimulation.h"
 
 namespace Ui {
   class QtLizardPaperRockScissorsSpockWidget;
@@ -17,7 +17,7 @@ class QtLizardPaperRockScissorsSpockWidget : public QWidget
   Q_OBJECT
 
 public:
-  using Init = Simulation::Initialization;
+  using Init = LizardPaperRockScissorsSpockSimulation::Initialization;
 
   explicit QtLizardPaperRockScissorsSpockWidget(
     const int width = 300,
@@ -40,7 +40,7 @@ protected:
 private:
   Ui::QtLizardPaperRockScissorsSpockWidget *ui;
   QPixmap m_pixmap;
-  Simulation m_simulation;
+  LizardPaperRockScissorsSpockSimulation m_simulation;
 
 private slots:
   void OnTimer();

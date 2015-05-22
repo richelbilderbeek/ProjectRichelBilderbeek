@@ -124,6 +124,11 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>box_width</tabstop>
+  <tabstop>box_height</tabstop>
+  <tabstop>box_initialization_type</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

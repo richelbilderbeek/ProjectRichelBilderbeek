@@ -1,4 +1,4 @@
-#include "simulation.h"
+#include "lizardpaperrockscissorsspocksimulation.h"
 
 #include <array>
 #include <cassert>
@@ -6,7 +6,7 @@
 #include <cstdlib>
 
 
-Simulation::Simulation(
+LizardPaperRockScissorsSpockSimulation::LizardPaperRockScissorsSpockSimulation(
   const int width,
   const int height,
   const Initialization initialization
@@ -24,34 +24,38 @@ Simulation::Simulation(
     for (int x=0; x!=width; ++x)
     {
       CellType& celltype = m_grid[y][x];
-      const bool do_initialize_randomly{false};
-      if (do_initialize_randomly)
+      switch (m_initialization)
       {
-        switch (std::rand() % 5)
+        case Init::random:
+
         {
-          case 0: celltype = CellType::paper; break;
-          case 1: celltype = CellType::scissors; break;
-          case 2: celltype = CellType::rock; break;
-          case 3: celltype = CellType::spock; break;
-          case 4: celltype = CellType::lizard; break;
+          switch (std::rand() % 5)
+          {
+            case 0: celltype = CellType::paper; break;
+            case 1: celltype = CellType::scissors; break;
+            case 2: celltype = CellType::rock; break;
+            case 3: celltype = CellType::spock; break;
+            case 4: celltype = CellType::lizard; break;
+          }
         }
-      }
-      else
-      {
-        switch ((y / (height / 15)) % 5)
+        break;
+        case Init::vertical_bands:
         {
-          case 0: celltype = CellType::scissors; break;
-          case 1: celltype = CellType::paper; break;
-          case 2: celltype = CellType::rock; break;
-          case 3: celltype = CellType::lizard; break;
-          case 4: celltype = CellType::spock; break;
+          switch ((y / (height / 15)) % 5)
+          {
+            case 0: celltype = CellType::scissors; break;
+            case 1: celltype = CellType::paper; break;
+            case 2: celltype = CellType::rock; break;
+            case 3: celltype = CellType::lizard; break;
+            case 4: celltype = CellType::spock; break;
+          }
         }
       }
     }
   }
 }
 
-void Simulation::Next()
+void LizardPaperRockScissorsSpockSimulation::Next()
 {
   std::vector<std::vector<CellType>> next(m_grid);
   const int height{static_cast<int>(m_grid.size())};

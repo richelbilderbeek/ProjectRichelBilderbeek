@@ -5,19 +5,19 @@
 #include <QPixmap>
 #include <QTimer>
 
-#include "simulation.h"
+#include "lizardpaperrockscissorsspocksimulation.h"
 #include "ui_qtlizardpaperrockscissorsspockwidget.h"
 
 QtLizardPaperRockScissorsSpockWidget::QtLizardPaperRockScissorsSpockWidget(
   const int width,
   const int height,
-  const Simulation::Initialization initialization,
+  const LizardPaperRockScissorsSpockSimulation::Initialization initialization,
   QWidget *parent
 )
   : QWidget(parent),
     ui(new Ui::QtLizardPaperRockScissorsSpockWidget),
     m_pixmap{QPixmap(width,height)},
-    m_simulation{Simulation(width,height,initialization)}
+    m_simulation{LizardPaperRockScissorsSpockSimulation(width,height,initialization)}
 {
   ui->setupUi(this);
   OnTimer();
@@ -83,7 +83,7 @@ void QtLizardPaperRockScissorsSpockWidget::SetAll(
 )
 {
   m_pixmap = QPixmap(width,height);
-  m_simulation = Simulation(
+  m_simulation = LizardPaperRockScissorsSpockSimulation(
     width,
     height,
     initialization

@@ -1,20 +1,21 @@
-#ifndef SIMULATION_H
-#define SIMULATION_H
+#ifndef LIZARDPAPERROCKSCISSORSSPOCKSIMULATION_H
+#define LIZARDPAPERROCKSCISSORSSPOCKSIMULATION_H
 
 #include <vector>
 #include "lizard_paper_rock_scissors_spock.h"
 
-struct Simulation
+struct LizardPaperRockScissorsSpockSimulation
 {
-  using CellType = LizardPaperRockScissorsSpock;
-
   enum class Initialization
   {
     random,
     vertical_bands
   };
 
-  Simulation(
+  using CellType = LizardPaperRockScissorsSpock;
+  using Init = Initialization;
+
+  LizardPaperRockScissorsSpockSimulation(
     const int width,
     const int height,
     const Initialization initialization
@@ -33,4 +34,4 @@ struct Simulation
   Initialization m_initialization;
 };
 
-#endif // SIMULATION_H
+#endif // LIZARDPAPERROCKSCISSORSSPOCKSIMULATION_H

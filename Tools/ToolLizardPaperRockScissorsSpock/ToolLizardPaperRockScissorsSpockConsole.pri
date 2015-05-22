@@ -3,11 +3,11 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Tools/ToolLizardPaperRockScissorsSpock/lizardpaperrockscissorsspockmenudialog.cpp \
-    ../../Tools/ToolLizardPaperRockScissorsSpock/simulation.cpp
+    ../../Tools/ToolLizardPaperRockScissorsSpock/lizardpaperrockscissorsspocksimulation.cpp
 
 HEADERS += \
     ../../Tools/ToolLizardPaperRockScissorsSpock/lizardpaperrockscissorsspockmenudialog.h \
-    ../../Tools/ToolLizardPaperRockScissorsSpock/simulation.h
+    ../../Tools/ToolLizardPaperRockScissorsSpock/lizardpaperrockscissorsspocksimulation.h
 
 RESOURCES += \
     ../../Tools/ToolLizardPaperRockScissorsSpock/ToolLizardPaperRockScissorsSpock.qrc

@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "simulation.h"
+#include "lizardpaperrockscissorsspocksimulation.h"
 #include "qtlizardpaperrockscissorsspockwidget.h"
 
 #include "ui_qtlizardpaperrockscissorsspockmaindialog.h"
@@ -16,7 +16,7 @@ QtLizardPaperRockScissorsSpockMainDialog::QtLizardPaperRockScissorsSpockMainDial
       600,
       400,
       //LizardPaperRockScissorsSpockSimulation::Initialization::random,
-      Simulation::Initialization::random,
+      LizardPaperRockScissorsSpockSimulation::Initialization::random,
       this
     )
   }
@@ -43,7 +43,7 @@ QtLizardPaperRockScissorsSpockMainDialog::~QtLizardPaperRockScissorsSpockMainDia
 
 void QtLizardPaperRockScissorsSpockMainDialog::OnAnyChange()
 {
-  using Init = Simulation::Initialization;
+  using Init = LizardPaperRockScissorsSpockSimulation::Initialization;
   const std::string text{
    ui->box_initialization_type->currentText().toStdString()};
   Init init = Init::random;

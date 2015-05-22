@@ -1,4 +1,3 @@
-#include "qtwidget.h"
 #include <QApplication>
 #include "lizard_paper_rock_scissors_spock.h"
 #include "qtlizardpaperrockscissorsspockmenudialog.h"
