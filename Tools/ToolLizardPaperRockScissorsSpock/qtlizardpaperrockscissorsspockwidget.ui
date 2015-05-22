@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtWidget</class>
- <widget class="QWidget" name="QtWidget">
+ <class>QtLizardPaperRockScissorsSpockWidget</class>
+ <widget class="QWidget" name="QtLizardPaperRockScissorsSpockWidget">
   <property name="geometry">
    <rect>
     <x>0</x>

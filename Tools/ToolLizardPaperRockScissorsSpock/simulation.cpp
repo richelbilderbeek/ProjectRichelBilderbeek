@@ -6,13 +6,18 @@
 #include <cstdlib>
 
 
-Simulation::Simulation(const int width, const int height)
+Simulation::Simulation(
+  const int width,
+  const int height,
+  const Initialization initialization
+)
   : m_grid{
       std::vector<std::vector<CellType>>(
         height,
         std::vector<CellType>(width,CellType::paper)
       )
-    }
+    },
+    m_initialization{initialization}
 {
   for (int y=0; y!=height; ++y)
   {
@@ -35,10 +40,10 @@ Simulation::Simulation(const int width, const int height)
       {
         switch ((y / (height / 15)) % 5)
         {
-          case 0: celltype = CellType::paper; break;
-          case 1: celltype = CellType::lizard; break;
-          case 2: celltype = CellType::scissors; break;
-          case 3: celltype = CellType::rock; break;
+          case 0: celltype = CellType::scissors; break;
+          case 1: celltype = CellType::paper; break;
+          case 2: celltype = CellType::rock; break;
+          case 3: celltype = CellType::lizard; break;
           case 4: celltype = CellType::spock; break;
         }
       }

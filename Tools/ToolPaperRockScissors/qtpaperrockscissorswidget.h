@@ -17,14 +17,23 @@ class QtPaperRockScissorsWidget : public QWidget
   Q_OBJECT
 
 public:
+  using Init = PaperRockScissorsSimulation::Initialization;
+
   explicit QtPaperRockScissorsWidget(
     const int width = 600,
     const int height = 400,
+    const Init initialization = Init::random,
     QWidget *parent = 0
   );
   QtPaperRockScissorsWidget(const QtPaperRockScissorsWidget&) = delete;
   QtPaperRockScissorsWidget& operator=(const QtPaperRockScissorsWidget&) = delete;
   ~QtPaperRockScissorsWidget();
+
+  void SetAll(
+    const int width,
+    const int height,
+    const Init initialization
+  );
 
 protected:
   void paintEvent(QPaintEvent *);

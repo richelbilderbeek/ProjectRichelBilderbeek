@@ -1,23 +1,23 @@
-#include "qtpaperrockscissorswidget.h"
+#include "qtlizardpaperrockscissorsspockwidget.h"
 
 #include <QImage>
 #include <QPainter>
 #include <QPixmap>
 #include <QTimer>
 
-#include "paperrockscissorssimulation.h"
-#include "ui_qtpaperrockscissorswidget.h"
+#include "simulation.h"
+#include "ui_qtlizardpaperrockscissorsspockwidget.h"
 
-QtPaperRockScissorsWidget::QtPaperRockScissorsWidget(
+QtLizardPaperRockScissorsSpockWidget::QtLizardPaperRockScissorsSpockWidget(
   const int width,
   const int height,
-  const Init initialization,
+  const Simulation::Initialization initialization,
   QWidget *parent
 )
   : QWidget(parent),
-    ui(new Ui::QtPaperRockScissorsWidget),
-    m_pixmap(width,height),
-    m_simulation(width,height,initialization)
+    ui(new Ui::QtLizardPaperRockScissorsSpockWidget),
+    m_pixmap{QPixmap(width,height)},
+    m_simulation{Simulation(width,height,initialization)}
 {
   ui->setupUi(this);
   OnTimer();
@@ -30,14 +30,14 @@ QtPaperRockScissorsWidget::QtPaperRockScissorsWidget(
   }
 }
 
-QtPaperRockScissorsWidget::~QtPaperRockScissorsWidget()
+QtLizardPaperRockScissorsSpockWidget::~QtLizardPaperRockScissorsSpockWidget()
 {
   delete ui;
 }
 
-void QtPaperRockScissorsWidget::OnTimer()
+void QtLizardPaperRockScissorsSpockWidget::OnTimer()
 {
-  using CellType = PaperRockScissors;
+  using CellType = LizardPaperRockScissorsSpock;
 
   m_simulation.Next();
 
@@ -51,15 +51,14 @@ void QtPaperRockScissorsWidget::OnTimer()
     {
       const auto celltype = grid[y][x];
       auto color = qRgb(0,0,0);
-      const int brightness{196};
+      const int high{196};
       switch (celltype)
       {
-        case CellType::paper: color = qRgb(0,0,brightness); break;
-        //case CellType::paper: color = qRgb(255,255,255); break;
-        case CellType::rock: color = qRgb(brightness,0,0); break;
-        //case CellType::rock: color = qRgb(0,0,0); break;
-        case CellType::scissors: color = qRgb(0,brightness,0); break;
-        //case CellType::scissors: color = qRgb(128,128,128); break;
+        case CellType::lizard: color = qRgb(0,high,0); break;
+        case CellType::paper: color = qRgb(high,high,0); break;
+        case CellType::rock: color = qRgb(high,0,0); break;
+        case CellType::scissors: color = qRgb(high,0,high); break;
+        case CellType::spock: color = qRgb(0,0,high); break;
       }
       image.setPixel(x,y,color);
     }
@@ -68,7 +67,7 @@ void QtPaperRockScissorsWidget::OnTimer()
   update();
 }
 
-void QtPaperRockScissorsWidget::paintEvent(QPaintEvent *)
+void QtLizardPaperRockScissorsSpockWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   painter.drawPixmap(
@@ -77,14 +76,14 @@ void QtPaperRockScissorsWidget::paintEvent(QPaintEvent *)
   );
 }
 
-void QtPaperRockScissorsWidget::SetAll(
+void QtLizardPaperRockScissorsSpockWidget::SetAll(
   const int width,
   const int height,
   const Init initialization
 )
 {
   m_pixmap = QPixmap(width,height);
-  m_simulation = PaperRockScissorsSimulation(
+  m_simulation = Simulation(
     width,
     height,
     initialization

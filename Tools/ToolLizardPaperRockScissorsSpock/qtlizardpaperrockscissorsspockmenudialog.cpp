@@ -7,7 +7,8 @@
 
 #include "qtaboutdialog.h"
 #include "lizardpaperrockscissorsspockmenudialog.h"
-#include "qtwidget.h"
+#include "qtlizardpaperrockscissorsspockmaindialog.h"
+#include "qtlizardpaperrockscissorsspockwidget.h"
 #include "trace.h"
 #include "testtimer.h"
 #include "ui_qtlizardpaperrockscissorsspockmenudialog.h"
@@ -33,6 +34,9 @@ void ribi::QtLizardPaperRockScissorsSpockMenuDialog::keyPressEvent(QKeyEvent * e
 
 void ribi::QtLizardPaperRockScissorsSpockMenuDialog::on_button_start_clicked()
 {
+  QtLizardPaperRockScissorsSpockMainDialog d;
+  ShowChild(&d);
+  /*
   QtWidget * const w{new QtWidget};
   QtHideAndShowDialog d(this);
   d.setWindowTitle("LizardPaperRockScissorsSpock");
@@ -47,6 +51,7 @@ void ribi::QtLizardPaperRockScissorsSpockMenuDialog::on_button_start_clicked()
     d.move( screen.center() - d.rect().center() );
   }
   ShowChild(&d);
+  */
 }
 
 void ribi::QtLizardPaperRockScissorsSpockMenuDialog::on_button_about_clicked()
@@ -75,7 +80,7 @@ void ribi::QtLizardPaperRockScissorsSpockMenuDialog::Test() noexcept
     is_tested = true;
   }
   {
-    QtWidget();
+    QtLizardPaperRockScissorsSpockWidget();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtLizardPaperRockScissorsSpockMenuDialog();

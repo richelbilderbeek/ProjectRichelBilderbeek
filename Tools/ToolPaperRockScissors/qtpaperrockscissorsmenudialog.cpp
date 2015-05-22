@@ -8,6 +8,8 @@
 #include "qtaboutdialog.h"
 #include "paperrockscissorsmenudialog.h"
 #include "qtpaperrockscissorswidget.h"
+#include "qtpaperrockscissorsmaindialog.h"
+
 #include "trace.h"
 #include "testtimer.h"
 #include "ui_qtpaperrockscissorsmenudialog.h"
@@ -33,8 +35,11 @@ void ribi::QtPaperRockScissorsMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtPaperRockScissorsMenuDialog::on_button_start_clicked()
 {
+  QtPaperRockScissorsMainDialog d;
+  ShowChild(&d);
+  /*
   QtPaperRockScissorsWidget * const w{new QtPaperRockScissorsWidget};
-  QtHideAndShowDialog d(this);
+  QtPaperRockScissorsDialog d(this);
   d.setWindowTitle("PaperRockScissors");
   QGridLayout * const my_layout{new QGridLayout};
   assert(!d.layout());
@@ -47,6 +52,7 @@ void ribi::QtPaperRockScissorsMenuDialog::on_button_start_clicked()
     d.move( screen.center() - d.rect().center() );
   }
   ShowChild(&d);
+  */
 }
 
 void ribi::QtPaperRockScissorsMenuDialog::on_button_about_clicked()

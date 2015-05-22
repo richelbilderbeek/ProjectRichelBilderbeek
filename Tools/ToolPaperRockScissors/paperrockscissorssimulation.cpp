@@ -6,40 +6,20 @@
 #include <cstdlib>
 
 
-PaperRockScissorsSimulation::PaperRockScissorsSimulation(const int width, const int height)
+PaperRockScissorsSimulation::PaperRockScissorsSimulation(
+  const int width,
+  const int height,
+  const Initialization initialization
+)
   : m_grid{
       std::vector<std::vector<CellType>>(
         height,
         std::vector<CellType>(width,CellType::paper)
       )
-    }
+    },
+  m_initialization{initialization}
 {
-  for (int y=0; y!=height; ++y)
-  {
-    for (int x=0; x!=width; ++x)
-    {
-      CellType& celltype = m_grid[y][x];
-      const bool do_initialize_randomly{false};
-      if (do_initialize_randomly)
-      {
-        switch (std::rand() % 3)
-        {
-          case 0: celltype = CellType::paper; break;
-          case 1: celltype = CellType::rock; break;
-          case 2: celltype = CellType::scissors; break;
-        }
-      }
-      else
-      {
-        switch ((y / (height / 15)) % 3)
-        {
-          case 0: celltype = CellType::paper; break;
-          case 1: celltype = CellType::rock; break;
-          case 2: celltype = CellType::scissors; break;
-        }
-      }
-    }
-  }
+  SetInitialization(m_initialization);
 }
 
 void PaperRockScissorsSimulation::Next()
@@ -66,4 +46,43 @@ void PaperRockScissorsSimulation::Next()
     }
   }
   std::swap(m_grid,next);
+}
+
+void PaperRockScissorsSimulation::SetInitialization(const Initialization initialization) noexcept
+{
+  m_initialization = initialization;
+
+  //Initialize the grid
+  const int height{static_cast<int>(m_grid.size())};
+  assert(!m_grid.empty());
+  const int width{static_cast<int>(m_grid[0].size())};
+  for (int y=0; y!=height; ++y)
+  {
+    for (int x=0; x!=width; ++x)
+    {
+      CellType& celltype = m_grid[y][x];
+      switch(m_initialization)
+      {
+        case Initialization::random:
+          switch (std::rand() % 3)
+          {
+            case 0: celltype = CellType::paper; break;
+            case 1: celltype = CellType::rock; break;
+            case 2: celltype = CellType::scissors; break;
+          }
+          break;
+        case Initialization::vertical_bands:
+          {
+            switch ((y / (height / 15)) % 3)
+            {
+              case 0: celltype = CellType::paper; break;
+              case 1: celltype = CellType::rock; break;
+              case 2: celltype = CellType::scissors; break;
+            }
+          }
+        break;
+      }
+    }
+  }
+
 }
