@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
+    <width>944</width>
     <height>388</height>
    </rect>
   </property>
@@ -129,7 +129,10 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
     </widget>
    </item>
    <item>
-    <widget class="QwtPlot" name="plot_sulfide_concentration" native="true"/>
+    <widget class="QwtPlot" name="plot_popsizes" native="true"/>
+   </item>
+   <item>
+    <widget class="QwtPlot" name="plot_traits" native="true"/>
    </item>
    <item>
     <widget class="QWidget" name="widget_grid" native="true">

@@ -3,6 +3,15 @@
 #include <cassert>
 #include <iostream>
 
+#include <qwt_plot_zoomer.h>
+#include <qwt_plot_grid.h>
+#include <qwt_plot.h>
+#include <qwt_plot_curve.h>
+
+#if QWT_VERSION >= 0x060100 || !WIN32
+#include <qwt_point_data.h>
+#endif
+
 #include "qtpaperrockscissorswidget.h"
 #include "ui_qtpaperrockscissorswithtraitmaindialog.h"
 
@@ -17,7 +26,10 @@ QtPaperRockScissorsMainDialog::QtPaperRockScissorsMainDialog(QWidget *parent) :
       42,
       this
     )
-  }
+  },
+  m_curve_popsizes(new QwtPlotCurve),
+  m_curve_traits(new QwtPlotCurve)
+
 {
   ui->setupUi(this);
 
@@ -27,6 +39,20 @@ QtPaperRockScissorsMainDialog::QtPaperRockScissorsMainDialog(QWidget *parent) :
     my_layout->addWidget(m_widget);
 
   }
+
+  ui->plot_popsizes->setTitle("Population sizes in time");
+  ui->plot_traits->setTitle("Traits in time");
+
+  ui->plot_popsizes->setCanvasBackground(QColor(255,255,255));
+  m_curve_popsizes->attach(ui->plot_popsizes);
+  m_curve_popsizes->setStyle(QwtPlotCurve::Lines);
+  m_curve_popsizes->setPen(QPen(QColor(0,0,0)));
+
+  ui->plot_traits->setCanvasBackground(QColor(255,255,255));
+  m_curve_traits->attach(ui->plot_traits);
+  m_curve_traits->setStyle(QwtPlotCurve::Lines);
+  m_curve_traits->setPen(QPen(QColor(0,0,0)));
+
   QObject::connect(ui->box_height,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_width,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initialization_type,SIGNAL(currentIndexChanged(int)),this,SLOT(OnAnyChange()));

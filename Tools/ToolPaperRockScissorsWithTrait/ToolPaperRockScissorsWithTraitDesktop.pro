@@ -1,4 +1,4 @@
-include(../../DesktopApplication.pri)
+include(../../DesktopApplicationNoWeffcpp.pri) #Qwt does not work with -Weffc++
 include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)

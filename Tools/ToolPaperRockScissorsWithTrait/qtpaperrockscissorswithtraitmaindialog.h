@@ -4,6 +4,7 @@
 #include "qthideandshowdialog.h"
 
 struct QtPaperRockScissorsWidget;
+struct QwtPlotCurve;
 
 namespace Ui { class QtPaperRockScissorsMainDialog; }
 
@@ -23,6 +24,10 @@ private slots:
 private:
   Ui::QtPaperRockScissorsMainDialog *ui;
   QtPaperRockScissorsWidget * const m_widget;
+
+  QwtPlotCurve * const m_curve_popsizes;
+  QwtPlotCurve * const m_curve_traits;
+
 };
 
 #endif // QTPAPERROCKSCISSORSMAINDIALOG_H
