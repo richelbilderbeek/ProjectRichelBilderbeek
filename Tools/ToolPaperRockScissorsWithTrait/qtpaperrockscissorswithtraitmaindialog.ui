@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtPaperRockScissorsMainDialog</class>
- <widget class="QDialog" name="QtPaperRockScissorsMainDialog">
+ <class>QtPaperRockScissorsWithTraitMainDialog</class>
+ <widget class="QDialog" name="QtPaperRockScissorsWithTraitMainDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -138,7 +138,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
     <widget class="QWidget" name="widget_grid" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
+       <horstretch>5</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>

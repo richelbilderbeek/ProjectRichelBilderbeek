@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtPaperRockScissorsMenuDialog</class>
- <widget class="QDialog" name="QtPaperRockScissorsMenuDialog">
+ <class>QtPaperRockScissorsWithTraitMenuDialog</class>
+ <widget class="QDialog" name="QtPaperRockScissorsWithTraitMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>361</width>
+    <width>433</width>
     <height>569</height>
    </rect>
   </property>
@@ -26,8 +26,8 @@ QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
 QPushButton { font: 48px, &quot;monospace&quot; }</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <widget class="QLabel" name="image_welcome">
      <property name="text">
       <string/>
@@ -40,7 +40,14 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>With trait</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <widget class="QPushButton" name="button_start">
      <property name="text">
       <string>Start</string>
@@ -50,7 +57,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="2" column="0">
     <widget class="QPushButton" name="button_about">
      <property name="text">
       <string>About</string>
@@ -60,7 +67,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="3" column="0">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>

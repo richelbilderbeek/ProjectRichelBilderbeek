@@ -7,7 +7,7 @@
 
 #include "qtaboutdialog.h"
 #include "paperrockscissorswithtraitmenudialog.h"
-#include "qtpaperrockscissorswidget.h"
+#include "qtpaperrockscissorswithtraitwidget.h"
 #include "qtpaperrockscissorswithtraitmaindialog.h"
 
 #include "trace.h"
@@ -16,26 +16,26 @@
 #pragma GCC diagnostic pop
 
 
-ribi::QtPaperRockScissorsMenuDialog::QtPaperRockScissorsMenuDialog(QWidget *parent) :
+ribi::QtPaperRockScissorsWithTraitMenuDialog::QtPaperRockScissorsWithTraitMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtPaperRockScissorsMenuDialog)
+    ui(new Ui::QtPaperRockScissorsWithTraitMenuDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtPaperRockScissorsMenuDialog::~QtPaperRockScissorsMenuDialog() noexcept
+ribi::QtPaperRockScissorsWithTraitMenuDialog::~QtPaperRockScissorsWithTraitMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtPaperRockScissorsMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtPaperRockScissorsWithTraitMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) close();
 }
 
-void ribi::QtPaperRockScissorsMenuDialog::on_button_start_clicked()
+void ribi::QtPaperRockScissorsWithTraitMenuDialog::on_button_start_clicked()
 {
-  QtPaperRockScissorsMainDialog d;
+  QtPaperRockScissorsWithTraitMainDialog d;
   ShowChild(&d);
   /*
   QtPaperRockScissorsWidget * const w{new QtPaperRockScissorsWidget};
@@ -55,7 +55,7 @@ void ribi::QtPaperRockScissorsMenuDialog::on_button_start_clicked()
   */
 }
 
-void ribi::QtPaperRockScissorsMenuDialog::on_button_about_clicked()
+void ribi::QtPaperRockScissorsWithTraitMenuDialog::on_button_about_clicked()
 {
   About a = PaperRockScissorsMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -67,13 +67,13 @@ void ribi::QtPaperRockScissorsMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtPaperRockScissorsMenuDialog::on_button_quit_clicked()
+void ribi::QtPaperRockScissorsWithTraitMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
 
 #ifndef NDEBUG
-void ribi::QtPaperRockScissorsMenuDialog::Test() noexcept
+void ribi::QtPaperRockScissorsWithTraitMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
@@ -81,9 +81,9 @@ void ribi::QtPaperRockScissorsMenuDialog::Test() noexcept
     is_tested = true;
   }
   {
-    QtPaperRockScissorsWidget();
+    QtPaperRockScissorsWithTraitWidget();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  QtPaperRockScissorsMenuDialog();
+  QtPaperRockScissorsWithTraitMenuDialog();
 }
 #endif

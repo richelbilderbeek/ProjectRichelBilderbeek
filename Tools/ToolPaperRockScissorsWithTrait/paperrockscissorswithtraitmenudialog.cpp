@@ -12,7 +12,7 @@
 
 #include <QFile>
 
-#include "paperrockscissorssimulation.h"
+#include "paperrockscissorswithtraitsimulation.h"
 #include "fileio.h"
 #include "richelbilderbeekprogram.h"
 #include "testtimer.h"
@@ -100,6 +100,13 @@ void ribi::PaperRockScissorsMenuDialog::Test() noexcept
   {
     fileio::FileIo();
     TestPaperRockScissors();
+    PaperRockScissorsSimulation(
+      1, //const int width,
+      1, //const int height,
+      PaperRockScissorsSimulation::Initialization::random,
+      42 //const int rng_seed
+    );
+
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

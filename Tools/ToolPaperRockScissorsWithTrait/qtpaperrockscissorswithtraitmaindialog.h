@@ -3,31 +3,45 @@
 
 #include "qthideandshowdialog.h"
 
-struct QtPaperRockScissorsWidget;
+struct QtPaperRockScissorsWithTraitWidget;
 struct QwtPlotCurve;
 
-namespace Ui { class QtPaperRockScissorsMainDialog; }
+namespace Ui { class QtPaperRockScissorsWithTraitMainDialog; }
 
-class QtPaperRockScissorsMainDialog : public ribi::QtHideAndShowDialog
+class QtPaperRockScissorsWithTraitMainDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtPaperRockScissorsMainDialog(QWidget *parent = 0);
-  QtPaperRockScissorsMainDialog(const QtPaperRockScissorsMainDialog&) = delete;
-  QtPaperRockScissorsMainDialog& operator=(const QtPaperRockScissorsMainDialog&) = delete;
-  ~QtPaperRockScissorsMainDialog();
+  explicit QtPaperRockScissorsWithTraitMainDialog(QWidget *parent = 0);
+  QtPaperRockScissorsWithTraitMainDialog(const QtPaperRockScissorsWithTraitMainDialog&) = delete;
+  QtPaperRockScissorsWithTraitMainDialog& operator=(const QtPaperRockScissorsWithTraitMainDialog&) = delete;
+  ~QtPaperRockScissorsWithTraitMainDialog();
 
 private slots:
+  ///When any parameter has changed
   void OnAnyChange();
+  ///When the simulation has finished a timestep
+  void OnNext();
 
 private:
-  Ui::QtPaperRockScissorsMainDialog *ui;
-  QtPaperRockScissorsWidget * const m_widget;
+  Ui::QtPaperRockScissorsWithTraitMainDialog *ui;
+  QtPaperRockScissorsWithTraitWidget * const m_widget;
 
-  QwtPlotCurve * const m_curve_popsizes;
-  QwtPlotCurve * const m_curve_traits;
+  QwtPlotCurve * const m_curve_popsizes_paper;
+  QwtPlotCurve * const m_curve_popsizes_rock;
+  QwtPlotCurve * const m_curve_popsizes_scissors;
+  QwtPlotCurve * const m_curve_traits_paper;
+  QwtPlotCurve * const m_curve_traits_rock;
+  QwtPlotCurve * const m_curve_traits_scissors;
 
+  std::vector<double> m_timeseries;
+  std::vector<double> m_popsizes_paper;
+  std::vector<double> m_popsizes_rock;
+  std::vector<double> m_popsizes_scissors;
+  std::vector<double> m_traits_paper;
+  std::vector<double> m_traits_rock;
+  std::vector<double> m_traits_scissors;
 };
 
 #endif // QTPAPERROCKSCISSORSMAINDIALOG_H

@@ -1,5 +1,5 @@
-#ifndef QTPAPERROCKSCISSORSMENUDIALOG_H
-#define QTPAPERROCKSCISSORSMENUDIALOG_H
+#ifndef QTPAPERROCKSCISSORSWITHTRAITMENUDIALOG_H
+#define QTPAPERROCKSCISSORSWITHTRAITMENUDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -7,20 +7,20 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-class QtPaperRockScissorsMenuDialog;
+class QtPaperRockScissorsWithTraitMenuDialog;
 }
 
 namespace ribi {
 
-class QtPaperRockScissorsMenuDialog : public QtHideAndShowDialog
+class QtPaperRockScissorsWithTraitMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtPaperRockScissorsMenuDialog(QWidget *parent = 0);
-  QtPaperRockScissorsMenuDialog(const QtPaperRockScissorsMenuDialog&) = delete;
-  QtPaperRockScissorsMenuDialog& operator=(const QtPaperRockScissorsMenuDialog&) = delete;
-  ~QtPaperRockScissorsMenuDialog() noexcept;
+  explicit QtPaperRockScissorsWithTraitMenuDialog(QWidget *parent = 0);
+  QtPaperRockScissorsWithTraitMenuDialog(const QtPaperRockScissorsWithTraitMenuDialog&) = delete;
+  QtPaperRockScissorsWithTraitMenuDialog& operator=(const QtPaperRockScissorsWithTraitMenuDialog&) = delete;
+  ~QtPaperRockScissorsWithTraitMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);
@@ -31,7 +31,7 @@ private slots:
   void on_button_quit_clicked();
 
 private:
-  Ui::QtPaperRockScissorsMenuDialog *ui;
+  Ui::QtPaperRockScissorsWithTraitMenuDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -40,4 +40,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTPAPERROCKSCISSORSMENUDIALOG_H
+#endif // QTPAPERROCKSCISSORSWITHTRAITMENUDIALOG_H
