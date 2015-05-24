@@ -1,6 +1,8 @@
 #ifndef LIZARD_PAPER_ROCK_SCISSORS_SPOCK_H
 #define LIZARD_PAPER_ROCK_SCISSORS_SPOCK_H
 
+namespace ribi {
+
 enum class LizardPaperRockScissorsSpock
 {
   paper = 0,
@@ -15,5 +17,7 @@ bool DoesBeat(
   const LizardPaperRockScissorsSpock rhs
 );
 void TestLizardPaperRockScissorsSpock() noexcept;
+
+} //~namespace ribi
 
 #endif // LIZARD_PAPER_ROCK_SCISSORS_SPOCK_H

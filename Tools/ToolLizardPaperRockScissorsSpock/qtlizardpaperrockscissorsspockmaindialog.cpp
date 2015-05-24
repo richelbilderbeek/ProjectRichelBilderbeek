@@ -16,7 +16,7 @@ QtLizardPaperRockScissorsSpockMainDialog::QtLizardPaperRockScissorsSpockMainDial
       600,
       400,
       //LizardPaperRockScissorsSpockSimulation::Initialization::random,
-      LizardPaperRockScissorsSpockSimulation::Initialization::random,
+      ribi::lprss::Simulation::Initialization::random,
       this
     )
   }
@@ -43,7 +43,7 @@ QtLizardPaperRockScissorsSpockMainDialog::~QtLizardPaperRockScissorsSpockMainDia
 
 void QtLizardPaperRockScissorsSpockMainDialog::OnAnyChange()
 {
-  using Init = LizardPaperRockScissorsSpockSimulation::Initialization;
+  using Init = ribi::lprss::Simulation::Initialization;
   const std::string text{
    ui->box_initialization_type->currentText().toStdString()};
   Init init = Init::random;

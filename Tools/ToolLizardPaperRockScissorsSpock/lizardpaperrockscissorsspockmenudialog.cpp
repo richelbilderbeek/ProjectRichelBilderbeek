@@ -19,14 +19,14 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::LizardPaperRockScissorsSpockMenuDialog::LizardPaperRockScissorsSpockMenuDialog()
+ribi::lprss::MenuDialog::MenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-int ribi::LizardPaperRockScissorsSpockMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::lprss::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
   if (argc > 0) //Always
@@ -37,7 +37,7 @@ int ribi::LizardPaperRockScissorsSpockMenuDialog::ExecuteSpecific(const std::vec
   return 0;
 }
 
-ribi::About ribi::LizardPaperRockScissorsSpockMenuDialog::GetAbout() const noexcept
+ribi::About ribi::lprss::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -54,31 +54,32 @@ ribi::About ribi::LizardPaperRockScissorsSpockMenuDialog::GetAbout() const noexc
   return a;
 }
 
-boost::shared_ptr<const ribi::Program> ribi::LizardPaperRockScissorsSpockMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::lprss::MenuDialog::GetProgram() const noexcept
 {
-  const boost::shared_ptr<const ribi::Program> p; //(new ProgramPaperRockScissors);
+  const boost::shared_ptr<const ribi::Program> p(new ProgramLizardPaperRockScissorsSpock);
   assert(p);
   return p;
 }
 
-std::string ribi::LizardPaperRockScissorsSpockMenuDialog::GetVersion() const noexcept
+std::string ribi::lprss::MenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
-std::vector<std::string> ribi::LizardPaperRockScissorsSpockMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::lprss::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2015-05-10: Version 0.1: initial standalone version",
-    "2015-05-11: Version 1.0: conformized version"
+    "2015-05-11: Version 1.0: conformized version",
+    "2015-05-24: Version 1.1: added to ProjectRichelBilderbeek, moved to namespace ribi::lprss"
   };
 }
 
-ribi::Help ribi::LizardPaperRockScissorsSpockMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::lprss::MenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
-    "PaperRockScissors",
-    "paper-rock-scissors simulation",
+    "PaperRockScissorsLizardSpock",
+    "lizard-paper-rock-scissors-spock simulation",
     {
       //No additional options
     },
@@ -88,7 +89,7 @@ ribi::Help ribi::LizardPaperRockScissorsSpockMenuDialog::GetHelp() const noexcep
 }
 
 #ifndef NDEBUG
-void ribi::LizardPaperRockScissorsSpockMenuDialog::Test() noexcept
+void ribi::lprss::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

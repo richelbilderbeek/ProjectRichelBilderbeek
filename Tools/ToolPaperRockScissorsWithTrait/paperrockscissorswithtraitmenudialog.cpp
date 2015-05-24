@@ -272,7 +272,7 @@ ribi::About ribi::prswt::MenuDialog::GetAbout() const noexcept
 boost::shared_ptr<const ribi::Program> ribi::prswt::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(
-    new ProgramPaperRockScissors
+    new ProgramPaperRockScissorsWithTrait
   );
   assert(p);
   return p;

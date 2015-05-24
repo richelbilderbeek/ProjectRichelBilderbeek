@@ -94,6 +94,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::kTouchLectureCreator,"kTouchLectureCreator"));
   m.insert(Pair(ProgramType::lambdaBot,"lambdaBot"));
   m.insert(Pair(ProgramType::learyCircumplex,"learyCircumplex"));
+  m.insert(Pair(ProgramType::lizardPaperRockScissorsSpock,"lizardPaperRockScissorsSpock"));
   m.insert(Pair(ProgramType::logisticGrowthSimulator,"logisticGrowthSimulator"));
   m.insert(Pair(ProgramType::loose,"loose"));
   m.insert(Pair(ProgramType::martianCafeTuinemaTycoon,"martianCafeTuinemaTycoon"));
@@ -112,6 +113,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::mutualismBreakdowner,"mutualismBreakdowner"));
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
   m.insert(Pair(ProgramType::paperRockScissors,"paperRockScissors"));
+  m.insert(Pair(ProgramType::paperRockScissorsWithTrait,"paperRockScissorsWithTrait"));
   m.insert(Pair(ProgramType::paperRockScissorsVcl,"paperRockScissorsVcl"));
   m.insert(Pair(ProgramType::pause,"pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"perfectElasticCollision"));
@@ -307,6 +309,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::kTouchLectureCreator,"KTouch Lecture Creator"));
   m.insert(Pair(ProgramType::lambdaBot,"LambdaBot"));
   m.insert(Pair(ProgramType::learyCircumplex,"LearyCircumplex"));
+  m.insert(Pair(ProgramType::lizardPaperRockScissorsSpock,"LizardPaperRockScissorsSpock"));
   m.insert(Pair(ProgramType::logisticGrowthSimulator,"LogisticGrowthSimulator"));
   m.insert(Pair(ProgramType::loose,"Loose"));
   m.insert(Pair(ProgramType::martianCafeTuinemaTycoon,"MartianCafeTuinemaTycoon"));
@@ -325,6 +328,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
   m.insert(Pair(ProgramType::paperRockScissors,"PaperRockScissors"));
   m.insert(Pair(ProgramType::paperRockScissorsVcl,"PaperRockScissors (VCL)"));
+  m.insert(Pair(ProgramType::paperRockScissorsWithTrait,"PaperRockScissorsWithTrait"));
   m.insert(Pair(ProgramType::pause,"Pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"PerfectElasticCollision"));
   m.insert(Pair(ProgramType::picToCode,"PicToCode"));

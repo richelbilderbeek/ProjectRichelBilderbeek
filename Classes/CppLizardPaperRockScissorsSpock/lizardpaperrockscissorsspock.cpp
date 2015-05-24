@@ -1,8 +1,8 @@
-#include "lizard_paper_rock_scissors_spock.h"
+#include "lizardpaperrockscissorsspock.h"
 
 #include <cassert>
 
-bool DoesBeat(
+bool ribi::DoesBeat(
   const LizardPaperRockScissorsSpock lhs,
   const LizardPaperRockScissorsSpock rhs
 )

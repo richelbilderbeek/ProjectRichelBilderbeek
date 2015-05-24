@@ -36,27 +36,11 @@ void ribi::QtLizardPaperRockScissorsSpockMenuDialog::on_button_start_clicked()
 {
   QtLizardPaperRockScissorsSpockMainDialog d;
   ShowChild(&d);
-  /*
-  QtWidget * const w{new QtWidget};
-  QtHideAndShowDialog d(this);
-  d.setWindowTitle("LizardPaperRockScissorsSpock");
-  QGridLayout * const my_layout{new QGridLayout};
-  assert(!d.layout());
-  d.setLayout(my_layout);
-  assert(d.layout());
-  my_layout->addWidget(w);
-  {
-    const QRect screen = QApplication::desktop()->screenGeometry();
-    d.setGeometry(0,0,screen.width() * 8 / 10,screen.height() * 8 / 10);
-    d.move( screen.center() - d.rect().center() );
-  }
-  ShowChild(&d);
-  */
 }
 
 void ribi::QtLizardPaperRockScissorsSpockMenuDialog::on_button_about_clicked()
 {
-  About a = LizardPaperRockScissorsSpockMenuDialog().GetAbout();
+  About a = ribi::lprss::MenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());

@@ -11,13 +11,13 @@
 QtLizardPaperRockScissorsSpockWidget::QtLizardPaperRockScissorsSpockWidget(
   const int width,
   const int height,
-  const LizardPaperRockScissorsSpockSimulation::Initialization initialization,
+  const ribi::lprss::Simulation::Initialization initialization,
   QWidget *parent
 )
   : QWidget(parent),
     ui(new Ui::QtLizardPaperRockScissorsSpockWidget),
     m_pixmap{QPixmap(width,height)},
-    m_simulation{LizardPaperRockScissorsSpockSimulation(width,height,initialization)}
+    m_simulation{ribi::lprss::Simulation(width,height,initialization)}
 {
   ui->setupUi(this);
   OnTimer();
@@ -37,7 +37,7 @@ QtLizardPaperRockScissorsSpockWidget::~QtLizardPaperRockScissorsSpockWidget()
 
 void QtLizardPaperRockScissorsSpockWidget::OnTimer()
 {
-  using CellType = LizardPaperRockScissorsSpock;
+  using CellType = ribi::LizardPaperRockScissorsSpock;
 
   m_simulation.Next();
 
@@ -83,7 +83,7 @@ void QtLizardPaperRockScissorsSpockWidget::SetAll(
 )
 {
   m_pixmap = QPixmap(width,height);
-  m_simulation = LizardPaperRockScissorsSpockSimulation(
+  m_simulation = ribi::lprss::Simulation(
     width,
     height,
     initialization

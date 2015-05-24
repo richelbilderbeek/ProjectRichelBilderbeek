@@ -1,9 +1,9 @@
 #ifndef NDEBUG
-#include "lizard_paper_rock_scissors_spock.h"
+#include "lizardpaperrockscissorsspock.h"
 
 #include <cassert>
 
-void TestLizardPaperRockScissorsSpock() noexcept
+void ribi::TestLizardPaperRockScissorsSpock() noexcept
 {
   {
     static bool is_tested{false};

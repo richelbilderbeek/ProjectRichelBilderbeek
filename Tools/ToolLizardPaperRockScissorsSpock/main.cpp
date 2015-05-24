@@ -5,5 +5,5 @@ int main(int argc, char *argv[])
 {
   START_TRACE();
   const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
-  return ribi::LizardPaperRockScissorsSpockMenuDialog().Execute(args);
+  return ribi::lprss::MenuDialog().Execute(args);
 }

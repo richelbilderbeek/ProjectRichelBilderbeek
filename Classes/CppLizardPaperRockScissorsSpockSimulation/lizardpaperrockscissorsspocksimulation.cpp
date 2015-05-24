@@ -6,7 +6,7 @@
 #include <cstdlib>
 
 
-LizardPaperRockScissorsSpockSimulation::LizardPaperRockScissorsSpockSimulation(
+ribi::lprss::Simulation::Simulation(
   const int width,
   const int height,
   const Initialization initialization
@@ -55,7 +55,7 @@ LizardPaperRockScissorsSpockSimulation::LizardPaperRockScissorsSpockSimulation(
   }
 }
 
-void LizardPaperRockScissorsSpockSimulation::Next()
+void ribi::lprss::Simulation::Next()
 {
   std::vector<std::vector<CellType>> next(m_grid);
   const int height{static_cast<int>(m_grid.size())};

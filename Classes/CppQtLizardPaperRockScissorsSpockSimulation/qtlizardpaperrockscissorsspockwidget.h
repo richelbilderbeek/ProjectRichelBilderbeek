@@ -17,7 +17,7 @@ class QtLizardPaperRockScissorsSpockWidget : public QWidget
   Q_OBJECT
 
 public:
-  using Init = LizardPaperRockScissorsSpockSimulation::Initialization;
+  using Init = ribi::lprss::Simulation::Initialization;
 
   explicit QtLizardPaperRockScissorsSpockWidget(
     const int width = 300,
@@ -40,7 +40,7 @@ protected:
 private:
   Ui::QtLizardPaperRockScissorsSpockWidget *ui;
   QPixmap m_pixmap;
-  LizardPaperRockScissorsSpockSimulation m_simulation;
+  ribi::lprss::Simulation m_simulation;
 
 private slots:
   void OnTimer();

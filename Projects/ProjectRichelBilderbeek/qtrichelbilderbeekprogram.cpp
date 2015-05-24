@@ -38,6 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreemenudialog.h"
 #include "qtcreateglossarymenudialog.h"
 #include "qtcreateqtprojectzipfilemenudialog.h"
+#include "qtmutualismbreakdownermenudialog.h"
 #include "qtdaswahreschlagerfestmenudialog.h"
 #include "qtdotmatrixmenudialog.h"
 #include "qtencrangermaindialog.h"
@@ -61,6 +62,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtmultiencrangermenudialog.h"
 #include "qtmusictheorymenudialog.h"
 #include "qtperfectelasticcollisionmenudialog.h"
+#include "qtlizardpaperrockscissorsspockmenudialog.h"
 #include "qttesttrianglemenudialog.h"
 #include "qtpictocodemenudialog.h"
 #include "qtpixelatormenudialog.h"
@@ -87,6 +89,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsimplifynewickmenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
+#include "qtpaperrockscissorswithtraitmenudialog.h"
+#include "qtpaperrockscissorsmenudialog.h"
 #include "qtstateobservermenudialog.h"
 #include "qtstylesheetsettermenudialog.h"
 #include "qtsurfaceplottermenudialog.h"
@@ -210,6 +214,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::kTouchLectureCreator: break;
     case ProgramType::lambdaBot: break;
     case ProgramType::learyCircumplex: break;
+    case ProgramType::lizardPaperRockScissorsSpock: p = new QtLizardPaperRockScissorsSpockMenuDialog; break;
     case ProgramType::logisticGrowthSimulator: break;
     case ProgramType::loose: break;
     case ProgramType::martianCafeTuinemaTycoon: break;
@@ -225,8 +230,11 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::multiEncrangerVcl: break;
     case ProgramType::muscaDomestica: break;
     case ProgramType::musicTheory: p = new QtMusicTheoryMenuDialog; break;
+    case ProgramType::mutualismBreakdowner: p = new QtMutualismBreakdownerMenuDialog; break;
     case ProgramType::ndsmake: break;
+    case ProgramType::paperRockScissors: p = new QtPaperRockScissorsMenuDialog; break;
     case ProgramType::paperRockScissorsVcl: break;
+    case ProgramType::paperRockScissorsWithTrait: p = new QtPaperRockScissorsWithTraitMenuDialog; break;
     case ProgramType::pause: break;
     case ProgramType::perfectElasticCollision: p = new QtPerfectElasticCollisionMenuDialog; break;
     case ProgramType::preDickAdvocaTor: p = new QtPreDickAdvocaTorMenuDialog; break;

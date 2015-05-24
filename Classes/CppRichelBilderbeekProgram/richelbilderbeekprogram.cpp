@@ -86,6 +86,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::kTouchLectureCreator: p.reset(new ProgramKTouchLectureCreator); break;
     case ProgramType::lambdaBot: p.reset(new ProgramLambdaBot); break;
     case ProgramType::learyCircumplex: p.reset(new ProgramLearyCircumplex); break;
+    case ProgramType::lizardPaperRockScissorsSpock: p.reset(new ProgramLizardPaperRockScissorsSpock); break;
     case ProgramType::logisticGrowthSimulator: p.reset(new ProgramLogisticGrowthSimulator); break;
     case ProgramType::loose: p.reset(new ProgramLoose); break;
     case ProgramType::martianCafeTuinemaTycoon: p.reset(new ProgramMartianCafeTuinemaTycoon); break;
@@ -104,6 +105,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::ndsmake: p.reset(new ProgramNdsmake); break;
     case ProgramType::paperRockScissors: p.reset(new ProgramPaperRockScissors); break;
     case ProgramType::paperRockScissorsVcl: p.reset(new ProgramPaperRockScissorsVcl); break;
+    case ProgramType::paperRockScissorsWithTrait: p.reset(new ProgramPaperRockScissorsWithTrait); break;
     case ProgramType::pause: p.reset(new ProgramPause); break;
     case ProgramType::perfectElasticCollision: p.reset(new ProgramPerfectElasticCollision); break;
     case ProgramType::picToCode: p.reset(new ProgramPicToCode); break;

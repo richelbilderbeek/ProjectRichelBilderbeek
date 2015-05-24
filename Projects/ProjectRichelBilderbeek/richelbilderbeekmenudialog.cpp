@@ -89,6 +89,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "lazy_init.h"
 #include "led.h"
 #include "ledwidget.h"
+#include "lizardpaperrockscissorsspockmenudialog.h"
 #include "loopreader.h"
 #include "manydigitnewick.h"
 #include "matrix.h"
@@ -113,6 +114,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "openquestion.h"
 #include "openquestiondialog.h"
 #include "paperrockscissorsmenudialog.h"
+#include "paperrockscissorswithtraitmenudialog.h"
 #include "perfectelasticcollisionmenudialog.h"
 #include "pictocodemenudialog.h"
 #include "pixelatormenudialog.h"
@@ -303,7 +305,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 17th of August 2014",
+    "the 24th of May 2015",
     "2010-2015",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersionStatic(),
@@ -1290,6 +1292,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
+      case ProgramType::lizardPaperRockScissorsSpock: p.reset(new ribi::lprss::MenuDialog); break;
       case ProgramType::logisticGrowthSimulator:
       {
         const std::string version = "x.x";
@@ -1609,6 +1612,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
+      case ProgramType::paperRockScissorsWithTrait: p.reset(new ribi::prswt::MenuDialog); break;
       case ProgramType::pause:
       {
         const std::string version = "x.x";
@@ -3153,7 +3157,7 @@ boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDialog::
 
 std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersionStatic() noexcept
 {
-  return "1.19";
+  return "1.20";
 }
 
 std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistoryStatic() noexcept
@@ -3216,7 +3220,8 @@ std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHist
     "2014-08-14: Version 1.16: increased use of TDD in console version",
     "2014-08-17: Version 1.17: removed code-that-might-once-be-added",
     "2015-01-04: Version 1.18: made placeholder dialogs look nice",
-    "2015-02-22: Version 1.19: after splitting codebase up in multiple GitHubs"
+    "2015-02-22: Version 1.19: after splitting codebase up in multiple GitHubs",
+    "2015-05-24: Version 1.20: added multiple simulations"
   };
 }
 

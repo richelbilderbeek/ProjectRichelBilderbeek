@@ -13,13 +13,12 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace lprss { //Lizard-Paper-Rock-Scissors-Spock
 
-struct LizardPaperRockScissorsSpock;
-
-struct LizardPaperRockScissorsSpockMenuDialog final : public MenuDialog
+struct MenuDialog final : public ::ribi::MenuDialog
 {
-  LizardPaperRockScissorsSpockMenuDialog();
-  ~LizardPaperRockScissorsSpockMenuDialog() noexcept {}
+  MenuDialog();
+  ~MenuDialog() noexcept {}
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   About GetAbout() const noexcept override;
@@ -35,6 +34,7 @@ struct LizardPaperRockScissorsSpockMenuDialog final : public MenuDialog
   #endif
 };
 
+} //~namespace lprss { //Lizard-Paper-Rock-Scissors-Spock
 } //~namespace ribi
 
 #endif // LIZARDPAPERROCKSCISSORSSPOCKMENUDIALOG_H

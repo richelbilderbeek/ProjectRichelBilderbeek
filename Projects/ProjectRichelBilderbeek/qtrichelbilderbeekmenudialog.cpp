@@ -205,11 +205,13 @@ void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
 
   if (!dialog)
   {
+    /*
     if (verbose) { TRACE("Create placeholder"); }
     const boost::shared_ptr<QtHideAndShowDialog> placeholder(
       QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(program_type));
     assert(placeholder);
     this->ShowChild(placeholder.get());
+    */
     return;
   }
   else

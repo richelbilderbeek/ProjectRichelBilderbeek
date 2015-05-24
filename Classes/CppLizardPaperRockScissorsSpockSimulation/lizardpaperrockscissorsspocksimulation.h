@@ -2,9 +2,12 @@
 #define LIZARDPAPERROCKSCISSORSSPOCKSIMULATION_H
 
 #include <vector>
-#include "lizard_paper_rock_scissors_spock.h"
+#include "lizardpaperrockscissorsspock.h"
 
-struct LizardPaperRockScissorsSpockSimulation
+namespace ribi {
+namespace lprss { //Lizard-Paper-Rock-Scissors-Spock
+
+struct Simulation
 {
   enum class Initialization
   {
@@ -15,7 +18,7 @@ struct LizardPaperRockScissorsSpockSimulation
   using CellType = LizardPaperRockScissorsSpock;
   using Init = Initialization;
 
-  LizardPaperRockScissorsSpockSimulation(
+  Simulation(
     const int width,
     const int height,
     const Initialization initialization
@@ -33,5 +36,8 @@ struct LizardPaperRockScissorsSpockSimulation
   std::vector<std::vector<CellType>> m_grid;
   Initialization m_initialization;
 };
+
+} //~namespace lprss { //Lizard-Paper-Rock-Scissors-Spock
+} //~namespace ribi {
 
 #endif // LIZARDPAPERROCKSCISSORSSPOCKSIMULATION_H
