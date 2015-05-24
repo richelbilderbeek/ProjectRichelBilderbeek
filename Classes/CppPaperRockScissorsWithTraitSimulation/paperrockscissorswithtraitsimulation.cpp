@@ -8,17 +8,8 @@
 #include <tuple>
 
 ribi::prswt::Simulation::Simulation(
-  const Parameters& parameters
-  //const int width,
-  //const int height,
-  //const Initialization initialization,
-  //const int rng_seed
-)
+  const Parameters& parameters)
   : m_grid{},
-    //m_width{width},
-    //m_height{height},
-    //m_initialization{initialization},
-    //m_rng_seed{rng_seed},
     m_rng(parameters.GetRngSeed()),
     m_uniform_distribution(0,3), //Inclusive
     m_normal_distribution(0.0,1.0),

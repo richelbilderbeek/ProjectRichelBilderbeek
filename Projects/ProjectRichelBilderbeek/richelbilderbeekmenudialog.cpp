@@ -1582,7 +1582,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::paperRockScissors: p.reset(new PaperRockScissorsMenuDialog); break;
+      case ProgramType::paperRockScissors: p.reset(new ribi::prs::MenuDialog); break;
       case ProgramType::paperRockScissorsVcl:
       {
         const std::string version = "x.x";

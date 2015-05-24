@@ -257,8 +257,8 @@ ribi::About ribi::prswt::MenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "PaperRockScissors with trait",
-    "paper-rock-scissors simulation",
-    "the 11th of May 2015",
+    "paper-rock-scissors simulation with neutral trait",
+    "the 24th of May 2015",
     "2015-2015",
     "http://www.richelbilderbeek.nl/ToolPaperRockScissors.htm",
     GetVersion(),
@@ -280,7 +280,7 @@ boost::shared_ptr<const ribi::Program> ribi::prswt::MenuDialog::GetProgram() con
 
 std::string ribi::prswt::MenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::prswt::MenuDialog::GetVersionHistory() const noexcept
@@ -288,7 +288,7 @@ std::vector<std::string> ribi::prswt::MenuDialog::GetVersionHistory() const noex
   return {
     "2015-05-03: Version 0.1: initial standalone version",
     "2015-05-11: Version 1.0: conformized version",
-    "2015-05-24: Version 1.1: put in namespace ribi::prswt"
+    "2015-05-24: Version 1.1: can run from command-line, put in namespace ribi::prswt"
   };
 }
 

@@ -32,10 +32,6 @@ struct Simulation
   private:
 
   std::vector<std::vector<Individual>> m_grid;
-  //int m_width;
-  //int m_height;
-  //Initialization m_initialization;
-  //int m_rng_seed;
   std::mt19937 m_rng;
 
   std::uniform_int_distribution<int> m_uniform_distribution;
