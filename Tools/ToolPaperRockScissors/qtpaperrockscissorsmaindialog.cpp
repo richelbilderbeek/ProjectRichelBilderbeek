@@ -13,7 +13,7 @@ QtPaperRockScissorsMainDialog::QtPaperRockScissorsMainDialog(QWidget *parent) :
     new QtPaperRockScissorsWidget(
       600,
       400,
-      PaperRockScissorsSimulation::Initialization::random,
+      ribi::prs::PaperRockScissorsSimulation::Initialization::random,
       42,
       this
     )
@@ -42,7 +42,7 @@ QtPaperRockScissorsMainDialog::~QtPaperRockScissorsMainDialog()
 
 void QtPaperRockScissorsMainDialog::OnAnyChange()
 {
-  using Init = PaperRockScissorsSimulation::Initialization;
+  using Init = ribi::prs::PaperRockScissorsSimulation::Initialization;
   const std::string text{
    ui->box_initialization_type->currentText().toStdString()};
   Init init = Init::random;

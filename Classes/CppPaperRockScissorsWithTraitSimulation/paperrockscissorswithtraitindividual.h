@@ -3,23 +3,23 @@
 
 #include "paperrockscissors.h"
 
-struct PaperRockScissorsWithTraitIndividual
+namespace ribi {
+namespace prswt { //Paper-Rock-Scissors-With-Trait
+
+struct Individual
 {
-  using Prs = PaperRockScissors;  using Individual = PaperRockScissorsWithTraitIndividual;
-
-
-  PaperRockScissorsWithTraitIndividual(
-    const Prs prs,
+  Individual(
+    const PaperRockScissors prs,
     const double trait
   );
-  PaperRockScissorsWithTraitIndividual(const Individual&);
-  PaperRockScissorsWithTraitIndividual& operator=(const Individual&);
+  Individual(const Individual&);
+  Individual& operator=(const Individual&);
 
-  Prs GetPrs() const noexcept { return m_prs; }
+  PaperRockScissors GetPrs() const noexcept { return m_prs; }
   double GetTrait() const noexcept { return m_trait; }
 
   private:
-  const Prs m_prs;
+  const PaperRockScissors m_prs;
   const double m_trait;
 
   #ifndef NDEBUG
@@ -28,18 +28,21 @@ struct PaperRockScissorsWithTraitIndividual
 };
 
 bool DoesBeat(
-  const PaperRockScissorsWithTraitIndividual& lhs,
-  const PaperRockScissorsWithTraitIndividual& rhs
+  const Individual& lhs,
+  const Individual& rhs
 );
 
 bool operator==(
-  const PaperRockScissorsWithTraitIndividual& lhs,
-  const PaperRockScissorsWithTraitIndividual& rhs
+  const Individual& lhs,
+  const Individual& rhs
 );
 
 bool operator!=(
-  const PaperRockScissorsWithTraitIndividual& lhs,
-  const PaperRockScissorsWithTraitIndividual& rhs
+  const Individual& lhs,
+  const Individual& rhs
 );
+
+} //~namespace ribi
+} //~namespace prswt { //Paper-Rock-Scissors-With-Trait
 
 #endif // PAPERROCKSCISSORSWITHTRAITINDIVIDUAL_H

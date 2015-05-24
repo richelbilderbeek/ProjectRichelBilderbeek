@@ -1,6 +1,6 @@
 #include "paperrockscissors.h"
 
-bool DoesBeat(const PaperRockScissors lhs, const PaperRockScissors rhs)
+bool ribi::DoesBeat(const PaperRockScissors lhs, const PaperRockScissors rhs)
 {
   const int a{static_cast<int>(lhs)};
   const int b{static_cast<int>(rhs)};

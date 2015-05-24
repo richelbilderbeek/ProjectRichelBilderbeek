@@ -17,7 +17,7 @@ class QtPaperRockScissorsWidget : public QWidget
   Q_OBJECT
 
 public:
-  using Init = PaperRockScissorsSimulation::Initialization;
+  using Init = ribi::prs::PaperRockScissorsSimulation::Initialization;
 
   explicit QtPaperRockScissorsWidget(
     const int width = 600,
@@ -42,7 +42,7 @@ protected:
 private:
   Ui::QtPaperRockScissorsWidget *ui;
   QPixmap m_pixmap;
-  PaperRockScissorsSimulation m_simulation;
+  ribi::prs::PaperRockScissorsSimulation m_simulation;
 
 private slots:
   void OnTimer();

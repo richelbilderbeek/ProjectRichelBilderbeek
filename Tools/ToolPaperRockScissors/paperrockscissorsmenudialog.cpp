@@ -19,14 +19,14 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::PaperRockScissorsMenuDialog::PaperRockScissorsMenuDialog()
+ribi::prs::MenuDialog::MenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-int ribi::PaperRockScissorsMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::prs::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
   if (argc > 0) //Always
@@ -37,7 +37,7 @@ int ribi::PaperRockScissorsMenuDialog::ExecuteSpecific(const std::vector<std::st
   return 0;
 }
 
-ribi::About ribi::PaperRockScissorsMenuDialog::GetAbout() const noexcept
+ribi::About ribi::prs::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -54,7 +54,7 @@ ribi::About ribi::PaperRockScissorsMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-boost::shared_ptr<const ribi::Program> ribi::PaperRockScissorsMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::prs::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(
     new ProgramPaperRockScissors
@@ -63,20 +63,21 @@ boost::shared_ptr<const ribi::Program> ribi::PaperRockScissorsMenuDialog::GetPro
   return p;
 }
 
-std::string ribi::PaperRockScissorsMenuDialog::GetVersion() const noexcept
+std::string ribi::prs::MenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "2.0";
 }
 
-std::vector<std::string> ribi::PaperRockScissorsMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::prs::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2015-05-03: Version 0.1: initial standalone version",
-    "2015-05-11: Version 1.0: conformized version"
+    "2015-05-11: Version 1.0: conformized version",
+    "2015-05-24: Version 2.0: put in namespace ribi::prs"
   };
 }
 
-ribi::Help ribi::PaperRockScissorsMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::prs::MenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     "PaperRockScissors",
@@ -90,7 +91,7 @@ ribi::Help ribi::PaperRockScissorsMenuDialog::GetHelp() const noexcept
 }
 
 #ifndef NDEBUG
-void ribi::PaperRockScissorsMenuDialog::Test() noexcept
+void ribi::prs::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

@@ -7,40 +7,47 @@
 #include <map>
 #include <tuple>
 
-PaperRockScissorsSimulation::PaperRockScissorsSimulation(
-  const int width,
-  const int height,
-  const Initialization initialization,
-  const int rng_seed
+ribi::prswt::Simulation::Simulation(
+  const Parameters& parameters
+  //const int width,
+  //const int height,
+  //const Initialization initialization,
+  //const int rng_seed
 )
   : m_grid{},
-  m_width{width},
-  m_height{height},
-  m_initialization{initialization},
-  m_rng_seed{rng_seed},
-  m_rng(rng_seed),
-  m_uniform_distribution(0,3), //Inclusive
-  m_normal_distribution(0.0,1.0)
-
+    //m_width{width},
+    //m_height{height},
+    //m_initialization{initialization},
+    //m_rng_seed{rng_seed},
+    m_rng(parameters.GetRngSeed()),
+    m_uniform_distribution(0,3), //Inclusive
+    m_normal_distribution(0.0,1.0),
+    m_popsizes{},
+    m_mean_traits{},
+    m_parameters{parameters}
 {
-  SetInitialization(m_initialization);
+  #ifndef NDEBUG
+  Test();
+  #endif
+  SetInitialization(m_parameters.GetInitialization());
 }
 
-std::tuple<int,int,int> PaperRockScissorsSimulation::GetLastPopSizes() const
+std::tuple<int,int,int> ribi::prswt::Simulation::GetLastPopSizes() const
 {
   assert(!m_popsizes.empty());
   return m_popsizes.back();
 }
 
-std::tuple<double,double,double> PaperRockScissorsSimulation::GetLastMeanTraits() const
+std::tuple<double,double,double> ribi::prswt::Simulation::GetLastMeanTraits() const
 {
   assert(!m_mean_traits.empty());
   return m_mean_traits.back();
 }
 
 
-void PaperRockScissorsSimulation::Next()
+void ribi::prswt::Simulation::Next()
 {
+  using Prs = PaperRockScissors;
   std::map<Prs,double> sum_traits;
   sum_traits[Prs::paper   ] = 0.0;
   sum_traits[Prs::rock    ] = 0.0;
@@ -112,8 +119,10 @@ void PaperRockScissorsSimulation::Next()
   std::swap(m_grid,next);
 }
 
-void PaperRockScissorsSimulation::SetInitialization(const Initialization initialization) noexcept
+void ribi::prswt::Simulation::SetInitialization(const Initialization initialization) noexcept
 {
+  using Prs = PaperRockScissors;
+
   m_popsizes.clear();
   m_mean_traits.clear();
   m_grid.clear();
@@ -123,21 +132,23 @@ void PaperRockScissorsSimulation::SetInitialization(const Initialization initial
   tally[Prs::scissors] = 0;
 
 
-  m_initialization = initialization;
+  m_parameters.SetInitialization(initialization);
 
   //Initialize the grid
   assert(m_grid.empty());
-  for (int y=0; y!=m_height; ++y)
+  const int height = m_parameters.GetHeight();
+  const int width = m_parameters.GetWidth();
+  for (int y=0; y!=height; ++y)
   {
     assert(y == static_cast<int>(m_grid.size()));
     m_grid.push_back(std::vector<Individual>());
     assert(y < static_cast<int>(m_grid.size()));
-    for (int x=0; x!=m_width; ++x)
+    for (int x=0; x!=width; ++x)
     {
       assert(x == static_cast<int>(m_grid[y].size()));
 
       Prs prs = Prs::paper;
-      switch(m_initialization)
+      switch(initialization)
       {
         case Initialization::random:
         {
@@ -153,7 +164,7 @@ void PaperRockScissorsSimulation::SetInitialization(const Initialization initial
         break;
         case Initialization::vertical_bands:
         {
-          switch ((y / (m_height / 15)) % 3)
+          switch ((y / (height / 15)) % 3)
           {
             case 0: prs = Prs::paper; break;
             case 1: prs = Prs::rock; break;
@@ -161,6 +172,9 @@ void PaperRockScissorsSimulation::SetInitialization(const Initialization initial
             default: assert(!"Should not get here");
           }
         }
+        break;
+        case Initialization::monomorph:
+          prs = Prs::paper;
         break;
         default: assert(!"Should not get here");
       }
@@ -182,3 +196,15 @@ void PaperRockScissorsSimulation::SetInitialization(const Initialization initial
     std::make_tuple(0.0,0.0,0.0)
   );
 }
+
+#ifndef NDEBUG
+void ribi::prswt::Simulation::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TestInitialization();
+}
+#endif

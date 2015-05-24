@@ -5,6 +5,7 @@
 #include <QPixmap>
 
 #include "paperrockscissorswithtraitsimulation.h"
+#include "paperrockscissorswithtraitinitialization.h"
 
 namespace Ui {
   class QtPaperRockScissorsWithTraitWidget;
@@ -17,7 +18,7 @@ class QtPaperRockScissorsWithTraitWidget : public QWidget
   Q_OBJECT
 
 public:
-  using Init = PaperRockScissorsSimulation::Initialization;
+  using Init = ribi::prswt::Initialization;
 
   explicit QtPaperRockScissorsWithTraitWidget(
     const int width = 600,
@@ -40,14 +41,14 @@ public:
     const int rng_seed
   );
 
-  static QRgb ToRgb(const PaperRockScissors prs) noexcept;
+  static QRgb ToRgb(const ribi::PaperRockScissors prs) noexcept;
 
 protected:
   void paintEvent(QPaintEvent *);
 private:
   Ui::QtPaperRockScissorsWithTraitWidget *ui;
   QPixmap m_pixmap;
-  PaperRockScissorsSimulation m_simulation;
+  ribi::prswt::Simulation m_simulation;
 
 private slots:
   void OnTimer();

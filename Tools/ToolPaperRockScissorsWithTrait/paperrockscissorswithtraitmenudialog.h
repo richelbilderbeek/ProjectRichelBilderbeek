@@ -1,5 +1,5 @@
-#ifndef PAPERROCKSCISSORSMENUDIALOG_H
-#define PAPERROCKSCISSORSMENUDIALOG_H
+#ifndef PAPERROCKSCISSORSWITHTRAITMENUDIALOG_H
+#define PAPERROCKSCISSORSWITHTRAITMENUDIALOG_H
 
 #include <string>
 #include <vector>
@@ -13,13 +13,12 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace prswt { //Paper-Rock-Scissors-With-Trait
 
-struct PaperRockScissors;
-
-struct PaperRockScissorsMenuDialog final : public MenuDialog
+struct MenuDialog final : public ::ribi::MenuDialog
 {
-  PaperRockScissorsMenuDialog();
-  ~PaperRockScissorsMenuDialog() noexcept {}
+  MenuDialog();
+  ~MenuDialog() noexcept {}
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   About GetAbout() const noexcept override;
@@ -35,6 +34,7 @@ struct PaperRockScissorsMenuDialog final : public MenuDialog
   #endif
 };
 
+} //~namespace prswt { //Paper-Rock-Scissors-With-Trait
 } //~namespace ribi
 
-#endif // PAPERROCKSCISSORSMENUDIALOG_H
+#endif // PAPERROCKSCISSORSWITHTRAITMENUDIALOG_H

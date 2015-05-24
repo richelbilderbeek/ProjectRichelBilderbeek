@@ -7,6 +7,7 @@
 #include <QPixmap>
 #include <QTimer>
 
+#include "paperrockscissorswithtraitparameters.h"
 #include "paperrockscissorswithtraitsimulation.h"
 #include "ui_qtpaperrockscissorswithtraitwidget.h"
 
@@ -20,7 +21,7 @@ QtPaperRockScissorsWithTraitWidget::QtPaperRockScissorsWithTraitWidget(
   : QWidget(parent),
     ui(new Ui::QtPaperRockScissorsWithTraitWidget),
     m_pixmap(width,height),
-    m_simulation(width,height,initialization,rng_seed)
+    m_simulation(ribi::prswt::Parameters(width,height,initialization,rng_seed))
 {
   ui->setupUi(this);
   OnTimer();
@@ -88,23 +89,26 @@ void QtPaperRockScissorsWithTraitWidget::SetAll(
 )
 {
   m_pixmap = QPixmap(width,height);
-  m_simulation = PaperRockScissorsSimulation(
-    width,
-    height,
-    initialization,
-    rng_seed
+  m_simulation = ribi::prswt::Simulation(
+    ribi::prswt::Parameters(
+      width,
+      height,
+      initialization,
+      rng_seed
+    )
   );
   update();
 }
 
-QRgb QtPaperRockScissorsWithTraitWidget::ToRgb(const PaperRockScissors prs) noexcept
+QRgb QtPaperRockScissorsWithTraitWidget::ToRgb(const ribi::PaperRockScissors prs) noexcept
 {
+  using Prs = ribi::PaperRockScissors;
   const int brightness{196};
   switch (prs)
   {
-    case PaperRockScissors::paper: return qRgb(0,0,brightness);
-    case PaperRockScissors::rock: return qRgb(brightness,0,0);
-    case PaperRockScissors::scissors: return qRgb(0,brightness,0);
+    case Prs::paper: return qRgb(0,0,brightness);
+    case Prs::rock: return qRgb(brightness,0,0);
+    case Prs::scissors: return qRgb(0,brightness,0);
   }
   assert(!"Should not get here");
   throw std::logic_error("QtPaperRockScissorsWithTraitWidget::ToColor: unknown value of prs");

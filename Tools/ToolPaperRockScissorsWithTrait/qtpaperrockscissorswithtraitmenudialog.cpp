@@ -57,7 +57,7 @@ void ribi::QtPaperRockScissorsWithTraitMenuDialog::on_button_start_clicked()
 
 void ribi::QtPaperRockScissorsWithTraitMenuDialog::on_button_about_clicked()
 {
-  About a = PaperRockScissorsMenuDialog().GetAbout();
+  About a = prswt::MenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());

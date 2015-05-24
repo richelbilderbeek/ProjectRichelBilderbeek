@@ -3,29 +3,26 @@
 
 #include <random>
 #include <vector>
+#include "paperrockscissors.h"
 #include "paperrockscissorswithtraitindividual.h"
+#include "paperrockscissorswithtraitinitialization.h"
+#include "paperrockscissorswithtraitparameters.h"
 
-struct PaperRockScissorsSimulation
+namespace ribi {
+namespace prswt { //Paper-Rock-Scissors-With-Trait
+
+struct Simulation
 {
-  using Individual = PaperRockScissorsWithTraitIndividual;
-  using Prs = PaperRockScissors;
-
-  enum class Initialization
-  {
-    random,
-    vertical_bands
-  };
-
-  PaperRockScissorsSimulation(
-    const int width,
-    const int height,
-    const Initialization initialization,
-    const int rng_seed
+  Simulation(
+    const Parameters& parameters
   );
 
   ///Y-X ordered grid
   const auto& GetGrid() const noexcept { return m_grid; }
-  Initialization GetInitialization() const noexcept { return m_initialization; }
+
+  const auto& GetParameters() const noexcept { return m_parameters; }
+
+  //Initialization GetInitialization() const noexcept { return m_initialization; }
   std::tuple<int,int,int> GetLastPopSizes() const;
   std::tuple<double,double,double> GetLastMeanTraits() const;
 
@@ -35,10 +32,10 @@ struct PaperRockScissorsSimulation
   private:
 
   std::vector<std::vector<Individual>> m_grid;
-  int m_width;
-  int m_height;
-  Initialization m_initialization;
-  int m_rng_seed;
+  //int m_width;
+  //int m_height;
+  //Initialization m_initialization;
+  //int m_rng_seed;
   std::mt19937 m_rng;
 
   std::uniform_int_distribution<int> m_uniform_distribution;
@@ -47,6 +44,14 @@ struct PaperRockScissorsSimulation
   std::vector<std::tuple<int,int,int>> m_popsizes;
   std::vector<std::tuple<double,double,double>> m_mean_traits;
 
+  Parameters m_parameters;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
+} //namespace prswt { //Paper-Rock-Scissors-With-Trait
+} //~namespace ribi
 
 #endif // PAPERROCKSCISSORSWITHTRAITSIMULATION_H

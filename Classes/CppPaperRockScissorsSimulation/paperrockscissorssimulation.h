@@ -5,6 +5,9 @@
 #include <vector>
 #include "paperrockscissors.h"
 
+namespace ribi {
+namespace prs {
+
 struct PaperRockScissorsSimulation
 {
   using CellType = PaperRockScissors;
@@ -35,5 +38,8 @@ struct PaperRockScissorsSimulation
   int m_rng_seed;
   std::mt19937 m_rng;
 };
+
+} //~namespace prs {
+} //~namespace ribi {
 
 #endif // PAPERROCKSCISSORSSIMULATION_H

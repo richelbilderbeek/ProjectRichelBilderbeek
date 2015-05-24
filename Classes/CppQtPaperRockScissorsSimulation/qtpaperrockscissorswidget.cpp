@@ -38,7 +38,7 @@ QtPaperRockScissorsWidget::~QtPaperRockScissorsWidget()
 
 void QtPaperRockScissorsWidget::OnTimer()
 {
-  using CellType = PaperRockScissors;
+  using CellType = ribi::PaperRockScissors;
 
   m_simulation.Next();
 
@@ -86,7 +86,7 @@ void QtPaperRockScissorsWidget::SetAll(
 )
 {
   m_pixmap = QPixmap(width,height);
-  m_simulation = PaperRockScissorsSimulation(
+  m_simulation = ribi::prs::PaperRockScissorsSimulation(
     width,
     height,
     initialization,

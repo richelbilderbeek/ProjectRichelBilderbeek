@@ -57,6 +57,10 @@ struct Help
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
   private:
 
   // { "ProjectRichelBilderbeek --about", "ProjectRichelBilderbeek ToolHometrainer Exercise.txt" }
@@ -71,9 +75,6 @@ struct Help
 
   static const std::vector<Option> AddDefaultOptions(const std::vector<Option>& options);
 
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
 };
 
 std::ostream& operator<<(std::ostream& os, const Help& help);

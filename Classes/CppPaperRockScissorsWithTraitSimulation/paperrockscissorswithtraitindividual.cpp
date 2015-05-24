@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-PaperRockScissorsWithTraitIndividual::PaperRockScissorsWithTraitIndividual(
+ribi::prswt::Individual::Individual(
     const PaperRockScissors prs,
     const double trait
   )
@@ -13,7 +13,7 @@ PaperRockScissorsWithTraitIndividual::PaperRockScissorsWithTraitIndividual(
   #endif
 }
 
-PaperRockScissorsWithTraitIndividual::PaperRockScissorsWithTraitIndividual(
+ribi::prswt::Individual::Individual(
   const Individual& other)
   : m_prs(other.m_prs),
     m_trait(other.m_trait)
@@ -21,23 +21,27 @@ PaperRockScissorsWithTraitIndividual::PaperRockScissorsWithTraitIndividual(
 
 }
 
-PaperRockScissorsWithTraitIndividual& PaperRockScissorsWithTraitIndividual::operator=(
+ribi::prswt::Individual&
+  ribi::prswt::Individual::operator=(
   const Individual& rhs
 )
 {
+  using Prs = PaperRockScissors;
+
   const_cast<Prs&>(this->m_prs) = rhs.m_prs;
   const_cast<double&>(this->m_trait) = rhs.m_trait;
   return *this;
 }
 
 #ifndef NDEBUG
-void PaperRockScissorsWithTraitIndividual::Test() noexcept
+void ribi::prswt::Individual::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
+  using Prs = PaperRockScissors;
   {
     const Individual a(Prs::paper,1.2);
     const Individual b(Prs::paper,1.2);
@@ -68,17 +72,17 @@ void PaperRockScissorsWithTraitIndividual::Test() noexcept
 }
 #endif
 
-bool DoesBeat(
-  const PaperRockScissorsWithTraitIndividual& lhs,
-  const PaperRockScissorsWithTraitIndividual& rhs
+bool ribi::prswt::DoesBeat(
+  const Individual& lhs,
+  const Individual& rhs
 )
 {
   return DoesBeat(lhs.GetPrs(),rhs.GetPrs());
 }
 
-bool operator==(
-  const PaperRockScissorsWithTraitIndividual& lhs,
-  const PaperRockScissorsWithTraitIndividual& rhs
+bool ribi::prswt::operator==(
+  const Individual& lhs,
+  const Individual& rhs
 )
 {
   return
@@ -87,9 +91,9 @@ bool operator==(
   ;
 }
 
-bool operator!=(
-  const PaperRockScissorsWithTraitIndividual& lhs,
-  const PaperRockScissorsWithTraitIndividual& rhs
+bool ribi::prswt::operator!=(
+  const Individual& lhs,
+  const Individual& rhs
 )
 {
   return !(lhs == rhs);

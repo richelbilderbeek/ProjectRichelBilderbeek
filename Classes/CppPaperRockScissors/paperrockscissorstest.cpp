@@ -3,7 +3,7 @@
 
 #include <cassert>
 
-void TestPaperRockScissors() noexcept
+void ribi::TestPaperRockScissors() noexcept
 {
   {
     static bool is_tested{false};

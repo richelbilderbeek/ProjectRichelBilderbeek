@@ -6,7 +6,7 @@
 #include <cstdlib>
 
 
-PaperRockScissorsSimulation::PaperRockScissorsSimulation(
+ribi::prs::PaperRockScissorsSimulation::PaperRockScissorsSimulation(
   const int width,
   const int height,
   const Initialization initialization,
@@ -25,7 +25,7 @@ PaperRockScissorsSimulation::PaperRockScissorsSimulation(
   SetInitialization(m_initialization);
 }
 
-void PaperRockScissorsSimulation::Next()
+void ribi::prs::PaperRockScissorsSimulation::Next()
 {
   static std::uniform_int_distribution<int> d(0,3); //Inclusive
 
@@ -55,7 +55,7 @@ void PaperRockScissorsSimulation::Next()
   std::swap(m_grid,next);
 }
 
-void PaperRockScissorsSimulation::SetInitialization(const Initialization initialization) noexcept
+void ribi::prs::PaperRockScissorsSimulation::SetInitialization(const Initialization initialization) noexcept
 {
   m_initialization = initialization;
 
@@ -95,5 +95,4 @@ void PaperRockScissorsSimulation::SetInitialization(const Initialization initial
       }
     }
   }
-
 }

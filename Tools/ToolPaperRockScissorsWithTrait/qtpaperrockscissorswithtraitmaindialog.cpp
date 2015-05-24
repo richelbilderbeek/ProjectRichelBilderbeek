@@ -22,7 +22,7 @@ QtPaperRockScissorsWithTraitMainDialog::QtPaperRockScissorsWithTraitMainDialog(Q
     new QtPaperRockScissorsWithTraitWidget(
       600,
       400,
-      PaperRockScissorsSimulation::Initialization::random,
+      ribi::prswt::Initialization::random,
       42,
       this
     )
@@ -37,7 +37,7 @@ QtPaperRockScissorsWithTraitMainDialog::QtPaperRockScissorsWithTraitMainDialog(Q
 {
   ui->setupUi(this);
 
-  using Prs = PaperRockScissors;
+  using Prs = ribi::PaperRockScissors;
   using QtWidget = QtPaperRockScissorsWithTraitWidget;
 
   {
@@ -93,7 +93,7 @@ QtPaperRockScissorsWithTraitMainDialog::~QtPaperRockScissorsWithTraitMainDialog(
 
 void QtPaperRockScissorsWithTraitMainDialog::OnAnyChange()
 {
-  using Init = PaperRockScissorsSimulation::Initialization;
+  using Init = ribi::prswt::Initialization;
   const std::string text{
    ui->box_initialization_type->currentText().toStdString()};
   Init init = Init::random;
@@ -104,6 +104,10 @@ void QtPaperRockScissorsWithTraitMainDialog::OnAnyChange()
   else if (text == "Random")
   {
     init = Init::random;
+  }
+  else if (text == "Monomorph")
+  {
+    init = Init::monomorph;
   }
   else
   {
