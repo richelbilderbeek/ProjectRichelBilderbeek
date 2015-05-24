@@ -47,6 +47,7 @@ void ribi::prswt::TestInitialization() noexcept
       Initialization j{Initialization::random};
       f >> j;
       assert(i == j);
+      ribi::fileio::FileIo().DeleteFile(filename);
     }
   }
 }
@@ -70,8 +71,6 @@ ribi::prswt::Initialization ribi::prswt::ToInitialization(const std::string& s)
   if (s == "random") return Initialization::random;
   if (s == "vertical_bands") return Initialization::vertical_bands;
   if (s == "monomorph") return Initialization::monomorph;
-  assert(!"Should not get here");
-  std::cerr << s << std::endl;
   throw std::logic_error("ribi::prswt::ToInitialization: unknown s");
 }
 

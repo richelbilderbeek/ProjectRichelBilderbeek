@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <iterator>
+#include <tuple>
 
 #include <boost/lexical_cast.hpp>
 
@@ -113,34 +114,142 @@ int ribi::prswt::MenuDialog::ExecuteSpecific(const std::vector<std::string>& arg
     );
     if (i == std::end(argv))
     {
-      std::cout << "Please specify a parameter for height" << std::endl;
+      std::cout << "Please specify a parameter for initialization" << std::endl;
       return 1;
     }
     auto j = i; ++j;
     if (j == std::end(argv))
     {
-      std::cout << "Please specify a value for height" << std::endl;
+      std::cout << "Please specify a value for initialization" << std::endl;
       return 1;
     }
     const std::string s = *j;
     try
     {
-      height = std::stoi(s);
+      initialization = ToInitialization(s);
     }
-    catch (std::exception& e)
+    catch (std::logic_error&)
     {
-      std::cout << "Please specify an integer for height" << std::endl;
-      return 1;
-    }
-    if (height < 1)
-    {
-      std::cout << "Please specify a non-zero positive integer for height" << std::endl;
+      std::cout << "Please specify an valid initialization" << std::endl;
       return 1;
     }
   }
 
+  //rng_seed
+  int rng_seed = -1;
+  {
+    const auto i = std::find_if(std::begin(argv),std::end(argv),
+      [](const std::string& s) { return s == "-r" || s == "--rng_seed"; }
+    );
+    if (i == std::end(argv))
+    {
+      std::cout << "Please specify a parameter for rng_seed" << std::endl;
+      return 1;
+    }
+    auto j = i; ++j;
+    if (j == std::end(argv))
+    {
+      std::cout << "Please specify a value for rng_seed" << std::endl;
+      return 1;
+    }
+    const std::string s = *j;
+    try
+    {
+      rng_seed = std::stoi(s);
+    }
+    catch (std::exception& e)
+    {
+      std::cout << "Please specify an integer for rng_seed" << std::endl;
+      return 1;
+    }
+  }
 
-  return 1;
+  //Height
+  int n_timesteps = -1;
+  {
+    const auto i = std::find_if(std::begin(argv),std::end(argv),
+      [](const std::string& s) { return s == "-t" || s == "--n_timesteps"; }
+    );
+    if (i == std::end(argv))
+    {
+      std::cout << "Please specify a parameter for n_timesteps" << std::endl;
+      return 1;
+    }
+    auto j = i; ++j;
+    if (j == std::end(argv))
+    {
+      std::cout << "Please specify a value for n_timesteps" << std::endl;
+      return 1;
+    }
+    const std::string s = *j;
+    try
+    {
+      n_timesteps = std::stoi(s);
+    }
+    catch (std::exception& e)
+    {
+      std::cout << "Please specify an integer for n_timesteps" << std::endl;
+      return 1;
+    }
+    if (n_timesteps < 1)
+    {
+      std::cout << "Please specify a non-zero positive integer for n_timesteps" << std::endl;
+      return 1;
+    }
+  }
+  assert(n_timesteps >= 1);
+
+
+  const Parameters parameters(
+    width,
+    height,
+    initialization,
+    rng_seed
+  );
+
+  std::cout << parameters << '\n';
+
+  Simulation simulation(parameters);
+
+  {
+    std::cout << "0 "; //t
+    const auto v = simulation.GetLastPopSizes();
+    std::cout
+      << std::get<0>(v) << " "
+      << std::get<1>(v) << " "
+      << std::get<2>(v) << " "
+    ;
+    const auto w = simulation.GetLastMeanTraits();
+    std::cout
+      << std::get<0>(w) << " "
+      << std::get<1>(w) << " "
+      << std::get<2>(w) << " "
+    ;
+    std::cout << '\n';
+  }
+
+
+  for (int t=0; t!=n_timesteps; ++t)
+  {
+    simulation.Next();
+
+    std::cout << t << " ";
+    const auto v = simulation.GetLastPopSizes();
+    std::cout
+      << std::get<0>(v) << " "
+      << std::get<1>(v) << " "
+      << std::get<2>(v) << " "
+    ;
+    const auto w = simulation.GetLastMeanTraits();
+    std::cout
+      << std::get<0>(w) << " "
+      << std::get<1>(w) << " "
+      << std::get<2>(w) << " "
+    ;
+    std::cout << '\n';
+  }
+
+  return 0;
 }
 
 ribi::About ribi::prswt::MenuDialog::GetAbout() const noexcept
@@ -193,6 +302,7 @@ ribi::Help ribi::prswt::MenuDialog::GetHelp() const noexcept
       Help::Option('y',"height","height of the grid"),
       Help::Option('n',"initialization","initialization of the grid"),
       Help::Option('r',"rng_seed","random number generator seed"),
+      Help::Option('t',"n_timesteps","number of timesteps"),
       //No additional options
     },
     {
@@ -229,6 +339,7 @@ void ribi::prswt::MenuDialog::Test() noexcept
       "-y","3",
       "-n","random",
       "-r","42",
+      "-t","10",
     };
     MenuDialog m;
     assert(m.Execute(v) == 0);
