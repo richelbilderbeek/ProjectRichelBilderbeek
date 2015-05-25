@@ -16,7 +16,10 @@ bool DoesBeat(
   const LizardPaperRockScissorsSpock lhs,
   const LizardPaperRockScissorsSpock rhs
 );
+
+#ifndef NDEBUG
 void TestLizardPaperRockScissorsSpock() noexcept;
+#endif // NDEBUG
 
 } //~namespace ribi
 

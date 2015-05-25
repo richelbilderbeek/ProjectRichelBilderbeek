@@ -11,7 +11,10 @@ enum class PaperRockScissors
 };
 
 bool DoesBeat(const PaperRockScissors lhs, const PaperRockScissors rhs);
+
+#ifndef NDEBUG
 void TestPaperRockScissors() noexcept;
+#endif //~NDEBUG
 
 } //~namespace ribi
 

@@ -49,6 +49,8 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppLazy_init
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppLed
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppLedWidget
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppLizardPaperRockScissorsSpock
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppLizardPaperRockScissorsSpockSimulation
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppLoopReader
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppManyDigitNewick
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppMatrix
@@ -65,6 +67,9 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppOpenFoam
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppOpenQuestion
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppOpenQuestionDialog
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppPaperRockScissors
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppPaperRockScissorsSimulation
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppPaperRockScissorsWithTraitSimulation
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppPhp
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppPlane
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppPolarCoordinat
@@ -100,6 +105,7 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppTriangleMesh
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppTribool
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppTwoDigitNewick
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppUnits
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppVigenereCipher
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppWidget
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Classes/CppWtConnectThreeWidget
@@ -156,9 +162,13 @@
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolHometrainer
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolImageRotater
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolKalmanFilterer
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolLizardPaperRockScissorsSpock
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolMazeCreator
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolMultiEncranger
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolMusicTheory
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolMutualismBreakdowner
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolPaperRockScissors
+-I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolPaperRockScissorsWithTrait
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolPerfectElasticCollision
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolPicToCode
 -I/home/richel/GitHubs/ProjectRichelBilderbeek/Tools/ToolPixelator

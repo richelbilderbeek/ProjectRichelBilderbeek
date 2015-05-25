@@ -1,4 +1,3 @@
-#ifndef NDEBUG
 #include "paperrockscissorswithtraitinitialization.h"
 
 #include <cassert>
@@ -8,6 +7,7 @@
 
 #include "fileio.h"
 
+#ifndef NDEBUG
 void ribi::prswt::TestInitialization() noexcept
 {
   {

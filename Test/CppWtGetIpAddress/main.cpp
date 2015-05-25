@@ -9,7 +9,7 @@
 #include "wtautoconfig.h"
 #pragma GCC diagnostic pop
 
-const std::string GetIpAddress(const Wt::WEnvironment& env)
+std::string GetIpAddress(const Wt::WEnvironment& env)
 {
   return env.clientAddress();
 }
