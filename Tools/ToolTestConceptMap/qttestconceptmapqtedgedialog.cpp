@@ -8,6 +8,7 @@
 
 #include <boost/lexical_cast.hpp>
 
+#include <QDesktopWidget>
 #include <QGraphicsView>
 #include <QKeyEvent>
 #include <QVBoxLayout>
@@ -69,52 +70,23 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
     my_scene->addItem(m_to.get()); //Remove in destructor
   }
 
-  {
-    //assert(!this->ui->area1_contents->layout());
-    //QVBoxLayout * const my_layout = new QVBoxLayout;
-    //this->ui->area1_contents->setLayout(my_layout);
-    //my_layout->addWidget(m_view_left.get());
-    ui->area1->setWidget(m_view_left.get());
-  }
-
-  {
-    //assert(!this->ui->area2_contents->layout());
-    //QVBoxLayout * const my_layout = new QVBoxLayout;
-    //this->ui->area2_contents->setLayout(my_layout);
-    //my_layout->addWidget(m_view_right.get());
-    ui->area2->setWidget(m_view_right.get());
-  }
-
-  {
-    //assert(!this->ui->area3_contents->layout());
-    //QGridLayout * const my_layout = new QGridLayout;
-    //this->ui->area3_contents->setLayout(my_layout);
-    //my_layout->addWidget(m_dialog_left.get(),1,2);
-    ui->area3->setWidget(m_dialog_left.get());
-  }
-
-  {
-    //assert(!this->ui->area4_contents->layout());
-    //QGridLayout * const my_layout = new QGridLayout;
-    //this->ui->area4_contents->setLayout(my_layout);
-    //my_layout->addWidget(m_dialog_right.get(),1,3);
-    ui->area4->setWidget(m_dialog_right.get());
-  }
-
-
-  //m_view_left->setMinimumWidth(300);
-  //m_view_right->setMinimumWidth(300);
-  //m_view_left->setMinimumHeight(1000);
-  //m_view_right->setMinimumHeight(1000);
-
+  ui->area1->setWidget(m_view_left.get());
+  ui->area2->setWidget(m_view_right.get());
+  ui->area3->setWidget(m_dialog_left.get());
+  ui->area4->setWidget(m_dialog_right.get());
 
   ui->box_test_index->setMinimum(0);
   ui->box_test_index->setMaximum(QtEdgeFactory().GetNumberOfTests() - 1); //-1 because first index has [0]
   ui->box_test_index->setValue(0);
+
   this->on_button_load_clicked();
 
-  this->m_dialog_left->GetQtEdge()->GetFrom()->GetNode()->GetConcept()->SetName("From");
-  this->m_dialog_left->GetQtEdge()->GetTo()->GetNode()->GetConcept()->SetName("To");
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,screen.width() * 9 / 10, screen.height() * 9 / 10);
+    this->move( screen.center() - this->rect().center() );
+  }
 }
 
 ribi::cmap::QtTestQtEdgeDialog::~QtTestQtEdgeDialog() noexcept
@@ -427,4 +399,7 @@ void ribi::cmap::QtTestQtEdgeDialog::on_button_load_clicked() noexcept
   const auto qtedge = QtEdgeFactory().GetTest(index,m_from,m_to);
 
   SetQtEdge(qtedge);
+
+  this->m_dialog_left->GetQtEdge()->GetFrom()->GetNode()->GetConcept()->SetName("From");
+  this->m_dialog_left->GetQtEdge()->GetTo()->GetNode()->GetConcept()->SetName("To");
 }

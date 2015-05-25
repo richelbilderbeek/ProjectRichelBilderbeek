@@ -271,6 +271,21 @@ void ribi::cmap::QtEdge::Test() noexcept
     qtnode_to->SetCenterX(qtnode_to->GetCenterX() + 10.0);
     assert(c.Get() > 0);
   }
+
+  //Center
+  if (verbose) { TRACE("If a QtEdge its Edge's head arrow is changed, a signal must be emitted by Edge"); }
+  {
+
+    Counter c{0}; //For receiving the signal
+
+    qtedge->m_signal_edge_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    qtedge->GetQtNode()->SetCenterX( qtedge->GetQtNode()->GetCenterX() + 123.45);
+    assert(c.Get() > 0);
+  }
+  assert(!"Reached green");
+
 }
 #endif
 

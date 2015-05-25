@@ -8,6 +8,7 @@
 
 #include <boost/lexical_cast.hpp>
 
+#include <QDesktopWidget>
 #include <QGraphicsView>
 #include <QKeyEvent>
 
@@ -65,6 +66,15 @@ ribi::cmap::QtTestQtNodeDialog::QtTestQtNodeDialog(
   ui->box_test_index->setMinimum(0);
   ui->box_test_index->setMaximum(NodeFactory().GetNumberOfTests());
   ui->box_test_index->setValue(0);
+
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,screen.width() * 9 / 10, screen.height() * 9 / 10);
+    this->move( screen.center() - this->rect().center() );
+  }
+
+
   this->on_button_load_clicked();
 
 }

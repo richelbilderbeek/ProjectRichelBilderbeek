@@ -91,6 +91,14 @@ ribi::cmap::QtEdge::QtEdge(
     boost::bind(&ribi::cmap::QtEdge::OnArrowChanged,this,boost::lambda::_1)
   );
 
+  ///Fix red phase here?
+  /*
+  m_qtnode->m_signal_node_changed.connect(
+    boost::bind(&ribi::cmap::QtEdge::OnNodeChanged,this,boost::lambda::_1)
+  );
+  */
+
+  //TODO: Is this a redundant connection? (i.e. a subset of what m_signal_node_changed covers)
   m_qtnode->m_signal_text_changed.connect(
     boost::bind(&ribi::cmap::QtEdge::OnTextChanged,this,boost::lambda::_1)
   );
@@ -375,6 +383,17 @@ void ribi::cmap::QtEdge::OnHeadArrowChanged(Edge * const edge) noexcept
   this->update(); //Obligatory
   m_signal_edge_changed(this);
 }
+
+/*
+void ribi::cmap::QtEdge::OnNodeChanged(QtNode * const node) noexcept
+{
+  m_qtnode->SetCenterX(edge->GetNode()->GetX());
+  m_qtnode->SetCenterY(edge->GetNode()->GetY());
+  m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
+  this->update();
+  m_signal_edge_changed(this);
+}
+*/
 
 void ribi::cmap::QtEdge::OnNodeChanged(Edge * const edge) noexcept
 {

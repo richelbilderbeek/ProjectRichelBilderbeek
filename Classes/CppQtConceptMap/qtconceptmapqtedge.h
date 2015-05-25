@@ -134,6 +134,7 @@ private:
   void OnConceptChanged(Node * const node) noexcept;
   void OnFromChanged(Edge * const edge) noexcept;
   void OnHeadArrowChanged(Edge * const edge) noexcept;
+  //void OnNodeChanged(Node * const node) noexcept;
   void OnNodeChanged(Edge * const edge) noexcept;
   void OnTailArrowChanged(Edge * const edge) noexcept;
   void OnTextChanged(QtRoundedEditRectItem* item) noexcept;

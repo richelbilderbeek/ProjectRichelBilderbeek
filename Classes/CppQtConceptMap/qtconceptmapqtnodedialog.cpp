@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lambda/lambda.hpp>
 
+#include <QDesktopWidget>
 #include <QVBoxLayout>
 
 #include "conceptmapnode.h"
@@ -75,6 +76,13 @@ ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
     const boost::shared_ptr<QtRoundedEditRectItemDialog> d{new QtRoundedEditRectItemDialog};
     m_qtroundededitrectitem_dialog = d;
     this->layout()->addWidget(m_qtroundededitrectitem_dialog.get());
+  }
+
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,screen.width() * 9 / 10, screen.height() * 9 / 10);
+    this->move( screen.center() - this->rect().center() );
   }
 }
 
