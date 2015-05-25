@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtConceptMap, Qt classes for display and interaction with ConceptMap
-Copyright (C) 2013-2014 The Brainweaver Team
+Copyright (C) 2013-2015 The Brainweaver Team
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -58,18 +58,15 @@ ribi::cmap::QtQtEdgeDialog::QtQtEdgeDialog(QWidget *parent)
   Test();
   #endif
   ui->setupUi(this);
+
   {
-    assert(!this->layout());
+    assert(!this->ui->groupBox->layout());
+    //assert(!this->layout());
     QVBoxLayout * const my_layout{new QVBoxLayout};
-    this->setLayout(my_layout);
-  }
-  {
-    assert(this->layout());
-    this->layout()->addWidget(m_qtedgedialog.get());
-  }
-  {
-    assert(this->layout());
-    this->layout()->addWidget(m_qtroundededitrectitem_dialog.get());
+    this->ui->groupBox->setLayout(my_layout);
+    //this->setLayout(my_layout);
+    my_layout->addWidget(m_qtedgedialog.get());
+    my_layout->addWidget(m_qtroundededitrectitem_dialog.get());
   }
 }
 

@@ -52,8 +52,8 @@ public:
 
   boost::shared_ptr<QtRoundedEditRectItem> GetItem() const noexcept { return m_item; }
 
-  static int GetMinimumHeight(const QtRoundedEditRectItem& /* item */) noexcept { return 276 + 300; }
-  static int GetMinimumHeight(                                       ) noexcept { return 276 + 300; }
+  static int GetMinimumHeight(const QtRoundedEditRectItem& /* item */) noexcept { return 276 + 500; }
+  static int GetMinimumHeight(                                       ) noexcept { return 276 + 500; }
 
   ///Read the X value directly from GUI
   double GetUiX() const noexcept;

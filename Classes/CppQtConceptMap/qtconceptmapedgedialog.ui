@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>181</width>
-    <height>68</height>
+    <width>210</width>
+    <height>104</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,19 +19,28 @@
   <property name="windowTitle">
    <string>Edge</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QCheckBox" name="box_head_arrow">
-     <property name="text">
-      <string>Arrow point at head</string>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Edge</string>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="box_tail_arrow">
-     <property name="text">
-      <string>Arrow point at tail</string>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QCheckBox" name="box_head_arrow">
+        <property name="text">
+         <string>Arrow point at head</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="box_tail_arrow">
+        <property name="text">
+         <string>Arrow point at tail</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

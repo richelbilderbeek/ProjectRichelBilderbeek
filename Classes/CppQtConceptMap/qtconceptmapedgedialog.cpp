@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtConceptMap, Qt classes for display and interaction with ConceptMap
-Copyright (C) 2013-2014 The Brainweaver Team
+Copyright (C) 2013-2015 The Brainweaver Team
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -59,22 +59,23 @@ ribi::cmap::QtEdgeDialog::QtEdgeDialog(QWidget *parent)
   Test();
   #endif
   {
-    assert(layout());
+    assert(ui->groupBox->layout());
+    const auto my_layout = ui->groupBox->layout();
     {
       QLabel * const label = new QLabel("Center node:");
-      layout()->addWidget(label);
+      my_layout->addWidget(label);
     }
-    layout()->addWidget(m_qtnodedialog.get());
+    my_layout->addWidget(m_qtnodedialog.get());
     {
       QLabel * const label = new QLabel("From node:");
-      layout()->addWidget(label);
+      my_layout->addWidget(label);
     }
-    layout()->addWidget(m_qtnodedialog_from.get());
+    my_layout->addWidget(m_qtnodedialog_from.get());
     {
       QLabel * const label = new QLabel("To node:");
-      layout()->addWidget(label);
+      my_layout->addWidget(label);
     }
-    layout()->addWidget(m_qtnodedialog_to.get());
+    my_layout->addWidget(m_qtnodedialog_to.get());
   }
 }
 
@@ -89,7 +90,7 @@ int ribi::cmap::QtEdgeDialog::GetMinimumHeight(const Edge& edge) noexcept
       QtNodeDialog::GetMinimumHeight(*edge.GetFrom())
     + QtNodeDialog::GetMinimumHeight(*edge.GetNode())
     + QtNodeDialog::GetMinimumHeight(*edge.GetTo())
-    + 68
+    + 200
   ;
 }
 

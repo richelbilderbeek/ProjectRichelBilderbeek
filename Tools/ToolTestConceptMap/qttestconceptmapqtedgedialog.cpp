@@ -10,6 +10,7 @@
 
 #include <QGraphicsView>
 #include <QKeyEvent>
+#include <QVBoxLayout>
 #include <QTimer>
 
 #include "conceptmapcompetencies.h"
@@ -68,53 +69,43 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
     my_scene->addItem(m_to.get()); //Remove in destructor
   }
 
-  /*
   {
-    assert(!this->ui->here->layout());
-    QGridLayout * const my_layout = new QGridLayout;
-    ui->here->setLayout(my_layout);
-    my_layout->addWidget(ui->widget_top,0,0,1,4);
-  }
-  */
-
-  {
-    assert(!this->ui->area1_contents->layout());
-    QGridLayout * const my_layout = new QGridLayout;
-    this->ui->area1_contents->setLayout(my_layout);
-    my_layout->addWidget(m_view_left.get(),1,0,1,1,Qt::AlignTop);
+    //assert(!this->ui->area1_contents->layout());
+    //QVBoxLayout * const my_layout = new QVBoxLayout;
+    //this->ui->area1_contents->setLayout(my_layout);
+    //my_layout->addWidget(m_view_left.get());
+    ui->area1->setWidget(m_view_left.get());
   }
 
   {
-    assert(!this->ui->area2_contents->layout());
-    QGridLayout * const my_layout = new QGridLayout;
-    this->ui->area2_contents->setLayout(my_layout);
-    my_layout->addWidget(m_view_right.get(),1,0,1,1,Qt::AlignTop);
+    //assert(!this->ui->area2_contents->layout());
+    //QVBoxLayout * const my_layout = new QVBoxLayout;
+    //this->ui->area2_contents->setLayout(my_layout);
+    //my_layout->addWidget(m_view_right.get());
+    ui->area2->setWidget(m_view_right.get());
   }
 
   {
-    assert(!this->ui->area3_contents->layout());
-    QGridLayout * const my_layout = new QGridLayout;
-    this->ui->area3_contents->setLayout(my_layout);
-    my_layout->addWidget(m_dialog_left.get(),1,2);
+    //assert(!this->ui->area3_contents->layout());
+    //QGridLayout * const my_layout = new QGridLayout;
+    //this->ui->area3_contents->setLayout(my_layout);
+    //my_layout->addWidget(m_dialog_left.get(),1,2);
+    ui->area3->setWidget(m_dialog_left.get());
   }
 
   {
-    assert(!this->ui->area4_contents->layout());
-    QGridLayout * const my_layout = new QGridLayout;
-    this->ui->area4_contents->setLayout(my_layout);
-    my_layout->addWidget(m_dialog_right.get(),1,3);
+    //assert(!this->ui->area4_contents->layout());
+    //QGridLayout * const my_layout = new QGridLayout;
+    //this->ui->area4_contents->setLayout(my_layout);
+    //my_layout->addWidget(m_dialog_right.get(),1,3);
+    ui->area4->setWidget(m_dialog_right.get());
   }
 
 
-  m_view_left->setMinimumWidth(300);
-  m_view_right->setMinimumWidth(300);
-  m_view_left->setMinimumHeight(1000);
-  m_view_right->setMinimumHeight(1000);
-  //my_layout->addWidget(m_view_left.get(),1,0,1,1,Qt::AlignTop);
-  //my_layout->addWidget(m_view_right.get(),1,1,1,1,Qt::AlignTop);
-  //my_layout->addWidget(m_dialog_left.get(),1,2);
-  //my_layout->addWidget(m_dialog_right.get(),1,3);
-
+  //m_view_left->setMinimumWidth(300);
+  //m_view_right->setMinimumWidth(300);
+  //m_view_left->setMinimumHeight(1000);
+  //m_view_right->setMinimumHeight(1000);
 
 
   ui->box_test_index->setMinimum(0);
