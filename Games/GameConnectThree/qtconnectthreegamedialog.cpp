@@ -46,10 +46,11 @@ ribi::con3::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   : QtHideAndShowDialog(parent),
     m_signal_close{},
     ui(new Ui::QtConnectThreeGameDialog),
-    m_board(
+    m_board{
       new QtConnectThreeWidget(
         resources,
-        nullptr,is_player_human,16,8)),
+        nullptr,is_player_human,16,8),
+    },
     m_is_player_human(is_player_human),
     m_resources(resources)
 {
@@ -63,8 +64,9 @@ ribi::con3::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   {
     assert(!ui->widget->layout());
     QLayout * const mylayout = new QVBoxLayout;
-    mylayout->addWidget(m_board.get());
+    mylayout->addWidget(m_board);
     ui->widget->setLayout(mylayout);
+    m_board->setMinimumSize(100,100);
   }
 
   QObject::connect(ui->button_quit,&QPushButton::clicked,this,&ribi::con3::QtConnectThreeGameDialog::close);
@@ -81,6 +83,7 @@ ribi::con3::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
 
 ribi::con3::QtConnectThreeGameDialog::~QtConnectThreeGameDialog() noexcept
 {
+  delete m_board;
   delete ui;
 }
 

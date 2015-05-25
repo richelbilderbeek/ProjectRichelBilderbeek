@@ -661,6 +661,7 @@ void ribi::cmap::QtEditConceptMap::mousePressEvent(QMouseEvent *event)
 void ribi::cmap::QtEditConceptMap::OnEdgeKeyDownPressed(QtEdge* const edge, const int key)
 {
   assert(edge);
+  if (!edge) throw std::logic_error("ribi::cmap::QtEditConceptMap::OnEdgeKeyDownPressed: edge must be non-nullptr");
   if (key != Qt::Key_F2) return;
 }
 

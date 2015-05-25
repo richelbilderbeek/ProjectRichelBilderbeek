@@ -61,7 +61,7 @@ public slots:
 
 private:
   Ui::QtConnectThreeGameDialog *ui;
-  boost::shared_ptr<QtConnectThreeWidget> m_board;
+  QtConnectThreeWidget * const m_board;
   const std::bitset<3>& m_is_player_human;
 
   ///The filenames

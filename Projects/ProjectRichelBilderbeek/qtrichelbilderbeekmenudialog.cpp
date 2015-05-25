@@ -92,10 +92,10 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
   QtHideAndShowDialog(parent),
   ui(new Ui::QtRichelBilderbeekMenuDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
   //Set the style sheet using Qt Resources
   {
     this->setStyleSheet( "QDialog { background-image: url(:/images/RichelbilderbeekNlBackground.png);}");
@@ -244,11 +244,15 @@ void ribi::QtRichelBilderbeekMenuDialog::Test() noexcept
         const std::string progress
           = boost::lexical_cast<std::string>(static_cast<int>(type))
           + "/"
-          + boost::lexical_cast<std::string>(v.size());
+          + boost::lexical_cast<std::string>(v.size())
+          + ": " + ribi::ProgramTypes::ProgramTypeToEnumName(type)
+        ;
         TRACE(progress);
       }
-      const boost::shared_ptr<QDialog> d(
-        QtRichelBilderbeekProgram::CreateQtMenuDialog(type));
+      if (type == ProgramType::projectRichelBilderbeek) continue;
+      const auto d = QtRichelBilderbeekProgram::CreateQtMenuDialog(type);
+      assert(d || !d);
+      delete d;
     }
   }
 }

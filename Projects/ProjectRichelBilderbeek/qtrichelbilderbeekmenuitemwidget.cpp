@@ -39,13 +39,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QBrush>
 
-#include "rainbow.h"
-#include "richelbilderbeekprogram.h"
-#include "qtrichelbilderbeekprogram.h"
 #include "about.h"
 #include "qtaboutdialog.h"
-#include "richelbilderbeekprogramtypes.h"
+#include "qtrichelbilderbeekmenudialog.h"
 #include "qtrichelbilderbeekmenuitem.h"
+#include "qtrichelbilderbeekprogram.h"
+#include "rainbow.h"
+#include "richelbilderbeekprogram.h"
+#include "richelbilderbeekprogramtypes.h"
 
 #pragma GCC diagnostic pop
 
@@ -57,25 +58,35 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(
   assert(scene());
   scene()->clear();
 
-  const std::vector<ProgramType> program_types {
+  //All programs we have info of
+  const std::vector<ProgramType> all_program_types {
     ProgramTypes::GetAll()
   };
+
+  //All programs we can run
+  std::vector<ProgramType> program_types;
+  std::copy_if(
+    std::begin(all_program_types),
+    std::end(all_program_types),
+    std::back_inserter(program_types),
+      [](const ProgramType t) { return QtRichelBilderbeekProgram::CreateQtMenuDialog(t); }
+  );
+
   const int n_program_types = boost::numeric_cast<int>(program_types.size());
+
   const int n_cols = 6;
   const int n_rows = n_program_types / n_cols;
   for (int i = 0; i!=n_program_types; ++i)
   {
-
-
+    assert(i < boost::numeric_cast<int>(program_types.size()));
+    const auto program_type = program_types[i];
     const int col = i % n_cols;
     const int row = i / n_cols;
     const double x = -300.0 + (static_cast<double>(col) * 200.0);
     const double y = static_cast<double>(row-(n_rows/2)) * 22.0;
 
-    assert(i < boost::numeric_cast<int>(program_types.size()));
     const boost::shared_ptr<Program> p
-      = Program::CreateProgram(
-        program_types[i]);
+      = Program::CreateProgram(program_type);
 
     QtRichelBilderbeekMenuItem * const item = new QtRichelBilderbeekMenuItem(p->GetType());
     const double w = item->boundingRect().width();

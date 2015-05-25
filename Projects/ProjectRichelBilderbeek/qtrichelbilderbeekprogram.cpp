@@ -146,11 +146,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtvisualabcmenudialog.h"
 #include "richelbilderbeekprogram.h"
 
+#include "trace.h"
+#include "richelbilderbeekprogramtypes.h"
 
 #pragma GCC diagnostic pop
 
 ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const ProgramType type)
 {
+  TRACE(ribi::ProgramTypes::ProgramTypeToEnumName(type));
   QtHideAndShowDialog *  p = nullptr;
   switch (type)
   {
