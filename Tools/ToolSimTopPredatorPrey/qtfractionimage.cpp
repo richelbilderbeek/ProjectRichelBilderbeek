@@ -20,7 +20,8 @@ QtFractionImage::QtFractionImage(QWidget *parent) :
 void QtFractionImage::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
-  painter.drawPixmap(0,0,m_width,m_height,QPixmap::fromImage(m_image));
+  //painter.drawPixmap(0,0,m_width,m_height,QPixmap::fromImage(m_image));
+  painter.drawPixmap(0,0,this->width(),this->height(),QPixmap::fromImage(m_image));
 }
 
 void QtFractionImage::Set(const Grid& grid)
