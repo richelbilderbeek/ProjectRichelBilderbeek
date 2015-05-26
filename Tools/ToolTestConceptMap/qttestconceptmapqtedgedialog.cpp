@@ -35,6 +35,7 @@
 #include "qtconceptmapqtedgefactory.h"
 #include "qtconceptmapratestrategy.h"
 #include "qtimage.h"
+#include "qtdisplaypositem.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "testtimer.h"
@@ -68,6 +69,10 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
 
     my_scene->addItem(m_from.get()); //Remove in destructor
     my_scene->addItem(m_to.get()); //Remove in destructor
+
+    QtDisplayPosItem * const item{new QtDisplayPosItem};
+    item->setZValue(10000.0);
+    my_scene->addItem(item); //Displays the positions
   }
 
   ui->area1->setWidget(m_view_left.get());
@@ -211,9 +216,9 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
     assert( dialog.GetQtEdge()->GetQtNode()->GetText()[0] == "B");
   }
-  if (verbose) { TRACE("There is one item in the QGraphicsView"); }
+  if (verbose) { TRACE("There are items in the QGraphicsView"); }
   {
-    assert(dialog.m_view_left->items().size() == 3);
+    assert(dialog.m_view_left->items().size() >= 3);
   }
 
   if (verbose) { TRACE("X of QtTestQtEdgeDialog and QtEdge must match at creation"); }

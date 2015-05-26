@@ -92,11 +92,6 @@ ribi::cmap::QtEdge::QtEdge(
   );
 
   ///Fix red phase here?
-  /*
-  m_qtnode->m_signal_node_changed.connect(
-    boost::bind(&ribi::cmap::QtEdge::OnNodeChanged,this,boost::lambda::_1)
-  );
-  */
 
   m_qtnode->m_signal_pos_changed.connect(
     boost::bind(&ribi::cmap::QtEdge::OnNodePosChanged,this,boost::lambda::_1)
@@ -412,6 +407,7 @@ void ribi::cmap::QtEdge::OnNodePosChanged(QtRoundedRectItem * const node) noexce
 {
   this->m_qtnode->SetCenterX(node->x());
   this->m_qtnode->SetCenterY(node->y());
+  this->m_qtnode->update();
   this->update();
   m_signal_edge_changed(this);
 }
@@ -469,14 +465,28 @@ void ribi::cmap::QtEdge::OnRequestSceneUpdate()
 
 void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
-  //painter->translate(m_qtnode->GetCenterPos());
   if (m_arrow->isVisible())
   {
+    //Translate
+    painter->translate(m_qtnode->GetCenterPos());
+
+    //Paint
     m_arrow->paint(painter,option,widget);
+
+    //Untranslate
+    painter->translate(-m_qtnode->GetCenterPos());
   }
+
   if (m_qtnode->isVisible())
   {
+    //Translate
+    painter->translate(m_qtnode->GetCenterPos());
+
+    //Paint
     m_qtnode->paint(painter,option,widget);
+
+    //Untranslate
+    painter->translate(-m_qtnode->GetCenterPos());
   }
 
   const QPen pen{

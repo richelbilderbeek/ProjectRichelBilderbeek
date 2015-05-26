@@ -273,7 +273,7 @@ void ribi::cmap::QtEdge::Test() noexcept
   }
 
   //Center
-  if (verbose) { TRACE("If a QtEdge its Edge's head arrow is changed, a signal must be emitted by Edge"); }
+  if (verbose) { TRACE("If a QtEdge its center node is changed, a signal must be emitted by Edge"); }
   {
     Counter c{0}; //For receiving the signal
 
@@ -283,6 +283,20 @@ void ribi::cmap::QtEdge::Test() noexcept
     qtedge->GetQtNode()->SetCenterX( qtedge->GetQtNode()->GetCenterX() + 123.45);
     assert(c.Get() > 0);
   }
+
+  {
+    const double new_x{qtedge->GetQtNode()->GetCenterX() + 123.45};
+    qtedge->GetQtNode()->SetCenterX(new_x);
+    assert(qtedge->GetQtNode()->GetCenterX() == new_x);
+  }
+  {
+    const double new_y{qtedge->GetQtNode()->GetCenterY() + 123.45};
+    qtedge->GetQtNode()->SetCenterY(new_y);
+    assert(qtedge->GetQtNode()->GetCenterY() == new_y);
+  }
+  assert(qtedge->GetArrow()->GetMidItem() == qtedge->GetQtNode().get());
+  assert(!"Red phase done");
+
 }
 #endif
 
