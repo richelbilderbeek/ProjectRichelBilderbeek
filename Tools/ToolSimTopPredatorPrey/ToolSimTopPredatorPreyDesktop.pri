@@ -15,3 +15,6 @@ FORMS    += \
 
 OTHER_FILES += \
     Licence.txt
+
+RESOURCES += \
+    ToolSimTopPredatorPrey.qrc
