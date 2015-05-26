@@ -51,8 +51,8 @@ ribi::cmap::QtEdge::QtEdge(
     m_signal_edge_changed{},
     m_signal_focus_in_event{},
     m_signal_key_down_pressed{},
-    //m_arrow{new QtQuadBezierArrowItem(from.get(),edge->HasTailArrow(),this,edge->HasHeadArrow(),to.get())},
-    m_arrow{new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to)},
+    //m_arrow{new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to)},
+    m_arrow{nullptr}, //Will be initialized belo
     m_edge{}, //Will be initialized by setEdge
     m_from{from},
     m_qtnode{new QtNode(edge->GetNode())},
@@ -61,6 +61,18 @@ ribi::cmap::QtEdge::QtEdge(
   #ifndef NDEBUG
   Test();
   #endif
+
+  //const_cast because Arrow constant
+  //I just need to have an initialized m_qtnode
+  const_cast<Arrow&>(m_arrow).reset(
+    new QtQuadBezierArrowItem(
+    from,edge->HasTailArrow(),
+    this->GetQtNode().get(),
+    edge->HasHeadArrow(),
+    to
+    )
+  );
+
   assert(m_from);
   assert(m_to);
   assert(from != to);
@@ -90,8 +102,6 @@ ribi::cmap::QtEdge::QtEdge(
   m_arrow->m_signal_item_updated.connect(
     boost::bind(&ribi::cmap::QtEdge::OnArrowChanged,this,boost::lambda::_1)
   );
-
-  ///Fix red phase here?
 
   m_qtnode->m_signal_pos_changed.connect(
     boost::bind(&ribi::cmap::QtEdge::OnNodePosChanged,this,boost::lambda::_1)
@@ -468,13 +478,13 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
   if (m_arrow->isVisible())
   {
     //Translate
-    painter->translate(m_qtnode->GetCenterPos());
+    //painter->translate(m_qtnode->GetCenterPos());
 
     //Paint
     m_arrow->paint(painter,option,widget);
 
     //Untranslate
-    painter->translate(-m_qtnode->GetCenterPos());
+    //painter->translate(-m_qtnode->GetCenterPos());
   }
 
   if (m_qtnode->isVisible())

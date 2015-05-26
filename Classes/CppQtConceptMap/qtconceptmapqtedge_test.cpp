@@ -295,7 +295,7 @@ void ribi::cmap::QtEdge::Test() noexcept
     assert(qtedge->GetQtNode()->GetCenterY() == new_y);
   }
   assert(qtedge->GetArrow()->GetMidItem() == qtedge->GetQtNode().get());
-  assert(!"Red phase done");
+  //assert(!"Red phase done");
 
 }
 #endif
