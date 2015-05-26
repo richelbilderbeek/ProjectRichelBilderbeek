@@ -1,5 +1,5 @@
-#ifndef QTSTATEOBSERVERMAINDIALOG_H
-#define QTSTATEOBSERVERMAINDIALOG_H
+#ifndef QTSTOCHASTICITYINSPECTORMAINDIALOG_H
+#define QTSTOCHASTICITYINSPECTORMAINDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -10,29 +10,26 @@
 struct QwtPlotCurve;
 
 namespace Ui {
-  class QtStateObserverMainDialog;
+  class QtStochasticityInspectorMainDialog;
 }
 
 namespace ribi {
 
-class QtStateObserverMainDialog : public QtHideAndShowDialog
+class QtStochasticityInspectorMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtStateObserverMainDialog(QWidget *parent = 0) noexcept;
-  QtStateObserverMainDialog(const QtStateObserverMainDialog&) = delete;
-  QtStateObserverMainDialog& operator=(const QtStateObserverMainDialog&) = delete;
-  ~QtStateObserverMainDialog() noexcept;
+  explicit QtStochasticityInspectorMainDialog(QWidget *parent = 0) noexcept;
+  QtStochasticityInspectorMainDialog(const QtStochasticityInspectorMainDialog&) = delete;
+  QtStochasticityInspectorMainDialog& operator=(const QtStochasticityInspectorMainDialog&) = delete;
+  ~QtStochasticityInspectorMainDialog() noexcept;
   
 private slots:
-  void Run() noexcept;
-
-  void on_button_rerun_clicked() noexcept;
-
+  void OnAnyChange() noexcept;
 
 private:
-  Ui::QtStateObserverMainDialog *ui;
+  Ui::QtStochasticityInspectorMainDialog *ui;
 
   QwtPlotCurve * const m_curve_ou;
 
@@ -43,4 +40,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTSTATEOBSERVERMAINDIALOG_H
+#endif // QTSTOCHASTICITYINSPECTORMAINDIALOG_H

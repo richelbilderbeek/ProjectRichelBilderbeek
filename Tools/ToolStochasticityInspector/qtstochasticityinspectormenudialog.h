@@ -4,20 +4,20 @@
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtStateObserverMenuDialog;
+class QtStochasticityInspectorMenuDialog;
 }
 
 namespace ribi {
 
-class QtStateObserverMenuDialog : public QtHideAndShowDialog
+class QtStochasticityInspectorMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtStateObserverMenuDialog(QWidget *parent = 0) noexcept;
-  QtStateObserverMenuDialog(const QtStateObserverMenuDialog&) = delete;
-  QtStateObserverMenuDialog& operator=(const QtStateObserverMenuDialog&) = delete;
-  ~QtStateObserverMenuDialog() noexcept;
+  explicit QtStochasticityInspectorMenuDialog(QWidget *parent = 0) noexcept;
+  QtStochasticityInspectorMenuDialog(const QtStochasticityInspectorMenuDialog&) = delete;
+  QtStochasticityInspectorMenuDialog& operator=(const QtStochasticityInspectorMenuDialog&) = delete;
+  ~QtStochasticityInspectorMenuDialog() noexcept;
 
 private slots:
   void on_button_start_clicked() noexcept;
@@ -25,7 +25,7 @@ private slots:
   void on_button_quit_clicked() noexcept;
 
 private:
-  Ui::QtStateObserverMenuDialog *ui;
+  Ui::QtStochasticityInspectorMenuDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;

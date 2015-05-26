@@ -7,8 +7,8 @@
 
 //Warp's function parser
 #include "fparser.hh"
-
 #include "ribi_random.h"
+
 #pragma GCC diagnostic pop
 
 ribi::NoiseFunctionParser::NoiseFunctionParser(

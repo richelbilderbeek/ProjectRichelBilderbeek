@@ -10,6 +10,7 @@ include(../../Libraries/Qwt.pri)
 
 #Console
 include(../../Classes/CppStateObserver/CppStateObserver.pri)
+include(../../Classes/CppRibiRandom/CppRibiRandom.pri)
 
 #Desktop
 include(ToolStateObserverDesktop.pri)

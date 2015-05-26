@@ -98,6 +98,10 @@ ribi::cmap::QtEdge::QtEdge(
   );
   */
 
+  m_qtnode->m_signal_pos_changed.connect(
+    boost::bind(&ribi::cmap::QtEdge::OnNodePosChanged,this,boost::lambda::_1)
+  );
+
   //TODO: Is this a redundant connection? (i.e. a subset of what m_signal_node_changed covers)
   m_qtnode->m_signal_text_changed.connect(
     boost::bind(&ribi::cmap::QtEdge::OnTextChanged,this,boost::lambda::_1)
@@ -400,6 +404,14 @@ void ribi::cmap::QtEdge::OnNodeChanged(Edge * const edge) noexcept
   m_qtnode->SetCenterX(edge->GetNode()->GetX());
   m_qtnode->SetCenterY(edge->GetNode()->GetY());
   m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
+  this->update();
+  m_signal_edge_changed(this);
+}
+
+void ribi::cmap::QtEdge::OnNodePosChanged(QtRoundedRectItem * const node) noexcept
+{
+  this->m_qtnode->SetCenterX(node->x());
+  this->m_qtnode->SetCenterY(node->y());
   this->update();
   m_signal_edge_changed(this);
 }

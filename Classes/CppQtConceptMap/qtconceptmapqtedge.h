@@ -32,6 +32,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
+struct QtRoundedRectItem;
+
 namespace cmap {
 
 ///The QtEdge is a QtConceptMapElement that
@@ -134,8 +137,8 @@ private:
   void OnConceptChanged(Node * const node) noexcept;
   void OnFromChanged(Edge * const edge) noexcept;
   void OnHeadArrowChanged(Edge * const edge) noexcept;
-  //void OnNodeChanged(Node * const node) noexcept;
   void OnNodeChanged(Edge * const edge) noexcept;
+  void OnNodePosChanged(QtRoundedRectItem * const node) noexcept;
   void OnTailArrowChanged(Edge * const edge) noexcept;
   void OnTextChanged(QtRoundedEditRectItem* item) noexcept;
   void OnToChanged(Edge * const edge) noexcept;

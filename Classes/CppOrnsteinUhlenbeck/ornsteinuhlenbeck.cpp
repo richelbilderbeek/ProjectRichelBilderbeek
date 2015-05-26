@@ -134,7 +134,6 @@ void ribi::OrnsteinUhlenbeck::Test() noexcept
     };
   assert(ss.size() == ns.size());
 
-
   {
     ///Many thanks to Thijs van den Berg from sitmo.com
     ///to allow for this detailed test

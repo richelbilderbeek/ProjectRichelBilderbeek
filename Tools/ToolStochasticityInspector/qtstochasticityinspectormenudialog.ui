@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtStateObserverMenuDialog</class>
- <widget class="QDialog" name="QtStateObserverMenuDialog">
+ <class>QtStochasticityInspectorMenuDialog</class>
+ <widget class="QDialog" name="QtStochasticityInspectorMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>697</width>
-    <height>512</height>
+    <width>342</width>
+    <height>438</height>
    </rect>
   </property>
   <property name="font">
@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>StateObserver</string>
+   <string>StochasticityInspector</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
@@ -33,7 +33,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolStateObserver.qrc">:/images/ToolStateObserverWelcome.png</pixmap>
+      <pixmap resource="ToolStochasticityInspector.qrc">:/images/ToolStochasticityInspectorWelcome.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -64,7 +64,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
   </layout>
  </widget>
  <resources>
-  <include location="ToolStateObserver.qrc"/>
+  <include location="ToolStochasticityInspector.qrc"/>
  </resources>
  <connections/>
 </ui>

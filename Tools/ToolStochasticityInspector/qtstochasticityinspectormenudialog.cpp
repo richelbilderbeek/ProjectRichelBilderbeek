@@ -12,9 +12,9 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) noexcept :
+ribi::QtStochasticityInspectorMenuDialog::QtStochasticityInspectorMenuDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtStateObserverMenuDialog)
+  ui(new Ui::QtStochasticityInspectorMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -22,22 +22,22 @@ ribi::QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) noex
   ui->setupUi(this);
 }
 
-ribi::QtStateObserverMenuDialog::~QtStateObserverMenuDialog() noexcept
+ribi::QtStochasticityInspectorMenuDialog::~QtStochasticityInspectorMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtStateObserverMenuDialog::on_button_start_clicked() noexcept
+void ribi::QtStochasticityInspectorMenuDialog::on_button_start_clicked() noexcept
 {
-  QtStateObserverMainDialog d;
+  QtStochasticityInspectorMainDialog d;
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
   this->ShowChild(&d);
 }
 
-void ribi::QtStateObserverMenuDialog::on_button_about_clicked() noexcept
+void ribi::QtStochasticityInspectorMenuDialog::on_button_about_clicked() noexcept
 {
-  About a = StateObserverMenuDialog().GetAbout();
+  About a = StochasticityInspectorMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
@@ -45,13 +45,13 @@ void ribi::QtStateObserverMenuDialog::on_button_about_clicked() noexcept
   this->ShowChild(&d);
 }
 
-void ribi::QtStateObserverMenuDialog::on_button_quit_clicked() noexcept
+void ribi::QtStochasticityInspectorMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::QtStateObserverMenuDialog::Test() noexcept
+void ribi::QtStochasticityInspectorMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

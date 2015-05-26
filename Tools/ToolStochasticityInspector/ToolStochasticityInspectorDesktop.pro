@@ -16,4 +16,3 @@ include(../../Classes/CppPositiveNonZeroDouble/CppPositiveNonZeroDouble.pri)
 include(ToolStochasticityInspectorDesktop.pri)
 
 SOURCES += qtmain.cpp
-
