@@ -3,16 +3,17 @@ QMAKE_LFLAGS_DEBUG += -pg
 
 include(../../DesktopApplicationNoWeffcpp.pri)
 include(../../Libraries/Boost.pri)
-include(../../Libraries/FParser.pri)
+include(../../Libraries/Fparser.pri)
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 include(../../Libraries/Qwt.pri)
 
 #Console
-include(../../Classes/CppStateObserver/CppStateObserver.pri)
+include(../../Classes/CppOrnsteinUhlenbeck/CppOrnsteinUhlenbeck.pri)
+include(../../Classes/CppPositiveNonZeroDouble/CppPositiveNonZeroDouble.pri)
 
 #Desktop
-include(ToolStateObserverDesktop.pri)
+include(ToolStochasticityInspectorDesktop.pri)
 
 SOURCES += qtmain.cpp
 

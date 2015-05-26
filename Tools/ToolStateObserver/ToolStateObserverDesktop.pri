@@ -1,8 +1,5 @@
 include(../../Tools/ToolStateObserver/ToolStateObserverConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolStateObserver/ToolStateObserver.qrc
-
 FORMS += \
     ../../Tools/ToolStateObserver/qtstateobservermenudialog.ui \
     ../../Tools/ToolStateObserver/qtstateobservermaindialog.ui

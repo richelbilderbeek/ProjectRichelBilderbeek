@@ -1,6 +1,6 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qtstateobservermaindialog.h"
+#include "qtstochasticityinspectormaindialog.h"
 
 #include <cassert>
 #include <stdexcept>
@@ -18,12 +18,12 @@
 #include "integeralphafilter.h"
 #include "integersymmetricalphafilter.h"
 #include "multialphafilter.h"
-#include "multiintegerstateobserver.h"
+#include "multiintegerstochasticityinspector.h"
 #include "noisefunctionparser.h"
 #include "slidingmodeobserver.h"
 #include "testtimer.h"
 #include "trace.h"
-#include "ui_qtstateobservermaindialog.h"
+#include "ui_qtstochasticityinspectormaindialog.h"
 
 #if QWT_VERSION >= 0x060100
 #include <qwt_point_data.h>

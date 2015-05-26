@@ -11,3 +11,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolStateObserver/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolStateObserver/ToolStateObserver.qrc

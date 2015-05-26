@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolStochasticityInspector/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolStochasticityInspector/ToolStochasticityInspector.qrc

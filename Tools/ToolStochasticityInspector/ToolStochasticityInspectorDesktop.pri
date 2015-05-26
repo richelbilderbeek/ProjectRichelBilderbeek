@@ -1,16 +1,14 @@
-include(../../Tools/ToolStateObserver/ToolStateObserverConsole.pri)
+include(../../Tools/ToolStochasticityInspector/ToolStochasticityInspectorConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolStateObserver/ToolStateObserver.qrc
 
 FORMS += \
-    ../../Tools/ToolStateObserver/qtstateobservermenudialog.ui \
-    ../../Tools/ToolStateObserver/qtstateobservermaindialog.ui
+    ../../Tools/ToolStochasticityInspector/qtstochasticityinspectormenudialog.ui \
+    ../../Tools/ToolStochasticityInspector/qtstochasticityinspectormaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolStateObserver/qtstateobservermenudialog.cpp \
-    ../../Tools/ToolStateObserver/qtstateobservermaindialog.cpp
+    ../../Tools/ToolStochasticityInspector/qtstochasticityinspectormenudialog.cpp \
+    ../../Tools/ToolStochasticityInspector/qtstochasticityinspectormaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolStateObserver/qtstateobservermenudialog.h \
-    ../../Tools/ToolStateObserver/qtstateobservermaindialog.h
+    ../../Tools/ToolStochasticityInspector/qtstochasticityinspectormenudialog.h \
+    ../../Tools/ToolStochasticityInspector/qtstochasticityinspectormaindialog.h

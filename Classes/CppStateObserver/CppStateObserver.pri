@@ -26,4 +26,3 @@ HEADERS  += \
 
 OTHER_FILES += \
     ../../Classes/CppStateObserver/Licence.txt
-

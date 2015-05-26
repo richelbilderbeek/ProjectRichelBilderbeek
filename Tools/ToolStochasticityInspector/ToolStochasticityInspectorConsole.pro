@@ -4,6 +4,7 @@ include(../../Libraries/GeneralConsole.pri)
 
 #Console
 include(../../Classes/CppOrnsteinUhlenbeck/CppOrnsteinUhlenbeck.pri)
+include(../../Classes/CppPositiveNonZeroDouble/CppPositiveNonZeroDouble.pri)
 
 #Desktop
 include(ToolStochasticityInspectorConsole.pri)

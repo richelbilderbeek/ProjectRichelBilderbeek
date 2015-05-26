@@ -1,14 +1,14 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qtstateobservermenudialog.h"
+#include "qtstochasticityinspectormenudialog.h"
 
 #include "qtaboutdialog.h"
-#include "qtstateobservermaindialog.h"
+#include "qtstochasticityinspectormaindialog.h"
 #include "qthideandshowdialog.h"
-#include "stateobservermenudialog.h"
+#include "stochasticityinspectormenudialog.h"
 #include "testtimer.h"
 #include "trace.h"
-#include "ui_qtstateobservermenudialog.h"
+#include "ui_qtstochasticityinspectormenudialog.h"
 
 #pragma GCC diagnostic pop
 
