@@ -29,7 +29,9 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtStochasticityInspectorMainDialog),
-    m_curve_ou(new QwtPlotCurve("Ornstein-Uhlenbeck"))
+    m_curve_ou(new QwtPlotCurve("Ornstein-Uhlenbeck")),
+    m_ts{},
+    m_xs{}
 {
   #ifndef NDEBUG
   Test();
@@ -75,6 +77,10 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   QObject::connect(ui->box_sigma,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_seed,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
 
+  QObject::connect(ui->box_cand_lambda,SIGNAL(valueChanged(double)),this,SLOT(OnCalculateLikelihood()));
+  QObject::connect(ui->box_cand_mu,SIGNAL(valueChanged(double)),this,SLOT(OnCalculateLikelihood()));
+  QObject::connect(ui->box_cand_sigma,SIGNAL(valueChanged(double)),this,SLOT(OnCalculateLikelihood()));
+
   {
     //Put the dialog in the screen center
     const QRect screen = QApplication::desktop()->screenGeometry();
@@ -113,25 +119,60 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChange() noexcept
   OrnsteinUhlenbeck sim(lambda,mu,sigma,seed);
 
   double x = init_x;
-  std::vector<double> xs;
-  std::vector<double> timeseries;
+  m_ts.clear();
+  m_xs.clear();
 
   for (double t=0.0; t<t_end; t+=dt)
   {
-    xs.push_back(x);
-    timeseries.push_back(t);
+    m_xs.push_back(x);
+    m_ts.push_back(t);
     x = sim.CalcNext(x,dt);
   }
 
 
   //Plot
   #if (QWT_VERSION >= 0x060000)
-  m_curve_ou->setData(new QwtPointArrayData(&timeseries[0],&xs[0],xs.size()));
+  m_curve_ou->setData(new QwtPointArrayData(&m_ts[0],&m_xs[0],m_xs.size()));
   #else
   m_curve_ou->setData(&timeseries[0],&inputs[0],inputs.size());
   #endif
 
   ui->plot->replot();
+
+  OnCalculateLikelihood();
+
+
+  //Recover the parameters with Ornstein-Uhlenbeck
+  {
+    double lambda_hat = 0.0;
+    double mu_hat = 0.0;
+    double sigma_hat = 0.0;
+    OrnsteinUhlenbeck::CalcMaxLikelihood(m_xs,dt,lambda_hat,mu_hat,sigma_hat);
+    ui->edit_lambda_hat->setText(std::to_string(lambda_hat).c_str());
+    ui->edit_mu_hat->setText(std::to_string(mu_hat).c_str());
+    ui->edit_sigma_hat->setText(std::to_string(sigma_hat).c_str());
+    const double max_log_likelihood{
+      OrnsteinUhlenbeck::CalcLogLikelihood(m_xs,dt,lambda_hat,mu_hat,sigma_hat)
+    };
+    ui->edit_max_log_likelihood->setText(std::to_string(max_log_likelihood).c_str());
+  }
+}
+
+void ribi::QtStochasticityInspectorMainDialog::OnCalculateLikelihood() noexcept
+{
+  const double dt{ui->box_dt->value()};
+  const double cand_lambda{ui->box_cand_lambda->value()};
+  const double cand_mu{ui->box_cand_mu->value()};
+  const double cand_sigma{ui->box_cand_sigma->value()};
+
+  if (dt <= 0.0) return;
+  if (m_xs.size() <= 2) return;
+  if (cand_lambda <= 0.0) return;
+
+  const double log_likelihood{
+    OrnsteinUhlenbeck::CalcLogLikelihood(m_xs,dt,cand_lambda,cand_mu,cand_sigma)
+  };
+  ui->edit_log_likelihood->setText(std::to_string(log_likelihood).c_str());
 }
 
 #ifndef NDEBUG

@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/images">
         <file>ToolStochasticityInspectorWelcome.png</file>
+        <file>ToolStochasticityInspectorGeorgeEugeneUhlenbeck.jpg</file>
+        <file>ToolStochasticityInspectorGeorgeEugeneUhlenbeckKramersGoudsmit.jpg</file>
+        <file>ToolStochasticityInspectorGeorgeEugeneUhlenbeckSmall.jpg</file>
+        <file>ToolStochasticityInspectorLeonardOrnstein.jpg</file>
+        <file>ToolStochasticityInspectorLeonardOrnsteinSmall.jpg</file>
     </qresource>
 </RCC>

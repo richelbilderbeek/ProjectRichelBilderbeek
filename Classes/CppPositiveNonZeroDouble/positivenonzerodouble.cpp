@@ -1,5 +1,6 @@
 #include "positivenonzerodouble.h"
 
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -16,3 +17,8 @@ PositiveNonZeroDouble::PositiveNonZeroDouble(const double x)
 
 }
 
+std::ostream& operator<<(std::ostream& os, const PositiveNonZeroDouble d)
+{
+  os << d.Get();
+  return os;
+}

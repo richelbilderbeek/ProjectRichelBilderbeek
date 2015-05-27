@@ -27,11 +27,18 @@ public:
   
 private slots:
   void OnAnyChange() noexcept;
+  void OnCalculateLikelihood() noexcept;
 
 private:
   Ui::QtStochasticityInspectorMainDialog *ui;
 
   QwtPlotCurve * const m_curve_ou;
+
+  ///Timepoints
+  std::vector<double> m_ts;
+
+  ///Values measured
+  std::vector<double> m_xs;
 
   #ifndef NDEBUG
   static void Test() noexcept;
