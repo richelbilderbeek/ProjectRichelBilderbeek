@@ -251,15 +251,13 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtNode::GetNode() noexcept
   return p;
 }
 
-/*
-void ribi::cmap::QtNode::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
+void ribi::cmap::QtNode::hoverMoveEvent(QGraphicsSceneHoverEvent*) noexcept
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
   //m_concept_item->hoverMoveEvent(e);
   //Won't cause a hover, because the concept item
   //is not visible??
 }
-*/
 
 
 void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event) noexcept

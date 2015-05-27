@@ -1,20 +1,21 @@
+include(../../Tools/ToolSimTopPredatorPrey/ToolSimTopPredatorPreyConsole.pri)
 
 SOURCES += \
-    qtsimtoppredatorpraymaindialog.cpp \
-    qtsimpredatorpraymaindialog.cpp \
-    qtfractionimage.cpp
+    ../../Tools/ToolSimTopPredatorPrey/qtsimtoppredatorpreymaindialog.cpp \
+    ../../Tools/ToolSimTopPredatorPrey/qtsimpredatorpreymaindialog.cpp \
+    ../../Tools/ToolSimTopPredatorPrey/qtfractionimage.cpp \
+    ../../Tools/ToolSimTopPredatorPrey/qtsimtoppredatorpreyparameterswidget.cpp \
+    ../../Tools/ToolSimTopPredatorPrey/qtsimtoppredatorpreymenudialog.cpp
 
 HEADERS  +=  \
-    qtsimtoppredatorpraymaindialog.h \
-    qtsimpredatorpraymaindialog.h \
-    qtfractionimage.h
+    ../../Tools/ToolSimTopPredatorPrey/qtsimtoppredatorpreymaindialog.h \
+    ../../Tools/ToolSimTopPredatorPrey/qtsimpredatorpreymaindialog.h \
+    ../../Tools/ToolSimTopPredatorPrey/qtfractionimage.h \
+    ../../Tools/ToolSimTopPredatorPrey/qtsimtoppredatorpreyparameterswidget.h \
+    ../../Tools/ToolSimTopPredatorPrey/qtsimtoppredatorpreymenudialog.h
 
 FORMS    += \
-    qtsimtoppredatorpraymaindialog.ui \
-    qtsimpredatorpraymaindialog.ui
-
-OTHER_FILES += \
-    Licence.txt
-
-RESOURCES += \
-    ToolSimTopPredatorPrey.qrc
+    ../../Tools/ToolSimTopPredatorPrey/qtsimtoppredatorpreymaindialog.ui \
+    ../../Tools/ToolSimTopPredatorPrey/qtsimpredatorpreymaindialog.ui \
+    ../../Tools/ToolSimTopPredatorPrey/qtsimtoppredatorpreyparameterswidget.ui \
+    ../../Tools/ToolSimTopPredatorPrey/qtsimtoppredatorpreymenudialog.ui

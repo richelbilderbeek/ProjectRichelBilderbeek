@@ -5,7 +5,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
@@ -13,15 +13,18 @@ namespace Ui {
 }
 
 struct QtFractionImage;
+struct QtSimTopPredatorPreyParametersWidget;
 
 namespace ribi {
 
-class QtSimPredatorPrayMainDialog : public QDialog
+class QtSimPredatorPrayMainDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  typedef std::vector<std::vector<double>> Grid;
+  using ParametersWidget = QtSimTopPredatorPreyParametersWidget;
+  using Grid = std::vector<std::vector<double>>;
+
   explicit QtSimPredatorPrayMainDialog(QWidget *parent = 0);
   QtSimPredatorPrayMainDialog(const QtSimPredatorPrayMainDialog&) = delete;
   QtSimPredatorPrayMainDialog& operator=(const QtSimPredatorPrayMainDialog&) = delete;
@@ -29,6 +32,7 @@ public:
 
 private:
   Ui::QtSimPredatorPrayMainDialog *ui;
+  ParametersWidget * const m_widget_parameters;
   QtFractionImage * const m_widget_prey;
   QtFractionImage * const m_widget_pred;
   Grid m_grid_prey;

@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtsimpredatorpraymaindialog.h"
+#include "qtsimpredatorpreymaindialog.h"
 
 #include <cassert>
 #include <QHBoxLayout>
@@ -12,12 +12,14 @@
 #include "qtfractionimage.h"
 #include "ribi_random.h"
 #include "testtimer.h"
-#include "ui_qtsimpredatorpraymaindialog.h"
+#include "qtsimtoppredatorpreyparameterswidget.h"
+#include "ui_qtsimpredatorpreymaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent)
- :  QDialog(parent),
+ :  ribi::QtHideAndShowDialog(parent),
     ui(new Ui::QtSimPredatorPrayMainDialog),
+    m_widget_parameters{new QtSimTopPredatorPreyParametersWidget},
     m_widget_prey{new QtFractionImage},
     m_widget_pred{new QtFractionImage},
     m_grid_prey{CreateGrid()},
@@ -32,15 +34,26 @@ ribi::QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent)
     24 + (3 * QtFractionImage::GetWidth()),
     16 + QtFractionImage::GetHeight()
   );
-  assert(!this->layout());
-  QLayout * const layout = new QHBoxLayout;
-  this->setLayout(layout);
-  layout->addWidget(m_widget_prey);
-  layout->addWidget(m_widget_pred);
+
+  {
+    assert(!ui->widget_parameters->layout());
+    QLayout * const layout = new QHBoxLayout;
+    ui->widget_parameters->setLayout(layout);
+    layout->addWidget(m_widget_parameters);
+  }
+  {
+
+    assert(!ui->widget_right->layout());
+    QLayout * const layout = new QHBoxLayout;
+    ui->widget_right->setLayout(layout);
+    layout->addWidget(m_widget_prey);
+    layout->addWidget(m_widget_pred);
+  }
 
   //Put dialog at screen center
   {
     const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,screen.width() * 9 / 10,screen.height() * 9 / 10);
     this->move( screen.center() - this->rect().center() );
   }
   //Initialize the grids

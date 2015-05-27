@@ -95,6 +95,7 @@ protected:
   void focusInEvent(QFocusEvent *event) noexcept final override;
   void focusOutEvent(QFocusEvent *event) noexcept final override;
   void keyPressEvent(QKeyEvent *event) noexcept final;
+  void hoverMoveEvent(QGraphicsSceneHoverEvent *event) noexcept final;
 
   //const boost::shared_ptr<QtConceptMapItem>& GetConceptItem() { return m_concept_item; }
 

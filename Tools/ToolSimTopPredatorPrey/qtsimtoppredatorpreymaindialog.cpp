@@ -2,20 +2,22 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtsimtoppredatorpraymaindialog.h"
+#include "qtsimtoppredatorpreymaindialog.h"
+#include "qtsimtoppredatorpreyparameterswidget.h"
 
 #include <cassert>
 #include <QHBoxLayout>
 #include <QDesktopWidget>
 #include <QTimer>
-#include "ui_qtsimtoppredatorpraymaindialog.h"
+#include "ui_qtsimtoppredatorpreymaindialog.h"
 
 #include "qtfractionimage.h"
 #pragma GCC diagnostic pop
 
 QtSimTopPredatorPrayMainDialog::QtSimTopPredatorPrayMainDialog(QWidget *parent) :
-    QDialog(parent),
+    ribi::QtHideAndShowDialog(parent),
     ui(new Ui::QtSimTopPredatorPrayMainDialog),
+    m_widget_parameters{new QtSimTopPredatorPreyParametersWidget},
     m_widget_prey{new QtFractionImage},
     m_widget_pred{new QtFractionImage},
     m_widget_top{new QtFractionImage},
@@ -31,6 +33,12 @@ QtSimTopPredatorPrayMainDialog::QtSimTopPredatorPrayMainDialog(QWidget *parent) 
   );
 
   {
+    assert(!ui->widget_parameters->layout());
+    QLayout * const layout = new QHBoxLayout;
+    ui->widget_parameters->setLayout(layout);
+    layout->addWidget(m_widget_parameters);
+  }
+  {
     assert(!ui->widget_right->layout());
     QLayout * const layout = new QHBoxLayout;
     ui->widget_right->setLayout(layout);
@@ -40,14 +48,8 @@ QtSimTopPredatorPrayMainDialog::QtSimTopPredatorPrayMainDialog(QWidget *parent) 
   }
 
 
-  QObject::connect(ui->box_diffusion,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_f_pred,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_f_prey,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_f_top,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_conv_pred_to_top,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_conv_prey_to_pred,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_hunt_eff_pred,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_hunt_eff_top,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+
+  QObject::connect(m_widget_parameters,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 
   OnAnyChange();
 
@@ -73,11 +75,14 @@ QtSimTopPredatorPrayMainDialog::~QtSimTopPredatorPrayMainDialog()
   delete ui;
 }
 
-QtSimTopPredatorPrayMainDialog::Grid QtSimTopPredatorPrayMainDialog::CreateDiffusion(const Grid& grid) noexcept
+QtSimTopPredatorPrayMainDialog::Grid QtSimTopPredatorPrayMainDialog::CreateDiffusion(
+  const Grid& grid,
+  const double diffusion_coefficient
+) noexcept
 {
   const int w{QtFractionImage::GetWidth()};
   const int h{QtFractionImage::GetHeight()};
-  const double diff{ui->box_diffusion->value()};
+  const double diff{diffusion_coefficient};
   Grid diffusion{CreateGrid()};
   for (int y{0}; y!=h; ++y)
   {
@@ -131,9 +136,9 @@ void QtSimTopPredatorPrayMainDialog::OnAnyChange() noexcept
 {
   //Initialize the grids
   {
-    const double f_top{ ui->box_f_top->value()};
-    const double f_pred{ui->box_f_pred->value()};
-    const double f_prey{ui->box_f_prey->value()};
+    const double f_top{m_widget_parameters->GetFractionTop()};
+    const double f_pred{m_widget_parameters->GetFractionPred()};
+    const double f_prey{m_widget_parameters->GetFractionPrey()};
     const int w{QtFractionImage::GetWidth()};
     const int h{QtFractionImage::GetHeight()};
     for (int y{0}; y!=h; ++y)
@@ -152,10 +157,12 @@ void QtSimTopPredatorPrayMainDialog::OnTimer() noexcept
 {
   const int w{QtFractionImage::GetWidth()};
   const int h{QtFractionImage::GetHeight()};
-
-  const Grid prey_diffuse{CreateDiffusion(m_grid_prey)};
-  const Grid pred_diffuse{CreateDiffusion(m_grid_pred)};
-  const Grid top_diffuse{CreateDiffusion(m_grid_top)};
+  const double diffusion_pred{m_widget_parameters->GetDiffusionPred()};
+  const double diffusion_prey{m_widget_parameters->GetDiffusionPrey()};
+  const double diffusion_top{m_widget_parameters->GetDiffusionTop()};
+  const Grid pred_diffuse{CreateDiffusion(m_grid_pred,diffusion_pred)};
+  const Grid prey_diffuse{CreateDiffusion(m_grid_prey,diffusion_prey)};
+  const Grid top_diffuse{CreateDiffusion(m_grid_top,diffusion_top)};
 
   //Top-Pred-Prey interaction
   for (int y{0}; y!=h; ++y)
@@ -168,10 +175,10 @@ void QtSimTopPredatorPrayMainDialog::OnTimer() noexcept
     }
   }
 
-  const double hunt_eff_eff_pred{ui->box_hunt_eff_pred->value()};
-  const double hunt_eff_top{ui->box_hunt_eff_top->value()};
-  const double conv_pred_to_top{ui->box_conv_pred_to_top->value()};
-  const double conv_prey_to_pred{ui->box_conv_prey_to_pred->value()};
+  const double hunt_eff_eff_pred{m_widget_parameters->GetHuntEffPred()};
+  const double hunt_eff_top{m_widget_parameters->GetHuntEffTop()};
+  const double conv_pred_to_top{m_widget_parameters->GetConvPredToTop()};
+  const double conv_prey_to_pred{m_widget_parameters->GetConvPreyToPred()};
 
   Grid prey_interact{CreateGrid()};
   Grid pred_interact{CreateGrid()};

@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lambda/lambda.hpp>
 
+#include <QCursor>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsScene>
 #include <QKeyEvent>
@@ -62,6 +63,9 @@ ribi::cmap::QtEdge::QtEdge(
   Test();
   #endif
 
+  //Allow mouse tracking
+  this->setAcceptHoverEvents(true);
+
   //const_cast because Arrow constant
   //I just need to have an initialized m_qtnode
   const_cast<Arrow&>(m_arrow).reset(
@@ -71,6 +75,11 @@ ribi::cmap::QtEdge::QtEdge(
     edge->HasHeadArrow(),
     to
     )
+  );
+  GetQtNode()->setFlags(
+      QGraphicsItem::ItemIsFocusable
+    | QGraphicsItem::ItemIsMovable
+    | QGraphicsItem::ItemIsSelectable
   );
 
   assert(m_from);
@@ -92,6 +101,8 @@ ribi::cmap::QtEdge::QtEdge(
   assert(m_arrow);
 
   this->setAcceptHoverEvents(true);
+
+  //Not setting this causes the center node to be immovable
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
@@ -261,23 +272,26 @@ std::vector<std::string> ribi::cmap::QtEdge::GetVersionHistory() noexcept
   };
 }
 
-/*
+
 void ribi::cmap::QtEdge::dragEnterEvent(QGraphicsSceneDragDropEvent *) noexcept
 {
-  //update();
+  TRACE_FUNC();
+  update();
 }
 
 void ribi::cmap::QtEdge::dragLeaveEvent(QGraphicsSceneDragDropEvent *) noexcept
 {
-  //update();
+  TRACE_FUNC();
+  update();
 }
 
 void ribi::cmap::QtEdge::dragMoveEvent(QGraphicsSceneDragDropEvent *) noexcept
 {
+  TRACE_FUNC();
   //if (scene()) { scene()->update(); }
-  //update();
+  update();
 }
-*/
+
 void ribi::cmap::QtEdge::focusInEvent(QFocusEvent*) noexcept
 {
   m_signal_focus_in_event(this);
@@ -292,6 +306,11 @@ void ribi::cmap::QtEdge::focusOutEvent(QFocusEvent*) noexcept
   //m_display_strategy->SetContourPen(m_display_strategy->GetContourPen()); //Updates itself
 }
 */
+
+void ribi::cmap::QtEdge::hoverMoveEvent(QGraphicsSceneHoverEvent*) noexcept
+{
+  this->setCursor(QCursor(Qt::PointingHandCursor));
+}
 
 
 void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event) noexcept

@@ -110,7 +110,13 @@ struct QtEdge : public QGraphicsItem
   mutable boost::signals2::signal<void (QtEdge *,const int key)> m_signal_key_down_pressed;
 
 protected:
+
+  void dragEnterEvent(QGraphicsSceneDragDropEvent *) noexcept override final;
+  void dragLeaveEvent(QGraphicsSceneDragDropEvent *event) noexcept override final;
+  void dragMoveEvent(QGraphicsSceneDragDropEvent *event) noexcept override final;
+
   void focusInEvent(QFocusEvent *event) noexcept override final;
+  void hoverMoveEvent(QGraphicsSceneHoverEvent *event) noexcept override final;
   void keyPressEvent(QKeyEvent *event) noexcept override final;
   void mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept override final;
   void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept override final;
