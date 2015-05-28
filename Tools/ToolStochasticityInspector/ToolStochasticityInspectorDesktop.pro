@@ -13,6 +13,7 @@ include(../../Classes/CppOrnsteinUhlenbeck/CppOrnsteinUhlenbeck.pri)
 include(../../Classes/CppPositiveNonZeroDouble/CppPositiveNonZeroDouble.pri)
 
 #Desktop
+include(../../Classes/CppQtOrnsteinUhlenbeck/CppQtOrnsteinUhlenbeck.pri)
 include(ToolStochasticityInspectorDesktop.pri)
 
 SOURCES += qtmain.cpp

@@ -13,6 +13,8 @@ namespace Ui {
   class QtStochasticityInspectorMainDialog;
 }
 
+struct QtOrnsteinUhlenbeckParametersWidget;
+
 namespace ribi {
 
 class QtStochasticityInspectorMainDialog : public QtHideAndShowDialog
@@ -33,6 +35,7 @@ private:
   Ui::QtStochasticityInspectorMainDialog *ui;
 
   QwtPlotCurve * const m_curve_ou;
+  QtOrnsteinUhlenbeckParametersWidget * const m_ou_parameters_widget;
 
   ///Timepoints
   std::vector<double> m_ts;

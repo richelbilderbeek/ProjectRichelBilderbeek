@@ -17,6 +17,7 @@
 #include "ornsteinuhlenbeck.h"
 #include "testtimer.h"
 #include "trace.h"
+#include "qtornsteinuhlenbeckparameterswidget.h"
 #include "ui_qtstochasticityinspectormaindialog.h"
 
 #if QWT_VERSION >= 0x060100
@@ -30,6 +31,7 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtStochasticityInspectorMainDialog),
     m_curve_ou(new QwtPlotCurve("Ornstein-Uhlenbeck")),
+    m_ou_parameters_widget{new QtOrnsteinUhlenbeckParametersWidget},
     m_ts{},
     m_xs{}
 {
@@ -50,6 +52,14 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   m_curve_ou->setStyle(QwtPlotCurve::Lines);
   m_curve_ou->setPen(QPen(QColor(0,0,0)));
 
+  //Ornstein-Uhlenbeck widget
+  {
+    assert(!ui->page_ou->layout());
+    QGridLayout * const my_layout{new QGridLayout};
+    ui->page_ou->setLayout(my_layout);
+    my_layout->addWidget(m_ou_parameters_widget);
+  }
+
   //Add grid
   {
     QwtPlotGrid * const grid = new QwtPlotGrid;
@@ -63,23 +73,16 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   }
 
   //Add legend
+  if (!"Add legend")
   {
     QwtLegend * const legend = new QwtLegend;
     legend->setFrameStyle(QFrame::Box|QFrame::Sunken);
     ui->plot->insertLegend(legend, QwtPlot::RightLegend);
   }
 
-  QObject::connect(ui->box_dt,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_init_x,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_t_end,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_lambda,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_mu,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_sigma,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_seed,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(m_ou_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 
-  QObject::connect(ui->box_cand_lambda,SIGNAL(valueChanged(double)),this,SLOT(OnCalculateLikelihood()));
-  QObject::connect(ui->box_cand_mu,SIGNAL(valueChanged(double)),this,SLOT(OnCalculateLikelihood()));
-  QObject::connect(ui->box_cand_sigma,SIGNAL(valueChanged(double)),this,SLOT(OnCalculateLikelihood()));
+
 
   {
     //Put the dialog in the screen center
@@ -105,13 +108,13 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChange() noexcept
   m_curve_ou->setData(0,0,0);
   #endif
 
-  const double init_x{ui->box_init_x->value()};
-  const double dt{ui->box_dt->value()};
-  const double t_end{ui->box_t_end->value() + dt};
-  const double lambda{ui->box_lambda->value()};
-  const double mu{ui->box_mu->value()};
-  const double sigma{ui->box_sigma->value()};
-  const int seed{ui->box_seed->value()};
+  const double init_x{m_ou_parameters_widget->GetInitValue()};
+  const double dt{m_ou_parameters_widget->GetTimestep()};
+  const double t_end{m_ou_parameters_widget->GetEndTime() + dt};
+  const double lambda{m_ou_parameters_widget->GetLambda()};
+  const double mu{m_ou_parameters_widget->GetMu()};
+  const double sigma{m_ou_parameters_widget->GetSigma()};
+  const int seed{m_ou_parameters_widget->GetSeed()};
 
   if (dt <= 0.0) return;
   if (lambda <= 0.0) return;
@@ -160,19 +163,7 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChange() noexcept
 
 void ribi::QtStochasticityInspectorMainDialog::OnCalculateLikelihood() noexcept
 {
-  const double dt{ui->box_dt->value()};
-  const double cand_lambda{ui->box_cand_lambda->value()};
-  const double cand_mu{ui->box_cand_mu->value()};
-  const double cand_sigma{ui->box_cand_sigma->value()};
-
-  if (dt <= 0.0) return;
-  if (m_xs.size() <= 2) return;
-  if (cand_lambda <= 0.0) return;
-
-  const double log_likelihood{
-    OrnsteinUhlenbeck::CalcLogLikelihood(m_xs,dt,cand_lambda,cand_mu,cand_sigma)
-  };
-  ui->edit_log_likelihood->setText(std::to_string(log_likelihood).c_str());
+  m_ou_parameters_widget->CalcLikelihood(m_xs);
 }
 
 #ifndef NDEBUG
