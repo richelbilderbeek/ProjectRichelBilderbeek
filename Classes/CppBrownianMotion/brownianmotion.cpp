@@ -125,9 +125,13 @@ void ribi::BrownianMotion::Test() noexcept
     for (int i=0; i!=100; ++i)
     {
       x = b.CalcNext(x);
+      v.push_back(x);
     }
-
+    const double good_likelihood{BrownianMotion::CalcLogLikelihood(v,volatility)};
+    const double bad_likelihood{BrownianMotion::CalcLogLikelihood(v,volatility * 0.5)};
+    const double worse_likelihood{BrownianMotion::CalcLogLikelihood(v,volatility * 1.5)};
+    assert(good_likelihood > worse_likelihood);
+    assert(good_likelihood > bad_likelihood);
   }
-  //assert(!"Green");
 }
 #endif
