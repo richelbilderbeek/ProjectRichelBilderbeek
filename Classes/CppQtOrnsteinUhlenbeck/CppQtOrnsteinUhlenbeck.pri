@@ -6,13 +6,16 @@ OTHER_FILES += \
 
 FORMS += \
     ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbeckparameterswidget.ui \
-    ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbecklikelihoodwidget.ui
+    ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbecklikelihoodwidget.ui \
+    ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbeckmaxlikelihoodwidget.ui
 
 HEADERS += \
     ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbeckparameterswidget.h \
-    ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbecklikelihoodwidget.h
+    ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbecklikelihoodwidget.h \
+    ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbeckmaxlikelihoodwidget.h
 
 SOURCES += \
     ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbeckparameterswidget.cpp \
-    ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbecklikelihoodwidget.cpp
+    ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbecklikelihoodwidget.cpp \
+    ../../Classes/CppQtOrnsteinUhlenbeck/qtornsteinuhlenbeckmaxlikelihoodwidget.cpp
 

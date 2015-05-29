@@ -13,9 +13,12 @@ namespace Ui {
   class QtStochasticityInspectorMainDialog;
 }
 
-struct QtOrnsteinUhlenbeckParametersWidget;
-struct QtOrnsteinUhlenbeckLikelihoodWidget;
+struct QtBrownianMotionLikelihoodWidget;
+struct QtBrownianMotionMaxLikelihoodWidget;
 struct QtBrownianMotionParametersWidget;
+struct QtOrnsteinUhlenbeckLikelihoodWidget;
+struct QtOrnsteinUhlenbeckMaxLikelihoodWidget;
+struct QtOrnsteinUhlenbeckParametersWidget;
 
 namespace ribi {
 
@@ -37,10 +40,13 @@ private slots:
 private:
   Ui::QtStochasticityInspectorMainDialog *ui;
 
+  QtBrownianMotionLikelihoodWidget * const m_bm_likelihood_widget;
+  QtBrownianMotionMaxLikelihoodWidget * const m_bm_max_likelihood_widget;
   QtBrownianMotionParametersWidget * const m_bm_parameters_widget;
   QwtPlotCurve * const m_curve_bm;
   QwtPlotCurve * const m_curve_ou;
   QtOrnsteinUhlenbeckLikelihoodWidget * const m_ou_likelihood_widget;
+  QtOrnsteinUhlenbeckMaxLikelihoodWidget * const m_ou_max_likelihood_widget;
   QtOrnsteinUhlenbeckParametersWidget * const m_ou_parameters_widget;
 
   ///Timepoints

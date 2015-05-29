@@ -5,6 +5,7 @@
 #include <cassert>
 #include <stdexcept>
 
+#include <QLabel>
 #include <QDesktopWidget>
 
 #include <qwt_legend.h>
@@ -19,7 +20,10 @@
 #include "testtimer.h"
 #include "trace.h"
 #include "qtornsteinuhlenbecklikelihoodwidget.h"
+#include "qtornsteinuhlenbeckmaxlikelihoodwidget.h"
 #include "qtbrownianmotionparameterswidget.h"
+#include "qtbrownianmotionmaxlikelihoodwidget.h"
+#include "qtbrownianmotionlikelihoodwidget.h"
 #include "qtornsteinuhlenbeckparameterswidget.h"
 #include "ui_qtstochasticityinspectormaindialog.h"
 
@@ -33,10 +37,13 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtStochasticityInspectorMainDialog),
+    m_bm_likelihood_widget{new QtBrownianMotionLikelihoodWidget},
+    m_bm_max_likelihood_widget{new QtBrownianMotionMaxLikelihoodWidget},
     m_bm_parameters_widget{new QtBrownianMotionParametersWidget},
     m_curve_bm(new QwtPlotCurve("Brownian")),
     m_curve_ou(new QwtPlotCurve("Ornstein-Uhlenbeck")),
     m_ou_likelihood_widget{new QtOrnsteinUhlenbeckLikelihoodWidget},
+    m_ou_max_likelihood_widget{new QtOrnsteinUhlenbeckMaxLikelihoodWidget},
     m_ou_parameters_widget{new QtOrnsteinUhlenbeckParametersWidget},
     m_ts{},
     m_xs_bm{},
@@ -80,9 +87,21 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   //Ornstein-Uhlenbeck likelihood widget
   {
     assert(!ui->widget_likelihoods->layout());
-    QGridLayout * const my_layout{new QGridLayout};
+    QVBoxLayout * const my_layout{new QVBoxLayout};
     ui->widget_likelihoods->setLayout(my_layout);
+
+    my_layout->addWidget(new QLabel("Brownian motion"));
+    my_layout->addWidget(new QLabel("Likelihood"));
+    my_layout->addWidget(m_bm_likelihood_widget);
+    my_layout->addWidget(new QLabel("Max likelihood"));
+    my_layout->addWidget(m_bm_max_likelihood_widget);
+
+
+    my_layout->addWidget(new QLabel("Ornstein-Uhlenbeck"));
+    my_layout->addWidget(new QLabel("Likelihood"));
     my_layout->addWidget(m_ou_likelihood_widget);
+    my_layout->addWidget(new QLabel("Max likelihood"));
+    my_layout->addWidget(m_ou_max_likelihood_widget);
   }
 
   //Add grid
@@ -159,13 +178,9 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeBrownian() noexcept
 
   //Recover the parameters with Brownian-Motion
   {
-    double volatility_hat = 0.0;
-    BrownianMotion::CalcMaxLikelihood(m_xs_bm,volatility_hat);
-    ui->edit_sigma_hat->setText(std::to_string(volatility_hat).c_str());
-    const double max_log_likelihood{
-      BrownianMotion::CalcLogLikelihood(m_xs_bm,volatility_hat)
-    };
-    ui->edit_max_log_likelihood->setText(std::to_string(max_log_likelihood).c_str());
+    m_bm_max_likelihood_widget->CalcMaxLikelihood(
+      m_xs_bm
+    );
   }
 }
 
@@ -214,17 +229,9 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeOrnsteinUhlenbeck() no
 
   //Recover the parameters with Ornstein-Uhlenbeck
   {
-    double lambda_hat = 0.0;
-    double mu_hat = 0.0;
-    double sigma_hat = 0.0;
-    OrnsteinUhlenbeck::CalcMaxLikelihood(m_xs_ou,dt,lambda_hat,mu_hat,sigma_hat);
-    ui->edit_lambda_hat->setText(std::to_string(lambda_hat).c_str());
-    ui->edit_mu_hat->setText(std::to_string(mu_hat).c_str());
-    ui->edit_sigma_hat->setText(std::to_string(sigma_hat).c_str());
-    const double max_log_likelihood{
-      OrnsteinUhlenbeck::CalcLogLikelihood(m_xs_ou,dt,lambda_hat,mu_hat,sigma_hat)
-    };
-    ui->edit_max_log_likelihood->setText(std::to_string(max_log_likelihood).c_str());
+    m_ou_max_likelihood_widget->CalcMaxLikelihood(
+      m_xs_ou,dt
+    );
   }
 }
 
