@@ -49,36 +49,6 @@ double ribi::BrownianMotion::CalcLogLikelihood(
       )
   };
   return log_likelihood;
-
-  /*
-  const double cand_var{
-    std::pow(cand_volatility,2.0) * ((1.0 - std::exp(-2.0 * dt)) / 2.0)
-  };
-  #ifndef NDEBUG
-  if (cand_var <= 0.0) std::cerr << cand_var << std::endl;
-  #endif
-  assert(cand_var > 0.0);
-
-  const double sum{
-    std::inner_product(
-      std::begin(v)+1,
-      std::end(v),
-      std::begin(v),
-      0.0,
-      std::plus<double>(),
-      [dt](const int a, const double b)
-      {
-        return a - (b * std::exp(-dt));
-      }
-    )
-  };
-  const double log_likelihood{
-    - ((n/2.0)*std::log(boost::math::constants::two_pi<double>()))
-    - (n*std::log(cand_var))
-    - ((1.0/(2.0*cand_var))*sum)
-  };
-  return log_likelihood;
-  */
 }
 
 void ribi::BrownianMotion::CalcMaxLikelihood(
@@ -86,7 +56,21 @@ void ribi::BrownianMotion::CalcMaxLikelihood(
   double& volatility_hat
 )
 {
-  volatility_hat = 0.0 * v.size();
+  const double n{static_cast<double>(v.size())};
+
+  volatility_hat
+    = std::inner_product(
+        std::begin(v)+1,
+        std::end(v),
+        std::begin(v),
+        0.0,
+        std::plus<double>(),
+        [](const int a, const double b)
+        {
+          return std::pow(a - b,2.0);
+        }
+      )
+    / n;
 }
 
 double ribi::BrownianMotion::CalcNext(const double x)
@@ -127,11 +111,17 @@ void ribi::BrownianMotion::Test() noexcept
       x = b.CalcNext(x);
       v.push_back(x);
     }
+    //Are the likelihoods best at the true volatility?
     const double good_likelihood{BrownianMotion::CalcLogLikelihood(v,volatility)};
     const double bad_likelihood{BrownianMotion::CalcLogLikelihood(v,volatility * 0.5)};
     const double worse_likelihood{BrownianMotion::CalcLogLikelihood(v,volatility * 1.5)};
     assert(good_likelihood > worse_likelihood);
     assert(good_likelihood > bad_likelihood);
+    //Is the max likelihood truly the max likelihood?
+    double volatility_hat{0.0};
+    BrownianMotion::CalcMaxLikelihood(v,volatility_hat);
+    const double max_likelihood{BrownianMotion::CalcLogLikelihood(v,volatility_hat)};
+    assert(max_likelihood > good_likelihood);
   }
 }
 #endif
