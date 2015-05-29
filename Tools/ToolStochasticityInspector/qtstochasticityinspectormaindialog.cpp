@@ -18,6 +18,7 @@
 #include "ornsteinuhlenbeck.h"
 #include "testtimer.h"
 #include "trace.h"
+#include "qtornsteinuhlenbecklikelihoodwidget.h"
 #include "qtbrownianmotionparameterswidget.h"
 #include "qtornsteinuhlenbeckparameterswidget.h"
 #include "ui_qtstochasticityinspectormaindialog.h"
@@ -35,6 +36,7 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
     m_bm_parameters_widget{new QtBrownianMotionParametersWidget},
     m_curve_bm(new QwtPlotCurve("Brownian")),
     m_curve_ou(new QwtPlotCurve("Ornstein-Uhlenbeck")),
+    m_ou_likelihood_widget{new QtOrnsteinUhlenbeckLikelihoodWidget},
     m_ou_parameters_widget{new QtOrnsteinUhlenbeckParametersWidget},
     m_ts{},
     m_xs_bm{},
@@ -75,6 +77,13 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
     ui->page_ou->setLayout(my_layout);
     my_layout->addWidget(m_ou_parameters_widget);
   }
+  //Ornstein-Uhlenbeck likelihood widget
+  {
+    assert(!ui->widget_likelihoods->layout());
+    QGridLayout * const my_layout{new QGridLayout};
+    ui->widget_likelihoods->setLayout(my_layout);
+    my_layout->addWidget(m_ou_likelihood_widget);
+  }
 
   //Add grid
   {
@@ -83,13 +92,11 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
     grid->attach(ui->plot);
 
   }
-  //Add zoomer
+  if (!"Add zoomer")
   {
     new QwtPlotZoomer(ui->plot->canvas());
   }
-
-  //Add legend
-  if ("Add legend")
+  if (!"Add legend")
   {
     QwtLegend * const legend = new QwtLegend;
     legend->setFrameStyle(QFrame::Box|QFrame::Sunken);
@@ -97,6 +104,7 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   }
 
   QObject::connect(m_bm_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChangeBrownian()));
+  QObject::connect(m_ou_likelihood_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnCalculateLikelihood()));
   QObject::connect(m_ou_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChangeOrnsteinUhlenbeck()));
 
   {
@@ -223,7 +231,10 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeOrnsteinUhlenbeck() no
 void ribi::QtStochasticityInspectorMainDialog::OnCalculateLikelihood() noexcept
 {
   m_bm_parameters_widget->CalcLikelihood(m_xs_bm);
-  m_ou_parameters_widget->CalcLikelihood(m_xs_ou);
+  m_ou_likelihood_widget->CalcLikelihood(
+    m_xs_ou,
+    m_ou_parameters_widget->GetTimestep()
+  );
 }
 
 #ifndef NDEBUG

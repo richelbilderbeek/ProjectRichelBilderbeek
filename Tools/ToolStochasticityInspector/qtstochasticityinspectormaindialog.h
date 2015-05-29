@@ -14,6 +14,7 @@ namespace Ui {
 }
 
 struct QtOrnsteinUhlenbeckParametersWidget;
+struct QtOrnsteinUhlenbeckLikelihoodWidget;
 struct QtBrownianMotionParametersWidget;
 
 namespace ribi {
@@ -39,6 +40,7 @@ private:
   QtBrownianMotionParametersWidget * const m_bm_parameters_widget;
   QwtPlotCurve * const m_curve_bm;
   QwtPlotCurve * const m_curve_ou;
+  QtOrnsteinUhlenbeckLikelihoodWidget * const m_ou_likelihood_widget;
   QtOrnsteinUhlenbeckParametersWidget * const m_ou_parameters_widget;
 
   ///Timepoints
