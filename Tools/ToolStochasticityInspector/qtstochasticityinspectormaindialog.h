@@ -43,8 +43,7 @@ private:
   QtBrownianMotionLikelihoodWidget * const m_bm_likelihood_widget;
   QtBrownianMotionMaxLikelihoodWidget * const m_bm_max_likelihood_widget;
   QtBrownianMotionParametersWidget * const m_bm_parameters_widget;
-  QwtPlotCurve * const m_curve_bm;
-  QwtPlotCurve * const m_curve_ou;
+  QwtPlotCurve * const m_curve;
   QtOrnsteinUhlenbeckLikelihoodWidget * const m_ou_likelihood_widget;
   QtOrnsteinUhlenbeckMaxLikelihoodWidget * const m_ou_max_likelihood_widget;
   QtOrnsteinUhlenbeckParametersWidget * const m_ou_parameters_widget;
@@ -53,8 +52,7 @@ private:
   std::vector<double> m_ts;
 
   ///Values measured in OU
-  std::vector<double> m_xs_bm;
-  std::vector<double> m_xs_ou;
+  std::vector<double> m_xs;
 
   #ifndef NDEBUG
   static void Test() noexcept;
