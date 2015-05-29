@@ -140,41 +140,38 @@ void ribi::OrnsteinUhlenbeck::CalcMaxLikelihood(
     ;
   }
 
-  const double mu{
-    ((sy * sxx) - (sx * sxy))
+  target_mean_hat
+    =  ((sy * sxx) - (sx * sxy))
      / ( (n_d * (sxx - sxy)) - ( (sx*sx) - (sx*sy)) )
-  };
+  ;
 
-  const double nmu2{n_d*mu*mu};
-  //const double nmu2{n_d*n_d*mu*mu};
+  const double nmu2{n_d*target_mean_hat*target_mean_hat};
 
-  const double lambda{
-    -std::log(
-        (sxy - (mu*sx) - (mu*sy) + nmu2 )
-      / (sxx - (2.0*mu*sx) + nmu2)
+  mean_reversion_rate_hat
+    = -std::log(
+        (sxy - (target_mean_hat*sx) - (target_mean_hat*sy) + nmu2 )
+      / (sxx - (2.0*target_mean_hat*sx) + nmu2)
     ) / dt
-  };
+  ;
 
-  const double a{std::exp(-lambda*dt)};
+
+  const double a{std::exp(-mean_reversion_rate_hat*dt)};
   const double sigmah2{
     (
       syy
       - (2.0*a*sxy)
       + (a*a*sxx)
-      - (2.0*mu*(1.0-a)*(sy - (a*sx)))
+      - (2.0*target_mean_hat*(1.0-a)*(sy - (a*sx)))
       + (nmu2 * (1.0-a)*(1.0-a))
     ) / n_d
   };
-  const double sigma{
-    std::sqrt(
-        (sigmah2 * 2.0 * lambda)
+
+  volatility_hat
+    = std::sqrt(
+        (sigmah2 * 2.0 * mean_reversion_rate_hat)
       / (1.0-(a*a))
     )
-  };
-
-  mean_reversion_rate_hat = lambda;
-  target_mean_hat = mu;
-  volatility_hat = sigma;
+  ;
 }
 
 double ribi::OrnsteinUhlenbeck::CalcNext(const double x, const double dt)

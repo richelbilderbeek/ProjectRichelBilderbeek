@@ -13,13 +13,13 @@ QtOrnsteinUhlenbeckParametersWidget::QtOrnsteinUhlenbeckParametersWidget(QWidget
   QObject::connect(ui->box_dt,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_init_x,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_t_end,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_lambda,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_mu,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_sigma,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_mean_reversion_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_target_mean,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_volatility,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_seed,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_cand_lambda,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_cand_mu,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_cand_sigma,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_cand_mean_reversion_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_cand_target_mean,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_cand_volatility,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 }
 
 QtOrnsteinUhlenbeckParametersWidget::~QtOrnsteinUhlenbeckParametersWidget()
@@ -32,16 +32,22 @@ void QtOrnsteinUhlenbeckParametersWidget::CalcLikelihood(
 ) noexcept
 {
   const double dt{GetTimestep()};
-  const double cand_lambda{ui->box_cand_lambda->value()};
-  const double cand_mu{ui->box_cand_mu->value()};
-  const double cand_sigma{ui->box_cand_sigma->value()};
+  const double cand_mean_reversion_rate{ui->box_cand_mean_reversion_rate->value()};
+  const double cand_target_mean{ui->box_cand_target_mean->value()};
+  const double cand_volatility{ui->box_cand_volatility->value()};
 
   if (dt <= 0.0) return;
   if (v.size() <= 2) return;
-  if (cand_lambda <= 0.0) return;
+  if (cand_mean_reversion_rate <= 0.0) return;
 
   const double log_likelihood{
-    ribi::OrnsteinUhlenbeck::CalcLogLikelihood(v,dt,cand_lambda,cand_mu,cand_sigma)
+    ribi::OrnsteinUhlenbeck::CalcLogLikelihood(
+      v,
+      dt,
+      cand_mean_reversion_rate,
+      cand_target_mean,
+      cand_volatility
+    )
   };
   ui->edit_log_likelihood->setText(std::to_string(log_likelihood).c_str());
 }
@@ -61,19 +67,19 @@ double QtOrnsteinUhlenbeckParametersWidget::GetEndTime() const noexcept
   return ui->box_t_end->value();
 }
 
-double QtOrnsteinUhlenbeckParametersWidget::GetLambda() const noexcept
+double QtOrnsteinUhlenbeckParametersWidget::GetMeanReversionRate() const noexcept
 {
-  return ui->box_lambda->value();
+  return ui->box_mean_reversion_rate->value();
 }
 
-double QtOrnsteinUhlenbeckParametersWidget::GetMu() const noexcept
+double QtOrnsteinUhlenbeckParametersWidget::GetTargetMean() const noexcept
 {
-  return ui->box_mu->value();
+  return ui->box_target_mean->value();
 }
 
-double QtOrnsteinUhlenbeckParametersWidget::GetSigma() const noexcept
+double QtOrnsteinUhlenbeckParametersWidget::GetVolatility() const noexcept
 {
-  return ui->box_sigma->value();
+  return ui->box_volatility->value();
 }
 
 int QtOrnsteinUhlenbeckParametersWidget::GetSeed() const noexcept

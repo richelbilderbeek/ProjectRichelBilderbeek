@@ -9,10 +9,12 @@ include(../../Libraries/GeneralDesktop.pri)
 include(../../Libraries/Qwt.pri)
 
 #Console
+include(../../Classes/CppBrownianMotion/CppBrownianMotion.pri)
 include(../../Classes/CppOrnsteinUhlenbeck/CppOrnsteinUhlenbeck.pri)
 include(../../Classes/CppPositiveNonZeroDouble/CppPositiveNonZeroDouble.pri)
 
 #Desktop
+include(../../Classes/CppQtBrownianMotion/CppQtBrownianMotion.pri)
 include(../../Classes/CppQtOrnsteinUhlenbeck/CppQtOrnsteinUhlenbeck.pri)
 include(ToolStochasticityInspectorDesktop.pri)
 

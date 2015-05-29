@@ -33,9 +33,9 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="page_brownian">
+     <widget class="QWidget" name="page_bm">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -53,7 +53,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>338</width>
+        <width>300</width>
         <height>552</height>
        </rect>
       </property>
@@ -62,6 +62,14 @@
       </attribute>
      </widget>
      <widget class="QWidget" name="page_pe">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>300</width>
+        <height>552</height>
+       </rect>
+      </property>
       <attribute name="label">
        <string>Punctuated equilibrium</string>
       </attribute>

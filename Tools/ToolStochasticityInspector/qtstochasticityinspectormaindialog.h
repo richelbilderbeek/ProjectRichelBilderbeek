@@ -14,6 +14,7 @@ namespace Ui {
 }
 
 struct QtOrnsteinUhlenbeckParametersWidget;
+struct QtBrownianMotionParametersWidget;
 
 namespace ribi {
 
@@ -28,20 +29,24 @@ public:
   ~QtStochasticityInspectorMainDialog() noexcept;
   
 private slots:
-  void OnAnyChange() noexcept;
+  void OnAnyChangeBrownian() noexcept;
+  void OnAnyChangeOrnsteinUhlenbeck() noexcept;
   void OnCalculateLikelihood() noexcept;
 
 private:
   Ui::QtStochasticityInspectorMainDialog *ui;
 
+  QtBrownianMotionParametersWidget * const m_bm_parameters_widget;
+  QwtPlotCurve * const m_curve_bm;
   QwtPlotCurve * const m_curve_ou;
   QtOrnsteinUhlenbeckParametersWidget * const m_ou_parameters_widget;
 
   ///Timepoints
   std::vector<double> m_ts;
 
-  ///Values measured
-  std::vector<double> m_xs;
+  ///Values measured in OU
+  std::vector<double> m_xs_bm;
+  std::vector<double> m_xs_ou;
 
   #ifndef NDEBUG
   static void Test() noexcept;

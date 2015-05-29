@@ -19,12 +19,26 @@ public:
     const std::vector<double>& v
   ) noexcept;
 
+
   double GetInitValue() const noexcept;
   double GetTimestep() const noexcept;
   double GetEndTime() const noexcept;
-  double GetLambda() const noexcept;
-  double GetMu() const noexcept;
-  double GetSigma() const noexcept;
+
+  ///mean reversion rate: theta on Wikipedia, lambda by van den Berg
+  double GetMeanReversionRate() const noexcept;
+
+  ///mean reversion rate: theta on Wikipedia, lambda by van den Berg
+  //double GetLambda() const noexcept { return GetMeanReversionRate(); }
+
+  ///Target mean: mu
+  double GetTargetMean() const noexcept;
+
+  ///noise: sigma
+  double GetVolatility() const noexcept;
+
+  ///mean reversion rate: theta on Wikipedia, lambda by van den Berg
+  //double GetTheta() const noexcept { return GetMeanReversionRate(); }
+
   int GetSeed() const noexcept;
 
 signals:

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -75,7 +75,7 @@
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QLabel" name="label_lambda">
+    <widget class="QLabel" name="label_mean_reversion_rate">
      <property name="toolTip">
       <string>theta</string>
      </property>
@@ -85,7 +85,7 @@
     </widget>
    </item>
    <item row="3" column="1">
-    <widget class="QDoubleSpinBox" name="box_lambda">
+    <widget class="QDoubleSpinBox" name="box_mean_reversion_rate">
      <property name="decimals">
       <number>4</number>
      </property>
@@ -101,7 +101,7 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QLabel" name="label_mu">
+    <widget class="QLabel" name="label_target_mean">
      <property name="toolTip">
       <string>mu</string>
      </property>
@@ -111,7 +111,7 @@
     </widget>
    </item>
    <item row="4" column="1">
-    <widget class="QDoubleSpinBox" name="box_mu">
+    <widget class="QDoubleSpinBox" name="box_target_mean">
      <property name="decimals">
       <number>4</number>
      </property>
@@ -130,7 +130,7 @@
     </widget>
    </item>
    <item row="5" column="0">
-    <widget class="QLabel" name="label_sigma">
+    <widget class="QLabel" name="label_volatility">
      <property name="toolTip">
       <string>sigma</string>
      </property>
@@ -140,7 +140,7 @@
     </widget>
    </item>
    <item row="5" column="1">
-    <widget class="QDoubleSpinBox" name="box_sigma">
+    <widget class="QDoubleSpinBox" name="box_volatility">
      <property name="decimals">
       <number>4</number>
      </property>
@@ -176,7 +176,7 @@
     </widget>
    </item>
    <item row="7" column="0" colspan="2">
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_cand_likelihood">
      <property name="text">
       <string>Likelihood</string>
      </property>
@@ -186,14 +186,14 @@
     </widget>
    </item>
    <item row="8" column="0">
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="label_cand_mean_reversion_rate">
      <property name="text">
       <string>Candidate reversion rate</string>
      </property>
     </widget>
    </item>
    <item row="8" column="1">
-    <widget class="QDoubleSpinBox" name="box_cand_lambda">
+    <widget class="QDoubleSpinBox" name="box_cand_mean_reversion_rate">
      <property name="minimum">
       <double>0.010000000000000</double>
      </property>
@@ -216,7 +216,7 @@
     </widget>
    </item>
    <item row="9" column="1">
-    <widget class="QDoubleSpinBox" name="box_cand_mu">
+    <widget class="QDoubleSpinBox" name="box_cand_target_mean">
      <property name="maximum">
       <double>1000.000000000000000</double>
      </property>
@@ -229,14 +229,14 @@
     </widget>
    </item>
    <item row="10" column="0">
-    <widget class="QLabel" name="label_8">
+    <widget class="QLabel" name="label_cand_volatility">
      <property name="text">
       <string>Candidate volatility</string>
      </property>
     </widget>
    </item>
    <item row="10" column="1">
-    <widget class="QDoubleSpinBox" name="box_cand_sigma">
+    <widget class="QDoubleSpinBox" name="box_cand_volatility">
      <property name="maximum">
       <double>1000.000000000000000</double>
      </property>
@@ -249,7 +249,7 @@
     </widget>
    </item>
    <item row="11" column="0">
-    <widget class="QLabel" name="label_9">
+    <widget class="QLabel" name="label_log_likelihood">
      <property name="text">
       <string>Log likelihood</string>
      </property>
@@ -263,7 +263,7 @@
     </widget>
    </item>
    <item row="12" column="0">
-    <spacer name="verticalSpacer">
+    <spacer name="spacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
