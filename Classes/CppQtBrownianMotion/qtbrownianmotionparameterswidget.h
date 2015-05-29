@@ -15,9 +15,6 @@ public:
   explicit QtBrownianMotionParametersWidget(QWidget *parent = 0);
   ~QtBrownianMotionParametersWidget();
 
-  void CalcLikelihood(
-    const std::vector<double>& v
-  ) noexcept;
 
 
   double GetInitValue() const noexcept;

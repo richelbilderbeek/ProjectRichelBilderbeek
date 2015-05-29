@@ -237,7 +237,7 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeOrnsteinUhlenbeck() no
 
 void ribi::QtStochasticityInspectorMainDialog::OnCalculateLikelihood() noexcept
 {
-  m_bm_parameters_widget->CalcLikelihood(m_xs_bm);
+  m_bm_likelihood_widget->CalcLikelihood(m_xs_bm);
   m_ou_likelihood_widget->CalcLikelihood(
     m_xs_ou,
     m_ou_parameters_widget->GetTimestep()
