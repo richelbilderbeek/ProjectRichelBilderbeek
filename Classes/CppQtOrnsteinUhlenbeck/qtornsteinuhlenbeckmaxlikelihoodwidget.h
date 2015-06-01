@@ -15,10 +15,12 @@ public:
   explicit QtOrnsteinUhlenbeckMaxLikelihoodWidget(QWidget *parent = 0);
   ~QtOrnsteinUhlenbeckMaxLikelihoodWidget();
 
-  void CalcMaxLikelihood(const std::vector<double>& v, const double dt);
+  double GetMaxLogLikelihood() const noexcept { return m_max_log_likelihood; }
+  void SetData(const std::vector<double>& v, const double dt);
 
 private:
   Ui::QtOrnsteinUhlenbeckMaxLikelihoodWidget *ui;
+  double m_max_log_likelihood;
 };
 
 #endif // QTORNSTEINUHLENBECKMAXLIKELIHOODWIDGET_H

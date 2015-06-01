@@ -60,9 +60,6 @@ double ribi::OrnsteinUhlenbeck::CalcLogLikelihood(
   if (dt <= 0.0) return std::numeric_limits<double>::min();
   if (cand_mean_reversion_rate <= 0.0) return std::numeric_limits<double>::min();
   if (v.size() < 2) return std::numeric_limits<double>::min();
-  assert(dt > 0.0);
-  assert(cand_mean_reversion_rate > 0.0);
-  assert(v.size() >= 2);
   const double n{static_cast<double>(v.size())};
 
   const double sum{

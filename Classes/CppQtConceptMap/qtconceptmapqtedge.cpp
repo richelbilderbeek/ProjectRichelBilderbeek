@@ -53,7 +53,7 @@ ribi::cmap::QtEdge::QtEdge(
     m_signal_focus_in_event{},
     m_signal_key_down_pressed{},
     //m_arrow{new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to)},
-    m_arrow{nullptr}, //Will be initialized belo
+    m_arrow{nullptr}, //Will be initialized below
     m_edge{}, //Will be initialized by setEdge
     m_from{from},
     m_qtnode{new QtNode(edge->GetNode())},
@@ -64,7 +64,8 @@ ribi::cmap::QtEdge::QtEdge(
   #endif
 
   //Allow mouse tracking
-  this->setAcceptHoverEvents(true);
+  //OTOH: must be done by the other thing
+  //this->setAcceptHoverEvents(true);
 
   //const_cast because Arrow constant
   //I just need to have an initialized m_qtnode
@@ -76,7 +77,28 @@ ribi::cmap::QtEdge::QtEdge(
     to
     )
   );
+  /*
+  //QtEdge is just the glue between a collection of things
+  this->setFlags(
+      QGraphicsItem::ItemIsFocusable
+    | QGraphicsItem::ItemIsMovable
+    | QGraphicsItem::ItemIsSelectable
+  );
+  */
+
   GetQtNode()->setFlags(
+      QGraphicsItem::ItemIsFocusable
+    | QGraphicsItem::ItemIsMovable
+    | QGraphicsItem::ItemIsSelectable
+  );
+
+  GetFrom()->setFlags(
+      QGraphicsItem::ItemIsFocusable
+    | QGraphicsItem::ItemIsMovable
+    | QGraphicsItem::ItemIsSelectable
+  );
+
+  GetTo()->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable
@@ -100,14 +122,7 @@ ribi::cmap::QtEdge::QtEdge(
   //}
   assert(m_arrow);
 
-  this->setAcceptHoverEvents(true);
 
-  //Not setting this causes the center node to be immovable
-  this->setFlags(
-      QGraphicsItem::ItemIsFocusable
-    | QGraphicsItem::ItemIsMovable
-    | QGraphicsItem::ItemIsSelectable
-  );
 
 
   m_arrow->m_signal_item_updated.connect(
@@ -272,7 +287,7 @@ std::vector<std::string> ribi::cmap::QtEdge::GetVersionHistory() noexcept
   };
 }
 
-
+/*
 void ribi::cmap::QtEdge::dragEnterEvent(QGraphicsSceneDragDropEvent *) noexcept
 {
   TRACE_FUNC();
@@ -291,6 +306,7 @@ void ribi::cmap::QtEdge::dragMoveEvent(QGraphicsSceneDragDropEvent *) noexcept
   //if (scene()) { scene()->update(); }
   update();
 }
+*/
 
 void ribi::cmap::QtEdge::focusInEvent(QFocusEvent*) noexcept
 {
@@ -307,11 +323,12 @@ void ribi::cmap::QtEdge::focusOutEvent(QFocusEvent*) noexcept
 }
 */
 
+/*
 void ribi::cmap::QtEdge::hoverMoveEvent(QGraphicsSceneHoverEvent*) noexcept
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
-
+*/
 
 void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event) noexcept
 {
@@ -487,7 +504,7 @@ void ribi::cmap::QtEdge::OnMustUpdateScene()
 
 void ribi::cmap::QtEdge::OnRequestSceneUpdate()
 {
-
+  if (scene()) { scene()->update(); }
   //this->m_signal_request_scene_update();
 }
 

@@ -15,10 +15,12 @@ public:
   explicit QtBrownianMotionMaxLikelihoodWidget(QWidget *parent = 0);
   ~QtBrownianMotionMaxLikelihoodWidget();
 
-  void CalcMaxLikelihood(const std::vector<double>& v);
+  double GetMaxLogLikelihood() const noexcept { return m_max_log_likelihood; }
+  void SetData(const std::vector<double>& v);
 
 private:
   Ui::QtBrownianMotionMaxLikelihoodWidget *ui;
+  double m_max_log_likelihood;
 };
 
 #endif // QTBROWNIANMOTIONMAXLIKELIHOODWIDGET_H

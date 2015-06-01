@@ -19,6 +19,8 @@ struct QtBrownianMotionParametersWidget;
 struct QtOrnsteinUhlenbeckLikelihoodWidget;
 struct QtOrnsteinUhlenbeckMaxLikelihoodWidget;
 struct QtOrnsteinUhlenbeckParametersWidget;
+struct QwtPlot;
+struct QwtPlotMultiBarChart;
 
 namespace ribi {
 
@@ -35,7 +37,7 @@ public:
 private slots:
   void OnAnyChangeBrownian() noexcept;
   void OnAnyChangeOrnsteinUhlenbeck() noexcept;
-  void OnCalculateLikelihood() noexcept;
+  void OnNewData() noexcept; //New data is available to analyse
 
 private:
   Ui::QtStochasticityInspectorMainDialog *ui;
@@ -47,6 +49,12 @@ private:
   QtOrnsteinUhlenbeckLikelihoodWidget * const m_ou_likelihood_widget;
   QtOrnsteinUhlenbeckMaxLikelihoodWidget * const m_ou_max_likelihood_widget;
   QtOrnsteinUhlenbeckParametersWidget * const m_ou_parameters_widget;
+
+  ///Does the actual displayal on screen
+  QwtPlot * const m_support_plot;
+
+  ///Contains the data
+  QwtPlotMultiBarChart * const m_support_plot_barchart;
 
   ///Timepoints
   std::vector<double> m_ts;
