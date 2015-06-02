@@ -14,10 +14,73 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_dof">
+     <property name="text">
+      <string>Degrees of freedom</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0" colspan="2">
+    <widget class="QLabel" name="label_conclusion">
+     <property name="text">
+      <string>Conclusion: [here]</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_l1">
+     <property name="text">
+      <string>Log-likelihood OU</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="label_delta">
+     <property name="text">
+      <string>delta</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="label_alpha">
      <property name="text">
       <string>Alpha</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QSpinBox" name="box_dof">
+     <property name="value">
+      <number>2</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="edit_critical_value">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_critical_value">
+     <property name="text">
+      <string>Critical value</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="edit_ll1">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_l0">
+     <property name="text">
+      <string>Log-likelihood BM</string>
      </property>
     </widget>
    </item>
@@ -34,80 +97,45 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_dof">
-     <property name="text">
-      <string>Degrees of freedom</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QSpinBox" name="box_dof">
-     <property name="value">
-      <number>2</number>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_critical_value">
-     <property name="text">
-      <string>Critical value</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="edit_critical_value">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_l0">
-     <property name="text">
-      <string>Log-likelihood BM</string>
-     </property>
-    </widget>
-   </item>
    <item row="3" column="1">
-    <widget class="QLineEdit" name="edit_l0">
+    <widget class="QLineEdit" name="edit_ll0">
      <property name="readOnly">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_l1">
-     <property name="text">
-      <string>Log-likelihood OU</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QLineEdit" name="edit_l1">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_delta">
-     <property name="text">
-      <string>delta</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1">
+   <item row="9" column="1">
     <widget class="QLineEdit" name="edit_delta">
      <property name="readOnly">
       <bool>true</bool>
      </property>
     </widget>
    </item>
+   <item row="8" column="0" colspan="2">
+    <widget class="QLineEdit" name="edit_l1">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
    <item row="6" column="0" colspan="2">
-    <widget class="QLabel" name="label_conclusion">
+    <widget class="QLineEdit" name="edit_l0">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QLabel" name="label_l0_2">
      <property name="text">
-      <string>Conclusion: [here]</string>
+      <string>Likelihood BM</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QLabel" name="label_l1_2">
+     <property name="text">
+      <string>Likelihood OU</string>
      </property>
     </widget>
    </item>

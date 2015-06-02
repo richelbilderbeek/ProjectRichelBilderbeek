@@ -3,7 +3,16 @@
 #include <cmath>
 #include <boost/math/distributions/chi_squared.hpp>
 
+#include <apfloat.h>
+
 #include "ui_qtstochasticityinspectorsupportwidget.h"
+
+double ToDouble(const apfloat& a)
+{
+  std::stringstream s;
+   s << a;
+   return std::stod(s.str());
+}
 
 QtStochasticityInspectorSupportWidget::QtStochasticityInspectorSupportWidget(QWidget *parent) :
   QWidget(parent),
@@ -35,11 +44,34 @@ void QtStochasticityInspectorSupportWidget::OnChiChanged()
 
 void QtStochasticityInspectorSupportWidget::ShowSupport(const double log_likelihood_bm, const double log_likelihood_ou)
 {
-  ui->edit_l0->setText(std::to_string(log_likelihood_bm).c_str());
-  ui->edit_l1->setText(std::to_string(log_likelihood_ou).c_str());
+  ui->edit_ll0->setText(std::to_string(log_likelihood_bm).c_str());
+  ui->edit_ll1->setText(std::to_string(log_likelihood_ou).c_str());
+
+  const apfloat likelihood_bm{exp(apfloat(log_likelihood_bm))};
+  const apfloat likelihood_ou{exp(apfloat(log_likelihood_ou))};
+  {
+    std::stringstream s;
+    //s << std::setprecision(20);
+    s << likelihood_bm;
+    ui->edit_l0->setText(s.str().c_str());
+  }
+  {
+    std::stringstream s;
+    //s << std::setprecision(20);
+    s << likelihood_ou;
+    ui->edit_l1->setText(s.str().c_str());
+  }
 
   //BM is H_0, OU is H_1
-  m_delta = 2.0 * (std::log(log_likelihood_ou) - std::log(log_likelihood_bm) );
+  const apfloat delta{
+    apfloat(2.0) * (likelihood_ou - likelihood_bm)
+  };
+
+
+  m_delta = ToDouble(delta);
+
+  //Does not work:
+  //m_delta = 2.0 * (std::log(log_likelihood_ou) - std::log(log_likelihood_bm) );
   ui->edit_delta->setText(std::to_string(m_delta).c_str());
 
   if (m_delta < m_critical_value)
