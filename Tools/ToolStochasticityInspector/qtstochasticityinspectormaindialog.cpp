@@ -8,14 +8,9 @@
 #include <QLabel>
 #include <QDesktopWidget>
 
-#include <qwt_legend.h>
-#include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 #include <qwt_plot_grid.h>
-#include <qwt_plot_zoomer.h>
-#include <qwt_column_symbol.h>
-#include <qwt_plot_panner.h>
-#include <qwt_plot_multi_barchart.h>
+#include <qwt_point_data.h>
 
 #include "brownianmotion.h"
 #include "ornsteinuhlenbeck.h"
@@ -28,12 +23,12 @@
 #include "qtbrownianmotionlikelihoodwidget.h"
 #include "qtornsteinuhlenbeckparameterswidget.h"
 #include "ui_qtstochasticityinspectormaindialog.h"
-
-#if QWT_VERSION >= 0x060100
-#include <qwt_point_data.h>
-#endif
+#include "qtstochasticityinspectorsupportwidget.h"
+#include "qtstochasticityinspectormodelcolors.h"
 
 #pragma GCC diagnostic pop
+
+
 
 ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   QWidget *parent) noexcept
@@ -46,8 +41,7 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
     m_ou_likelihood_widget{new QtOrnsteinUhlenbeckLikelihoodWidget},
     m_ou_max_likelihood_widget{new QtOrnsteinUhlenbeckMaxLikelihoodWidget},
     m_ou_parameters_widget{new QtOrnsteinUhlenbeckParametersWidget},
-    m_support_plot{new QwtPlot(QwtText("Support for different models"))},
-    m_support_plot_barchart{new QwtPlotMultiBarChart},
+    m_support_widget{new QtStochasticityInspectorSupportWidget},
     m_ts{},
     m_xs{}
 {
@@ -70,78 +64,46 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
 
   //Brownian motion widget
   {
-    assert(!ui->page_bm->layout());
+    assert(!ui->page_bm_input->layout());
     QGridLayout * const my_layout{new QGridLayout};
-    ui->page_bm->setLayout(my_layout);
+    ui->page_bm_input->setLayout(my_layout);
     my_layout->addWidget(m_bm_parameters_widget);
   }
   //Ornstein-Uhlenbeck widget
   {
-    assert(!ui->page_ou->layout());
+    assert(!ui->page_ou_input->layout());
     QGridLayout * const my_layout{new QGridLayout};
-    ui->page_ou->setLayout(my_layout);
+    ui->page_ou_input->setLayout(my_layout);
     my_layout->addWidget(m_ou_parameters_widget);
   }
-  //Prepare support widget
+  //Brownian motion analysis widget
   {
-    for (int i=0; i!=2; ++i)
-    {
-      QwtColumnSymbol * symbol{new QwtColumnSymbol(QwtColumnSymbol::Box)};
-      QPalette bar_color{i == 0 ? Qt::red : Qt::blue};
-      symbol->setPalette(bar_color);
-      m_support_plot_barchart->setSymbol(i,symbol);
-    }
-    QList<QwtText> titles;
-    titles.push_back(QwtText("Brownian motion"));
-    titles.push_back(QwtText("Ornstein-Uhlenbeck"));
-    m_support_plot_barchart->setBarTitles(titles);
-
-    QVector<QVector<double>> data;
-    {
-      const double a{0.6};
-      const double b{1.0-a};
-      QVector<double> this_bar = {a,b};
-      data.push_back(this_bar);
-    }
-    m_support_plot_barchart->setSamples(data);
-    m_support_plot_barchart->setStyle(QwtPlotMultiBarChart::Stacked);
-
-
-    //plot is used to display the bar_plot on screen
-    m_support_plot_barchart->attach(m_support_plot);
-    m_support_plot->setAxisScale(QwtPlot::xBottom,0.0,1.0,1.0);
-    m_support_plot->setAxisScale(QwtPlot::yLeft,0.0,1.0,0.1);
-    m_support_plot->setAxisTitle(QwtPlot::xBottom,"Sample");
-    m_support_plot->setAxisTitle(QwtPlot::yLeft,"Fractions");
-
-    {
-      QwtLegend * const legend = new QwtLegend;
-      legend->setFrameStyle(QFrame::Box|QFrame::Sunken);
-      m_support_plot->insertLegend(legend, QwtPlot::RightLegend);
-    }
-
-  }
-  //Likelihood widgets and support widget
-  {
-    assert(!ui->widget_likelihoods->layout());
+    assert(!ui->page_bm_analysis->layout());
     QVBoxLayout * const my_layout{new QVBoxLayout};
-    ui->widget_likelihoods->setLayout(my_layout);
-
-    my_layout->addWidget(new QLabel("Brownian motion"));
+    ui->page_bm_analysis->setLayout(my_layout);
     my_layout->addWidget(new QLabel("Likelihood"));
     my_layout->addWidget(m_bm_likelihood_widget);
     my_layout->addWidget(new QLabel("Max likelihood"));
     my_layout->addWidget(m_bm_max_likelihood_widget);
+  }
 
-
-    my_layout->addWidget(new QLabel("Ornstein-Uhlenbeck"));
+  //OU analysis widget
+  {
+    assert(!ui->page_ou_analysis->layout());
+    QVBoxLayout * const my_layout{new QVBoxLayout};
+    ui->page_ou_analysis->setLayout(my_layout);
     my_layout->addWidget(new QLabel("Likelihood"));
     my_layout->addWidget(m_ou_likelihood_widget);
     my_layout->addWidget(new QLabel("Max likelihood"));
     my_layout->addWidget(m_ou_max_likelihood_widget);
-    my_layout->addWidget(m_support_plot);
+  }
 
-
+  //Support widget
+  {
+    assert(!ui->page_likelihoods->layout());
+    QVBoxLayout * const my_layout{new QVBoxLayout};
+    ui->page_likelihoods->setLayout(my_layout);
+    my_layout->addWidget(m_support_widget);
   }
 
   //Add grid
@@ -150,16 +112,6 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
     grid->setPen(QPen(QColor(0,0,0)));
     grid->attach(ui->plot);
 
-  }
-  if (!"Add zoomer")
-  {
-    new QwtPlotZoomer(ui->plot->canvas());
-  }
-  if (!"Add legend")
-  {
-    QwtLegend * const legend = new QwtLegend;
-    legend->setFrameStyle(QFrame::Box|QFrame::Sunken);
-    ui->plot->insertLegend(legend, QwtPlot::RightLegend);
   }
 
   QObject::connect(m_bm_likelihood_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnNewData()));
@@ -209,6 +161,8 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeBrownian() noexcept
 
 
   //Plot
+
+  m_curve->setPen(ribi::QtStochasticityInspectorModelColors::m_bm_color);
   m_curve->setData(new QwtPointArrayData(&m_ts[0],&m_xs[0],m_xs.size()));
   ui->plot->replot();
 
@@ -244,6 +198,7 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeOrnsteinUhlenbeck() no
   }
 
   //Plot
+  m_curve->setPen(ribi::QtStochasticityInspectorModelColors::m_ou_color);
   m_curve->setData(new QwtPointArrayData(&m_ts[0],&m_xs[0],m_xs.size()));
   ui->plot->replot();
 
@@ -259,17 +214,11 @@ void ribi::QtStochasticityInspectorMainDialog::OnNewData() noexcept
   m_bm_max_likelihood_widget->SetData(m_xs);
   m_ou_max_likelihood_widget->SetData(m_xs,dt);
 
-  //Calculate support
-  QVector<QVector<double>> data;
-  {
-    const double a{m_bm_max_likelihood_widget->GetMaxLogLikelihood()};
-    const double b{m_ou_max_likelihood_widget->GetMaxLogLikelihood()};
-    QVector<double> this_bar = {a / (a+b),b / (a+b)};
-    data.push_back(this_bar);
-  }
-  m_support_plot_barchart->setSamples(data);
-  m_support_plot->replot();
 
+  m_support_widget->ShowSupport(
+    m_bm_max_likelihood_widget->GetMaxLogLikelihood(),
+    m_ou_max_likelihood_widget->GetMaxLogLikelihood()
+  );
 }
 
 #ifndef NDEBUG

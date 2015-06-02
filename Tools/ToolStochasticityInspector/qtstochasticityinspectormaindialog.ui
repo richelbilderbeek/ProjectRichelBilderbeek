@@ -14,8 +14,18 @@
    <string>StochasticityInspector</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="2">
+    <widget class="QwtPlot" name="plot" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+       <horstretch>10</horstretch>
+       <verstretch>3</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
-    <widget class="QToolBox" name="toolBox">
+    <widget class="QToolBox" name="toolBox_input">
      <property name="minimumSize">
       <size>
        <width>300</width>
@@ -23,35 +33,35 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
-     <widget class="QWidget" name="page_bm">
+     <widget class="QWidget" name="page_bm_input">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>300</width>
-        <height>537</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
        <string>Brownian</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="page_ou">
+     <widget class="QWidget" name="page_ou_input">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>300</width>
-        <height>537</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
        <string>Ornstein-Uhlenbeck</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="page_pe">
+     <widget class="QWidget" name="page_pe_input">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -67,23 +77,55 @@
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QWidget" name="widget_likelihoods" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>1</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QToolBox" name="toolBox_analyse">
+     <property name="minimumSize">
+      <size>
+       <width>250</width>
+       <height>0</height>
+      </size>
      </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QwtPlot" name="plot" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-       <horstretch>10</horstretch>
-       <verstretch>3</verstretch>
-      </sizepolicy>
+     <property name="currentIndex">
+      <number>0</number>
      </property>
+     <widget class="QWidget" name="page_bm_analysis">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>250</width>
+        <height>537</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>Brownian motion</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_ou_analysis">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>98</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>Ornstein-Uhlenbeck</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_likelihoods">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>144</width>
+        <height>537</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>Likelihoods</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
   </layout>

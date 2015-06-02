@@ -154,6 +154,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::spaceHarryVcl,"spaceHarryVcl"));
   m.insert(Pair(ProgramType::staircaseCardCreator,"staircaseCardCreator"));
   m.insert(Pair(ProgramType::stateObserver,"stateObserver"));
+  m.insert(Pair(ProgramType::stochasticityInspector,"stochasticityInspector"));
   m.insert(Pair(ProgramType::styleSheetSetter,"styleSheetSetter"));
   m.insert(Pair(ProgramType::surfacePlotter,"surfacePlotter"));
   m.insert(Pair(ProgramType::surfacePlotterVcl,"surfacePlotterVcl"));
@@ -368,6 +369,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::spaceHarryVcl,"SpaceHarry (VCL)"));
   m.insert(Pair(ProgramType::staircaseCardCreator,"StaircaseCardCreator"));
   m.insert(Pair(ProgramType::stateObserver,"StateObserver"));
+  m.insert(Pair(ProgramType::stochasticityInspector,"StochasticityInspector"));
   m.insert(Pair(ProgramType::styleSheetSetter,"StyleSheetSetter"));
   m.insert(Pair(ProgramType::surfacePlotter,"SurfacePlotter"));
   m.insert(Pair(ProgramType::surfacePlotterVcl,"SurfacePlotter (VCL)"));

@@ -56,7 +56,7 @@ ribi::Help ribi::StochasticityInspectorMenuDialog::GetHelp() const noexcept
 boost::shared_ptr<const ribi::Program> ribi::StochasticityInspectorMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
-    //new ProgramStochasticityInspector
+    new ProgramStochasticityInspector
   };
   assert(p);
   return p;

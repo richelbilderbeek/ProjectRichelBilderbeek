@@ -137,6 +137,7 @@ enum class ProgramType
   spaceHarryVcl,
   staircaseCardCreator,
   stateObserver,
+  stochasticityInspector,
   styleSheetSetter,
   surfacePlotter,
   surfacePlotterVcl,

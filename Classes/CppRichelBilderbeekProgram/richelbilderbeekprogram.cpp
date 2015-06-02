@@ -145,6 +145,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::spaceHarryVcl: p.reset(new ProgramSpaceHarryVcl); break;
     case ProgramType::staircaseCardCreator: p.reset(new ProgramStaircaseCardCreator); break;
     case ProgramType::stateObserver: p.reset(new ProgramStateObserver); break;
+    case ProgramType::stochasticityInspector: p.reset(new ProgramStochasticityInspector); break;
     case ProgramType::styleSheetSetter: p.reset(new ProgramStyleSheetSetter); break;
     case ProgramType::surfacePlotter: p.reset(new ProgramSurfacePlotter); break;
     case ProgramType::surfacePlotterVcl: p.reset(new ProgramSurfacePlotterVcl); break;

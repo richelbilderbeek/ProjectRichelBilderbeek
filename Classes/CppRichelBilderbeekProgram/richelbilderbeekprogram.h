@@ -1803,6 +1803,22 @@ struct ProgramStateObserver : public ProgramTool
   std::string GetUrl() const noexcept override final { return "ToolStateObserver.htm"; }
 };
 
+
+struct ProgramStochasticityInspector : public ProgramTool
+{
+  std::string GetFilenameConsole() const noexcept override final { return ""; }
+  std::string GetFilenameDesktop() const noexcept override final { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
+  std::string GetFilenameWeb() const noexcept override final { return ""; }
+  std::string GetScreenName() const noexcept override final { return "StochasticityInspector"; }
+  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept override final { return ProgramType::stochasticityInspector; }
+  std::string GetUrl() const noexcept override final { return "ToolStochasticityInspector.htm"; }
+};
+
 struct ProgramStyleSheetSetter : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept override final { return ""; }

@@ -131,6 +131,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestreversimaindialog.h"
 #include "qttestshapemenudialog.h"
 #include "qttestshinybuttonmenudialog.h"
+#include "qtstochasticityinspectormenudialog.h"
 #include "qttestsimplelinearregressionmenudialog.h"
 #include "qttesttextcanvasmenudialog.h"
 #include "qttesttictactoemenudialog.h"
@@ -274,10 +275,10 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::simStagecraft: break;
     case ProgramType::soaSim: break;
     case ProgramType::solvePuzzleX: break;
-    //case ProgramType::spaceHarry: break;
     case ProgramType::spaceHarryVcl: break;
     case ProgramType::staircaseCardCreator: break;
     case ProgramType::stateObserver: p = new QtStateObserverMenuDialog; break;
+    case ProgramType::stochasticityInspector: p = new QtStochasticityInspectorMenuDialog; break;
     case ProgramType::styleSheetSetter: p = new QtStyleSheetSetterMenuDialog; break;
     case ProgramType::surfacePlotter: p = new QtSurfacePlotterMenuDialog; break;
     case ProgramType::surfacePlotterVcl: break;

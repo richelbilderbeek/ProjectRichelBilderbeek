@@ -163,6 +163,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #endif // INCLUDE_SADD_20140617
 #include "secretmessagemenudialog.h"
 #include "shape.h"
+#include "stochasticityinspectormenudialog.h"
 #include "shapewidget.h"
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
@@ -2157,6 +2158,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
       break;
       case ProgramType::stateObserver: p.reset(new StateObserverMenuDialog); break;
+      case ProgramType::stochasticityInspector: p.reset(new StochasticityInspectorMenuDialog); break;
       case ProgramType::styleSheetSetter: p.reset(new StyleSheetSetterMenuDialog); break;
       case ProgramType::surfacePlotter: p.reset(new SurfacePlotterMenuDialog); break;
       case ProgramType::surfacePlotterVcl:
