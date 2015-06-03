@@ -1,6 +1,7 @@
 #include "ornsteinuhlenbeckhelper.h"
 
 #include <algorithm>
+#include <iostream>
 #include <limits>
 
 #include <boost/math/constants/constants.hpp>

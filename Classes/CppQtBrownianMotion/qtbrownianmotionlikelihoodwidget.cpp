@@ -1,6 +1,6 @@
 #include "qtbrownianmotionlikelihoodwidget.h"
 
-#include "brownianmotion.h"
+#include "brownianmotionhelper.h"
 
 #include "ui_qtbrownianmotionlikelihoodwidget.h"
 
@@ -26,7 +26,7 @@ void QtBrownianMotionLikelihoodWidget::CalcLikelihood(
   if (v.size() <= 2) return;
 
   const double log_likelihood{
-    ribi::BrownianMotion::CalcLogLikelihood(
+    ribi::bm::Helper().CalcLogLikelihood(
       v,
       cand_volatility
     )

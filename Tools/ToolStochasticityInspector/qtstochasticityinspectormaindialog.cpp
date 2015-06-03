@@ -12,7 +12,7 @@
 #include <qwt_plot_grid.h>
 #include <qwt_point_data.h>
 
-#include "brownianmotion.h"
+#include "brownianmotionprocess.h"
 #include "ornsteinuhlenbeckparameters.h"
 #include "ornsteinuhlenbeckprocess.h"
 #include "testtimer.h"
@@ -39,12 +39,11 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
     m_bm_max_likelihood_widget{new QtBrownianMotionMaxLikelihoodWidget},
     m_bm_parameters_widget{new QtBrownianMotionParametersWidget},
     m_curve(new QwtPlotCurve),
+    m_main_dialog{},
     m_ou_likelihood_widget{new QtOrnsteinUhlenbeckLikelihoodWidget},
     m_ou_max_likelihood_widget{new QtOrnsteinUhlenbeckMaxLikelihoodWidget},
     m_ou_parameters_widget{new QtOrnsteinUhlenbeckParametersWidget},
-    m_support_widget{new QtStochasticityInspectorSupportWidget},
-    m_ts{},
-    m_xs{}
+    m_support_widget{new QtStochasticityInspectorSupportWidget}
 {
   #ifndef NDEBUG
   Test();
@@ -147,24 +146,16 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeBrownian() noexcept
 
   if (volatility < 0.0) return;
 
-  BrownianMotion sim(volatility,seed);
+  ribi::bm::Parameters parameters(volatility,seed);
 
-  double x = init_x;
-  m_ts.clear();
-  m_xs.clear();
-
-  for (int i=0; i < t_end; ++i)
-  {
-    m_xs.push_back(x);
-    m_ts.push_back(static_cast<double>(i));
-    x = sim.CalcNext(x);
-  }
-
+  m_main_dialog = StochasticityInspectorMainDialog(init_x,t_end,parameters);
 
   //Plot
+  const auto ts = m_main_dialog.GetTimePoints();
+  const auto xs = m_main_dialog.GetValues();
 
   m_curve->setPen(ribi::QtStochasticityInspectorModelColors::m_bm_color);
-  m_curve->setData(new QwtPointArrayData(&m_ts[0],&m_xs[0],m_xs.size()));
+  m_curve->setData(new QwtPointArrayData(&ts[0],&xs[0],xs.size()));
   ui->plot->replot();
 
   OnNewData();
@@ -186,22 +177,15 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeOrnsteinUhlenbeck() no
   if (lambda <= 0.0) return;
 
   ribi::ou::Parameters parameters(lambda,mu,sigma,seed);
-  ribi::ou::Process sim(parameters);
 
-  double x = init_x;
-  m_ts.clear();
-  m_xs.clear();
-
-  for (double t=0.0; t<t_end; t+=dt)
-  {
-    m_xs.push_back(x);
-    m_ts.push_back(t);
-    x = sim.CalcNext(x,dt);
-  }
+  m_main_dialog = StochasticityInspectorMainDialog(init_x,dt,t_end,parameters);
 
   //Plot
+  const auto ts = m_main_dialog.GetTimePoints();
+  const auto xs = m_main_dialog.GetValues();
+
   m_curve->setPen(ribi::QtStochasticityInspectorModelColors::m_ou_color);
-  m_curve->setData(new QwtPointArrayData(&m_ts[0],&m_xs[0],m_xs.size()));
+  m_curve->setData(new QwtPointArrayData(&ts[0],&xs[0],xs.size()));
   ui->plot->replot();
 
   OnNewData();
@@ -209,13 +193,14 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeOrnsteinUhlenbeck() no
 
 void ribi::QtStochasticityInspectorMainDialog::OnNewData() noexcept
 {
+  const auto xs = m_main_dialog.GetValues();
+
   const double dt{m_ou_parameters_widget->GetTimestep()};
-  m_bm_likelihood_widget->CalcLikelihood(m_xs);
-  m_ou_likelihood_widget->CalcLikelihood(m_xs,dt);
+  m_bm_likelihood_widget->CalcLikelihood(xs);
+  m_ou_likelihood_widget->CalcLikelihood(xs,dt);
 
-  m_bm_max_likelihood_widget->SetData(m_xs);
-  m_ou_max_likelihood_widget->SetData(m_xs,dt);
-
+  m_bm_max_likelihood_widget->SetData(xs);
+  m_ou_max_likelihood_widget->SetData(xs,dt);
 
   m_support_widget->ShowSupport(
     m_bm_max_likelihood_widget->GetMaxLogLikelihood(),

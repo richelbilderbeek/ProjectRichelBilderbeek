@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "brownianmotion.h"
+#include "brownianmotionprocess.h"
 #include "ornsteinuhlenbeckprocess.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
@@ -83,7 +83,7 @@ void ribi::StochasticityInspectorMenuDialog::Test() noexcept
     is_tested = true;
   }
   {
-    BrownianMotion::Test();
+    ribi::bm::Process::Test();
     ribi::ou::Process::Test();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);

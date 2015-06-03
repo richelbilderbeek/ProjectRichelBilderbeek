@@ -5,6 +5,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
+#include "stochasticityinspectormaindialog.h"
 #pragma GCC diagnostic pop
 
 struct QwtPlotCurve;
@@ -46,16 +47,19 @@ private:
   QtBrownianMotionMaxLikelihoodWidget * const m_bm_max_likelihood_widget;
   QtBrownianMotionParametersWidget * const m_bm_parameters_widget;
   QwtPlotCurve * const m_curve;
+
+  StochasticityInspectorMainDialog m_main_dialog;
+
   QtOrnsteinUhlenbeckLikelihoodWidget * const m_ou_likelihood_widget;
   QtOrnsteinUhlenbeckMaxLikelihoodWidget * const m_ou_max_likelihood_widget;
   QtOrnsteinUhlenbeckParametersWidget * const m_ou_parameters_widget;
   QtStochasticityInspectorSupportWidget * const m_support_widget;
 
   ///Timepoints
-  std::vector<double> m_ts;
+  //std::vector<double> m_ts;
 
   ///Values measured in OU
-  std::vector<double> m_xs;
+  //std::vector<double> m_xs;
 
   #ifndef NDEBUG
   static void Test() noexcept;

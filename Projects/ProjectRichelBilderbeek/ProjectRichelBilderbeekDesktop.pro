@@ -195,7 +195,6 @@ include(../../Tools/ToolQuadraticSolver/ToolQuadraticSolverDesktop.pri)
 include(../../Tools/ToolRandomCode/ToolRandomCodeDesktop.pri)
 include(../../Tools/ToolRegexTester/ToolRegexTesterDesktop.pri)
 include(../../Tools/ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryDesktop.pri)
-
 include(../../Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekNlSitemapGeneratorDesktop.pri)
 include(../../Tools/ToolSecretMessage/ToolSecretMessageDesktop.pri)
 include(../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineDesktop.pri)
