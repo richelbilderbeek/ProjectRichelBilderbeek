@@ -24,7 +24,7 @@
 #include "qtbrownianmotionlikelihoodwidget.h"
 #include "qtornsteinuhlenbeckparameterswidget.h"
 #include "ui_qtstochasticityinspectormaindialog.h"
-#include "qtstochasticityinspectorsupportwidget.h"
+#include "qtstochasticityinspectorhlrtwidget.h"
 #include "qtstochasticityinspectormodelcolors.h"
 
 #pragma GCC diagnostic pop
@@ -39,11 +39,11 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
     m_bm_max_likelihood_widget{new QtBrownianMotionMaxLikelihoodWidget},
     m_bm_parameters_widget{new QtBrownianMotionParametersWidget},
     m_curve(new QwtPlotCurve),
+    m_hlrt_widget{new QtStochasticityInspectorHlrtWidget},
     m_main_dialog{},
     m_ou_likelihood_widget{new QtOrnsteinUhlenbeckLikelihoodWidget},
     m_ou_max_likelihood_widget{new QtOrnsteinUhlenbeckMaxLikelihoodWidget},
-    m_ou_parameters_widget{new QtOrnsteinUhlenbeckParametersWidget},
-    m_support_widget{new QtStochasticityInspectorSupportWidget}
+    m_ou_parameters_widget{new QtOrnsteinUhlenbeckParametersWidget}
 {
   #ifndef NDEBUG
   Test();
@@ -98,12 +98,12 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
     my_layout->addWidget(m_ou_max_likelihood_widget);
   }
 
-  //Support widget
+  //Hierarchical Likelihood Ratio Test widget
   {
-    assert(!ui->page_likelihoods->layout());
+    assert(!ui->page_hlrt->layout());
     QVBoxLayout * const my_layout{new QVBoxLayout};
-    ui->page_likelihoods->setLayout(my_layout);
-    my_layout->addWidget(m_support_widget);
+    ui->page_hlrt->setLayout(my_layout);
+    my_layout->addWidget(m_hlrt_widget);
   }
 
   //Add grid
@@ -202,7 +202,7 @@ void ribi::QtStochasticityInspectorMainDialog::OnNewData() noexcept
   m_bm_max_likelihood_widget->SetData(xs);
   m_ou_max_likelihood_widget->SetData(xs,dt);
 
-  m_support_widget->ShowSupport(
+  m_hlrt_widget->ShowHlrt(
     m_bm_max_likelihood_widget->GetMaxLogLikelihood(),
     m_ou_max_likelihood_widget->GetMaxLogLikelihood()
   );

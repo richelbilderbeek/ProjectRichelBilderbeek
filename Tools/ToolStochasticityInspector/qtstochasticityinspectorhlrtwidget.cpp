@@ -1,4 +1,4 @@
-#include "qtstochasticityinspectorsupportwidget.h"
+#include "qtstochasticityinspectorhlrtwidget.h"
 
 #include <cmath>
 #include <boost/math/distributions/chi_squared.hpp>
@@ -9,11 +9,11 @@
 #include "testtimer.h"
 #include "trace.h"
 #include "qtstochasticityinspectormodelcolors.h"
-#include "ui_qtstochasticityinspectorsupportwidget.h"
+#include "ui_qtstochasticityinspectorhlrtwidget.h"
 
-QtStochasticityInspectorSupportWidget::QtStochasticityInspectorSupportWidget(QWidget *parent) :
+QtStochasticityInspectorHlrtWidget::QtStochasticityInspectorHlrtWidget(QWidget *parent) :
   QWidget(parent),
-  ui(new Ui::QtStochasticityInspectorSupportWidget),
+  ui(new Ui::QtStochasticityInspectorHlrtWidget),
   m_critical_value{0.0},
   m_delta{0.0}
 {
@@ -33,12 +33,12 @@ QtStochasticityInspectorSupportWidget::QtStochasticityInspectorSupportWidget(QWi
   OnChiChanged();
 }
 
-QtStochasticityInspectorSupportWidget::~QtStochasticityInspectorSupportWidget()
+QtStochasticityInspectorHlrtWidget::~QtStochasticityInspectorHlrtWidget()
 {
   delete ui;
 }
 
-void QtStochasticityInspectorSupportWidget::OnChiChanged()
+void QtStochasticityInspectorHlrtWidget::OnChiChanged()
 {
   const double alpha{ui->box_alpha->value()};
   const int dof{ui->box_dof->value()};
@@ -47,7 +47,7 @@ void QtStochasticityInspectorSupportWidget::OnChiChanged()
   ui->edit_critical_value->setText(std::to_string(m_critical_value).c_str());
 }
 
-void QtStochasticityInspectorSupportWidget::ShowSupport(const double log_likelihood_bm, const double log_likelihood_ou)
+void QtStochasticityInspectorHlrtWidget::ShowHlrt(const double log_likelihood_bm, const double log_likelihood_ou)
 {
   ui->edit_ll0->setText(std::to_string(log_likelihood_bm).c_str());
   ui->edit_ll1->setText(std::to_string(log_likelihood_ou).c_str());
@@ -78,7 +78,7 @@ void QtStochasticityInspectorSupportWidget::ShowSupport(const double log_likelih
 }
 
 #ifndef NDEBUG
-void QtStochasticityInspectorSupportWidget::Test() noexcept
+void QtStochasticityInspectorHlrtWidget::Test() noexcept
 {
   {
     static bool is_tested{false};

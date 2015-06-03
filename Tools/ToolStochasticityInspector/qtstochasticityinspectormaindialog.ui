@@ -53,8 +53,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>300</width>
-        <height>537</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -66,8 +66,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>300</width>
-        <height>537</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -92,8 +92,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>250</width>
-        <height>537</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -105,15 +105,15 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>250</width>
-        <height>537</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
        <string>Ornstein-Uhlenbeck</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="page_likelihoods">
+     <widget class="QWidget" name="page_hlrt">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -123,7 +123,10 @@
        </rect>
       </property>
       <attribute name="label">
-       <string>Likelihoods</string>
+       <string>hLRT</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Hierarchical Likelihood Ratio Test</string>
       </attribute>
      </widget>
     </widget>
