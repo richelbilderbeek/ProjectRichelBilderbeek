@@ -53,8 +53,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>300</width>
+        <height>537</height>
        </rect>
       </property>
       <attribute name="label">
@@ -66,8 +66,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>300</width>
+        <height>537</height>
        </rect>
       </property>
       <attribute name="label">
@@ -85,15 +85,15 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="page_bm_analysis">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>250</width>
+        <height>506</height>
        </rect>
       </property>
       <attribute name="label">
@@ -105,8 +105,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>250</width>
+        <height>506</height>
        </rect>
       </property>
       <attribute name="label">
@@ -119,7 +119,7 @@
         <x>0</x>
         <y>0</y>
         <width>250</width>
-        <height>537</height>
+        <height>506</height>
        </rect>
       </property>
       <attribute name="label">
@@ -127,6 +127,14 @@
       </attribute>
       <attribute name="toolTip">
        <string>Hierarchical Likelihood Ratio Test</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_aic">
+      <attribute name="label">
+       <string>AIC</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Akaike Information Criterion</string>
       </attribute>
      </widget>
     </widget>

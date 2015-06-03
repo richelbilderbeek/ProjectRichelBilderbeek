@@ -20,6 +20,7 @@ struct QtBrownianMotionParametersWidget;
 struct QtOrnsteinUhlenbeckLikelihoodWidget;
 struct QtOrnsteinUhlenbeckMaxLikelihoodWidget;
 struct QtOrnsteinUhlenbeckParametersWidget;
+struct QtStochasticityInspectorAicWidget;
 struct QtStochasticityInspectorHlrtWidget;
 
 namespace ribi {
@@ -42,6 +43,8 @@ private slots:
 private:
   Ui::QtStochasticityInspectorMainDialog *ui;
 
+  ///Akaike Information Criterion widget
+  QtStochasticityInspectorAicWidget * const m_aic_widget;
 
   QtBrownianMotionLikelihoodWidget * const m_bm_likelihood_widget;
   QtBrownianMotionMaxLikelihoodWidget * const m_bm_max_likelihood_widget;

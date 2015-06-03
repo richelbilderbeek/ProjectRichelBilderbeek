@@ -24,6 +24,7 @@
 #include "qtbrownianmotionlikelihoodwidget.h"
 #include "qtornsteinuhlenbeckparameterswidget.h"
 #include "ui_qtstochasticityinspectormaindialog.h"
+#include "qtstochasticityinspectoraicwidget.h"
 #include "qtstochasticityinspectorhlrtwidget.h"
 #include "qtstochasticityinspectormodelcolors.h"
 
@@ -35,6 +36,7 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
   QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtStochasticityInspectorMainDialog),
+    m_aic_widget{new QtStochasticityInspectorAicWidget},
     m_bm_likelihood_widget{new QtBrownianMotionLikelihoodWidget},
     m_bm_max_likelihood_widget{new QtBrownianMotionMaxLikelihoodWidget},
     m_bm_parameters_widget{new QtBrownianMotionParametersWidget},
@@ -104,6 +106,13 @@ ribi::QtStochasticityInspectorMainDialog::QtStochasticityInspectorMainDialog(
     QVBoxLayout * const my_layout{new QVBoxLayout};
     ui->page_hlrt->setLayout(my_layout);
     my_layout->addWidget(m_hlrt_widget);
+  }
+  //Hierarchical Likelihood Ratio Test widget
+  {
+    assert(!ui->page_aic->layout());
+    QVBoxLayout * const my_layout{new QVBoxLayout};
+    ui->page_aic->setLayout(my_layout);
+    my_layout->addWidget(m_aic_widget);
   }
 
   //Add grid
@@ -203,6 +212,11 @@ void ribi::QtStochasticityInspectorMainDialog::OnNewData() noexcept
   m_ou_max_likelihood_widget->SetData(xs,dt);
 
   m_hlrt_widget->ShowHlrt(
+    m_bm_max_likelihood_widget->GetMaxLogLikelihood(),
+    m_ou_max_likelihood_widget->GetMaxLogLikelihood()
+  );
+
+  m_aic_widget->ShowAic(
     m_bm_max_likelihood_widget->GetMaxLogLikelihood(),
     m_ou_max_likelihood_widget->GetMaxLogLikelihood()
   );
