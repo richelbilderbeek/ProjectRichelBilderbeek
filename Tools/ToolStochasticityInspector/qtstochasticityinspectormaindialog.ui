@@ -33,15 +33,15 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_bm_input">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>98</width>
-        <height>28</height>
+        <width>300</width>
+        <height>537</height>
        </rect>
       </property>
       <attribute name="label">
@@ -53,8 +53,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>98</width>
-        <height>28</height>
+        <width>300</width>
+        <height>537</height>
        </rect>
       </property>
       <attribute name="label">
@@ -85,7 +85,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_bm_analysis">
       <property name="geometry">
@@ -105,8 +105,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>98</width>
-        <height>28</height>
+        <width>250</width>
+        <height>537</height>
        </rect>
       </property>
       <attribute name="label">
@@ -118,7 +118,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>144</width>
+        <width>250</width>
         <height>537</height>
        </rect>
       </property>

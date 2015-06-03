@@ -1,6 +1,7 @@
 #ifndef QTSTOCHASTICITYINSPECTORSUPPORTWIDGET_H
 #define QTSTOCHASTICITYINSPECTORSUPPORTWIDGET_H
 
+#include "apfloat.h"
 #include <QWidget>
 
 namespace Ui {
@@ -21,7 +22,11 @@ private:
   Ui::QtStochasticityInspectorSupportWidget *ui;
 
   double m_critical_value;
-  double m_delta;
+  apfloat m_delta;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void OnChiChanged();

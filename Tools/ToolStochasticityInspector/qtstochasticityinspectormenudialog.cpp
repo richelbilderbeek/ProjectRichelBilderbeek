@@ -5,6 +5,7 @@
 #include "qtaboutdialog.h"
 #include "qtstochasticityinspectormaindialog.h"
 #include "qthideandshowdialog.h"
+#include "ribi_apfloat.h"
 #include "stochasticityinspectormenudialog.h"
 #include "testtimer.h"
 #include "trace.h"
@@ -59,6 +60,7 @@ void ribi::QtStochasticityInspectorMenuDialog::Test() noexcept
     is_tested = true;
   }
   {
+    ribi::Apfloat();
     QtStochasticityInspectorMainDialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);

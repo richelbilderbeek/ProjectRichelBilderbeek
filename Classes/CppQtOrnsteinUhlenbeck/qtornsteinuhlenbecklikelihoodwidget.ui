@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>286</width>
-    <height>144</height>
+    <height>280</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,6 +18,60 @@
     <widget class="QLabel" name="label_cand_mean_reversion_rate">
      <property name="text">
       <string>Candidate reversion rate</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_cand_target_mean">
+     <property name="text">
+      <string>Candidate target mean</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_cand_volatility">
+     <property name="text">
+      <string>Candidate volatility</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QDoubleSpinBox" name="box_cand_target_mean">
+     <property name="maximum">
+      <double>1000.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>0.010000000000000</double>
+     </property>
+     <property name="value">
+      <double>1.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QDoubleSpinBox" name="box_cand_volatility">
+     <property name="maximum">
+      <double>1000.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>0.010000000000000</double>
+     </property>
+     <property name="value">
+      <double>0.500000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="edit_log_likelihood">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_log_likelihood">
+     <property name="text">
+      <string>Log likelihood</string>
      </property>
     </widget>
    </item>
@@ -37,59 +91,18 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_cand_target_mean">
-     <property name="text">
-      <string>Candidate target mean</string>
+   <item row="4" column="0">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
      </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QDoubleSpinBox" name="box_cand_target_mean">
-     <property name="maximum">
-      <double>1000.000000000000000</double>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
      </property>
-     <property name="singleStep">
-      <double>0.010000000000000</double>
-     </property>
-     <property name="value">
-      <double>1.000000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_cand_volatility">
-     <property name="text">
-      <string>Candidate volatility</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QDoubleSpinBox" name="box_cand_volatility">
-     <property name="maximum">
-      <double>1000.000000000000000</double>
-     </property>
-     <property name="singleStep">
-      <double>0.010000000000000</double>
-     </property>
-     <property name="value">
-      <double>0.500000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_log_likelihood">
-     <property name="text">
-      <string>Log likelihood</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QLineEdit" name="edit_log_likelihood">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
+    </spacer>
    </item>
   </layout>
  </widget>

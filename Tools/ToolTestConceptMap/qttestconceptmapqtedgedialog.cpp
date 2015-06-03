@@ -74,7 +74,6 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
     item->setZValue(10000.0);
     my_scene->addItem(item); //Displays the positions
   }
-
   ui->area1->setWidget(m_view_left.get());
   ui->area2->setWidget(m_view_right.get());
   ui->area3->setWidget(m_dialog_left.get());

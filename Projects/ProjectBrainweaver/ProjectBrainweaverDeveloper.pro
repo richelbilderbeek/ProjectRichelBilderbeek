@@ -22,6 +22,7 @@ include(../../Classes/CppRibiRandom/CppRibiRandom.pri)
 include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
 
 include(../../Classes/CppQtArrowItem/CppQtArrowItem.pri)
+include(../../Classes/CppQtDisplayPosItem/CppQtDisplayPosItem.pri)
 include(../../Classes/CppQtGraphics/CppQtGraphics.pri)
 include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGraphicsView.pri)
 include(../../Classes/CppQtLabeledQuadBezierArrowItem/CppQtLabeledQuadBezierArrowItem.pri)

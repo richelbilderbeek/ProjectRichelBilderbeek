@@ -5,14 +5,11 @@
 
 #include <apfloat.h>
 
+#include "ribi_apfloat.h"
+#include "testtimer.h"
+#include "trace.h"
+#include "qtstochasticityinspectormodelcolors.h"
 #include "ui_qtstochasticityinspectorsupportwidget.h"
-
-double ToDouble(const apfloat& a)
-{
-  std::stringstream s;
-   s << a;
-   return std::stod(s.str());
-}
 
 QtStochasticityInspectorSupportWidget::QtStochasticityInspectorSupportWidget(QWidget *parent) :
   QWidget(parent),
@@ -20,10 +17,18 @@ QtStochasticityInspectorSupportWidget::QtStochasticityInspectorSupportWidget(QWi
   m_critical_value{0.0},
   m_delta{0.0}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 
   QObject::connect(ui->box_alpha,SIGNAL(valueChanged(double)),this,SLOT(OnChiChanged()));
   QObject::connect(ui->box_dof,SIGNAL(valueChanged(int)),this,SLOT(OnChiChanged()));
+
+  ui->edit_l0->setFont(QFont("monospace",6));
+  ui->edit_l1->setFont(QFont("monospace",6));
+  ui->edit_delta->setFont(QFont("monospace",6));
 
   OnChiChanged();
 }
@@ -49,37 +54,40 @@ void QtStochasticityInspectorSupportWidget::ShowSupport(const double log_likelih
 
   const apfloat likelihood_bm{exp(apfloat(log_likelihood_bm))};
   const apfloat likelihood_ou{exp(apfloat(log_likelihood_ou))};
-  {
-    std::stringstream s;
-    //s << std::setprecision(20);
-    s << likelihood_bm;
-    ui->edit_l0->setText(s.str().c_str());
-  }
-  {
-    std::stringstream s;
-    //s << std::setprecision(20);
-    s << likelihood_ou;
-    ui->edit_l1->setText(s.str().c_str());
-  }
 
   //BM is H_0, OU is H_1
-  const apfloat delta{
-    apfloat(2.0) * (likelihood_ou - likelihood_bm)
-  };
+  m_delta = apfloat(2.0) * (likelihood_ou - likelihood_bm);
 
 
-  m_delta = ToDouble(delta);
+  ui->edit_l0->setText(ribi::Apfloat().ToStr(likelihood_bm).c_str());
+  ui->edit_l1->setText(ribi::Apfloat().ToStr(likelihood_ou).c_str());
+  ui->edit_delta->setText(ribi::Apfloat().ToStr(m_delta).c_str());
 
-  //Does not work:
-  //m_delta = 2.0 * (std::log(log_likelihood_ou) - std::log(log_likelihood_bm) );
-  ui->edit_delta->setText(std::to_string(m_delta).c_str());
-
+  QPalette palette = ui->label_conclusion->palette();
   if (m_delta < m_critical_value)
   {
+    palette.setColor(ui->label_conclusion->foregroundRole(),ribi::QtStochasticityInspectorModelColors::m_bm_color);
     ui->label_conclusion->setText("Cannot reject H0: values observed are BM");
   }
   else
   {
+    palette.setColor(ui->label_conclusion->foregroundRole(),ribi::QtStochasticityInspectorModelColors::m_ou_color);
     ui->label_conclusion->setText("Reject H0: values observed are not BM");
   }
+  ui->label_conclusion->setPalette(palette);
 }
+
+#ifndef NDEBUG
+void QtStochasticityInspectorSupportWidget::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    ribi::Apfloat();
+  }
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif
