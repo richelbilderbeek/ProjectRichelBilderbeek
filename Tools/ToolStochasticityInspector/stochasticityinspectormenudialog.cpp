@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "brownianmotion.h"
-#include "ornsteinuhlenbeck.h"
+#include "ornsteinuhlenbeckprocess.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "testtimer.h"
@@ -84,7 +84,7 @@ void ribi::StochasticityInspectorMenuDialog::Test() noexcept
   }
   {
     BrownianMotion::Test();
-    OrnsteinUhlenbeck::Test();
+    ribi::ou::Process::Test();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

@@ -1,6 +1,6 @@
 #include "qtornsteinuhlenbecklikelihoodwidget.h"
 
-#include "ornsteinuhlenbeck.h"
+#include "ornsteinuhlenbeckhelper.h"
 
 #include "ui_qtornsteinuhlenbecklikelihoodwidget.h"
 
@@ -34,7 +34,7 @@ void QtOrnsteinUhlenbeckLikelihoodWidget::CalcLikelihood(
   if (cand_mean_reversion_rate <= 0.0) return;
 
   const double log_likelihood{
-    ribi::OrnsteinUhlenbeck::CalcLogLikelihood(
+    ribi::ou::Helper().CalcLogLikelihood(
       v,
       dt,
       cand_mean_reversion_rate,

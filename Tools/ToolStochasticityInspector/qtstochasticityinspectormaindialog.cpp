@@ -13,7 +13,8 @@
 #include <qwt_point_data.h>
 
 #include "brownianmotion.h"
-#include "ornsteinuhlenbeck.h"
+#include "ornsteinuhlenbeckparameters.h"
+#include "ornsteinuhlenbeckprocess.h"
 #include "testtimer.h"
 #include "trace.h"
 #include "qtornsteinuhlenbecklikelihoodwidget.h"
@@ -184,7 +185,8 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeOrnsteinUhlenbeck() no
   if (dt <= 0.0) return;
   if (lambda <= 0.0) return;
 
-  OrnsteinUhlenbeck sim(lambda,mu,sigma,seed);
+  ribi::ou::Parameters parameters(lambda,mu,sigma,seed);
+  ribi::ou::Process sim(parameters);
 
   double x = init_x;
   m_ts.clear();

@@ -4,7 +4,7 @@
 #include <QWidget>
 
 namespace Ui {
-class QtOrnsteinUhlenbeckLikelihoodWidget;
+  class QtOrnsteinUhlenbeckLikelihoodWidget;
 }
 
 class QtOrnsteinUhlenbeckLikelihoodWidget : public QWidget

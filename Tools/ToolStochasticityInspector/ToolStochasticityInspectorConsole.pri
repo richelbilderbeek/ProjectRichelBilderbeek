@@ -2,10 +2,12 @@ INCLUDEPATH += \
     ../../Tools/ToolStochasticityInspector
 
 SOURCES += \
-    ../../Tools/ToolStochasticityInspector/stochasticityinspectormenudialog.cpp
+    ../../Tools/ToolStochasticityInspector/stochasticityinspectormenudialog.cpp \
+    stochasticityinspectormaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolStochasticityInspector/stochasticityinspectormenudialog.h
+    ../../Tools/ToolStochasticityInspector/stochasticityinspectormenudialog.h \
+    stochasticityinspectormaindialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolStochasticityInspector/Licence.txt
