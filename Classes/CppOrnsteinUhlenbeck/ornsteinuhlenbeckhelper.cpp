@@ -127,6 +127,7 @@ void ribi::ou::Helper::CalcMaxLikelihood(
   if (verbose)
   {
     std::clog
+      << "n: " << n << '\n'
       << "sx: " << sx << '\n'
       << "sy: " << sy << '\n'
       << "sxx: " << sxx << '\n'
@@ -154,6 +155,8 @@ void ribi::ou::Helper::CalcMaxLikelihood(
   if (verbose)
   {
     std::clog
+      << "target_mean_hat: " << target_mean_hat << '\n'
+      << "nmu2: " << nmu2 << '\n'
       << "mean_reversion_rate_hat_numerator: " << mean_reversion_rate_hat_numerator << '\n'
       << "mean_reversion_rate_hat_denominator: " << mean_reversion_rate_hat_denominator << '\n'
       << "n/d: " << (mean_reversion_rate_hat_numerator/mean_reversion_rate_hat_denominator) << '\n'
