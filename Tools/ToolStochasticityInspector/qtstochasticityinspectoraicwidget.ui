@@ -14,56 +14,7 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_l0">
-     <property name="text">
-      <string>Log-likelihood BM</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_k_bm">
-     <property name="text">
-      <string>n_parameters BM</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0" colspan="2">
-    <widget class="QLineEdit" name="edit_aic_ou">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="edit_ll0">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="0" colspan="2">
-    <widget class="QLabel" name="label_conclusion">
-     <property name="text">
-      <string>Conclusion: [here]</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
-    <widget class="QLabel" name="label_l1_3">
-     <property name="text">
-      <string>AIC OU</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QLineEdit" name="edit_aic_bm">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
+   <item row="0" column="1" colspan="2">
     <widget class="QSpinBox" name="box_k_bm">
      <property name="readOnly">
       <bool>true</bool>
@@ -79,28 +30,28 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QLineEdit" name="edit_ll1">
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_k_ou">
+     <property name="text">
+      <string>n_parameters OU</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QLineEdit" name="edit_ll0">
      <property name="readOnly">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_l1">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_k_bm">
      <property name="text">
-      <string>Log-likelihood OU</string>
+      <string>n_parameters BM</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_l0_3">
-     <property name="text">
-      <string>AIC BM</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
+   <item row="5" column="1" colspan="2">
     <widget class="QSpinBox" name="box_k_ou">
      <property name="readOnly">
       <bool>true</bool>
@@ -113,7 +64,7 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="1">
+   <item row="11" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -126,10 +77,59 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_k_ou">
+   <item row="4" column="0" colspan="3">
+    <widget class="QLineEdit" name="edit_aic_bm">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="3">
+    <widget class="QLineEdit" name="edit_ll1">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0" colspan="3">
+    <widget class="QLineEdit" name="edit_aic_ou">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="3">
+    <widget class="QLabel" name="label_l1_3">
      <property name="text">
-      <string>n_parameters OU</string>
+      <string>AIC OU</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="3">
+    <widget class="QLabel" name="label_l1">
+     <property name="text">
+      <string>Log-likelihood OU</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QLabel" name="label_l0_3">
+     <property name="text">
+      <string>AIC BM</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QLabel" name="label_l0">
+     <property name="text">
+      <string>Log-likelihood BM</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0" colspan="3">
+    <widget class="QLabel" name="label_conclusion">
+     <property name="text">
+      <string>Conclusion: [here]</string>
      </property>
     </widget>
    </item>
@@ -138,8 +138,6 @@
  <tabstops>
   <tabstop>box_k_bm</tabstop>
   <tabstop>box_k_ou</tabstop>
-  <tabstop>edit_ll0</tabstop>
-  <tabstop>edit_ll1</tabstop>
   <tabstop>edit_aic_bm</tabstop>
   <tabstop>edit_aic_ou</tabstop>
  </tabstops>

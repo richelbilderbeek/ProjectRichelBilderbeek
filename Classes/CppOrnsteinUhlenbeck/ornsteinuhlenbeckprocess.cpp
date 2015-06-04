@@ -232,5 +232,6 @@ void ribi::ou::Process::Test() noexcept
       assert(std::abs(xs[i]-xs_expected[i]) < 0.0001);
     }
   }
+
 }
 #endif

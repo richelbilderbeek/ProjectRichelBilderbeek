@@ -6,6 +6,7 @@
 
 #include <boost/math/constants/constants.hpp>
 
+#include "brownianmotionprocess.h"
 #include "testtimer.h"
 #include "trace.h"
 
@@ -25,7 +26,8 @@ double ribi::ou::Helper::CalcLogLikelihood(
 ) const
 {
   if (dt <= 0.0) return std::numeric_limits<double>::min();
-  if (cand_mean_reversion_rate <= 0.0) return std::numeric_limits<double>::min();
+  //Any non-zero cand_mean_reversion_rate is fine
+  if (cand_mean_reversion_rate == 0.0) return std::numeric_limits<double>::min();
   if (v.size() < 2) return std::numeric_limits<double>::min();
   const double n{static_cast<double>(v.size())};
 
@@ -236,7 +238,7 @@ void ribi::ou::Helper::Test() noexcept
     const double expected_mean_reversion_rate{0.155819};
     const double expected_target_mean{-21.8686};
     const double expected_volatility{11.2043};
-    if (1 == 1)
+    if (1 == 2)
     {
       std::cout << "Found    - Expected" << '\n'
         << ml_mean_reversion_rate << " " << expected_mean_reversion_rate << '\n'
@@ -255,5 +257,50 @@ void ribi::ou::Helper::Test() noexcept
     const double expected_max_log_likelihood{-78.446232738006074};
     assert(std::abs(max_log_likelihood - expected_max_log_likelihood) < 0.000000001);
   }
+  ///Incorrectly labeled as bug:
+  ///Brownian motion run for RNG seed of 64 results in a MaxLogLikelihood of 0.0
+  ///This used to be 2,2250738585072014e-308 (the minimum double value)
+  ///but changes to -131.90782856283087 if negative mean_reversion_rates are allowed
+  {
+    ribi::bm::Parameters parameters(1.0,64);
+    ribi::bm::Process sim(parameters);
+    const double init_x{0.0};
+    double x = init_x;
+    std::vector<double> xs = {x};
+
+    for (int i=0; i!=100; ++i)
+    {
+      x = sim.CalcNext(x);
+      xs.push_back(x);
+    }
+
+    const double dt{1.0};
+    double mean_reversion_rate_hat{0.0};
+    double target_mean_hat{0.0};
+    double volatility_hat{0.0};
+    Helper().CalcMaxLikelihood(xs,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat);
+
+    if (1 == 1)
+    {
+      std::cout << "Found    - Expected" << '\n'
+        << "mean_reversion_rate: " << " " << mean_reversion_rate_hat << '\n'
+        << "target_mean: " << " " << target_mean_hat << '\n'
+        << "volatility: " << " " << volatility_hat << '\n'
+      ;
+    }
+    const double max_log_likelihood{
+      Helper().CalcLogLikelihood(xs,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat)
+    };
+    assert(max_log_likelihood != 0.0);
+    const double expected_max_log_likelihood{
+      -131.90782856283087
+    };
+    assert(max_log_likelihood == expected_max_log_likelihood);
+  }
+  //Allow mean_reversion_rate of zero
+  {
+
+  }
+
 }
 #endif
