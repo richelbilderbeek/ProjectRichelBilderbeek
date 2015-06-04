@@ -29,6 +29,7 @@ struct Helper
   ) const;
 
   private:
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

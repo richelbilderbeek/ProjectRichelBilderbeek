@@ -6,6 +6,7 @@
 #include "brownianmotionprocess.h"
 #include "ornsteinuhlenbeckprocess.h"
 #include "richelbilderbeekprogram.h"
+#include "stochasticityinspectormaindialog.h"
 #include "trace.h"
 #include "testtimer.h"
 
@@ -85,6 +86,7 @@ void ribi::StochasticityInspectorMenuDialog::Test() noexcept
   {
     ribi::bm::Process::Test();
     ribi::ou::Process::Test();
+    StochasticityInspectorMainDialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
