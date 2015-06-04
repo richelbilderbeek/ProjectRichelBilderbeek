@@ -25,9 +25,33 @@ double ribi::ou::Helper::CalcLogLikelihood(
   const double cand_volatility
 ) const
 {
+  if (cand_mean_reversion_rate == 0.0)
+  {
+    const double a{
+      CalcLogLikelihood(
+        v,
+        dt,
+        -std::numeric_limits<double>::epsilon(),
+        cand_target_mean,
+        cand_volatility
+      )
+    };
+    const double b{
+      CalcLogLikelihood(
+        v,
+        dt,
+        std::numeric_limits<double>::epsilon(),
+        cand_target_mean,
+        cand_volatility
+      )
+    };
+    return (a+b)/2.0;
+  }
+
+
+
   if (dt <= 0.0) return std::numeric_limits<double>::min();
   //Any non-zero cand_mean_reversion_rate is fine
-  if (cand_mean_reversion_rate == 0.0) return std::numeric_limits<double>::min();
   if (v.size() < 2) return std::numeric_limits<double>::min();
   const double n{static_cast<double>(v.size())};
 
@@ -238,14 +262,7 @@ void ribi::ou::Helper::Test() noexcept
     const double expected_mean_reversion_rate{0.155819};
     const double expected_target_mean{-21.8686};
     const double expected_volatility{11.2043};
-    if (1 == 2)
-    {
-      std::cout << "Found    - Expected" << '\n'
-        << ml_mean_reversion_rate << " " << expected_mean_reversion_rate << '\n'
-        << ml_target_mean << " " << expected_target_mean << '\n'
-        << ml_volatility << " " << expected_volatility << '\n'
-      ;
-    }
+
     assert(std::abs(ml_mean_reversion_rate - expected_mean_reversion_rate) < 0.001);
     assert(std::abs(ml_target_mean - expected_target_mean) < 0.001);
     assert(std::abs(ml_volatility - expected_volatility) < 0.001);
@@ -279,15 +296,6 @@ void ribi::ou::Helper::Test() noexcept
     double target_mean_hat{0.0};
     double volatility_hat{0.0};
     Helper().CalcMaxLikelihood(xs,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat);
-
-    if (1 == 1)
-    {
-      std::cout << "Found    - Expected" << '\n'
-        << "mean_reversion_rate: " << " " << mean_reversion_rate_hat << '\n'
-        << "target_mean: " << " " << target_mean_hat << '\n'
-        << "volatility: " << " " << volatility_hat << '\n'
-      ;
-    }
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(xs,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat)
     };
@@ -299,7 +307,38 @@ void ribi::ou::Helper::Test() noexcept
   }
   //Allow mean_reversion_rate of zero
   {
+    const double log_likelihood_minus{
+      Helper().CalcLogLikelihood(
+        known_xs,
+        known_dt,
+        -std::numeric_limits<double>::epsilon(),
+        known_target_mean,
+        known_volatility
+      )
+    };
+    const double log_likelihood_zero{
+      Helper().CalcLogLikelihood(
+        known_xs,
+        known_dt,
+        0.0000,
+        known_target_mean,
+        known_volatility
+      )
+    };
+    const double log_likelihood_plus{
+      Helper().CalcLogLikelihood(
+        known_xs,
+        known_dt,
+        std::numeric_limits<double>::epsilon(),
+        known_target_mean,
+        known_volatility
+      )
+    };
+    assert(log_likelihood_minus >= log_likelihood_zero);
+    assert(log_likelihood_zero >= log_likelihood_plus);
 
+    //Note: resolution too low to distinguish likelihoods
+    assert(log_likelihood_minus == log_likelihood_plus);
   }
 
 }
