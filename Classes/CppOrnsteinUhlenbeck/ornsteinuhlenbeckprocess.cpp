@@ -8,6 +8,9 @@
 
 #include <boost/math/constants/constants.hpp>
 
+#include "brownianmotionparameters.h"
+#include "brownianmotionprocess.h"
+
 #include "ornsteinuhlenbeckhelper.h"
 #include "testtimer.h"
 
@@ -231,6 +234,55 @@ void ribi::ou::Process::Test() noexcept
     {
       assert(std::abs(xs[i]-xs_expected[i]) < 0.0001);
     }
+  }
+
+
+
+
+
+
+  //LogLikelihood on BM with seed 83 gives nan
+  {
+    const double volatility{0.5};
+    const double init_x{0.0};
+    const int seed{83};
+
+    const ribi::bm::Parameters parameters(
+      volatility,
+      seed
+    );
+    ribi::bm::Process sim(parameters);
+
+    double x = init_x;
+    std::vector<double> xs = {x};
+
+    for (int i=0; i!=10; ++i)
+    {
+      std::cout << i << ": " << x << '\n';
+      x = sim.CalcNext(x);
+      xs.push_back(x);
+    }
+    std::cout << "10: " << x << '\n';
+
+    double cand_mean_reversion_rate{0.0};
+    double cand_target_mean{0.0};
+    double cand_volatility{0.0};
+    const double dt{1.0};
+    Helper().CalcMaxLikelihood(xs,dt,cand_mean_reversion_rate,cand_target_mean,cand_volatility);
+    const double max_log_likelihood{
+      Helper().CalcLogLikelihood(xs,dt,cand_mean_reversion_rate,cand_target_mean,cand_volatility)
+    };
+    std::cout << std::setprecision(20)
+      << cand_mean_reversion_rate << '\n'
+      << cand_target_mean << '\n'
+      << cand_volatility << '\n'
+      << max_log_likelihood << '\n'
+    ;
+
+    assert(!std::isnan(cand_mean_reversion_rate));
+    assert(!std::isnan(cand_volatility));
+    assert(!std::isnan(max_log_likelihood));
+    assert(!"Green");
   }
 
 }

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>764</width>
+    <width>959</width>
     <height>811</height>
    </rect>
   </property>
@@ -92,7 +92,7 @@
          <string>Enter any function of t here, for example '1000-(0.5*t/5)+rand(t/5)'</string>
         </property>
         <property name="text">
-         <string>1000-(0.5*t/5)+rand(t/5)</string>
+         <string>1000-(t/5)+rand(t/5)</string>
         </property>
        </widget>
       </item>

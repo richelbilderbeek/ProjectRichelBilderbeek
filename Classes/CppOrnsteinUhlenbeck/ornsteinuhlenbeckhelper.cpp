@@ -97,7 +97,7 @@ void ribi::ou::Helper::CalcMaxLikelihood(
 ) const
 {
   using std::begin; using std::end; using std::accumulate;
-  const bool verbose{false};
+  const bool verbose{true};
 
   const int n{static_cast<int>(v.size() - 1)};
   const double n_d{static_cast<double>(n)};
@@ -135,6 +135,8 @@ void ribi::ou::Helper::CalcMaxLikelihood(
     ;
   }
 
+  assert( ( (n_d * (sxx - sxy)) - ( (sx*sx) - (sx*sy)) ) != 0.0);
+
   target_mean_hat
     =  ((sy * sxx) - (sx * sxy))
      / ( (n_d * (sxx - sxy)) - ( (sx*sx) - (sx*sy)) )
@@ -142,13 +144,34 @@ void ribi::ou::Helper::CalcMaxLikelihood(
 
   const double nmu2{n_d*target_mean_hat*target_mean_hat};
 
+  const double mean_reversion_rate_hat_numerator{
+    sxy - (target_mean_hat*sx) - (target_mean_hat*sy) + nmu2
+  };
+  const double mean_reversion_rate_hat_denominator{
+    sxx - (2.0*target_mean_hat*sx) + nmu2
+  };
+
+  if (verbose)
+  {
+    std::clog
+      << "mean_reversion_rate_hat_numerator: " << mean_reversion_rate_hat_numerator << '\n'
+      << "mean_reversion_rate_hat_denominator: " << mean_reversion_rate_hat_denominator << '\n'
+      << "n/d: " << (mean_reversion_rate_hat_numerator/mean_reversion_rate_hat_denominator) << '\n'
+    ;
+  }
+  assert(mean_reversion_rate_hat_denominator != 0.0);
+  //assert(
+  //      mean_reversion_rate_hat_numerator
+  //    / mean_reversion_rate_hat_denominator
+  //  > 0.0
+  //);
+
   mean_reversion_rate_hat
     = -std::log(
-        (sxy - (target_mean_hat*sx) - (target_mean_hat*sy) + nmu2 )
-      / (sxx - (2.0*target_mean_hat*sx) + nmu2)
+        mean_reversion_rate_hat_numerator
+      / mean_reversion_rate_hat_denominator
     ) / dt
   ;
-
 
   const double a{std::exp(-mean_reversion_rate_hat*dt)};
   const double sigmah2{

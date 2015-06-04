@@ -49,6 +49,7 @@ ribi::QtStateObserverMainDialog::QtStateObserverMainDialog(
   #endif
   ui->setupUi(this);
 
+
   #ifdef _WIN32
   ui->plot->setCanvasBackground(QBrush(QColor(255,255,255)));
   #else
