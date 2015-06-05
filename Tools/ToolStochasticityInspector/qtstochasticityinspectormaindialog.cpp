@@ -150,10 +150,11 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeBrownian() noexcept
 
   const double init_x{m_bm_parameters_widget->GetInitValue()};
   const int t_end{m_bm_parameters_widget->GetEndTime() + 1};
-  const double volatility{m_bm_parameters_widget->GetVolatility()};
+  const auto volatility
+    = m_bm_parameters_widget->GetVolatility() / boost::units::si::second;
   const int seed{m_bm_parameters_widget->GetSeed()};
 
-  if (volatility < 0.0) return;
+  if (volatility < 0.0 / boost::units::si::second) return;
 
   ribi::bm::Parameters parameters(volatility,seed);
 

@@ -243,7 +243,8 @@ void ribi::ou::Process::Test() noexcept
 
   //Worked example
   {
-    const double volatility{0.5};
+    using Volatility = ribi::units::Rate;
+    const Volatility volatility{0.5 / boost::units::si::second};
     const double init_x{0.0};
     const int seed{83};
     std::normal_distribution<double> normal_distribution;

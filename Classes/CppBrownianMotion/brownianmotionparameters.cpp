@@ -5,13 +5,13 @@
 
 
 ribi::bm::Parameters::Parameters(
-  const double volatility,
+  const Volatility volatility,
   const int rng_seed
 ) : m_rng_seed{rng_seed},
     m_volatility{volatility}
 {
   //TODO: allow zero, then the process falls back to an autoregression
-  if (m_volatility <= 0.0)
+  if (m_volatility <= 0.0 / boost::units::si::second)
   {
     std::stringstream s;
     s << __func__

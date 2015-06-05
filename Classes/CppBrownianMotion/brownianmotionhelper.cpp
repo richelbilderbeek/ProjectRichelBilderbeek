@@ -18,26 +18,27 @@ ribi::bm::Helper::Helper()
 
 double ribi::bm::Helper::CalcLogLikelihood(
   const std::vector<double>& v,
-  const double cand_volatility
+  const VolatilitySquared cand_volatility_squared
+  //const double cand_volatility
 ) const
 {
   assert(!v.empty());
 
   using boost::math::constants::two_pi;
 
-  if (cand_volatility == 0.0) return 0.0; //TODO: allow this
+  if (cand_volatility_squared == 0.0 / boost::units::si::second / boost::units::si::second) return 0.0; //TODO: allow this
   const double n{static_cast<double>(v.size())};
   const double log_likelihood{
-    -((n/2.0)*std::log(cand_volatility * two_pi<double>()))
+    -((n/2.0)*std::log(cand_volatility_squared.value() * two_pi<double>()))
     - std::inner_product(
         std::begin(v)+1,
         std::end(v),
         std::begin(v),
         0.0,
         std::plus<double>(),
-        [cand_volatility](const double a, const double b)
+        [cand_volatility_squared](const double a, const double b)
         {
-          return std::pow(a - b,2.0) / (2.0 * cand_volatility);
+          return std::pow(a - b,2.0) / (2.0 * cand_volatility_squared.value());
         }
       )
   };
@@ -46,10 +47,10 @@ double ribi::bm::Helper::CalcLogLikelihood(
 
 void ribi::bm::Helper::CalcMaxLikelihood(
   const std::vector<double>& v,
-  double& volatility_hat
+  Volatility& volatility_hat
 ) const
 {
-  const bool verbose{true};
+  const bool verbose{false};
   const double n{static_cast<double>(v.size())};
   const double sum{
     std::inner_product(
@@ -75,7 +76,7 @@ void ribi::bm::Helper::CalcMaxLikelihood(
       << "volatility_hat_squared: " << volatility_hat_squared << '\n'
     ;
   }
-  volatility_hat = std::sqrt(volatility_hat_squared);
+  volatility_hat = std::sqrt(volatility_hat_squared) / boost::units::si::second;
 }
 
 #ifndef NDEBUG

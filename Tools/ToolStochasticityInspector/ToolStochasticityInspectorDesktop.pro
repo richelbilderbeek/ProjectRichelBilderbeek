@@ -10,10 +10,10 @@ include(../../Libraries/GeneralDesktop.pri)
 include(../../Libraries/Qwt.pri)
 
 #Console
-include(../../Classes/CppRibiApfloat/CppRibiApfloat.pri)
 include(../../Classes/CppBrownianMotion/CppBrownianMotion.pri)
 include(../../Classes/CppOrnsteinUhlenbeck/CppOrnsteinUhlenbeck.pri)
-include(../../Classes/CppPositiveNonZeroDouble/CppPositiveNonZeroDouble.pri)
+include(../../Classes/CppRibiApfloat/CppRibiApfloat.pri)
+include(../../Classes/CppUnits/CppUnits.pri)
 
 #Desktop
 include(../../Classes/CppQtBrownianMotion/CppQtBrownianMotion.pri)

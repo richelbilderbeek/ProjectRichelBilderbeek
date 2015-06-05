@@ -21,14 +21,15 @@ void QtBrownianMotionLikelihoodWidget::CalcLikelihood(
   const std::vector<double>& v
 ) noexcept
 {
-  const double cand_volatility{ui->box_cand_volatility->value()};
+  const auto cand_volatility
+    = ui->box_cand_volatility->value() / boost::units::si::second;
 
   if (v.size() <= 2) return;
 
   const double log_likelihood{
     ribi::bm::Helper().CalcLogLikelihood(
       v,
-      cand_volatility
+      cand_volatility * cand_volatility
     )
   };
   ui->edit_log_likelihood->setText(std::to_string(log_likelihood).c_str());

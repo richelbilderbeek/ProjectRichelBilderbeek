@@ -1,6 +1,7 @@
 #include "brownianmotionprocess.h"
 
 #include <cassert>
+#include <cmath>
 #include <iostream>
 #include <stdexcept>
 #include <sstream>
@@ -33,11 +34,9 @@ double ribi::bm::Process::CalcNext(
   const double random_normal
 ) const
 {
-  const double dt{1.0};
-  const double volatility{m_parameters.GetVolatility()};
-  const double dx{
-    random_normal * volatility
-  };
+  const auto dt = 1.0 * boost::units::si::second;
+  const auto volatility = m_parameters.GetVolatility();
+  const auto dx = random_normal * volatility;
   return x + (dt * dx);
 }
 
@@ -54,11 +53,11 @@ void ribi::bm::Process::Test() noexcept
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 
-  const bool verbose{true};
+  const bool verbose{false};
 
   //Create a Brownian motion with volatility
   {
-    const double volatility{1.0};
+    const auto volatility = 1.0 / boost::units::si::second;
     bm::Process b(volatility);
     double x{0.0};
     std::vector<double> v = {x};
@@ -68,15 +67,19 @@ void ribi::bm::Process::Test() noexcept
       v.push_back(x);
     }
     //Are the likelihoods best at the true volatility?
-    const double good_likelihood{Helper().CalcLogLikelihood(v,volatility)};
-    const double bad_likelihood{Helper().CalcLogLikelihood(v,volatility * 0.5)};
-    const double worse_likelihood{Helper().CalcLogLikelihood(v,volatility * 1.5)};
+    const auto good_likelihood
+       = Helper().CalcLogLikelihood(v,volatility * volatility);
+    const auto bad_likelihood
+      = Helper().CalcLogLikelihood(v,volatility * volatility * 0.5);
+    const auto worse_likelihood
+      = Helper().CalcLogLikelihood(v,volatility * volatility * 1.5);
     assert(good_likelihood > worse_likelihood);
     assert(good_likelihood > bad_likelihood);
     //Is the max likelihood truly the max likelihood?
-    double volatility_hat{0.0};
+    auto volatility_hat = 0.0 / boost::units::si::second;
     Helper().CalcMaxLikelihood(v,volatility_hat);
-    const double max_likelihood{Helper().CalcLogLikelihood(v,volatility_hat)};
+    const auto max_likelihood
+      = Helper().CalcLogLikelihood(v,volatility_hat * volatility_hat);
     assert(max_likelihood >= good_likelihood);
   }
 
@@ -130,7 +133,7 @@ void ribi::bm::Process::Test() noexcept
         -44.015,
         -57.905
       };
-    const double volatility{10.0};
+    const auto volatility = 10.0 / boost::units::si::second;
     const double init_x{0.0};
 
     const ribi::bm::Parameters parameters(volatility);
@@ -155,7 +158,7 @@ void ribi::bm::Process::Test() noexcept
 
   //Worked example
   {
-    const double volatility{0.5};
+    const auto volatility = 0.5 / boost::units::si::second;
     const double init_x{0.0};
     const int seed{83};
     std::normal_distribution<double> normal_distribution;
@@ -191,10 +194,11 @@ void ribi::bm::Process::Test() noexcept
     }
     if (verbose) { std::cout << "10: " << x << '\n'; }
 
-    double cand_volatility{0.0};
+    auto cand_volatility = 0.0 / boost::units::si::second;
     Helper().CalcMaxLikelihood(xs,cand_volatility);
-    const double expected_cand_volatility{0.38056299195796983};
-    assert(std::abs(cand_volatility - expected_cand_volatility) < 0.0001);
+    const auto expected_cand_volatility
+      = 0.38056299195796983  / boost::units::si::second;
+    assert(std::abs(cand_volatility.value() - expected_cand_volatility.value()) < 0.0001);
 
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(xs,cand_volatility * cand_volatility)
@@ -208,7 +212,7 @@ void ribi::bm::Process::Test() noexcept
     }
     const double expected_max_log_likelihood{-4.9811786934375552605};
     assert(std::abs(max_log_likelihood - expected_max_log_likelihood) < 0.0001);
-    assert(!std::isnan(cand_volatility));
+    assert(!std::isnan(cand_volatility.value()));
   }
 
 }

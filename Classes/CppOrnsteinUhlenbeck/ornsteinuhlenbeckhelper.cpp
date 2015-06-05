@@ -326,7 +326,9 @@ void ribi::ou::Helper::Test() noexcept
   ///This used to be 2,2250738585072014e-308 (the minimum double value)
   ///but changes to -131.90782856283087 if negative mean_reversion_rates are allowed
   {
-    ribi::bm::Parameters parameters(1.0,64);
+    using Volatility = ribi::units::Rate;
+    const Volatility volatility{1.0 / boost::units::si::second};
+    ribi::bm::Parameters parameters(volatility,64);
     ribi::bm::Process sim(parameters);
     const double init_x{0.0};
     double x = init_x;

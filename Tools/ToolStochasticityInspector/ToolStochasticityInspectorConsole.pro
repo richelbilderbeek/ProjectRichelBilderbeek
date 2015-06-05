@@ -3,9 +3,9 @@ include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
 
 #Console
-include(../../Classes/CppOrnsteinUhlenbeck/CppOrnsteinUhlenbeck.pri)
 include(../../Classes/CppBrownianMotion/CppBrownianMotion.pri)
-include(../../Classes/CppPositiveNonZeroDouble/CppPositiveNonZeroDouble.pri)
+include(../../Classes/CppOrnsteinUhlenbeck/CppOrnsteinUhlenbeck.pri)
+include(../../Classes/CppUnits/CppUnits.pri)
 
 #Desktop
 include(ToolStochasticityInspectorConsole.pri)
