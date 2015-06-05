@@ -96,7 +96,7 @@ void ribi::ou::Process::Test() noexcept
     Helper();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  const bool verbose{false};
+  const bool verbose{true};
 
   //Run Ornstein-Uhlenbeck for dt=0.25 and known results
   {
@@ -298,9 +298,20 @@ void ribi::ou::Process::Test() noexcept
     Rate cand_volatility = 0.0 / boost::units::si::second;
     const Time dt = 1.0 * boost::units::si::second;
     Helper().CalcMaxLikelihood(xs,dt,cand_mean_reversion_rate,cand_target_mean,cand_volatility);
+
+    const Rate expected_mean_reversion_rate{1.7961954158756237021 / boost::units::si::second};
+    const double expected_target_mean{0.53166356139872084086};
+    const Rate expected_volatility{0.52252297421994908788 / boost::units::si::second};
+    assert(std::abs(cand_mean_reversion_rate.value() - expected_mean_reversion_rate.value()) < 0.0001);
+    assert(std::abs(cand_target_mean - expected_target_mean) < 0.0001);
+    assert(std::abs(cand_volatility.value() - expected_volatility.value()) < 0.0001);
+
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(xs,dt,cand_mean_reversion_rate,cand_target_mean,cand_volatility)
     };
+
+    const double expected_max_log_likelihood{0.048970151059140938632};
+    assert(std::abs(expected_max_log_likelihood - max_log_likelihood) < 0.0001);
 
     if (verbose)
     {

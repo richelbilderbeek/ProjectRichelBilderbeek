@@ -2,14 +2,17 @@
 
 #include "brownianmotionprocess.h"
 #include "ornsteinuhlenbeckprocess.h"
+#include "testtimer.h"
 
-StochasticityInspectorMainDialog::StochasticityInspectorMainDialog()
+ribi::StochasticityInspectorMainDialog::StochasticityInspectorMainDialog()
   : m_ts{}, m_xs{}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
-StochasticityInspectorMainDialog::StochasticityInspectorMainDialog(
+ribi::StochasticityInspectorMainDialog::StochasticityInspectorMainDialog(
   const double init_x,
   const int t_end,
   const ribi::bm::Parameters& parameters
@@ -29,7 +32,7 @@ StochasticityInspectorMainDialog::StochasticityInspectorMainDialog(
   }
 }
 
-StochasticityInspectorMainDialog::StochasticityInspectorMainDialog(
+ribi::StochasticityInspectorMainDialog::StochasticityInspectorMainDialog(
   const double init_x,
   const Time dt,
   const Time t_end,
@@ -50,3 +53,22 @@ StochasticityInspectorMainDialog::StochasticityInspectorMainDialog(
   }
 }
 
+
+#ifndef NDEBUG
+void ribi::StochasticityInspectorMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    ribi::bm::Process::Test();
+    ribi::ou::Process::Test();
+    StochasticityInspectorMainDialog();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  //Worked example
+
+}
+#endif

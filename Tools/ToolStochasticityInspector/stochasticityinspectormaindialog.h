@@ -7,6 +7,8 @@
 namespace ribi { namespace ou { struct Parameters; } }
 namespace ribi { namespace bm { struct Parameters; } }
 
+namespace ribi {
+
 struct StochasticityInspectorMainDialog
 {
   using Time = ribi::units::Time;
@@ -35,6 +37,12 @@ struct StochasticityInspectorMainDialog
   private:
   std::vector<Time> m_ts;
   std::vector<double> m_xs;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
+} //~namespace ribi
 
 #endif // STOCHASTICITYINSPECTORMAINDIALOG_H
