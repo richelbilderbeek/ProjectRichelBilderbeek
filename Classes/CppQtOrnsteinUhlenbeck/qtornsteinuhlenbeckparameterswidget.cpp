@@ -29,19 +29,22 @@ double QtOrnsteinUhlenbeckParametersWidget::GetInitValue() const noexcept
   return ui->box_init_x->value();
 }
 
-double QtOrnsteinUhlenbeckParametersWidget::GetTimestep() const noexcept
+QtOrnsteinUhlenbeckParametersWidget::Time
+  QtOrnsteinUhlenbeckParametersWidget::GetTimestep() const noexcept
 {
-  return ui->box_dt->value();
+  return ui->box_dt->value() * boost::units::si::second;
 }
 
-double QtOrnsteinUhlenbeckParametersWidget::GetEndTime() const noexcept
+QtOrnsteinUhlenbeckParametersWidget::Time
+  QtOrnsteinUhlenbeckParametersWidget::GetEndTime() const noexcept
 {
-  return ui->box_t_end->value();
+  return ui->box_t_end->value() * boost::units::si::second;
 }
 
-double QtOrnsteinUhlenbeckParametersWidget::GetMeanReversionRate() const noexcept
+QtOrnsteinUhlenbeckParametersWidget::Rate
+  QtOrnsteinUhlenbeckParametersWidget::GetMeanReversionRate() const noexcept
 {
-  return ui->box_mean_reversion_rate->value();
+  return ui->box_mean_reversion_rate->value() / boost::units::si::second;
 }
 
 double QtOrnsteinUhlenbeckParametersWidget::GetTargetMean() const noexcept
@@ -49,9 +52,10 @@ double QtOrnsteinUhlenbeckParametersWidget::GetTargetMean() const noexcept
   return ui->box_target_mean->value();
 }
 
-double QtOrnsteinUhlenbeckParametersWidget::GetVolatility() const noexcept
+QtOrnsteinUhlenbeckParametersWidget::Rate
+  QtOrnsteinUhlenbeckParametersWidget::GetVolatility() const noexcept
 {
-  return ui->box_volatility->value();
+  return ui->box_volatility->value() / boost::units::si::second;
 }
 
 int QtOrnsteinUhlenbeckParametersWidget::GetSeed() const noexcept

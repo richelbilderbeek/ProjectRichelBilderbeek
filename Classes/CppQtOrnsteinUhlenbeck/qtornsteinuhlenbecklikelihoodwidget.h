@@ -2,6 +2,7 @@
 #define QTORNSTEINUHLENBECKLIKELIHOODWIDGET_H
 
 #include <QWidget>
+#include "ribi_time.h"
 
 namespace Ui {
   class QtOrnsteinUhlenbeckLikelihoodWidget;
@@ -12,12 +13,14 @@ class QtOrnsteinUhlenbeckLikelihoodWidget : public QWidget
   Q_OBJECT
 
 public:
+  using Time = ribi::units::Time;
+
   explicit QtOrnsteinUhlenbeckLikelihoodWidget(QWidget *parent = 0);
   ~QtOrnsteinUhlenbeckLikelihoodWidget();
 
   void CalcLikelihood(
     const std::vector<double>& v,
-    const double dt
+    const Time dt
   ) noexcept;
 
 signals:

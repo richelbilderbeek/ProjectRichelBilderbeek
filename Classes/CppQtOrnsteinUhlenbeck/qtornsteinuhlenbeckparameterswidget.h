@@ -1,6 +1,8 @@
 #ifndef QTORNSTEINUHLENBECKPARAMETERSWIDGET_H
 #define QTORNSTEINUHLENBECKPARAMETERSWIDGET_H
 
+#include "rate.h"
+#include "ribi_time.h"
 #include <QWidget>
 
 namespace Ui {
@@ -12,21 +14,24 @@ class QtOrnsteinUhlenbeckParametersWidget : public QWidget
   Q_OBJECT
 
 public:
+  using Rate = ribi::units::Rate;
+  using Time = ribi::units::Time;
+
   explicit QtOrnsteinUhlenbeckParametersWidget(QWidget *parent = 0);
   ~QtOrnsteinUhlenbeckParametersWidget();
 
   double GetInitValue() const noexcept;
-  double GetTimestep() const noexcept;
-  double GetEndTime() const noexcept;
+  Time GetTimestep() const noexcept;
+  Time GetEndTime() const noexcept;
 
   ///mean reversion rate: theta on Wikipedia, lambda by van den Berg
-  double GetMeanReversionRate() const noexcept;
+  Rate GetMeanReversionRate() const noexcept;
 
   ///Target mean: mu
   double GetTargetMean() const noexcept;
 
   ///noise: sigma
-  double GetVolatility() const noexcept;
+  Rate GetVolatility() const noexcept;
 
   int GetSeed() const noexcept;
 

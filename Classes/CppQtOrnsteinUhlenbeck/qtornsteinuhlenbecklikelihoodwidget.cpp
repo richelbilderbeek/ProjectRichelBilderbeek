@@ -22,16 +22,18 @@ QtOrnsteinUhlenbeckLikelihoodWidget::~QtOrnsteinUhlenbeckLikelihoodWidget()
 
 void QtOrnsteinUhlenbeckLikelihoodWidget::CalcLikelihood(
   const std::vector<double>& v,
-  const double dt
+  const Time dt
 ) noexcept
 {
-  const double cand_mean_reversion_rate{ui->box_cand_mean_reversion_rate->value()};
+  const auto cand_mean_reversion_rate
+    = ui->box_cand_mean_reversion_rate->value() / boost::units::si::second;
   const double cand_target_mean{ui->box_cand_target_mean->value()};
-  const double cand_volatility{ui->box_cand_volatility->value()};
+  const auto cand_volatility
+    = ui->box_cand_volatility->value() / boost::units::si::second;
 
-  if (dt <= 0.0) return;
+  if (dt <= 0.0 * boost::units::si::second) return;
   if (v.size() <= 2) return;
-  if (cand_mean_reversion_rate <= 0.0) return;
+  if (cand_mean_reversion_rate <= 0.0 / boost::units::si::second) return;
 
   const double log_likelihood{
     ribi::ou::Helper().CalcLogLikelihood(

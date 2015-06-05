@@ -19,19 +19,19 @@ ribi::ou::Helper::Helper()
 
 double ribi::ou::Helper::CalcLogLikelihood(
   const std::vector<double>& v,
-  const double dt,
-  const double cand_mean_reversion_rate,
+  const Time dt,
+  const Rate cand_mean_reversion_rate,
   const double cand_target_mean,
-  const double cand_volatility
+  const Rate cand_volatility
 ) const
 {
-  if (cand_mean_reversion_rate == 0.0)
+  if (cand_mean_reversion_rate == 0.0 / boost::units::si::second)
   {
     const double a{
       CalcLogLikelihood(
         v,
         dt,
-        -std::numeric_limits<double>::epsilon(),
+        -std::numeric_limits<double>::epsilon() / boost::units::si::second,
         cand_target_mean,
         cand_volatility
       )
@@ -40,7 +40,7 @@ double ribi::ou::Helper::CalcLogLikelihood(
       CalcLogLikelihood(
         v,
         dt,
-        std::numeric_limits<double>::epsilon(),
+        std::numeric_limits<double>::epsilon() / boost::units::si::second,
         cand_target_mean,
         cand_volatility
       )
@@ -50,7 +50,7 @@ double ribi::ou::Helper::CalcLogLikelihood(
 
 
 
-  if (dt <= 0.0) return std::numeric_limits<double>::min();
+  if (dt <= 0.0 * boost::units::si::second) return std::numeric_limits<double>::min();
   //Any non-zero cand_mean_reversion_rate is fine
   if (v.size() < 2) return std::numeric_limits<double>::min();
   const double n{static_cast<double>(v.size())};
@@ -72,17 +72,17 @@ double ribi::ou::Helper::CalcLogLikelihood(
       }
     )
   };
-  const double sigma_hat2{
+  const auto sigma_hat2
+    =
     cand_volatility * cand_volatility * (1.0 - std::exp(-2.0 * cand_mean_reversion_rate * dt))
     / (2.0 * cand_mean_reversion_rate)
-  };
-  const double sigma_hat{std::sqrt(sigma_hat2)};
-
+  ;
+  const auto sigma_hat = std::sqrt(sigma_hat2.value());
 
   const double log_likelihood{
     ((-n/2.0) * std::log(boost::math::constants::two_pi<double>()))
     - (n * std::log(sigma_hat))
-    - (sum / (2.0 * sigma_hat2))
+    - (sum / (2.0 * sigma_hat2.value()))
   };
   return log_likelihood;
 }
@@ -90,10 +90,10 @@ double ribi::ou::Helper::CalcLogLikelihood(
 
 void ribi::ou::Helper::CalcMaxLikelihood(
   const std::vector<double>& v,
-  const double dt,
-  double& mean_reversion_rate_hat,
+  const Time dt,
+  Rate& mean_reversion_rate_hat,
   double& target_mean_hat,
-  double& volatility_hat
+  Rate& volatility_hat
 ) const
 {
   const bool verbose{false};
@@ -207,15 +207,12 @@ void ribi::ou::Helper::CalcMaxLikelihood(
     ;
   }
 
-
   volatility_hat
     = std::sqrt(
-        (beta * 2.0 * mean_reversion_rate_hat)
+        (beta * 2.0 * mean_reversion_rate_hat.value())
       / (1.0-(alpha*alpha))
-    )
+    ) / boost::units::si::second
   ;
-
-
 }
 
 
@@ -281,11 +278,11 @@ void ribi::ou::Helper::Test() noexcept
     -29.2257,
     -39.6681
   };
-  const double known_mean_reversion_rate{0.1};
+  const auto known_mean_reversion_rate = 0.1 / boost::units::si::second;
   const double known_target_mean{0.0};
-  const double known_volatility{10.0};
+  const auto known_volatility = 10.0 / boost::units::si::second;
   //const double known_init_x{0.0};
-  const double known_dt{1.0};
+  const auto known_dt = 1.0 * boost::units::si::second;
 
   //CalcLogLikelihood of the known parameters
   {
@@ -304,16 +301,16 @@ void ribi::ou::Helper::Test() noexcept
 
   //CalcMaxLikelihood
   {
-    double ml_mean_reversion_rate{0.0};
+    auto ml_mean_reversion_rate = 0.0 / boost::units::si::second;
     double ml_target_mean{0.0};
-    double ml_volatility{0.0};
+    auto ml_volatility = 0.0 / boost::units::si::second;
     Helper().CalcMaxLikelihood(known_xs,known_dt,ml_mean_reversion_rate,ml_target_mean,ml_volatility);
-    const double expected_mean_reversion_rate{0.150065};
+    const auto expected_mean_reversion_rate = 0.150065 / boost::units::si::second;
     const double expected_target_mean{-21.2912};
-    const double expected_volatility{10.9281};
-    assert(std::abs(ml_mean_reversion_rate - expected_mean_reversion_rate) < 0.001);
+    const auto expected_volatility = 10.9281 / boost::units::si::second;
+    assert(std::abs(ml_mean_reversion_rate.value() - expected_mean_reversion_rate.value()) < 0.001);
     assert(std::abs(ml_target_mean - expected_target_mean) < 0.001);
-    assert(std::abs(ml_volatility - expected_volatility) < 0.001);
+    assert(std::abs(ml_volatility.value() - expected_volatility.value()) < 0.001);
     //CalcLogLikelihood
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(known_xs,known_dt,ml_mean_reversion_rate,ml_target_mean,ml_volatility)
@@ -340,10 +337,10 @@ void ribi::ou::Helper::Test() noexcept
       xs.push_back(x);
     }
 
-    const double dt{1.0};
-    double mean_reversion_rate_hat{0.0};
+    const auto dt = 1.0 * boost::units::si::second;
+    auto mean_reversion_rate_hat = 0.0 / boost::units::si::second;
     double target_mean_hat{0.0};
-    double volatility_hat{0.0};
+    auto volatility_hat = 0.0 / boost::units::si::second;
     Helper().CalcMaxLikelihood(xs,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat);
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(xs,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat)
@@ -360,7 +357,7 @@ void ribi::ou::Helper::Test() noexcept
       Helper().CalcLogLikelihood(
         known_xs,
         known_dt,
-        -std::numeric_limits<double>::epsilon(),
+        -std::numeric_limits<double>::epsilon() / boost::units::si::second,
         known_target_mean,
         known_volatility
       )
@@ -369,7 +366,7 @@ void ribi::ou::Helper::Test() noexcept
       Helper().CalcLogLikelihood(
         known_xs,
         known_dt,
-        0.0000,
+        0.0000 / boost::units::si::second,
         known_target_mean,
         known_volatility
       )
@@ -378,7 +375,7 @@ void ribi::ou::Helper::Test() noexcept
       Helper().CalcLogLikelihood(
         known_xs,
         known_dt,
-        std::numeric_limits<double>::epsilon(),
+        std::numeric_limits<double>::epsilon() / boost::units::si::second,
         known_target_mean,
         known_volatility
       )

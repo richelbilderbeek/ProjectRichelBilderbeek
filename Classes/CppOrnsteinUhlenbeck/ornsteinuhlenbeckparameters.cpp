@@ -4,9 +4,9 @@
 #include <stdexcept>
 
 ribi::ou::Parameters::Parameters(
-  const double mean_reversion_rate,
+  const Rate mean_reversion_rate,
   const double target_mean,
-  const double volatility,
+  const Rate volatility,
   const int rng_seed
 )
   :
@@ -16,7 +16,7 @@ ribi::ou::Parameters::Parameters(
     m_volatility{volatility}
 {
   //TODO: allow zero, then the process falls back to a Brownian process
-  if (m_mean_reversion_rate <= 0.0)
+  if (m_mean_reversion_rate <= 0.0 / boost::units::si::second)
   {
     std::stringstream s;
     s << __func__
@@ -27,7 +27,7 @@ ribi::ou::Parameters::Parameters(
   }
 
   //TODO: allow zero, then the process falls back to an autoregression
-  if (m_volatility <= 0.0)
+  if (m_volatility <= 0.0 / boost::units::si::second)
   {
     std::stringstream s;
     s << __func__

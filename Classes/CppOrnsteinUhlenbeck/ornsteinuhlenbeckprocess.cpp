@@ -26,7 +26,7 @@ ribi::ou::Process::Process(const Parameters& parameters)
 
 
 
-double ribi::ou::Process::CalcNext(const double x, const double dt)
+double ribi::ou::Process::CalcNext(const double x, const Time dt)
 {
   try
   {
@@ -43,19 +43,32 @@ double ribi::ou::Process::CalcNext(const double x, const double dt)
 
 double ribi::ou::Process::CalcNext(
   const double x,
-  const double dt,
+  const Time dt,
   const double random_normal
 ) const
 {
   try
   {
-    const double mean_reversion_rate{m_parameters.GetMeanReversionRate()};
+    const auto mean_reversion_rate = m_parameters.GetMeanReversionRate();
     const double target_mean{m_parameters.GetTargetMean()};
-    const double volatility{m_parameters.GetVolatility()};
+    const auto volatility = m_parameters.GetVolatility();
 
     const double term1{x*std::exp(-mean_reversion_rate*dt)};
     const double term2{target_mean * (1.0-std::exp(-mean_reversion_rate*dt))};
-    const double term3{volatility * random_normal * std::sqrt((1.0 - std::exp(-2.0*mean_reversion_rate*dt))  / (2.0 * mean_reversion_rate))};
+    const auto term3
+      =
+        volatility
+      * random_normal
+      * std::sqrt(
+          (1.0 - std::exp(-2.0*mean_reversion_rate*dt))
+        / (
+            2.0
+            * mean_reversion_rate
+            * boost::units::si::second //To fix units
+          )
+      )
+      * boost::units::si::second //To fix units
+    ;
     const double new_x{
         term1
       + term2
@@ -138,10 +151,10 @@ void ribi::ou::Process::Test() noexcept
         0.6232
       };
     assert(v.size() == noises.size());
-    const double mean_reversion_rate{3.0};
+    const auto mean_reversion_rate = 3.0 / boost::units::si::second;
     const double target_mean{1.0};
-    const double volatility{0.5};
-    const double dt{0.25};
+    const auto volatility = 0.5 / boost::units::si::second;
+    const auto dt = 0.25 * boost::units::si::second;
 
     ///Many thanks to Thijs van den Berg from sitmo.com
     ///to allow for this detailed test
@@ -206,9 +219,9 @@ void ribi::ou::Process::Test() noexcept
       -29.2257,
       -39.6681
     };
-    const double mean_reversion_rate{0.1};
+    const auto mean_reversion_rate = 0.1 / boost::units::si::second;
     const double target_mean{0.0};
-    const double volatility{10.0};
+    const auto volatility = 10.0 / boost::units::si::second;
     const double init_x{0.0};
 
     const ribi::ou::Parameters parameters(
@@ -223,7 +236,7 @@ void ribi::ou::Process::Test() noexcept
 
     for (const double noise: noises)
     {
-      const double dt{1.0};
+      const auto dt = 1.0 * boost::units::si::second;
       x = sim.CalcNext(x,dt,noise);
       xs.push_back(x);
     }
@@ -280,10 +293,10 @@ void ribi::ou::Process::Test() noexcept
     }
     if (verbose) { std::cout << "10: " << x << '\n'; }
 
-    double cand_mean_reversion_rate{0.0};
+    Rate cand_mean_reversion_rate = 0.0 / boost::units::si::second;
     double cand_target_mean{0.0};
-    double cand_volatility{0.0};
-    const double dt{1.0};
+    Rate cand_volatility = 0.0 / boost::units::si::second;
+    const Time dt = 1.0 * boost::units::si::second;
     Helper().CalcMaxLikelihood(xs,dt,cand_mean_reversion_rate,cand_target_mean,cand_volatility);
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(xs,dt,cand_mean_reversion_rate,cand_target_mean,cand_volatility)
@@ -298,8 +311,8 @@ void ribi::ou::Process::Test() noexcept
         << "max_log_likelihood: " << max_log_likelihood << '\n'
       ;
     }
-    assert(!std::isnan(cand_mean_reversion_rate));
-    assert(!std::isnan(cand_volatility));
+    assert(!std::isnan(cand_mean_reversion_rate.value()));
+    assert(!std::isnan(cand_volatility.value()));
     assert(!std::isnan(max_log_likelihood));
   }
 

@@ -1,6 +1,8 @@
 #ifndef ORNSTEINUHLENBECKHELPER_H
 #define ORNSTEINUHLENBECKHELPER_H
 
+#include "ribi_time.h"
+#include "rate.h"
 #include <vector>
 
 namespace ribi {
@@ -8,24 +10,27 @@ namespace ou {
 
 struct Helper
 {
+  using Time = ribi::units::Time;
+  using Rate = ribi::units::Rate;
+
   Helper();
 
   ///Calculate the likelihood of the candidate parameters in generating the dataset
   double CalcLogLikelihood(
     const std::vector<double>& v,
-    const double dt,
-    const double cand_mean_reversion_rate,
+    const Time dt,
+    const Rate cand_mean_reversion_rate,
     const double cand_target_mean,
-    const double cand_volatility
+    const Rate cand_volatility
   ) const;
 
   ///Calculate the parameters that have a maximum likelihood in generating the values v
   void CalcMaxLikelihood(
     const std::vector<double>& v,
-    const double dt,
-    double& mean_reversion_rate_hat,
+    const Time dt,
+    Rate& mean_reversion_rate_hat,
     double& target_mean_hat,
-    double& volatility_hat
+    Rate& volatility_hat
   ) const;
 
   private:

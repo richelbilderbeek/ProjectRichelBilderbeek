@@ -161,8 +161,16 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeBrownian() noexcept
   m_main_dialog = StochasticityInspectorMainDialog(init_x,t_end,parameters);
 
   //Plot
-  const auto ts = m_main_dialog.GetTimePoints();
+  const auto ts_with_unit = m_main_dialog.GetTimePoints();
   const auto xs = m_main_dialog.GetValues();
+
+  //Strip units
+  std::vector<double> ts;
+  std::transform(begin(ts_with_unit),end(ts_with_unit),
+    std::back_inserter(ts),
+    [](const auto t) { return t.value();}
+  );
+  assert(ts.size() == ts_with_unit.size());
 
   m_curve->setPen(ribi::QtStochasticityInspectorModelColors::m_bm_color);
   m_curve->setData(new QwtPointArrayData(&ts[0],&xs[0],xs.size()));
@@ -176,23 +184,31 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeOrnsteinUhlenbeck() no
   m_curve->setData(new QwtPointArrayData(0,0,0));
 
   const double init_x{m_ou_parameters_widget->GetInitValue()};
-  const double dt{m_ou_parameters_widget->GetTimestep()};
-  const double t_end{m_ou_parameters_widget->GetEndTime() + dt};
-  const double lambda{m_ou_parameters_widget->GetMeanReversionRate()};
+  const auto dt = m_ou_parameters_widget->GetTimestep();
+  const auto t_end = m_ou_parameters_widget->GetEndTime() + dt;
+  const auto mean_reversion_rate = m_ou_parameters_widget->GetMeanReversionRate();
   const double mu{m_ou_parameters_widget->GetTargetMean()};
-  const double sigma{m_ou_parameters_widget->GetVolatility()};
+  const auto sigma = m_ou_parameters_widget->GetVolatility();
   const int seed{m_ou_parameters_widget->GetSeed()};
 
-  if (dt <= 0.0) return;
-  if (lambda <= 0.0) return;
+  if (dt <= 0.0 * boost::units::si::second) return;
+  if (mean_reversion_rate <= 0.0 / boost::units::si::second) return;
 
-  ribi::ou::Parameters parameters(lambda,mu,sigma,seed);
+  ribi::ou::Parameters parameters(mean_reversion_rate,mu,sigma,seed);
 
   m_main_dialog = StochasticityInspectorMainDialog(init_x,dt,t_end,parameters);
 
   //Plot
-  const auto ts = m_main_dialog.GetTimePoints();
+  const auto ts_with_unit = m_main_dialog.GetTimePoints();
   const auto xs = m_main_dialog.GetValues();
+
+  //Strip units
+  std::vector<double> ts;
+  std::transform(begin(ts_with_unit),end(ts_with_unit),
+    std::back_inserter(ts),
+    [](const auto t) { return t.value();}
+  );
+  assert(ts.size() == ts_with_unit.size());
 
   m_curve->setPen(ribi::QtStochasticityInspectorModelColors::m_ou_color);
   m_curve->setData(new QwtPointArrayData(&ts[0],&xs[0],xs.size()));
@@ -205,7 +221,7 @@ void ribi::QtStochasticityInspectorMainDialog::OnNewData() noexcept
 {
   const auto xs = m_main_dialog.GetValues();
 
-  const double dt{m_ou_parameters_widget->GetTimestep()};
+  const auto dt = m_ou_parameters_widget->GetTimestep();
   m_bm_likelihood_widget->CalcLikelihood(xs);
   m_ou_likelihood_widget->CalcLikelihood(xs,dt);
 
