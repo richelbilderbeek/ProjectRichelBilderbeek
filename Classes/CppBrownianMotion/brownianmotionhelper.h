@@ -27,6 +27,8 @@ struct Helper
     Volatility& volatility_hat
   ) const;
 
+  double CalcMaxLogLikelihood(const std::vector<double>& v) const;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

@@ -54,7 +54,7 @@ private:
   ///Hierarchical Likelihood Ratio Test widget
   QtStochasticityInspectorHlrtWidget * const m_hlrt_widget;
 
-  StochasticityInspectorMainDialog m_main_dialog;
+  ribi::StochasticityInspectorMainDialog m_main_dialog;
 
   QtOrnsteinUhlenbeckLikelihoodWidget * const m_ou_likelihood_widget;
   QtOrnsteinUhlenbeckMaxLikelihoodWidget * const m_ou_max_likelihood_widget;

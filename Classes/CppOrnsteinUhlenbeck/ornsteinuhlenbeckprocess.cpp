@@ -96,7 +96,7 @@ void ribi::ou::Process::Test() noexcept
     Helper();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  const bool verbose{true};
+  const bool verbose{false};
 
   //Run Ornstein-Uhlenbeck for dt=0.25 and known results
   {
@@ -322,6 +322,11 @@ void ribi::ou::Process::Test() noexcept
         << "max_log_likelihood: " << max_log_likelihood << '\n'
       ;
     }
+
+    const double max_log_likelihood_too{
+      Helper().CalcMaxLogLikelihood(xs)
+    };
+    assert(std::abs(expected_max_log_likelihood - max_log_likelihood_too) < 0.0001);
     assert(!std::isnan(cand_mean_reversion_rate.value()));
     assert(!std::isnan(cand_volatility.value()));
     assert(!std::isnan(max_log_likelihood));

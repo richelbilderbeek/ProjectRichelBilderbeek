@@ -194,12 +194,14 @@ void ribi::bm::Process::Test() noexcept
     }
     if (verbose) { std::cout << "10: " << x << '\n'; }
 
+    //CalcMaxLikelihood: find best parameters
     auto cand_volatility = 0.0 / boost::units::si::second;
     Helper().CalcMaxLikelihood(xs,cand_volatility);
     const auto expected_cand_volatility
       = 0.38056299195796983  / boost::units::si::second;
     assert(std::abs(cand_volatility.value() - expected_cand_volatility.value()) < 0.0001);
 
+    //CalcLogLikelihood: use parameters
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(xs,cand_volatility * cand_volatility)
     };
@@ -213,6 +215,12 @@ void ribi::bm::Process::Test() noexcept
     const double expected_max_log_likelihood{-4.9811786934375552605};
     assert(std::abs(max_log_likelihood - expected_max_log_likelihood) < 0.0001);
     assert(!std::isnan(cand_volatility.value()));
+
+    //CalcMaxLogLikelihood: find best parameters and use them in one step
+    const double max_log_likelihood_too{
+      Helper().CalcMaxLogLikelihood(xs)
+    };
+    assert(std::abs(max_log_likelihood_too - expected_max_log_likelihood) < 0.0001);
   }
 
 }

@@ -215,6 +215,20 @@ void ribi::ou::Helper::CalcMaxLikelihood(
   ;
 }
 
+double ribi::ou::Helper::CalcMaxLogLikelihood(
+  const std::vector<double>& v
+) const
+{
+  const auto dt = 1.0 * boost::units::si::second;
+  auto mean_reversion_rate_hat = 0.0 / boost::units::si::second;
+  double target_mean_hat{0.0};
+  auto volatility_hat = 0.0 / boost::units::si::second;
+  //Find best parameters
+  Helper().CalcMaxLikelihood(v,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat);
+
+  //Use best parameters
+  return Helper().CalcLogLikelihood(v,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat);
+}
 
 
 

@@ -13,6 +13,10 @@ struct StochasticityInspectorMainDialog
 {
   using Time = ribi::units::Time;
 
+  ///H_0: data is created by a Brownian process
+  ///H_1: data is created by an Ornstein Uhlenbeck process
+  enum class HlrtResult { null_hypothesis_cannot_be_rejected, reject_null_hypothesis };
+
   StochasticityInspectorMainDialog();
 
   //Start with an Brownian Motion
@@ -29,6 +33,8 @@ struct StochasticityInspectorMainDialog
     const Time t_end,
     const ribi::ou::Parameters& parameters
   );
+
+  HlrtResult DoHierarchicalLikelihoodRatioTest() const;
 
   const auto& GetTimePoints() const noexcept { return  m_ts; }
   const std::vector<double>& GetValues() const noexcept { return m_xs; }

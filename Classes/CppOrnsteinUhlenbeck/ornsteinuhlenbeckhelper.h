@@ -33,6 +33,9 @@ struct Helper
     Rate& volatility_hat
   ) const;
 
+  double CalcMaxLogLikelihood(const std::vector<double>& v) const;
+
+
   private:
 
   #ifndef NDEBUG

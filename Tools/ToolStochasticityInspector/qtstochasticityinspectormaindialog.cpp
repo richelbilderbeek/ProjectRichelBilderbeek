@@ -158,7 +158,7 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeBrownian() noexcept
 
   ribi::bm::Parameters parameters(volatility,seed);
 
-  m_main_dialog = StochasticityInspectorMainDialog(init_x,t_end,parameters);
+  m_main_dialog = ribi::StochasticityInspectorMainDialog(init_x,t_end,parameters);
 
   //Plot
   const auto ts_with_unit = m_main_dialog.GetTimePoints();
@@ -196,7 +196,7 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeOrnsteinUhlenbeck() no
 
   ribi::ou::Parameters parameters(mean_reversion_rate,mu,sigma,seed);
 
-  m_main_dialog = StochasticityInspectorMainDialog(init_x,dt,t_end,parameters);
+  m_main_dialog = ribi::StochasticityInspectorMainDialog(init_x,dt,t_end,parameters);
 
   //Plot
   const auto ts_with_unit = m_main_dialog.GetTimePoints();

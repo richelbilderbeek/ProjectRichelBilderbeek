@@ -79,6 +79,15 @@ void ribi::bm::Helper::CalcMaxLikelihood(
   volatility_hat = std::sqrt(volatility_hat_squared) / boost::units::si::second;
 }
 
+double ribi::bm::Helper::CalcMaxLogLikelihood(
+  const std::vector<double>& v
+) const
+{
+  Volatility volatility_hat = 0.0 / boost::units::si::second;
+  CalcMaxLikelihood(v,volatility_hat);
+  return CalcLogLikelihood(v,volatility_hat * volatility_hat);
+}
+
 #ifndef NDEBUG
 void ribi::bm::Helper::Test() noexcept
 {
