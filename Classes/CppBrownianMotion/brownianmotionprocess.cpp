@@ -53,6 +53,9 @@ void ribi::bm::Process::Test() noexcept
     Helper();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+
+  const bool verbose{true};
+
   //Create a Brownian motion with volatility
   {
     const double volatility{1.0};
@@ -74,7 +77,7 @@ void ribi::bm::Process::Test() noexcept
     double volatility_hat{0.0};
     Helper().CalcMaxLikelihood(v,volatility_hat);
     const double max_likelihood{Helper().CalcLogLikelihood(v,volatility_hat)};
-    assert(max_likelihood > good_likelihood);
+    assert(max_likelihood >= good_likelihood);
   }
 
 
@@ -148,5 +151,65 @@ void ribi::bm::Process::Test() noexcept
       assert(std::abs(xs[i]-xs_expected[i]) < 0.000000001);
     }
   }
+
+
+  //Worked example
+  {
+    const double volatility{0.5};
+    const double init_x{0.0};
+    const int seed{83};
+    std::normal_distribution<double> normal_distribution;
+    std::mt19937 rng(seed);
+
+    const ribi::bm::Parameters parameters(
+      volatility,
+      seed
+    );
+    ribi::bm::Process sim(parameters);
+
+    double x = init_x;
+    std::vector<double> xs = {x};
+
+    std::vector<double> random_normals(10);
+    std::generate(begin(random_normals),end(random_normals),
+      [&normal_distribution,&rng]() { return normal_distribution(rng); }
+    );
+    if (!"Show randoms")
+    {
+      std::copy(begin(random_normals),end(random_normals),
+        std::ostream_iterator<double>(std::cout,"\n")
+      );
+    }
+
+
+    for (int i=0; i!=10; ++i)
+    {
+      const double random_normal{random_normals[i]};
+      if (verbose) { std::cout << i << ": " << x << '\n'; }
+      x = sim.CalcNext(x,random_normal);
+      xs.push_back(x);
+    }
+    if (verbose) { std::cout << "10: " << x << '\n'; }
+
+    double cand_volatility{0.0};
+    Helper().CalcMaxLikelihood(xs,cand_volatility);
+    const double expected_cand_volatility{0.38056299195796983};
+    assert(std::abs(cand_volatility - expected_cand_volatility) < 0.0001);
+
+    const double max_log_likelihood{
+      Helper().CalcLogLikelihood(xs,cand_volatility * cand_volatility)
+    };
+    if (verbose)
+    {
+      std::cout << std::setprecision(20)
+        << "cand_volatility: " << cand_volatility << '\n'
+        << "max_log_likelihood: " << max_log_likelihood << '\n'
+      ;
+    }
+    const double expected_max_log_likelihood{-4.9811786934375552605};
+    assert(std::abs(max_log_likelihood - expected_max_log_likelihood) < 0.0001);
+    assert(!std::isnan(cand_volatility));
+  }
+
 }
 #endif

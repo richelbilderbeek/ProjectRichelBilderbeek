@@ -35,7 +35,7 @@ double ribi::bm::Helper::CalcLogLikelihood(
         std::begin(v),
         0.0,
         std::plus<double>(),
-        [cand_volatility](const int a, const double b)
+        [cand_volatility](const double a, const double b)
         {
           return std::pow(a - b,2.0) / (2.0 * cand_volatility);
         }
@@ -49,21 +49,33 @@ void ribi::bm::Helper::CalcMaxLikelihood(
   double& volatility_hat
 ) const
 {
+  const bool verbose{true};
   const double n{static_cast<double>(v.size())};
+  const double sum{
+    std::inner_product(
+      std::begin(v)+1,
+      std::end(v),
+      std::begin(v),
+      0.0,
+      std::plus<double>(),
+      [](const double a, const double b)
+      {
+        return std::pow(a - b,2.0);
+      }
+    )
+  };
 
-  volatility_hat
-    = std::inner_product(
-        std::begin(v)+1,
-        std::end(v),
-        std::begin(v),
-        0.0,
-        std::plus<double>(),
-        [](const int a, const double b)
-        {
-          return std::pow(a - b,2.0);
-        }
-      )
-    / n;
+  const double volatility_hat_squared{sum / n};
+
+  if (verbose)
+  {
+    std::cout
+      << "sum: " << sum << '\n'
+      << "n: " << n << '\n'
+      << "volatility_hat_squared: " << volatility_hat_squared << '\n'
+    ;
+  }
+  volatility_hat = std::sqrt(volatility_hat_squared);
 }
 
 #ifndef NDEBUG

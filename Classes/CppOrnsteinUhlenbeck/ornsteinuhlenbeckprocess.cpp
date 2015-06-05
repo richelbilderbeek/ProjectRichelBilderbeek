@@ -241,11 +241,13 @@ void ribi::ou::Process::Test() noexcept
 
 
 
-  //LogLikelihood on BM with seed 83 gives nan
+  //Worked example
   {
     const double volatility{0.5};
     const double init_x{0.0};
     const int seed{83};
+    std::normal_distribution<double> normal_distribution;
+    std::mt19937 rng(seed);
 
     const ribi::bm::Parameters parameters(
       volatility,
@@ -256,10 +258,23 @@ void ribi::ou::Process::Test() noexcept
     double x = init_x;
     std::vector<double> xs = {x};
 
+    std::vector<double> random_normals(10);
+    std::generate(begin(random_normals),end(random_normals),
+      [&normal_distribution,&rng]() { return normal_distribution(rng); }
+    );
+    if (!"Show randoms")
+    {
+      std::copy(begin(random_normals),end(random_normals),
+        std::ostream_iterator<double>(std::cout,"\n")
+      );
+    }
+
+
     for (int i=0; i!=10; ++i)
     {
+      const double random_normal{random_normals[i]};
       if (verbose) { std::cout << i << ": " << x << '\n'; }
-      x = sim.CalcNext(x);
+      x = sim.CalcNext(x,random_normal);
       xs.push_back(x);
     }
     if (verbose) { std::cout << "10: " << x << '\n'; }
