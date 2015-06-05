@@ -292,7 +292,7 @@ int main()
     {
       //Thanks to Senbong G for adding this test
       const std::vector<double> values   = { 1.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 3.0};
-      const std::vector<double> expected = { 2.0, 2.0, 2.0, 4.5, 4.5, 7.0 ,7.0, 7.0};
+      const std::vector<double> expected = { 2.0, 2.0, 2.0, 4.5, 4.5, 7.0, 7.0, 7.0};
       const std::vector<double> results = GetRanks(values);
       assert(AreAboutEqual(expected,results) && "Senbong G test");
     }

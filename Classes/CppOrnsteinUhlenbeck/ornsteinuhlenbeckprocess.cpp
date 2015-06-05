@@ -273,16 +273,16 @@ void ribi::ou::Process::Test() noexcept
       Helper().CalcLogLikelihood(xs,dt,cand_mean_reversion_rate,cand_target_mean,cand_volatility)
     };
     std::cout << std::setprecision(20)
-      << cand_mean_reversion_rate << '\n'
-      << cand_target_mean << '\n'
-      << cand_volatility << '\n'
-      << max_log_likelihood << '\n'
+      << "cand_mean_reversion_rate: " << cand_mean_reversion_rate << '\n'
+      << "cand_target_mean: " << cand_target_mean << '\n'
+      << "cand_volatility: " << cand_volatility << '\n'
+      << "max_log_likelihood: " << max_log_likelihood << '\n'
     ;
 
     assert(!std::isnan(cand_mean_reversion_rate));
     assert(!std::isnan(cand_volatility));
     assert(!std::isnan(max_log_likelihood));
-    assert(!"Green");
+    assert(1==2);
   }
 
 }

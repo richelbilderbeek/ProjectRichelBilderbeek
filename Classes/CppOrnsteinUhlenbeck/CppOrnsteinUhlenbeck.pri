@@ -14,5 +14,6 @@ HEADERS  += \
     ../../Classes/CppOrnsteinUhlenbeck/ornsteinuhlenbeckhelper.h
 
 OTHER_FILES += \
-    ../../Classes/CppOrnsteinUhlenbeck/Licence.txt
+    ../../Classes/CppOrnsteinUhlenbeck/Licence.txt \
+    ../../Classes/CppOrnsteinUhlenbeck/CppOrnsteinUhlenbeck.gnumeric
 

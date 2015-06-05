@@ -96,10 +96,10 @@ void ribi::ou::Helper::CalcMaxLikelihood(
   double& volatility_hat
 ) const
 {
-  using std::begin; using std::end; using std::accumulate;
   const bool verbose{true};
+  using std::begin; using std::end; using std::accumulate;
 
-  const int n{static_cast<int>(v.size() - 1)};
+  const int n{static_cast<int>(v.size())};
   const double n_d{static_cast<double>(n)};
   const double sx{std::accumulate(begin(v),end(v)-1,0.0)};
   const double sy{std::accumulate(begin(v)+1,end(v),0.0)};
@@ -163,11 +163,11 @@ void ribi::ou::Helper::CalcMaxLikelihood(
     ;
   }
   assert(mean_reversion_rate_hat_denominator != 0.0);
-  //assert(
-  //      mean_reversion_rate_hat_numerator
-  //    / mean_reversion_rate_hat_denominator
-  //  > 0.0
-  //);
+  assert(
+        mean_reversion_rate_hat_numerator
+      / mean_reversion_rate_hat_denominator
+    > 0.0
+  );
 
   mean_reversion_rate_hat
     = -std::log(
@@ -176,23 +176,46 @@ void ribi::ou::Helper::CalcMaxLikelihood(
     ) / dt
   ;
 
-  const double a{std::exp(-mean_reversion_rate_hat*dt)};
-  const double sigmah2{
+  const double alpha{std::exp(-mean_reversion_rate_hat*dt)};
+
+  const double beta_term_1{syy};
+  const double beta_term_2{2.0*alpha*sxy};
+  const double beta_term_3{alpha*alpha*sxx};
+  const double beta_term_4{2.0*target_mean_hat*(1.0-alpha)*(sy - (alpha*sx))};
+  const double beta_term_5{nmu2 * (1.0-alpha)*(1.0-alpha)};
+
+  const double beta{
     (
-      syy
-      - (2.0*a*sxy)
-      + (a*a*sxx)
-      - (2.0*target_mean_hat*(1.0-a)*(sy - (a*sx)))
-      + (nmu2 * (1.0-a)*(1.0-a))
+      beta_term_1
+      - beta_term_2
+      + beta_term_3
+      - beta_term_4
+      + beta_term_5
     ) / n_d
   };
 
+  if (verbose)
+  {
+    std::clog
+      << "alpha: " << alpha << '\n'
+      << "beta_term_1: " << beta_term_1 << '\n'
+      << "beta_term_2: " << beta_term_2 << '\n'
+      << "beta_term_3: " << beta_term_3 << '\n'
+      << "beta_term_4: " << beta_term_4 << '\n'
+      << "beta_term_5: " << beta_term_5 << '\n'
+      << "beta: " << beta << '\n'
+    ;
+  }
+
+
   volatility_hat
     = std::sqrt(
-        (sigmah2 * 2.0 * mean_reversion_rate_hat)
-      / (1.0-(a*a))
+        (beta * 2.0 * mean_reversion_rate_hat)
+      / (1.0-(alpha*alpha))
     )
   ;
+
+
 }
 
 
@@ -285,20 +308,18 @@ void ribi::ou::Helper::Test() noexcept
     double ml_target_mean{0.0};
     double ml_volatility{0.0};
     Helper().CalcMaxLikelihood(known_xs,known_dt,ml_mean_reversion_rate,ml_target_mean,ml_volatility);
-    const double expected_mean_reversion_rate{0.155819};
-    const double expected_target_mean{-21.8686};
-    const double expected_volatility{11.2043};
-
+    const double expected_mean_reversion_rate{0.150065};
+    const double expected_target_mean{-21.2912};
+    const double expected_volatility{10.9281};
     assert(std::abs(ml_mean_reversion_rate - expected_mean_reversion_rate) < 0.001);
     assert(std::abs(ml_target_mean - expected_target_mean) < 0.001);
     assert(std::abs(ml_volatility - expected_volatility) < 0.001);
     //CalcLogLikelihood
-
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(known_xs,known_dt,ml_mean_reversion_rate,ml_target_mean,ml_volatility)
     };
-    const double expected_max_log_likelihood{-78.446232738006074};
-    assert(std::abs(max_log_likelihood - expected_max_log_likelihood) < 0.000000001);
+    const double expected_max_log_likelihood{-78.4367};
+    assert(std::abs(max_log_likelihood - expected_max_log_likelihood) < 0.0001);
   }
   ///Incorrectly labeled as bug:
   ///Brownian motion run for RNG seed of 64 results in a MaxLogLikelihood of 0.0
@@ -327,9 +348,9 @@ void ribi::ou::Helper::Test() noexcept
     };
     assert(max_log_likelihood != 0.0);
     const double expected_max_log_likelihood{
-      -131.90782856283087
+      -131.906
     };
-    assert(max_log_likelihood == expected_max_log_likelihood);
+    assert(std::abs(max_log_likelihood - expected_max_log_likelihood) < 0.001);
   }
   //Allow mean_reversion_rate of zero
   {
