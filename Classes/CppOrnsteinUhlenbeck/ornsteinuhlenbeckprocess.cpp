@@ -83,7 +83,7 @@ void ribi::ou::Process::Test() noexcept
     Helper();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  ///Testing dataset
+  const bool verbose{false};
 
   //Run Ornstein-Uhlenbeck for dt=0.25 and known results
   {
@@ -258,11 +258,11 @@ void ribi::ou::Process::Test() noexcept
 
     for (int i=0; i!=10; ++i)
     {
-      std::cout << i << ": " << x << '\n';
+      if (verbose) { std::cout << i << ": " << x << '\n'; }
       x = sim.CalcNext(x);
       xs.push_back(x);
     }
-    std::cout << "10: " << x << '\n';
+    if (verbose) { std::cout << "10: " << x << '\n'; }
 
     double cand_mean_reversion_rate{0.0};
     double cand_target_mean{0.0};
@@ -272,17 +272,19 @@ void ribi::ou::Process::Test() noexcept
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(xs,dt,cand_mean_reversion_rate,cand_target_mean,cand_volatility)
     };
-    std::cout << std::setprecision(20)
-      << "cand_mean_reversion_rate: " << cand_mean_reversion_rate << '\n'
-      << "cand_target_mean: " << cand_target_mean << '\n'
-      << "cand_volatility: " << cand_volatility << '\n'
-      << "max_log_likelihood: " << max_log_likelihood << '\n'
-    ;
 
+    if (verbose)
+    {
+      std::cout << std::setprecision(20)
+        << "cand_mean_reversion_rate: " << cand_mean_reversion_rate << '\n'
+        << "cand_target_mean: " << cand_target_mean << '\n'
+        << "cand_volatility: " << cand_volatility << '\n'
+        << "max_log_likelihood: " << max_log_likelihood << '\n'
+      ;
+    }
     assert(!std::isnan(cand_mean_reversion_rate));
     assert(!std::isnan(cand_volatility));
     assert(!std::isnan(max_log_likelihood));
-    assert(1==2);
   }
 
 }

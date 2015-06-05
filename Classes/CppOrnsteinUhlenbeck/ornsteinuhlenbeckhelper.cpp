@@ -96,7 +96,7 @@ void ribi::ou::Helper::CalcMaxLikelihood(
   double& volatility_hat
 ) const
 {
-  const bool verbose{true};
+  const bool verbose{false};
   using std::begin; using std::end; using std::accumulate;
 
   const int n{static_cast<int>(v.size())};
