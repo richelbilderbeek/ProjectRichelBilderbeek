@@ -112,6 +112,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     //24
 
     { "CppAthleticLandResources","<a href=\"C$ppA$thleticL$andR$esources.htm\">C$ppA$thleticL$andR$esources</a>" },
+    { "CppPositiveNonZeroDouble","<a href=\"C$ppP$ositiveN$onZ$eroD$ouble.htm\">C$ppP$ositiveN$onZ$eroD$ouble</a>" },
+
     { "CppQtQuadBezierArrowItem","<a href=\"C$ppQ$tQ$uadB$ezierA$rrowI$tem.htm\">C$ppQ$tQ$uadB$ezierA$rrowI$tem</a>" },
     { "CppQtRoundedTextRectItem","<a href=\"C$ppQ$tR$oundedT$extR$ectI$tem.htm\">C$ppQ$tR$oundedT$extR$ectI$tem</a>" },
     { "CppQtRoundedEditRectItem","<a href=\"C$ppQ$tR$oundedE$ditR$ectI$tem.htm\">C$ppQ$tR$oundedE$ditR$ectI$tem</a>" },
@@ -133,7 +135,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "-lboost_program_options","<a href=\"C$ppP$rogram_o$ptions.htm\">-l$b$oost_p$rogram_o$ptions</a>" },
     { "-Wunused-local-typedefs","$-$W$u$nu$sed-l$ocal-t$yped$efs" },
 
-    { "CppIntegerFloatingPoint","<a href=\"C$ppI$ntegerF$loatingP$oint.htm\">C$ppI$ntegerF$loatingP$oint</a>" },
+    { "CppIntegerFloatingPoint","<a href=\"C$ppI$ntegerF$loatingP$oi$nt.htm\">C$ppI$ntegerF$loatingP$oi$nt</a>" },
     { "CppKnokfighterResources","<a href=\"C$ppK$nokf$ighterR$esources.htm\">C$ppK$nokf$ighterR$esources</a>" },
 
     { "CppMysteryMachineWidget","<a href=\"C$ppM$ysteryM$achin$eW$idget.htm\">C$ppM$ysteryM$achin$eW$idget</a>" },
@@ -459,6 +461,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppLoopReader","<a href=\"C$ppL$oopR$eader.htm\">C$ppL$oopR$eader</a>" },
     { "CppMake_array","<a href=\"C$ppM$ake_a$rray.htm\">C$ppM$ake_a$rray</a>" },
     { "CppMenuDialog","<a href=\"C$ppM$enuD$ialog.htm\">C$ppM$enuD$ialog</a>" },
+
+    { "CppPhylogenyR","<a href=\"C$ppP$hylogenyR.htm\">C$ppP$hylogenyR</a>" },
     { "CppQtExercise","<a href=\"C$ppQ$tE$xercise.htm\">C$ppQ$tE$xercise</a>" },
     { "CppRandomCode","<a href=\"C$ppR$and$omC$ode.htm\">C$ppR$and$omC$ode</a>" },
     { "CppTextCanvas","<a href=\"C$ppT$extC$anvas.htm\">C$ppT$extC$anvas</a>" },
@@ -564,6 +568,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppGeometry","<a href=\"C$ppG$eomet$ry.htm\">C$ppG$eomet$ry</a>" },
     { "CppHtmlPage","<a href=\"C$ppH$tmlP$age.htm\">C$ppH$tmlP$age</a>" },
     { "CppOpenFoam","<a href=\"C$ppO$penF$oam.htm\">C$ppO$penF$oam</a>" },
+    { "CppPedigree","<a href=\"C$ppP$edigree.htm\">C$ppP$edigree</a>" },
     { "CppPolyFile","<a href=\"C$ppP$olyF$ile.htm\">C$ppP$olyF$ile</a>" },
     { "CppQtCanvas","<a href=\"C$ppQ$tC$anvas.htm\">C$ppQ$tC$anvas</a>" },
     { "CppQtMatrix","<a href=\"C$ppQ$tM$atrix.htm\">C$ppQ$tM$atrix</a>" },

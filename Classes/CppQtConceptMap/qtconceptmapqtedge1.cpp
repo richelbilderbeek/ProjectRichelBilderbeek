@@ -239,6 +239,8 @@ QRectF ribi::cmap::QtEdge1::boundingRect() const
     .united(m_arrow->boundingRect())
   ;
 
+  //Don't forget to update ::shape if you change ::boundingRect!
+
   //Some other candidates
 
   //return m_qtnode->boundingRect()
@@ -779,14 +781,12 @@ void ribi::cmap::QtEdge1::SetTo(const To& to) noexcept
   m_to = to;
 }
 
-/*
 QPainterPath ribi::cmap::QtEdge1::shape() const noexcept
 {
-  return
-    m_qtnode->shape()
-    .united(m_arrow->shape().translated(-m_qtnode->GetCenterPos()));
+  return m_qtnode->shape().translated(m_qtnode->GetCenterPos())
+    .united(m_arrow->shape())
+  ;
 }
-*/
 
 std::string ribi::cmap::QtEdge1::ToStr() const noexcept
 {

@@ -124,7 +124,7 @@ protected:
   void keyPressEvent(QKeyEvent *event) noexcept override final;
   void mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept override final;
   void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept override final;
-  //QPainterPath shape() const noexcept override final;
+  QPainterPath shape() const noexcept override final;
 
 private:
   ///The arrow used for drawing
