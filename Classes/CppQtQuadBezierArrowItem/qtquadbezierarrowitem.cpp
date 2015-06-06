@@ -392,6 +392,16 @@ void ribi::QtQuadBezierArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *) no
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
+void ribi::QtQuadBezierArrowItem::hoverMoveEvent(QGraphicsSceneHoverEvent *) noexcept
+{
+  this->setCursor(QCursor(Qt::PointingHandCursor));
+}
+
+void ribi::QtQuadBezierArrowItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *) noexcept
+{
+  this->setCursor(QCursor(Qt::PointingHandCursor));
+}
+
 void ribi::QtQuadBezierArrowItem::keyPressEvent(QKeyEvent *event) noexcept
 {
   switch (event->key())

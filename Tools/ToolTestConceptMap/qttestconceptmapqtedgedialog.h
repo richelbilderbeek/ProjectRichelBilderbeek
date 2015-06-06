@@ -9,6 +9,7 @@
 #include "qthideandshowdialog.h"
 
 #include "qtconceptmapfwd.h"
+#include "qtconceptmapqtedge.h"
 #pragma GCC diagnostic pop
 
 namespace Ui { class QtTestQtEdgeDialog; }

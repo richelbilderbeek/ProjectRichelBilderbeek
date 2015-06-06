@@ -62,6 +62,12 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
   m_from->SetCenterPos(0.0,0.0);
   m_to->SetCenterPos(10.0,100.0);
 
+  assert(m_from->flags() & QGraphicsItem::ItemIsMovable);
+  assert(m_from->flags() & QGraphicsItem::ItemIsSelectable);
+  assert(m_to->flags()   & QGraphicsItem::ItemIsMovable);
+  assert(m_to->flags()   & QGraphicsItem::ItemIsSelectable);
+
+
   {
     QGraphicsScene * const my_scene = new QGraphicsScene(this);
     m_view_left->setScene(my_scene);
@@ -402,7 +408,33 @@ void ribi::cmap::QtTestQtEdgeDialog::on_button_load_clicked() noexcept
   assert(index < QtEdgeFactory().GetNumberOfTests());
   const auto qtedge = QtEdgeFactory().GetTest(index,m_from,m_to);
 
+  assert(m_from->flags() & QGraphicsItem::ItemIsMovable);
+  assert(m_from->flags() & QGraphicsItem::ItemIsSelectable);
+  assert(m_to->flags()   & QGraphicsItem::ItemIsMovable);
+  assert(m_to->flags()   & QGraphicsItem::ItemIsSelectable);
+
   SetQtEdge(qtedge);
+
+
+  assert(m_dialog_left->GetQtEdge() == m_dialog_right->GetQtEdge());
+  assert(qtedge == m_dialog_left->GetQtEdge());
+
+  assert(m_from->flags() & QGraphicsItem::ItemIsMovable);
+  assert(m_from->flags() & QGraphicsItem::ItemIsSelectable);
+  assert(m_to->flags()   & QGraphicsItem::ItemIsMovable);
+  assert(m_to->flags()   & QGraphicsItem::ItemIsSelectable);
+
+  //qtedge itself is not movable
+  //assert(qtedge->flags() & QGraphicsItem::ItemIsMovable);
+  //assert(qtedge->flags() & QGraphicsItem::ItemIsSelectable);
+
+  assert(qtedge->GetFrom()->flags() & QGraphicsItem::ItemIsMovable);
+  assert(qtedge->GetFrom()->flags() & QGraphicsItem::ItemIsSelectable);
+  assert(qtedge->GetTo()->flags() & QGraphicsItem::ItemIsMovable);
+  assert(qtedge->GetTo()->flags() & QGraphicsItem::ItemIsSelectable);
+  assert(qtedge->GetQtNode()->flags() & QGraphicsItem::ItemIsMovable);
+  assert(qtedge->GetQtNode()->flags() & QGraphicsItem::ItemIsSelectable);
+
 
   this->m_dialog_left->GetQtEdge()->GetFrom()->GetNode()->GetConcept()->SetName("From");
   this->m_dialog_left->GetQtEdge()->GetTo()->GetNode()->GetConcept()->SetName("To");

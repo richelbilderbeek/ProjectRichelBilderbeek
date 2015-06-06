@@ -49,6 +49,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     //32
     { "CppHelloQtQtCreatorUbuntuSymbian","<a href=\"C$ppH$elloQ$tQ$tC$reatorU$buntuS$ymbian.htm\">C$ppH$elloQ$tQ$tC$reatorU$buntuS$ymbian</a>" },
     //31
+
+    { "CppLizardPaperRockScissorsSpock","<a href=\"C$ppL$izardP$aperR$ockS$cissorsS$pock.htm\">C$ppL$izardP$aperR$ockS$cissorsS$pock</a>" },
     { "CppQtNavigationableGraphicsView","<a href=\"C$ppQ$tN$avigationableG$raphicsV$iew.htm\">C$ppQ$tN$avigationableG$raphicsV$iew</a>" },
     { "CppMultipleChoiceQuestionDialog","<a href=\"C$ppM$ultipleC$hoiceQ$uestionD$ialog.htm\">C$ppM$ultipleC$hoiceQ$uestionD$ialog</a>" },
     { "CppQtLabeledQuadBezierArrowItem","<a href=\"C$ppQ$tLa$bel$edQ$uadB$ezierA$rrowI$tem.htm\">C$ppQ$tL$ab$el$edQ$uadB$ezierA$rrowI$tem</a>" },
@@ -102,6 +104,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "wtrichelbilderbeekprogram","<a href=\"C$ppW$tR$ichelB$ilderbeekP$rogram.htm\">w$tr$ichelb$ilderbeekp$rogram</a>" },
     { "wttimedserverpusherclient","<a href=\"C$ppW$tT$imedS$erverP$usherC$lient.htm\">w$tt$imeds$erverp$usherc$lient</a>" },
     //24
+
+    { "CppAthleticLandResources","<a href=\"C$ppA$thleticL$andR$esources.htm\">C$ppA$thleticL$andR$esources</a>" },
     { "CppQtQuadBezierArrowItem","<a href=\"C$ppQ$tQ$uadB$ezierA$rrowI$tem.htm\">C$ppQ$tQ$uadB$ezierA$rrowI$tem</a>" },
     { "CppQtRoundedTextRectItem","<a href=\"C$ppQ$tR$oundedT$extR$ectI$tem.htm\">C$ppQ$tR$oundedT$extR$ectI$tem</a>" },
     { "CppQtRoundedEditRectItem","<a href=\"C$ppQ$tR$oundedE$ditR$ectI$tem.htm\">C$ppQ$tR$oundedE$ditR$ectI$tem</a>" },
@@ -122,6 +126,10 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     //23
     { "-lboost_program_options","<a href=\"C$ppP$rogram_o$ptions.htm\">-l$b$oost_p$rogram_o$ptions</a>" },
     { "-Wunused-local-typedefs","$-$W$u$nu$sed-l$ocal-t$yped$efs" },
+
+    { "CppIntegerFloatingPoint","<a href=\"C$ppI$ntegerF$loatingP$oint.htm\">C$ppI$ntegerF$loatingP$oint</a>" },
+    { "CppKnokfighterResources","<a href=\"C$ppK$nokf$ighterR$esources.htm\">C$ppK$nokf$ighterR$esources</a>" },
+
     { "CppMysteryMachineWidget","<a href=\"C$ppM$ysteryM$achin$eW$idget.htm\">C$ppM$ysteryM$achin$eW$idget</a>" },
     { "CppPolyFileFromPolygons","<a href=\"C$ppP$olyF$ileF$romP$olygons.htm\">C$ppP$olyF$ileF$romP$olygons</a>" },
     { "CppQtConnectThreeWidget","<a href=\"C$ppQ$tC$onnectT$hreeW$idget.htm\">C$ppQ$tC$onnectT$hreeW$idget</a>" },
@@ -218,6 +226,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "FilterOperationerVcl","<a href=\"T$oolF$ilterO$perationerVcl.htm\">F$ilterO$perationerV$cl</a>" },
   //19
     { "CppCallStackCounter","<a href=\"C$ppC$allS$tackC$ounter.htm\">C$ppC$allS$tackC$ounter</a>" },
+    { "CppGnuplotInterface","<a href=\"C$ppG$nup$lotI$nterf$ace.htm\">C$ppG$nup$lotI$nterf$ace</a>" },
+
     { "CppQtCreatorProFile","<a href=\"C$ppQ$tC$reatorP$roF$ile.htm\">C$ppQ$tC$reatorP$roF$ile</a>" },
     { "CppQtDisplayPosItem","<a href=\"C$ppQ$tD$isplayP$osI$tem.htm\">C$ppQ$tD$isplayP$osI$tem</a>" },
     { "CppQtQuestionDialog","<a href=\"C$ppQ$tQ$uestionD$ialog.htm\">C$ppQ$tQ$uestionD$ialog</a>" },
@@ -248,6 +258,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "BinaryNewickVector","<a href=\"C$ppB$inaryN$ewickV$ector.htm\">B$inaryN$ewickV$ector</a>" },
     { "ConsoleApplication","<a href=\"C$ppC$onsoleA$pplication.htm\">C$onsoleA$pplication</a>" },
     { "ConnectThreeWidget","<a href=\"C$ppC$onnectT$hreeW$idget.htm\">C$onnectT$hreeW$idget</a>" },
+
+    { "CppEuclideanVector","<a href=\"C$ppE$uclideanV$ector.htm\">C$ppE$uclideanV$ector</a>" },
     { "CppManyDigitNewick","<a href=\"C$ppM$a$nyD$igitN$ewick.htm\">C$ppM$a$nyD$igitN$ewick</a>" },
     { "CppQtPathArrowItem","<a href=\"C$ppQ$tP$athA$rrowI$tem.htm\">C$ppQ$tP$athA$rrowI$tem</a>" },
     { "CppQtScopedDisable","<a href=\"C$ppQ$t$S$copedD$isable.htm\">C$ppQ$tS$copedD$isable</a>" },
@@ -279,6 +291,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
   //17
     { "-lboost_date_time","<a href=\"C$ppD$ate_T$ime.htm\">-l$b$oost_d$ate_t$ime</a>" },
     { "-Wunused-variable","$-$W$u$nu$s$ed-v$ari$ab$le" },
+    { "CppBrownianMotion","<a href=\"C$ppB$rownianM$otion.htm\">C$ppB$rownianM$otion</a>" },
     { "CppChessResources","<a href=\"C$ppC$hessR$esources.htm\">C$ppC$hessR$esources</a>" },
     { "CppFuzzy_equal_to","<a href=\"C$ppF$uzzy_e$qual_t$o.htm\">C$ppF$uzzy_e$qual_t$o</a>" },
     { "CppPolarCoordinat","<a href=\"C$ppP$olarC$oordinat.htm\">C$ppP$olarC$oordinat</a>" },
@@ -385,6 +398,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
   //14
     { "-lboost_system","<a href=\"C$ppS$ystem.htm\">-l$b$oost_s$ystem</a>" },
     { "CppCodeBreaker","<a href=\"C$ppC$odeB$reaker.htm\">C$ppC$odeB$reaker</a>" },
+    { "CppDnaSequence","<a href=\"C$ppD$naS$equence.htm\">C$ppD$naS$equence</a>" },
     { "CppGaborFilter","<a href=\"C$ppG$aborF$ilter.htm\">C$ppG$aborF$ilter</a>" },
     { "CppImageCanvas","<a href=\"C$ppI$mageC$anvas.htm\">C$ppI$mageC$anvas</a>" },
     { "CppQtArrowItem","<a href=\"C$ppQ$t$A$r$rowI$tem.htm\">C$ppQ$t$A$rr$owI$tem</a>" },
@@ -431,6 +445,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppConceptMap","<a href=\"C$ppC$onceptM$ap.htm\">C$ppC$onceptM$ap</a>" },
     { "CppDialWidget","<a href=\"C$ppD$ialW$idget.htm\">CppD$ialW$idget</a>" },
     { "CppDrawCanvas","<a href=\"C$ppD$rawC$anvas.htm\">C$ppD$rawC$anvas</a>" },
+
+    { "CppLengthInMm","<a href=\"C$ppL$engthI$nM$m.htm\">C$ppL$engthI$nM$m</a>" },
     { "CppLoopReader","<a href=\"C$ppL$oopR$eader.htm\">C$ppL$oopR$eader</a>" },
     { "CppMenuDialog","<a href=\"C$ppM$enuD$ialog.htm\">C$ppM$enuD$ialog</a>" },
     { "CppQtExercise","<a href=\"C$ppQ$tE$xercise.htm\">C$ppQ$tE$xercise</a>" },
@@ -487,9 +503,12 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "wtdialwidget","<a href=\"C$ppW$tD$ialW$idget.htm\">w$td$ialw$idget</a>" },
     { "wtcodetohtml","<a href=\"T$oolC$odeToH$tml.htm\">w$tc$odet$oh$tml</a>" },
     { "Brainspinner","<a href=\"T$oolB$rains$pinner.htm\">B$rains$pinner</a>" },
+    { "CppAminoAcid","<a href=\"C$ppA$minoA$cid.htm\">C$ppA$minoA$cid</a>" },
     { "CppCoordinat","<a href=\"C$ppC$oordin$at.htm\">C$ppC$oord$inat</a>" },
     { "CppDotMatrix","<a href=\"C$ppD$otM$atrix.htm\">C$ppD$otM$atrix</a>" },
     { "CppEncranger","<a href=\"C$ppE$ncranger.htm\">C$ppE$ncranger</a>" },
+    { "CppFastaFile","<a href=\"C$ppF$astaF$ile.htm\">C$ppF$astaF$ile</a>" },
+    { "CppHistogram","<a href=\"C$ppH$istog$ram.htm\">C$ppH$istog$ram</a>" },
     { "CppIpAddress","<a href=\"C$ppI$pA$ddress.htm\">C$ppI$pA$ddress</a>" },
     { "CppLazy_init","<a href=\"C$ppL$azy_i$nit.htm\">C$ppL$azy_i$nit</a>" },
     { "CppLedWidget","<a href=\"C$ppL$edW$idget.htm\">C$ppL$edW$idget</a>" },
@@ -570,8 +589,11 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "AsciiArter","<a href=\"CppA$sciiA$rter.htm\">A$sciiA$rter</a>" },
     { "BigInteger","<a href=\"CppB$igI$nt.htm\">B$igI$nteger</a>" },
     { "CodeToHtml","<a href=\"T$oolC$odeToH$tml.htm\">C$odeT$oH$tml</a>" },
+    { "CppAbcFile","<a href=\"C$ppA$bcF$ile.htm\">C$ppA$bcF$ile</a>" },
+    { "CppBiology","<a href=\"C$ppB$iology.htm\">C$ppB$iology</a>" },
     { "CppCopy_if","<a href=\"CppCo$py_i$f.htm\">C$ppCo$py_i$f</a>" },
     { "CppCounter","<a href=\"C$ppC$ounter.htm\">C$ppC$ounter</a>" },
+    { "CppGrabber","<a href=\"C$ppG$rabber.htm\">C$ppG$rabber</a>" },
     { "CppQrcFile","<a href=\"CppQ$rcF$ile.htm\">C$ppQ$rcF$ile</a>" },
     { "CppQtChess","<a href=\"CppQ$tC$hess.htm\">C$ppQ$tC$hess</a>" },
     { "CppQtModel","<a href=\"C$ppQ$tM$odel.htm\">C$ppQ$tM$odel</a>" },
@@ -594,6 +616,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppAssert","<a href=\"C$ppA$ssert.htm\">C$ppA$ssert</a>" },
     { "CppCanvas","<a href=\"C$ppC$anvas.htm\">C$ppC$anvas</a>" },
     { "CppFileIo","<a href=\"C$ppF$ileI$o.htm\">C$ppF$ileI$o</a>" },
+    { "CppIrcBot","<a href=\"C$ppI$rcB$ot.htm\">C$ppI$rcB$ot</a>" },
+
     { "CppMatrix","<a href=\"C$ppM$atrix.htm\">C$ppM$atrix</a>" },
     { "CppNewick","<a href=\"C$ppN$ewick.htm\">C$ppN$ewick</a>" },
     { "CppSurvey","<a href=\"C$ppS$urvey.htm\">C$ppS$urvey</a>" },
@@ -635,6 +659,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "timepoll","<a href=\"T$oolT$imeP$oll.htm\">t$imep$oll</a>" },
     { "valgrind","<a href=\"C$ppV$alg$rind.htm\">v$alg$rind</a>" },
     { "CppAbout","<a href=\"C$ppA$bout.htm\">C$ppA$bout</a>" },
+    { "CppBeast","<a href=\"C$ppB$east.htm\">C$ppB$east</a>" },
     { "CppChess","<a href=\"C$ppC$hess.htm\">C$ppC$hess</a>" },
     { "CppMusic","<a href=\"C$ppM$usic.htm\">C$ppM$usic</a>" },
     { "CppPlane","<a href=\"C$ppP$lane.htm\">C$ppP$lane</a>" },
@@ -663,6 +688,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "Classes","<a href=\"C$ppC$lass.htm\">C$lasses</a>" },
     { "Copy_if","<a href=\"CppCo$py_i$f.htm\">Co$py_i$f</a>" },
     { "CppDial","<a href=\"C$ppD$ial.htm\">C$ppD$ial</a>" },
+    { "CppDnaR","<a href=\"C$ppD$na$R.htm\">C$ppD$na$R</a>" },
+
     { "CppHelp","<a href=\"C$ppH$elp.htm\">C$ppH$elp</a>" },
     { "DEFINES","<a href=\"CppQ$m$akeD$efines.htm\">D$EFINES</a>" },
     { "DESTDIR","<a href=\"CppQ$m$akeD$es$td$ir.htm\">D$ES$TD$IR</a>" },

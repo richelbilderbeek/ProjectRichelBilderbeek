@@ -7,7 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
-
+#include "qtconceptmapqtedge.h"
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 

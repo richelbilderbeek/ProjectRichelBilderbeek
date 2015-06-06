@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #include "qtroundededitrectitem.h"
 #include "qtconceptmapfwd.h"
+#include "qtconceptmapqtedge.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {

@@ -150,7 +150,10 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
 
   protected:
   ///Change the cursor when the user moves the mouse cursor in the bounding rectangle
+  ///
   void hoverEnterEvent(QGraphicsSceneHoverEvent *event) noexcept override final;
+  void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) noexcept override final;
+  void hoverMoveEvent(QGraphicsSceneHoverEvent *event) noexcept override final;
 
   private:
   ///The extra width given to the line for easier clicking

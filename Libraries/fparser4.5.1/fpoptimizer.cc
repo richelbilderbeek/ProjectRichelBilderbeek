@@ -10,12 +10,6 @@
 |* (See lgpl.txt and gpl.txt for the license text.)                        *|
 \***************************************************************************/
 
-//Added by Richel Bilderbeek
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 
