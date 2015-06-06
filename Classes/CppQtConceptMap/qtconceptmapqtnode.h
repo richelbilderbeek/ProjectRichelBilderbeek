@@ -48,7 +48,7 @@ struct QtNode : public QtRoundedEditRectItem
     //const boost::shared_ptr<QtItemDisplayStrategy> concept_item
   );
 
-  //virtual QRectF boundingRect() const;
+  virtual QRectF boundingRect() const { return Base::boundingRect(); }
 
   //QBrush brush() const;
 

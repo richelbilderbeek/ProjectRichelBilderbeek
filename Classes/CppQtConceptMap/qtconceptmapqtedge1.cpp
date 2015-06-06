@@ -233,16 +233,22 @@ ribi::cmap::QtEdge1::~QtEdge1() noexcept
 
 QRectF ribi::cmap::QtEdge1::boundingRect() const
 {
-  //Goes around arrow
-  //return m_qtnode->boundingRect().translated(-m_qtnode->GetCenterPos())
-  //  .united(m_arrow->boundingRect());
 
-  //Goes around arrow
-  return m_qtnode->boundingRect()
-    .united(m_arrow->boundingRect());
+
+  return m_qtnode->boundingRect().translated(m_qtnode->GetCenterPos())
+    .united(m_arrow->boundingRect())
+  ;
+
+  //Some other candidates
 
   //return m_qtnode->boundingRect()
-  //  .united(m_arrow->boundingRect().translated(-m_qtnode->GetCenterPos()));
+  //  .united(m_arrow->boundingRect());
+
+  //return m_qtnode->boundingRect().translated(-m_qtnode->GetCenterPos())
+  //   .united(m_arrow->boundingRect());
+
+  //return m_qtnode->boundingRect()
+  //  .united(m_arrow->boundingRect().translated(m_qtnode->GetCenterPos()));
 }
 
 void ribi::cmap::QtEdge1::DisableAll() noexcept
@@ -568,8 +574,8 @@ void ribi::cmap::QtEdge1::paint(QPainter* painter, const QStyleOptionGraphicsIte
   {
     const QPen prev_pen = painter->pen();
     const QBrush prev_brush = painter->brush();
-    painter->setPen(QPen(QColor(0,0,96)));
-    painter->setBrush(QBrush(QColor(0,0,255,64)));
+    painter->setPen(QPen(QColor(96,0,0)));
+    painter->setBrush(QBrush(QColor(255,0,0,32)));
     painter->drawRect(this->boundingRect().adjusted(1.0,1.0,-1.0,-1.0));
     painter->setPen(prev_pen);
     painter->setBrush(prev_brush);

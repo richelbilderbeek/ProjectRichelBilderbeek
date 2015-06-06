@@ -192,20 +192,6 @@ ribi::cmap::QtNode::~QtNode() noexcept
   */
 }
 
-/*
-QRectF ribi::cmap::QtNode::boundingRect() const
-{
-  //TRACE(m_concept_item->boundingRect().width());
-  //TRACE(QtConceptMapItem::boundingRect().width());
-
-  //Cannot check here
-  //assert(m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
-  //  && "Bounding rects must by synced");
-  return m_display_strategy->boundingRect();
-  //return QtConceptMapItem::boundingRect(); //Bypassed going via m_concept_item
-}
-*/
-
 void ribi::cmap::QtNode::DisableAll()
 {
   this->setEnabled(false);

@@ -31,6 +31,10 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
   return
   {
     //Desired replacements
+    //41
+    { "CppLizardPaperRockScissorsSpockSimulation","<a href=\"C$ppL$izardP$aperR$ockS$cissorsS$pockS$imulation.htm\">C$ppL$izardP$aperR$ockS$cissorsS$pockS$imulation</a>" },
+    //39
+    { "CppPaperRockScissorsWithTraitSimulation","<a href=\"C$ppP$aperR$ockS$cissorsW$ithT$raitS$imulation.htm\">C$ppP$aperR$ockS$cissorsW$ithT$raitS$imulation</a>" },
     //38
 
     { "ToolRichelbilderbeekNlSitemapGenerator","<a href=\"T$oolR$ichelb$ilderbeekN$lS$item$apG$enerator.htm\">T$oolR$ichelb$ilderbeekN$l$S$item$apG$enerator</a>" },
@@ -56,7 +60,9 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppQtLabeledQuadBezierArrowItem","<a href=\"C$ppQ$tLa$bel$edQ$uadB$ezierA$rrowI$tem.htm\">C$ppQ$tL$ab$el$edQ$uadB$ezierA$rrowI$tem</a>" },
     { "qtrichelbilderbeekgallerydialog","<a href=\"C$ppQ$tR$ichelB$ilderbeekG$alleryD$ialog.htm\">q$tr$ichelb$ilderbeekg$alleryd$ialog</a>" },
 
+
     //30
+    { "CppPaperRockScissorsSimulation","<a href=\"C$ppP$aperR$ockS$cissorsS$imulation.htm\">C$ppP$aperR$ockS$cissorsS$imulation</a>" },
     { "qtkeyboardfriendlygraphicsview","<a href=\"C$ppQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">q$tk$eyboardf$riendlyg$raphicsv$iew</a>" },
     { "QtKeyboardFriendlyGraphicsView","<a href=\"C$ppQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">Q$tK$eyboardF$riendlyG$raphicsV$iew</a>" },
     { "qtmultiplechoicequestiondialog","<a href=\"C$ppQ$tM$ultipleC$hoiceQ$uestionD$ialog.htm\">q$tm$ultiplec$hoiceq$uestiond$ialog</a>" },
@@ -191,6 +197,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
   //20
     { "CppGaborFilterWidget","<a href=\"C$ppG$aborF$ilterW$idg$et.htm\">C$ppG$aborF$ilterW$idg$et</a>" },
     { "CppMultiApproximator","<a href=\"C$ppM$ultiA$pproximator.htm\">C$ppM$ultiA$pproximator</a>" },
+    { "CppOrnsteinUhlenbeck","<a href=\"C$ppO$rnsteinU$hlenbeck.htm\">C$ppO$rnsteinU$hlenbeck</a>" },
+    { "CppPaperRockScissors","<a href=\"C$ppP$aperR$ockS$cissors.htm\">C$ppP$aperR$ockS$cissors</a>" },
     { "CppQtRoundedRectItem","<a href=\"C$ppQ$tR$oundedR$ectI$tem.htm\">C$ppQ$tR$oundedR$ectI$tem</a>" },
     { "CppQtTicTacToeWidget","<a href=\"C$ppQ$tT$icTacToeW$idget.htm\">C$ppQ$tT$icTacToeW$idget</a>" },
     { "CppRubiksClockWidget","<a href=\"C$ppR$ubiksC$lockW$idget.htm\">C$ppR$ubiksC$lockW$idget</a>" },
@@ -404,6 +412,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppQtArrowItem","<a href=\"C$ppQ$t$A$r$rowI$tem.htm\">C$ppQ$t$A$rr$owI$tem</a>" },
     { "CppMultiCanvas","<a href=\"C$ppM$ultiC$anvas.htm\">C$ppM$ultiC$anvas</a>" },
     { "CppMultiVector","<a href=\"C$ppM$ultiV$ector.htm\">C$ppM$ultiV$ector</a>" },
+    { "CppNewickUtils","<a href=\"C$ppN$ewickU$tils.htm\">C$ppN$ewickU$tils</a>" },
+
     { "CppQtDotMatrix","<a href=\"C$ppQ$tD$otM$atrix.htm\">C$ppQ$tD$otM$atrix</a>" },
     { "CppQtLedWidget","<a href=\"C$ppQ$tL$edW$idget.htm\">C$ppQ$tL$edW$idget</a>" },
     { "CppRubiksClock","<a href=\"C$ppR$ubiksC$lock.htm\">C$ppR$ubiksC$lock</a>" },
@@ -445,9 +455,9 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppConceptMap","<a href=\"C$ppC$onceptM$ap.htm\">C$ppC$onceptM$ap</a>" },
     { "CppDialWidget","<a href=\"C$ppD$ialW$idget.htm\">CppD$ialW$idget</a>" },
     { "CppDrawCanvas","<a href=\"C$ppD$rawC$anvas.htm\">C$ppD$rawC$anvas</a>" },
-
     { "CppLengthInMm","<a href=\"C$ppL$engthI$nM$m.htm\">C$ppL$engthI$nM$m</a>" },
     { "CppLoopReader","<a href=\"C$ppL$oopR$eader.htm\">C$ppL$oopR$eader</a>" },
+    { "CppMake_array","<a href=\"C$ppM$ake_a$rray.htm\">C$ppM$ake_a$rray</a>" },
     { "CppMenuDialog","<a href=\"C$ppM$enuD$ialog.htm\">C$ppM$enuD$ialog</a>" },
     { "CppQtExercise","<a href=\"C$ppQ$tE$xercise.htm\">C$ppQ$tE$xercise</a>" },
     { "CppRandomCode","<a href=\"C$ppR$and$omC$ode.htm\">C$ppR$and$omC$ode</a>" },
