@@ -140,6 +140,8 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::simplifyNewick: p.reset(new ProgramSimplifyNewick); break;
     case ProgramType::simPredatorVcl: p.reset(new ProgramSimPredatorVcl); break;
     case ProgramType::simStagecraft: p.reset(new ProgramSimStagecraft); break;
+    case ProgramType::simTopPredatorPrey: p.reset(new ProgramSimTopPredatorPrey); break;
+
     case ProgramType::soaSim: p.reset(new ProgramSoaSim); break;
     case ProgramType::solvePuzzleX: p.reset(new ProgramSolvePuzzleX); break;
     case ProgramType::spaceHarryVcl: p.reset(new ProgramSpaceHarryVcl); break;

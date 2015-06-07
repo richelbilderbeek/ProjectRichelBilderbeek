@@ -132,6 +132,7 @@ enum class ProgramType
   simplifyNewick,
   simPredatorVcl,
   simStagecraft,
+  simTopPredatorPrey,
   soaSim,
   solvePuzzleX,
   spaceHarryVcl,

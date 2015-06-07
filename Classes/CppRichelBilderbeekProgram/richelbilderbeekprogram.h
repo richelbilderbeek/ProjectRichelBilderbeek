@@ -1728,6 +1728,22 @@ struct ProgramSimStagecraft : public ProgramTool
   std::string GetUrl() const noexcept override final { return "ToolSimStagecraft.htm"; }
 };
 
+
+struct ProgramSimTopPredatorPrey : public ProgramTool
+{
+  std::string GetFilenameConsole() const noexcept override final { return ""; }
+  std::string GetFilenameDesktop() const noexcept override final { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept override final { return ""; }
+  std::string GetFilenameWeb() const noexcept override final { return ""; }
+  std::string GetScreenName() const noexcept override final { return "SimTopPredatorPrey"; }
+  ProgramStatus GetStatusConsole() const noexcept override final { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept override final { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept override final { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const noexcept override final { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept override final { return ProgramType::simTopPredatorPrey; }
+  std::string GetUrl() const noexcept override final { return "ToolSimTopPredatorPrey"; }
+};
+
 struct ProgramSoaSim : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept override final { return ""; }

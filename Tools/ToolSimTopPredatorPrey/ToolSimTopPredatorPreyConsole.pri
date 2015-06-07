@@ -6,9 +6,6 @@ SOURCES += \
 HEADERS += \
     ../../Tools/ToolSimTopPredatorPrey/simtoppredatorpreymenudialog.h
 
-
-FORMS +=
-
 OTHER_FILES += \
     ../../Tools/ToolSimTopPredatorPrey/Licence.txt
 

@@ -152,6 +152,7 @@ include(../../Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekN
 include(../../Tools/ToolSecretMessage/ToolSecretMessageConsole.pri)
 include(../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineConsole.pri)
 include(../../Tools/ToolSimplifyNewick/ToolSimplifyNewickConsole.pri)
+include(../../Tools/ToolSimTopPredatorPrey/ToolSimTopPredatorPreyConsole.pri)
 include(../../Tools/ToolStaircaseCardCreator/ToolStaircaseCardCreatorConsole.pri)
 include(../../Tools/ToolStateObserver/ToolStateObserverConsole.pri)
 include(../../Tools/ToolStochasticityInspector/ToolStochasticityInspectorConsole.pri)

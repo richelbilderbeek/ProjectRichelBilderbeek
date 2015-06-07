@@ -1,5 +1,5 @@
-#ifndef QTTOOLGRAYCODERMENUDIALOG_H
-#define QTTOOLGRAYCODERMENUDIALOG_H
+#ifndef QTSIMTOPPREDATORPREYMENUDIALOG_H
+#define QTSIMTOPPREDATORPREYMENUDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -41,4 +41,4 @@ private slots:
 
 } //~namespace ribi
 
-#endif // QTTOOLGRAYCODERMENUDIALOG_H
+#endif // QTSIMTOPPREDATORPREYMENUDIALOG_H

@@ -149,6 +149,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::simplifyNewick,"simplifyNewick"));
   m.insert(Pair(ProgramType::simPredatorVcl,"simPredatorVcl"));
   m.insert(Pair(ProgramType::simStagecraft,"simStagecraft"));
+  m.insert(Pair(ProgramType::simTopPredatorPrey,"simTopPredatorPrey"));
   m.insert(Pair(ProgramType::soaSim,"soaSim"));
   m.insert(Pair(ProgramType::solvePuzzleX,"solvePuzzleX"));
   m.insert(Pair(ProgramType::spaceHarryVcl,"spaceHarryVcl"));
@@ -364,6 +365,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::simplifyNewick,"SimplifyNewick"));
   m.insert(Pair(ProgramType::simPredatorVcl,"SimPredator (VCL)"));
   m.insert(Pair(ProgramType::simStagecraft,"SimStagecraft"));
+  m.insert(Pair(ProgramType::simTopPredatorPrey,"SimTopPredatorPrey"));
   m.insert(Pair(ProgramType::soaSim,"SoaSim"));
   m.insert(Pair(ProgramType::solvePuzzleX,"SolvePuzzleX"));
   m.insert(Pair(ProgramType::spaceHarryVcl,"SpaceHarry (VCL)"));

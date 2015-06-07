@@ -91,6 +91,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtpaperrockscissorswithtraitmenudialog.h"
 #include "qtpaperrockscissorsmenudialog.h"
+#include "qtsimtoppredatorpreymenudialog.h"
 #include "qtstateobservermenudialog.h"
 #include "qtstylesheetsettermenudialog.h"
 #include "qtsurfaceplottermenudialog.h"
@@ -271,6 +272,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::simImmuneResponse: break;
     case ProgramType::simMysteryMachine: p = new QtSimMysteryMachineMenuDialog; break;
     case ProgramType::simplifyNewick: p = new QtToolSimplifyNewickMenuDialog; break;
+    case ProgramType::simTopPredatorPrey: p = new QtSimTopPredatorPreyMenuDialog; break;
     case ProgramType::simPredatorVcl: break;
     case ProgramType::simStagecraft: break;
     case ProgramType::soaSim: break;

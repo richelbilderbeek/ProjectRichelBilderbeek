@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFont>
 #include <QPainter>
+#include <QGraphicsScene>
 
 #include "conceptmapconcept.h"
 #include "conceptmapexample.h"
@@ -68,9 +69,7 @@ ribi::cmap::QtExamplesItem::QtExamplesItem(
   //this->SetBuddyItem(concept);
 }
 
-void ribi::cmap::QtExamplesItem::OnItemUpdated(
-  // const QGraphicsItem * const item
-)
+void ribi::cmap::QtExamplesItem::OnItemUpdated()
 {
   this->update();
   this->m_signal_request_scene_update();

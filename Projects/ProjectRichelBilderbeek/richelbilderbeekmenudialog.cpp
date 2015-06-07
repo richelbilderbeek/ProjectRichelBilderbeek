@@ -120,6 +120,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pixelatormenudialog.h"
 #include "pixelatormenudialog.h"
 #include "plane.h"
+#include "simtoppredatorpreymenudialog.h"
 #include "polyfile.h"
 #include "polyfilefrompolygons.h"
 #include "predickadvocatormenudialog.h"
@@ -2053,6 +2054,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
+      case ProgramType::simTopPredatorPrey: p.reset(new ribi::SimTopPredatorPreyMenuDialog); break;
       case ProgramType::soaSim:
       {
         const std::string version = "x.x";

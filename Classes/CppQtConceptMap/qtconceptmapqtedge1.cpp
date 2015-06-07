@@ -139,6 +139,8 @@ ribi::cmap::QtEdge1::QtEdge1(
     boost::bind(&ribi::cmap::QtEdge1::OnTextChanged,this,boost::lambda::_1)
   );
 
+
+
   m_from->m_signal_node_changed.connect(
     boost::bind(&ribi::cmap::QtEdge1::OnMustUpdateScene,this)
   );
@@ -456,6 +458,7 @@ void ribi::cmap::QtEdge1::OnNodeChanged(Edge * const edge) noexcept
   m_qtnode->SetCenterY(edge->GetNode()->GetY());
   m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
   this->update();
+  if (this->scene()) { this->scene()->update(); }
   m_signal_edge_changed(this);
 }
 
