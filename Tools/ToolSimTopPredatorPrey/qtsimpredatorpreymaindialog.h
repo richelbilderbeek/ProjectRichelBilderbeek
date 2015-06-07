@@ -39,7 +39,10 @@ private:
   Grid m_grid_pred;
 
   //Creates a delta-density grid based on diffusion
-  static Grid CreateDiffusion(const Grid& grid) noexcept;
+  static Grid CreateDiffusion(
+    const Grid& grid,
+    const double diffusion_coefficient
+  ) noexcept;
   static Grid CreateGrid() noexcept;
 
   /// Fraction of area with predators
@@ -52,6 +55,7 @@ private:
   #endif
 
 private slots:
+  void OnAnyChange() noexcept;
   void OnTimer() noexcept;
 };
 

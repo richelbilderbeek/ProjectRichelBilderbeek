@@ -32,6 +32,9 @@ public:
   double GetHuntEffPred() const noexcept;
   double GetHuntEffTop() const noexcept;
 
+  //Hide the top-predator page, so it can be used in a predator-prey system
+  void HideTopPredator();
+
 signals:
   void signal_parameters_changed();
 

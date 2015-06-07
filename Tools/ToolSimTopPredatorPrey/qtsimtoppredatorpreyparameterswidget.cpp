@@ -77,6 +77,13 @@ double QtSimTopPredatorPreyParametersWidget::GetHuntEffTop() const noexcept
   return ui->box_hunt_eff_top->value();
 }
 
+void QtSimTopPredatorPreyParametersWidget::HideTopPredator()
+{
+  ui->toolBox->setCurrentIndex(0);
+  ui->toolBox->removeItem(2);
+  delete ui->page_top; //Otherwise it won't be, well, deleted :-)
+}
+
 void QtSimTopPredatorPreyParametersWidget::OnAnyChange()
 {
   emit signal_parameters_changed();

@@ -40,6 +40,7 @@ ribi::QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent)
     QLayout * const layout = new QHBoxLayout;
     ui->widget_parameters->setLayout(layout);
     layout->addWidget(m_widget_parameters);
+    m_widget_parameters->HideTopPredator();
   }
   {
 
@@ -48,6 +49,8 @@ ribi::QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent)
     ui->widget_right->setLayout(layout);
     layout->addWidget(m_widget_prey);
     layout->addWidget(m_widget_pred);
+    m_widget_prey->setMinimumSize(200,200);
+    m_widget_pred->setMinimumSize(200,200);
   }
 
   //Put dialog at screen center
@@ -56,21 +59,11 @@ ribi::QtSimPredatorPrayMainDialog::QtSimPredatorPrayMainDialog(QWidget *parent)
     this->setGeometry(0,0,screen.width() * 9 / 10,screen.height() * 9 / 10);
     this->move( screen.center() - this->rect().center() );
   }
-  //Initialize the grids
-  {
 
-    const int w{QtFractionImage::GetWidth()};
-    const int h{QtFractionImage::GetHeight()};
-    for (int y{0}; y!=h; ++y)
-    {
-      for (int x{0}; x!=w; ++x)
-      {
-        m_grid_prey[y][x] = 0.1;
-        m_grid_pred[y][x]= ribi::Random().GetFraction() < m_frac_pred ? 0.1 : 0.0;
-      }
-    }
+  QObject::connect(m_widget_parameters,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 
-  }
+  OnAnyChange();
+
   //Start the timer
   {
     QTimer * const timer{new QTimer(this)};
@@ -85,10 +78,14 @@ ribi::QtSimPredatorPrayMainDialog::~QtSimPredatorPrayMainDialog()
   delete ui;
 }
 
-ribi::QtSimPredatorPrayMainDialog::Grid ribi::QtSimPredatorPrayMainDialog::CreateDiffusion(const Grid& grid) noexcept
+ribi::QtSimPredatorPrayMainDialog::Grid ribi::QtSimPredatorPrayMainDialog::CreateDiffusion(
+  const Grid& grid,
+  const double diffusion_coefficient
+) noexcept
 {
   const int w{QtFractionImage::GetWidth()};
   const int h{QtFractionImage::GetHeight()};
+  const double diff{diffusion_coefficient};
   Grid diffusion{CreateGrid()};
   for (int y{0}; y!=h; ++y)
   {
@@ -111,12 +108,13 @@ ribi::QtSimPredatorPrayMainDialog::Grid ribi::QtSimPredatorPrayMainDialog::Creat
             + (below - here)
             + (left - here)
           )
-          * m_diffusion_coefficient
+          * diff
         );
     }
   }
   return diffusion;
 }
+
 
 ribi::QtSimPredatorPrayMainDialog::Grid
   ribi::QtSimPredatorPrayMainDialog::CreateGrid() noexcept
@@ -133,13 +131,31 @@ double ribi::QtSimPredatorPrayMainDialog::Limit(const double x)
   return x;
 }
 
+void ribi::QtSimPredatorPrayMainDialog::OnAnyChange() noexcept
+{
+  //Initialize the grids
+
+  const int w{QtFractionImage::GetWidth()};
+  const int h{QtFractionImage::GetHeight()};
+  for (int y{0}; y!=h; ++y)
+  {
+    for (int x{0}; x!=w; ++x)
+    {
+      m_grid_prey[y][x] = 0.1;
+      m_grid_pred[y][x]= ribi::Random().GetFraction() < m_frac_pred ? 0.1 : 0.0;
+    }
+  }
+}
+
 void ribi::QtSimPredatorPrayMainDialog::OnTimer() noexcept
 {
   const int w{QtFractionImage::GetWidth()};
   const int h{QtFractionImage::GetHeight()};
 
-  const Grid prey_diffuse{CreateDiffusion(m_grid_prey)};
-  const Grid pred_diffuse{CreateDiffusion(m_grid_pred)};
+  const double diffusion_pred{m_widget_parameters->GetDiffusionPred()};
+  const double diffusion_prey{m_widget_parameters->GetDiffusionPrey()};
+  const Grid pred_diffuse{CreateDiffusion(m_grid_pred,diffusion_pred)};
+  const Grid prey_diffuse{CreateDiffusion(m_grid_prey,diffusion_prey)};
 
   //Top-Pred-Prey interaction
   for (int y{0}; y!=h; ++y)
@@ -153,7 +169,10 @@ void ribi::QtSimPredatorPrayMainDialog::OnTimer() noexcept
 
   Grid prey_interact{CreateGrid()};
   Grid pred_interact{CreateGrid()};
-  Grid top_interact{CreateGrid()};
+
+  const double hunt_eff_eff_pred{m_widget_parameters->GetHuntEffPred()};
+  const double conv_prey_to_pred{m_widget_parameters->GetConvPreyToPred()};
+
   for (int y{0}; y!=h; ++y)
   {
     for (int x{0}; x!=w; ++x)
@@ -167,7 +186,7 @@ void ribi::QtSimPredatorPrayMainDialog::OnTimer() noexcept
       //const double pred_efficiency{1.0};
       const double prey_growth{Biology().LogisticGrowth(1.0,prey,1.0)};
       const double prey_eaten{prey*pred};
-      const double pred_growth{(prey_eaten*0.5) * (1.0 - pred - (0.5 * pred))};
+      const double pred_growth{prey_eaten*conv_prey_to_pred*hunt_eff_eff_pred};
       const double pred_death{0.1 * pred};
       const double pred_eaten{0.0};
       const double new_prey{prey + (prey_growth - prey_eaten)};
