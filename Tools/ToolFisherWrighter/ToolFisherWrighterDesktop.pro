@@ -2,6 +2,7 @@ include(../../DesktopApplicationNoWeffcpp.pri)
 
 include(../../Libraries/BoostAll.pri)
 include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
 #Specific
 include(../../Classes/CppBeast/CppBeast.pri)

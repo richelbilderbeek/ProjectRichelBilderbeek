@@ -254,8 +254,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     const QImage image_after{dialog.GetUiView()};
     assert(image_before == image_after);
   }
-  //#define FIX_BUG_260
-  #ifdef FIX_BUG_260
   if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
   {
     //If the line below is needed, update() is not called automatically
@@ -278,7 +276,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
       image_before.save("tmp.png");
     }
     assert(image_before != image_after);
-    assert(!"Fixed #260, check it in");
   }
   if (verbose) { TRACE("If the tail arrow head of an QtEdge its Edge is changed, the Item must be updated"); }
   {
@@ -288,7 +285,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     const QImage image_after{dialog.GetUiView()};
     assert(image_before != image_after);
   }
-  #endif
   if (verbose) { TRACE("If the source/'from' of an QtEdge is made invisible, this will show in a screenshot"); }
   {
     assert(dialog.m_from->isVisible());

@@ -68,7 +68,7 @@ ribi::Help ribi::SimTopPredatorPreyMenuDialog::GetHelp() const noexcept
 boost::shared_ptr<const ribi::Program> ribi::SimTopPredatorPreyMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
-    //new ribi::ProgramSimTopPredatorPrey
+    new ribi::ProgramSimTopPredatorPrey
   };
   assert(p);
   return p;

@@ -16,7 +16,8 @@ Simulation::Simulation(
   const Parameters& parameters,
   const Generation& first_generation
 )
-  : m_generations{},
+  : m_counter{},
+    m_generations{},
     m_parameters{parameters},
     m_rnd_engine{static_cast<unsigned int>(parameters.GetSeed())}
 {
@@ -30,7 +31,8 @@ Simulation::Simulation(
 Simulation::Simulation(
   const Parameters& parameters
 )
-  : m_generations{},
+  : m_counter{},
+    m_generations{},
     m_parameters{parameters},
     m_rnd_engine{static_cast<unsigned int>(parameters.GetSeed())}
 {

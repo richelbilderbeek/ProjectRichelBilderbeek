@@ -1,9 +1,7 @@
-#apfloat gives compile warnings with -Weffc++
 include(../../ConsoleApplicationNoWeffcpp.pri)
 
-#include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
-include(../../Libraries/FParser.pri)
+include(../../Libraries/Fparser.pri)
 
 include(../../Libraries/GeneralConsole.pri)
 
