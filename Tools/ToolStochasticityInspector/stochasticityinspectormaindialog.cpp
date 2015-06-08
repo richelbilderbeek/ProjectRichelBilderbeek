@@ -36,7 +36,7 @@ ribi::StochasticityInspectorMainDialog::StochasticityInspectorMainDialog(
     m_ts.push_back(static_cast<double>(i) * boost::units::si::second);
     x = sim.CalcNext(x);
   }
-  m_xs.push_back(x);
+  //m_xs.push_back(x);
 }
 
 ribi::StochasticityInspectorMainDialog::StochasticityInspectorMainDialog(
@@ -104,12 +104,24 @@ void ribi::StochasticityInspectorMainDialog::Test() noexcept
   const TestTimer test_timer(__func__,__FILE__,1.0);
 
   const bool verbose{false};
+  //Brownian motion
+  {
+    StochasticityInspectorMainDialog d(
+      0.0, //init_x
+      10,  //t_end
+      ribi::bm::Parameters(
+        0.5 / boost::units::si::second,
+        83
+      )
+    );
+    assert(d.GetTimePoints().size() == d.GetValues().size());
+  }
   //Worked example
   {
     //Start with an Brownian Motion
     StochasticityInspectorMainDialog d(
-      0.0,
-      10,
+      0.0, //init_x
+      10,  //t_end
       ribi::bm::Parameters(
         0.5 / boost::units::si::second,
         83

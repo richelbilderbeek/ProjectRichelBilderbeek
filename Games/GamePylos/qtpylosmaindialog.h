@@ -18,9 +18,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GamePylos.htm
 //---------------------------------------------------------------------------
-#ifndef QTPYLOSMAINDIALOG
-#define QTPYLOSMAINDIALOG
+#ifndef QTPYLOSMAINDIALOG_H
+#define QTPYLOSMAINDIALOG_H
 
+#include <memory>
 #include <string>
 
 #pragma GCC diagnostic push
@@ -29,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qthideandshowdialog.h"
 
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 #include "qtpylosgamewidget.h"
 #pragma GCC diagnostic pop
 
@@ -45,8 +46,10 @@ class QtPylosMainDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
+  using QtGameWidget = std::shared_ptr<ribi::pylos::QtPylosGameWidget>;
+
   explicit QtPylosMainDialog(
-    const boost::shared_ptr<QtPylosGameWidget>& pylos_widget,
+    const QtGameWidget pylos_widget,
     QWidget *parent = 0);
   QtPylosMainDialog(const QtPylosMainDialog&) = delete;
   QtPylosMainDialog& operator=(const QtPylosMainDialog&) = delete;
@@ -58,13 +61,14 @@ public:
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-private:
-  Ui::QtPylosMainDialog *ui;
-  const boost::shared_ptr<QtPylosGameWidget> m_pylos_widget;
-
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+private:
+  Ui::QtPylosMainDialog *ui;
+  const QtGameWidget m_pylos_widget;
+
 
 private slots:
   void OnWinner();
@@ -73,4 +77,4 @@ private slots:
 } //~namespace pylos
 } //~namespace ribi
 
-#endif // QTPYLOSMAINDIALOG
+#endif // QTPYLOSMAINDIALOG_H

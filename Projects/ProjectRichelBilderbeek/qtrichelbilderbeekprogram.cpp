@@ -99,6 +99,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestapproximatormenudialog.h"
 #include "qttestbinarynewickvectormenudialog.h"
 
+#define INCLUDE_CHESS_20140617
 #ifdef INCLUDE_CHESS_20140617
 #include "qttestchessmenudialog.h"
 #endif

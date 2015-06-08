@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestChess, program to test my chess classes
-Copyright (C) 2012-2014 Richel Bilderbeek
+Copyright (C) 2012-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ ribi::About ribi::TestChessMenuDialog::GetAbout() const noexcept
     "TestChess",
     "testing my chess classes",
     "the 25st of January 2012",
-    "2012-2014",
+    "2012-2015",
     "http://www.richelbilderbeek.nl/ToolTestChess.htm",
     GetVersion(),
     GetVersionHistory());
@@ -135,7 +135,7 @@ void ribi::TestChessMenuDialog::Test() noexcept
     is_tested = true;
   }
   Chess::BitBoard();
-  //Chess::Board::Test();
+  Chess::Board::Test();
   Chess::BoardWidget::Test();
   Chess::ChessWidget::Test();
   Chess::ColorVersion();
@@ -152,6 +152,5 @@ void ribi::TestChessMenuDialog::Test() noexcept
   //Chess::SquareSelector::Test();
   //Widget();
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  //const bool verbose{false};
 }
 #endif

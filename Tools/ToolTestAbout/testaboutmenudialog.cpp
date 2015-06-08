@@ -29,7 +29,7 @@ ribi::About ribi::TestAboutMenuDialog::GetAbout() const noexcept
     "TestAbout",
     "test the About classes",
     "the 12th of July 2013",
-    "2012-2014",
+    "2012-2015",
     "http://www.richelbilderbeek.nl/ToolTestAbout.htm",
     GetVersion(),
     GetVersionHistory());

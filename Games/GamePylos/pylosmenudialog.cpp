@@ -37,11 +37,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "textcanvas.h"
 #include "trace.h"
 
-int ribi::pylos::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::pylos::MenuDialog::MenuDialog() noexcept
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+
+int ribi::pylos::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
   const int argc = static_cast<int>(argv.size());
   if (argc != 1)
   {
@@ -126,27 +131,29 @@ void ribi::pylos::MenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-  const boost::shared_ptr<Board> a(
-    new BoardAdvanced
-  );
-  assert(a);
-  const boost::shared_ptr<Board> b(
-    new BoardBasic
-  );
-  assert(b);
-  Coordinat(0,0,0);
   {
-    boost::shared_ptr<CurrentMoveState>(new CurrentMoveState);
+    Coordinat(0,0,0);
+    const boost::shared_ptr<Board> a(
+      new BoardAdvanced
+    );
+    assert(a);
+    const boost::shared_ptr<Board> b(
+      new BoardBasic
+    );
+    assert(b);
+    {
+      boost::shared_ptr<CurrentMoveState>(new CurrentMoveState);
+    }
+    const boost::shared_ptr<Game> g_a(
+      new Game(a)
+    );
+    assert(g_a);
+    const boost::shared_ptr<Game> g_b(
+      new Game(b)
+    );
+    assert(g_b);
+    Move();
   }
-  const boost::shared_ptr<Game> g_a(
-    new Game(a)
-  );
-  assert(g_a);
-  const boost::shared_ptr<Game> g_b(
-    new Game(b)
-  );
-  assert(g_b);
-  Move();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

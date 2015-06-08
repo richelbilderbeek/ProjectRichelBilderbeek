@@ -82,7 +82,7 @@ ribi::About ribi::TestQrcFileMenuDialog::GetAbout() const noexcept
     "TestQrcFile",
     "tool to test the QrcFile class",
     "the 20th of May 2013",
-    "2012-2014",
+    "2012-2015",
     "http://www.richelbilderbeek.nl/ToolTestQrcFile.htm",
     GetVersion(),
     GetVersionHistory());

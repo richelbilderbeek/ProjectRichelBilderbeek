@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "boenkenmenudialog.h"
 #include "caesarciphermenudialog.h"
 #include "canvas.h"
+#define INCLUDE_CHESS_20140617
 #ifdef INCLUDE_CHESS_20140617
 #include "chessbitboard.h"
 #include "chessboard.h"
@@ -189,9 +190,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testapproximatormenudialog.h"
 #include "testtimer.h"
 #include "testbinarynewickvectormenudialog.h"
-#ifdef INCLUDE_TESTCHESS_20140617
 #include "testchessmenudialog.h"
-#endif // INCLUDE_TESTCHESS_20140617
+#include "testchessmenudialog.h"
 #ifdef INCLUDE_CONCEPTMAP_20140811
 #include "testconceptmapmenudialog.h"
 #endif // INCLUDE_CONCEPTMAP_20140811
@@ -2287,7 +2287,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       break;
       case ProgramType::testChess:
 #ifdef INCLUDE_CHESS_20140617
-      p.reset(new TestChessMenuDialog);
+      p.reset(new ribi::TestChessMenuDialog);
 #else
       {
         const std::string version = "x.x"; const std::vector<std::string> version_history { "20xx-xx-xx: version x.x: something" };

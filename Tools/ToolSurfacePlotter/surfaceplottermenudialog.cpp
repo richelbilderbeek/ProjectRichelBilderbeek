@@ -87,7 +87,7 @@ ribi::About ribi::SurfacePlotterMenuDialog::GetAbout() const noexcept
     "SurfacePlotter",
     "plots a bivariate function",
     "the 7th of July 2014",
-    "2012-2014",
+    "2012-2015",
     "http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm",
     GetVersion(),
     GetVersionHistory());

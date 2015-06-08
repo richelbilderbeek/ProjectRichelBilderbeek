@@ -1,7 +1,8 @@
-include(../../ConsoleApplication.pri)
+# Fparser does not work with -Weffc++
+include(../../ConsoleApplicationNoWeffcpp.pri)4
 include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
-include(../../Libraries/FParser.pri)
+include(../../Libraries/Fparser.pri)
 include(../../Libraries/GeneralConsole.pri)
 
 #Specific, console

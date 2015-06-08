@@ -141,6 +141,9 @@ void ribi::pylos::Move::Test() noexcept
     if (tested) return;
     tested = true;
   }
+  {
+    Coordinat(0,0,0);
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     pylos::Move m;

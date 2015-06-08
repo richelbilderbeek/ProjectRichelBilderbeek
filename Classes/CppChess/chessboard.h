@@ -101,6 +101,11 @@ struct Board
   ///The Score if the game has ended by agreement (instead of by checkmate)
   //const boost::shared_ptr<Chess::Score>& Score() const;
 
+  #ifndef NDEBUG
+  ///Tests the Board2d class
+  static void Test() noexcept;
+  #endif
+
   private:
   ///Construct a Board in the initial position, allowed by BoardFactory only
   Board(const Pieces& pieces);
@@ -136,11 +141,6 @@ struct Board
   ///Checks if the Move is valid in this situation
   ///??? REPLACE BY USING CANDOMOVE
   //bool IsValid(const Move& move) const;
-
-  #ifndef NDEBUG
-  ///Tests the Board2d class
-  static void Test() noexcept;
-  #endif
 
   //friend bool operator==(const Board& lhs, const Board& rhs);
   friend class BoardFactory;

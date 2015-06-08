@@ -31,7 +31,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
 
-#include "copy_if.h"
 #include "trace.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
@@ -88,12 +87,11 @@ Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewAboutDialog() con
     "TestSelectFileDialog",
     "tool to test the SelectFileDialog class",
     "the 15th of July 2011",
-    "2011",
+    "2011-2015",
     "http://www.richelbilderbeek.nl/ToolTestSelectFileDialog.htm",
     GetVersion(),
     GetVersionHistory());
 
-  a.AddLibrary("Copy_if version: " + Copy_if_version::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtSelectFileDialog version: " + WtSelectFileDialog::GetVersion());

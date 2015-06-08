@@ -39,7 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
-  const boost::shared_ptr<QtPylosGameWidget>& pylos_widget,
+  const QtGameWidget pylos_widget,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPylosMainDialog),
@@ -81,6 +81,8 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
 
 ribi::pylos::QtPylosMainDialog::~QtPylosMainDialog() noexcept
 {
+  this->layout()->removeWidget(m_pylos_widget.get()); //Remove QLayout its ownership
+
   QObject::disconnect(
     m_pylos_widget.get(),
     &QtPylosGameWidget::HasWinner,
@@ -88,7 +90,6 @@ ribi::pylos::QtPylosMainDialog::~QtPylosMainDialog() noexcept
     &ribi::pylos::QtPylosMainDialog::OnWinner
   );
 
-  this->layout()->removeWidget(m_pylos_widget.get()); //Remove QLayout its ownership
 
   assert(this->layout()->children().isEmpty());
   assert(m_pylos_widget);

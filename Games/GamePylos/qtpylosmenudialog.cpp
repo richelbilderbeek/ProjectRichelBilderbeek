@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpylosmenudialog.h"
 
 #include <iostream>
+#include <memory>
 
 #include <boost/make_shared.hpp>
 
@@ -172,7 +173,7 @@ void ribi::pylos::QtPylosMenuDialog::OnInstructions()
 
 void ribi::pylos::QtPylosMenuDialog::OnStart()
 {
-  const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
+  const auto p = std::make_shared<QtPylosGameWidget>();
   assert(p);
   //Set the game type
   if (m_type_basic) p->StartBasic();
@@ -182,7 +183,7 @@ void ribi::pylos::QtPylosMenuDialog::OnStart()
   else p->SetColorSchemeRedBlue();
   //Create the game dialog
   //note: p is deleted by DialogMain
-  QtPylosMainDialog d(p);
+  ribi::pylos::QtPylosMainDialog d(p);
   this->ShowChild(&d);
 }
 
@@ -196,14 +197,7 @@ void ribi::pylos::QtPylosMenuDialog::Test() noexcept
   }
   {
     pylos::MenuDialog();
-    {
-      const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
-      try
-      {
-        const boost::shared_ptr<QtPylosMainDialog> d{new QtPylosMainDialog(nullptr)};
-      }
-      catch (std::logic_error&) { /* OK */ }
-    }
+    QtPylosMainDialog::Test();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   #ifdef FIX_ISSUE_234

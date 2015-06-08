@@ -60,7 +60,7 @@ ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() const noexcept
     "CreateGlossary",
     "tool for creating my site's glossaries",
     "the 11th of August 2012",
-    "2012-2014",
+    "2012-2015",
     "http://www.richelbilderbeek.nl/ToolCreateGlossary.htm",
     GetVersion(),
     GetVersionHistory()

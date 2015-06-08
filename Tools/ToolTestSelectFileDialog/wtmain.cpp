@@ -19,14 +19,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolTestSelectFileDialog.htm
 //---------------------------------------------------------------------------
 #include <boost/filesystem.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
-//---------------------------------------------------------------------------
+
 #include "wtautoconfig.h"
 #include "wtselectfiledialog.h"
 #include "wttestselectfiledialogmenudialog.h"
-//---------------------------------------------------------------------------
+
 struct WtApplication : public Wt::WApplication
 {
   WtApplication(const Wt::WEnvironment& env)
@@ -34,20 +34,20 @@ struct WtApplication : public Wt::WApplication
   {
     this->setTitle("TestSelectFileDialog");
     this->useStyleSheet("wt.css");
-    root()->addWidget(new WtTestSelectFileDialogMenuDialog);
+    root()->addWidget(new ribi::WtTestSelectFileDialogMenuDialog);
   }
 };
-//---------------------------------------------------------------------------
+
 Wt::WApplication *createApplication(const Wt::WEnvironment& env)
 {
   return new WtApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char **argv)
 {
-  WtSelectFileDialog::SetPath(boost::filesystem::path(argv[0]).parent_path().string());
-  WtAutoConfig a(argc,argv,createApplication);
-  WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtSelectFileDialog::SetPath(boost::filesystem::path(argv[0]).parent_path().string());
+  ribi::WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
   return a.Run();
 }
-//---------------------------------------------------------------------------
+

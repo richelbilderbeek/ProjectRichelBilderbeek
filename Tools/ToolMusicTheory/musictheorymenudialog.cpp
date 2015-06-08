@@ -51,7 +51,7 @@ ribi::About ribi::MusicTheoryMenuDialog::GetAbout() const noexcept
     "MusicTheory",
     "tool for visualizing my music theory",
     "the 11th of August 2012",
-    "2012-2014",
+    "2012-2015",
     "http://www.richelbilderbeek.nl/ToolMusicTheory.htm",
     GetVersion(),
     GetVersionHistory()

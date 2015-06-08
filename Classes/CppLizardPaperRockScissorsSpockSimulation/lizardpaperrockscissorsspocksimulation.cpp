@@ -27,7 +27,6 @@ ribi::lprss::Simulation::Simulation(
       switch (m_initialization)
       {
         case Init::random:
-
         {
           switch (std::rand() % 5)
           {

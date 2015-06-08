@@ -171,6 +171,7 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeBrownian() noexcept
     [](const auto t) { return t.value();}
   );
   assert(ts.size() == ts_with_unit.size());
+  assert(ts.size() == xs.size());
 
   m_curve->setPen(ribi::QtStochasticityInspectorModelColors::m_bm_color);
   m_curve->setData(new QwtPointArrayData(&ts[0],&xs[0],xs.size()));
