@@ -70,6 +70,9 @@ struct ConnectThreeResources
   ///The text display at the Winner dialog
   const std::string& GetWinnerText() const noexcept { return m_winner_text; }
 
+  ///Removes all files
+  void RemoveFiles() const noexcept;
+
   private:
   //const std::string m_background_filename;
   const std::vector<std::string> m_computers_filenames;

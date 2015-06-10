@@ -25,6 +25,8 @@ double ribi::ou::Helper::CalcLogLikelihood(
   const Rate cand_volatility
 ) const
 {
+  const bool verbose{false};
+
   if (cand_mean_reversion_rate == 0.0 / boost::units::si::second)
   {
     const double a{
@@ -61,29 +63,65 @@ double ribi::ou::Helper::CalcLogLikelihood(
       std::begin(v),
       0.0,
       std::plus<double>(), //Sum the results
-      [dt,cand_mean_reversion_rate,cand_target_mean](const double a, const double b) //a: s_i, b: s_i-1
+      [dt,cand_mean_reversion_rate,cand_target_mean,verbose](const double a, const double b) //a: s_i, b: s_i-1
       {
+        const double term1{a};
+        const double term2{-(b * std::exp(-cand_mean_reversion_rate * dt))};
+        const double term3{-(cand_target_mean * (1.0 - std::exp(-cand_mean_reversion_rate*dt)))};
         const double x {
-          a
-          - (b * std::exp(-cand_mean_reversion_rate * dt))
-          - (cand_target_mean * (1.0 - std::exp(-cand_mean_reversion_rate*dt))),
+          term1+term2+term3
         };
-        return x*x;
+        const double x2{x*x};
+        if (verbose)
+        {
+          std::cout
+            << "a:" << a <<  '\t'
+            << "b:" << b <<  '\t'
+            << "term1:" << term1 <<  '\t'
+            << "term2:" << term2 <<  '\t'
+            << "term3:" << term3 <<  '\t'
+            << "x:" << x <<  '\t'
+            << "x2:" << x2 <<  '\n'
+          ;
+        }
+        return x2;
       }
     )
   };
-  const auto sigma_hat2
+  const auto alpha2
     =
     cand_volatility * cand_volatility * (1.0 - std::exp(-2.0 * cand_mean_reversion_rate * dt))
     / (2.0 * cand_mean_reversion_rate)
   ;
-  const auto sigma_hat = std::sqrt(sigma_hat2.value());
+  const auto alpha = std::sqrt(alpha2.value());
+
+  const double term1{(-n/2.0) * std::log(boost::math::constants::two_pi<double>())};
+  const double term2{-(n * std::log(alpha))};
+  const double term3{-(sum / (2.0 * alpha2.value()))};
 
   const double log_likelihood{
-    ((-n/2.0) * std::log(boost::math::constants::two_pi<double>()))
-    - (n * std::log(sigma_hat))
-    - (sum / (2.0 * sigma_hat2.value()))
+    term1
+    + term2
+    + term3
   };
+
+  if (verbose)
+  {
+    std::cout
+      << "dt: " << dt << '\n'
+      << "cand_mean_reversion_rate: " << cand_mean_reversion_rate << '\n'
+      << "cand_target_mean: " << cand_target_mean << '\n'
+      << "cand_volatility: " << cand_volatility << '\n'
+      << "alpha: " << alpha << '\n'
+      << "alpha2: " << alpha2 << '\n'
+      << "term1: " << term1 << '\n'
+      << "term2: " << term2 << '\n'
+      << "term3: " << term3 << '\n'
+      << "sum: " << sum << '\n'
+      << "log_likelihood: " << log_likelihood << '\n'
+    ;
+  }
+
   return log_likelihood;
 }
 
@@ -225,7 +263,6 @@ double ribi::ou::Helper::CalcMaxLogLikelihood(
   auto volatility_hat = 0.0 / boost::units::si::second;
   //Find best parameters
   Helper().CalcMaxLikelihood(v,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat);
-
   //Use best parameters
   return Helper().CalcLogLikelihood(v,dt,mean_reversion_rate_hat,target_mean_hat,volatility_hat);
 }
@@ -400,6 +437,5 @@ void ribi::ou::Helper::Test() noexcept
     //Note: resolution too low to distinguish likelihoods
     assert(log_likelihood_minus == log_likelihood_plus);
   }
-
 }
 #endif

@@ -309,7 +309,6 @@ void ribi::ou::Process::Test() noexcept
     const double max_log_likelihood{
       Helper().CalcLogLikelihood(xs,dt,cand_mean_reversion_rate,cand_target_mean,cand_volatility)
     };
-
     const double expected_max_log_likelihood{0.048970151059140938632};
     assert(std::abs(expected_max_log_likelihood - max_log_likelihood) < 0.0001);
 
@@ -326,7 +325,7 @@ void ribi::ou::Process::Test() noexcept
     const double max_log_likelihood_too{
       Helper().CalcMaxLogLikelihood(xs)
     };
-    assert(std::abs(expected_max_log_likelihood - max_log_likelihood_too) < 0.0001);
+    assert(std::abs(expected_max_log_likelihood - max_log_likelihood_too) < 0.000000001);
     assert(!std::isnan(cand_mean_reversion_rate.value()));
     assert(!std::isnan(cand_volatility.value()));
     assert(!std::isnan(max_log_likelihood));

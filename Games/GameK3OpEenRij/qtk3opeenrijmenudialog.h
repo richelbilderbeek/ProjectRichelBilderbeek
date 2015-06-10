@@ -35,6 +35,7 @@ public:
 private:
   Ui::QtK3OpEenRijMenuDialog *ui;
   boost::shared_ptr<QtK3OpEenRijSelectPlayerWidget> m_select;
+  const boost::shared_ptr<const QtK3OpEenRijResources> m_resources;
 
 private slots:
 

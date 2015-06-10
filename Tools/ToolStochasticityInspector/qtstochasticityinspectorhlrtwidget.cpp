@@ -26,10 +26,6 @@ QtStochasticityInspectorHlrtWidget::QtStochasticityInspectorHlrtWidget(QWidget *
   QObject::connect(ui->box_alpha,SIGNAL(valueChanged(double)),this,SLOT(OnChiChanged()));
   QObject::connect(ui->box_dof,SIGNAL(valueChanged(int)),this,SLOT(OnChiChanged()));
 
-  ui->edit_l0->setFont(QFont("monospace",6));
-  ui->edit_l1->setFont(QFont("monospace",6));
-  ui->edit_delta->setFont(QFont("monospace",6));
-
   OnChiChanged();
 }
 
@@ -49,19 +45,15 @@ void QtStochasticityInspectorHlrtWidget::OnChiChanged()
 
 void QtStochasticityInspectorHlrtWidget::ShowHlrt(const double log_likelihood_bm, const double log_likelihood_ou)
 {
+
   ui->edit_ll0->setText(std::to_string(log_likelihood_bm).c_str());
   ui->edit_ll1->setText(std::to_string(log_likelihood_ou).c_str());
 
-  const apfloat likelihood_bm{exp(apfloat(log_likelihood_bm))};
-  const apfloat likelihood_ou{exp(apfloat(log_likelihood_ou))};
-
   //BM is H_0, OU is H_1
-  m_delta = apfloat(2.0) * (likelihood_ou - likelihood_bm);
+  m_delta = 2.0 * (log_likelihood_ou - log_likelihood_bm);
 
 
-  ui->edit_l0->setText(ribi::Apfloat().ToStr(likelihood_bm).c_str());
-  ui->edit_l1->setText(ribi::Apfloat().ToStr(likelihood_ou).c_str());
-  ui->edit_delta->setText(ribi::Apfloat().ToStr(m_delta).c_str());
+  ui->edit_delta->setText(std::to_string(m_delta).c_str());
 
   QPalette palette = ui->label_conclusion->palette();
   if (m_delta < m_critical_value)

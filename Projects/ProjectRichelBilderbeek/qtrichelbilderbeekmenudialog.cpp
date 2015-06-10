@@ -199,9 +199,8 @@ void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
 
 void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
 {
-  const bool verbose{false};
-  const boost::shared_ptr<QDialog> dialog(
-    QtRichelBilderbeekProgram::CreateQtMenuDialog(program_type));
+  const auto dialog
+    = QtRichelBilderbeekProgram().CreateQtMenuDialog(program_type);
 
   if (!dialog)
   {
@@ -216,11 +215,13 @@ void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
   }
   else
   {
-    if (verbose) { TRACE("Create QtHideAndShowDialog"); }
-    const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
-      boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
-    assert(hide_and_show_dialog);
-    this->ShowChild(hide_and_show_dialog.get());
+    //if (verbose) { TRACE("Create QtHideAndShowDialog"); }
+
+    //const std::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
+    //  std::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
+    //assert(hide_and_show_dialog);
+    //this->ShowChild(hide_and_show_dialog.get());
+    this->ShowChild(dialog.get());
     return;
   }
 }
@@ -250,9 +251,8 @@ void ribi::QtRichelBilderbeekMenuDialog::Test() noexcept
         TRACE(progress);
       }
       if (type == ProgramType::projectRichelBilderbeek) continue;
-      const auto d = QtRichelBilderbeekProgram::CreateQtMenuDialog(type);
+      const auto d = QtRichelBilderbeekProgram().CreateQtMenuDialog(type);
       assert(d || !d);
-      delete d;
     }
   }
 }

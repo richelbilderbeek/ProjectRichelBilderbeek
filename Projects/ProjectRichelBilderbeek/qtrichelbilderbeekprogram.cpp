@@ -154,7 +154,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const ProgramType type)
+
+std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const ProgramType type) const noexcept
 {
   TRACE(ribi::ProgramTypes::ProgramTypeToEnumName(type));
   QtHideAndShowDialog *  p = nullptr;
@@ -375,11 +376,11 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
       throw std::logic_error("Unimplemented ProgramType");
   }
   //p might be nullptr
-  return p;
+  return std::make_unique<QtHideAndShowDialog>(p);
 }
 
 
-ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(const ProgramType type)
+std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(const ProgramType type) const noexcept
 {
   QtHideAndShowDialog * const d = new QtHideAndShowDialog;
   assert(!d->layout());
@@ -431,5 +432,5 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholder
     layout->addWidget(label);
   }
   assert(d);
-  return d;
+  return std::make_unique<QtHideAndShowDialog>(d);
 }

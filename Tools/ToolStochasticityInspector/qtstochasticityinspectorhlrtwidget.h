@@ -23,7 +23,7 @@ private:
   Ui::QtStochasticityInspectorHlrtWidget *ui;
 
   double m_critical_value;
-  apfloat m_delta;
+  double m_delta;
 
   #ifndef NDEBUG
   static void Test() noexcept;

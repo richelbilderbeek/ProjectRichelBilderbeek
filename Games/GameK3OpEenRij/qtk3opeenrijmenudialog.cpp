@@ -19,7 +19,8 @@ ribi::QtK3OpEenRijMenuDialog::QtK3OpEenRijMenuDialog(
   QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtK3OpEenRijMenuDialog),
-    m_select(new QtK3OpEenRijSelectPlayerWidget(resources))
+    m_select(new QtK3OpEenRijSelectPlayerWidget(resources)),
+    m_resources{resources}
 {
   #ifndef NDEBUG
   Test();
@@ -32,6 +33,9 @@ ribi::QtK3OpEenRijMenuDialog::QtK3OpEenRijMenuDialog(
 ribi::QtK3OpEenRijMenuDialog::~QtK3OpEenRijMenuDialog() noexcept
 {
   delete ui;
+
+  //Clean up all resources
+  m_resources->RemoveFiles();
 }
 
 void ribi::QtK3OpEenRijMenuDialog::on_button_about_clicked() noexcept

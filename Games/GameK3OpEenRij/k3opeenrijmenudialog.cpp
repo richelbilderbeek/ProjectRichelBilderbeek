@@ -142,7 +142,7 @@ boost::shared_ptr<const ribi::Program> ribi::K3OpEenRijMenuDialog::GetProgram() 
 
 std::string ribi::K3OpEenRijMenuDialog::GetVersion() const noexcept
 {
-  return "6.2";
+  return "6.3";
 }
 
 std::vector<std::string> ribi::K3OpEenRijMenuDialog::GetVersionHistory() const noexcept
@@ -155,6 +155,7 @@ std::vector<std::string> ribi::K3OpEenRijMenuDialog::GetVersionHistory() const n
     "2013-08-09: version 6.0: implemented suggestions and bugfixes from Mark Wiering's report",
     "2014-01-23: version 6.1: added command line demo",
     "2014-01-30: version 6.2: added extra command line option to display the artists",
+    "2015-06-09: version 6.3: show how to choose Kathleen in the menu screen, clean up files when program closes",
   };
 }
 

@@ -1,4 +1,4 @@
-# -Weffc++ does not go with Qwt
+# -Weffc++ does not go with apfloat, Qwt
 
 win32 {
   # Windows only

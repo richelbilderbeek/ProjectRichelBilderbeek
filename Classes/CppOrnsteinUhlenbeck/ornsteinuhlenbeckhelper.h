@@ -16,6 +16,7 @@ struct Helper
   Helper();
 
   ///Calculate the likelihood of the candidate parameters in generating the dataset
+  ///Even allows negative mean_reversion_rate
   double CalcLogLikelihood(
     const std::vector<double>& v,
     const Time dt,

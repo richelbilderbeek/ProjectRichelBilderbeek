@@ -1058,6 +1058,7 @@ void ribi::fileio::FileIo::Test() noexcept
     assert(v.size() == 6);
 
     //Clean up
+    DeleteFile(local_filename);
     DeleteFolder(folder_name1);
     DeleteFolder(folder_name2);
     assert(!IsFolder(folder_name1) && "Temporary folder must be cleaned up");

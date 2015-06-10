@@ -149,7 +149,7 @@ void ribi::QtStochasticityInspectorMainDialog::OnAnyChangeBrownian() noexcept
   m_curve->setData(new QwtPointArrayData(0,0,0));
 
   const double init_x{m_bm_parameters_widget->GetInitValue()};
-  const int t_end{m_bm_parameters_widget->GetEndTime() + 1};
+  const int t_end{m_bm_parameters_widget->GetEndTime()};
   const auto volatility
     = m_bm_parameters_widget->GetVolatility() / boost::units::si::second;
   const int seed{m_bm_parameters_widget->GetSeed()};

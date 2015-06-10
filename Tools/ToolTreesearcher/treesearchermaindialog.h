@@ -1,9 +1,8 @@
 #ifndef TREESEARCHERMAINDIALOG_H
 #define TREESEARCHERMAINDIALOG_H
 
-class TreesearcherMainDialog
+struct TreesearcherMainDialog
 {
-public:
   TreesearcherMainDialog();
 };
 

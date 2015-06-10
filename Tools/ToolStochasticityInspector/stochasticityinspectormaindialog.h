@@ -34,7 +34,11 @@ struct StochasticityInspectorMainDialog
     const ribi::ou::Parameters& parameters
   );
 
+  double CalcBrownianMotionMaxLogLikelihood() const noexcept;
+  double CalcOrnsteinUhlenbeckMaxLogLikelihood() const noexcept;
+
   HlrtResult DoHierarchicalLikelihoodRatioTest() const;
+
 
   const auto& GetTimePoints() const noexcept { return  m_ts; }
   const std::vector<double>& GetValues() const noexcept { return m_xs; }

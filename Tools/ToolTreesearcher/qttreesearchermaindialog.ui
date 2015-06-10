@@ -1,20 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>QtTreesearcherMainDialog</class>
- <widget class="QDialog" name="QtTreesearcherMainDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="QtTreesearcherMainDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>662</width>
     <height>300</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>QtTreesearcherMainDialog</string>
   </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QToolBox" name="toolBox_create">
+     <property name="minimumSize">
+      <size>
+       <width>300</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_bd">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>300</width>
+        <height>189</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>BD</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Birth-Death</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="2" column="1">
+        <widget class="QDoubleSpinBox" name="box_death_rate">
+         <property name="decimals">
+          <number>6</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.100000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="box_birth_rate">
+         <property name="decimals">
+          <number>6</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.100000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="box_t"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_death_rate">
+         <property name="text">
+          <string>Death rate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_t">
+         <property name="text">
+          <string>Timesteps</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_birth_rate">
+         <property name="text">
+          <string>Birth rate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_cpc">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>300</width>
+        <height>189</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>CPC</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Constant-size population coalescent</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_epc">
+      <attribute name="label">
+       <string>EPC</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Exponential-size population coalescent</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="plainTextEdit"/>
+   </item>
+   <item>
+    <widget class="QToolBox" name="toolBox_investigate">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_bd_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>79</width>
+        <height>189</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>BD</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Birth-Death</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_cpc_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>79</width>
+        <height>189</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>CPC</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Constant-size population coalescent</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_epc_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>79</width>
+        <height>189</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>EPC</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Exponential-size population coalescent</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>

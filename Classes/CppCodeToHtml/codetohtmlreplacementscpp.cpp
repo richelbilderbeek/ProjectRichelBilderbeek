@@ -30,12 +30,18 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
   const std::vector<std::pair<std::string,std::string> > w
   {  
     { "---------------------------------------------------------------------------","$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$" },
+    //46
+    { "std::chrono::high_resolution_clock::time_point","<a href=\"C$ppS$tdC$hronoH$igh_r$esolution_c$l$ockT$ime_p$oi$nt.htm\">s$td::c$hrono::h$igh_r$esolution_c$l$ock::t$ime_p$oi$nt</a>" },
+    { "std::chrono::high_resolution_clock::duration","<a href=\"C$ppS$tdC$hronoH$igh_r$esolution_c$l$ockD$urat$ion.htm\">s$td::c$hrono::h$igh_r$esolution_c$l$ock::d$uration</a>" },
     //39
     { "[LESS_THAN]unordered_map[GREATER_THAN]","[LESS_THAN]<a href=\"C$ppU$no$rde$red_m$apH.htm\">u$nor$der$ed_m$ap</a>[GREATER_THAN]" },
     { "[LESS_THAN]unordered_set[GREATER_THAN]","[LESS_THAN]<a href=\"C$ppU$no$rde$red_s$etH.htm\">u$nor$der$ed_s$et</a>[GREATER_THAN]" },
+    //38
+    { "std::chrono::system_clock::time_point","<a href=\"C$ppS$tdC$hronoS$ystem_c$l$ockT$ime_p$oi$nt.htm\">s$td::c$hrono::s$ystem_c$l$ock::t$ime_p$oi$nt</a>" },
     //37
     { "[LESS_THAN]type_traits[GREATER_THAN]","[LESS_THAN]<a href=\"C$ppT$y$pe_t$rai$tsH.htm\">t$y$pe_t$rai$ts</a>[GREATER_THAN]" },
     //35
+    { "std::chrono::system_clock::duration","<a href=\"C$ppS$tdC$hronoS$ystem_c$l$ockDuration.htm\">s$td::c$hrono::s$ystem_c$l$ock::duration</a>" },
     { "[LESS_THAN]functional[GREATER_THAN]","[LESS_THAN]<a href=\"CppFu$nctionalH.htm\">fu$nctional</a>[GREATER_THAN]" },
     //34
     { "[LESS_THAN]algorithm[GREATER_THAN]","[$LESS_THAN]<a href=\"CppAl$gorithmH.htm\">al$gorithm</a>[GREATER_THAN]" },
@@ -44,7 +50,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "[LESS_THAN]stdexcept[GREATER_THAN]","[$LESS_THAN]<a href=\"CppSt$dexceptH.htm\">st$dexcept</a>[GREATER_THAN]" },
     { "[LESS_THAN]streambuf[GREATER_THAN]","[$LESS_THAN]<a href=\"CppSt$reambufH.htm\">st$reambuf</a>[GREATER_THAN]" },
     { "[LESS_THAN]strstream[GREATER_THAN]","[$LESS_THAN]<a href=\"CppSt$rstreamH.htm\">st$rstream</a>[GREATER_THAN]" },
-    { "std::chrono::high_resolution_clock","<a href=\"C$ppS$tdS$tdH$igh_r$esolution_c$l$ock.htm\">s$td::c$hrono::h$igh_r$esolution_c$l$ock</a>" },
+
+    { "std::chrono::high_resolution_clock","<a href=\"C$ppS$tdC$hronoH$igh_r$esolution_c$l$ock.htm\">s$td::c$hrono::h$igh_r$esolution_c$l$ock</a>" },
     { "richelbilderbeeknlsitemapgenerator","<a href=\"T$oolR$ichelb$ilderbeekN$lS$item$apG$enerator.htm\">r$ichelb$ilderbeekn$l$s$item$apg$enerator</a>" },
     { "testQtKeyboardFriendlyGraphicsView","<a href=\"T$oolT$estQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">t$estQ$tK$eyboardF$riendlyG$raphicsV$iew</a>" },
     { "TestQtKeyboardFriendlyGraphicsView","<a href=\"T$oolT$estQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">T$estQ$tK$eyboardF$riendlyG$raphicsV$iew</a>" },
@@ -104,6 +111,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "[LESS_THAN]stack[GREATER_THAN]","[LESS_THAN]<a href=\"CppS$tackH.htm\">s$t$ack</a>[GREATER_THAN]" },
     { "[LESS_THAN]tuple[GREATER_THAN]","[LESS_THAN]<a href=\"CppT$upleH.htm\">t$uple</a>[GREATER_THAN]" },
     { "operator[LESS_THAN][LESS_THAN]","<b><a href=\"CppOp$eratorStreamOut.htm\">o$perator[L$ESS_THAN][L$ESS_THAN]</a></b>" },
+
+    { "std::uniform_real_distribution","<a href=\"C$ppS$tdU$ni$f$orm_r$eal_d$istribution.htm\">s$td::u$ni$f$orm_r$eal_d$istribution</a>" },
     { "QGraphicsSceneContextMenuEvent","<a href=\"C$ppQ$G$raphicsS$ceneC$ontextM$enuE$vent.htm\">Q$G$raphicsS$ceneC$ontextM$enuE$vent</a>" },
     { "QtMultipleChoiceQuestionDialog","<a href=\"C$ppQ$tM$ultipleC$hoiceQ$uestionD$ialog.htm\">Q$tM$ultipleC$hoiceQ$uestionD$ialog</a>" },
     { "WtMultipleChoiceQuestionDialog","<a href=\"C$ppW$tM$ultipleC$hoiceQ$uestionD$ialog.htm\">W$tM$ultipleC$hoiceQ$uestionD$ialog</a>" },
@@ -113,7 +122,9 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "boost::numeric::ublas::matrix","<a href=\"CppU$bl$asM$atrix.htm\">b$oost::n$umeric::u$b$las::m$atrix</a>" },
     { "boost::numeric::ublas::vector","<a href=\"CppU$blasV$ector.htm\">b$oost::n$umeric::u$b$las::v$ector</a>" },
     { "optical character recognition","<a href=\"CppO$cr.htm\">o$ptical c$haracter r$ecognition</a>" },
+    { "std::exponential_distribution","<a href=\"CppS$tdE$xponential_d$istribution.htm\">st$d::e$xponential_d$istribution</a>" },
     { "std::set_symmetric_difference","<a href=\"CppS$tdS$et_s$ymmetric_d$i$fference.htm\">st$d::s$et_s$ymmetric_di$fference</a>" },
+    { "std::uniform_int_distribution","<a href=\"C$ppS$tdU$ni$f$orm_i$nt_d$istribution.htm\">s$td::u$ni$f$orm_i$nt_d$istribution</a>" },
     { "Wt::WCombinedLocalizedStrings","<a href=\"CppW$C$ombinedL$ocalizedS$trings.htm\">W$t::W$C$ombinedL$ocalizedS$trings</a>" },
     //28
     { "[LESS_THAN]ios[GREATER_THAN]","[LESS_THAN]<a href=\"CppIo$sH.htm\">i$o$s</a>[GREATER_THAN]" },
@@ -141,6 +152,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "histogramEqualizationerVcl","<a href=\"T$oolH$istogramE$qualizationerV$cl.htm\">h$istogramE$qualiz$ationerV$cl</a>" },
     { "histogramequalizationerVcl","<a href=\"T$oolH$istogramE$qualizationerV$cl.htm\">h$istograme$qualiz$ationerV$cl</a>" },
     { "implementation (.cpp) file","<a href=\"C$ppI$mplementationF$ile.htm\">i$mplementation (.c$pp) f$ile</a>" },
+    { "std::chrono::duration_cast","<a href=\"C$ppS$tdChronoDuration_cast.htm\">s$td::c$hrono::d$uration_c$ast</a>" },
     { "std::recursive_timed_mutex","<a href=\"C$ppS$tdR$ecursive_t$imed_m$utex.htm\">s$td::r$ecursive_t$imed_m$utex</a>" },
     { "testmultiplechoicequestion","<a href=\"T$oolT$estM$ultipleC$hoiceQ$uestion.htm\">t$estm$ultiplec$hoiceq$uestion</a>" },
     { "testMultipleChoiceQuestion","<a href=\"T$oolT$estM$ultipleC$hoiceQ$uestion.htm\">t$estM$ultipleC$hoiceQ$uestion</a>" },
@@ -157,18 +169,19 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "boost::tuples::make_tuple","<a href=\"C$ppB$oostM$ake_t$uple.htm\">b$oost::t$uples::m$ake_t$uple</a>" },
     { "everythingToPiecesShooter","<a href=\"G$ameE$verythingT$oP$iecesS$hooter.htm\">e$verythingT$oP$iecesS$hooter</a>" },
     { "explicit function default","<a href=\"C$ppE$xplicitF$unctionD$efault.htm\">e$xplicit f$unction d$efault</a>" },
+    { "std::chrono::milliseconds","<a href=\"C$ppS$tdC$hronoMilliseconds.htm\">s$td::c$hrono::m$illiseconds</a>" },
+    { "std::chrono::system_clock","<a href=\"C$ppS$tdC$hronoS$ystem_c$l$ock.htm\">s$td::c$hrono::s$ystem_c$l$ock</a>" },
+    { "testQtRoundedEditRectItem","<a href=\"T$oolT$estQ$tR$oundedE$ditR$ectI$tem.htm\">t$estQ$tR$oundedE$ditR$ectI$tem</a>" },
+    { "testQtRoundedTextRectItem","<a href=\"T$oolT$estQ$tR$oundedT$extR$ectI$tem.htm\">t$estQ$tR$oundedT$extR$ectI$tem</a>" },
     { "CalcNumOfSymmetriesBinary","<a href=\"C$ppC$alcN$umO$fS$ymmetriesB$inary.htm\">C$alcN$umO$fS$ymmetriesB$inary</a>" },
     { "DoPerfectElasticCollision","<a href=\"C$ppD$oPerfectElasticCollision.htm\">D$oPerfectElasticCollision</a>" },
     { "Explicit function default","<a href=\"C$ppE$xplicitF$unctionD$efault.htm\">E$xplicit f$unction d$efault</a>" },
     { "GetLubuntuVersionCodename","<a href=\"C$ppG$etLu$buntuV$ersionC$odename.htm\">G$etLu$buntuV$ersionC$odename</a>" },
-    { "std::chrono::system_clock","<a href=\"C$ppS$tdS$ystem_c$l$ock.htm\">s$td::c$hrono::s$ystem_c$l$ock</a>" },
-    { "testQtRoundedEditRectItem","<a href=\"T$oolT$estQ$tR$oundedE$ditR$ectI$tem.htm\">t$estQ$tR$oundedE$ditR$ectI$tem</a>" },
-    { "testQtRoundedTextRectItem","<a href=\"T$oolT$estQ$tR$oundedT$extR$ectI$tem.htm\">t$estQ$tR$oundedT$extR$ectI$tem</a>" },
     { "QGraphicsSceneResizeEvent","<a href=\"CppQ$G$raphicsS$ceneR$esizeE$vent.htm\">Q$G$raphicsS$ceneR$esizeE$vent</a>" },
-    { "Wt::WSortFilterProxyModel","<a href=\"C$ppW$S$ortF$ilterP$roxyM$odel.htm\">W$t::W$S$ortF$ilterP$roxyM$odel</a>" },
-    { "Wt::WAbstractToggleButton","<a href=\"C$ppW$A$bstractT$oggleB$utton.htm\">W$t::W$A$bstractT$oggleB$utton</a>" },
-    { "Wt::WAbstractItemDelegate","<a href=\"C$ppW$A$bstractI$temD$elegate.htm\">W$t::W$A$bstractI$temD$elegate</a>" },
     { "WtTimedServerPusherClient","<a href=\"C$ppW$tT$imedS$erverP$usherC$lient.htm\">W$tT$imedS$erverP$usherC$lient</a>" },
+    { "Wt::WAbstractItemDelegate","<a href=\"C$ppW$A$bstractI$temD$elegate.htm\">W$t::W$A$bstractI$temD$elegate</a>" },
+    { "Wt::WAbstractToggleButton","<a href=\"C$ppW$A$bstractT$oggleB$utton.htm\">W$t::W$A$bstractT$oggleB$utton</a>" },
+    { "Wt::WSortFilterProxyModel","<a href=\"C$ppW$S$ortF$ilterP$roxyM$odel.htm\">W$t::W$S$ortF$ilterP$roxyM$odel</a>" },
     //24
     { "boost::const_pointer_cast","<a href=\"CppB$oostC$onst_p$oi$nter_c$ast.htm\">b$oost::c$onst_p$oi$nter_c$ast</a>" },
     { "boost::reference_wrapper","<a href=\"C$ppB$oostR$ef$erence_w$rapper.htm\">b$oost::r$ef$erence_w$rapper</a>" },
@@ -177,6 +190,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "refrigeratorPuzzleSolver","<a href=\"T$oolR$efrigeratorP$uzzleS$olver.htm\">r$efrigeratorP$uzzleS$olver</a>" },
     { "searchAndDestroyChessVcl","<a href=\"G$ameS$earchA$ndD$estroyC$hessV$cl.htm\">s$earchA$ndD$estroyC$hessV$cl</a>" },
     { "std::adjacent_difference","<a href=\"C$ppS$tdAdjacent_di$fference.htm\">st$d::adj$acent_di$fference</a>" },
+    { "std::normal_distribution","<a href=\"C$ppS$tdN$ormal_d$istribution.htm\">st$d::n$ormal_d$istribution</a>" },
     { "Copy assignment operator","<a href=\"C$ppC$opyA$ssignmentO$perator.htm\">C$opy a$ssignment o$perator</a>" },
     { "GetUbuntuVersionCodename","<a href=\"C$ppG$etU$buntuV$ersionC$odename.htm\">G$etU$buntuV$ersionC$odename</a>" },
     { "GetLineLineIntersections","<a href=\"C$ppG$etL$ineL$ineI$nters$ect$io$ns.htm\">G$etL$ineL$ineI$nters$ect$io$ns</a>" },

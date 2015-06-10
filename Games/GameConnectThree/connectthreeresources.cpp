@@ -63,15 +63,7 @@ ribi::con3::ConnectThreeResources::ConnectThreeResources(
 
 ribi::con3::ConnectThreeResources::~ConnectThreeResources() noexcept
 {
-  for (const std::string filename: m_computers_filenames) { std::remove(filename.c_str()); }
-  for (const std::string filename: m_players_filenames) { std::remove(filename.c_str()); }
-  for (const std::string filename: m_players_grey_filenames) { std::remove(filename.c_str()); }
-  for (const std::string filename: m_instructions_good_filenames) { std::remove(filename.c_str()); }
-  std::remove(m_computer_grey_filename.c_str());
-  std::remove(m_css.c_str());
-  std::remove(m_empty_filename.c_str());
-  std::remove(m_icon_filename.c_str());
-  std::remove(m_instructions_wrong_filename.c_str());
+  RemoveFiles();
 }
 
 void ribi::con3::ConnectThreeResources::Create() const
@@ -106,4 +98,18 @@ void ribi::con3::ConnectThreeResources::CreateFile(const std::string& s)
   }
   if (!fileio::FileIo().IsRegularFile(s)) { TRACE(s); }
   assert(fileio::FileIo().IsRegularFile(s));
+}
+
+///Removes all files
+void ribi::con3::ConnectThreeResources::RemoveFiles() const noexcept
+{
+  for (const std::string filename: m_computers_filenames) { std::remove(filename.c_str()); }
+  for (const std::string filename: m_players_filenames) { std::remove(filename.c_str()); }
+  for (const std::string filename: m_players_grey_filenames) { std::remove(filename.c_str()); }
+  for (const std::string filename: m_instructions_good_filenames) { std::remove(filename.c_str()); }
+  std::remove(m_computer_grey_filename.c_str());
+  std::remove(m_css.c_str());
+  std::remove(m_empty_filename.c_str());
+  std::remove(m_icon_filename.c_str());
+  std::remove(m_instructions_wrong_filename.c_str());
 }
