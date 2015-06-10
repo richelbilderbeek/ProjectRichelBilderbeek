@@ -20,15 +20,17 @@ struct Simulation
 
   ///Calculate the next x. This class will supply the random numbers,
   ///thus these member functions are not const
-  double CalcNext(
+  void CalcNext(
     const double x
   );
 
   ///Calculate the next x+dt, supplying the random numbers yourself
-  double CalcNext(
+  void CalcNext(
     const double x,
     const double random_exponential
-  ) const;
+  );
+
+  int CountExtant() const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -6,15 +6,16 @@
 #include <iostream>
 #include <future>
 
+#include "ribi_rinside.h"
 #include "fileio.h"
 
 PhylogenyR::PhylogenyR()
 {
-
   #ifndef NDEBUG
   Test();
   #endif
 }
+
 
 std::string PhylogenyR::DropExtinct(const std::string& newick) const
 {
@@ -404,4 +405,57 @@ void PhylogenyR::NewickToPhylogeny(
 
   //Delete the temporary R file
   ribi::fileio::FileIo().DeleteFile(temp_r_filename);
+
+}
+
+void PhylogenyR::NewickToPhylogenyNew(
+  const std::string& newick,
+  const std::string& filename,
+  const PhylogenyR::GraphicsFormat graphics_format,
+  const bool plot_fossils
+) const
+{
+  assert(!newick.empty());
+  assert(!filename.empty());
+
+  //TODO: Test if the user has all required packages
+  auto& r = ribi::Rinside().Get();
+
+  //Create the R script
+  {
+    r.parseEvalQ("library(ape)");
+    r.parseEvalQ("library(geiger)");
+    r["temp_filename"] = filename;
+    r["newick"] = newick;
+    r.parseEvalQ("phylogeny <- read.tree(text = newick)");
+
+    if (!plot_fossils)
+    {
+      r.parseEvalQ("phylogeny <- drop.extinct(phylogeny)");
+    }
+
+    switch (graphics_format)
+    {
+      case GraphicsFormat::png:
+        r.parseEvalQ("png(filename=temp_filename)");
+      break;
+      case GraphicsFormat::svg:
+        r.parseEvalQ("svg(filename=temp_filename)");
+      break;
+    }
+    r.parseEvalQ("plot(phylogeny)");
+    r.parseEvalQ("dev.off()");
+
+  }
+
+  if (!ribi::fileio::FileIo().IsRegularFile(filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create image "
+      << "with filename '" << filename << "'. "
+      << "Perhaps not all packages (ape, geiger) needed are installed?"
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
 }

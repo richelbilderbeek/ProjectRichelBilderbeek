@@ -13,6 +13,8 @@ class QtTreesearcherMainDialog : public QDialog
 
 public:
   explicit QtTreesearcherMainDialog(QWidget *parent = 0);
+  QtTreesearcherMainDialog(const QtTreesearcherMainDialog&) = delete;
+  QtTreesearcherMainDialog& operator=(const QtTreesearcherMainDialog&) = delete;
   ~QtTreesearcherMainDialog();
 
 private:

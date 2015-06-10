@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
 
+  PhylogenyR();
   std::async([](){ DnaR();} );
   std::async([](){ PhylogenyR();} );
   std::async([](){ NewickUtils();} );

@@ -4,6 +4,10 @@
 #include <memory>
 #include <vector>
 
+#include "RInside.h"
+
+struct RInside;
+
 struct PhylogenyR
 {
   enum class GraphicsFormat { png, svg };
@@ -41,6 +45,13 @@ struct PhylogenyR
   ///Plot Newick as a phylogeny in a graphics format
   ///same interface is followed by NewickUtils
   void NewickToPhylogeny(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format,
+    const bool plot_fossils = true
+  ) const;
+
+  void NewickToPhylogenyNew(
     const std::string& newick,
     const std::string& filename,
     const GraphicsFormat graphics_format,

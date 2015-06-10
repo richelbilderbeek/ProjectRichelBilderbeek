@@ -7,7 +7,7 @@ ribi::bdm::Parameters::Parameters(
     const BirthRate birth_rate,
     const DeathRate death_rate,
     const Time time,
-    const int rng_seed = 42
+    const int rng_seed
 ) :
     m_birth_rate{birth_rate},
     m_death_rate{death_rate},
