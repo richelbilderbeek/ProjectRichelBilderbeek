@@ -26,6 +26,8 @@ void PhylogenyR::Test() noexcept
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
 
+  ribi::fileio::FileIo f;
+  #define FIX_ISSUE_278
   #ifdef FIX_ISSUE_278
   const bool test_throughly{true};
   #else  // FIX_ISSUE_277
@@ -46,79 +48,6 @@ void PhylogenyR::Test() noexcept
 
 
 
-  if (verbose) { TRACE("Speed comparison of NewickToPhylogeny versus NewickToPhylogeny"); }
-  {
-    const TimePoint t{Clock::now()};
-
-    const std::string temp_svg_filename1{
-      ribi::fileio::FileIo().GetTempFileName(".svg")
-    };
-    const std::string temp_svg_filename2{
-      ribi::fileio::FileIo().GetTempFileName(".svg")
-    };
-    const bool plot_fossils{true};
-    const std::string newick{"((F:2,G:2):1,H:3);"};
-
-    const TimePoint t2{Clock::now()};
-    p.NewickToPhylogenyNew(
-      newick,
-      temp_svg_filename2,
-      PhylogenyR::GraphicsFormat::svg,
-      plot_fossils
-    );
-    const Duration d2{Clock::now() - t2};
-
-    const TimePoint t1{Clock::now()};
-    p.NewickToPhylogeny(
-      newick,
-      temp_svg_filename1,
-      PhylogenyR::GraphicsFormat::svg,
-      plot_fossils
-    );
-    const Duration d1{Clock::now() - t1};
-
-    assert(ribi::fileio::FileIo().IsRegularFile(temp_svg_filename1));
-    assert(ribi::fileio::FileIo().IsRegularFile(temp_svg_filename2));
-
-    if(
-      !ribi::fileio::FileIo().FilesAreIdentical(
-        temp_svg_filename1,
-        temp_svg_filename2
-      )
-    )
-    {
-      std::cout << temp_svg_filename1 << '\n';
-    }
-    #ifdef FIX_ISSUE_277
-    assert(
-      ribi::fileio::FileIo().FilesAreIdentical(
-        temp_svg_filename1,
-        temp_svg_filename2
-      )
-    );
-    assert(!"Fixed issue 277");
-
-    std::cout
-      << "d1: " << std::chrono::duration_cast<Msec>(d1).count() << '\n'
-      << "d2: " << std::chrono::duration_cast<Msec>(d1).count() << '\n'
-    ;
-
-
-    assert(d2 < d1 / 2);
-    //Clean up
-    ribi::fileio::FileIo().DeleteFile(temp_svg_filename1);
-    ribi::fileio::FileIo().DeleteFile(temp_svg_filename2);
-
-    std::cout << "1: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
-    assert(!"Fixed speed");
-    #endif // FIX_ISSUE_277
-  }
-
-
-
-
-
-
 
 
   if (verbose) { TRACE("NewickToPhylogeny as SVG of extinct and extant species"); }
@@ -126,7 +55,7 @@ void PhylogenyR::Test() noexcept
     const TimePoint t{Clock::now()};
 
     const std::string temp_svg_filename{
-      ribi::fileio::FileIo().GetTempFileName(".svg")
+      f.GetTempFileName(".svg")
     };
     const bool plot_fossils{true};
     const std::string newick{"((F:2,G:2):1,H:3);"};
@@ -136,9 +65,9 @@ void PhylogenyR::Test() noexcept
       PhylogenyR::GraphicsFormat::svg,
       plot_fossils
     );
-    assert(ribi::fileio::FileIo().IsRegularFile(temp_svg_filename));
+    assert(f.IsRegularFile(temp_svg_filename));
     //Clean up
-    ribi::fileio::FileIo().DeleteFile(temp_svg_filename);
+    f.DeleteFile(temp_svg_filename);
 
     std::cout << "1: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
   }
@@ -147,7 +76,7 @@ void PhylogenyR::Test() noexcept
     const TimePoint t{Clock::now()};
 
     const std::string temp_png_filename{
-      ribi::fileio::FileIo().GetTempFileName(".png")
+      f.GetTempFileName(".png")
     };
     const bool plot_fossils{false};
     const std::string newick{"((F:2,G:2):1,H:3);"};
@@ -157,9 +86,9 @@ void PhylogenyR::Test() noexcept
       PhylogenyR::GraphicsFormat::png,
       plot_fossils
     );
-    assert(ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    assert(f.IsRegularFile(temp_png_filename));
     //Clean up
-    ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
+    f.DeleteFile(temp_png_filename.c_str());
 
     std::cout << "2: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
   }
@@ -168,7 +97,7 @@ void PhylogenyR::Test() noexcept
     const TimePoint t{Clock::now()};
 
     const std::string temp_png_filename{
-      ribi::fileio::FileIo().GetTempFileName(".png")
+      f.GetTempFileName(".png")
     };
     const bool plot_fossils{true};
     const std::string newick{"((F:2,G:2):1,H:3);"};
@@ -178,9 +107,9 @@ void PhylogenyR::Test() noexcept
       PhylogenyR::GraphicsFormat::png,
       plot_fossils
     );
-    assert(ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    assert(f.IsRegularFile(temp_png_filename));
     //Clean up
-    ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
+    f.DeleteFile(temp_png_filename.c_str());
 
     std::cout << "3: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
   }
@@ -190,13 +119,13 @@ void PhylogenyR::Test() noexcept
     const TimePoint t{Clock::now()};
 
     const std::string temp_png_filename{
-      ribi::fileio::FileIo().GetTempFileName(".png")
+      f.GetTempFileName(".png")
     };
     const std::string newick{"((ER:1,GR:1):1);"};
     p.NewickToPhylogenyPng(newick,temp_png_filename);
-    assert(ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    assert(f.IsRegularFile(temp_png_filename));
     //Clean up
-    ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
+    f.DeleteFile(temp_png_filename.c_str());
 
 
     std::cout << "4: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
@@ -207,13 +136,13 @@ void PhylogenyR::Test() noexcept
     const TimePoint t{Clock::now()};
 
     const std::string temp_png_filename{
-      ribi::fileio::FileIo().GetTempFileName(".png")
+      f.GetTempFileName(".png")
     };
     const std::string newick{"((F:2,G:2):1,H:3);"};
     p.NewickToLttPlot(newick,temp_png_filename,GraphicsFormat::png);
-    assert(ribi::fileio::FileIo().IsRegularFile(temp_png_filename));
+    assert(f.IsRegularFile(temp_png_filename));
     //Clean up
-    ribi::fileio::FileIo().DeleteFile(temp_png_filename.c_str());
+    f.DeleteFile(temp_png_filename.c_str());
 
     std::cout << "5: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
   }
@@ -228,6 +157,81 @@ void PhylogenyR::Test() noexcept
     );
 
     std::cout << "6: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
+  }
+
+  if ("Test NewickToPhylogenyRinside faster than NewickToPhylogenyRscript")
+  {
+    const TimePoint t{Clock::now()};
+
+    const std::string temp_svg_filename1{
+      f.GetTempFileName(".svg")
+    };
+    const std::string temp_svg_filename2{
+      f.GetTempFileName(".svg")
+    };
+    const bool plot_fossils{true};
+    const std::string newick{"((F:2,G:2):1,H:3);"};
+
+    const TimePoint t1{Clock::now()};
+    p.NewickToPhylogenyRscript(
+      newick,
+      temp_svg_filename1,
+      PhylogenyR::GraphicsFormat::svg,
+      plot_fossils
+    );
+    const Duration d1{Clock::now() - t1};
+
+    const TimePoint t2{Clock::now()};
+    p.NewickToPhylogenyRinside(
+      newick,
+      temp_svg_filename2,
+      PhylogenyR::GraphicsFormat::svg,
+      plot_fossils
+    );
+    const Duration d2{Clock::now() - t2};
+
+
+    assert(f.IsRegularFile(temp_svg_filename1));
+    assert(f.IsRegularFile(temp_svg_filename2));
+
+    assert(d2 < d1 / 10);
+    //Clean up
+    f.DeleteFile(temp_svg_filename1);
+    f.DeleteFile(temp_svg_filename2);
+    // Before (using R script): 976
+    // After (using RInside): 5
+    std::cout << "Before (using R script): " << std::chrono::duration_cast<Msec>(d1).count() << '\n';
+    std::cout << "After (using RInside): "  << std::chrono::duration_cast<Msec>(d2).count() << '\n';
+  }
+
+  if ("Speed compare NewickToLttPlotRscript versus NewickToLttPlotRinside")
+  {
+    const TimePoint t{Clock::now()};
+
+    const std::string temp_png_filename1{f.GetTempFileName(".png") };
+    const std::string temp_png_filename2{f.GetTempFileName(".png") };
+    const std::string newick{"((F:2,G:2):1,H:3);"};
+
+    const TimePoint t1{Clock::now()};
+    p.NewickToLttPlotRscript(newick,temp_png_filename1,GraphicsFormat::png);
+    const Duration d1{Clock::now() - t1};
+
+    const TimePoint t2{Clock::now()};
+    p.NewickToLttPlotRinside(newick,temp_png_filename2,GraphicsFormat::png);
+    const Duration d2{Clock::now() - t2};
+
+    assert(f.IsRegularFile(temp_png_filename1));
+    assert(f.IsRegularFile(temp_png_filename2));
+    assert(d2 < d1 / 10);
+
+    //Clean up
+    f.DeleteFile(temp_png_filename1.c_str());
+    f.DeleteFile(temp_png_filename2.c_str());
+
+    // Before (using R script): 941
+    // After (using RInside): 24
+    std::cout << "Before (using R script): " << std::chrono::duration_cast<Msec>(d1).count() << '\n';
+    std::cout << "After (using RInside): "  << std::chrono::duration_cast<Msec>(d2).count() << '\n';
   }
 
 

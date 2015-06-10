@@ -4,8 +4,11 @@
 #include <QDialog>
 
 namespace Ui {
-class QtTreesearcherMainDialog;
+  class QtTreesearcherMainDialog;
 }
+
+struct QSvgWidget;
+struct RInside;
 
 class QtTreesearcherMainDialog : public QDialog
 {
@@ -19,6 +22,8 @@ public:
 
 private:
   Ui::QtTreesearcherMainDialog *ui;
+
+  QSvgWidget * const m_svg_widget;
 };
 
 #endif // QTTREESEARCHERMAINDIALOG_H

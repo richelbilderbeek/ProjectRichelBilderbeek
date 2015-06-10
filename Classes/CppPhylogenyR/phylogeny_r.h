@@ -51,14 +51,35 @@ struct PhylogenyR
     const bool plot_fossils = true
   ) const;
 
-  void NewickToPhylogenyNew(
+  private:
+
+  void NewickToLttPlotRscript(
     const std::string& newick,
     const std::string& filename,
     const GraphicsFormat graphics_format,
     const bool plot_fossils = true
   ) const;
 
-  private:
+  void NewickToLttPlotRinside(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format,
+    const bool plot_fossils = true
+  ) const;
+
+  void NewickToPhylogenyRscript(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format,
+    const bool plot_fossils = true
+  ) const;
+
+  void NewickToPhylogenyRinside(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format,
+    const bool plot_fossils = true
+  ) const;
 
   #ifndef NDEBUG
   static void Test() noexcept;

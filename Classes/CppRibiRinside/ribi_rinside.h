@@ -16,7 +16,7 @@ struct Rinside
   #endif
 };
 
-
 } //~namespace ribi
+
 
 #endif // RIBI_INSIDE_R_H

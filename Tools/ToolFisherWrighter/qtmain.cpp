@@ -7,6 +7,7 @@
 #include "qtfisherwrightermaindialog.h"
 #include "counter.h"
 #include "dna_r.h"
+#include "ribi_rinside.h"
 #include "phylogeny_r.h"
 #include "newickutils.h"
 #pragma GCC diagnostic pop
@@ -14,7 +15,7 @@
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-
+  ribi::Rinside();
   PhylogenyR();
   std::async([](){ DnaR();} );
   std::async([](){ PhylogenyR();} );

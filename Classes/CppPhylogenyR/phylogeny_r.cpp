@@ -247,6 +247,16 @@ void PhylogenyR::NewickToLttPlot(
   const bool plot_fossils
 ) const
 {
+  NewickToLttPlotRinside(newick,filename,graphics_format,plot_fossils);
+}
+
+void PhylogenyR::NewickToLttPlotRscript(
+  const std::string& newick,
+  const std::string& filename,
+  const PhylogenyR::GraphicsFormat graphics_format,
+  const bool plot_fossils
+) const
+{
   //TODO: Test if the user has all required packages
 
   const std::string temp_r_filename{
@@ -322,7 +332,65 @@ void PhylogenyR::NewickToLttPlot(
   ribi::fileio::FileIo().DeleteFile(temp_r_filename);
 }
 
+void PhylogenyR::NewickToLttPlotRinside(
+  const std::string& newick,
+  const std::string& filename,
+  const PhylogenyR::GraphicsFormat graphics_format,
+  const bool plot_fossils
+) const
+{
+  assert(!newick.empty());
+  assert(!filename.empty());
+
+  //TODO: Test if the user has all required packages
+  auto& r = ribi::Rinside().Get();
+
+  r.parseEvalQ("library(ape)");
+  r.parseEvalQ("library(geiger)");
+  r["temp_filename"] = filename;
+  r["newick"] = newick;
+  r.parseEvalQ("phylogeny <- read.tree(text = newick)");
+
+  if (!plot_fossils)
+  {
+    r.parseEvalQ("phylogeny <- drop.extinct(phylogeny)");
+  }
+
+  switch (graphics_format)
+  {
+    case GraphicsFormat::png:
+      r.parseEvalQ("png(filename=temp_filename)");
+    break;
+    case GraphicsFormat::svg:
+      r.parseEvalQ("svg(filename=temp_filename)");
+    break;
+  }
+  r.parseEvalQ("ltt.plot(phylogeny)");
+  r.parseEvalQ("dev.off()");
+
+  if (!ribi::fileio::FileIo().IsRegularFile(filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create SVG "
+      << "with filename '" << filename << "'. "
+      << "Perhaps not all packages (ape, geiger) needed are installed?"
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
+}
+
 void PhylogenyR::NewickToPhylogeny(
+  const std::string& newick,
+  const std::string& filename,
+  const GraphicsFormat graphics_format,
+  const bool plot_fossils
+) const
+{
+  return NewickToPhylogenyRinside(newick,filename,graphics_format,plot_fossils);
+}
+
+void PhylogenyR::NewickToPhylogenyRscript(
   const std::string& newick,
   const std::string& filename,
   const PhylogenyR::GraphicsFormat graphics_format,
@@ -408,7 +476,7 @@ void PhylogenyR::NewickToPhylogeny(
 
 }
 
-void PhylogenyR::NewickToPhylogenyNew(
+void PhylogenyR::NewickToPhylogenyRinside(
   const std::string& newick,
   const std::string& filename,
   const PhylogenyR::GraphicsFormat graphics_format,
@@ -421,32 +489,29 @@ void PhylogenyR::NewickToPhylogenyNew(
   //TODO: Test if the user has all required packages
   auto& r = ribi::Rinside().Get();
 
-  //Create the R script
+  r.parseEvalQ("library(ape)");
+  r.parseEvalQ("library(geiger)");
+  r["temp_filename"] = filename;
+  r["newick"] = newick;
+  r.parseEvalQ("phylogeny <- read.tree(text = newick)");
+
+  if (!plot_fossils)
   {
-    r.parseEvalQ("library(ape)");
-    r.parseEvalQ("library(geiger)");
-    r["temp_filename"] = filename;
-    r["newick"] = newick;
-    r.parseEvalQ("phylogeny <- read.tree(text = newick)");
-
-    if (!plot_fossils)
-    {
-      r.parseEvalQ("phylogeny <- drop.extinct(phylogeny)");
-    }
-
-    switch (graphics_format)
-    {
-      case GraphicsFormat::png:
-        r.parseEvalQ("png(filename=temp_filename)");
-      break;
-      case GraphicsFormat::svg:
-        r.parseEvalQ("svg(filename=temp_filename)");
-      break;
-    }
-    r.parseEvalQ("plot(phylogeny)");
-    r.parseEvalQ("dev.off()");
-
+    r.parseEvalQ("phylogeny <- drop.extinct(phylogeny)");
   }
+
+  switch (graphics_format)
+  {
+    case GraphicsFormat::png:
+      r.parseEvalQ("png(filename=temp_filename)");
+    break;
+    case GraphicsFormat::svg:
+      r.parseEvalQ("svg(filename=temp_filename)");
+    break;
+  }
+  r.parseEvalQ("plot(phylogeny)");
+  r.parseEvalQ("dev.off()");
+
 
   if (!ribi::fileio::FileIo().IsRegularFile(filename))
   {
