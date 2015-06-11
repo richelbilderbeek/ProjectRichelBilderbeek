@@ -10,6 +10,7 @@ namespace Ui {
 struct QLabel;
 struct QSvgWidget;
 struct RInside;
+struct QtBirthDeathModelParametersWidget;
 
 class QtTreesearcherMainDialog : public QDialog
 {
@@ -21,13 +22,23 @@ public:
   QtTreesearcherMainDialog& operator=(const QtTreesearcherMainDialog&) = delete;
   ~QtTreesearcherMainDialog();
 
+  ///phylogeny must be Newick
+  void SetPhylogeny(const std::string& phylogeny);
+
 private:
   Ui::QtTreesearcherMainDialog *ui;
+
+  QtBirthDeathModelParametersWidget * m_bd_parameters_widget;
+
+  QLabel * const m_ltt_image;
+
+  ///The phylogeny created and researched
+  std::string m_phylogeny;
 
   QLabel * const m_tree_image;
 
 private slots:
-  void OnAnyChange();
+  void OnBirthDeathParametersChanged();
 };
 
 #endif // QTTREESEARCHERMAINDIALOG_H

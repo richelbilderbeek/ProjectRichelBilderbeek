@@ -38,8 +38,7 @@ struct PhylogenyR
   void NewickToLttPlot(
     const std::string& newick,
     const std::string& filename,
-    const GraphicsFormat graphics_format,
-    const bool plot_fossils = true
+    const GraphicsFormat graphics_format
   ) const;
 
   ///Plot Newick as a phylogeny in a graphics format
@@ -47,8 +46,7 @@ struct PhylogenyR
   void NewickToPhylogeny(
     const std::string& newick,
     const std::string& filename,
-    const GraphicsFormat graphics_format,
-    const bool plot_fossils = true
+    const GraphicsFormat graphics_format
   ) const;
 
   ///Converts a phylogeny, with the
@@ -60,42 +58,6 @@ struct PhylogenyR
 
 
   private:
-
-  std::string DropExtinctRinside(
-    const std::string& newick
-  ) const;
-
-  std::string DropExtinctRscript(
-    const std::string& newick
-  ) const;
-
-  void NewickToLttPlotRscript(
-    const std::string& newick,
-    const std::string& filename,
-    const GraphicsFormat graphics_format,
-    const bool plot_fossils = true
-  ) const;
-
-  void NewickToLttPlotRinside(
-    const std::string& newick,
-    const std::string& filename,
-    const GraphicsFormat graphics_format,
-    const bool plot_fossils = true
-  ) const;
-
-  void NewickToPhylogenyRscript(
-    const std::string& newick,
-    const std::string& filename,
-    const GraphicsFormat graphics_format,
-    const bool plot_fossils = true
-  ) const;
-
-  void NewickToPhylogenyRinside(
-    const std::string& newick,
-    const std::string& filename,
-    const GraphicsFormat graphics_format,
-    const bool plot_fossils = true
-  ) const;
 
   #ifndef NDEBUG
   static void Test() noexcept;

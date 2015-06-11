@@ -7,6 +7,8 @@
 namespace ribi {
 namespace bdm {
 
+struct Parameters;
+
 ///Performs a Brownian motion
 struct Helper
 {
@@ -28,6 +30,10 @@ struct Helper
   ) const;
 
   double CalcMaxLogLikelihood(const std::vector<double>& v) const;
+
+  std::string CreateSimulatedPhylogeny(
+    const Parameters& parameters
+  ) const;
 
   #ifndef NDEBUG
   static void Test() noexcept;

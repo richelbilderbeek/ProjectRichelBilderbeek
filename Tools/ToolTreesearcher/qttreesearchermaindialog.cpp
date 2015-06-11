@@ -13,30 +13,44 @@
 #include "RInside.h"
 #pragma GCC diagnostic pop
 
+#include "birthdeathmodelhelper.h"
+#include "birthdeathmodelparameters.h"
 #include "fileio.h"
 #include "ribi_rinside.h"
-
+#include "phylogeny_r.h"
+#include "trace.h"
+#include "qtbirthdeathmodelparameterswidget.h"
 #include "ui_qttreesearchermaindialog.h"
 
 QtTreesearcherMainDialog::QtTreesearcherMainDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTreesearcherMainDialog),
+  m_bd_parameters_widget{new QtBirthDeathModelParametersWidget},
+  m_ltt_image{new QLabel},
+  m_phylogeny{},
   m_tree_image{new QLabel}
 {
   ui->setupUi(this);
 
   {
     assert(!this->ui->widget_center->layout());
-    QGridLayout * const my_layout{new QGridLayout};
+    QHBoxLayout * const my_layout{new QHBoxLayout};
     ui->widget_center->setLayout(my_layout);
+    my_layout->addWidget(m_ltt_image);
     my_layout->addWidget(m_tree_image);
     assert(this->ui->widget_center->layout());
   }
 
+  {
+    assert(!ui->page_parameters_bd->layout());
+    QGridLayout * const my_layout{new QGridLayout};
+    ui->page_parameters_bd->setLayout(my_layout);
+    my_layout->addWidget(m_bd_parameters_widget);
+    assert(ui->page_parameters_bd->layout());
 
-  QObject::connect(this->ui->box_birth_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_death_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_n_taxa,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  }
+
+  QObject::connect(m_bd_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnBirthDeathParametersChanged()));
 
   //Parse some libraries
   {
@@ -45,7 +59,7 @@ QtTreesearcherMainDialog::QtTreesearcherMainDialog(QWidget *parent) :
     r.parseEvalQ("library(geiger)");
   }
 
-  OnAnyChange();
+  OnBirthDeathParametersChanged();
 }
 
 QtTreesearcherMainDialog::~QtTreesearcherMainDialog()
@@ -53,36 +67,55 @@ QtTreesearcherMainDialog::~QtTreesearcherMainDialog()
   delete ui;
 }
 
-void QtTreesearcherMainDialog::OnAnyChange()
+void QtTreesearcherMainDialog::OnBirthDeathParametersChanged()
 {
+  const ribi::bdm::Parameters parameters {
+    m_bd_parameters_widget->GetParameters()
+  };
+
+  const std::string phylogeny{
+    ribi::bdm::Helper().CreateSimulatedPhylogeny(parameters)
+  };
+
+  SetPhylogeny(phylogeny);
+}
+
+void QtTreesearcherMainDialog::SetPhylogeny(const std::string& phylogeny)
+{
+  if (phylogeny == m_phylogeny) return;
+
+  m_phylogeny = phylogeny;
+
   ribi::fileio::FileIo f;
-  auto& r = ribi::Rinside().Get();
-  const std::string png_filename{f.GetTempFileName(".png")};
 
-  r.parseEvalQ("library(ape)");
-  r.parseEvalQ("library(geiger)");
-  r["n_taxa"] = ui->box_n_taxa->value();
-  r["birth_rate"] = ui->box_birth_rate->value();
-  r["death_rate"] = ui->box_death_rate->value();
-  r.parseEval("print(n_taxa)");
-  r.parseEval("print(birth_rate)");
-  r.parseEval("print(death_rate)");
+  //LTT
+  {
+    const std::string png_filename{f.GetTempFileName(".png")};
 
-  r.parseEval("tree_full <- sim.bdtree(birth_rate, death_rate, stop=\"taxa\",n=n_taxa)");
-  r.parseEval("print(tree_full)");
+    PhylogenyR().NewickToLttPlot(
+      m_phylogeny,
+      png_filename,
+      PhylogenyR::GraphicsFormat::png
+    );
+    if (f.IsRegularFile(png_filename))
+    {
+      m_ltt_image->setPixmap(QPixmap(png_filename.c_str()));
+      f.DeleteFile(png_filename);
+    }
+  }
+  //Phylogeny
+  {
+    const std::string png_filename{f.GetTempFileName(".png")};
 
-
-  const Rcpp::String r_newick = r.parseEval("write.tree(phylogeny)");
-  const std::string newick = r_newick;
-  std::cout << newick;
-  return;
-  //r.parseEvalQ("tree_reconstructed <- drop.extinct(tree_full)");
-  //r.parseEvalQ("print(tree_reconstructed)");
-  r["png_filename"] = png_filename;
-  r.parseEvalQ("png(filename=png_filename)");
-  r.parseEvalQ("plot(tree_full)");
-  r.parseEvalQ("dev.off()");
-  m_tree_image->setPixmap(QPixmap(png_filename.c_str()));
-  f.DeleteFile(png_filename);
-
+    PhylogenyR().NewickToPhylogeny(
+      m_phylogeny,
+      png_filename,
+      PhylogenyR::GraphicsFormat::png
+    );
+    if (f.IsRegularFile(png_filename))
+    {
+      m_tree_image->setPixmap(QPixmap(png_filename.c_str()));
+      f.DeleteFile(png_filename);
+    }
+  }
 }

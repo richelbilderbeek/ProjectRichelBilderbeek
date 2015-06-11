@@ -7,7 +7,13 @@
 
 #include <boost/math/constants/constants.hpp>
 
+#include "RInside.h"
+
+#include "fileio.h"
 #include "testtimer.h"
+#include "birthdeathmodelparameters.h"
+#include "trace.h"
+#include "ribi_rinside.h"
 
 ribi::bdm::Helper::Helper()
 {
@@ -88,6 +94,44 @@ double ribi::bdm::Helper::CalcMaxLogLikelihood(
   return CalcLogLikelihood(v,volatility_hat * volatility_hat);
 }
 
+
+std::string ribi::bdm::Helper::CreateSimulatedPhylogeny(
+  const Parameters& parameters
+) const
+{
+  ribi::fileio::FileIo f;
+  auto& r = ribi::Rinside().Get();
+
+  r.parseEvalQ("library(ape)");
+  r.parseEvalQ("library(geiger)");
+  const double birth_rate{parameters.GetBirthRate().value()};
+  const double death_rate{parameters.GetDeathRate().value()};
+  const int n_taxa{parameters.GetNumberOfTaxa()};
+  const int rng_seed{parameters.GetRngSeed()};
+  const double t_end{parameters.GetTime().value()};
+
+  assert(t_end == 0 && "Not yet implemented running to a certain time");
+
+  r["birth_rate"] = birth_rate;
+  r["death_rate"] = death_rate;
+  r["n_taxa"] = n_taxa;
+  r["rng_seed"] = rng_seed;
+  r["t_end"] = t_end;
+  // /home/richel/R/i686-pc-linux-gnu-library/3.1/Rcpp/include/Rcpp/vector/Vector.h
+  assert(Rcpp::DoubleVector(r["birth_rate"])[0] == birth_rate);
+  assert(Rcpp::DoubleVector(r["death_rate"])[0] == death_rate);
+  assert(Rcpp::IntegerVector(r["n_taxa"])[0] == n_taxa);
+  assert(Rcpp::IntegerVector(r["rng_seed"])[0] == rng_seed);
+  assert(Rcpp::DoubleVector(r["t_end"])[0] == t_end);
+
+  //Vital! If forgotten, the branch lengths will become N/A or 0
+  std::setlocale(LC_ALL,"en_US.UTF-8");
+
+  r.parseEvalQ("tree_full <- sim.bdtree(b=birth_rate,d=death_rate,stop=\"taxa\",n=n_taxa,extinct=FALSE,seed=rng_seed)");
+  const Rcpp::String s = r.parseEval("write.tree(tree_full)");
+  return std::string(s);
+}
+
 #ifndef NDEBUG
 void ribi::bdm::Helper::Test() noexcept
 {
@@ -96,6 +140,26 @@ void ribi::bdm::Helper::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    ribi::fileio::FileIo();
+    auto& r = ribi::Rinside().Get();
+    r.parseEvalQ("library(ape)");
+    r.parseEvalQ("library(geiger)");
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+
+  Helper h;
+  ribi::fileio::FileIo f;
+
+  //CreateSimulatedPhylogeny must create a newick
+  {
+    const Parameters parameters(
+      0.1 / boost::units::si::second,
+      0.0 / boost::units::si::second,
+      10,
+      42
+    );
+    assert(!h.CreateSimulatedPhylogeny(parameters).empty());
+  }
 }
 #endif
