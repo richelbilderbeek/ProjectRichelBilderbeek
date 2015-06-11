@@ -16,8 +16,27 @@ PhylogenyR::PhylogenyR()
   #endif
 }
 
-
 std::string PhylogenyR::DropExtinct(const std::string& newick) const
+{
+  return DropExtinctRinside(newick);
+}
+
+std::string PhylogenyR::DropExtinctRinside(const std::string& newick) const
+{
+  assert(!newick.empty());
+
+  auto& r = ribi::Rinside().Get();
+  r.parseEval("library(ape)");
+  r.parseEval("library(geiger)");
+  r["newick"] = newick;
+  r.parseEval("phylogeny <- read.tree(text = newick)");
+  r.parseEval("phylogeny <- drop.extinct(phylogeny)");
+  const Rcpp::String s = r.parseEval("write.tree(phylogeny)");
+  return std::string(s);
+}
+
+
+std::string PhylogenyR::DropExtinctRscript(const std::string& newick) const
 {
   assert(!newick.empty());
 
@@ -523,4 +542,14 @@ void PhylogenyR::NewickToPhylogenyRinside(
     ;
     throw std::runtime_error(s.str().c_str());
   }
+}
+
+std::string PhylogenyR::PhylogenyToNewick(
+  const std::string& phylogeny_name
+)
+{
+  auto& r = ribi::Rinside().Get();
+  const Rcpp::String s = r.parseEval("write.tree("+ phylogeny_name + ")");
+  const std::string t = s;
+  return t;
 }

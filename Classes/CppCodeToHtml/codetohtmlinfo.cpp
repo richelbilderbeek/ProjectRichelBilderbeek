@@ -111,6 +111,20 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppAminoAcid",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppAminoAcid.htm\">AminoAcid</a> contains some <a href=\"CppClass.htm\">classes</a>"
+        "  to work with amino acids.",
+        "</p>",
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppApproximator",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
@@ -255,6 +269,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppAthleticLandResources",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppAthleticLandResources.htm\">AthleticLandResources</a> contain the resources"
+        "  for the game <a href=\"GameAthleticLand.htm\">AthleticLand</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
     { "CppAutoExample1",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
@@ -277,6 +304,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppBeast",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppBeast.htm\">Beast</a> contain the resources"
+        "  to work with the tool <a href=\"ToolBeast2.htm\">BEAST2</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
     { "CppBinaryNewickVector",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -291,6 +331,32 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  is a GUI to test and experiment with <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a>.",
         "</p>",
         "<p>&nbsp;</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBiology",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppBiology.htm\">Biology</a> contains some classes"
+        "  that are related to biology.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBirthDeathModel",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppBirthDeathModel.htm\">BirthDeathModel</a> contains some classes"
+        "  that are related to the birth-death speciation model.",
+        "</p>",
       }
     }
   );
@@ -1097,6 +1163,32 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppBrownianMotion",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppBrownianMotion.htm\">BrownianMotion</a> contains some classes"
+        "  that are related to the Brownian motion process.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppCaesarCipher",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppCaesarCipher.htm\">CaesarCipher</a> contains some classes"
+        "  that are related to the Caesar cipher.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
     { "CppCallStackCounter",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -1182,6 +1274,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <a href=\"CppCl_I.htm\">cln::cl_I</a> to <a href=\"CppStdString.htm\">std::string</a>",
         "  and adding the thousands seperators.",
         "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppCodeBreaker",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppCodeBreaker.htm\">CodeBreaker</a> contains some classes"
+        "  to break multiple ciphers.",
+        "</p>",
       }
     }
   );

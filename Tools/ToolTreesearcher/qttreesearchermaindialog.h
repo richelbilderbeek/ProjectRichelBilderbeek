@@ -7,6 +7,7 @@ namespace Ui {
   class QtTreesearcherMainDialog;
 }
 
+struct QLabel;
 struct QSvgWidget;
 struct RInside;
 
@@ -23,7 +24,10 @@ public:
 private:
   Ui::QtTreesearcherMainDialog *ui;
 
-  QSvgWidget * const m_svg_widget;
+  QLabel * const m_tree_image;
+
+private slots:
+  void OnAnyChange();
 };
 
 #endif // QTTREESEARCHERMAINDIALOG_H

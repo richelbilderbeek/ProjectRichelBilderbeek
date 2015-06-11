@@ -6,6 +6,8 @@
 #include "fileio.h"
 #include "testtimer.h"
 #include "trace.h"
+#include "ribi_rinside.h"
+#include "RInside.h"
 
 #ifndef NDEBUG
 void PhylogenyR::Test() noexcept
@@ -17,6 +19,9 @@ void PhylogenyR::Test() noexcept
   }
   {
     ribi::fileio::FileIo();
+    auto& r = ribi::Rinside().Get();
+    r.parseEvalQ("library(ape)");
+    r.parseEvalQ("library(geiger)");
   }
   using Clock = std::chrono::system_clock;
   using Duration = std::chrono::system_clock::duration;
@@ -27,28 +32,8 @@ void PhylogenyR::Test() noexcept
   const bool verbose{false};
 
   ribi::fileio::FileIo f;
-  #define FIX_ISSUE_278
-  #ifdef FIX_ISSUE_278
-  const bool test_throughly{true};
-  #else  // FIX_ISSUE_277
-  const bool test_throughly{false};
-  #endif // FIX_ISSUE_277
-
-  const TimePoint t_test{Clock::now()};
 
   PhylogenyR p;
-
-  if (!test_throughly)
-  {
-    TRACE("PhylogenyR not thoroughly tested");
-    return;
-  }
-
-
-
-
-
-
 
   if (verbose) { TRACE("NewickToPhylogeny as SVG of extinct and extant species"); }
   {
@@ -73,8 +58,6 @@ void PhylogenyR::Test() noexcept
   }
   if (verbose) { TRACE("NewickToPhylogeny as PNG of extinct and extant species"); }
   {
-    const TimePoint t{Clock::now()};
-
     const std::string temp_png_filename{
       f.GetTempFileName(".png")
     };
@@ -89,13 +72,9 @@ void PhylogenyR::Test() noexcept
     assert(f.IsRegularFile(temp_png_filename));
     //Clean up
     f.DeleteFile(temp_png_filename.c_str());
-
-    std::cout << "2: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
   }
   if (verbose) { TRACE("NewickToPhylogeny as PNG of extant species"); }
   {
-    const TimePoint t{Clock::now()};
-
     const std::string temp_png_filename{
       f.GetTempFileName(".png")
     };
@@ -110,8 +89,6 @@ void PhylogenyR::Test() noexcept
     assert(f.IsRegularFile(temp_png_filename));
     //Clean up
     f.DeleteFile(temp_png_filename.c_str());
-
-    std::cout << "3: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
   }
   #ifdef FIX_ISSUE_267
   if (verbose) { TRACE("NewickToPhylogenyPng on hard phylogeny"); }
@@ -133,8 +110,6 @@ void PhylogenyR::Test() noexcept
   #endif
   if (verbose) { TRACE("NewickToLttPlot"); }
   {
-    const TimePoint t{Clock::now()};
-
     const std::string temp_png_filename{
       f.GetTempFileName(".png")
     };
@@ -143,23 +118,28 @@ void PhylogenyR::Test() noexcept
     assert(f.IsRegularFile(temp_png_filename));
     //Clean up
     f.DeleteFile(temp_png_filename.c_str());
-
-    std::cout << "5: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
   }
   if (verbose) { TRACE("DropExtinct"); }
   {
-    const TimePoint t{Clock::now()};
-
     assert(
       p.DropExtinct(
         "(L:1,(((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):1,(GD:1,ID:1):1,BD:1):3,(AC:1,EC:1):1,(((TC:1,FD:2):1,QC:1,RC:1):1,((((AE:1,BE:1):1,(WD:1,YD:1):1):1,HD:1):2,MC:1):1):1):3);"
       ) == "((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):4,((AE:1,BE:1):1,(WD:1,YD:1):1):5);"
     );
-
-    std::cout << "6: " << std::chrono::duration_cast<Msec>(Clock::now() - t).count() << " milliseconds" << '\n';
+  }
+  if (verbose) { TRACE("PhylogenyToNewick"); }
+  {
+    const std::string s{"((F:2,G:2):1,H:3);"};
+    auto& r = ribi::Rinside().Get();
+    r["newick"] = s;
+    r.parseEval("phylogeny <- read.tree(text = newick)");
+    const std::string t{p.PhylogenyToNewick("phylogeny")};
+    assert(s == t);
   }
 
-  if ("Test NewickToPhylogenyRinside faster than NewickToPhylogenyRscript")
+
+  //Speed tests
+  if (!"Test NewickToPhylogenyRinside faster than NewickToPhylogenyRscript")
   {
     const TimePoint t{Clock::now()};
 
@@ -204,7 +184,7 @@ void PhylogenyR::Test() noexcept
     std::cout << "After (using RInside): "  << std::chrono::duration_cast<Msec>(d2).count() << '\n';
   }
 
-  if ("Speed compare NewickToLttPlotRscript versus NewickToLttPlotRinside")
+  if (!"Speed compare NewickToLttPlotRscript versus NewickToLttPlotRinside")
   {
     const TimePoint t{Clock::now()};
 
@@ -234,8 +214,30 @@ void PhylogenyR::Test() noexcept
     std::cout << "After (using RInside): "  << std::chrono::duration_cast<Msec>(d2).count() << '\n';
   }
 
+  if (!"DropExtinctRscript versus DropExtinctRinside")
+  {
+    const TimePoint t1{Clock::now()};
+    assert(
+      p.DropExtinctRscript(
+        "(L:1,(((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):1,(GD:1,ID:1):1,BD:1):3,(AC:1,EC:1):1,(((TC:1,FD:2):1,QC:1,RC:1):1,((((AE:1,BE:1):1,(WD:1,YD:1):1):1,HD:1):2,MC:1):1):1):3);"
+      ) == "((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):4,((AE:1,BE:1):1,(WD:1,YD:1):1):5);"
+    );
+    const Duration d1{Clock::now() - t1};
+    const TimePoint t2{Clock::now()};
+    assert(
+      p.DropExtinctRinside(
+        "(L:1,(((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):1,(GD:1,ID:1):1,BD:1):3,(AC:1,EC:1):1,(((TC:1,FD:2):1,QC:1,RC:1):1,((((AE:1,BE:1):1,(WD:1,YD:1):1):1,HD:1):2,MC:1):1):1):3);"
+      ) == "((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):4,((AE:1,BE:1):1,(WD:1,YD:1):1):5);"
+    );
+    const Duration d2{Clock::now() - t2};
 
-  std::cout << std::chrono::duration_cast<Msec>(Clock::now() - t_test).count() << " milliseconds" << '\n';
+    //Before (using R script): 904
+    //After (using RInside): 12
+    std::cout << "Before (using R script): " << std::chrono::duration_cast<Msec>(d1).count() << '\n';
+    std::cout << "After (using RInside): "  << std::chrono::duration_cast<Msec>(d2).count() << '\n';
+    assert(d2 < d1 / 10);
+  }
+
 }
 #endif
 

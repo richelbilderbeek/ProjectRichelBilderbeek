@@ -4,8 +4,14 @@
 
 #include <QFile>
 #include <QGridLayout>
+#include <QLabel>
 #include <QSvgWidget>
 #include <QTextStream>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "RInside.h"
+#pragma GCC diagnostic pop
 
 #include "fileio.h"
 #include "ribi_rinside.h"
@@ -15,7 +21,7 @@
 QtTreesearcherMainDialog::QtTreesearcherMainDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTreesearcherMainDialog),
-  m_svg_widget{new QSvgWidget}
+  m_tree_image{new QLabel}
 {
   ui->setupUi(this);
 
@@ -23,30 +29,23 @@ QtTreesearcherMainDialog::QtTreesearcherMainDialog(QWidget *parent) :
     assert(!this->ui->widget_center->layout());
     QGridLayout * const my_layout{new QGridLayout};
     ui->widget_center->setLayout(my_layout);
-    my_layout->addWidget(m_svg_widget);
+    my_layout->addWidget(m_tree_image);
     assert(this->ui->widget_center->layout());
   }
 
 
+  QObject::connect(this->ui->box_birth_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_death_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_n_taxa,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+
+  //Parse some libraries
   {
-    ribi::fileio::FileIo f;
-    auto& r = Rinside().Get();
-
-    const std::string svg_filename{f.GetTempFileName(".svg")};
-    const std::string newick{"((F:2,G:2):1,H:3);"};
-
+    auto& r = ribi::Rinside().Get();
     r.parseEvalQ("library(ape)");
     r.parseEvalQ("library(geiger)");
-    r["newick"] = newick;
-    r.parseEvalQ("phylogeny <- read.tree(text = newick)");
-    r["svg_filename"] = svg_filename;
-    r.parseEvalQ("svg(filename=svg_filename)");
-    r.parseEvalQ("plot(phylogeny)");
-    r.parseEvalQ("dev.off()");
-    this->m_svg_widget->load(svg_filename.c_str());
-    f.DeleteFile(svg_filename);
   }
 
+  OnAnyChange();
 }
 
 QtTreesearcherMainDialog::~QtTreesearcherMainDialog()
@@ -54,47 +53,36 @@ QtTreesearcherMainDialog::~QtTreesearcherMainDialog()
   delete ui;
 }
 
-
-/*
-
-
-void QtDialog::on_doubleSpinBox_valueChanged(double arg1)
+void QtTreesearcherMainDialog::OnAnyChange()
 {
-  const auto m_tempfile = QString::fromStdString(Rcpp::as<std::string>(m_r_inside->parseEval("tfile <- tempfile()")));
-  const auto m_svgfile  = QString::fromStdString(Rcpp::as<std::string>(m_r_inside->parseEval("sfile <- tempfile()")));
+  ribi::fileio::FileIo f;
+  auto& r = ribi::Rinside().Get();
+  const std::string png_filename{f.GetTempFileName(".png")};
 
-  (*m_r_inside)["a"] = arg1;
-  std::string cmd0 = "svg(width=6,height=6,pointsize=10,filename=tfile); ";
-  std::string cmd1 = "x <- seq(0,2*pi,0.01);";
-  std::string cmd2 = "y <- sin(x * a);";
-  std::string cmd3 = "plot(x,y,t='line',main=\"CppRinsideExample4\");";
-  std::string cmd4 = "dev.off();";
-  std::string cmd = cmd0 + cmd1 + cmd2 + cmd3 + cmd4;
-  m_r_inside->parseEvalQ(cmd);
+  r.parseEvalQ("library(ape)");
+  r.parseEvalQ("library(geiger)");
+  r["n_taxa"] = ui->box_n_taxa->value();
+  r["birth_rate"] = ui->box_birth_rate->value();
+  r["death_rate"] = ui->box_death_rate->value();
+  r.parseEval("print(n_taxa)");
+  r.parseEval("print(birth_rate)");
+  r.parseEval("print(death_rate)");
 
-  {
-    // cairoDevice creates richer SVG than Qt can display
-    // but per Michaele Lawrence, a simple trick is to s/symbol/g/ which we do here
-    QFile infile(m_tempfile);
-    infile.open(QFile::ReadOnly);
-    QFile outfile(m_svgfile);
-    outfile.open(QFile::WriteOnly | QFile::Truncate);
+  r.parseEval("tree_full <- sim.bdtree(birth_rate, death_rate, stop=\"taxa\",n=n_taxa)");
+  r.parseEval("print(tree_full)");
 
-    QTextStream in(&infile);
-    QTextStream out(&outfile);
-    QRegExp rx1("<symbol");
-    QRegExp rx2("</symbol");
-    while (!in.atEnd()) {
-      QString line = in.readLine();
-      line.replace(rx1, "<g"); // so '<symbol' becomes '<g ...'
-      line.replace(rx2, "</g");// and '</symbol becomes '</g'
-      out << line << "\n";
-    }
-    infile.close();
-    outfile.close();
-  }
-  m_svg_widget->load(m_svgfile);
+
+  const Rcpp::String r_newick = r.parseEval("write.tree(phylogeny)");
+  const std::string newick = r_newick;
+  std::cout << newick;
+  return;
+  //r.parseEvalQ("tree_reconstructed <- drop.extinct(tree_full)");
+  //r.parseEvalQ("print(tree_reconstructed)");
+  r["png_filename"] = png_filename;
+  r.parseEvalQ("png(filename=png_filename)");
+  r.parseEvalQ("plot(tree_full)");
+  r.parseEvalQ("dev.off()");
+  m_tree_image->setPixmap(QPixmap(png_filename.c_str()));
+  f.DeleteFile(png_filename);
+
 }
-
-
-*/

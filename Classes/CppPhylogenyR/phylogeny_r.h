@@ -51,7 +51,23 @@ struct PhylogenyR
     const bool plot_fossils = true
   ) const;
 
+  ///Converts a phylogeny, with the
+  ///name 'phylogeny_name' known
+  ///inside RInside to std::string
+  std::string PhylogenyToNewick(
+    const std::string& phylogeny_name
+  );
+
+
   private:
+
+  std::string DropExtinctRinside(
+    const std::string& newick
+  ) const;
+
+  std::string DropExtinctRscript(
+    const std::string& newick
+  ) const;
 
   void NewickToLttPlotRscript(
     const std::string& newick,
