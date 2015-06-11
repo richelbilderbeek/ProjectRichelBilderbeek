@@ -11,6 +11,7 @@ struct QLabel;
 struct QSvgWidget;
 struct RInside;
 struct QtBirthDeathModelParametersWidget;
+struct QtBirthDeathModelLikelihoodWidget;
 
 class QtTreesearcherMainDialog : public QDialog
 {
@@ -28,7 +29,9 @@ public:
 private:
   Ui::QtTreesearcherMainDialog *ui;
 
-  QtBirthDeathModelParametersWidget * m_bd_parameters_widget;
+  QtBirthDeathModelLikelihoodWidget * const m_bd_likelihood_widget;
+  QtBirthDeathModelParametersWidget * const m_bd_parameters_widget;
+
 
   QLabel * const m_ltt_image;
 

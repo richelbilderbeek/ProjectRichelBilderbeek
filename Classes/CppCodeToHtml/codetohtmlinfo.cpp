@@ -62,47 +62,6 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
 
 /*
 
-
-CppArduinoExample1
-CppArduinoExample2
-CppArrayExample1
-CppArrayExample2
-CppArrayExample3
-CppArrayExample4
-CppArrayExample5
-CppArrayExample6
-CppArray_intersect
-CppArray_keys
-CppArray_merge
-CppArray_values
-CppAssertExample1
-CppAssertExample2
-CppAssertExample3
-CppAthleticLandResources
-CppAutoExample1
-CppBaseClassExample1
-CppBeast
-CppBinaryNewickVector
-CppBiology
-CppBioppExample1
-CppBirthDeathModel
-CppBoolExample1
-CppBoostAdjacency_listExample1
-CppBoostArrayExample1
-CppBoostAuto_cpu_timerExample1
-CppBoostBimapExample1
-CppBoostBimapExample2
-CppBoostBimapExample3
-CppBoostBimapExample4
-CppBoostChecked_deleteExample1
-CppBoostConceptCheckExample1
-CppBoostConst_pointer_castExample1
-CppBoostConst_pointer_castExample2
-CppBoostFormatExample1
-CppBoostFormatExample2
-CppBoostFunctionExample1
-CppBoostFunctionExample2
-CppBoostFunctionExample3
 CppBoostGeometryExample1
 CppBoostGeometryExample10
 CppBoostGeometryExample11
@@ -1269,10 +1228,18 @@ ToolWktToSvg
         "</p>"
         "<p>&nbsp;</p>",
         "<p><a href=\"CppArduinoExample1.htm\">Arduino example 1</a> is an <a href=\"CppArduino.htm\">Arduino</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppArduinoExample2",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicArduino.png\" alt=\"Arduino\"/>",
+        "</p>"
         "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppArduinoExample1.zip\">Download the Qt Creator project 'CppArduinoExample1' (zip)</a></li>",
-        "</ul>"
+        "<p><a href=\"CppArduinoExample2.htm\">Arduino example 2</a> is an <a href=\"CppArduino.htm\">Arduino</a> <a href=\"CppExample.htm\">example</a>.",
       }
     }
   );
@@ -1317,6 +1284,113 @@ ToolWktToSvg
       }
     }
   );
+
+
+  m.push_back(
+    { "CppArrayExample2",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/>",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArrayExample2.htm\">Array example 2</a> is an <a href=\"CppArray.htm\">array</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+  m.push_back(
+    { "CppArrayExample3",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/>",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArrayExample3.htm\">Array example 3</a> is an <a href=\"CppArray.htm\">array</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppArrayExample4",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/>",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArrayExample4.htm\">Array example 4</a> is an <a href=\"CppArray.htm\">array</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppArrayExample5",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/>",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArrayExample5.htm\">Array example 5</a> is an <a href=\"CppArray.htm\">array</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppArrayExample6",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/>",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArrayExample6.htm\">Array example 6</a> is an <a href=\"CppArray.htm\">array</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppArray_intersect",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/>",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArray_intersect.htm\">Array_intersect</a> is an <a href=\"CppArray.htm\">array</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppArray_keys",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/>",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArray_keys.htm\">Array_keys</a> is an <a href=\"CppArray.htm\">array</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+  m.push_back(
+    { "CppArray_merge",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/>",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArray_merge.htm\">Array_merge</a> is an <a href=\"CppArray.htm\">array</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+  m.push_back(
+    { "CppArray_values",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/>",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArray_values.htm\">Array_values</a> is an <a href=\"CppArray.htm\">array</a> <a href=\"CppExample.htm\">example</a>.",
+      }
+    }
+  );
+
   m.push_back(
     { "CppAsciiArter",
       {
@@ -1417,6 +1491,21 @@ ToolWktToSvg
     }
   );
 
+
+  m.push_back(
+    { "CppBaseClassExample1",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppBaseClassExample1.htm\">base class example 1</a> is an example"
+        "  of using a <a href=\"CppBaseClass.htm\">base class</a>.",
+        "</p>",
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppBeast",
       {
@@ -1463,6 +1552,22 @@ ToolWktToSvg
   );
 
   m.push_back(
+    { "CppBioppExample1",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppBioppExample1.htm\">Bio++ example 1</a> is an example"
+        "  how to use the Bio++ library.",
+        "</p>",
+      }
+    }
+  );
+
+
+
+
+  m.push_back(
     { "CppBirthDeathModel",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
@@ -1476,30 +1581,108 @@ ToolWktToSvg
   );
 
   m.push_back(
+    { "CppBoolExample1",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoolExample1.htm\">bool example1</a> is a",
+        "  <a href=\"CppBool.htm\">bool</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppCppBoostAdjacency_listExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostAdjacency_listExample1.htm\">boost::adjacency_list example 1</a> is a",
+        "  <a href=\"CppBoostAdjacency_list.htm\">boost::adjacency_list</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostArrayExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostArrayExample1.htm\">boost::array example 1</a> is a",
+        "  <a href=\"CppBoostArray.htm\">boost::array</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostAuto_cpu_timerExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostAuto_cpu_timerExample1.htm\">boost::auto_cpu_timer example 1</a> is a",
+        "  <a href=\"CppBoostAuto_cpu_timer.htm\">boost::auto_cpu_timer</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+
+
+
+
+  m.push_back(
     { "CppBoostBimapExample1",
       {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostBimapExample1.htm\">boost::bimap example 1: find</a> is a",
         "  <a href=\"CppBoostBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppBoostBimapExample1.zip\">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>",
-        "</ul>"
       }
     }
   );
   m.push_back(
     { "CppBoostBimapExample2",
       {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostBimapExample2.htm\">boost::bimap example 2: copy</a> is a",
         "  <a href=\"CppBoostBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostBimapExample3",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
         "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppBoostBimapExample2.zip\">Download the Qt Creator project 'CppBimapExample2' (zip)</a></li>",
-        "</ul>"
+        "<p>",
+        "  <a href=\"CppBoostBimapExample3.htm\">boost::bimap example 3</a> is a",
+        "  <a href=\"CppBoostBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostBimapExample4",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostBimapExample4.htm\">boost::bimap example 4</a> is a",
+        "  <a href=\"CppBoostBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
       }
     }
   );
@@ -1512,11 +1695,47 @@ ToolWktToSvg
         "<p>",
         "  <a href=\"CppBoostChecked_deleteExample1.htm\">boost::checked_delete example 1</a>",
         "  is a <a href=\"CppBoostChecked_delete.htm\">boost::checked_delete</a> <a href=\"CppExample.htm\">example</a>.",
-        "</p>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostConceptCheckExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppBoostChecked_deleteExample1.zip\">Download the Qt Creator project 'CppBoostChecked_deleteExample1' (zip)</a></li>",
-        "</ul>"
+        "<p>",
+        "  <a href=\"CppBoostConceptCheckExample1.htm\">boost::concept_check example 1</a>",
+        "  is a <a href=\"CppBoostConceptCheck.htm\">boost::concept_check</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppBoostConst_pointer_castExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostConst_pointer_castExample1.htm\">boost::const_pointer_cast example 1</a>",
+        "  is a <a href=\"CppBoostConst_pointer_cast.htm\">boost::const_pointer_cast</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostConst_pointer_castExample2",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostConst_pointer_castExample2.htm\">boost::const_pointer_cast example 2</a>",
+        "  is a <a href=\"CppBoostConst_pointer_cast.htm\">boost::const_pointer_cast</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
       }
     }
   );
@@ -1554,6 +1773,33 @@ ToolWktToSvg
       }
     }
   );
+
+  m.push_back(
+    { "CppBoostFunctionExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostFunctionExample1.htm\">Boost.Function example 1</a>",
+        "  is a <a href=\"CppBoostFunction.htm\">Boost.Function</a> example.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostFunctionExample2",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostFunctionExample2.htm\">Boost.Function example 2</a>",
+        "  is a <a href=\"CppBoostFunction.htm\">Boost.Function</a> example.",
+        "</p>"
+      }
+    }
+  );
+
 
   m.push_back(
     { "CppBoostFunctionExample3",

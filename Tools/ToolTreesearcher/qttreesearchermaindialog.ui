@@ -7,168 +7,152 @@
     <x>0</x>
     <y>0</y>
     <width>1130</width>
-    <height>290</height>
+    <height>459</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QtTreesearcherMainDialog</string>
   </property>
-  <widget class="QToolBox" name="toolBox_create">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>9</y>
-     <width>300</width>
-     <height>272</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>300</width>
-     <height>0</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>16777215</width>
-     <height>16777215</height>
-    </size>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <widget class="QWidget" name="page_parameters_bd">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>300</width>
-      <height>179</height>
-     </rect>
-    </property>
-    <attribute name="label">
-     <string>BD</string>
-    </attribute>
-    <attribute name="toolTip">
-     <string>Birth-Death</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="page_cpc">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>98</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <attribute name="label">
-     <string>CPC</string>
-    </attribute>
-    <attribute name="toolTip">
-     <string>Constant-size population coalescent</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="page_epc">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>98</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <attribute name="label">
-     <string>EPC</string>
-    </attribute>
-    <attribute name="toolTip">
-     <string>Exponential-size population coalescent</string>
-    </attribute>
-   </widget>
-  </widget>
-  <widget class="QWidget" name="widget_center" native="true">
-   <property name="geometry">
-    <rect>
-     <x>315</x>
-     <y>9</y>
-     <width>500</width>
-     <height>272</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>500</width>
-     <height>0</height>
-    </size>
-   </property>
-  </widget>
-  <widget class="QToolBox" name="toolBox_investigate">
-   <property name="geometry">
-    <rect>
-     <x>821</x>
-     <y>9</y>
-     <width>300</width>
-     <height>172</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>300</width>
-     <height>0</height>
-    </size>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <widget class="QWidget" name="page_bd_3">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>300</width>
-      <height>79</height>
-     </rect>
-    </property>
-    <attribute name="label">
-     <string>BD</string>
-    </attribute>
-    <attribute name="toolTip">
-     <string>Birth-Death</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="page_cpc_3">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>98</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <attribute name="label">
-     <string>CPC</string>
-    </attribute>
-    <attribute name="toolTip">
-     <string>Constant-size population coalescent</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="page_epc_3">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>98</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <attribute name="label">
-     <string>EPC</string>
-    </attribute>
-    <attribute name="toolTip">
-     <string>Exponential-size population coalescent</string>
-    </attribute>
-   </widget>
-  </widget>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QToolBox" name="toolBox_create">
+     <property name="minimumSize">
+      <size>
+       <width>300</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_parameters_bd">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>300</width>
+        <height>348</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>BD</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Birth-Death</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_cpc">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>98</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>CPC</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Constant-size population coalescent</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_epc">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>98</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>EPC</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Exponential-size population coalescent</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_center" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolBox" name="toolBox_investigate">
+     <property name="minimumSize">
+      <size>
+       <width>300</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_analyse_bd">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>300</width>
+        <height>348</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>BD</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Birth-Death</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_cpc_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>98</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>CPC</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Constant-size population coalescent</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_epc_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>98</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>EPC</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Exponential-size population coalescent</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

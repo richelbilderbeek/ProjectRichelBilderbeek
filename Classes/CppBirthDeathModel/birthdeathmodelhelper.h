@@ -9,30 +9,37 @@ namespace bdm {
 
 struct Parameters;
 
-///Performs a Brownian motion
 struct Helper
 {
-  using Volatility = ribi::units::Rate;
-  using VolatilitySquared = decltype(Volatility() * Volatility());
+  using Rate = ribi::units::Rate;
 
   Helper();
 
   ///Calculate the likelihood of the candidate parameters in generating the dataset
   double CalcLogLikelihood(
-    const std::vector<double>& v,
-    const VolatilitySquared cand_volatility_squared
+    const std::string& newick,
+    const Rate& birth_rate,
+    const Rate& death_rate
   ) const;
-
-  ///Calculate the parameters that have a maximum likelihood in generating the values v
-  void CalcMaxLikelihood(
-    const std::vector<double>& v,
-    Volatility& volatility_hat
-  ) const;
-
-  double CalcMaxLogLikelihood(const std::vector<double>& v) const;
 
   std::string CreateSimulatedPhylogeny(
     const Parameters& parameters
+  ) const;
+
+  private:
+
+  ///Uses DDD package
+  double CalcLogLikelihoodDdd(
+    const std::string& newick,
+    const Rate& birth_rate,
+    const Rate& death_rate
+  ) const;
+
+  ///Uses laser package
+  double CalcLogLikelihoodLaser(
+    const std::string& newick,
+    const Rate& birth_rate,
+    const Rate& death_rate
   ) const;
 
   #ifndef NDEBUG

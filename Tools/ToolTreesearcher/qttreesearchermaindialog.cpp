@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include <QFile>
+#include <QDesktopWidget>
 #include <QGridLayout>
 #include <QLabel>
 #include <QSvgWidget>
@@ -20,11 +21,13 @@
 #include "phylogeny_r.h"
 #include "trace.h"
 #include "qtbirthdeathmodelparameterswidget.h"
+#include "qtbirthdeathmodellikelihoodwidget.h"
 #include "ui_qttreesearchermaindialog.h"
 
 QtTreesearcherMainDialog::QtTreesearcherMainDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTreesearcherMainDialog),
+  m_bd_likelihood_widget{new QtBirthDeathModelLikelihoodWidget},
   m_bd_parameters_widget{new QtBirthDeathModelParametersWidget},
   m_ltt_image{new QLabel},
   m_phylogeny{},
@@ -50,6 +53,15 @@ QtTreesearcherMainDialog::QtTreesearcherMainDialog(QWidget *parent) :
 
   }
 
+  {
+    assert(!ui->page_analyse_bd->layout());
+    QGridLayout * const my_layout{new QGridLayout};
+    ui->page_analyse_bd->setLayout(my_layout);
+    my_layout->addWidget(m_bd_likelihood_widget);
+    assert(ui->page_analyse_bd->layout());
+
+  }
+
   QObject::connect(m_bd_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnBirthDeathParametersChanged()));
 
   //Parse some libraries
@@ -57,6 +69,13 @@ QtTreesearcherMainDialog::QtTreesearcherMainDialog(QWidget *parent) :
     auto& r = ribi::Rinside().Get();
     r.parseEvalQ("library(ape)");
     r.parseEvalQ("library(geiger)");
+  }
+  //Center on screen
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,screen.width() * 9 / 10,screen.height() * 9 / 10);
+    this->move( screen.center() - this->rect().center() );
   }
 
   OnBirthDeathParametersChanged();
@@ -118,4 +137,8 @@ void QtTreesearcherMainDialog::SetPhylogeny(const std::string& phylogeny)
       f.DeleteFile(png_filename);
     }
   }
+
+  //Widgets
+
+  m_bd_likelihood_widget->SetPhylogeny(m_phylogeny);
 }
