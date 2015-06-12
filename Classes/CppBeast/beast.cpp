@@ -32,6 +32,23 @@ void Beast::AnalyzeBirthDeath(
   const std::string png_filename
 ) const
 {
+  AnalyzeBirthDeathRinside(log_file,png_filename);
+}
+
+void Beast::AnalyzeBirthDeathRinside(
+  const std::string& log_file,
+  const std::string png_filename
+) const
+{
+  AnalyzeBirthDeathRscript(log_file,png_filename);
+}
+
+
+void Beast::AnalyzeBirthDeathRscript(
+  const std::string& log_file,
+  const std::string png_filename
+) const
+{
   using ribi::fileio::FileIo;
   assert(FileIo().IsRegularFile(log_file));
 
@@ -94,6 +111,32 @@ void Beast::AnalyzeBirthDeath(
 }
 
 void Beast::AnalyzeCoalescent(
+  const std::string& log_file,
+  const std::string png_filename_coalescent_constant,
+  const std::string png_filename_popsize
+) const
+{
+  AnalyzeCoalescentRinside(
+    log_file,
+    png_filename_coalescent_constant,
+    png_filename_popsize
+  );
+}
+
+void Beast::AnalyzeCoalescentRinside(
+  const std::string& log_file,
+  const std::string png_filename_coalescent_constant,
+  const std::string png_filename_popsize
+) const
+{
+  AnalyzeCoalescentRscript(
+    log_file,
+    png_filename_coalescent_constant,
+    png_filename_popsize
+  );
+}
+
+void Beast::AnalyzeCoalescentRscript(
   const std::string& log_file,
   const std::string png_filename_coalescent_constant,
   const std::string png_filename_popsize

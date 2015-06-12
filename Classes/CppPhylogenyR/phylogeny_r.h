@@ -59,6 +59,35 @@ struct PhylogenyR
 
   private:
 
+  ///Make a histogram of the branching times
+  void NewickToBranchingTimesRinside(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format
+  ) const;
+
+  ///Make a histogram of the branching times
+  void NewickToBranchingTimesRscript(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format
+  ) const;
+
+  ///Make a histogram of the branch length
+  void NewickToBranchLengthsRinside(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format
+  ) const;
+
+  ///Make a histogram of the branch length
+  void NewickToBranchLengthsRscript(
+    const std::string& newick,
+    const std::string& filename,
+    const GraphicsFormat graphics_format
+  ) const;
+
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

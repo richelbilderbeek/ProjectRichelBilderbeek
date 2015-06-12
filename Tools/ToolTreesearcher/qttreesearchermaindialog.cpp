@@ -22,12 +22,14 @@
 #include "trace.h"
 #include "qtbirthdeathmodelparameterswidget.h"
 #include "qtbirthdeathmodellikelihoodwidget.h"
+#include "qtbirthdeathmodelmaxlikelihoodwidget.h"
 #include "ui_qttreesearchermaindialog.h"
 
 QtTreesearcherMainDialog::QtTreesearcherMainDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTreesearcherMainDialog),
   m_bd_likelihood_widget{new QtBirthDeathModelLikelihoodWidget},
+  m_bd_max_likelihood_widget{new QtBirthDeathModelMaxLikelihoodWidget},
   m_bd_parameters_widget{new QtBirthDeathModelParametersWidget},
   m_ltt_image{new QLabel},
   m_phylogeny{},
@@ -53,12 +55,17 @@ QtTreesearcherMainDialog::QtTreesearcherMainDialog(QWidget *parent) :
 
   }
 
+  //BD analyse
   {
     assert(!ui->page_analyse_bd->layout());
-    QGridLayout * const my_layout{new QGridLayout};
+    QVBoxLayout * const my_layout{new QVBoxLayout};
     ui->page_analyse_bd->setLayout(my_layout);
-    my_layout->addWidget(m_bd_likelihood_widget);
     assert(ui->page_analyse_bd->layout());
+
+    my_layout->addWidget(new QLabel("Likelihood"));
+    my_layout->addWidget(m_bd_likelihood_widget);
+    my_layout->addWidget(new QLabel("Max likelihood"));
+    my_layout->addWidget(m_bd_max_likelihood_widget);
 
   }
 
@@ -141,4 +148,5 @@ void QtTreesearcherMainDialog::SetPhylogeny(const std::string& phylogeny)
   //Widgets
 
   m_bd_likelihood_widget->SetPhylogeny(m_phylogeny);
+  m_bd_max_likelihood_widget->SetPhylogeny(m_phylogeny);
 }

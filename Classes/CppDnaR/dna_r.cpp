@@ -19,6 +19,22 @@ DnaR::DnaR()
 
 void DnaR::PlotSequences(
   const std::vector<ribi::DnaSequence>& sequences,
+  const std::string& filename
+) const
+{
+  PlotSequencesRinside(sequences,filename);
+}
+
+void DnaR::PlotSequencesRinside(
+  const std::vector<ribi::DnaSequence>& sequences,
+  const std::string& filename
+) const
+{
+  PlotSequencesRscript(sequences,filename);
+}
+
+void DnaR::PlotSequencesRscript(
+  const std::vector<ribi::DnaSequence>& sequences,
   const std::string& png_filename
 ) const
 {

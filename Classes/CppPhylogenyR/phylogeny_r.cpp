@@ -36,6 +36,24 @@ void PhylogenyR::NewickToBranchingTimes(
   const PhylogenyR::GraphicsFormat graphics_format
 ) const
 {
+  NewickToBranchingTimesRinside(newick,filename,graphics_format);
+}
+
+void PhylogenyR::NewickToBranchingTimesRinside(
+  const std::string& newick,
+  const std::string& filename,
+  const PhylogenyR::GraphicsFormat graphics_format
+) const
+{
+  NewickToBranchingTimesRscript(newick,filename,graphics_format);
+}
+
+void PhylogenyR::NewickToBranchingTimesRscript(
+  const std::string& newick,
+  const std::string& filename,
+  const PhylogenyR::GraphicsFormat graphics_format
+) const
+{
   //TODO: Test if the user has all required packages
 
   const std::string temp_r_filename{
@@ -107,6 +125,24 @@ void PhylogenyR::NewickToBranchingTimes(
 }
 
 void PhylogenyR::NewickToBranchLengths(
+  const std::string& newick,
+  const std::string& filename,
+  const PhylogenyR::GraphicsFormat graphics_format
+) const
+{
+  NewickToBranchLengthsRinside(newick,filename,graphics_format);
+}
+
+void PhylogenyR::NewickToBranchLengthsRinside(
+  const std::string& newick,
+  const std::string& filename,
+  const PhylogenyR::GraphicsFormat graphics_format
+) const
+{
+  NewickToBranchLengthsRscript(newick,filename,graphics_format);
+}
+
+void PhylogenyR::NewickToBranchLengthsRscript(
   const std::string& newick,
   const std::string& filename,
   const PhylogenyR::GraphicsFormat graphics_format

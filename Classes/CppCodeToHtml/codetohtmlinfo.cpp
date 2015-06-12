@@ -62,91 +62,6 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
 
 /*
 
-CppBoostGeometryExample1
-CppBoostGeometryExample10
-CppBoostGeometryExample11
-CppBoostGeometryExample12
-CppBoostGeometryExample13
-CppBoostGeometryExample14
-CppBoostGeometryExample15
-CppBoostGeometryExample16
-CppBoostGeometryExample2
-CppBoostGeometryExample3
-CppBoostGeometryExample4
-CppBoostGeometryExample5
-CppBoostGeometryExample6
-CppBoostGeometryExample7
-CppBoostGeometryExample8
-CppBoostGeometryExample9
-CppBoostGetExample1
-CppBoostGraphExample1
-CppBoostGraphExample2
-CppBoostGraphExample3
-CppBoostGraphExample4
-CppBoostGraphExample5
-CppBoostMake_sharedExample1
-CppBoostMultiprecisionExample1
-CppBoostMultiprecisionExample2
-CppBoostRefExample1
-CppBoostRefExample2
-CppBoostRegexExample1
-CppBoostRegexExample2
-CppBoostRegexExample3
-CppBoostReplace_all_copyExample1
-CppBoostSetLocale2
-CppBoostSetLocaleQt
-CppBoostShared_ptrExample1
-CppBoostShared_ptrExample2
-CppBoostShared_ptrExample3
-CppBoostShared_ptrExample4
-CppBoostSignals2Example1
-CppBoostSignals2Example2
-CppBoostSignals2Example3
-CppBoostSignals2Example4
-CppBoostTestExample1
-CppBoostTestExample2
-CppBoostTimerExample1
-CppBoostTriboolExample1
-CppBoostTupleExample1
-CppBoostUblasMatrixExample1
-CppBoostUblasMatrixExample2
-CppBoostUblasMatrixExample3
-CppBoostUblasMatrixExample4
-CppBoostUblasMatrixExample5
-CppBoostUblasMatrixExample6
-CppBoostUblasMatrixExample7
-CppBoostUnitsBug
-CppBoostUnitsExample1
-CppBoostUnitsExample10
-CppBoostUnitsExample11
-CppBoostUnitsExample12
-CppBoostUnitsExample13
-CppBoostUnitsExample14
-CppBoostUnitsExample15
-CppBoostUnitsExample16
-CppBoostUnitsExample17
-CppBoostUnitsExample2
-CppBoostUnitsExample3
-CppBoostUnitsExample4
-CppBoostUnitsExample5
-CppBoostUnitsExample6
-CppBoostUnitsExample7
-CppBoostUnitsExample8
-CppBoostUnitsExample9
-CppBoostWeak_ptrExample1
-CppBoostWeak_ptrExample2
-CppBoostWeak_ptrExample3
-CppBoostXpressiveExample1
-CppBoostXpressiveExample2
-CppBoostXpressiveExample3
-CppBreakExample1
-CppBreakExample2
-CppBreakExample3
-CppBrownianMotion
-CppCaesarCipher
-CppCalculateSqrt
-CppCallStackCounter
-CppCanvas
 CppCfileExample1
 CppChess
 CppChessResources
@@ -885,32 +800,13 @@ GameTicTacToe
 GameTronCollection
 GameXeNonZero
 GameZero
-Licence.txt
-Licence.txt
-Licence.txt
-Licence.txt
-LubuntuStatus.sh
-LubuntuStatus.sh
-LubuntuStatus.sh
-LubuntuToWindowsStatus.sh
-LubuntuToWindowsStatus.sh
-LubuntuToWindowsStatus.sh
 ProjectBrainweaver
 ProjectGtst
 ProjectRichelBilderbeek
 QmlExampleEditRectItem
 QmlExampleQuadBezierLine
 SliTazStatus.sh
-Status.sh
-Status.sh
-Status.sh
-Status.sh
 TestLogicalOrVersusBitwiseOr
-tmp.txt
-tmp.txt
-tmp.txt
-tmp.txt
-tmp.txt
 ToolApplicationVerifierExample1
 ToolApplicationVerifierExample2
 ToolAsciiArter
@@ -1036,51 +932,8 @@ ToolTestNeuralNet
 ToolTestNewick
 ToolTestNewickUtils
 ToolTestNewickVector
-ToolTestOpenQuestion
-ToolTestPhylogenyR
-ToolTestPlane
-ToolTestPolyFile
-ToolTestPolyFileFromPolygons
-ToolTestPylos
-ToolTestQrcFile
-ToolTestQtArrowItems
-ToolTestQtBeastDisplay
-ToolTestQtCreatorProFile
-ToolTestQtDnaSequencesDisplay
-ToolTestQtHideAndShowDialog
-ToolTestQtKeyboardFriendlyGraphicsView
-ToolTestQtModels
-ToolTestQtNewickDisplay
-ToolTestQtOcrWidget
-ToolTestQtRoundedEditRectItem
-ToolTestQtRoundedRectItem
-ToolTestQuestion
-ToolTestReversi
-ToolTestSelectFileDialog
-ToolTestServerPusher
-ToolTestShape
-ToolTestShinyButton
-ToolTestSimpleLinearRegression
-ToolTestStopwatch
-ToolTestTextCanvas
-ToolTestTextPositionWidget
-ToolTestTicTacToe
-ToolTestTimedServerPusher
-ToolTestToggleButton
-ToolTestTriangle
-ToolTestTwoDigitNewick
-ToolTestUnits
-ToolTestVoxelWidget
-ToolThresholdFilterer
-ToolTimePoll
-ToolTreesearcher
-ToolTriangle
-ToolTriangleCpp
-ToolTriangleMeshCreator
-ToolValentineCardDecrypter
-ToolVigenereCipher
-ToolVisualAbc
-ToolWktToSvg
+
+
 */
 
   m.push_back(
@@ -2035,7 +1888,18 @@ ToolWktToSvg
     }
   );
 
-
+  m.push_back(
+    { "CppBoostGetExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGetExample1.htm\">boost::get example 1</a>",
+        "  is a <a href=\"CppBoostGet.htm\">boost::get</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
 
   m.push_back(
     { "CppBoostGraphExample1",
@@ -2110,8 +1974,72 @@ ToolWktToSvg
     }
   );
 
+  m.push_back(
+    { "CppBoostGraphExample5",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGraphExample5.htm\">Boost.Graph example 5</a>",
+        "  is a <a href=\"CppBoostGraph.htm\">Boost.Graph</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
 
 
+  m.push_back(
+    { "CppBoostMake_sharedExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostMake_sharedExample1.htm\">boost::make_shared example 1</a>",
+        "  is a <a href=\"CppBoostMake_shared.htm\">boost::make_shared</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostMultiprecisionExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostMultiprecisionExample1.htm\">boost::multiple_precision example 1</a>",
+        "  is a <a href=\"CppBoostMultiple_precision.htm\">boost::multiple_precision</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+  m.push_back(
+    { "CppBoostMultiprecisionExample2",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostMultiprecisionExample2.htm\">boost::multiple_precision example 2</a>",
+        "  is a <a href=\"CppBoostMultiple_precision.htm\">boost::multiple_precision</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostRefExample1",
+      {
+        "<p>",
+        "  <a href=\"CppBoostRefExample1.htm\">Boost.Ref example 1</a> is"
+        "   a <a href=\"CppBoostRef.htm\">Boost.Ref</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostRefExample2.zip\">Download the Qt Creator project 'CppBoostRefExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
 
   m.push_back(
     { "CppBoostRefExample2",
@@ -2191,6 +2119,66 @@ ToolWktToSvg
     }
   );
 
+
+  m.push_back(
+    { "CppBoostReplace_all_copyExample1",
+      {
+        "<p>",
+        "  <a href=\"CppBoostReplace_all_copyExample1.htm\">boost::replace_all_copy example 1</a> is"
+        "   a <a href=\"CppBoostReplace_all_copy.htm\">boost::replace_all_copy</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppBoostShared_ptrExample1",
+      {
+        "<p>",
+        "  <a href=\"CppBoostShared_ptrExample1.htm\">boost::shared_ptr example 1</a> is"
+        "   a <a href=\"CppBoostShared_ptr.htm\">boost::shared_ptr</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostShared_ptrExample2",
+      {
+        "<p>",
+        "  <a href=\"CppBoostShared_ptrExample2.htm\">boost::shared_ptr example 2</a> is"
+        "   a <a href=\"CppBoostShared_ptr.htm\">boost::shared_ptr</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostShared_ptrExample3",
+      {
+        "<p>",
+        "  <a href=\"CppBoostShared_ptrExample3.htm\">boost::shared_ptr example 3</a> is"
+        "   a <a href=\"CppBoostShared_ptr.htm\">boost::shared_ptr</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostShared_ptrExample4",
+      {
+        "<p>",
+        "  <a href=\"CppBoostShared_ptrExample4.htm\">boost::shared_ptr example 4</a> is"
+        "   a <a href=\"CppBoostShared_ptr.htm\">boost::shared_ptr</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+
+
+
   m.push_back(
     { "CppBoostSignals2Example1",
       {
@@ -2227,6 +2215,32 @@ ToolWktToSvg
     }
   );
 
+  m.push_back(
+    { "CppBoostSignals2Example3",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostSignals2Example3.htm\">Boost.Signals2 example 3</a>",
+        "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostSignals2Example4",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostSignals2Example4.htm\">Boost.Signals2 example 4</a>",
+        "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example.",
+        "</p>"
+      }
+    }
+  );
+
 
   m.push_back(
     { "CppBoostTestExample1",
@@ -2245,6 +2259,47 @@ ToolWktToSvg
     }
   );
 
+  m.push_back(
+    { "CppBoostTestExample2",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostTestExample2.htm\">Boost.Test example 2</a>",
+        "  is a <a href=\"CppBoostTest.htm\">Boost.Test</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppBoostTimerExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostTimerExample1.htm\">boost::timer example 1</a>",
+        "  is a <a href=\"CppBoostTimer.htm\">boost::timer</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostTriboolExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostTriboolExample1.htm\">boost::tribool example 1</a>",
+        "  is a <a href=\"CppBoostTribool.htm\">boost::tribool</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+
 
   m.push_back(
     { "CppBoostTupleExample1",
@@ -2262,6 +2317,94 @@ ToolWktToSvg
       }
     }
   );
+
+
+  m.push_back(
+    { "CppBoostUblasMatrixExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUblasMatrixExample1.htm\">boost::ublas::matrix example 1</a>",
+        "  is a <a href=\"CppBoostUblasMatrix.htm\">boost::ublas::matrix</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+  m.push_back(
+    { "CppBoostUblasMatrixExample2",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUblasMatrixExample2.htm\">boost::ublas::matrix example 2</a>",
+        "  is a <a href=\"CppBoostUblasMatrix.htm\">boost::ublas::matrix</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+  m.push_back(
+    { "CppBoostUblasMatrixExample3",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUblasMatrixExample3.htm\">boost::ublas::matrix example 3</a>",
+        "  is a <a href=\"CppBoostUblasMatrix.htm\">boost::ublas::matrix</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+  m.push_back(
+    { "CppBoostUblasMatrixExample4",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUblasMatrixExample4.htm\">boost::ublas::matrix example 4</a>",
+        "  is a <a href=\"CppBoostUblasMatrix.htm\">boost::ublas::matrix</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+  m.push_back(
+    { "CppBoostUblasMatrixExample5",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUblasMatrixExample5.htm\">boost::ublas::matrix example 5</a>",
+        "  is a <a href=\"CppBoostUblasMatrix.htm\">boost::ublas::matrix</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+  m.push_back(
+    { "CppBoostUblasMatrixExample6",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUblasMatrixExample6.htm\">boost::ublas::matrix example 6</a>",
+        "  is a <a href=\"CppBoostUblasMatrix.htm\">boost::ublas::matrix</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+  m.push_back(
+    { "CppBoostUblasMatrixExample7",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUblasMatrixExample7.htm\">boost::ublas::matrix example 7</a>",
+        "  is a <a href=\"CppBoostUblasMatrix.htm\">boost::ublas::matrix</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+      }
+    }
+  );
+
+
 
   m.push_back(
     { "CppBoostUnitsBug",
@@ -2512,11 +2655,176 @@ ToolWktToSvg
   );
 
   m.push_back(
+    { "CppBoostUnitsExample13",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample13.htm\">Boost.Units example 13</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample14",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample14.htm\">Boost.Units example 14</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample15",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample15.htm\">Boost.Units example 15</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample16",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample16.htm\">Boost.Units example 16</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample17",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample17.htm\">Boost.Units example 17</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+      }
+    }
+  );
+
+
+
+  m.push_back(
     { "CppBoostWeak_ptrExample1",
       {
         "<p>",
         "  <a href=\"CppBoostWeak_ptrExample1.htm\">boost::weak_ptr example 1</a> is a",
         "  <a href=\"CppBoostWeak_ptr.htm\">boost::weak_ptr example</a>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostWeak_ptrExample2",
+      {
+        "<p>",
+        "  <a href=\"CppBoostWeak_ptrExample2.htm\">boost::weak_ptr example 2</a> is a",
+        "  <a href=\"CppBoostWeak_ptr.htm\">boost::weak_ptr example</a>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostWeak_ptrExample3",
+      {
+        "<p>",
+        "  <a href=\"CppBoostWeak_ptrExample3.htm\">boost::weak_ptr example 3</a> is a",
+        "  <a href=\"CppBoostWeak_ptr.htm\">boost::weak_ptr example</a>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostXpressiveExample1",
+      {
+        "<p>",
+        "  <a href=\"CppBoostXpressiveExample1.htm\">Boost.Xpressive example 1</a> is a",
+        "  <a href=\"CppBoostXpressive.htm\">Boost.Xpressive example</a>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostXpressiveExample2",
+      {
+        "<p>",
+        "  <a href=\"CppBoostXpressiveExample2.htm\">Boost.Xpressive example 2</a> is a",
+        "  <a href=\"CppBoostXpressive.htm\">Boost.Xpressive example</a>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostXpressiveExample3",
+      {
+        "<p>",
+        "  <a href=\"CppBoostXpressiveExample3.htm\">Boost.Xpressive example 3</a> is a",
+        "  <a href=\"CppBoostXpressive.htm\">Boost.Xpressive</a> example.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBreakExample1",
+      {
+        "<p>",
+        "  <a href=\"CppBreakExample1.htm\">break example 1</a> is a",
+        "  <a href=\"CppBreak.htm\">break</a> example.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBreakExample2",
+      {
+        "<p>",
+        "  <a href=\"CppBreakExample2.htm\">break example 2</a> is a",
+        "  <a href=\"CppBreak.htm\">break</a> example.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBreakExample3",
+      {
+        "<p>",
+        "  <a href=\"CppBreakExample3.htm\">break example 3</a> is a",
+        "  <a href=\"CppBreak.htm\">break</a> example.",
         "</p>"
       }
     }
@@ -2547,6 +2855,21 @@ ToolWktToSvg
       }
     }
   );
+
+  m.push_back(
+    { "CppCalculateSqrt",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppCalculateSqrt.htm\">CalculateSqrt</a> shows how"
+        "  to calculate the square root of a value.",
+        "</p>",
+      }
+    }
+  );
+
+
 
   m.push_back(
     { "CppCallStackCounter",
@@ -17843,6 +18166,17 @@ ToolWktToSvg
   );
 
   m.push_back(
+    { "ToolTestPhylogenyR",
+      {
+        "<p>",
+        "  <a href=\"ToolTestPhylogenyR.htm\">TestPhylogenyR</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppPhylogenyR.htm\">PhylogenyR</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
     { "ToolTestPlane",
       {
         "<p>",
@@ -18017,29 +18351,6 @@ ToolWktToSvg
     }
   );
 
-  m.push_back(
-    { "ToolTestQtKeyboardFriendlyGraphicsView",
-      {
-        "<p>",
-        "  <a href=\"ToolTestQtKeyboardFriendlyGraphicsView.htm\">TestQtKeyboardFriendlyGraphicsView</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  to test the <a href=\"CppQtKeyboardFriendlyGraphicsView.htm\">QtKeyboardFriendlyGraphicsView</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<h2>Downloads</h2>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"ToolTestKeyboardFriendlyGraphicsView_0_4.png\">View a screenshot of 'TestKeyboardFriendlyGraphicsView' (version 0.4)(png)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtKeyboardFriendlyGraphicsViewConsoleExe.zip\">Download the 'TestQtKeyboardFriendlyGraphicsView' Windows executable (latest version)(zip)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtKeyboardFriendlyGraphicsViewDesktopExe.zip\">Download the 'TestQtKeyboardFriendlyGraphicsView' Windows executable (latest version)(zip)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtKeyboardFriendlyGraphicsViewWebsiteExe.zip\">Download the 'TestQtKeyboardFriendlyGraphicsView' Windows executable (latest version)(zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
 
   m.push_back(
     { "ToolTestQrcFile",
@@ -18089,6 +18400,19 @@ ToolWktToSvg
   );
 
   m.push_back(
+    { "ToolTestQtBeastDisplay",
+      {
+        "<p>"
+        "  <a href=\"ToolTestQtBeastDisplay.htm\">ToolTestQtBeastDisplay</a>"
+        "  is a <a href=\"Tools.htm\">tool</a>"
+        "  to test how the QtBeast classes perform."
+        "</p>",
+      }
+    }
+  );
+
+
+  m.push_back(
     { "ToolTestQtCreatorProFile",
       {
         "<p>",
@@ -18111,6 +18435,19 @@ ToolWktToSvg
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestQtDnaSequencesDisplay",
+      {
+        "<p>"
+        "  <a href=\"ToolTestQtDnaSequencesDisplay.htm\">TestQtDnaSequencesDisplay</a>"
+        "  is a <a href=\"Tools.htm\">tool</a>"
+        "  to test how the QtDnaSequence classes perform."
+        "</p>",
+      }
+    }
+  );
+
 
   m.push_back(
     { "ToolTestQtHideAndShowDialog",
@@ -18136,6 +18473,30 @@ ToolWktToSvg
     }
   );
 
+
+  m.push_back(
+    { "ToolTestQtKeyboardFriendlyGraphicsView",
+      {
+        "<p>",
+        "  <a href=\"ToolTestQtKeyboardFriendlyGraphicsView.htm\">TestQtKeyboardFriendlyGraphicsView</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppQtKeyboardFriendlyGraphicsView.htm\">QtKeyboardFriendlyGraphicsView</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestKeyboardFriendlyGraphicsView_0_4.png\">View a screenshot of 'TestKeyboardFriendlyGraphicsView' (version 0.4)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestQtKeyboardFriendlyGraphicsViewConsoleExe.zip\">Download the 'TestQtKeyboardFriendlyGraphicsView' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtKeyboardFriendlyGraphicsViewDesktopExe.zip\">Download the 'TestQtKeyboardFriendlyGraphicsView' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQtKeyboardFriendlyGraphicsViewWebsiteExe.zip\">Download the 'TestQtKeyboardFriendlyGraphicsView' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
 
   m.push_back(
     { "ToolTestQtModels",
@@ -18723,6 +19084,31 @@ ToolWktToSvg
       }
     }
   );
+
+
+
+  m.push_back(
+    { "ToolTestUnits",
+      {
+        "<p>"
+        "  <a href=\"ToolTestUnits.htm\">ToolTestUnits</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the Boost.Units library."
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestVoxelWidget",
+      {
+        "<p>"
+        "  <a href=\"ToolTestVoxelWidget.htm\">TestVoxelWidget</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the Urho3d library."
+        "</p>",
+      }
+    }
+  );
+
   m.push_back(
     { "ToolThresholdFilterer",
       {
@@ -18878,6 +19264,35 @@ ToolWktToSvg
       }
     }
   );
+
+
+
+
+
+
+
+  m.push_back(
+    { "ToolTreesearcher",
+      {
+        "<p>"
+        "  <a href=\"ToolTreesearcher.htm\">Treesearcher</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to investigate speciation models."
+        "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTriangleCpp",
+      {
+        "<p>",
+        "  <a href=\"ToolTriangleCpp.htm\">TriangleCpp</a> is an",
+        "  unfinished C++ port of Triangle.",
+        "</p>",
+      }
+    }
+  );
+
 
   m.push_back(
     { "ToolTriangleMeshCreator",

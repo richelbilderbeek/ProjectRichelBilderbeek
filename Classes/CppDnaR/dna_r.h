@@ -18,6 +18,16 @@ struct DnaR
 
   private:
 
+  void PlotSequencesRinside(
+    const std::vector<ribi::DnaSequence>& sequences,
+    const std::string& filename
+  ) const;
+
+  void PlotSequencesRscript(
+    const std::vector<ribi::DnaSequence>& sequences,
+    const std::string& filename
+  ) const;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

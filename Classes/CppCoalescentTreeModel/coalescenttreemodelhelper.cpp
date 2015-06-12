@@ -1,4 +1,4 @@
-#include "birthdeathmodelhelper.h"
+#include "coalescenttreemodelhelper.h"
 
 #include <cassert>
 #include <iostream>
@@ -11,19 +11,19 @@
 
 #include "fileio.h"
 #include "testtimer.h"
-#include "birthdeathmodelparameters.h"
+#include "coalescenttreemodelparameters.h"
 #include "phylogeny_r.h"
 #include "trace.h"
 #include "ribi_rinside.h"
 
-ribi::bdm::Helper::Helper()
+ribi::ctm::Helper::Helper()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-double ribi::bdm::Helper::CalcLogLikelihood(
+double ribi::ctm::Helper::CalcLogLikelihood(
   const std::string& newick,
   const Rate& birth_rate,
   const Rate& death_rate
@@ -36,7 +36,7 @@ double ribi::bdm::Helper::CalcLogLikelihood(
   );
 }
 
-double ribi::bdm::Helper::CalcLogLikelihoodDdd(
+double ribi::ctm::Helper::CalcLogLikelihoodDdd(
   const std::string& newick,
   const Rate& birth_rate,
   const Rate& death_rate,
@@ -107,7 +107,7 @@ double ribi::bdm::Helper::CalcLogLikelihoodDdd(
   return v[0];
 }
 
-double ribi::bdm::Helper::CalcLogLikelihoodLaser(
+double ribi::ctm::Helper::CalcLogLikelihoodLaser(
   const std::string& newick,
   const Rate& birth_rate,
   const Rate& death_rate
@@ -131,7 +131,7 @@ double ribi::bdm::Helper::CalcLogLikelihoodLaser(
 }
 
 
-void ribi::bdm::Helper::CalcMaxLikelihood(
+void ribi::ctm::Helper::CalcMaxLikelihood(
   const std::string& newick,
   Rate& birth_rate,
   Rate& death_rate,
@@ -181,7 +181,7 @@ void ribi::bdm::Helper::CalcMaxLikelihood(
   death_rate = mu0[0] / boost::units::si::second;
 }
 
-std::string ribi::bdm::Helper::CreateSimulatedPhylogeny(
+std::string ribi::ctm::Helper::CreateSimulatedPhylogeny(
   const Parameters& parameters
 ) const
 {
@@ -219,7 +219,7 @@ std::string ribi::bdm::Helper::CreateSimulatedPhylogeny(
 }
 
 #ifndef NDEBUG
-void ribi::bdm::Helper::Test() noexcept
+void ribi::ctm::Helper::Test() noexcept
 {
   {
     static bool is_tested{false};

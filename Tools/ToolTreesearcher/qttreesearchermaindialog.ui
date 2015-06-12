@@ -52,8 +52,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>98</width>
-        <height>28</height>
+        <width>300</width>
+        <height>348</height>
        </rect>
       </property>
       <attribute name="label">
@@ -68,8 +68,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>98</width>
-        <height>28</height>
+        <width>300</width>
+        <height>348</height>
        </rect>
       </property>
       <attribute name="label">
@@ -100,7 +100,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="page_analyse_bd">
       <property name="geometry">
@@ -108,7 +108,7 @@
         <x>0</x>
         <y>0</y>
         <width>300</width>
-        <height>348</height>
+        <height>286</height>
        </rect>
       </property>
       <attribute name="label">
@@ -118,13 +118,29 @@
        <string>Birth-Death</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="page_cpc_3">
+     <widget class="QWidget" name="page_analyse_td_bd">
+      <attribute name="label">
+       <string>TD BD</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Time-dependent birth-death</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_analyse_dd_bd">
+      <attribute name="label">
+       <string>DD BD</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Density dependent birth-death</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_analyse_cpc">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>98</width>
-        <height>28</height>
+        <width>300</width>
+        <height>255</height>
        </rect>
       </property>
       <attribute name="label">
@@ -134,13 +150,13 @@
        <string>Constant-size population coalescent</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="page_epc_3">
+     <widget class="QWidget" name="page_analyse_epc">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>98</width>
-        <height>28</height>
+        <width>300</width>
+        <height>255</height>
        </rect>
       </property>
       <attribute name="label">
@@ -148,6 +164,19 @@
       </attribute>
       <attribute name="toolTip">
        <string>Exponential-size population coalescent</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_analyse_protracted">
+      <attribute name="label">
+       <string>Protracted</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="page_analyse_ad_bd">
+      <attribute name="label">
+       <string>AD BD</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Age-dependent birth-death</string>
       </attribute>
      </widget>
     </widget>

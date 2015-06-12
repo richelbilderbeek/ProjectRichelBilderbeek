@@ -1,11 +1,11 @@
-#ifndef BIRTHDEATHMODELHELPER_H
-#define BIRTHDEATHMODELHELPER_H
+#ifndef COALESCENTTREEMODELHELPER_H
+#define COALESCENTTREEMODELHELPER_H
 
 #include "rate.h"
 #include <vector>
 
 namespace ribi {
-namespace bdm {
+namespace ctm {
 
 struct Parameters;
 
@@ -58,7 +58,7 @@ struct Helper
   #endif
 };
 
-} //~namespace bm
+} //~namespace ctm
 } //~namespace ribi
 
-#endif // BIRTHDEATHMODELHELPER_H
+#endif // COALESCENTTREEMODELHELPER_H

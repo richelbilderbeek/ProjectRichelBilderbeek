@@ -23,14 +23,15 @@ QtBirthDeathModelLikelihoodWidget::~QtBirthDeathModelLikelihoodWidget()
 
 void QtBirthDeathModelLikelihoodWidget::OnParameterChanged()
 {
-  const double log_likelihood{
-    ribi::bdm::Helper().CalcLogLikelihood(
+  const double log_likelihood_phylogeny{
+    ribi::bdm::Helper().CalcLogLikelihoodDdd(
       m_phylogeny,
       ui->box_birth_rate->value() / boost::units::si::second,
-      ui->box_death_rate->value() / boost::units::si::second
+      ui->box_death_rate->value() / boost::units::si::second,
+      ribi::bdm::Helper::Part::phylogeny
     )
   };
-  ui->edit_log_likelihood->setText(std::to_string(log_likelihood).c_str());
+  ui->edit_log_likelihood_phylogeny->setText(std::to_string(log_likelihood_phylogeny).c_str());
 }
 
 void QtBirthDeathModelLikelihoodWidget::SetPhylogeny(const std::string& phylogeny)

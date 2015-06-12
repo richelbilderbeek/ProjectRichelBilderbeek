@@ -196,11 +196,11 @@ void QtNewickDisplay::DisplayNewickToLttPlot(
   };
   try
   {
+
     PhylogenyR().NewickToLttPlot(
-      newick,
+      show_fossils ? newick : PhylogenyR().DropExtinct(newick),
       temp_png_filename,
-      PhylogenyR::GraphicsFormat::png,
-      show_fossils
+      PhylogenyR::GraphicsFormat::png
     );
     label->setPixmap(QPixmap(temp_png_filename.c_str()));
     ribi::fileio::FileIo().DeleteFile(temp_png_filename);
@@ -252,10 +252,9 @@ void QtNewickDisplay::DisplayPhylogeny(
     f = [](const std::string& newick, const std::string& filename)
     {
       PhylogenyR().NewickToPhylogeny(
-      newick,
-      filename,
-      PhylogenyR::GraphicsFormat::png,
-      true //plot_fossils
+        newick,
+        filename,
+        PhylogenyR::GraphicsFormat::png
       );
     };
   }
@@ -265,10 +264,9 @@ void QtNewickDisplay::DisplayPhylogeny(
     f = [](const std::string& newick, const std::string& filename)
     {
       PhylogenyR().NewickToPhylogeny(
-      newick,
-      filename,
-      PhylogenyR::GraphicsFormat::png,
-      false //plot_fossils
+        PhylogenyR().DropExtinct(newick),
+        filename,
+        PhylogenyR::GraphicsFormat::png
       );
     };
   }
