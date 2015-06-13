@@ -43,7 +43,7 @@ struct NewickCpp98
 
   private:
   #ifndef NDEBUG
-  void Test();
+  static void Test() noexcept;
   #endif
 };
 

@@ -441,6 +441,9 @@ void ribi::BinaryNewickVector::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    Newick();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check that well-formed Newicks are confirmed valid
   {

@@ -41,6 +41,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "BigIntegerLibrary.hh"
 
 #include "newickcpp98.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -92,7 +93,9 @@ struct Increase
 
 ribi::Newick::Newick()
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 /*
 bool ribi::Newick::AllAboutEqual(
@@ -2020,6 +2023,16 @@ std::vector<int> ribi::Newick::Surround(const std::vector<int>& newick) noexcept
 ///Test tests all Newick functions
 void ribi::Newick::Test()
 {
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    NewickCpp98();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+
   //#ifdef __GXX_EXPERIMENTAL_CXX0X__
   ///\note
   ///The tests below must be put back in again once
@@ -2499,8 +2512,6 @@ void ribi::Newick::Test()
         == NewickCpp98().GetSimplerNewicksFrequencyPairs(newick));
     }
   }
-  #else
-  NewickCpp98();
   #endif
 }
 #endif

@@ -8,6 +8,7 @@
 #include <boost/tuple/tuple_comparison.hpp>
 
 #include "fuzzy_equal_to.h"
+#include "testtimer.h"
 #include "newick.h"
 
 #pragma GCC diagnostic pop
@@ -515,12 +516,18 @@ std::vector<std::pair<std::vector<int>,int> >
 
 #ifndef NDEBUG
 ///Test tests all Newick functions
-void ribi::NewickCpp98::Test()
+void ribi::NewickCpp98::Test() noexcept
 {
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   TRACE("Testing basic Newick functionality");
   //Check difference between C++98 and C++0x
-  assert(Newick().CreateValidTrinaryNewicks() == NewickCpp98::CreateValidTrinaryNewicks());
-  assert(Newick().GetKnownProbabilities() == NewickCpp98::GetKnownProbabilities());
+  assert(Newick().CreateValidTrinaryNewicks() == NewickCpp98().CreateValidTrinaryNewicks());
+  assert(Newick().GetKnownProbabilities() == NewickCpp98().GetKnownProbabilities());
 
   //Check conversions from std::string to std::vector #1
   {
@@ -724,7 +731,7 @@ void ribi::NewickCpp98::Test()
     for(const std::string& s: v)
     {
       const std::vector<int> n = Newick().StringToNewick(s);
-      assert(Newick().GetRootBranches(n) == NewickCpp98::GetRootBranches(n));
+      assert(Newick().GetRootBranches(n) == NewickCpp98().GetRootBranches(n));
     }
   }
 
@@ -829,7 +836,7 @@ void ribi::NewickCpp98::Test()
   {
     const std::string s("(1,(1,3,4))");
     const std::vector<std::pair<std::vector<int>,int> > n
-      = GetSimplerNewicksFrequencyPairs(Newick().StringToNewick(s));
+      = NewickCpp98().GetSimplerNewicksFrequencyPairs(Newick().StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_1_134
     typedef std::pair<std::vector<int>,int> Pair;
     for(const Pair& p: n)
@@ -876,7 +883,7 @@ void ribi::NewickCpp98::Test()
     const std::string s("((1,1),2)");
     typedef std::pair<std::vector<int>,int> Pair;
     const std::vector<Pair> n
-      = GetSimplerNewicksFrequencyPairs(Newick().StringToNewick(s));
+      = NewickCpp98().GetSimplerNewicksFrequencyPairs(Newick().StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_11_2
     for(const Pair& p: n)
     {
@@ -912,7 +919,7 @@ void ribi::NewickCpp98::Test()
     const std::string s("((2,1),4)");
     typedef std::pair<std::vector<int>,int> Pair;
     const std::vector<Pair> n
-      = GetSimplerNewicksFrequencyPairs(Newick().StringToNewick(s));
+      = NewickCpp98().GetSimplerNewicksFrequencyPairs(Newick().StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_21_2
     for(const Pair& p: n)
     {
@@ -951,7 +958,7 @@ void ribi::NewickCpp98::Test()
     const std::string s("((2,3),4)");
     typedef std::pair<std::vector<int>,int> Pair;
     const std::vector<Pair> n
-      = GetSimplerNewicksFrequencyPairs(Newick().StringToNewick(s));
+      = NewickCpp98().GetSimplerNewicksFrequencyPairs(Newick().StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_23_4
     for(const Pair& p: n)
     {
@@ -999,7 +1006,7 @@ void ribi::NewickCpp98::Test()
         assert(v1[i] == v2[i].first);
       }
       assert(Newick().GetSimplerNewicksFrequencyPairs(newick)
-        == NewickCpp98::GetSimplerNewicksFrequencyPairs(newick));
+        == NewickCpp98().GetSimplerNewicksFrequencyPairs(newick));
     }
   }
 }
