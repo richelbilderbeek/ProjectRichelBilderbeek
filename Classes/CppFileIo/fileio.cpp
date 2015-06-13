@@ -585,12 +585,12 @@ std::string ribi::fileio::FileIo::GetTempFolderName() const
   throw std::runtime_error(s.str());
 }
 
-std::string ribi::fileio::FileIo::GetVersion() noexcept
+std::string ribi::fileio::FileIo::GetVersion() const noexcept
 {
   return "1.4";
 }
 
-std::vector<std::string> ribi::fileio::FileIo::GetVersionHistory() noexcept
+std::vector<std::string> ribi::fileio::FileIo::GetVersionHistory() const noexcept
 {
   return {
     "2013-10-14: Version 1.0: initial version, used free functions only",

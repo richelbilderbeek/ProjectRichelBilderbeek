@@ -50,7 +50,10 @@ ribi::Chess::Rank::Rank(const int y)
   #endif
   if (y < 0 || y > 7)
   {
-    throw std::logic_error("Chessboard y coordinats go from 0 to and including 7");
+    std::stringstream s;
+    s << __func__ << ": Chessboard y coordinats go from 0 to and including 7, "
+      << "y value supplied was " << y;
+    throw std::logic_error(s.str());
   }
 }
 

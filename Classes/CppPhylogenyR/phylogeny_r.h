@@ -2,11 +2,14 @@
 #define RIBI_PHYLOGENY_R_H
 
 #include <memory>
+#include <string>
 #include <vector>
 
 #include "RInside.h"
 
 struct RInside;
+
+namespace ribi {
 
 struct PhylogenyR
 {
@@ -19,6 +22,9 @@ struct PhylogenyR
   std::string DropExtinct(
     const std::string& newick
   ) const;
+
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///Make a histogram of the branching times
   void NewickToBranchingTimes(
@@ -93,5 +99,6 @@ struct PhylogenyR
   #endif
 };
 
+} //~namespace ribi
 
 #endif // RIBI_PHYLOGENY_R_H

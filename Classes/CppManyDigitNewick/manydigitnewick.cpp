@@ -48,6 +48,9 @@ ribi::ManyDigitNewick::ManyDigitNewick()
     m_sum_terms_above_zero(-1),
     m_sum_terms_above_one(-1)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(this->Empty());
 }
 
@@ -182,14 +185,15 @@ void ribi::ManyDigitNewick::SetTheta(const double theta)
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#ifndef NDEBUG
 void ribi::ManyDigitNewick::Test() noexcept
 {
   const double theta = 10.0;
   ribi::ManyDigitNewick::SetTheta(theta);
-  const std::vector<std::string> v = Newick::CreateValidNewicks();
+  const std::vector<std::string> v = Newick().CreateValidNewicks();
   for(const std::string& s: v)
   {
-    if ( Newick::CalcComplexity(Newick::StringToNewick(s))
+    if ( Newick().CalcComplexity(Newick().StringToNewick(s))
       >  BigInteger(10000) )
     {
       continue;
@@ -197,5 +201,6 @@ void ribi::ManyDigitNewick::Test() noexcept
     ribi::ManyDigitNewick::CalculateProbability(s,theta);
   }
 }
+#endif // NDEBUG
 #pragma GCC diagnostic pop
 

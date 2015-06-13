@@ -10,6 +10,9 @@ namespace Ui {
 
 struct QImage;
 
+namespace ribi {
+namespace mb {
+
 class QtMutualismBreakdownerSpatialWidget : public QWidget
 {
   Q_OBJECT
@@ -33,5 +36,8 @@ private:
   Ui::QtMutualismBreakdownerSpatialWidget *ui;
   QImage m_image;
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTMUTUALISMBREAKDOWNERSPATIALWIDGET_H

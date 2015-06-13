@@ -81,13 +81,13 @@ void QtNewickDisplay::DisplayBranchingTimes(
   {
     if (lineages == Lineages::extant)
     {
-      newick = PhylogenyR().DropExtinct(newick);
+      newick = ribi::PhylogenyR().DropExtinct(newick);
     }
 
-    PhylogenyR().NewickToBranchingTimes(
+    ribi::PhylogenyR().NewickToBranchingTimes(
       newick,
       temp_png_filename,
-      PhylogenyR::GraphicsFormat::png
+      ribi::PhylogenyR::GraphicsFormat::png
     );
     label->setPixmap(QPixmap(temp_png_filename.c_str()));
     ribi::fileio::FileIo().DeleteFile(temp_png_filename);
@@ -120,12 +120,12 @@ void QtNewickDisplay::DisplayBranchLengths(
   {
     if (lineages == Lineages::extant)
     {
-      newick = PhylogenyR().DropExtinct(newick);
+      newick = ribi::PhylogenyR().DropExtinct(newick);
     }
-    PhylogenyR().NewickToBranchLengths(
+    ribi::PhylogenyR().NewickToBranchLengths(
       newick,
       temp_png_filename,
-      PhylogenyR::GraphicsFormat::png
+      ribi::PhylogenyR::GraphicsFormat::png
     );
     label->setPixmap(QPixmap(temp_png_filename.c_str()));
     ribi::fileio::FileIo().DeleteFile(temp_png_filename);
@@ -153,7 +153,7 @@ void QtNewickDisplay::DisplayNewick(
       if (!ui->line_newick_extant->isVisible()) return;
       try
       {
-        const std::string newick_extant{PhylogenyR().DropExtinct(newick)};
+        const std::string newick_extant{ribi::PhylogenyR().DropExtinct(newick)};
         ui->line_newick_extant->setText(newick_extant.c_str());
       }
       catch (std::runtime_error& e)
@@ -197,10 +197,10 @@ void QtNewickDisplay::DisplayNewickToLttPlot(
   try
   {
 
-    PhylogenyR().NewickToLttPlot(
-      show_fossils ? newick : PhylogenyR().DropExtinct(newick),
+    ribi::PhylogenyR().NewickToLttPlot(
+      show_fossils ? newick : ribi::PhylogenyR().DropExtinct(newick),
       temp_png_filename,
-      PhylogenyR::GraphicsFormat::png
+      ribi::PhylogenyR::GraphicsFormat::png
     );
     label->setPixmap(QPixmap(temp_png_filename.c_str()));
     ribi::fileio::FileIo().DeleteFile(temp_png_filename);
@@ -225,11 +225,11 @@ void QtNewickDisplay::DisplayPhylogeny(
     label = ui->image_phylogeny_newickutils_all;
     f = [](const std::string& newick, const std::string& filename)
     {
-      NewickUtils().NewickToPhylogeny(
-      newick,
-      filename,
-      NewickUtils::GraphicsFormat::svg,
-      true //plot_fossils
+      ribi::NewickUtils().NewickToPhylogeny(
+        newick,
+        filename,
+        ribi::NewickUtils::GraphicsFormat::svg,
+        true //plot_fossils
       );
     };
   }
@@ -238,11 +238,11 @@ void QtNewickDisplay::DisplayPhylogeny(
     label = ui->image_phylogeny_newickutils_extant;
     f = [](const std::string& newick, const std::string& filename)
     {
-      NewickUtils().NewickToPhylogeny(
-      newick,
-      filename,
-      NewickUtils::GraphicsFormat::svg,
-      false //plot_fossils
+      ribi::NewickUtils().NewickToPhylogeny(
+        newick,
+        filename,
+        ribi::NewickUtils::GraphicsFormat::svg,
+        false //plot_fossils
       );
     };
   }
@@ -251,10 +251,10 @@ void QtNewickDisplay::DisplayPhylogeny(
     label = ui->image_phylogeny_phylogenyr_all;
     f = [](const std::string& newick, const std::string& filename)
     {
-      PhylogenyR().NewickToPhylogeny(
+      ribi::PhylogenyR().NewickToPhylogeny(
         newick,
         filename,
-        PhylogenyR::GraphicsFormat::png
+        ribi::PhylogenyR::GraphicsFormat::png
       );
     };
   }
@@ -263,10 +263,10 @@ void QtNewickDisplay::DisplayPhylogeny(
     label = ui->image_phylogeny_phylogenyr_extant;
     f = [](const std::string& newick, const std::string& filename)
     {
-      PhylogenyR().NewickToPhylogeny(
-        PhylogenyR().DropExtinct(newick),
+      ribi::PhylogenyR().NewickToPhylogeny(
+        ribi::PhylogenyR().DropExtinct(newick),
         filename,
-        PhylogenyR::GraphicsFormat::png
+        ribi::PhylogenyR::GraphicsFormat::png
       );
     };
   }

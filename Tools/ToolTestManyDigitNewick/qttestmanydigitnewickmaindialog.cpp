@@ -38,6 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "binarynewickvector.h"
 #include "newickvector.h"
 #include "manydigitnewick.h"
+#include "fuzzy_equal_to.h"
 #include "manydigitnewickindexer.h"
 #include "newick.h"
 #include "qtaboutdialog.h"
@@ -75,37 +76,37 @@ ribi::QtTestManyDigitNewickMainDialog::QtTestManyDigitNewickMainDialog(QWidget *
 
   //Run some test cases
   #ifndef NDEBUG
-  Newick::Test();
+  Newick();
   BinaryNewickVector::Test();
-  TwoDigitNewick::Test();
-  ManyDigitNewick::Test();
+  TwoDigitNewick();
+  ManyDigitNewick();
 
-  const std::vector<std::string> v = Newick::CreateValidNewicks();
+  const std::vector<std::string> v = Newick().CreateValidNewicks();
   const BigInteger max_complexity = 10000;
   for(const auto s: v)
   {
     //Only test binary Newicks and relatively small Newicks
-    if (Newick::CalcComplexity(Newick::StringToNewick(s)) > max_complexity)
+    if (Newick().CalcComplexity(Newick().StringToNewick(s)) > max_complexity)
     {
       continue;
     }
     //Start the tests
     const double theta = 1.0 + Random().GetFraction() * 10.0;
     #ifndef NTRACE_BILDERBIKKEL
-    if (Newick::IsBinaryNewick(Newick::StringToNewick(s)))
+    if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
     {
       const std::string t = std::string("Testing ")
         + s
         + std::string(" with complexity ")
-        + ::bigIntegerToString(Newick::CalcComplexity(Newick::StringToNewick(s)))
+        + ::bigIntegerToString(Newick().CalcComplexity(Newick().StringToNewick(s)))
         + std::string(" for three tests");
       TRACE(t);
       #endif
-      const double p2 = TwoDigitNewick::CalculateProbability(s,theta);
+      const double p2 = TwoDigitNewick().CalculateProbability(s,theta);
       const double p5 = NewickVector::CalculateProbability(s,theta);
-      //const double p6 = ManyDigitNewick::CalculateProbability(s,theta);
-      if ( !Newick::fuzzy_equal_to()(p2,p5))
-        //|| !Newick::fuzzy_equal_to()(p2,p6))
+      //const double p6 = ManyDigitNewick().CalculateProbability(s,theta);
+      if ( !ribi::fuzzy_equal_to()(p2,p5))
+        //|| !Newick().fuzzy_equal_to()(p2,p6))
       {
         std::cerr
           << "ERROR: DIFFERENT PROBABILITIES FOUND"  << '\n'
@@ -114,8 +115,8 @@ ribi::QtTestManyDigitNewickMainDialog::QtTestManyDigitNewickMainDialog(QWidget *
           << "Probability (NewickVector): "       << p5 << '\n';
           //<< "Probability (ManyDigitNewick): "    << p6 << '\n';
       }
-      assert(Newick::fuzzy_equal_to()(p2,p5));
-      //assert(Newick::fuzzy_equal_to()(p2,p6));
+      assert(ribi::fuzzy_equal_to()(p2,p5));
+      //assert(Newick().fuzzy_equal_to()(p2,p6));
     }
     else
     {
@@ -123,7 +124,7 @@ ribi::QtTestManyDigitNewickMainDialog::QtTestManyDigitNewickMainDialog(QWidget *
       TRACE("Testing trinary Newick");
       const double p5 = NewickVector::CalculateProbability(s,theta);
       const double p6 = ManyDigitNewick::CalculateProbability(s,theta);
-      if ( !Newick::fuzzy_equal_to()(p5,p6))
+      if ( !ribi::fuzzy_equal_to()(p5,p6))
       {
         std::cerr
           << "WARNING: DIFFERENT PROBABILITIES FOUND"  << '\n'
@@ -158,12 +159,12 @@ void ribi::QtTestManyDigitNewickMainDialog::OnAnyChange()
   ui->edit_text->clear();
   //Check Newicks
   const std::string s = ui->edit_newick->text().toStdString();
-  if (!Newick::IsNewick(s))
+  if (!Newick().IsNewick(s))
   {
     ui->edit_text->appendPlainText("Not a valid Newick");
     return;
   }
-  if (!Newick::IsBinaryNewick(Newick::StringToNewick(s)))
+  if (!Newick().IsBinaryNewick(Newick().StringToNewick(s)))
   {
     ui->edit_text->appendPlainText("Not a binary Newick");
   }

@@ -3,10 +3,10 @@
 #include <cassert>
 #include <iostream>
 
-#include "sulfidediffusionfunction.h"
+#include "mutualismbreakdownersulfidediffusionfunction.h"
 #include "ui_qtsulfidediffusionfunctionwidget.h"
 
-QtSulfideDiffusionFunctionWidget::QtSulfideDiffusionFunctionWidget(QWidget *parent) :
+ribi::mb::QtSulfideDiffusionFunctionWidget::QtSulfideDiffusionFunctionWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtSulfideDiffusionFunctionWidget)
 {
@@ -15,24 +15,27 @@ QtSulfideDiffusionFunctionWidget::QtSulfideDiffusionFunctionWidget(QWidget *pare
   QObject::connect(ui->box_a,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 }
 
-QtSulfideDiffusionFunctionWidget::~QtSulfideDiffusionFunctionWidget()
+ribi::mb::QtSulfideDiffusionFunctionWidget::~QtSulfideDiffusionFunctionWidget()
 {
   delete ui;
 }
 
-std::shared_ptr<SulfideDiffusionFunction> QtSulfideDiffusionFunctionWidget::GetFunction() const noexcept
+std::shared_ptr<ribi::mb::SulfideDiffusionFunction>
+  ribi::mb::QtSulfideDiffusionFunctionWidget::GetFunction() const noexcept
 {
   return std::make_shared<LinearSulfideDiffusion>(
     ui->box_a->value()
   );
 }
 
-void QtSulfideDiffusionFunctionWidget::OnAnyChange()
+void ribi::mb::QtSulfideDiffusionFunctionWidget::OnAnyChange()
 {
   emit signal_parameters_changed();
 }
 
-void QtSulfideDiffusionFunctionWidget::SetFunction(const std::shared_ptr<SulfideDiffusionFunction>& f) noexcept
+void ribi::mb::QtSulfideDiffusionFunctionWidget::SetFunction(
+  const std::shared_ptr<ribi::mb::SulfideDiffusionFunction>& f
+) noexcept
 {
   assert(f);
   const auto iec = std::dynamic_pointer_cast<LinearSulfideDiffusion>(f);

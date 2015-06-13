@@ -9,14 +9,14 @@
 #include <QGridLayout>
 #include <QTimer>
 
-#include "timesimulation.h"
+#include "mutualismbreakdownertimesimulation.h"
 #include "qtmutualismbreakdownerparameterswidget.h"
 #include "qtmutualismbreakdownerspatialwidget.h"
 #include "ui_qtmutualismbreakdownerspatialplotdialog.h"
-#include "spatialsimulation.h"
-#include "seagrassgrowthfunction.h"
+#include "mutualismbreakdownerspatialsimulation.h"
+#include "mutualismbreakdownerseagrassgrowthfunction.h"
 
-QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
+ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtMutualismBreakdownerSpatialPlotDialog),
   m_parameters_widget{new QtMutualismBreakdownerParametersWidget},
@@ -56,12 +56,12 @@ QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog
   StartRun();
 }
 
-QtMutualismBreakdownerSpatialPlotDialog::~QtMutualismBreakdownerSpatialPlotDialog()
+ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::~QtMutualismBreakdownerSpatialPlotDialog()
 {
   delete ui;
 }
 
-void QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
+void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
 {
   const auto parameters = GetParameters();
   const auto seagrass_growth_function
@@ -104,13 +104,13 @@ void QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
   m_sulfide_widget->update();
 }
 
-Parameters QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
+ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
 {
   assert(m_parameters_widget);
   return m_parameters_widget->GetParameters();
 }
 
-void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
+void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
 {
   const auto parameters = GetParameters();
   const auto dt = parameters.GetSpatialDeltaT();
@@ -130,7 +130,7 @@ void QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
   DisplayGrid();
 }
 
-void QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const Parameters& parameters)
+void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const Parameters& parameters)
 {
   try
   {
@@ -143,7 +143,7 @@ void QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const Parameters& pa
   }
 }
 
-void QtMutualismBreakdownerSpatialPlotDialog::StartRun()
+void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::StartRun()
 {
   m_timer->stop();
   m_seagrass_widget->setEnabled(false);

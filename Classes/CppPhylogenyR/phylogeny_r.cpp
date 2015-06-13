@@ -9,14 +9,14 @@
 #include "ribi_rinside.h"
 #include "fileio.h"
 
-PhylogenyR::PhylogenyR()
+ribi::PhylogenyR::PhylogenyR()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-std::string PhylogenyR::DropExtinct(const std::string& newick) const
+std::string ribi::PhylogenyR::DropExtinct(const std::string& newick) const
 {
   assert(!newick.empty());
 
@@ -30,28 +30,40 @@ std::string PhylogenyR::DropExtinct(const std::string& newick) const
   return std::string(s);
 }
 
-void PhylogenyR::NewickToBranchingTimes(
+std::string ribi::PhylogenyR::GetVersion() const noexcept
+{
+  return "1.0";
+}
+
+std::vector<std::string> ribi::PhylogenyR::GetVersionHistory() const noexcept
+{
+  return {
+    "2015-06-13: Version 1.0: started versioning"
+  };
+}
+
+void ribi::PhylogenyR::NewickToBranchingTimes(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const ribi::PhylogenyR::GraphicsFormat graphics_format
 ) const
 {
   NewickToBranchingTimesRinside(newick,filename,graphics_format);
 }
 
-void PhylogenyR::NewickToBranchingTimesRinside(
+void ribi::PhylogenyR::NewickToBranchingTimesRinside(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const ribi::PhylogenyR::GraphicsFormat graphics_format
 ) const
 {
   NewickToBranchingTimesRscript(newick,filename,graphics_format);
 }
 
-void PhylogenyR::NewickToBranchingTimesRscript(
+void ribi::PhylogenyR::NewickToBranchingTimesRscript(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const ribi::PhylogenyR::GraphicsFormat graphics_format
 ) const
 {
   //TODO: Test if the user has all required packages
@@ -124,28 +136,28 @@ void PhylogenyR::NewickToBranchingTimesRscript(
   ribi::fileio::FileIo().DeleteFile(temp_r_filename);
 }
 
-void PhylogenyR::NewickToBranchLengths(
+void ribi::PhylogenyR::NewickToBranchLengths(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const ribi::PhylogenyR::GraphicsFormat graphics_format
 ) const
 {
   NewickToBranchLengthsRinside(newick,filename,graphics_format);
 }
 
-void PhylogenyR::NewickToBranchLengthsRinside(
+void ribi::PhylogenyR::NewickToBranchLengthsRinside(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const ribi::PhylogenyR::GraphicsFormat graphics_format
 ) const
 {
   NewickToBranchLengthsRscript(newick,filename,graphics_format);
 }
 
-void PhylogenyR::NewickToBranchLengthsRscript(
+void ribi::PhylogenyR::NewickToBranchLengthsRscript(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const ribi::PhylogenyR::GraphicsFormat graphics_format
 ) const
 {
   //TODO: Test if the user has all required packages
@@ -218,10 +230,10 @@ void PhylogenyR::NewickToBranchLengthsRscript(
   ribi::fileio::FileIo().DeleteFile(temp_r_filename);
 }
 
-void PhylogenyR::NewickToLttPlot(
+void ribi::PhylogenyR::NewickToLttPlot(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const ribi::PhylogenyR::GraphicsFormat graphics_format
 ) const
 {
   assert(!newick.empty());
@@ -260,10 +272,10 @@ void PhylogenyR::NewickToLttPlot(
   }
 }
 
-void PhylogenyR::NewickToPhylogeny(
+void ribi::PhylogenyR::NewickToPhylogeny(
   const std::string& newick,
   const std::string& filename,
-  const PhylogenyR::GraphicsFormat graphics_format
+  const ribi::PhylogenyR::GraphicsFormat graphics_format
 ) const
 {
   assert(!newick.empty());
@@ -303,7 +315,7 @@ void PhylogenyR::NewickToPhylogeny(
   }
 }
 
-std::string PhylogenyR::PhylogenyToNewick(
+std::string ribi::PhylogenyR::PhylogenyToNewick(
   const std::string& phylogeny_name
 )
 {

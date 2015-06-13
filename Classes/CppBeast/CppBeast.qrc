@@ -6,5 +6,7 @@
         <file>coalescent_constant_population_1.xml</file>
         <file>test_output_0.fas</file>
         <file>test_output_1.fas</file>
+        <file>CppBeastLogFileBirthDeath.log</file>
+        <file>CppBeastLogFileCoalescent.log</file>
     </qresource>
 </RCC>

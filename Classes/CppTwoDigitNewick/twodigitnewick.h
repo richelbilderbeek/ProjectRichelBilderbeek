@@ -99,7 +99,10 @@ struct TwoDigitNewick
     const std::string& newick,
     const double theta);
 
+  private:
+  #ifndef NDEBUG
   static void Test() noexcept;
+  #endif
 
 };
 

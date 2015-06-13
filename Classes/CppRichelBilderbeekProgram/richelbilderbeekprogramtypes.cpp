@@ -71,6 +71,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::everythingToPiecesShooter,"everythingToPiecesShooter"));
   m.insert(Pair(ProgramType::filterOperationer,"filterOperationer"));
   m.insert(Pair(ProgramType::filterOperationerVcl,"filterOperationerVcl"));
+  m.insert(Pair(ProgramType::fisherWrighter,"fisherWrighter"));
   m.insert(Pair(ProgramType::fryskLeareLieder,"fryskLeareLieder"));
   m.insert(Pair(ProgramType::functionPlotter,"functionPlotter"));
   m.insert(Pair(ProgramType::functionPlotterVcl,"functionPlotterVcl"));
@@ -288,6 +289,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::everythingToPiecesShooter,"EverythingToPiecesShooter"));
   m.insert(Pair(ProgramType::filterOperationer,"FilterOperationer"));
   m.insert(Pair(ProgramType::filterOperationerVcl,"FilterOperationer (VCL)"));
+  m.insert(Pair(ProgramType::fisherWrighter,"FisherWrighter"));
   m.insert(Pair(ProgramType::fryskLeareLieder,"Frysk Leare Lieder"));
   m.insert(Pair(ProgramType::functionPlotter,"FunctionPlotter"));
   m.insert(Pair(ProgramType::functionPlotterVcl,"FunctionPlotter (VCL)"));

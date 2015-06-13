@@ -80,7 +80,7 @@ void ribi::QtToolSimplifyNewickMainDialog::OnAnyEditChange() noexcept
   {
     const std::string s
       = ui->edit_newick->text().toStdString();
-    Newick::CheckNewick(s);
+    Newick().CheckNewick(s);
     ui->text_output->appendPlainText(
       QString("Current Newick: ")
       + QString(s.c_str()));
@@ -97,7 +97,7 @@ void ribi::QtToolSimplifyNewickMainDialog::OnAnyEditChange() noexcept
     const NewickVector n(
       ui->edit_newick->text().toStdString());
     const std::string s
-      = ::bigIntegerToString(Newick::CalcComplexity(n.Peek()));
+      = ::bigIntegerToString(Newick().CalcComplexity(n.Peek()));
     ui->text_output->appendPlainText(
       QString("Current complexity: ")
       + QString(s.c_str()));
@@ -139,7 +139,7 @@ void ribi::QtToolSimplifyNewickMainDialog::OnAnyEditChange() noexcept
       ui->edit_newick->text().toStdString());
 
     const BigInteger newick_complexity
-      = Newick::CalcComplexity(n.Peek());
+      = Newick().CalcComplexity(n.Peek());
     const BigInteger current_complexity
       = ::stringToBigInteger(ui->edit_max_complexity->text().toStdString());
     if (current_complexity > newick_complexity)
@@ -170,7 +170,7 @@ void ribi::QtToolSimplifyNewickMainDialog::on_button_start_clicked() noexcept
   NewickVector n(s_out);
 
   const std::string complexity
-    = ::bigIntegerToString(Newick::CalcComplexity(n.Peek()));
+    = ::bigIntegerToString(Newick().CalcComplexity(n.Peek()));
   ui->text_output->appendHtml("Newick found:");
   ui->text_output->appendHtml(n.ToStr().c_str());
   ui->text_output->appendHtml("Newick complexity:");

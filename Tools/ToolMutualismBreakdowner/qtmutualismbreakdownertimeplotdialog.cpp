@@ -13,16 +13,16 @@
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 
-#include "timesimulation.h"
+#include "mutualismbreakdownertimesimulation.h"
 #include "ui_qtmutualismbreakdownertimeplotdialog.h"
 #include "qtmutualismbreakdownerparameterswidget.h"
 #if QWT_VERSION >= 0x060100 || !WIN32
 #include "qwt_point_data.h"
 #endif
 
-QtMutualismBreakdownerTimePlotDialog::QtMutualismBreakdownerTimePlotDialog(QWidget *parent) :
+ribi::mb::QtMutualismBreakdownerTimePlotDialog::QtMutualismBreakdownerTimePlotDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtMutualismBreakdownerTimePlotDialog),
+  ui(new ::Ui::QtMutualismBreakdownerTimePlotDialog),
   m_curve_seagrass_density(new QwtPlotCurve),
   m_curve_sulfide_concentration(new QwtPlotCurve),
   m_parameters_widget{new QtMutualismBreakdownerParametersWidget}
@@ -80,18 +80,18 @@ QtMutualismBreakdownerTimePlotDialog::QtMutualismBreakdownerTimePlotDialog(QWidg
   }
 }
 
-QtMutualismBreakdownerTimePlotDialog::~QtMutualismBreakdownerTimePlotDialog()
+ribi::mb::QtMutualismBreakdownerTimePlotDialog::~QtMutualismBreakdownerTimePlotDialog()
 {
   delete ui;
 }
 
-Parameters QtMutualismBreakdownerTimePlotDialog::GetParameters() const
+ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerTimePlotDialog::GetParameters() const
 {
   assert(m_parameters_widget);
   return m_parameters_widget->GetParameters();
 }
 
-void QtMutualismBreakdownerTimePlotDialog::SetParameters(const Parameters& parameters)
+void ribi::mb::QtMutualismBreakdownerTimePlotDialog::SetParameters(const Parameters& parameters)
 {
   try
   {
@@ -104,7 +104,7 @@ void QtMutualismBreakdownerTimePlotDialog::SetParameters(const Parameters& param
   }
 }
 
-void QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
+void ribi::mb::QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
 {
   ui->plot_seagrass_density->setEnabled(false);
   ui->plot_sulfide_concentration->setEnabled(false);

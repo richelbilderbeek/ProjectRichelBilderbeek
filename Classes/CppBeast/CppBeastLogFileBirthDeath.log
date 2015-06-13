@@ -1,0 +1,58 @@
+#
+#model:
+#
+#<?xml version="1.0" encoding="UTF-8" standalone="no"?><input id="posterior" spec="beast.core.util.CompoundDistribution">
+#    <distribution id="prior" spec="beast.core.util.CompoundDistribution">
+#        <distribution id="BirthDeath.t:birthdeath_birthdeath" spec="beast.evolution.speciation.BirthDeathGernhard08Model">
+#            <parameter id="relativeDeathRate2.t:birthdeath_birthdeath" lower="0.0" name="relativeDeathRate" upper="1.0">0.5</parameter>
+#            <parameter id="birthRate2.t:birthdeath_birthdeath" lower="0.0" name="birthDiffRate" upper="10000.0">1.0</parameter>
+#            <tree id="Tree.t:birthdeath_birthdeath">
+#                <taxonset id="TaxonSet.birthdeath_birthdeath" spec="beast.evolution.alignment.TaxonSet">
+#                </taxonset>
+#            </tree>
+#        </distribution>
+#        <distribution id="RBprior.s:birthdeath_birthdeath" spec="beast.math.distributions.RBPrior">
+#            <count id="RBcount.s:birthdeath_birthdeath" lower="0" spec="beast.core.parameter.IntegerParameter" upper="5">5</count>
+#            <parameter dimension="5" id="RBrates.s:birthdeath_birthdeath" lower="0.01" name="x" upper="100.0">1.0</parameter>
+#            <Gamma id="Gamma.0" name="distr">
+#                <parameter id="RealParameter.0" lower="0.0" name="alpha" upper="0.0">0.2</parameter>
+#                <parameter id="RealParameter.01" lower="0.0" name="beta" upper="0.0">5.0</parameter>
+#            </Gamma>
+#        </distribution>
+#        <prior id="BirthRatePrior.t:birthdeath_birthdeath" name="distribution" x="@birthRate2.t:birthdeath_birthdeath">
+#            <Uniform id="Uniform.0" name="distr" upper="1000.0"/>
+#        </prior>
+#        <prior id="DeathRatePrior.t:birthdeath_birthdeath" name="distribution" x="@relativeDeathRate2.t:birthdeath_birthdeath">
+#            <Uniform id="Uniform.01" name="distr"/>
+#        </prior>
+#    </distribution>
+#    <distribution id="likelihood" spec="beast.core.util.CompoundDistribution">
+#        <distribution data="@birthdeath_birthdeath" id="treeLikelihood.birthdeath_birthdeath" spec="beast.evolution.likelihood.TreeLikelihood" tree="@Tree.t:birthdeath_birthdeath">
+#            <siteModel id="SiteModel.s:birthdeath_birthdeath" spec="beast.evolution.sitemodel.SiteModel">
+#                <parameter estimate="false" id="mutationRate.s:birthdeath_birthdeath" name="mutationRate">1.0</parameter>
+#                <parameter estimate="false" id="gammaShape.s:birthdeath_birthdeath" name="shape">1.0</parameter>
+#                <parameter estimate="false" id="proportionInvariant.s:birthdeath_birthdeath" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+#                <substModel count="@RBcount.s:birthdeath_birthdeath" id="RB.s:birthdeath_birthdeath" rates="@RBrates.s:birthdeath_birthdeath" spec="beast.evolution.substitutionmodel.RB">
+#                    <frequencies data="@birthdeath_birthdeath" id="freqs.s:birthdeath_birthdeath" spec="beast.evolution.substitutionmodel.Frequencies"/>
+#                </substModel>
+#            </siteModel>
+#            <branchRateModel id="StrictClock.c:birthdeath_birthdeath" spec="beast.evolution.branchratemodel.StrictClockModel">
+#                <parameter estimate="false" id="clockRate.c:birthdeath_birthdeath" name="clock.rate">1.0</parameter>
+#            </branchRateModel>
+#        </distribution>
+#    </distribution>
+#    <distribution id="fossilCalibrations" spec="beast.core.util.CompoundDistribution"/>
+#</input>
+#
+Sample	posterior	likelihood	prior	treeLikelihood	TreeHeight	RBcount	RBrates.1	RBrates.2	RBrates.3	RBrates.4	RBrates.5	BirthDeath	
+0	-77.56091917287677	-57.302012394367026	-20.25890677850974	-57.302012394367026	1.5132002955688906	5	1.0	1.0	1.0	1.0	1.0	-3.1213944749395868	
+1000	-24.731836664492008	-30.51860983150662	5.786773167014614	-30.51860983150662	0.2503468191356743	4	0.6482770451178765	1.0	0.44873231474027325	0.9952869022572424	0.44480432399968706	19.70520121836889	
+2000	-21.04088933037987	-28.162281587457336	7.121392257077465	-28.162281587457336	0.722110519930826	4	1.0957084397076644	0.02284356732616812	0.020573488563547754	6.048770640952431	0.44480432399968706	18.233267158099554	
+3000	-19.66600016543965	-28.775352036370116	9.109351870930464	-28.775352036370116	0.7347335831125504	5	1.0957084397076644	0.030860744151731994	0.020943797552942976	0.3574743615004587	0.0339257409539164	16.222602957989032	
+4000	-26.96484556329324	-29.95371413458735	2.9888685712941125	-29.95371413458735	0.5462444843941116	2	0.9204062379214317	0.024387971239468998	0.03719730196648277	0.18834164937103803	0.1760165218493163	10.740201187008648	
+5000	-35.60565195023196	-33.99101393734777	-1.6146380128841864	-33.99101393734777	0.3951829764765476	4	0.7388992508083626	0.30045249682492586	0.16975000134440418	0.32603159930677483	0.1760165218493163	9.4645505205323	
+6000	-26.671490290737246	-29.919314264453938	3.2478239737166916	-29.919314264453938	0.6895508405457794	2	0.35740429098700816	0.039065388647439636	0.9180358793172568	0.32603159930677483	0.1760165218493163	10.509651138417047	
+7000	-27.95751400650353	-30.021926354823524	2.064412348319996	-30.021926354823524	0.8016827789086957	3	0.2358447113222553	0.07779971474647128	0.07115803593710944	2.841317532546093	0.1760165218493163	9.274141354508997	
+8000	-31.965499037051888	-31.930179894509905	-0.035319142541982096	-31.930179894509905	0.664691446795059	2	0.31548304273445194	0.1445276341072356	0.13829010381263754	0.03092081307948952	0.1760165218493163	8.18599316489301	
+9000	-30.22698214859313	-32.47361379333796	2.2466316447448307	-32.47361379333796	0.4611306017574853	0	0.31548304273445194	0.1755930751986683	0.13829010381263754	0.03092081307948952	0.1760165218493163	9.154386923726967	
+10000	-21.03353945009592	-31.59926413836945	10.56572468827353	-31.59926413836945	0.2996621670882172	1	0.25415668041017014	0.1755930751986683	0.13829010381263754	0.03092081307948952	0.1760165218493163	18.27441922815126	

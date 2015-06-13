@@ -132,8 +132,8 @@ ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   //a.AddLibrary("Canvas version: " + Canvas::GetVersion());
-  a.AddLibrary("Container version: " + Container::GetVersion());
-  a.AddLibrary("FileIo version: " + fileio::FileIo::GetVersion());
+  a.AddLibrary("Container version: " + Container().GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;

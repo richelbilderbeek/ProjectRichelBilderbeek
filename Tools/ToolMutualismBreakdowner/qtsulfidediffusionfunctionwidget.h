@@ -8,8 +8,10 @@ namespace Ui {
   class QtSulfideDiffusionFunctionWidget;
 }
 
-struct SulfideDiffusionFunction;
+namespace ribi {
+namespace mb {
 
+struct SulfideDiffusionFunction;
 
 class QtSulfideDiffusionFunctionWidget : public QWidget
 {
@@ -30,5 +32,8 @@ private:
 private slots:
   void OnAnyChange();
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTSULFIDEDIFFUSIONFUNCTIONWIDGET_H

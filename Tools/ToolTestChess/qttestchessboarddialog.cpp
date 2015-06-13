@@ -67,7 +67,7 @@ void ribi::QtTestChessBoardDialog::on_list_moves_doubleClicked(const QModelIndex
   const Chess::Player player = ui->chessboard_widget->GetWidget()->GetActivePlayer();
   const std::string move_str = ui->list_moves->item(index.row())->text().toStdString();
   const boost::shared_ptr<ribi::Chess::Move> move {
-    Chess::MoveFactory::Create(move_str)
+    Chess::MoveFactory().Create(move_str)
   };
   assert(ui->chessboard_widget->GetWidget()->GetBoard()->CanDoMove(move,player));
   ui->chessboard_widget->GetWidget()->GetBoard()->DoMove(move,player);

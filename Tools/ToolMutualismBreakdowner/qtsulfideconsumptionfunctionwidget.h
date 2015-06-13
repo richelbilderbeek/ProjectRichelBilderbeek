@@ -8,8 +8,10 @@ namespace Ui {
   class QtSulfideConsumptionFunctionWidget;
 }
 
-struct SulfideConsumptionFunction;
+namespace ribi {
+namespace mb {
 
+struct SulfideConsumptionFunction;
 
 class QtSulfideConsumptionFunctionWidget : public QWidget
 {
@@ -30,5 +32,8 @@ private:
 private slots:
   void OnAnyChange();
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTSULFIDECONSUMPTIONFUNCTIONWIDGET_H

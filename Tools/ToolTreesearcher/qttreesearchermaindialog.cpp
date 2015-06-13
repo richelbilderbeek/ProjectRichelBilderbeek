@@ -118,10 +118,10 @@ void QtTreesearcherMainDialog::SetPhylogeny(const std::string& phylogeny)
   {
     const std::string png_filename{f.GetTempFileName(".png")};
 
-    PhylogenyR().NewickToLttPlot(
+    ribi::PhylogenyR().NewickToLttPlot(
       m_phylogeny,
       png_filename,
-      PhylogenyR::GraphicsFormat::png
+      ribi::PhylogenyR::GraphicsFormat::png
     );
     if (f.IsRegularFile(png_filename))
     {
@@ -133,10 +133,10 @@ void QtTreesearcherMainDialog::SetPhylogeny(const std::string& phylogeny)
   {
     const std::string png_filename{f.GetTempFileName(".png")};
 
-    PhylogenyR().NewickToPhylogeny(
+    ribi::PhylogenyR().NewickToPhylogeny(
       m_phylogeny,
       png_filename,
-      PhylogenyR::GraphicsFormat::png
+      ribi::PhylogenyR::GraphicsFormat::png
     );
     if (f.IsRegularFile(png_filename))
     {

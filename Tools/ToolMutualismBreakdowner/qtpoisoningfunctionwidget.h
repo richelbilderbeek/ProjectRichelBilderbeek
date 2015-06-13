@@ -8,8 +8,11 @@ namespace Ui {
   class QtPoisoningFunctionWidget;
 }
 
-struct PoisoningFunction;
 
+namespace ribi {
+namespace mb {
+
+struct PoisoningFunction;
 
 class QtPoisoningFunctionWidget : public QWidget
 {
@@ -34,5 +37,8 @@ private:
 private slots:
   void OnAnyChange();
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTPOISONINGFUNCTIONWIDGET_H

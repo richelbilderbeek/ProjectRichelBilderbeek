@@ -14,13 +14,21 @@ namespace Chess {
 
 struct MoveFactory
 {
-  static const boost::shared_ptr<Move> Create(const std::string& s);
+  MoveFactory();
 
-  static const boost::shared_ptr<Move> Create(
+  const boost::shared_ptr<Move> Create(const std::string& s) const;
+
+  const boost::shared_ptr<Move> Create(
     const boost::shared_ptr<const Chess::Square> from,
-    const boost::shared_ptr<const Chess::Square> to);
+    const boost::shared_ptr<const Chess::Square> to
+  ) const;
 
-  static const boost::shared_ptr<Move> DeepCopy(const Move& move);
+  const boost::shared_ptr<Move> DeepCopy(const Move& move) const;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace Chess

@@ -16,11 +16,19 @@ namespace Chess {
 ///Factory for creating a Chess::Board
 struct BoardFactory
 {
-  static boost::shared_ptr<Chess::Board> Create(
-    const Chess::Board::Pieces& pieces = Chess::Board::GetInitialSetup());
+  BoardFactory();
+
+  boost::shared_ptr<Chess::Board> Create(
+    const Chess::Board::Pieces& pieces = Chess::Board::GetInitialSetup()
+  ) const;
 
 
-  static boost::shared_ptr<Chess::Board> DeepCopy(const Board& board);
+  boost::shared_ptr<Chess::Board> DeepCopy(const Board& board) const;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace Chess

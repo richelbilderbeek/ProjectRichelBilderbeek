@@ -10,19 +10,23 @@
 #include "fileio.h"
 #include "newickutils.h"
 #include "ui_qtfisherwrightermaindialog.h"
-#include "simulation.h"
+#include "fisherwrightermenudialog.h"
+#include "fisherwrightersimulation.h"
 #include "phylogeny_r.h"
 #include "qtdnasequencesdisplay.h"
 #include "qtbeastdisplay.h"
 #include "qtnewickdisplay.h"
 
-QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
+ribi::fw::QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtFisherWrighterMainDialog),
   m_beast_display{new QtBeastDisplay(this)},
   m_dna_sequences_display{new QtDnaSequencesDisplay(this)},
   m_newick_display{new QtNewickDisplay(this)}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   assert(!ui->area_results->layout());
@@ -41,12 +45,12 @@ QtFisherWrighterMainDialog::QtFisherWrighterMainDialog(QWidget *parent) :
   //QTimer::singleShot(1000,this,SLOT(on_button_run_clicked()));
 }
 
-QtFisherWrighterMainDialog::~QtFisherWrighterMainDialog()
+ribi::fw::QtFisherWrighterMainDialog::~QtFisherWrighterMainDialog()
 {
   delete ui;
 }
 
-void QtFisherWrighterMainDialog::on_button_run_clicked()
+void ribi::fw::QtFisherWrighterMainDialog::on_button_run_clicked()
 {
   //1) Read parameters from file
   const int dna_length{this->ui->box_dna_length->value()};
@@ -54,7 +58,7 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
   const int n_generations{ReadNumberOfGenerations()};
   const int pop_size{ui->box_pop_size->value()};
   const int seed{ui->box_seed->value()};
-  const Parameters parameters(
+  const ribi::fw::Parameters parameters(
     dna_length,
     mutation_rate,
     n_generations,
@@ -63,7 +67,7 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
   );
 
   //2) Run simulation
-  Simulation simulation(parameters);
+  ribi::fw::Simulation simulation(parameters);
   //Loop n_generations
   //const int n_generations{ReadNumberOfGenerations()};
   for (int i=0; i!=n_generations; ++i)
@@ -93,15 +97,24 @@ void QtFisherWrighterMainDialog::on_button_run_clicked()
 
 }
 
-int QtFisherWrighterMainDialog::ReadNumberOfGenerations() const noexcept
+int ribi::fw::QtFisherWrighterMainDialog::ReadNumberOfGenerations() const noexcept
 {
   const int n_generations{ui->box_n_generation->value()};
   return n_generations;
 }
 
-void QtFisherWrighterMainDialog::on_button_run_next_clicked()
+void ribi::fw::QtFisherWrighterMainDialog::on_button_run_next_clicked()
 {
   ui->box_seed->setValue(ui->box_seed->value() + 1);
   ui->button_run->click();
 }
 
+void ribi::fw::QtFisherWrighterMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  ribi::fw::MenuDialog();
+}

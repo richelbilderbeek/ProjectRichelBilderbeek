@@ -13,13 +13,12 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace mb {
 
-struct MutualismBreakdowner;
-
-struct MutualismBreakdownerMenuDialog final : public MenuDialog
+struct MenuDialog final : public ::ribi::MenuDialog
 {
-  MutualismBreakdownerMenuDialog();
-  ~MutualismBreakdownerMenuDialog() noexcept {}
+  MenuDialog();
+  ~MenuDialog() noexcept {}
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   About GetAbout() const noexcept override;
@@ -35,6 +34,7 @@ struct MutualismBreakdownerMenuDialog final : public MenuDialog
   #endif
 };
 
+} //~namespace mb
 } //~namespace ribi
 
 #endif // MUTUALISMBREAKDOWNERMENUDIALOG_H

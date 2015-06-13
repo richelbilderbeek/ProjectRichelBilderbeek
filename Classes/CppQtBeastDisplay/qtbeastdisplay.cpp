@@ -67,7 +67,7 @@ void QtBeastDisplay::AnalyzeBirthDeath(
 
   assert(FileIo().IsRegularFile(beast_input_parameters_filename));
 
-  Beast().Run(
+  ribi::Beast().Run(
     beast_input_parameters_filename,
     beast_output_log_filename,
     beast_output_trees_filename
@@ -75,8 +75,7 @@ void QtBeastDisplay::AnalyzeBirthDeath(
 
   assert(FileIo().IsRegularFile(beast_output_log_filename));
   assert(FileIo().IsRegularFile(beast_output_trees_filename));
-
-  Beast().AnalyzeBirthDeath(
+  ribi::Beast().AnalyzeBirthDeath(
     beast_output_log_filename,
     output_png_filename
   );
@@ -123,7 +122,7 @@ void QtBeastDisplay::AnalyzeCoalescent(
 
   assert(FileIo().IsRegularFile(beast_input_parameters_filename));
 
-  Beast().Run(
+  ribi::Beast().Run(
     beast_input_parameters_filename,
     beast_output_log_filename,
     beast_output_trees_filename
@@ -132,7 +131,7 @@ void QtBeastDisplay::AnalyzeCoalescent(
   assert(FileIo().IsRegularFile(beast_output_log_filename));
   assert(FileIo().IsRegularFile(beast_output_trees_filename));
 
-  Beast().AnalyzeCoalescent(
+  ribi::Beast().AnalyzeCoalescent(
     beast_output_log_filename,
     output_png_coalescent_constant_filename,
     output_png_popsize_filename

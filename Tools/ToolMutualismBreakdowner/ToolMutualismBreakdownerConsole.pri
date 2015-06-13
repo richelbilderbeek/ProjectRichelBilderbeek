@@ -1,34 +1,34 @@
 INCLUDEPATH += ../../Tools/ToolMutualismBreakdowner
 
 SOURCES += \
-    ../../Tools/ToolMutualismBreakdowner/timesimulation.cpp \
-    ../../Tools/ToolMutualismBreakdowner/timesimulation_test.cpp \
-    ../../Tools/ToolMutualismBreakdowner/parameters.cpp \
-    ../../Tools/ToolMutualismBreakdowner/parameters_test.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownertimesimulation.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownertimesimulation_test.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerparameters.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerparameters_test.cpp \
     ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownermenudialog.cpp \
-    ../../Tools/ToolMutualismBreakdowner/poisoningfunction.cpp \
-    ../../Tools/ToolMutualismBreakdowner/sulfideconsumptionfunction.cpp \
-    ../../Tools/ToolMutualismBreakdowner/seagrassgrowthfunction.cpp \
-    ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.cpp \
-    ../../Tools/ToolMutualismBreakdowner/sulfidediffusionfunction.cpp \
-    ../../Tools/ToolMutualismBreakdowner/sulfidedetoxificationfunction.cpp \
-    ../../Tools/ToolMutualismBreakdowner/seagrasssystem.cpp \
-    ../../Tools/ToolMutualismBreakdowner/spatialsimulation.cpp \
-    ../../Tools/ToolMutualismBreakdowner/seagrasscolonisationfunction.cpp
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerpoisoningfunction.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownersulfideconsumptionfunction.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerseagrassgrowthfunction.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownersulfideproductionfunction.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownersulfidediffusionfunction.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownersulfidedetoxificationfunction.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerseagrasssystem.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerspatialsimulation.cpp \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerseagrasscolonisationfunction.cpp
 
 HEADERS  += \
-    ../../Tools/ToolMutualismBreakdowner/timesimulation.h \
-    ../../Tools/ToolMutualismBreakdowner/parameters.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownertimesimulation.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerparameters.h \
     ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownermenudialog.h \
-    ../../Tools/ToolMutualismBreakdowner/poisoningfunction.h \
-    ../../Tools/ToolMutualismBreakdowner/sulfideconsumptionfunction.h \
-    ../../Tools/ToolMutualismBreakdowner/seagrassgrowthfunction.h \
-    ../../Tools/ToolMutualismBreakdowner/sulfideproductionfunction.h \
-    ../../Tools/ToolMutualismBreakdowner/sulfidediffusionfunction.h \
-    ../../Tools/ToolMutualismBreakdowner/sulfidedetoxificationfunction.h \
-    ../../Tools/ToolMutualismBreakdowner/seagrasssystem.h \
-    ../../Tools/ToolMutualismBreakdowner/spatialsimulation.h \
-    ../../Tools/ToolMutualismBreakdowner/seagrasscolonisationfunction.h
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerpoisoningfunction.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownersulfideconsumptionfunction.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerseagrassgrowthfunction.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownersulfideproductionfunction.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownersulfidediffusionfunction.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownersulfidedetoxificationfunction.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerseagrasssystem.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerspatialsimulation.h \
+    ../../Tools/ToolMutualismBreakdowner/mutualismbreakdownerseagrasscolonisationfunction.h
 
 RESOURCES += \
     ../../Tools/ToolMutualismBreakdowner/ToolMutualismBreakdowner.qrc

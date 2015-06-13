@@ -54,7 +54,7 @@ ribi::Chess::QtChessBoardWidget::QtChessBoardWidget(QWidget *parent)
   : QWidget(parent),
     m_signal_changed{},
     m_resources(new Chess::QtResources),
-    m_widget(new BoardWidget(BoardFactory::Create(),Widget::CreateRect(0,0,400,400)))
+    m_widget(new BoardWidget(BoardFactory().Create(),Widget::CreateRect(0,0,400,400)))
 {
   #ifndef NDEBUG
   Test();
@@ -81,7 +81,7 @@ ribi::Chess::QtChessBoardWidget::QtChessBoardWidget(
     m_signal_changed{},
     m_resources(new Chess::QtResources),
     m_widget(new Chess::BoardWidget(
-      BoardFactory::Create(),Widget::CreateRect(0,0,width,height)))
+      BoardFactory().Create(),Widget::CreateRect(0,0,width,height)))
 {
   assert(m_widget);
 

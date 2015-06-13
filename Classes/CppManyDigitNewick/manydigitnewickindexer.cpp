@@ -56,10 +56,10 @@ ribi::ManyDigitNewickIndexer::ManyDigitNewickIndexer(
   assert(m_current_index == m_newicks.Size());
 
   //If the Newick is simple
-  if (Newick::IsSimple(n.Peek()))
+  if (Newick().IsSimple(n.Peek()))
   {
     //Calculate the Ewens probability only
-    m_probability = Newick::CalcProbabilitySimpleNewick(n.Peek(),theta);
+    m_probability = Newick().CalcProbabilitySimpleNewick(n.Peek(),theta);
     return;
   }
 
@@ -191,7 +191,7 @@ const ribi::NewickVector ribi::ManyDigitNewickIndexer::ConstructNewick(const int
     std::copy(p.begin(),p.end(),std::back_inserter(v));
     v.push_back(Newick::bracket_close);
   }
-  assert(Newick::IsNewick(v));
+  assert(Newick().IsNewick(v));
 
   //As long as there are not only reserved (that is: simple)
   //values in v, replace those by their simplers
@@ -213,7 +213,7 @@ const ribi::NewickVector ribi::ManyDigitNewickIndexer::ConstructNewick(const int
     //Copy the remainder of v (from after i) to v_new
     std::copy(i+1,v.end(),std::back_inserter(v_new));
     std::swap(v,v_new);
-    assert(Newick::IsNewick(v));
+    assert(Newick().IsNewick(v));
   }
   NewickVector n(v);
   return n;
@@ -669,7 +669,7 @@ int ribi::ManyDigitNewickIndexer::SummarizeNewick(
     v.push_back(Newick::bracket_open);
     std::copy(coordinat.ToVector().begin(),coordinat.ToVector().end(),std::back_inserter(v));
     v.push_back(Newick::bracket_close);
-    n.SetProbability(Newick::CalcProbabilitySimpleNewick(v,m_theta));
+    n.SetProbability(Newick().CalcProbabilitySimpleNewick(v,m_theta));
     //If the user requests simple Newicks to be solved,
     //perhaps the requested probability has just been calculated
     m_probability = n.GetProbability();

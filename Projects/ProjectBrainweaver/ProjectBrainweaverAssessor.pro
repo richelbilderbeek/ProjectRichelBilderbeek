@@ -22,6 +22,7 @@ include(../../Classes/CppXml/CppXml.pri)
 
 #Specific, desktop
 include(../../Classes/CppQtArrowItem/CppQtArrowItem.pri)
+include(../../Classes/CppQtDisplayPosItem/CppQtDisplayPosItem.pri)
 include(../../Classes/CppQtConceptMap/CppQtConceptMap.pri)
 include(../../Classes/CppQtImage/CppQtImage.pri)
 include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGraphicsView.pri)
@@ -35,6 +36,7 @@ include(../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetterDesktop.pri)
 include(../../Tools/ToolTestConceptMap/ToolTestConceptMapDesktop.pri)
 include(../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItemsDesktop.pri)
 include(../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItemDesktop.pri)
+include(../../Tools/ToolTestQtRoundedRectItem/ToolTestQtRoundedRectItemDesktop.pri)
 
 include(ProjectBrainweaverDesktop.pri)
 

@@ -7,7 +7,7 @@
 
 #include "fileio.h"
 
-void QtMutualismBreakdownerTimePlotDialog::Test() noexcept
+void ribi::mb::QtMutualismBreakdownerTimePlotDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

@@ -82,7 +82,7 @@ bool ribi::Chess::GameWidget::CanDoMove(
       default: break;
     }
     const boost::shared_ptr<const Move> maybe_move {
-      MoveFactory::Create(s)
+      MoveFactory().Create(s)
     };
     if (m_game->CanDoMove(maybe_move)) move = maybe_move;
   }
@@ -117,7 +117,7 @@ void ribi::Chess::GameWidget::DoMove(
     }
 
     const boost::shared_ptr<const Move> maybe_move {
-      MoveFactory::Create(s)
+      MoveFactory().Create(s)
     };
     if (m_game->CanDoMove(maybe_move)) move = maybe_move;
     if (move) break;

@@ -90,7 +90,10 @@ struct Increase
   int m_value;
 };
 
+ribi::Newick::Newick()
+{
 
+}
 /*
 bool ribi::Newick::AllAboutEqual(
   const std::vector<double>& v,
@@ -728,7 +731,7 @@ std::vector<std::string> ribi::Newick::CreateValidTrinaryNewicks() noexcept
       "((11,22,33),(44,55,66),(77,88,99))"
     };
   #else
-    return NewickCpp98::CreateValidTrinaryNewicks();
+    return NewickCpp98().CreateValidTrinaryNewicks();
   #endif
 }
 
@@ -808,7 +811,10 @@ std::string ribi::Newick::DumbNewickToString(const std::vector<int>& v) noexcept
 std::vector<int> ribi::Newick::Factorial(const std::vector<int>& v_original) noexcept
 {
   std::vector<int> v(v_original);
-  std::transform(v.begin(),v.end(),v.begin(),std::ptr_fun<int,int>(Factorial));
+  std::transform(v.begin(),v.end(),v.begin(),
+    [](const int i) { return Newick().Factorial(i); }
+    //std::ptr_fun<int,int>(Factorial)
+  );
   return v;
 }
 
@@ -1030,7 +1036,7 @@ std::vector<boost::tuple<std::string,double,double> > ribi::Newick::GetKnownProb
   };
   return v;
   #else
-    return NewickCpp98::GetKnownProbabilities();
+    return NewickCpp98().GetKnownProbabilities();
   #endif
 }
 
@@ -1132,7 +1138,7 @@ std::vector<std::vector<int> >
   assert(v.size() > 1);
   return v;
   #else
-  return NewickCpp98::GetRootBranches(n);
+  return NewickCpp98().GetRootBranches(n);
   #endif
 }
 
@@ -1586,7 +1592,7 @@ std::vector<std::pair<std::vector<int>,int> >
 
   return newicks;
   #else
-  return NewickCpp98::GetSimplerNewicksFrequencyPairs(n);
+  return NewickCpp98().GetSimplerNewicksFrequencyPairs(n);
   #endif
 }
 
@@ -1719,12 +1725,12 @@ std::vector<std::pair<std::vector<int>,int> >
   return v;
 }
 
-std::string ribi::Newick::GetVersion() noexcept
+std::string ribi::Newick::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-std::vector<std::string> ribi::Newick::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Newick::GetVersionHistory() const noexcept
 {
   return {
     "20xx-xx-xx: Version 1.0: initial version",
@@ -2022,8 +2028,8 @@ void ribi::Newick::Test()
 
   TRACE("Testing basic Newick functionality");
   //Check difference between C++98 and C++0x
-  assert(Newick::CreateValidTrinaryNewicks() == NewickCpp98::CreateValidTrinaryNewicks());
-  assert(Newick::GetKnownProbabilities() == NewickCpp98::GetKnownProbabilities());
+  assert(Newick::CreateValidTrinaryNewicks() == NewickCpp98().CreateValidTrinaryNewicks());
+  assert(Newick::GetKnownProbabilities() == NewickCpp98().GetKnownProbabilities());
 
 
 
@@ -2224,7 +2230,7 @@ void ribi::Newick::Test()
     for(const std::string& s: v)
     {
       const std::vector<int> n = Newick::StringToNewick(s);
-      assert(Newick::GetRootBranches(n) == NewickCpp98::GetRootBranches(n));
+      assert(Newick::GetRootBranches(n) == NewickCpp98().GetRootBranches(n));
     }
   }
 
@@ -2490,11 +2496,11 @@ void ribi::Newick::Test()
         assert(v1[i] == v2[i].first);
       }
       assert(Newick::GetSimplerNewicksFrequencyPairs(newick)
-        == NewickCpp98::GetSimplerNewicksFrequencyPairs(newick));
+        == NewickCpp98().GetSimplerNewicksFrequencyPairs(newick));
     }
   }
   #else
-  NewickCpp98::Test();
+  NewickCpp98();
   #endif
 }
 #endif

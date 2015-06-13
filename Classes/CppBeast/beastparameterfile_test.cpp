@@ -27,6 +27,7 @@ void BeastParameterFile::Test() noexcept
   const std::string coalescent_constant_population_1{"coalescent_constant_population_1.xml"};
   const std::string fasta_filename_0{"test_output_0.fas"};
   const std::string fasta_filename_1{"test_output_1.fas"};
+  const std::string log_file{"CppBeastLogFile.log"};
   const std::vector<std::string> resource_filenames
     =
     {
@@ -35,7 +36,8 @@ void BeastParameterFile::Test() noexcept
       coalescent_constant_population_0,
       coalescent_constant_population_1,
       fasta_filename_0,
-      fasta_filename_1
+      fasta_filename_1,
+      log_file
     };
   //Create resources
   {

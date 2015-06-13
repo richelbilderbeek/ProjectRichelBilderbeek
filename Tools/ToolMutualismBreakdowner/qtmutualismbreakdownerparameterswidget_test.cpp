@@ -9,7 +9,7 @@
 
 #include "ui_qtmutualismbreakdownerparameterswidget.h"
 
-void QtMutualismBreakdownerParametersWidget::Test() noexcept
+void ribi::mb::QtMutualismBreakdownerParametersWidget::Test() noexcept
 {
   {
     static bool is_tested{false};

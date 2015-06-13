@@ -188,10 +188,10 @@ std::string ribi::ToolSimplifyNewickMainDialog::SimplifyNewick(
   std::unique_ptr<const NewickVector> n{ new NewickVector(s) };
   while (1)
   {
-    const BigInteger complexity = Newick::CalcComplexity(n->Peek());
+    const BigInteger complexity = Newick().CalcComplexity(n->Peek());
     if (complexity <= max_complexity) return n->ToStr();
     const std::vector<std::pair<std::vector<int>,int> > v
-      = Newick::GetSimplerNewicksFrequencyPairs(n->Peek());
+      = Newick().GetSimplerNewicksFrequencyPairs(n->Peek());
     if (v.empty()) return n->ToStr();
     const int sum = SumSecond(v);
 

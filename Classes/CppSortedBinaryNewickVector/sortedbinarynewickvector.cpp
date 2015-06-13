@@ -37,8 +37,8 @@
 ribi::SortedBinaryNewickVector::SortedBinaryNewickVector(const SortedBinaryNewickVector& rhs)
   : m_v(rhs.Peek())
 {
-  assert(Newick::IsNewick(m_v));
-  assert(Newick::IsUnaryNewick(m_v) || Newick::IsBinaryNewick(m_v));
+  assert(Newick().IsNewick(m_v));
+  assert(Newick().IsUnaryNewick(m_v) || Newick().IsBinaryNewick(m_v));
   //Assume rhs is sorted
 }
 
@@ -46,18 +46,18 @@ ribi::SortedBinaryNewickVector::SortedBinaryNewickVector(const std::vector<int>&
   : m_v(any_v)
 {
   assert(Empty()
-    || ( Newick::IsNewick(m_v)
-      && (Newick::IsUnaryNewick(m_v)
-      || Newick::IsBinaryNewick(m_v))));
+    || ( Newick().IsNewick(m_v)
+      && (Newick().IsUnaryNewick(m_v)
+      || Newick().IsBinaryNewick(m_v))));
   Sort();
 }
 
 ribi::SortedBinaryNewickVector::SortedBinaryNewickVector(const BinaryNewickVector& rhs)
   : m_v(rhs.Peek())
 {
-  assert(Newick::IsNewick(m_v));
-  assert(Newick::IsUnaryNewick(m_v)
-      || Newick::IsBinaryNewick(m_v));
+  assert(Newick().IsNewick(m_v));
+  assert(Newick().IsUnaryNewick(m_v)
+      || Newick().IsBinaryNewick(m_v));
   Sort();
 }
 
@@ -71,13 +71,13 @@ double ribi::SortedBinaryNewickVector::CalculateProbability(
   const std::string& newick_str,
   const double theta)
 {
-  assert(Newick::IsNewick(newick_str));
-  assert(Newick::IsUnaryNewick(Newick::StringToNewick(newick_str))
-      || Newick::IsBinaryNewick(Newick::StringToNewick(newick_str)));
+  assert(Newick().IsNewick(newick_str));
+  assert(Newick().IsUnaryNewick(Newick().StringToNewick(newick_str))
+      || Newick().IsBinaryNewick(Newick().StringToNewick(newick_str)));
   assert(theta > 0.0);
   SortedBinaryNewickVector newick(newick_str);
   NewickStorage<SortedBinaryNewickVector> storage(newick);
-  return Newick::CalculateProbability(
+  return Newick().CalculateProbability(
     newick,
     theta,
     storage);
@@ -86,13 +86,13 @@ double ribi::SortedBinaryNewickVector::CalculateProbability(
 
 std::string ribi::SortedBinaryNewickVector::ToStr() const
 {
-  return Newick::NewickToString(Peek());
+  return Newick().NewickToString(Peek());
 }
 
  double ribi::SortedBinaryNewickVector::CalcDenominator(
    const double theta) const
 {
-  return Newick::CalcDenominator(Peek(),theta);
+  return Newick().CalcDenominator(Peek(),theta);
 }
 
 //From a certain SortedBinaryNewickVector,
@@ -194,10 +194,9 @@ bool ribi::SortedBinaryNewickVector::IsCloseBracketRight(const int pos) const
   return true;
 }
 
-//If there is at least one bracket open
- bool ribi::SortedBinaryNewickVector::IsSimple() const
+bool ribi::SortedBinaryNewickVector::IsSimple() const
 {
-  return Newick::IsSimple(Peek());
+  return Newick().IsSimple(Peek());
 }
 
 //Does the following conversions:

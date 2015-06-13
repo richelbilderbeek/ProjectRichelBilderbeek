@@ -1,10 +1,10 @@
 include(../../Tools/ToolFisherWrighter/ToolFisherWrighterConsole.pri)
 
 FORMS += \
-    qtfisherwrightermaindialog.ui
+    ../../Tools/ToolFisherWrighter/qtfisherwrightermaindialog.ui
 
 SOURCES += \
-    qtfisherwrightermaindialog.cpp
+    ../../Tools/ToolFisherWrighter/qtfisherwrightermaindialog.cpp
 
 HEADERS += \
-    qtfisherwrightermaindialog.h
+    ../../Tools/ToolFisherWrighter/qtfisherwrightermaindialog.h

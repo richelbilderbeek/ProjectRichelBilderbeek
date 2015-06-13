@@ -31,7 +31,7 @@ void QtDnaSequencesDisplay::SetDnaSequences(
   const std::string temp_filename{
     fileio.GetTempFileName(".png")
   };
-  DnaR().PlotSequences(sequences,temp_filename);
+  ribi::DnaR().PlotSequences(sequences,temp_filename);
   ui->image_dna_sequences->setPixmap(QPixmap(temp_filename.c_str()));
   fileio.DeleteFile(temp_filename);
 }

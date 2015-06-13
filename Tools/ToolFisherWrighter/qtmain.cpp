@@ -5,6 +5,7 @@
 
 #include <future>
 #include "qtfisherwrightermaindialog.h"
+#include "beast.h"
 #include "counter.h"
 #include "dna_r.h"
 #include "ribi_rinside.h"
@@ -15,18 +16,7 @@
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  ribi::Rinside();
-  PhylogenyR();
-  std::async([](){ DnaR();} );
-  std::async([](){ PhylogenyR();} );
-  std::async([](){ NewickUtils();} );
-  std::async([](){ ribi::Counter();} );
-  /*
-  std::async( std::launch::async, []() { PhylogenyR();} );
-  std::async( std::launch::async, []() { NewickUtils();} );
-  std::async( std::launch::async, []() { ribi::Counter();} );
-  */
-  QtFisherWrighterMainDialog w;
+  ribi::fw::QtFisherWrighterMainDialog w;
   w.show();
   return a.exec();
 }

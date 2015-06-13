@@ -3,8 +3,17 @@
 #include <cassert>
 
 #include "chessmove.h"
+#include "testtimer.h"
 
-const boost::shared_ptr<ribi::Chess::Move> ribi::Chess::MoveFactory::Create(const std::string& s)
+ribi::Chess::MoveFactory::MoveFactory()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+const boost::shared_ptr<ribi::Chess::Move>
+  ribi::Chess::MoveFactory::Create(const std::string& s) const
 {
   const boost::shared_ptr<ribi::Chess::Move> p {
     new Move(s)
@@ -17,13 +26,16 @@ const boost::shared_ptr<ribi::Chess::Move> ribi::Chess::MoveFactory::Create(cons
 
 const boost::shared_ptr<ribi::Chess::Move> ribi::Chess::MoveFactory::Create(
   const boost::shared_ptr<const Chess::Square> from,
-  const boost::shared_ptr<const Chess::Square> to)
+  const boost::shared_ptr<const Chess::Square> to) const
 {
   const std::string s = from->ToStr() + " " + to->ToStr();
   return Create(s);
 }
 
-const boost::shared_ptr<ribi::Chess::Move> ribi::Chess::MoveFactory::DeepCopy(const Move& move)
+const boost::shared_ptr<ribi::Chess::Move>
+  ribi::Chess::MoveFactory::DeepCopy(
+    const Move& move
+  ) const
 {
   const boost::shared_ptr<ribi::Chess::Move> p {
     Create(move.ToStr())
@@ -31,3 +43,18 @@ const boost::shared_ptr<ribi::Chess::Move> ribi::Chess::MoveFactory::DeepCopy(co
   assert(p);
   return p;
 }
+
+#ifndef NDEBUG
+void ribi::Chess::MoveFactory::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    Chess::Move("a2-a3");
+  }
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif

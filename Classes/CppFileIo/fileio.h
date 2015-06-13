@@ -155,10 +155,10 @@ struct FileIo
   std::string GetTempFolderName() const;
 
   ///Obtain the version
-  static std::string GetVersion() noexcept;
+  std::string GetVersion() const noexcept;
 
   ///Obtain the version history
-  static std::vector<std::string> GetVersionHistory() noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///Checks if the path has only the right path seperators
   ///A Linux path should not contain Windows backslashes

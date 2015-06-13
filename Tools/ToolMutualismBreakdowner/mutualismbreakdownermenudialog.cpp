@@ -45,14 +45,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::MutualismBreakdownerMenuDialog::MutualismBreakdownerMenuDialog()
+ribi::mb::MenuDialog::MenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-int ribi::MutualismBreakdownerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::mb::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
   if (argc == 1 || argc > 4)
@@ -63,7 +63,7 @@ int ribi::MutualismBreakdownerMenuDialog::ExecuteSpecific(const std::vector<std:
   return 0;
 }
 
-ribi::About ribi::MutualismBreakdownerMenuDialog::GetAbout() const noexcept
+ribi::About ribi::mb::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Greg Fivash and Richel Bilderbeek",
@@ -80,19 +80,19 @@ ribi::About ribi::MutualismBreakdownerMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-boost::shared_ptr<const ribi::Program> ribi::MutualismBreakdownerMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::mb::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramMutualismBreakdowner);
   assert(p);
   return p;
 }
 
-std::string ribi::MutualismBreakdownerMenuDialog::GetVersion() const noexcept
+std::string ribi::mb::MenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-std::vector<std::string> ribi::MutualismBreakdownerMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::mb::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2015-05-03: Version 0.1: initial version with 3 ODEs",
@@ -102,7 +102,7 @@ std::vector<std::string> ribi::MutualismBreakdownerMenuDialog::GetVersionHistory
   };
 }
 
-ribi::Help ribi::MutualismBreakdownerMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::mb::MenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     "MutualismBreakdowner",
@@ -116,7 +116,7 @@ ribi::Help ribi::MutualismBreakdownerMenuDialog::GetHelp() const noexcept
 }
 
 #ifndef NDEBUG
-void ribi::MutualismBreakdownerMenuDialog::Test() noexcept
+void ribi::mb::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

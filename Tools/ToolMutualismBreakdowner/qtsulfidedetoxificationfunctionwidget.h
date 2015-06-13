@@ -8,8 +8,10 @@ namespace Ui {
   class QtSulfideDetoxificationFunctionWidget;
 }
 
-struct SulfideDetoxificationFunction;
+namespace ribi {
+namespace mb {
 
+struct SulfideDetoxificationFunction;
 
 class QtSulfideDetoxificationFunctionWidget : public QWidget
 {
@@ -30,5 +32,8 @@ private:
 private slots:
   void OnAnyChange();
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTSULFIDEDETOXIFICATIONFUNCTIONWIDGET_H

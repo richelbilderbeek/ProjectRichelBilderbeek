@@ -8,7 +8,7 @@
 #include "trace.h"
 
 #ifndef NDEBUG
-void NewickUtils::Test() noexcept
+void ribi::NewickUtils::Test() noexcept
 {
   {
     static bool is_tested{false};

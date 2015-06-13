@@ -41,20 +41,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "BigIntegerLibrary.hh"
 
+#include "fuzzy_equal_to.h"
 #include "newick.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
 
 ribi::NewickVector::NewickVector(const std::string& s)
-  : m_v{Newick::StringToNewick(s)}
+  : m_v{Newick().StringToNewick(s)}
 {
   #ifndef NDEBUG
   Test();
   #endif
-  assert(Newick::IsNewick(s));
+  assert(Newick().IsNewick(s));
   //Can this be added?
-  //assert(m_v.empty() || Newick::IsNewick(m_v));
+  //assert(m_v.empty() || Newick().IsNewick(m_v));
 }
 
 ribi::NewickVector::NewickVector(const std::vector<int>& v)
@@ -63,37 +64,37 @@ ribi::NewickVector::NewickVector(const std::vector<int>& v)
   #ifndef NDEBUG
   Test();
   #endif
-  assert(m_v.empty() || Newick::IsNewick(m_v));
+  assert(m_v.empty() || Newick().IsNewick(m_v));
 }
 
 const BigInteger ribi::NewickVector::CalcComplexity() const
 {
-  return Newick::CalcComplexity(m_v);
+  return Newick().CalcComplexity(m_v);
 }
 
 double ribi::NewickVector::CalcDenominator(const double theta) const
 {
-  return Newick::CalcDenominator(Peek(),theta);
+  return Newick().CalcDenominator(Peek(),theta);
 }
 
 const BigInteger ribi::NewickVector::CalcNumOfCombinations() const
 {
-  assert(Newick::IsNewick(m_v));
-  return Newick::CalcNumOfCombinationsBinary(m_v);
+  assert(Newick().IsNewick(m_v));
+  return Newick().CalcNumOfCombinationsBinary(m_v);
 }
 
 const BigInteger ribi::NewickVector::CalcNumOfSymmetries() const
 {
-  assert(Newick::IsNewick(m_v));
-  assert(Newick::IsBinaryNewick(m_v));
-  return Newick::CalcNumOfSymmetriesBinary(m_v);
+  assert(Newick().IsNewick(m_v));
+  assert(Newick().IsBinaryNewick(m_v));
+  return Newick().CalcNumOfSymmetriesBinary(m_v);
 }
 
 double ribi::NewickVector::CalculateProbability(
   const std::string& newick_str,
   const double theta)
 {
-  assert(Newick::IsNewick(newick_str));
+  assert(Newick().IsNewick(newick_str));
   assert(theta > 0.0);
   NewickVector newick(newick_str);
   NewickStorage<NewickVector> storage(newick);
@@ -146,7 +147,7 @@ double ribi::NewickVector::CalculateProbabilityInternal(
       #endif
       typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
       const std::vector<NewickFrequencyPair> newick_freqs
-        = Newick::GetSimplerNewicksFrequencyPairs(n.Peek());
+        = Newick().GetSimplerNewicksFrequencyPairs(n.Peek());
       for(const NewickFrequencyPair& p: newick_freqs)
       {
         const int frequency = p.second;
@@ -188,9 +189,9 @@ double ribi::NewickVector::CalculateProbabilityInternal(
 
 double ribi::NewickVector::CalcProbabilitySimpleNewick(const double theta) const
 {
-  assert(Newick::IsSimple(m_v));
+  assert(Newick().IsSimple(m_v));
   assert(theta > 0.0);
-  return Newick::CalcProbabilitySimpleNewick(m_v,theta);
+  return Newick().CalcProbabilitySimpleNewick(m_v,theta);
 }
 
 int ribi::NewickVector::FindPosAfter(const std::vector<int>& v,const int x, const int index) const
@@ -222,17 +223,18 @@ int ribi::NewickVector::FindPosBefore(const std::vector<int>& v,const int x, con
 
 const std::vector<ribi::NewickVector> ribi::NewickVector::GetSimplerNewicks() const
 {
-  assert(Newick::IsNewick(m_v));
-  const std::vector<std::vector<int> > v = Newick::GetSimplerBinaryNewicks(m_v);
+  assert(Newick().IsNewick(m_v));
+  const std::vector<std::vector<int> > v
+    = Newick().GetSimplerBinaryNewicks(m_v);
   std::vector<NewickVector> w(std::begin(v),std::end(v));
   return w;
 }
 
 const std::pair<ribi::NewickVector,ribi::NewickVector> ribi::NewickVector::GetRootBranches() const
 {
-  assert(Newick::IsNewick(m_v));
+  assert(Newick().IsNewick(m_v));
   std::pair<std::vector<int>,std::vector<int> > p
-    = Newick::GetRootBranchesBinary(m_v);
+    = Newick().GetRootBranchesBinary(m_v);
   return p;
 }
 
@@ -290,7 +292,7 @@ bool ribi::NewickVector::IsOpenBracketLeft(const int pos) const
 
 bool ribi::NewickVector::IsSimple() const
 {
-  return Newick::IsSimple(m_v);
+  return Newick().IsSimple(m_v);
 }
 
 //Does the following conversions:
@@ -448,9 +450,9 @@ void ribi::NewickVector::Test() noexcept
     //Simple trinary Newick
     {
       const std::string s = "(2,3,4)";
-      const std::vector<int> n = Newick::StringToNewick(s);
-      assert(Newick::IsTrinaryNewick(n));
-      const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
+      const std::vector<int> n = Newick().StringToNewick(s);
+      assert(Newick().IsTrinaryNewick(n));
+      const std::vector<std::vector<int> > ns = Newick().GetSimplerNewicks(n);
       #ifdef DEBUG_BO_2_3_4_BC
       for(const std::vector<int>& v: ns)
       {
@@ -460,106 +462,106 @@ void ribi::NewickVector::Test() noexcept
       assert(ns.size() == 3);
 
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("(1,3,4)")) != ns.end());
+        Newick().StringToNewick("(1,3,4)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("(2,2,4)")) != ns.end());
+        Newick().StringToNewick("(2,2,4)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("(2,3,3)")) != ns.end());
+        Newick().StringToNewick("(2,3,3)")) != ns.end());
     }
     //Simple trinary Newick
     {
       const std::string s = "(1,2,3)";
-      const std::vector<int> n = Newick::StringToNewick(s);
-      assert(Newick::IsTrinaryNewick(n));
-      const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
+      const std::vector<int> n = Newick().StringToNewick(s);
+      assert(Newick().IsTrinaryNewick(n));
+      const std::vector<std::vector<int> > ns = Newick().GetSimplerNewicks(n);
       assert(ns.size() == 4);
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("(3,3)")) != ns.end());
+        Newick().StringToNewick("(3,3)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("(2,4)")) != ns.end());
+        Newick().StringToNewick("(2,4)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("(1,1,3)")) != ns.end());
+        Newick().StringToNewick("(1,1,3)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("(1,2,2)")) != ns.end());
+        Newick().StringToNewick("(1,2,2)")) != ns.end());
     }
     //Complex trinary Newick
     {
       const std::string s = "((2,3),(4,5),(6,7))";
-      const std::vector<int> n = Newick::StringToNewick(s);
-      assert(Newick::IsTrinaryNewick(n));
-      const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
+      const std::vector<int> n = Newick().StringToNewick(s);
+      assert(Newick().IsTrinaryNewick(n));
+      const std::vector<std::vector<int> > ns = Newick().GetSimplerNewicks(n);
       assert(ns.size() == 6);
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,3),(4,5),(6,7))")) != ns.end());
+        Newick().StringToNewick("((1,3),(4,5),(6,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,2),(4,5),(6,7))")) != ns.end());
+        Newick().StringToNewick("((2,2),(4,5),(6,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,3),(3,5),(6,7))")) != ns.end());
+        Newick().StringToNewick("((2,3),(3,5),(6,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,3),(4,4),(6,7))")) != ns.end());
+        Newick().StringToNewick("((2,3),(4,4),(6,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,3),(4,5),(5,7))")) != ns.end());
+        Newick().StringToNewick("((2,3),(4,5),(5,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,3),(4,5),(6,6))")) != ns.end());
+        Newick().StringToNewick("((2,3),(4,5),(6,6))")) != ns.end());
     }
     //Another trinary Newick
     {
       const std::string s = "((2,3),(1,5),(6,7))";
-      const std::vector<int> n = Newick::StringToNewick(s);
-      assert(Newick::IsTrinaryNewick(n));
-      const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
+      const std::vector<int> n = Newick().StringToNewick(s);
+      assert(Newick().IsTrinaryNewick(n));
+      const std::vector<std::vector<int> > ns = Newick().GetSimplerNewicks(n);
       assert(ns.size() == 6);
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,3),(1,5),(6,7))")) != ns.end());
+        Newick().StringToNewick("((1,3),(1,5),(6,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,2),(1,5),(6,7))")) != ns.end());
+        Newick().StringToNewick("((2,2),(1,5),(6,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,3),6,(6,7))")) != ns.end());
+        Newick().StringToNewick("((2,3),6,(6,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,3),(1,4),(6,7))")) != ns.end());
+        Newick().StringToNewick("((2,3),(1,4),(6,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,3),(1,5),(5,7))")) != ns.end());
+        Newick().StringToNewick("((2,3),(1,5),(5,7))")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,3),(1,5),(6,6))")) != ns.end());
+        Newick().StringToNewick("((2,3),(1,5),(6,6))")) != ns.end());
     }
     //Another trinary Newick
     {
       const std::string s = "((1,2,3),(4,5,6),1)";
-      const std::vector<int> n = Newick::StringToNewick(s);
-      assert(Newick::IsTrinaryNewick(n));
-      const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
+      const std::vector<int> n = Newick().StringToNewick(s);
+      assert(Newick().IsTrinaryNewick(n));
+      const std::vector<std::vector<int> > ns = Newick().GetSimplerNewicks(n);
       assert(ns.size() == 7);
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((3,3),(4,5,6),1)")) != ns.end());
+        Newick().StringToNewick("((3,3),(4,5,6),1)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((2,4),(4,5,6),1)")) != ns.end());
+        Newick().StringToNewick("((2,4),(4,5,6),1)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,1,3),(4,5,6),1)")) != ns.end());
+        Newick().StringToNewick("((1,1,3),(4,5,6),1)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,2,2),(4,5,6),1)")) != ns.end());
+        Newick().StringToNewick("((1,2,2),(4,5,6),1)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,2,3),(3,5,6),1)")) != ns.end());
+        Newick().StringToNewick("((1,2,3),(3,5,6),1)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,2,3),(4,4,6),1)")) != ns.end());
+        Newick().StringToNewick("((1,2,3),(4,4,6),1)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,2,3),(4,5,5),1)")) != ns.end());
+        Newick().StringToNewick("((1,2,3),(4,5,5),1)")) != ns.end());
     }
     //Another trinary Newick
     {
       const std::string s = "((1,(1,1,1)),1)";
-      const std::vector<int> n = Newick::StringToNewick(s);
-      assert(Newick::IsTrinaryNewick(n));
-      const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
+      const std::vector<int> n = Newick().StringToNewick(s);
+      assert(Newick().IsTrinaryNewick(n));
+      const std::vector<std::vector<int> > ns = Newick().GetSimplerNewicks(n);
       assert(ns.size() == 6);
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,(2,1)),1)")) != ns.end());
+        Newick().StringToNewick("((1,(2,1)),1)")) != ns.end());
     }
     //Another trinary Newick
     {
       const std::string s = "(1,(1,1),1)";
-      const std::vector<int> n = Newick::StringToNewick(s);
-      assert(Newick::IsTrinaryNewick(n));
-      const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
+      const std::vector<int> n = Newick().StringToNewick(s);
+      assert(Newick().IsTrinaryNewick(n));
+      const std::vector<std::vector<int> > ns = Newick().GetSimplerNewicks(n);
       //#define DEBUG_BO_1_BO_1_1_BC_1
       #ifdef  DEBUG_BO_1_BO_1_1_BC_1
       TRACE(boost::lexical_cast<std::string>(ns.size()));
@@ -570,40 +572,40 @@ void ribi::NewickVector::Test() noexcept
       #endif
       assert(ns.size() == 4);
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("(1,2,1)")) != ns.end());
+        Newick().StringToNewick("(1,2,1)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,1),2)")) != ns.end());
+        Newick().StringToNewick("((1,1),2)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("(2,(1,1))")) != ns.end());
+        Newick().StringToNewick("(2,(1,1))")) != ns.end());
     }
     //Another trinary Newick
     {
       const std::string s = "((1,(2,3,4)),5)";
-      const std::vector<int> n = Newick::StringToNewick(s);
-      assert(Newick::IsTrinaryNewick(n));
-      const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
+      const std::vector<int> n = Newick().StringToNewick(s);
+      assert(Newick().IsTrinaryNewick(n));
+      const std::vector<std::vector<int> > ns = Newick().GetSimplerNewicks(n);
       assert(ns.size() == 4);
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,(1,3,4)),5)")) != ns.end());
+        Newick().StringToNewick("((1,(1,3,4)),5)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,(2,2,4)),5)")) != ns.end());
+        Newick().StringToNewick("((1,(2,2,4)),5)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,(2,3,3)),5)")) != ns.end());
+        Newick().StringToNewick("((1,(2,3,3)),5)")) != ns.end());
       assert(std::find(ns.begin(),ns.end(),
-        Newick::StringToNewick("((1,(2,3,4)),4)")) != ns.end());
+        Newick().StringToNewick("((1,(2,3,4)),4)")) != ns.end());
     }
   }
 
   //Check that well-formed Newicks are confirmed valid
   {
-    const std::vector<std::string> v = Newick::CreateValidNewicks();
+    const std::vector<std::string> v = Newick().CreateValidNewicks();
     for(const std::string& s: v)
     {
       TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
-        Newick::CheckNewick(s);
+        Newick().CheckNewick(s);
       }
       catch (std::exception& e)
       {
@@ -613,9 +615,9 @@ void ribi::NewickVector::Test() noexcept
       //Check if valid newicks (as std::vector) are marked as valid
       try
       {
-        const std::vector<int> n = Newick::StringToNewick(s);
-        Newick::CheckNewick(n);
-        assert(Newick::IsNewick(n));
+        const std::vector<int> n = Newick().StringToNewick(s);
+        Newick().CheckNewick(n);
+        assert(Newick().IsNewick(n));
       }
       catch (std::exception& e)
       {
@@ -638,7 +640,7 @@ void ribi::NewickVector::Test() noexcept
       //Check std::string conversion (from NewickVector(std::vector<int>))
       try
       {
-        const std::vector<int> n = Newick::StringToNewick(s);
+        const std::vector<int> n = Newick().StringToNewick(s);
         NewickVector temp(n);
         assert(s == temp.ToStr());
       }
@@ -648,28 +650,28 @@ void ribi::NewickVector::Test() noexcept
           << " (NewickVector from std::vector<int>): "
           << e.what();
       }
-      assert(Newick::IsNewick(s));
+      assert(Newick().IsNewick(s));
       //Check the simpler Newicks
       {
         const std::vector<std::vector<int> > simpler
-          = Newick::GetSimplerNewicks(
-            Newick::StringToNewick(s));
+          = Newick().GetSimplerNewicks(
+            Newick().StringToNewick(s));
         for(const std::vector<int> simple: simpler)
         {
-          assert(Newick::IsNewick(simple));
-          Newick::CheckNewick(simple);
+          assert(Newick().IsNewick(simple));
+          Newick().CheckNewick(simple);
         }
       }
       //Check the branches
       #ifndef NDEBUG
-      if (!Newick::IsUnaryNewick(Newick::StringToNewick(s)))
+      if (!Newick().IsUnaryNewick(Newick().StringToNewick(s)))
       {
         const std::vector<std::vector<int> > b
-            = Newick::GetRootBranches(
-              Newick::StringToNewick(s));
+            = Newick().GetRootBranches(
+              Newick().StringToNewick(s));
         for(const std::vector<int>& c: b)
         {
-          assert(Newick::IsNewick(c));
+          assert(Newick().IsNewick(c));
         }
       }
       #endif
@@ -677,24 +679,24 @@ void ribi::NewickVector::Test() noexcept
   }
   //Check if ill-formed Newicks are rejected
   {
-    const std::vector<std::string> v = Newick::CreateInvalidNewicks();
+    const std::vector<std::string> v = Newick().CreateInvalidNewicks();
     for(const std::string& s: v)
     {
       TRACE("I must be rejected: " + s);
-      assert(!Newick::IsNewick(s));
+      assert(!Newick().IsNewick(s));
     }
   }
 
   //Check that well-formed Newicks are confirmed valid
   {
-    const std::vector<std::string> v = Newick::CreateValidNewicks();
+    const std::vector<std::string> v = Newick().CreateValidNewicks();
     for(const std::string& s: v)
     {
       TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
-        Newick::CheckNewick(s);
+        Newick().CheckNewick(s);
       }
       catch (std::exception& e)
       {
@@ -704,9 +706,9 @@ void ribi::NewickVector::Test() noexcept
       //Check if valid newicks (as std::vector) are marked as valid
       try
       {
-        const std::vector<int> n = Newick::StringToNewick(s);
-        Newick::CheckNewick(n);
-        assert(Newick::IsNewick(n));
+        const std::vector<int> n = Newick().StringToNewick(s);
+        Newick().CheckNewick(n);
+        assert(Newick().IsNewick(n));
       }
       catch (std::exception& e)
       {
@@ -729,7 +731,7 @@ void ribi::NewickVector::Test() noexcept
       //Check std::string conversion (from NewickVector(std::vector<int>))
       try
       {
-        const std::vector<int> n = Newick::StringToNewick(s);
+        const std::vector<int> n = Newick().StringToNewick(s);
         NewickVector temp(n);
         assert(s == temp.ToStr());
       }
@@ -739,26 +741,26 @@ void ribi::NewickVector::Test() noexcept
           << " (NewickVector from std::vector<int>): "
           << e.what();
       }
-      assert(Newick::IsNewick(s));
+      assert(Newick().IsNewick(s));
       //Check the simpler Newicks
-      if (Newick::IsBinaryNewick(Newick::StringToNewick(s)))
+      if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
       {
         const std::vector<std::vector<int> > simpler
-          = Newick::GetSimplerBinaryNewicks(
-            Newick::StringToNewick(s));
+          = Newick().GetSimplerBinaryNewicks(
+            Newick().StringToNewick(s));
         for(const std::vector<int> simple: simpler)
         {
-          assert(Newick::IsNewick(simple));
-          Newick::CheckNewick(simple);
+          assert(Newick().IsNewick(simple));
+          Newick().CheckNewick(simple);
         }
       }
       //Check the branches
-      if (Newick::IsBinaryNewick(Newick::StringToNewick(s)))
+      if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
       {
         const std::pair<std::vector<int>,std::vector<int> > b
-            = Newick::GetRootBranchesBinary(Newick::StringToNewick(s));
-        assert(Newick::IsNewick(b.first));
-        assert(Newick::IsNewick(b.second));
+            = Newick().GetRootBranchesBinary(Newick().StringToNewick(s));
+        assert(Newick().IsNewick(b.first));
+        assert(Newick().IsNewick(b.second));
       }
     }
   }
@@ -776,17 +778,17 @@ void ribi::NewickVector::Test() noexcept
     //Calculate probability via testable binary Newicks
     const double p4
       = theta
-      / Newick::CalcDenominator(Newick::StringToNewick(n1),theta)
+      / Newick().CalcDenominator(Newick().StringToNewick(n1),theta)
       * ( (2.0 * ribi::NewickVector::CalculateProbability("(1,1,2)",theta) )
         + (2.0 * ribi::NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
     const double p5
       = theta
-      / Newick::CalcDenominator(Newick::StringToNewick(n1),theta)
+      / Newick().CalcDenominator(Newick().StringToNewick(n1),theta)
       * ( (2.0 * ribi::NewickVector::CalculateProbability("(1,2,1)",theta) )
         + (2.0 * ribi::NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
     const double p6
       = theta
-      / Newick::CalcDenominator(Newick::StringToNewick(n1),theta)
+      / Newick().CalcDenominator(Newick().StringToNewick(n1),theta)
       * ( (2.0 * ribi::NewickVector::CalculateProbability("(2,1,1)",theta) )
         + (2.0 * ribi::NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
     //#define DEBUG_BO_1_1_BC_1_1
@@ -798,11 +800,11 @@ void ribi::NewickVector::Test() noexcept
     TRACE(boost::lexical_cast<std::string>(p5));
     TRACE(boost::lexical_cast<std::string>(p6));
     #endif
-    assert(Newick::fuzzy_equal_to()(p1,p2));
-    assert(Newick::fuzzy_equal_to()(p1,p3));
-    assert(Newick::fuzzy_equal_to()(p1,p4));
-    assert(Newick::fuzzy_equal_to()(p1,p5));
-    assert(Newick::fuzzy_equal_to()(p1,p6));
+    assert(ribi::fuzzy_equal_to()(p1,p2));
+    assert(ribi::fuzzy_equal_to()(p1,p3));
+    assert(ribi::fuzzy_equal_to()(p1,p4));
+    assert(ribi::fuzzy_equal_to()(p1,p5));
+    assert(ribi::fuzzy_equal_to()(p1,p6));
   }
   //Calculate N2
   {
@@ -813,23 +815,23 @@ void ribi::NewickVector::Test() noexcept
     //Calculate probability via testable binary Newicks
     const double p2
       = theta
-      / Newick::CalcDenominator(Newick::StringToNewick(n),theta)
+      / Newick().CalcDenominator(Newick().StringToNewick(n),theta)
       * 6.0
       * ribi::NewickVector::CalculateProbability("((2,1),1)",theta);
-    assert(Newick::fuzzy_equal_to()(p1,p2));
+    assert(ribi::fuzzy_equal_to()(p1,p2));
   }
 
   //Testing the known probabilities
   {
     const std::vector<boost::tuple<std::string,double,double> > v
-      = Newick::GetKnownProbabilities();
+      = Newick().GetKnownProbabilities();
     for(const auto& t:  v)
     {
       const std::string newick_str = boost::get<0>(t);
       const double theta = boost::get<1>(t);
       const double p1 = boost::get<2>(t);
       const double p2 = ribi::NewickVector::CalculateProbability(newick_str,theta);
-      assert(Newick::fuzzy_equal_to()(p1,p2));
+      assert(ribi::fuzzy_equal_to()(p1,p2));
     }
   }
   #endif
@@ -838,12 +840,11 @@ void ribi::NewickVector::Test() noexcept
 
 std::string ribi::NewickVector::ToStr() const
 {
-  assert(Newick::IsNewick(m_v));
-  return Newick::NewickToString(m_v);
+  assert(Newick().IsNewick(m_v));
+  return Newick().NewickToString(m_v);
 }
 
 bool ribi::operator<(const NewickVector& lhs, const NewickVector& rhs)
 {
   return ribi::NewickVector::NewickCompare(lhs.Peek(),rhs.Peek());
 }
-

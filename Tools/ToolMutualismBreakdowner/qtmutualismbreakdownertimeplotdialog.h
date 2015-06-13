@@ -1,15 +1,19 @@
 #ifndef QTMUTUALISMBREAKDOWNERTIMEPLOTDIALOG_H
 #define QTMUTUALISMBREAKDOWNERTIMEPLOTDIALOG_H
 
-#include "parameters.h"
+#include "mutualismbreakdownerparameters.h"
 #include "qthideandshowdialog.h"
 
 struct QwtPlotCurve;
-struct QtMutualismBreakdownerParametersWidget;
 
 namespace Ui {
   class QtMutualismBreakdownerTimePlotDialog;
 }
+
+namespace ribi {
+namespace mb {
+
+struct QtMutualismBreakdownerParametersWidget;
 
 class QtMutualismBreakdownerTimePlotDialog : public ribi::QtHideAndShowDialog
 {
@@ -36,5 +40,8 @@ private:
   static void Test() noexcept;
   #endif
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTMUTUALISMBREAKDOWNERTIMEPLOTDIALOG_H

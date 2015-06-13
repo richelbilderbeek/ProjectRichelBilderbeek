@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <QDialog>
-#include "parameters.h"
+#include "fisherwrighterparameters.h"
 
 namespace Ui {
   class QtFisherWrighterMainDialog;
@@ -12,6 +12,9 @@ namespace Ui {
 struct QtNewickDisplay;
 struct QtDnaSequencesDisplay;
 struct QtBeastDisplay;
+
+namespace ribi {
+namespace fw {
 
 class QtFisherWrighterMainDialog : public QDialog
 {
@@ -38,6 +41,13 @@ private:
   QtNewickDisplay * const m_newick_display;
 
   int ReadNumberOfGenerations() const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
+} //~namespace fw
+} //~namespace ribi
 
 #endif // QTFISHERWRIGHTERMAINDIALOG_H

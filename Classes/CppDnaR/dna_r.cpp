@@ -6,10 +6,13 @@
 #include <iostream>
 #include <future>
 
+#include "RInside.h"
+
 #include "dnasequence.h"
 #include "fileio.h"
+#include "ribi_rinside.h"
 
-DnaR::DnaR()
+ribi::DnaR::DnaR()
 {
 
   #ifndef NDEBUG
@@ -17,7 +20,19 @@ DnaR::DnaR()
   #endif
 }
 
-void DnaR::PlotSequences(
+std::string ribi::DnaR::GetVersion() const noexcept
+{
+  return "1.0";
+}
+
+std::vector<std::string> ribi::DnaR::GetVersionHistory() const noexcept
+{
+  return {
+    "2015-06-13: Version 1.0: started versioning"
+  };
+}
+
+void ribi::DnaR::PlotSequences(
   const std::vector<ribi::DnaSequence>& sequences,
   const std::string& filename
 ) const
@@ -25,15 +40,63 @@ void DnaR::PlotSequences(
   PlotSequencesRinside(sequences,filename);
 }
 
-void DnaR::PlotSequencesRinside(
+void ribi::DnaR::PlotSequencesRinside(
   const std::vector<ribi::DnaSequence>& sequences,
-  const std::string& filename
+  const std::string& png_filename
 ) const
 {
-  PlotSequencesRscript(sequences,filename);
+  assert(!sequences.empty());
+
+  auto& r = ribi::Rinside().Get();
+  r.parseEval("library(ape)");
+
+  //TODO: Test if the user has all required packages
+
+  //Create the R script
+  {
+    std::stringstream s;
+    s
+      << "x <- structure(c("
+    ;
+    std::stringstream container;
+    for (const auto sequence: sequences)
+    {
+      container << "\"" << sequence.GetDescription() << "\",";
+    }
+    for (const auto sequence: sequences)
+    {
+      container << "\"" << sequence.GetSequence() << "\",";
+    }
+    std::string container_str{container.str()};
+    assert(!container_str.empty());
+    container_str.pop_back();
+    s
+      << container_str
+      << "), .Dim = c(" << sequences.size() << "L, 2L))"
+    ;
+    r.parseEval(s.str());
+  }
+  r.parseEval("y <- t(sapply(strsplit(x[,2],\"\"), tolower))");
+  r.parseEval("rownames(y) <- x[,1]");
+  r.parseEval("alignments <- as.DNAbin(y)");
+  r["png_filename"] = png_filename;
+  r.parseEval("png(filename=png_filename)");
+  r.parseEval("image(alignments)");
+  r.parseEval("dev.off()");
+
+  if (!ribi::fileio::FileIo().IsRegularFile(png_filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create temporary PNG file "
+      << "with filename '" << png_filename << "'. "
+      << "Perhaps not all packages (ape) needed are installed? "
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
 }
 
-void DnaR::PlotSequencesRscript(
+void ribi::DnaR::PlotSequencesRscript(
   const std::vector<ribi::DnaSequence>& sequences,
   const std::string& png_filename
 ) const

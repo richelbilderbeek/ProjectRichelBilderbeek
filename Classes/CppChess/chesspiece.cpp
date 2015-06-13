@@ -47,14 +47,14 @@ const std::vector<boost::shared_ptr<ribi::Chess::Move>>
       //assert(!move->IsScore());
       w.push_back(move);
       {
-        const boost::shared_ptr<Move> m = MoveFactory::Create(
+        const boost::shared_ptr<Move> m = MoveFactory().Create(
           move->ToStr() + "+"
         );
         assert(m);
         w.push_back(m);
       }
       {
-        const boost::shared_ptr<Move> m = MoveFactory::Create(
+        const boost::shared_ptr<Move> m = MoveFactory().Create(
           move->ToStr() + "#"
         );
         assert(m);
@@ -189,41 +189,41 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceBishop::GetM
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i)
       );
       {
-        const boost::shared_ptr<Move> m = MoveFactory::Create(
+        const boost::shared_ptr<Move> m = MoveFactory().Create(
           boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr()
         );
         v.push_back(m);
       }
       {
-        const boost::shared_ptr<Move> m = MoveFactory::Create(
+        const boost::shared_ptr<Move> m = MoveFactory().Create(
           boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + "x" + s->ToStr()
         );
         assert(m);
         v.push_back(m);
       }
       {
-        const boost::shared_ptr<Move> m = MoveFactory::Create(
+        const boost::shared_ptr<Move> m = MoveFactory().Create(
           boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr() + "+"
         );
         assert(m);
         v.push_back(m);
       }
       {
-        const boost::shared_ptr<Move> m = MoveFactory::Create(
+        const boost::shared_ptr<Move> m = MoveFactory().Create(
           boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + "x" + s->ToStr() + "+"
         );
         assert(m);
         v.push_back(m);
       }
       {
-        const boost::shared_ptr<Move> m = MoveFactory::Create(
+        const boost::shared_ptr<Move> m = MoveFactory().Create(
           boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr() + "#"
         );
         assert(m);
         v.push_back(m);
       }
       {
-        const boost::shared_ptr<Move> m = MoveFactory::Create(
+        const boost::shared_ptr<Move> m = MoveFactory().Create(
           boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + "x" + s->ToStr() + "#"
         );
         assert(m);
@@ -241,7 +241,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceBishop::GetM
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i)
       );
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       assert(m);
       v.push_back(m);
     }
@@ -255,7 +255,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceBishop::GetM
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -269,7 +269,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceBishop::GetM
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i)
       );
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -374,7 +374,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceKing::GetMov
           Chess::Rank(this->GetSquare()->GetRank().ToInt() + p.second)
         );
 
-        boost::shared_ptr<Move> m = MoveFactory::Create(
+        boost::shared_ptr<Move> m = MoveFactory().Create(
           boost::lexical_cast<std::string>(this->GetNameChar())
           + this->GetSquare()->ToStr()
           + " "
@@ -463,7 +463,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceKnight::GetM
           Chess::Rank(this->GetSquare()->GetRank().ToInt() + p.second)
         );
 
-        boost::shared_ptr<Move> m = MoveFactory::Create(
+        boost::shared_ptr<Move> m = MoveFactory().Create(
           boost::lexical_cast<std::string>(this->GetNameChar())
           + this->GetSquare()->ToStr()
           + " "
@@ -643,7 +643,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PiecePawn::GetMov
         );
 
         //TRACE(p.first); TRACE(p.second);
-        boost::shared_ptr<Move> m = MoveFactory::Create(this->GetSquare()->ToStr()
+        boost::shared_ptr<Move> m = MoveFactory().Create(this->GetSquare()->ToStr()
           + (p.first == 0 ? " " : "x")
           + s->ToStr());
         //TRACE(m);
@@ -727,7 +727,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceQueen::GetMo
         Chess::File(this->GetSquare()->GetFile().ToInt() + 0),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i)
       );
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -740,7 +740,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceQueen::GetMo
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -753,7 +753,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceQueen::GetMo
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + 0));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -767,7 +767,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceQueen::GetMo
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -781,7 +781,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceQueen::GetMo
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + 0),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -795,7 +795,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceQueen::GetMo
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -809,7 +809,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceQueen::GetMo
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + 0));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -822,7 +822,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceQueen::GetMo
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -904,7 +904,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceRook::GetMov
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + 0),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -917,7 +917,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceRook::GetMov
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + 0));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -930,7 +930,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceRook::GetMov
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + 0),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)
@@ -944,7 +944,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceRook::GetMov
       const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + 0));
-      const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
+      const boost::shared_ptr<Move> m = MoveFactory().Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
       v.push_back(m);
     }
     catch (std::exception& e)

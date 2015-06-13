@@ -3,10 +3,10 @@
 #include <cassert>
 #include <iostream>
 
-#include "seagrasscolonisationfunction.h"
+#include "mutualismbreakdownerseagrasscolonisationfunction.h"
 #include "ui_qtseagrasscolonisationfunctionwidget.h"
 
-QtSeagrassColonisationFunctionWidget::QtSeagrassColonisationFunctionWidget(QWidget *parent) :
+ribi::mb::QtSeagrassColonisationFunctionWidget::QtSeagrassColonisationFunctionWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtSeagrassColonisationFunctionWidget)
 {
@@ -16,12 +16,13 @@ QtSeagrassColonisationFunctionWidget::QtSeagrassColonisationFunctionWidget(QWidg
   QObject::connect(ui->box_a,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 }
 
-QtSeagrassColonisationFunctionWidget::~QtSeagrassColonisationFunctionWidget()
+ribi::mb::QtSeagrassColonisationFunctionWidget::~QtSeagrassColonisationFunctionWidget()
 {
   delete ui;
 }
 
-std::shared_ptr<SeagrassColonisationFunction> QtSeagrassColonisationFunctionWidget::GetFunction() const
+std::shared_ptr<ribi::mb::SeagrassColonisationFunction>
+  ribi::mb::QtSeagrassColonisationFunctionWidget::GetFunction() const
 {
   return std::make_shared<SeagrassInvertedExponential>(
     ui->box_a->value(),
@@ -29,12 +30,12 @@ std::shared_ptr<SeagrassColonisationFunction> QtSeagrassColonisationFunctionWidg
   );
 }
 
-void QtSeagrassColonisationFunctionWidget::OnAnyChange()
+void ribi::mb::QtSeagrassColonisationFunctionWidget::OnAnyChange()
 {
   emit signal_parameters_changed();
 }
 
-void QtSeagrassColonisationFunctionWidget::SetFunction(const std::shared_ptr<SeagrassColonisationFunction>& f)
+void ribi::mb::QtSeagrassColonisationFunctionWidget::SetFunction(const std::shared_ptr<SeagrassColonisationFunction>& f)
 {
   assert(f);
   const auto iec = std::dynamic_pointer_cast<SeagrassInvertedExponential>(f);

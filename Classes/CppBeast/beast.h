@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 ///Class to call BEAST2
 struct Beast
 {
@@ -21,6 +23,9 @@ struct Beast
     const std::string png_filename_coalescent_constant,
     const std::string png_filename_popsize
   ) const;
+
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   void Run(
     const std::string& xml_input_filename,
@@ -58,5 +63,7 @@ struct Beast
   static void Test() noexcept;
   #endif
 };
+
+} //~namespace ribi
 
 #endif //RIBI_BEAST_H

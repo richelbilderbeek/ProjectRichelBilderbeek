@@ -5,14 +5,14 @@
 #include <vector>
 
 namespace ribi {
-namespace SearchAndDestroyChess {
+namespace sadc {
 
 struct GameDialog
 {
   GameDialog();
 };
 
-} //~namespace SearchAndDestroyChess
+} //~namespace sadc
 } //~namespace ribi
 
 #endif // SEARCHANDDESTROYCHESSGAMEDIALOG_H

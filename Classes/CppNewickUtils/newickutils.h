@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 ///Wrapper to call newick_utils
 struct NewickUtils
 {
@@ -21,6 +23,9 @@ struct NewickUtils
   ///GetPhylogeny returns the Newick as a phylogeny in text
   std::vector<std::string> GetPhylogeny(const std::string& newick);
 
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
   ///Plot Newick as a phylogeny in a graphics format,
   ///folloing the same interface as PhylogenyR
   void NewickToPhylogeny(
@@ -37,5 +42,7 @@ struct NewickUtils
   static void Test() noexcept;
   #endif
 };
+
+} //~namespace ribi
 
 #endif //RIBI_NEWICKUTILS_H

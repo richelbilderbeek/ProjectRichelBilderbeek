@@ -31,18 +31,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace NewickCpp98 {
+struct NewickCpp98
+{
+  NewickCpp98();
 
-//Functions that do not use the C++0x standard
-std::vector<std::string> CreateValidTrinaryNewicks() noexcept;
-std::vector<boost::tuple<std::string,double,double> > GetKnownProbabilities() noexcept;
-std::vector<std::pair<std::vector<int>,int> > GetSimplerNewicksFrequencyPairs(const std::vector<int>& n);
-std::vector<std::vector<int> > GetRootBranches(const std::vector<int>& n);
-#ifndef NDEBUG
-void Test();
-#endif
+  //Functions that do not use the C++0x standard
+  std::vector<std::string> CreateValidTrinaryNewicks() noexcept;
+  std::vector<boost::tuple<std::string,double,double> > GetKnownProbabilities() noexcept;
+  std::vector<std::pair<std::vector<int>,int> > GetSimplerNewicksFrequencyPairs(const std::vector<int>& n);
+  std::vector<std::vector<int> > GetRootBranches(const std::vector<int>& n);
 
-} //~namespace NewickCpp98
+  private:
+  #ifndef NDEBUG
+  void Test();
+  #endif
+};
 
 } //~namespace ribi
 

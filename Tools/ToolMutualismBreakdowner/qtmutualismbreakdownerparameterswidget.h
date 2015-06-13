@@ -1,12 +1,16 @@
 #ifndef QTMUTUALISMBREAKDOWNERPARAMETERSWIDGET_H
 #define QTMUTUALISMBREAKDOWNERPARAMETERSWIDGET_H
 
-#include "parameters.h"
+#include "mutualismbreakdownerparameters.h"
 #include <QWidget>
+
 
 namespace Ui {
   class QtMutualismBreakdownerParametersWidget;
 }
+
+namespace ribi {
+namespace mb {
 
 struct QtPoisoningFunctionWidget;
 struct QtSeagrassColonisationFunctionWidget;
@@ -52,5 +56,8 @@ private:
   static void Test() noexcept;
   #endif
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTMUTUALISMBREAKDOWNERPARAMETERSWIDGET_H

@@ -4,7 +4,7 @@
 #include <fstream>
 #include <QFileDialog>
 
-#include "sulfideconsumptionfunction.h"
+#include "mutualismbreakdownersulfideconsumptionfunction.h"
 #include "qtpoisoningfunctionwidget.h"
 #include "qtseagrasscolonisationfunctionwidget.h"
 #include "qtseagrassgrowthfunctionwidget.h"
@@ -14,7 +14,7 @@
 #include "qtsulfideproductionfunctionwidget.h"
 #include "ui_qtmutualismbreakdownerparameterswidget.h"
 
-QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
+ribi::mb::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtMutualismBreakdownerParametersWidget),
   m_qtpoisoningwidget{new QtPoisoningFunctionWidget},
@@ -94,12 +94,12 @@ QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(Q
   QObject::connect(m_qtsulfideproductionwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 }
 
-QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget()
+ribi::mb::QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget()
 {
   delete ui;
 }
 
-Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const
+ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerParametersWidget::GetParameters() const
 {
   using boost::units::si::species_per_square_meter;
   using boost::units::si::mole;
@@ -126,7 +126,7 @@ Parameters QtMutualismBreakdownerParametersWidget::GetParameters() const
   return p;
 }
 
-void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters)
+void ribi::mb::QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters)
 {
   ui->box_spatial_delta_t->setValue(parameters.GetSpatialDeltaT().value());
   ui->box_spatial_height->setValue(parameters.GetSpatialHeight());
@@ -145,14 +145,14 @@ void QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& par
   this->m_qtsulfideproductionwidget->SetFunction(parameters.GetSulfideProductionFunction());
 }
 
-void QtMutualismBreakdownerParametersWidget::OnAnyChange()
+void ribi::mb::QtMutualismBreakdownerParametersWidget::OnAnyChange()
 {
   emit signal_parameters_changed();
 }
 
 
 
-void QtMutualismBreakdownerParametersWidget::on_button_save_clicked()
+void ribi::mb::QtMutualismBreakdownerParametersWidget::on_button_save_clicked()
 {
   const std::string filename{
     QFileDialog::getSaveFileName().toStdString()
@@ -162,7 +162,7 @@ void QtMutualismBreakdownerParametersWidget::on_button_save_clicked()
   f << GetParameters();
 }
 
-void QtMutualismBreakdownerParametersWidget::on_button_load_clicked()
+void ribi::mb::QtMutualismBreakdownerParametersWidget::on_button_load_clicked()
 {
   const std::string filename{
     QFileDialog::getOpenFileName().toStdString()

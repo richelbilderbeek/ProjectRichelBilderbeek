@@ -6,11 +6,14 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "RInside.h"
+
 #include "fileio.h"
+#include "ribi_rinside.h"
 
-const std::string Beast::sm_beast_path{"../../../../Programs/BEAST/bin"};
+const std::string ribi::Beast::sm_beast_path{"../../../../Programs/BEAST/bin"};
 
-Beast::Beast()
+ribi::Beast::Beast()
 {
   #ifndef NDEBUG
   Test();
@@ -27,7 +30,7 @@ Beast::Beast()
   }
 }
 
-void Beast::AnalyzeBirthDeath(
+void ribi::Beast::AnalyzeBirthDeath(
   const std::string& log_file,
   const std::string png_filename
 ) const
@@ -35,16 +38,41 @@ void Beast::AnalyzeBirthDeath(
   AnalyzeBirthDeathRinside(log_file,png_filename);
 }
 
-void Beast::AnalyzeBirthDeathRinside(
+void ribi::Beast::AnalyzeBirthDeathRinside(
   const std::string& log_file,
   const std::string png_filename
 ) const
 {
-  AnalyzeBirthDeathRscript(log_file,png_filename);
+  auto& r = ribi::Rinside().Get();
+  ribi::fileio::FileIo f;
+  assert(f.IsRegularFile(log_file));
+
+  r.parseEval("library(ape)");
+  r.parseEval("library(geiger)");
+  r.parseEval("library(phangorn)");
+  r["log_file"] = log_file;
+  r["png_filename"] = png_filename;
+  r.parseEval("data_raw <- read.table(log_file,header = TRUE)");
+  r.parseEval("data <- tail(data_raw,n = nrow(data_raw) * 0.9)");
+  r.parseEval("png(filename=png_filename)");
+  r.parseEval("hist(data$BirthDeath)");
+  r.parseEval("dev.off()");
+
+  if (!f.IsRegularFile(png_filename))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create PNG file "
+      << "with filename '" << png_filename << "'. "
+      << "Perhaps not all packages (ape,geiger,phangorn) needed are installed? "
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
+
 }
 
 
-void Beast::AnalyzeBirthDeathRscript(
+void ribi::Beast::AnalyzeBirthDeathRscript(
   const std::string& log_file,
   const std::string png_filename
 ) const
@@ -110,7 +138,7 @@ void Beast::AnalyzeBirthDeathRscript(
   FileIo().DeleteFile(temp_r_filename);
 }
 
-void Beast::AnalyzeCoalescent(
+void ribi::Beast::AnalyzeCoalescent(
   const std::string& log_file,
   const std::string png_filename_coalescent_constant,
   const std::string png_filename_popsize
@@ -123,20 +151,55 @@ void Beast::AnalyzeCoalescent(
   );
 }
 
-void Beast::AnalyzeCoalescentRinside(
+void ribi::Beast::AnalyzeCoalescentRinside(
   const std::string& log_file,
   const std::string png_filename_coalescent_constant,
   const std::string png_filename_popsize
 ) const
 {
-  AnalyzeCoalescentRscript(
-    log_file,
-    png_filename_coalescent_constant,
-    png_filename_popsize
-  );
+  ribi::fileio::FileIo f;
+  auto& r = ribi::Rinside().Get();
+
+  r.parseEval("library(ape)");
+  r.parseEval("library(geiger)");
+  r.parseEval("library(phangorn)");
+  r["log_file"] = log_file;
+  r["png_filename_popsize"] = png_filename_popsize;
+  r["png_filename_coalescent_constant"] = png_filename_coalescent_constant;
+
+  r.parseEval("data_raw <- read.table(log_file,header = TRUE)");
+  r.parseEval("data <- tail(data_raw,n = nrow(data_raw) * 0.9)");
+  r.parseEval("png(filename=png_filename_popsize)");
+  r.parseEval("hist(data$popSize)");
+  r.parseEval("dev.off()");
+  r.parseEval("png(filename=png_filename_coalescent_constant)");
+  r.parseEval("hist(data$CoalescentConstant)");
+  r.parseEval("dev.off()");
+
+
+  if (!f.IsRegularFile(png_filename_coalescent_constant))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create file "
+      << "with filename '" << png_filename_coalescent_constant << "'. "
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
+  if (!f.IsRegularFile(png_filename_popsize))
+  {
+    std::stringstream s;
+    s << __FILE__ << "(" << __LINE__ << "): "
+      << "Could not create file "
+      << "with filename '" << png_filename_popsize << "'. "
+    ;
+    throw std::runtime_error(s.str().c_str());
+  }
+
+
 }
 
-void Beast::AnalyzeCoalescentRscript(
+void ribi::Beast::AnalyzeCoalescentRscript(
   const std::string& log_file,
   const std::string png_filename_coalescent_constant,
   const std::string png_filename_popsize
@@ -216,7 +279,19 @@ void Beast::AnalyzeCoalescentRscript(
   FileIo().DeleteFile(temp_r_filename);
 }
 
-void Beast::Run(
+std::string ribi::Beast::GetVersion() const noexcept
+{
+  return "1.0";
+}
+
+std::vector<std::string> ribi::Beast::GetVersionHistory() const noexcept
+{
+  return {
+    "2015-06-13: Version 1.0: started versioning"
+  };
+}
+
+void ribi::Beast::Run(
   const std::string& xml_input_filename,
   const std::string& log_output_filename,
   const std::string& trees_output_filename
@@ -240,13 +315,11 @@ void Beast::Run(
   if (fileio.IsRegularFile("alignment.log"))
   {
     fileio.CopyFile("alignment.log",log_output_filename);
-    //fileio.CopyFile("alignment.log",file_basename+".log");
     fileio.DeleteFile("alignment.log");
   }
   if (fileio.IsRegularFile("alignment.trees"))
   {
     fileio.CopyFile("alignment.trees",trees_output_filename);
-    //fileio.CopyFile("alignment.trees",file_basename+".trees");
     fileio.DeleteFile("alignment.trees");
   }
 }

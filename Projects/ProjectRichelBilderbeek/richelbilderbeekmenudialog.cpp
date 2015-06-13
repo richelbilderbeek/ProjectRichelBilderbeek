@@ -32,22 +32,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "asciiartermenudialog.h"
 #include "beerwantermenudialog.h"
 #include "binarynewickvector.h"
+#include "beast.h"
+#include "fisherwrightermenudialog.h"
 #include "boenkenmenudialog.h"
 #include "caesarciphermenudialog.h"
 #include "canvas.h"
-#define INCLUDE_CHESS_20140617
-#ifdef INCLUDE_CHESS_20140617
 #include "chessbitboard.h"
 #include "chessboard.h"
 #include "chessboardwidget.h"
 #include "chessgame.h"
 #include "chesswidget.h"
-#endif // INCLUDE_CHESS_20140617
 #include "codetohtmlmenudialog.h"
-#ifdef INCLUDE_CONCEPTMAP_20140811
 #include "conceptmap.h"
 #include "conceptmapwidget.h"
-#endif // INCLUDE_CONCEPTMAP_20140811
 #include "connectthree.h"
 #include "connectthreemenudialog.h"
 #include "connectthreewidget.h"
@@ -60,6 +57,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "dial.h"
 #include "dialwidget.h"
 #include "dotmatrixchar.h"
+#include "dna_r.h"
+#include "newickutils.h"
+#include "ribi_rinside.h"
+#include "phylogeny_r.h"
 #include "dotmatrixmenudialog.h"
 #include "dotmatrixstring.h"
 #include "dotmatrixtext.h"
@@ -126,9 +127,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "polyfilefrompolygons.h"
 #include "predickadvocatormenudialog.h"
 #include "primeexpertmenudialog.h"
-#ifdef INCLUDE_BRAINWEAVER_20140617
 #include "pvdbmenudialog.h"
-#endif // INCLUDE_BRAINWEAVER_20140617
 #include "pylosmenudialog.h"
 #include "qmakewatchermenudialog.h"
 #include "qmakewatchermenudialog.h"
@@ -160,9 +159,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "rubiksclockdialwidget.h"
 #include "rubiksclockmenudialog.h"
 #include "rubiksclockwidget.h"
-#ifdef INCLUDE_SADD_20140617
 #include "searchanddestroychessmenudialog.h"
-#endif // INCLUDE_SADD_20140617
 #include "secretmessagemenudialog.h"
 #include "shape.h"
 #include "stochasticityinspectormenudialog.h"
@@ -319,6 +316,9 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("Approximator version: " + Approximator<double,double>::GetVersion());
   a.AddLibrary("apfloat version: 2.4.1");
   a.AddLibrary("AsciiArter version: " + AsciiArterMenuDialog().GetVersion());
+
+  a.AddLibrary("BeastR version: " + ribi::Beast().GetVersion());
+
   a.AddLibrary("BeerWanter version: " + BeerWanterMenuDialog().GetVersion());
   a.AddLibrary("Big Integer Library (by Matt McCutchen) version: 2010.04.30");
   a.AddLibrary("BinaryNewickVector version: " + BinaryNewickVector::GetVersion());
@@ -350,6 +350,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("DasWahreSchlagerfest version: " + DasWahreSchlagerfestMenuDialog().GetVersion());
   a.AddLibrary("Dial version: " + Dial::GetVersion());
   a.AddLibrary("DialWidget version: " + DialWidget::GetVersion());
+  a.AddLibrary("DnaR version: " + ribi::DnaR().GetVersion());
   a.AddLibrary("DotMatrixChar version: " + DotMatrixChar::GetVersion());
   a.AddLibrary("DotMatrixString version: " + DotMatrixString::GetVersion());
   a.AddLibrary("DotMatrixText version: " + DotMatrixText::GetVersion());
@@ -396,7 +397,8 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("Music::Scale version: " + Music::Scale::GetVersion());
   a.AddLibrary("MysteryMachine version: " + MysteryMachine::GetVersion());
   a.AddLibrary("MysteryMachineWidget version: " + MysteryMachineWidget::GetVersion());
-  a.AddLibrary("Newick version: " + Newick::GetVersion());
+  a.AddLibrary("Newick version: " + Newick().GetVersion());
+  a.AddLibrary("NewickUtils version: " + ribi::NewickUtils().GetVersion());
   a.AddLibrary("NewickVector version: " + NewickVector::GetVersion());
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
@@ -408,6 +410,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
     )
   );
   assert(plane);
+  a.AddLibrary("PhylogenyR version: " + ribi::PhylogenyR().GetVersion());
   a.AddLibrary("Plane version: " + plane->GetVersion());
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
   a.AddLibrary("PolyFileFromPolygons version: " + PolyFileFromPolygons::GetVersion());
@@ -429,6 +432,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("reversi::Board version: " + reversi::Board::GetVersion());
   a.AddLibrary("reversi::Widget version: " + reversi::Widget::GetVersion());
   a.AddLibrary("RichelBilderbeekProgram version: " + Program::GetVersion());
+  a.AddLibrary("Rinside version: " + ribi::Rinside().GetVersion());
   a.AddLibrary("RubiksClock (class) version: " + ruco::Clock::GetVersion());
   a.AddLibrary("RubiksClock (game) version: " + ruco::MenuDialog().GetVersion());
   a.AddLibrary("RubiksClockDialversion: " + ruco::ClockDial::GetVersion());
@@ -894,6 +898,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
+      case ProgramType::fisherWrighter: p.reset(new ribi::fw::MenuDialog); break;
       case ProgramType::fryskLeareLieder:
       {
         const std::string version = "x.x";
@@ -1560,7 +1565,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
       break;
       case ProgramType::musicTheory: p.reset(new MusicTheoryMenuDialog); break;
-      case ProgramType::mutualismBreakdowner: p.reset(new MutualismBreakdownerMenuDialog); break;
+      case ProgramType::mutualismBreakdowner: p.reset(new ribi::mb::MenuDialog); break;
       case ProgramType::ndsmake:
       {
         const std::string version = "x.x";

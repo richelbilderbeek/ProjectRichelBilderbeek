@@ -42,8 +42,10 @@ namespace ribi {
 
 ///namespace Newick contains general Newick functions,
 ///not using an Newick class
-namespace Newick
+struct Newick
 {
+  Newick();
+
   enum { bracket_open  = -1 };
   enum { bracket_close = -2 };
   enum { comma         = -3 };
@@ -55,6 +57,7 @@ namespace Newick
   ///an exact match is requested. Note that the value of 0.0 cannot
   ///be compared fuzzily.
   //From http://www.richelbilderbeek.nl/CppFuzzy_equal_to.htm
+  /*
   struct fuzzy_equal_to
   {
     fuzzy_equal_to(const double tolerance = 0.01)
@@ -70,7 +73,7 @@ namespace Newick
     }
     const double m_tolerance;
   };
-
+  */
   ///CreateVector creates a std::vector from three arguments
   ///From http://www.richelbilderbeek.nl/CppCreateVector.htm
 
@@ -263,8 +266,8 @@ namespace Newick
     GetSimplerBinaryNewicksFrequencyPairs(
     const std::vector<int>& n) noexcept;
 
-  std::string GetVersion() noexcept;
-  std::vector<std::string> GetVersionHistory() noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///InspectInvalidNewick writes the cause of the Newick invalidity
   ///to the std::ostream.
@@ -421,7 +424,7 @@ namespace Newick
   }
 }
 
-} //~namespace Newick
+};
 
 } //~namespace ribi
 

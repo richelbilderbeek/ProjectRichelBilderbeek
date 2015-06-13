@@ -121,13 +121,13 @@ void ribi::QtTestNewickVectorDialog::OnDemoTick() noexcept
   //Get any Newick
   if ((std::rand() >> 4) % 2)
   {
-    const std::vector<std::string> v = Newick::CreateValidNewicks();
+    const std::vector<std::string> v = Newick().CreateValidNewicks();
     const std::string s = v[std::rand() % v.size()];
     ui->edit_newick->setText(QString(s.c_str()));
   }
   else
   {
-    const std::vector<std::string> v = Newick::CreateInvalidNewicks();
+    const std::vector<std::string> v = Newick().CreateInvalidNewicks();
     const std::string s = v[std::rand() % v.size()];
     ui->edit_newick->setText(QString(s.c_str()));
   }

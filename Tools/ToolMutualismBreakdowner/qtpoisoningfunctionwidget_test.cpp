@@ -6,10 +6,10 @@
 #include <iostream>
 
 #include "fileio.h"
-#include "parameters.h"
-#include "poisoningfunction.h"
+#include "mutualismbreakdownerparameters.h"
+#include "mutualismbreakdownerpoisoningfunction.h"
 
-void QtPoisoningFunctionWidget::Test() noexcept
+void ribi::mb::QtPoisoningFunctionWidget::Test() noexcept
 {
   {
     static bool is_tested{false};

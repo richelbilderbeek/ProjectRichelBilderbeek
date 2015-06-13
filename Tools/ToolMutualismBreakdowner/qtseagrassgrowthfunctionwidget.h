@@ -8,8 +8,10 @@ namespace Ui {
   class QtSeagrassGrowthFunctionWidget;
 }
 
-struct SeagrassGrowthFunction;
+namespace ribi {
+namespace mb {
 
+struct SeagrassGrowthFunction;
 
 class QtSeagrassGrowthFunctionWidget : public QWidget
 {
@@ -30,5 +32,8 @@ private:
 private slots:
   void OnAnyChange();
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTSEAGRASSGROWTHFUNCTIONWIDGET_H

@@ -68,12 +68,12 @@ std::string ribi::Container::ContainerToStr(
 }
 
 
-std::string ribi::Container::GetVersion() noexcept
+std::string ribi::Container::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-std::vector<std::string> ribi::Container::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Container::GetVersionHistory() const noexcept
 {
   return {
     "2014-xx-xx: Version 1.0: initial version",

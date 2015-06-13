@@ -16,27 +16,27 @@
 #pragma GCC diagnostic pop
 
 
-ribi::QtMutualismBreakdownerMenuDialog::QtMutualismBreakdownerMenuDialog(QWidget *parent) :
+ribi::mb::QtMutualismBreakdownerMenuDialog::QtMutualismBreakdownerMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtMutualismBreakdownerMenuDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtMutualismBreakdownerMenuDialog::~QtMutualismBreakdownerMenuDialog() noexcept
+ribi::mb::QtMutualismBreakdownerMenuDialog::~QtMutualismBreakdownerMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtMutualismBreakdownerMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::mb::QtMutualismBreakdownerMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) close();
 }
 
 
-void ribi::QtMutualismBreakdownerMenuDialog::on_button_about_clicked()
+void ribi::mb::QtMutualismBreakdownerMenuDialog::on_button_about_clicked()
 {
-  About a = MutualismBreakdownerMenuDialog().GetAbout();
+  About a = ribi::mb::MenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
@@ -46,32 +46,35 @@ void ribi::QtMutualismBreakdownerMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtMutualismBreakdownerMenuDialog::on_button_quit_clicked()
+void ribi::mb::QtMutualismBreakdownerMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
 
 #ifndef NDEBUG
-void ribi::QtMutualismBreakdownerMenuDialog::Test() noexcept
+void ribi::mb::QtMutualismBreakdownerMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    ribi::mb::MenuDialog().GetAbout();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtMutualismBreakdownerMenuDialog();
 }
 #endif
 
-void ribi::QtMutualismBreakdownerMenuDialog::on_button_start_time_clicked()
+void ribi::mb::QtMutualismBreakdownerMenuDialog::on_button_start_time_clicked()
 {
   QtMutualismBreakdownerTimePlotDialog d;
   ShowChild(&d);
 
 }
 
-void ribi::QtMutualismBreakdownerMenuDialog::on_button_start_spatial_clicked()
+void ribi::mb::QtMutualismBreakdownerMenuDialog::on_button_start_spatial_clicked()
 {
   QtMutualismBreakdownerSpatialPlotDialog d;
   ShowChild(&d);

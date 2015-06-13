@@ -3,18 +3,22 @@
 
 #include <vector>
 
-#include "seagrasssystem.h"
-#include "parameters.h"
+#include "mutualismbreakdownerseagrasssystem.h"
+#include "mutualismbreakdownerparameters.h"
 #include "qthideandshowdialog.h"
-#include "spatialsimulation.h"
+#include "mutualismbreakdownerspatialsimulation.h"
 struct QwtPlotCurve;
-struct QtMutualismBreakdownerParametersWidget;
-struct QtMutualismBreakdownerSpatialWidget;
-struct SpatialSimulation;
 
 namespace Ui {
   class QtMutualismBreakdownerSpatialPlotDialog;
 }
+
+namespace ribi {
+namespace mb {
+
+struct SpatialSimulation;
+struct QtMutualismBreakdownerParametersWidget;
+struct QtMutualismBreakdownerSpatialWidget;
 
 class QtMutualismBreakdownerSpatialPlotDialog : public ribi::QtHideAndShowDialog
 {
@@ -44,5 +48,8 @@ private:
   std::unique_ptr<Simulation> m_simulation;
   void DisplayGrid();
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTMUTUALISMBREAKDOWNERSPATIALPLOTDIALOG_H

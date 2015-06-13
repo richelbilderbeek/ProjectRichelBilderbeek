@@ -86,8 +86,8 @@ double ribi::TwoDigitNewick::CalculateProbability(
   const std::string& newick_str,
   const double theta)
 {
-  assert(Newick::IsUnaryNewick(Newick::StringToNewick(newick_str))
-      || Newick::IsBinaryNewick(Newick::StringToNewick(newick_str)));
+  assert(Newick().IsUnaryNewick(Newick().StringToNewick(newick_str))
+      || Newick().IsBinaryNewick(Newick().StringToNewick(newick_str)));
   ribi::TwoDigitNewick::SetTheta(theta);
   const BinaryNewickVector n(newick_str);
   const TwoDigitNewickIndexer i(n,theta);
@@ -171,21 +171,23 @@ void ribi::TwoDigitNewick::SetTheta(const double theta)
   sm_theta = theta;
 }
 
+#ifndef NDEBUG
 void ribi::TwoDigitNewick::Test() noexcept
 {
   ribi::TwoDigitNewick::SetTheta(10.0);
-  const std::vector<std::string> v = Newick::CreateValidNewicks();
+  const std::vector<std::string> v = Newick().CreateValidNewicks();
   for(const std::string& s: v)
   {
-    if ( Newick::CalcComplexity(Newick::StringToNewick(s))
+    if ( Newick().CalcComplexity(Newick().StringToNewick(s))
       >  BigInteger(1000000) )
     {
       continue;
     }
-    if (Newick::IsBinaryNewick(Newick::StringToNewick(s)))
+    if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
     {
       BinaryNewickVector n(s);
       TwoDigitNewickIndexer(n,10.0);
     }
   }
 }
+#endif // NDEBUG

@@ -2,14 +2,4 @@
 
 #include "chessgame.h"
 
-
-namespace SearchAndDestroyChess {
-
-GameDialog::GameDialog()
-{
-
-}
-
-
-
-} //~namespace SearchAndDestroyChess
+ribi::sadc::GameDialog::GameDialog() {}

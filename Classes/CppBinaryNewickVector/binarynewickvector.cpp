@@ -47,17 +47,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::BinaryNewickVector::BinaryNewickVector(const std::string& s) noexcept
-  : m_v{Newick::StringToNewick(s)}
+  : m_v{Newick().StringToNewick(s)}
 {
   #ifndef NDEBUG
   Test();
   #endif
 
-  assert(Newick::IsUnaryNewick(Newick::StringToNewick(s))
-      || Newick::IsBinaryNewick(Newick::StringToNewick(s)));
+  assert(Newick().IsUnaryNewick(Newick().StringToNewick(s))
+      || Newick().IsBinaryNewick(Newick().StringToNewick(s)));
 
   //Can I add these as well?
-  //assert(Newick::IsUnaryNewick(m_v) || Newick::IsBinaryNewick(m_v));
+  //assert(Newick().IsUnaryNewick(m_v) || Newick().IsBinaryNewick(m_v));
   //assert(m_v.empty() || Newick::IsNewick(m_v));
 }
 
@@ -68,32 +68,32 @@ ribi::BinaryNewickVector::BinaryNewickVector(const std::vector<int>& v) noexcept
   Test();
   #endif
 
-  assert(Newick::IsUnaryNewick(m_v) || Newick::IsBinaryNewick(m_v));
-  assert(m_v.empty() || Newick::IsNewick(m_v));
+  assert(Newick().IsUnaryNewick(m_v) || Newick().IsBinaryNewick(m_v));
+  assert(m_v.empty() || Newick().IsNewick(m_v));
 }
 
 double ribi::BinaryNewickVector::CalcDenominator(const double theta) const noexcept
 {
-  return Newick::CalcDenominator(Peek(),theta);
+  return Newick().CalcDenominator(Peek(),theta);
 }
 
 const BigInteger ribi::BinaryNewickVector::CalcNumOfCombinations() const noexcept
 {
-  assert(Newick::IsNewick(m_v));
-  return Newick::CalcNumOfCombinationsBinary(m_v);
+  assert(Newick().IsNewick(m_v));
+  return Newick().CalcNumOfCombinationsBinary(m_v);
 }
 
 const BigInteger ribi::BinaryNewickVector::CalcNumOfSymmetries() const noexcept
 {
-  assert(Newick::IsNewick(m_v));
-  return Newick::CalcNumOfSymmetriesBinary(m_v);
+  assert(Newick().IsNewick(m_v));
+  return Newick().CalcNumOfSymmetriesBinary(m_v);
 }
 
 double ribi::BinaryNewickVector::CalcProbabilitySimpleNewick(const double theta) const noexcept
 {
-  assert(Newick::IsSimple(m_v));
+  assert(Newick().IsSimple(m_v));
   assert(theta > 0.0);
-  return Newick::CalcProbabilitySimpleNewick(m_v,theta);
+  return Newick().CalcProbabilitySimpleNewick(m_v,theta);
 }
 
 double ribi::BinaryNewickVector::CalculateProbability(
@@ -101,9 +101,9 @@ double ribi::BinaryNewickVector::CalculateProbability(
   const double theta
 ) noexcept
 {
-  assert(Newick::IsNewick(newick_str));
-  assert(Newick::IsUnaryNewick(Newick::StringToNewick(newick_str))
-      || Newick::IsBinaryNewick(Newick::StringToNewick(newick_str)));
+  assert(Newick().IsNewick(newick_str));
+  assert(Newick().IsUnaryNewick(Newick().StringToNewick(newick_str))
+      || Newick().IsBinaryNewick(Newick().StringToNewick(newick_str)));
   assert(theta > 0.0);
   BinaryNewickVector newick(newick_str);
   NewickStorage<BinaryNewickVector> storage(newick);
@@ -154,7 +154,7 @@ double ribi::BinaryNewickVector::CalculateProbabilityInternal(
         #endif
         typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
         const std::vector<NewickFrequencyPair> newick_freqs
-          = Newick::GetSimplerNewicksFrequencyPairs(n.Peek());
+          = Newick().GetSimplerNewicksFrequencyPairs(n.Peek());
         for(const NewickFrequencyPair& p: newick_freqs)
         {
           const int frequency = p.second;
@@ -213,8 +213,8 @@ double ribi::BinaryNewickVector::CalculateProbabilityInternal(
 
 std::vector<ribi::BinaryNewickVector> ribi::BinaryNewickVector::GetSimplerNewicks() const noexcept
 {
-  assert(Newick::IsNewick(m_v));
-  const std::vector<std::vector<int> > v = Newick::GetSimplerBinaryNewicks(m_v);
+  assert(Newick().IsNewick(m_v));
+  const std::vector<std::vector<int> > v = Newick().GetSimplerBinaryNewicks(m_v);
   std::vector<BinaryNewickVector> w(std::begin(v),std::end(v));
   return w;
 }
@@ -222,9 +222,9 @@ std::vector<ribi::BinaryNewickVector> ribi::BinaryNewickVector::GetSimplerNewick
 std::pair<ribi::BinaryNewickVector,ribi::BinaryNewickVector>
   ribi::BinaryNewickVector::GetRootBranches() const noexcept
 {
-  assert(Newick::IsNewick(m_v));
+  assert(Newick().IsNewick(m_v));
   std::pair<std::vector<int>,std::vector<int> > p
-    = Newick::GetRootBranchesBinary(m_v);
+    = Newick().GetRootBranchesBinary(m_v);
   return p;
 }
 
@@ -283,7 +283,7 @@ bool ribi::BinaryNewickVector::IsOpenBracketLeft(const int pos) const noexcept
 
 bool ribi::BinaryNewickVector::IsSimple() const noexcept
 {
-  return Newick::IsSimple(m_v);
+  return Newick().IsSimple(m_v);
 }
 
 //void ribi::BinaryNewickVector::SetTheta(const double theta)
@@ -316,10 +316,10 @@ ribi::BinaryNewickVector ribi::BinaryNewickVector::LoseBrackets(const int x, con
   std::vector<int> v_copy = m_v;
 
   const int bracket_open_pos
-    = FindPosBefore(m_v,Newick::bracket_open,i);
+    = Newick().FindPosBefore(m_v,ribi::Newick::bracket_open,i);
   assert(bracket_open_pos > -1);
   const int bracket_close_pos
-    = FindPosAfter(m_v,Newick::bracket_close,i);
+    = Newick().FindPosAfter(m_v,Newick::bracket_close,i);
   assert(bracket_close_pos < Size());
   const int sz = Size();
   const int sz_lose = bracket_close_pos - bracket_open_pos;
@@ -444,14 +444,14 @@ void ribi::BinaryNewickVector::Test() noexcept
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check that well-formed Newicks are confirmed valid
   {
-    const auto v = Newick::CreateValidNewicks();
+    const auto v = Newick().CreateValidNewicks();
     for(const auto& s: v)
     {
       TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
-        Newick::CheckNewick(s);
+        Newick().CheckNewick(s);
       }
       catch (std::exception& e)
       {
@@ -461,9 +461,9 @@ void ribi::BinaryNewickVector::Test() noexcept
       //Check if valid newicks (as std::vector) are marked as valid
       try
       {
-        const std::vector<int> n = Newick::StringToNewick(s);
-        Newick::CheckNewick(n);
-        assert(Newick::IsNewick(n));
+        const std::vector<int> n = Newick().StringToNewick(s);
+        Newick().CheckNewick(n);
+        assert(Newick().IsNewick(n));
       }
       catch (std::exception& e)
       {
@@ -472,8 +472,8 @@ void ribi::BinaryNewickVector::Test() noexcept
           << e.what();
       }
       //Check std::string conversion (from BinaryNewickVector(std::string))
-      if ( !Newick::IsUnaryNewick(Newick::StringToNewick(s))
-        && !Newick::IsBinaryNewick(Newick::StringToNewick(s)))
+      if ( !Newick().IsUnaryNewick(Newick().StringToNewick(s))
+        && !Newick().IsBinaryNewick(Newick().StringToNewick(s)))
       {
         continue;
       }
@@ -491,7 +491,7 @@ void ribi::BinaryNewickVector::Test() noexcept
       //Check std::string conversion (from BinaryNewickVector(std::vector<int>))
       try
       {
-        const std::vector<int> n = Newick::StringToNewick(s);
+        const std::vector<int> n = Newick().StringToNewick(s);
         BinaryNewickVector temp(n);
         assert(s == temp.ToStr());
       }
@@ -501,25 +501,25 @@ void ribi::BinaryNewickVector::Test() noexcept
           << " (BinaryNewickVector from std::vector<int>): "
           << e.what();
       }
-      assert(Newick::IsNewick(s));
+      assert(Newick().IsNewick(s));
       //Check the simpler Newicks
       {
         const std::vector<std::vector<int> > simpler
-          = Newick::GetSimplerBinaryNewicks(
-            Newick::StringToNewick(s));
+          = Newick().GetSimplerBinaryNewicks(
+            Newick().StringToNewick(s));
         for(const std::vector<int> simple: simpler)
         {
-          assert(Newick::IsNewick(simple));
-          Newick::CheckNewick(simple);
+          assert(Newick().IsNewick(simple));
+          Newick().CheckNewick(simple);
         }
       }
       //Check the branches, only of binary Newicks
-      if (Newick::IsBinaryNewick(Newick::StringToNewick(s)))
+      if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
       {
         const std::pair<std::vector<int>,std::vector<int> > b
-            = Newick::GetRootBranchesBinary(Newick::StringToNewick(s));
-        assert(Newick::IsNewick(b.first));
-        assert(Newick::IsNewick(b.second));
+            = Newick().GetRootBranchesBinary(Newick().StringToNewick(s));
+        assert(Newick().IsNewick(b.first));
+        assert(Newick().IsNewick(b.second));
       }
     }
   }
@@ -528,8 +528,8 @@ void ribi::BinaryNewickVector::Test() noexcept
 
 std::string ribi::BinaryNewickVector::ToStr() const noexcept
 {
-  assert(Newick::IsNewick(m_v));
-  return Newick::NewickToString(m_v);
+  assert(Newick().IsNewick(m_v));
+  return Newick().NewickToString(m_v);
 }
 
 bool ribi::operator<(const BinaryNewickVector& lhs, const BinaryNewickVector& rhs) noexcept

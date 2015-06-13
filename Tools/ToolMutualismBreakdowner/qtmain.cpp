@@ -1,8 +1,8 @@
 #include <QApplication>
 #include "qtmutualismbreakdownermenudialog.h"
-#include "poisoningfunction.h"
-#include "sulfideconsumptionfunction.h"
-#include "parameters.h"
+#include "mutualismbreakdownerpoisoningfunction.h"
+#include "mutualismbreakdownersulfideconsumptionfunction.h"
+#include "mutualismbreakdownerparameters.h"
 #include "units.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
 #include "qtmutualismbreakdownertimeplotdialog.h"
@@ -51,15 +51,15 @@
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtMutualismBreakdownerTimePlotDialog();
+  ribi::mb::QtMutualismBreakdownerTimePlotDialog();
   //QtMutualismBreakdownerEquilibriumDialog();
   #ifndef NDEBUG
   ribi::units::TestTime();
   ribi::units::Test();
   #endif
-  InvertedExponentialPoisoning();
-  Parameters();
-  ribi::QtMutualismBreakdownerMenuDialog w;
+  ribi::mb::InvertedExponentialPoisoning();
+  ribi::mb::Parameters();
+  ribi::mb::QtMutualismBreakdownerMenuDialog w;
   w.show();
   return a.exec();
 }

@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "binarynewickvector.h"
 #include "testtimer.h"
+#include "fuzzy_equal_to.h"
 #include "newick.h"
 #include "newickvector.h"
 #include "twodigitnewick.h"
@@ -55,7 +56,7 @@ ribi::TestNewickVectorDialog::TestNewickVectorDialog() noexcept
   Test();
   #endif
   #ifndef NDEBUG
-  Newick::Test();
+  Newick().Test();
   BinaryNewickVector::Test();
   #endif
 }
@@ -77,7 +78,7 @@ void ribi::TestNewickVectorDialog::Analyse() noexcept
 
   AnalyseRootBranches();
 
-  if (Newick::IsBinaryNewick(m_newick->Peek()))
+  if (Newick().IsBinaryNewick(m_newick->Peek()))
   {
     m_n_combinations = bigIntegerToString(m_newick->CalcNumOfCombinations());
     m_n_symmetries = bigIntegerToString(m_newick->CalcNumOfSymmetries());
@@ -95,7 +96,7 @@ void ribi::TestNewickVectorDialog::Analyse() noexcept
 void ribi::TestNewickVectorDialog::AnalyseArity() noexcept
 {
   //Check if simple Newick
-  if (Newick::IsSimple(m_newick->Peek()))
+  if (Newick().IsSimple(m_newick->Peek()))
   {
     m_text.push_back("Simple Newick: Yes");
     m_text.push_back("Ewens probability: "
@@ -107,7 +108,7 @@ void ribi::TestNewickVectorDialog::AnalyseArity() noexcept
     m_text.push_back("Simple Newick: No");
   }
   //Check if binary Newick
-  if (Newick::IsBinaryNewick(m_newick->Peek()))
+  if (Newick().IsBinaryNewick(m_newick->Peek()))
   {
     m_text.push_back("Binary Newick: Yes");
   }
@@ -115,7 +116,7 @@ void ribi::TestNewickVectorDialog::AnalyseArity() noexcept
   {
     m_text.push_back("Binary Newick: No");
   }
-  if (Newick::IsTrinaryNewick(m_newick->Peek()))
+  if (Newick().IsTrinaryNewick(m_newick->Peek()))
   {
     m_text.push_back("Trinary Newick: Yes");
   }
@@ -131,7 +132,7 @@ void ribi::TestNewickVectorDialog::AnalyseCalculation() noexcept
 
   typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
   const std::vector<NewickFrequencyPair> simpler
-    = Newick::GetSimplerNewicksFrequencyPairs(m_newick->Peek());
+    = Newick().GetSimplerNewicksFrequencyPairs(m_newick->Peek());
   //Collect cooeficients
   std::vector<double> coefficients;
   for(const NewickFrequencyPair& p: simpler)
@@ -170,7 +171,7 @@ void ribi::TestNewickVectorDialog::AnalyseCalculation() noexcept
       "N'"
       + boost::lexical_cast<std::string>(i+1)
       + " = "
-      + Newick::NewickToString(simpler[i].first));
+      + Newick().NewickToString(simpler[i].first));
   }
   m_text.push_back(" ");
   m_text.push_back("For t = "
@@ -239,19 +240,19 @@ void ribi::TestNewickVectorDialog::AnalyseCalculation() noexcept
     );
     const double p_at_once = m_newick->CalculateProbability(m_newick->ToStr(),m_theta);
     m_text.push_back(
-      std::string(Newick::fuzzy_equal_to()(p_by_hand,p_at_once)
+      std::string(ribi::fuzzy_equal_to()(p_by_hand,p_at_once)
         ? "       = "
         : "       != ")
       + boost::lexical_cast<std::string>(p_at_once)
       + " (calculated at once by NewickVector)"
     );
     if (m_compare
-      && (  Newick::IsUnaryNewick(m_newick->Peek())
-         || Newick::IsBinaryNewick(m_newick->Peek()) ) )
+      && (  Newick().IsUnaryNewick(m_newick->Peek())
+         || Newick().IsBinaryNewick(m_newick->Peek()) ) )
     {
       const double p_two_digit_newick = TwoDigitNewick::CalculateProbability(m_newick->ToStr(),m_theta);
       m_text.push_back(
-        std::string(Newick::fuzzy_equal_to()(p_two_digit_newick,p_at_once)
+        std::string(ribi::fuzzy_equal_to()(p_two_digit_newick,p_at_once)
           ? "       = "
           : "       != ")
         + boost::lexical_cast<std::string>(p_two_digit_newick)
@@ -264,17 +265,17 @@ void ribi::TestNewickVectorDialog::AnalyseCalculation() noexcept
 
 void ribi::TestNewickVectorDialog::AnalyseRootBranches() noexcept
 {
-  if(!Newick::IsUnaryNewick(m_newick->Peek()))
+  if(!Newick().IsUnaryNewick(m_newick->Peek()))
   {
     std::string text = "(X,Y) =\n";
     const std::vector<std::vector<int> > b
-      = Newick::GetRootBranches(m_newick->Peek());
+      = Newick().GetRootBranches(m_newick->Peek());
     try
     {
       for(const std::vector<int>& c: b)
       {
-        Newick::CheckNewick(c);
-        text+="  " + Newick::NewickToString(c);
+        Newick().CheckNewick(c);
+        text+="  " + Newick().NewickToString(c);
       }
     }
     catch (std::exception& e)
@@ -290,7 +291,7 @@ void ribi::TestNewickVectorDialog::AnalyseSimplerNewicks() noexcept
 {
   typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
   const std::vector<NewickFrequencyPair> simpler
-    = Newick::GetSimplerNewicksFrequencyPairs(m_newick->Peek());
+    = Newick().GetSimplerNewicksFrequencyPairs(m_newick->Peek());
   std::string text = "Simpler Newicks:\n";
   for(const NewickFrequencyPair& simple_pair: simpler)
   {
@@ -298,9 +299,9 @@ void ribi::TestNewickVectorDialog::AnalyseSimplerNewicks() noexcept
     const int f = simple_pair.second;
     try
     {
-      Newick::CheckNewick(simple);
+      Newick().CheckNewick(simple);
       text+="  ";
-      text+=Newick::NewickToString(simple);
+      text+=Newick().NewickToString(simple);
       text+=" (from f = ";
       text+=boost::lexical_cast<std::string>(f);
       text+=")\n";
@@ -328,7 +329,7 @@ void ribi::TestNewickVectorDialog::AutoCalculate() noexcept
 
   const BigInteger max_complexity
     = stringToBigInteger(m_max_complexity_str);
-  if (Newick::CalcComplexity(Newick::StringToNewick(m_newick_str))
+  if (Newick().CalcComplexity(Newick().StringToNewick(m_newick_str))
     > max_complexity)
   {
     m_text.push_back("Newick too complex to auto-calculate. Press 'Calculate' or increase the value for auto-calculate");
@@ -363,13 +364,13 @@ bool ribi::TestNewickVectorDialog::CheckMaxComplexity() noexcept
 
 bool ribi::TestNewickVectorDialog::CheckNewick() noexcept
 {
-  if (!Newick::IsNewick(m_newick_str))
+  if (!Newick().IsNewick(m_newick_str))
   {
     m_text.push_back("Valid Newick: No");
     //No Newick, why not?
     try
     {
-      Newick::CheckNewick(m_newick_str);
+      Newick().CheckNewick(m_newick_str);
     }
     catch (std::exception& e)
     {

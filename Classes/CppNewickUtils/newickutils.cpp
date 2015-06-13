@@ -10,9 +10,9 @@
 #include "trace.h"
 #include "phylogeny_r.h"
 
-const std::string NewickUtils::sm_newick_utils_path{"../../Libraries/newick_utils/src"};
+const std::string ribi::NewickUtils::sm_newick_utils_path{"../../Libraries/newick_utils/src"};
 
-NewickUtils::NewickUtils()
+ribi::NewickUtils::NewickUtils()
 {
   #ifndef NDEBUG
   Test();
@@ -30,7 +30,7 @@ NewickUtils::NewickUtils()
 
 }
 
-void NewickUtils::Display(const std::string& newick)
+void ribi::NewickUtils::Display(const std::string& newick)
 {
   const std::string executable{sm_newick_utils_path + "/nw_display"};
   assert(ribi::fileio::FileIo().IsRegularFile(executable) && "Checked in constructor");
@@ -42,12 +42,12 @@ void NewickUtils::Display(const std::string& newick)
   }
 }
 
-std::string NewickUtils::DropExtinct(const std::string& newick) const
+std::string ribi::NewickUtils::DropExtinct(const std::string& newick) const
 {
   return PhylogenyR().DropExtinct(newick);
 }
 
-std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
+std::vector<std::string> ribi::NewickUtils::GetPhylogeny(const std::string& newick)
 {
   const std::string executable{sm_newick_utils_path + "/nw_display"};
   assert(ribi::fileio::FileIo().IsRegularFile(executable) && "Checked in constructor");
@@ -73,7 +73,19 @@ std::vector<std::string> NewickUtils::GetPhylogeny(const std::string& newick)
   return v;
 }
 
-void NewickUtils::NewickToPhylogeny(
+std::string ribi::NewickUtils::GetVersion() const noexcept
+{
+  return "1.0";
+}
+
+std::vector<std::string> ribi::NewickUtils::GetVersionHistory() const noexcept
+{
+  return {
+    "2015-06-13: Version 1.0: started versioning"
+  };
+}
+
+void ribi::NewickUtils::NewickToPhylogeny(
   std::string newick,
   const std::string& filename,
   const GraphicsFormat graphics_format,

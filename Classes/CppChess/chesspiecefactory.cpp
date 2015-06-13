@@ -79,7 +79,7 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
 {
   if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory().CreateFromMove exception: move must not be empty");
   const boost::shared_ptr<Move> move {
-    MoveFactory::Create(s)
+    MoveFactory().Create(s)
   };
   #ifdef TODO_ISSUE_176
   assert(move);

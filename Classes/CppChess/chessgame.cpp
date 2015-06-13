@@ -12,6 +12,7 @@
 #include "chessbitboard.h"
 #include "chessboard.h"
 #include "chessboardfactory.h"
+#include "chesssquarefactory.h"
 #include "chessfile.h"
 #include "chessmove.h"
 #include "chessmovefactory.h"
@@ -25,7 +26,7 @@
 #pragma GCC diagnostic pop
 
 ribi::Chess::Game::Game()
-  : m_board(BoardFactory::Create()),
+  : m_board(BoardFactory().Create()),
     m_moves{},
     m_score{}
 {
@@ -69,8 +70,8 @@ int ribi::Chess::Game::CanDoGameUntil(const std::vector<std::string>& moves)
   for (int i=0; i!=n_moves; ++i)
   {
     const std::string s = moves[i];
-    if (!game.CanDoMove(MoveFactory::Create(s))) return i;
-    game.DoMove(Chess::MoveFactory::Create(s));
+    if (!game.CanDoMove(MoveFactory().Create(s))) return i;
+    game.DoMove(Chess::MoveFactory().Create(s));
   }
   return n_moves;
 }
@@ -159,12 +160,20 @@ void ribi::Chess::Game::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    Chess::File(0);
+    Chess::Rank(3);
+    Chess::SquareFactory();
+    Chess::Score("1-0");
+    Chess::MoveFactory();
+    Chess::BoardFactory();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
-    {
-      if (verbose) { TRACE("Testing Game"); }
-      Chess::Game();
-    }
+  {
+    if (verbose) { TRACE("Testing Game"); }
+    Chess::Game();
+  }
 }
 #endif
 

@@ -3,10 +3,10 @@
 #include <cassert>
 #include <iostream>
 
-#include "poisoningfunction.h"
+#include "mutualismbreakdownerpoisoningfunction.h"
 #include "ui_qtpoisoningfunctionwidget.h"
 
-QtPoisoningFunctionWidget::QtPoisoningFunctionWidget(QWidget *parent) :
+ribi::mb::QtPoisoningFunctionWidget::QtPoisoningFunctionWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtPoisoningFunctionWidget)
 {
@@ -20,12 +20,13 @@ QtPoisoningFunctionWidget::QtPoisoningFunctionWidget(QWidget *parent) :
   QObject::connect(ui->box_max,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 }
 
-QtPoisoningFunctionWidget::~QtPoisoningFunctionWidget()
+ribi::mb::QtPoisoningFunctionWidget::~QtPoisoningFunctionWidget()
 {
   delete ui;
 }
 
-std::shared_ptr<PoisoningFunction> QtPoisoningFunctionWidget::GetFunction() const noexcept
+std::shared_ptr<ribi::mb::PoisoningFunction>
+  ribi::mb::QtPoisoningFunctionWidget::GetFunction() const noexcept
 {
   return std::make_shared<InvertedExponentialPoisoning>(
     ui->box_a->value(),
@@ -34,12 +35,12 @@ std::shared_ptr<PoisoningFunction> QtPoisoningFunctionWidget::GetFunction() cons
   );
 }
 
-void QtPoisoningFunctionWidget::OnAnyChange()
+void ribi::mb::QtPoisoningFunctionWidget::OnAnyChange()
 {
   emit signal_parameters_changed();
 }
 
-void QtPoisoningFunctionWidget::SetFunction(const std::shared_ptr<PoisoningFunction>& f) noexcept
+void ribi::mb::QtPoisoningFunctionWidget::SetFunction(const std::shared_ptr<PoisoningFunction>& f) noexcept
 {
   assert(f);
   const auto iec = std::dynamic_pointer_cast<InvertedExponentialPoisoning>(f);

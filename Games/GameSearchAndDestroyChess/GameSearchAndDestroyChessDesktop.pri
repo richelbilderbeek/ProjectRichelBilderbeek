@@ -1,8 +1,5 @@
 include(../../Games/GameSearchAndDestroyChess/GameSearchAndDestroyChessConsole.pri)
 
-RESOURCES += \
-    ../../Games/GameSearchAndDestroyChess/GameSearchAndDestroyChess.qrc
-
 FORMS += \
     ../../Games/GameSearchAndDestroyChess/qtsearchanddestroychessmenudialog.ui \
     ../../Games/GameSearchAndDestroyChess/qtsearchanddestroychessgamedialog.ui

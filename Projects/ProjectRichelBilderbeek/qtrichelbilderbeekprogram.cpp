@@ -48,6 +48,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtgaborfiltermenudialog.h"
 #include "qtgraycodermenudialog.h"
 #include "qthistogramequalizationermenudialog.h"
+#include "qtfisherwrightermaindialog.h"
 //#include "qthometrainermenudialog.h"
 #include "qttestpolyfilemenudialog.h"
 #include "qttestpolyfilefrompolygonsmenudialog.h"
@@ -94,6 +95,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsimtoppredatorpreymenudialog.h"
 #include "qtstateobservermenudialog.h"
 #include "qtstylesheetsettermenudialog.h"
+#include "qtfisherwrightermaindialog.h"
 #include "qtsurfaceplottermenudialog.h"
 #include "qttestaboutmenudialog.h"
 #include "qttestapproximatormenudialog.h"
@@ -193,6 +195,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::everythingToPiecesShooter: break;
     case ProgramType::filterOperationer: p = new QtFilterOperationerMenuDialog; break;
     case ProgramType::filterOperationerVcl: break;
+    case ProgramType::fisherWrighter: break; //p = new ribi::fw::QtFisherWrighterMainDialog; break;
     case ProgramType::fryskLeareLieder: break;
     case ProgramType::functionPlotter: p = new QtFunctionPlotterMenuDialog; break;
     case ProgramType::functionPlotterVcl: break;
@@ -237,7 +240,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::multiEncrangerVcl: break;
     case ProgramType::muscaDomestica: break;
     case ProgramType::musicTheory: p = new QtMusicTheoryMenuDialog; break;
-    case ProgramType::mutualismBreakdowner: p = new QtMutualismBreakdownerMenuDialog; break;
+    case ProgramType::mutualismBreakdowner: p = new ribi::mb::QtMutualismBreakdownerMenuDialog; break;
     case ProgramType::ndsmake: break;
     case ProgramType::paperRockScissors: p = new QtPaperRockScissorsMenuDialog; break;
     case ProgramType::paperRockScissorsVcl: break;

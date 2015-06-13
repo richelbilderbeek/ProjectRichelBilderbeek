@@ -8,8 +8,10 @@ namespace Ui {
   class QtSeagrassColonisationFunctionWidget;
 }
 
-struct SeagrassColonisationFunction;
+namespace ribi {
+namespace mb {
 
+struct SeagrassColonisationFunction;
 
 class QtSeagrassColonisationFunctionWidget : public QWidget
 {
@@ -30,5 +32,8 @@ private:
 private slots:
   void OnAnyChange();
 };
+
+} //~namespace mb
+} //~namespace ribi
 
 #endif // QTSEAGRASSCOLONISATIONFUNCTIONWIDGET_H

@@ -10,7 +10,7 @@
 #include "RInside.h"
 
 #ifndef NDEBUG
-void PhylogenyR::Test() noexcept
+void ribi::PhylogenyR::Test() noexcept
 {
   {
     static bool is_tested{false};
@@ -39,7 +39,7 @@ void PhylogenyR::Test() noexcept
     p.NewickToPhylogeny(
       newick,
       temp_svg_filename,
-      PhylogenyR::GraphicsFormat::svg
+      ribi::PhylogenyR::GraphicsFormat::svg
     );
     assert(f.IsRegularFile(temp_svg_filename));
     //Clean up
@@ -54,7 +54,7 @@ void PhylogenyR::Test() noexcept
     p.NewickToPhylogeny(
       newick,
       temp_png_filename,
-      PhylogenyR::GraphicsFormat::png
+      ribi::PhylogenyR::GraphicsFormat::png
     );
     assert(f.IsRegularFile(temp_png_filename));
     //Clean up

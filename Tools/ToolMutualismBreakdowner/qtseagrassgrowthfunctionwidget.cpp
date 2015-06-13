@@ -3,10 +3,10 @@
 #include <cassert>
 #include <iostream>
 
-#include "seagrassgrowthfunction.h"
+#include "mutualismbreakdownerseagrassgrowthfunction.h"
 #include "ui_qtseagrassgrowthfunctionwidget.h"
 
-QtSeagrassGrowthFunctionWidget::QtSeagrassGrowthFunctionWidget(QWidget *parent) :
+ribi::mb::QtSeagrassGrowthFunctionWidget::QtSeagrassGrowthFunctionWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtSeagrassGrowthFunctionWidget)
 {
@@ -17,12 +17,13 @@ QtSeagrassGrowthFunctionWidget::QtSeagrassGrowthFunctionWidget(QWidget *parent) 
   QObject::connect(ui->box_seagrass_stress_rate,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 }
 
-QtSeagrassGrowthFunctionWidget::~QtSeagrassGrowthFunctionWidget()
+ribi::mb::QtSeagrassGrowthFunctionWidget::~QtSeagrassGrowthFunctionWidget()
 {
   delete ui;
 }
 
-std::shared_ptr<SeagrassGrowthFunction> QtSeagrassGrowthFunctionWidget::GetFunction() const
+std::shared_ptr<ribi::mb::SeagrassGrowthFunction>
+  ribi::mb::QtSeagrassGrowthFunctionWidget::GetFunction() const
 {
   return std::make_shared<SeagrassStressedLogisticGrowth>(
     ui->box_seagrass_carrying_capacity->value() * boost::units::si::species_per_square_meter,
@@ -31,12 +32,14 @@ std::shared_ptr<SeagrassGrowthFunction> QtSeagrassGrowthFunctionWidget::GetFunct
   );
 }
 
-void QtSeagrassGrowthFunctionWidget::OnAnyChange()
+void ribi::mb::QtSeagrassGrowthFunctionWidget::OnAnyChange()
 {
   emit signal_parameters_changed();
 }
 
-void QtSeagrassGrowthFunctionWidget::SetFunction(const std::shared_ptr<SeagrassGrowthFunction>& f)
+void ribi::mb::QtSeagrassGrowthFunctionWidget::SetFunction(
+  const std::shared_ptr<SeagrassGrowthFunction>& f
+)
 {
   assert(f);
   const auto iec = std::dynamic_pointer_cast<SeagrassStressedLogisticGrowth>(f);

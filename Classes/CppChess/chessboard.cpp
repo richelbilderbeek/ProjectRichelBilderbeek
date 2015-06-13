@@ -195,9 +195,10 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
       return false;
     }
     #ifndef NDEBUG
+    #ifdef FIX_ISSUE_240
     {
       assert(p->CanDoMove(move));
-      boost::shared_ptr<Board> b(BoardFactory::DeepCopy(*this));
+      boost::shared_ptr<Board> b(BoardFactory().DeepCopy(*this));
       assert(*b == *this);
       const ConstPiecePtr q = b->GetPiece(move->From());
       assert(p);
@@ -213,7 +214,8 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
       assert(q->CanDoMove(move));
 
     }
-    #endif
+    #endif // FIX_ISSUE_240
+    #endif // NDEBUG
     assert(move->Piece().get());
     if (move->Piece()->GetNameChar() != p->GetNameChar())
     {
@@ -289,7 +291,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
   }
   //Check if move puts opponent in check
   {
-    boost::shared_ptr<Board> b(BoardFactory::DeepCopy(*this));
+    boost::shared_ptr<Board> b(BoardFactory().DeepCopy(*this));
     if (move->From())
     {
       assert(move->From());
@@ -327,7 +329,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
 
   //Check if move will put current player in check
   {
-    boost::shared_ptr<Board> b(BoardFactory::DeepCopy(*this));
+    boost::shared_ptr<Board> b(BoardFactory().DeepCopy(*this));
     if (move->From())
     {
       assert(move->From());
@@ -366,7 +368,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
   //Check for move ending in checkmate
   {
     //Do move on cloned chessboard
-    boost::shared_ptr<Board> b(BoardFactory::DeepCopy(*this));
+    boost::shared_ptr<Board> b(BoardFactory().DeepCopy(*this));
     if (move->From())
     {
       assert(move->From());
@@ -376,7 +378,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     else
     {
       assert(CanStrToCastling(move->GetStr()));
-      boost::shared_ptr<Board> b(BoardFactory::DeepCopy(*this));
+      boost::shared_ptr<Board> b(BoardFactory().DeepCopy(*this));
       const Castling castling = StrToCastling(move->GetStr());
       assert(b->CanDoCastling(castling,player));
       b->DoCastling(castling,player);
@@ -532,7 +534,7 @@ void ribi::Chess::Board::DoCastling(const Castling castling, const Player player
     const PiecePtr king = GetPiece(king_from_square);
     assert(king);
     const boost::shared_ptr<Chess::Move> castling_move
-      = Chess::MoveFactory::Create(CastlingToStr(castling));
+      = Chess::MoveFactory().Create(CastlingToStr(castling));
     assert(castling_move);
     king->DoMove(castling_move);
   }
@@ -547,7 +549,7 @@ void ribi::Chess::Board::DoCastling(const Castling castling, const Player player
     const PiecePtr rook = GetPiece(rook_square);
     assert(rook);
     const boost::shared_ptr<Chess::Move> castling_move
-      = Chess::MoveFactory::Create(CastlingToStr(castling));
+      = Chess::MoveFactory().Create(CastlingToStr(castling));
     assert(castling_move);
     rook->DoMove(castling_move);
   }
@@ -665,7 +667,7 @@ ribi::Chess::Board::ConstPiecePtr
 
 ribi::Chess::Board::ConstPieces ribi::Chess::Board::GetPieces() const
 {
-  return AddConst(this->GetPieces());
+  return AddConst(m_pieces);
   /*
   ConstPieces v;
   std::transform(m_pieces.begin(),m_pieces.end(),std::inserter(v,v.begin()),
@@ -702,7 +704,7 @@ ribi::Chess::Board::Pieces ribi::Chess::Board::GetInitialSetup()
       }
       {
         //Royalty
-        const Chess::Rank rank = color == Color::white ? Rank(1) : Rank(8);
+        const Chess::Rank rank = color == Color::white ? Rank(0) : Rank(7);
         {
           const boost::shared_ptr<Square> s(SquareFactory().Create(Chess::File("a"),rank));
           assert(s);
@@ -940,7 +942,7 @@ bool ribi::Chess::Board::IsCheckmate(const Player player) const
   const int cnt = std::count_if(moves.begin(),moves.end(),
     [this,player](const boost::shared_ptr<Move> move)
     {
-      boost::shared_ptr<Board> b(BoardFactory::DeepCopy(*this));
+      boost::shared_ptr<Board> b(BoardFactory().DeepCopy(*this));
       assert(move);
       assert(b->CanDoMove(move,player));
       //if (!b.CanDoMove(move,player)) return false;

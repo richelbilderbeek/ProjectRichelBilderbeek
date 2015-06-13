@@ -97,8 +97,8 @@ ribi::About ribi::TestPolyFileMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestPolyFile.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("Container version: " + Container::GetVersion());
-  a.AddLibrary("ribi::fileio::FileIo version: " + fileio::FileIo::GetVersion());
+  a.AddLibrary("Container version: " + Container().GetVersion());
+  a.AddLibrary("ribi::fileio::FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
 

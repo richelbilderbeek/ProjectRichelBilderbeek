@@ -13,7 +13,17 @@
 #include "chesspiecefactory.h"
 #pragma GCC diagnostic pop
 
-boost::shared_ptr<ribi::Chess::Board> ribi::Chess::BoardFactory::Create(const Chess::Board::Pieces& pieces)
+#include "testtimer.h"
+
+ribi::Chess::BoardFactory::BoardFactory()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+
+boost::shared_ptr<ribi::Chess::Board> ribi::Chess::BoardFactory::Create(const Chess::Board::Pieces& pieces) const
 {
   const boost::shared_ptr<Chess::Board> p
     = boost::make_shared<Chess::Board>(pieces);
@@ -21,7 +31,7 @@ boost::shared_ptr<ribi::Chess::Board> ribi::Chess::BoardFactory::Create(const Ch
   return p;
 }
 
-boost::shared_ptr<ribi::Chess::Board> ribi::Chess::BoardFactory::DeepCopy(const Board& board)
+boost::shared_ptr<ribi::Chess::Board> ribi::Chess::BoardFactory::DeepCopy(const Board& board) const
 {
   const Chess::Board::ConstPieces original = board.GetPieces();
   Chess::Board::Pieces pieces;
@@ -39,3 +49,18 @@ boost::shared_ptr<ribi::Chess::Board> ribi::Chess::BoardFactory::DeepCopy(const 
   assert(b);
   return b;
 }
+
+#ifndef NDEBUG
+void ribi::Chess::BoardFactory::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    BoardFactory().Create();
+  }
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif

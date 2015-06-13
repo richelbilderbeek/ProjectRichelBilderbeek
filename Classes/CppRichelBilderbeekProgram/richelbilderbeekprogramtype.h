@@ -55,6 +55,7 @@ enum class ProgramType
   everythingToPiecesShooter,
   filterOperationer,
   filterOperationerVcl,
+  fisherWrighter,
   fryskLeareLieder,
   functionPlotter,
   functionPlotterVcl,

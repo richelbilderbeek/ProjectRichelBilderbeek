@@ -73,8 +73,8 @@ ribi::QtTestTwoDigitNewickMainDialog::QtTestTwoDigitNewickMainDialog(QWidget *pa
 
   //Run some test cases
   #ifndef NDEBUG
-  Newick::Test();
-  TwoDigitNewick::Test();
+  Newick();
+  TwoDigitNewick();
   #endif
 
   #ifndef NDEBUG
@@ -98,12 +98,12 @@ void ribi::QtTestTwoDigitNewickMainDialog::OnAnyChange()
   ui->edit_text->clear();
   //Check Newicks
   const std::string newick_str = ui->edit_newick->text().toStdString();
-  if (!Newick::IsNewick(newick_str))
+  if (!Newick().IsNewick(newick_str))
   {
     ui->edit_text->appendPlainText("Not a valid Newick");
     return;
   }
-  if (!Newick::IsBinaryNewick(Newick::StringToNewick(newick_str)))
+  if (!Newick().IsBinaryNewick(Newick().StringToNewick(newick_str)))
   {
     ui->edit_text->appendPlainText("Not a binary Newick");
     return;
@@ -127,7 +127,7 @@ void ribi::QtTestTwoDigitNewickMainDialog::OnAnyChange()
 
 
   ///\warning: theta must be set before NewickIndexer is created
-  TwoDigitNewick::SetTheta(theta);
+  TwoDigitNewick().SetTheta(theta);
   const BinaryNewickVector n(newick_str);
   const TwoDigitNewickIndexer i(n,theta);
 
@@ -257,7 +257,7 @@ void ribi::QtTestTwoDigitNewickMainDialog::OnAboutClick()
 
   about.AddLibrary("BigInt: version 2010.04.30");
   about.AddLibrary("BinaryNewickVector: version " + BinaryNewickVector::GetVersion());
-  about.AddLibrary("TwoDigitNewick: version " + TwoDigitNewick::GetVersion());
+  about.AddLibrary("TwoDigitNewick: version " + TwoDigitNewick().GetVersion());
 
   QtAboutDialog d(about);
   this->ShowChild(&d);

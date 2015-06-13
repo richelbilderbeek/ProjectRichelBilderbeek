@@ -63,6 +63,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::everythingToPiecesShooter: p.reset(new ProgramEverythingToPiecesShooter); break;
     case ProgramType::filterOperationer: p.reset(new ProgramFilterOperationer); break;
     case ProgramType::filterOperationerVcl: p.reset(new ProgramFilterOperationerVcl); break;
+    case ProgramType::fisherWrighter: p.reset(new ProgramFisherWrighter); break;
     case ProgramType::fryskLeareLieder: p.reset(new ProgramFryskLeareLieder); break;
     case ProgramType::functionPlotter: p.reset(new ProgramFunctionPlotter); break;
     case ProgramType::functionPlotterVcl: p.reset(new ProgramFunctionPlotterVcl); break;
