@@ -120,7 +120,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "GameDasWahreSchlagerfest","<a href=\"G$ameD$asW$ahreS$chlagerf$est.htm\">G$ameD$asW$ahreS$chlagerf$est</a>" },
     { "SortedBinaryNewickVector","<a href=\"C$ppS$ortedB$inaryN$ewickV$ector.htm\">S$ortedB$inaryN$ewickV$ector</a>" },
     { "ToolKTouchLectureCreator","<a href=\"T$oolK$T$ouchL$ectureC$reator.htm\">T$oolK$T$ouchL$ectureC$reator</a>" },
-    { "ToolMutualismBreakd$owner","<a href=\"T$oolM$utualismB$reakd$owner.htm\">T$oolM$utualismB$reakd$owner</a>" },
+    { "ToolMutualismBreakdowner","<a href=\"T$oolM$utualismB$reakd$owner.htm\">T$oolM$utualismB$reakd$owner</a>" },
     { "ToolStaircaseCardCreator","<a href=\"T$oolS$tairc$aseC$ardC$reator.htm\">T$oolS$tairc$aseC$ardC$reator</a>" },
     { "ToolTestQtCreatorProFile","<a href=\"T$oolT$estQ$tC$reatorP$roF$ile.htm\">T$oolT$estQ$tCr$eatorP$roFile</a>" },
     { "ToolTestSelectFileDialog","<a href=\"T$oolT$estS$electF$ileD$ialog.htm\">T$oolT$estS$electF$ileD$ialog</a>" },

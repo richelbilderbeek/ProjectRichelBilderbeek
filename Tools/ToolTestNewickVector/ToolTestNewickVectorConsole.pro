@@ -11,14 +11,9 @@ include(../../Classes/CppNewick/CppNewick.pri)
 include(../../Classes/CppNewickVector/CppNewickVector.pri)
 include(../../Classes/CppTwoDigitNewick/CppTwoDigitNewick.pri)
 
-#include(TestNewickVectorConsole.pri)
+include(../../Tools/ToolTestNewickVector/ToolTestNewickVectorConsole.pri)
 
-SOURCES += \
-  testnewickvectordialog.cpp \
-  main.cpp
-
-HEADERS += \
-  testnewickvectordialog.h \
+SOURCES += main.cpp
 
 
 

@@ -71,12 +71,6 @@ struct TestNewickVectorDialog
   ///Check if theta is valid
   bool CheckTheta() noexcept;
 
-  public:
-
-  static About GetAbout() noexcept;
-  static std::string GetVersion() noexcept;
-  static std::vector<std::string> GetVersionHistory() noexcept;
-
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

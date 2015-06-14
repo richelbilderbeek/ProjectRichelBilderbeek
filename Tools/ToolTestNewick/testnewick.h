@@ -38,12 +38,12 @@ struct TestNewick
 
   public:
   static const std::vector<boost::shared_ptr<TestNewick> > CreateTests(const int flags);
-  static const int m_flag_all;
-  static const int m_flag_binary_newick_vector;
-  static const int m_flag_many_digit_newick;
-  static const int m_flag_newick_vector;
-  static const int m_flag_sorted_binary_newick_vector;
-  static const int m_flag_two_digit_newick;
+  static const int m_flag_all{63};
+  static const int m_flag_binary_newick_vector{1};
+  static const int m_flag_many_digit_newick{2};
+  static const int m_flag_newick_vector{4};
+  static const int m_flag_sorted_binary_newick_vector{8};
+  static const int m_flag_two_digit_newick{16};
 };
 
 struct TestBinaryNewickVector : public TestNewick

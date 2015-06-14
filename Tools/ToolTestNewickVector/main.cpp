@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestNewickVector, GUI tool to test NewickVector
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     return 1;
   }
   const std::string newick = argv[1];
-  if (!ribi::Newick::IsNewick(newick))
+  if (!ribi::Newick().IsNewick(newick))
   {
     std::cout
       << "Invalid Newick format. Use for example:\n"

@@ -445,12 +445,14 @@ void ribi::BinaryNewickVector::Test() noexcept
     Newick();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+
   //Check that well-formed Newicks are confirmed valid
   {
     const auto v = Newick().CreateValidNewicks();
     for(const auto& s: v)
     {
-      TRACE("I must be accepted: " + s);
+      if (verbose) { TRACE("I must be accepted: " + s); }
       //Check if valid newicks (as std::string) are marked as valid
       try
       {

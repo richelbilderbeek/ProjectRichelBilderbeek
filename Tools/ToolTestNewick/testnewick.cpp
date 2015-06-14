@@ -38,12 +38,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const int ribi::TestNewick::m_flag_all = 63;
-const int ribi::TestNewick::m_flag_binary_newick_vector = 1;
-const int ribi::TestNewick::m_flag_many_digit_newick = 2;
-const int ribi::TestNewick::m_flag_newick_vector = 4;
-const int ribi::TestNewick::m_flag_sorted_binary_newick_vector = 8;
-const int ribi::TestNewick::m_flag_two_digit_newick = 16;
 
 ribi::TestNewick::TestNewick()
   : m_time(0.0),
@@ -128,7 +122,7 @@ void ribi::TestBinaryNewickVector::Calculate(const std::string& newick_str, cons
 
 bool ribi::TestManyDigitNewick::CanCalculate(const std::string& newick_str, const double theta)
 {
-  TRACE("TODO");
+  //TestManyDigitNewick gives incorrect results!
   return false;
 
   if (theta <= 0.0) return false;

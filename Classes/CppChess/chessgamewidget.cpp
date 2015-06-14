@@ -2,9 +2,6 @@
 
 #include <cassert>
 #include <string>
-#ifdef MXE_SUPPORTS_THREADS
-#include <thread>
-#endif
 
 #include "chessboard.h"
 #include "chessgame.h"
@@ -13,6 +10,7 @@
 #include "chesssquareselector.h"
 #include "chessmovefactory.h"
 #include "geometry.h"
+#include "testtimer.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -134,102 +132,98 @@ void ribi::Chess::GameWidget::Test() noexcept
 {
   //Testing Chess::Piece exactly once
   {
-    static bool tested = false;
-    if (tested) return;
-    tested = true;
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
+  #ifdef FIX_ISSUE_240
+  {
     {
+      const boost::shared_ptr<Chess::Game> game
+        = boost::make_shared<Chess::Game>();
+      const boost::shared_ptr<Chess::ChessWidget> w(
+        new GameWidget(game,Geometry().CreateRect(0,0,100,100)));
+      w->ClickPixel(-1,-1);
+      w->ClickPixel(1000,1000);
+    }
+    {
+      const boost::shared_ptr<Chess::Game> game
+        = boost::make_shared<Chess::Game>();
+      const boost::shared_ptr<Chess::GameWidget> widget(
+        new Chess::GameWidget(game,Geometry().CreateRect(0,0,100,100)));
+      assert(widget->GetSelector()->GetCursor()->GetFile() == Chess::File("a"));
+      assert(widget->GetSelector()->GetCursor()->GetRank() == Chess::Rank("1"));
+      assert(!widget->GetSelector()->GetSelected());
+      //Check clicking: cursor will always follow
+      for (int x=0;x!=8;++x)
       {
-        const boost::shared_ptr<Chess::Game> game
-          = boost::make_shared<Chess::Game>();
-        const boost::shared_ptr<Chess::ChessWidget> w(
-          new GameWidget(game,Geometry().CreateRect(0,0,100,100)));
-        w->ClickPixel(-1,-1);
-        w->ClickPixel(1000,1000);
-      }
-      {
-        const boost::shared_ptr<Chess::Game> game
-          = boost::make_shared<Chess::Game>();
-        const boost::shared_ptr<Chess::GameWidget> widget(
-          new Chess::GameWidget(game,Geometry().CreateRect(0,0,100,100)));
-        assert(widget->GetSelector()->GetCursor()->GetFile() == Chess::File("a"));
-        assert(widget->GetSelector()->GetCursor()->GetRank() == Chess::Rank("1"));
-        assert(!widget->GetSelector()->GetSelected());
-        //Check clicking: cursor will always follow
-        for (int x=0;x!=8;++x)
-        {
-          for (int y=0;y!=8;++y)
-          {
-            const boost::shared_ptr<Square> square {
-              SquareFactory().Create(
-                File(x),Rank(y)
-              )
-            };
-            widget->Click(square);
-            assert(*widget->GetSelector()->GetCursor() == *square);
-          }
-        }
-        //Check selection: Board::Widget will select any Chess::Piece, Board::Game only those of the active player
-        //Click on own piece, selecting it
+        for (int y=0;y!=8;++y)
         {
           const boost::shared_ptr<Square> square {
-            SquareFactory().Create("b1")
+            SquareFactory().Create(
+              File(x),Rank(y)
+            )
           };
           widget->Click(square);
+          assert(*widget->GetSelector()->GetCursor() == *square);
         }
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("b1"));
-        assert(widget->GetSelector()->GetSelected());
-        assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("b1"));
-
-        //Click on empty square, selected piece remains
-        widget->Click(SquareFactory().Create("d4"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("d4"));
-        assert(widget->GetSelector()->GetSelected());
-        assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("b1"));
-
-        //Click on selected square, undoing selection
-        widget->Click(SquareFactory().Create("b1"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("b1"));
-        assert(!widget->GetSelector()->GetSelected());
-
-        //Click on enemy square, Chess::Board will select it
-        widget->Click(SquareFactory().Create("h8"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("g8"));
-        assert(!widget->GetSelector()->GetSelected());
-
-        //Playing e7-e5 must succeed for a Board, must fail for a Game
-        assert( game->GetBoard()->GetPiece(SquareFactory().Create("e7")));
-        assert(!game->GetBoard()->GetPiece(SquareFactory().Create("e5")));
-        widget->Click(SquareFactory().Create("e7"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e7"));
-        assert(!widget->GetSelector()->GetSelected());
-
-        widget->Click(SquareFactory().Create("e5"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e5"));
-        assert(!widget->GetSelector()->GetSelected());
-        assert( game->GetBoard()->GetPiece(SquareFactory().Create("e7")));
-        assert(!game->GetBoard()->GetPiece(SquareFactory().Create("e5")));
-
-        //Playing e2-e4 must succeed for both Board and Game
-        assert( game->GetBoard()->GetPiece(SquareFactory().Create("e2")));
-        assert(!game->GetBoard()->GetPiece(SquareFactory().Create("e4")));
-        widget->Click(SquareFactory().Create("e2"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e2"));
-        assert(widget->GetSelector()->GetSelected());
-        assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("e2"));
-
-        widget->Click(SquareFactory().Create("e4"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e4"));
-        assert(!widget->GetSelector()->GetSelected());
-        assert(!game->GetBoard()->GetPiece(SquareFactory().Create("e2")));
-        assert( game->GetBoard()->GetPiece(SquareFactory().Create("e4")));
       }
+      //Check selection: Board::Widget will select any Chess::Piece, Board::Game only those of the active player
+      //Click on own piece, selecting it
+      {
+        const boost::shared_ptr<Square> square {
+          SquareFactory().Create("b1")
+        };
+        widget->Click(square);
+      }
+      assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("b1"));
+      assert(widget->GetSelector()->GetSelected());
+      assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("b1"));
+
+      //Click on empty square, selected piece remains
+      widget->Click(SquareFactory().Create("d4"));
+      assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("d4"));
+      assert(widget->GetSelector()->GetSelected());
+      assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("b1"));
+
+      //Click on selected square, undoing selection
+      widget->Click(SquareFactory().Create("b1"));
+      assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("b1"));
+      assert(!widget->GetSelector()->GetSelected());
+
+      //Click on enemy square, Chess::Board will select it
+      widget->Click(SquareFactory().Create("h8"));
+      assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("g8"));
+      assert(!widget->GetSelector()->GetSelected());
+
+      //Playing e7-e5 must succeed for a Board, must fail for a Game
+      assert( game->GetBoard()->GetPiece(SquareFactory().Create("e7")));
+      assert(!game->GetBoard()->GetPiece(SquareFactory().Create("e5")));
+      widget->Click(SquareFactory().Create("e7"));
+      assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e7"));
+      assert(!widget->GetSelector()->GetSelected());
+
+      widget->Click(SquareFactory().Create("e5"));
+      assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e5"));
+      assert(!widget->GetSelector()->GetSelected());
+      assert( game->GetBoard()->GetPiece(SquareFactory().Create("e7")));
+      assert(!game->GetBoard()->GetPiece(SquareFactory().Create("e5")));
+
+      //Playing e2-e4 must succeed for both Board and Game
+      assert( game->GetBoard()->GetPiece(SquareFactory().Create("e2")));
+      assert(!game->GetBoard()->GetPiece(SquareFactory().Create("e4")));
+      widget->Click(SquareFactory().Create("e2"));
+      assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e2"));
+      assert(widget->GetSelector()->GetSelected());
+      assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("e2"));
+
+      widget->Click(SquareFactory().Create("e4"));
+      assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e4"));
+      assert(!widget->GetSelector()->GetSelected());
+      assert(!game->GetBoard()->GetPiece(SquareFactory().Create("e2")));
+      assert( game->GetBoard()->GetPiece(SquareFactory().Create("e4")));
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
+  }
   #endif
 }

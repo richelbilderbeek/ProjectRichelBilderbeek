@@ -98,7 +98,7 @@ void ribi::TestManyDigitNewickMenuDialog::Test() noexcept
   }
   {
     NewickVector::Test();
-    ManyDigitNewick::Test();
+    ManyDigitNewick();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

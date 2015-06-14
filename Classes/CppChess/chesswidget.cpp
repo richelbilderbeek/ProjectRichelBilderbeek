@@ -2,10 +2,6 @@
 
 #include <cassert>
 
-#ifdef MXE_SUPPORTS_THREADS
-#include <thread>
-#endif
-
 #include "chessboard.h"
 #include "chesspiece.h"
 #include "chessgame.h"
@@ -14,6 +10,7 @@
 #include "chesssquareselector.h"
 #include "geometry.h"
 #include "trace.h"
+#include "testtimer.h"
 
 ribi::Chess::ChessWidget::ChessWidget(const Rect& geometry)
   : m_signal_graphic_changed{},
@@ -95,20 +92,11 @@ void ribi::Chess::ChessWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
-    {
-      {
-        boost::shared_ptr<Widget > w(new Widget);
-        w->SetGeometry(Geometry().CreateRect(0.0,0.0,100.0,100.0));
-      }
-      //Nothing to test
-    }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.join();
-  #endif
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  {
+    boost::shared_ptr<Widget > w(new Widget);
+    w->SetGeometry(Geometry().CreateRect(0.0,0.0,100.0,100.0));
+  }
+  //Nothing to test
 
 }

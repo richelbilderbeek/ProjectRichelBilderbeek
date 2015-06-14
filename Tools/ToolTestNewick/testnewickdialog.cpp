@@ -134,12 +134,6 @@ void ribi::TestNewickDialog::DoCalculate(
   const std::string& newick_str,
   const std::string& theta_str)
 {
-  m_table.resize(0);
-  if (!Newick().IsNewick(newick_str))
-  {
-    m_text = "Invalid Newick";
-    return;
-  }
   try
   {
     boost::lexical_cast<double>(theta_str);
@@ -149,8 +143,21 @@ void ribi::TestNewickDialog::DoCalculate(
     m_text = "Invalid theta";
     return;
   }
-  const std::vector<int> newick = Newick().StringToNewick(newick_str);
   const double theta = boost::lexical_cast<double>(theta_str);
+  DoCalculate(newick_str,theta);
+}
+
+void ribi::TestNewickDialog::DoCalculate(
+  const std::string& newick_str,
+  const double theta)
+{
+  m_table.resize(0);
+  if (!Newick().IsNewick(newick_str))
+  {
+    m_text = "Invalid Newick";
+    return;
+  }
+  const std::vector<int> newick = Newick().StringToNewick(newick_str);
   const std::vector<boost::shared_ptr<TestNewick> > tests = TestNewick::CreateTests(m_types);
 
   //Do all valid tests

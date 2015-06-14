@@ -38,6 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "binarynewickvector.h"
 #include "testnewickvectordialog.h"
+#include "testnewickvectormenudialog.h"
 #include "newick.h"
 #include "testtimer.h"
 #include "newickvector.h"
@@ -151,7 +152,7 @@ void ribi::QtTestNewickVectorDialog::on_button_demo_clicked() noexcept
 
 void ribi::QtTestNewickVectorDialog::on_button_about_clicked() noexcept
 {
-  QtAboutDialog d(TestNewickVectorDialog::GetAbout());
+  QtAboutDialog d(TestNewickVectorMenuDialog().GetAbout());
   d.exec();
 }
 
@@ -182,6 +183,10 @@ void ribi::QtTestNewickVectorDialog::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    TestNewickVectorDialog();
+    TestNewickVectorMenuDialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

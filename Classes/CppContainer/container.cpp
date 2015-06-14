@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "container.h"
 
 #include <boost/algorithm/string/split.hpp>
+#include <boost/numeric/conversion/cast.hpp>
 
 #include "fuzzy_equal_to.h"
 #include "testtimer.h"
@@ -48,19 +49,20 @@ ribi::Container::Container()
 }
 
 bool ribi::Container::AllAboutEqual(
-  const std::vector<double>& /* v */,
-  const double /* tolerance */) const noexcept
+  const std::vector<double>& v,
+  const double tolerance) const noexcept
 {
-  return true;
-  /*
   assert(!v.empty());
+  fuzzy_equal_to f(tolerance);
+  const double first_value{v[0]};
+
   return std::count_if(
-    v.begin(),
-    v.end(),
-    std::bind2nd(fuzzy_equal_to(tolerance),v[0]))
-    == boost::numeric_cast<int>(v.size()
-  );
-  */
+    std::begin(v),
+    std::end(v),
+    [f,first_value](const double x) { return f(first_value,x); }
+  )
+    == boost::numeric_cast<int>(v.size())
+  ;
 }
 
 std::string ribi::Container::Concatenate(const std::vector<std::string>& v, const std::string& seperator) const noexcept
@@ -197,14 +199,11 @@ void ribi::Container::Test() noexcept
       assert(v[2]=="ccc");
     }
   }
-  #ifdef FIX_ISSUE_279
   //AllAboutEqual
   {
     std::vector<double> v = { 0.9, 1.0, 1.1 };
     assert(c.AllAboutEqual(v,1.0));
     assert(!c.AllAboutEqual(v,0.01));
   }
-  assert(!"Fixed #279");
-  #endif
 }
 #endif

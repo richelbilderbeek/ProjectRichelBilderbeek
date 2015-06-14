@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/lexical_cast.hpp>
 
+#include "fileio.h"
 #include "binarynewickvector.h"
 #include "testtimer.h"
 #include "fuzzy_equal_to.h"
@@ -54,10 +55,6 @@ ribi::TestNewickVectorDialog::TestNewickVectorDialog() noexcept
 {
   #ifndef NDEBUG
   Test();
-  #endif
-  #ifndef NDEBUG
-  Newick().Test();
-  BinaryNewickVector::Test();
   #endif
 }
 
@@ -398,38 +395,6 @@ bool ribi::TestNewickVectorDialog::CheckTheta() noexcept
   return true;
 }
 
-ribi::About ribi::TestNewickVectorDialog::GetAbout() noexcept
-{
-  About about(
-    "Richel Bilderbeek",
-    "TestNewickVector",
-    "tool to test the NewickVector class",
-    "at the 25th of April 2011",
-    "2011-2014",
-    "http://www.richelbilderbeek.nl/ToolTestNewickVector.htm",
-    GetVersion(),
-    GetVersionHistory());
-  about.AddLibrary("BigInt: version 2010.04.30");
-  about.AddLibrary("BinaryNewickVector: " + BinaryNewickVector::GetVersion());
-  about.AddLibrary("NewickVector: " + NewickVector::GetVersion());
-  return about;
-}
-
-std::string ribi::TestNewickVectorDialog::GetVersion() noexcept
-{
-  return "3.2";
-}
-
-std::vector<std::string> ribi::TestNewickVectorDialog::GetVersionHistory() noexcept
-{
-  return {
-    "2011-02-20: Version 1.0: initial version",
-    "2011-03-09: Version 2.0: calculates Newick probabilities",
-    "2011-03-26: Version 3.0: seperated GUI from logic, added web version",
-    "2011-04-25: Version 3.1: removed web version\'s Close button",
-    "2011-06-07: Version 3.2: added command-line call"
-  };
-}
 
 void ribi::TestNewickVectorDialog::SetAnalyseCalculation(const bool b) noexcept
 {
@@ -463,6 +428,11 @@ void ribi::TestNewickVectorDialog::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    fileio::FileIo();
+    Newick().Test();
+    BinaryNewickVector::Test();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

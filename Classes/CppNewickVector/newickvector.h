@@ -72,12 +72,8 @@ struct NewickVector
     const double theta,
     NewickStorage<NewickVector>& storage);
 
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
 
   public:
-
 
   static double CalculateProbability(
     const std::string& newick_str,
@@ -87,6 +83,10 @@ struct NewickVector
   static bool NewickCompare(
     const std::vector<int>& lhs,
     const std::vector<int>& rhs) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 };
 

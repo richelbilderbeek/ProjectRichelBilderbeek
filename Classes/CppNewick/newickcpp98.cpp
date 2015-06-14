@@ -523,8 +523,10 @@ void ribi::NewickCpp98::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    Newick();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  TRACE("Testing basic Newick functionality");
   //Check difference between C++98 and C++0x
   assert(Newick().CreateValidTrinaryNewicks() == NewickCpp98().CreateValidTrinaryNewicks());
   assert(Newick().GetKnownProbabilities() == NewickCpp98().GetKnownProbabilities());

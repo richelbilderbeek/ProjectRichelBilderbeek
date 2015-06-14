@@ -28,7 +28,12 @@ struct TestNewickDialog
     const std::string& max_complexity_str);
   void DoCalculate(
     const std::string& newick_str,
-    const std::string& theta_str);
+    const std::string& theta_str
+  );
+  void DoCalculate(
+    const std::string& newick_str,
+    const double theta
+  );
 
   static const About GetAbout();
   static const std::vector<std::string> GetVersionHistory();

@@ -3,10 +3,6 @@
 #include <cassert>
 #include <exception>
 
-#ifdef MXE_SUPPORTS_THREADS
-#include <future>
-#endif
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"

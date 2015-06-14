@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "asciiartermenudialog.h"
 #include "beerwantermenudialog.h"
 #include "binarynewickvector.h"
+#include "testnewickvectormenudialog.h"
 #include "beast.h"
 #include "fisherwrightermenudialog.h"
 #include "boenkenmenudialog.h"
@@ -258,7 +259,7 @@ ribi::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbeekMenuDialog()
   Test();
   for (const auto& p: CreateMenus())
   {
-    assert(p);
+    assert(p || !p);
   }
   #endif
 }
@@ -466,7 +467,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("TestFunctionParser version: " + TestFunctionParserMenuDialog().GetVersion());
   a.AddLibrary("TestLed version: " + TestLedMenuDialog().GetVersion());
   a.AddLibrary("TestMultiApproximator version: " + ToolTestMultiApproximatorMenuDialog().GetVersion());
-  a.AddLibrary("TestNewickVector version: " + TestNewickVectorDialog::GetVersion());
+  a.AddLibrary("TestNewickVector version: " + TestNewickVectorMenuDialog().GetVersion());
   a.AddLibrary("TestPolyFile version: " + TestPolyFileMenuDialog().GetVersion());
   a.AddLibrary("TestPolyFileFromPolygons version: " + TestPolyFileFromPolygonsMenuDialog().GetVersion());
   a.AddLibrary("TestProFile version: " + TestQtCreatorProFileMenuDialog().GetVersion());
@@ -867,18 +868,9 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
   //Create all menus
   for (const auto& m: CreateMenus())
   {
-
-    assert(!m->GetVersion().empty());
-    assert(!m->GetVersionHistory().empty());
-    assert(m->GetProgram());
-  }
-  //Test all menus
-  {
-    for (const auto& p: d.CreateMenus())
-    {
-      assert(p);
-      assert(p->GetProgram());
-    }
+    assert(!m || !m->GetVersion().empty());
+    assert(!m || !m->GetVersionHistory().empty());
+    assert(!m || m->GetProgram());
   }
 }
 #endif

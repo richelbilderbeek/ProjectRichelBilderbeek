@@ -43,6 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "fuzzy_equal_to.h"
 #include "newick.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -443,7 +444,8 @@ void ribi::NewickVector::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Testing NewickVector");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
 
   //Test simplification of trinary Newick
   {
@@ -601,7 +603,7 @@ void ribi::NewickVector::Test() noexcept
     const std::vector<std::string> v = Newick().CreateValidNewicks();
     for(const std::string& s: v)
     {
-      TRACE("I must be accepted: " + s);
+      if (verbose) { TRACE("I must be accepted: " + s); }
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
@@ -610,7 +612,8 @@ void ribi::NewickVector::Test() noexcept
       catch (std::exception& e)
       {
         std::cerr << "(" << __FILE__ << "," << __LINE__ << ") "
-          << s << ": " << e.what() << '\n';
+          << s << ": " << e.what() << '\n'
+        ;
       }
       //Check if valid newicks (as std::vector) are marked as valid
       try
@@ -623,7 +626,8 @@ void ribi::NewickVector::Test() noexcept
       {
         std::cerr << s
           << " (converted to std::vector<int>): "
-          << e.what();
+          << e.what()
+        ;
       }
       //Check std::string conversion (from NewickVector(std::string))
       try
@@ -635,7 +639,8 @@ void ribi::NewickVector::Test() noexcept
       {
         std::cerr << s
           << " (NewickVector from std::string): "
-          << e.what();
+          << e.what()
+        ;
       }
       //Check std::string conversion (from NewickVector(std::vector<int>))
       try
@@ -648,7 +653,8 @@ void ribi::NewickVector::Test() noexcept
       {
         std::cerr << s
           << " (NewickVector from std::vector<int>): "
-          << e.what();
+          << e.what()
+        ;
       }
       assert(Newick().IsNewick(s));
       //Check the simpler Newicks
@@ -682,7 +688,7 @@ void ribi::NewickVector::Test() noexcept
     const std::vector<std::string> v = Newick().CreateInvalidNewicks();
     for(const std::string& s: v)
     {
-      TRACE("I must be rejected: " + s);
+      if (verbose) { TRACE("I must be rejected: " + s); }
       assert(!Newick().IsNewick(s));
     }
   }
@@ -692,7 +698,7 @@ void ribi::NewickVector::Test() noexcept
     const std::vector<std::string> v = Newick().CreateValidNewicks();
     for(const std::string& s: v)
     {
-      TRACE("I must be accepted: " + s);
+      if (verbose) { TRACE("I must be accepted: " + s); }
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
@@ -791,15 +797,6 @@ void ribi::NewickVector::Test() noexcept
       / Newick().CalcDenominator(Newick().StringToNewick(n1),theta)
       * ( (2.0 * ribi::NewickVector::CalculateProbability("(2,1,1)",theta) )
         + (2.0 * ribi::NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
-    //#define DEBUG_BO_1_1_BC_1_1
-    #ifdef  DEBUG_BO_1_1_BC_1_1
-    TRACE(boost::lexical_cast<std::string>(p1));
-    TRACE(boost::lexical_cast<std::string>(p2));
-    TRACE(boost::lexical_cast<std::string>(p3));
-    TRACE(boost::lexical_cast<std::string>(p4));
-    TRACE(boost::lexical_cast<std::string>(p5));
-    TRACE(boost::lexical_cast<std::string>(p6));
-    #endif
     assert(ribi::fuzzy_equal_to()(p1,p2));
     assert(ribi::fuzzy_equal_to()(p1,p3));
     assert(ribi::fuzzy_equal_to()(p1,p4));
@@ -831,7 +828,7 @@ void ribi::NewickVector::Test() noexcept
       const double theta = boost::get<1>(t);
       const double p1 = boost::get<2>(t);
       const double p2 = ribi::NewickVector::CalculateProbability(newick_str,theta);
-      assert(ribi::fuzzy_equal_to()(p1,p2));
+      assert(ribi::fuzzy_equal_to(0.001)(p1,p2));
     }
   }
   #endif
