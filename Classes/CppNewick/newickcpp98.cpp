@@ -210,12 +210,6 @@ std::vector<boost::tuple<std::string,double,double> > ribi::NewickCpp98::GetKnow
 std::vector<std::vector<int> >
   ribi::NewickCpp98::GetRootBranches(const std::vector<int>& n)
 {
-  //#define DEBUG_GETROOTBRANCHES
-  #ifdef  DEBUG_GETROOTBRANCHES
-  TRACE_FUNC();
-  TRACE(Newick::NewickToString(n));
-  #endif
-
   assert(Newick().IsNewick(n));
   assert(!Newick().IsUnaryNewick(n));
 
@@ -280,11 +274,6 @@ std::vector<std::vector<int> >
 std::vector<std::pair<std::vector<int>,int> >
   ribi::NewickCpp98::GetSimplerNewicksFrequencyPairs(const std::vector<int>& n)
 {
-  //#define DEBUG_GETSIMPLERNEWICKSFREQUENCYPAIRS
-  #ifdef DEBUG_GETSIMPLERNEWICKSFREQUENCYPAIRS
-  TRACE_FUNC();
-  #endif
-
   assert(Newick().IsNewick(n));
 
   std::vector<std::pair<std::vector<int>,int> > newicks;

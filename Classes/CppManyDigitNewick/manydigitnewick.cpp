@@ -96,7 +96,6 @@ double ribi::ManyDigitNewick::CalculateProbability(
   const std::string& newick_str,
   const double theta)
 {
-  TRACE_FUNC();
   ribi::ManyDigitNewick::SetTheta(theta);
   const NewickVector n(newick_str);
   const ManyDigitNewickIndexer i(n,theta);

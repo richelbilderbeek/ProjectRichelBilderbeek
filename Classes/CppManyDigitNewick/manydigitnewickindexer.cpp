@@ -45,11 +45,7 @@ ribi::ManyDigitNewickIndexer::ManyDigitNewickIndexer(
     m_reserved(CalculateReserved(n)),
     m_probability(-1.0)
 {
-  TRACE_FUNC();
-  TRACE(boost::lexical_cast<std::string>(m_reserved));
-
   m_current_index = m_reserved;
-
   m_calculated_to_index = m_reserved;
 
   assert(m_reserved == m_newicks.Size());
@@ -236,8 +232,6 @@ const ribi::ManyDigitNewick ribi::ManyDigitNewickIndexer::CreateManyDigitDerivat
   const int sum_above_zero,
   const int sum_above_one)
 {
-  TRACE_FUNC();
-
   assert(sum_above_zero >= 0);
   assert(sum_above_one >= 0);
   assert(coordinat.IsSorted());
@@ -250,12 +244,9 @@ const ribi::ManyDigitNewick ribi::ManyDigitNewickIndexer::CreateManyDigitDerivat
 
   for(int i=0;i!=n_indices;++i)
   {
-    TRACE(boost::lexical_cast<std::string>(i));
-
     #ifndef NDEBUG
     const int f = indices[i];
     #endif
-    TRACE(boost::lexical_cast<std::string>(f));
 
     assert((f==1 || !m_newicks.Empty(f)) && "Assume each single/loose value/frequency exists");
 

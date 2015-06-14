@@ -103,7 +103,6 @@ const ribi::ManyDigitNewick& ribi::ManyDigitNewicks::GetNewick(
 
 void ribi::ManyDigitNewicks::SetNewick(const int i, const ManyDigitNewick& v)
 {
-  TRACE_FUNC();
   //Allocate storage
   //TODO: replace by push_back
   if (i >= boost::numeric_cast<int>(m_v.size()))

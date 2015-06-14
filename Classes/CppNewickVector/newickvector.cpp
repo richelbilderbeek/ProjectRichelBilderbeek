@@ -110,12 +110,6 @@ double ribi::NewickVector::CalculateProbabilityInternal(
   const double theta,
   NewickStorage<NewickVector>& storage)
 {
-  //#define DEBUG_NEWICKVECTOR_CALCULATEPROBABILITYINTERNAL
-  #ifdef  DEBUG_NEWICKVECTOR_CALCULATEPROBABILITYINTERNAL
-  TRACE_FUNC();
-  TRACE(n.ToStr());
-  #endif
-
   while(1)
   {
     //Is n already known?
@@ -443,6 +437,9 @@ void ribi::NewickVector::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    Newick();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};

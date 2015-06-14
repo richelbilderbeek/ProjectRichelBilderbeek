@@ -1313,13 +1313,7 @@ std::vector<std::vector<int> >
 std::vector<std::vector<int> >
   ribi::Newick::GetSimplerNewicks(const std::vector<int>& n) noexcept
 {
-  //#define DEBUG_GETSIMPLERNEWICKS
   assert(IsNewick(n));
-
-  #ifdef DEBUG_GETSIMPLERNEWICKS
-  TRACE_FUNC();
-  #endif
-
 
   const std::vector<int> depths = GetDepth(n);
 
@@ -1451,10 +1445,6 @@ std::vector<std::pair<std::vector<int>,int> >
   #ifdef DEBUG_TEMP_REMOVE_2738236826438
 
   //#define DEBUG_GETSIMPLERNEWICKSFREQUENCYPAIRS
-  #ifdef DEBUG_GETSIMPLERNEWICKSFREQUENCYPAIRS
-  TRACE_FUNC();
-  #endif
-
   assert(IsNewick(n));
 
   std::vector<std::pair<std::vector<int>,int> > newicks;

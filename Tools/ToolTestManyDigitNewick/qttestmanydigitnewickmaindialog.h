@@ -51,6 +51,10 @@ private:
 private slots:
   void on_button_calculate_clicked();
   void OnAnyChange();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

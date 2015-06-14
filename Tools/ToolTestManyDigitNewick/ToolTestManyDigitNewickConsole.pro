@@ -1,8 +1,7 @@
-include(../../DesktopApplication.pri)
+include(../../ConsoleApplication.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/BigInteger.pri)
 include(../../Libraries/GeneralConsole.pri)
-include(../../Libraries/GeneralDesktop.pri)
 
 include(../../Classes/CppBinaryNewickVector/CppBinaryNewickVector.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
@@ -13,7 +12,6 @@ include(../../Classes/CppNewickVector/CppNewickVector.pri)
 include(../../Classes/CppRibiRandom/CppRibiRandom.pri)
 include(../../Classes/CppTwoDigitNewick/CppTwoDigitNewick.pri)
 
-include(ToolTestManyDigitNewickDesktop.pri)
+include(ToolTestManyDigitNewickConsole.pri)
 
-SOURCES += qtmain.cpp
-
+SOURCES += main.cpp
