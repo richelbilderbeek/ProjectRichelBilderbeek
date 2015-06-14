@@ -5,5 +5,6 @@ include(../../Libraries/GeneralConsole.pri)
 
 include(../../Classes/CppMultiVector/CppMultiVector.pri)
 
-SOURCES += \
-    main.cpp
+include(../../Tools/ToolTestMultiVector/ToolTestMultiVectorConsole.pri)
+
+SOURCES += main.cpp

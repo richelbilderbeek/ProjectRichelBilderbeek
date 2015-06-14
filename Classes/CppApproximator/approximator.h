@@ -82,14 +82,15 @@ struct Approximator
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-  private:
-  ///The container used
-  Container m_m;
-
   #ifndef NDEBUG
   ///Test this class
   static void Test() noexcept;
   #endif
+
+  private:
+  ///The container used
+  Container m_m;
+
 };
 
 

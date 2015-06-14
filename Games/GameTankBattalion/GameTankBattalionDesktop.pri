@@ -4,13 +4,13 @@ SOURCES += \
     ../../Games/GameTankBattalion/qttankbattalionarenawidget.cpp \
     ../../Games/GameTankBattalion/qttankbattaliongamedialog.cpp \
     ../../Games/GameTankBattalion/qttankbattalionarena.cpp \
-    qttankbattalionsprite.cpp
+    ../../Games/GameTankBattalion/qttankbattalionsprite.cpp
 
 HEADERS  += \
     ../../Games/GameTankBattalion/qttankbattalionarenawidget.h \
     ../../Games/GameTankBattalion/qttankbattaliongamedialog.h \
     ../../Games/GameTankBattalion/qttankbattalionarena.h \
-    qttankbattalionsprite.h
+    ../../Games/GameTankBattalion/qttankbattalionsprite.h
 
 FORMS += \
     ../../Games/GameTankBattalion/qttankbattalionarenadialog.ui

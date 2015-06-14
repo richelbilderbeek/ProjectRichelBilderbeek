@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/numeric/conversion/cast.hpp>
 
+#include "container.h"
 #include "manydigitnewick.h"
 #include "newick.h"
 #include "newickvector.h"
@@ -26,19 +27,19 @@ ribi::TestNewickDialog::TestNewickDialog(const int types)
 
   //Test all Newicks
   #ifndef NDEBUG
-  Newick::Test();
+  Newick().Test();
   BinaryNewickVector::Test();
-  TwoDigitNewick::Test();
+  TwoDigitNewick();
 
-  const std::vector<std::string> newicks = Newick::CreateValidNewicks();
+  const std::vector<std::string> newicks = Newick().CreateValidNewicks();
   const std::vector<boost::shared_ptr<TestNewick> > tests
     = TestNewick::CreateTests(TestNewick::m_flag_all);
   const BigInteger max_complexity = 10000;
   for(const std::string& newick_str: newicks)
   {
-    const std::vector<int> newick = Newick::StringToNewick(newick_str);
+    const std::vector<int> newick = Newick().StringToNewick(newick_str);
     //Only test binary Newicks and relatively small Newicks
-    if (Newick::CalcComplexity(newick) > max_complexity)
+    if (Newick().CalcComplexity(newick) > max_complexity)
     {
       continue;
     }
@@ -66,7 +67,7 @@ ribi::TestNewickDialog::TestNewickDialog(const int types)
     }
     assert(!m_table.empty());
     const std::vector<double> probabilities = ExtractProbabilities(m_table);
-    if (!Newick::AllAboutEqual(probabilities))
+    if (!Container().AllAboutEqual(probabilities,0.001))
     {
       std::cerr
         << "WARNING: DIFFERENT PROBABILITIES FOUND"  << '\n'
@@ -86,7 +87,7 @@ ribi::TestNewickDialog::TestNewickDialog(const int types)
           << '\n';
       }
     }
-    assert(Newick::AllAboutEqual(probabilities));
+    assert(Container().AllAboutEqual(probabilities,0.001));
   }
   #endif
 }
@@ -96,7 +97,7 @@ void ribi::TestNewickDialog::DoAutoCalculate(
   const std::string& theta_str,
   const std::string& max_complexity_str)
 {
-  if (!Newick::IsNewick(newick_str))
+  if (!Newick().IsNewick(newick_str))
   {
     m_text = "Invalid Newick";
     return;
@@ -113,7 +114,7 @@ void ribi::TestNewickDialog::DoAutoCalculate(
 
   const BigInteger max_complexity
     = stringToBigInteger(max_complexity_str);
-  if (Newick::CalcComplexity(Newick::StringToNewick(newick_str))
+  if (Newick().CalcComplexity(Newick().StringToNewick(newick_str))
     < max_complexity)
   {
     DoCalculate(newick_str,theta_str);
@@ -134,7 +135,7 @@ void ribi::TestNewickDialog::DoCalculate(
   const std::string& theta_str)
 {
   m_table.resize(0);
-  if (!Newick::IsNewick(newick_str))
+  if (!Newick().IsNewick(newick_str))
   {
     m_text = "Invalid Newick";
     return;
@@ -148,7 +149,7 @@ void ribi::TestNewickDialog::DoCalculate(
     m_text = "Invalid theta";
     return;
   }
-  const std::vector<int> newick = Newick::StringToNewick(newick_str);
+  const std::vector<int> newick = Newick().StringToNewick(newick_str);
   const double theta = boost::lexical_cast<double>(theta_str);
   const std::vector<boost::shared_ptr<TestNewick> > tests = TestNewick::CreateTests(m_types);
 
@@ -170,7 +171,7 @@ void ribi::TestNewickDialog::DoCalculate(
 
   assert(!m_table.empty());
   const std::vector<double> probabilities = ExtractProbabilities(m_table);
-  if (!Newick::AllAboutEqual(probabilities))
+  if (!Container().AllAboutEqual(probabilities,0.0001))
   {
     m_text = "WARNING: DIFFERENT PROBABILITIES FOUND";
   }

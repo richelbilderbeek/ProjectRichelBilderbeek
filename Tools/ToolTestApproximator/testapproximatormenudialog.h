@@ -8,6 +8,7 @@ namespace ribi {
 
 struct ToolTestApproximatorMenuDialog final : public MenuDialog
 {
+  ToolTestApproximatorMenuDialog();
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;
   boost::shared_ptr<const Program> GetProgram() const noexcept override;

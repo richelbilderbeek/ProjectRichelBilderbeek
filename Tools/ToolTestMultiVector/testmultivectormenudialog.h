@@ -1,17 +1,14 @@
-#ifndef TESTBINARYNEWICKVECTORMENUDIALOG_H
-#define TESTBINARYNEWICKVECTORMENUDIALOG_H
-
-#include <string>
-#include <vector>
+#ifndef TOOLTESTMULTIVECTORMENUDIALOG_H
+#define TOOLTESTMULTIVECTORMENUDIALOG_H
 
 #include "menudialog.h"
 
+
 namespace ribi {
 
-///GUI independent TestBinaryNewick menu dialog
-struct TestBinaryNewickVectorMenuDialog final : public MenuDialog
+struct TestMultiVectorMenuDialog final : public ::ribi::MenuDialog
 {
-  TestBinaryNewickVectorMenuDialog();
+  TestMultiVectorMenuDialog();
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;
   boost::shared_ptr<const Program> GetProgram() const noexcept override;
@@ -28,4 +25,4 @@ struct TestBinaryNewickVectorMenuDialog final : public MenuDialog
 
 } //~namespace ribi
 
-#endif // TESTBINARYNEWICKVECTORMENUDIALOG_H
+#endif // TOOLTESTMULTIVECTORMENUDIALOG_H

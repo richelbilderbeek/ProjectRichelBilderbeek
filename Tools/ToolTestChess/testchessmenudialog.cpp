@@ -44,11 +44,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "widget.h"
 
-int ribi::TestChessMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::TestChessMenuDialog::TestChessMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+int ribi::TestChessMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {

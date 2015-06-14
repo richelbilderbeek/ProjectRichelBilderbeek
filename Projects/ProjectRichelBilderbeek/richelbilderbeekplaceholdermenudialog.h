@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef RICHELBILDERBEEKPLACEHOLDERMENUDIALOG_H
 #define RICHELBILDERBEEKPLACEHOLDERMENUDIALOG_H
 
+/*
+
 #include "about.h"
 #include "menudialog.h"
 
@@ -55,5 +57,7 @@ struct PlaceholderMenuDialog : public MenuDialog
 };
 
 } //~namespace ribi
+
+*/
 
 #endif // RICHELBILDERBEEKPLACEHOLDERMENUDIALOG_H

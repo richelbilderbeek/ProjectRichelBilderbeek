@@ -27,6 +27,7 @@ namespace ribi {
 
 struct TestChessMenuDialog : public MenuDialog
 {
+  TestChessMenuDialog();
   About GetAbout() const noexcept;
   Help GetHelp() const noexcept;
   boost::shared_ptr<const Program> GetProgram() const noexcept;

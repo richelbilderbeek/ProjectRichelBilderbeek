@@ -40,6 +40,11 @@ struct Container
 {
   Container();
 
+  bool AllAboutEqual(
+    const std::vector<double>& v,
+    const double tolerance
+  ) const noexcept;
+
   ///Concatenate concatenates the strings, with a certain seperator
   std::string Concatenate(const std::vector<std::string>& v, const std::string& seperator = "") const noexcept;
 

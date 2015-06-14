@@ -7,6 +7,7 @@ namespace ribi {
 
 struct TestManyDigitNewickMenuDialog : public ribi::MenuDialog
 {
+  TestManyDigitNewickMenuDialog();
   About GetAbout() const noexcept;
   Help GetHelp() const noexcept;
   boost::shared_ptr<const Program> GetProgram() const noexcept;

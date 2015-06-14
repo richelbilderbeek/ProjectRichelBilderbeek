@@ -34,10 +34,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
+#ifndef NDEBUG
+void TestMultiVector() noexcept;
+#endif
+
 template <class T>
 struct MultiVector
 {
-  MultiVector() : m_indices{}, m_multivectors{} {}
+  MultiVector() : m_indices{}, m_multivectors{}
+  {
+    #ifndef NDEBUG
+    TestMultiVector();
+    #endif
+  }
 
   ///CanRetrieve returns if an index/coordinat can be retrieved
   bool CanRetrieve(const std::vector<int>& indices) const
@@ -139,6 +148,8 @@ struct MultiVector
       "2011-03-02: version 1.1: added CanRetrieve and Peek methods"
     };
   }
+
+
 };
 
 } //~namespace ribi

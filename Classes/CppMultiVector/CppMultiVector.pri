@@ -1,8 +1,8 @@
 INCLUDEPATH += \
     ../../Classes/CppMultiVector
 
-SOURCES +=
-#    ../../Classes/CppMultiVector/multivector.cpp
+SOURCES += \
+    ../../Classes/CppMultiVector/multivector.cpp
 
 HEADERS  += \
     ../../Classes/CppMultiVector/multivector.h

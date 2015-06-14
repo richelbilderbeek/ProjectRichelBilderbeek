@@ -49,7 +49,10 @@ void ribi::taba::QtSprite::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  SpriteTypes();
+  {
+    SpriteTypes();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtSprite s;
 }
+#endif

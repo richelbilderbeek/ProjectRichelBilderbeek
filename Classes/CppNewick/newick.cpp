@@ -97,21 +97,6 @@ ribi::Newick::Newick()
   Test();
   #endif
 }
-/*
-bool ribi::Newick::AllAboutEqual(
-  const std::vector<double>& v,
-  const double tolerance)
-{
-  assert(!v.empty());
-  return std::count_if(
-    v.begin(),
-    v.end(),
-    std::bind2nd(fuzzy_equal_to(tolerance),v[0]))
-    == boost::numeric_cast<int>(v.size()
-  );
-
-}
-*/
 
 BigInteger ribi::Newick::CalcComplexity(const std::vector<int>& v)
 {

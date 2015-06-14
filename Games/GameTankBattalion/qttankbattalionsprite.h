@@ -27,6 +27,10 @@ struct QtSprite
   const Map m_sprites;
   Map CreateSprites() const;
   QImage Create() const;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace taba

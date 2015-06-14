@@ -17,12 +17,15 @@
 #include "testtimer.h"
 #pragma GCC diagnostic pop
 
-
-int ribi::TestBinaryNewickVectorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::TestBinaryNewickVectorMenuDialog::TestBinaryNewickVectorMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+int ribi::TestBinaryNewickVectorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -101,6 +104,9 @@ void ribi::TestBinaryNewickVectorMenuDialog::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    BinaryNewickVector::Test();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

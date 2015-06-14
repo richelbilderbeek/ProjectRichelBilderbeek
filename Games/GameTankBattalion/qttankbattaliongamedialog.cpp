@@ -1,3 +1,5 @@
+/*
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -47,10 +49,4 @@ void ribi::taba::QtTankBattalionGameDialog::paintEvent(QPaintEvent *)
   //painter.drawPixmap(rect(),p,p.rect());
 }
 
-/*
-void ribi::taba::QtTankBattalionGameDialog::resizeEvent(QResizeEvent *)
-{
-  m_game->setGeometry(rect());
-  repaint();
-}
 */

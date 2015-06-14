@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestTicTacToe, solver of quadratic equations
+TestTicTacToe, test the TicTacToe classes
 Copyright (C) 2008-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify

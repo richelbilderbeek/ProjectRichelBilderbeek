@@ -1,22 +1,22 @@
 //---------------------------------------------------------------------------
 /*
-  The Rampal Etienne Project, calculates the probability of a phylogeny
-  (C) 2009-2014 Richel Bilderbeek
+TestNewick, test the Newick classes and functions
+Copyright (C) 2009-2015 Richel Bilderbeek
 
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-// From http://www.richelbilderbeek.nl
+//From http://www.richelbilderbeek.nl/ToolTestNewick.htm
 //---------------------------------------------------------------------------
 #include <fstream>
 #include <vector>
@@ -107,10 +107,10 @@ const std::string Test::GetEwensProbability() const
 bool ribi::TestBinaryNewickVector::CanCalculate(const std::string& newick_str, const double theta)
 {
   if (theta <= 0.0) return false;
-  if (!Newick::IsNewick(newick_str))
+  if (!Newick().IsNewick(newick_str))
     return false;
-  const std::vector<int> newick = Newick::StringToNewick(newick_str);
-  if (!Newick::IsUnaryNewick(newick) && !Newick::IsBinaryNewick(newick))
+  const std::vector<int> newick = Newick().StringToNewick(newick_str);
+  if (!Newick().IsUnaryNewick(newick) && !Newick().IsBinaryNewick(newick))
     return false;
   return true;
 }
@@ -132,7 +132,7 @@ bool ribi::TestManyDigitNewick::CanCalculate(const std::string& newick_str, cons
   return false;
 
   if (theta <= 0.0) return false;
-  if (!Newick::IsNewick(newick_str)) return false;
+  if (!Newick().IsNewick(newick_str)) return false;
   return true;
 }
 
@@ -150,7 +150,7 @@ void ribi::TestManyDigitNewick::Calculate(const std::string& newick_str, const d
 bool ribi::TestNewickVector::CanCalculate(const std::string& newick_str, const double theta)
 {
   if (theta <= 0.0) return false;
-  if (!Newick::IsNewick(newick_str)) return false;
+  if (!Newick().IsNewick(newick_str)) return false;
   return true;
 }
 
@@ -168,10 +168,10 @@ void ribi::TestNewickVector::Calculate(const std::string& newick_str, const doub
 bool ribi::TestSortedBinaryNewickVector::CanCalculate(const std::string& newick_str, const double theta)
 {
   if (theta <= 0.0) return false;
-  if (!Newick::IsNewick(newick_str))
+  if (!Newick().IsNewick(newick_str))
     return false;
-  const std::vector<int> newick = Newick::StringToNewick(newick_str);
-  if (!Newick::IsUnaryNewick(newick) && !Newick::IsBinaryNewick(newick))
+  const std::vector<int> newick = Newick().StringToNewick(newick_str);
+  if (!Newick().IsUnaryNewick(newick) && !Newick().IsBinaryNewick(newick))
     return false;
   return true;
 }
@@ -191,10 +191,10 @@ void ribi::TestSortedBinaryNewickVector::Calculate(const std::string& newick_str
 bool ribi::TestTwoDigitNewick::CanCalculate(const std::string& newick_str, const double theta)
 {
   if (theta <= 0.0) return false;
-  if (!Newick::IsNewick(newick_str))
+  if (!Newick().IsNewick(newick_str))
     return false;
-  const std::vector<int> newick = Newick::StringToNewick(newick_str);
-  if (!Newick::IsUnaryNewick(newick) && !Newick::IsBinaryNewick(newick))
+  const std::vector<int> newick = Newick().StringToNewick(newick_str);
+  if (!Newick().IsUnaryNewick(newick) && !Newick().IsBinaryNewick(newick))
     return false;
   return true;
 }

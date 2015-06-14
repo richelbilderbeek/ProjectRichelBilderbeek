@@ -6,7 +6,7 @@
 namespace ribi {
 namespace taba {
 
-struct MenuDialog : public ribi::MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
   MenuDialog();
   About GetAbout() const noexcept;
