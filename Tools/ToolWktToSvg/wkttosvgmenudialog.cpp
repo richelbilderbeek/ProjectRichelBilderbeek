@@ -149,7 +149,7 @@ ribi::About ribi::WktToSvgMenuDialog::GetAbout() const noexcept
     "WktToSvg",
     "tool to convert WKT to SVG",
     "the 12th of June 2014",
-    "2014-2014",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/ToolWktToSvg.htm",
     GetVersion(),
     GetVersionHistory()

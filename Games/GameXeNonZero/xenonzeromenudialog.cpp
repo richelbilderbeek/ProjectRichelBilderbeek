@@ -27,7 +27,7 @@ ribi::About ribi::XeNonZeroMenuDialog::GetAbout() const noexcept
     "XeNonZero",
     "a simple game",
     "the 13th of July 2013",
-    "2005-2014",
+    "2005-2015",
     "http://www.richelbilderbeek.nl/GameXeNonZero.htm",
     GetVersion(),
     GetVersionHistory());

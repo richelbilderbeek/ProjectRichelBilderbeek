@@ -60,7 +60,7 @@ ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noexcept
     "HistogramEqualization",
     "tool to perform a histogram equalization",
     "the 6th of February 2014",
-    "2008-2014",
+    "2008-2015",
     "http://www.richelbilderbeek.nl/ToolHistogramEqualizationer.htm",
     GetVersion(),
     GetVersionHistory()

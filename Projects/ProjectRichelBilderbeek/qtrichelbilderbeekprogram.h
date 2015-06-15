@@ -36,7 +36,7 @@ struct QtRichelBilderbeekProgram
   std::unique_ptr<QtHideAndShowDialog> CreateQtMenuDialog(const ProgramType type) const noexcept;
 
   ///Create a placeholder dialog for the program type
-  std::unique_ptr<QtHideAndShowDialog> CreateQtPlaceholderDialog(const ProgramType type) const noexcept;
+  //std::unique_ptr<QtHideAndShowDialog> CreateQtPlaceholderDialog(const ProgramType type) const noexcept;
 };
 
 } //~namespace ribi

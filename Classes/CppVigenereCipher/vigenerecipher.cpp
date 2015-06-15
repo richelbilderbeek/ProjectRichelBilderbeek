@@ -165,12 +165,6 @@ std::vector<int> ribi::VigenereCipher::StrToKey(const std::string& s) noexcept
   std::vector<int> v;
   for (const auto& c: s)
   {
-    #ifndef NDEBUG
-    if (!(c >= 'a'))
-    {
-      TRACE("BREAK");
-    }
-    #endif
     assert(c >= 'a');
     assert(c <= 'z');
     const int i = static_cast<int>(c - 'a');
@@ -220,7 +214,6 @@ void ribi::VigenereCipher::Test() noexcept
     const std::string secret = "TSZNQHUWYJHRSCRPMIMMRYEMULIEHYTBKJQSOQKIRQXMIYHKLIRPDQAMVJQ";
     const VigenereCipher e(key);
     const std::string clean_text = VigenereCipher::Clean(secret);
-    TRACE(e.Deencrypt(e.Encrypt(clean_text)));
   }
 }
 #endif

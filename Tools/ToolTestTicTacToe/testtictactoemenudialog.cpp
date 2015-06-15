@@ -52,7 +52,7 @@ ribi::About ribi::TestTicTacToeMenuDialog::GetAbout() const noexcept
     "TestTicTacToe",
     "tool to test the TicTacToe class",
     "the 15th of Oktober 2013",
-    "2011-2014",
+    "2011-2015",
     "http://www.richelbilderbeek.nl/ToolTestTicTacToe.htm",
     GetVersion(),
     GetVersionHistory());

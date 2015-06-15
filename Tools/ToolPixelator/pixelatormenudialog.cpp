@@ -29,7 +29,7 @@ ribi::About ribi::PixelatorMenuDialog::GetAbout() const noexcept
     "Pixelator",
     "tool to pixelate image",
     "the 28th of November 2013",
-    "2008-2014",
+    "2008-2015",
     "http://www.richelbilderbeek.nl/ToolPixelator.htm",
     GetVersion(),
     GetVersionHistory()

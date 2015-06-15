@@ -72,7 +72,7 @@ double ribi::StochasticityInspectorMainDialog::CalcOrnsteinUhlenbeckMaxLogLikeli
 ribi::StochasticityInspectorMainDialog::HlrtResult
   ribi::StochasticityInspectorMainDialog::DoHierarchicalLikelihoodRatioTest() const
 {
-  const bool verbose{true};
+  const bool verbose{false};
 
   const double log_likelihood_bm = ribi::bm::Helper().CalcMaxLogLikelihood(m_xs);
   const double log_likelihood_ou = ribi::ou::Helper().CalcMaxLogLikelihood(m_xs);
@@ -123,7 +123,7 @@ void ribi::StochasticityInspectorMainDialog::Test() noexcept
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 
-  const bool verbose{true};
+  const bool verbose{false};
   //Brownian motion
   {
     StochasticityInspectorMainDialog d(

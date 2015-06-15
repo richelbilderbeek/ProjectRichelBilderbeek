@@ -95,7 +95,7 @@ ribi::About ribi::sema::MenuDialog::GetAbout() const noexcept
     "SecretMessage",
     "tool to add secret messages to images",
     "the 23rd of February 2014",
-    "2009-2014",
+    "2009-2015",
     "http://www.richelbilderbeek.nl/ToolSecretMessage.htm",
     GetVersion(),
     GetVersionHistory());

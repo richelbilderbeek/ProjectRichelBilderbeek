@@ -91,7 +91,7 @@ ribi::About ribi::TestImageCanvasMenuDialog::GetAbout() const noexcept
     "TestImageCanvas",
     "tests the ImageCanvas class",
     "the 9th of January 2014",
-    "2014-2014",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/TooTestImageCanvas.htm",
     GetVersion(),
     GetVersionHistory());

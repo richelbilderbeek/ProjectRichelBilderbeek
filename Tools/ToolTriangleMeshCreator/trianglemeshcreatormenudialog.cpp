@@ -455,7 +455,7 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
     "TriangleMeshCreator",
     "Create a 3D mesh using Triangle",
     "the 9th of August 2014",
-    "2014-2014",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm",
     GetVersion(),
     GetVersionHistory()

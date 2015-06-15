@@ -115,7 +115,7 @@ void ribi::trim::Dialog::Check3dMesh(const std::string&
   }
 
   //const auto verbose = m_3dmesh_verbose;
-  const auto verbose = true;
+  const bool verbose{false};
   const std::string checkMesh_command(
     #ifdef _WIN32
       std::string(

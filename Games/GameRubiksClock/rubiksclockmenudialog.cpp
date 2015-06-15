@@ -92,7 +92,7 @@ ribi::About ribi::ruco::MenuDialog::GetAbout() const noexcept
     "RubiksClock",
     "simulates a Rubik's Clock",
     "the 23rd of January 2014",
-    "2007-2014",
+    "2007-2015",
     "http://www.richelbilderbeek.nl/GameRubiksClock.htm",
     GetVersion(),
     GetVersionHistory());

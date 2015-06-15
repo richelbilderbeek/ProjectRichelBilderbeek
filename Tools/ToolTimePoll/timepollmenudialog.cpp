@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TimePoll, time polling server
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ ribi::About ribi::ToolTimePoll::TimePollMenuDialog::GetAbout()
     "TimePoll",
     "time poll web application",
     "the 1th of August 2011",
-    "2011-2014",
+    "2011-2015",
     "http://www.richelbilderbeek.nl/ToolTimePoll.htm",
     GetVersion(),
     GetVersionHistory());

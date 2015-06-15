@@ -56,7 +56,7 @@ ribi::About ribi::TestTextCanvasMenuDialog::GetAbout() const noexcept
     "TestTextCanvas",
     "tests the TextCanvas class",
     "the 9th of January 2014",
-    "2014-2014",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/ToolTestTextCanvas.htm",
     GetVersion(),
     GetVersionHistory());

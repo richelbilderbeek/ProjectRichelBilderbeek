@@ -49,7 +49,7 @@ ribi::About ribi::TestGroupWidgetMenuDialog::GetAbout() const noexcept
     "TestGroupWidget",
     "tool to test the (Wt)GroupWidget class",
     "the 8th of September 2011",
-    "2011-2014",
+    "2011-2015",
     "http://www.richelbilderbeek.nl/ToolTestGroupWidget.htm",
     GetVersion(),
     GetVersionHistory());

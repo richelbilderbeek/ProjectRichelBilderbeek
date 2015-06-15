@@ -98,7 +98,7 @@ ribi::About ribi::TestDialMenuDialog::GetAbout() const noexcept
     "TestDial",
     "tool to test the Dial and DialWidget classes",
     "the 17th of January 2014",
-    "2011-2014",
+    "2011-2015",
     "http://www.richelbilderbeek.nl/ToolTestDial.htm",
     GetVersion(),
     GetVersionHistory());

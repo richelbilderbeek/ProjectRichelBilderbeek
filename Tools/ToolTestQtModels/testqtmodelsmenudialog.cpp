@@ -53,7 +53,7 @@ ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout() const noexcept
     "TestQtModels",
     "tool to test the QtModel classes",
     "the 27th of June 2013",
-    "2013-2014",
+    "2013-2015",
     "http://www.richelbilderbeek.nl/ToolTestQtModels.htm",
     GetVersion(),
     GetVersionHistory());

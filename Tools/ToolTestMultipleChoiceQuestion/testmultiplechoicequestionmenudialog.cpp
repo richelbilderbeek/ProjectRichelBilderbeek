@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestMultipleChoiceQuestion, tests multiple choice question classes
-Copyright (C) 2013-2014 Richel Bilderbeek
+Copyright (C) 2013-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ ribi::About ribi::TestMultipleChoiceQuestionMenuDialog::GetAbout() const noexcep
     "TestMultipleChoiceQuestion",
     "tool to test the MultipleChoiceQuestion and MultipleChoiceQuestionDialog classes",
     "the 20th of August 2013",
-    "2013-2014",
+    "2013-2015",
     "http://www.richelbilderbeek.nl/ToolTestMultipleChoiceQuestion.htm",
     GetVersion(),
     GetVersionHistory());

@@ -146,7 +146,7 @@ ribi::About ribi::TestPolyFileFromPolygonsMenuDialog::GetAbout() const noexcept
     "TestPolyFileFromPolygons",
     "tests the PolyFileFromPolygons class",
     "the 12th of June 2014",
-    "2014-2014",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/ToolTestPolyFileFromPolygons.htm",
     GetVersion(),
     GetVersionHistory()

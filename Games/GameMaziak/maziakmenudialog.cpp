@@ -67,7 +67,7 @@ ribi::About ribi::maziak::MenuDialog::GetAbout() const noexcept
     "Maziak",
     "a simple maze game",
     "the 28th of January 2014",
-    "2007-2014",
+    "2007-2015",
     "http://www.richelbilderbeek.nl/GameMaziak.htm",
     GetVersion(),
     GetVersionHistory()

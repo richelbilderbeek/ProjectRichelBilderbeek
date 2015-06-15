@@ -5,6 +5,7 @@
 #include "tankbattalionarena.h"
 #include "tankbattalionhelper.h"
 #include "tankbattalionkeys.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::taba::GameWidget::GameWidget()
@@ -81,10 +82,11 @@ void ribi::taba::GameWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  Keys();
-
-  TRACE("Starting ribi::taba::GameWidget::Test");
-  const bool verbose = true;
+  {
+    Keys();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
 
   //Key presses: single key, does the player change direction?
   {

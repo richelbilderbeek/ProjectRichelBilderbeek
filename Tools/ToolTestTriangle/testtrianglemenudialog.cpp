@@ -277,7 +277,7 @@ ribi::About ribi::TestTriangleMenuDialog::GetAbout() const noexcept
     "TestTriangle",
     "compare Triangle to its C++ equivalent",
     "the 8th of August 2014",
-    "2014-2014",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/ToolTestTriangle.htm",
     GetVersion(),
     GetVersionHistory()

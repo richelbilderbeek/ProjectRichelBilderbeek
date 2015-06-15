@@ -33,7 +33,7 @@ ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout() const noe
     "ToolTestSimpleLinearRegression",
     "tests a simple linear regression",
     "the 28th of August 2013",
-    "2013-2014",
+    "2013-2015",
     "http://www.richelbilderbeek.nl/ToolTestSimpleLinearRegression.htm",
     GetVersion(),
     GetVersionHistory());

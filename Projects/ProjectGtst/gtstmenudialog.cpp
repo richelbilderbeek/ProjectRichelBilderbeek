@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GTST, Game Theory Server
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -339,7 +339,7 @@ const ribi::About ribi::gtst::MenuDialog::GetAbout()
     "GTST",
     "game theory experiment server",
     "the 1st of September 2011",
-    "2011-2014",
+    "2011-2015",
     "http://www.richelbilderbeek.nl/ProjectGtst.htm",
     GetVersion(),
     GetVersionHistory());

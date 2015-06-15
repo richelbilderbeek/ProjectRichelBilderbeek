@@ -127,7 +127,7 @@ ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
     "DotMatrix",
     "generates a dot matrix font",
     "the 11th of October 2013",
-    "2013-2014",
+    "2013-2015",
     "http://www.richelbilderbeek.nl/ToolDotMatrix.htm",
     GetVersion(),
     GetVersionHistory());

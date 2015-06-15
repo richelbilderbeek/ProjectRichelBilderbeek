@@ -89,7 +89,7 @@ ribi::About ribi::BeerWanterMenuDialog::GetAbout() const noexcept
     "BeerWanter",
     "a simple game",
     "the 16th of January 2014",
-    "2005-2014",
+    "2005-2015",
     "http://www.richelbilderbeek.nl/GameBeerWanter.htm",
     GetVersion(),
     GetVersionHistory());

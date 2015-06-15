@@ -52,7 +52,7 @@ ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() const noexcept
     "TestShinyButton",
     "tool to test the ShinyButton class",
     "the 13th of February 2012",
-    "2011-2014",
+    "2011-2015",
     "http://www.richelbilderbeek.nl/ToolTestShinyButton.htm",
     GetVersion(),
     GetVersionHistory()

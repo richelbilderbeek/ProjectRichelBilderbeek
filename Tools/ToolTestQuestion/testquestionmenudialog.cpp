@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ ribi::About ribi::TestQuestionMenuDialog::GetAbout() const noexcept
     "TestQuestion",
     "tool to test the Question and QuestionDialog classes",
     "the 20th of August 2013",
-    "2011-2014",
+    "2011-2015",
     "http://www.richelbilderbeek.nl/ToolTestQuestion.htm",
     GetVersion(),
     GetVersionHistory());

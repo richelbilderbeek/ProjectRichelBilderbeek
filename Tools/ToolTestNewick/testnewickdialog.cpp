@@ -206,7 +206,7 @@ const ribi::About ribi::TestNewickDialog::GetAbout()
     "QtTestNewickDialog",
     "Qt dialog to compare the Newick classes",
     "the 24th of March 2011",
-    "2010-2014",
+    "2010-2015",
     "http://www.richelbilderbeek.nl/ToolTestNewick.htm",
     GetVersion(),
     GetVersionHistory());

@@ -165,6 +165,7 @@ const boost::shared_ptr<const ribi::maziak::IntMaze> ribi::maziak::Maze::CreateI
 const std::vector<std::vector<ribi::maziak::MazeSquare> > ribi::maziak::Maze::CreateMaze(
   const boost::shared_ptr<const IntMaze> int_maze) noexcept
 {
+  const bool verbose{false};
   assert(int_maze);
   const int sz = int_maze->GetSize();
   std::vector<std::vector<ribi::maziak::MazeSquare> > maze {
@@ -185,7 +186,7 @@ const std::vector<std::vector<ribi::maziak::MazeSquare> > ribi::maziak::Maze::Cr
     {
       if (static_cast<int>(std::log10(i)) != static_cast<int>(std::log10(i + 1)))
       {
-        TRACE(i + 1);
+        if (verbose) { TRACE(i + 1); }
       }
       const double x1 = static_cast<double>(dead_ends[0].first );
       const double y1 = static_cast<double>(dead_ends[0].second);

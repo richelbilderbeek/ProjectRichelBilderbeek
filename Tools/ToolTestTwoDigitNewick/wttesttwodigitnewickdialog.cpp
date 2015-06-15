@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtTestTwoDigitNewickDialog, Wt dialog to test the TwoDigitNewick class
-Copyright (C) 2010-2014 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -133,7 +133,7 @@ void ribi::WtTestTwoDigitNewickDialog::OnCalculate()
   }
 
   const std::string s = m_edit_newick->text().toUTF8();
-  if (!Newick::IsNewick(s))
+  if (!Newick().IsNewick(s))
   {
     m_text->setText("Invalid Newick");
     return;
@@ -150,9 +150,9 @@ void ribi::WtTestTwoDigitNewickDialog::OnCalculate()
     return;
   }
   const double theta = boost::lexical_cast<double>(theta_str);
-  if (Newick::IsBinaryNewick(Newick::StringToNewick(s)))
+  if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
   {
-    if (Newick::CalcComplexity(Newick::StringToNewick(s))
+    if (Newick().CalcComplexity(Newick().StringToNewick(s))
       > 10000)
     {
       m_text->setText("Can only calculate Newicks with complexities lower than 10000");

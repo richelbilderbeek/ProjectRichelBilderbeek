@@ -29,7 +29,7 @@ ribi::About ribi::ThresholdFiltererMenuDialog::GetAbout() const noexcept
     "ThresholdFilterer",
     "tool to pixelate image",
     "the 28th of November 2013",
-    "2008-2014",
+    "2008-2015",
     "http://www.richelbilderbeek.nl/ToolThresholdFilterer.htm",
     GetVersion(),
     GetVersionHistory());

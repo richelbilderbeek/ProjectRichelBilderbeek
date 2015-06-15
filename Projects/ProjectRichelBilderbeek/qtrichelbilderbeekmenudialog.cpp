@@ -199,31 +199,11 @@ void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
 
 void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
 {
-  const auto dialog
-    = QtRichelBilderbeekProgram().CreateQtMenuDialog(program_type);
-
-  if (!dialog)
-  {
-    /*
-    if (verbose) { TRACE("Create placeholder"); }
-    const boost::shared_ptr<QtHideAndShowDialog> placeholder(
-      QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(program_type));
-    assert(placeholder);
-    this->ShowChild(placeholder.get());
-    */
-    return;
-  }
-  else
-  {
-    //if (verbose) { TRACE("Create QtHideAndShowDialog"); }
-
-    //const std::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
-    //  std::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
-    //assert(hide_and_show_dialog);
-    //this->ShowChild(hide_and_show_dialog.get());
-    this->ShowChild(dialog.get());
-    return;
-  }
+  auto dialog = QtRichelBilderbeekProgram().CreateQtMenuDialog(program_type);
+  assert(dialog);
+  QtHideAndShowDialog * const p = dialog.release();
+  assert(p);
+  this->ShowChild(p);
 }
 
 #ifndef NDEBUG
@@ -234,7 +214,7 @@ void ribi::QtRichelBilderbeekMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const bool verbose{true};
+  const bool verbose{false};
   //const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const std::vector<ProgramType> v = ProgramTypes::GetAll();

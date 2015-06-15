@@ -104,7 +104,7 @@ ribi::About ribi::VigenereCipherMenuDialog::GetAbout() const noexcept
     "VigenereCipher",
     "Vigenere cipher tool",
     "the 1st of April 2014",
-    "2014-2014",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/ToolVigenereCipher.htm",
     GetVersion(),
     GetVersionHistory());

@@ -100,7 +100,7 @@ ribi::About ribi::GrayCoderMenuDialog::GetAbout() const noexcept
     "GrayCoder",
     "tool to convert integers to and from Gray code",
     "the 30th of September 2013",
-    "2009-2014",
+    "2009-2015",
     "http://www.richelbilderbeek.nl/ToolGrayCoder.htm",
     GetVersion(),
     GetVersionHistory()

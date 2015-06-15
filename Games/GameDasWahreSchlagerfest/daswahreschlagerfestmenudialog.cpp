@@ -96,7 +96,7 @@ ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
     "Das Wahre Schlagerfest",
     "a truely fun game",
     "the 10th of February 2014",
-    "2003-2014",
+    "2003-2015",
     "http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm",
     GetVersion(),
     GetVersionHistory()

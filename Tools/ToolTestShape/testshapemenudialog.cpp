@@ -75,7 +75,7 @@ ribi::About ribi::TestShapeMenuDialog::GetAbout() const noexcept
     "TestShape",
     "tool to test the Shape and ShapeWidget classes",
     "the 8th of August 2011",
-    "2011-2014",
+    "2011-2015",
     "http://www.richelbilderbeek.nl/ToolTestShape.htm",
     GetVersion(),
     GetVersionHistory());

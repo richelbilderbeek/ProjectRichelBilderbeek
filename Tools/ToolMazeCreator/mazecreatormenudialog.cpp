@@ -52,7 +52,7 @@ ribi::About ribi::MazeCreatorMenuDialog::GetAbout() const noexcept
     "MazeCreator",
     "creates a maze and displays it on screen",
     "the 6th of March 2012",
-    "2007-2014",
+    "2007-2015",
     "http://www.richelbilderbeek.nl/ToolMazeCreator.htm",
     GetVersion(),
     GetVersionHistory()

@@ -168,7 +168,7 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
     }
   }
 
-  TRACE(pagenames.size());
+  //TRACE(pagenames.size());
 
   f
     << "</ul>\n"

@@ -96,7 +96,7 @@ ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
     "Hometrainer",
     "exercise and survey suite",
     "the 23rd of October 2013",
-    "2009-2014",
+    "2009-2015",
     "http://www.richelbilderbeek.nl/ToolHometrainer.htm",
     GetVersion(),
     GetVersionHistory());

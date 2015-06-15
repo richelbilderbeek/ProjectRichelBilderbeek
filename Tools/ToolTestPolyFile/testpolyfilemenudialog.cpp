@@ -93,7 +93,7 @@ ribi::About ribi::TestPolyFileMenuDialog::GetAbout() const noexcept
     "TestPolyFile",
     "tool to test the PolyFile class",
     "the 2nd of June 2014",
-    "2014-2014",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/ToolTestPolyFile.htm",
     GetVersion(),
     GetVersionHistory());

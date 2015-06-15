@@ -87,7 +87,7 @@ ribi::About ribi::TestMultiCanvasMenuDialog::GetAbout() const noexcept
     "TestMultiCanvas",
     "tests the MultiCanvas class",
     "the 13th of January 2014",
-    "2014-2014",
+    "2014-2015",
     "http://www.richelbilderbeek.nl/ToolTestMultiCanvas.htm",
     GetVersion(),
     GetVersionHistory());

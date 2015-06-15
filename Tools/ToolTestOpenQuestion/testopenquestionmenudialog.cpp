@@ -78,7 +78,7 @@ ribi::About ribi::TestOpenQuestionMenuDialog::GetAbout() const noexcept
     "TestOpenQuestion",
     "tool to test the OpenQuestion and OpenQuestionDialog classes",
     "the 20th of August 2013",
-    "2013-2014",
+    "2013-2015",
     "http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm",
     GetVersion(),
     GetVersionHistory());

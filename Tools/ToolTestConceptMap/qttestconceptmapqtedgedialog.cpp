@@ -186,7 +186,7 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     QtImage();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  const bool verbose{true};
+  const bool verbose{false};
   QtTestQtEdgeDialog dialog;
   const boost::shared_ptr<QtEdge> qtedge{dialog.GetQtEdge()};
   const int n = dialog.ui->box_test_index->maximum();

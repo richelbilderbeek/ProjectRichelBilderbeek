@@ -60,7 +60,7 @@ ribi::About ribi::RandomCodeMenuDialog::GetAbout() const noexcept
     "RandomCode",
     "tool to generate random C++ code",
     "the 24th of February 2014",
-    "2007-2014",
+    "2007-2015",
     "http://www.richelbilderbeek.nl/ToolRandomCode.htm",
     GetVersion(),
     GetVersionHistory());

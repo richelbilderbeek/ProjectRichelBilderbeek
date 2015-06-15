@@ -35,7 +35,7 @@ ribi::About ribi::ToolTestMultiApproximatorMenuDialog::GetAbout() const noexcept
     "ToolTestMultiApproximator",
     "tests the MultiApproximator class",
     "the 23rd of August 2013",
-    "2013-2014",
+    "2013-2015",
     "http://www.richelbilderbeek.nl/ToolTestMultiApproximator.htm",
     GetVersion(),
     GetVersionHistory());

@@ -49,7 +49,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtgraycodermenudialog.h"
 #include "qthistogramequalizationermenudialog.h"
 #include "qtfisherwrightermaindialog.h"
-//#include "qthometrainermenudialog.h"
+#include "qthometrainermenudialog.h"
 #include "qttestpolyfilemenudialog.h"
 #include "qttestpolyfilefrompolygonsmenudialog.h"
 #include "qtwkttosvgmenudialog.h"
@@ -69,11 +69,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpixelatormenudialog.h"
 #include "qtpredickadvocatormenudialog.h"
 #include "qtprimeexpertmenudialog.h"
-
-#ifdef INCLUDE_BRAINWEAVER_20140617
 #include "qtpvdbmenudialog.h"
-#endif // INCLUDE_BRAINWEAVER_20140617
-
 #include "qtrichelbilderbeekgalleryresources.h"
 #include "qtpylosmenudialog.h"
 #include "qtqmakewatchermenudialog.h"
@@ -100,13 +96,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestaboutmenudialog.h"
 #include "qttestapproximatormenudialog.h"
 #include "qttestbinarynewickvectormenudialog.h"
-
-#define INCLUDE_CHESS_20140617
-#ifdef INCLUDE_CHESS_20140617
 #include "qttestchessmenudialog.h"
-#endif
-
-//#include "qttestconceptmapmenudialog.h"
+#include "qttestconceptmapmenudialog.h"
 #include "qttestdialmenudialog.h"
 #include "qttestdrawcanvasmenudialog.h"
 #include "qttestfunctionparsermenudialog.h"
@@ -116,7 +107,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestmanydigitnewickmenudialog.h"
 #include "qttestmultiapproximatormenudialog.h"
 #include "qttestmulticanvasmenudialog.h"
-//#include "qttestmultiplechoicequestionmenudialog.h"
+#include "qttestmultiplechoicequestionmenudialog.h"
 #include "qttestnewickvectordialog.h"
 #include "qttestopenquestionmenudialog.h"
 #include "qttestplanemenudialog.h"
@@ -130,8 +121,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtmodelsmenudialog.h"
 #include "qttestqtroundededitrectitemmenudialog.h"
 #include "qttestqtroundedrectitemmenudialog.h"
-//#include "qttestqtroundedtextrectitemmenudialog.h" //OBSOLETE
-//#include "qttestquestionmenudialog.h"
+#include "qttestquestionmenudialog.h"
 #include "qttestreversimaindialog.h"
 #include "qttestshapemenudialog.h"
 #include "qttestshinybuttonmenudialog.h"
@@ -159,7 +149,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const ProgramType type) const noexcept
 {
-  TRACE(ribi::ProgramTypes::ProgramTypeToEnumName(type));
   QtHideAndShowDialog *  p = nullptr;
   switch (type)
   {
@@ -172,15 +161,10 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::bochum: break;
     case ProgramType::boenken: p = new QtBoenkenMenuDialog; break;
     case ProgramType::boenkenVcl: break;
-    case ProgramType::brainweaver:
-#ifdef INCLUDE_BRAINWEAVER_20140617
-      p = new pvdb::QtPvdbMenuDialog;
-#endif
-      break;
+    case ProgramType::brainweaver: p = new pvdb::QtPvdbMenuDialog; break;
     case ProgramType::bristol: break;
     case ProgramType::caesarCipher: p = new QtCaesarCipherMenuDialog; break;
     case ProgramType::chrisWiley: break;
-    //case ProgramType::codeBreaker: break; //p = new QtCodeBreakerMenuDialog; break;
     case ProgramType::codeToHtml: p = new c2h::QtCodeToHtmlMenuDialog; break;
     case ProgramType::connectThree: p = new con3::QtConnectThreeMenuDialog; break;
     case ProgramType::corridor: break;
@@ -232,7 +216,6 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::mazeCreatorVcl: break;
     case ProgramType::maziak: p = new maziak::QtMaziakMenuDialog2; break;
     case ProgramType::maziakVcl: break;
-    //case ProgramType::metZnDrieen: break;
     case ProgramType::metZnDrieenVcl: break;
     case ProgramType::midiLessonCreator: break;
     case ProgramType::morpher: break;
@@ -296,16 +279,8 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::testBouncingRectsWidget: break;
     case ProgramType::testBroadcastServer: break;
     case ProgramType::testBinaryNewickVector: p = new QtTestBinaryNewickVectorMenuDialog; break;
-    case ProgramType::testChess:
-#ifdef INCLUDE_BRAINWEAVER_20140617
-      p = new QtTestChessMenuDialog;
-#endif
-      break;
-    case ProgramType::testConceptMap:
-#ifdef INCLUDE_TESTCONCEPTMAP_20140617
-      p = new cmap::QtTestConceptMapMenuDialog;
-#endif // INCLUDE_TESTCONCEPTMAP_20140617
-    break;
+    case ProgramType::testChess: p = new QtTestChessMenuDialog; break;
+    case ProgramType::testConceptMap: p = new ribi::cmap::QtTestMenuDialog; break;
     case ProgramType::testDial: p = new QtTestDialMenuDialog; break;
     case ProgramType::testDrawCanvas: p = new QtTestDrawCanvasMenuDialog; break;
     case ProgramType::testEntrance: break;
@@ -339,7 +314,6 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::testQtOcrWidget: break;
     case ProgramType::testQtRoundedEditRectItem: p = new QtTestQtRoundedEditRectItemMenuDialog; break;
     case ProgramType::testQtRoundedRectItem: p = new QtTestQtRoundedRectItemMenuDialog; break;
-    //case ProgramType::testQtRoundedTextRectItem: p = new QtTestQtRoundedTextRectItemMenuDialog; break; //OBSOLETE
     case ProgramType::testQuestion: break; //p = new QtTestQuestionMenuDialog; break;
     case ProgramType::testReversi: p = new QtTestReversiMainDialog; break;
     case ProgramType::testSelectFileDialog: break;
@@ -382,7 +356,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
   return std::make_unique<QtHideAndShowDialog>(p);
 }
 
-
+/*
 std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(const ProgramType type) const noexcept
 {
   QtHideAndShowDialog * const d = new QtHideAndShowDialog;
@@ -437,3 +411,4 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
   assert(d);
   return std::make_unique<QtHideAndShowDialog>(d);
 }
+*/

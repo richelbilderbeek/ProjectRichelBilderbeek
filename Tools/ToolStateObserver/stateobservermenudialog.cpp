@@ -57,7 +57,7 @@ ribi::About ribi::StateObserverMenuDialog::GetAbout() const noexcept
     "StateObserver",
     "tool to examine state observers",
     "the 12th of July 2013",
-    "2013-2014",
+    "2013-2015",
     "http://www.richelbilderbeek.nl/ToolStateObserver.htm",
     GetVersion(),
     GetVersionHistory());

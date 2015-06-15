@@ -109,6 +109,7 @@ void ribi::fw::QtFisherWrighterMainDialog::on_button_run_next_clicked()
   ui->button_run->click();
 }
 
+#ifndef NDEBUG
 void ribi::fw::QtFisherWrighterMainDialog::Test() noexcept
 {
   {
@@ -118,3 +119,4 @@ void ribi::fw::QtFisherWrighterMainDialog::Test() noexcept
   }
   ribi::fw::MenuDialog();
 }
+#endif // NDEBUG

@@ -64,14 +64,15 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(
   };
 
   //All programs we can run
-  std::vector<ProgramType> program_types{all_program_types};
-  //std::vector<ProgramType> program_types;
-  //std::copy_if(
-  //  std::begin(all_program_types),
-  //  std::end(all_program_types),
-  //  std::back_inserter(program_types),
-  //    [](const ProgramType t) { return QtRichelBilderbeekProgram().CreateQtMenuDialog(t); }
-  //);
+  //std::vector<ProgramType> program_types_all{all_program_types};
+  std::vector<ProgramType> program_types;
+  std::copy_if(
+    std::begin(all_program_types),
+    std::end(all_program_types),
+    std::back_inserter(program_types),
+      [](const ProgramType t) { return QtRichelBilderbeekProgram().CreateQtMenuDialog(t); }
+  );
+
 
   const int n_program_types = boost::numeric_cast<int>(program_types.size());
 
