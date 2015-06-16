@@ -55,6 +55,8 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(
   : QtKeyboardFriendlyGraphicsView(parent),
     m_signal_show{}
 {
+  assert(QtRichelBilderbeekProgram().CreateQtMenuDialog(ProgramType::asciiArterVcl) == nullptr);
+
   assert(scene());
   scene()->clear();
 
@@ -70,9 +72,13 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(
     std::begin(all_program_types),
     std::end(all_program_types),
     std::back_inserter(program_types),
-      [](const ProgramType t) { return QtRichelBilderbeekProgram().CreateQtMenuDialog(t); }
+      [](const ProgramType t) {
+        return t != ProgramType::projectRichelBilderbeek
+          && QtRichelBilderbeekProgram().CreateQtMenuDialog(t);
+      }
   );
 
+  assert(program_types.size() < all_program_types.size());
 
   const int n_program_types = boost::numeric_cast<int>(program_types.size());
 
@@ -89,6 +95,8 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(
 
     const boost::shared_ptr<Program> p
       = Program::CreateProgram(program_type);
+
+    assert(p);
 
     QtRichelBilderbeekMenuItem * const item = new QtRichelBilderbeekMenuItem(p->GetType());
     const double w = item->boundingRect().width();

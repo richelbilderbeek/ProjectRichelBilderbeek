@@ -352,63 +352,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
       assert(!"Unimplemented ProgramType");
       throw std::logic_error("Unimplemented ProgramType");
   }
-  //p might be nullptr
-  return std::make_unique<QtHideAndShowDialog>(p);
+  std::unique_ptr<QtHideAndShowDialog> q(p);
+  assert(p == q.get());
+  return q;
 }
-
-/*
-std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(const ProgramType type) const noexcept
-{
-  QtHideAndShowDialog * const d = new QtHideAndShowDialog;
-  assert(!d->layout());
-  QVBoxLayout * const layout = new QVBoxLayout;
-  d->setLayout(layout);
-  assert(d->layout());
-  const boost::shared_ptr<Program> p = Program::CreateProgram(type);
-  assert(p);
-  {
-    const std::string title = p->GetScreenName() + "(placeholder)";
-    d->setWindowTitle(title.c_str());
-  }
-  //Add label, useful if there are no screenshots
-  {
-    QLabel * const label = new QLabel((p->GetScreenName() + "(placeholder)").c_str());
-    label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    layout->addWidget(label);
-  }
-  // Create files
-  {
-    QtResources();
-  }
-  if (fileio::FileIo().IsRegularFile(p->GetFilenameConsole()))
-  {
-    const QPixmap pixmap(p->GetFilenameConsole().c_str());
-    QLabel * const label = new QLabel;
-    label->setPixmap(pixmap);
-    layout->addWidget(label);
-  }
-  if (fileio::FileIo().IsRegularFile(p->GetFilenameDesktop()))
-  {
-    const QPixmap pixmap(p->GetFilenameDesktop().c_str());
-    QLabel * const label = new QLabel;
-    label->setPixmap(pixmap);
-    layout->addWidget(label);
-  }
-  if (fileio::FileIo().IsRegularFile(p->GetFilenameDesktopWindowsOnly()))
-  {
-    const QPixmap pixmap(p->GetFilenameDesktopWindowsOnly().c_str());
-    QLabel * const label = new QLabel;
-    label->setPixmap(pixmap);
-    layout->addWidget(label);
-  }
-  if (fileio::FileIo().IsRegularFile(p->GetFilenameWeb()))
-  {
-    const QPixmap pixmap(p->GetFilenameWeb().c_str());
-    QLabel * const label = new QLabel;
-    label->setPixmap(pixmap);
-    layout->addWidget(label);
-  }
-  assert(d);
-  return std::make_unique<QtHideAndShowDialog>(d);
-}
-*/

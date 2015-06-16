@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtChessBoardWidget, Qt widget for displaying the Chess::Board class
-Copyright (C) 2011-2014 Richel Bilderbeek
+Copyright (C) 2011-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,10 +22,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtchessboardwidget.h"
-
-#ifdef MXE_SUPPORTS_THREADS
-#include <future>
-#endif
 
 #include <iostream>
 #include <boost/bind.hpp>
@@ -291,15 +287,7 @@ void ribi::Chess::QtChessBoardWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
-    {
-      QtChessBoardWidget();
-    }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.join();
-  #endif
+  {
+    QtChessBoardWidget();
+  }
 }

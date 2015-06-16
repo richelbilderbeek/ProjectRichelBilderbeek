@@ -216,6 +216,8 @@ void ribi::QtRichelBilderbeekMenuDialog::Test() noexcept
   }
   const bool verbose{false};
   //const TestTimer test_timer(__func__,__FILE__,1.0);
+  assert(QtRichelBilderbeekProgram().CreateQtMenuDialog(ProgramType::asciiArterVcl).get() == nullptr);
+  assert(QtRichelBilderbeekProgram().CreateQtMenuDialog(ProgramType::asciiArterVcl) == nullptr);
   {
     const std::vector<ProgramType> v = ProgramTypes::GetAll();
     for (const ProgramType type: v)
@@ -235,5 +237,6 @@ void ribi::QtRichelBilderbeekMenuDialog::Test() noexcept
       assert(d || !d);
     }
   }
+
 }
 #endif

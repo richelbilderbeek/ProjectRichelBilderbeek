@@ -330,7 +330,7 @@ void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
   {
     const std::vector<std::function<void()>> fs = {
       [this,newick]() { DisplayNewick(newick,Lineages::all); },
-      [this,newick]() { DisplayPhylogeny(newick,Lineages::all,Tool::NewickUtils); },
+      [this,newick]() { DisplayPhylogeny(newick,Lineages::all,Tool::PhylogenyR); },
       [this,newick]() { DisplayNewick(newick,Lineages::extant); },
       [this,newick]() { DisplayBranchingTimes(newick,Lineages::all); },
       [this,newick]() { DisplayBranchingTimes(newick,Lineages::extant); },
@@ -352,7 +352,7 @@ void QtNewickDisplay::SetNewick(const std::string& newick) noexcept
   //Do all functions that do work
   {
     const std::vector<std::function<void()>> fs = {
-      [this,newick]() { DisplayPhylogeny(newick,Lineages::extant,Tool::NewickUtils); },
+      [this,newick]() { DisplayPhylogeny(newick,Lineages::extant,Tool::PhylogenyR); },
       [this,newick]() { DisplayPhylogeny(newick,Lineages::all,Tool::PhylogenyR); },
       [this,newick]() { DisplayPhylogeny(newick,Lineages::extant,Tool::PhylogenyR); },
       [this,newick]() { DisplayNewickToLttPlot(newick,Lineages::all); },

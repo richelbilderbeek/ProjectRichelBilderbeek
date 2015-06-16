@@ -8,10 +8,6 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
-#ifdef MXE_SUPPORTS_THREADS
-#include <thread>
-#endif
-
 #include "chessgame.h"
 
 #include "chesswidget.h"
@@ -140,18 +136,9 @@ void ribi::sadc::MenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
-    {
-      FTRACE("Testing MenuDialog");
-      MenuDialog();
-      Chess::Game();
-    }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.detach();
-  #endif
+  {
+    MenuDialog();
+    Chess::Game();
+  }
 }
 #endif

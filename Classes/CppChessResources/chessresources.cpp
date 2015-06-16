@@ -7,11 +7,6 @@
 #include <algorithm>
 #include <cassert>
 
-#ifdef MXE_SUPPORTS_THREADS
-#include <thread>
-#endif
-
-
 #include <boost/scoped_ptr.hpp>
 
 #include "chesscolor.h"
@@ -211,23 +206,15 @@ void ribi::Chess::Resources::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-  #endif
+  {
+    const std::vector<std::string> filenames = GetFilenames();
+    for (const std::string& s: filenames)
     {
-      const std::vector<std::string> filenames = GetFilenames();
-      for (const std::string& s: filenames)
+      if (!ribi::fileio::FileIo().IsRegularFile(s))
       {
-        if (!ribi::fileio::FileIo().IsRegularFile(s))
-        {
-          TRACE(s);
-        }
-        assert(ribi::fileio::FileIo().IsRegularFile(s));
+        TRACE(s);
       }
+      assert(ribi::fileio::FileIo().IsRegularFile(s));
     }
-  #ifdef MXE_SUPPORTS_THREADS
-  );
-  t.join();
-  #endif
+  }
 }
