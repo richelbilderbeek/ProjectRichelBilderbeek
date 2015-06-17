@@ -8,6 +8,9 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QWidget>
 #include <QImage>
+
+#include "species.h"
+#include "space.h"
 #pragma GCC diagnostic pop
 
 class QtFractionImage : public QWidget
@@ -15,14 +18,24 @@ class QtFractionImage : public QWidget
   Q_OBJECT
   public:
 
-  using SpeciesGrid = std::vector<std::vector<double>>;
-  using SpatialGrid = std::vector<std::vector<int>>;
+  using TraitGrid = std::vector<std::vector<double>>;
+  using SpeciesGrid = std::vector<std::vector<Species>>;
+  using SpatialGrid = std::vector<std::vector<Space>>;
 
   explicit QtFractionImage(QWidget *parent = 0);
   void paintEvent(QPaintEvent *);
 
-  static double GetMinValue(const SpeciesGrid& species_grid) noexcept;
-  static double GetMaxValue(const SpeciesGrid& species_grid) noexcept;
+  static double GetMinValue(
+    const SpatialGrid& spatial_grid,
+    const SpeciesGrid& species_grid,
+    const TraitGrid& trait_grid
+  ) noexcept;
+
+  static double GetMaxValue(
+    const SpatialGrid& spatial_grid,
+    const SpeciesGrid& species_grid,
+    const TraitGrid& trait_grid
+  ) noexcept;
 
   int GetHeight() const noexcept;
   int GetWidth() const noexcept;
@@ -36,8 +49,9 @@ class QtFractionImage : public QWidget
   );
 
   void Set(
+    const SpatialGrid& spatial_grid,
     const SpeciesGrid& species_grid,
-    const SpatialGrid& spatial_grid
+    const TraitGrid& trait_grid
   );
 
   signals:

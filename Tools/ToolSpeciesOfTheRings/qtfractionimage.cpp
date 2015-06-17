@@ -11,34 +11,47 @@
 #pragma GCC diagnostic pop
 
 double QtFractionImage::GetMinValue(
-  const QtFractionImage::SpeciesGrid& species_grid
+  const QtFractionImage::SpatialGrid& spatial_grid,
+  const QtFractionImage::SpeciesGrid& species_grid,
+  const QtFractionImage::TraitGrid& trait_grid
 ) noexcept
 {
-  double min_value{species_grid[0][0]};
-  for (const auto& line: species_grid)
+  double min_value{std::numeric_limits<double>::max()};
+  const int height{static_cast<int>(trait_grid.size())};
+  const int width{static_cast<int>(trait_grid[0].size())};
+  for (int y=0; y!=height; ++y)
   {
-    const double this_min{
-      *std::min_element(std::begin(line),std::end(line))
-    };
-    min_value = std::min(this_min,min_value);
+    for (int x=0; x!=width; ++x)
+    {
+      if (spatial_grid[y][x] == Space::Mountain) continue;
+      if (species_grid[y][x] == Species::Absent) continue;
+      min_value = std::min(min_value,trait_grid[y][x]);
+    }
   }
   return min_value;
 }
 
 double QtFractionImage::GetMaxValue(
-  const QtFractionImage::SpeciesGrid& species_grid
+  const QtFractionImage::SpatialGrid& spatial_grid,
+  const QtFractionImage::SpeciesGrid& species_grid,
+  const QtFractionImage::TraitGrid& trait_grid
 ) noexcept
 {
-  double max_value{species_grid[0][0]};
-  for (const auto& line: species_grid)
+  double max_value{std::numeric_limits<double>::min()};
+  const int height{static_cast<int>(trait_grid.size())};
+  const int width{static_cast<int>(trait_grid[0].size())};
+  for (int y=0; y!=height; ++y)
   {
-    const double this_max{
-      *std::max_element(std::begin(line),std::end(line))
-    };
-    max_value = std::max(this_max,max_value);
+    for (int x=0; x!=width; ++x)
+    {
+      if (spatial_grid[y][x] == Space::Mountain) continue;
+      if (species_grid[y][x] == Species::Absent) continue;
+      max_value = std::max(max_value,trait_grid[y][x]);
+    }
   }
   return max_value;
 }
+
 
 double QtFractionImage::Map(
   const double x,
@@ -89,25 +102,36 @@ void QtFractionImage::paintEvent(QPaintEvent *)
 }
 
 void QtFractionImage::Set(
+  const SpatialGrid& spatial_grid,
   const SpeciesGrid& species_grid,
-  const SpatialGrid& spatial_grid
+  const TraitGrid& trait_grid
 )
 {
-  assert(species_grid.size() == spatial_grid.size());
-  assert(species_grid[0].size() == spatial_grid[0].size());
-  if (GetHeight() != static_cast<int>(species_grid.size()))
+  assert(trait_grid.size() == spatial_grid.size());
+  assert(trait_grid[0].size() == spatial_grid[0].size());
+  if (GetHeight() != static_cast<int>(trait_grid.size()))
   {
-    assert(!species_grid.empty());
-    const int new_height = species_grid.size();
-    const int new_width = species_grid[0].size();
+    assert(!trait_grid.empty());
+    const int new_height = trait_grid.size();
+    const int new_width = trait_grid[0].size();
     m_image = QImage(new_width,new_height,QImage::Format::Format_RGB32);
   }
 
   const auto height = GetHeight();
   const auto width  = GetWidth();
 
-  const double min_value = GetMinValue(species_grid);
-  const double max_value = GetMaxValue(species_grid);
+  const double min_value
+    = GetMinValue(
+      spatial_grid,
+      species_grid,
+      trait_grid
+    );
+  const double max_value
+    = GetMaxValue(
+      spatial_grid,
+      species_grid,
+      trait_grid
+    );
 
   for (int y{0}; y!=height; ++y)
   {
@@ -115,18 +139,24 @@ void QtFractionImage::Set(
     assert(y < height);
     const auto& species_line = species_grid[y];
     const auto& spatial_line = spatial_grid[y];
+    const auto& trait_line = trait_grid[y];
     for (int x{0}; x!=width; ++x)
     {
       assert(x >= 0);
       assert(x < width);
-      if (spatial_line[x] == 0)
+      if (spatial_line[x] == Space::Mountain)
       {
         m_image.setPixel(x,y,qRgb(0,0,0));
         continue;
       }
-      const double species_value = species_line[x];
+      if (species_line[x] == Species::Absent)
+      {
+        m_image.setPixel(x,y,qRgb(128,128,128));
+        continue;
+      }
+      const double trait_value{trait_line[x]};
       const double color_angle{
-        Map(species_value,min_value,max_value,0.0,270.0)
+        Map(trait_value,min_value,max_value,0.0,270.0)
       };
       QColor color;
       color.setHsv(color_angle,254,254);

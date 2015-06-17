@@ -6,6 +6,8 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qthideandshowdialog.h"
+#include "species.h"
+#include "space.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
@@ -24,8 +26,9 @@ class QtSpeciesOfTheRingsMainDialog : public ribi::QtHideAndShowDialog
 public:
 
   using ParametersWidget = QtSimTopPredatorPreyParametersWidget;
-  using SpeciesGrid = std::vector<std::vector<double>>;
-  using SpatialGrid = std::vector<std::vector<int>>;
+  using TraitGrid = std::vector<std::vector<double>>;
+  using SpeciesGrid = std::vector<std::vector<Species>>;
+  using SpatialGrid = std::vector<std::vector<Space>>;
 
   explicit QtSpeciesOfTheRingsMainDialog(
     const int width,
@@ -41,11 +44,17 @@ public:
 
 private:
   Ui::QtSpeciesOfTheRingsMainDialog *ui;
+  std::normal_distribution<double> m_normal_distribution;
   QtFractionImage * const m_qtgrid;
   std::mt19937 m_rng_engine;
   SpatialGrid m_spatial_grid;
   SpeciesGrid m_species_grid;
+  TraitGrid m_trait_grid;
+  int m_t;
   static const double m_trait_distance;
+  static const double m_trait_mutation;
+
+  void Display();
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
