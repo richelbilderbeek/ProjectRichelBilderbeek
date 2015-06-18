@@ -64,6 +64,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtmusictheorymenudialog.h"
 #include "qtperfectelasticcollisionmenudialog.h"
 #include "qtlizardpaperrockscissorsspockmenudialog.h"
+#include "qttooltestbouncingrectswidgetmaindialog.h"
+#include "qttooltestbouncingballswidgetmaindialog.h"
+#include "qtsearchanddestroychessmenudialog.h"
 #include "qttesttrianglemenudialog.h"
 #include "qtpictocodemenudialog.h"
 #include "qtpixelatormenudialog.h"
@@ -190,7 +193,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::gtst: break;
     case ProgramType::histogramEqualizationer: p = new QtHistogramEqualizationerMenuDialog; break;
     case ProgramType::histogramEqualizationerVcl: break;
-    case ProgramType::hometrainer: break; //p = new QtHometrainerMenuDialog; break;
+    case ProgramType::hometrainer: p = new QtHometrainerMenuDialog; break;
     case ProgramType::hometrainerVcl: break;
     case ProgramType::imageRotater: p = new QtImageRotaterMenuDialog; break;
     case ProgramType::imageRotaterClx: break;
@@ -252,7 +255,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::richelbilderbeekNlSitemapGenerator: p = new QtSitemapGeneratorMenuDialog; break;
     case ProgramType::rubiksClock: p = new ruco::QtRubiksClockMenuDialog; break;
     case ProgramType::rubiksClockVcl: break;
-    case ProgramType::searchAndDestroyChess: break;
+    case ProgramType::searchAndDestroyChess: p = new sadc::QtSearchAndDestroyChessMenuDialog; break;
     case ProgramType::searchAndDestroyChessVcl: break;
     case ProgramType::secretMessage: p = new sema::QtMenuDialog; break;
     case ProgramType::secretMessageVcl: break;
@@ -275,8 +278,8 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::tankBattalion: break;
     case ProgramType::testAbout: p = new QtTestAboutMenuDialog; break;
     case ProgramType::testApproximator: p = new QtToolTestApproximatorMenuDialog; break;
-    case ProgramType::testBouncingBallsWidget: break;
-    case ProgramType::testBouncingRectsWidget: break;
+    case ProgramType::testBouncingBallsWidget: p = new QtToolTestBouncingBallsWidgetMainDialog; break;
+    case ProgramType::testBouncingRectsWidget: p = new QtToolTestBouncingRectsWidgetMainDialog; break;
     case ProgramType::testBroadcastServer: break;
     case ProgramType::testBinaryNewickVector: p = new QtTestBinaryNewickVectorMenuDialog; break;
     case ProgramType::testChess: p = new QtTestChessMenuDialog; break;
@@ -297,7 +300,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::testManyDigitNewick: p = new QtTestManyDigitNewickMenuDialog; break;
     case ProgramType::testMultiApproximator: p = new QtToolTestMultiApproximatorMenuDialog; break;
     case ProgramType::testMultiCanvas: p = new QtTestMultiCanvasMenuDialog; break;
-    case ProgramType::testMultipleChoiceQuestion: break; //p = new QtTestMultipleChoiceQuestionMenuDialog; break;
+    case ProgramType::testMultipleChoiceQuestion: p = new QtTestMultipleChoiceQuestionMenuDialog; break;
     case ProgramType::testMultiVector: break;
     case ProgramType::testNdsmake: break;
     case ProgramType::testNeuralNet: /* p = new QtTestNeuralNetMenuDialog; */ break;
@@ -314,7 +317,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::testQtOcrWidget: break;
     case ProgramType::testQtRoundedEditRectItem: p = new QtTestQtRoundedEditRectItemMenuDialog; break;
     case ProgramType::testQtRoundedRectItem: p = new QtTestQtRoundedRectItemMenuDialog; break;
-    case ProgramType::testQuestion: break; //p = new QtTestQuestionMenuDialog; break;
+    case ProgramType::testQuestion: p = new QtTestQuestionMenuDialog; break;
     case ProgramType::testReversi: p = new QtTestReversiMainDialog; break;
     case ProgramType::testSelectFileDialog: break;
     case ProgramType::testServerPusher: break;

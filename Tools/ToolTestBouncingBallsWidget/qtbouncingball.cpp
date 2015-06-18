@@ -6,7 +6,7 @@
 #include <QPainter>
 #include "qtbouncingball.h"
 
-QtBouncingRect::QtBouncingRect(QGraphicsItem *parent, QGraphicsScene *scene)
+QtBouncingBall::QtBouncingBall(QGraphicsItem *parent, QGraphicsScene *scene)
  : QGraphicsItem(parent),
    m_dx(1.0), m_dy(1.0), m_scene(scene)
 {
@@ -14,7 +14,7 @@ QtBouncingRect::QtBouncingRect(QGraphicsItem *parent, QGraphicsScene *scene)
   assert(m_scene && "An initialized QGraphicsScene must be supplied");
 }
 
-void QtBouncingRect::advance(int /* phase */)
+void QtBouncingBall::advance(int /* phase */)
 {
   if (x() + m_dx + (boundingRect().width() * 0.5) > m_scene->width()) m_dx = -std::abs(m_dx);
   else if (x() + m_dx - (boundingRect().width() * 0.5) < 0.0) m_dx = std::abs(m_dx);
@@ -35,12 +35,12 @@ void QtBouncingRect::advance(int /* phase */)
 
 }
 
-QRectF QtBouncingRect::boundingRect() const
+QRectF QtBouncingBall::boundingRect() const
 {
   return QRectF(-16.0,-16.0,32.0,32.0);
 }
 
-void QtBouncingRect::paint(
+void QtBouncingBall::paint(
   QPainter *painter,
   const QStyleOptionGraphicsItem * /* option */,
   QWidget * /* widget */)
@@ -48,7 +48,7 @@ void QtBouncingRect::paint(
   painter->drawEllipse(this->boundingRect());
 }
 
-QPainterPath QtBouncingRect::shape() const
+QPainterPath QtBouncingBall::shape() const
 {
   QPainterPath p;
   p.addEllipse(boundingRect());

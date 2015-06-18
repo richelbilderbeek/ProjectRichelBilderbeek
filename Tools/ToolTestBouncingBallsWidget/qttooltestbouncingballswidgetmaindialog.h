@@ -1,18 +1,20 @@
 #ifndef QTTOOLTESTBOUNCINGBALLSWIDGETMAINDIALOG_H
 #define QTTOOLTESTBOUNCINGBALLSWIDGETMAINDIALOG_H
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 namespace Ui {
 class QtToolTestBouncingBallsWidgetMainDialog;
 }
 
-class QtToolTestBouncingBallsWidgetMainDialog : public QDialog
+class QtToolTestBouncingBallsWidgetMainDialog : public ribi::QtHideAndShowDialog
 {
     Q_OBJECT
     
 public:
     explicit QtToolTestBouncingBallsWidgetMainDialog(QWidget *parent = 0);
+    QtToolTestBouncingBallsWidgetMainDialog(const QtToolTestBouncingBallsWidgetMainDialog&) = delete;
+    QtToolTestBouncingBallsWidgetMainDialog& operator=(const QtToolTestBouncingBallsWidgetMainDialog&) = delete;
     ~QtToolTestBouncingBallsWidgetMainDialog();
     
 private:

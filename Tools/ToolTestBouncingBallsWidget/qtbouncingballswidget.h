@@ -5,9 +5,11 @@
 
 struct QGraphicsScene;
 
-struct QtBouncingRectsWidget : public QGraphicsView
+struct QtBouncingBallsWidget : public QGraphicsView
 {
-  QtBouncingRectsWidget(QWidget *parent = 0);
+  QtBouncingBallsWidget(QWidget *parent = 0);
+  QtBouncingBallsWidget(const QtBouncingBallsWidget&) = delete;
+  QtBouncingBallsWidget& operator=(const QtBouncingBallsWidget&) = delete;
 
 
   protected:

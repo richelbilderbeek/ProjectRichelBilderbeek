@@ -4,7 +4,7 @@
 #include "qtbouncingballswidget.h"
 
 
-QtBouncingRectsWidget::QtBouncingRectsWidget(QWidget *parent)
+QtBouncingBallsWidget::QtBouncingBallsWidget(QWidget *parent)
   : QGraphicsView(parent),
     m_scene(new QGraphicsScene(this->rect(),this))
 {
@@ -12,7 +12,7 @@ QtBouncingRectsWidget::QtBouncingRectsWidget(QWidget *parent)
 
   for (int i=0; i!=3; ++i)
   {
-    QtBouncingRect * const ball = new QtBouncingRect(0,m_scene);
+    QtBouncingBall * const ball = new QtBouncingBall(0,m_scene);
     ball->setPos(
       static_cast<double>((i - 1) * 32) + (0.5 * static_cast<double>(width())),
       static_cast<double>((i - 1) * 32) + (0.5 * static_cast<double>(height())));
@@ -31,7 +31,7 @@ QtBouncingRectsWidget::QtBouncingRectsWidget(QWidget *parent)
 }
 
 
-void QtBouncingRectsWidget::resizeEvent(QResizeEvent *)
+void QtBouncingBallsWidget::resizeEvent(QResizeEvent *)
 {
   m_scene->setSceneRect(this->rect());
 }

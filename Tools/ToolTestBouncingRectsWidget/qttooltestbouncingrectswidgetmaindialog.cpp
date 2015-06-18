@@ -6,8 +6,8 @@
 #pragma GCC diagnostic pop
 
 QtToolTestBouncingRectsWidgetMainDialog::QtToolTestBouncingRectsWidgetMainDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::QtToolTestBouncingRectsWidgetMainDialog)
+  QtHideAndShowDialog(parent),
+  ui(new Ui::QtToolTestBouncingRectsWidgetMainDialog)
 {
   ui->setupUi(this);
   ui->layout->addWidget(new QtBouncingRectsWidget(this));

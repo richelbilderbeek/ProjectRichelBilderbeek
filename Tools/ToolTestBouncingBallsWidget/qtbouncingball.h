@@ -5,9 +5,11 @@
 
 struct QGraphicsScene;
 
-struct QtBouncingRect : public QGraphicsItem
+struct QtBouncingBall : public QGraphicsItem
 {
-  QtBouncingRect(QGraphicsItem *parent, QGraphicsScene *scene);
+  QtBouncingBall(QGraphicsItem *parent, QGraphicsScene *scene);
+  QtBouncingBall(const QtBouncingBall&) = delete;
+  QtBouncingBall& operator=(const QtBouncingBall&) = delete;
 
   ///Make the balls move
   void advance(int phase);

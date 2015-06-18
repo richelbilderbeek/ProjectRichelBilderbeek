@@ -3,14 +3,14 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
 class QtToolTestBouncingRectsWidgetMainDialog;
 }
 
-class QtToolTestBouncingRectsWidgetMainDialog : public QDialog
+class QtToolTestBouncingRectsWidgetMainDialog : public ribi::QtHideAndShowDialog
 {
     Q_OBJECT
     
