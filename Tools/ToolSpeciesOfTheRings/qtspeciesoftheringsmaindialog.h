@@ -49,6 +49,8 @@ private:
   double m_trait_distance_threshold;
   TraitGrid m_trait_grid;
 
+  std::vector<double> CollectTraits() const noexcept;
+
   void Display();
   #ifndef NDEBUG
   static void Test() noexcept;

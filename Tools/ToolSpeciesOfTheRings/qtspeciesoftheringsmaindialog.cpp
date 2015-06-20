@@ -9,6 +9,8 @@
 #include <QDesktopWidget>
 #include <QTimer>
 #include "qtfractionimage.h"
+#include "histogram_r.h"
+#include "fileio.h"
 #include "testtimer.h"
 #include "ui_qtspeciesoftheringsmaindialog.h"
 #pragma GCC diagnostic pop
@@ -67,6 +69,34 @@ ribi::QtSpeciesOfTheRingsMainDialog::~QtSpeciesOfTheRingsMainDialog()
   delete ui;
 }
 
+std::vector<double> ribi::QtSpeciesOfTheRingsMainDialog::CollectTraits() const noexcept
+{
+  assert(!m_spatial_grid.empty());
+  assert(m_spatial_grid.size() == m_species_grid.size());
+  assert(m_spatial_grid.size() == m_trait_grid.size());
+  assert(m_spatial_grid[0].size() == m_species_grid[0].size());
+  assert(m_spatial_grid[0].size() == m_trait_grid[0].size());
+
+  const int height{static_cast<int>(m_spatial_grid.size())};
+  const int width{static_cast<int>(m_spatial_grid.size())};
+
+  std::vector<double> v;
+
+  for (int y=0; y!=height; ++y)
+  {
+    for (int x=0; x!=width; ++x)
+    {
+      if (m_spatial_grid[y][x] == Space::Land
+        && m_species_grid[y][x] == Species::Present
+      )
+      {
+        v.push_back(m_trait_grid[y][x]);
+      }
+    }
+  }
+  return v;
+}
+
 void ribi::QtSpeciesOfTheRingsMainDialog::Display()
 {
   m_qtgrid->Set(
@@ -75,6 +105,12 @@ void ribi::QtSpeciesOfTheRingsMainDialog::Display()
     m_trait_grid
   );
 
+  const auto traits = CollectTraits();
+  ribi::fileio::FileIo f;
+  const std::string filename = f.GetTempFileName(".png");
+  ribi::HistogramR().ToHistogram(traits,filename,ribi::HistogramR::GraphicsFormat::png);
+  ui->image_histogram->setPixmap(QPixmap(filename.c_str()));
+  f.DeleteFile(filename);
 }
 
 int ribi::QtSpeciesOfTheRingsMainDialog::GetHeight() const noexcept
