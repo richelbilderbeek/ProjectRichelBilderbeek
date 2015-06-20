@@ -30,11 +30,7 @@ public:
   using SpeciesGrid = std::vector<std::vector<Species>>;
   using SpatialGrid = std::vector<std::vector<Space>>;
 
-  explicit QtSpeciesOfTheRingsMainDialog(
-    const int width,
-    const int height,
-    QWidget *parent = 0
-  );
+  explicit QtSpeciesOfTheRingsMainDialog(QWidget *parent = 0);
   QtSpeciesOfTheRingsMainDialog(const QtSpeciesOfTheRingsMainDialog&) = delete;
   QtSpeciesOfTheRingsMainDialog& operator=(const QtSpeciesOfTheRingsMainDialog&) = delete;
   ~QtSpeciesOfTheRingsMainDialog();
@@ -49,10 +45,9 @@ private:
   std::mt19937 m_rng_engine;
   SpatialGrid m_spatial_grid;
   SpeciesGrid m_species_grid;
-  TraitGrid m_trait_grid;
   int m_t;
-  static const double m_trait_distance;
-  static const double m_trait_mutation;
+  double m_trait_distance_threshold;
+  TraitGrid m_trait_grid;
 
   void Display();
   #ifndef NDEBUG
@@ -60,6 +55,7 @@ private:
   #endif
 
 private slots:
+  void OnParametersChanged() noexcept;
   void OnTimer() noexcept;
 };
 

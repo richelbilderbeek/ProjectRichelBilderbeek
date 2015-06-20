@@ -13,23 +13,17 @@
 #include "ui_qtspeciesoftheringsmaindialog.h"
 #pragma GCC diagnostic pop
 
-const double ribi::QtSpeciesOfTheRingsMainDialog::m_trait_distance{1.0};
-const double ribi::QtSpeciesOfTheRingsMainDialog::m_trait_mutation{0.1};
-
-ribi::QtSpeciesOfTheRingsMainDialog::QtSpeciesOfTheRingsMainDialog(
-  const int width,
-  const int height,
-  QWidget *parent
-)
+ribi::QtSpeciesOfTheRingsMainDialog::QtSpeciesOfTheRingsMainDialog(QWidget *parent)
  :  ribi::QtHideAndShowDialog(parent),
     ui(new Ui::QtSpeciesOfTheRingsMainDialog),
-    m_normal_distribution(0.0,m_trait_mutation),
+    m_normal_distribution(0.0,1.0),
     m_qtgrid{new QtFractionImage},
-    m_rng_engine{41}, //41 and 42 show nice ring
-    m_spatial_grid(height,std::vector<Space>(width,Space::Land)),
-    m_species_grid(height,std::vector<Species>(width,Species::Absent)),
-    m_trait_grid(height,std::vector<double>(width,0.0)),
-    m_t{0}
+    m_rng_engine{0}, //41 and 42 show nice ring
+    m_spatial_grid{},
+    m_species_grid{},
+    m_t{0},
+    m_trait_distance_threshold{0.0},
+    m_trait_grid{}
 {
   #ifndef NDEBUG
   Test();
@@ -44,6 +38,11 @@ ribi::QtSpeciesOfTheRingsMainDialog::QtSpeciesOfTheRingsMainDialog(
     layout->addWidget(m_qtgrid);
     m_qtgrid->setMinimumSize(200,200);
   }
+  QObject::connect(ui->box_height,SIGNAL(valueChanged(int)),this,SLOT(OnParametersChanged()));
+  QObject::connect(ui->box_width,SIGNAL(valueChanged(int)),this,SLOT(OnParametersChanged()));
+  QObject::connect(ui->box_rng_seed,SIGNAL(valueChanged(int)),this,SLOT(OnParametersChanged()));
+  QObject::connect(ui->box_mutation_rate,SIGNAL(valueChanged(double)),this,SLOT(OnParametersChanged()));
+  QObject::connect(ui->box_threshold,SIGNAL(valueChanged(double)),this,SLOT(OnParametersChanged()));
 
   //Put dialog at screen center
   {
@@ -51,57 +50,9 @@ ribi::QtSpeciesOfTheRingsMainDialog::QtSpeciesOfTheRingsMainDialog(
     this->setGeometry(0,0,screen.width() * 9 / 10,screen.height() * 9 / 10);
     this->move( screen.center() - this->rect().center() );
   }
-  //Add mountain
-  {
-    const int height = static_cast<int>(m_species_grid.size());
-    const int width = static_cast<int>(m_species_grid[0].size());
-    const int x_from{width * 1 / 4};
-    const int x_to{width * 3 / 4};
-    const int y_from{height * 1 / 4};
-    const int y_to{height * 3 / 4};
-    //Wall around
-    for (int y=0; y!=height; ++y)
-    {
-      m_spatial_grid[y][0] = Space::Mountain;
-      m_spatial_grid[y][width - 1] = Space::Mountain;
-    }
-    for (int x=0; x!=width; ++x)
-    {
-      m_spatial_grid[0][x] = Space::Mountain;
-      m_spatial_grid[height - 1][x] = Space::Mountain;
-    }
-    //Mountain at center
-    for (int y=y_from; y!=y_to; ++y)
-    {
-      for (int x=x_from; x!=x_to; ++x)
-      {
-        m_spatial_grid[y][x] = Space::Mountain;
-      }
-    }
-  }
-  //Add some species
-  {
-    const int height = static_cast<int>(m_species_grid.size());
-    const int width = static_cast<int>(m_species_grid[0].size());
-    m_species_grid[height / 5][width / 2] = Species::Present;
-  }
-  //Add some variance
-  {
-    const int height = static_cast<int>(m_trait_grid.size());
-    const int width = static_cast<int>(m_trait_grid[0].size());
-    for (int y=0; y!=height; ++y)
-    {
-      const double fy{static_cast<double>(y) * 0.1};
-      for (int x=0; x!=width; ++x)
-      {
-        const double fx{static_cast<double>(x) * 0.1};
-        const double z{std::sin(fx)+cos(fy)};
-        //const double z{m_normal_distribution(m_rng_engine)};
-        //const double z{0.0};
-        m_trait_grid[y][x] = z;
-      }
-    }
-  }
+
+  OnParametersChanged();
+
   //Start the timer
   {
     QTimer * const timer{new QTimer(this)};
@@ -109,8 +60,6 @@ ribi::QtSpeciesOfTheRingsMainDialog::QtSpeciesOfTheRingsMainDialog(
     timer->setInterval(10);
     timer->start();
   }
-  Display();
-  //OnTimer();
 }
 
 ribi::QtSpeciesOfTheRingsMainDialog::~QtSpeciesOfTheRingsMainDialog()
@@ -142,6 +91,69 @@ int ribi::QtSpeciesOfTheRingsMainDialog::GetWidth() const noexcept
   assert(m_species_grid[0].size() == m_trait_grid[0].size());
   return m_spatial_grid[0].size();
 }
+
+void ribi::QtSpeciesOfTheRingsMainDialog::OnParametersChanged() noexcept
+{
+  const int height = ui->box_height->value();
+  const int width = ui->box_width->value();
+
+  const double trait_mutation{ui->box_mutation_rate->value()};
+  m_rng_engine = std::mt19937(ui->box_rng_seed->value());
+  m_normal_distribution = std::normal_distribution<double>(0.0,trait_mutation);
+
+  m_spatial_grid = SpatialGrid(height,std::vector<Space>(width,Space::Land));
+  m_species_grid = SpeciesGrid(height,std::vector<Species>(width,Species::Absent));
+  m_trait_grid = TraitGrid(height,std::vector<double>(width,0.0));
+  m_t = 0;
+
+  //Add mountain
+  {
+    const int x_from{width * 1 / 4};
+    const int x_to{width * 3 / 4};
+    const int y_from{height * 1 / 4};
+    const int y_to{height * 3 / 4};
+    //Wall around
+    for (int y=0; y!=height; ++y)
+    {
+      m_spatial_grid[y][0] = Space::Mountain;
+      m_spatial_grid[y][width - 1] = Space::Mountain;
+    }
+    for (int x=0; x!=width; ++x)
+    {
+      m_spatial_grid[0][x] = Space::Mountain;
+      m_spatial_grid[height - 1][x] = Space::Mountain;
+    }
+    //Mountain at center
+    for (int y=y_from; y!=y_to; ++y)
+    {
+      for (int x=x_from; x!=x_to; ++x)
+      {
+        m_spatial_grid[y][x] = Space::Mountain;
+      }
+    }
+  }
+  //Add some species
+  {
+    m_species_grid[height / 5][width / 2] = Species::Present;
+  }
+  //Add some variance
+  {
+    for (int y=0; y!=height; ++y)
+    {
+      const double fy{static_cast<double>(y) * 0.1};
+      for (int x=0; x!=width; ++x)
+      {
+        const double fx{static_cast<double>(x) * 0.1};
+        const double z{std::sin(fx)+cos(fy)};
+        //const double z{m_normal_distribution(m_rng_engine)};
+        //const double z{0.0};
+        m_trait_grid[y][x] = z;
+      }
+    }
+  }
+  Display();
+}
+
 
 void ribi::QtSpeciesOfTheRingsMainDialog::OnTimer() noexcept
 {
@@ -204,7 +216,7 @@ void ribi::QtSpeciesOfTheRingsMainDialog::OnTimer() noexcept
       //Species was present
       const double this_trait{m_trait_grid[y][x]};
       const double neighbour_trait{ts[0]};
-      if (std::abs(this_trait - neighbour_trait) < m_trait_distance)
+      if (std::abs(this_trait - neighbour_trait) < m_trait_distance_threshold)
       {
         const double new_trait{
           ((this_trait + neighbour_trait) / 2.0)
@@ -234,11 +246,7 @@ void ribi::QtSpeciesOfTheRingsMainDialog::Test() noexcept
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
-    const int width{123};
-    const int height{234};
-    const QtSpeciesOfTheRingsMainDialog d(width,height);
-    assert(d.GetHeight() == height);
-    assert(d.GetWidth() == width);
+    const QtSpeciesOfTheRingsMainDialog d;
   }
   {
     const int width{123};
