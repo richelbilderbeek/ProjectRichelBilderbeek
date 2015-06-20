@@ -5,7 +5,7 @@
 
 #include "maziakfwd.h"
 #include "maziakmazesquare.h"
-
+#include "maziakintmaze.h"
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
@@ -16,8 +16,7 @@ namespace maziak {
 
 struct Maze
 {
-  Maze(const int size) : Maze(CreateIntMaze(size)) {}
-  Maze(const boost::shared_ptr<const IntMaze> int_maze);
+  Maze(const int size,const int rng_seed = 42);
 
   ///Animate the enemies and prisoners in sight
   ///(all others are just standing still)
@@ -42,7 +41,7 @@ struct Maze
 
   MazeSquare Get(const int x, const int y) const noexcept;
 
-  const boost::shared_ptr<const IntMaze> GetIntMaze() const noexcept { return m_int_maze; }
+  const IntMaze& GetIntMaze() const noexcept { return m_int_maze; }
 
   int GetSize() const noexcept { return static_cast<int>(m_maze.size()); }
 
@@ -52,13 +51,16 @@ struct Maze
   void Set(const int x, const int y, const MazeSquare s) noexcept;
 
   private:
-  const boost::shared_ptr<const IntMaze> m_int_maze;
-  std::vector<std::vector<MazeSquare> > m_maze;
 
-  static const boost::shared_ptr<const IntMaze> CreateIntMaze(const int size) noexcept;
+  const IntMaze m_int_maze;
+  std::vector<std::vector<MazeSquare>> m_maze;
+  std::mt19937 m_rng_engine;
 
-  static const std::vector<std::vector<MazeSquare> > CreateMaze(
-    const boost::shared_ptr<const IntMaze> int_maze) noexcept;
+  static IntMaze CreateIntMaze(const int size) noexcept;
+
+  std::vector<std::vector<MazeSquare>> CreateMaze(
+    const IntMaze& int_maze
+  ) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

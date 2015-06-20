@@ -30,6 +30,8 @@ struct TextCanvas : public Canvas
     const int height = 1,
     const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen
   );
+  TextCanvas(const TextCanvas& rhs);
+  TextCanvas& operator=(const TextCanvas& rhs);
 
   TextCanvas(
     const std::vector<std::string>& canvas,

@@ -13,6 +13,9 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
+#include "maziakdistancesmaze.h"
+#include "maziakmaze.h"
+#include "maziaksolutionmaze.h"
 #include "maziakplayerdirection.h"
 #include "maziakplayermove.h"
 #include "maziaksprite.h"
@@ -40,14 +43,14 @@ struct MainDialog
   ///Play the game
   void Execute() noexcept;
 
-  const boost::shared_ptr<const Maze> GetMaze() const noexcept { return m_maze; }
+  const Maze& GetMaze() const noexcept { return m_maze; }
 
   PlayerDirection GetPlayerDirection() const noexcept { return m_direction; }
   int GetPlayerFightingFrame() const noexcept { return m_fighting_frame; }
   bool GetPlayerHasSword() const noexcept { return m_has_sword; }
   PlayerMove GetPlayerMove() const noexcept { return m_move_now; }
 
-  const boost::shared_ptr<const SolutionMaze> GetSolution() const noexcept { return m_solution; }
+  const SolutionMaze& GetSolution() const noexcept { return m_solution; }
 
   Sprite GetSpriteFloor(const int x,const int y) const noexcept { return GetSpriteFloor(m_maze,x,y,m_do_show_solution,m_solution); }
   Sprite GetSpriteAboveFloor(const int x,const int y) const noexcept { return GetSpriteAboveFloor(x,y,m_maze); }
@@ -71,7 +74,7 @@ struct MainDialog
 
   void SetShowSolution(const bool do_show_solution) noexcept { m_do_show_solution = do_show_solution; }
 
-  const boost::shared_ptr<TextCanvas> ToTextCanvas(
+  TextCanvas ToTextCanvas(
     const int view_height,
     const int view_width
   ) const noexcept;
@@ -84,31 +87,31 @@ struct MainDialog
 
 
   PlayerDirection m_direction;
-  boost::shared_ptr<const DistancesMaze> m_distances;
+  DistancesMaze m_distances;
   bool m_do_show_solution;
   int m_fighting_frame;
   bool m_has_sword;
   std::set<Key> m_keys;
-  const boost::shared_ptr<Maze> m_maze;
+  Maze m_maze;
   PlayerMove m_move_now;
-  boost::shared_ptr<const SolutionMaze> m_solution;
+  SolutionMaze m_solution;
   State m_state;
   int m_x;
   int m_y;
 
-  const boost::shared_ptr<const SolutionMaze> CreateNewSolution() noexcept;
+  SolutionMaze CreateNewSolution() noexcept;
 
   static Sprite GetSpriteFloor(
-    const boost::shared_ptr<const Maze> maze,
+    const Maze& maze,
     const int x,
     const int y,
     const bool show_solution,
-    const boost::shared_ptr<const SolutionMaze> solution
+    const SolutionMaze& solution
   ) noexcept;
   static Sprite GetSpriteAboveFloor(
     const int x,
     const int y,
-    const boost::shared_ptr<const Maze> m_maze
+    const Maze& m_maze
   ) noexcept;
   static Sprite GetSpritePlayer(
     const PlayerDirection direction,

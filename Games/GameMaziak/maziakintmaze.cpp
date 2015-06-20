@@ -9,13 +9,34 @@
 #include "testtimer.h"
 #include "trace.h"
 
-ribi::maziak::IntMaze::IntMaze(const std::vector<std::vector<int>>& maze)
-  : m_dead_ends{CreateDeadEnds(maze)},
-    m_maze{maze}
+ribi::maziak::IntMaze::IntMaze()
+  : m_dead_ends{}, m_int_grid{}, m_rng_engine(0)
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+ribi::maziak::IntMaze::IntMaze(const int sz, const int rng_seed)
+  : m_dead_ends{}, m_int_grid{}, m_rng_engine(rng_seed)
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  m_int_grid = CreateIntGrid(sz);
+  m_dead_ends = CreateDeadEnds(m_int_grid);
+}
+
+ribi::maziak::IntMaze::IntMaze(
+  const IntGrid& int_grid,
+  const int rng_seed
+)
+  : m_dead_ends{}, m_int_grid{int_grid}, m_rng_engine(rng_seed)
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  m_dead_ends = CreateDeadEnds(m_int_grid);
 }
 
 bool ribi::maziak::IntMaze::CanGet(const int x, const int y) const noexcept
@@ -24,7 +45,7 @@ bool ribi::maziak::IntMaze::CanGet(const int x, const int y) const noexcept
       && y >= 0 && y < GetSize();
 }
 
-const std::vector<std::pair<int,int> > ribi::maziak::IntMaze::CreateDeadEnds(
+std::vector<std::pair<int,int>> ribi::maziak::IntMaze::CreateDeadEnds(
   const std::vector<std::vector<int> >& maze) noexcept
 {
   const int size = maze.size();
@@ -47,11 +68,13 @@ const std::vector<std::pair<int,int> > ribi::maziak::IntMaze::CreateDeadEnds(
   }
 
   //Shuffle them
-  std::random_shuffle(dead_ends.begin(), dead_ends.end());
+  std::shuffle(dead_ends.begin(), dead_ends.end(),m_rng_engine);
   return dead_ends;
 }
 
-const std::vector<std::vector<int> > ribi::maziak::IntMaze::CreateMaze(const int sz) noexcept
+ribi::maziak::IntMaze::IntGrid
+  ribi::maziak::IntMaze::CreateIntGrid(const int sz
+) noexcept
 {
   //Assume correct size dimensions
   assert( sz > 4 && sz % 4 == 3
@@ -119,24 +142,15 @@ const std::vector<std::vector<int> > ribi::maziak::IntMaze::CreateMaze(const int
 int ribi::maziak::IntMaze::Get(const int x, const int y) const noexcept
 {
   assert(CanGet(x,y));
-  return m_maze[y][x];
+  return m_int_grid[y][x];
 }
 
-const boost::shared_ptr<ribi::maziak::DistancesMaze> ribi::maziak::IntMaze::GetDistancesMaze(
+ribi::maziak::DistancesMaze ribi::maziak::IntMaze::GetDistancesMaze(
   const int x,
   const int y
   ) const noexcept
 {
-  const boost::shared_ptr<const IntMaze> int_maze {
-    new IntMaze(m_maze)
-  };
-  assert(int_maze);
-
-  const boost::shared_ptr<DistancesMaze> maze {
-    new DistancesMaze(int_maze,x,y)
-  };
-
-  assert(maze);
+  DistancesMaze maze(*this,x,y);
   return maze;
 }
 
@@ -144,10 +158,10 @@ const boost::shared_ptr<ribi::maziak::DistancesMaze> ribi::maziak::IntMaze::GetD
 
 bool ribi::maziak::IntMaze::IsSquare() const noexcept
 {
-  assert(!m_maze.empty());
-  for(std::vector<int> row: m_maze)
+  assert(!m_int_grid.empty());
+  for(std::vector<int> row: m_int_grid)
   {
-    if (row.size()!=m_maze.size()) return false;
+    if (row.size()!=m_int_grid.size()) return false;
   }
   return true;
 }

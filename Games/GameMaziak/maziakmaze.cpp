@@ -25,14 +25,15 @@ template <class Source, class Target>
   return t;
 }
 
-ribi::maziak::Maze::Maze(const boost::shared_ptr<const IntMaze> int_maze)
-  : m_int_maze(int_maze),
-    m_maze(CreateMaze(int_maze))
+ribi::maziak::Maze::Maze(const int size,const int rng_seed)
+  : m_int_maze{CreateIntMaze(size)},
+    m_maze{},
+    m_rng_engine(rng_seed)
 {
   #ifndef NDEBUG
   Test();
   #endif
-  assert(int_maze->IsSquare());
+  m_maze = CreateMaze(m_int_maze);
   assert(IsSquare());
   assert(FindExit().first  >= 0);
   assert(FindStart().first >= 0);
@@ -87,18 +88,11 @@ void ribi::maziak::Maze::AnimateEnemiesAndPrisoners(
         if (col < x && col < maxx - 1 && Get(col+1,row) == MazeSquare::msEmpty) moves.push_back(std::make_pair(col+1,row));
         if (row < y && row < maxy - 1 && Get(col,row+1) == MazeSquare::msEmpty) moves.push_back(std::make_pair(col,row+1));
         if (col > x && col >        1 && Get(col-1,row) == MazeSquare::msEmpty) moves.push_back(std::make_pair(col-1,row));
-        const int nMoves = static_cast<int>(moves.size());
-        if (nMoves == 1)
+        //Pick a random move
+        if (!moves.empty())
         {
+          std::shuffle(std::begin(moves),std::end(moves),m_rng_engine);
           Set(moves[0].first,moves[0].second,MazeSquare::msEnemy1);
-          Set(col,row,MazeSquare::msEmpty);
-        }
-        else if (nMoves > 1)
-        {
-          assert(nMoves == 2);
-          const int moveIndex = (std::rand() >> 4) % nMoves;
-
-          Set(moves[moveIndex].first,moves[moveIndex].second,MazeSquare::msEnemy1);
           Set(col,row,MazeSquare::msEmpty);
         }
       }
@@ -151,34 +145,30 @@ bool ribi::maziak::Maze::CanSet(const int x, const int y, const MazeSquare /* s 
   return CanGet(x,y);
 }
 
-const boost::shared_ptr<const ribi::maziak::IntMaze> ribi::maziak::Maze::CreateIntMaze(const int size) noexcept
+ribi::maziak::IntMaze ribi::maziak::Maze::CreateIntMaze(const int size) noexcept
 {
   assert( size > 4 && size % 4 == 3
     && "Size must be 3 + (n * 4) for n > 0");
-  const boost::shared_ptr<const IntMaze> maze {
-    new IntMaze(size)
-  };
-  assert(maze);
+  IntMaze maze(size);
   return maze;
 }
 
-const std::vector<std::vector<ribi::maziak::MazeSquare> > ribi::maziak::Maze::CreateMaze(
-  const boost::shared_ptr<const IntMaze> int_maze) noexcept
+std::vector<std::vector<ribi::maziak::MazeSquare> > ribi::maziak::Maze::CreateMaze(
+  const IntMaze& int_maze) noexcept
 {
-  const bool verbose{false};
-  assert(int_maze);
-  const int sz = int_maze->GetSize();
+  const bool verbose{true};
+  const int sz = int_maze.GetSize();
   std::vector<std::vector<ribi::maziak::MazeSquare> > maze {
-    ConvertMatrix<int,MazeSquare>(int_maze->GetMaze())
+    ConvertMatrix<int,MazeSquare>(int_maze.GetMaze())
   };
 
-  std::vector<std::pair<int,int> > dead_ends = int_maze->GetDeadEnds();
+  std::vector<std::pair<int,int> > dead_ends = int_maze.GetDeadEnds();
   const int nDeadEnds = dead_ends.size();
+  std::uniform_int_distribution<int> distribution(0,nDeadEnds-1); //Inclusive max
   assert(nDeadEnds >= 2);
   const int nSwords    = (nDeadEnds - 2) / 3;
   const int nPrisoners = (nDeadEnds - 2) / 10;
   const int nEnemies   = (nDeadEnds - 2) / 4;
-
   {
     //Set a minimum distance for the player to travel
     //while (1)
@@ -195,16 +185,15 @@ const std::vector<std::vector<ribi::maziak::MazeSquare> > ribi::maziak::Maze::Cr
       const double a = x1 - x2;
       const double b = y1 - y2;
       // Use 0.65, as 0.75 could not always be solved
-      const double minDist = 0.60 * static_cast<double>(sz);
+      const double minDist = 0.50 * static_cast<double>(sz);
       if (std::sqrt( (a * a) + (b * b) ) > minDist)
       {
         break;
       }
       else
       {
-        Random r;
-        const int de_a{r.GetInt(0,nDeadEnds-1)};
-        const int de_b{r.GetInt(0,nDeadEnds-1)};
+        const int de_a{distribution(m_rng_engine)};
+        const int de_b{distribution(m_rng_engine)};
         assert(de_a < static_cast<int>(dead_ends.size()));
         assert(de_b < static_cast<int>(dead_ends.size()));
         std::swap(dead_ends[0],dead_ends[de_a]);
@@ -267,7 +256,7 @@ const std::vector<std::vector<ribi::maziak::MazeSquare> > ribi::maziak::Maze::Cr
 
 const std::pair<int,int> ribi::maziak::Maze::FindExit() const noexcept
 {
-  for (std::pair<int,int> p: GetIntMaze()->GetDeadEnds())
+  for (std::pair<int,int> p: GetIntMaze().GetDeadEnds())
   {
     if (Get(p.first,p.second) == MazeSquare::msExit) return p;
   }
@@ -277,7 +266,7 @@ const std::pair<int,int> ribi::maziak::Maze::FindExit() const noexcept
 
 const std::pair<int,int> ribi::maziak::Maze::FindStart() const noexcept
 {
-  for (std::pair<int,int> p: GetIntMaze()->GetDeadEnds())
+  for (std::pair<int,int> p: GetIntMaze().GetDeadEnds())
   {
     if (Get(p.first,p.second) == MazeSquare::msStart) return p;
   }
@@ -318,7 +307,14 @@ void ribi::maziak::Maze::Test() noexcept
   }
   {
     Random();
+    IntMaze(7);
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  #ifdef FIX_ISSUE_280
+  {
+    Maze maze(11);
+  }
+  #endif
+
 }
 #endif

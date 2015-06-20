@@ -83,7 +83,7 @@ ribi::maziak::QtMaziakMainDialog::QtMaziakMainDialog(
   );
 
   assert(maze_size && "Maze size must be 7 + (4 * n) for n e [0,->>");
-  assert(m_dialog->GetMaze()->IsSquare());
+  assert(m_dialog->GetMaze().IsSquare());
 
   m_timer_press_key->setInterval(100);
   m_timer_enemy->setInterval(1000);
@@ -175,8 +175,6 @@ void ribi::maziak::QtMaziakMainDialog::OnTimerStartShowingSolution()
 
 void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
 {
-  //const int block_width  = 1 + ((ui->widget->width()  - 4) / m_view_width);
-  //const int block_height = 1 + ((ui->widget->height() - 4) / m_view_height);
   const int block_width  = width()  / m_view_width;
   const int block_height = height() / m_view_height;
 
@@ -185,17 +183,6 @@ void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
   //Player-environment interactions
   QPainter painter(this);
   assert(painter.isActive());
-
-  //Clean painter
-  //?Really needed?
-  /*
-  {
-    const boost::shared_ptr<const QPixmap> temp { m_sprites->Get(Sprite::empty) };
-
-    assert(temp);
-    painter.drawPixmap(ui->widget->rect(),*temp);
-  }
-  */
 
   m_dialog->RespondToCurrentSquare();
 
@@ -297,7 +284,7 @@ void ribi::maziak::QtMaziakMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  QtMaziakMainDialog(99);
+  QtMaziakMainDialog(19);
   maziak::MainDialog(7);
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

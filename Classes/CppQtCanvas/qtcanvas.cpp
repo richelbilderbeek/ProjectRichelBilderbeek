@@ -19,17 +19,19 @@
 
 ribi::QtCanvas::QtCanvas(const boost::shared_ptr<ribi::Canvas> canvas)
   : m_signal_on_destroy{},
-    m_canvas{},
-    m_image{}
+    m_active_canvas{},
+    m_image{},
+    m_smart_canvas{canvas},
+    m_text_canvas{}
 {
   assert(canvas);
   SetCanvas(canvas);
-  assert(m_canvas);
+  assert(m_active_canvas);
 }
 
 ribi::QtCanvas::~QtCanvas() noexcept
 {
-  m_canvas->m_signal_changed.disconnect(
+  m_active_canvas->m_signal_changed.disconnect(
     boost::bind(
       &ribi::QtCanvas::ShowCanvas,this,
       boost::lambda::_1
@@ -57,7 +59,7 @@ void ribi::QtCanvas::keyReleaseEvent(QKeyEvent* event)
 void ribi::QtCanvas::paintEvent(QPaintEvent *)
 {
   std::vector<std::string> text;
-  for (std::string line: m_canvas->ToStrings()) { text.push_back(line); }
+  for (std::string line: m_active_canvas->ToStrings()) { text.push_back(line); }
 
   DotMatrixText t(text,1,DotMatrixText::ColorSystem::inverted);
   m_image = t.CreateImage();
@@ -72,12 +74,12 @@ void ribi::QtCanvas::SetCanvas(const boost::shared_ptr<Canvas> canvas)
 {
   assert(canvas);
 
-  if (canvas == m_canvas) { return; }
+  if (canvas == m_smart_canvas) { return; }
 
   //Disconnect current Canvas
-  if (m_canvas)
+  if (m_active_canvas)
   {
-    m_canvas->m_signal_changed.disconnect(
+    m_active_canvas->m_signal_changed.disconnect(
       boost::bind(
         &ribi::QtCanvas::ShowCanvas,this,
         boost::lambda::_1
@@ -86,10 +88,10 @@ void ribi::QtCanvas::SetCanvas(const boost::shared_ptr<Canvas> canvas)
   }
 
   //Use new Canvas
-  m_canvas = canvas;
+  m_smart_canvas = canvas;
 
   //Connect new Canvas
-  m_canvas->m_signal_changed.connect(
+  m_active_canvas->m_signal_changed.connect(
     boost::bind(
       &ribi::QtCanvas::ShowCanvas,this,
       boost::lambda::_1)
@@ -98,7 +100,7 @@ void ribi::QtCanvas::SetCanvas(const boost::shared_ptr<Canvas> canvas)
   //Set minimum size
   {
     std::vector<std::string> text;
-    for (std::string line: m_canvas->ToStrings()) { text.push_back(line); }
+    for (std::string line: m_active_canvas->ToStrings()) { text.push_back(line); }
     DotMatrixText t(text,1);
     setMinimumSize(
       t.GetMatrixHeight(),
@@ -106,7 +108,8 @@ void ribi::QtCanvas::SetCanvas(const boost::shared_ptr<Canvas> canvas)
     );
   }
 
-  ShowCanvas(m_canvas.get());
+  m_active_canvas = m_smart_canvas.get();
+  ShowCanvas(m_active_canvas);
 }
 
 void ribi::QtCanvas::ShowCanvas(const Canvas * const)

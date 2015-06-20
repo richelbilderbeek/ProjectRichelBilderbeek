@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 
+#include "maziakintmaze.h"
 #include "maziakfwd.h"
 #pragma GCC diagnostic pop
 
@@ -30,8 +31,9 @@ namespace maziak {
 
 struct SolutionMaze
 {
+  SolutionMaze();
   SolutionMaze(
-    const boost::shared_ptr<const DistancesMaze> maze,
+    const DistancesMaze& maze,
     const int x,
     const int y
   );
@@ -41,11 +43,10 @@ struct SolutionMaze
   bool IsSquare() const noexcept;
 
   private:
+  IntMaze m_maze;
 
-  const boost::shared_ptr<const IntMaze> m_maze;
-
-  static const boost::shared_ptr<const IntMaze> CreateSolution(
-    const boost::shared_ptr<const DistancesMaze> maze,
+  static IntMaze CreateSolution(
+    const DistancesMaze& maze,
     const int x,
     const int y
   ) noexcept;

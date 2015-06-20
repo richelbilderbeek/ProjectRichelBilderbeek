@@ -24,22 +24,29 @@ namespace maziak {
  4323456
 
 */
+
 struct DistancesMaze
 {
+  DistancesMaze();
+
   DistancesMaze(
-    const boost::shared_ptr<const IntMaze> maze,
-    const int goal_x, const int goal_y);
+    const IntMaze& maze,
+    const int goal_x,
+    const int goal_y
+  );
 
   bool CanGet(const int x, const int y) const noexcept;
   int Get(const int x, const int y) const noexcept;
   int GetSize() const noexcept { return static_cast<int>(m_distances.size()); }
 
   private:
-  const std::vector<std::vector<int>> m_distances;
+  std::vector<std::vector<int>> m_distances;
 
-  static const std::vector<std::vector<int>> CalculateDistances(
-    const boost::shared_ptr<const IntMaze> maze,
-    const int x, const int y) noexcept;
+  static std::vector<std::vector<int>> CalculateDistances(
+    const IntMaze& maze,
+    const int x,
+    const int y
+  ) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

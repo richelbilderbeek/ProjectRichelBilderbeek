@@ -10,6 +10,7 @@
 #include "maziakkey.h"
 #include "maziakmaze.h"
 #include "maziakintmaze.h"
+#include "maziakdistancesmaze.h"
 #include "maziakreceiver.h"
 #include "maziaksolutionmaze.h"
 #include "maziaksprites.h"
@@ -29,7 +30,7 @@ ribi::maziak::MainDialog::MainDialog(const int maze_size)
     m_fighting_frame(0),
     m_has_sword(true),
     m_keys{},
-    m_maze{new Maze(maze_size)},
+    m_maze(maze_size),
     m_move_now(PlayerMove::none),
     m_solution{},
     m_state{State::playing},
@@ -41,24 +42,27 @@ ribi::maziak::MainDialog::MainDialog(const int maze_size)
   #endif
 
   {
-    const std::pair<int,int> exit = m_maze->FindExit();
-    m_distances = m_maze->GetIntMaze()->GetDistancesMaze(exit.first,exit.second);
+    const std::pair<int,int> exit = m_maze.FindExit();
+    m_distances = m_maze.GetIntMaze().GetDistancesMaze(exit.first,exit.second);
   }
   {
-    const std::pair<int,int> start = m_maze->FindStart();
+    const std::pair<int,int> start = m_maze.FindStart();
     m_x = start.first;
     m_y = start.second;
   }
   assert(maze_size && "Maze size must be 7 + (4 * n) for n e [0,->>");
-  assert(m_maze->IsSquare());
+  assert(m_maze.IsSquare());
 
   m_solution = CreateNewSolution();
 
 }
 
-void ribi::maziak::MainDialog::AnimateEnemiesAndPrisoners(const int view_width, const int view_height) noexcept
+void ribi::maziak::MainDialog::AnimateEnemiesAndPrisoners(
+  const int view_width,
+  const int view_height
+) noexcept
 {
-  m_maze->AnimateEnemiesAndPrisoners(
+  m_maze.AnimateEnemiesAndPrisoners(
     m_x,
     m_y,
     view_width,
@@ -85,12 +89,9 @@ void ribi::maziak::MainDialog::AnimateFighting() noexcept
   }
 }
 
-const boost::shared_ptr<const ribi::maziak::SolutionMaze> ribi::maziak::MainDialog::CreateNewSolution() noexcept
+ribi::maziak::SolutionMaze ribi::maziak::MainDialog::CreateNewSolution() noexcept
 {
-  const boost::shared_ptr<const SolutionMaze> solution {
-    new SolutionMaze(m_distances,m_x,m_y)
-  };
-  assert(solution);
+  SolutionMaze solution(m_distances,m_x,m_y);
   return solution;
 }
 
@@ -108,7 +109,7 @@ void ribi::maziak::MainDialog::Execute() noexcept
   {
     const int width  = 20;
     const int height = 20;
-    std::cout << (*ToTextCanvas(width,height)) << std::endl;
+    std::cout << ToTextCanvas(width,height) << std::endl;
 
     char c;
     std::cin >> c;
@@ -156,20 +157,20 @@ void ribi::maziak::MainDialog::Execute() noexcept
 }
 
 ribi::maziak::Sprite ribi::maziak::MainDialog::GetSpriteFloor(
-  const boost::shared_ptr<const Maze> maze,
+  const Maze& maze,
   const int x,
   const int y,
   const bool do_show_solution,
-  const boost::shared_ptr<const SolutionMaze> solution
+  const SolutionMaze& solution
 ) noexcept
 {
-  assert(do_show_solution == false || solution->GetSize() == maze->GetSize());
-  if (!maze->CanGet(x,y)) { return Sprite::wall; }
+  assert(do_show_solution == false || solution.GetSize() == maze.GetSize());
+  if (!maze.CanGet(x,y)) { return Sprite::wall; }
   else if (do_show_solution
-    && solution->Get(x,y) == 1
-    && ( maze->Get(x,y) == MazeSquare::msEmpty
-      || maze->Get(x,y) == MazeSquare::msEnemy1
-      || maze->Get(x,y) == MazeSquare::msEnemy2)
+    && solution.Get(x,y) == 1
+    && ( maze.Get(x,y) == MazeSquare::msEmpty
+      || maze.Get(x,y) == MazeSquare::msEnemy1
+      || maze.Get(x,y) == MazeSquare::msEnemy2)
     )
   {
     return Sprite::path;
@@ -180,12 +181,12 @@ ribi::maziak::Sprite ribi::maziak::MainDialog::GetSpriteFloor(
 ribi::maziak::Sprite ribi::maziak::MainDialog::GetSpriteAboveFloor(
   const int x,
   const int y,
-  const boost::shared_ptr<const Maze> maze
+  const Maze& maze
 ) noexcept
 {
-  if (!maze->CanGet(x,y)) { return Sprite::wall; }
+  if (!maze.CanGet(x,y)) { return Sprite::wall; }
   //What else here?
-  switch(maze->Get(x,y))
+  switch(maze.Get(x,y))
   {
     case MazeSquare::msStart     :
     case MazeSquare::msEmpty     : return Sprite::transparent;
@@ -318,7 +319,7 @@ void ribi::maziak::MainDialog::OnTimerPressKeys()
     {
       case Key::left:
         m_direction = PlayerDirection::pdLeft;
-        if (!m_maze->CanMoveTo(m_x-1,m_y,m_has_sword,m_do_show_solution))
+        if (!m_maze.CanMoveTo(m_x-1,m_y,m_has_sword,m_do_show_solution))
         {
           m_move_now = PlayerMove::none;
           continue;
@@ -328,7 +329,7 @@ void ribi::maziak::MainDialog::OnTimerPressKeys()
         break;
       case Key::right:
         m_direction = PlayerDirection::pdRight;
-        if (!m_maze->CanMoveTo(m_x+1,m_y,m_has_sword,m_do_show_solution))
+        if (!m_maze.CanMoveTo(m_x+1,m_y,m_has_sword,m_do_show_solution))
         {
           m_move_now = PlayerMove::none;
           continue;
@@ -338,7 +339,7 @@ void ribi::maziak::MainDialog::OnTimerPressKeys()
         break;
       case Key::up:
         m_direction = PlayerDirection::pdUp;
-        if (!m_maze->CanMoveTo(m_x,m_y-1,m_has_sword,m_do_show_solution))
+        if (!m_maze.CanMoveTo(m_x,m_y-1,m_has_sword,m_do_show_solution))
         {
           m_move_now = PlayerMove::none;
           continue;
@@ -348,7 +349,7 @@ void ribi::maziak::MainDialog::OnTimerPressKeys()
         break;
       case Key::down:
         m_direction = PlayerDirection::pdDown;
-        if (!m_maze->CanMoveTo(m_x,m_y+1,m_has_sword,m_do_show_solution))
+        if (!m_maze.CanMoveTo(m_x,m_y+1,m_has_sword,m_do_show_solution))
         {
           m_move_now = PlayerMove::none;
           continue;
@@ -365,8 +366,8 @@ void ribi::maziak::MainDialog::OnTimerPressKeys()
 
 void ribi::maziak::MainDialog::RespondToCurrentSquare() noexcept
 {
-  assert(m_maze->CanGet(m_x,m_y));
-  switch (m_maze->Get(m_x,m_y))
+  assert(m_maze.CanGet(m_x,m_y));
+  switch (m_maze.Get(m_x,m_y))
   {
     case MazeSquare::msStart:
     case MazeSquare::msEmpty:
@@ -376,19 +377,17 @@ void ribi::maziak::MainDialog::RespondToCurrentSquare() noexcept
       throw std::logic_error("Player cannot be in wall");
     case MazeSquare::msEnemy1: case MazeSquare::msEnemy2:
       m_fighting_frame = 1;
-      m_maze->Set(m_x,m_y,MazeSquare::msEmpty);
+      m_maze.Set(m_x,m_y,MazeSquare::msEmpty);
       break;
     case MazeSquare::msPrisoner1: case MazeSquare::msPrisoner2:
-      m_maze->Set(m_x,m_y,MazeSquare::msEmpty);
+      m_maze.Set(m_x,m_y,MazeSquare::msEmpty);
       m_solution = CreateNewSolution();
-      //GetDistancesPath(m_distances,m_x,m_y);
-      assert(m_solution->IsSquare());
+      assert(m_solution.IsSquare());
       m_do_show_solution = true;
-      //m_timer_show_solution->start();
       m_signal_start_showing_solution();
       break;
     case MazeSquare::msSword:
-      m_maze->Set(m_x,m_y,MazeSquare::msEmpty);
+      m_maze.Set(m_x,m_y,MazeSquare::msEmpty);
       m_has_sword = true;
       break;
     case MazeSquare::msExit:
@@ -415,26 +414,25 @@ void ribi::maziak::MainDialog::Test() noexcept
 }
 #endif
 
-const boost::shared_ptr<ribi::TextCanvas> ribi::maziak::MainDialog::ToTextCanvas(
+ribi::TextCanvas ribi::maziak::MainDialog::ToTextCanvas(
   const int view_height,
   const int view_width
 ) const noexcept
 {
-  const boost::shared_ptr<TextCanvas> canvas {
-    new TextCanvas(view_height,view_width)
-  };
+  TextCanvas canvas(view_height,view_width);
+
   if (GetState() == State::has_won)
   {
-    canvas->PutText(1,1,"You");
-    canvas->PutText(1,2,"won");
-    canvas->PutText(1,3,"the");
-    canvas->PutText(1,4,"game");
+    canvas.PutText(1,1,"You");
+    canvas.PutText(1,2,"won");
+    canvas.PutText(1,3,"the");
+    canvas.PutText(1,4,"game");
     return canvas;
   }
   else if (GetState() == State::game_over)
   {
-    canvas->PutText(1,1,"GAME");
-    canvas->PutText(1,2,"OVER");
+    canvas.PutText(1,1,"GAME");
+    canvas.PutText(1,2,"OVER");
     return canvas;
   }
 
@@ -459,7 +457,7 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::maziak::MainDialog::ToTextCanvas
             )
           )
         };
-        canvas->PutChar(x,y,pixmap_floor);
+        canvas.PutChar(x,y,pixmap_floor);
         //Draw what's moving or standing on the floor
         const Sprite sprite_above_floor {
           GetSpriteAboveFloor(xVector,yVector,GetMaze())
@@ -469,7 +467,7 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::maziak::MainDialog::ToTextCanvas
           const char pixmap_above_floor {
             Sprites::ToChar(sprite_above_floor)
           };
-          canvas->PutChar(x,y,pixmap_above_floor);
+          canvas.PutChar(x,y,pixmap_above_floor);
         }
       }
     }
@@ -488,7 +486,7 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::maziak::MainDialog::ToTextCanvas
       )
     };
     assert(player);
-    canvas->PutChar(view_width/2,view_height / 2,player);
+    canvas.PutChar(view_width/2,view_height / 2,player);
   }
   return canvas;
 }

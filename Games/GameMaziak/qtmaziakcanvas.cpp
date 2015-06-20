@@ -14,16 +14,12 @@ ribi::maziak::QtMaziakCanvas::QtMaziakCanvas(
   const int size)
   : QtCanvas(CreateCanvas(size,size)),
     m_dialog(CreateWidget(size)),
-    m_text_canvas{},
     m_timer_enemy(new QTimer),
     m_timer_press_key(new QTimer),
     m_timer_show_solution(new QTimer),
     m_view_height(9),
     m_view_width(9)
 {
-  m_text_canvas = boost::dynamic_pointer_cast<TextCanvas>(this->GetCanvas());
-  assert(m_text_canvas);
-
   m_dialog->m_signal_game_over.connect(
     boost::bind(&ribi::maziak::QtMaziakCanvas::OnGameOver,this)
   );
@@ -122,27 +118,27 @@ void ribi::maziak::QtMaziakCanvas::OnTimerPressKey()
   m_dialog->OnTimerPressKeys();
   m_dialog->AnimateFighting();
   m_dialog->RespondToCurrentSquare();
-  SetCanvas(m_dialog->ToTextCanvas(m_view_width,m_view_height));
+  SetTextCanvas(m_dialog->ToTextCanvas(m_view_width,m_view_height));
 }
 
 void ribi::maziak::QtMaziakCanvas::OnTimerEnemy()
 {
   m_dialog->AnimateFighting();
   m_dialog->AnimateEnemiesAndPrisoners(m_view_width,m_view_height);
-  SetCanvas(m_dialog->ToTextCanvas(m_view_width,m_view_height));
+  SetTextCanvas(m_dialog->ToTextCanvas(m_view_width,m_view_height));
 }
 
 void ribi::maziak::QtMaziakCanvas::OnTimerStopShowingSolution()
 {
   m_dialog->SetShowSolution(false);
   m_timer_show_solution->stop();
-  SetCanvas(m_dialog->ToTextCanvas(m_view_width,m_view_height));
+  SetTextCanvas(m_dialog->ToTextCanvas(m_view_width,m_view_height));
 }
 
 void ribi::maziak::QtMaziakCanvas::OnTimerStartShowingSolution()
 {
   m_timer_show_solution->start();
-  SetCanvas(m_dialog->ToTextCanvas(m_view_width,m_view_height));
+  SetTextCanvas(m_dialog->ToTextCanvas(m_view_width,m_view_height));
 }
 
 void ribi::maziak::QtMaziakCanvas::OnGameOver()

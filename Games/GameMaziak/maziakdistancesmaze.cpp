@@ -6,8 +6,16 @@
 #include "testtimer.h"
 #include "trace.h"
 
+ribi::maziak::DistancesMaze::DistancesMaze()
+  : m_distances{}
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 ribi::maziak::DistancesMaze::DistancesMaze(
-  const boost::shared_ptr<const IntMaze> maze,
+  const IntMaze& maze,
   const int x,
   const int y
   )
@@ -18,15 +26,15 @@ ribi::maziak::DistancesMaze::DistancesMaze(
   #endif
 }
 
-const std::vector<std::vector<int>> ribi::maziak::DistancesMaze::CalculateDistances(
-  const boost::shared_ptr<const IntMaze> maze,
+std::vector<std::vector<int>> ribi::maziak::DistancesMaze::CalculateDistances(
+  const IntMaze& maze,
   const int x, const int y) noexcept
 {
   //Assume maze is square
-  assert(maze->IsSquare());
-  assert(maze->Get(x,y) == 0); //Assume starting point is no wall
+  assert(maze.IsSquare());
+  assert(maze.Get(x,y) == 0); //Assume starting point is no wall
 
-  const int size = maze->GetSize();
+  const int size = maze.GetSize();
   const int area = size * size;
   const int maxDistance = area;
   std::vector<std::vector<int> > distances(size, std::vector<int>(size,maxDistance));
@@ -48,27 +56,27 @@ const std::vector<std::vector<int>> ribi::maziak::DistancesMaze::CalculateDistan
         const int x = (*i).first;
         const int y = (*i).second;
 
-        if (maze->Get(x,y-1) == 0                //No wall
+        if (maze.Get(x,y-1) == 0                //No wall
           && distances[y-1][x] == maxDistance) //Not already in solution
         {
           distances[y-1][x] = distance;
           newFound.push_back(std::make_pair(x,y-1));
         }
-        if (maze->Get(x,y+1) == 0                //No wall
+        if (maze.Get(x,y+1) == 0                //No wall
           && distances[y+1][x] == maxDistance) //Not already in solution
         {
           distances[y+1][x] = distance;
           newFound.push_back(std::make_pair(x,y+1));
         }
 
-        if (maze->Get(x+1,y) == 0                //No wall
+        if (maze.Get(x+1,y) == 0                //No wall
           && distances[y][x+1] == maxDistance) //Not already in solution
         {
           distances[y][x+1] = distance;
           newFound.push_back(std::make_pair(x+1,y));
         }
 
-        if (maze->Get(x-1,y) == 0                //No wall
+        if (maze.Get(x-1,y) == 0                //No wall
           && distances[y][x-1] == maxDistance) //Not already in solution
         {
           distances[y][x-1] = distance;

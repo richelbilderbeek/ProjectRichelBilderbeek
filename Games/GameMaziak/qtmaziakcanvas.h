@@ -34,7 +34,6 @@ public:
 
 private:
   const boost::shared_ptr<MainDialog> m_dialog;
-  boost::shared_ptr<TextCanvas> m_text_canvas; //Same as Canvas
   const boost::shared_ptr<QTimer> m_timer_enemy;
   const boost::shared_ptr<QTimer> m_timer_press_key;
   const boost::shared_ptr<QTimer> m_timer_show_solution;

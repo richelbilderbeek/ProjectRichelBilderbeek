@@ -42,6 +42,20 @@ ribi::TextCanvas::TextCanvas(
   #endif
 }
 
+ribi::TextCanvas::TextCanvas(const TextCanvas& rhs)
+  : m_canvas{rhs.m_canvas},
+    m_coordinat_system{rhs.m_coordinat_system}
+{
+
+}
+
+ribi::TextCanvas& ribi::TextCanvas::operator=(const TextCanvas& rhs)
+{
+  this->m_canvas = rhs.m_canvas;
+  this->m_coordinat_system = rhs.m_coordinat_system;
+  return *this;
+}
+
 void ribi::TextCanvas::Clear() noexcept
 {
   for (auto& row: m_canvas)
@@ -184,6 +198,20 @@ void ribi::TextCanvas::Test() noexcept
     s_after << (*canvas);
     const std::string str_after {s_after.str() };
     assert(std::count(str_after.begin(),str_after.end(),' ') != maxx * maxy); //Line truely drawn
+  }
+  //Copy constructor
+  {
+    const TextCanvas a(3,4);
+    const TextCanvas b(a);
+    assert(a==b);
+  }
+  //Assignment operator
+  {
+    const TextCanvas a(3,4);
+    TextCanvas b(4,5);
+    assert(a!=b);
+    b = a;
+    assert(a==b);
   }
 }
 #endif
