@@ -19,6 +19,7 @@ ribi::QtSpeciesOfTheRingsMainDialog::QtSpeciesOfTheRingsMainDialog(QWidget *pare
  :  ribi::QtHideAndShowDialog(parent),
     ui(new Ui::QtSpeciesOfTheRingsMainDialog),
     m_normal_distribution(0.0,1.0),
+    m_uniform_distribution(0.0,1.0),
     m_qtgrid{new QtFractionImage},
     m_rng_engine{0}, //41 and 42 show nice ring
     m_spatial_grid{},
@@ -43,7 +44,8 @@ ribi::QtSpeciesOfTheRingsMainDialog::QtSpeciesOfTheRingsMainDialog(QWidget *pare
   QObject::connect(ui->box_width,SIGNAL(valueChanged(int)),this,SLOT(OnParametersChanged()));
   QObject::connect(ui->box_rng_seed,SIGNAL(valueChanged(int)),this,SLOT(OnParametersChanged()));
   QObject::connect(ui->box_mutation_rate,SIGNAL(valueChanged(double)),this,SLOT(OnParametersChanged()));
-  QObject::connect(ui->box_threshold,SIGNAL(valueChanged(double)),this,SLOT(OnParametersChanged()));
+  QObject::connect(ui->box_distance_halflife,SIGNAL(valueChanged(double)),this,SLOT(OnParametersChanged()));
+  QObject::connect(ui->box_grid_type,SIGNAL(currentIndexChanged(int)),this,SLOT(OnParametersChanged()));
 
   //Put dialog at screen center
   {
@@ -129,12 +131,13 @@ int ribi::QtSpeciesOfTheRingsMainDialog::GetWidth() const noexcept
 
 void ribi::QtSpeciesOfTheRingsMainDialog::OnParametersChanged() noexcept
 {
-  const int height = ui->box_height->value();
+  const int height = ui->box_height->value() + 2;
   const int width = ui->box_width->value();
 
   const double trait_mutation{ui->box_mutation_rate->value()};
   m_rng_engine = std::mt19937(ui->box_rng_seed->value());
   m_normal_distribution = std::normal_distribution<double>(0.0,trait_mutation);
+  m_uniform_distribution = std::uniform_real_distribution<double>(0.0,1.0);
 
   m_spatial_grid = SpatialGrid(height,std::vector<Space>(width,Space::Land));
   m_species_grid = SpeciesGrid(height,std::vector<Species>(width,Species::Absent));
@@ -142,6 +145,7 @@ void ribi::QtSpeciesOfTheRingsMainDialog::OnParametersChanged() noexcept
   m_t = 0;
 
   //Add mountain
+  if (ui->box_grid_type->currentText() == "Square with mountain")
   {
     const int x_from{width * 1 / 4};
     const int x_to{width * 3 / 4};
@@ -166,10 +170,27 @@ void ribi::QtSpeciesOfTheRingsMainDialog::OnParametersChanged() noexcept
         m_spatial_grid[y][x] = Space::Mountain;
       }
     }
+    //Add some species
+    {
+      m_species_grid[height / 5][width / 2] = Species::Present;
+    }
   }
-  //Add some species
+  else if (ui->box_grid_type->currentText() == "Torus")
   {
-    m_species_grid[height / 5][width / 2] = Species::Present;
+    //Add walls at top and bottom
+    for (int x=0; x!=width; ++x)
+    {
+      m_spatial_grid[0][x] = Space::Mountain;
+      m_spatial_grid[height - 1][x] = Space::Mountain;
+    }
+    //Add some species
+    {
+      m_species_grid[height / 2][width / 4] = Species::Present;
+    }
+  }
+  else
+  {
+    assert(!"Should not get here");
   }
   //Add some variance
   {
@@ -192,7 +213,7 @@ void ribi::QtSpeciesOfTheRingsMainDialog::OnParametersChanged() noexcept
 
 void ribi::QtSpeciesOfTheRingsMainDialog::OnTimer() noexcept
 {
-  const double trait_distance_threshold{ui->box_threshold->value()};
+  const double distance_halflife{ui->box_distance_halflife->value()};
   //Add mountain
   /*
   if (m_t % 10 == 0)
@@ -215,7 +236,7 @@ void ribi::QtSpeciesOfTheRingsMainDialog::OnTimer() noexcept
   const int width{GetWidth()};
   for (int y=0; y!=height; ++y)
   {
-    for (int x=0; x!=height; ++x)
+    for (int x=0; x!=width; ++x)
     {
       if (m_spatial_grid[y][x] == Space::Mountain) continue;
 
@@ -252,8 +273,12 @@ void ribi::QtSpeciesOfTheRingsMainDialog::OnTimer() noexcept
       //Species was present
       const double this_trait{m_trait_grid[y][x]};
       const double neighbour_trait{ts[0]};
-      if (std::abs(this_trait - neighbour_trait) < trait_distance_threshold)
+      const double distance{std::abs(this_trait - neighbour_trait)};
+      const double p_mate{std::exp(-distance*distance_halflife)};
+      const double r{m_uniform_distribution(m_rng_engine)};
+      if (r < p_mate)
       {
+        //Mating takes place
         const double new_trait{
           ((this_trait + neighbour_trait) / 2.0)
           + m_normal_distribution(m_rng_engine)
@@ -287,7 +312,7 @@ void ribi::QtSpeciesOfTheRingsMainDialog::Test() noexcept
     const int new_height{cur_height * 2};
     assert(d.GetHeight() == cur_height);
     d.ui->box_height->setValue(new_height);
-    assert(d.GetHeight() == new_height);
+    assert(abs(d.GetHeight() - new_height) < 3); //Walls
   }
   {
     const QtSpeciesOfTheRingsMainDialog d;
@@ -295,7 +320,7 @@ void ribi::QtSpeciesOfTheRingsMainDialog::Test() noexcept
     const int new_width{cur_width * 2};
     assert(d.GetWidth() == cur_width);
     d.ui->box_width->setValue(new_width);
-    assert(d.GetWidth() == new_width);
+    assert(abs(d.GetWidth() - new_width) < 3); //Walls
   }
   {
     const int width{123};

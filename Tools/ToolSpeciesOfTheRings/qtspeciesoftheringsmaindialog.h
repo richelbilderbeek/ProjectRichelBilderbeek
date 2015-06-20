@@ -42,6 +42,7 @@ public:
 private:
   Ui::QtSpeciesOfTheRingsMainDialog *ui;
   std::normal_distribution<double> m_normal_distribution;
+  std::uniform_real_distribution<double> m_uniform_distribution;
   QtFractionImage * const m_qtgrid;
   std::mt19937 m_rng_engine;
   SpatialGrid m_spatial_grid;

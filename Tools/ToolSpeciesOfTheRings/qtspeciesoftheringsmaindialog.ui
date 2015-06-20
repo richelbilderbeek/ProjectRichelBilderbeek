@@ -24,22 +24,25 @@
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="box_threshold">
+       <widget class="QDoubleSpinBox" name="box_distance_halflife">
         <property name="decimals">
          <number>4</number>
         </property>
         <property name="maximum">
          <double>1000.000000000000000</double>
         </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
         <property name="value">
-         <double>1.000000000000000</double>
+         <double>0.500000000000000</double>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
        <widget class="QSpinBox" name="box_width">
         <property name="minimum">
-         <number>1</number>
+         <number>10</number>
         </property>
         <property name="maximum">
          <number>1000</number>
@@ -119,7 +122,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_threshold">
         <property name="text">
-         <string>Threshold</string>
+         <string>Distance half-life</string>
         </property>
        </widget>
       </item>
@@ -132,19 +135,22 @@
          <number>1000</number>
         </property>
         <property name="value">
-         <number>200</number>
+         <number>1</number>
         </property>
        </widget>
       </item>
       <item row="5" column="0">
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="label_grid_type">
         <property name="text">
          <string>Grid type</string>
         </property>
        </widget>
       </item>
       <item row="5" column="1">
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="box_grid_type">
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
         <item>
          <property name="text">
           <string>Square with mountain</string>
@@ -192,6 +198,14 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>box_width</tabstop>
+  <tabstop>box_height</tabstop>
+  <tabstop>box_mutation_rate</tabstop>
+  <tabstop>box_distance_halflife</tabstop>
+  <tabstop>box_rng_seed</tabstop>
+  <tabstop>box_grid_type</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

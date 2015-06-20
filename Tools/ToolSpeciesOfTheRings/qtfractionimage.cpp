@@ -109,13 +109,16 @@ void QtFractionImage::Set(
 {
   assert(trait_grid.size() == spatial_grid.size());
   assert(trait_grid[0].size() == spatial_grid[0].size());
-  if (GetHeight() != static_cast<int>(trait_grid.size()))
+  if (GetHeight() != static_cast<int>(trait_grid.size())
+    || GetWidth() != static_cast<int>(trait_grid[0].size()))
   {
     assert(!trait_grid.empty());
     const int new_height = trait_grid.size();
     const int new_width = trait_grid[0].size();
     m_image = QImage(new_width,new_height,QImage::Format::Format_RGB32);
   }
+  assert(GetHeight() == static_cast<int>(trait_grid.size()));
+  assert(GetWidth() == static_cast<int>(trait_grid[0].size()));
 
   const auto height = GetHeight();
   const auto width  = GetWidth();
