@@ -35,6 +35,7 @@ public:
   QtSpeciesOfTheRingsMainDialog& operator=(const QtSpeciesOfTheRingsMainDialog&) = delete;
   ~QtSpeciesOfTheRingsMainDialog();
 
+
   int GetHeight() const noexcept;
   int GetWidth() const noexcept;
 
@@ -46,7 +47,6 @@ private:
   SpatialGrid m_spatial_grid;
   SpeciesGrid m_species_grid;
   int m_t;
-  double m_trait_distance_threshold;
   TraitGrid m_trait_grid;
 
   std::vector<double> CollectTraits() const noexcept;

@@ -24,7 +24,6 @@ ribi::QtSpeciesOfTheRingsMainDialog::QtSpeciesOfTheRingsMainDialog(QWidget *pare
     m_spatial_grid{},
     m_species_grid{},
     m_t{0},
-    m_trait_distance_threshold{0.0},
     m_trait_grid{}
 {
   #ifndef NDEBUG
@@ -59,7 +58,7 @@ ribi::QtSpeciesOfTheRingsMainDialog::QtSpeciesOfTheRingsMainDialog(QWidget *pare
   {
     QTimer * const timer{new QTimer(this)};
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(OnTimer()));
-    timer->setInterval(10);
+    timer->setInterval(1);
     timer->start();
   }
 }
@@ -78,7 +77,7 @@ std::vector<double> ribi::QtSpeciesOfTheRingsMainDialog::CollectTraits() const n
   assert(m_spatial_grid[0].size() == m_trait_grid[0].size());
 
   const int height{static_cast<int>(m_spatial_grid.size())};
-  const int width{static_cast<int>(m_spatial_grid.size())};
+  const int width{static_cast<int>(m_spatial_grid[0].size())};
 
   std::vector<double> v;
 
@@ -193,6 +192,7 @@ void ribi::QtSpeciesOfTheRingsMainDialog::OnParametersChanged() noexcept
 
 void ribi::QtSpeciesOfTheRingsMainDialog::OnTimer() noexcept
 {
+  const double trait_distance_threshold{ui->box_threshold->value()};
   //Add mountain
   /*
   if (m_t % 10 == 0)
@@ -252,7 +252,7 @@ void ribi::QtSpeciesOfTheRingsMainDialog::OnTimer() noexcept
       //Species was present
       const double this_trait{m_trait_grid[y][x]};
       const double neighbour_trait{ts[0]};
-      if (std::abs(this_trait - neighbour_trait) < m_trait_distance_threshold)
+      if (std::abs(this_trait - neighbour_trait) < trait_distance_threshold)
       {
         const double new_trait{
           ((this_trait + neighbour_trait) / 2.0)
@@ -283,6 +283,19 @@ void ribi::QtSpeciesOfTheRingsMainDialog::Test() noexcept
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const QtSpeciesOfTheRingsMainDialog d;
+    const int cur_height{d.GetHeight()};
+    const int new_height{cur_height * 2};
+    assert(d.GetHeight() == cur_height);
+    d.ui->box_height->setValue(new_height);
+    assert(d.GetHeight() == new_height);
+  }
+  {
+    const QtSpeciesOfTheRingsMainDialog d;
+    const int cur_width{d.GetWidth()};
+    const int new_width{cur_width * 2};
+    assert(d.GetWidth() == cur_width);
+    d.ui->box_width->setValue(new_width);
+    assert(d.GetWidth() == new_width);
   }
   {
     const int width{123};
