@@ -339,12 +339,12 @@ void ribi::cmap::QtConceptMap::DeleteNode(const QtNode * const qtnode)
     }
   }
 
-  //Remove from non-GUI, which removes the left-overs
-  #ifdef FIX_ISSUE_282
   GetConceptMap()->DeleteNode(qtnode->GetNode());
   //Remove node from GUI
-  this->scene()->removeItem(qtnode.get());
+  this->scene()->removeItem(const_cast<QtNode*>(qtnode)); //TEMP: should be checked to function correctly in tests
 
+  //Remove from non-GUI, which removes the left-overs
+  #ifdef FIX_ISSUE_282
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
 

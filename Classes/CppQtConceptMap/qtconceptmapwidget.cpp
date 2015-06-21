@@ -401,6 +401,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
 
+  #define FIX_ISSUE_282
   #ifdef FIX_ISSUE_282
   const bool verbose{true};
   if (verbose) { TRACE("AddNode: Test creation of node from empty concept map, undo via widget"); }
@@ -426,7 +427,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(!m->GetNodes().empty() && "After creation a new node, the previously empty concept map must have a node");
     assert(!c->GetQtNodes().empty() && "After creation a new node, the previously empty QtConceptMap must have a node");
     assert(w->CanUndo());
-    w->Undo(); //Route #1 HIERO
+    w->Undo(); //Route #1
     //cmd->Undo(); //Route #2
     assert(m->GetNodes().empty() && "After undoing the creation of a new node, the concept map must be empty again");
     assert(c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");

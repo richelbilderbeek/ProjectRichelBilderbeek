@@ -291,6 +291,11 @@ void ribi::cmap::ConceptMap::DeleteEdge(const EdgePtr& edge) noexcept
 
 void ribi::cmap::ConceptMap::DeleteNode(const NodePtr& node) noexcept
 {
+  DeleteNode(boost::dynamic_pointer_cast<ReadOnlyNodePtr>(node));
+}
+
+void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
+{
   #ifndef NDEBUG
   assert(node);
   if (std::count(m_nodes.begin(),m_nodes.end(),node) == 0)

@@ -86,6 +86,7 @@ struct ConceptMap
   void DeleteEdge(const EdgePtr& edge) noexcept;
 
   ///Delete a node and all the edges connected to it
+  void DeleteNode(const ReadOnlyNodePtr& node) noexcept;
   void DeleteNode(const NodePtr& node) noexcept;
 
   ///Check if the ConceptMap is empty, that is: it has no nodes and (thus) no edges
