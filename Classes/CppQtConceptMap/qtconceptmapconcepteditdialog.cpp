@@ -254,8 +254,6 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
       }
     );
   }
-  TRACE("ribi::cmap::QtConceptMapConceptEditDialog::Test completed successfully");
-
 }
 #endif
 

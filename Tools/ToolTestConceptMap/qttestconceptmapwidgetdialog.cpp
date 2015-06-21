@@ -17,6 +17,7 @@
 #include "qtdisplayconceptmap.h"
 #include "qteditconceptmap.h"
 #include "qtrateconceptmap.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestconceptmapwidgetdialog.h"
 #pragma GCC diagnostic pop
@@ -89,7 +90,7 @@ const boost::shared_ptr<ribi::cmap::QtConceptMapWidget>
   std::vector<boost::shared_ptr<QtConceptMapWidget>> v;
   //Display
   {
-    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[17] };
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().GetHeteromorphousTestConceptMaps()[17] };
     assert(m);
     const boost::shared_ptr<QtConceptMap> c(new QtDisplayConceptMap(m));
     assert(c);
@@ -100,7 +101,7 @@ const boost::shared_ptr<ribi::cmap::QtConceptMapWidget>
   */
   //Edit
   {
-    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[0] };
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().GetHeteromorphousTestConceptMaps()[0] };
     assert(m);
     const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
     assert(c);
@@ -112,7 +113,7 @@ const boost::shared_ptr<ribi::cmap::QtConceptMapWidget>
   /*
   //Rate
   {
-    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[17] };
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().GetHeteromorphousTestConceptMaps()[17] };
     assert(m);
     const boost::shared_ptr<QtConceptMap> c(new QtRateConceptMap(m));
     assert(c);
@@ -214,11 +215,13 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::QtTestConceptMapWidgetDialog::Test");
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
+  #ifndef FIX_ISSUE_282
+  const bool verbose{false};
   const int n_depth = 1;
   if (n_depth >= 1)
   {
-    TRACE("Clicking once");
+    if (verbose) { TRACE("Clicking once"); }
     const QtTestConceptMapWidgetDialog tmp;
     const int j = tmp.GetNumberOfButtons();
     for (int i=0; i!=j; ++i)
@@ -232,7 +235,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
   }
   if (n_depth >= 2)
   {
-    TRACE("Clicking twice");
+    if (verbose) { TRACE("Clicking twice"); }
     const QtTestConceptMapWidgetDialog tmp;
     const int sz = tmp.GetNumberOfButtons();
     for (int i=0; i!=sz; ++i)
@@ -248,7 +251,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
   }
   if (n_depth >= 3)
   {
-    TRACE("Clicking thrice");
+    if (verbose) { TRACE("Clicking thrice"); }
     const QtTestConceptMapWidgetDialog tmp;
     const int sz = tmp.GetNumberOfButtons();
     for (int i=0; i!=sz; ++i)
@@ -268,7 +271,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
   }
   if (n_depth >= 4)
   {
-    TRACE("Clicking four times");
+    if (verbose) { TRACE("Clicking four times"); }
     const QtTestConceptMapWidgetDialog tmp;
     const int sz = tmp.GetNumberOfButtons();
     for (int i=0; i!=sz; ++i)
@@ -290,6 +293,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
       }
     }
   }
+  #endif // FIX_ISSUE_282
   #ifdef TODO_ISSUE_208
   if (n_depth >= 1)
   {
@@ -303,6 +307,5 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
     }
   }
   #endif //TODO_ISSUE_208
-  TRACE("Finished ribi::cmap::QtTestConceptMapWidgetDialog::Test successfully");
 }
 #endif

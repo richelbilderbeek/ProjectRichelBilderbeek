@@ -318,9 +318,11 @@ void ribi::cmap::QtConceptMap::DeleteEdge(QtEdge * const qtedge)
 //void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<QtNode>& qtnode)
 void ribi::cmap::QtConceptMap::DeleteNode(const QtNode * const qtnode)
 {
+  #ifdef FIX_ISSUE_282
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
   #endif
+  #endif // FIX_ISSUE_282
 
   //Delete the edges connected to this node
   {
@@ -338,18 +340,19 @@ void ribi::cmap::QtConceptMap::DeleteNode(const QtNode * const qtnode)
   }
 
   //Remove from non-GUI, which removes the left-overs
-  #ifdef NOT_NOW_20141111
+  #ifdef FIX_ISSUE_282
   GetConceptMap()->DeleteNode(qtnode->GetNode());
   //Remove node from GUI
   this->scene()->removeItem(qtnode.get());
-  #endif // NOT_NOW_20141111
 
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
+
   assert(n_items_before - n_items_after >= 1 && "At least one item is deleted: one node and x edges");
   assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
   #endif
+  #endif // FIX_ISSUE_282
 }
 
 std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(

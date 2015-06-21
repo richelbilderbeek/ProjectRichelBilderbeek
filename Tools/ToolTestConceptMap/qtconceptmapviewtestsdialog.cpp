@@ -19,6 +19,7 @@
 #include "qteditconceptmap.h"
 #include "qtrateconceptmap.h"
 #include "qtconceptmap.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtconceptmapviewtestsdialog.h"
 #pragma GCC diagnostic pop
@@ -26,9 +27,9 @@
 ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtConceptMapViewTestsDialog),
-    m_c(cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()),
-    m_h(cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps()),
-    m_s(cmap::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps()),
+    m_c(cmap::ConceptMapFactory().GetComplexHomomorphousTestConceptMaps()),
+    m_h(cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps()),
+    m_s(cmap::ConceptMapFactory().GetSimpleHomomorphousTestConceptMaps()),
     m_widgets{}
 {
 
@@ -184,7 +185,10 @@ void ribi::cmap::QtConceptMapViewTestsDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtConceptMapViewTestsDialog::Test");
+  {
+    QtConceptMapViewTestsDialog();
+  }
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   QtConceptMapViewTestsDialog d;
   d.show();
   d.update();
@@ -195,6 +199,5 @@ void ribi::cmap::QtConceptMapViewTestsDialog::Test() noexcept
   d.show();
   d.update();
   d.close();
-  TRACE("ribi::cmap::QtConceptMapViewTestsDialog::Test finished successfully");
 }
 #endif

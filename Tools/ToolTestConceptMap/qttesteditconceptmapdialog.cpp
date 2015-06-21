@@ -18,11 +18,12 @@
 #include "qtconceptmapelement.h"
 #include "conceptmapexamplesfactory.h"
 #include "qtconceptmapdisplaystrategy.h"
-#include "qtconceptmapedge.h"
+#include "qtconceptmapqtedge.h"
 #include "qtconceptmapeditstrategy.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapratestrategy.h"
 #include "qteditconceptmap.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttesteditconceptmapdialog.h"
 #pragma GCC diagnostic pop
@@ -33,7 +34,7 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
   ui(new Ui::QtTestEditConceptMapDialog),
   m_concept_map(
     new QtEditConceptMap(
-      ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15),
+      ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15),
       QtEditConceptMap::Mode::simple
     )
   )
@@ -70,7 +71,10 @@ void ribi::cmap::QtTestEditConceptMapDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtTestEditConceptMapDialog::Test started");
+  {
+    QtTestEditConceptMapDialog();
+  }
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestEditConceptMapDialog d;
   d.DoSomethingRandom();
   TRACE("TODO");
@@ -133,7 +137,6 @@ void ribi::cmap::QtTestEditConceptMapDialog::Test() noexcept
     assert(d.m_rate_node->brush()    == QtBrushFactory::CreateGreenGradientBrush());
     */
   }
-  TRACE("ribi::cmap::QtTestEditConceptMapDialog::Test finished successfully");
 }
 #endif
 
@@ -156,13 +159,13 @@ void ribi::cmap::QtTestEditConceptMapDialog::DoSomethingRandom()
       }
       if (QtEdge* const qtitem = dynamic_cast<QtEdge*>(item))
       {
-        assert(qtitem->GetNode());
-        assert( (!qtitem->GetNode()->GetConcept()->GetName().empty() || qtitem->GetNode()->GetConcept()->GetName().empty())
+        assert(qtitem->GetQtNode());
+        assert( (!qtitem->GetQtNode()->GetNode()->GetConcept()->GetName().empty() || qtitem->GetQtNode()->GetNode()->GetConcept()->GetName().empty())
           && "An item can contain no text: when connected to the center node");
-        assert(qtitem->GetNode()->GetConcept()->GetExamples());
-        qtitem->GetNode()->GetConcept()->SetName(qtitem->GetNode()->GetConcept()->GetName() + "E");
+        assert(qtitem->GetQtNode()->GetNode()->GetConcept()->GetExamples());
+        qtitem->GetQtNode()->GetNode()->GetConcept()->SetName(qtitem->GetQtNode()->GetNode()->GetConcept()->GetName() + "E");
         const std::vector<boost::shared_ptr<Examples> > v = ExamplesFactory().GetTests();
-        qtitem->GetNode()->GetConcept()->SetExamples(v [ std::rand() % v.size() ] );
+        qtitem->GetQtNode()->GetNode()->GetConcept()->SetExamples(v [ std::rand() % v.size() ] );
         qtitem->update();
       }
     }

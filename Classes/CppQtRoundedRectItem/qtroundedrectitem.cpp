@@ -143,7 +143,7 @@ void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) no
 {
   QGraphicsRectItem::mouseMoveEvent(event);
   this->update();
-  this->scene()->update(); //HIERO
+  this->scene()->update();
   m_signal_pos_changed(this);
 }
 

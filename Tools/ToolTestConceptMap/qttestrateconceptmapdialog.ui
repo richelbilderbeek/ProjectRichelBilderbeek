@@ -20,7 +20,7 @@
       <item>
        <widget class="QLabel" name="label_test">
         <property name="text">
-         <string>ConceptMapFactory::GetHeteromorphousTestConceptMaps()[15]</string>
+         <string>ConceptMapFactory().GetHeteromorphousTestConceptMaps()[15]</string>
         </property>
        </widget>
       </item>

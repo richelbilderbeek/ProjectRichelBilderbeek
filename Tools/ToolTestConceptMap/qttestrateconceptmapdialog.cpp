@@ -27,8 +27,9 @@
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
-#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapratestrategy.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestrateconceptmapdialog.h"
 #pragma GCC diagnostic pop
@@ -39,7 +40,7 @@ ribi::cmap::QtTestRateConceptMapDialog::QtTestRateConceptMapDialog(QWidget *pare
   ui(new Ui::QtTestRateConceptMapDialog),
   m_concept_map(
     new QtRateConceptMap(
-      ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+      ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15)
     )
   )
 
@@ -116,12 +117,14 @@ void ribi::cmap::QtTestRateConceptMapDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtTestRateConceptMapDialog::Test started");
+  {
+    QtTestRateConceptMapDialog();
+  }
+  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   //Doing random stuff
   {
     QtTestRateConceptMapDialog d;
     for (int i=0; i!=100; ++i) d.DoSomethingRandom();
   }
-  TRACE("ribi::cmap::QtTestRateConceptMapDialog::Test finished successfully");
 }
 #endif

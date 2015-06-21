@@ -224,7 +224,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
   #ifdef RJCB_TODO //TODO RJCB: Put back in
   {
     const std::vector<boost::shared_ptr<ConceptMap> > concept_maps
-      = ConceptMapFactory::GetAllTests();
+      = ConceptMapFactory().GetAllTests();
     const std::size_t n_concept_maps = concept_maps.size();
     for (std::size_t i=0; i!=n_concept_maps; ++i)
     {
@@ -259,7 +259,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
   }
   {
     const std::vector<boost::shared_ptr<ConceptMap> > concept_maps
-      = ConceptMapFactory::GetAllTests();
+      = ConceptMapFactory().GetAllTests();
     const std::size_t n_concept_maps = concept_maps.size();
     for (std::size_t i=0; i!=n_concept_maps; ++i)
     {

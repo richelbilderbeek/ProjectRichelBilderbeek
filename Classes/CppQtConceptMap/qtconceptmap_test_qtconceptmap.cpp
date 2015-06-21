@@ -47,7 +47,7 @@ void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>&
   #ifdef  I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
   //Test conversion between widget and concept map for simple homomorphous concept maps
   {
-    const auto v = ribi::cmap::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps();
+    const auto v = ribi::cmap::ConceptMapFactory().GetSimpleHomomorphousTestConceptMaps();
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; i++)
     {
@@ -65,7 +65,7 @@ void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>&
   }
   //Test conversion between widget and concept map for complex homomorphous concept maps
   {
-    const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > v = ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps();
+    const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > v = ribi::cmap::ConceptMapFactory().GetComplexHomomorphousTestConceptMaps();
     const int sz = v.size();
     for (int i=0; i!=sz; i++)
     {
@@ -83,7 +83,7 @@ void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>&
   }
   //Test conversion between widget and concept map for heteromorphous concept maps
   {
-    const auto v = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps();
+    const auto v = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps();
     const int sz = v.size();
     for (int i=0; i!=sz; i++)
     {
@@ -100,7 +100,7 @@ void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>&
   }
   //Test conversion between widget and concept map for brute-force concept map
   {
-    const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > maps = ribi::cmap::ConceptMapFactory::GetAllTests();
+    const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > maps = ribi::cmap::ConceptMapFactory().GetAllTests();
     std::for_each(maps.begin(),maps.end(),
       [widget](const boost::shared_ptr<ribi::cmap::ConceptMap>& m)
       {
