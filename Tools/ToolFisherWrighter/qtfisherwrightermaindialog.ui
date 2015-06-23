@@ -15,18 +15,18 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
-  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #ffff00, stop: 1 #00ff00);
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #ffa, stop: 1 #afa);
 }
 
 QWidget#results { 
-  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #ffff00, stop: 1 #00ff00);
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #ffa, stop: 1 #afa);
 }
 
 QPushButton
 {
   color: #000;
-  background-color: qradialgradient(cx: 0.5, cy: 0.5,fx: 0.5, fy: 0.5,radius: 0.5, stop: 0 #ff0, stop: 1 #0f0);
-  border: 1px solid green
+  background-color: qradialgradient(cx: 0.5, cy: 0.5,fx: 0.5, fy: 0.5,radius: 0.5, stop: 0 #ffa, stop: 1 #afa);
+  border: 1px solid black
 }
 </string>
   </property>

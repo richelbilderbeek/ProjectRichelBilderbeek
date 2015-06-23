@@ -84,6 +84,13 @@ void ribi::prswt::Simulation::Next()
       }
       else
       {
+        const double new_trait{here.GetTrait() + m_normal_distribution(m_rng)};
+        next[y][x]
+          = Individual(
+            here.GetPrs(),
+            new_trait
+          )
+        ;
         sum_traits[here.GetPrs()] += here.GetTrait();
         ++tally_popsizes[here.GetPrs()];
       }
