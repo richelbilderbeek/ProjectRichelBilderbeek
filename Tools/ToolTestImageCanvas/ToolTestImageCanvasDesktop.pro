@@ -8,6 +8,7 @@ include(../../Libraries/GeneralDesktop.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 #Desktop
 include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
 

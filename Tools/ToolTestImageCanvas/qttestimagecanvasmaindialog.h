@@ -5,6 +5,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
+#include "imagecanvas.h"
 #include "canvascolorsystem.h"
 #include "canvascoordinatsystem.h"
 #include "qthideandshowdialog.h"
@@ -39,10 +40,10 @@ private slots:
 
 private:
   Ui::QtTestImageCanvasMainDialog *ui;
-  boost::shared_ptr<ImageCanvas> m_canvas;
+  ImageCanvas m_canvas;
   QtCanvas * m_qtcanvas;
 
-  static const boost::shared_ptr<ImageCanvas> CreateCanvas();
+  static ImageCanvas CreateCanvas();
 
   CanvasColorSystem GetColorSystem() const noexcept;
   CanvasCoordinatSystem GetCoordinatSystem() const noexcept;

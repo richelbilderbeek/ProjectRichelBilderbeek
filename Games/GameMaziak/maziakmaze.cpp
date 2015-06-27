@@ -185,7 +185,7 @@ std::vector<std::vector<ribi::maziak::MazeSquare> > ribi::maziak::Maze::CreateMa
       const double a = x1 - x2;
       const double b = y1 - y2;
       // Use 0.65, as 0.75 could not always be solved
-      const double minDist = 0.50 * static_cast<double>(sz);
+      const double minDist = 0.40 * static_cast<double>(sz);
       if (std::sqrt( (a * a) + (b * b) ) > minDist)
       {
         break;

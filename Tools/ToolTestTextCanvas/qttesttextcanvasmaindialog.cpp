@@ -21,7 +21,7 @@ ribi::QtTestTextCanvasMainDialog::QtTestTextCanvasMainDialog(QWidget *parent)
  :  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestTextCanvasMainDialog),
   m_canvas(CreateCanvas()),
-  m_qtcanvas{}
+  m_qtcanvas{new QtCanvas}
 {
   #ifndef NDEBUG
   Test();
@@ -30,13 +30,14 @@ ribi::QtTestTextCanvasMainDialog::QtTestTextCanvasMainDialog(QWidget *parent)
 
   {
     assert(ui->verticalLayout);
-    m_qtcanvas.reset(new QtCanvas(m_canvas));
-    ui->verticalLayout->addWidget(m_qtcanvas.get());
+    //m_qtcanvas.reset(new QtCanvas(m_canvas));
+    m_qtcanvas->SetTextCanvas(m_canvas);
+    ui->verticalLayout->addWidget(m_qtcanvas);
   }
 
   {
-    const double w = m_canvas->GetWidth();
-    const double h = m_canvas->GetHeight();
+    const double w = m_canvas.GetWidth();
+    const double h = m_canvas.GetHeight();
     ui->box_char_x->setValue(0.5 * w);
     ui->box_char_y->setValue(0.5 * h);
     ui->box_text_x->setValue(0.5 * w);
@@ -49,13 +50,13 @@ ribi::QtTestTextCanvasMainDialog::~QtTestTextCanvasMainDialog() noexcept
   delete ui;
 }
 
-const boost::shared_ptr<ribi::TextCanvas> ribi::QtTestTextCanvasMainDialog::CreateCanvas()
+ribi::TextCanvas ribi::QtTestTextCanvasMainDialog::CreateCanvas()
 {
   const int maxx = 79;
   const int maxy = 23;
-  boost::shared_ptr<TextCanvas> canvas(new TextCanvas(maxx,maxy));
-  canvas->PutText(1,1,"Hello");
-  canvas->PutText(2,2,"World");
+  TextCanvas canvas(maxx,maxy);
+  canvas.PutText(1,1,"Hello");
+  canvas.PutText(2,2,"World");
   return canvas;
 }
 
@@ -64,13 +65,13 @@ void ribi::QtTestTextCanvasMainDialog::on_box_coordinat_system_currentIndexChang
   const CanvasCoordinatSystem coordinat_system
     = ui->box_coordinat_system->currentIndex() == 0
     ? CanvasCoordinatSystem::screen : CanvasCoordinatSystem::graph;
-  this->m_canvas->SetCoordinatSystem(coordinat_system);
+  this->m_canvas.SetCoordinatSystem(coordinat_system);
   //Should redraw automatically
 }
 
 void ribi::QtTestTextCanvasMainDialog::on_button_clear_clicked()
 {
-  m_canvas->Clear();
+  m_canvas.Clear();
   //Should redraw automatically
 }
 
@@ -82,6 +83,10 @@ void ribi::QtTestTextCanvasMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    TextCanvas();
+    QtCanvas();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
@@ -92,7 +97,7 @@ void ribi::QtTestTextCanvasMainDialog::on_button_char_clicked()
   const int y = ui->box_char_y->value();
   const std::string s = ui->edit_char->text().toStdString();
   if (s.empty()) return;
-  m_canvas->PutChar(x,y,s[0]);
+  m_canvas.PutChar(x,y,s[0]);
 }
 
 void ribi::QtTestTextCanvasMainDialog::on_button_text_clicked()
@@ -100,14 +105,15 @@ void ribi::QtTestTextCanvasMainDialog::on_button_text_clicked()
   const int x = ui->box_text_x->value();
   const int y = ui->box_text_y->value();
   const std::string s = ui->edit_text->text().toStdString();
-  m_canvas->PutText(x,y,s);
+  m_canvas.PutText(x,y,s);
 }
 
 void ribi::QtTestTextCanvasMainDialog::on_button_as_dialog_clicked()
 {
   QtCanvas * const qtcanvas {
-    new QtCanvas(m_canvas)
+    new QtCanvas
   };
+  qtcanvas->SetTextCanvas(m_canvas);
 
   const boost::scoped_ptr<QtCanvasDialog> d {
     new QtCanvasDialog(qtcanvas)

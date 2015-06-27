@@ -3701,6 +3701,22 @@ ToolTestNewickVector
   );
 
   m.push_back(
+    { "CppFileToVector",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppFileIo.htm\">File I/O</a> is a <a href=\"CppCodeSnippets.htm\">code snippet</a> ",
+        "  to <a href=\"CppConvert.htm\">convert</a> a file to a ",
+        "  <a href=\"CppStdVector.htm\">std::vector</a>&lt;<a href=\"CppString.htm\">std::string</a>&gt;. ",
+        "  <a href=\"CppFileIo.htm\">File I/O</a> you have already defined the <a href=\"CppFileExists.htm\">FileExists</a> function.",
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppFuzzy_equal_to",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -3713,6 +3729,7 @@ ToolTestNewickVector
       }
     }
   );
+
   m.push_back(
     { "CppGaborFilter",
       {

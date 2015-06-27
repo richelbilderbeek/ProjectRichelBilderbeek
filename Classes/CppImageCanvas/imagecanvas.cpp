@@ -42,6 +42,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testtimer.h"
 #pragma GCC diagnostic pop
 
+ribi::ImageCanvas::ImageCanvas() noexcept
+  : m_canvas{},
+    m_color_system{},
+    m_coordinat_system{},
+    m_n_cols{0}
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+
 ribi::ImageCanvas::ImageCanvas(
   const std::string& filename,
   const int n_cols,
@@ -57,11 +69,34 @@ ribi::ImageCanvas::ImageCanvas(
   #endif
 }
 
+ribi::ImageCanvas::ImageCanvas(
+  const ImageCanvas& other) noexcept
+  : m_canvas{other.m_canvas},
+    m_color_system{other.m_color_system},
+    m_coordinat_system{other.m_coordinat_system},
+    m_n_cols{other.m_n_cols}
+{
+
+}
+
+ribi::ImageCanvas& ribi::ImageCanvas::operator=(
+  const ImageCanvas& other) noexcept
+{
+  const_cast<std::vector<std::vector<double>>&>(m_canvas) = other.m_canvas;
+  //m_canvas = other.m_canvas;
+  m_color_system = other.m_color_system;
+  m_coordinat_system = other.m_coordinat_system;
+  const_cast<int&>(m_n_cols) = other.m_n_cols;
+  return *this;
+}
+
 std::vector<std::string> ribi::ImageCanvas::ConvertGreynessesToAscii(
   const std::vector<std::vector<double> >& image,
   const int width //How many chars the ASCII image will be wide
 ) noexcept
 {
+  if (width == 0) return std::vector<std::string>{};
+
   //If the number of chars is below 5,
   //the calculation would be more complicated due to a too trivial value of charWidth
   assert(width >= 5);
@@ -327,56 +362,6 @@ void ribi::ImageCanvas::SetCoordinatSystem(const CanvasCoordinatSystem coordinat
   }
 }
 
-#ifndef NDEBUG
-void ribi::ImageCanvas::Test() noexcept
-{
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  {
-    fileio::FileIo();
-    CanvasColorSystems();
-    CanvasCoordinatSystems();
-
-  }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-  const std::string temp_filename { fileio::FileIo().GetTempFileName() };
-  {
-    const std::string resource_filename { ":/CppImageCanvas/images/R.png" };
-    QFile qfile(resource_filename.c_str());
-    qfile.copy(temp_filename.c_str());
-    if (!fileio::FileIo().IsRegularFile(temp_filename))
-    {
-      TRACE("ERROR");
-      TRACE(resource_filename);
-      TRACE("Resource filename must exist");
-    }
-  }
-  assert(fileio::FileIo().IsRegularFile(temp_filename));
-  const int n
-    = static_cast<int>(CanvasColorSystems().GetAll().size())
-    * static_cast<int>(CanvasCoordinatSystems().GetAll().size());
-  for (int i=0; i!=n; ++i)
-  {
-    const int ncs = static_cast<int>(CanvasColorSystems().GetAll().size());
-    const int a = i % ncs;
-    const CanvasColorSystem color_system = CanvasColorSystems().GetAll()[a];
-    const int b = i / ncs;
-    const CanvasCoordinatSystem coordinat_system
-      = CanvasCoordinatSystems().GetAll()[b];
-    const ImageCanvas c(temp_filename,20,color_system,coordinat_system);
-    std::stringstream s;
-    s << c;
-    assert(!s.str().empty());
-    //TRACE(c);
-  }
-  fileio::FileIo().DeleteFile(temp_filename);
-}
-#endif
-
-
 std::vector<std::string> ribi::ImageCanvas::ToStrings() const noexcept
 {
   std::vector<std::vector<double>> canvas { m_canvas };
@@ -405,4 +390,14 @@ std::ostream& ribi::operator<<(std::ostream& os, const ImageCanvas& canvas) noex
   const auto v = canvas.ToStrings();
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"));
   return os;
+}
+
+bool ribi::operator==(const ImageCanvas& lhs, const ImageCanvas& rhs)
+{
+  return lhs.ToStrings() == rhs.ToStrings();
+}
+
+bool ribi::operator!=(const ImageCanvas& lhs, const ImageCanvas& rhs)
+{
+  return !(lhs == rhs);
 }

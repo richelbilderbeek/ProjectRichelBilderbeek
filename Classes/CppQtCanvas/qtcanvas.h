@@ -8,6 +8,7 @@
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
 #include "textcanvas.h"
+#include "imagecanvas.h"
 #include <QPlainTextEdit>
 #include "canvas.h"
 #pragma GCC diagnostic pop
@@ -15,6 +16,7 @@
 namespace ribi {
 
 struct Canvas;
+struct ImageCanvas;
 struct TextCanvas;
 
 ///A Canvas class that can be used on a QDialog
@@ -25,6 +27,7 @@ class QtCanvas : public QWidget
 
 public:
 
+  QtCanvas();
   QtCanvas(const boost::shared_ptr<Canvas> canvas);
   QtCanvas(const QtCanvas&) = delete;
   QtCanvas& operator=(const QtCanvas&) = delete;
@@ -34,6 +37,7 @@ public:
         Canvas * GetCanvas()       noexcept { return m_active_canvas; }
 
   void SetCanvas(const boost::shared_ptr<Canvas> canvas);
+  void SetImageCanvas(const ImageCanvas& canvas);
   void SetTextCanvas(const TextCanvas& canvas);
 
   ///Emitted when the QtCanvas is destroyed
@@ -49,6 +53,7 @@ private:
 
   Canvas * m_active_canvas;
   boost::shared_ptr<QImage> m_image; //Used as buffer
+  ImageCanvas m_image_canvas;
   boost::shared_ptr<Canvas> m_smart_canvas;
   TextCanvas m_text_canvas;
 

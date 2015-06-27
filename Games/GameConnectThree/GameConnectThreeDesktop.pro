@@ -9,6 +9,7 @@ include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppConnectThree/CppConnectThree.pri)
 include(../../Classes/CppConnectThreeWidget/CppConnectThreeWidget.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 
 #Specific, desktop

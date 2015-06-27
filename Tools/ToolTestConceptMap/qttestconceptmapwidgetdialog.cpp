@@ -216,7 +216,6 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
     is_tested = true;
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
-  #ifndef FIX_ISSUE_282
   const bool verbose{false};
   const int n_depth = 1;
   if (n_depth >= 1)
@@ -227,7 +226,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
     for (int i=0; i!=j; ++i)
     {
       QtTestConceptMapWidgetDialog d;
-      //d.show();
+      d.show();
       d.DoClick(i);
       if (d.CanUndo()) { d.DoUndo(); }
       d.DoClick(i);
@@ -293,7 +292,6 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
       }
     }
   }
-  #endif // FIX_ISSUE_282
   #ifdef TODO_ISSUE_208
   if (n_depth >= 1)
   {

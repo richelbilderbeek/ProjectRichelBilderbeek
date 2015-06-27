@@ -21,7 +21,7 @@ struct DotMatrixChar;
 struct DotMatrixString
 {
   ///Give it a std::string and a spacing (number of pixels) between the characters
-  DotMatrixString(const std::string& s, const int spacing);
+  DotMatrixString(const std::string& s = "", const int spacing = 0);
 
   boost::shared_ptr<QImage> CreateImage() const noexcept;
 

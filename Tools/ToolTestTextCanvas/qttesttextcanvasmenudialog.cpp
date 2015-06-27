@@ -67,8 +67,10 @@ void ribi::QtTestTextCanvasMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TestTextCanvasMenuDialog();
-  QtTestTextCanvasMainDialog();
+  {
+    TestTextCanvasMenuDialog();
+    QtTestTextCanvasMainDialog();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

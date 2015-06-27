@@ -6,6 +6,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
+#include "textcanvas.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
@@ -38,10 +39,10 @@ private slots:
 
 private:
   Ui::QtTestTextCanvasMainDialog *ui;
-  boost::shared_ptr<TextCanvas> m_canvas;
-  boost::shared_ptr<QtCanvas> m_qtcanvas;
+  TextCanvas m_canvas;
+  QtCanvas * const m_qtcanvas;
 
-  static const boost::shared_ptr<TextCanvas> CreateCanvas();
+  static TextCanvas CreateCanvas();
 
   #ifndef NDEBUG
   static void Test() noexcept;

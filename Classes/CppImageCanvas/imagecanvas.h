@@ -40,6 +40,7 @@ namespace ribi {
 ///ImageCanvas converts an image to a Canvas
 struct ImageCanvas : public Canvas
 {
+  ImageCanvas() noexcept;
   ///The number of characters the Canvas is heigh and wide
   ///but also the maximum x and y coordinat. The minimum
   ///x and y coordinats are 0.0 and 0.0
@@ -49,8 +50,8 @@ struct ImageCanvas : public Canvas
     const CanvasColorSystem colorSystem         = CanvasColorSystem::normal,
     const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen
   ) noexcept;
-  ImageCanvas(const ImageCanvas&) = delete;
-  ImageCanvas& operator=(const ImageCanvas&) = delete;
+  ImageCanvas(const ImageCanvas&) noexcept;
+  ImageCanvas& operator=(const ImageCanvas&) noexcept;
   ~ImageCanvas() = default;
 
   ///The color system used:
@@ -160,6 +161,8 @@ struct ImageCanvas : public Canvas
 };
 
 std::ostream& operator<<(std::ostream& os, const ImageCanvas& canvas) noexcept;
+bool operator==(const ImageCanvas& lhs, const ImageCanvas& rhs);
+bool operator!=(const ImageCanvas& lhs, const ImageCanvas& rhs);
 
 } //~namespace ribi
 

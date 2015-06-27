@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>214</width>
+    <width>252</width>
     <height>589</height>
    </rect>
   </property>
@@ -112,28 +112,28 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
    <item>
     <widget class="QPushButton" name="button_readonly_conceptmap">
      <property name="text">
-      <string>&amp;Read-only</string>
+      <string>&amp;8. Read-only</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_edit_conceptmap">
      <property name="text">
-      <string>E&amp;ditable</string>
+      <string>&amp;9. Editable</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_rate_conceptmap">
      <property name="text">
-      <string>R&amp;ateable</string>
+      <string>&amp;0. R&amp;ateable</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_view_concept_maps">
      <property name="text">
-      <string>Used in &amp;testing</string>
+      <string>&amp;A. Used in testing</string>
      </property>
     </widget>
    </item>
@@ -150,7 +150,7 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
    <item>
     <widget class="QPushButton" name="button_conceptmapwidget">
      <property name="text">
-      <string>An&amp;y type</string>
+      <string>&amp;B. Any type</string>
      </property>
     </widget>
    </item>

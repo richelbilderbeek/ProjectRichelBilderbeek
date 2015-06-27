@@ -8,6 +8,8 @@ include(../../Libraries/GeneralDesktop.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 #Desktop
 include(../../Classes/CppQtDotMatrix/CppQtDotMatrix.pri)

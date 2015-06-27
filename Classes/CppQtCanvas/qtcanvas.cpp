@@ -17,10 +17,21 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+ribi::QtCanvas::QtCanvas()
+  : m_signal_on_destroy{},
+    m_active_canvas{nullptr},
+    m_image{},
+    m_image_canvas{},
+    m_smart_canvas{},
+    m_text_canvas{}
+{
+}
+
 ribi::QtCanvas::QtCanvas(const boost::shared_ptr<ribi::Canvas> canvas)
   : m_signal_on_destroy{},
-    m_active_canvas{},
+    m_active_canvas{nullptr},
     m_image{},
+    m_image_canvas{},
     m_smart_canvas{canvas},
     m_text_canvas{}
 {
@@ -31,12 +42,15 @@ ribi::QtCanvas::QtCanvas(const boost::shared_ptr<ribi::Canvas> canvas)
 
 ribi::QtCanvas::~QtCanvas() noexcept
 {
-  m_active_canvas->m_signal_changed.disconnect(
-    boost::bind(
-      &ribi::QtCanvas::ShowCanvas,this,
-      boost::lambda::_1
-    )
-  );
+  if (m_active_canvas)
+  {
+    m_active_canvas->m_signal_changed.disconnect(
+      boost::bind(
+        &ribi::QtCanvas::ShowCanvas,this,
+        boost::lambda::_1
+      )
+    );
+  }
   m_signal_on_destroy();
 }
 
@@ -58,6 +72,10 @@ void ribi::QtCanvas::keyReleaseEvent(QKeyEvent* event)
 
 void ribi::QtCanvas::paintEvent(QPaintEvent *)
 {
+  if (!m_active_canvas)
+  {
+    return;
+  }
   std::vector<std::string> text;
   for (std::string line: m_active_canvas->ToStrings()) { text.push_back(line); }
 
@@ -96,6 +114,90 @@ void ribi::QtCanvas::SetCanvas(const boost::shared_ptr<Canvas> canvas)
       &ribi::QtCanvas::ShowCanvas,this,
       boost::lambda::_1)
     );
+
+  //Set minimum size
+  {
+    std::vector<std::string> text;
+    for (std::string line: m_active_canvas->ToStrings()) { text.push_back(line); }
+    DotMatrixText t(text,1);
+    setMinimumSize(
+      t.GetMatrixHeight(),
+      t.GetMatrixWidth()
+    );
+  }
+
+  m_active_canvas = m_smart_canvas.get();
+  ShowCanvas(m_active_canvas);
+}
+
+void ribi::QtCanvas::SetImageCanvas(const ImageCanvas& canvas)
+{
+  if (canvas == m_image_canvas) { return; }
+
+  //Disconnect current Canvas
+  if (m_active_canvas)
+  {
+    m_active_canvas->m_signal_changed.disconnect(
+      boost::bind(
+        &ribi::QtCanvas::ShowCanvas,this,
+        boost::lambda::_1
+      )
+    );
+  }
+
+  //Use new Canvas
+  m_image_canvas = canvas;
+  m_active_canvas = &m_image_canvas;
+
+  //Connect new Canvas
+  m_active_canvas->m_signal_changed.connect(
+    boost::bind(
+      &ribi::QtCanvas::ShowCanvas,this,
+      boost::lambda::_1
+    )
+  );
+
+  //Set minimum size
+  {
+    std::vector<std::string> text;
+    for (std::string line: m_active_canvas->ToStrings()) { text.push_back(line); }
+    DotMatrixText t(text,1);
+    setMinimumSize(
+      t.GetMatrixHeight(),
+      t.GetMatrixWidth()
+    );
+  }
+
+  m_active_canvas = m_smart_canvas.get();
+  ShowCanvas(m_active_canvas);
+}
+
+void ribi::QtCanvas::SetTextCanvas(const TextCanvas& canvas)
+{
+  if (canvas == m_text_canvas) { return; }
+
+  //Disconnect current Canvas
+  if (m_active_canvas)
+  {
+    m_active_canvas->m_signal_changed.disconnect(
+      boost::bind(
+        &ribi::QtCanvas::ShowCanvas,this,
+        boost::lambda::_1
+      )
+    );
+  }
+
+  //Use new Canvas
+  m_text_canvas = canvas;
+  m_active_canvas = &m_text_canvas;
+
+  //Connect new Canvas
+  m_active_canvas->m_signal_changed.connect(
+    boost::bind(
+      &ribi::QtCanvas::ShowCanvas,this,
+      boost::lambda::_1
+    )
+  );
 
   //Set minimum size
   {
