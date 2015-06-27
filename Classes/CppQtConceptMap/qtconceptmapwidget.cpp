@@ -186,6 +186,7 @@ void ribi::cmap::QtConceptMapWidget::OnAddEdge(const boost::shared_ptr<Edge> edg
     assert(m_qtconceptmap->FindQtEdge(qtedge));
     m_qtconceptmap->FindQtEdge(qtedge)->setFocus();
     #endif // FIX_ISSUE_281
+    assert(1==2);
     #ifndef NDEBUG
     const std::size_t qtedges_after { m_qtconceptmap->GetQtEdges().size() };
     const std::size_t edges_after { m_widget->GetConceptMap()->GetEdges().size() };

@@ -48,10 +48,8 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) 
   assert(m_nodes.size() == 2);
   assert(m_nodes[0]);
   assert(m_nodes[1]);
-  #ifdef TODO_ISSUE_190
   assert(m_nodes[0] != m_nodes[1]
     && "An edge must be created from two different nodes");
-  #endif
   assert(m_widget->GetConceptMap()->HasNode(m_nodes[0])
     && "An edge must be created from two existing nodes");
   assert(m_widget->GetConceptMap()->HasNode(m_nodes[1])
