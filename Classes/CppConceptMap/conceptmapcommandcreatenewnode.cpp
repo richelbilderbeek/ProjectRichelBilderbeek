@@ -33,7 +33,7 @@ bool ribi::cmap::CommandCreateNewNode::CanDoCommandSpecific(const Widget * const
 
 void ribi::cmap::CommandCreateNewNode::DoCommandSpecific(Widget * const widget) noexcept
 {
-  assert(!m_widget);
+  assert(!m_widget && "Cannot do a command twice");
   assert(!m_node);
   assert(widget);
   assert(widget->GetConceptMap().get());

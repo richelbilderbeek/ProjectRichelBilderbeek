@@ -118,6 +118,12 @@ void ribi::cmap::QtConceptMapWidget::DoCommand(
   assert(CanUndo());
 }
 
+const ribi::cmap::Widget& ribi::cmap::QtConceptMapWidget::GetWidget() const noexcept
+{
+  assert(m_widget);
+  return *(m_widget.get());
+}
+
 void ribi::cmap::QtConceptMapWidget::keyPressEvent(QKeyEvent * e) noexcept
 {
   if (e->key() == Qt::Key_Z && e->modifiers() & Qt::ControlModifier)
@@ -221,21 +227,14 @@ void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> nod
     #endif
     m_qtconceptmap->AddNode(node);
     assert(m_qtconceptmap->FindQtNode(node.get()));
-    m_qtconceptmap->FindQtNode(node.get())->setFocus();
+    m_qtconceptmap->FindQtNode(node.get())->setSelected(true); //A new Node is also selected
 
     #ifndef NDEBUG
     const std::size_t qtnodes_after { m_qtconceptmap->GetQtNodes().size() };
     const std::size_t nodes_after { m_widget->GetConceptMap()->GetNodes().size() };
+    //TODO: If these tests fail, isolate that test and move this to a ::Test member function
     assert(qtnodes_after > qtnodes_before);
     assert(nodes_after == nodes_before && "These nodes are already added to the Widget");
-    if(m_qtconceptmap->GetQtNodes().size() != m_widget->GetConceptMap()->GetNodes().size())
-    {
-      TRACE(qtnodes_before);
-      TRACE(nodes_before);
-      TRACE(qtnodes_after);
-      TRACE(nodes_after);
-      TRACE("BREAK");
-    }
     assert(m_qtconceptmap->GetQtNodes().size() == m_widget->GetConceptMap()->GetNodes().size());
     #endif
   }
@@ -391,110 +390,6 @@ void ribi::cmap::QtConceptMapWidget::showEvent(QShowEvent*) noexcept
   assert(this->m_qtconceptmap->isVisible());
 }
 */
-
-#ifndef NDEBUG
-void ribi::cmap::QtConceptMapWidget::Test() noexcept
-{
-  {
-    static bool is_tested = false;
-    if (is_tested) return;
-    is_tested = true;
-  }
-  const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
-
-  const bool verbose{true};
-  if (verbose) { TRACE("AddNode: Test creation of node from empty concept map, undo via widget"); }
-  {
-    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
-    assert(m);
-    assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
-    assert(c);
-    assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
-    const boost::shared_ptr<QtConceptMapWidget> w(
-      new QtConceptMapWidget(c)
-    );
-    assert(!w->CanUndo());
-    const boost::shared_ptr<CommandCreateNewNode> cmd(
-      new CommandCreateNewNode
-    );
-
-    assert(m->GetNodes().empty() && "The concept map must be empty");
-    assert(c->GetQtNodes().empty() && "The QtConceptMap must be empty");
-    assert(w->CanDoCommand(cmd));
-    w->DoCommand(cmd);
-    assert(!m->GetNodes().empty() && "After creation a new node, the previously empty concept map must have a node");
-    assert(!c->GetQtNodes().empty() && "After creation a new node, the previously empty QtConceptMap must have a node");
-    assert(w->CanUndo());
-    w->Undo(); //Route #1
-    //cmd->Undo(); //Route #2
-    assert(m->GetNodes().empty() && "After undoing the creation of a new node, the concept map must be empty again");
-    assert(c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");
-    assert(!w->CanUndo());
-  }
-  if (verbose) { TRACE("AddNode: Test creation of node from empty concept map, undo via command"); }
-  {
-    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
-    assert(m);
-    assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
-    assert(c);
-    assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
-    const boost::shared_ptr<QtConceptMapWidget> w(
-      new QtConceptMapWidget(c)
-    );
-    assert(!w->CanUndo());
-    const boost::shared_ptr<CommandCreateNewNode> cmd(
-      new CommandCreateNewNode
-    );
-
-    assert(m->GetNodes().empty() && "The concept map must be empty");
-    assert(c->GetQtNodes().empty() && "The QtConceptMap must be empty");
-    assert(w->CanDoCommand(cmd));
-    w->DoCommand(cmd);
-    assert(!m->GetNodes().empty() && "After creation a new node, the previously empty concept map must have a node");
-    assert(!c->GetQtNodes().empty() && "After creation a new node, the previously empty QtConceptMap must have a node");
-    assert(w->CanUndo());
-    //w->Undo(); //Route #1
-    cmd->Undo(); //Route #2
-    assert(m->GetNodes().empty() && "After undoing the creation of a new node, the concept map must be empty again");
-    assert(c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");
-    assert(!w->CanUndo());
-  }
-
-  if (verbose) { TRACE("DeleteNode: Test deletion of node from concept map"); }
-  {
-    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
-    assert(m);
-    assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
-    assert(c);
-    assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
-    const boost::shared_ptr<QtConceptMapWidget> w(
-      new QtConceptMapWidget(c)
-    );
-    const boost::shared_ptr<CommandCreateNewNode> cmd_add_node(
-      new CommandCreateNewNode
-    );
-
-    assert(m->GetNodes().empty() && "Tthe concept map must be empty");
-    assert(c->GetQtNodes().empty() && "The QtConceptMap must be empty");
-    w->DoCommand(cmd_add_node);
-    assert(m->GetNodes().size()   == 1 && "After creation a new node, the previously empty concept map must have a node");
-    assert(c->GetQtNodes().size() == 1 && "After creation a new node, the previously empty QtConceptMap must have a node");
-
-    const boost::shared_ptr<CommandDeleteNode> cmd_delete_node(
-      new CommandDeleteNode(m->GetNodes()[0])
-    );
-    w->DoCommand(cmd_delete_node);
-    assert(m->GetNodes().size()   == 0 && "After deleting the new node, the concept map must be empty");
-    assert(c->GetQtNodes().size() == 0 && "After deleting the new node, the QtConceptMap must be empty");
-    cmd_delete_node->Undo();
-    assert(m->GetNodes().size()   == 1 && "After undoing the deletion of the only node, the previously empty concept map must have a node");
-    assert(c->GetQtNodes().size() == 1 && "After undoing the deletion of the only node, the previously empty QtConceptMap must have a node");
-  }
-}
-#endif
 
 void ribi::cmap::QtConceptMapWidget::Undo() noexcept
 {

@@ -198,6 +198,7 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() noexcept
   assert(after == before + 1);
   #endif
 
+  //Adding a Node should select it
   this->AddSelected( { node } ); //Must be after 'm_signal_add_node(node);'
 
   return node;

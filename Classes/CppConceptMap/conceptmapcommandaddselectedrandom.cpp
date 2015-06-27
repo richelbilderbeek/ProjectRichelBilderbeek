@@ -24,7 +24,6 @@ bool ribi::cmap::CommandAddSelectedRandom::CanDoCommandSpecific(const Widget * c
     if (verbose) TRACE("AddSelected needs nodes to focus on");
     return false;
   }
-
   if (const_cast<Widget*>(widget)->GetRandomNodes(AddConst(widget->GetSelected())).empty())
   {
     if (verbose)
