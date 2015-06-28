@@ -34,7 +34,6 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
   ui(new Ui::QtTestEditConceptMapDialog),
   m_concept_map(
     new QtEditConceptMap(
-      ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15),
       QtEditConceptMap::Mode::simple
     )
   )
@@ -44,6 +43,12 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
   #ifndef NDEBUG
   Test();
   #endif
+
+  m_concept_map->SetConceptMap(
+    ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15)
+  );
+
+
   assert(ui->widget->layout());
   ui->widget->layout()->addWidget(m_concept_map.get());
 }

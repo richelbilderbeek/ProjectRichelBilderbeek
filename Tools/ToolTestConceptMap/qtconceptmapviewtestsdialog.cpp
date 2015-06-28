@@ -149,20 +149,23 @@ boost::shared_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapViewTestsDia
   {
     case 0:
     {
-      boost::shared_ptr<QtConceptMap> p(new QtDisplayConceptMap(concept_map));
+      boost::shared_ptr<QtConceptMap> p(new QtDisplayConceptMap);
       assert(p);
+      p->SetConceptMap(concept_map);
       return p;
     }
     case 1:
     {
-      boost::shared_ptr<QtConceptMap> p(new QtEditConceptMap(concept_map));
+      boost::shared_ptr<QtConceptMap> p(new QtEditConceptMap);
       assert(p);
+      p->SetConceptMap(concept_map);
       return p;
     }
     case 2:
     {
-      boost::shared_ptr<QtConceptMap> p(new QtRateConceptMap(concept_map));
+      boost::shared_ptr<QtConceptMap> p(new QtRateConceptMap);
       assert(p);
+      p->SetConceptMap(concept_map);
       return p;
     }
     default:

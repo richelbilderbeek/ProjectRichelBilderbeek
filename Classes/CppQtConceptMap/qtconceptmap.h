@@ -41,9 +41,7 @@ class QtConceptMap : public ribi::QtKeyboardFriendlyGraphicsView
   Q_OBJECT
 
 public:
-  explicit QtConceptMap(
-    const boost::shared_ptr<ConceptMap> concept_map,
-    QWidget* parent = 0);
+  explicit QtConceptMap(QWidget* parent = 0);
   QtConceptMap(const QtConceptMap&) = delete;
   QtConceptMap& operator=(const QtConceptMap&) = delete;
   virtual ~QtConceptMap() noexcept;
@@ -75,7 +73,10 @@ public:
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+
   void RemoveExamplesItem() noexcept { SetExamplesItem(nullptr); }
+
+  void SetConceptMap(const boost::shared_ptr<ConceptMap> concept_map);
 
   #ifndef NDEBUG
   ///Shuffle the concepts (used in debugging)
@@ -93,19 +94,12 @@ protected:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
-  #ifdef NOT_NOW_20141111
   virtual QtEdge * AddEdge(const boost::shared_ptr<Edge> edge) = 0;
-  #endif // NOT_NOW_20141111
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
   virtual QtNode * AddNode(const boost::shared_ptr<Node> node) = 0;
 
-  ///Initialize the widget with the loaded concept map
-  ///BuildQtConceptMap changes the concept map entered, by changing some GUI
-  ///elements (coordinats of the nodes, for example).
-  ///Instead of using operator== use HasSameContent
-  void BuildQtConceptMap();
 
   ///Remove all Qt and non-Qt items and add new ones
   virtual void CleanMe() = 0;
@@ -176,23 +170,13 @@ protected:
 private:
 
   ///The concept map to work on, the Model
-  const boost::shared_ptr<ConceptMap> m_concept_map;
+  boost::shared_ptr<ConceptMap> m_concept_map;
 
   ///The item showing the examples
   QtExamplesItem * m_examples_item;
 
   ///Implemention of OnItemUpdateRequest
   virtual void OnItemRequestUpdateImpl(const QGraphicsItem* const item) = 0;
-
-  ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
-  ///- Display/read-only concept map: DisplayStrategy
-  ///- Editable: EditStrategy
-  ///- Rateable: RateStrategy
-  #ifdef NOT_NOW_20141111
-  virtual boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
-    const boost::shared_ptr<Concept> concept
-  ) const noexcept = 0;
-  #endif // NOT_NOW_20141111
 
 public slots:
 

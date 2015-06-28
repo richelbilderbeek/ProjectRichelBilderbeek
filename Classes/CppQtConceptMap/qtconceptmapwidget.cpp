@@ -183,16 +183,18 @@ void ribi::cmap::QtConceptMapWidget::OnAddEdge(const boost::shared_ptr<Edge> edg
   }
   else
   {
+    /*
     #ifndef NDEBUG
     const std::size_t qtedge_before { m_qtconceptmap->GetQtEdges().size() };
     const std::size_t edges_before { m_widget->GetConceptMap()->GetEdges().size() };
     #endif
-    #ifdef FIX_ISSUE_281
+    */
+    //#ifdef FIX_ISSUE_281
     QtEdge * const qtedge { m_qtconceptmap->AddEdge(edge) };
     assert(m_qtconceptmap->FindQtEdge(qtedge));
     m_qtconceptmap->FindQtEdge(qtedge)->setFocus();
-    #endif // FIX_ISSUE_281
-    assert(1==2);
+    //#endif // FIX_ISSUE_281
+    /*
     #ifndef NDEBUG
     const std::size_t qtedges_after { m_qtconceptmap->GetQtEdges().size() };
     const std::size_t edges_after { m_widget->GetConceptMap()->GetEdges().size() };
@@ -208,6 +210,7 @@ void ribi::cmap::QtConceptMapWidget::OnAddEdge(const boost::shared_ptr<Edge> edg
     }
     assert(m_qtconceptmap->GetQtEdges().size() == m_widget->GetConceptMap()->GetEdges().size());
     #endif
+    */
   }
 }
 

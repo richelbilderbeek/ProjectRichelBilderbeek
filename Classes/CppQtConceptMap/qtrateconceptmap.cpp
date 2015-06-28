@@ -68,30 +68,20 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 }
 
 ribi::cmap::QtRateConceptMap::QtRateConceptMap(
-  const boost::shared_ptr<ConceptMap> concept_map,
   QWidget* parent)
-  : QtConceptMap(concept_map,parent),
+  : QtConceptMap(parent),
     m_signal_request_rate_concept_dialog{}
 {
   #ifndef NDEBUG
   Test();
-
-  assert( (concept_map || !concept_map )
-    && "Only an existing concept map can be rated,"
-       "an empty one displays nothing");
   #endif
-  if (concept_map) BuildQtConceptMap();
-
-  //assert(m_tools->scene() && "m_tools is added at CleanMe at BuildQtConceptMap");
-  //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
+#define NOT_NOW_20141111
 #ifdef NOT_NOW_20141111
 ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
-  const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetNode()->GetConcept()));
-  assert(qtconcept);
   QtNode * const from = FindQtNode(edge->GetFrom().get());
   assert(from);
   QtNode * const to   = FindQtNode(edge->GetTo().get());
@@ -99,7 +89,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   assert(from != to);
   QtEdge * const qtedge = new QtEdge(
     edge,
-    qtconcept,
+    //qtconcept,
     from,
     to
   );
@@ -126,21 +116,24 @@ ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   #endif
   if (IsQtCenterNode(from) || IsQtCenterNode(to))
   {
-    assert(qtconcept == qtedge->GetDisplayStrategy());
-    qtconcept->setVisible(false);
+    //assert(qtconcept == qtedge->GetDisplayStrategy());
+    //qtconcept->setVisible(false);
+    qtedge->GetQtNode()->setVisible(false);
   }
 
 
   //General
-  qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
+  qtedge->m_signal_edge_changed.connect(
+    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this)
+  );
 
   //General: inform an Observer that this item has changed
-  qtedge->m_signal_item_has_updated.connect(
-   boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
+  qtedge->m_signal_base_changed.connect(
+   boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
+ );
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
-  qtedge->m_signal_request_scene_update.connect(
+  qtedge->m_signal_edge_changed.connect(
     boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
 
   //Specific: disable changing arrow heads
@@ -156,13 +149,9 @@ ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   assert(std::count(
     this->GetConceptMap()->GetEdges().begin(),
     this->GetConceptMap()->GetEdges().end(),
-    edge) == 1 && "Assume edge is already in the concept map");
+    edge) == 1 && "Assume edge is already in the concept map"
+  );
 
-  #ifndef NDEBUG
-  const double epsilon = 0.000001;
-  #endif
-  assert(std::abs(qtedge->pos().x() - edge->GetNode()->GetX()) < epsilon);
-  assert(std::abs(qtedge->pos().y() - edge->GetNode()->GetY()) < epsilon);
   return qtedge;
 }
 #endif // NOT_NOW_20141111
@@ -185,14 +174,16 @@ ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_p
 
   #ifdef NOT_NOW_20141111
   //General: inform an Observer that this item has changed
-  qtnode->m_signal_item_has_updated.connect(
+  qtnode->m_signal_pos_changed.connect(
    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
-  qtnode->m_signal_request_scene_update.connect(
+  qtnode->m_signal_text_changed.connect(
     boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
 
   //Specific: inform an Observer that the Node requests its Concept being rated
+  //TODO
+  /*
   qtnode->m_signal_node_requests_rate_concept.connect(
     boost::bind(
       &ribi::cmap::QtRateConceptMap::OnNodeRequestsRateConcept,
@@ -203,6 +194,7 @@ ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_p
     boost::bind(
       &ribi::cmap::QtRateConceptMap::OnNodeRequestsRateExamples,
       this, boost::lambda::_1)); //Do not forget the placeholder!
+  */
   #endif // NOT_NOW_20141111
 
   assert(!qtnode->scene());
@@ -253,7 +245,8 @@ std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtRateConceptMap::CreateNe
   const boost::shared_ptr<ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory().DeepCopy(this->GetConceptMap());
   assert(concept_map);
-  std::unique_ptr<QtConceptMap> p(new This_t(concept_map));
+  std::unique_ptr<QtConceptMap> p(new This_t);
+  p->SetConceptMap(concept_map);
   return p;
 }
 #endif
@@ -332,19 +325,6 @@ void ribi::cmap::QtRateConceptMap::DoRandomStuff()
   assert(!"TODO");
 }
 #endif
-
-#ifdef NOT_NOW_20141111
-const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtRateConceptMap::GetDisplayStrategy(
-  const boost::shared_ptr<Concept> concept) const noexcept
-{
-  assert(concept);
-  const boost::shared_ptr<QtItemDisplayStrategy> display_strategy {
-    new QtRateStrategy(concept)
-  };
-  assert(display_strategy);
-  return display_strategy;
-}
-#endif // NOT_NOW_20141111
 
 void ribi::cmap::QtRateConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {

@@ -34,9 +34,7 @@ struct QtRateConceptMap : public QtConceptMap
 {
   typedef QtRateConceptMap This_t;
 
-  QtRateConceptMap(
-    const boost::shared_ptr<ConceptMap> concept_map = boost::shared_ptr<ConceptMap>(),
-    QWidget* parent = 0);
+  QtRateConceptMap(QWidget* parent = 0);
   ~QtRateConceptMap() noexcept {}
   QtRateConceptMap(const QtRateConceptMap& other) = delete;
   QtRateConceptMap& operator=(const QtRateConceptMap& other) = delete;
@@ -59,10 +57,8 @@ struct QtRateConceptMap : public QtConceptMap
 
 private:
 
-  #ifdef NOT_NOW_20141111
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
-  #endif // NOT_NOW_20141111
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///For rating and editing, the node must be non-cost
@@ -75,12 +71,6 @@ private:
   ///Create a subsection of the concept map, with item at the center
   ///Item is non-const, as all items can be edited in other contexts
   const boost::shared_ptr<ConceptMap> CreateSubConceptMap(QtNode * const item);
-
-  #ifdef NOT_NOW_20141111
-  ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
-  const boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
-    const boost::shared_ptr<Concept> concept) const noexcept;
-  #endif // NOT_NOW_20141111
 
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted

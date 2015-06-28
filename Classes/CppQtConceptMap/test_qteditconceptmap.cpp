@@ -24,6 +24,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qteditconceptmap.h"
 
+#include <chrono>
+
+#include "qtconceptmapcollect.h"
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
 #include "testtimer.h"
@@ -38,71 +41,111 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer{__func__,__FILE__,0.1};
-  //Test cloning
+  const TestTimer test_timer{__func__,__FILE__,0.2};
+  TestTimer::SetMaxCnt(2); //Because the base class has to be tested as well
+
+  //SetConceptMap and GetConceptMap return the same
   {
+    QtEditConceptMap m;
+    const boost::shared_ptr<ConceptMap> concept_map{
+      ConceptMapFactory().GetHeteromorphousTestConceptMap(2)
+    };
+    m.SetConceptMap(concept_map);
+    assert(m.GetConceptMap() == concept_map);
+  }
+  //SetConceptMap, two nodes
+  {
+    QtEditConceptMap m;
+    const boost::shared_ptr<ConceptMap> concept_map{
+      ConceptMapFactory().GetHeteromorphousTestConceptMap(2)
+    };
+    m.SetConceptMap(concept_map);
+    const auto nodes = concept_map->GetNodes();
+    const auto items = Collect<QtNode>(m.GetScene());
+    const std::size_t n_items = items.size();
+    const std::size_t n_nodes = nodes.size();
+    assert(n_items == n_nodes && "GUI and non-GUI concept map must match");
+  }
+  //SetConceptMap, 3 nodes, 1 edge
+  {
+    QtEditConceptMap m;
+    const boost::shared_ptr<ConceptMap> concept_map{
+      ConceptMapFactory().GetHeteromorphousTestConceptMap(3)
+    };
+    m.SetConceptMap(concept_map);
+    const auto nodes_in_concept_map = concept_map->GetNodes();
+    const auto edges_in_concept_map = concept_map->GetEdges();
+    const auto nodes_in_scene = Collect<QtNode>(m.GetScene());
+    const auto edges_in_scene = Collect<QtEdge>(m.GetScene());
+    const std::size_t n_nodes_in_scene = nodes_in_scene.size();
+    const std::size_t n_edges_in_scene = edges_in_scene.size();
+    const std::size_t n_nodes_in_concept_map = nodes_in_concept_map.size();
+    const std::size_t n_edges_in_concept_map = edges_in_concept_map.size();
+    assert(n_nodes_in_scene == n_nodes_in_concept_map && "GUI and non-GUI concept map must match");
+    assert(n_edges_in_scene == n_edges_in_concept_map && "GUI and non-GUI concept map must match");
   }
   //Test base class (after having tested cloning of derived class)
   {
-    const auto v = ribi::cmap::ConceptMapFactory().GetAllTests();
-    for (const boost::shared_ptr<ConceptMap> concept_map: v)
-    {
-      if (!concept_map) continue;
-      assert(concept_map);
-      assert(concept_map->IsValid());
+    const auto t_begin = std::chrono::system_clock::now();
+    const boost::shared_ptr<ConceptMap> concept_map
+      = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(15);
+    assert(concept_map);
+    assert(concept_map->IsValid());
 
-      boost::shared_ptr<QtConceptMap> widget(new This_t(concept_map));
-      assert(widget);
-      QtConceptMap::Test(widget);
-    }
+    boost::shared_ptr<QtConceptMap> widget(new This_t);
+    widget->SetConceptMap(concept_map);
+    assert(widget);
+    QtConceptMap::Test(widget);
+    const auto t_end = std::chrono::system_clock::now();
+    std::cout << "1:" << std::chrono::duration_cast<std::chrono::milliseconds>(t_end - t_begin).count() << std::endl;
   }
   //Deletion of nodes
   {
-    const std::size_t n_concept_maps = ribi::cmap::ConceptMapFactory().GetAllTests().size();
-    for (std::size_t i = 0; i!=n_concept_maps; ++i)
+    const auto t_begin = std::chrono::system_clock::now();
+    const int concept_map_index{3};
+    const std::size_t n_nodes = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(concept_map_index)->GetNodes().size();
+    for (std::size_t j=0; j!=n_nodes; ++j)
     {
-      if (!cmap::ConceptMapFactory().GetAllTests()[i]) continue;
-      const std::size_t n_nodes = ribi::cmap::ConceptMapFactory().GetAllTests()[i]->GetNodes().size();
-      for (std::size_t j=0; j!=n_nodes; ++j)
-      {
-        boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory().GetAllTests()[i];
-        if (!concept_map) continue;
-        assert(concept_map);
-        assert(concept_map->GetNodes().size() == n_nodes);
-        assert(j < concept_map->GetNodes().size());
-        boost::shared_ptr<This_t> widget(new This_t(concept_map));
-        assert(widget);
-        QtNode* const qtnode = widget->GetQtNodes()[j];
-        assert(qtnode);
-        widget->DeleteNode(qtnode);
-        assert(widget->GetQtNodes().size() == n_nodes - 1
-          && "Node must really be gone");
-      }
+      boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(concept_map_index);
+      if (!concept_map) continue;
+      assert(concept_map);
+      assert(concept_map->GetNodes().size() == n_nodes);
+      assert(j < concept_map->GetNodes().size());
+      boost::shared_ptr<This_t> widget(new This_t);
+      assert(widget);
+      widget->SetConceptMap(concept_map);
+      QtNode* const qtnode = widget->GetQtNodes()[j];
+      assert(qtnode);
+      widget->DeleteNode(qtnode);
+      assert(widget->GetQtNodes().size() == n_nodes - 1
+        && "Node must really be gone");
     }
+    const auto t_end = std::chrono::system_clock::now();
+    std::cout << "2:" << std::chrono::duration_cast<std::chrono::milliseconds>(t_end - t_begin).count() << std::endl;
   }
   //Deletion of edges
   {
-    const std::size_t n_concept_maps = ribi::cmap::ConceptMapFactory().GetAllTests().size();
-    for (std::size_t i = 0; i!=n_concept_maps; ++i)
+    const auto t_begin = std::chrono::system_clock::now();
+    const int concept_map_index{3};
+    const std::size_t n_edges = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(concept_map_index)->GetEdges().size();
+    for (std::size_t j=0; j!=n_edges; ++j)
     {
-      if (!cmap::ConceptMapFactory().GetAllTests()[i]) continue;
-      const std::size_t n_edges = ribi::cmap::ConceptMapFactory().GetAllTests()[i]->GetEdges().size();
-      for (std::size_t j=0; j!=n_edges; ++j)
-      {
-        boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory().GetAllTests()[i];
-        if (!concept_map) continue;
-        assert(concept_map);
-        assert(concept_map->GetEdges().size() == n_edges);
-        assert(j < concept_map->GetEdges().size());
-        boost::shared_ptr<This_t> widget(new This_t(concept_map));
-        assert(widget);
-        QtEdge* const qtedge = widget->GetQtEdges()[j];
-        widget->DeleteEdge(qtedge);
-        assert(widget->GetQtEdges().size() == n_edges - 1
-          && "Edge must really be gone");
-      }
+      boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(concept_map_index);
+      if (!concept_map) continue;
+      assert(concept_map);
+      assert(concept_map->GetEdges().size() == n_edges);
+      assert(j < concept_map->GetEdges().size());
+      boost::shared_ptr<This_t> widget(new This_t);
+      assert(widget);
+      widget->SetConceptMap(concept_map);
+      QtEdge* const qtedge = widget->GetQtEdges()[j];
+      widget->DeleteEdge(qtedge);
+      assert(widget->GetQtEdges().size() == n_edges - 1
+        && "Edge must really be gone");
     }
+    const auto t_end = std::chrono::system_clock::now();
+    std::cout << "3:" << std::chrono::duration_cast<std::chrono::milliseconds>(t_end - t_begin).count() << std::endl;
   }
-
+  TestTimer::SetMaxCnt(1); //Because the base class has been tested now
 }
 #endif

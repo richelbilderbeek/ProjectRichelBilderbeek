@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 
 #include "fuzzy_equal_to.h"
+#include "qtconceptmapcollect.h"
 #include "conceptmapcenternode.h"
 #include "conceptmapconceptfactory.h"
 #include "conceptmapconcept.h"
@@ -52,6 +53,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapelement.h"
 #include "qtconceptmapqtedge.h"
+#include "qtconceptmapqtnode.h"
 #include "qtconceptmapexamplesitem.h"
 #include "qtconceptmapitemhighlighter.h"
 #include "qtconceptmapnewarrow.h"
@@ -62,22 +64,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "xml.h"
 #pragma GCC diagnostic pop
 
-///Collect all QGraphicsItems with class T in an unorderly way
-template <class T>
-std::vector<T*> Collect(const QGraphicsScene* const scene)
-{
-  std::vector<T*> v;
-  const QList<QGraphicsItem *> items = scene->items();
-  std::transform(items.begin(),items.end(),std::back_inserter(v),
-    [](QGraphicsItem* const item)
-    {
-      return dynamic_cast<T*>(item);
-    }
-  );
-  v.erase(std::remove(v.begin(),v.end(),nullptr),v.end());
-  assert(std::count(v.begin(),v.end(),nullptr)==0);
-  return v;
-}
 
 ///Returns a sorted vector
 template <class T>
@@ -110,22 +96,11 @@ const std::vector<ribi::cmap::QtNode*>
   return w;
 }
 
-ribi::cmap::QtConceptMap::QtConceptMap(
-  const boost::shared_ptr<ConceptMap> concept_map,
-  QWidget* parent
-)
+ribi::cmap::QtConceptMap::QtConceptMap(QWidget* parent)
   : QtKeyboardFriendlyGraphicsView(parent),
-    m_concept_map(concept_map),
+    m_concept_map{},
     m_examples_item(new QtExamplesItem)
 {
-  assert( (concept_map || !concept_map)
-    && "Also empty concept maps must be displayed");
-  assert(GetConceptMap() == concept_map);
-  assert( (!concept_map || concept_map->IsValid())
-    && "Expect no or a valid concept map");
-
-  //Cannot test this ABC here, its derived classes will test themselves
-
   this->setScene(new QGraphicsScene(this));
 
   assert(!m_examples_item->scene());
@@ -136,7 +111,6 @@ ribi::cmap::QtConceptMap::QtConceptMap(
   //Without this line, mouseMoveEvent won't be called
   this->setMouseTracking(true);
 
-
   {
     //QLinearGradient linearGradient(-500,-500,500,500);
     //linearGradient.setColorAt(0.0,QColor(214,214,214));
@@ -145,7 +119,6 @@ ribi::cmap::QtConceptMap::QtConceptMap(
     //this->scene()->setBackgroundBrush(linearGradient);
     this->scene()->setBackgroundBrush(QBrush(QColor(255,255,255)));
   }
-
 }
 
 
@@ -165,131 +138,6 @@ ribi::cmap::QtConceptMap::~QtConceptMap() noexcept
 
   delete m_examples_item;
   m_examples_item = nullptr;
-}
-
-void ribi::cmap::QtConceptMap::BuildQtConceptMap()
-{
-  CleanMe(); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
-  assert(m_concept_map);
-  assert(m_concept_map->IsValid());
-  assert(this->scene());
-  //This std::vector keeps the QtNodes in the same order as the nodes in the concept map
-  //You cannot rely on Collect<QtConceptMapNodeConcept*>(scene), as this shuffles the order
-  std::vector<QtNode*> qtnodes;
-
-  assert(Collect<QtNode>(scene()).empty());
-
-  //Add the nodes to the scene, if there are any
-  if (!m_concept_map->GetNodes().empty())
-  {
-    //Add the main question as the first node
-    const boost::shared_ptr<Node> node = m_concept_map->GetFocalNode();
-
-    QtNode * qtnode = nullptr;
-    if (IsCenterNode(node))
-    {
-      const boost::shared_ptr<CenterNode> centernode
-        = boost::dynamic_pointer_cast<CenterNode>(node);
-      qtnode = new QtCenterNode(centernode);
-    }
-    else
-    {
-      qtnode = new QtNode(node); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
-    }
-    assert(qtnode);
-    //Let the center node respond to mouse clicks
-    //signal #1
-    //qtnode->m_signal_request_scene_update.connect(
-    //  boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this)
-    //);
-    //signal #2
-    //qtnode->m_signal_item_has_updated.connect(
-    //  boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
-    //);
-    //Add the center node to scene
-    assert(!qtnode->scene());
-    this->scene()->addItem(qtnode);
-    qtnodes.push_back(qtnode);
-    assert(Collect<QtNode>(scene()).size() == 1);
-
-    //Add the regular nodes to the scene
-    const std::vector<boost::shared_ptr<Node>> nodes = m_concept_map->GetNodes();
-    const std::size_t n_nodes = nodes.size();
-    assert(n_nodes >= 1);
-    for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip focal node
-    {
-      assert(Collect<QtNode>(scene()).size() == i && "Node not yet added to scene");
-      assert(i < nodes.size());
-      boost::shared_ptr<Node> node = nodes[i];
-      assert(node);
-      assert( (IsCenterNode(node) || !IsCenterNode(node))
-        && "focal node != center node");
-      QtNode * const qtnode = AddNode(node); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
-      qtnodes.push_back(qtnode);
-      assert(Collect<QtNode>(scene()).size() == i + 1 && "Node is added to scene");
-    }
-  }
-
-  #ifndef NDEBUG
-  {
-    //Check the number of
-    const auto qtnodes = Collect<QtNode>(scene());
-    const auto n_qtnodes = qtnodes.size();
-    const auto nodes = m_concept_map->GetNodes();
-    const auto n_nodes = nodes.size();
-    assert(n_qtnodes == n_nodes
-      && "There must as much nodes in the scene as there were in the concept map");
-  }
-  #endif
-  #ifdef NOT_NOW_20141111
-  //Add the Concepts on the Edges
-  {
-    const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = m_concept_map->GetEdges();
-    std::for_each(edges.begin(),edges.end(),
-      [this,qtnodes](const boost::shared_ptr<Edge> edge)
-      {
-        assert(edge->GetFrom());
-        assert(edge->GetTo());
-        assert(edge->GetFrom() != edge->GetTo());
-        this->AddEdge(edge); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
-      }
-    );
-  }
-
-  #ifndef NDEBUG
-  {
-    //Check the number of edges
-    const auto qtedges = Collect<QtEdge>(scene());
-    const auto n_qtedges = qtedges.size();
-    const auto edges = m_concept_map->GetEdges();
-    const auto n_edges = edges.size();
-    assert(n_qtedges == n_edges
-      && "There must as much edges in the scene as there were in the concept map");
-  }
-  #endif
-  #endif // NOT_NOW_20141111
-
-  //Put the nodes around the focal question in an initial position
-  if (MustReposition(AddConst(m_concept_map->GetNodes())))
-  {
-    RepositionItems();
-  }
-
-  #ifndef NDEBUG
-  assert(m_concept_map->IsValid());
-  const auto nodes = m_concept_map->GetNodes();
-  const auto items = Collect<QtNode>(this->scene());
-  const std::size_t n_items = items.size();
-  const std::size_t n_nodes = nodes.size();
-  if (n_items != n_nodes)
-  {
-    TRACE(m_concept_map->GetNodes().size());
-    TRACE(n_items);
-    TRACE(n_nodes);
-  }
-  assert(n_items == n_nodes && "GUI and non-GUI concept map must match");
-  TestMe(m_concept_map);
-  #endif
 }
 
 void ribi::cmap::QtConceptMap::DeleteEdge(QtEdge * const qtedge)
@@ -696,6 +544,7 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     }
   }
 
+  #define NOT_NOW_20141111
   #ifdef NOT_NOW_20141111
   {
     //Put the edge concepts in the middle of the nodes
@@ -703,7 +552,7 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     std::for_each(qtedge_concepts.begin(), qtedge_concepts.end(),
       [](QtEdge * const qtedge)
       {
-        const QPointF p((qtedge->GetFrom()->GetOuterPos() + qtedge->GetTo()->GetOuterPos()) / 2.0);
+        const QPointF p((qtedge->GetFrom()->GetCenterPos() + qtedge->GetTo()->GetCenterPos()) / 2.0);
         const double new_x = p.x();
         const double new_y = p.y();
         qtedge->GetEdge()->GetNode()->SetX(new_x);
@@ -715,7 +564,7 @@ void ribi::cmap::QtConceptMap::RepositionItems()
 
   //Put the nodes around the focal question in their improved position
   //If there is no focal node, the non-focal nodes are put around an empty spot
-  while (1)
+  for (int i=0; i!=10; ++i) //TODO: replace by while (1)
   {
     bool done = true;
     const std::vector<QtNode *> qtnodes = Sort(Collect<QtNode>(scene()));
@@ -770,6 +619,102 @@ void ribi::cmap::QtConceptMap::RepositionItems()
   }
 }
 
+void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap> concept_map)
+{
+  CleanMe();
+  m_concept_map = concept_map;
+  if (!m_concept_map) return;
+
+  assert(m_concept_map);
+  assert(m_concept_map->IsValid());
+  assert(this->scene());
+
+  //This std::vector keeps the QtNodes in the same order as the nodes in the concept map
+  //You cannot rely on Collect<QtConceptMapNodeConcept*>(scene), as this shuffles the order
+  std::vector<QtNode*> qtnodes;
+
+  assert(Collect<QtNode>(scene()).empty());
+
+  //Add the nodes to the scene, if there are any
+  if (!m_concept_map->GetNodes().empty())
+  {
+    //Add the main question as the first node
+    const boost::shared_ptr<Node> node = m_concept_map->GetFocalNode();
+
+    QtNode * qtnode = nullptr;
+    if (IsCenterNode(node))
+    {
+      const boost::shared_ptr<CenterNode> centernode
+        = boost::dynamic_pointer_cast<CenterNode>(node);
+      qtnode = new QtCenterNode(centernode);
+    }
+    else
+    {
+      qtnode = new QtNode(node); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
+    }
+    assert(qtnode);
+    //Let the center node respond to mouse clicks
+    //signal #1
+    //qtnode->m_signal_request_scene_update.connect(
+    //  boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this)
+    //);
+    //signal #2
+    //qtnode->m_signal_item_has_updated.connect(
+    //  boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
+    //);
+    //Add the center node to scene
+    assert(!qtnode->scene());
+    this->scene()->addItem(qtnode);
+    qtnodes.push_back(qtnode);
+    assert(Collect<QtNode>(scene()).size() == 1);
+
+    //Add the regular nodes to the scene
+    const std::vector<boost::shared_ptr<Node>> nodes = m_concept_map->GetNodes();
+    const std::size_t n_nodes = nodes.size();
+    assert(n_nodes >= 1);
+    for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip focal node
+    {
+      assert(Collect<QtNode>(scene()).size() == i && "Node not yet added to scene");
+      assert(i < nodes.size());
+      boost::shared_ptr<Node> node = nodes[i];
+      assert(node);
+      assert( (IsCenterNode(node) || !IsCenterNode(node))
+        && "focal node != center node");
+      QtNode * const qtnode = AddNode(node); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
+      qtnodes.push_back(qtnode);
+      assert(Collect<QtNode>(scene()).size() == i + 1 && "Node is added to scene");
+    }
+  }
+  //Add the Concepts on the Edges
+  {
+    const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = m_concept_map->GetEdges();
+    std::for_each(edges.begin(),edges.end(),
+      [this,qtnodes](const boost::shared_ptr<Edge> edge)
+      {
+        assert(edge->GetFrom());
+        assert(edge->GetTo());
+        assert(edge->GetFrom() != edge->GetTo());
+        this->AddEdge(edge); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
+      }
+    );
+  }
+
+  //Put the nodes around the focal question in an initial position
+  if (MustReposition(AddConst(m_concept_map->GetNodes())))
+  {
+    RepositionItems();
+  }
+
+  #ifndef NDEBUG
+  TestMe(m_concept_map);
+  #endif
+
+  assert(GetConceptMap() == concept_map);
+  assert( (!concept_map || concept_map->IsValid())
+    && "Expect no or a valid concept map");
+
+}
+
 void ribi::cmap::QtConceptMap::SetExamplesItem(QtExamplesItem * const item)
 {
   assert((item || !item) && "Can be both");
@@ -786,8 +731,8 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
       if (!IsQtCenterNode(qtnode))
       {
         #ifdef NOT_NOW_20141111
-        double x = qtnode->GetOuterX();
-        double y = qtnode->GetOuterY();
+        double x = qtnode->GetCenterX();
+        double y = qtnode->GetCenterY();
         const int i = (std::rand() >> 4) % 4;
         switch(i)
         {
@@ -797,7 +742,7 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
           case 3: y+=-1.0; break;
           default: assert(!"Should not get here");
         }
-        assert(QPointF(x,y) != qtnode->GetOuterPos());
+        assert(QPointF(x,y) != qtnode->GetCenterPos());
         qtnode->GetNode()->SetPos(x,y);
         #endif // NOT_NOW_20141111
       }

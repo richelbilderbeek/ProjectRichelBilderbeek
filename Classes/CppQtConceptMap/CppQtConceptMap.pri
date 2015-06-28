@@ -79,7 +79,8 @@ HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmaprating.h \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedge.h \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedge1.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapqtedge2.h
+    ../../Classes/CppQtConceptMap/qtconceptmapqtedge2.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapcollect.h
 
 FORMS += \
     ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.ui \

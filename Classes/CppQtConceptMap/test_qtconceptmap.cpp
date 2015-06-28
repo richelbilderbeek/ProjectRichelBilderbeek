@@ -34,7 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>& concept_map) noexcept
+void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>& qt_concept_map) noexcept
 {
   {
     static bool is_tested = false;
@@ -42,7 +42,7 @@ void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>&
     is_tested = true;
   }
   const TestTimer test_timer{__func__,__FILE__,0.1};
-  assert(concept_map);
+  assert(qt_concept_map);
   //#define I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
   #ifdef  I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
   //Test conversion between widget and concept map for simple homomorphous concept maps

@@ -29,22 +29,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
-  return widget->GetConceptMap().get()
-   && widget->GetFocus()
-   && widget->GetSelected().size() == 2;
+  return widget->GetConceptMap() && widget->GetSelected().size() == 2;
 }
 
 void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) noexcept
 {
   assert(!m_widget);
-  //assert(!m_node);
   assert(widget);
   assert(widget->GetConceptMap().get());
   assert(CanDoCommand(widget));
 
   m_widget = widget;
-  m_nodes.push_back(m_widget->GetFocus());
   m_nodes.push_back(m_widget->GetSelected()[0]);
+  m_nodes.push_back(m_widget->GetSelected()[1]);
+
   assert(m_nodes.size() == 2);
   assert(m_nodes[0]);
   assert(m_nodes[1]);

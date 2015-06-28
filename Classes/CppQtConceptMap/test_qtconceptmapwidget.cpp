@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QMouseEvent>
 
 #include "conceptmapcommandaddselectedrandom.h"
+#include "conceptmapcommandcreatenewedge.h"
 #include "conceptmapcommandcreatenewnode.h"
 #include "conceptmapcommanddeletefocusnode.h"
 #include "conceptmapcommanddeletenode.h"
@@ -67,7 +68,8 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
     assert(m);
     assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    c->SetConceptMap(m);
     assert(c);
     assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
     const boost::shared_ptr<QtConceptMapWidget> w(
@@ -96,7 +98,8 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
     assert(m);
     assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    c->SetConceptMap(m);
     assert(c);
     assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
     const boost::shared_ptr<QtConceptMapWidget> w(
@@ -126,7 +129,8 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
     assert(m);
     assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    c->SetConceptMap(m);
     assert(c);
     assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
     const boost::shared_ptr<QtConceptMapWidget> w(
@@ -155,7 +159,8 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
   if (verbose) { TRACE("Create two nodes and undo"); }
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    c->SetConceptMap(m);
     const boost::shared_ptr<QtConceptMapWidget> w(new QtConceptMapWidget(c));
     const boost::shared_ptr<CommandCreateNewNode> cmd1(new CommandCreateNewNode);
     const boost::shared_ptr<CommandCreateNewNode> cmd2(new CommandCreateNewNode);
@@ -178,11 +183,11 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
   if (verbose) { TRACE("Create two nodes, selecting both (which is done automatically)"); }
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    c->SetConceptMap(m);
     const boost::shared_ptr<QtConceptMapWidget> w(new QtConceptMapWidget(c));
     const boost::shared_ptr<CommandCreateNewNode> cmd_add_node1(new CommandCreateNewNode);
     const boost::shared_ptr<CommandCreateNewNode> cmd_add_node2(new CommandCreateNewNode);
-    const boost::shared_ptr<CommandAddSelectedRandom> cmd_select_node(new CommandAddSelectedRandom);
 
     assert(c->GetScene()->selectedItems().size() == 0);
     assert(w->GetWidget().GetSelected().size() == 0);
@@ -193,5 +198,27 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(c->GetScene()->selectedItems().size() == 2);
     assert(w->GetWidget().GetSelected().size() == 2);
   }
+  if (verbose) { TRACE("Create two nodes and add an edge"); }
+  {
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    c->SetConceptMap(m);
+    const boost::shared_ptr<QtConceptMapWidget> w(new QtConceptMapWidget(c));
+    const boost::shared_ptr<CommandCreateNewNode> cmd_add_node1(new CommandCreateNewNode);
+    const boost::shared_ptr<CommandCreateNewNode> cmd_add_node2(new CommandCreateNewNode);
+    const boost::shared_ptr<CommandCreateNewEdge> cmd_add_edge(new CommandCreateNewEdge);
+    assert(!w->CanDoCommand(cmd_add_edge));
+    w->DoCommand(cmd_add_node1); //Adding a Node also selects it
+    assert(!w->CanDoCommand(cmd_add_edge));
+    w->DoCommand(cmd_add_node2); //Adding a Node also selects it
+    assert(w->CanDoCommand(cmd_add_edge));
+    assert(w->GetWidget().GetConceptMap()->GetEdges().size() == 0);
+    w->DoCommand(cmd_add_edge);
+    assert(c->GetScene()->selectedItems().size() == 1); //The edge should be selected
+    assert(dynamic_cast<QtEdge*>(c->GetScene()->selectedItems()[0]));
+    assert(w->GetWidget().GetConceptMap()->GetEdges().size() == 1);
+    assert(!w->CanDoCommand(cmd_add_edge));
+  }
+  assert(!"Green");
 }
 #endif

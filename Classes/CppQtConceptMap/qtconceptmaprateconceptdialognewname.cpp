@@ -71,13 +71,14 @@ ribi::cmap::QtRateConceptDialogNewName::QtRateConceptDialogNewName(
       : -1),
 
     m_sub_concept_map(sub_concept_map),
-    m_widget(new QtRateConceptMap(sub_concept_map))
+    m_widget(new QtRateConceptMap)
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
   if (!m_sub_concept_map) return;
+  m_widget->SetConceptMap(sub_concept_map);
   assert(m_sub_concept_map);
   assert(!m_sub_concept_map->GetNodes().empty());
 

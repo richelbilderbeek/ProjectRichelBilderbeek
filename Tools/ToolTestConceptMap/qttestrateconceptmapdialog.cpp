@@ -38,17 +38,17 @@
 ribi::cmap::QtTestRateConceptMapDialog::QtTestRateConceptMapDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestRateConceptMapDialog),
-  m_concept_map(
-    new QtRateConceptMap(
-      ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15)
-    )
-  )
+  m_concept_map(new QtRateConceptMap)
 
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+
+  m_concept_map->SetConceptMap(
+    ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15)
+  );
   assert(ui->widget->layout());
   ui->widget->layout()->addWidget(m_concept_map.get());
 }

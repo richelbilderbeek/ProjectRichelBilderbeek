@@ -73,43 +73,21 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 }
 
 ribi::cmap::QtEditConceptMap::QtEditConceptMap(
-  const boost::shared_ptr<ConceptMap> concept_map,
   const Mode mode,
-  QWidget* parent)
-  : QtConceptMap(concept_map,parent),
+  QWidget* parent
+)
+  : QtConceptMap(parent),
     m_signal_conceptmapitem_requests_edit{},
     m_arrow(nullptr),
     m_highlighter(mode == Mode::classic ? new QtItemHighlighter(0) : nullptr),
     m_mode(mode),
     m_tools(m_mode == Mode::classic ? new QtTool : nullptr)
 {
-  assert(m_highlighter || m_mode != Mode::classic);
   #ifndef NDEBUG
-  //Test();
+  Test();
   #endif
-  if (!concept_map) return;
-
-
-  assert(concept_map  && "Only an existing concept map can be edited");
-  assert(m_highlighter || m_mode != Mode::classic);
-  BuildQtConceptMap();
 
   assert(scene());
-
-
-  #ifndef NDEBUG
-  if (m_mode == Mode::classic)
-  {
-    assert(m_tools->scene() && "m_tools is added at CleanMe at BuildQtConceptMap");
-    assert(m_highlighter && "m_highlighter does not need to be reset in ClearMe");
-  }
-  assert(concept_map->IsValid());
-  const auto nodes = concept_map->GetNodes();
-  const auto items = Collect<QtNode>(this->scene());
-  const std::size_t n_items = items.size();
-  const std::size_t n_nodes = nodes.size();
-  assert(n_items == n_nodes && "GUI and non-GUI concept map must match");
-  #endif
 }
 
 ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept
@@ -192,11 +170,6 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
 
   assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
-  #ifndef NDEBUG
-  const double epsilon = 0.000001;
-  #endif
-  assert(std::abs(qtedge->pos().x() - edge->GetNode()->GetX()) < epsilon);
-  assert(std::abs(qtedge->pos().y() - edge->GetNode()->GetY()) < epsilon);
 
   return qtedge;
 }
@@ -391,24 +364,30 @@ void ribi::cmap::QtEditConceptMap::CleanMe()
   {
     assert(m_tools);
     this->m_tools = nullptr;
+    assert(!m_tools);
     assert(m_highlighter || m_mode != Mode::classic);
     m_highlighter->SetItem(nullptr); //Do this before destroying items
     //assert(m_arrow); //Not necessarily true: m_arrow is null when not active
     this->m_arrow = nullptr;
   }
 
+  assert(!m_tools);
+
   //Clear the scene, invalidates all scene items copies
   assert(this->scene());
   this->scene()->clear();
 
   //Put stuff back in
+  assert(!m_tools);
 
   //Add the invisible examples item
   {
     assert(!GetExamplesItem());
     QtExamplesItem * const item = new QtExamplesItem;
     assert(item);
+    assert(!m_tools);
     SetExamplesItem(item);
+    assert(!m_tools);
     //Signal #4
     item->m_signal_request_scene_update.connect(
       boost::bind(
@@ -438,7 +417,8 @@ std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtEditConceptMap::CreateNe
   const boost::shared_ptr<ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory().DeepCopy(this->GetConceptMap());
   assert(concept_map);
-  std::unique_ptr<QtConceptMap> p(new This_t(concept_map,this->m_mode));
+  std::unique_ptr<QtConceptMap> p(new This_t(this->m_mode));
+  p->SetConceptMap(concept_map);
   return p;
 }
 #endif

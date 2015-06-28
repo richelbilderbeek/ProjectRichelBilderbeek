@@ -40,9 +40,9 @@ struct QtEditConceptMap : public QtConceptMap
   enum class Mode { classic, simple };
 
   QtEditConceptMap(
-    const boost::shared_ptr<ConceptMap> concept_map = boost::shared_ptr<ConceptMap>(),
     const Mode mode = Mode::classic,
-    QWidget* parent = 0);
+    QWidget* parent = 0
+  );
   ~QtEditConceptMap() noexcept;
   QtEditConceptMap(const QtEditConceptMap& other) = delete;
   QtEditConceptMap& operator=(const QtEditConceptMap& other) = delete;

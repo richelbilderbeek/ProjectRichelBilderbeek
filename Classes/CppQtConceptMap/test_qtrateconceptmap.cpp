@@ -44,8 +44,9 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept
     const auto v = ribi::cmap::ConceptMapFactory().GetAllTests();
     for (const boost::shared_ptr<ConceptMap> concept_map: v)
     {
-      boost::shared_ptr<QtConceptMap> widget(new This_t(concept_map));
+      boost::shared_ptr<QtConceptMap> widget(new This_t);
       assert(widget);
+      widget->SetConceptMap(concept_map);
       QtConceptMap::Test(widget);
     }
   }

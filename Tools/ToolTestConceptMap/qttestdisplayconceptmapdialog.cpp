@@ -39,7 +39,6 @@ ribi::cmap::QtTestDisplayConceptMapDialog::QtTestDisplayConceptMapDialog(QWidget
   ui(new Ui::QtTestDisplayConceptMapDialog),
   m_concept_map(
     new QtDisplayConceptMap(
-      ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15)
     )
   )
 {
@@ -47,8 +46,14 @@ ribi::cmap::QtTestDisplayConceptMapDialog::QtTestDisplayConceptMapDialog(QWidget
   #ifndef NDEBUG
   Test();
   #endif
+
+  const auto concept_map = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15);
+  m_concept_map->SetConceptMap(concept_map);
+
   assert(ui->widget->layout());
   ui->widget->layout()->addWidget(m_concept_map.get());
+
+
 }
 
 ribi::cmap::QtTestDisplayConceptMapDialog::~QtTestDisplayConceptMapDialog() noexcept
@@ -69,9 +74,9 @@ void ribi::cmap::QtTestDisplayConceptMapDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer{__func__,__FILE__,0.1};
+  const TestTimer test_timer{__func__,__FILE__,0.2};
   QtTestDisplayConceptMapDialog d;
-  for (int i=0; i!=100; ++i) d.on_button_test_modify_clicked();
+  for (int i=0; i!=10; ++i) d.on_button_test_modify_clicked();
 
 }
 #endif

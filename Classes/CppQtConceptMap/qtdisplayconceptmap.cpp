@@ -62,28 +62,20 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 }
 
 ribi::cmap::QtDisplayConceptMap::QtDisplayConceptMap(
-  const boost::shared_ptr<ConceptMap> concept_map,
   QWidget* parent)
-  : QtConceptMap(concept_map,parent)
+  : QtConceptMap(parent)
 {
   #ifndef NDEBUG
   Test();
-  assert( (concept_map || !concept_map)
-    && "Also an empty concept map can be displayed");
   #endif
-  if (concept_map) BuildQtConceptMap();
-
-  //assert(m_tools->scene() && "m_tools is added at CleanMe at BuildQtConceptMap");
-  //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
+#define NOT_NOW_20141111
 #ifdef NOT_NOW_20141111
 ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
-  //const boost::shared_ptr<QtDisplayStrategy> qtconcept(new QtDisplayStrategy(edge->GetNode()->GetConcept()));
-  //assert(qtconcept);
   QtNode * const from = FindQtNode(edge->GetFrom().get());
   assert(from);
   QtNode * const to   = FindQtNode(edge->GetTo().get());
@@ -99,16 +91,17 @@ ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   //Edges connected to the center node do not show their concepts
   if (IsQtCenterNode(from) || IsQtCenterNode(to))
   {
-    qtedge->GetDisplayStrategy()->setVisible(false);
+    //qtedge->GetDisplayStrategy()->setVisible(false);
   }
 
   //Add the EdgeConcepts to the scene
-  qtedge->m_signal_item_has_updated.connect(
+  qtedge->m_signal_edge_changed.connect(
     boost::bind(
       &QtConceptMap::OnItemRequestsUpdate,
       this,boost::lambda::_1)); //Do not forget the placeholder!
-  qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
+  qtedge->m_signal_edge_changed.connect(
+    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this)
+  );
   assert(this->scene());
 
 
@@ -118,23 +111,10 @@ ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   assert(std::count(
     this->GetConceptMap()->GetEdges().begin(),
     this->GetConceptMap()->GetEdges().end(),
-    edge) == 1 && "Assume edge is already in the concept map");
+    edge) == 1 && "Assume edge is already in the concept map"
+  );
   //this->GetConceptMap()->AddEdge(edge);
 
-  #ifndef NDEBUG
-  if(qtedge->pos().x() != edge->GetNode()->GetX())
-  {
-    TRACE(qtedge->pos().x());
-    TRACE(edge->GetNode()->GetX());
-  }
-  assert(qtedge->pos().x() == edge->GetNode()->GetX());
-  if(qtedge->pos().y() != edge->GetNode()->GetY())
-  {
-    TRACE(qtedge->pos().y());
-    TRACE(edge->GetNode()->GetY());
-  }
-  assert(qtedge->pos().y() == edge->GetNode()->GetY());
-  #endif
   return qtedge;
 }
 #endif // NOT_NOW_20141111
@@ -157,11 +137,11 @@ ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::share
 
   #ifdef NOT_NOW_20141111
   //General: inform an Observer that this item has changed
-  qtnode->m_signal_item_has_updated.connect(
+  qtnode->m_signal_pos_changed.connect(
    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
-  qtnode->m_signal_request_scene_update.connect(
+  qtnode->m_signal_text_changed.connect(
     boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
   #endif // NOT_NOW_20141111
 
@@ -212,7 +192,8 @@ std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtDisplayConceptMap::Creat
   const boost::shared_ptr<ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory().DeepCopy(this->GetConceptMap());
   assert(concept_map);
-  std::unique_ptr<QtConceptMap> p(new QtDisplayConceptMap(concept_map));
+  std::unique_ptr<QtConceptMap> p(new QtDisplayConceptMap);
+  p->SetConceptMap(concept_map);
   assert(p);
   return p;
 }
@@ -249,19 +230,6 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
   assert(n_nodes_after > n_nodes_before);
 }
 #endif
-
-#ifdef NOT_NOW_20141111
-const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtDisplayConceptMap::GetDisplayStrategy(
-  const boost::shared_ptr<Concept> concept) const noexcept
-{
-  assert(concept);
-  const boost::shared_ptr<QtItemDisplayStrategy> display_strategy {
-    new QtDisplayStrategy(concept)
-  };
-  assert(display_strategy);
-  return display_strategy;
-}
-#endif // NOT_NOW_20141111
 
 void ribi::cmap::QtDisplayConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
