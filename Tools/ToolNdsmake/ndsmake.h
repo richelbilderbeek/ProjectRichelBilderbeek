@@ -36,7 +36,10 @@ struct QtCreatorProFile;
 struct Ndsmake
 {
   ///Call ndsmake on a .pro file
-  Ndsmake(const std::string filename);
+  Ndsmake(
+    const std::string& argv0,
+    const std::string& pro_file_name
+  );
 
   void CreateMakefile() const noexcept;
 
@@ -54,6 +57,7 @@ struct Ndsmake
   ~Ndsmake() noexcept {}
   friend void boost::checked_delete<>(Ndsmake* x);
 
+  const std::string m_argv0; //argv[0]
   const std::string m_command; //A terminal command
   const boost::shared_ptr<const QtCreatorProFile> m_proFile;
 

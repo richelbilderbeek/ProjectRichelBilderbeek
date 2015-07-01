@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
     return 0;
   }
   //Start ndsmake
-  const boost::shared_ptr<ribi::Ndsmake> n(new ribi::Ndsmake(argv[1]));
+  const boost::shared_ptr<ribi::Ndsmake> n(new ribi::Ndsmake(argv[0],argv[1]));
   //Copy source files
   std::clog << "Ndsmake cmd: " << n->GetCommand() << '\n';
   std::system(n->GetCommand().c_str());

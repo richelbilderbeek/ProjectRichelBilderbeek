@@ -28,9 +28,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreatorprofile.h"
 #pragma GCC diagnostic pop
 
-ribi::Ndsmake::Ndsmake(const std::string filename)
-  : m_command{CreateCommand()},
-    m_proFile(new ribi::QtCreatorProFile(filename))
+ribi::Ndsmake::Ndsmake(
+  const std::string& argv0,
+  const std::string& pro_file_name
+)
+  : m_argv0{argv0},
+    m_command{CreateCommand()},
+    m_proFile(new ribi::QtCreatorProFile(pro_file_name))
 {
 
 }
@@ -38,26 +42,37 @@ ribi::Ndsmake::Ndsmake(const std::string filename)
 std::string ribi::Ndsmake::CreateCommand() const noexcept
 {
   //Copy ProFile files to the needed folders
+  const std::string build_dir_full{
+    //m_proFile->GetBuildDirFull()
+    fileio::FileIo().GetPath(m_proFile->GetQtCreatorProFilename())
+  };
+  const std::string build_dir{
+    build_dir_full
+  };
+  const std::string cur_dir_full{
+    fileio::FileIo().GetPath(m_argv0)
+    //m_proFile->GetCurDirFull()
+  };
   std::string s
     = "cd .. ;"
-    + std::string("mkdir ") + m_proFile->GetBuildDir() + "; "
-    + "cd " + m_proFile->GetBuildDir() + "; "
+    + std::string("mkdir ") + build_dir + "; "
+    + "cd " + build_dir + "; "
     + "mkdir source; ";
   //Start copying all files
   {
-    const std::size_t sz = m_proFile->GetHeaders().size();
-    for (std::size_t i = 0; i!=sz; ++i)
+    //const std::size_t sz = m_proFile->GetHeaders().size();
+    //for (std::size_t i = 0; i!=sz; ++i)
     //BOOST_FOREACH(const std::string& f,m_proFile->GetHeaders())
+    for(const std::string& f:m_proFile->GetHeaders())
     {
-      const std::string f = m_proFile->GetHeaders()[i];
+      //const std::string f = m_proFile->GetHeaders()[i];
+      const std::string from = cur_dir_full + std::string("/") + f;
+      const std::string to = build_dir_full + std::string("/source/") + f;
+      assert(fileio::FileIo().IsRegularFile(from));
       s += std::string("cp ")
-        + m_proFile->GetCurDirFull()
-        + std::string("/")
-        + f
+        + from
         + std::string(" ")
-        + m_proFile->GetBuildDirFull()
-        + std::string("/source/")
-        + f
+        + to
         + std::string("; ");
     }
   }
@@ -65,16 +80,17 @@ std::string ribi::Ndsmake::CreateCommand() const noexcept
     const std::size_t sz = m_proFile->GetSources().size();
     for (std::size_t i = 0; i!=sz; ++i)
     //BOOST_FOREACH(const std::string& f,m_proFile->GetSources())
+    for(const std::string& f:m_proFile->GetSources())
     {
-      const std::string f = m_proFile->GetSources()[i];
+      //const std::string f = m_proFile->GetSources()[i];
+      const std::string from = cur_dir_full + std::string("/") + f;
+      const std::string to = build_dir_full + std::string("/source/") + f;
+      assert(fileio::FileIo().IsRegularFile(from));
+
       s += std::string("cp ")
-        + m_proFile->GetCurDirFull()
-        + std::string("/")
-        + f
+        + from
         + std::string(" ")
-        + m_proFile->GetBuildDirFull()
-        + std::string("/source/")
-        + f
+        + to
         + std::string("; ");
     }
   }
@@ -213,8 +229,9 @@ void ribi::Ndsmake::CreateHolyMakefile() const noexcept
   << "#---------------------------------------------------------------------------------------\n";
 }
 
-void ribi::Ndsmake::CreateMakefile(const QtCreatorProFile& p) const noexcept
+void ribi::Ndsmake::CreateMakefile() const noexcept
 {
+  const QtCreatorProFile& p = (*m_proFile.get());
   std::ofstream f("Makefile");
   f
   //Add header
@@ -370,12 +387,12 @@ std::vector<std::string> ribi::Ndsmake::GetHelp() noexcept
 
 std::vector<std::string> ribi::Ndsmake::GetHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2010-10-10: version 0.1: incomplete, could not be run from Qt Creator");
-  v.push_back("2010-10-13: version 1.0: initial release, works from Qt Creator, tested by TestNdsmake");
-  v.push_back("2010-12-19: version 1.1: added extra commands, use of ProFile class");
-  v.push_back("2010-12-19: version 1.2: use of Ndsmake class");
+  const std::vector<std::string> v = {
+    "2010-10-10: version 0.1: incomplete, could not be run from Qt Creator",
+    "2010-10-13: version 1.0: initial release, works from Qt Creator, tested by TestNdsmake",
+    "2010-12-19: version 1.1: added extra commands, use of ProFile class",
+    "2010-12-19: version 1.2: use of Ndsmake class"
+  };
   return v;
 }
 
@@ -407,7 +424,7 @@ std::string ribi::Ndsmake::GetTarget() const noexcept
     : (*m_proFile->GetTarget().begin());
 }
 
-std::string RemoveExtension(const std::string& filename)
+std::string ribi::Ndsmake::RemoveExtension(const std::string& filename)
 {
   const int dot_index = filename.rfind(".",filename.size());
   assert(dot_index != -1 && "No dot found in filename");

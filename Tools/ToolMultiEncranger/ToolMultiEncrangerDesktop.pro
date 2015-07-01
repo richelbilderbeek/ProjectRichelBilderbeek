@@ -5,6 +5,7 @@ include(../../Libraries/GeneralDesktop.pri)
 
 include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppEncranger/CppEncranger.pri)
+include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
 include(../../Classes/CppLoopReader/CppLoopReader.pri)
 include(ToolMultiEncrangerDesktop.pri)
 
