@@ -189,18 +189,10 @@ void ribi::cmap::QtConceptMapViewTestsDialog::Test() noexcept
     is_tested = true;
   }
   {
+    cmap::ConceptMapFactory();
     QtConceptMapViewTestsDialog();
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
-  QtConceptMapViewTestsDialog d;
-  d.show();
-  d.update();
-  d.resize(100,100);
-  d.show();
-  d.update();
-  d.resize(200,200);
-  d.show();
-  d.update();
-  d.close();
+  //QtConceptMapViewTestsDialog d; //Just takes too long, for no new funtionality
 }
 #endif

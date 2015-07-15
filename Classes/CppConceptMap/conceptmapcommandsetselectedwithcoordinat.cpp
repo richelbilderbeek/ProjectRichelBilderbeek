@@ -18,7 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-#include "conceptmapcommandsetfocuswithcoordinat.h"
+#include "conceptmapcommandsetselectedwithcoordinat.h"
 
 #include <cassert>
 
@@ -37,7 +37,7 @@ void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const 
   assert(CanDoCommandSpecific(widget));
   assert(widget);
 
-  m_old_focus = widget->GetFocus();
+  m_old_focus = widget->GetSelected();
   m_widget = widget;
 
   const boost::shared_ptr<Node> node {
@@ -45,7 +45,7 @@ void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const 
   };
 
   widget->m_focus = node;
-  widget->m_signal_set_focus(node);
+  //widget->m_signal_set_focus(node);
 
   assert(m_widget);
   assert(widget);

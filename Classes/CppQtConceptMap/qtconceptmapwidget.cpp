@@ -36,7 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcommand.h"
 #include "conceptmapcommandlosefocus.h"
 #include "conceptmapcommandsetfocusrandom.h"
-#include "conceptmapcommandsetfocuswithcoordinat.h"
+#include "conceptmapcommandsetselectedwithcoordinat.h"
 #include "conceptmap.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapwidget.h"
@@ -64,9 +64,9 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   //Without this line, mouseMoveEvent won't be called
   this->setMouseTracking(true);
 
-  m_widget->m_signal_set_focus.connect(
-    boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNode,this,boost::lambda::_1)
-  );
+  //m_widget->m_signal_set_focus.connect(
+  //  boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNode,this,boost::lambda::_1)
+  //);
   m_widget->m_signal_concept_map_changed.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnConceptMapChanged,this)
   );
@@ -82,14 +82,14 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   m_widget->m_signal_delete_node.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnDeleteNode,this,boost::lambda::_1)
   );
-  m_widget->m_signal_lose_focus.connect(
-    boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseFocus,this,boost::lambda::_1)
-  );
+  //m_widget->m_signal_lose_focus.connect(
+  //  boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseFocus,this,boost::lambda::_1)
+  //);
   m_widget->m_signal_lose_selected.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseSelected,this,boost::lambda::_1)
   );
   m_widget->m_signal_set_selected.connect(
-    boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNodes,this,boost::lambda::_1)
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetSelected,this,boost::lambda::_1,boost::lambda::_2)
   );
 }
 
@@ -144,7 +144,7 @@ void ribi::cmap::QtConceptMapWidget::mouseMoveEvent(QMouseEvent * e) noexcept
   //Can focus be set here?
   {
     const QPointF pos = QGraphicsView::mapToScene(e->x(),e->y());
-    const boost::shared_ptr<const CommandSetFocusWithCoordinat> cmd {
+    const boost::shared_ptr<const CommandSetSelectedWithCoordinat> cmd {
       new CommandSetFocusWithCoordinat(pos.x(),pos.y())
     };
     if (cmd->CanDoCommand(m_widget))
@@ -163,7 +163,7 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e) noexcept
 {
   {
     const QPointF pos = QGraphicsView::mapToScene(e->x(),e->y());
-    const boost::shared_ptr<CommandSetFocusWithCoordinat> cmd {
+    const boost::shared_ptr<CommandSetSelectedWithCoordinat> cmd {
       new CommandSetFocusWithCoordinat(pos.x(),pos.y())
     };
     if (cmd->CanDoCommand(m_widget))
@@ -352,39 +352,27 @@ void ribi::cmap::QtConceptMapWidget::OnLoseSelected(const std::vector<boost::sha
   }
 }
 
-void ribi::cmap::QtConceptMapWidget::OnSetFocusNodes(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
+void ribi::cmap::QtConceptMapWidget::OnSetSelected(
+  const Edge& edges,
+  const Nodes& nodes
+) noexcept
 {
+  for (const auto edge: edges)
+  {
+    m_qtconceptmap->FindQtEdge(edge.get())->setSelected(true);
+  }
   for (const auto node: nodes)
   {
-    assert(node);
-    OnSetFocusNode(node);
+    m_qtconceptmap->FindQtNode(node.get())->setSelected(true);
   }
 }
-
+/*
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept
 {
   //TRACE_FUNC();
   assert(node);
-  assert(m_qtconceptmap);
-  assert(m_qtconceptmap->FindQtNode(node.get()));
-  //if(m_qtconceptmap->FindQtNode(node))
-  {
-    assert(m_qtconceptmap->FindQtNode(node.get())->flags() & QGraphicsItem::GraphicsItemFlag::ItemIsFocusable);
-    m_qtconceptmap->FindQtNode(node.get())->setFocus();
-  }
-  assert( (m_qtconceptmap->isVisible() || !m_qtconceptmap->isVisible())
-    && "m_qtconceptmap->isVisible() == true if the widget is visible"
-  );
-  assert( (m_qtconceptmap->FindQtNode(node.get())->isVisible() || !m_qtconceptmap->FindQtNode(node.get())->isVisible())
-    && "m_qtconceptmap->FindQtNode(node)->isVisible() == true if the widget is visible"
-  );
-  assert(dynamic_cast<QtNode*>(scene()->focusItem()));
-  assert((m_qtconceptmap->FindQtNode(node.get())->hasFocus()
-      || !m_qtconceptmap->FindQtNode(node.get())->hasFocus())
-    && "Could not find out how to enforce the node getting focus"
-  );
 }
-
+*/
 /*
 void ribi::cmap::QtConceptMapWidget::showEvent(QShowEvent*) noexcept
 {

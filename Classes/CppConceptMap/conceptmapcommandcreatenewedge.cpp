@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
-  return widget->GetConceptMap() && widget->GetSelected().size() == 2;
+  return widget->GetConceptMap() && widget->GetSelectedNodes().size() == 2;
 }
 
 void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) noexcept
@@ -40,8 +40,8 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) 
   assert(CanDoCommand(widget));
 
   m_widget = widget;
-  m_nodes.push_back(m_widget->GetSelected()[0]);
-  m_nodes.push_back(m_widget->GetSelected()[1]);
+  m_nodes.push_back(m_widget->GetSelectedNodes()[0]);
+  m_nodes.push_back(m_widget->GetSelectedNodes()[1]);
 
   assert(m_nodes.size() == 2);
   assert(m_nodes[0]);
@@ -53,7 +53,11 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) 
   assert(m_widget->GetConceptMap()->HasNode(m_nodes[1])
     && "An edge must be created from two existing nodes");
 
+  m_prev_selected = m_widget->GetSelectedNodes();
+
   m_edge = m_widget->CreateNewEdge();
+
+  m_widget->SetSelected( {m_edge}, {});
 
   assert(m_widget);
   assert(m_edge);
@@ -64,7 +68,11 @@ void ribi::cmap::CommandCreateNewEdge::UndoSpecific() noexcept
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());
 
+
   m_widget->DeleteEdge(m_edge);
+
+  m_widget->SetSelected(m_prev_selected);
+
 
   m_widget = nullptr;
   m_nodes.clear();

@@ -39,7 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcommand.h"
 #include "conceptmapcommandlosefocus.h"
 #include "conceptmapcommandsetfocusrandom.h"
-#include "conceptmapcommandsetfocuswithcoordinat.h"
+#include "conceptmapcommandsetselectedwithcoordinat.h"
 #include "conceptmap.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapwidget.h"
@@ -213,7 +213,8 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     w->DoCommand(cmd_add_node2); //Adding a Node also selects it
     assert(w->CanDoCommand(cmd_add_edge));
     assert(w->GetWidget().GetConceptMap()->GetEdges().size() == 0);
-    w->DoCommand(cmd_add_edge);
+    w->DoCommand(cmd_add_edge); //Adding an Edge, deselects the rest
+    TRACE(c->GetScene()->selectedItems().size());
     assert(c->GetScene()->selectedItems().size() == 1); //The edge should be selected
     assert(dynamic_cast<QtEdge*>(c->GetScene()->selectedItems()[0]));
     assert(w->GetWidget().GetConceptMap()->GetEdges().size() == 1);

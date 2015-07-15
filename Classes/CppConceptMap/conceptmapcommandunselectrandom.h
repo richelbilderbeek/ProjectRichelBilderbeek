@@ -34,6 +34,13 @@ namespace cmap {
 ///Add another item to the selected pool
 struct CommandUnselectRandom : public Command
 {
+  using ConstEdges = std::vector<boost::shared_ptr<const Edge>>;
+  using ConstNodes = std::vector<boost::shared_ptr<const Node>>;
+  using Edges = std::vector<boost::shared_ptr<Edge>>;
+  using Nodes = std::vector<boost::shared_ptr<Node>>;
+  using EdgesAndNodes = std::pair<Edges,Nodes>;
+  using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
+
   CommandUnselectRandom() : m_old_selected{}, m_widget{} {}
   CommandUnselectRandom(const CommandUnselectRandom&) = delete;
   CommandUnselectRandom& operator=(const CommandUnselectRandom&) = delete;
@@ -43,7 +50,7 @@ struct CommandUnselectRandom : public Command
   void Undo() noexcept;
 
   private:
-  boost::shared_ptr<Node> m_old_selected;
+  ConstEdgesAndNodes m_old_selected;
   Widget * m_widget;
 
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;

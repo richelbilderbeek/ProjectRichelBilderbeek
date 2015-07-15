@@ -32,7 +32,6 @@ HEADERS += \
     ../../Classes/CppConceptMap/conceptmapcommandcreatenewnode.h \
     ../../Classes/CppConceptMap/conceptmapcommanddeleteconceptmap.h \
     ../../Classes/CppConceptMap/conceptmapcommandlosefocus.h \
-    ../../Classes/CppConceptMap/conceptmapcommandsetfocuswithcoordinat.h \
     ../../Classes/CppConceptMap/conceptmapcommandsetfocusrandom.h \
     ../../Classes/CppConceptMap/conceptmapcommanddeletenode.h \
     ../../Classes/CppConceptMap/conceptmapcommanddeletefocusnode.h \
@@ -41,7 +40,8 @@ HEADERS += \
     ../../Classes/CppConceptMap/conceptmapcommandaddselectedrandom.h \
     ../../Classes/CppConceptMap/conceptmapcommandunselectrandom.h \
     ../../Classes/CppConceptMap/conceptmapcompetencies.h \
-    ../../Classes/CppConceptMap/conceptmapregex.h
+    ../../Classes/CppConceptMap/conceptmapregex.h \
+    ../../Classes/CppConceptMap/conceptmapcommandsetselectedwithcoordinat.h
 
 SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcenternode.cpp \
@@ -69,7 +69,6 @@ SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcommandcreatenewnode.cpp \
     ../../Classes/CppConceptMap/conceptmapcommanddeleteconceptmap.cpp \
     ../../Classes/CppConceptMap/conceptmapcommandlosefocus.cpp \
-    ../../Classes/CppConceptMap/conceptmapcommandsetfocuswithcoordinat.cpp \
     ../../Classes/CppConceptMap/conceptmapcommandsetfocusrandom.cpp \
     ../../Classes/CppConceptMap/conceptmapcommanddeletenode.cpp \
     ../../Classes/CppConceptMap/conceptmapcommanddeletefocusnode.cpp \
@@ -80,4 +79,5 @@ SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcompetencies.cpp \
     ../../Classes/CppConceptMap/conceptmapregex.cpp \
     ../../Classes/CppConceptMap/conceptmapconcept_test.cpp \
-    ../../Classes/CppConceptMap/conceptmap_test.cpp
+    ../../Classes/CppConceptMap/conceptmap_test.cpp \
+    ../../Classes/CppConceptMap/conceptmapcommandsetselectedwithcoordinat.cpp

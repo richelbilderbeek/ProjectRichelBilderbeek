@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-#ifndef CONCEPTMAPCOMMANDSETFOCUSWITHCOORDINAT_H
-#define CONCEPTMAPCOMMANDSETFOCUSWITHCOORDINAT_H
+#ifndef CONCEPTMAPCOMMANDSETSELECTEDWITHCOORDINAT_H
+#define CONCEPTMAPCOMMANDSETSELECTEDWITHCOORDINAT_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -33,9 +33,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 namespace cmap {
 
-///Set focus with a coordinat
-///- opposite of LoseFocus
-///- SetFocus does not care if there currently is something in focus
+///Set selected with a coordinat
+///- opposite of LoseSelected
+///- SetSelected does not care if there currently something else is selected
 struct CommandSetFocusWithCoordinat : public Command
 {
   CommandSetFocusWithCoordinat(const int x, const int y)
@@ -61,4 +61,5 @@ struct CommandSetFocusWithCoordinat : public Command
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // CONCEPTMAPCOMMANDSETFOCUSWITHCOORDINAT_H
+
+#endif // CONCEPTMAPCOMMANDSETSELECTEDWITHCOORDINAT_H

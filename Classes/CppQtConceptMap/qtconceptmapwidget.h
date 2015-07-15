@@ -45,6 +45,9 @@ namespace cmap {
 ///the concept map is not interacted with directly
 struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
 {
+  using Edges = std::vector<boost::shared_ptr<Edge>>;
+  using Nodes = std::vector<boost::shared_ptr<Node>>;
+
   QtConceptMapWidget(const boost::shared_ptr<QtConceptMap> qtconceptmap);
   ~QtConceptMapWidget() noexcept {}
 
@@ -112,8 +115,11 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   ///Called when Widget emits m_signal_set_focus_node
   ///Which is emitted when Nodes are given focus.
   ///A Node has no idea of having focus
-  void OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept;
-  void OnSetFocusNodes(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
+  //void OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept;
+  void OnSetSelected(
+    const Edges& edges,
+    const Nodes& nodes
+  ) noexcept;
 };
 
 } //~namespace cmap

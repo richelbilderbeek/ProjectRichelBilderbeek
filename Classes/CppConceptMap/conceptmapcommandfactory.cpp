@@ -31,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcommandlosefocus.h"
 #include "conceptmapcommanddeletefocusnode.h"
 #include "conceptmapcommandsetfocusrandom.h"
-#include "conceptmapcommandsetfocuswithcoordinat.h"
+#include "conceptmapcommandsetselectedwithcoordinat.h"
 
 std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFactory::CreateTestCommands() noexcept
 {
@@ -76,6 +76,7 @@ std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFactory:
     v.push_back(p);
   }
   */
+  #ifdef USE_FOCUS_COMMANDS_201506712
   {
     const boost::shared_ptr<Command> p {
       new CommandLoseFocus
@@ -104,5 +105,6 @@ std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFactory:
     assert(p);
     v.push_back(p);
   }
+  #endif // USE_FOCUS_COMMANDS_201506712
   return v;
 }

@@ -21,6 +21,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONCEPTMAPCOMMANDSETFOCUSRANDOM_H
 #define CONCEPTMAPCOMMANDSETFOCUSRANDOM_H
 
+#ifdef USE_FOCUS_COMMANDS_201506712
+
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -54,5 +57,7 @@ struct CommandSetFocusRandom : public Command
 
 } //~namespace cmap
 } //~namespace ribi
+
+#endif // USE_FOCUS_COMMANDS_201506712
 
 #endif // CONCEPTMAPCOMMANDSETFOCUSRANDOM_H

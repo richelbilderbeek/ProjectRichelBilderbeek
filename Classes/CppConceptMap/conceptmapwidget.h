@@ -46,6 +46,13 @@ namespace cmap {
 ///Note that a Widget does not know the type of ConceptMap (Display/Edit/Rate)
 struct Widget
 {
+  using ConstEdges = std::vector<boost::shared_ptr<const Edge>>;
+  using ConstNodes = std::vector<boost::shared_ptr<const Node>>;
+  using Edges = std::vector<boost::shared_ptr<Edge>>;
+  using Nodes = std::vector<boost::shared_ptr<Node>>;
+  using EdgesAndNodes = std::pair<Edges,Nodes>;
+  using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
+
   explicit Widget(const boost::shared_ptr<ConceptMap> conceptmap = CreateEmptyConceptMap());
 
   #ifndef NDEBUG
@@ -74,8 +81,14 @@ struct Widget
   ///There is one item in focus at most
   ///The node in focus is never in the collection of selected nodes
   ///Use GetFocusAndSelected to get all
-  std::vector<boost::shared_ptr<const Node>> GetSelected() const noexcept;
-  std::vector<boost::shared_ptr<      Node>> GetSelected()       noexcept;
+  ConstEdgesAndNodes GetSelected() const noexcept;
+       EdgesAndNodes GetSelected()       noexcept { return m_selected; }
+
+  ConstEdges GetSelectedEdges() const noexcept;
+       Edges GetSelectedEdges()       noexcept { return m_selected.first; }
+
+  ConstNodes GetSelectedNodes() const noexcept;
+       Nodes GetSelectedNodes()       noexcept { return m_selected.second; }
 
   ///Obtain the version
   static std::string GetVersion() noexcept;
@@ -116,11 +129,11 @@ struct Widget
 
   ///Emitted when a Node receives focus
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_set_focus;
+  //boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_set_focus;
 
   ///Emitted when multiple Nodes are selected
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_set_selected;
+  boost::signals2::signal<void(const Edges&, const Nodes&)> m_signal_set_selected;
 
   private:
 
@@ -142,7 +155,7 @@ struct Widget
   ///- a true Node
   ///- the label in the middle of an edge
   ///- the CenterNode
-  std::vector<boost::shared_ptr<Node>> m_selected;
+  EdgesAndNodes m_selected;
 
   ///The undo stack (use std::vector because it is a true STL container)
   ///The Commands aren't const, because Command::Undo changes their state
@@ -154,7 +167,8 @@ struct Widget
   void AddNode(const boost::shared_ptr<Node> node) noexcept;
 
   ///Add the nodes to the current (can be zero) selecetd nodes
-  void AddSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
+  void AddSelected(const Nodes& nodes) noexcept;
+  void AddSelected(const Edges& edges,const Nodes& nodes) noexcept;
 
   static boost::shared_ptr<ConceptMap> CreateEmptyConceptMap() noexcept;
 
@@ -184,6 +198,14 @@ struct Widget
   ///Of all the concept maps its nodes, except for the uses supplied as the
   ///argument, return 1 to all the nodes, except when there is no node
   ///left (as all are excluded) or the concept map does not have any nodes
+  std::vector<boost::shared_ptr<Edge>> GetRandomEdges(std::vector<boost::shared_ptr<const Edge>> edges_to_exclude = {}) noexcept;
+  boost::shared_ptr<Edge> GetRandomEdge(std::vector<boost::shared_ptr<const Edge>> edges_to_exclude = {}) noexcept;
+
+
+  ///Used by CommandAddFocusRandom and CommandSetFocusRandom
+  ///Of all the concept maps its nodes, except for the uses supplied as the
+  ///argument, return 1 to all the nodes, except when there is no node
+  ///left (as all are excluded) or the concept map does not have any nodes
   std::vector<boost::shared_ptr<Node>> GetRandomNodes(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
   boost::shared_ptr<Node> GetRandomNode(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
 
@@ -195,10 +217,16 @@ struct Widget
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
   ///Set the node to the only node in focus
-  void SetFocus(const boost::shared_ptr<Node>& node) noexcept;
+  //void SetFocus(const boost::shared_ptr<Node>& node) noexcept;
 
   ///Set the nodes to the only nodes selected
-  void SetSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
+  void SetSelected(const Nodes& nodes) noexcept;
+  void SetSelected(const Edges& edges) noexcept;
+  void SetSelected(
+    const Edges& edges,
+    const Nodes& nodes
+  ) noexcept;
+  void SetSelected(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

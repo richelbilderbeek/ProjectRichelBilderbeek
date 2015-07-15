@@ -45,6 +45,9 @@ struct CommandCreateNewEdge : public Command
   private:
   boost::shared_ptr<Edge> m_edge;
   std::vector<boost::shared_ptr<Node>> m_nodes;
+
+  std::vector<boost::shared_ptr<ribi::cmap::Node>> m_prev_selected; //Selected before Edge was added
+
   Widget * m_widget;
 
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;

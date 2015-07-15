@@ -21,6 +21,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONCEPTMAPCOMMANDDELETEFOCUSNODE_H
 #define CONCEPTMAPCOMMANDDELETEFOCUSNODE_H
 
+#ifdef USE_FOCUS_COMMANDS_201506712
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -54,5 +56,7 @@ struct CommandDeleteFocusNode : public Command
 
 } //~namespace cmap
 } //~namespace ribi
+
+#endif // USE_FOCUS_COMMANDS_201506712
 
 #endif // CONCEPTMAPCOMMANDDELETEFOCUSNODE_H

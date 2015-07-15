@@ -19,7 +19,7 @@ bool ribi::cmap::CommandUnselectRandom::CanDoCommandSpecific(const Widget * cons
     if (verbose) TRACE("Unselect needs a concept map");
     return false;
   }
-  if (widget->GetSelected().empty())
+  if (widget->GetSelectedEdges().empty() && widget->GetSelectedNodes().empty())
   {
     if (verbose) TRACE("Unselect needs nodes to unselect on");
     return false;
@@ -32,16 +32,25 @@ void ribi::cmap::CommandUnselectRandom::DoCommandSpecific(Widget * const widget)
   assert(widget);
 
   m_widget = widget;
+  m_old_selected = const_cast<const Widget*>(widget)->GetSelected();
 
-  //Get a random selected node
-  auto all_selected = widget->GetSelected();
-  assert(std::count(all_selected.begin(),all_selected.end(),nullptr) == 0);
-  const int i = std::rand() % static_cast<int>(all_selected.size());
-  m_old_selected = all_selected[i];
-
-  //Unselect it
-  std::swap(all_selected[i],all_selected[ all_selected.size() - 1]);
-  all_selected.pop_back();
+  //Get a random selected edge or node
+  auto all_selected = const_cast<const Widget*>(widget)->GetSelected();
+  const int n_edges{static_cast<int>(all_selected.first.size())};
+  //const int n_nodes{static_cast<int>(all_selected.second.size())};
+  const int i{std::rand() % (n_edges + n_edges)};
+  if (i < n_edges)
+  {
+    //Unselect edge
+    std::swap(all_selected.first[i],all_selected.first.back());
+    all_selected.first.pop_back();
+  }
+  else
+  {
+    //Unselect node
+    std::swap(all_selected.second[i - n_edges],all_selected.second.back());
+    all_selected.second.pop_back();
+  }
   m_widget->SetSelected(all_selected);
 
   //m_widget->m_signal_set_focus_node();
@@ -56,10 +65,6 @@ void ribi::cmap::CommandUnselectRandom::UndoSpecific() noexcept
   assert(m_widget);
 
   //Re-select the previously selected Node
-  m_widget->AddSelected( { m_old_selected} );
-
-  m_widget->m_signal_set_selected(m_widget->m_selected);
-
-  assert(m_widget);
+  m_widget->SetSelected(m_old_selected);
 
 }

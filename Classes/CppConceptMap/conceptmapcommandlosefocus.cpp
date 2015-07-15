@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
+#ifdef USE_FOCUS_COMMANDS_201506712
+
 #include "conceptmapcommandlosefocus.h"
 
 #include <cassert>
@@ -68,3 +70,5 @@ void ribi::cmap::CommandLoseFocus::UndoSpecific() noexcept
   assert(!m_widget);
   assert(!m_old_focus);
 }
+
+#endif // USE_FOCUS_COMMANDS_201506712

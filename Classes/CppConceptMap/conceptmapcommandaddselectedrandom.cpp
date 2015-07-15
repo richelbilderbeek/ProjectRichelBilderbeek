@@ -24,12 +24,12 @@ bool ribi::cmap::CommandAddSelectedRandom::CanDoCommandSpecific(const Widget * c
     if (verbose) TRACE("AddSelected needs nodes to focus on");
     return false;
   }
-  if (const_cast<Widget*>(widget)->GetRandomNodes(AddConst(widget->GetSelected())).empty())
+  if (const_cast<Widget*>(widget)->GetRandomNodes(AddConst(widget->GetSelectedNodes())).empty())
   {
     if (verbose)
     {
       TRACE("AddSelected needs non-focused nodes to focus on");
-      TRACE(widget->GetSelected().size());
+      TRACE(widget->GetSelectedNodes().size());
       TRACE(widget->GetConceptMap()->GetNodes().size());
     }
     return false;
@@ -43,10 +43,10 @@ void ribi::cmap::CommandAddSelectedRandom::DoCommandSpecific(Widget * const widg
 
   //Transfer focus to this Node
   m_widget = widget;
-  m_old_selected = widget->GetSelected();
-  assert(std::count(m_old_selected.begin(),m_old_selected.end(),nullptr) == 0);
-  const auto selected_to_add(widget->GetRandomNodes(AddConst(m_old_selected)));
-  m_widget->AddSelected(selected_to_add);
+  m_old_selected = const_cast<const Widget*>(widget)->GetSelected();
+  const auto selected_edges(widget->GetRandomEdges(AddConst(m_old_selected.first)));
+  const auto selected_nodes(widget->GetRandomNodes(AddConst(m_old_selected.second)));
+  m_widget->AddSelected(selected_edges,selected_nodes);
   //m_widget->m_signal_set_focus_node();
   //m_widget->m_signal_concept_map_changed();
 
@@ -59,11 +59,5 @@ void ribi::cmap::CommandAddSelectedRandom::UndoSpecific() noexcept
   assert(m_widget);
 
   //Lose focus to this Node
-  assert(std::count(m_old_selected.begin(),m_old_selected.end(),nullptr) == 0);
   m_widget->SetSelected(m_old_selected);
-
-  m_widget->m_signal_set_selected(m_widget->m_selected);
-
-  assert(m_widget);
-
 }
