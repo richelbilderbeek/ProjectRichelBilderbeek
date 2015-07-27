@@ -18,7 +18,7 @@ RInside& ribi::Rinside::Get()
 }
 
 std::string ribi::Rinside::GetVersion() const noexcept
-{
+{b
   return "1.0";
 }
 
