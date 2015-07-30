@@ -54,31 +54,6 @@ double ribi::cmap::GetDistance(const double x1, const double y1, const double x2
   return GetDistance(x1-x2,y1-y2);
 }
 
-/*
-std::vector<std::string> ribi::cmap::GetRegexMatches(
-  const std::string& s,
-  const QRegExp& r_original
-) noexcept
-{
-  #ifndef NDEBUG
-  cmap::TestHelperFunctions();
-  #endif
-  QRegExp r(r_original);
-  r.setMinimal(true); //QRegExp must be non-greedy
-  std::vector<std::string> v;
-  int pos = 0;
-  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
-  {
-    const QString q = r.cap(1);
-    if (q.isEmpty()) break;
-    v.push_back(q.toStdString());
-    pos += r.matchedLength();
-  }
-
-  return v;
-}
-*/
-
 std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filename) noexcept
 {
   std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
@@ -359,7 +334,6 @@ std::vector<std::string> ribi::cmap::Wordwrap(
   //Start the actual wordwrapping
   while (!s.empty())
   {
-    //TRACE(s);
     //Is the word short enough?
     if (s.size() < max_len)
     {

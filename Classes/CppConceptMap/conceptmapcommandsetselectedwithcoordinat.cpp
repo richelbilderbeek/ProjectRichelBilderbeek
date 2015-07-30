@@ -25,19 +25,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapwidget.h"
 #include "conceptmapnode.h"
 
-bool ribi::cmap::CommandSetFocusWithCoordinat::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandSetSelectedWithCoordinat::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
   return
     widget->FindNodeAt(m_x,m_y).get();
 }
 
-void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const widget) noexcept
+void ribi::cmap::CommandSetSelectedWithCoordinat::DoCommandSpecific(Widget * const widget) noexcept
 {
   assert(CanDoCommandSpecific(widget));
   assert(widget);
 
-  m_old_focus = widget->GetSelected();
+  m_old_focus = const_cast<const Widget*>(widget)->GetSelected();
   m_widget = widget;
 
   const boost::shared_ptr<Node> node {
@@ -51,22 +51,14 @@ void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const 
   assert(widget);
 }
 
-void ribi::cmap::CommandSetFocusWithCoordinat::UndoSpecific() noexcept
+void ribi::cmap::CommandSetSelectedWithCoordinat::UndoSpecific() noexcept
 {
   assert(m_widget);
   assert(m_widget->m_focus);
 
-  //Give back previous focus, or lose it
-  if (m_old_focus)
-  {
-    m_widget->SetFocus(m_old_focus);
-  }
-  else
-  {
-    m_widget->LoseFocus();
-  }
+  //Give back previous selection
+  m_widget->SetSelected(m_old_focus);
 
-  m_old_focus = boost::shared_ptr<Node>();
   m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);

@@ -103,12 +103,6 @@ double GetDistance(const double delta_x, const double delta_y);
 //From www.richelbilderbeek.nl/CppGetDistance.htm
 double GetDistance(const double x1, const double y1, const double x2, const double y2);
 
-///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-//std::vector<std::string> GetRegexMatches(
-//  const std::string& s,
-//  const QRegExp& r
-//) noexcept;
-
 ///SafeFileToVector calls FileToVector and
 ///removes an empty trailing line that can be created under
 ///the Windows operating system, due to different line endings

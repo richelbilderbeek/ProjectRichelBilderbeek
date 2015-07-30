@@ -113,7 +113,7 @@ std::vector<std::string> ribi::ImageCanvas::ConvertGreynessesToAscii(
   const int maxy =
     (static_cast<double>(width)
     / static_cast<double>(image_width))
-    * static_cast<double>(image_height);
+    * static_cast<double>(image_height) / 1.5; //Characters are 1.5 higher than wide
   assert(maxy > 0);
   const double dX = static_cast<double>(image_width)
     / static_cast<double>(width);
@@ -332,7 +332,7 @@ int ribi::ImageCanvas::GetHeight() const noexcept
 
 std::string ribi::ImageCanvas::GetVersion() noexcept
 {
-  return "3.0";
+  return "4.0";
 }
 
 std::vector<std::string> ribi::ImageCanvas::GetVersionHistory() noexcept
@@ -340,7 +340,8 @@ std::vector<std::string> ribi::ImageCanvas::GetVersionHistory() noexcept
   return {
     "2011-03-23: Version 1.0: initial version, then called AsciiArter",
     "2014-01-07: Version 2.0: add conversion to Canvas"
-    "2014-01-07: version 3.0: reworked interface, renamed to ImageCanvas"
+    "2014-01-07: version 3.0: reworked interface, renamed to ImageCanvas",
+    "2015-07-20: version 4.0: characters are not square"
   };
 }
 

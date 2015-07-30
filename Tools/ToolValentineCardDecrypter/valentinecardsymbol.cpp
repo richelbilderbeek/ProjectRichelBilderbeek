@@ -55,7 +55,7 @@ ribi::ValentineCardSymbol::ValentineCardSymbol(
 
 int ribi::ValentineCardSymbol::CalcValue() const noexcept
 {
-  int symbol_value;
+  int symbol_value = -1;
   switch (GetCenterSymbol())
   {
     case CenterSymbol::none : symbol_value = 0; break;
@@ -92,6 +92,9 @@ void ribi::ValentineCardSymbol::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    ribi::fileio::FileIo();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {

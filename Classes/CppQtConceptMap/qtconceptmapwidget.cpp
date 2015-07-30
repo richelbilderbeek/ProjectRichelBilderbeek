@@ -145,7 +145,7 @@ void ribi::cmap::QtConceptMapWidget::mouseMoveEvent(QMouseEvent * e) noexcept
   {
     const QPointF pos = QGraphicsView::mapToScene(e->x(),e->y());
     const boost::shared_ptr<const CommandSetSelectedWithCoordinat> cmd {
-      new CommandSetFocusWithCoordinat(pos.x(),pos.y())
+      new CommandSetSelectedWithCoordinat(pos.x(),pos.y())
     };
     if (cmd->CanDoCommand(m_widget))
     {
@@ -164,7 +164,7 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e) noexcept
   {
     const QPointF pos = QGraphicsView::mapToScene(e->x(),e->y());
     const boost::shared_ptr<CommandSetSelectedWithCoordinat> cmd {
-      new CommandSetFocusWithCoordinat(pos.x(),pos.y())
+      new CommandSetSelectedWithCoordinat(pos.x(),pos.y())
     };
     if (cmd->CanDoCommand(m_widget))
     {
@@ -353,7 +353,7 @@ void ribi::cmap::QtConceptMapWidget::OnLoseSelected(const std::vector<boost::sha
 }
 
 void ribi::cmap::QtConceptMapWidget::OnSetSelected(
-  const Edge& edges,
+  const Edges& edges,
   const Nodes& nodes
 ) noexcept
 {

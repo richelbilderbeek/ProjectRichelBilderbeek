@@ -36,18 +36,25 @@ namespace cmap {
 ///Set selected with a coordinat
 ///- opposite of LoseSelected
 ///- SetSelected does not care if there currently something else is selected
-struct CommandSetFocusWithCoordinat : public Command
+struct CommandSetSelectedWithCoordinat : public Command
 {
-  CommandSetFocusWithCoordinat(const int x, const int y)
+  using ConstEdges = std::vector<boost::shared_ptr<const Edge>>;
+  using ConstNodes = std::vector<boost::shared_ptr<const Node>>;
+  using Edges = std::vector<boost::shared_ptr<Edge>>;
+  using Nodes = std::vector<boost::shared_ptr<Node>>;
+  using EdgesAndNodes = std::pair<Edges,Nodes>;
+  using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
+
+  CommandSetSelectedWithCoordinat(const int x, const int y)
     : m_old_focus{}, m_widget{}, m_x(x), m_y(y) {}
-  CommandSetFocusWithCoordinat(const CommandSetFocusWithCoordinat&) = delete;
-  CommandSetFocusWithCoordinat& operator=(const CommandSetFocusWithCoordinat&) = delete;
-  ~CommandSetFocusWithCoordinat() noexcept {}
+  CommandSetSelectedWithCoordinat(const CommandSetSelectedWithCoordinat&) = delete;
+  CommandSetSelectedWithCoordinat& operator=(const CommandSetSelectedWithCoordinat&) = delete;
+  ~CommandSetSelectedWithCoordinat() noexcept {}
 
   std::string ToStr() const noexcept final { return "set focus with coordinat"; }
 
   private:
-  boost::shared_ptr<Node> m_old_focus;
+  ConstEdgesAndNodes m_old_focus;
   Widget * m_widget;
 
   const int m_x;

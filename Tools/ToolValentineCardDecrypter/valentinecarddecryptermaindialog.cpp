@@ -30,8 +30,11 @@ void ribi::ValentineCardDecrypterMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  { boost::shared_ptr<ValentineCardSymbol> p{new ValentineCardSymbol(0)}; }
-  ValentineCardSymbols();
+  {
+    ValentineCardSymbol(0);
+    ValentineCardSymbols();
+    TextCanvas();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   ValentineCardDecrypterMainDialog d;
   {

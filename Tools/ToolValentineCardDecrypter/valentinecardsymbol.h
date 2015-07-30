@@ -34,14 +34,15 @@ struct ValentineCardSymbol
 {
   enum class CenterSymbol { none, dot, cross };
 
-  ValentineCardSymbol(
+  explicit ValentineCardSymbol(
     const std::array<bool,4> lines,
     const CenterSymbol center_symbol
   );
 
-  ValentineCardSymbol(
+  explicit ValentineCardSymbol(
     const int value
   );
+  ~ValentineCardSymbol() {}
 
   int CalcValue() const noexcept;
   CenterSymbol GetCenterSymbol() const noexcept { return m_center_symbol; }
@@ -53,7 +54,6 @@ struct ValentineCardSymbol
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   private:
-  ~ValentineCardSymbol() {}
   friend void boost::checked_delete<>(ValentineCardSymbol* x);
   friend void boost::checked_delete<>(const ValentineCardSymbol* x);
 
