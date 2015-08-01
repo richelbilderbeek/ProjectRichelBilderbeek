@@ -47,6 +47,7 @@ Libraries/CMakeFiles/
 Libraries/CMakeCache.txt
 Libraries/cinder/
 Libraries/desmume/
+Libraries/desmume*/
 Libraries/devkitpro-installer/
 Libraries/dmalloc-5.5.2/
 Libraries/dmalloc-*
