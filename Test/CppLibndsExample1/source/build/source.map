@@ -1,0 +1,670 @@
+Archive member included to satisfy reference by file (symbol)
+
+/home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+                              /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o (initSystem)
+/home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o) (fifoSetValue32Handler)
+/home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+                              /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o (__libnds_exit)
+/home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o) (irqSet)
+/home/richel/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+                              /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o (__libnds_mpu_setup)
+/home/richel/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o) (swiSoftReset)
+/home/richel/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o) (swiIntrWait)
+/home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o) (IntrMain)
+/home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o) (systemMsgHandler)
+/home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o) (vramDefault)
+/home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o) (__libnds_gtod)
+/home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-init.o)
+                              /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o (__libc_init_array)
+/home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-memcpy.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o) (memcpy)
+/home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(malloc_vars.o)
+                              /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o (fake_heap_start)
+/home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(build_argv.o)
+                              /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o (build_argv)
+/home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(syscall_support.o)
+                              /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o) (__syscalls)
+
+Allocating common symbols
+Common symbol       size              file
+
+fifo_datamsg_data   0x40              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+__dsimode           0x1               /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+fifo_buffer         0x800             /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+fifo_value32_func   0x40              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+fifo_address_func   0x40              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+fifo_value32_data   0x40              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+fifo_value32_queue  0x40              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+fifo_data_queue     0x40              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+punixTime           0x4               /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+fifo_address_data   0x40              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+fifo_datamsg_func   0x40              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+fifo_address_queue  0x40              /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x08000000         0x02000000
+ewram            0x02000000         0x003ff000
+dtcm             0x0b000000         0x00004000
+vectors          0x01000000         0x00000100
+itcm             0x01000100         0x00007f00
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x01000000                __vectors_start = ORIGIN (vectors)
+                0x01000100                __itcm_start = ORIGIN (itcm)
+                0x023ff000                __ewram_end = (ORIGIN (ewram) + 0x3ff000)
+                0x023ff000                __eheap_end = (ORIGIN (ewram) + 0x3ff000)
+                0x0b000000                __dtcm_start = ORIGIN (dtcm)
+                0x0b004000                __dtcm_top = (ORIGIN (dtcm) + 0x4000)
+                0x0b003ff8                __irq_flags = (__dtcm_top - 0x8)
+                0x0b003ffc                __irq_vector = (__dtcm_top - 0x4)
+                0x0b003f00                __sp_svc = (__dtcm_top - 0x100)
+                0x0b003e00                __sp_irq = (__sp_svc - 0x100)
+                0x0b003d00                __sp_usr = (__sp_irq - 0x100)
+
+.init           0x02000000      0x23c
+                0x02000000                __text_start = .
+ *(.init)
+ .init          0x02000000      0x230 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+                0x02000000                _start
+ .init          0x02000230        0x4 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crti.o
+                0x02000230                _init
+ .init          0x02000234        0x8 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtn.o
+                0x0200023c                . = ALIGN (0x4)
+
+.plt
+ *(.plt)
+
+.text           0x02000240     0x1920
+ *(EXCLUDE_FILE(*.itcm*) .text)
+ .text          0x02000240        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+ .text          0x02000240        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crti.o
+ .text          0x02000240       0xd4 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+ .text          0x02000314      0x14c /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+                0x02000314                initSystem
+ .text          0x02000460      0xcb8 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+                0x02000724                fifoSetValue32Handler
+                0x02000798                fifoSendAddress
+                0x020007c4                fifoSendValue32
+                0x02000800                fifoSendDatamsg
+                0x02000874                fifoGetAddress
+                0x020008e0                fifoSetAddressHandler
+                0x02000954                fifoGetValue32
+                0x02000968                fifoGetDatamsg
+                0x02000e1c                fifoSetDatamsgHandler
+                0x02000eb0                fifoCheckAddress
+                0x02000ed4                fifoCheckDatamsg
+                0x02000ef8                fifoCheckDatamsgLength
+                0x02000f28                fifoCheckValue32
+                0x02000f4c                fifoInit
+ .text          0x02001118       0x5c /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+                0x02001118                systemErrorExit
+                0x0200111c                __libnds_exit
+ .text          0x02001174      0x1ec /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+                0x02001174                irqDummy
+                0x02001178                irqSet
+                0x020011e4                irqInit
+                0x02001230                irqInitHandler
+                0x02001260                irqEnable
+                0x020012c4                irqDisable
+                0x02001328                irqClear
+ .text          0x02001360      0x1b4 /home/richel/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+                0x02001360                __libnds_mpu_setup
+                0x020014a0                memCached
+                0x020014b8                memUncached
+ *fill*         0x02001514        0xc ff
+ .text          0x02001520       0x30 /home/richel/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+                0x02001520                swiSoftReset
+ .text          0x02001550       0x70 /home/richel/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+                0x02001550                swiDelay
+                0x02001554                swiIntrWait
+                0x02001558                swiWaitForVBlank
+                0x0200155c                swiSleep
+                0x02001560                swiChangeSoundBias
+                0x02001564                swiDivide
+                0x02001568                swiRemainder
+                0x0200156e                swiDivMod
+                0x0200157a                swiCopy
+                0x0200157e                swiFastCopy
+                0x02001582                swiSqrt
+                0x02001586                swiCRC16
+                0x0200158a                swiIsDebugger
+                0x0200158e                swiUnpackBits
+                0x02001592                swiDecompressLZSSWram
+                0x02001596                swiDecompressLZSSVramNTR
+                0x0200159a                swiDecompressLZSSVramTWL
+                0x0200159e                swiDecompressHuffman
+                0x020015a2                swiDecompressRLEWram
+                0x020015a6                swiDecompressRLEVram
+                0x020015aa                swiWaitForIRQ
+                0x020015ae                swiDecodeDelta8
+                0x020015b2                swiDecodeDelta16
+                0x020015b6                swiSetHaltCR
+ .text          0x020015c0        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .text          0x020015c0      0x134 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+                0x020015c0                setSDcallback
+                0x020015cc                systemMsgHandler
+                0x0200161c                systemSleep
+                0x02001634                systemValueHandler
+                0x02001670                powerOn
+                0x0200169c                powerOff
+                0x020016c4                ledBlink
+                0x020016d4                getBatteryLevel
+ .text          0x020016f4      0x1f8 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+                0x020016f4                vramSetPrimaryBanks
+                0x02001738                vramSetMainBanks
+                0x0200177c                vramSetBanks_EFG
+                0x020017b4                vramRestorePrimaryBanks
+                0x020017c0                vramRestoreMainBanks
+                0x020017cc                vramRestoreBanks_EFG
+                0x020017d8                setBrightness
+                0x02001818                vramDefault
+ .text          0x020018ec       0x24 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+                0x020018ec                __libnds_gtod
+ .text          0x02001910        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-init.o)
+ .text          0x02001910        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-memcpy.o)
+ .text          0x02001910        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(malloc_vars.o)
+ .text          0x02001910       0x50 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(build_argv.o)
+                0x02001910                build_argv
+ .text          0x02001960      0x104 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(syscall_support.o)
+                0x02001960                __libc_lock_init
+                0x02001978                __libc_lock_acquire
+                0x02001990                __libc_lock_try_acquire
+                0x020019b0                __libc_lock_release
+                0x020019c8                __libc_lock_close
+                0x020019e0                __libc_lock_init_recursive
+                0x020019f8                __libc_lock_acquire_recursive
+                0x02001a10                __libc_lock_try_acquire_recursive
+                0x02001a30                __libc_lock_release_recursive
+                0x02001a48                __libc_lock_close_recursive
+ .text          0x02001a64        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtend.o
+ .text          0x02001a64        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtn.o
+ *(.text.*)
+ .text.__libc_init_array
+                0x02001a64       0x58 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-init.o)
+                0x02001a64                __libc_init_array
+ .text.memcpy   0x02001abc       0x84 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-memcpy.o)
+                0x02001abc                memcpy
+ .text.memcpy.__stub
+                0x02001b40       0x1c linker stubs
+ *(.stub)
+ *(.gnu.warning)
+ *(.gnu.linkonce.t*)
+ *(.glue_7)
+ .glue_7        0x02001b60        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x02001b60        0x0 linker stubs
+                0x02001b60                . = ALIGN (0x4)
+
+.vfp11_veneer   0x02001b60        0x0
+ .vfp11_veneer  0x02001b60        0x0 linker stubs
+
+.v4_bx          0x02001b60        0x0
+ .v4_bx         0x02001b60        0x0 linker stubs
+
+.iplt           0x02001b60        0x0
+ .iplt          0x02001b60        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+
+.fini           0x02001b60        0xc
+ *(.fini)
+ .fini          0x02001b60        0x4 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crti.o
+                0x02001b60                _fini
+ .fini          0x02001b64        0x8 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtn.o
+                0x02001b6c                __text_end = .
+
+.rel.dyn        0x02001b6c        0x0
+ .rel.iplt      0x02001b6c        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+
+.rodata         0x02001b6c        0x0
+ *(.rodata)
+ *all.rodata*(*)
+ *(.roda)
+ *(.rodata.*)
+ *(.gnu.linkonce.r*)
+                0x02001b6c                . = ALIGN (0x4)
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x02001b6c                __exidx_start = .
+
+ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x02001b6c                __exidx_end = .
+                0x02001b6c                . = ALIGN (0x4)
+                0x02001b6c                PROVIDE (__preinit_array_start, .)
+
+.preinit_array
+ *(.preinit_array)
+                0x02001b6c                PROVIDE (__preinit_array_end, .)
+                0x02001b6c                PROVIDE (__init_array_start, .)
+
+.init_array     0x02001b6c        0x4
+ *(SORT(.init_array.*))
+ *(.init_array)
+ .init_array    0x02001b6c        0x4 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+                0x02001b70                PROVIDE (__init_array_end, .)
+                0x02001b70                PROVIDE (__fini_array_start, .)
+
+.fini_array     0x02001b70        0x4
+ *(.fini_array)
+ .fini_array    0x02001b70        0x4 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+ *(SORT(.fini_array.*))
+                0x02001b74                PROVIDE (__fini_array_end, .)
+
+.ctors          0x02001b74        0x0
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+                0x02001b74                . = ALIGN (0x4)
+
+.dtors          0x02001b74        0x0
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+                0x02001b74                . = ALIGN (0x4)
+
+.eh_frame       0x02001b74        0x4
+ *(.eh_frame)
+ .eh_frame      0x02001b74        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+ .eh_frame      0x02001b74        0x4 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtend.o
+                0x02001b78                . = ALIGN (0x4)
+
+.gcc_except_table
+                0x02001b78        0x0
+ *(.gcc_except_table)
+                0x02001b78                . = ALIGN (0x4)
+
+.jcr            0x02001b78        0x4
+ *(.jcr)
+ .jcr           0x02001b78        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+ .jcr           0x02001b78        0x4 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtend.o
+
+.got
+ *(.got.plt)
+ *(.got)
+ *(.rel.got)
+
+.ewram          0x02001b7c        0x0
+                0x02001b7c                __ewram_start = ABSOLUTE (.)
+ *(.ewram)
+ *ewram.*(.text)
+                0x02001b7c                . = ALIGN (0x4)
+
+.data           0x02001b7c       0x14
+                0x02001b7c                __data_start = ABSOLUTE (.)
+ *(.data)
+ .data          0x02001b7c        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+ .data          0x02001b7c        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crti.o
+ .data          0x02001b7c        0x4 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+                0x02001b7c                __dso_handle
+ .data          0x02001b80        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .data          0x02001b80       0x10 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+                0x02001b80                fifo_buffer_free
+                0x02001b84                fifo_freewords
+                0x02001b88                fifo_send_queue
+                0x02001b8c                fifo_receive_queue
+ .data          0x02001b90        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-init.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-memcpy.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(malloc_vars.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(build_argv.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(syscall_support.o)
+ .data          0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtend.o
+ .data          0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtn.o
+ *(.data.*)
+ *(.gnu.linkonce.d*)
+                0x02001b90                . = ALIGN (0x4)
+                0x02001b90                __data_end = ABSOLUTE (.)
+                0x02001b90                __dtcm_lma = .
+                0x02001b90                __bss_vma = .
+
+.igot.plt       0x02001b90        0x0
+ .igot.plt      0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+
+.tm_clone_table
+                0x02001b90        0x0
+ .tm_clone_table
+                0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+ .tm_clone_table
+                0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtend.o
+
+.dtcm           0x0b000000        0x0 load address 0x02001b90
+ *(.dtcm)
+ *(.dtcm.*)
+                0x0b000000                . = ALIGN (0x4)
+                0x0b000000                __dtcm_end = ABSOLUTE (.)
+                0x02001b90                __itcm_lma = (__dtcm_lma + SIZEOF (.dtcm))
+
+.itcm           0x01000100      0x194 load address 0x02001b90
+ *(.itcm)
+ .itcm          0x01000100       0xc8 /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+                0x01000100                irqTable
+ .itcm          0x010001c8       0xcc /home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+                0x010001c8                IntrMain
+ *itcm.*(.text)
+                0x01000294                . = ALIGN (0x4)
+                0x01000294                __itcm_end = ABSOLUTE (.)
+                0x02001d24                __vectors_lma = (__itcm_lma + SIZEOF (.itcm))
+
+.vectors        0x01000000        0x0 load address 0x02001d24
+ *(.vectors)
+ *vectors.*(.text)
+                0x01000000                . = ALIGN (0x4)
+                0x01000000                __vectors_end = ABSOLUTE (.)
+
+.sbss           0x0b000000        0x0
+                0x0b000000                __sbss_start = ABSOLUTE (.)
+                0x0b000000                __sbss_start__ = ABSOLUTE (.)
+ *(.sbss)
+                0x0b000000                . = ALIGN (0x4)
+                0x0b000000                __sbss_end = ABSOLUTE (.)
+
+.bss            0x02001b90      0xab8
+                0x02001b90                __bss_start = ABSOLUTE (.)
+                0x02001b90                __bss_start__ = ABSOLUTE (.)
+ *(.dynbss)
+ *(.gnu.linkonce.b*)
+ *(.bss*)
+ .bss           0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+ .bss           0x02001b90        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crti.o
+ .bss           0x02001b90       0x1c /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+ .bss           0x02001bac        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .bss           0x02001bac        0x8 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+                0x02001bb0                processing
+ .bss           0x02001bb4        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .bss           0x02001bb4        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .bss           0x02001bb4        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .bss           0x02001bb4        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .bss           0x02001bb4        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .bss           0x02001bb4        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .bss           0x02001bb4        0x4 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .bss           0x02001bb8        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .bss           0x02001bb8        0x0 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+ .bss           0x02001bb8        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-init.o)
+ .bss           0x02001bb8        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-memcpy.o)
+ .bss           0x02001bb8        0x8 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(malloc_vars.o)
+                0x02001bb8                fake_heap_start
+                0x02001bbc                fake_heap_end
+ .bss           0x02001bc0        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(build_argv.o)
+ .bss           0x02001bc0       0x40 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(syscall_support.o)
+                0x02001bc0                __syscalls
+ .bss           0x02001c00        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtend.o
+ .bss           0x02001c00        0x0 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtn.o
+ *(COMMON)
+ COMMON         0x02001c00        0x1 /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+                0x02001c00                __dsimode
+ *fill*         0x02001c01        0x3 
+ COMMON         0x02001c04      0xa40 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+                0x02001c04                fifo_datamsg_data
+                0x02001c44                fifo_buffer
+                0x02002444                fifo_value32_func
+                0x02002484                fifo_address_func
+                0x020024c4                fifo_value32_data
+                0x02002504                fifo_value32_queue
+                0x02002544                fifo_data_queue
+                0x02002584                fifo_address_data
+                0x020025c4                fifo_datamsg_func
+                0x02002604                fifo_address_queue
+ COMMON         0x02002644        0x4 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+                0x02002644                punixTime
+                0x02002648                . = ALIGN (0x4)
+                0x02002648                __bss_end__ = ABSOLUTE (.)
+                0x02002648                __end__ = ABSOLUTE (.)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x22
+ *(.comment)
+ .comment       0x00000000       0x22 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+                                 0x23 (size before relaxing)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-init.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-memcpy.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(malloc_vars.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(build_argv.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(syscall_support.o)
+ .comment       0x00000022       0x23 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtend.o
+
+.ARM.attributes
+                0x00000000       0x2d
+ .ARM.attributes
+                0x00000000       0x21 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+ .ARM.attributes
+                0x00000021       0x16 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crti.o
+ .ARM.attributes
+                0x00000037       0x30 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+ .ARM.attributes
+                0x00000067       0x27 /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .ARM.attributes
+                0x0000008e       0x27 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .ARM.attributes
+                0x000000b5       0x27 /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .ARM.attributes
+                0x000000dc       0x27 /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .ARM.attributes
+                0x00000103       0x21 /home/richel/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .ARM.attributes
+                0x00000124       0x21 /home/richel/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .ARM.attributes
+                0x00000145       0x1b /home/richel/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .ARM.attributes
+                0x00000160       0x1b /home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .ARM.attributes
+                0x0000017b       0x27 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .ARM.attributes
+                0x000001a2       0x27 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .ARM.attributes
+                0x000001c9       0x27 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+ .ARM.attributes
+                0x000001f0       0x30 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-init.o)
+ .ARM.attributes
+                0x00000220       0x30 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x00000250       0x30 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(malloc_vars.o)
+ .ARM.attributes
+                0x00000280       0x30 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(build_argv.o)
+ .ARM.attributes
+                0x000002b0       0x30 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a(syscall_support.o)
+ .ARM.attributes
+                0x000002e0       0x30 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtend.o
+ .ARM.attributes
+                0x00000310       0x16 /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtn.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x160
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_aranges
+                0x00000020       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_aranges
+                0x00000040       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_aranges
+                0x00000060       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_aranges
+                0x00000080       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .debug_aranges
+                0x000000a0       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .debug_aranges
+                0x000000c0       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .debug_aranges
+                0x000000e0       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .debug_aranges
+                0x00000100       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_aranges
+                0x00000120       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_aranges
+                0x00000140       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0x43ff
+ *(.debug_info)
+ .debug_info    0x00000000     0x10eb /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_info    0x000010eb     0x1597 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_info    0x00002682      0x327 /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_info    0x000029a9      0x5ac /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_info    0x00002f55       0xd0 /home/richel/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .debug_info    0x00003025       0xce /home/richel/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .debug_info    0x000030f3       0xcb /home/richel/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .debug_info    0x000031be       0xd5 /home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .debug_info    0x00003293      0x8f6 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_info    0x00003b89      0x730 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_info    0x000042b9      0x146 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+
+.debug_abbrev   0x00000000     0x1049
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x303 /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_abbrev  0x00000303      0x464 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_abbrev  0x00000767      0x175 /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_abbrev  0x000008dc      0x239 /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_abbrev  0x00000b15       0x14 /home/richel/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .debug_abbrev  0x00000b29       0x14 /home/richel/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .debug_abbrev  0x00000b3d       0x14 /home/richel/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .debug_abbrev  0x00000b51       0x14 /home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .debug_abbrev  0x00000b65      0x250 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_abbrev  0x00000db5      0x1d7 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_abbrev  0x00000f8c       0xbd /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+
+.debug_line     0x00000000     0x1814
+ *(.debug_line)
+ .debug_line    0x00000000      0x3a5 /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_line    0x000003a5      0x6b1 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_line    0x00000a56      0x1ea /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_line    0x00000c40      0x29f /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_line    0x00000edf      0x107 /home/richel/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .debug_line    0x00000fe6       0x9d /home/richel/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .debug_line    0x00001083       0xc9 /home/richel/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .debug_line    0x0000114c       0xcd /home/richel/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .debug_line    0x00001219      0x2a5 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_line    0x000014be      0x278 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_line    0x00001736       0xde /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+
+.debug_frame    0x00000000      0x570
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x28 /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_frame   0x00000028      0x2bc /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_frame   0x000002e4       0x3c /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_frame   0x00000320       0xac /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_frame   0x000003cc       0xc8 /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_frame   0x00000494       0xbc /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_frame   0x00000550       0x20 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+
+.debug_str      0x00000000     0x208c
+ *(.debug_str)
+ .debug_str     0x00000000      0xb2a /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+                                0xbd3 (size before relaxing)
+ .debug_str     0x00000b2a      0x519 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+                                0x832 (size before relaxing)
+ .debug_str     0x00001043      0x1bc /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+                                0x35f (size before relaxing)
+ .debug_str     0x000011ff      0x114 /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+                                0x41b (size before relaxing)
+ .debug_str     0x00001313      0x2af /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+                                0x68c (size before relaxing)
+ .debug_str     0x000015c2      0xa58 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+                                0xbe1 (size before relaxing)
+ .debug_str     0x0000201a       0x72 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+                                0x1d0 (size before relaxing)
+
+.debug_loc      0x00000000     0x1743
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x1f /home/richel/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_loc     0x0000001f     0x1128 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_loc     0x00001147       0x58 /home/richel/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_loc     0x0000119f      0x16a /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_loc     0x00001309      0x1ee /home/richel/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_loc     0x000014f7      0x22b /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_loc     0x00001722       0x21 /home/richel/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.stack          0x00080000        0x0
+                0x00080000                _stack = .
+ *(.stack)
+LOAD /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+LOAD /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crti.o
+LOAD /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtbegin.o
+LOAD /home/richel/devkitPro/libnds/lib/libnds9.a
+START GROUP
+LOAD /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/libgcc.a
+LOAD /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libg.a
+LOAD /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libc.a
+LOAD /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/../../../../arm-none-eabi/lib/thumb/libsysbase.a
+END GROUP
+LOAD /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtend.o
+LOAD /home/richel/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/4.9.2/thumb/crtn.o
+OUTPUT(/home/richel/GitHubs/ProjectRichelBilderbeek/Test/CppLibndsExample1/source/source.elf elf32-littlearm)
+
+.debug_ranges   0x00000000      0x448
+ .debug_ranges  0x00000000      0x340 /home/richel/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_ranges  0x00000340       0xc0 /home/richel/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_ranges  0x00000400       0x48 /home/richel/devkitPro/libnds/lib/libnds9.a(video.o)

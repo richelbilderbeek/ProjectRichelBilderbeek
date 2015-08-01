@@ -1,8 +1,7 @@
 INCLUDEPATH += /home/richel/devkitPro/libnds/include
 INCLUDEPATH += /home/richel/devkitPro/devkitARM/arm-none-eabi/include
 LIBS += -L/home/richel/devkitPro/devkitARM/arm-none-eabi/lib -lstdc++
-LIBS += -L/home/richel/devkitPro/libnds/lib -lnds9
-
+LIBS += -L/home/richel/devkitPro/libnds/lib -lnds9 -lmm9 -lfat -lfilesystem -ldswifi9
 DEFINES += ARM9
 CONFIG   += console
 CONFIG -= qt
@@ -13,11 +12,8 @@ SOURCES += main.cpp
 QMAKE_CC  = /home/richel/devkitPro/devkitARM/bin/arm-none-eabi-gcc
 QMAKE_CXX = /home/richel/devkitPro/devkitARM/bin/arm-none-eabi-g++
 
-
-SOURCES += /home/richel/devkitPro/libnds/source/common/interrupts.c
-
-##QMAKE_CCFLAGS = -MMD -MP -MF -g -mthumb-interwork
-##QMAKE_CXXFLAGS = -MMD -MP -MF -g -mthumb -mthumb-interwork
+#QMAKE_CCFLAGS = -MMD -MP -MF -mm -g -mthumb-interwork
+QMAKE_CXXFLAGS = -MMD -MP -MF -mm -g -mthumb -mthumb-interwork
 
 QMAKE_LINK = /home/richel/devkitPro/devkitARM/bin/arm-none-eabi-g++
 

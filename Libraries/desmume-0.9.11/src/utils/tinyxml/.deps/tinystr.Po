@@ -1,0 +1,32 @@
+utils/tinyxml/tinystr.o: utils/tinyxml/tinystr.cpp \
+ /usr/include/stdc-predef.h utils/tinyxml/tinystr.h /usr/include/assert.h \
+ /usr/include/features.h /usr/include/i386-linux-gnu/sys/cdefs.h \
+ /usr/include/i386-linux-gnu/bits/wordsize.h \
+ /usr/include/i386-linux-gnu/gnu/stubs.h \
+ /usr/include/i386-linux-gnu/gnu/stubs-32.h /usr/include/string.h \
+ /usr/lib/gcc/i686-linux-gnu/4.9/include/stddef.h /usr/include/xlocale.h \
+ /usr/include/i386-linux-gnu/bits/string3.h
+
+/usr/include/stdc-predef.h:
+
+utils/tinyxml/tinystr.h:
+
+/usr/include/assert.h:
+
+/usr/include/features.h:
+
+/usr/include/i386-linux-gnu/sys/cdefs.h:
+
+/usr/include/i386-linux-gnu/bits/wordsize.h:
+
+/usr/include/i386-linux-gnu/gnu/stubs.h:
+
+/usr/include/i386-linux-gnu/gnu/stubs-32.h:
+
+/usr/include/string.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.9/include/stddef.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/i386-linux-gnu/bits/string3.h:

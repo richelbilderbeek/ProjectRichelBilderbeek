@@ -1,7 +1,13 @@
-wget http://web.archive.org/web/20071225215323/http://www.nds-roms.be/desmume/DeSmuME.0.3.3.eng.zip
+echo on
 
-mkdir desmume
+BASEFILENAME=desmume-0.9.11
+ZIPFILE=$BASEFILENAME.tar.gz
 
-mv DeSmuME.0.3.3.eng.zip desmume/DeSmuME.0.3.3.eng.zip
+#wget http://downloads.sourceforge.net/project/desmume/desmume/0.9.11/$ZIPFILE
 
-cd desmume
+#tar -zxvf $ZIPFILE
+
+cd $BASEFILENAME
+
+./configure
+make
