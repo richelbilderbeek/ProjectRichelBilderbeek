@@ -8,7 +8,9 @@
 ui_*
 moc_*
 qrc_*
+build-*
 build_*
+build/
 tmp*.txt
 tmp*
 \#*
