@@ -1,7 +1,13 @@
+# FAILS: CANNOT USE BOOST
+
 message("Compiling this will fail, use the Makefile instead")
 
 INCLUDEPATH += /home/richel/devkitPro/libnds/include
 INCLUDEPATH += /home/richel/devkitPro/devkitARM/arm-none-eabi/include
+
+INCLUDEPATH += /usr/include #Boost
+INCLUDEPATH += /usr/include/i386-linux-gnu #STUBS
+
 LIBS += -L/home/richel/devkitPro/devkitARM/arm-none-eabi/lib -lstdc++
 LIBS += -L/home/richel/devkitPro/libnds/lib -lnds9 -lmm9 -lfat -lfilesystem -ldswifi9
 DEFINES += ARM9

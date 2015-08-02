@@ -8,10 +8,13 @@
 ui_*
 moc_*
 qrc_*
+build_*
 tmp*.txt
 tmp*
 \#*
 *.bak
+*.elf
+*.nds
 *.pro.user
 *.pro.autosave
 *.autosave

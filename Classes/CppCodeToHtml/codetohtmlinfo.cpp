@@ -842,7 +842,6 @@ ToolMazeCreator
 ToolMultiEncranger
 ToolMusicTheory
 ToolMutualismBreakdowner
-ToolNdsmake
 ToolOpenFoamErrorFacesNotInTriangularOrder
 ToolOpenFoamErrorFacesNotInTriangularOrderRenumberMesh
 ToolOpenFoamErrorOpenCellsFound
@@ -927,7 +926,6 @@ ToolTestMultiApproximator
 ToolTestMultiCanvas
 ToolTestMultipleChoiceQuestion
 ToolTestMultiVector
-ToolTestNdsmake
 ToolTestNeuralNet
 ToolTestNewick
 ToolTestNewickUtils

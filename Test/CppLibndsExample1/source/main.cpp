@@ -1,19 +1,23 @@
+//Example that shows:
+// - console at lower screen
+// - graphics at top screen
+// - use of STL
+
 #include <nds.h>
 #include <iostream>
 
 int main()
 {
-  //Initialization
   consoleDemoInit();
   videoSetMode(MODE_FB0);
   vramSetBankA(VRAM_A_LCD);
 
   std::cout
     << "\n"
-    << " CppNdsExample1\n"
+    << " CppLibndsExample1\n"
     << " From\n"
     << " http://www.richelbilderbeek.nl\n"
-    << "   /CppNdsExample1.htm\n"
+    << "   /CppLibndsExample1.htm\n"
     << "\n"
     << " Press A and B keys for effect\n";
 

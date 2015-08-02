@@ -1,4 +1,6 @@
-main.o: ../source/main.cpp /home/richel/devkitPro/libnds/include/nds.h \
+main.o: \
+ /home/richel/GitHubs/ProjectRichelBilderbeek/Test/CppLibndsExample6/source/main.cpp \
+ /home/richel/devkitPro/libnds/include/nds.h \
  /home/richel/devkitPro/libnds/include/nds/libversion.h \
  /home/richel/devkitPro/libnds/include/nds/ndstypes.h \
  /home/richel/devkitPro/libnds/include/nds/bios.h \
