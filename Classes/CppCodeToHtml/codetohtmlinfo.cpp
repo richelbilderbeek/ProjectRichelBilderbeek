@@ -3073,7 +3073,7 @@ ToolTestNewickVector
         "  <li><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><a href=\"CppSet.htm\">std::set</a></li>",
         "  <li><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><a href=\"CppSlist.htm\">std::slist</a></li>",
         "  <li><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><a href=\"CppStack.htm\">std::stack</a></li>",
-        "  <li><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><a href=\"CppString.htm\">std::string</a></li>",
+        "  <li><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><a href=\"CppStdString.htm\">std::string</a></li>",
         "  <li><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><a href=\"CppQueue.htm\">std::queue</a></li>",
         "  <li><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><a href=\"CppUnordered_map.htm\">std::unordered_map</a></li>",
         "  <li><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><a href=\"CppValarray.htm\">std::valarray</a></li>",
@@ -3706,7 +3706,7 @@ ToolTestNewickVector
         "<p>",
         "  <a href=\"CppFileIo.htm\">File I/O</a> is a <a href=\"CppCodeSnippets.htm\">code snippet</a> ",
         "  to <a href=\"CppConvert.htm\">convert</a> a file to a ",
-        "  <a href=\"CppStdVector.htm\">std::vector</a>&lt;<a href=\"CppString.htm\">std::string</a>&gt;. ",
+        "  <a href=\"CppStdVector.htm\">std::vector</a>&lt;<a href=\"CppStdString.htm\">std::string</a>&gt;. ",
         "  <a href=\"CppFileIo.htm\">File I/O</a> you have already defined the <a href=\"CppFileExists.htm\">FileExists</a> function.",
         "</p>"
       }
@@ -3826,7 +3826,7 @@ ToolTestNewickVector
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppGetExtension.htm\">GetExtension</a> is a",
-        "  <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppString.htm\">std::string</a>",
+        "  <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppStdString.htm\">std::string</a>",
         "  <a href=\"CppCodeSnippets.htm\">code snippet</a> to get a filename's extension.",
         "</p>",
         "<p>&nbsp;</p>",
@@ -3898,7 +3898,7 @@ ToolTestNewickVector
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppGetPath.htm\">GetPath</a> is a <a href=\"CppFileIo.htm\">file I/O</a>",
-        "  <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  <a href=\"CppStdString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
         "  to get a filename's path.",
         "</p>",
         "<p>&nbsp;</p>",
@@ -3963,7 +3963,7 @@ ToolTestNewickVector
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppGetRegexMatches.htm\">GetRegexMatches</a> is a <a href=\"CppRegex.htm\">Regex</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to obtain",
-        "all <a href=\"CppString.htm\">std::strings</a> in a <a href=\"CppString.htm\">std::string</a> that satisfy a regular expression.</p>",
+        "all <a href=\"CppStdString.htm\">std::strings</a> in a <a href=\"CppStdString.htm\">std::string</a> that satisfy a regular expression.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppGetRegexMatches.htm\">GetRegexMatches</a> is demonstrated in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolRegexTester.htm\">RegexTester</a>.</p>",
         "<p>&nbsp;</p>",
@@ -5479,6 +5479,21 @@ ToolTestNewickVector
       }
     }
   );
+
+  m.push_back(
+    { "CppIntToStr",
+      {
+        "<p>"
+        "  <a href=\"CppIntToStr.htm\">IntToStr</a> is a <a href=\"CppCodeSnippets.htm\">code snippet</a> to "
+        "  <a href=\"CppConvert.htm\">convert</a> an <a href=\"CppInt.htm\">int</a> to <a href=\"CppStdString.htm\">std::string</a>. "
+        "  To <a href=\"CppConvert.htm\">convert</a> a <a href=\"CppStdString.htm\">std::string</a> to <a href=\"CppInt.htm\">int</a>, "
+        "  use <a href=\"CppStrToInt.htm\">StrToInt</a>."
+        "</p>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppIpAddress",
       {
@@ -5498,6 +5513,26 @@ ToolTestNewickVector
         "<p>&nbsp;</p>",
         "<p><a href=\"CppIrcBot.htm\">IrcBot</a> is a <a href=\"CppClass.htm\">class</a>",
         "for an IRC bot. Its default name is 'lambda'.</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppIsInt",
+      {
+        "<p>"
+        "  <a href=\"CppIsInt.htm\">IsInt</a> is a <a href=\"CppCheck.htm\">checking</a>"
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a> to <a href=\"CppCheck.htm\">check</a> if a"
+        "  <a href=\"CppStdString.htm\">std::string</a> can be"
+        "  <a href=\"CppConvert.htm\">converted</a> to an"
+        "  <a href=\"CppInt.htm\">integer</a>."
+        "</p>"
+        "<p>&nbsp;</p>"
+        "<p>"
+        "  <a href=\"CppCanCast.htm\">CanCast</a> and"
+        "  <a href=\"CppCanLexicalCast.htm\">CanLexicalCast</a> are more general versions"
+        "  of <a href=\"CppIsInt.htm\">IsInt</a>."
+        "</p>"
       }
     }
   );
@@ -6690,6 +6725,19 @@ ToolTestNewickVector
     }
   );
 
+  m.push_back(
+    { "CppStrToInt",
+      {
+        "<p>"
+        "  <a href=\"CppStrToInt.htm\">StrToInt</a> is a <a href=\"CppCodeSnippets.htm\">code snippet</a> to "
+        "  <a href=\"CppConvert.htm\"> convert</a> a <a href=\"CppStdString.htm\">std::string</a> to <a href=\"CppInt.htm\">int</a>. "
+        "  <a href=\"CppIntToStr.htm\">IntToStr</a> <a href=\"CppConvert.htm\">converts</a> an <a href=\"CppInt.htm\">int</a> to "
+        "  <a href=\"CppStdString.htm\">std::string</a>."
+        "</p>"
+      }
+    }
+  );
+
 
   m.push_back(
     { "CppMultiApproximator",
@@ -6969,7 +7017,7 @@ ToolTestNewickVector
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p>A <a href=\"CppNewick.htm\">Newick</a> is a way to write down a phylogeny as a <a href=\"CppString.htm\">std::string</a>. This page shows how to check this <a href=\"CppString.htm\">std::string</a> and how to store a <a href=\"CppNewick.htm\">Newick</a> more efficiently.</p>",
+        "<p>A <a href=\"CppNewick.htm\">Newick</a> is a way to write down a phylogeny as a <a href=\"CppStdString.htm\">std::string</a>. This page shows how to check this <a href=\"CppStdString.htm\">std::string</a> and how to store a <a href=\"CppNewick.htm\">Newick</a> more efficiently.</p>",
         "<p>&nbsp;</p>",
         "<p>Because personally, I only work with <a href=\"CppNewick.htm\">Newicks</a> in the form '(((A,B),(C,D)),E)', these algorithms will so as well.</p>",
         "<p>&nbsp;</p>",
@@ -8465,8 +8513,8 @@ ToolTestNewickVector
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtExample24.htm\">Qt example 24: create a simple text positioning widget</a> is a <a href=\"CppQtExample.htm\">Qt Example</a>",
         "that uses <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> to create a simple text positioning <a href=\"CppWidget.htm\">widget</a>:",
-        "in the <a href=\"CppConstructor.htm\">constructor</a> the different <a href=\"CppString.htm\">std::strings</a> are specified, upon which",
-        "the <a href=\"CppWidget.htm\">widget</a> puts these overlapping in the center. Then, the <a href=\"CppString.htm\">std::strings</a> can",
+        "in the <a href=\"CppConstructor.htm\">constructor</a> the different <a href=\"CppStdString.htm\">std::strings</a> are specified, upon which",
+        "the <a href=\"CppWidget.htm\">widget</a> puts these overlapping in the center. Then, the <a href=\"CppStdString.htm\">std::strings</a> can",
         "dragged.</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -8499,8 +8547,8 @@ ToolTestNewickVector
         "<p><a href=\"CppQtExample26.htm\">Qt example 26: create a text positioning widget</a> is an elaboration of",
         "<a href=\"CppQtExample24.htm\">Qt example 24: create a simple text positioning widget</a>. This <a href=\"CppQtExample.htm\">Qt Example</a>",
         "that uses <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> to create a simple text positioning <a href=\"CppWidget.htm\">widget</a>:",
-        "in the <a href=\"CppConstructor.htm\">constructor</a> the different <a href=\"CppString.htm\">std::strings</a> are specified, upon which",
-        "the <a href=\"CppWidget.htm\">widget</a> puts these overlapping in the center. Then, the <a href=\"CppString.htm\">std::strings</a> can",
+        "in the <a href=\"CppConstructor.htm\">constructor</a> the different <a href=\"CppStdString.htm\">std::strings</a> are specified, upon which",
+        "the <a href=\"CppWidget.htm\">widget</a> puts these overlapping in the center. Then, the <a href=\"CppStdString.htm\">std::strings</a> can",
         "dragged.</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -9374,7 +9422,7 @@ ToolTestNewickVector
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppSeperateString.htm\">SeperateString</a> is a <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> that seperates a <a href=\"CppString.htm\">std::string</a> into a multiple <a href=\"CppString.htm\">std::strings</a> (in a <a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppString.htm\">std::string</a>&gt;) by a certain seperator.</p>",
+        "<p><a href=\"CppSeperateString.htm\">SeperateString</a> is a <a href=\"CppStdString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> that seperates a <a href=\"CppStdString.htm\">std::string</a> into a multiple <a href=\"CppStdString.htm\">std::strings</a> (in a <a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppStdString.htm\">std::string</a>&gt;) by a certain seperator.</p>",
         "<p>&nbsp;</p>",
         "<p>I have multiple versions of SeperateString:</p>",
         "<ol>",
@@ -9382,8 +9430,8 @@ ToolTestNewickVector
         "  <li><img src=\"PicStl.png\" alt=\"STL\"/> SeperateString #2: Seperator is a <a href=\"CppChar.htm\">char</a>, uses <a href=\"CppAlgorithm.htm\">algorithms</a>, short version</li>",
         "  <li><img src=\"PicStl.png\" alt=\"STL\"/>SeperateString #3: Seperator is a <a href=\"CppChar.htm\">char</a>, uses <a href=\"CppAlgorithm.htm\">algorithms</a>, long version</li>",
         "  <li><img src=\"PicStl.png\" alt=\"STL\"/>SeperateString #4: Seperator is a <a href=\"CppChar.htm\">char</a>, does not use algorithms</li>",
-        "  <li><img src=\"PicStl.png\" alt=\"STL\"/>SeperateString #5: Seperator is a <a href=\"CppString.htm\">std::string</a>, uses algorithms</li>",
-        "  <li><img src=\"PicStl.png\" alt=\"STL\"/>SeperateString #6: Seperator is a <a href=\"CppString.htm\">std::string</a>, does not use algorithms</li>",
+        "  <li><img src=\"PicStl.png\" alt=\"STL\"/>SeperateString #5: Seperator is a <a href=\"CppStdString.htm\">std::string</a>, uses algorithms</li>",
+        "  <li><img src=\"PicStl.png\" alt=\"STL\"/>SeperateString #6: Seperator is a <a href=\"CppStdString.htm\">std::string</a>, does not use algorithms</li>",
         "</ol>",
         "<p>&nbsp;</p>",
         "<p>Of each version of <a href=\"CppSeperateString.htm\">SeperateString</a>, I also wrote some test code on it.</p>",
@@ -9950,6 +9998,20 @@ ToolTestNewickVector
       }
     }
   );
+
+  m.push_back(
+    { "CppTrim",
+      {
+        "<p>"
+        "  <a href=\"CppTrim.htm\">Trim</a> is a <a href=\"CppStdString.htm\">std::string</a>"
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a> to remove leading"
+        "  and trailing whitespace from a <a href=\"CppStdString.htm\">std::string</a>."
+        "</p>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppTwoDigitNewick",
       {
@@ -19501,7 +19563,7 @@ ToolTestNewickVector
         "&nbsp;&nbsp;<b><a href=\"CppConst.htm\">const</a></b> <b><a href=\"CppInt.htm\">int</a></b> sz <a href=\"CppOperatorAssign.htm\">=</a> 256;<br/>",
         "&nbsp;&nbsp;<b><a href=\"CppChar.htm\">char</a></b> buffer[sz];<br/>",
         "&nbsp;&nbsp;GetWindowText(handle,buffer,sz,<br/>",
-        "&nbsp;&nbsp;<b><a href=\"CppConst.htm\">const</a></b> <a href=\"CppString.htm\">std::string</a> text(buffer,<br/>",
+        "&nbsp;&nbsp;<b><a href=\"CppConst.htm\">const</a></b> <a href=\"CppStdString.htm\">std::string</a> text(buffer,<br/>",
         "&nbsp;&nbsp;<b><a href=\"CppIf.htm\">if</a></b> (text.empty())<br/>",
         "&nbsp;&nbsp;{<br/>",
         "&nbsp;&nbsp;&nbsp;&nbsp;handle <a href=\"CppOperatorAssign.htm\">=</a> GetNextWindow(handle,GW_HWNDNEXT,<br/>",
