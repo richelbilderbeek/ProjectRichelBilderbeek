@@ -190,13 +190,13 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<CommandCreateNewNode> cmd_add_node2(new CommandCreateNewNode);
 
     assert(c->GetScene()->selectedItems().size() == 0);
-    assert(w->GetWidget().GetSelected().size() == 0);
+    assert(w->GetWidget().GetSelectedNodes().size() == 0);
     w->DoCommand(cmd_add_node1); //Adding a Node also selects it
     assert(c->GetScene()->selectedItems().size() == 1);
-    assert(w->GetWidget().GetSelected().size() == 1);
+    assert(w->GetWidget().GetSelectedNodes().size() == 1);
     w->DoCommand(cmd_add_node2); //Adding a Node also selects it
     assert(c->GetScene()->selectedItems().size() == 2);
-    assert(w->GetWidget().GetSelected().size() == 2);
+    assert(w->GetWidget().GetSelectedNodes().size() == 2);
   }
   if (verbose) { TRACE("Create two nodes and add an edge"); }
   {

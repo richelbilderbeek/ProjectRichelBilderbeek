@@ -359,28 +359,13 @@ void ribi::cmap::QtConceptMapWidget::OnSetSelected(
 {
   for (const auto edge: edges)
   {
-    m_qtconceptmap->FindQtEdge(edge.get())->setSelected(true);
+    m_qtconceptmap->FindQtEdge(edge)->setSelected(true);
   }
   for (const auto node: nodes)
   {
     m_qtconceptmap->FindQtNode(node.get())->setSelected(true);
   }
 }
-/*
-void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept
-{
-  //TRACE_FUNC();
-  assert(node);
-}
-*/
-/*
-void ribi::cmap::QtConceptMapWidget::showEvent(QShowEvent*) noexcept
-{
-  assert(this->isVisible());
-  m_qtconceptmap->show();
-  assert(this->m_qtconceptmap->isVisible());
-}
-*/
 
 void ribi::cmap::QtConceptMapWidget::Undo() noexcept
 {

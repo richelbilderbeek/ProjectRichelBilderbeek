@@ -167,6 +167,7 @@ struct Widget
   void AddNode(const boost::shared_ptr<Node> node) noexcept;
 
   ///Add the nodes to the current (can be zero) selecetd nodes
+  void AddSelected(const Edges& edges) noexcept;
   void AddSelected(const Nodes& nodes) noexcept;
   void AddSelected(const Edges& edges,const Nodes& nodes) noexcept;
 
@@ -220,12 +221,12 @@ struct Widget
   //void SetFocus(const boost::shared_ptr<Node>& node) noexcept;
 
   ///Set the nodes to the only nodes selected
+  void SetSelected(const ConstNodes& nodes) noexcept;
+  void SetSelected(const ConstEdges& edges) noexcept;
   void SetSelected(const Nodes& nodes) noexcept;
   void SetSelected(const Edges& edges) noexcept;
-  void SetSelected(
-    const Edges& edges,
-    const Nodes& nodes
-  ) noexcept;
+  void SetSelected(const Edges& edges,const Nodes& nodes) noexcept;
+  void SetSelected(const ConstEdges& edges,const ConstNodes& nodes) noexcept;
   void SetSelected(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
 
   #ifndef NDEBUG

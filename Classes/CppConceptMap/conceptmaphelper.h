@@ -64,6 +64,7 @@ std::vector<const T *> AddConst(
   return w;
 }
 
+
 namespace cmap {
 
 ///Obtain all possible selections of a std::vector, preserving the ordering of its elements

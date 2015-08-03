@@ -46,6 +46,45 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+std::vector<boost::shared_ptr<ribi::cmap::Edge> > RemoveConst(
+  std::vector<boost::shared_ptr<const ribi::cmap::Edge> > v) noexcept
+{
+  const std::vector<boost::shared_ptr<ribi::cmap::Edge> > w(v.begin(),v.end());
+  #ifndef NDEBUG
+  assert(v.size() == w.size());
+  const std::size_t sz = v.size();
+  for (std::size_t i=0; i!=sz; ++i) { assert(v[i] == w[i]); }
+  #endif
+  return w;
+}
+
+std::vector<boost::shared_ptr<ribi::cmap::Node> > RemoveConst(
+  std::vector<boost::shared_ptr<const ribi::cmap::Node> > v) noexcept
+{
+  const std::vector<boost::shared_ptr<ribi::cmap::Node> > w(v.begin(),v.end());
+  #ifndef NDEBUG
+  assert(v.size() == w.size());
+  const std::size_t sz = v.size();
+  for (std::size_t i=0; i!=sz; ++i) { assert(v[i] == w[i]); }
+  #endif
+  return w;
+}
+
+/*
+template <class T>
+std::vector<boost::shared_ptr<T> > RemoveConst(
+  const std::vector<boost::shared_ptr<const T> > v) noexcept
+{
+  const std::vector<boost::shared_ptr<T> > w(v.begin(),v.end());
+  #ifndef NDEBUG
+  assert(v.size() == w.size());
+  const std::size_t sz = v.size();
+  for (std::size_t i=0; i!=sz; ++i) { assert(v[i] == w[i]); }
+  #endif
+  return w;
+}
+*/
+
 ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
   : //Signals first, as these are public
     m_signal_add_edge{},
@@ -123,11 +162,27 @@ void ribi::cmap::Widget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
   #endif
 }
 
+void ribi::cmap::Widget::AddSelected(const std::vector<boost::shared_ptr<Edge>>& edges) noexcept
+{
+  assert(std::count(edges.begin(),edges.end(),nullptr) == 0);
+  std::copy(edges.begin(),edges.end(),std::back_inserter(m_selected.first));
+  m_signal_set_selected(edges, {});
+}
+
 void ribi::cmap::Widget::AddSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
 {
   assert(std::count(nodes.begin(),nodes.end(),nullptr) == 0);
   std::copy(nodes.begin(),nodes.end(),std::back_inserter(m_selected.second));
   m_signal_set_selected({},nodes);
+}
+
+void ribi::cmap::Widget::AddSelected(
+  const std::vector<boost::shared_ptr<Edge>>& edges,
+  const std::vector<boost::shared_ptr<Node>>& nodes
+) noexcept
+{
+  AddSelected(edges);
+  AddSelected(nodes);
 }
 
 bool ribi::cmap::Widget::CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept
@@ -337,6 +392,39 @@ ribi::cmap::Widget::ConstNodes ribi::cmap::Widget::GetSelectedNodes() const noex
   return selected;
 }
 
+std::vector<boost::shared_ptr<ribi::cmap::Edge>> ribi::cmap::Widget::GetRandomEdges(
+  std::vector<boost::shared_ptr<const Edge>> edges_to_exclude
+) noexcept
+{
+  assert(!GetConceptMap()->GetEdges().empty());
+  auto nodes(GetConceptMap()->GetEdges());
+  std::sort(nodes.begin(),nodes.end());
+  std::sort(edges_to_exclude.begin(),edges_to_exclude.end());
+  //Find the Edges present in nodes, absent in nodes_to_exclude
+  decltype(nodes) focus_nodes;
+  std::set_difference(
+    nodes.begin(),nodes.end(),
+    edges_to_exclude.begin(),edges_to_exclude.end(),
+    std::back_inserter(focus_nodes)
+  );
+
+  if (focus_nodes.empty()) return focus_nodes;
+  if (focus_nodes.size() == 1) return focus_nodes;
+  std::random_shuffle(focus_nodes.begin(),focus_nodes.end());
+  const int n = 1 + (std::rand() % (focus_nodes.size() - 1));
+  focus_nodes.resize(n);
+  return focus_nodes;
+}
+
+boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::Widget::GetRandomEdge(
+  std::vector<boost::shared_ptr<const Edge>> edges_to_exclude) noexcept
+{
+  const auto v(GetRandomEdges(edges_to_exclude));
+  boost::shared_ptr<Edge> p;
+  if (!v.empty()) p = v[0];
+  return p;
+}
+
 std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::Widget::GetRandomNodes(
   std::vector<boost::shared_ptr<const Node>> nodes_to_exclude
 ) noexcept
@@ -422,24 +510,30 @@ void ribi::cmap::Widget::SetFocus(const boost::shared_ptr<Node>& node) noexcept
 */
 
 void ribi::cmap::Widget::SetSelected(
-  const std::vector<boost::shared_ptr<Edge>>& edges,
-  const std::vector<boost::shared_ptr<Node>>& nodes
+  const ConstEdges& edges,
+  const ConstNodes& nodes
 ) noexcept
 {
-  assert(std::count(nodes.begin(),nodes.end(),nullptr) == 0);
-  m_selected.first = edges;
-  m_selected.second = nodes;
-  m_signal_set_selected(edges,nodes);
+  const Edges non_const_edges = RemoveConst(edges);
+  const Nodes non_const_nodes = RemoveConst(nodes);
+  m_selected.first = non_const_edges;
+  m_selected.second = non_const_nodes;
+  m_signal_set_selected(non_const_edges,non_const_nodes);
 }
 
-void ribi::cmap::Widget::SetSelected(const std::vector<boost::shared_ptr<Edge>>& edges) noexcept
+void ribi::cmap::Widget::SetSelected(const Edges& edges) noexcept
 {
   SetSelected( edges, {});
 }
 
-void ribi::cmap::Widget::SetSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
+void ribi::cmap::Widget::SetSelected(const Nodes& nodes) noexcept
 {
   SetSelected( {}, nodes);
+}
+
+void ribi::cmap::Widget::SetSelected(const ConstEdgesAndNodes& nodes_and_edges) noexcept
+{
+  SetSelected(nodes_and_edges.first, nodes_and_edges.second);
 }
 
 #ifndef NDEBUG
