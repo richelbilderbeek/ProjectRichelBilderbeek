@@ -387,7 +387,7 @@ std::vector<boost::shared_ptr<ribi::cmap::Edge>> ribi::cmap::Widget::GetRandomEd
   std::vector<boost::shared_ptr<const Edge>> edges_to_exclude
 ) noexcept
 {
-  assert(!GetConceptMap()->GetEdges().empty());
+  if (!GetConceptMap()->GetEdges().empty()) { return Edges(); }
   auto nodes(GetConceptMap()->GetEdges());
   std::sort(nodes.begin(),nodes.end());
   std::sort(edges_to_exclude.begin(),edges_to_exclude.end());

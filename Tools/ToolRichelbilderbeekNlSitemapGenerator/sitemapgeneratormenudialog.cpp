@@ -450,10 +450,16 @@ std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
     std::stringstream s;
     s << (now->tm_mday);
     day = s.str();
-    if (day.size() == 1) day = "0" + month;
+    if (day.size() == 1) day = "0" + day;
   }
   assert(day.size() == 2);
-  return year + "-" + month + "-" + day;
+  const std::string date{
+    year + "-" + month + "-" + day
+  };
+  assert(date.size()==10);
+  assert(date[4]=='-');
+  assert(date[7]=='-');
+  return date;
 }
 
 ribi::Help ribi::SitemapGeneratorMenuDialog::GetHelp() const noexcept
@@ -527,5 +533,7 @@ void ribi::SitemapGeneratorMenuDialog::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  SitemapGeneratorMenuDialog d;
+  assert(!d.GetDateIso8601().empty());
 }
 #endif

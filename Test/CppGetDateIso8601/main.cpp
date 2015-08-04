@@ -56,10 +56,16 @@ const std::string GetDateIso8601Stl()
     std::stringstream s;
     s << (now->tm_mday);
     day = s.str();
-    if (day.size() == 1) day = std::string("0") + month;
+    if (day.size() == 1) day = std::string("0") + day;
   }
   assert(day.size() == 2);
-  return year + "-" + month + "-" + day;
+  const std::string date{
+    year + "-" + month + "-" + day
+  };
+  assert(date.size()==10);
+  assert(date[4]=='-');
+  assert(date[7]=='-');
+  return date;
 }
 
 int main()

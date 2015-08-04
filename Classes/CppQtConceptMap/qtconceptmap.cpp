@@ -394,7 +394,7 @@ std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges() c
 {
   const std::vector<const QtEdge *> qtedges
     = Collect<const QtEdge>(this->scene());
-  assert(qtedges.size() == GetConceptMap()->GetNodes().size()
+  assert(qtedges.size() == GetConceptMap()->GetEdges().size()
       && "GUI and non-GUI must contain an equal amount of edges");
   return qtedges;
 }

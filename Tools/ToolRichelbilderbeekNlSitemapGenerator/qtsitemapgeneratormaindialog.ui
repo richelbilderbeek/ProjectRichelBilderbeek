@@ -59,7 +59,7 @@ QLineEdit { font: 16px, &quot;Courier&quot; }
       <item>
        <widget class="QLineEdit" name="edit_website">
         <property name="text">
-         <string>/home/richel/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl</string>
+         <string>/home/richel/GitHubs/RichelbilderbeekNl</string>
         </property>
        </widget>
       </item>
