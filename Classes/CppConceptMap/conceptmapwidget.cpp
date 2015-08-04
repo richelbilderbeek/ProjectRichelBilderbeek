@@ -46,18 +46,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-std::vector<boost::shared_ptr<ribi::cmap::Edge> > RemoveConst(
-  std::vector<boost::shared_ptr<const ribi::cmap::Edge> > v) noexcept
-{
-  const std::vector<boost::shared_ptr<ribi::cmap::Edge> > w(v.begin(),v.end());
-  #ifndef NDEBUG
-  assert(v.size() == w.size());
-  const std::size_t sz = v.size();
-  for (std::size_t i=0; i!=sz; ++i) { assert(v[i] == w[i]); }
-  #endif
-  return w;
-}
 
+/*
 std::vector<boost::shared_ptr<ribi::cmap::Node> > RemoveConst(
   std::vector<boost::shared_ptr<const ribi::cmap::Node> > v) noexcept
 {
@@ -69,6 +59,7 @@ std::vector<boost::shared_ptr<ribi::cmap::Node> > RemoveConst(
   #endif
   return w;
 }
+*/
 
 /*
 template <class T>
@@ -523,12 +514,12 @@ void ribi::cmap::Widget::SetSelected(
 
 void ribi::cmap::Widget::SetSelected(const Edges& edges) noexcept
 {
-  SetSelected( edges, {});
+  SetSelected( AddConst(edges), {});
 }
 
 void ribi::cmap::Widget::SetSelected(const Nodes& nodes) noexcept
 {
-  SetSelected( {}, nodes);
+  SetSelected( {}, AddConst(nodes));
 }
 
 void ribi::cmap::Widget::SetSelected(const ConstEdgesAndNodes& nodes_and_edges) noexcept

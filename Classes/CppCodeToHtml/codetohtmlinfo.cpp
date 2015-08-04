@@ -6738,6 +6738,17 @@ ToolTestNewickVector
     }
   );
 
+  m.push_back(
+    { "CppStrToLines",
+      {
+        "<p>"
+        "  <a href=\"CppStrToLines.htm\">StrToLines</a> is a <a href=\"CppCodeSnippets.htm\">code snippet</a> to "
+        "  add newlines to a <a href=\"CppStdString.htm\">std::string</a> so that each line has length characters at most."
+        "</p>"
+      }
+    }
+  );
+
 
   m.push_back(
     { "CppMultiApproximator",

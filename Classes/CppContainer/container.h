@@ -51,7 +51,7 @@ struct Container
   ///TODO: Merge with ToStr
   std::string ContainerToStr(const std::vector<std::string>& s, const std::string& seperator = " ") const noexcept;
 
-  ///std::count(t.begin(),t.end(),u
+  ///Shorthand for std::count(std::begin(t),std::end(t),u)
   template <class T, class U>
   static int Count(const T& t, const U& u) noexcept
   {

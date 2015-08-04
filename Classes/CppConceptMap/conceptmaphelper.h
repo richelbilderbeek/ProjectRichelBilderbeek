@@ -42,11 +42,6 @@ std::vector<boost::shared_ptr<const T> > AddConst(
   const std::vector<boost::shared_ptr<T> > v) noexcept
 {
   const std::vector<boost::shared_ptr<const T> > w(v.begin(),v.end());
-  #ifndef NDEBUG
-  assert(v.size() == w.size());
-  const std::size_t sz = v.size();
-  for (std::size_t i=0; i!=sz; ++i) { assert(v[i] == w[i]); }
-  #endif
   return w;
 }
 
@@ -56,14 +51,25 @@ std::vector<const T *> AddConst(
   const std::vector<T *> v) noexcept
 {
   const std::vector<const T *> w(v.begin(),v.end());
-  #ifndef NDEBUG
-  assert(v.size() == w.size());
-  const std::size_t sz = v.size();
-  for (std::size_t i=0; i!=sz; ++i) { assert(v[i] == w[i]); }
-  #endif
   return w;
 }
 
+template <class T>
+std::vector<boost::shared_ptr<T> > RemoveConst(
+  std::vector<boost::shared_ptr<const T> > v) noexcept
+{
+  std::vector<boost::shared_ptr<T>> w;
+  std::transform(
+    std::begin(v),
+    std::end(v),
+    std::back_inserter(w),
+    [](boost::shared_ptr<const T>& edge)
+    {
+      return boost::const_pointer_cast<T>(edge);
+    }
+  );
+  return w;
+}
 
 namespace cmap {
 

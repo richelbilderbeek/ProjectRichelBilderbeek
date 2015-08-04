@@ -37,8 +37,9 @@ void ribi::cmap::CommandUnselectRandom::DoCommandSpecific(Widget * const widget)
   //Get a random selected edge or node
   auto all_selected = const_cast<const Widget*>(widget)->GetSelected();
   const int n_edges{static_cast<int>(all_selected.first.size())};
-  //const int n_nodes{static_cast<int>(all_selected.second.size())};
-  const int i{std::rand() % (n_edges + n_edges)};
+  const int n_nodes{static_cast<int>(all_selected.second.size())};
+  assert(n_edges + n_nodes > 0);
+  const int i{std::rand() % (n_edges + n_nodes)};
   if (i < n_edges)
   {
     //Unselect edge
