@@ -56,6 +56,7 @@ ribi::cmap::Node::Node(
   #endif
   SetConcept(concept);
   assert(m_concept == concept);
+  assert(this->GetConcept());
 }
 
 

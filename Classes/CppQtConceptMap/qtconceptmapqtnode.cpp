@@ -107,31 +107,6 @@ ribi::cmap::QtNode::QtNode(
     )
   );
 
-  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(m_display_strategy.get()))
-  {
-    edit_concept->m_signal_request_edit.connect(
-      boost::bind(
-        &QtConceptMapElement::OnConceptRequestsEdit,
-        this
-      )
-    );
-  }
-
-  if (QtRateStrategy * rate_concept = dynamic_cast<QtRateStrategy*>(m_display_strategy.get()))
-  {
-    rate_concept->m_signal_request_rate_concept.connect(
-      boost::bind(
-        &ribi::cmap::QtNode::OnItemRequestsRateConcept,
-        this
-      )
-    );
-    rate_concept->m_signal_request_rate_examples.connect(
-      boost::bind(
-        &ribi::cmap::QtNode::OnItemRequestsRateExamples,
-        this
-      )
-    );
-  }
   */
 }
 
@@ -164,31 +139,6 @@ ribi::cmap::QtNode::~QtNode() noexcept
     )
   );
 
-  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(m_display_strategy.get()))
-  {
-    edit_concept->m_signal_request_edit.disconnect(
-      boost::bind(
-        &QtConceptMapElement::OnConceptRequestsEdit,
-        this
-      )
-    );
-  }
-
-  if (QtRateStrategy * rate_concept = dynamic_cast<QtRateStrategy*>(m_display_strategy.get()))
-  {
-    rate_concept->m_signal_request_rate_concept.disconnect(
-      boost::bind(
-        &ribi::cmap::QtNode::OnItemRequestsRateConcept,
-        this
-      )
-    );
-    rate_concept->m_signal_request_rate_examples.disconnect(
-      boost::bind(
-        &ribi::cmap::QtNode::OnItemRequestsRateExamples,
-        this
-      )
-    );
-  }
   */
 }
 
@@ -208,9 +158,6 @@ void ribi::cmap::QtNode::focusInEvent(QFocusEvent* e) noexcept
 {
   QtRoundedEditRectItem::focusInEvent(e);
   m_signal_focus_in_event(this);
-  //m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen()); //Updates itself
-  //assert(!m_display_strategy->hasFocus());
-  ///?maybe update?
   assert(hasFocus());
 }
 

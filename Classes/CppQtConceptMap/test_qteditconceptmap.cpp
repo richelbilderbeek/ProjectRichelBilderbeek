@@ -29,6 +29,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapcollect.h"
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
+#include "conceptmapnode.h"
+#include "conceptmapnodefactory.h"
 #include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -43,6 +45,7 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
   }
   const TestTimer test_timer{__func__,__FILE__,0.2};
   TestTimer::SetMaxCnt(2); //Because the base class has to be tested as well
+  const bool verbose{false};
 
   //SetConceptMap and GetConceptMap return the same
   {
@@ -86,7 +89,6 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
   }
   //Test base class (after having tested cloning of derived class)
   {
-    const auto t_begin = std::chrono::system_clock::now();
     const boost::shared_ptr<ConceptMap> concept_map
       = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(15);
     assert(concept_map);
@@ -96,12 +98,9 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
     widget->SetConceptMap(concept_map);
     assert(widget);
     QtConceptMap::Test(widget);
-    const auto t_end = std::chrono::system_clock::now();
-    std::cout << "1:" << std::chrono::duration_cast<std::chrono::milliseconds>(t_end - t_begin).count() << std::endl;
   }
   //Deletion of nodes
   {
-    const auto t_begin = std::chrono::system_clock::now();
     const int concept_map_index{3};
     const std::size_t n_nodes = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(concept_map_index)->GetNodes().size();
     for (std::size_t j=0; j!=n_nodes; ++j)
@@ -120,12 +119,9 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
       assert(widget->GetQtNodes().size() == n_nodes - 1
         && "Node must really be gone");
     }
-    const auto t_end = std::chrono::system_clock::now();
-    std::cout << "2:" << std::chrono::duration_cast<std::chrono::milliseconds>(t_end - t_begin).count() << std::endl;
   }
   //Deletion of edges
   {
-    const auto t_begin = std::chrono::system_clock::now();
     const int concept_map_index{3};
     const std::size_t n_edges = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(concept_map_index)->GetEdges().size();
     for (std::size_t j=0; j!=n_edges; ++j)
@@ -143,8 +139,77 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept
       assert(widget->GetQtEdges().size() == n_edges - 1
         && "Edge must really be gone");
     }
-    const auto t_end = std::chrono::system_clock::now();
-    std::cout << "3:" << std::chrono::duration_cast<std::chrono::milliseconds>(t_end - t_begin).count() << std::endl;
+  }
+
+  if (verbose) { TRACE("AddNode: a Node added end up in both ConceptMap and QtConceptMap, by adding in both places"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    boost::shared_ptr<QtEditConceptMap> qtconceptmap(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    const int n_nodes_before{static_cast<int>(qtconceptmap->GetQtNodes().size())};
+
+    const auto node = NodeFactory().GetTest(0);
+    conceptmap->AddNode(node);
+    qtconceptmap->AddNode(node);
+
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    const int n_nodes_after{static_cast<int>(qtconceptmap->GetQtNodes().size())};
+    assert(n_nodes_after == n_nodes_before + 1);
+  }
+  if (verbose) { TRACE("AddNode: a Node added end up in both ConceptMap and QtConceptMap, by adding in both places"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    boost::shared_ptr<QtEditConceptMap> qtconceptmap(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    const int n_nodes_before{static_cast<int>(qtconceptmap->GetQtNodes().size())};
+
+    const auto node = NodeFactory().GetTest(0);
+    qtconceptmap->AddNode(node); //First Qt
+    conceptmap->AddNode(node);
+
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    const int n_nodes_after{static_cast<int>(qtconceptmap->GetQtNodes().size())};
+    assert(n_nodes_after == n_nodes_before + 1);
+  }
+  assert(!"Works, but awkward UI");
+
+
+  if (verbose) { TRACE("AddNode: a Node added gets a QtNode to be found in QtConceptMap"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    boost::shared_ptr<QtEditConceptMap> qtconceptmap(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    qtconceptmap->SetConceptMap(conceptmap);
+    const auto node = NodeFactory().GetTest(0);
+    qtconceptmap->AddNode(node);
+    assert(qtconceptmap->FindQtNode(node.get()));
+  }
+  if (verbose) { TRACE("DeleteNode: a Node added gets a QtNode to be found in QtConceptMap"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    boost::shared_ptr<QtEditConceptMap> qtconceptmap(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    qtconceptmap->SetConceptMap(conceptmap);
+
+
+    const auto node1 = NodeFactory().GetTest(0);
+    qtconceptmap->AddNode(node1);
+
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+
+    const auto node2 = NodeFactory().GetTest(0);
+    qtconceptmap->AddNode(node2);
+
+    const int n_items_before = qtconceptmap->GetScene()->items().count();
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+
+    qtconceptmap->DeleteNode( qtconceptmap->FindQtNode(node1.get() ) );
+
+    const int n_items_after = qtconceptmap->GetScene()->items().count();
+    assert(n_items_before - n_items_after == 1);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
   }
   TestTimer::SetMaxCnt(1); //Because the base class has been tested now
 }

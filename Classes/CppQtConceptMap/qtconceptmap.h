@@ -137,6 +137,7 @@ protected:
   ///Obtain the read-and-write Qt edge items
   ///The read-only Qt edge items is already supplied by QtConceptMap
   std::vector<QtEdge *> GetQtEdges();
+  std::vector<QtNode *> GetQtNodes();
 
   ///Obtain the rectangle with text showing the examples
   const QtExamplesItem * GetExamplesItem() const;

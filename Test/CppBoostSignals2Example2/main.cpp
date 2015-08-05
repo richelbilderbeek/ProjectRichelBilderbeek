@@ -1,12 +1,8 @@
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
 struct Thing
 {
@@ -49,3 +45,18 @@ int main()
   Manager m;
   for (int i=0; i!=10; ++i) m.EmitRandom();
 }
+
+/* Screen output:
+
+3
+1
+2
+0
+3
+0
+1
+2
+4
+1
+
+*/

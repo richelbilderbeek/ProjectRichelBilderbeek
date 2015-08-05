@@ -57,8 +57,6 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) 
 
   m_edge = m_widget->CreateNewEdge();
 
-  m_widget->SetSelected( ribi::cmap::Widget::ConstEdges({m_edge}), {});
-
   assert(m_widget);
   assert(m_edge);
 }

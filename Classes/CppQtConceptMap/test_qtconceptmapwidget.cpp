@@ -86,6 +86,11 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     w->DoCommand(cmd);
     assert(!m->GetNodes().empty() && "After creation a new node, the previously empty concept map must have a node");
     assert(!c->GetQtNodes().empty() && "After creation a new node, the previously empty QtConceptMap must have a node");
+    TRACE(m->GetNodes().size());
+    TRACE(c->GetQtNodes().size());
+    assert(m->GetNodes().size() == c->GetQtNodes().size());
+
+
     assert(w->CanUndo());
     w->Undo(); //Route #1
     //cmd->Undo(); //Route #2
@@ -195,6 +200,8 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(c->GetScene()->selectedItems().size() == 1);
     assert(w->GetWidget().GetSelectedNodes().size() == 1);
     w->DoCommand(cmd_add_node2); //Adding a Node also selects it
+    TRACE(c->GetScene()->selectedItems().size());
+    TRACE(w->GetWidget().GetSelectedNodes().size());
     assert(c->GetScene()->selectedItems().size() == 2);
     assert(w->GetWidget().GetSelectedNodes().size() == 2);
   }
@@ -215,6 +222,8 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(w->GetWidget().GetConceptMap()->GetEdges().size() == 0);
     w->DoCommand(cmd_add_edge); //Adding an Edge, deselects the rest
     TRACE(c->GetScene()->selectedItems().size());
+    assert(w->GetWidget().GetSelectedNodes().size() == 0);
+    assert(w->GetWidget().GetSelectedEdges().size() == 1);
     assert(c->GetScene()->selectedItems().size() == 1); //The edge should be selected
     assert(dynamic_cast<QtEdge*>(c->GetScene()->selectedItems()[0]));
     assert(w->GetWidget().GetConceptMap()->GetEdges().size() == 1);

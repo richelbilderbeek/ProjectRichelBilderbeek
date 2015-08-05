@@ -39,7 +39,7 @@ void ribi::cmap::CommandCreateNewNode::DoCommandSpecific(Widget * const widget) 
   assert(widget->GetConceptMap().get());
 
   m_widget = widget;
-  m_node = m_widget->CreateNewNode();
+  m_node = m_widget->CreateNewNode(); //CreateNewNode adds it to the selected nodes
 
   assert(m_widget);
   assert(m_node);
@@ -49,6 +49,9 @@ void ribi::cmap::CommandCreateNewNode::UndoSpecific() noexcept
 {
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());
+
+  //unselect it
+  //m_widget->m_signal_delete_node(m_node); //Done by DeleteNodeS
 
   m_widget->DeleteNode(m_node);
 

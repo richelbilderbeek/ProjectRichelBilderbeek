@@ -2220,7 +2220,9 @@ ToolTestNewickVector
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostSignals2Example3.htm\">Boost.Signals2 example 3</a>",
-        "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example.",
+        "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example that",
+        "  shows how to a pass a <a href=\"CppFunction.htm\">function</a>"
+        "  as a signal argument.",
         "</p>"
       }
     }
@@ -2233,7 +2235,9 @@ ToolTestNewickVector
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostSignals2Example4.htm\">Boost.Signals2 example 4</a>",
-        "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example.",
+        "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example. It shows",
+        "  how to count the number of connections/<a href=\"CppSlot.htm\">slots</a> a"
+        "  signal has.",
         "</p>"
       }
     }

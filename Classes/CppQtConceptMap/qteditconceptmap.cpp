@@ -292,9 +292,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_fro
 ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_ptr<Node> node)
 {
   assert(node);
-  assert(node->GetConcept());
-  //const boost::shared_ptr<QtEditStrategy> display_strategy(new QtEditStrategy(node->GetConcept()));
-  //assert(node);
+
   QtNode * const qtnode = new QtNode(node);
   assert(qtnode);
   assert(qtnode->GetCenterX() == node->GetX());
@@ -304,8 +302,6 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
 
   //Signal #1
   //General: inform an Observer that this item has changed
-  #define NOT_NOW_20141111 //20150303
-  #ifdef NOT_NOW_20141111
   qtnode->m_signal_node_changed.connect(
     boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1))
   ;
@@ -328,30 +324,22 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
   //Signal #3
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtnode->m_signal_key_down_pressed.connect(
-  //qtnode->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
       &ribi::cmap::QtEditConceptMap::OnNodeKeyDownPressed,
       this, boost::lambda::_1, boost::lambda::_2)
   ); //Do not forget these placeholders!
-  #endif // NOT_NOW_20141111
+
 
   assert(!qtnode->scene());
-  this->scene()->addItem(qtnode);
-
-  assert(std::count(
-    GetConceptMap()->GetNodes().begin(),
-    GetConceptMap()->GetNodes().end(),
-    node) == 1 && "Assume Node is already in the concept map"
-  );
-  //this->GetConceptMap()->AddNode(node);
-
-  assert(qtnode->GetCenterX() == node->GetX());
-  assert(qtnode->GetCenterY() == node->GetY());
-  //Cannot check this: during construction the concept map has multiple nodes, that can only be
-  //added one by one
-  //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
-  //  && "GUI and non-GUI concept map must match");
-
+  this->scene()->addItem(qtnode); //Adding qtnode to scene() twice gives a warning
+  /*
+  {
+    assert(GetConceptMap());
+    const auto nodes = GetConceptMap()->GetNodes();
+    const int cnt{std::count(std::begin(nodes),std::end(nodes),node)};
+    assert(cnt == 0 && "Node must be added to ConceptMaps first, cannot do 'this->GetConceptMap()->AddNode(node);' here");
+  }
+  */
   return qtnode;
 }
 
@@ -482,26 +470,13 @@ void ribi::cmap::QtEditConceptMap::DoRandomStuff()
   QtNode * const qtnode2 = AddNode(node2);
 
   assert(qtnode1->GetNode() != qtnode2->GetNode());
-  //this->AddEdge(qtnode1,qtnode2);
-
-  assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
-    && "GUI and non-GUI concept map must match");
 }
 #endif
 
 
 std::vector<ribi::cmap::QtNode *> ribi::cmap::QtEditConceptMap::GetQtNodes()
 {
-  const std::vector<QtNode *> qtnodes
-    = Collect<QtNode>(this->scene());
-  if (qtnodes.size() != GetConceptMap()->GetNodes().size())
-  {
-    TRACE(qtnodes.size());
-    TRACE(GetConceptMap()->GetNodes().size());
-    TRACE("BREAK");
-  }
-  assert(qtnodes.size() == GetConceptMap()->GetNodes().size()
-      && "GUI and non-GUI must contain an equal amount of nodes");
+  const std::vector<QtNode *> qtnodes = Collect<QtNode>(this->scene());
   return qtnodes;
 }
 

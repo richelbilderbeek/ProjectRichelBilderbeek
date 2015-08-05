@@ -1,13 +1,8 @@
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
 //NoIdea is a class that can ask for an answer, but
 //has no idea what this answer is. It relies on a
@@ -29,7 +24,7 @@ struct NoIdea
   boost::signals2::signal<std::string()> m_signal;
 };
 
-const std::string SayX() { return "The answer"; }
+std::string SayX() { return "The answer"; }
 
 int main()
 {

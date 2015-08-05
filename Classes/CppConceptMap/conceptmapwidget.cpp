@@ -157,14 +157,14 @@ void ribi::cmap::Widget::AddSelected(const std::vector<boost::shared_ptr<Edge>>&
 {
   assert(std::count(edges.begin(),edges.end(),nullptr) == 0);
   std::copy(edges.begin(),edges.end(),std::back_inserter(m_selected.first));
-  m_signal_set_selected(edges, {});
+  m_signal_set_selected(m_selected.first,m_selected.second);
 }
 
 void ribi::cmap::Widget::AddSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
 {
   assert(std::count(nodes.begin(),nodes.end(),nullptr) == 0);
   std::copy(nodes.begin(),nodes.end(),std::back_inserter(m_selected.second));
-  m_signal_set_selected({},nodes);
+  m_signal_set_selected(m_selected.first,m_selected.second);
 }
 
 void ribi::cmap::Widget::AddSelected(
@@ -767,6 +767,13 @@ void ribi::cmap::Widget::Undo() noexcept
   );
   //m_undo.pop_back(); //DON'T, DoUndo does this
   #endif
+}
+
+void ribi::cmap::Widget::Unselect(
+  const Nodes& nodes
+) noexcept
+{
+  m_signal_lose_selected(nodes);
 }
 
 bool ribi::cmap::operator==(const Widget& lhs, const Widget& rhs) noexcept
