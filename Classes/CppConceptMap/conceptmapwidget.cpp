@@ -201,22 +201,30 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::Widget::CreateNewEdge() noexcept
   const boost::shared_ptr<Node> to   { GetSelectedNodes()[1] };
   assert(from);
   assert(to);
-  #ifndef NDEBUG
-  if (!m_conceptmap->HasNode(from))
-  {
-    TRACE("ERROR");
-  }
-  #endif
   assert(m_conceptmap->HasNode(from));
   assert(m_conceptmap->HasNode(to));
   const boost::shared_ptr<Edge> edge {
     EdgeFactory().Create(from,to)
   };
 
-  //ConceptMap does not signal the newly added node...
+  //ConceptMap does not signal the newly added edge (as it does no signalling at all)
   m_conceptmap->AddEdge(edge);
+
   //But ConceptMapWidget does
   m_signal_add_edge(edge);
+
+  //Widget must keep track of what is selected
+  m_selected.first.push_back(edge);
+  //Remove selection away from 'from'
+  const auto from_iter = std::find(std::begin(m_selected.second),std::end(m_selected.second),from);
+  assert(from_iter != std::end(m_selected.second));
+  std::swap(*from_iter,m_selected.second.back());
+  m_selected.second.pop_back();
+
+  const auto to_iter = std::find(std::begin(m_selected.second),std::end(m_selected.second),to);
+  assert(to_iter != std::end(m_selected.second));
+  std::swap(*to_iter,m_selected.second.back());
+  m_selected.second.pop_back();
 
   #ifndef NDEBUG
   const auto after = this->GetConceptMap()->GetEdges().size();
@@ -785,7 +793,7 @@ bool ribi::cmap::operator==(const Widget& lhs, const Widget& rhs) noexcept
   assert(static_cast<bool>(nullptr) == static_cast<bool>(nullptr));
   if (lhs.m_conceptmap && *lhs.m_conceptmap != *rhs.m_conceptmap) return false;
   if (lhs.m_focus != rhs.m_focus) return false;
-  if (lhs.m_selected != rhs.m_selected) return false;
+  if (lhs.GetSelected() != rhs.GetSelected()) return false;
   if (lhs.m_undo.size() != rhs.m_undo.size()) return false;
   return std::equal(
     std::begin(lhs.m_undo),

@@ -130,25 +130,29 @@ ribi::cmap::ConceptMap::~ConceptMap() noexcept
 void ribi::cmap::ConceptMap::AddEdge(const EdgePtr& edge) noexcept
 {
   assert(edge);
-  #define TODO_RICHEL
-  #ifdef  TODO_RICHEL
-  if (std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 0)
-  {
-    TRACE("ERROR");
-  }
+  assert(edge->GetFrom());
+  assert(edge->GetTo());
+  //Add Nodes if they are not present yet
+  if (!HasNode(edge->GetFrom())) { AddNode(edge->GetFrom()); }
+  if (!HasNode(edge->GetTo())  ) { AddNode(edge->GetTo()  ); }
+
   assert(HasNode(edge->GetFrom()));
   assert(HasNode(edge->GetTo()));
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 1
-    && "First enter the node this edge originates from"); //TODO RJCB
+    && "First enter the node this edge originates from");
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
     && "First enter the node this edge targets to");
-  #endif
   m_edges.push_back(edge);
 }
 
 void ribi::cmap::ConceptMap::AddNode(const NodePtr& node) noexcept
 {
   assert(node);
+  if (std::find(std::begin(m_nodes),std::end(m_nodes),node) != std::end(m_nodes))
+  {
+    TRACE("Warning: node already added");
+    return;
+  }
   m_nodes.push_back(node);
   assert(std::count(m_nodes.begin(),m_nodes.end(),node) == 1
     && "Every node must be unique");

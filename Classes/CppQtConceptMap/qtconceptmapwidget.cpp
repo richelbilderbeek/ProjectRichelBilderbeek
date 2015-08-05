@@ -183,8 +183,14 @@ void ribi::cmap::QtConceptMapWidget::OnAddEdge(const boost::shared_ptr<Edge> edg
   m_qtconceptmap->FindQtEdge(qtedge)->setSelected(true);
 
   //The QtNodes lose their selection
-  qtedge->GetFrom()->setSelected(false);
-  qtedge->GetTo()->setSelected(false);
+  const auto qtfrom = qtedge->GetFrom();
+  const auto qtto = qtedge->GetTo();
+  qtfrom->setSelected(false);
+  qtto->setSelected(false);
+
+  assert( m_qtconceptmap->FindQtEdge(qtedge->GetEdge())->isSelected());
+  assert(!m_qtconceptmap->FindQtNode(qtfrom->GetNode().get())->isSelected());
+  assert(!m_qtconceptmap->FindQtNode(qtto->GetNode().get()  )->isSelected());
 }
 
 void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> node) noexcept

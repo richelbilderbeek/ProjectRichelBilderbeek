@@ -104,21 +104,29 @@ ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept
 ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
-  //const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetNode()->GetConcept()));
-  //assert(qtconcept);
-  QtNode * const from = FindQtNode(edge->GetFrom().get());
-  assert(from);
-  QtNode * const to   = FindQtNode(edge->GetTo().get());
-  assert(to);
-  assert(from != to);
+  assert(edge);
+  //Be helpful here
+  if (!FindQtNode(edge->GetFrom().get())) { AddNode(edge->GetFrom()); }
+  if (!FindQtNode(edge->GetTo().get()  )) { AddNode(edge->GetTo()  ); }
+  {
+    const auto edges = GetConceptMap()->GetEdges();
+    const int cnt{std::count(std::begin(edges),std::end(edges),edge)};
+    if (cnt == 0) { GetConceptMap()->AddEdge(edge); }
+  }
+
+  QtNode * const qtfrom = FindQtNode(edge->GetFrom().get());
+  assert(qtfrom);
+  QtNode * const qtto   = FindQtNode(edge->GetTo().get());
+  assert(qtto);
+  assert(qtfrom != qtto);
   QtEdge * const qtedge = new QtEdge(
     edge,
-    from,
-    to
+    qtfrom,
+    qtto
   );
 
   //Edges connected to the center node do not show their concepts
-  if (IsQtCenterNode(from) || IsQtCenterNode(to))
+  if (IsQtCenterNode(qtfrom) || IsQtCenterNode(qtto))
   {
     //assert(qtconcept == qtedge->GetDisplayStrategy());
     //qtconcept->setVisible(false);
@@ -162,14 +170,10 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   assert(!qtedge->scene());
   this->scene()->addItem(qtedge);
 
-  assert(std::count(
-    this->GetConceptMap()->GetEdges().begin(),
-    this->GetConceptMap()->GetEdges().end(),
-    edge) == 1 && "Assume edge is already in the concept map");
-  //this->GetConceptMap()->AddEdge(edge);
-
-  assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
-    && "GUI and non-GUI concept map must match");
+  qtfrom->setSelected(false);
+  qtto->setSelected(false);
+  qtedge->setSelected(true);
+  assert(qtedge->isSelected());
 
   return qtedge;
 }
@@ -293,6 +297,18 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
 {
   assert(node);
 
+  //Add Node to ConceptMap if this has not been done yet
+  {
+    assert(GetConceptMap());
+    const auto nodes = GetConceptMap()->GetNodes();
+    const int cnt{std::count(std::begin(nodes),std::end(nodes),node)};
+    assert(cnt == 0 || cnt == 1);
+    if (cnt == 0)
+    {
+      this->GetConceptMap()->AddNode(node);
+    }
+  }
+
   QtNode * const qtnode = new QtNode(node);
   assert(qtnode);
   assert(qtnode->GetCenterX() == node->GetX());
@@ -332,14 +348,7 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
 
   assert(!qtnode->scene());
   this->scene()->addItem(qtnode); //Adding qtnode to scene() twice gives a warning
-  /*
-  {
-    assert(GetConceptMap());
-    const auto nodes = GetConceptMap()->GetNodes();
-    const int cnt{std::count(std::begin(nodes),std::end(nodes),node)};
-    assert(cnt == 0 && "Node must be added to ConceptMaps first, cannot do 'this->GetConceptMap()->AddNode(node);' here");
-  }
-  */
+  qtnode->setSelected(true);
   return qtnode;
 }
 

@@ -221,7 +221,6 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(w->CanDoCommand(cmd_add_edge));
     assert(w->GetWidget().GetConceptMap()->GetEdges().size() == 0);
     w->DoCommand(cmd_add_edge); //Adding an Edge, deselects the rest
-    TRACE(c->GetScene()->selectedItems().size());
     assert(w->GetWidget().GetSelectedNodes().size() == 0);
     assert(w->GetWidget().GetSelectedEdges().size() == 1);
     assert(c->GetScene()->selectedItems().size() == 1); //The edge should be selected
@@ -229,6 +228,5 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(w->GetWidget().GetConceptMap()->GetEdges().size() == 1);
     assert(!w->CanDoCommand(cmd_add_edge));
   }
-  assert(!"Green");
 }
 #endif

@@ -79,6 +79,8 @@ ribi::cmap::QtEdge1::QtEdge1(
   );
 
   //QtEdge is just the glue between a collection of things
+  this->setFlags(QGraphicsItem::ItemIsSelectable);
+
   /*
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
