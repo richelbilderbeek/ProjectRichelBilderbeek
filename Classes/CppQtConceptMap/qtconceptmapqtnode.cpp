@@ -317,6 +317,7 @@ void ribi::cmap::QtNode::paint(
   */
 
   //Check if item can move (as the center node cannot)
+  #define BRAINWEAVER_MOVE_ITEMS_ON_COLLISION
   #ifdef BRAINWEAVER_MOVE_ITEMS_ON_COLLISION
   if (this->flags() & QGraphicsItem::ItemIsMovable)
   {
@@ -331,7 +332,7 @@ void ribi::cmap::QtNode::paint(
           const double dx = x() - other_node->x() > 0.0 ? 1.0 : -1.0;
           const double dy = y() - other_node->y() > 0.0 ? 1.0 : -1.0;
           //assert(this->flags() & QGraphicsItem::ItemIsMovable); //Not true for center node
-          this->setPos( this->x()  + dx, this->y()  + dy);
+          this->SetCenterPos( this->x()  + dx, this->y()  + dy);
         }
       }
     );

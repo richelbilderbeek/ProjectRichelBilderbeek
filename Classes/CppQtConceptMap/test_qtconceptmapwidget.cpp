@@ -86,8 +86,6 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     w->DoCommand(cmd);
     assert(!m->GetNodes().empty() && "After creation a new node, the previously empty concept map must have a node");
     assert(!c->GetQtNodes().empty() && "After creation a new node, the previously empty QtConceptMap must have a node");
-    TRACE(m->GetNodes().size());
-    TRACE(c->GetQtNodes().size());
     assert(m->GetNodes().size() == c->GetQtNodes().size());
 
 
@@ -200,8 +198,6 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(c->GetScene()->selectedItems().size() == 1);
     assert(w->GetWidget().GetSelectedNodes().size() == 1);
     w->DoCommand(cmd_add_node2); //Adding a Node also selects it
-    TRACE(c->GetScene()->selectedItems().size());
-    TRACE(w->GetWidget().GetSelectedNodes().size());
     assert(c->GetScene()->selectedItems().size() == 2);
     assert(w->GetWidget().GetSelectedNodes().size() == 2);
   }
