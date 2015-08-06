@@ -159,7 +159,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(m->GetNodes().size()   == 1 && "After undoing the deletion of the only node, the previously empty concept map must have a node");
     assert(c->GetQtNodes().size() == 1 && "After undoing the deletion of the only node, the previously empty QtConceptMap must have a node");
   }
-  if (verbose) { TRACE("Create two nodes and undo"); }
+  if (verbose) { TRACE("Create two nodes and undo: check for number of nodes"); }
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
     const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
@@ -182,6 +182,28 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     w->Undo();
     assert(m->GetNodes().size() == 0);
     assert(c->GetQtNodes().size() == 0);
+  }
+  if (verbose) { TRACE("Create two nodes and undo: check for nodes being selected correctly"); }
+  {
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    c->SetConceptMap(m);
+    const boost::shared_ptr<QtConceptMapWidget> w(new QtConceptMapWidget(c));
+    const boost::shared_ptr<CommandCreateNewNode> cmd1(new CommandCreateNewNode);
+    const boost::shared_ptr<CommandCreateNewNode> cmd2(new CommandCreateNewNode);
+
+    w->DoCommand(cmd1);
+
+    assert(c->FindQtNode(cmd1->GetAddedQtNode().get())->isSelected());
+    w->DoCommand(cmd2);
+    assert(c->FindQtNode(cmd1->GetAddedQtNode().get())->isSelected());
+    assert(c->FindQtNode(cmd2->GetAddedQtNode().get())->isSelected());
+    w->Undo();
+    assert(c->FindQtNode(cmd1->GetAddedQtNode().get())->isSelected());
+    assert(!cmd2->GetAddedQtNode()); //Node is removed
+    w->Undo();
+    assert(!cmd1->GetAddedQtNode()); //Node is removed
+    assert(!cmd2->GetAddedQtNode()); //Node is removed
   }
   if (verbose) { TRACE("Create two nodes, selecting both (which is done automatically)"); }
   {

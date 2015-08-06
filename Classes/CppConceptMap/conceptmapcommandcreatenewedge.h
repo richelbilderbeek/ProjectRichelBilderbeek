@@ -35,7 +35,7 @@ namespace cmap {
 ///-Can be used only when there is an existing concept map
 struct CommandCreateNewEdge : public Command
 {
-  CommandCreateNewEdge() : m_edge{}, m_nodes{}, m_widget{} {}
+  CommandCreateNewEdge() : m_edge{}, m_nodes{}, m_prev_selected{}, m_widget{} {}
   CommandCreateNewEdge(const CommandCreateNewEdge&) = delete;
   CommandCreateNewEdge& operator=(const CommandCreateNewEdge&) = delete;
   ~CommandCreateNewEdge() noexcept {}

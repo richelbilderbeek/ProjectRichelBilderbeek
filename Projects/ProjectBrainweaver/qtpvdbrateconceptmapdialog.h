@@ -41,6 +41,7 @@ class QtPvdbRateConceptMapDialog : public ribi::QtHideAndShowDialog
   Q_OBJECT
   
 public:
+  using ConceptMap = cmap::QtRateConceptMap;
   explicit QtPvdbRateConceptMapDialog(
     boost::shared_ptr<pvdb::File> file,
     QWidget* parent = 0);
@@ -64,7 +65,7 @@ private slots:
 private:
   Ui::QtPvdbRateConceptMapDialog *ui;
   boost::shared_ptr<pvdb::File> m_file;
-  cmap::QtRateConceptMap * const m_widget;
+  ConceptMap * const m_widget;
 
   ///The widget requested for a rating of the already supplied sub concept map,
   ///with the focal concept item as the central node

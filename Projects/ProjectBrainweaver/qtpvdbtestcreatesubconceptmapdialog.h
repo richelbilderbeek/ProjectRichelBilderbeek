@@ -59,8 +59,8 @@ private slots:
 private:
   Ui::QtPvdbTestCreateSubConceptMapDialog *ui;
 
-  boost::shared_ptr<cmap::QtConceptMap> m_concept_map;
-  boost::shared_ptr<cmap::QtConceptMap> m_sub_concept_map;
+  boost::shared_ptr<cmap::QtConceptMap> m_qtconceptmap;
+  boost::shared_ptr<cmap::QtConceptMap> m_qtconceptmap_sub;
 
   #ifndef NDEBUG
   static void Test() noexcept;

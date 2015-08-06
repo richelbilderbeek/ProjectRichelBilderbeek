@@ -55,9 +55,10 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   : QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbRateConceptMapDialog),
   m_file(file),
-  m_widget(new cmap::QtRateConceptMap(file->GetConceptMap()))
+  m_widget(new cmap::QtRateConceptMap)
 {
   ui->setupUi(this);
+  m_widget->SetConceptMap(file->GetConceptMap());
   #ifndef NDEBUG
   Test();
   assert(file);

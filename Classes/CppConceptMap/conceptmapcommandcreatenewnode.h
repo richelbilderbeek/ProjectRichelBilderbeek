@@ -40,6 +40,8 @@ struct CommandCreateNewNode : public Command
   CommandCreateNewNode& operator=(const CommandCreateNewNode&) = delete;
   ~CommandCreateNewNode() noexcept {}
 
+  const auto& GetAddedQtNode() const noexcept { return m_node; }
+
   std::string ToStr() const noexcept final { return "create new node"; }
 
   private:

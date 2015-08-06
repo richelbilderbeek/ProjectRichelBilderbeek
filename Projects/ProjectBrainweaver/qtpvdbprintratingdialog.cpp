@@ -55,9 +55,10 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintRatingDialog),
     m_file(file),
-    m_widget(new cmap::QtRateConceptMap(file->GetConceptMap()))
+    m_widget(new cmap::QtRateConceptMap)
 {
   ui->setupUi(this);    
+  m_widget->SetConceptMap(file->GetConceptMap());
   assert(m_file);
   ui->label_focal_question->setText(
     ("FOCUSVRAAG: "

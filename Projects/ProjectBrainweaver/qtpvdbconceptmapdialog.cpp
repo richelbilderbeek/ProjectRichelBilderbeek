@@ -213,8 +213,10 @@ ribi::cmap::QtEditConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(
     assert( file->GetConceptMap());
   }
 
-  ribi::cmap::QtEditConceptMap * const widget = new ribi::cmap::QtEditConceptMap(file->GetConceptMap());
+  ribi::cmap::QtEditConceptMap * const widget
+    = new ribi::cmap::QtEditConceptMap(ribi::cmap::QtEditConceptMap::Mode::simple);
   assert(widget);
+  widget->SetConceptMap(file->GetConceptMap());
   return widget;
 }
 

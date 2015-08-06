@@ -83,7 +83,7 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
     m_signal_concept_map_changed{},
     m_signal_delete_edge{},
     m_signal_delete_node{},
-    //m_signal_lose_focus{},
+    m_signal_lose_focus{},
     m_signal_lose_selected{},
     //m_signal_set_focus{},
     m_signal_set_selected{},

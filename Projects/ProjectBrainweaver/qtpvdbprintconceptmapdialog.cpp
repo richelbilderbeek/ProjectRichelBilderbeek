@@ -51,10 +51,10 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintConceptMapDialog),
     m_file(file),
-    m_widget(new cmap::QtDisplayConceptMap(file->GetConceptMap()))
+    m_widget(new cmap::QtDisplayConceptMap)
 {
   ui->setupUi(this);
-
+  m_widget->SetConceptMap(file->GetConceptMap());
   {
     assert(m_widget);
     assert(ui->frame_concept_map->layout());
@@ -195,7 +195,9 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
       //m_widget->scene()->sceneRect() //Does not work
     };
     #ifndef NDEBUG
-    for (const ribi::cmap::QtNode * const qtnode: m_widget->GetQtNodes())
+    for (const ribi::cmap::QtNode * const qtnode:
+      const_cast<const cmap::QtDisplayConceptMap*>(m_widget)->GetQtNodes()
+    )
     {
       //All QtNodes' their rectangles should be within all_items_rect
       assert(qtnode);
