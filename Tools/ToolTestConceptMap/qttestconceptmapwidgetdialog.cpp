@@ -218,7 +218,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
   }
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
-  const int n_depth = 1;
+  const int n_depth = 0;
   if (n_depth >= 1)
   {
     if (verbose) { TRACE("Clicking once"); }

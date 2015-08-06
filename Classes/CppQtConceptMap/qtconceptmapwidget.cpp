@@ -311,15 +311,21 @@ void ribi::cmap::QtConceptMapWidget::OnSetSelected(
 ) noexcept
 {
   //Unselect all
-  for (auto edge: m_qtconceptmap->GetQtEdges()) { edge->setSelected(false); }
-  for (auto node: m_qtconceptmap->GetQtNodes()) { node->setSelected(false); }
+  for (auto edge: m_qtconceptmap->GetQtEdges()) { assert(edge); edge->setSelected(false); }
+  for (auto node: m_qtconceptmap->GetQtNodes()) { assert(node); node->setSelected(false); }
 
   for (const auto edge: edges)
   {
+    assert(edge);
+    assert(m_qtconceptmap);
+    assert(m_qtconceptmap->FindQtEdge(edge));
     m_qtconceptmap->FindQtEdge(edge)->setSelected(true);
   }
   for (const auto node: nodes)
   {
+    assert(node);
+    assert(m_qtconceptmap);
+    assert(m_qtconceptmap->FindQtNode(node.get()));
     m_qtconceptmap->FindQtNode(node.get())->setSelected(true);
   }
 }

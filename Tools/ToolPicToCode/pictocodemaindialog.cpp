@@ -28,9 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pictocodemenudialog.h"
 #pragma GCC diagnostic pop
 
-const std::vector<std::string>
-  ribi::PicToCodeMainDialog::PicToQtCode(
-    const YxImage& image)
+std::vector<std::string> ribi::PicToCodeMainDialog::PicToQtCode(const YxImage& image) const
 {
   const int width  = image.width();
   const int height = image.height();
