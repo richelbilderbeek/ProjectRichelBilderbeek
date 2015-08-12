@@ -1,3 +1,5 @@
+#ifdef NOT_NOW_20150810
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -128,3 +130,5 @@ void ribi::cmap::QtTestRateConceptMapDialog::Test() noexcept
   }
 }
 #endif
+
+#endif // NOT_NOW_20150810

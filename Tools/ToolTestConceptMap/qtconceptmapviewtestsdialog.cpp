@@ -38,7 +38,8 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
   Test();
   #endif
 
-  for (int type=0; type!=3; ++type)
+  //for (int type=0; type!=3; ++type)
+  const int type = 2;
   {
     QWidget * contents = 0;
     switch (type)
@@ -75,7 +76,7 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
         assert(m_h[i]);
         const boost::shared_ptr<ConceptMap> concept_map(m_h[i]);
         assert(concept_map);
-        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(type,concept_map));
+        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(concept_map));
         assert(widget);
         assert(extra_height > 0);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
@@ -101,7 +102,7 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
         assert(m_s[i]);
         const boost::shared_ptr<ConceptMap> concept_map = m_s[i];
         assert(concept_map);
-        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(type,concept_map));
+        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(concept_map));
         assert(widget);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
         mylayout->addWidget(widget.get());
@@ -125,7 +126,7 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
         assert(m_c[i]);
         const boost::shared_ptr<ConceptMap> concept_map = m_c[i];
         assert(concept_map);
-        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(type,concept_map));
+        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(concept_map));
         assert(widget);
         //widget->setMinimumHeight(minheight);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
@@ -142,9 +143,10 @@ ribi::cmap::QtConceptMapViewTestsDialog::~QtConceptMapViewTestsDialog() noexcept
 }
 
 boost::shared_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapViewTestsDialog::CreateWidget(
-  const int type,
-  const boost::shared_ptr<ConceptMap> concept_map)
+  const boost::shared_ptr<ConceptMap> concept_map
+)
 {
+  /*
   switch (type)
   {
     case 0:
@@ -156,10 +158,12 @@ boost::shared_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapViewTestsDia
     }
     case 1:
     {
+  */
       boost::shared_ptr<QtConceptMap> p(new QtEditConceptMap);
       assert(p);
       p->SetConceptMap(concept_map);
       return p;
+  /*
     }
     case 2:
     {
@@ -172,6 +176,7 @@ boost::shared_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapViewTestsDia
       assert(!"Should not get here");
       throw std::logic_error("ribi::cmap::QtConceptMapViewTestsDialog::CreateWidget: unimplemented type");
   }
+  */
 }
 
 

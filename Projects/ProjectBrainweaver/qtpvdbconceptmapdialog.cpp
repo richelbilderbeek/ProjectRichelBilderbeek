@@ -91,11 +91,6 @@ ribi::pvdb::QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   Test();
   assert(m_file);
   assert(m_file->GetConceptMap());
-  //assert(!m_file->GetConceptMap()->GetNodes().empty()); //TODO RJCB: put back in
-  //assert(m_file->GetConceptMap()->FindCenterNode() //TODO RJCB: put back in
-  //  && "A file's ConceptMap must have a CenterNode"); //TODO RJCB: put back in
-
-  assert(file == m_file);
   assert(m_widget);
   assert(m_widget->GetConceptMap() == m_file->GetConceptMap());
   assert(this->layout());
@@ -179,7 +174,6 @@ ribi::cmap::QtEditConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(
 
     boost::shared_ptr<ribi::cmap::ConceptMap> concept_map {
       QtPvdbConceptMapDialog::CreateFromCluster(
-      //= ribi::cmap::ConceptMapFactory::Create(
         file->GetQuestion(),
         file->GetCluster()
       )

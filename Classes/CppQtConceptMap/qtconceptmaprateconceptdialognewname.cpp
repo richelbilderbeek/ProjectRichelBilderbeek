@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
+#ifdef NOT_NOW_20150810
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -334,3 +336,5 @@ void ribi::cmap::QtRateConceptDialogNewName::on_box_specificity_currentIndexChan
     m_concept->SetRatingSpecificity(ui->box_specificity->currentIndex());
   }
 }
+
+#endif // NOT_NOW_20150810

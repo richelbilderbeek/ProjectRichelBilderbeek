@@ -20,7 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTCONCEPTMAPDISPLAYCONCEPTMAP_H
 #define QTCONCEPTMAPDISPLAYCONCEPTMAP_H
-
+/*
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -84,5 +84,5 @@ private:
 
 } //~namespace cmap
 } //~namespace ribi
-
+*/
 #endif // QTCONCEPTMAPDISPLAYCONCEPTMAP_H

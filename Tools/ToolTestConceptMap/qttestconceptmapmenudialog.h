@@ -41,8 +41,8 @@ private slots:
   void on_button_qtedge_clicked();
   void on_button_qtnode_clicked();
   void on_button_quit_clicked();
-  void on_button_rate_conceptmap_clicked();
-  void on_button_readonly_conceptmap_clicked();
+  //void on_button_rate_conceptmap_clicked();
+  //void on_button_readonly_conceptmap_clicked();
   void on_button_view_concept_maps_clicked();
 
 private:

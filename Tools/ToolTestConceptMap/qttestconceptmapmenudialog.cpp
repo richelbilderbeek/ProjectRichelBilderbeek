@@ -70,9 +70,9 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
   QtTestEdgeDialog();
   QtTestQtNodeDialog();
   QtTestQtEdgeDialog();
-  QtTestDisplayConceptMapDialog();
+  //QtTestDisplayConceptMapDialog();
   QtTestEditConceptMapDialog();
-  QtTestRateConceptMapDialog();
+  //QtTestRateConceptMapDialog();
   QtConceptMapViewTestsDialog();
   QtTestConceptMapWidgetDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
@@ -80,12 +80,15 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
 }
 #endif
 
+
+/*
 void ribi::cmap::QtTestMenuDialog::on_button_readonly_conceptmap_clicked()
 {
   QtTestDisplayConceptMapDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
+*/
 
 void ribi::cmap::QtTestMenuDialog::on_button_edit_conceptmap_clicked()
 {
@@ -94,12 +97,14 @@ void ribi::cmap::QtTestMenuDialog::on_button_edit_conceptmap_clicked()
   this->ShowChild(&d);
 }
 
+/*
 void ribi::cmap::QtTestMenuDialog::on_button_rate_conceptmap_clicked()
 {
   QtTestRateConceptMapDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
+*/
 
 void ribi::cmap::QtTestMenuDialog::on_button_concept_clicked()
 {

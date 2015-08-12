@@ -28,9 +28,9 @@ SOURCES += \
     ../../Tools/ToolTestConceptMap/qttestconceptmapqtedgedialog.cpp \
     ../../Tools/ToolTestConceptMap/qttestconceptmapqtnodedialog.cpp \
     ../../Tools/ToolTestConceptMap/qttestconceptmapwidgetdialog.cpp \
-    ../../Tools/ToolTestConceptMap/qttestdisplayconceptmapdialog.cpp \
-    ../../Tools/ToolTestConceptMap/qttesteditconceptmapdialog.cpp \
-    ../../Tools/ToolTestConceptMap/qttestrateconceptmapdialog.cpp
+#    ../../Tools/ToolTestConceptMap/qttestdisplayconceptmapdialog.cpp \
+    ../../Tools/ToolTestConceptMap/qttesteditconceptmapdialog.cpp
+#    ../../Tools/ToolTestConceptMap/qttestrateconceptmapdialog.cpp
 
 
 FORMS += \
@@ -45,8 +45,8 @@ FORMS += \
     ../../Tools/ToolTestConceptMap/qttestconceptmapqtedgedialog.ui \
     ../../Tools/ToolTestConceptMap/qttestconceptmapqtnodedialog.ui \
     ../../Tools/ToolTestConceptMap/qttestconceptmapwidgetdialog.ui \
-    ../../Tools/ToolTestConceptMap/qttestdisplayconceptmapdialog.ui \
-    ../../Tools/ToolTestConceptMap/qttesteditconceptmapdialog.ui \
-    ../../Tools/ToolTestConceptMap/qttestrateconceptmapdialog.ui
+#    ../../Tools/ToolTestConceptMap/qttestdisplayconceptmapdialog.ui \
+    ../../Tools/ToolTestConceptMap/qttesteditconceptmapdialog.ui
+#    ../../Tools/ToolTestConceptMap/qttestrateconceptmapdialog.ui
 
 

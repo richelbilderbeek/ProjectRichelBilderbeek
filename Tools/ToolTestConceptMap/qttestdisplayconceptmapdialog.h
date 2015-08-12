@@ -1,8 +1,7 @@
 #ifndef QTCONCEPTMAPTESTDISPLAYCONCEPTMAPDIALOG_H
 #define QTCONCEPTMAPTESTDISPLAYCONCEPTMAPDIALOG_H
 
-#define ADD_LATER_20140801
-#ifdef  ADD_LATER_20140801
+#ifdef NOT_NOW_20150810
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -56,6 +55,6 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // ADD_LATER_20140801
+#endif // NOT_NOW_20150810
 
 #endif // QTCONCEPTMAPTESTDISPLAYCONCEPTMAPDIALOG_H

@@ -20,7 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTCONCEPTMAPRATECONCEPTMAP_H
 #define QTCONCEPTMAPRATECONCEPTMAP_H
-
+/*
 #include "qtconceptmap.h"
 
 #include "conceptmapfwd.h"
@@ -103,5 +103,5 @@ private:
 } //~namespace cmap
 
 } //~namespace ribi
-
+*/
 #endif // QTCONCEPTMAPRATECONCEPTMAP_H

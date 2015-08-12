@@ -51,7 +51,6 @@ private:
   #endif
 
   static boost::shared_ptr<cmap::QtConceptMap> CreateWidget(
-    const int type,
     const boost::shared_ptr<ConceptMap> concept_map);
 };
 

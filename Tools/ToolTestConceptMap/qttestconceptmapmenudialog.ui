@@ -110,23 +110,9 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_readonly_conceptmap">
-     <property name="text">
-      <string>&amp;8. Read-only</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QPushButton" name="button_edit_conceptmap">
      <property name="text">
-      <string>&amp;9. Editable</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="button_rate_conceptmap">
-     <property name="text">
-      <string>&amp;0. R&amp;ateable</string>
+      <string>&amp;9. EditConceptMap</string>
      </property>
     </widget>
    </item>
@@ -150,7 +136,7 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
    <item>
     <widget class="QPushButton" name="button_conceptmapwidget">
      <property name="text">
-      <string>&amp;B. Any type</string>
+      <string>&amp;B. Widget</string>
      </property>
     </widget>
    </item>
@@ -189,9 +175,7 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
   <tabstop>button_edge</tabstop>
   <tabstop>button_qtnode</tabstop>
   <tabstop>button_qtedge</tabstop>
-  <tabstop>button_readonly_conceptmap</tabstop>
   <tabstop>button_edit_conceptmap</tabstop>
-  <tabstop>button_rate_conceptmap</tabstop>
   <tabstop>button_view_concept_maps</tabstop>
   <tabstop>button_conceptmapwidget</tabstop>
   <tabstop>button_about</tabstop>
