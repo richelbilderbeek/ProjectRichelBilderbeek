@@ -20,7 +20,6 @@ SOURCES += \
     ../../Classes/CppQtConceptMap/qtconceptmapelement.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapratedconceptdialog.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapwidget.cpp \
-    ../../Classes/CppQtConceptMap/qteditconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtrateconceptmap.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapcenternode.cpp \
@@ -35,13 +34,10 @@ SOURCES += \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedgefactory.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtnode.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapbrating.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapqtedge.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapqtedge1.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapqtedge2.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedge_test.cpp \
     ../../Classes/CppQtConceptMap/test_qtconceptmapwidget.cpp \
     ../../Classes/CppQtConceptMap/test_qtconceptmap.cpp \
-    ../../Classes/CppQtConceptMap/test_qteditconceptmap.cpp
+    ../../Classes/CppQtConceptMap/qtconceptmapqtedge.cpp
 #    ../../Classes/CppQtConceptMap/test_qtrateconceptmap.cpp
 
 HEADERS += \
@@ -60,7 +56,6 @@ HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmapelement.h \
     ../../Classes/CppQtConceptMap/qtconceptmapratedconceptdialog.h \
     ../../Classes/CppQtConceptMap/qtconceptmapwidget.h \
-    ../../Classes/CppQtConceptMap/qteditconceptmap.h \
 #    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.h \
 #    ../../Classes/CppQtConceptMap/qtrateconceptmap.h \
 #   ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.h \
@@ -77,10 +72,8 @@ HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedgefactory.h \
     ../../Classes/CppQtConceptMap/qtconceptmapqtnode.h \
     ../../Classes/CppQtConceptMap/qtconceptmaprating.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapqtedge.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapqtedge1.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapqtedge2.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapcollect.h
+    ../../Classes/CppQtConceptMap/qtconceptmapcollect.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapqtedge.h
 
 FORMS += \
     ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.ui \

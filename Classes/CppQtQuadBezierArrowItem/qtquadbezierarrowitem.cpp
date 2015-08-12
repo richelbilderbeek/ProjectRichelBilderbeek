@@ -205,7 +205,7 @@ ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
     m_head{head},
     m_mid{mid},
     m_pen{QPen(QColor(0,0,0))},
-    m_show_bounding_rect{true},
+    m_show_bounding_rect{false},
     m_tail{tail},
     m_to{to}
 {

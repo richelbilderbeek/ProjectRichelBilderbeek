@@ -48,8 +48,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapqtedge.h"
 #include "qtconceptmapqtnode.h"
 #include "qtdisplayconceptmap.h"
-#include "qteditconceptmap.h"
-#include "qtrateconceptmap.h"
+
+
 #include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -68,7 +68,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
     assert(m);
     assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtConceptMap);
     c->SetConceptMap(m);
     assert(c);
     assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
@@ -101,7 +101,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
     assert(m);
     assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtConceptMap);
     c->SetConceptMap(m);
     assert(c);
     assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
@@ -132,7 +132,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
     assert(m);
     assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtConceptMap);
     c->SetConceptMap(m);
     assert(c);
     assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
@@ -162,7 +162,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
   if (verbose) { TRACE("Create two nodes and undo: check for number of nodes"); }
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtConceptMap);
     c->SetConceptMap(m);
     const boost::shared_ptr<QtConceptMapWidget> w(new QtConceptMapWidget(c));
     const boost::shared_ptr<CommandCreateNewNode> cmd1(new CommandCreateNewNode);
@@ -186,7 +186,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
   if (verbose) { TRACE("Create two nodes and undo: check for nodes being selected correctly"); }
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtConceptMap);
     c->SetConceptMap(m);
     const boost::shared_ptr<QtConceptMapWidget> w(new QtConceptMapWidget(c));
     const boost::shared_ptr<CommandCreateNewNode> cmd1(new CommandCreateNewNode);
@@ -194,12 +194,12 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
 
     w->DoCommand(cmd1);
 
-    assert(c->FindQtNode(cmd1->GetAddedQtNode().get())->isSelected());
+    assert(c->GetQtNode(cmd1->GetAddedQtNode().get())->isSelected());
     w->DoCommand(cmd2);
-    assert(c->FindQtNode(cmd1->GetAddedQtNode().get())->isSelected());
-    assert(c->FindQtNode(cmd2->GetAddedQtNode().get())->isSelected());
+    assert(c->GetQtNode(cmd1->GetAddedQtNode().get())->isSelected());
+    assert(c->GetQtNode(cmd2->GetAddedQtNode().get())->isSelected());
     w->Undo();
-    assert(c->FindQtNode(cmd1->GetAddedQtNode().get())->isSelected());
+    assert(c->GetQtNode(cmd1->GetAddedQtNode().get())->isSelected());
     assert(!cmd2->GetAddedQtNode()); //Node is removed
     w->Undo();
     assert(!cmd1->GetAddedQtNode()); //Node is removed
@@ -208,7 +208,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
   if (verbose) { TRACE("Create two nodes, selecting both (which is done automatically)"); }
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtConceptMap);
     c->SetConceptMap(m);
     const boost::shared_ptr<QtConceptMapWidget> w(new QtConceptMapWidget(c));
     const boost::shared_ptr<CommandCreateNewNode> cmd_add_node1(new CommandCreateNewNode);
@@ -226,7 +226,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
   if (verbose) { TRACE("Create two nodes and add an edge"); }
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().Create() };
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtConceptMap);
     c->SetConceptMap(m);
     const boost::shared_ptr<QtConceptMapWidget> w(new QtConceptMapWidget(c));
     const boost::shared_ptr<CommandCreateNewNode> cmd_add_node1(new CommandCreateNewNode);

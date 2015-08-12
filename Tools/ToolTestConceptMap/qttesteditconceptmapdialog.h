@@ -41,7 +41,7 @@ private:
   Ui::QtTestEditConceptMapDialog *ui;
 
   ///The to-be-tested concept map
-  boost::shared_ptr<QtEditConceptMap> m_concept_map;
+  boost::shared_ptr<QtConceptMap> m_concept_map;
 
   #ifndef NDEBUG
   static void Test() noexcept;

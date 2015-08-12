@@ -63,7 +63,7 @@ ribi::cmap::QtNode::QtNode(
     //m_contour_pen(concept_item->GetContourPen()),
     //m_focus_pen(concept_item->GetFocusPen()),
     m_node{},
-    m_show_bounding_rect{true}
+    m_show_bounding_rect{false}
 {
   #ifndef NDEBUG
   Test();

@@ -14,9 +14,9 @@
 #include "qttestconceptmapqtedgedialog.h"
 #include "qttestconceptmapqtnodedialog.h"
 #include "qttestconceptmapwidgetdialog.h"
-#include "qttestdisplayconceptmapdialog.h"
+
 #include "qttesteditconceptmapdialog.h"
-#include "qttestrateconceptmapdialog.h"
+
 #include "testconceptmapmenudialog.h"
 #include "qttestconceptmapwidgetdialog.h"
 #include "testtimer.h"

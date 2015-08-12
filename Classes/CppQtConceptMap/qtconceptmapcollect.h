@@ -1,6 +1,7 @@
 #ifndef QTCONCEPTMAPCOLLECT_H
 #define QTCONCEPTMAPCOLLECT_H
 
+#include <QGraphicsScene>
 #include "qtconceptmapqtnode.h"
 
 ///Collect all QGraphicsItems with class T in an unorderly way

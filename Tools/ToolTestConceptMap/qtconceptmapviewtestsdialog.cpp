@@ -16,8 +16,8 @@
 #include "conceptmap.h"
 #include "conceptmapfactory.h"
 #include "qtdisplayconceptmap.h"
-#include "qteditconceptmap.h"
-#include "qtrateconceptmap.h"
+
+
 #include "qtconceptmap.h"
 #include "testtimer.h"
 #include "trace.h"
@@ -159,7 +159,7 @@ boost::shared_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapViewTestsDia
     case 1:
     {
   */
-      boost::shared_ptr<QtConceptMap> p(new QtEditConceptMap);
+      boost::shared_ptr<QtConceptMap> p(new QtConceptMap);
       assert(p);
       p->SetConceptMap(concept_map);
       return p;

@@ -45,8 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapqtedge.h"
 #include "qtconceptmapqtnode.h"
 #include "qtdisplayconceptmap.h"
-#include "qteditconceptmap.h"
-#include "qtrateconceptmap.h"
+
 #include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -177,10 +176,10 @@ void ribi::cmap::QtConceptMapWidget::OnAddEdge(const boost::shared_ptr<Edge> edg
 {
   assert(edge);
   QtEdge * const qtedge { m_qtconceptmap->AddEdge(edge) };
-  assert(m_qtconceptmap->FindQtEdge(qtedge));
+  assert(m_qtconceptmap->GetQtEdge(qtedge));
 
   //A new QtEdge is also selected
-  m_qtconceptmap->FindQtEdge(qtedge)->setSelected(true);
+  m_qtconceptmap->GetQtEdge(qtedge)->setSelected(true);
 
   //The QtNodes lose their selection
   const auto qtfrom = qtedge->GetFrom();
@@ -188,9 +187,9 @@ void ribi::cmap::QtConceptMapWidget::OnAddEdge(const boost::shared_ptr<Edge> edg
   qtfrom->setSelected(false);
   qtto->setSelected(false);
 
-  assert( m_qtconceptmap->FindQtEdge(qtedge->GetEdge())->isSelected());
-  assert(!m_qtconceptmap->FindQtNode(qtfrom->GetNode().get())->isSelected());
-  assert(!m_qtconceptmap->FindQtNode(qtto->GetNode().get()  )->isSelected());
+  assert( m_qtconceptmap->GetQtEdge(qtedge->GetEdge())->isSelected());
+  assert(!m_qtconceptmap->GetQtNode(qtfrom->GetNode().get())->isSelected());
+  assert(!m_qtconceptmap->GetQtNode(qtto->GetNode().get()  )->isSelected());
 }
 
 void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> node) noexcept
@@ -199,7 +198,7 @@ void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> nod
   m_qtconceptmap->AddNode(node);
 
   //A new Node is also selected
-  m_qtconceptmap->FindQtNode(node.get())->setSelected(true);
+  m_qtconceptmap->GetQtNode(node.get())->setSelected(true);
 }
 
 void ribi::cmap::QtConceptMapWidget::OnConceptMapChanged() noexcept
@@ -221,9 +220,9 @@ void ribi::cmap::QtConceptMapWidget::OnDeleteEdge(const boost::shared_ptr<Edge> 
     const std::size_t qtedges_before { m_qtconceptmap->GetQtEdges().size() };
     const std::size_t edges_before { m_widget->GetConceptMap()->GetEdges().size() };
     #endif
-    assert(m_qtconceptmap->FindQtEdge(edge));
-    m_qtconceptmap->DeleteEdge(m_qtconceptmap->FindQtEdge(edge));
-    assert(!m_qtconceptmap->FindQtEdge(edge));
+    assert(m_qtconceptmap->GetQtEdge(edge));
+    m_qtconceptmap->DeleteEdge(m_qtconceptmap->GetQtEdge(edge));
+    assert(!m_qtconceptmap->GetQtEdge(edge));
     //m_qtconceptmap->FindQtEdge(node.get())->setFocus();
     m_qtconceptmap->clearFocus();
 
@@ -254,9 +253,9 @@ void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> 
   const std::size_t qtnodes_before { m_qtconceptmap->GetQtNodes().size() };
   const std::size_t nodes_before { m_widget->GetConceptMap()->GetNodes().size() };
   #endif
-  assert(m_qtconceptmap->FindQtNode(node.get()));
-  m_qtconceptmap->DeleteNode(m_qtconceptmap->FindQtNode(node.get()));
-  assert(!m_qtconceptmap->FindQtNode(node.get()));
+  assert(m_qtconceptmap->GetQtNode(node.get()));
+  m_qtconceptmap->DeleteNode(m_qtconceptmap->GetQtNode(node.get()));
+  assert(!m_qtconceptmap->GetQtNode(node.get()));
   //m_qtconceptmap->FindQtNode(node.get())->setFocus();
   m_qtconceptmap->clearFocus();
 
@@ -280,9 +279,9 @@ void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> 
 
 void ribi::cmap::QtConceptMapWidget::OnLoseFocus(const boost::shared_ptr<Node> node) noexcept
 {
-  if (m_qtconceptmap->FindQtNode(node.get()))
+  if (m_qtconceptmap->GetQtNode(node.get()))
   {
-    m_qtconceptmap->FindQtNode(node.get())->clearFocus();
+    m_qtconceptmap->GetQtNode(node.get())->clearFocus();
     //m_qtconceptmap->FindQtNode(node.get())->setSelected(false); //Would this be needed as well?
   }
 }
@@ -298,9 +297,9 @@ void ribi::cmap::QtConceptMapWidget::OnLoseSelected(const std::vector<boost::sha
 {
   for (const auto node: nodes)
   {
-    if (m_qtconceptmap->FindQtNode(node.get()))
+    if (m_qtconceptmap->GetQtNode(node.get()))
     {
-      m_qtconceptmap->FindQtNode(node.get())->setSelected(false);
+      m_qtconceptmap->GetQtNode(node.get())->setSelected(false);
     }
   }
 }
@@ -318,15 +317,15 @@ void ribi::cmap::QtConceptMapWidget::OnSetSelected(
   {
     assert(edge);
     assert(m_qtconceptmap);
-    assert(m_qtconceptmap->FindQtEdge(edge));
-    m_qtconceptmap->FindQtEdge(edge)->setSelected(true);
+    assert(m_qtconceptmap->GetQtEdge(edge));
+    m_qtconceptmap->GetQtEdge(edge)->setSelected(true);
   }
   for (const auto node: nodes)
   {
     assert(node);
     assert(m_qtconceptmap);
-    assert(m_qtconceptmap->FindQtNode(node.get()));
-    m_qtconceptmap->FindQtNode(node.get())->setSelected(true);
+    assert(m_qtconceptmap->GetQtNode(node.get()));
+    m_qtconceptmap->GetQtNode(node.get())->setSelected(true);
   }
 }
 

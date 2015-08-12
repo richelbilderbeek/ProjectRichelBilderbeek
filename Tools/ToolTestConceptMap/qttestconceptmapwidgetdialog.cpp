@@ -9,14 +9,15 @@
 #include <QPushButton>
 #include <QMouseEvent>
 
+#include "qtconceptmap.h"
 #include "conceptmapfactory.h"
 
 #include "conceptmapcommand.h"
 #include "conceptmapcommandfactory.h"
 #include "qtconceptmapwidget.h"
 #include "qtdisplayconceptmap.h"
-#include "qteditconceptmap.h"
-#include "qtrateconceptmap.h"
+
+
 #include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestconceptmapwidgetdialog.h"
@@ -103,7 +104,7 @@ const boost::shared_ptr<ribi::cmap::QtConceptMapWidget>
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory().GetHeteromorphousTestConceptMaps()[0] };
     assert(m);
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(QtEditConceptMap::Mode::simple));
+    const boost::shared_ptr<QtConceptMap> c(new QtConceptMap);
     assert(c);
     c->SetConceptMap(m);
     const boost::shared_ptr<QtConceptMapWidget> w(

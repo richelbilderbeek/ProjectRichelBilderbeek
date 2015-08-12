@@ -7,7 +7,9 @@
 #include <cassert>
 
 #include <boost/lexical_cast.hpp>
+
 #include <QKeyEvent>
+
 #include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
@@ -22,7 +24,7 @@
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapqtnode.h"
 #include "qtconceptmapratestrategy.h"
-#include "qteditconceptmap.h"
+#include "qtconceptmap.h"
 #include "testtimer.h"
 #include "trace.h"
 #include "ui_qttesteditconceptmapdialog.h"
@@ -32,11 +34,7 @@
 ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestEditConceptMapDialog),
-  m_concept_map(
-    new QtEditConceptMap(
-      QtEditConceptMap::Mode::simple
-    )
-  )
+  m_concept_map(new QtConceptMap)
 
 {
   ui->setupUi(this);

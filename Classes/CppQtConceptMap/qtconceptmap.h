@@ -36,35 +36,32 @@ namespace cmap {
 ///QtConceptMap displays a ConceptMap
 ///It does not offer UI interaction with the user
 ///QtConceptMap does offer UI interaction
-class QtConceptMap : public ribi::QtKeyboardFriendlyGraphicsView
+class QtConceptMap final: public ribi::QtKeyboardFriendlyGraphicsView
 {
   Q_OBJECT
 
 public:
-  explicit QtConceptMap(QWidget* parent = 0);
+
+  explicit QtConceptMap(
+    QWidget* parent = 0
+  );
   QtConceptMap(const QtConceptMap&) = delete;
   QtConceptMap& operator=(const QtConceptMap&) = delete;
-  virtual ~QtConceptMap() noexcept;
+  ~QtConceptMap();
 
-  #ifndef NDEBUG
-  ///Creates a new derived class
-  ///A simpler alternative to Clone (see above)
-  virtual std::unique_ptr<QtConceptMap> CreateNewDerived() const = 0;
-
-  ///Do something random, used in debugging
-  virtual void DoRandomStuff() = 0;
-  #endif
+  ///Signal emitted when a concept map item requests to be edited
+  boost::signals2::signal<void(QtConceptMapElement*)> m_signal_conceptmapitem_requests_edit;
 
   ///Obtain the concept map
   boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_concept_map; }
   boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_concept_map; }
 
   ///Obtain the read-only Qt edge items
-  ///Read-and-write Qt edge items are only supported for QtEditConceptMap
+  ///Read-and-write Qt edge items are only supported for QtConceptMap
   std::vector<const QtEdge *> GetQtEdges() const;
 
   ///Obtain the read-only Qt node items
-  ///Read-and-write Qt node items are only supported for QtEditConceptMap
+  ///Read-and-write Qt node items are only supported for QtConceptMap
   std::vector<const QtNode *> GetQtNodes() const;
 
   ///Obtain the QGraphicsScene
@@ -83,26 +80,17 @@ public:
   void Shuffle() noexcept;
 
   ///Test this class with a derived class instance
-  static void Test(const boost::shared_ptr<const QtConceptMap>& concept_map) noexcept;
+  static void Test() noexcept;
   #endif
 
 public slots:
 
-  virtual void keyPressEvent(QKeyEvent *event) noexcept;
+  void keyPressEvent(QKeyEvent* event) noexcept;
+  void mouseMoveEvent(QMouseEvent * event);
+  void mouseDoubleClickEvent(QMouseEvent *event);
+  void mousePressEvent(QMouseEvent *event);
 
 protected:
-
-  ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
-  ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
-  virtual QtEdge * AddEdge(const boost::shared_ptr<Edge> edge) = 0;
-
-  ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
-  virtual QtNode * AddNode(const boost::shared_ptr<Node> node) = 0;
-
-
-  ///Remove all Qt and non-Qt items and add new ones
-  virtual void CleanMe() = 0;
 
   ///Delete a QtEdge
   void DeleteEdge(QtEdge * const edge);
@@ -112,23 +100,23 @@ protected:
   void DeleteNode(const QtNode * const node);
 
   ///Get all the edges connected to the concept
-  std::vector<QtEdge*> FindEdges(const QtNode * const from) const noexcept;
+  std::vector<QtEdge*> GetQtEdges(const QtNode * const from) const noexcept;
 
   //Find the Qt edge with the same from and to
-  const QtEdge * FindQtEdgeConst(const boost::shared_ptr<const Edge> edge) const noexcept;
-        QtEdge * FindQtEdge(const boost::shared_ptr<      Edge> edge)       noexcept;
-  const QtEdge * FindQtEdge(     const QtEdge* const edge) const noexcept { return FindQtEdgeConst(edge); }
-  const QtEdge * FindQtEdgeConst(const QtEdge* const edge) const noexcept;
-        QtEdge * FindQtEdge(const QtEdge* const edge)       noexcept;
-  const QtEdge * FindQtEdgeConst(
+  const QtEdge * GetQtEdgeConst(const boost::shared_ptr<const Edge> edge) const noexcept;
+        QtEdge * GetQtEdge(const boost::shared_ptr<      Edge> edge)       noexcept;
+  const QtEdge * GetQtEdge(     const QtEdge* const edge) const noexcept { return GetQtEdgeConst(edge); }
+  const QtEdge * GetQtEdgeConst(const QtEdge* const edge) const noexcept;
+        QtEdge * GetQtEdge(const QtEdge* const edge)       noexcept;
+  const QtEdge * GetQtEdgeConst(
     const QtNode* const from,
     const QtNode* const to) const noexcept;
 
   ///Find the QtNode containing the Node
   //QtNode * FindQtNode(boost::shared_ptr<Node> node) const { return FindQtNode(node.get()); }
-  const QtNode * FindQtNodeConst(const Node * const node) const noexcept;
+  const QtNode * GetQtNodeConst(const Node * const node) const noexcept;
   //const QtNode * FindQtNode     (const Node * const node) const noexcept { return FindQtNodeConst(node); }
-        QtNode * FindQtNode(           Node * const node)       noexcept;
+        QtNode * GetQtNode(           Node * const node)       noexcept;
 
   ///Obtain the center node
   const QtNode * GetCenterNode() const noexcept;
@@ -137,7 +125,6 @@ protected:
   ///Obtain the read-and-write Qt edge items
   ///The read-only Qt edge items is already supplied by QtConceptMap
   std::vector<QtEdge *> GetQtEdges();
-  std::vector<QtNode *> GetQtNodes();
 
   ///Obtain the rectangle with text showing the examples
   const QtExamplesItem * GetExamplesItem() const;
@@ -170,14 +157,55 @@ protected:
 
 private:
 
+  ///The arrow used to create a new arrow
+  ///Is nullptr when not active
+  QtNewArrow * m_arrow;
+
   ///The concept map to work on, the Model
   boost::shared_ptr<ConceptMap> m_concept_map;
 
   ///The item showing the examples
   QtExamplesItem * m_examples_item;
 
-  ///Implemention of OnItemUpdateRequest
-  virtual void OnItemRequestUpdateImpl(const QGraphicsItem* const item) = 0;
+
+  ///The item highlighter, used when creating a new relation
+  QtItemHighlighter * const m_highlighter;
+
+  ///The item showing the tools
+  QtTool * m_tools;
+
+  ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
+  ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
+  QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
+
+  ///Add a new edge
+  QtEdge * AddEdge(QtNode * const from, QtNode* const to);
+
+  ///Adds a node and connects (some of) its signals to slots present in the derived classes
+  ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
+  QtNode * AddNode(const boost::shared_ptr<Node> node);
+
+  ///Remove all Qt and non-Qt items
+  void CleanMe();
+
+  ///Obtain the read-and-write Qt node items
+  ///The read-only Qt node items is already supplied by QtConceptMap
+  std::vector<QtNode *> GetQtNodes();
+
+  ///Called when an item wants to be edited
+  void OnEdgeKeyDownPressed(QtEdge * const item, const int key);
+
+  ///Called when an item wants to be edited
+  void OnNodeKeyDownPressed(QtNode* const item, const int key);
+
+  ///Called whenever a concept is clicked or moved
+  ///If item is nullptr, the last item might be deleted
+  ///Use QGraphicsItem* due to QtKeyboardFriendlyGraphicsView working on QGraphicsItems
+  ///Is implemented by OnItemUpdateRequestImpl
+  void OnItemRequestUpdateImpl(const QGraphicsItem* const item);
+
+  ///Called whenever the tools item is clicked
+  void OnToolsClicked();
 
 public slots:
 
