@@ -202,8 +202,9 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
         TRACE("TODO");
         #else
         //TODO
-        //assert(concept != old_concept);
+        assert(*concept != *old_concept);
         #endif
+        assert(!"Green");
       }
     );
   }

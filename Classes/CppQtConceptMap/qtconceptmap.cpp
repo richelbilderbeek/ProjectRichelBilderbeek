@@ -1302,8 +1302,6 @@ void ribi::cmap::QtConceptMap::OnToolsClicked()
     m_tools->GetBuddyItem()->GetCenterX(),
     m_tools->GetBuddyItem()->GetCenterY() - 32.0
     - m_tools->GetBuddyItem()->GetRadiusY()
-    //TODO_COEN ISSUE_101 the QGraphicsItem needs to emit that it is clicked,
-    //with itself as the argument, so that the QtTool knows the height the of the square to be above
   );
   m_arrow = new QtNewArrow(
     m_tools->GetBuddyItem(),cursor_pos_approx

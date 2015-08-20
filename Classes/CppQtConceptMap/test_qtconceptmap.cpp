@@ -46,8 +46,9 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer{__func__,__FILE__,0.3};
-  TestTimer::SetMaxCnt(2); //Because the base class has to be tested as well
+  const TestTimer test_timer{__func__,__FILE__,1.0};
+  TestTimer::SetMaxCnt(2); //Because the base class (QtKeyboardFriendlyGraphicsView)
+                           //has to be tested as well
   const bool verbose{false};
 
   //SetConceptMap and GetConceptMap return the same
@@ -318,7 +319,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(!qtto->isSelected());
   }
   if (verbose) { TRACE("MouseDoubleClick"); }
-  for (int i=0; i!=10; ++i)
+  for (int i=0; i!=5; ++i)
   {
     QtConceptMap m;
     m.SetConceptMap(ConceptMapFactory().GetHeteromorphousTestConceptMap(16));

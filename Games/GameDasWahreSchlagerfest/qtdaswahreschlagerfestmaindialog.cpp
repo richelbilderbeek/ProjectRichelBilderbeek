@@ -37,6 +37,7 @@ ribi::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget
   Test();
   #endif
   ui->setupUi(this);
+  QObject::connect(ui->widget,SIGNAL(destroyed()),this,SLOT(close()));
 }
 
 ribi::QtDasWahreSchlagerfestMainDialog::~QtDasWahreSchlagerfestMainDialog() noexcept

@@ -102,6 +102,7 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
 
 void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_oldschool_clicked()
 {
+  /*
   QtCanvas * const qtcanvas {
     new QtDasWahreSchlagerfestCanvas(9,5)
   };
@@ -118,4 +119,5 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_oldschool_clicked()
   d->setWindowTitle("Das Wahre Schlagerfest");
   ShowChild(d.get());
   //canvas will be deleted by QtCanvasDialog
+  */
 }
