@@ -13,11 +13,10 @@
 ribi::QtDasWahreSchlagerfestCanvas::QtDasWahreSchlagerfestCanvas(
   const int width, const int height)
   : QtCanvas(CreateCanvas(width,height)),
-    m_widget(CreateWidget(width,height))
+    m_game(9,5),
+    m_widget{}
 {
-  m_widget->m_signal_changed.connect(
-    boost::bind(&ribi::QtDasWahreSchlagerfestCanvas::OnChanged,this));
-
+  m_game.SetDisplay(m_widget);
   OnChanged();
 }
 
@@ -33,6 +32,7 @@ const boost::shared_ptr<ribi::Canvas> ribi::QtDasWahreSchlagerfestCanvas::Create
 const boost::shared_ptr<ribi::DasWahreSchlagerfestWidget> ribi::QtDasWahreSchlagerfestCanvas::CreateWidget(
   const int width, const int height) noexcept
 {
+
   const boost::shared_ptr<DasWahreSchlagerfestWidget> w {
     new DasWahreSchlagerfestWidget(width,height)
   };

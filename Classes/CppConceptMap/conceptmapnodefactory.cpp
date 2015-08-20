@@ -54,16 +54,6 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
   );
   assert(node);
   assert(node->GetConcept());
-  #ifndef NDEBUG
-  if(*concept != *node->GetConcept())
-  {
-    TRACE(concept);
-    TRACE(node->GetConcept());
-    TRACE(*concept);
-    TRACE(*node->GetConcept());
-    TRACE("BREAK");
-  }
-  #endif
   assert(*concept == *node->GetConcept());
   assert(node->GetX() == x);
   assert(node->GetY() == y);
@@ -144,18 +134,6 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::
   {
     const std::vector<std::string> v
       = Regex().GetRegexMatches(s,Regex().GetRegexConcept());
-    #ifndef NDEBUG
-    if (v.size() != 1)
-    {
-      TRACE("ERROR");
-      TRACE(s);
-      TRACE(Regex().GetRegexConcept());
-      TRACE(v.size());
-      for (const auto& t:v) { TRACE(t); }
-      for (const auto& t: xml::XmlToPretty(s)) { TRACE(t); }
-      TRACE("BREAK");
-    }
-    #endif
     assert(v.size() == 1);
     concept = ConceptFactory().FromXml(v[0]);
   }
@@ -178,7 +156,6 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::
   assert(concept);
   const boost::shared_ptr<Node> node(NodeFactory().Create(concept,x,y));
   assert(node);
-  //assert(node->ToXml() == s); //TODO RJCB: Put back in
   return node;
 }
 
@@ -222,9 +199,26 @@ void ribi::cmap::NodeFactory::Test() noexcept
   }
   NodeFactory().GetTest(0);
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  assert( NodeFactory().GetTest(0) !=  NodeFactory().GetTest(0));
-  assert(*NodeFactory().GetTest(0) == *NodeFactory().GetTest(0));
-  assert(*NodeFactory().GetTest(0) != *NodeFactory().GetTest(1));
-  assert(*NodeFactory().DeepCopy(NodeFactory().GetTest(0)) == *NodeFactory().GetTest(0));
+  //operator== and operator!=
+  {
+    assert( NodeFactory().GetTest(0) !=  NodeFactory().GetTest(0));
+    assert(*NodeFactory().GetTest(0) == *NodeFactory().GetTest(0));
+    assert(*NodeFactory().GetTest(0) != *NodeFactory().GetTest(1));
+  }
+  //Deep copy
+  {
+    assert(*NodeFactory().DeepCopy(NodeFactory().GetTest(0)) == *NodeFactory().GetTest(0));
+  }
+  //XLM <-> std::string conversions
+  {
+    for (const auto node: NodeFactory().GetTests())
+    {
+      assert(node);
+      const auto str = node->ToXml();
+      const auto node_again = NodeFactory().FromXml(str);
+      assert(node_again);
+      assert(*node == *node_again);
+    }
+  }
 }
 #endif

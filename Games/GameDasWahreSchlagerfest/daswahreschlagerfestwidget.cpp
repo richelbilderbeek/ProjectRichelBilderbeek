@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(
-  DasWahreSchlagerfestDisplay& display,
+  DasWahreSchlagerfestDisplay * const display,
   const int width, const int height
 )
   : m_cursor{Cursor(width / 2,0,Tile::beer)},
@@ -126,6 +126,7 @@ void ribi::DasWahreSchlagerfestWidget::CheckThree()
 
 void ribi::DasWahreSchlagerfestWidget::Display() const
 {
+  assert(m_display);
   m_display.Display(*this);
 }
 
@@ -237,6 +238,13 @@ void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfest
     }
     break;
   }
+}
+
+void ribi::DasWahreSchlagerfestWidget::SetDisplay(DasWahreSchlagerfestDisplay * const display)
+{
+  assert(display);
+  m_display = display;
+  m_display->Display(*this);
 }
 
 #ifndef NDEBUG

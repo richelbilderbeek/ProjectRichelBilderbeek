@@ -36,7 +36,7 @@ namespace Ui {
 
 namespace ribi {
 
-class QtDasWahreSchlagerfestWidget : public QWidget, ribi::DasWahreSchlagerfestDisplay
+class QtDasWahreSchlagerfestWidget : public QWidget, public ribi::DasWahreSchlagerfestDisplay
 {
   Q_OBJECT
     

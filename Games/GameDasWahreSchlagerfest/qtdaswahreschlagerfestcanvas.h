@@ -2,7 +2,7 @@
 #define QTDASWAHRESCHLAGERFESTCANVAS_H
 
 #include "qtcanvas.h"
-
+#include "qtdaswahreschlagerfestwidget.h"
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
@@ -19,10 +19,11 @@ struct QtDasWahreSchlagerfestCanvas : public QtCanvas
   void keyPressEvent(QKeyEvent *e);
 
   private:
-  const boost::shared_ptr<DasWahreSchlagerfestWidget> m_widget;
+  QtDasWahreSchlagerfestWidget m_widget;
+  DasWahreSchlagerfestWidget m_game;
 
-  static const boost::shared_ptr<Canvas> CreateCanvas(const int width, const int height) noexcept;
-  static const boost::shared_ptr<DasWahreSchlagerfestWidget> CreateWidget(const int width, const int height) noexcept;
+  //static const boost::shared_ptr<Canvas> CreateCanvas(const int width, const int height) noexcept;
+  //static const boost::shared_ptr<DasWahreSchlagerfestWidget> CreateWidget(const int width, const int height) noexcept;
 
   void OnChanged();
 };

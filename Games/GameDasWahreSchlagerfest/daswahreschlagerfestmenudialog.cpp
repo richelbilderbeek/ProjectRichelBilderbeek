@@ -44,7 +44,7 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
 
   if (argc == 2 && (argv[1] == "-d" || argv[1] == "--demo"))
   {
-    DasWahreSchlagerfestWidget w(terminal);
+    DasWahreSchlagerfestWidget w(&terminal);
     w.Display();
 
     for (int i=0; i!=100; ++i)
@@ -61,7 +61,7 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
   }
   if (argc == 2 && (argv[1] == "-p" || argv[1] == "--play"))
   {
-    DasWahreSchlagerfestWidget w(terminal);
+    DasWahreSchlagerfestWidget w(&terminal);
 
     while (1)
     {
@@ -158,7 +158,7 @@ void ribi::DasWahreSchlagerfestMenuDialog::Test() noexcept
     is_tested = true;
   }
   DasWahreSchlagerfestTerminal terminal;
-  DasWahreSchlagerfestWidget widget(terminal);
+  DasWahreSchlagerfestWidget widget(&terminal);
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

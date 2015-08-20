@@ -43,7 +43,7 @@ struct DasWahreSchlagerfestWidget
   };
 
   DasWahreSchlagerfestWidget(
-    DasWahreSchlagerfestDisplay& display,
+    DasWahreSchlagerfestDisplay * const display = nullptr,
     const int width = 9,
     const int height = 5
   );
@@ -61,12 +61,14 @@ struct DasWahreSchlagerfestWidget
   ///Respond to the user pressing a key
   void PressKey(const Key key);
 
+  void SetDisplay(DasWahreSchlagerfestDisplay * const display);
+
   private:
   ///The cursor
   Cursor m_cursor;
 
   ///The display of the game, can be console, GUI or NDS
-  DasWahreSchlagerfestDisplay& m_display;
+  DasWahreSchlagerfestDisplay * m_display;
 
   ///The Y-X ordered tiles
   std::vector<std::vector<Tile>> m_v;
