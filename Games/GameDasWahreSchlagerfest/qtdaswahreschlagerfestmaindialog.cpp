@@ -64,7 +64,7 @@ void ribi::QtDasWahreSchlagerfestMainDialog::Test() noexcept
     is_tested = true;
   }
   QtDasWahreSchlagerfestWidget w;
-  DasWahreSchlagerfestWidget g(w);
+  DasWahreSchlagerfestWidget g(&w);
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

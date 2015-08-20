@@ -68,7 +68,7 @@ struct DasWahreSchlagerfestWidget
   Cursor m_cursor;
 
   ///The display of the game, can be console, GUI or NDS
-  DasWahreSchlagerfestDisplay * m_display;
+  mutable DasWahreSchlagerfestDisplay * m_display;
 
   ///The Y-X ordered tiles
   std::vector<std::vector<Tile>> m_v;

@@ -39,6 +39,11 @@ const boost::shared_ptr<ribi::DasWahreSchlagerfestWidget> ribi::QtDasWahreSchlag
   return w;
 }
 
+void ribi::QtDasWahreSchlagerfestCanvas::Display(const DasWahreSchlagerfestWidget& widget)
+{
+  SetCanvas(widget);
+}
+
 void ribi::QtDasWahreSchlagerfestCanvas::keyPressEvent(QKeyEvent *e)
 {
   switch(e->key())
@@ -57,7 +62,7 @@ void ribi::QtDasWahreSchlagerfestCanvas::keyPressEvent(QKeyEvent *e)
   }
 }
 
-void ribi::QtDasWahreSchlagerfestCanvas::OnChanged()
+void ribi::QtDasWahreSchlagerfestCanvas::OnChanged(const DasWahreSchlagerfestWidget& widget)
 {
-  SetCanvas(m_widget->ToTextCanvas());
+  Display(widget);
 }

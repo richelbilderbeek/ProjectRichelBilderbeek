@@ -12,20 +12,17 @@ namespace ribi {
 
 struct DasWahreSchlagerfestWidget;
 
-struct QtDasWahreSchlagerfestCanvas : public QtCanvas
+struct QtDasWahreSchlagerfestCanvas : public QtCanvas, public ribi::DasWahreSchlagerfestDisplay
 {
   QtDasWahreSchlagerfestCanvas(const int width = 9, const int height = 5);
 
+  void Display(const DasWahreSchlagerfestWidget& widget) override;
+  void OnChanged(const DasWahreSchlagerfestWidget& widget) override;
   void keyPressEvent(QKeyEvent *e);
 
   private:
-  QtDasWahreSchlagerfestWidget m_widget;
+  //QtDasWahreSchlagerfestWidget m_widget;
   DasWahreSchlagerfestWidget m_game;
-
-  //static const boost::shared_ptr<Canvas> CreateCanvas(const int width, const int height) noexcept;
-  //static const boost::shared_ptr<DasWahreSchlagerfestWidget> CreateWidget(const int width, const int height) noexcept;
-
-  void OnChanged();
 };
 
 } //~namespace ribi

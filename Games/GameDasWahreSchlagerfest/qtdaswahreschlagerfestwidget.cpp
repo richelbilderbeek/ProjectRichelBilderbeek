@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) noexcept
   : QWidget(parent),
-    m_widget(new DasWahreSchlagerfestWidget(*this)),
+    m_widget(new DasWahreSchlagerfestWidget(this)),
     m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
     m_bratwurst(":/images/GameDasWahreSchlagerfestBratwurst.png"),
     m_empty(":/images/GameDasWahreSchlagerfestSmiley.png"),

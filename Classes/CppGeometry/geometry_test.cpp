@@ -4,6 +4,7 @@
 
 #include "apcplx.h" //apfloat's atan2
 
+#include "fuzzy_equal_to.h"
 #include "plane.h"
 #include "ribi_regex.h"
 #include "testtimer.h"
@@ -1325,52 +1326,51 @@ void ribi::Geometry::Test() noexcept
   }
 
   if (verbose) { TRACE("GetLineLineIntersections"); }
-  #ifdef TODO_RICHEL
   {
     typedef boost::geometry::model::d2::point_xy<double> Point;
     typedef boost::geometry::model::linestring<Point> Line;
     typedef boost::geometry::model::box<Point> Rect;
     //Assume line segment (0,0)-(2,2) intersects line segment (2,0)-(0,2) at point (1,1)
     {
-      const Line line1 = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
-      const Line line2 = CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
-      assert( GetLineLineIntersections(line1,line2).size() == 1);
-      assert( fuzzy_equal_to()(GetLineLineIntersections(line1,line2)[0].x(),1.0) );
-      assert( fuzzy_equal_to()(GetLineLineIntersections(line1,line2)[0].y(),1.0) );
+      const Line line1 = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Line line2 = g.CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
+      assert( g.GetLineLineIntersections(line1,line2).size() == 1);
+      assert( fuzzy_equal_to()(g.GetLineLineIntersections(line1,line2)[0].x(),1.0) );
+      assert( fuzzy_equal_to()(g.GetLineLineIntersections(line1,line2)[0].y(),1.0) );
     }
     //Lines are finite, however, as the line segment
     //(0,0)-(0.2,0.2) does not intersect line segment (2,0)-(0,2) at point (1,1)
     {
-      const Line line1 = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(0.2,0.2) } ));
-      const Line line2 = CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
-      assert( GetLineLineIntersections(line1,line2).size() == 0);
+      const Line line1 = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(0.2,0.2) } ));
+      const Line line2 = g.CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
+      assert( g.GetLineLineIntersections(line1,line2).size() == 0);
     }
     //Assume line segment (0,0)-(2,2) intersects with rectangle (1,0)-(3,9) at point (1,1)
     {
-      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
       const Rect rect(Point(1.0,0.0), Point(3.0,3.9));
-      GetLineRectIntersections(line,rect);
-      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      g.GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
       assert(v.size() == 1);
       assert( fuzzy_equal_to()(v[0].x(),1.0) );
       assert( fuzzy_equal_to()(v[0].y(),1.0) );
     }
     //Assume line segment (0,0)-(2,2) intersects with rectangle (0,1)-(3,9) at point (1,1)
     {
-      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
       const Rect rect(Point(0.0,1.0), Point(3.0,9.0));
-      GetLineRectIntersections(line,rect);
-      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      g.GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
       assert(v.size() == 1);
       assert( fuzzy_equal_to()(v[0].x(),1.0) );
       assert( fuzzy_equal_to()(v[0].y(),1.0) );
     }
     //Assume line segment (0,0)-(2,2) intersects with rectangle (1,1)-(3,3) at point (1,1) once
     {
-      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
       const Rect rect(Point(1.0,1.0), Point(3.0,3.0));
-      GetLineRectIntersections(line,rect);
-      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      g.GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
       assert(v.size() == 1);
       assert( fuzzy_equal_to()(v[0].x(),1.0) );
       assert( fuzzy_equal_to()(v[0].y(),1.0) );
@@ -1378,10 +1378,10 @@ void ribi::Geometry::Test() noexcept
 
     //Assume line segment (0,0)-(4,4) intersects with rectangle (1,0)-(3,9) at points (1,1) and (3,3)
     {
-      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
       const Rect rect(Point(1.0,0.0), Point(3.0,3.9));
-      GetLineRectIntersections(line,rect);
-      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      g.GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
       assert(v.size() == 2);
       assert( fuzzy_equal_to()(v[0].x(),1.0) );
       assert( fuzzy_equal_to()(v[0].y(),1.0) );
@@ -1390,10 +1390,10 @@ void ribi::Geometry::Test() noexcept
     }
     //Assume line segment (0,0)-(4,4) intersects with rectangle (0,1)-(3,9) at points (1,1) and (3,3)
     {
-      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
       const Rect rect(Point(0.0,1.0), Point(3.0,9.0));
-      GetLineRectIntersections(line,rect);
-      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      g.GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
       assert(v.size() == 2);
       assert( fuzzy_equal_to()(v[0].x(),1.0) );
       assert( fuzzy_equal_to()(v[0].y(),1.0) );
@@ -1402,10 +1402,10 @@ void ribi::Geometry::Test() noexcept
     }
     //Assume line segment (0,0)-(4,4) intersects with rectangle (1,1)-(3,3) at points (1,1) and (3,3)
     {
-      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
       const Rect rect(Point(1.0,1.0), Point(3.0,3.0));
-      GetLineRectIntersections(line,rect);
-      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      g.GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
       assert(v.size() == 2);
       assert( fuzzy_equal_to()(v[0].x(),1.0) );
       assert( fuzzy_equal_to()(v[0].y(),1.0) );
@@ -1413,7 +1413,6 @@ void ribi::Geometry::Test() noexcept
       assert( fuzzy_equal_to()(v[1].y(),3.0) );
     }
   }
-  #endif //#ifdef TODO_RICHEL
   //WktToLinestring: open linestring to polygon
   {
 

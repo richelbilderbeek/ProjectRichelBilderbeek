@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFont>
 #include <QPainter>
 
+#include "geometry.h"
 //#include "qtconceptmapconceptitem.h"
 #include "qtconceptmapqtnode.h"
 #include "trace.h"
@@ -38,94 +39,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #pragma GCC diagnostic pop
-
-///Obtain the zero or one intersections between two finite lines
-//From http://www.richelbilderbeek.nl/CppGetLineLineIntersections.htm
-template <class T>
-const std::vector<
-  boost::geometry::model::d2::point_xy<T>
->
-GetLineLineIntersections(
-  const boost::geometry::model::linestring<
-    boost::geometry::model::d2::point_xy<T>
-  > line1,
-  const boost::geometry::model::linestring<
-    boost::geometry::model::d2::point_xy<T>
-  > line2)
-{
-  typedef boost::geometry::model::d2::point_xy<T> Point;
-  //typedef boost::geometry::model::linestring<Point> Line;
-  std::vector<Point> points;
-  boost::geometry::intersection(line1,line2,points);
-  assert(points.empty() || points.size() == 1);
-  return points;
-}
-
-//Helper function to create a const line without a temporary std::vector
-template <class T>
-const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T>
->
-CreateLine(const std::vector<boost::geometry::model::d2::point_xy<T> >& v)
-{
-  return boost::geometry::model::linestring<
-    boost::geometry::model::d2::point_xy<T>
-  >(v.begin(),v.end());
-}
-
-///Obtain the zero, one or two intersections between a line and a rectanle
-//From http://www.richelbilderbeek.nl/CppGetLineRectIntersections.htm
-template <class T>
-const std::vector<
-  boost::geometry::model::d2::point_xy<T>
->
-GetLineRectIntersections(
-  const boost::geometry::model::linestring<
-    boost::geometry::model::d2::point_xy<T>
-  > line,
-  const boost::geometry::model::box<
-    boost::geometry::model::d2::point_xy<T>
-  > rect)
-{
-  typedef boost::geometry::model::d2::point_xy<T> Point;
-  typedef boost::geometry::model::linestring<Point> Line;
-  //typedef boost::geometry::model::box<Point> Rect;
-
-  const Point p0 = Point(rect.min_corner().x(), rect.min_corner().y());
-  const Point p1 = Point(rect.max_corner().x(), rect.min_corner().y());
-  const Point p2 = Point(rect.min_corner().x(), rect.max_corner().y());
-  const Point p3 = Point(rect.max_corner().x(), rect.max_corner().y());
-  const std::vector<Line> lines
-    =
-    {
-      CreateLine(std::vector<Point>( {p0,p1} )),
-      CreateLine(std::vector<Point>( {p0,p2} )),
-      CreateLine(std::vector<Point>( {p1,p3} )),
-      CreateLine(std::vector<Point>( {p2,p3} ))
-    };
-  std::vector<Point> points;
-  std::for_each(lines.begin(),lines.end(),
-    [&points,line](const Line& side)
-    {
-      const std::vector<Point> v = GetLineLineIntersections(line,side);
-      std::copy(v.begin(),v.end(),std::back_inserter(points));
-    }
-  );
-  //Remove doublures
-  //Put 'typename' before 'std::vector<Point>::iteratortype' to prevent getting the error below:
-  //error: need 'typename' before 'std::vector<boost::geometry::model::d2::point_xy<T> >::iterator'
-  //  because 'std::vector<boost::geometry::model::d2::point_xy<T> >' is a dependent scope
-  typename std::vector<Point>::iterator new_end = std::unique( points.begin(),points.end(),
-    [](const Point& lhs, const Point& rhs)
-    {
-      return lhs.x() == rhs.x() && lhs.y() == rhs.y();
-    }
-  );
-  points.erase(new_end,points.end());
-
-  assert(points.size() <= 2);
-
-  return points;
-}
 
 ribi::cmap::QtNewArrow::QtNewArrow(
   QtNode * const from,
@@ -161,7 +74,7 @@ void ribi::cmap::QtNewArrow::paint(QPainter* painter, const QStyleOptionGraphics
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::linestring<Point> Line;
   typedef boost::geometry::model::box<Point> Rect;
-  const Line line = CreateLine(
+  const Line line = Geometry().CreateLine(
     std::vector<Point>(
       {
         Point(m_from->GetCenterX(),m_from->GetCenterY()),
@@ -176,7 +89,7 @@ void ribi::cmap::QtNewArrow::paint(QPainter* painter, const QStyleOptionGraphics
     Point(qr1.bottomRight().x(),qr1.bottomRight().y())
     );
 
-  std::vector<Point> p1 = GetLineRectIntersections(line,r1);
+  std::vector<Point> p1 = Geometry().GetLineRectIntersections(line,r1);
   if (p1.empty())
   {
     //Yes,it happens, when the line does not leave the rectangle

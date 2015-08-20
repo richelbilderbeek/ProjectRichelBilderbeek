@@ -139,6 +139,96 @@ struct Geometry
     const std::vector<Coordinat2D>& v
   ) const noexcept;
 
+  //Helper function to create a const line without a temporary std::vector
+  template <class T>
+  const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T>
+  >
+  CreateLine(const std::vector<boost::geometry::model::d2::point_xy<T> >& v) const
+  {
+    return boost::geometry::model::linestring<
+      boost::geometry::model::d2::point_xy<T>
+    >(v.begin(),v.end());
+  }
+
+  ///Obtain the zero or one intersections between two finite lines
+  //From http://www.richelbilderbeek.nl/CppGetLineLineIntersections.htm
+  template <class T>
+  const std::vector<
+    boost::geometry::model::d2::point_xy<T>
+  >
+  GetLineLineIntersections(
+    const boost::geometry::model::linestring<
+      boost::geometry::model::d2::point_xy<T>
+    > line1,
+    const boost::geometry::model::linestring<
+      boost::geometry::model::d2::point_xy<T>
+    > line2) const
+  {
+    typedef boost::geometry::model::d2::point_xy<T> Point;
+    //typedef boost::geometry::model::linestring<Point> Line;
+    std::vector<Point> points;
+    boost::geometry::intersection(line1,line2,points);
+    assert(points.empty() || points.size() == 1);
+    return points;
+  }
+
+
+  ///Obtain the zero, one or two intersections between a line and a rectanle
+  //From http://www.richelbilderbeek.nl/CppGetLineRectIntersections.htm
+  template <class T>
+  const std::vector<
+    boost::geometry::model::d2::point_xy<T>
+  >
+  GetLineRectIntersections(
+    const boost::geometry::model::linestring<
+      boost::geometry::model::d2::point_xy<T>
+    > line,
+    const boost::geometry::model::box<
+      boost::geometry::model::d2::point_xy<T>
+    > rect) const
+  {
+    typedef boost::geometry::model::d2::point_xy<T> Point;
+    typedef boost::geometry::model::linestring<Point> Line;
+    //typedef boost::geometry::model::box<Point> Rect;
+
+    const Point p0 = Point(rect.min_corner().x(), rect.min_corner().y());
+    const Point p1 = Point(rect.max_corner().x(), rect.min_corner().y());
+    const Point p2 = Point(rect.min_corner().x(), rect.max_corner().y());
+    const Point p3 = Point(rect.max_corner().x(), rect.max_corner().y());
+    const std::vector<Line> lines
+      =
+      {
+        CreateLine(std::vector<Point>( {p0,p1} )),
+        CreateLine(std::vector<Point>( {p0,p2} )),
+        CreateLine(std::vector<Point>( {p1,p3} )),
+        CreateLine(std::vector<Point>( {p2,p3} ))
+      };
+    std::vector<Point> points;
+    std::for_each(lines.begin(),lines.end(),
+      [&points,line,this](const Line& side)
+      {
+        const std::vector<Point> v = GetLineLineIntersections(line,side);
+        std::copy(v.begin(),v.end(),std::back_inserter(points));
+      }
+    );
+    //Remove doublures
+    //Put 'typename' before 'std::vector<Point>::iteratortype' to prevent getting the error below:
+    //error: need 'typename' before 'std::vector<boost::geometry::model::d2::point_xy<T> >::iterator'
+    //  because 'std::vector<boost::geometry::model::d2::point_xy<T> >' is a dependent scope
+    typename std::vector<Point>::iterator new_end = std::unique( points.begin(),points.end(),
+      [](const Point& lhs, const Point& rhs)
+      {
+        return lhs.x() == rhs.x() && lhs.y() == rhs.y();
+      }
+    );
+    points.erase(new_end,points.end());
+
+    assert(points.size() <= 2);
+
+    return points;
+  }
+
+
   Coordinat3D CreatePoint(
     const double x,
     const double y,

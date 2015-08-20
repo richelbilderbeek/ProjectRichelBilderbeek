@@ -127,7 +127,7 @@ void ribi::DasWahreSchlagerfestWidget::CheckThree()
 void ribi::DasWahreSchlagerfestWidget::Display() const
 {
   assert(m_display);
-  m_display.Display(*this);
+  m_display->Display(*this);
 }
 
 void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfestWidget::Key key)
@@ -148,12 +148,12 @@ void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfest
           //Richel eats blocks
           ++m_cursor.x;
           m_v[m_cursor.y][m_cursor.x] = Tile::empty;
-          m_display.OnChanged(*this);
+          m_display->OnChanged(*this);
         }
         else if (m_v[m_cursor.y][m_cursor.x + 1] == Tile::empty)
         {
           ++m_cursor.x;
-          m_display.OnChanged(*this);
+          m_display->OnChanged(*this);
         }
       }
     }
@@ -167,13 +167,13 @@ void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfest
           //Richel eats blocks
           ++m_cursor.y;
           m_v[m_cursor.y][m_cursor.x] = Tile::empty;
-          m_display.OnChanged(*this);
+          m_display->OnChanged(*this);
           return;
         }
         else if (m_v[m_cursor.y+1][m_cursor.x] == Tile::empty)
         {
           ++m_cursor.y;
-          m_display.OnChanged(*this);
+          m_display->OnChanged(*this);
           return;
         }
       }
@@ -213,7 +213,7 @@ void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfest
             ) > 5) { m_cursor.tile = Tile::bratwurst; }
           else m_cursor.tile = (std::rand() >> 4) % 2 ? Tile::beer : Tile::bratwurst;
         }
-          m_display.OnChanged(*this);
+          m_display->OnChanged(*this);
       }
 
     }
@@ -227,12 +227,12 @@ void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfest
           //Richel eats blocks
           --m_cursor.x;
           m_v[m_cursor.y][m_cursor.x] = Tile::empty;
-          m_display.OnChanged(*this);
+          m_display->OnChanged(*this);
         }
         else if (m_v[m_cursor.y][m_cursor.x - 1] == Tile::empty)
         {
           --m_cursor.x;
-          m_display.OnChanged(*this);
+          m_display->OnChanged(*this);
         }
       }
     }
