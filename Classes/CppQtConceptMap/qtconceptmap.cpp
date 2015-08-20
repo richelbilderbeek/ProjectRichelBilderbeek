@@ -1203,19 +1203,6 @@ void ribi::cmap::QtConceptMap::mouseDoubleClickEvent(QMouseEvent *event)
   assert(qtnode);
   const QPointF new_point = mapToScene(event->pos());
   qtnode->GetNode()->SetPos(new_point.x(),new_point.y());
-
-  {
-    //TODO: Move this to a test
-    const int n_nodes_in_scene{static_cast<int>(Collect<QtNode>(this->scene()).size())};
-    const int n_nodes_in_conceptmap{static_cast<int>(this->GetConceptMap()->GetNodes().size())};
-    if (n_nodes_in_scene != n_nodes_in_conceptmap)
-    {
-      std::stringstream msg;
-      msg << "Warning: #nodes in scene (" << n_nodes_in_scene
-        << ") does not match #nodes in concept map (" << n_nodes_in_conceptmap << ")";
-      TRACE(msg.str());
-    }
-  }
 }
 
 void ribi::cmap::QtConceptMap::mouseMoveEvent(QMouseEvent * event)

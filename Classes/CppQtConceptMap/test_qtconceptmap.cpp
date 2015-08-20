@@ -26,6 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <chrono>
 
+#include <QMouseEvent>
+
 #include "qtconceptmapcollect.h"
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
@@ -315,7 +317,23 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(!qtfrom->isSelected());
     assert(!qtto->isSelected());
   }
-
+  if (verbose) { TRACE("MouseDoubleClick"); }
+  for (int i=0; i!=10; ++i)
+  {
+    QtConceptMap m;
+    m.SetConceptMap(ConceptMapFactory().GetHeteromorphousTestConceptMap(16));
+    QMouseEvent e(
+      QEvent::Type::MouseButtonDblClick,
+      QPointF( std::sin(static_cast<double>(i)), std::cos(static_cast<double>(i) ) ), //localPos,
+      Qt::MouseButton::LeftButton,
+      Qt::MouseButtons(),
+      Qt::NoModifier
+    );
+    m.mouseDoubleClickEvent(&e);
+    const int n_nodes_in_scene{static_cast<int>(Collect<QtNode>(m.GetScene()).size())};
+    const int n_nodes_in_conceptmap{static_cast<int>(m.GetConceptMap()->GetNodes().size())};
+    assert(n_nodes_in_scene == n_nodes_in_conceptmap);
+  }
   TestTimer::SetMaxCnt(1); //Because the base class has been tested now
 }
 #endif

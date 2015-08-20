@@ -1,6 +1,8 @@
 #ifndef QTDASWAHRESCHLAGERFESTCANVAS_H
 #define QTDASWAHRESCHLAGERFESTCANVAS_H
 
+/*
+
 #include "qtcanvas.h"
 #include "qtdaswahreschlagerfestwidget.h"
 #pragma GCC diagnostic push
@@ -12,13 +14,18 @@ namespace ribi {
 
 struct DasWahreSchlagerfestWidget;
 
-struct QtDasWahreSchlagerfestCanvas : public QtCanvas, public ribi::DasWahreSchlagerfestDisplay
+class QtDasWahreSchlagerfestCanvas : public QWidget, public ribi::DasWahreSchlagerfestDisplay
 {
-  QtDasWahreSchlagerfestCanvas(const int width = 9, const int height = 5);
+  Q_OBJECT
+
+public:
+
+  QtDasWahreSchlagerfestCanvas(const int width = 9, const int height = 5, QWidget *parent = 0);
 
   void Display(const DasWahreSchlagerfestWidget& widget) override;
-  void OnChanged(const DasWahreSchlagerfestWidget& widget) override;
   void keyPressEvent(QKeyEvent *e);
+  void OnChanged(const DasWahreSchlagerfestWidget& widget) override;
+  void paintEvent(QPaintEvent *);
 
   private:
   //QtDasWahreSchlagerfestWidget m_widget;
@@ -26,5 +33,7 @@ struct QtDasWahreSchlagerfestCanvas : public QtCanvas, public ribi::DasWahreSchl
 };
 
 } //~namespace ribi
+
+*/
 
 #endif // QTDASWAHRESCHLAGERFESTCANVAS_H

@@ -1,9 +1,12 @@
+/*
+
 #include "qtdaswahreschlagerfestcanvas.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <QKeyEvent>
 
+#include "dotmatrixtext.h"
 #include "qtcanvas.h"
 #include "textcanvas.h"
 #include "daswahreschlagerfestwidget.h"
@@ -66,3 +69,17 @@ void ribi::QtDasWahreSchlagerfestCanvas::OnChanged(const DasWahreSchlagerfestWid
 {
   Display(widget);
 }
+
+void ribi::QtDasWahreSchlagerfestCanvas::paintEvent(QPaintEvent *)
+{
+  std::vector<std::string> text;
+  for (std::string line: m_active_canvas->ToStrings()) { text.push_back(line); }
+
+  DotMatrixText t(text,1,DotMatrixText::ColorSystem::inverted);
+  m_image = t.CreateImage();
+
+  QPainter painter(this);
+  painter.drawPixmap(rect(),QPixmap::fromImage(*m_image.get()));
+}
+
+*/

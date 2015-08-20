@@ -88,12 +88,14 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
     is_tested = true;
   }
   QtDasWahreSchlagerfestMainDialog();
+  /*
   {
     const boost::shared_ptr<QtDasWahreSchlagerfestCanvas> c {
       new QtDasWahreSchlagerfestCanvas(9,5)
     };
     assert(c);
   }
+  */
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
