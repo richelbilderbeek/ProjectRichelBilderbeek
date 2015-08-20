@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) noexcept
   : QWidget(parent),
-    m_widget(new DasWahreSchlagerfestWidget),
+    m_widget(new DasWahreSchlagerfestWidget(*this)),
     m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
     m_bratwurst(":/images/GameDasWahreSchlagerfestBratwurst.png"),
     m_empty(":/images/GameDasWahreSchlagerfestSmiley.png"),
@@ -40,12 +40,26 @@ ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent
   assert(m_bratwurst.width() == 102);
   assert(m_empty.width() == 102);
   assert(m_richel.width() == 102);
-
-  m_widget->m_signal_changed.connect(
-      boost::bind(
-        &ribi::QtDasWahreSchlagerfestWidget::OnChange,
-        this));
 }
+
+void ribi::QtDasWahreSchlagerfestWidget::Display(const DasWahreSchlagerfestWidget& /* widget */)
+{
+  this->repaint();
+}
+
+const QPixmap& ribi::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept
+{
+  switch (tile)
+  {
+    case DasWahreSchlagerfestWidget::Tile::beer     : return m_beer;
+    case DasWahreSchlagerfestWidget::Tile::bratwurst: return m_bratwurst;
+    case DasWahreSchlagerfestWidget::Tile::empty    : return m_empty;
+    case DasWahreSchlagerfestWidget::Tile::richel   : return m_richel;
+  }
+  assert(!"Should not get here");
+  throw std::logic_error("ribi::QtDasWahreSchlagerfestWidget::GetPixmap");
+}
+
 
 void ribi::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e) noexcept
 {
@@ -60,6 +74,11 @@ void ribi::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e) noexcept
     default: return;
   }
   m_widget->PressKey(key);
+}
+
+void ribi::QtDasWahreSchlagerfestWidget::OnChanged(const DasWahreSchlagerfestWidget& /* widget */)
+{
+  this->repaint();
 }
 
 void ribi::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
@@ -101,24 +120,3 @@ void ribi::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
   }
 }
 
-
-
-
-
-const QPixmap& ribi::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept
-{
-  switch (tile)
-  {
-    case DasWahreSchlagerfestWidget::Tile::beer     : return m_beer;
-    case DasWahreSchlagerfestWidget::Tile::bratwurst: return m_bratwurst;
-    case DasWahreSchlagerfestWidget::Tile::empty    : return m_empty;
-    case DasWahreSchlagerfestWidget::Tile::richel   : return m_richel;
-  }
-  assert(!"Should not get here");
-  throw std::logic_error("ribi::QtDasWahreSchlagerfestWidget::GetPixmap");
-}
-
-void ribi::QtDasWahreSchlagerfestWidget::OnChange() noexcept
-{
-  this->repaint();
-}

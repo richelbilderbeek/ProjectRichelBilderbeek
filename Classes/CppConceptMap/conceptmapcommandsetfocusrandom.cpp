@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include "conceptmap.h"
-#include "conceptmapwidget.h"
+
 
 bool ribi::cmap::CommandSetFocusRandom::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {

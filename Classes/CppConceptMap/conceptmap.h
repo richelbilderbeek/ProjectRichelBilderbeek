@@ -29,6 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
+#include <boost/signals2.hpp>
+#include <QPointF>
 #include "conceptmapfwd.h"
 #pragma GCC diagnostic pop
 
@@ -42,20 +44,24 @@ struct ConceptMapFactory;
 ///Use ConceptMapWidget to work with commands
 struct ConceptMap
 {
-  typedef boost::shared_ptr<ConceptMap> ConceptMapPtr;
-  typedef boost::shared_ptr<const ConceptMap> ReadOnlyConceptMapPtr;
-  typedef boost::shared_ptr<Edge> EdgePtr;
-  typedef boost::shared_ptr<const Edge> ReadOnlyEdgePtr;
-  typedef boost::shared_ptr<Node> NodePtr;
-  typedef boost::shared_ptr<const Node> ReadOnlyNodePtr;
-  typedef boost::shared_ptr<CenterNode> CenterNodePtr;
-  typedef boost::shared_ptr<const CenterNode> ReadOnlyCenterNodePtr;
-  typedef std::vector<ConceptMapPtr> ConceptMaps;
-  typedef std::vector<EdgePtr> Edges;
-  typedef std::vector<ReadOnlyEdgePtr> ReadOnlyEdges;
-  typedef std::vector<NodePtr> Nodes;
-  typedef std::vector<ReadOnlyNodePtr> ReadOnlyNodes;
-  typedef ConceptMaps SubConceptMaps; //Just to let the code speak more for itself
+  using CenterNodePtr = boost::shared_ptr<CenterNode> ;
+  using ConceptMapPtr = boost::shared_ptr<ConceptMap>;
+  using ConceptMaps = std::vector<ConceptMapPtr>;
+  using ConstEdges = std::vector<boost::shared_ptr<const Edge>>;
+  using ConstNodes = std::vector<boost::shared_ptr<const Node>>;
+  using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
+  using EdgePtr = boost::shared_ptr<Edge>;
+  using Edges = std::vector<boost::shared_ptr<Edge>>;
+  using NodePtr = boost::shared_ptr<Node>;
+  using Nodes = std::vector<boost::shared_ptr<Node>>;
+  using EdgesAndNodes = std::pair<Edges,Nodes>;
+  using ReadOnlyCenterNodePtr = boost::shared_ptr<const CenterNode>;
+  using ReadOnlyConceptMapPtr = boost::shared_ptr<const ConceptMap>;
+  using ReadOnlyEdgePtr = boost::shared_ptr<const Edge>;
+  using ReadOnlyEdges = std::vector<ReadOnlyEdgePtr>;
+  using ReadOnlyNodePtr = boost::shared_ptr<const Node>;
+  using ReadOnlyNodes = std::vector<ReadOnlyNodePtr>;
+  using SubConceptMaps = ConceptMaps; //Just to let the code speak more for itself
 
   ConceptMap(const ConceptMap&) = delete;
   ConceptMap& operator=(const ConceptMap&) = delete;
@@ -106,14 +112,10 @@ struct ConceptMap
   ReadOnlyNodes GetNodes() const noexcept;
   Nodes& GetNodes() noexcept { return m_nodes; }
 
-  //Use this instead:
-  //  assert(FindCenterNode());
-  //  assert(FindCenterNode()->GetConcept());
-  //  return FindCenterNode()->GetConcept()->GetName();
-  //
-  //std::string GetQuestion() const noexcept
-
+  ///Obtain the version
   static std::string GetVersion() noexcept;
+
+  ///Obtain the version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   bool HasNode(const ReadOnlyNodePtr& node) const noexcept;
@@ -130,6 +132,70 @@ struct ConceptMap
   ///Convert a ConceptMap from an XML std::string
   static std::string ToXml(const ReadOnlyConceptMapPtr& c) noexcept;
 
+  bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
+  bool CanUndo() const noexcept { return !m_undo.empty(); }
+  void DoCommand(const boost::shared_ptr<Command> command) noexcept;
+
+  ///There is one item in focus at most
+  ///There can be multiple items selected
+  ///The node in focus is never in the collection of selected nodes
+  ///Use GetFocusAndSelected to get all
+  boost::shared_ptr<const Node> GetFocus() const noexcept;
+  boost::shared_ptr<      Node> GetFocus()       noexcept;
+
+  ///There can be multiple items selected
+  ///There is one item in focus at most
+  ///The node in focus is never in the collection of selected nodes
+  ///Use GetFocusAndSelected to get all
+  ConstEdgesAndNodes GetSelected() const noexcept;
+       EdgesAndNodes GetSelected()       noexcept { return m_selected; }
+
+  ConstEdges GetSelectedEdges() const noexcept;
+       Edges GetSelectedEdges()       noexcept { return m_selected.first; }
+
+  ConstNodes GetSelectedNodes() const noexcept;
+       Nodes GetSelectedNodes()       noexcept { return m_selected.second; }
+
+
+  void MouseMoveEvent(const QPointF& mouse_pos) noexcept;
+
+  void Undo() noexcept;
+
+  ///Emitted when an Edge is added
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(boost::shared_ptr<Edge>)> m_signal_add_edge;
+
+  ///Emitted when a Node is added
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_add_node;
+
+  ///Emitted when the ConceptMap is modified as a whole: deleted, created or overwritten
+  boost::signals2::signal<void()> m_signal_concept_map_changed;
+
+  ///Emitted when an Edge is deleted
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(boost::shared_ptr<Edge>)> m_signal_delete_edge;
+
+  ///Emitted when a Node is deleted
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(const ReadOnlyNodePtr&)> m_signal_delete_node;
+
+  ///Emitted when a Node loses focus
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_lose_focus;
+
+  ///Emitted when one or more Nodes lose to be selected
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_lose_selected;
+
+  ///Emitted when a Node receives focus
+  ///This has to be handled by QtConceptMapWidget
+  //boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_set_focus;
+
+  ///Emitted when multiple Nodes are selected
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(const Edges&, const Nodes&)> m_signal_set_selected;
+
 private:
 
   ///The edges
@@ -138,12 +204,94 @@ private:
   ///The nodes
   Nodes m_nodes;
 
+  ///The elements in focus, if any. These might be:
+  ///- a true Node
+  ///- the label in the middle of an edge
+  ///- the CenterNode
+  boost::shared_ptr<Node> m_focus;
+
+
+  const int m_font_height;
+  const int m_font_width;
+
+  QPointF m_mouse_pos;
+
+  ///The elements selected
+  ///- a true Node
+  ///- the label in the middle of an edge
+  ///- the CenterNode
+  EdgesAndNodes m_selected;
+
+  ///The undo stack (use std::vector because it is a true STL container)
+  ///The Commands aren't const, because Command::Undo changes their state
+  std::vector<boost::shared_ptr<Command>> m_undo;
+
+  ///Add the nodes to the current (can be zero) selecetd nodes
+  void AddSelected(const Edges& edges) noexcept;
+  void AddSelected(const Nodes& nodes) noexcept;
+  void AddSelected(const Edges& edges,const Nodes& nodes) noexcept;
+
+  static boost::shared_ptr<ConceptMap> CreateEmptyConceptMap() noexcept;
+
+  ///Creates a new Node in the concept map. The return value is
+  ///that node. This is used by CommandCreateNode::Undo
+  boost::shared_ptr<Edge> CreateNewEdge() noexcept;
+
+  ///Creates a new Node in the concept map. The return value is
+  ///that node. This is used by CommandCreateNode::Undo
+  boost::shared_ptr<Node> CreateNewNode() noexcept;
+
+
+  ///Find a Node at a coordinat
+  ///Returns nullptr if none is present
+  boost::shared_ptr<      Node> FindNodeAt(const double x, const double y)       noexcept;
+  boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
+
+  ///Lose the current focus, assumes something has focus
+  void LoseFocus() noexcept;
+
+  ///Used by CommandAddFocusRandom and CommandSetFocusRandom
+  ///Of all the concept maps its nodes, except for the uses supplied as the
+  ///argument, return 1 to all the nodes, except when there is no node
+  ///left (as all are excluded) or the concept map does not have any nodes
+  std::vector<boost::shared_ptr<Edge>> GetRandomEdges(std::vector<boost::shared_ptr<const Edge>> edges_to_exclude = {}) noexcept;
+  boost::shared_ptr<Edge> GetRandomEdge(std::vector<boost::shared_ptr<const Edge>> edges_to_exclude = {}) noexcept;
+
+
+  ///Used by CommandAddFocusRandom and CommandSetFocusRandom
+  ///Of all the concept maps its nodes, except for the uses supplied as the
+  ///argument, return 1 to all the nodes, except when there is no node
+  ///left (as all are excluded) or the concept map does not have any nodes
+  std::vector<boost::shared_ptr<Node>> GetRandomNodes(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
+  boost::shared_ptr<Node> GetRandomNode(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
+
+  ///Called by m_undo its top command when it calles Undo itself,
+  ///by which the Command indicates that it must be removed from that m_undo vector
+  void OnUndo(const Command * const command_to_remove) noexcept;
+
+  ///Set the node to the only node in focus
+  //void SetFocus(const boost::shared_ptr<Node>& node) noexcept;
+
+  ///Set the nodes to the only nodes selected
+  void SetSelected(const ConstNodes& nodes) noexcept;
+  void SetSelected(const ConstEdges& edges) noexcept;
+  void SetSelected(const Nodes& nodes) noexcept;
+  void SetSelected(const Edges& edges) noexcept;
+  void SetSelected(const Edges& edges,const Nodes& nodes) noexcept;
+  void SetSelected(const ConstEdges& edges,const ConstNodes& nodes) noexcept;
+  void SetSelected(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
+  ///Unselect the node, assumes it is selected
+  void Unselect(const boost::shared_ptr<Node>& node) noexcept;
+  void Unselect(const Nodes& nodes) noexcept;
+
   ///Block constructor, except for the friend ConceptMapFactory
   ConceptMap(const std::string& question) noexcept;
+
   //Nodes[0] must be the focal question
   explicit ConceptMap(
     const Nodes& nodes = {},
@@ -166,6 +314,21 @@ private:
   ~ConceptMap() noexcept;
   friend void boost::checked_delete<>(ConceptMap* x);
   friend void boost::checked_delete<>(const ConceptMap* x);
+
+  //friend class Command;
+  friend class CommandAddSelectedRandom;
+  friend class CommandCreateNewConceptMap;
+  friend class CommandCreateNewEdge;
+  friend class CommandCreateNewNode;
+  friend class CommandDeleteConceptMap;
+  friend class CommandDeleteFocusNode;
+  friend class CommandDeleteNode;
+  friend class CommandLoseFocus;
+  friend class CommandSetFocusRandom;
+  friend class CommandSetSelectedWithCoordinat;
+  friend class CommandUnselectRandom;
+  friend bool operator==(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;
+
 };
 
 ///Count the number of CenterNodes

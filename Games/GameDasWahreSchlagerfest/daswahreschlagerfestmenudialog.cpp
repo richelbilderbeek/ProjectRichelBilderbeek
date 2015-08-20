@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "daswahreschlagerfestterminal.h"
 #include "daswahreschlagerfestwidget.h"
 #include "richelbilderbeekprogram.h"
 #include "testtimer.h"
@@ -39,11 +40,12 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
     std::cout << GetHelp() << '\n';
     return 1;
   }
+  DasWahreSchlagerfestTerminal terminal;
 
   if (argc == 2 && (argv[1] == "-d" || argv[1] == "--demo"))
   {
-    DasWahreSchlagerfestWidget w;
-    std::cout << w << std::endl;
+    DasWahreSchlagerfestWidget w(terminal);
+    w.Display();
 
     for (int i=0; i!=100; ++i)
     {
@@ -54,19 +56,16 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
         case 2: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::left); break;
         case 3: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::right); break;
       }
-      std::cout << w << std::endl;
+      w.Display();
     }
   }
   if (argc == 2 && (argv[1] == "-p" || argv[1] == "--play"))
   {
-    DasWahreSchlagerfestWidget w;
+    DasWahreSchlagerfestWidget w(terminal);
 
     while (1)
     {
-      std::cout
-        << std::endl
-        << w << std::endl
-        << std::endl;
+      w.Display();
 
       char c;
       std::cin >> c;
@@ -158,7 +157,8 @@ void ribi::DasWahreSchlagerfestMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  DasWahreSchlagerfestWidget();
+  DasWahreSchlagerfestTerminal terminal;
+  DasWahreSchlagerfestWidget widget(terminal);
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

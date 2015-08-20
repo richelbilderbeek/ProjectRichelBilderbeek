@@ -1445,7 +1445,7 @@ ToolTestNewickVector
   );
 
   m.push_back(
-    { "CppCppBoostAdjacency_listExample1",
+    { "CppBoostAdjacency_listExample1",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/></p>",
         "<p>&nbsp;</p>",
@@ -2841,6 +2841,21 @@ ToolTestNewickVector
         "  <a href=\"CppBrownianMotion.htm\">BrownianMotion</a> contains some classes"
         "  that are related to the Brownian motion process.",
         "</p>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBubbleSort",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppBubbleSort.htm\">BubbleSort</a> is a"
+        "  <a href=\"CppSort.htm\">sorting</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>"
+        "  to perform a bubble sort. Prefer to use the <a href=\"CppStl.htm\">STL</a>"
+        "  <a href=\"CppAlgorithm.htm\">algorithm</a> <a href=\"CppStdSort.htm\">std::sort</a>."
+        "</p>"
       }
     }
   );
@@ -5479,6 +5494,21 @@ ToolTestNewickVector
         "<p>",
         "  <a href=\"CppImageCanvas.htm\">ImageCanvas</a> is a <a href=\"CppCanvas.htm\">Canvas</a>",
         "  to load images.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppInsertionSort",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppInsertionSort.htm\">InsertionSort</a> is a"
+        "  <a href=\"CppSort.htm\">sorting</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>"
+        "  to perform an insertion sort. Prefer to use the <a href=\"CppStl.htm\">STL</a>"
+        "  <a href=\"CppAlgorithm.htm\">algorithm</a> <a href=\"CppStdSort.htm\">std::sort</a>."
         "</p>"
       }
     }
@@ -9432,6 +9462,22 @@ ToolTestNewickVector
       }
     }
   );
+
+  m.push_back(
+    { "CppSelectionSort",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppSelectionSort.htm\">SelectionSort</a> is a"
+        "  <a href=\"CppSort.htm\">sorting</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>"
+        "  to perform a selection sort. Prefer to use the <a href=\"CppStl.htm\">STL</a>"
+        "  <a href=\"CppAlgorithm.htm\">algorithm</a> <a href=\"CppStdSort.htm\">std::sort</a>."
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppSeperateString",
       {
@@ -9525,15 +9571,38 @@ ToolTestNewickVector
       }
     }
   );
+
+
   m.push_back(
-    { "CppSortedBinaryNewickVector",
+    { "CppSortVector",
       {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/>"
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppSortedBinaryNewickVector.htm\">SortedBinaryNewickVector</a> is a <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>"
+        "<p>"
+        "  <a href=\"CppSortVector.htm\">SortVector</a> is a <a href=\"CppSort.htm\">sorting</a>"
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a> to <a href=\"CppSort.htm\">sort</a>"
+        "  a <a href=\"CppContainer.htm\">container</a>."
+        "</p>"
       }
     }
   );
+
+  m.push_back(
+    { "CppSortedBinaryNewickVector",
+      {
+        "<p>"
+        "  <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>"
+        "  <a href=\"CppSortedBinaryNewickVector.htm\">SortedBinaryNewickVector</a> is a <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>."
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppStateObserver",
       {
@@ -9576,6 +9645,30 @@ ToolTestNewickVector
       }
     }
   );
+
+  m.push_back(
+    { "CppStdGenerate",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdGenerate.htm\">std::generate</a> is an <a href=\"CppStl.htm\">STL</a>",
+        "  <a href=\"CppAlgorithm.htm\">algorithm</a> to generate a sequence.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Examples</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppStdGenerateExample1.htm\">std::generate example 1: basics</a></li>"
+        "</ul>"
+      }
+    }
+  );
+
 
   m.push_back(
     { "CppStdRandom_shuffle",

@@ -28,8 +28,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic pop
 
-//Don't include ConceptMap, use Widget its mostly-private-except-for-Command interface only
-#include "conceptmapwidget.h"
 #include "trace.h"
 
 ribi::cmap::Command::Command() noexcept
@@ -38,13 +36,13 @@ ribi::cmap::Command::Command() noexcept
 
 }
 
-bool ribi::cmap::Command::CanDoCommand(const Widget * const widget) const noexcept
+bool ribi::cmap::Command::CanDoCommand(const ConceptMap * const widget) const noexcept
 {
   assert(widget);
   return CanDoCommandSpecific(widget);
 }
 
-void ribi::cmap::Command::DoCommand(Widget * const widget) noexcept
+void ribi::cmap::Command::DoCommand(ConceptMap * const widget) noexcept
 {
   assert(widget);
   assert(CanDoCommand(widget));

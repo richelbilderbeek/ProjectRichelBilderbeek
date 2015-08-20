@@ -5,7 +5,8 @@
 
 
 #include "conceptmap.h"
-#include "conceptmapwidget.h"
+#include "conceptmapfactory.h"
+
 #include "container.h"
 #include "fileio.h"
 #include "geometry.h"
@@ -51,12 +52,12 @@ ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
 
   a.AddLibrary("apfloat version: 2.4.1");
   a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
-  a.AddLibrary("ConceptMapWidget version: " + cmap::Widget().GetVersion());
   a.AddLibrary("Container version: " + ribi::Container().GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("ribi::Regex version: " + Regex().GetVersion());
   a.AddLibrary("Plane version: " + Plane::GetVersion());
+  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
 
   return a;
@@ -107,7 +108,7 @@ void ribi::TestConceptMapMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  ribi::cmap::Widget();
+  ribi::cmap::ConceptMapFactory();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //No test
 }

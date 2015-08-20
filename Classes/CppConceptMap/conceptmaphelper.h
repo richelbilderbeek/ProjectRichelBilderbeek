@@ -71,6 +71,25 @@ std::vector<boost::shared_ptr<T> > RemoveConst(
   return w;
 }
 
+template <class T, class U>
+bool CompareOnAddress(
+  const boost::shared_ptr<const T>& lhs,
+  const boost::shared_ptr<const U>& rhs
+  ) noexcept
+{
+  return lhs.get() < rhs.get();
+}
+
+template <class T, class U>
+bool CompareOnAddress(
+  const boost::shared_ptr<      T>& lhs,
+  const boost::shared_ptr<const U>& rhs
+  ) noexcept
+{
+  return lhs.get() < rhs.get();
+}
+
+
 namespace cmap {
 
 ///Obtain all possible selections of a std::vector, preserving the ordering of its elements

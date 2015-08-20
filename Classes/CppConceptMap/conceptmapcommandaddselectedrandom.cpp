@@ -5,45 +5,38 @@
 #include <cassert>
 
 #include "conceptmap.h"
-#include "conceptmapwidget.h"
+
 #include "conceptmaphelper.h"
 #include "trace.h"
 
-bool ribi::cmap::CommandAddSelectedRandom::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandAddSelectedRandom::CanDoCommandSpecific(const ConceptMap * const concept_map) const noexcept
 {
-  assert(widget);
-  assert(widget->GetConceptMap() || !widget->GetConceptMap());
+  assert(concept_map);
   const bool verbose{false};
-  if (!widget->GetConceptMap())
-  {
-    if (verbose) TRACE("AddSelected needs a concept map");
-    return false;
-  }
-  if (widget->GetConceptMap()->GetNodes().empty())
+  if (concept_map->GetNodes().empty())
   {
     if (verbose) TRACE("AddSelected needs nodes to focus on");
     return false;
   }
-  if (const_cast<Widget*>(widget)->GetRandomNodes(AddConst(widget->GetSelectedNodes())).empty())
+  if (const_cast<ConceptMap*>(concept_map)->GetRandomNodes(AddConst(concept_map->GetSelectedNodes())).empty())
   {
     if (verbose)
     {
       TRACE("AddSelected needs non-focused nodes to focus on");
-      TRACE(widget->GetSelectedNodes().size());
-      TRACE(widget->GetConceptMap()->GetNodes().size());
+      TRACE(concept_map->GetSelectedNodes().size());
     }
     return false;
   }
   return true;
 }
 
-void ribi::cmap::CommandAddSelectedRandom::DoCommandSpecific(Widget * const widget) noexcept
+void ribi::cmap::CommandAddSelectedRandom::DoCommandSpecific(ConceptMap * const widget) noexcept
 {
   assert(widget);
 
   //Transfer focus to this Node
   m_widget = widget;
-  m_old_selected = const_cast<const Widget*>(widget)->GetSelected();
+  m_old_selected = const_cast<const ConceptMap*>(widget)->GetSelected();
   const auto selected_edges(widget->GetRandomEdges(AddConst(m_old_selected.first)));
   const auto selected_nodes(widget->GetRandomNodes(AddConst(m_old_selected.second)));
   m_widget->AddSelected(selected_edges,selected_nodes);

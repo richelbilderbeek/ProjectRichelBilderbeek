@@ -32,7 +32,7 @@ public:
 private slots:
   void on_button_about_clicked();
   void on_button_concept_clicked();
-  void on_button_conceptmapwidget_clicked();
+  //void on_button_conceptmapwidget_clicked();
   void on_button_edge_clicked();
   void on_button_edit_conceptmap_clicked();
   void on_button_example_clicked();

@@ -41,7 +41,7 @@ namespace cmap {
 struct WidgetFactory
 {
   ///Get all the testing concept maps as a widget in one vector
-  static const std::vector<boost::shared_ptr<Widget> > GetAllTests() noexcept;
+  static const std::vector<boost::shared_ptr<ConceptMap> > GetAllTests() noexcept;
 
 };
 

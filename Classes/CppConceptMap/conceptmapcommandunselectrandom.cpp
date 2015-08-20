@@ -5,21 +5,15 @@
 #include <cassert>
 
 #include "conceptmap.h"
-#include "conceptmapwidget.h"
+
 #include "conceptmaphelper.h"
 #include "trace.h"
 
-bool ribi::cmap::CommandUnselectRandom::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandUnselectRandom::CanDoCommandSpecific(const ConceptMap * const concept_map) const noexcept
 {
-  assert(widget);
-  assert(widget->GetConceptMap() || !widget->GetConceptMap());
+  assert(concept_map);
   const bool verbose{false};
-  if (!widget->GetConceptMap())
-  {
-    if (verbose) TRACE("Unselect needs a concept map");
-    return false;
-  }
-  if (widget->GetSelectedEdges().empty() && widget->GetSelectedNodes().empty())
+  if (concept_map->GetSelectedEdges().empty() && concept_map->GetSelectedNodes().empty())
   {
     if (verbose) TRACE("Unselect needs nodes to unselect on");
     return false;
@@ -27,15 +21,15 @@ bool ribi::cmap::CommandUnselectRandom::CanDoCommandSpecific(const Widget * cons
   return true;
 }
 
-void ribi::cmap::CommandUnselectRandom::DoCommandSpecific(Widget * const widget) noexcept
+void ribi::cmap::CommandUnselectRandom::DoCommandSpecific(ConceptMap * const widget) noexcept
 {
   assert(widget);
 
   m_widget = widget;
-  m_old_selected = const_cast<const Widget*>(widget)->GetSelected();
+  m_old_selected = const_cast<const ConceptMap*>(widget)->GetSelected();
 
   //Get a random selected edge or node
-  auto all_selected = const_cast<const Widget*>(widget)->GetSelected();
+  auto all_selected = const_cast<const ConceptMap*>(widget)->GetSelected();
   const int n_edges{static_cast<int>(all_selected.first.size())};
   const int n_nodes{static_cast<int>(all_selected.second.size())};
   assert(n_edges + n_nodes > 0);

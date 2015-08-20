@@ -43,10 +43,10 @@ struct CommandDeleteNode : public Command
 
   private:
   boost::shared_ptr<Node> m_node;
-  Widget * m_widget;
+  ConceptMap * m_concept_map;
 
-  bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;
-  void DoCommandSpecific(Widget * const widget) noexcept final;
+  bool CanDoCommandSpecific(const ConceptMap * const widget) const noexcept final;
+  void DoCommandSpecific(ConceptMap * const widget) noexcept final;
   void UndoSpecific() noexcept final;
 };
 

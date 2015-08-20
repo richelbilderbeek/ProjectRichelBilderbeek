@@ -45,10 +45,10 @@ struct Command
 {
   Command() noexcept;
   virtual ~Command() noexcept {}
-  bool CanDoCommand(const Widget * const widget) const noexcept;
-  bool CanDoCommand(const boost::shared_ptr<const Widget> widget) const noexcept { return CanDoCommand(widget.get()); }
-  void DoCommand(Widget * const widget) noexcept;
-  void DoCommand(const boost::shared_ptr<Widget> widget) noexcept { DoCommand(widget.get()); }
+  bool CanDoCommand(const ConceptMap * const concept_map) const noexcept;
+  bool CanDoCommand(const boost::shared_ptr<const ConceptMap> widget) const noexcept { return CanDoCommand(widget.get()); }
+  void DoCommand(ConceptMap * const widget) noexcept;
+  void DoCommand(const boost::shared_ptr<ConceptMap> widget) noexcept { DoCommand(widget.get()); }
 
   virtual std::string ToStr() const noexcept = 0;
   void Undo() noexcept;
@@ -57,10 +57,10 @@ struct Command
 
   private:
   ///Hook, should be private in derived classes as well, use the general form
-  virtual bool CanDoCommandSpecific(const Widget * const widget) const noexcept = 0;
+  virtual bool CanDoCommandSpecific(const ConceptMap * const widget) const noexcept = 0;
 
   ///Hook, should be private in derived classes as well, use the general form
-  virtual void DoCommandSpecific(Widget * const widget) noexcept = 0;
+  virtual void DoCommandSpecific(ConceptMap * const widget) noexcept = 0;
 
   ///Hook, should be private in derived classes as well, use the general form
   virtual void UndoSpecific() noexcept = 0;

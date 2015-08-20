@@ -51,10 +51,10 @@ struct CommandUnselectRandom : public Command
 
   private:
   ConstEdgesAndNodes m_old_selected;
-  Widget * m_widget;
+  ConceptMap * m_widget;
 
-  bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;
-  void DoCommandSpecific(Widget * const widget) noexcept final;
+  bool CanDoCommandSpecific(const ConceptMap * const widget) const noexcept final;
+  void DoCommandSpecific(ConceptMap * const widget) noexcept final;
   void UndoSpecific() noexcept final;
 };
 

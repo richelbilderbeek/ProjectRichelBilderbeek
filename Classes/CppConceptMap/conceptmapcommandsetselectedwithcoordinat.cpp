@@ -22,22 +22,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include "conceptmapwidget.h"
+
+#include "conceptmap.h"
 #include "conceptmapnode.h"
 
-bool ribi::cmap::CommandSetSelectedWithCoordinat::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandSetSelectedWithCoordinat::CanDoCommandSpecific(const ConceptMap * const widget) const noexcept
 {
   assert(widget);
   return
     widget->FindNodeAt(m_x,m_y).get();
 }
 
-void ribi::cmap::CommandSetSelectedWithCoordinat::DoCommandSpecific(Widget * const widget) noexcept
+void ribi::cmap::CommandSetSelectedWithCoordinat::DoCommandSpecific(ConceptMap * const widget) noexcept
 {
   assert(CanDoCommandSpecific(widget));
   assert(widget);
 
-  m_old_focus = const_cast<const Widget*>(widget)->GetSelected();
+  m_old_focus = const_cast<const ConceptMap*>(widget)->GetSelected();
   m_widget = widget;
 
   const boost::shared_ptr<Node> node {

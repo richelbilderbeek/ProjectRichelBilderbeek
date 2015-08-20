@@ -45,7 +45,7 @@ struct Example;
 struct Examples;
 //struct File;
 struct Node;
-struct Widget;
+struct ConceptMap;
 
 } //~namespace cmap
 } //~namespace ribi

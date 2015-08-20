@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/shared_ptr.hpp>
 #include <QWidget>
 #include "daswahreschlagerfestwidget.h"
+#include "daswahreschlagerfestdisplay.h"
 #pragma GCC diagnostic pop
 
 struct DasWahreSchlagerfestWidget;
@@ -35,12 +36,15 @@ namespace Ui {
 
 namespace ribi {
 
-class QtDasWahreSchlagerfestWidget : public QWidget
+class QtDasWahreSchlagerfestWidget : public QWidget, ribi::DasWahreSchlagerfestDisplay
 {
   Q_OBJECT
     
 public:
-    explicit QtDasWahreSchlagerfestWidget(QWidget *parent = 0) noexcept;
+  explicit QtDasWahreSchlagerfestWidget(QWidget *parent = 0) noexcept;
+
+  void Display(const DasWahreSchlagerfestWidget& widget) override;
+  void OnChanged(const DasWahreSchlagerfestWidget& widget) override;
 
 protected:
   void keyPressEvent(QKeyEvent *) noexcept;
@@ -56,7 +60,7 @@ private:
   ///Obtain the pixmap for this tile
   const QPixmap& GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept;
 
-  void OnChange() noexcept;
+
 };
 
 } //~namespace ribi

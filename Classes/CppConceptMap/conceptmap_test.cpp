@@ -43,6 +43,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexamplesfactory.h"
 #include "conceptmapfactory.h"
 #include "conceptmaphelper.h"
+#include "conceptmapcommandfactory.h"
+#include "conceptmapcommandcreatenewnode.h"
+#include "conceptmapcommandcreatenewedge.h"
+#include "conceptmapcommandunselectrandom.h"
+#include "conceptmapcommandaddselectedrandom.h"
 #include "conceptmaphelper.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
@@ -65,7 +70,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
   NodeFactory();
   EdgeFactory();
   TestHelperFunctions();
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const TestTimer test_timer(__func__,__FILE__,2.0);
   const bool trace_verbose{false};
   typedef std::vector<boost::shared_ptr<Node>> Nodes;
 
@@ -582,6 +587,216 @@ void ribi::cmap::ConceptMap::Test() noexcept
     {
       if (concept_map->GetNodes().empty()) continue;
       assert(concept_map->FindCenterNode() && "Assume a CenterNode at the center of ConceptMap");
+    }
+  }
+
+  const int n_depth = 1;
+  //operator<<
+  /*
+  for (const boost::shared_ptr<Widget> widget:
+    WidgetFactory::GetAllTests())
+  {
+    std::cout << *widget << std::endl;
+  }
+  */
+  //Test if individual commands have the intended effect
+  //Delete concept map
+  /*
+  {
+    static int cnt_no = 0;
+    static int cnt_yes = 0;
+    for (const boost::shared_ptr<Widget> widget:
+      WidgetFactory::GetAllTests())
+    {
+      CommandDeleteConceptMap c;
+      if (widget->GetConceptMap())
+      {
+        assert(c.CanDoCommand(widget.get()) && "Can delete a concept map when present");
+        assert(widget->GetConceptMap() && "Concept map must be present before deletion");
+        c.DoCommand(widget.get());
+        assert(!widget->GetConceptMap() && "Concept map must be deleted");
+        c.Undo();
+        assert(widget->GetConceptMap() && "Concept map must be restored by undo");
+        ++cnt_yes;
+      }
+      else
+      {
+        assert(!widget->GetConceptMap());
+        assert(!c.CanDoCommand(widget.get()) && "Cannot delete a concept map when absent");
+        ++cnt_no;
+      }
+    }
+    assert(cnt_no > 0);
+    assert(cnt_yes > 0);
+  }
+  */
+  //Start concept map
+  /*
+  {
+    static int cnt_no = 0;
+    static int cnt_yes = 0;
+
+    for (const boost::shared_ptr<Widget> widget:
+      WidgetFactory::GetAllTests())
+    {
+      CommandCreateNewConceptMap c;
+      if (!widget->GetConceptMap())
+      {
+        assert(c.CanDoCommand(widget.get()) && "Can start a concept map when none is present");
+        c.DoCommand(widget.get());
+        assert(widget->GetConceptMap() && "Concept map must be created");
+        assert(widget->GetNodes().size() == 1);
+        assert(widget->GetEdges().size() == 0);
+        c.Undo();
+        assert(!widget->GetConceptMap() && "Concept map must be deleted by undo");
+        ++cnt_yes;
+      }
+      else
+      {
+        assert(widget->GetConceptMap());
+        assert(!c.CanDoCommand(widget.get()) && "Cannot start when a concept map already exists");
+        ++cnt_no;
+      }
+    }
+    assert(cnt_no > 0);
+    assert(cnt_yes > 0);
+  }
+  */
+  //Start a concept map, add a node using the concept map
+  {
+    const boost::shared_ptr<ConceptMap> concept_map(new ConceptMap);
+    assert(concept_map->GetNodes().empty()
+      && "Concept map starts empty");
+    const boost::shared_ptr<Node> node {
+      NodeFactory().GetTest(0)
+    };
+    assert(node);
+    concept_map->AddNode(node);
+    assert(concept_map->GetNodes().size() == 1
+      && "Concept map must have one node added now");
+    concept_map->DeleteNode(node);
+    assert(concept_map->GetNodes().empty()
+      && "Concept map must be empty again now");
+  }
+  //Start a concept map, create a node using a command
+  {
+    const boost::shared_ptr<ConceptMap> cmap(new ConceptMap);
+    assert(cmap->GetNodes().empty()
+      && "Concept map starts empty");
+    const boost::shared_ptr<CommandCreateNewNode> command {
+      new CommandCreateNewNode
+    };
+    assert(cmap->CanDoCommand(command));
+    cmap->DoCommand(command);
+    assert(cmap->GetNodes().size() == 1
+      && "Concept map must have one node added now");
+    assert(cmap->CanUndo());
+    command->Undo();
+    assert(cmap->GetNodes().empty()
+      && "Concept map must be empty again now");
+  }
+  //Start a concept map, create two nodes, unselect both, then select both using AddSelected
+  {
+    const boost::shared_ptr<ConceptMap> widget(new ConceptMap);
+    const int n_nodes = 2;
+    //Create nodes
+    for (int i=0; i!=n_nodes; ++i)
+    {
+      const boost::shared_ptr<CommandCreateNewNode> command {
+        new CommandCreateNewNode
+      };
+      assert(widget->CanDoCommand(command));
+      widget->DoCommand(command);
+    }
+    assert(static_cast<int>(widget->GetNodes().size()) == n_nodes
+      && "Concept map must have two nodes");
+    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 2
+      && "Freshly created nodes are selected");
+
+    //Unselect both
+    for (int i=0; i!=n_nodes; ++i)
+    {
+      assert(static_cast<int>(widget->GetSelectedNodes().size()) == 2 - i);
+      const boost::shared_ptr<CommandUnselectRandom> command {
+        new CommandUnselectRandom
+      };
+      assert(widget->CanDoCommand(command));
+      widget->DoCommand(command);
+      assert(static_cast<int>(widget->GetSelectedNodes().size()) == 1 - i);
+    }
+    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 0);
+
+    //Select both again
+    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 0);
+    for (int i=0; i!=n_nodes; ++i)
+    {
+      assert(static_cast<int>(widget->GetSelectedNodes().size()) == i);
+      const boost::shared_ptr<CommandAddSelectedRandom> command {
+        new CommandAddSelectedRandom
+      };
+      assert(widget->CanDoCommand(command));
+      widget->DoCommand(command);
+      assert(static_cast<int>(widget->GetSelectedNodes().size()) == i + 1);
+    }
+    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 2);
+
+    //Undo selection
+    for (int i=0; i!=n_nodes; ++i)
+    {
+      assert(static_cast<int>(widget->GetSelectedNodes().size()) == 2 - i);
+      const boost::shared_ptr<CommandUnselectRandom> command {
+        new CommandUnselectRandom
+      };
+      assert(widget->CanDoCommand(command));
+      widget->Undo();
+      assert(static_cast<int>(widget->GetSelectedNodes().size()) == 1 - i);
+    }
+    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 0);
+  }
+
+  //Do all do and undo of a single command
+  const int n_commands { static_cast<int>(CommandFactory::CreateTestCommands().size()) };
+  for (int i=0; i!=n_commands; ++i)
+  {
+    for (const boost::shared_ptr<ConceptMap> conceptmap: ConceptMapFactory().GetAllTests())
+    {
+      if (!conceptmap) continue;
+      const boost::shared_ptr<Command> cmd(CommandFactory::CreateTestCommands()[i]);
+      assert(cmd);
+      //TRACE(cmd->ToStr());
+      if (conceptmap->CanDoCommand(cmd))
+      {
+        conceptmap->DoCommand(cmd);
+        conceptmap->Undo();
+      }
+    }
+  }
+  //Do all combinations of two commands
+  if (n_depth >= 2)
+  {
+    for (int i=0; i!=n_commands; ++i)
+    {
+      for (int j=0; j!=n_commands; ++j)
+      {
+        for (const boost::shared_ptr<ConceptMap> conceptmap: ConceptMapFactory().GetAllTests())
+        {
+          for (const boost::shared_ptr<Command> cmd:
+            {
+              CommandFactory::CreateTestCommands()[i],
+              CommandFactory::CreateTestCommands()[j]
+            }
+          )
+          {
+            assert(cmd);
+            if (conceptmap->CanDoCommand(cmd))
+            {
+              conceptmap->DoCommand(cmd);
+              conceptmap->Undo();
+              conceptmap->DoCommand(cmd);
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -23,56 +23,53 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include "conceptmap.h"
-#include "conceptmapwidget.h"
+
 #include "conceptmapedgefactory.h"
 
-bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const ConceptMap * const conceptmap) const noexcept
 {
-  assert(widget);
-  return widget->GetConceptMap() && widget->GetSelectedNodes().size() == 2;
+  assert(conceptmap);
+  return conceptmap && conceptmap->GetSelectedNodes().size() == 2;
 }
 
-void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) noexcept
+void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(ConceptMap * const concept_map) noexcept
 {
-  assert(!m_widget);
-  assert(widget);
-  assert(widget->GetConceptMap().get());
-  assert(CanDoCommand(widget));
+  assert(!m_concept_map);
+  assert(concept_map);
+  assert(CanDoCommand(concept_map));
 
-  m_widget = widget;
-  m_nodes.push_back(m_widget->GetSelectedNodes()[0]);
-  m_nodes.push_back(m_widget->GetSelectedNodes()[1]);
+  m_concept_map = concept_map;
+  m_nodes.push_back(m_concept_map->GetSelectedNodes()[0]);
+  m_nodes.push_back(m_concept_map->GetSelectedNodes()[1]);
 
   assert(m_nodes.size() == 2);
   assert(m_nodes[0]);
   assert(m_nodes[1]);
   assert(m_nodes[0] != m_nodes[1]
     && "An edge must be created from two different nodes");
-  assert(m_widget->GetConceptMap()->HasNode(m_nodes[0])
+  assert(m_concept_map->HasNode(m_nodes[0])
     && "An edge must be created from two existing nodes");
-  assert(m_widget->GetConceptMap()->HasNode(m_nodes[1])
+  assert(m_concept_map->HasNode(m_nodes[1])
     && "An edge must be created from two existing nodes");
 
-  m_prev_selected = m_widget->GetSelectedNodes();
+  m_prev_selected = m_concept_map->GetSelectedNodes();
 
-  m_edge = m_widget->CreateNewEdge();
+  m_edge = m_concept_map->CreateNewEdge();
 
-  assert(m_widget);
+  assert(m_concept_map);
   assert(m_edge);
 }
 
 void ribi::cmap::CommandCreateNewEdge::UndoSpecific() noexcept
 {
-  assert(m_widget);
-  assert(m_widget->GetConceptMap().get());
+  assert(m_concept_map);
+
+  m_concept_map->DeleteEdge(m_edge);
+
+  m_concept_map->SetSelected(m_prev_selected);
 
 
-  m_widget->DeleteEdge(m_edge);
-
-  m_widget->SetSelected(m_prev_selected);
-
-
-  m_widget = nullptr;
+  m_concept_map = nullptr;
   m_nodes.clear();
   m_edge = boost::shared_ptr<Edge>();
 

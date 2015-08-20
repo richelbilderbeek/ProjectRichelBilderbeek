@@ -22,40 +22,38 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include "conceptmapwidget.h"
+
+#include "conceptmap.h"
 #include "conceptmapnode.h"
 
-bool ribi::cmap::CommandCreateNewNode::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandCreateNewNode::CanDoCommandSpecific(const ConceptMap * const /* conceptmap */) const noexcept
 {
-  assert(widget);
-  return widget->GetConceptMap().get();
+  return true;
 }
 
-void ribi::cmap::CommandCreateNewNode::DoCommandSpecific(Widget * const widget) noexcept
+void ribi::cmap::CommandCreateNewNode::DoCommandSpecific(ConceptMap * const widget) noexcept
 {
-  assert(!m_widget && "Cannot do a command twice");
+  assert(!m_conceptmap && "Cannot do a command twice");
   assert(!m_node);
   assert(widget);
-  assert(widget->GetConceptMap().get());
 
-  m_widget = widget;
-  m_node = m_widget->CreateNewNode(); //CreateNewNode adds it to the selected nodes
+  m_conceptmap = widget;
+  m_node = m_conceptmap->CreateNewNode(); //CreateNewNode adds it to the selected nodes
 
-  assert(m_widget);
+  assert(m_conceptmap);
   assert(m_node);
 }
 
 void ribi::cmap::CommandCreateNewNode::UndoSpecific() noexcept
 {
-  assert(m_widget);
-  assert(m_widget->GetConceptMap().get());
+  assert(m_conceptmap);
 
   //unselect it
   //m_widget->m_signal_delete_node(m_node); //Done by DeleteNodeS
 
-  m_widget->DeleteNode(m_node);
+  m_conceptmap->DeleteNode(m_node);
 
-  m_widget = nullptr;
+  m_conceptmap = nullptr;
   m_node = boost::shared_ptr<Node>();
 
 }

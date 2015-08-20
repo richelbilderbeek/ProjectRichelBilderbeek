@@ -19,7 +19,6 @@ SOURCES += \
     ../../Classes/CppQtConceptMap/qtconceptmaprateexamplesdialognewname.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapelement.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapratedconceptdialog.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapwidget.cpp \
 #    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtrateconceptmap.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapcenternode.cpp \
@@ -35,7 +34,6 @@ SOURCES += \
     ../../Classes/CppQtConceptMap/qtconceptmapqtnode.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapbrating.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedge_test.cpp \
-    ../../Classes/CppQtConceptMap/test_qtconceptmapwidget.cpp \
     ../../Classes/CppQtConceptMap/test_qtconceptmap.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedge.cpp
 #    ../../Classes/CppQtConceptMap/test_qtrateconceptmap.cpp
@@ -55,7 +53,6 @@ HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmaprateexamplesdialognewname.h \
     ../../Classes/CppQtConceptMap/qtconceptmapelement.h \
     ../../Classes/CppQtConceptMap/qtconceptmapratedconceptdialog.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapwidget.h \
 #    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.h \
 #    ../../Classes/CppQtConceptMap/qtrateconceptmap.h \
 #   ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.h \
@@ -79,7 +76,7 @@ FORMS += \
     ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.ui \
     ../../Classes/CppQtConceptMap/qtconceptmaprateconceptdialognewname.ui \
     ../../Classes/CppQtConceptMap/qtconceptmaprateconcepttallydialognewname.ui \
-#    ../../Classes/CppQtConceptMap/qtconceptmaprateexamplesdialognewname.ui \
+    ../../Classes/CppQtConceptMap/qtconceptmaprateexamplesdialognewname.ui \
     ../../Classes/CppQtConceptMap/qtconceptmapratedconceptdialog.ui \
     ../../Classes/CppQtConceptMap/qtconceptmapexampledialog.ui \
     ../../Classes/CppQtConceptMap/qtconceptmapexamplesdialog.ui \

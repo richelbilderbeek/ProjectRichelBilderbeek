@@ -21,17 +21,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef DASWAHRESCHLAGERFESTWIDGET_H
 #define DASWAHRESCHLAGERFESTWIDGET_H
 
+#include <iosfwd>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
+//Cannot use Boost, due to libnds
 
 namespace ribi {
 
-struct TextCanvas;
+struct DasWahreSchlagerfestDisplay;
 
 ///DasWahreSchlagerfestWidget contains the game logic of Das Wahre Schlagerfest
 struct DasWahreSchlagerfestWidget
@@ -45,7 +42,15 @@ struct DasWahreSchlagerfestWidget
     int x; int y; Tile tile;
   };
 
-  DasWahreSchlagerfestWidget(const int width = 9, const int height = 5);
+  DasWahreSchlagerfestWidget(
+    DasWahreSchlagerfestDisplay& display,
+    const int width = 9,
+    const int height = 5
+  );
+  DasWahreSchlagerfestWidget(const DasWahreSchlagerfestWidget&) = delete;
+  DasWahreSchlagerfestWidget& operator=(const DasWahreSchlagerfestWidget&) = delete;
+
+  void Display() const;
 
   ///Obtain the cursor
   const Cursor& GetCursor() const { return m_cursor; }
@@ -56,17 +61,15 @@ struct DasWahreSchlagerfestWidget
   ///Respond to the user pressing a key
   void PressKey(const Key key);
 
-  const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
-
-  ///Signal emitted when the widget is changed
-  boost::signals2::signal<void ()> m_signal_changed;
-
   private:
   ///The cursor
   Cursor m_cursor;
 
+  ///The display of the game, can be console, GUI or NDS
+  DasWahreSchlagerfestDisplay& m_display;
+
   ///The Y-X ordered tiles
-  std::vector<std::vector<Tile> > m_v;
+  std::vector<std::vector<Tile>> m_v;
 
   //Check for three in a rows
   void CheckThree();
