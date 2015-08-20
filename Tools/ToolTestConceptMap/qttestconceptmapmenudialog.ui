@@ -124,23 +124,6 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>QtConceptMapWidget</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="button_conceptmapwidget">
-     <property name="text">
-      <string>&amp;B. Widget</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QLabel" name="label_5">
      <property name="text">
       <string>Misc</string>
@@ -177,7 +160,6 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
   <tabstop>button_qtedge</tabstop>
   <tabstop>button_edit_conceptmap</tabstop>
   <tabstop>button_view_concept_maps</tabstop>
-  <tabstop>button_conceptmapwidget</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>

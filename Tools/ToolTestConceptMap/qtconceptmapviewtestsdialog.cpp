@@ -38,8 +38,7 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
   Test();
   #endif
 
-  //for (int type=0; type!=3; ++type)
-  const int type = 2;
+  const int type = 1;
   {
     QWidget * contents = 0;
     switch (type)
@@ -146,37 +145,10 @@ boost::shared_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapViewTestsDia
   const boost::shared_ptr<ConceptMap> concept_map
 )
 {
-  /*
-  switch (type)
-  {
-    case 0:
-    {
-      boost::shared_ptr<QtConceptMap> p(new QtDisplayConceptMap);
-      assert(p);
-      p->SetConceptMap(concept_map);
-      return p;
-    }
-    case 1:
-    {
-  */
-      boost::shared_ptr<QtConceptMap> p(new QtConceptMap);
-      assert(p);
-      p->SetConceptMap(concept_map);
-      return p;
-  /*
-    }
-    case 2:
-    {
-      boost::shared_ptr<QtConceptMap> p(new QtRateConceptMap);
-      assert(p);
-      p->SetConceptMap(concept_map);
-      return p;
-    }
-    default:
-      assert(!"Should not get here");
-      throw std::logic_error("ribi::cmap::QtConceptMapViewTestsDialog::CreateWidget: unimplemented type");
-  }
-  */
+  boost::shared_ptr<QtConceptMap> p(new QtConceptMap);
+  assert(p);
+  p->SetConceptMap(concept_map);
+  return p;
 }
 
 
