@@ -11,7 +11,7 @@
 #include <maxmod9.h>
 //#include "soundbank.h"
 //#include "soundbank_bin.h"
-
+#include "picbeer.h"
 #include "ndsgamedialog.h"
 
 NdsGameDialog::NdsGameDialog()
@@ -30,7 +30,7 @@ NdsGameDialog::NdsGameDialog()
 
   consoleSelect(&m_screen_bottom);
 
-  Beer().Draw(VRAM_A,0,0);
+  PicBeer().Draw(VRAM_A,0,0);
 }
 
 void NdsGameDialog::ProcessEvents()

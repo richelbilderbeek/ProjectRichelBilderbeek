@@ -299,8 +299,7 @@ void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event) noexce
   {
     if ((event->pos() - this->m_arrow->GetTail() + m_qtnode->GetCenterPos()).manhattanLength() < 20.0)
     {
-      this->SetHasTailArrow( !m_arrow->HasTail() ); //FIX 2013-02-10
-      //this->m_arrow->SetHasTail( !m_arrow->HasTail() ); //BUG 2013-02-10
+      this->SetHasTailArrow( !m_arrow->HasTail() );
       //this->update(); //Don't!
       //m_signal_item_updated(this); //Don't!
     }

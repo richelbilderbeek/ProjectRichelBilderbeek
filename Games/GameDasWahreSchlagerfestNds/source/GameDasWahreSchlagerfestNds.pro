@@ -6,12 +6,14 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.cpp \
-    ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.cpp
+    ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.cpp \
+    picbeer.cpp
 
 HEADERS  += \
     ndsgamedialog.h \
     ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.h \
-    ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.h
+    ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.h \
+    picbeer.h
 
 OTHER_FILES += \
     ../../../Games/GameDasWahreSchlagerfest/Licence.txt

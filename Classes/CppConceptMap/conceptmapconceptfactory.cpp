@@ -293,7 +293,7 @@ std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFactory:
     assert(p->GetRatingComplexity() <=  2);
     v.push_back(p);
   }
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
+  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<Concept>& p) { return !p; } ) == 0);
   assert(v[0]->GetExamples());
 
   return v;

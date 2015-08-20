@@ -372,26 +372,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     const QImage image_after{dialog.GetUiView()};
     assert(image_before != image_after);
   }
-  #ifdef FIX_BUG_260
-  if (verbose) { TRACE("If X is set via QtTestQtEdgeDialog, QtEdge it center node must change"); }
-  {
-    dialog.m_dialog_left->GetQtEdge()->GetQtNode()->setVisible(true);
-    dialog.m_dialog_left->GetQtEdge()->GetArrow()->setVisible(false);
-    const QImage image_before{dialog.GetUiView()};
-    const double old_x{dialog.m_dialog_left->GetUiX()};
-    const double new_x{old_x + 10.0};
-    dialog.m_dialog_left->SetUiX(new_x);
-    const QImage image_after{dialog.GetUiView()};
-    //if (image_before != image_after)
-    {
-      image_before.save("QtTestQtEdgeDialogTest1_before.png");
-      image_after.save("QtTestQtEdgeDialogTest1_after.png");
-      const QImage result{QtImage().Difference(image_before,image_after)};
-      result.save("QtTestQtEdgeDialogTest1_difference.png");
-    }
-    assert(image_before != image_after);
-  }
-  #endif //FIX_BUG_260
 }
 #endif
 
