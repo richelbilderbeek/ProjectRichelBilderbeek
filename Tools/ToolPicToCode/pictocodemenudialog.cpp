@@ -48,7 +48,7 @@ ribi::About ribi::PicToCodeMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "PicToCode",
     "tool to convert a picture to C++ code",
-    "the 18th of April 2011",
+    "the 20th of August 2015",
     "2010-2015",
     "http://www.richelbilderbeek.nl/ToolPicToCode.htm",
     GetVersion(),
@@ -84,7 +84,7 @@ boost::shared_ptr<const ribi::Program> ribi::PicToCodeMenuDialog::GetProgram() c
 
 std::string ribi::PicToCodeMenuDialog::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::PicToCodeMenuDialog::GetVersionHistory() const noexcept
@@ -95,6 +95,7 @@ std::vector<std::string> ribi::PicToCodeMenuDialog::GetVersionHistory() const no
     "2011-04-18: version 1.2: added support for QPixmap",
     "2011-04-18: version 1.3: added menu, added web application",
     "2013-11-04: version 1.4: conformized to ProjectRichelBilderbeekConsole",
+    "2015-08-20: version 1.5: NDS code has seperate header and implementation file",
   };
 }
 

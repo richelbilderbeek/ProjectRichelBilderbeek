@@ -38,8 +38,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapqtedge.h"
 #include "qtconceptmapqtnode.h"
-#include "qtconceptmapelement.h"
-#include "qtconceptmapelement.h"
 #include "qtitemdisplaystrategy.h"
 #include "testtimer.h"
 #include "trace.h"

@@ -8,12 +8,13 @@
 #include "qtconceptmapviewtestsdialog.h"
 #include "qttestconceptmapconceptdialog.h"
 #include "qttestconceptmapedgedialog.h"
+#include "conceptmapconceptfactory.h"
 #include "qttestconceptmapexampledialog.h"
 #include "qttestconceptmapexamplesdialog.h"
 #include "qttestconceptmapnodedialog.h"
 #include "qttestconceptmapqtedgedialog.h"
 #include "qttestconceptmapqtnodedialog.h"
-
+#include "qtconceptmapconcepteditdialog.h"
 #include "qttesteditconceptmapdialog.h"
 
 #include "testconceptmapmenudialog.h"
@@ -58,8 +59,13 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
     is_tested = true;
   }
   TestConceptMapMenuDialog().GetAbout();
+
+
   //Tests I am most interested in
-  //if (sm_test_qtnode) { QtTestQtNodeDialog(); }
+  {
+    auto concept = ConceptFactory().GetTest(0);
+    QtConceptMapConceptEditDialog dialog(concept);
+  }
 
   //Tests in order from small elements to bigger
   QtTestExampleDialog();

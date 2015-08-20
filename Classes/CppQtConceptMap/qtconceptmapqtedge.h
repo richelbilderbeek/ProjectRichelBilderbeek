@@ -130,7 +130,7 @@ protected:
 
 private:
   ///The arrow used for drawing
-  const Arrow m_arrow;
+  Arrow m_arrow;
 
   ///The edge
   boost::shared_ptr<Edge> m_edge;

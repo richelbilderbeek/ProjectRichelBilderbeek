@@ -44,7 +44,7 @@ ribi::cmap::ConceptFactory::ConceptFactory() noexcept
   #endif
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
+boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   const std::string& name,
   const boost::shared_ptr<ribi::cmap::Examples>& examples,
   const bool is_complex,
@@ -72,7 +72,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
 }
 
 #ifndef NDEBUG
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCopy(
+boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCopy(
   const boost::shared_ptr<const ribi::cmap::Concept>& concept
 ) const noexcept
 {
@@ -107,7 +107,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCop
 //  return Create(name,ExamplesFactory::Create(examples));
 //}
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
+boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   const std::string& name,
   const std::vector<std::pair<std::string,Competency> >& v,
   const bool is_complex,
@@ -148,7 +148,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   return concept;
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml(const std::string& s) const noexcept
+boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml(const std::string& s) const noexcept
 {
   assert(s.size() >= 19);
   assert(s.substr(0,9) == "<concept>");
@@ -225,7 +225,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
   return concept;
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::GetTest(
+boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::GetTest(
   const int i) const noexcept
 {
   assert(i < GetNumberOfTests());
@@ -236,7 +236,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::GetTest
   return concept;
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFactory::GetTests() const noexcept
+std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFactory::GetTests() const noexcept
 {
   std::vector<boost::shared_ptr<Concept> > v;
   {

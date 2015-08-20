@@ -198,13 +198,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
         QtConceptMapConceptEditDialog d(concept);
         d.ui->edit_concept->setText(d.ui->edit_concept->text() + "MODIFICATION");
         d.on_button_ok_clicked();
-        #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
-        TRACE("TODO");
-        #else
-        //TODO
         assert(*concept != *old_concept);
-        #endif
-        assert(!"Green");
       }
     );
   }
@@ -221,12 +215,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
         d.ui->edit_text->setText("TO BE ADDED EXAMPLE");
         d.on_button_add_clicked(); //Should add
         d.on_button_ok_clicked();
-        #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
-        TRACE("TODO");
-        #else
-        TRACE("TODO");
-        //assert(concept != old_concept);
-        #endif
+        assert(*concept != *old_concept);
       }
     );
   }
@@ -247,11 +236,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
         d.ui->edit_text->setText("TO BE ADDED EXAMPLE");
         d.on_button_add_clicked(); //Should add
         //DO NOT PRESS OK d.on_button_ok_clicked();
-        #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
-        TRACE("TODO");
-        #else
         assert(*concept == *old_concept);
-        #endif
       }
     );
   }

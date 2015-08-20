@@ -17,7 +17,6 @@ SOURCES += \
 #    ../../Classes/CppQtConceptMap/qtconceptmaprateconceptdialognewname.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmaprateconcepttallydialognewname.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmaprateexamplesdialognewname.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapelement.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapratedconceptdialog.cpp \
 #    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtrateconceptmap.cpp \
@@ -51,7 +50,6 @@ HEADERS += \
 #    ../../Classes/CppQtConceptMap/qtconceptmaprateconceptdialognewname.h \
     ../../Classes/CppQtConceptMap/qtconceptmaprateconcepttallydialognewname.h \
     ../../Classes/CppQtConceptMap/qtconceptmaprateexamplesdialognewname.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapelement.h \
     ../../Classes/CppQtConceptMap/qtconceptmapratedconceptdialog.h \
 #    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.h \
 #    ../../Classes/CppQtConceptMap/qtrateconceptmap.h \

@@ -43,8 +43,7 @@ struct PicToCodeMainDialog
   };
 
 
-  //std::vector<std::string> PicToNdsCode(const YxImage& image) const;
-
+  std::vector<std::string> PicToNdsCode(const YxImage& image) const;
   std::vector<std::string> PicToQtCode(const YxImage& image) const;
 };
 

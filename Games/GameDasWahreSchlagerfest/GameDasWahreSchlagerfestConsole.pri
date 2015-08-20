@@ -4,14 +4,14 @@ INCLUDEPATH += \
 SOURCES += \
     ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestmenudialog.cpp \
     ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.cpp \
-    daswahreschlagerfestdisplay.cpp \
-    daswahreschlagerfestterminal.cpp
+    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.cpp \
+    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestterminal.cpp
 
 HEADERS  += \
     ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestmenudialog.h \
     ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.h \
-    daswahreschlagerfestdisplay.h \
-    daswahreschlagerfestterminal.h
+    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.h \
+    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestterminal.h
 
 OTHER_FILES += \
     ../../Games/GameDasWahreSchlagerfest/Licence.txt

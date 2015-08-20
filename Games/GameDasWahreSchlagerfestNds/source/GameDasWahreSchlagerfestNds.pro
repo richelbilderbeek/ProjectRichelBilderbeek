@@ -1,8 +1,21 @@
 message("Compiling this may fail")
 message("Compiling this will fail, use the Makefile instead")
 
-include(../../Classes/CityOfThievesNds.pri)
-include(../../Files/FilesNds.pri)
+INCLUDEPATH += \
+    ../../../Games/GameDasWahreSchlagerfest
+
+SOURCES += \
+    ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.cpp \
+    ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.cpp
+
+HEADERS  += \
+    ndsgamedialog.h \
+    ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.h \
+    ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.h
+
+OTHER_FILES += \
+    ../../../Games/GameDasWahreSchlagerfest/Licence.txt
+
 INCLUDEPATH += /home/richel/devkitPro/libnds/include
 INCLUDEPATH += /home/richel/devkitPro/devkitARM/arm-none-eabi/include
 INCLUDEPATH += ../build
@@ -23,9 +36,3 @@ QMAKE_LFLAGS = -T/home/richel/devkitPro/devkitARM/arm-none-eabi/lib/ds_arm9.ld
 
 QMAKE_LINK = /home/richel/devkitPro/devkitARM/bin/arm-none-eabi-gcc
 
-HEADERS += \
-    ndsgamedialog.h \
-    ZanbarBoneBackground.h
-
-SOURCES += \
-    ZanbarBoneBackground.cpp

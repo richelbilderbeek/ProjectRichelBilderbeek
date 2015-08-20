@@ -60,8 +60,8 @@ private slots:
 public:
   static const PicToCodeMainDialog::YxImage ImageToImage(const QImage& image);
 
-  std::vector<std::string> PicToNdsCode(const QImage& image) const;
-  std::vector<std::string> PicToQtCode(const QImage& image) const;
+  std::vector<std::string> PicToNdsCode(const QImage& qimage) const;
+  std::vector<std::string> PicToQtCode( const QImage& qimage) const;
 };
 
 } //~namespace ribi

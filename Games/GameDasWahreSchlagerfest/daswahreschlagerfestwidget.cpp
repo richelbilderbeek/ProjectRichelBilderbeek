@@ -23,12 +23,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "daswahreschlagerfestwidget.h"
 
+#include <algorithm>
+#include <cassert>
 #include <numeric>
 
 #include "daswahreschlagerfestdisplay.h"
-#include "testtimer.h"
-#include "textcanvas.h"
-#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(
@@ -248,6 +247,8 @@ void ribi::DasWahreSchlagerfestWidget::SetDisplay(DasWahreSchlagerfestDisplay * 
 }
 
 #ifndef NDEBUG
+#include "testtimer.h"
+
 void ribi::DasWahreSchlagerfestWidget::Test() noexcept
 {
   {

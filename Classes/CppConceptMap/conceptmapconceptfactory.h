@@ -45,7 +45,7 @@ struct ConceptFactory
   ConceptFactory() noexcept;
 
   //Default and complete Create method
-  const boost::shared_ptr<Concept> Create(
+  boost::shared_ptr<Concept> Create(
     const std::string& name,
     const boost::shared_ptr<Examples>& examples,
     const bool is_complex,
@@ -54,7 +54,7 @@ struct ConceptFactory
     const int rating_specificity
   ) const noexcept;
 
-  const boost::shared_ptr<Concept> Create(
+  boost::shared_ptr<Concept> Create(
     const std::string& name = "...",
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const bool is_complex = true,
@@ -66,17 +66,17 @@ struct ConceptFactory
   #ifndef NDEBUG
   ///Like a Concept deep-copy constructor
   ///DeepCopy is only used for debugging
-  const boost::shared_ptr<Concept> DeepCopy(
+  boost::shared_ptr<Concept> DeepCopy(
     const boost::shared_ptr<const Concept>& concept
   ) const noexcept;
   #endif
 
   ///Read concept from a std::string read from file
-  const boost::shared_ptr<Concept> FromXml(const std::string& s) const noexcept;
+  boost::shared_ptr<Concept> FromXml(const std::string& s) const noexcept;
 
   ///Obtain some testing concepts
-  const boost::shared_ptr<Concept> GetTest(const int i) const noexcept;
-  const std::vector<boost::shared_ptr<Concept> > GetTests() const noexcept;
+  boost::shared_ptr<Concept> GetTest(const int i) const noexcept;
+  std::vector<boost::shared_ptr<Concept>> GetTests() const noexcept;
   int GetNumberOfTests() const noexcept { return static_cast<int>(GetTests().size()); }
 
   #ifndef NDEBUG

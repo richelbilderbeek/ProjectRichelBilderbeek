@@ -17,7 +17,7 @@
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapbrushfactory.h"
-#include "qtconceptmapelement.h"
+
 #include "conceptmapexamplesfactory.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapqtedge.h"
@@ -80,66 +80,6 @@ void ribi::cmap::QtTestEditConceptMapDialog::Test() noexcept
   const ribi::TestTimer test_timer(__func__,__FILE__,1.0);
   QtTestEditConceptMapDialog d;
   d.DoSomethingRandom();
-  TRACE("TODO");
-  /*
-  assert(d.m_concept_map.get() == d.m_display_node->GetNode().get());
-  assert(d.m_concept_map.get() == d.m_edit_node->GetNode().get());
-  assert(d.m_concept_map.get() == d.m_rate_node->GetNode().get());
-  assert(d.m_concept_map->GetConcept().get() == d.m_display_node->GetNode()->GetConcept().get());
-  assert(d.m_concept_map->GetConcept().get() == d.m_edit_node->GetNode()->GetConcept().get());
-  assert(d.m_concept_map->GetConcept().get() == d.m_rate_node->GetNode()->GetConcept().get());
-  */
-  //Test resizing due to text being changed
-  {
-    TRACE("TODO");
-    /*
-    const std::string s = d.m_concept_map->GetConcept()->GetName();
-    assert(d.m_display_node->boundingRect().width() == d.m_edit_node->boundingRect().width());
-    assert(d.m_display_node->boundingRect().width() == d.m_rate_node->boundingRect().width());
-    const double w = d.m_display_node->boundingRect().width();
-    d.m_concept_map->GetConcept()->SetName(s + "*");
-    assert(d.m_display_node->boundingRect().width() > w);
-    assert(d.m_edit_node->boundingRect().width() > w);
-    assert(d.m_rate_node->boundingRect().width() > w);
-    */
-  }
-  //Test resizing due to shorter text being set
-  {
-    TRACE("TODO");
-    /*
-    d.m_concept_map->GetConcept()->SetName("1234567890");
-    const double w = d.m_display_node->boundingRect().width();
-    d.m_concept_map->GetConcept()->SetName("123456789");
-    assert(d.m_display_node->boundingRect().width() < w);
-    */
-  }
-  //Test brushes being changed when ratings are given
-  {
-    TRACE("TODO");
-    /*
-    const boost::shared_ptr<Concept> concept = d.m_concept_map->GetConcept();
-    concept->SetRatingComplexity(-1);
-    concept->SetRatingConcreteness(-1);
-    concept->SetRatingSpecificity(-1);
-    QtRateConceptItem item(concept);
-    assert(d.m_edit_node->brush()    == QtBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_node->brush() == QtBrushFactory::CreateRedGradientBrush());
-    assert(d.m_rate_node->brush()    == QtBrushFactory::CreateRedGradientBrush());
-
-    concept->SetRatingComplexity(0);
-    concept->SetRatingConcreteness(1);
-
-    assert(d.m_edit_node->brush()     == QtBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_node->brush()  == QtBrushFactory::CreateYellowGradientBrush());
-    assert(d.m_rate_node->brush()     == QtBrushFactory::CreateYellowGradientBrush());
-
-    concept->SetRatingSpecificity(2);
-
-    assert(d.m_edit_node->brush()    == QtBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_node->brush() == QtBrushFactory::CreateGreenGradientBrush());
-    assert(d.m_rate_node->brush()    == QtBrushFactory::CreateGreenGradientBrush());
-    */
-  }
 }
 #endif
 

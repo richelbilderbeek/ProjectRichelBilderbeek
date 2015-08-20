@@ -51,7 +51,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapcenternode.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qtconceptmapelement.h"
 #include "qtconceptmapqtedge.h"
 #include "qtconceptmapqtnode.h"
 #include "qtconceptmapexamplesitem.h"
@@ -1286,7 +1285,6 @@ void ribi::cmap::QtConceptMap::OnNodeKeyDownPressed(QtNode* const item, const in
 void ribi::cmap::QtConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
-  //GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
   GetExamplesItem()->SetBuddyItem(item);
   scene()->update();
 }
