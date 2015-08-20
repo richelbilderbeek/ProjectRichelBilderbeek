@@ -877,7 +877,8 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     const double r1
       = 0.5 * ribi::cmap::GetDistance(
         qtcenter_node->boundingRect().width(),
-        qtcenter_node->boundingRect().height());
+        qtcenter_node->boundingRect().height()
+      );
     const double r3 = 50.0;
     const double r = std::max(r1,r3);
     assert(r > 10.0);
@@ -906,8 +907,6 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     }
   }
 
-  #define NOT_NOW_20141111
-  #ifdef NOT_NOW_20141111
   {
     //Put the edge concepts in the middle of the nodes
     const std::vector<QtEdge *> qtedge_concepts = Collect<QtEdge>(scene());
@@ -922,11 +921,10 @@ void ribi::cmap::QtConceptMap::RepositionItems()
       }
     );
   }
-  #endif // NOT_NOW_20141111
 
   //Put the nodes around the focal question in their improved position
   //If there is no focal node, the non-focal nodes are put around an empty spot
-  for (int i=0; i!=10; ++i) //TODO: replace by while (1)
+  for (int i=0; i!=10; ++i) //NOTE: maybe replace by while (1)
   {
     bool done = true;
     const std::vector<QtNode *> qtnodes = Sort(Collect<QtNode>(scene()));
@@ -1092,7 +1090,6 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
     {
       if (!IsQtCenterNode(qtnode))
       {
-        #ifdef NOT_NOW_20141111
         double x = qtnode->GetCenterX();
         double y = qtnode->GetCenterY();
         const int i = (std::rand() >> 4) % 4;
@@ -1106,7 +1103,6 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
         }
         assert(QPointF(x,y) != qtnode->GetCenterPos());
         qtnode->GetNode()->SetPos(x,y);
-        #endif // NOT_NOW_20141111
       }
     }
   );
@@ -1273,13 +1269,11 @@ void ribi::cmap::QtConceptMap::OnNodeKeyDownPressed(QtNode* const item, const in
   //TRACE("Try edit from EditWidget");
   //m_signal_conceptmapitem_requests_edit(item);
 
-  #ifdef NOT_NOW_20141111
   {
     QtScopedDisable<QtConceptMap> disable(this);
     QtConceptMapConceptEditDialog d(item->GetNode()->GetConcept());
     d.exec();
   }
-  #endif // NOT_NOW_20141111
   this->show();
   this->setFocus();
   this->scene()->setFocusItem(item);
@@ -1292,7 +1286,8 @@ void ribi::cmap::QtConceptMap::OnNodeKeyDownPressed(QtNode* const item, const in
 void ribi::cmap::QtConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
-  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
+  //GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
+  GetExamplesItem()->SetBuddyItem(item);
   scene()->update();
 }
 

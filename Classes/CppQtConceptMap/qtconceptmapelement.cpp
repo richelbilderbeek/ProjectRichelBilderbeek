@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
+#ifdef NOT_NOW_20150820
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -60,3 +62,5 @@ void ribi::cmap::QtConceptMapElement::hoverEnterEvent(QGraphicsSceneHoverEvent *
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
+
+#endif // NOT_NOW_20150820

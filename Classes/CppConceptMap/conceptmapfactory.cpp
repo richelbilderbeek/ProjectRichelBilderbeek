@@ -134,7 +134,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::DeepCop
 }
 #endif
 
-///TODO: let CenterNodes manage their own <center_node> tags
+///NOTE: maybe let CenterNodes manage their own <center_node> tags
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml(const std::string &s) const noexcept
 {
   assert(s.size() >= 27);

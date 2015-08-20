@@ -47,8 +47,6 @@ private slots:
   void on_button_about_clicked() noexcept;
   void on_button_quit_clicked() noexcept;
 
-  void on_button_start_oldschool_clicked();
-
 protected:
   void keyPressEvent(QKeyEvent *);
 

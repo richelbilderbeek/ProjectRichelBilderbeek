@@ -29,7 +29,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "daswahreschlagerfestmenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtcanvasdialog.h"
-#include "qtdaswahreschlagerfestcanvas.h"
 #include "testtimer.h"
 #include "qtdaswahreschlagerfestmaindialog.h"
 #include "ui_qtdaswahreschlagerfestmenudialog.h"
@@ -54,10 +53,6 @@ ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noex
 void ribi::QtDasWahreSchlagerfestMenuDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key() == Qt::Key_Escape) { close(); }
-  if (e->key() == Qt::Key_At || e->key() == Qt::Key_Dollar || e->key() == Qt::Key_0)
-  {
-    on_button_start_oldschool_clicked();
-  }
 }
 
 void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked() noexcept
@@ -88,36 +83,6 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
     is_tested = true;
   }
   QtDasWahreSchlagerfestMainDialog();
-  /*
-  {
-    const boost::shared_ptr<QtDasWahreSchlagerfestCanvas> c {
-      new QtDasWahreSchlagerfestCanvas(9,5)
-    };
-    assert(c);
-  }
-  */
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
-
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_oldschool_clicked()
-{
-  /*
-  QtCanvas * const qtcanvas {
-    new QtDasWahreSchlagerfestCanvas(9,5)
-  };
-  boost::scoped_ptr<QtCanvasDialog> d {
-    new QtCanvasDialog(qtcanvas)
-  };
-  {
-    //Put the dialog in the screen center
-    const QRect screen = QApplication::desktop()->screenGeometry();
-    d->setGeometry(
-      0,0,102,102);
-    d->move( screen.center() - this->rect().center() );
-  }
-  d->setWindowTitle("Das Wahre Schlagerfest");
-  ShowChild(d.get());
-  //canvas will be deleted by QtCanvasDialog
-  */
-}

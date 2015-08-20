@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPCONCEPTMAPITEM_H
 #define QTCONCEPTMAPCONCEPTMAPITEM_H
 
+#ifdef NOT_NOW_20150820
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -89,5 +91,7 @@ struct QtConceptMapElement : public QtRoundedEditRectItem
 } //~namespace cmap
 
 } //~namespace ribi
+
+#endif // NOT_NOW_20150820
 
 #endif // QTCONCEPTMAPCONCEPTMAPITEM_H
