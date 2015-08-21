@@ -45,6 +45,107 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
+namespace ribi {
+template <class T>
+std::vector<
+  boost::geometry::model::d2::point_xy<T>
+>
+GetLineLineIntersectionsImpl(
+  const boost::geometry::model::linestring<
+    boost::geometry::model::d2::point_xy<T>
+  > line1,
+  const boost::geometry::model::linestring<
+    boost::geometry::model::d2::point_xy<T>
+  > line2)
+{
+  typedef boost::geometry::model::d2::point_xy<T> Point;
+  //typedef boost::geometry::model::linestring<Point> Line;
+  std::vector<Point> points;
+  boost::geometry::intersection(line1,line2,points);
+  assert((points.empty() || points.size() == 1 || points.size() == 2)
+     && "0: The lines are parallel and not on top of each other"
+     && "1: The lines are crossing"
+     && "2: The lines are on top of each other"
+  );
+  return points;
+}
+
+///Obtain the zero, one or two intersections between a line and a rectangle
+//From http://www.richelbilderbeek.nl/CppGetLineRectIntersections.htm
+template <class T>
+std::vector<
+  boost::geometry::model::d2::point_xy<T>
+>
+GetLineRectIntersectionsImpl(
+  const boost::geometry::model::linestring<
+    boost::geometry::model::d2::point_xy<T>
+  > line,
+  const boost::geometry::model::box<
+    boost::geometry::model::d2::point_xy<T>
+  > rect)
+{
+  typedef boost::geometry::model::d2::point_xy<T> Point;
+  typedef boost::geometry::model::linestring<Point> Line;
+  Geometry g;
+
+  const Point p0 = Point(rect.min_corner().x(), rect.min_corner().y());
+  const Point p1 = Point(rect.max_corner().x(), rect.min_corner().y());
+  const Point p2 = Point(rect.min_corner().x(), rect.max_corner().y());
+  const Point p3 = Point(rect.max_corner().x(), rect.max_corner().y());
+  assert(p0 != p1); assert(p0 != p2); assert(p0 != p3);
+  assert(p1 != p0); assert(p1 != p2); assert(p1 != p3);
+  assert(p2 != p0); assert(p2 != p1); assert(p2 != p3);
+  assert(p3 != p0); assert(p3 != p1); assert(p3 != p2);
+
+  const std::vector<Line> rect_sides
+    =
+    {
+      g.CreateLine(std::vector<Point>( {p0,p1} )),
+      g.CreateLine(std::vector<Point>( {p0,p2} )),
+      g.CreateLine(std::vector<Point>( {p1,p3} )),
+      g.CreateLine(std::vector<Point>( {p2,p3} ))
+    };
+  std::vector<Point> points;
+  for (const auto side: rect_sides)
+  {
+    const std::vector<Point> v = g.GetLineLineIntersections(line,side);
+    std::copy(v.begin(),v.end(),std::back_inserter(points));
+  }
+
+  //the vector points must be sorted before deleting the duplicates
+  //because std::unique works on consecutive elements
+  std::sort( points.begin(),points.end(),
+    [](const Point& lhs, const Point& rhs)
+    {
+      return lhs.x() == rhs.x() && lhs.y() == rhs.y();
+    }
+  );
+
+  //Remove doublures
+  //Put 'typename' before 'std::vector<Point>::iteratortype' to prevent getting the error below:
+  //error: need 'typename' before 'std::vector<boost::geometry::model::d2::point_xy<T> >::iterator'
+  //  because 'std::vector<boost::geometry::model::d2::point_xy<T> >' is a dependent scope
+  typename std::vector<Point>::iterator new_end = std::unique( points.begin(),points.end(),
+    [](const Point& lhs, const Point& rhs)
+    {
+      return lhs.x() == rhs.x() && lhs.y() == rhs.y();
+    }
+  );
+
+  points.erase(new_end,points.end());
+
+  assert(
+    points.size() <= 2
+     && "0: The line does not cross the rectangle"
+     && "1: The line crosses one edge or one corner of the rectangle"
+     && "2: The line is on top of one edge or crosses two edges of the rectangle"
+   );
+
+  return points;
+}
+
+} //~namespace ribi
+
 ribi::Geometry::Geometry()
 {
   #ifndef NDEBUG
@@ -403,7 +504,21 @@ double ribi::Geometry::GetDistance(
   return boost::geometry::distance(a,b);
 }
 
+std::vector<ribi::Geometry::Coordinat2D> ribi::Geometry::GetLineLineIntersections(
+  const Linestring line1,
+  const Linestring line2
+) const
+{
+  return GetLineLineIntersectionsImpl(line1,line2);
+}
 
+std::vector<ribi::Geometry::Coordinat2D> ribi::Geometry::GetLineRectIntersections(
+  const Linestring line1,
+  const Rect rect
+) const
+{
+  return GetLineRectIntersectionsImpl(line1,rect);
+}
 
 std::string ribi::Geometry::GetVersion() const noexcept
 {
