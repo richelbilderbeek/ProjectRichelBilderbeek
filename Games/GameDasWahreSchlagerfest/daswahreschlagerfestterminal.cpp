@@ -4,7 +4,13 @@
 #include "textcanvas.h"
 #include "daswahreschlagerfestwidget.h"
 
-void ribi::DasWahreSchlagerfestTerminal::Display(const DasWahreSchlagerfestWidget& widget)
+ribi::dws::DasWahreSchlagerfestTerminal::DasWahreSchlagerfestTerminal()
+  : m_auto_play{false}
+{
+
+}
+
+void ribi::dws::DasWahreSchlagerfestTerminal::Display(const DasWahreSchlagerfestWidget& widget)
 {
 
   const int n_rows = static_cast<int>(widget.GetTiles().size());
@@ -35,7 +41,45 @@ void ribi::DasWahreSchlagerfestTerminal::Display(const DasWahreSchlagerfestWidge
   std::cout << canvas << std::endl;
 }
 
-void ribi::DasWahreSchlagerfestTerminal::OnChanged(const DasWahreSchlagerfestWidget& /* widget */)
+void ribi::dws::DasWahreSchlagerfestTerminal::OnChanged(const DasWahreSchlagerfestWidget& /* widget */)
 {
   //Display(widget);
+}
+
+ribi::dws::Key ribi::dws::DasWahreSchlagerfestTerminal::RequestKey()
+{
+  if (m_auto_play)
+  {
+    switch((std::rand() >> 4) % 4)
+    {
+      default:
+      case 0: //Prefer downwards
+      case 1: return ribi::dws::Key::down;
+      case 2: return ribi::dws::Key::left;
+      case 3: return ribi::dws::Key::right;
+    }
+  }
+  else
+  {
+    while (1)
+    {
+      char c = '\0';
+      std::cin >> c;
+
+      if (!std::cin)
+      {
+        std::cout << "Please type 'a', 's', 'd' or 'q'" << std::endl;
+        continue;
+      }
+
+      switch(c)
+      {
+        case 's': return ribi::dws::Key::down;
+        case 'a': return ribi::dws::Key::left;
+        case 'd': return ribi::dws::Key::right;
+        case 'q': return ribi::dws::Key::quit;
+        default: break;
+      }
+    }
+  }
 }

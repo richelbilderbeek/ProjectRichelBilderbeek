@@ -35,8 +35,9 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace dws {
 
-class QtDasWahreSchlagerfestWidget : public QWidget, public ribi::DasWahreSchlagerfestDisplay
+class QtDasWahreSchlagerfestWidget : public QWidget, public ribi::dws::DasWahreSchlagerfestDisplay
 {
   Q_OBJECT
     
@@ -45,12 +46,14 @@ public:
 
   void Display(const DasWahreSchlagerfestWidget& widget) override;
   void OnChanged(const DasWahreSchlagerfestWidget& widget) override;
+  ribi::dws::Key RequestKey() override;
 
 protected:
   void keyPressEvent(QKeyEvent *) noexcept;
   void paintEvent(QPaintEvent *) noexcept;
 
 private:
+  std::vector<ribi::dws::Key> m_keys;
   boost::shared_ptr<DasWahreSchlagerfestWidget> m_widget;
   const QPixmap m_beer;
   const QPixmap m_bratwurst;
@@ -63,6 +66,7 @@ private:
 
 };
 
+} //~namespace dws
 } //~namespace ribi
 
 

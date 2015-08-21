@@ -2,7 +2,7 @@
 #include <stdexcept>
 
 #include "ndsgamedialog.h"
-
+#include "daswahreschlagerfestwidget.h"
 int main(/* int argc, char* argv[0] */)
 {
   #ifndef NDEBUG
@@ -13,8 +13,10 @@ int main(/* int argc, char* argv[0] */)
 
   try
   {
-    NdsGameDialog d;
-    d.Start();
+    ribi::dws::DasWahreSchlagerfestWidget w;
+    ribi::dws::NdsGameDialog d;
+    w.SetDisplay(&d);
+    w.Execute();
   }
   catch (std::logic_error& e)
   {

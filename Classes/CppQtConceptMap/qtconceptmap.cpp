@@ -167,6 +167,7 @@ ribi::cmap::QtConceptMap::~QtConceptMap()
   delete m_examples_item;
   m_examples_item = nullptr;
 
+  delete m_tools;
   m_tools = nullptr;
   if (m_highlighter) m_highlighter->SetItem(nullptr); //Do this before destroying items
   m_arrow = nullptr;

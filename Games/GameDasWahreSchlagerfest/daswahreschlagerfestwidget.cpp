@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "daswahreschlagerfestdisplay.h"
 #pragma GCC diagnostic pop
 
-ribi::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(
+ribi::dws::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(
   DasWahreSchlagerfestDisplay * const display,
   const int width, const int height
 )
@@ -45,7 +45,7 @@ ribi::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(
   assert(width == static_cast<int>(m_v[0].size()));
 }
 
-void ribi::DasWahreSchlagerfestWidget::CheckThree()
+void ribi::dws::DasWahreSchlagerfestWidget::CheckThree()
 {
   assert(!m_v.empty());
   assert(!m_v[0].empty());
@@ -123,21 +123,27 @@ void ribi::DasWahreSchlagerfestWidget::CheckThree()
   CheckThree();
 }
 
-void ribi::DasWahreSchlagerfestWidget::Display() const
+void ribi::dws::DasWahreSchlagerfestWidget::Display() const
 {
   assert(m_display);
   m_display->Display(*this);
 }
 
-void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfestWidget::Key key)
+void ribi::dws::DasWahreSchlagerfestWidget::Execute()
+{
+
+  while (1)
+  {
+    Display();
+    ribi::dws::Key key = m_display->RequestKey();
+    PressKey(key);
+  }
+}
+
+void ribi::dws::DasWahreSchlagerfestWidget::PressKey(const ribi::dws::Key key)
 {
   switch (key)
   {
-    case Key::up:
-    {
-      //No use
-    }
-    break;
     case Key::right:
     {
       if (m_cursor.x + 1 < static_cast<int>(m_v[m_cursor.y].size()))
@@ -236,10 +242,12 @@ void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfest
       }
     }
     break;
+    case Key::quit: break; //Cannot handle that here
+
   }
 }
 
-void ribi::DasWahreSchlagerfestWidget::SetDisplay(DasWahreSchlagerfestDisplay * const display)
+void ribi::dws::DasWahreSchlagerfestWidget::SetDisplay(DasWahreSchlagerfestDisplay * const display)
 {
   assert(display);
   m_display = display;
@@ -249,7 +257,7 @@ void ribi::DasWahreSchlagerfestWidget::SetDisplay(DasWahreSchlagerfestDisplay * 
 #ifndef NDEBUG
 #include "testtimer.h"
 
-void ribi::DasWahreSchlagerfestWidget::Test() noexcept
+void ribi::dws::DasWahreSchlagerfestWidget::Test() noexcept
 {
   {
     static bool is_tested{false};

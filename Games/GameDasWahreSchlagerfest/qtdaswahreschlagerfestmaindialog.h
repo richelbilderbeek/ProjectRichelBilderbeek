@@ -31,6 +31,7 @@ class QtDasWahreSchlagerfestMainDialog;
 }
 
 namespace ribi {
+namespace dws {
 
 class QtDasWahreSchlagerfestMainDialog : public QtHideAndShowDialog
 {
@@ -51,6 +52,7 @@ private:
   #endif
 };
 
+} //~namespace dws
 } //~namespace ribi
 
 #endif // QTDASWAHRESCHLAGERFESTMAINDIALOG_H

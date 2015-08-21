@@ -23,17 +23,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <iosfwd>
 #include <vector>
-
 //Cannot use Boost, due to libnds
 
+#include "daswahreschlagerfestkey.h"
+
+
 namespace ribi {
+namespace dws {
 
 struct DasWahreSchlagerfestDisplay;
 
 ///DasWahreSchlagerfestWidget contains the game logic of Das Wahre Schlagerfest
 struct DasWahreSchlagerfestWidget
 {
-  enum class Key { up, right, down, left };
   enum class Tile { empty, beer, bratwurst, richel };
   struct Cursor
   {
@@ -52,6 +54,9 @@ struct DasWahreSchlagerfestWidget
 
   void Display() const;
 
+  ///Play the game
+  void Execute();
+
   ///Obtain the cursor
   const Cursor& GetCursor() const { return m_cursor; }
 
@@ -59,7 +64,7 @@ struct DasWahreSchlagerfestWidget
   const std::vector<std::vector<Tile> >& GetTiles() const { return m_v; }
 
   ///Respond to the user pressing a key
-  void PressKey(const Key key);
+  void PressKey(const ribi::dws::Key key);
 
   void SetDisplay(DasWahreSchlagerfestDisplay * const display);
 
@@ -83,6 +88,7 @@ struct DasWahreSchlagerfestWidget
 
 std::ostream& operator<<(std::ostream& os,const DasWahreSchlagerfestWidget& w);
 
+} //~namespace dws
 } //~namespace ribi
 
 #endif // DASWAHRESCHLAGERFESTWIDGET_H

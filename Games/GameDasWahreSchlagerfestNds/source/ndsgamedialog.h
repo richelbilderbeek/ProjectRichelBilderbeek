@@ -8,16 +8,18 @@
 
 namespace Ui { class NdsGameDialog; }
 
+namespace ribi {
+namespace dws {
+
 //Images are 32x32
 //Screen is 256x196 (w x h), thus 8x6 blocks
-struct NdsGameDialog final : public ribi::DasWahreSchlagerfestDisplay
+struct NdsGameDialog final : public ribi::dws::DasWahreSchlagerfestDisplay
 {
   NdsGameDialog();
 
-  void Display(const ribi::DasWahreSchlagerfestWidget& widget) override;
-  void OnChanged(const ribi::DasWahreSchlagerfestWidget& widget) override;
-
-  void Start();
+  void Display(const DasWahreSchlagerfestWidget& widget) override;
+  void OnChanged(const DasWahreSchlagerfestWidget& widget) override;
+  ribi::dws::Key RequestKey() override;
 
 private:
 
@@ -32,5 +34,8 @@ private:
 
   static const bool m_verbose{false};
 };
+
+} //~namespace dws
+} //~namespace ribi
 
 #endif // NDSGAMEDIALOG_H

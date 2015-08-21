@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget *parent) noexcept
+ribi::dws::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtDasWahreSchlagerfestMenuDialog)
 {
@@ -45,23 +45,23 @@ ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget
   ui->setupUi(this);
 }
 
-ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noexcept
+ribi::dws::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::keyPressEvent(QKeyEvent * e)
+void ribi::dws::QtDasWahreSchlagerfestMenuDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key() == Qt::Key_Escape) { close(); }
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked() noexcept
+void ribi::dws::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked() noexcept
 {
   QtDasWahreSchlagerfestMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked() noexcept
+void ribi::dws::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked() noexcept
 {
   QtAboutDialog d(DasWahreSchlagerfestMenuDialog().GetAbout());
   d.setWindowIcon(windowIcon());
@@ -69,13 +69,13 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked() noexcept
   ShowChild(&d);
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked() noexcept
+void ribi::dws::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
+void ribi::dws::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "menudialog.h"
 
 namespace ribi {
+namespace dws {
 
 struct DasWahreSchlagerfestMenuDialog final : public MenuDialog
 {
@@ -41,6 +42,7 @@ struct DasWahreSchlagerfestMenuDialog final : public MenuDialog
   #endif
 };
 
+} //~namespace dws
 } //~namespace ribi
 
 #endif // DASWAHRESCHLAGERFESTMENUDIALOG_H

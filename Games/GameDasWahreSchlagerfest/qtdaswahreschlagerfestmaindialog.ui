@@ -19,7 +19,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="ribi::QtDasWahreSchlagerfestWidget" name="widget" native="true">
+    <widget class="ribi::dws::QtDasWahreSchlagerfestWidget" name="widget" native="true">
      <property name="focusPolicy">
       <enum>Qt::StrongFocus</enum>
      </property>
@@ -29,7 +29,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ribi::QtDasWahreSchlagerfestWidget</class>
+   <class>ribi::dws::QtDasWahreSchlagerfestWidget</class>
    <extends>QWidget</extends>
    <header>qtdaswahreschlagerfestwidget.h</header>
    <container>1</container>

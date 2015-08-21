@@ -13,8 +13,9 @@
 //#include "soundbank_bin.h"
 #include "picbeer.h"
 #include "ndsgamedialog.h"
+#include "daswahreschlagerfestwidget.h"
 
-NdsGameDialog::NdsGameDialog()
+ribi::dws::NdsGameDialog::NdsGameDialog()
   : m_key_pressed{-1},
     m_screen_bottom{}
 {
@@ -31,27 +32,26 @@ NdsGameDialog::NdsGameDialog()
   consoleSelect(&m_screen_bottom);
 
   PicBeer().Draw(VRAM_A,0,0);
+
+  //mmLoad(MOD_69008_EXPERIENCE);
+  //mmStart(MOD_69008_EXPERIENCE,MM_PLAY_LOOP);
+
 }
 
-void NdsGameDialog::ProcessEvents()
+ribi::dws::Key ribi::dws::NdsGameDialog::RequestKey()
 {
-  scanKeys(); //Don't forget!
-  const int keys_down = keysDown();
-  if (keys_down)
+  while (1)
   {
-    if (     keys_down & KEY_UP    ) { m_key_pressed =  0; }
-    else if (keys_down & KEY_RIGHT ) { m_key_pressed =  1; }
-    else if (keys_down & KEY_DOWN  ) { m_key_pressed =  2; }
-    else if (keys_down & KEY_LEFT  ) { m_key_pressed =  3; }
-    else if (keys_down & KEY_X     ) { m_key_pressed =  4; }
-    else if (keys_down & KEY_A     ) { m_key_pressed =  5; }
-    else if (keys_down & KEY_B     ) { m_key_pressed =  6; }
-    else if (keys_down & KEY_Y     ) { m_key_pressed =  7; }
-    else if (keys_down & KEY_L     ) { m_key_pressed =  8; }
-    else if (keys_down & KEY_R     ) { m_key_pressed =  9; }
-    else if (keys_down & KEY_START ) { m_key_pressed = 10; }
-    else if (keys_down & KEY_SELECT) { m_key_pressed = 11; }
-  }
+    scanKeys(); //Don't forget!
+    const int keys_down = keysDown();
+    if (keys_down)
+    {
+      if (     keys_down & KEY_UP    ) { return ribi::dws::Key::up; }
+      else if (keys_down & KEY_RIGHT ) { return ribi::dws::Key::right; }
+      else if (keys_down & KEY_DOWN  ) { return ribi::dws::Key::down; }
+      else if (keys_down & KEY_LEFT  ) { return ribi::dws::Key::left; }
+    }
 
-  swiWaitForVBlank();
+    swiWaitForVBlank();
+  }
 }

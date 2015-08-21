@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testtimer.h"
 #include "trace.h"
 
-int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::dws::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -44,51 +44,14 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
 
   if (argc == 2 && (argv[1] == "-d" || argv[1] == "--demo"))
   {
-    DasWahreSchlagerfestWidget w(&terminal);
-    w.Display();
-
-    for (int i=0; i!=100; ++i)
-    {
-      switch((std::rand() >> 4) % 4)
-      {
-        case 0: //Prefer downwards
-        case 1: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::down); break;
-        case 2: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::left); break;
-        case 3: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::right); break;
-      }
-      w.Display();
-    }
+    terminal.SetAutoPlay(true);
   }
-  if (argc == 2 && (argv[1] == "-p" || argv[1] == "--play"))
-  {
-    DasWahreSchlagerfestWidget w(&terminal);
-
-    while (1)
-    {
-      w.Display();
-
-      char c;
-      std::cin >> c;
-
-      if (!std::cin)
-      {
-        std::cout << "Please type 'a', 's', 'd' or 'q'" << std::endl;
-        continue;
-      }
-
-      switch(c)
-      {
-        case 's': w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::down); break;
-        case 'a': w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::left); break;
-        case 'd': w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::right); break;
-        case 'q': return 0;
-      }
-    }
-  }
+  DasWahreSchlagerfestWidget w(&terminal);
+  w.Execute();
   return 0;
 }
 
-ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
+ribi::About ribi::dws::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -104,7 +67,7 @@ ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-ribi::Help ribi::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::dws::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept
 {
   return Help(
     GetAbout().GetFileTitle(),
@@ -122,7 +85,7 @@ ribi::Help ribi::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::DasWahreSchlagerfestMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::dws::DasWahreSchlagerfestMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramDasWahreSchlagerfest
@@ -131,12 +94,12 @@ boost::shared_ptr<const ribi::Program> ribi::DasWahreSchlagerfestMenuDialog::Get
   return p;
 }
 
-std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion() const noexcept
+std::string ribi::dws::DasWahreSchlagerfestMenuDialog::GetVersion() const noexcept
 {
   return "2.5";
 }
 
-std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::dws::DasWahreSchlagerfestMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2003-09-30: version 1.1: first VCL (Windows-only) version",
@@ -150,7 +113,7 @@ std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory
 }
 
 #ifndef NDEBUG
-void ribi::DasWahreSchlagerfestMenuDialog::Test() noexcept
+void ribi::dws::DasWahreSchlagerfestMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
@@ -159,6 +122,7 @@ void ribi::DasWahreSchlagerfestMenuDialog::Test() noexcept
   }
   DasWahreSchlagerfestTerminal terminal;
   DasWahreSchlagerfestWidget widget(&terminal);
+  widget.Execute();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -22,14 +22,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtdaswahreschlagerfestwidget.h"
 
+#include <QApplication>
 #include <QKeyEvent>
 #include <QPainter>
 #include <QPixmap>
 #include "daswahreschlagerfestwidget.h"
 #pragma GCC diagnostic pop
 
-ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) noexcept
+ribi::dws::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) noexcept
   : QWidget(parent),
+    m_keys{},
     m_widget(new DasWahreSchlagerfestWidget(this)),
     m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
     m_bratwurst(":/images/GameDasWahreSchlagerfestBratwurst.png"),
@@ -42,12 +44,12 @@ ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent
   assert(m_richel.width() == 102);
 }
 
-void ribi::QtDasWahreSchlagerfestWidget::Display(const DasWahreSchlagerfestWidget& /* widget */)
+void ribi::dws::QtDasWahreSchlagerfestWidget::Display(const DasWahreSchlagerfestWidget& /* widget */)
 {
   this->repaint();
 }
 
-const QPixmap& ribi::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept
+const QPixmap& ribi::dws::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept
 {
   switch (tile)
   {
@@ -57,33 +59,30 @@ const QPixmap& ribi::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchla
     case DasWahreSchlagerfestWidget::Tile::richel   : return m_richel;
   }
   assert(!"Should not get here");
-  throw std::logic_error("ribi::QtDasWahreSchlagerfestWidget::GetPixmap");
+  throw std::logic_error("ribi::dws::QtDasWahreSchlagerfestWidget::GetPixmap");
 }
 
 
-void ribi::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e) noexcept
+void ribi::dws::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e) noexcept
 {
-  DasWahreSchlagerfestWidget::Key key;
   switch (e->key())
   {
-    case Qt::Key_Up:     key = DasWahreSchlagerfestWidget::Key::up; break;
-    case Qt::Key_Right:  key = DasWahreSchlagerfestWidget::Key::right; break;
-    case Qt::Key_Down:   key = DasWahreSchlagerfestWidget::Key::down; break;
-    case Qt::Key_Left:   key = DasWahreSchlagerfestWidget::Key::left; break;
-    case Qt::Key_Escape:
+    case Qt::Key_Right:  m_keys.push_back(Key::right); break;
+    case Qt::Key_Down:   m_keys.push_back(Key::down); break;
+    case Qt::Key_Left:   m_keys.push_back(Key::left); break;
+    case Qt::Key_Escape: m_keys.push_back(Key::quit);
       this->close();
       return;
     default: return;
   }
-  m_widget->PressKey(key);
 }
 
-void ribi::QtDasWahreSchlagerfestWidget::OnChanged(const DasWahreSchlagerfestWidget& /* widget */)
+void ribi::dws::QtDasWahreSchlagerfestWidget::OnChanged(const DasWahreSchlagerfestWidget& /* widget */)
 {
   this->repaint();
 }
 
-void ribi::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
+void ribi::dws::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
 {
   QPainter painter(this);
   const std::vector<std::vector<DasWahreSchlagerfestWidget::Tile> > & v = m_widget->GetTiles();
@@ -122,3 +121,15 @@ void ribi::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
   }
 }
 
+
+ribi::dws::Key ribi::dws::QtDasWahreSchlagerfestWidget::RequestKey()
+{
+  while (1)
+  {
+    qApp->processEvents();
+    if (m_keys.empty()) continue;
+    const auto key = m_keys.back();
+    m_keys.clear();
+    return key;
+  }
+}
