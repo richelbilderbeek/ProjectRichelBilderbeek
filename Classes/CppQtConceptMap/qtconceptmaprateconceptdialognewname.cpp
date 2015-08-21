@@ -70,7 +70,7 @@ ribi::cmap::QtRateConceptDialogNewName::QtRateConceptDialogNewName(
       : -1),
 
     m_sub_concept_map(sub_concept_map),
-    m_widget(new QtRateConceptMap)
+    m_widget(new QtConceptMap)
 {
   ui->setupUi(this);
   #ifndef NDEBUG

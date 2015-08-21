@@ -47,6 +47,40 @@ struct QPointF;
 
 namespace ribi {
 
+template <class T>
+bool operator==(
+  const boost::geometry::model::d2::point_xy<T>& a,
+  const boost::geometry::model::d2::point_xy<T>& b)
+{
+  return boost::geometry::equals(a,b);
+  //return a.x() == b.x() && a.y() == b.y();
+}
+
+template <class T>
+bool operator!=(
+  const boost::geometry::model::d2::point_xy<T>& a,
+  const boost::geometry::model::d2::point_xy<T>& b)
+{
+  return !(a == b);
+}
+
+template <class T>
+bool operator==(
+  const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T> > a,
+  const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T> > b)
+{
+  return boost::geometry::equals(a,b);
+}
+
+template <class T>
+bool operator!=(
+  const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T> > a,
+  const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T> > b)
+{
+  return !(a==b);
+}
+
+
 ///Geometry functions, working with Boost.Geometry
 struct Geometry
 {
@@ -186,9 +220,81 @@ struct Geometry
     return points;
   }
 
-
-  ///Obtain the zero, one or two intersections between a line and a rectanle
+  ///Obtain the zero, one or two intersections between a line and a rectangle
   //From http://www.richelbilderbeek.nl/CppGetLineRectIntersections.htm
+  template <class T>
+  const std::vector<
+    boost::geometry::model::d2::point_xy<T>
+  >
+  GetLineRectIntersections(
+    const boost::geometry::model::linestring<
+      boost::geometry::model::d2::point_xy<T>
+    > line,
+    const boost::geometry::model::box<
+      boost::geometry::model::d2::point_xy<T>
+    > rect) const
+  {
+    typedef boost::geometry::model::d2::point_xy<T> Point;
+    typedef boost::geometry::model::linestring<Point> Line;
+    //typedef boost::geometry::model::box<Point> Rect;
+
+    const Point p0 = Point(rect.min_corner().x(), rect.min_corner().y());
+    const Point p1 = Point(rect.max_corner().x(), rect.min_corner().y());
+    const Point p2 = Point(rect.min_corner().x(), rect.max_corner().y());
+    const Point p3 = Point(rect.max_corner().x(), rect.max_corner().y());
+    assert(p0 != p1); assert(p0 != p2); assert(p0 != p3);
+    assert(p1 != p0); assert(p1 != p2); assert(p1 != p3);
+    assert(p2 != p0); assert(p2 != p1); assert(p2 != p3);
+    assert(p3 != p0); assert(p3 != p1); assert(p3 != p2);
+
+    const std::vector<Line> rect_sides
+      =
+      {
+        CreateLine(std::vector<Point>( {p0,p1} )),
+        CreateLine(std::vector<Point>( {p0,p2} )),
+        CreateLine(std::vector<Point>( {p1,p3} )),
+        CreateLine(std::vector<Point>( {p2,p3} ))
+      };
+    std::vector<Point> points;
+    for (const auto side: rect_sides)
+    {
+      const std::vector<Point> v = GetLineLineIntersections(line,side);
+      std::copy(v.begin(),v.end(),std::back_inserter(points));
+    }
+
+    //the vector points must be sorted before deleting the duplicates
+    //because std::unique works on consecutive elements
+    std::sort( points.begin(),points.end(),
+      [](const Point& lhs, const Point& rhs)
+      {
+        return lhs.x() == rhs.x() && lhs.y() == rhs.y();
+      }
+    );
+
+    //Remove doublures
+    //Put 'typename' before 'std::vector<Point>::iteratortype' to prevent getting the error below:
+    //error: need 'typename' before 'std::vector<boost::geometry::model::d2::point_xy<T> >::iterator'
+    //  because 'std::vector<boost::geometry::model::d2::point_xy<T> >' is a dependent scope
+    typename std::vector<Point>::iterator new_end = std::unique( points.begin(),points.end(),
+      [](const Point& lhs, const Point& rhs)
+      {
+        return lhs.x() == rhs.x() && lhs.y() == rhs.y();
+      }
+    );
+
+    points.erase(new_end,points.end());
+
+    assert(
+      points.size() <= 2
+       && "0: The line does not cross the rectangle"
+       && "1: The line crosses one edge or one corner of the rectangle"
+       && "2: The line is on top of one edge or crosses two edges of the rectangle"
+     );
+
+    return points;
+  }
+
+  /*
   template <class T>
   const std::vector<
     boost::geometry::model::d2::point_xy<T>
@@ -241,7 +347,7 @@ struct Geometry
 
     return points;
   }
-
+  */
   Coordinat2D CreatePoint(
     const double x,
     const double y
@@ -763,6 +869,7 @@ std::ostream& operator<<(std::ostream& os,const QPoint& rect) noexcept;
 std::ostream& operator<<(std::ostream& os,const QPointF& rect) noexcept;
 std::ostream& operator<<(std::ostream& os,const QRect& rect) noexcept;
 std::ostream& operator<<(std::ostream& os,const QRectF& rect) noexcept;
+
 
 
 } //~namespace ribi
