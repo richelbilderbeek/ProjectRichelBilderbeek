@@ -606,11 +606,12 @@ struct Geometry
   std::string ToStr(const ApCoordinats3D& p) const noexcept;
   std::string ToStr(const Linestring& polygon) const noexcept;
   std::string ToStr(const Polygon& polygon) const noexcept;
-  std::string ToStr(const QPen& pen) noexcept;
-  std::string ToStr(const QPoint& point) noexcept;
-  std::string ToStr(const QPointF& point) noexcept;
-  std::string ToStr(const QRect& rect) noexcept;
-  std::string ToStr(const QRectF& rect) noexcept;
+  std::string ToStr(const QPen& pen) const noexcept;
+  std::string ToStr(const QPoint& point) const noexcept;
+  std::string ToStr(const QPointF& point) const noexcept;
+  std::string ToStr(const QRect& rect) const noexcept;
+  std::string ToStr(const QRectF& rect) const noexcept;
+  std::string ToStr(const Rect& rect) const noexcept;
 
   ///Uses ToDoubleSafe(const apfloat&)
   std::string ToStrSafe(const Apfloat& f) const noexcept;
@@ -727,6 +728,7 @@ std::ostream& operator<<(std::ostream& os,const QPoint& rect) noexcept;
 std::ostream& operator<<(std::ostream& os,const QPointF& rect) noexcept;
 std::ostream& operator<<(std::ostream& os,const QRect& rect) noexcept;
 std::ostream& operator<<(std::ostream& os,const QRectF& rect) noexcept;
+std::ostream& operator<<(std::ostream& os,const Geometry::Rect& rect) noexcept;
 
 
 

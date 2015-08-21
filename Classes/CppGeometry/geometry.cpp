@@ -1169,6 +1169,20 @@ std::string ribi::Geometry::ToStr(const Polygon& polygon) const noexcept
   return s.str();
 }
 
+std::string ribi::Geometry::ToStr(const QPointF& point) const noexcept
+{
+  std::stringstream s;
+  s << point;
+  return s.str();
+}
+
+std::string ribi::Geometry::ToStr(const Rect& rect) const noexcept
+{
+  std::stringstream s;
+  s << rect;
+  return s.str();
+}
+
 std::string ribi::Geometry::ToSvg(
   const Polygons& polygons,
   const double stroke_width
@@ -1182,16 +1196,6 @@ std::string ribi::Geometry::ToSvg(
     << '\n'
     << ToSvgStr(polygons,stroke_width) << '\n'
     << R"*(</svg>)*"
-  ;
-  return s.str();
-}
-
-std::string ribi::Geometry::ToStr(const QPointF& point) noexcept
-{
-  std::stringstream s;
-  s
-    << std::setprecision(99)
-    << "(" << point.x() << "," << point.y() << ")"
   ;
   return s.str();
 }
@@ -1564,6 +1568,16 @@ std::ostream& ribi::operator<<(std::ostream& os,const QRectF& rect) noexcept
     << '(' << rect.left() << ',' << rect.top() << ')'
     << ','
     << '(' << rect.width() << 'x' << rect.height() << ')'
+  ;
+  return os;
+
+}
+
+std::ostream& ribi::operator<<(std::ostream& os,const Geometry::Rect& rect) noexcept
+{
+
+  os
+    << '(' << rect.min_corner() << ',' << rect.max_corner() << ')'
   ;
   return os;
 

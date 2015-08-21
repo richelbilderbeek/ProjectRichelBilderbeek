@@ -108,18 +108,22 @@ QRectF ribi::QtQuadBezierArrowItem::boundingRect() const
 
 QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const noexcept
 {
-  const QPointF center = GetCenter();
-  const double dx_mid_center = GetMidItem() ? (GetMidItem()->pos().x() - center.x()) : 0.0;
-  const double dy_mid_center = GetMidItem() ? (GetMidItem()->pos().y() - center.y()) : 0.0;
-  const QPointF beyond(center.x() + dx_mid_center + dx_mid_center, center.y() + dy_mid_center + dy_mid_center);
-  if (m_verbose) { TRACE(Geometry().ToStr(beyond)); }
-  return beyond;
+  const QPointF p_center = GetCenter();
+  const double dx_mid_center = GetMidItem() ? (GetMidItem()->pos().x() - p_center.x()) : 0.0;
+  const double dy_mid_center = GetMidItem() ? (GetMidItem()->pos().y() - p_center.y()) : 0.0;
+  const QPointF p_beyond(p_center.x() + dx_mid_center + dx_mid_center, p_center.y() + dy_mid_center + dy_mid_center);
+
+  //const double dx_mid_center = GetMidItem() ? (GetMidItem()->pos().x() - center.x()) : 0.0;
+  //const double dy_mid_center = GetMidItem() ? (GetMidItem()->pos().y() - center.y()) : 0.0;
+  //const QPointF beyond(center.x() + dx_mid_center + dx_mid_center, center.y() + dy_mid_center + dy_mid_center);
+  return p_beyond;
 }
 
 QPointF ribi::QtQuadBezierArrowItem::GetCenter() const noexcept
 {
-  const QPointF center(GetToItem()->pos() + GetFromItem()->pos() / 2.0);
-  if (m_verbose) { TRACE(Geometry().ToStr(center)); }
+  //DON'T: will result in recursion
+  //const QPointF center((GetTail() + GetHead()) / 2.0);
+  const QPointF center( (GetToItem()->pos() + GetFromItem()->pos()) / 2.0);
   return center;
 }
 
@@ -139,8 +143,6 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
       }
     )
   );
-  if (m_verbose) { TRACE(Geometry().ToStr(line_head)); }
-
   const QRectF qr_to = m_to->boundingRect().translated(m_to->pos());
 
   const Rect r_to(
@@ -148,9 +150,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
     Point(qr_to.bottomRight().x(),qr_to.bottomRight().y())
     );
 
-
   std::vector<Point> p_head_end = Geometry().GetLineRectIntersections(line_head,r_to);
-
 
   if (p_head_end.size() == 1)
   {
@@ -208,19 +208,26 @@ QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
     Point(qr_from.bottomRight().x(),qr_from.bottomRight().y())
     );
 
+  if (m_verbose)
+  {
+    TRACE(Geometry().ToStr(line_tail));
+    TRACE(Geometry().ToStr(r_from));
+  }
+
   std::vector<Point> p_tail_end = Geometry().GetLineRectIntersections(line_tail,r_from);
+
+  if (m_verbose) { TRACE(p_tail_end.size()); }
+
   if (p_tail_end.size() == 1)
   {
     return QPointF(p_tail_end[0].x(),p_tail_end[0].y());
   }
   if (p_tail_end.empty())
   {
+    p_tail_end.push_back(Point(m_from->pos().x(),m_from->pos().y()));
     //Yes,it happens, when the line does not leave the rectangle
     //this happens when the two node rectanges overlap
-    p_tail_end.push_back(Point(m_from->pos().x(),m_from->pos().y()));
-    assert(!p_tail_end.empty());
-    assert(p_tail_end.size() == 1);
-    return QPointF(p_tail_end[0].x(),p_tail_end[0].y());
+    return m_from->pos();
   }
   else
   {
@@ -324,16 +331,21 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
   }
   //Line must go _though_ mid pos, instead of using it as a virtual hinge point
   //Solution:
-  // - define point 'center' as the middle between from and to
+  // - define point 'between' as the middle between from and to
+  // - point 'center' is the center point of the item there
   // - define point 'beyond' as the mirror point of 'center', using mid_pos as a mirror
 
   const QPointF p_end_head{GetHead()};
   const QPointF p_end_tail{GetTail()};
 
+  /*
   const QPointF p_center((p_end_tail + p_end_head) / 2.0);
   const double dx_mid_center = GetMidItem() ? (GetMidItem()->pos().x() - p_center.x()) : 0.0;
   const double dy_mid_center = GetMidItem() ? (GetMidItem()->pos().y() - p_center.y()) : 0.0;
   const QPointF p_beyond(p_center.x() + dx_mid_center + dx_mid_center, p_center.y() + dy_mid_center + dy_mid_center);
+  */
+  const QPointF p_center{GetCenter()};
+  const QPointF p_beyond{GetBeyond()};
 
   QPainterPath curve;
   curve.moveTo(p_end_tail);
@@ -430,6 +442,19 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
     painter->drawRect(this->boundingRect().adjusted(1.0,1.0,-1.0,-1.0));
     painter->setPen(prev_pen);
     painter->setBrush(prev_brush);
+  }
+
+  if (m_verbose)
+  {
+    TRACE("START");
+    TRACE(Geometry().ToStr(this->GetTail()));
+    TRACE(Geometry().ToStr(this->GetFromItem()->pos()));
+    TRACE(Geometry().ToStr(GetMidItem()->pos()));
+    TRACE(Geometry().ToStr(p_center));
+    TRACE(Geometry().ToStr(p_beyond));
+    TRACE(Geometry().ToStr(this->GetToItem()->pos()));
+    TRACE(Geometry().ToStr(this->GetHead()));
+    TRACE("END");
   }
 }
 
@@ -547,51 +572,70 @@ void ribi::QtQuadBezierArrowItem::Test() noexcept
   {
     QGraphicsScene * const my_scene{new QGraphicsScene};
     std::vector<QGraphicsRectItem *> rects;
-    QtQuadBezierArrowItem * arrow{nullptr};
-    const int n_items = 3;
-    const double ray = 100;
-    for (int i=0; i!=n_items; ++i)
+    //From
     {
-      const double pi = boost::math::constants::pi<double>();
-      const double angle = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
-      const double x1 =  std::sin(angle) * ray;
-      const double y1 = -std::cos(angle) * ray;
-      //QGraphicsRectItem * const rect = new QGraphicsRectItem;
+      const double x1{50.0};
+      const double y1{0.0};
       QtRoundedEditRectItem * const rect = new QtRoundedEditRectItem;
       rect->SetCenterPos(x1,y1);
-      assert(!rect->scene());
       my_scene->addItem(rect);
       rects.push_back(rect);
     }
-    for (int i=0; i<n_items-2; i+=3)
+    //Center
     {
-      assert(i + 2 < n_items);
-      arrow = new QtQuadBezierArrowItem(
-        rects[(i+0) % n_items],
+      const double x1{0.0};
+      const double y1{0.0};
+      QtRoundedEditRectItem * const rect = new QtRoundedEditRectItem;
+      rect->SetCenterPos(x1,y1);
+      my_scene->addItem(rect);
+      rects.push_back(rect);
+    }
+    //To
+    {
+      const double x1{ 0.0};
+      const double y1{50.0};
+      QtRoundedEditRectItem * const rect = new QtRoundedEditRectItem;
+      rect->SetCenterPos(x1,y1);
+      my_scene->addItem(rect);
+      rects.push_back(rect);
+    }
+    //Arrow
+    QtQuadBezierArrowItem * arrow{new QtQuadBezierArrowItem(
+        rects[0],
         false,
-        rects[(i+1) % n_items],
+        rects[1],
         true,
-        rects[(i+2) % n_items]);
-      my_scene->addItem(arrow);
+        rects[2]
+      )
+    };
+    my_scene->addItem(arrow);
+    //Scales
+    {
+      QGraphicsLineItem * const xaxis{new QGraphicsLineItem(-100.0,0.0,100.0,0.0)};
+      QGraphicsLineItem * const yaxis{new QGraphicsLineItem(0.0,-100.0,0.0,100.0)};
+      my_scene->addItem(xaxis);
+      my_scene->addItem(yaxis);
     }
 
     QGraphicsView * const view{new QGraphicsView};
     view->setScene(my_scene);
-    ribi::Grabber grabber(view->winId(),"/home/richel/screenshot.png");
+    ribi::Grabber grabber(view->winId(),"QtQuadBezierArrowItemTest1.png");
     view->show();
     view->setGeometry(0,0,300,300);
-    for (int i=0; i!=10000; ++i) { qApp->processEvents(); }
+    arrow->SetVerbosity(false);
+    //Increase max value of i if screenshot does not show the QGraphicsView
+    for (int i=0; i!=10; ++i) { qApp->processEvents(); }
     view->show();
     grabber.Grab();
 
     //Same general tests
+    assert(arrow->GetCenter().x() == 25.0);
+    assert(arrow->GetCenter().y() == 25.0);
     assert(arrow->zValue() < rects[0]->zValue());
     assert(arrow->zValue() < rects[1]->zValue());
     assert(arrow->zValue() < arrow->GetMidItem()->zValue());
-
     delete my_scene;
     delete view;
-    //assert(1==2);
   }
 }
 #endif
