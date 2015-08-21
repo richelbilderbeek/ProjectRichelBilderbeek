@@ -42,7 +42,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapratedconceptdialog.h"
 #include "qtpvdbfiledialog.h"
 #include "ui_qtpvdbprintconceptmapdialog.h"
-#include "qtdisplayconceptmap.h"
+#include "qtconceptmap.h"
 #pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
@@ -51,7 +51,7 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintConceptMapDialog),
     m_file(file),
-    m_widget(new cmap::QtDisplayConceptMap)
+    m_widget(new cmap::QtConceptMap)
 {
   ui->setupUi(this);
   m_widget->SetConceptMap(file->GetConceptMap());
@@ -196,7 +196,7 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     };
     #ifndef NDEBUG
     for (const ribi::cmap::QtNode * const qtnode:
-      const_cast<const cmap::QtDisplayConceptMap*>(m_widget)->GetQtNodes()
+      const_cast<const cmap::QtConceptMap*>(m_widget)->GetQtNodes()
     )
     {
       //All QtNodes' their rectangles should be within all_items_rect

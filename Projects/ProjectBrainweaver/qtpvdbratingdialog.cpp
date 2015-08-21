@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmap.h"
 #include "qtconceptmap.h"
 #include "qtpvdbprintratingdialog.h"
-#include "qteditconceptmap.h"
+#include "qtconceptmap.h"
 #include "qtpvdbdisplay.h"
 #include "qtpvdbfiledialog.h"
 #include "qtconceptmapdisplaystrategy.h"

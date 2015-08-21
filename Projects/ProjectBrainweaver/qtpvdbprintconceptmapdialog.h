@@ -47,7 +47,7 @@ class QtPvdbPrintConceptMapDialog : public ribi::QtHideAndShowDialog
   Q_OBJECT
   
 public:
-  using ConceptMap = cmap::QtDisplayConceptMap;
+  using ConceptMap = cmap::QtConceptMap;
   ///file be const, as the Display Concept map cannot deal with const ribi::cmap::ConceptMap (yet?)
   explicit QtPvdbPrintConceptMapDialog(
     const boost::shared_ptr<pvdb::File>& file,

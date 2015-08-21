@@ -37,10 +37,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
+#include <QGraphicsView>
+#include <QApplication>
+#include <QTimer>
 
 #include "geometry.h"
+#include "grabber.h"
 #include "testtimer.h"
 #include "trace.h"
+#include "qtroundededitrectitem.h"
+#include "qtroundedrectitem.h"
 #pragma GCC diagnostic pop
 
 template <class T>
@@ -80,6 +86,7 @@ bool operator!=(
 
 ///Obtain the zero or one intersections between two finite lines
 //From http://www.richelbilderbeek.nl/CppGetLineLineIntersections.htm
+/*
 template <class T>
 const std::vector<
   boost::geometry::model::d2::point_xy<T>
@@ -187,6 +194,7 @@ GetLineRectIntersections(
 
   return points;
 }
+*/
 
 const double ribi::QtQuadBezierArrowItem::m_click_easy_width = 10.0;
 
@@ -207,7 +215,8 @@ ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
     m_pen{QPen(QColor(0,0,0))},
     m_show_bounding_rect{false},
     m_tail{tail},
-    m_to{to}
+    m_to{to},
+    m_verbose{false}
 {
   #ifndef NDEBUG
   Test();
@@ -229,8 +238,14 @@ ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
 
   this->setAcceptHoverEvents(true);
 
-  //Put this arrow item under the rect
-  if (mid) { setZValue(mid->zValue() - 1.0); }
+  //Put this arrow item under the source and target node
+  this->setZValue(std::min(from->zValue(),zValue()) - 1.0);
+  this->setZValue(std::min(to->zValue(),zValue()) - 1.0);
+  //Put the center item above the arrow
+  if (mid)
+  {
+    mid->setZValue((from->zValue() + to->zValue()) / 2.0);
+  }
 }
 
 QRectF ribi::QtQuadBezierArrowItem::boundingRect() const
@@ -244,12 +259,14 @@ QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const noexcept
   const double dx_mid_center = GetMidItem() ? (GetMidItem()->pos().x() - center.x()) : 0.0;
   const double dy_mid_center = GetMidItem() ? (GetMidItem()->pos().y() - center.y()) : 0.0;
   const QPointF beyond(center.x() + dx_mid_center + dx_mid_center, center.y() + dy_mid_center + dy_mid_center);
+  if (m_verbose) { TRACE(Geometry().ToStr(beyond)); }
   return beyond;
 }
 
 QPointF ribi::QtQuadBezierArrowItem::GetCenter() const noexcept
 {
   const QPointF center(GetToItem()->pos() + GetFromItem()->pos() / 2.0);
+  if (m_verbose) { TRACE(Geometry().ToStr(center)); }
   return center;
 }
 
@@ -259,12 +276,9 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
   typedef boost::geometry::model::linestring<Point> Line;
   typedef boost::geometry::model::box<Point> Rect;
 
-  //const bool debug = true;
-
-
   const QPointF beyond = GetBeyond();
 
-  const Line line_head = CreateLine(
+  const Line line_head = Geometry().CreateLine(
     std::vector<Point>(
       {
         Point(beyond.x(),beyond.y()),
@@ -272,7 +286,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
       }
     )
   );
-
+  if (m_verbose) { TRACE(Geometry().ToStr(line_head)); }
 
   const QRectF qr_to = m_to->boundingRect().translated(m_to->pos());
 
@@ -282,7 +296,9 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
     );
 
 
-  std::vector<Point> p_head_end = GetLineRectIntersections(line_head,r_to);
+  std::vector<Point> p_head_end = Geometry().GetLineRectIntersections(line_head,r_to);
+
+
   if (p_head_end.size() == 1)
   {
     return QPointF(p_head_end[0].x(),p_head_end[0].y());
@@ -323,7 +339,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
 
   const QPointF beyond = GetBeyond();
 
-  const Line line_tail = CreateLine(
+  const Line line_tail = Geometry().CreateLine(
     std::vector<Point>(
       {
         Point(m_from->pos().x(),m_from->pos().y()),
@@ -339,7 +355,7 @@ QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
     Point(qr_from.bottomRight().x(),qr_from.bottomRight().y())
     );
 
-  std::vector<Point> p_tail_end = GetLineRectIntersections(line_tail,r_from);
+  std::vector<Point> p_tail_end = Geometry().GetLineRectIntersections(line_tail,r_from);
   if (p_tail_end.size() == 1)
   {
     return QPointF(p_tail_end[0].x(),p_tail_end[0].y());
@@ -641,7 +657,6 @@ void ribi::QtQuadBezierArrowItem::SetToPos(const QPointF& pos) noexcept
   }
 }
 
-
 QPainterPath ribi::QtQuadBezierArrowItem::shape() const noexcept
 {
   const QPointF p_end_tail = GetHead();
@@ -671,14 +686,15 @@ void ribi::QtQuadBezierArrowItem::Test() noexcept
   }
   {
     Geometry();
+    QtRoundedEditRectItem();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 
-  /*
   //Render one QtQuadBezierArrowItem
   {
-    std::unique_ptr<QGraphicsScene> my_scene{new QGraphicsScene};
+    QGraphicsScene * const my_scene{new QGraphicsScene};
     std::vector<QGraphicsRectItem *> rects;
+    QtQuadBezierArrowItem * arrow{nullptr};
     const int n_items = 3;
     const double ray = 100;
     for (int i=0; i!=n_items; ++i)
@@ -687,9 +703,9 @@ void ribi::QtQuadBezierArrowItem::Test() noexcept
       const double angle = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
       const double x1 =  std::sin(angle) * ray;
       const double y1 = -std::cos(angle) * ray;
-      QGraphicsRectItem * const rect = new QGraphicsRectItem;
-      rect->setRect(-8.0,-4.0,16.0,8.0);
-      rect->setPos(x1,y1);
+      //QGraphicsRectItem * const rect = new QGraphicsRectItem;
+      QtRoundedEditRectItem * const rect = new QtRoundedEditRectItem;
+      rect->SetCenterPos(x1,y1);
       assert(!rect->scene());
       my_scene->addItem(rect);
       rects.push_back(rect);
@@ -697,20 +713,33 @@ void ribi::QtQuadBezierArrowItem::Test() noexcept
     for (int i=0; i<n_items-2; i+=3)
     {
       assert(i + 2 < n_items);
-      QtQuadBezierArrowItem * const item = new QtQuadBezierArrowItem(
+      arrow = new QtQuadBezierArrowItem(
         rects[(i+0) % n_items],
         false,
         rects[(i+1) % n_items],
         true,
         rects[(i+2) % n_items]);
-      assert(!item->scene());
-      my_scene->addItem(item);
+      my_scene->addItem(arrow);
     }
-    QGraphicsScene().render(
-    //my_scene->
-    QGraphicsScene q;
+
+    QGraphicsView * const view{new QGraphicsView};
+    view->setScene(my_scene);
+    ribi::Grabber grabber(view->winId(),"/home/richel/screenshot.png");
+    view->show();
+    view->setGeometry(0,0,300,300);
+    for (int i=0; i!=10000; ++i) { qApp->processEvents(); }
+    view->show();
+    grabber.Grab();
+
+    //Same general tests
+    assert(arrow->zValue() < rects[0]->zValue());
+    assert(arrow->zValue() < rects[1]->zValue());
+    assert(arrow->zValue() < arrow->GetMidItem()->zValue());
+
+    delete my_scene;
+    delete view;
+    assert(1==2);
   }
-  */
 }
 #endif
 

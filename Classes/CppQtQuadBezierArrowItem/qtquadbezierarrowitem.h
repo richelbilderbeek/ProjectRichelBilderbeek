@@ -141,6 +141,8 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   void SetToX(const double& x) noexcept { SetToPos(x,GetToY()); }
   void SetToY(const double& y) noexcept { SetToPos(GetToX(),y); }
 
+  void SetVerbosity(const bool verbosity) noexcept { m_verbose = verbosity; }
+
   ///More precise shape compared to boundingRect
   ///In this example, it is redefined to ease selecting those thin lines
   QPainterPath shape() const noexcept override final;
@@ -150,7 +152,6 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
 
   protected:
   ///Change the cursor when the user moves the mouse cursor in the bounding rectangle
-  ///
   void hoverEnterEvent(QGraphicsSceneHoverEvent *event) noexcept override final;
   void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) noexcept override final;
   void hoverMoveEvent(QGraphicsSceneHoverEvent *event) noexcept override final;
@@ -183,6 +184,9 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   ///The item where the arrow points to
   ///(would the arrow and tail heads not be reversible)
   QGraphicsItem* const m_to;
+
+  ///Give a lot a messages
+  bool m_verbose;
 
   ///Obtain point 'beyond'
   QPointF GetBeyond() const noexcept;

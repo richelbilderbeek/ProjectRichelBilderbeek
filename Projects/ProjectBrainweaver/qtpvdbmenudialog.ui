@@ -183,7 +183,7 @@
       <item>
        <widget class="QPushButton" name="button_test_conceptmap">
         <property name="text">
-         <string>&amp;5. QtEditConceptMap</string>
+         <string>&amp;5. QtConceptMap</string>
         </property>
        </widget>
       </item>

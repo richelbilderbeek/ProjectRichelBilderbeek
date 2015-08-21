@@ -87,7 +87,7 @@ private:
   boost::shared_ptr<pvdb::File> m_file;
 
   ///The concept map widget
-  ribi::cmap::QtEditConceptMap * const m_widget;
+  ribi::cmap::QtConceptMap * const m_widget;
 
   static const boost::shared_ptr<ribi::cmap::ConceptMap> CreateFromCluster(
     const std::string& question,
@@ -95,7 +95,7 @@ private:
 
   //static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map);
   ///DON'T USE: puts a new ConceptMap in file
-  static ribi::cmap::QtEditConceptMap * CreateWidget(const boost::shared_ptr<pvdb::File> file);
+  static ribi::cmap::QtConceptMap * CreateWidget(const boost::shared_ptr<pvdb::File> file);
 
   //#define NOT_NOW_20141111
   #ifdef NOT_NOW_20141111

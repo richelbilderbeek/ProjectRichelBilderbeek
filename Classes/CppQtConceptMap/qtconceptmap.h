@@ -217,8 +217,6 @@ public slots:
 
   ///Called when an item requests a scene update
   void OnRequestSceneUpdate();
-
-  friend class QtConceptMapWidget;
 };
 
 } //~namespace cmap

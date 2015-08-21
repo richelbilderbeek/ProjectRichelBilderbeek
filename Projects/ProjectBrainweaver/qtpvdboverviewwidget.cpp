@@ -40,7 +40,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbprintratingdialog.h"
 #include "qttesteditconceptmapdialog.h"
-#include "qttestrateconceptmapdialog.h"
 #include "qtpvdbassessormenudialog.h"
 #include "qtconceptmaprateconceptdialognewname.h"
 #include "qtpvdbrateconceptmapdialog.h"

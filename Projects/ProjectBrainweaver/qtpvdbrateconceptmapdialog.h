@@ -41,7 +41,7 @@ class QtPvdbRateConceptMapDialog : public ribi::QtHideAndShowDialog
   Q_OBJECT
   
 public:
-  using ConceptMap = cmap::QtRateConceptMap;
+  using ConceptMap = cmap::QtConceptMap;
   explicit QtPvdbRateConceptMapDialog(
     boost::shared_ptr<pvdb::File> file,
     QWidget* parent = 0);
@@ -49,7 +49,7 @@ public:
   QtPvdbRateConceptMapDialog& operator=(const QtPvdbRateConceptMapDialog&) = delete;
   ~QtPvdbRateConceptMapDialog() noexcept;
 
-  cmap::QtRateConceptMap * GetWidget();
+  cmap::QtConceptMap * GetWidget();
 
   ///Respond to key press
   void keyPressEvent(QKeyEvent *);

@@ -40,7 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpvdbfiledialog.h"
 #include "qtscopeddisable.h"
 #include "pvdbfile.h"
-#include "qtrateconceptmap.h"
+#include "qtconceptmap.h"
 #include "testtimer.h"
 #include "trace.h"
 #include "qtpvdbratingdialog.h"
@@ -55,7 +55,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   : QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbRateConceptMapDialog),
   m_file(file),
-  m_widget(new cmap::QtRateConceptMap)
+  m_widget(new cmap::QtConceptMap)
 {
   ui->setupUi(this);
   m_widget->SetConceptMap(file->GetConceptMap());
@@ -85,7 +85,6 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
     this->move( screen.center() - this->rect().center() );
   }
 
-
   m_widget->m_signal_request_rate_concept_dialog.connect(
     boost::bind(&ribi::pvdb::QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog,this,boost::lambda::_1));
 
@@ -96,7 +95,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog() noexcept
   delete ui;
 }
 
-ribi::cmap::QtRateConceptMap * ribi::pvdb::QtPvdbRateConceptMapDialog::GetWidget()
+ribi::cmap::QtConceptMap * ribi::pvdb::QtPvdbRateConceptMapDialog::GetWidget()
 {
   assert(m_widget);
   return m_widget;

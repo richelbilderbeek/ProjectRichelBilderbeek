@@ -15,7 +15,7 @@
 
 #include "conceptmap.h"
 #include "conceptmapfactory.h"
-#include "qtdisplayconceptmap.h"
+#include "qtconceptmap.h"
 
 
 #include "qtconceptmap.h"

@@ -6,7 +6,8 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QImage>
 #include <QPixmap>
-
+#include <QScreen>
+#include <QApplication>
 #include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -28,19 +29,36 @@ ribi::Grabber::~Grabber() noexcept
 
 std::string ribi::Grabber::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::Grabber::GetVersionHistory() noexcept
 {
   return {
     "2014-08-04: Version 1.0: initial version",
+    "2015-08-21: Version 1.1: replaced deprecated construct",
   };
 }
 
 void ribi::Grabber::Grab() const noexcept
 {
-  const QImage screenshot{QPixmap::grabWindow(m_win_id).toImage()};
+  const auto screens = QApplication::screens();
+  const int n_screens = screens.size();
+  if (n_screens == 0)
+  {
+    std::stringstream s;
+    s << "WARNING: no screens, so no screenshot";
+    TRACE(s.str());
+    return;
+  }
+  if (n_screens != 1)
+  {
+    std::stringstream s;
+    s << "WARNING: number of screens " << n_screens << " (instead of just one), taking screenshot of first";
+    TRACE(s.str());
+  }
+  const QImage screenshot{screens[0]->grabWindow(m_win_id).toImage()};
+
   screenshot.save(m_filename.c_str());
 }
 

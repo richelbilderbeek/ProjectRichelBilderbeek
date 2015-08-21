@@ -60,11 +60,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "qtpvdbcreateassessmentcompletedialog.h"
-#include "qttestdisplayconceptmapdialog.h"
 #include "qttesteditconceptmapdialog.h"
-#include "qttestrateconceptmapdialog.h"
-
-#include "qttestrateconceptmapdialog.h"
 #include "qtpvdboverviewdialog.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbprintratingdialog.h"

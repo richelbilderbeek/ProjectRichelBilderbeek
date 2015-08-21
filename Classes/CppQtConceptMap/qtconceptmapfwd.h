@@ -35,26 +35,17 @@ namespace cmap {
 
 struct QtConceptDialog;
 struct QtConceptMap;
-//struct QtConceptMapElement;
-struct QtConceptMapWidget;
-struct QtDisplayConceptMap;
-struct QtDisplayStrategy;
 struct QtEdge;
-struct QtEdge2;
 struct QtEdgeDialog;
-//struct QtEditStrategy;
 struct QtExampleDialog;
 struct QtExamplesDialog;
 struct QtExamplesItem;
-//struct QtItemDisplayStrategy;
 struct QtItemHighlighter;
 struct QtNewArrow;
 struct QtNode;
 struct QtNodeDialog;   //QtDialog showing a Node
 struct QtQtEdgeDialog; //QtDialog showing a QtEdge
 struct QtQtNodeDialog; //QtDialog showing a QtNode
-struct QtRateConceptMap;
-struct QtRateStrategy;
 struct QtTool;
 
 } //~namespace cmap

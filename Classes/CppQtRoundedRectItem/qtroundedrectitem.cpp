@@ -61,6 +61,7 @@ ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   const double width = 64.0;
   this->SetInnerWidth(width);
   this->SetInnerHeight(height);
+  this->setBrush(Qt::white); //Makes the rectangle opaque; otherwise it would be transparent
 }
 
 ribi::QtRoundedRectItem::~QtRoundedRectItem() noexcept
@@ -119,7 +120,7 @@ QRectF ribi::QtRoundedRectItem::GetOuterRect() const noexcept
 
 std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
-  return "1.10";
+  return "1.11";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
@@ -135,7 +136,8 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2014-08-07: version 1.7: renamed IncludingPen member functions to Outer",
     "2014-08-08: version 1.8: removed using with rectangles from interface, as it led to incorrectness and confusion",
     "2014-08-09: version 1.9: increased use of TDD, fixed bug",
-    "2015-02-08: version 1.10: gaining/losing focus for different pen widths work correctly"
+    "2015-02-08: version 1.10: gaining/losing focus for different pen widths work correctly",
+    "2015-08-21: version 1.11: rectangles are opaque and white by default"
   };
 }
 

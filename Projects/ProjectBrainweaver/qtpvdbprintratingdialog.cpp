@@ -45,7 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmap.h"
 #include "qtconceptmapratedconceptdialog.h"
 #include "qtpvdbdisplay.h"
-#include "qtrateconceptmap.h"
+#include "qtconceptmap.h"
 #include "ui_qtpvdbprintratingdialog.h"
 #pragma GCC diagnostic pop
 
@@ -55,7 +55,7 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintRatingDialog),
     m_file(file),
-    m_widget(new cmap::QtRateConceptMap)
+    m_widget(new cmap::QtConceptMap)
 {
   ui->setupUi(this);    
   m_widget->SetConceptMap(file->GetConceptMap());

@@ -1062,6 +1062,16 @@ std::string ribi::Geometry::ToSvg(
   return s.str();
 }
 
+std::string ribi::Geometry::ToStr(const QPointF& point) noexcept
+{
+  std::stringstream s;
+  s
+    << std::setprecision(99)
+    << "(" << point.x() << "," << point.y() << ")"
+  ;
+  return s.str();
+}
+
 std::string ribi::Geometry::ToSvg(
   const Polygons& polygons,
   const Linestrings& linestrings,

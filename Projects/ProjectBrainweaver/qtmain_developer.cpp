@@ -24,9 +24,9 @@
 #include "qtpvdbclusterwidget.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qteditconceptmap.h"
+#include "qtconceptmap.h"
 #include "qtconceptmaprateexamplesdialognewname.h"
-#include "qtrateconceptmap.h"
+#include "qtconceptmap.h"
 #include "qtpvdbmenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

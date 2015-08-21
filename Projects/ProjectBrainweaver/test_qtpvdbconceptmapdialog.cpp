@@ -50,7 +50,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pvdbfile.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapqtedge.h"
-#include "qtconceptmapelement.h"
+
 #include "qtconceptmap.h"
 #include "qtconceptmapqtnode.h"
 #include "testtimer.h"

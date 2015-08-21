@@ -74,7 +74,7 @@ private:
   ///m_file be const, as the Display Concept map cannot deal with const ribi::cmap::ConceptMap (yet?)
   const boost::shared_ptr<pvdb::File> m_file;
 
-  cmap::QtRateConceptMap * const m_widget;
+  cmap::QtConceptMap * const m_widget;
 };
 
 } //~namespace pvdb

@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
-#include "qtdisplayconceptmap.h"
+#include "qtconceptmap.h"
 #include "ui_qtpvdbtestcreatesubconceptmapdialog.h"
 #pragma GCC diagnostic pop
 
@@ -74,7 +74,7 @@ void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnConceptMapChanged()
   }
 
   assert(ui->widget_concept_map->layout());
-  m_qtconceptmap.reset(new cmap::QtDisplayConceptMap);
+  m_qtconceptmap.reset(new cmap::QtConceptMap);
   m_qtconceptmap->SetConceptMap(concept_map);
   ui->widget_concept_map->layout()->addWidget(m_qtconceptmap.get());
 

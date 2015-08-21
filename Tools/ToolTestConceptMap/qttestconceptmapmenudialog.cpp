@@ -4,6 +4,8 @@
 
 #include <cassert>
 
+#include <QTimer>
+
 #include "qtaboutdialog.h"
 #include "qtconceptmapviewtestsdialog.h"
 #include "qttestconceptmapconceptdialog.h"
@@ -32,6 +34,9 @@ ribi::cmap::QtTestMenuDialog::QtTestMenuDialog(QWidget *parent) :
   Test();
   #endif
   ui->setupUi(this);
+
+  //Show current screen I am most interested in
+  QTimer::singleShot(100,Qt::CoarseTimer,this,SLOT(on_button_edit_conceptmap_clicked()));
 }
 
 ribi::cmap::QtTestMenuDialog::~QtTestMenuDialog() noexcept

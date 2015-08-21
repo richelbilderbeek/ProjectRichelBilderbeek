@@ -47,8 +47,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qteditconceptmap.h"
-#include "qtconceptmapelement.h"
+#include "qtconceptmap.h"
 #include "qtconceptmap.h"
 #include "qtconceptmapqtedge.h"
 #include "qtpvdbfiledialog.h"
@@ -152,7 +151,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::QtPvdbConceptMapDial
   return p;
 }
 
-ribi::cmap::QtEditConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
+ribi::cmap::QtConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
   const bool trace_verbose = false;
@@ -207,11 +206,10 @@ ribi::cmap::QtEditConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(
     assert( file->GetConceptMap());
   }
 
-  ribi::cmap::QtEditConceptMap * const widget
-    = new ribi::cmap::QtEditConceptMap(ribi::cmap::QtEditConceptMap::Mode::simple);
-  assert(widget);
-  widget->SetConceptMap(file->GetConceptMap());
-  return widget;
+  ribi::cmap::QtConceptMap * const cmap{new ribi::cmap::QtConceptMap};
+  assert(cmap);
+  cmap->SetConceptMap(file->GetConceptMap());
+  return cmap;
 }
 
 #ifndef NDEBUG

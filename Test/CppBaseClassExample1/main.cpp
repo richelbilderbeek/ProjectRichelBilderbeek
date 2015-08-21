@@ -2,6 +2,7 @@
 
 struct Animal
 {
+  //Base classes must have a virtual destructor
   virtual ~Animal() {}
   virtual void MakeSound() const = 0;
 };
@@ -23,6 +24,14 @@ int main()
 
   const Dog d;
   d.MakeSound();
+
+  //Now use the same Animal pointer for different animals
+  Animal * animal{new Cat};
+  animal->MakeSound();
+  delete animal;
+  animal = new Dog;
+  animal->MakeSound();
+  delete animal;
 }
 
 /* Screen output:

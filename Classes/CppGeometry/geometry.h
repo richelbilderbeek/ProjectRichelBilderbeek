@@ -625,8 +625,8 @@ struct Geometry
   std::string ToStr(const Linestring& polygon) const noexcept;
   std::string ToStr(const Polygon& polygon) const noexcept;
   std::string ToStr(const QPen& pen) noexcept;
-  std::string ToStr(const QPoint& rect) noexcept;
-  std::string ToStr(const QPointF& rect) noexcept;
+  std::string ToStr(const QPoint& point) noexcept;
+  std::string ToStr(const QPointF& point) noexcept;
   std::string ToStr(const QRect& rect) noexcept;
   std::string ToStr(const QRectF& rect) noexcept;
 
