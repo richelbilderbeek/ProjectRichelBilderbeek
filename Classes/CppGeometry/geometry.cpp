@@ -204,6 +204,15 @@ boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
   return house;
 }
 
+ribi::Geometry::Coordinat2D ribi::Geometry::CreatePoint(
+  const double x,
+  const double y
+) const noexcept
+{
+  const auto c(Coordinat2D(x,y));
+  return c;
+}
+
 ribi::Geometry::Coordinat3D ribi::Geometry::CreatePoint(
   const double x,
   const double y,

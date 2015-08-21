@@ -84,31 +84,7 @@ bool operator!=(
   return !(a==b);
 }
 
-///Obtain the zero or one intersections between two finite lines
-//From http://www.richelbilderbeek.nl/CppGetLineLineIntersections.htm
 /*
-template <class T>
-const std::vector<
-  boost::geometry::model::d2::point_xy<T>
->
-GetLineLineIntersections(
-  const boost::geometry::model::linestring<
-    boost::geometry::model::d2::point_xy<T>
-  > line1,
-  const boost::geometry::model::linestring<
-    boost::geometry::model::d2::point_xy<T>
-  > line2)
-{
-  typedef boost::geometry::model::d2::point_xy<T> Point;
-  std::vector<Point> points;
-  boost::geometry::intersection(line1,line2,points);
-
-  assert((points.empty() || points.size() == 1 || points.size() == 2)
-         && "0: The lines are parallel and not on top of each other"
-         && "1: The lines are crossing"
-         && "2: The lines are on top of each other"); //edit claudio_04122014
-  return points;
-}
 
 //Helper function to create a const line without a temporary std::vector
 template <class T>
@@ -738,7 +714,7 @@ void ribi::QtQuadBezierArrowItem::Test() noexcept
 
     delete my_scene;
     delete view;
-    assert(1==2);
+    //assert(1==2);
   }
 }
 #endif

@@ -143,6 +143,16 @@ struct Geometry
   template <class T>
   const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T>
   >
+  CreateLine(const std::initializer_list<boost::geometry::model::d2::point_xy<T> >& v) const
+  {
+    return boost::geometry::model::linestring<
+      boost::geometry::model::d2::point_xy<T>
+    >(v.begin(),v.end());
+  }
+
+  template <class T>
+  const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T>
+  >
   CreateLine(const std::vector<boost::geometry::model::d2::point_xy<T> >& v) const
   {
     return boost::geometry::model::linestring<
@@ -168,7 +178,11 @@ struct Geometry
     //typedef boost::geometry::model::linestring<Point> Line;
     std::vector<Point> points;
     boost::geometry::intersection(line1,line2,points);
-    assert(points.empty() || points.size() == 1);
+    assert((points.empty() || points.size() == 1 || points.size() == 2)
+       && "0: The lines are parallel and not on top of each other"
+       && "1: The lines are crossing"
+       && "2: The lines are on top of each other"
+    );
     return points;
   }
 
@@ -228,6 +242,10 @@ struct Geometry
     return points;
   }
 
+  Coordinat2D CreatePoint(
+    const double x,
+    const double y
+  ) const noexcept;
 
   Coordinat3D CreatePoint(
     const double x,

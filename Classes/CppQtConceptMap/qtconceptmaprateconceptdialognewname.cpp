@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
-#ifdef NOT_NOW_20150810
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -45,9 +43,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //#include "conceptmapfile.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
-#include "qtrateconceptmap.h"
 #include "qtconceptmaprating.h"
-#include "qtrateconceptmap.h"
+#include "qtconceptmap.h"
 #include "qtconceptmaprateconcepttallydialognewname.h"
 #include "trace.h"
 #include "ui_qtconceptmaprateconceptdialognewname.h"
@@ -336,5 +333,3 @@ void ribi::cmap::QtRateConceptDialogNewName::on_box_specificity_currentIndexChan
     m_concept->SetRatingSpecificity(ui->box_specificity->currentIndex());
   }
 }
-
-#endif // NOT_NOW_20150810

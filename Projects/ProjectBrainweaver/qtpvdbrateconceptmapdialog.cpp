@@ -55,10 +55,10 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   : QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbRateConceptMapDialog),
   m_file(file),
-  m_widget(new cmap::QtConceptMap)
+  m_concept_map(new cmap::QtConceptMap)
 {
   ui->setupUi(this);
-  m_widget->SetConceptMap(file->GetConceptMap());
+  m_concept_map->SetConceptMap(file->GetConceptMap());
   #ifndef NDEBUG
   Test();
   assert(file);
@@ -70,7 +70,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
     assert(!ui->widget->layout());
     QLayout * const layout = new QGridLayout;
     ui->widget->setLayout(layout);
-    layout->addWidget(m_widget);
+    layout->addWidget(m_concept_map);
   }
 
   {
@@ -85,7 +85,8 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
     this->move( screen.center() - this->rect().center() );
   }
 
-  m_widget->m_signal_request_rate_concept_dialog.connect(
+
+  m_concept_map->m_signal_request_rate_concept.connect(
     boost::bind(&ribi::pvdb::QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog,this,boost::lambda::_1));
 
 }
@@ -97,8 +98,8 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog() noexcept
 
 ribi::cmap::QtConceptMap * ribi::pvdb::QtPvdbRateConceptMapDialog::GetWidget()
 {
-  assert(m_widget);
-  return m_widget;
+  assert(m_concept_map);
+  return m_concept_map;
 }
 
 void ribi::pvdb::QtPvdbRateConceptMapDialog::keyPressEvent(QKeyEvent* e)
@@ -124,7 +125,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::keyPressEvent(QKeyEvent* e)
 
 void ribi::pvdb::QtPvdbRateConceptMapDialog::on_button_next_clicked()
 {
-  assert(m_widget->GetConceptMap() == m_file->GetConceptMap());
+  assert(m_concept_map->GetConceptMap() == m_file->GetConceptMap());
   QtPvdbRatingDialog d(m_file);
   ShowChild(&d);
   if (d.GetBackToMenu())
@@ -232,7 +233,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Save(const std::string& filename)
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
     && "File must have correct file extension name");
-  assert(m_widget->GetConceptMap() == m_file->GetConceptMap());
+  assert(m_concept_map->GetConceptMap() == m_file->GetConceptMap());
   //const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = GetWidget()->GetConceptMap();
   //assert(concept_map);
   //m_file->SetConceptMap(concept_map);

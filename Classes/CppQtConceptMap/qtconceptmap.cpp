@@ -119,6 +119,7 @@ const std::vector<ribi::cmap::QtNode*>
 ribi::cmap::QtConceptMap::QtConceptMap(QWidget* parent)
   : QtKeyboardFriendlyGraphicsView(parent),
     m_signal_conceptmapitem_requests_edit{},
+    m_signal_request_rate_concept{},
     m_arrow(nullptr),
     m_concept_map{},
     m_examples_item(new QtExamplesItem),

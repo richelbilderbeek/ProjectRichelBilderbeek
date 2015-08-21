@@ -1325,15 +1325,15 @@ void ribi::Geometry::Test() noexcept
     assert(!s.empty());
   }
 
+  using Point = boost::geometry::model::d2::point_xy<double>;
+  using Line = boost::geometry::model::linestring<Point>;
+  using Rect = boost::geometry::model::box<Point>;
   if (verbose) { TRACE("GetLineLineIntersections"); }
   {
-    typedef boost::geometry::model::d2::point_xy<double> Point;
-    typedef boost::geometry::model::linestring<Point> Line;
-    typedef boost::geometry::model::box<Point> Rect;
     //Assume line segment (0,0)-(2,2) intersects line segment (2,0)-(0,2) at point (1,1)
     {
-      const Line line1 = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
-      const Line line2 = g.CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
+      const Line line1 = g.CreateLine( { Point(0.0,0.0), Point(2.0,2.0) } );
+      const Line line2 = g.CreateLine( { Point(2.0,0.0), Point(0.0,2.0) } );
       assert( g.GetLineLineIntersections(line1,line2).size() == 1);
       assert( fuzzy_equal_to()(g.GetLineLineIntersections(line1,line2)[0].x(),1.0) );
       assert( fuzzy_equal_to()(g.GetLineLineIntersections(line1,line2)[0].y(),1.0) );
@@ -1341,13 +1341,27 @@ void ribi::Geometry::Test() noexcept
     //Lines are finite, however, as the line segment
     //(0,0)-(0.2,0.2) does not intersect line segment (2,0)-(0,2) at point (1,1)
     {
-      const Line line1 = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(0.2,0.2) } ));
-      const Line line2 = g.CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
+      const Line line1 = g.CreateLine( { Point(0.0,0.0), Point(0.2,0.2) } );
+      const Line line2 = g.CreateLine( { Point(2.0,0.0), Point(0.0,2.0) } );
       assert( g.GetLineLineIntersections(line1,line2).size() == 0);
     }
+    //Lines can cross at two points, if the lines are on top of each other
+    {
+      //Order of lines does not matter for tests to succeed
+      const Line line1 = g.CreateLine( { Point(0.0,0.0), Point(3.0,3.0) } );
+      const Line line2 = g.CreateLine( { Point(1.0,1.0), Point(4.0,4.0) } );
+      assert( g.GetLineLineIntersections(line1,line2).size() == 2);
+      assert( fuzzy_equal_to()(g.GetLineLineIntersections(line1,line2)[0].x(),1.0) );
+      assert( fuzzy_equal_to()(g.GetLineLineIntersections(line1,line2)[0].y(),1.0) );
+      assert( fuzzy_equal_to()(g.GetLineLineIntersections(line1,line2)[1].x(),3.0) );
+      assert( fuzzy_equal_to()(g.GetLineLineIntersections(line1,line2)[1].y(),3.0) );
+    }
+  }
+  if (verbose) { TRACE("GetLineRectIntersections"); }
+  {
     //Assume line segment (0,0)-(2,2) intersects with rectangle (1,0)-(3,9) at point (1,1)
     {
-      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Line line = g.CreateLine( { Point(0.0,0.0), Point(2.0,2.0) } );
       const Rect rect(Point(1.0,0.0), Point(3.0,3.9));
       g.GetLineRectIntersections(line,rect);
       const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
@@ -1357,7 +1371,7 @@ void ribi::Geometry::Test() noexcept
     }
     //Assume line segment (0,0)-(2,2) intersects with rectangle (0,1)-(3,9) at point (1,1)
     {
-      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Line line = g.CreateLine( { Point(0.0,0.0), Point(2.0,2.0) } );
       const Rect rect(Point(0.0,1.0), Point(3.0,9.0));
       g.GetLineRectIntersections(line,rect);
       const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
@@ -1367,7 +1381,7 @@ void ribi::Geometry::Test() noexcept
     }
     //Assume line segment (0,0)-(2,2) intersects with rectangle (1,1)-(3,3) at point (1,1) once
     {
-      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Line line = g.CreateLine( { Point(0.0,0.0), Point(2.0,2.0) } );
       const Rect rect(Point(1.0,1.0), Point(3.0,3.0));
       g.GetLineRectIntersections(line,rect);
       const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
@@ -1378,7 +1392,7 @@ void ribi::Geometry::Test() noexcept
 
     //Assume line segment (0,0)-(4,4) intersects with rectangle (1,0)-(3,9) at points (1,1) and (3,3)
     {
-      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Line line = g.CreateLine( { Point(0.0,0.0), Point(4.0,4.0) } );
       const Rect rect(Point(1.0,0.0), Point(3.0,3.9));
       g.GetLineRectIntersections(line,rect);
       const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
@@ -1390,7 +1404,7 @@ void ribi::Geometry::Test() noexcept
     }
     //Assume line segment (0,0)-(4,4) intersects with rectangle (0,1)-(3,9) at points (1,1) and (3,3)
     {
-      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Line line = g.CreateLine( { Point(0.0,0.0), Point(4.0,4.0) } );
       const Rect rect(Point(0.0,1.0), Point(3.0,9.0));
       g.GetLineRectIntersections(line,rect);
       const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
@@ -1402,7 +1416,7 @@ void ribi::Geometry::Test() noexcept
     }
     //Assume line segment (0,0)-(4,4) intersects with rectangle (1,1)-(3,3) at points (1,1) and (3,3)
     {
-      const Line line = g.CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Line line = g.CreateLine( { Point(0.0,0.0), Point(4.0,4.0) } );
       const Rect rect(Point(1.0,1.0), Point(3.0,3.0));
       g.GetLineRectIntersections(line,rect);
       const std::vector<Point> v = g.GetLineRectIntersections(line,rect);
@@ -1413,6 +1427,7 @@ void ribi::Geometry::Test() noexcept
       assert( fuzzy_equal_to()(v[1].y(),3.0) );
     }
   }
+
   //WktToLinestring: open linestring to polygon
   {
 

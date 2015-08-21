@@ -144,8 +144,7 @@ ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *
       QtRoundedRectItem * rect = nullptr;
       if ((i%3)!=1)
       {
-        rect = new QtRoundedRectItem; //Are these transparent?
-        //rect = new QtRoundedEditRectItem;
+        rect = new QtRoundedRectItem;
         rect->SetInnerWidth(32.0);
         rect->SetInnerHeight(16.0);
         rect->SetCenterPos(0.0,0.0);

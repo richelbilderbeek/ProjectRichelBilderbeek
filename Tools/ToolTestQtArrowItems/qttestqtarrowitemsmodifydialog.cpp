@@ -141,6 +141,7 @@ void ribi::QtTestQtArrowItemsModifyDialog::Test() noexcept
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   QtTestQtArrowItemsModifyDialog d;
+  d.show();
   if (verbose) { TRACE("Must get after set"); }
   {
     const auto arrow = CreateRandomArrow();

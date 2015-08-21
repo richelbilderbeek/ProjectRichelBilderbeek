@@ -52,6 +52,8 @@ public:
   ///Signal emitted when a concept map item requests to be edited
   boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_conceptmapitem_requests_edit;
 
+  boost::signals2::signal<void(const boost::shared_ptr<ConceptMap> sub_concept_map)> m_signal_request_rate_concept;
+
   ///Obtain the concept map
   boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_concept_map; }
   boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_concept_map; }

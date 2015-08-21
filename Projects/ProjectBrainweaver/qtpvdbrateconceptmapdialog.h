@@ -65,7 +65,7 @@ private slots:
 private:
   Ui::QtPvdbRateConceptMapDialog *ui;
   boost::shared_ptr<pvdb::File> m_file;
-  ConceptMap * const m_widget;
+  ConceptMap * const m_concept_map;
 
   ///The widget requested for a rating of the already supplied sub concept map,
   ///with the focal concept item as the central node
