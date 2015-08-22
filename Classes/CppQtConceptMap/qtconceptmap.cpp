@@ -420,6 +420,11 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<N
   return qtnode;
 }
 
+bool ribi::cmap::QtConceptMap::CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept
+{
+  return GetConceptMap()->CanDoCommand(command);
+}
+
 void ribi::cmap::QtConceptMap::CleanMe()
 {
   //Prepare cleaning the scene
@@ -517,6 +522,11 @@ void ribi::cmap::QtConceptMap::DeleteNode(const QtNode * const qtnode)
   GetConceptMap()->DeleteNode(qtnode->GetNode());
   //Remove node from view
   this->scene()->removeItem(const_cast<QtNode*>(qtnode));
+}
+
+void ribi::cmap::QtConceptMap::DoCommand(const boost::shared_ptr<Command> command) noexcept
+{
+  GetConceptMap()->DoCommand(command);
 }
 
 const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const noexcept
@@ -823,6 +833,12 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
       break;
     case Qt::Key_Minus:
       this->scale(0.9,0.9);
+      break;
+    case Qt::Key_N:
+      if (event->modifiers() & Qt::ControlModifier)
+      {
+        //this->DoCommand(ADDNDODE);
+      }
       break;
   }
 

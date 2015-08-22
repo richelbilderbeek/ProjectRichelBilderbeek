@@ -78,6 +78,9 @@ struct ConceptMap
     const Edges& edges
   ) noexcept;
 
+  bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
+  bool CanUndo() const noexcept { return !m_undo.empty(); }
+
   ///Prepend the question as a first node, before adding the supplied nodes
   static std::vector<NodePtr> CreateNodes(
     const std::string& question,
@@ -94,6 +97,8 @@ struct ConceptMap
   ///Delete a node and all the edges connected to it
   void DeleteNode(const ReadOnlyNodePtr& node) noexcept;
   void DeleteNode(const NodePtr& node) noexcept;
+
+  void DoCommand(const boost::shared_ptr<Command> command) noexcept;
 
   ///Check if the ConceptMap is empty, that is: it has no nodes and (thus) no edges
   bool Empty() const noexcept;
@@ -132,9 +137,6 @@ struct ConceptMap
   ///Convert a ConceptMap from an XML std::string
   static std::string ToXml(const ReadOnlyConceptMapPtr& c) noexcept;
 
-  bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
-  bool CanUndo() const noexcept { return !m_undo.empty(); }
-  void DoCommand(const boost::shared_ptr<Command> command) noexcept;
 
   ///There is one item in focus at most
   ///There can be multiple items selected

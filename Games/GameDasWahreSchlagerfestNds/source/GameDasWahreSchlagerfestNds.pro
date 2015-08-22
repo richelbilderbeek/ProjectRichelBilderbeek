@@ -7,13 +7,17 @@ INCLUDEPATH += \
 SOURCES += \
     ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.cpp \
     ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.cpp \
-    picbeer.cpp
+    picbeer.cpp \
+    picbratwurst.cpp \
+    picempty.cpp
 
 HEADERS  += \
     ndsgamedialog.h \
     ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.h \
     ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.h \
-    picbeer.h
+    picbeer.h \
+    picbratwurst.h \
+    picempty.h
 
 OTHER_FILES += \
     ../../../Games/GameDasWahreSchlagerfest/Licence.txt

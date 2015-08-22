@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtconceptmapcollect.h"
 #include "conceptmapfactory.h"
+#include "conceptmapcommandcreatenewnode.h"
 #include "conceptmap.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmapnode.h"
@@ -335,6 +336,28 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     const int n_nodes_in_conceptmap{static_cast<int>(m.GetConceptMap()->GetNodes().size())};
     assert(n_nodes_in_scene == n_nodes_in_conceptmap);
   }
+  //Start a QtConcept map, create a node using a command
+  {
+    const boost::shared_ptr<QtConceptMap> qtcmap{new QtConceptMap};
+    const auto cmap = ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    assert(cmap);
+    qtcmap->SetConceptMap(cmap);
+
+    assert(qtcmap->GetQtNodes().empty()
+      && "Concept map starts empty");
+    const boost::shared_ptr<CommandCreateNewNode> command {
+      new CommandCreateNewNode
+    };
+    assert(qtcmap->CanDoCommand(command));
+    qtcmap->DoCommand(command);
+    assert(qtcmap->GetQtNodes().size() == 1
+      && "Qt Concept map must have one QtNode added now");
+    command->Undo();
+    assert(qtcmap->GetQtNodes().empty()
+      && "Concept map must be empty again now");
+  }
+  assert(!"Green");
+
   TestTimer::SetMaxCnt(1); //Because the base class has been tested now
 }
 #endif

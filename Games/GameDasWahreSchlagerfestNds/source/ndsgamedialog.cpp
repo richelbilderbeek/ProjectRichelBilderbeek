@@ -12,6 +12,8 @@
 //#include "soundbank.h"
 //#include "soundbank_bin.h"
 #include "picbeer.h"
+#include "picempty.h"
+#include "picbratwurst.h"
 #include "ndsgamedialog.h"
 #include "daswahreschlagerfestwidget.h"
 
@@ -38,6 +40,53 @@ ribi::dws::NdsGameDialog::NdsGameDialog()
 
 }
 
+void ribi::dws::NdsGameDialog::Display(const DasWahreSchlagerfestWidget& widget)
+{
+  const std::vector<std::vector<DasWahreSchlagerfestWidget::Tile>>& v = widget.GetTiles();
+  assert(!v.empty());
+  const int n_rows{static_cast<int>(v.size()   )};
+  const int n_cols{static_cast<int>(v[0].size())};
+  const int block_width {256 / n_cols};
+  const int block_height{192 / n_rows};
+
+  for (int row=0; row!=n_rows; ++row)
+  {
+    assert(row < static_cast<int>(v.size()));
+    const std::vector<DasWahreSchlagerfestWidget::Tile>& line = v[row];
+    assert(n_cols == static_cast<int>(line.size()));
+    const int top = static_cast<int>(block_height * static_cast<double>(row  ));
+    for (int col=0; col!=n_cols; ++col)
+    {
+      const int left = static_cast<int>(block_width * static_cast<double>(col  ));
+      switch (line[col])
+      {
+        case DasWahreSchlagerfestWidget::Tile::beer: PicBeer().Draw(VRAM_A,left,top); break;
+        case DasWahreSchlagerfestWidget::Tile::bratwurst: PicBratwurst().Draw(VRAM_A,left,top); break;
+        case DasWahreSchlagerfestWidget::Tile::empty: PicEmpty().Draw(VRAM_A,left,top); break;
+        default: assert(!"Should not get here"); break;
+      }
+    }
+  }
+  //Draw cursor
+  {
+    const DasWahreSchlagerfestWidget::Cursor cursor = widget.GetCursor();
+    const int x = cursor.x * block_width;
+    const int y = cursor.y * block_height;
+    switch (cursor.tile)
+    {
+      case DasWahreSchlagerfestWidget::Tile::beer: PicBeer().Draw(VRAM_A,x,y); break;
+      case DasWahreSchlagerfestWidget::Tile::bratwurst: PicBratwurst().Draw(VRAM_A,x,y); break;
+      case DasWahreSchlagerfestWidget::Tile::empty: PicEmpty().Draw(VRAM_A,x,y); break;
+      default: assert(!"Should not get here"); break;
+    }
+  }
+}
+
+void ribi::dws::NdsGameDialog::OnChanged(const DasWahreSchlagerfestWidget& widget)
+{
+  Display(widget);
+}
+
 ribi::dws::Key ribi::dws::NdsGameDialog::RequestKey()
 {
   while (1)
@@ -46,10 +95,10 @@ ribi::dws::Key ribi::dws::NdsGameDialog::RequestKey()
     const int keys_down = keysDown();
     if (keys_down)
     {
-      if (     keys_down & KEY_UP    ) { return ribi::dws::Key::up; }
+      if (     keys_down & KEY_X     ) { return ribi::dws::Key::quit;  }
       else if (keys_down & KEY_RIGHT ) { return ribi::dws::Key::right; }
-      else if (keys_down & KEY_DOWN  ) { return ribi::dws::Key::down; }
-      else if (keys_down & KEY_LEFT  ) { return ribi::dws::Key::left; }
+      else if (keys_down & KEY_DOWN  ) { return ribi::dws::Key::down;  }
+      else if (keys_down & KEY_LEFT  ) { return ribi::dws::Key::left;  }
     }
 
     swiWaitForVBlank();
