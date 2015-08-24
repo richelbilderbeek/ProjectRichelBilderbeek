@@ -234,94 +234,35 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
     }
     scene()->update();
     return;
-
   }
 
+
+  QGraphicsItem* const focus_item = scene()->focusItem();
+
+  std::vector<QGraphicsItem *> items;
   switch (event->key())
   {
     case Qt::Key_Up:
-    {
-      QGraphicsItem* const focus_item = scene()->focusItem();
       if (!focus_item) { return; }
-      const std::vector<QGraphicsItem *> items = GetItemsAbove(focus_item);
-      if (items.empty()) { return; }
-      QGraphicsItem* const new_focus_item = GetClosest(focus_item,items);
-      if (!new_focus_item) return;
-      focus_item->setEnabled(false);
-      focus_item->clearFocus();
-      focus_item->setEnabled(true);
-      if (event->modifiers() & Qt::ShiftModifier)
-      {
-        focus_item->setSelected(true);
-        new_focus_item->setSelected(true);
-      }
-      new_focus_item->setFocus();
-    }
+      items = GetItemsAbove(focus_item);
     break;
     case Qt::Key_Tab:
     case Qt::Key_Right:
-    {
-      QGraphicsItem* const focus_item = scene()->focusItem();
       if (!focus_item) { return; }
-      const std::vector<QGraphicsItem *> items = GetItemsRight(focus_item);
-      if (items.empty()) { return; }
-      QGraphicsItem* const new_focus_item = GetClosest(focus_item,items);
-      if (!new_focus_item) return;
-      focus_item->setEnabled(false);
-      focus_item->clearFocus();
-      focus_item->setEnabled(true);
-      if (event->modifiers() & Qt::ShiftModifier)
-      {
-        focus_item->setSelected(true);
-        new_focus_item->setSelected(true);
-      }
-      new_focus_item->setFocus();
-    }
-    break;
+      items = GetItemsRight(focus_item);
+      break;
     case Qt::Key_Down:
-    {
-      QGraphicsItem* const focus_item = scene()->focusItem();
       if (!focus_item) { return; }
-      const std::vector<QGraphicsItem *> items = GetItemsBelow(focus_item);
-      if (items.empty()) { return; }
-      QGraphicsItem* const new_focus_item = GetClosest(focus_item,items);
-      if (!new_focus_item) return;
-      focus_item->setEnabled(false);
-      focus_item->clearFocus();
-      focus_item->setEnabled(true);
-      if (event->modifiers() & Qt::ShiftModifier)
-      {
-        focus_item->setSelected(true);
-        new_focus_item->setSelected(true);
-      }
-      new_focus_item->setFocus();
-    }
-    break;
+      items = GetItemsBelow(focus_item);
+      break;
     case Qt::Key_Left:
     case Qt::Key_Backtab:
-    {
-      QGraphicsItem* const focus_item = scene()->focusItem();
       if (!focus_item) { return; }
-      const std::vector<QGraphicsItem *> items = GetItemsLeft(focus_item);
-      if (items.empty()) { return; }
-      QGraphicsItem* const new_focus_item = GetClosest(focus_item,items);
-      if (!new_focus_item) return;
-      focus_item->setEnabled(false);
-      focus_item->clearFocus();
-      focus_item->setEnabled(true);
-      if (event->modifiers() & Qt::ShiftModifier)
-      {
-        focus_item->setSelected(true);
-        new_focus_item->setSelected(true);
-      }
-      new_focus_item->setFocus();
-    }
-    break;
+      items = GetItemsLeft(focus_item);
+      break;
     case Qt::Key_Space:
-    {
       SetRandomFocus();
-    }
-    break;
+      return;
     case Qt::Key_Question:
     {
       if (const QGraphicsItem* const item = scene()->focusItem())
@@ -336,11 +277,32 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
         std::clog << __func__ << ": no QGraphicsItem selected" << std::endl;
       }
     }
-    break;
+    return;
+    default:
+    {
+      //Let QGraphicsView do the rest...
+      QGraphicsView::keyPressEvent(event);
+      this->update();
+      return;
+    }
   }
-
-  //Let QGraphicsView do the rest...
-  QGraphicsView::keyPressEvent(event);
+  if (items.empty()) { return; }
+  QGraphicsItem* const new_focus_item = GetClosest(focus_item,items);
+  if (!new_focus_item) return;
+  focus_item->setEnabled(false);
+  focus_item->clearFocus();
+  focus_item->setEnabled(true);
+  if (event->modifiers() & Qt::ShiftModifier)
+  {
+    focus_item->setSelected(true);
+    new_focus_item->setSelected(true);
+  }
+  else
+  {
+    for (const auto item: scene()->selectedItems()) { item->setSelected(false); }
+    new_focus_item->setSelected(true);
+  }
+  new_focus_item->setFocus();
   this->update();
 }
 
