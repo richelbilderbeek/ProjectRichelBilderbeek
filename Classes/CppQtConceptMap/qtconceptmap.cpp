@@ -1002,6 +1002,10 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
   m_concept_map = concept_map;
   if (!m_concept_map) return;
 
+  m_concept_map->m_signal_add_node.connect(
+    boost::bind(&ribi::cmap::QtConceptMap::AddNode,this,boost::lambda::_1)
+  );
+
   assert(m_concept_map);
   assert(m_concept_map->IsValid());
   assert(this->scene());
