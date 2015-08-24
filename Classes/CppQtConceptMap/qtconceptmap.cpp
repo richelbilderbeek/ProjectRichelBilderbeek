@@ -377,6 +377,9 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<N
     }
   }
 
+  //Already added
+  if (GetQtNode(node.get())) { return GetQtNode(node.get()); }
+
   QtNode * const qtnode = new QtNode(node);
   assert(qtnode);
   assert(qtnode->GetCenterX() == node->GetX());

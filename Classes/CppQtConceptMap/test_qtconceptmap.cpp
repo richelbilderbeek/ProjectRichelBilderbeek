@@ -215,7 +215,6 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     const int n_nodes_after{static_cast<int>(qtconceptmap->GetQtNodes().size())};
     assert(n_nodes_after == n_nodes_before + 1);
   }
-  assert(!"Green");
   if (verbose) { TRACE("AddNode: a Node added gets a QtNode to be found in QtConceptMap"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
@@ -363,26 +362,23 @@ void ribi::cmap::QtConceptMap::Test() noexcept
 
   //Start a QtConcept map, create a node using a command
   {
-    const boost::shared_ptr<QtConceptMap> qtcmap{new QtConceptMap};
-    const auto cmap = ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
-    assert(cmap);
-    qtcmap->SetConceptMap(cmap);
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
 
-    assert(qtcmap->GetQtNodes().empty()
-      && "Concept map starts empty");
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    const int n_nodes_before{static_cast<int>(qtconceptmap->GetQtNodes().size())};
+
     const boost::shared_ptr<CommandCreateNewNode> command {
       new CommandCreateNewNode
     };
-    assert(qtcmap->CanDoCommand(command));
-    qtcmap->DoCommand(command);
-    assert(qtcmap->GetQtNodes().size() == 1
-      && "Qt Concept map must have one QtNode added now");
-    command->Undo();
-    assert(qtcmap->GetQtNodes().empty()
-      && "Concept map must be empty again now");
-  }
-  assert(!"Green");
+    assert(qtconceptmap->CanDoCommand(command));
+    qtconceptmap->DoCommand(command);
 
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    const int n_nodes_after{static_cast<int>(qtconceptmap->GetQtNodes().size())};
+    assert(n_nodes_after == n_nodes_before + 1);
+  }
   TestTimer::SetMaxCnt(1); //Because the base class has been tested now
 }
 #endif
