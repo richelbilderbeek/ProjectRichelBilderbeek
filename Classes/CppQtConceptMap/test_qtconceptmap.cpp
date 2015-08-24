@@ -52,7 +52,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
                            //has to be tested as well
   const bool verbose{false};
 
-  //SetConceptMap and GetConceptMap return the same
+  if (verbose) { TRACE("SetConceptMap and GetConceptMap return the same"); }
   {
     QtConceptMap m;
     const boost::shared_ptr<ConceptMap> concept_map{
@@ -61,7 +61,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     m.SetConceptMap(concept_map);
     assert(m.GetConceptMap() == concept_map);
   }
-  //SetConceptMap, two nodes
+  if (verbose) { TRACE("SetConceptMap, two nodes"); }
   {
     QtConceptMap m;
     const boost::shared_ptr<ConceptMap> concept_map{
@@ -74,7 +74,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     const std::size_t n_nodes = nodes.size();
     assert(n_items == n_nodes && "GUI and non-GUI concept map must match");
   }
-  //SetConceptMap, 3 nodes, 1 edge
+  if (verbose) { TRACE("SetConceptMap, 3 nodes, 1 edge"); }
   {
     QtConceptMap m;
     const boost::shared_ptr<ConceptMap> concept_map{
@@ -92,7 +92,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(n_nodes_in_scene == n_nodes_in_concept_map && "GUI and non-GUI concept map must match");
     assert(n_edges_in_scene == n_edges_in_concept_map && "GUI and non-GUI concept map must match");
   }
-  //Test base class (after having tested cloning of derived class)
+  if (verbose) { TRACE("Test base class (after having tested cloning of derived class)"); }
   {
     const boost::shared_ptr<ConceptMap> concept_map
       = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(15);
@@ -103,28 +103,28 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     widget->SetConceptMap(concept_map);
     assert(widget);
   }
-  //Deletion of nodes
+  if (verbose) { TRACE("Deletion of nodes"); }
   {
-    const int concept_map_index{3};
-    const std::size_t n_nodes = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(concept_map_index)->GetNodes().size();
-    for (std::size_t j=0; j!=n_nodes; ++j)
-    {
-      boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(concept_map_index);
-      if (!concept_map) continue;
-      assert(concept_map);
-      assert(concept_map->GetNodes().size() == n_nodes);
-      assert(j < concept_map->GetNodes().size());
-      boost::shared_ptr<QtConceptMap> widget(new QtConceptMap);
-      assert(widget);
-      widget->SetConceptMap(concept_map);
-      QtNode* const qtnode = widget->GetQtNodes()[j];
-      assert(qtnode);
-      widget->DeleteNode(qtnode);
-      assert(widget->GetQtNodes().size() == n_nodes - 1
-        && "Node must really be gone");
-    }
+    boost::shared_ptr<ConceptMap> concept_map = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    assert(concept_map);
+    assert(concept_map->GetNodes().size() > 0);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    assert(qtconceptmap);
+    qtconceptmap->SetConceptMap(concept_map);
+
+    assert(qtconceptmap->GetQtNodes().size() == concept_map->GetNodes().size());
+    const int n_nodes_before{static_cast<int>(qtconceptmap->GetQtNodes().size())};
+
+    QtNode * const qtnode = qtconceptmap->GetQtNodes().back();
+    assert(qtnode);
+
+    qtconceptmap->DeleteQtNode(qtnode);
+
+    assert(qtconceptmap->GetQtNodes().size() == concept_map->GetNodes().size());
+    const int n_nodes_after{static_cast<int>(qtconceptmap->GetQtNodes().size())};
+    assert(n_nodes_after == n_nodes_before - 1 && "Node must really be gone");
   }
-  //Deletion of edges
+  if (verbose) { TRACE("Deletion of edges"); }
   {
     const int concept_map_index{3};
     const std::size_t n_edges = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(concept_map_index)->GetEdges().size();
@@ -273,7 +273,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     const int n_items_before{static_cast<int>(conceptmap->GetNodes().size())};
 
     assert(!qtconceptmap->GetQtNodes().empty());
-    qtconceptmap->DeleteNode( qtconceptmap->GetQtNodes().back());
+    qtconceptmap->DeleteQtNode( qtconceptmap->GetQtNodes().back());
 
     assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
     const int n_items_after{static_cast<int>(conceptmap->GetNodes().size())};
@@ -301,7 +301,12 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(n_items_before - n_items_after == 1);
 
   }
-  assert(!"Green");
+  if (verbose) { TRACE("DeleteNode: delete a Node from ConceptMap using a Command"); }
+  {
+    //HIERO
+  }
+
+
   if (verbose) { TRACE("AddEdge: an Edge added has to end up in both ConceptMap and QtConceptMap, by adding in both places"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
@@ -399,9 +404,6 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     const int n_nodes_again{static_cast<int>(qtconceptmap->GetQtNodes().size())};
     assert(n_nodes_again == n_nodes_before);
   }
-  assert(!"Green");
-
-
   //QWidget Events; direct GUI responses. Note: these are done by Commands anyways,
   //so it may be hard to create a test that breaks here)
   if (verbose) { TRACE("MouseDoubleClick"); }

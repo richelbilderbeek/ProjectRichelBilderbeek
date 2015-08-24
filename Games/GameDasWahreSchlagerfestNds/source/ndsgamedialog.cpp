@@ -11,9 +11,9 @@
 #include <maxmod9.h>
 //#include "soundbank.h"
 //#include "soundbank_bin.h"
-#include "picbeer.h"
-#include "picempty.h"
-#include "picbratwurst.h"
+#include "GameDasWahreSchlagerfestBeer32x32.h"
+#include "GameDasWahreSchlagerfestBratwurst32x32.h"
+#include "GameDasWahreSchlagerfestSmiley32x32.h"
 #include "ndsgamedialog.h"
 #include "daswahreschlagerfestwidget.h"
 
@@ -32,8 +32,6 @@ ribi::dws::NdsGameDialog::NdsGameDialog()
 
 
   consoleSelect(&m_screen_bottom);
-
-  PicBeer().Draw(VRAM_A,0,0);
 
   //mmLoad(MOD_69008_EXPERIENCE);
   //mmStart(MOD_69008_EXPERIENCE,MM_PLAY_LOOP);
@@ -55,6 +53,9 @@ void ribi::dws::NdsGameDialog::Display(const DasWahreSchlagerfestWidget& widget)
     const std::vector<DasWahreSchlagerfestWidget::Tile>& line = v[row];
     assert(n_cols == static_cast<int>(line.size()));
     const int top = static_cast<int>(block_height * static_cast<double>(row  ));
+
+    //dmaCopy(GameDasWahreSchlagerfestBeer32x32Tiles, VRAM_A, 32*32);
+
     for (int col=0; col!=n_cols; ++col)
     {
       const int left = static_cast<int>(block_width * static_cast<double>(col  ));

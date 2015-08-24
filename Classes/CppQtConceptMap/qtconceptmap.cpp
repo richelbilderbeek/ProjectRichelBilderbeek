@@ -421,6 +421,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<N
 
   assert(!qtnode->scene());
   this->scene()->addItem(qtnode); //Adding qtnode to scene() twice gives a warning
+  assert(qtnode->scene() == GetScene());
   qtnode->setSelected(true);
   qtnode->setFocus();
   return qtnode;
@@ -492,8 +493,10 @@ void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> no
   //Already deleted
   if (!GetQtNodeConst(node.get())) { return; }
 
+  assert(GetQtNodeConst(node.get())->scene() == this->GetScene());
+
   //Delete the QtNode
-  DeleteNode(GetQtNodeConst(node.get()));
+  DeleteQtNode(GetQtNodeConst(node.get()));
 }
 
 void ribi::cmap::QtConceptMap::DeleteEdge(QtEdge * const qtedge)
@@ -519,8 +522,9 @@ void ribi::cmap::QtConceptMap::DeleteEdge(QtEdge * const qtedge)
   #endif
 }
 
-void ribi::cmap::QtConceptMap::DeleteNode(const QtNode * const qtnode)
+void ribi::cmap::QtConceptMap::DeleteQtNode(const QtNode * const qtnode)
 {
+  assert(qtnode);
   //Delete the edges connected to this node
   {
     const std::vector<QtEdge *> qtedges = GetQtEdges();
@@ -538,8 +542,13 @@ void ribi::cmap::QtConceptMap::DeleteNode(const QtNode * const qtnode)
 
   //Remove node from model
   GetConceptMap()->DeleteNode(qtnode->GetNode());
+
   //Remove node from view
-  this->scene()->removeItem(const_cast<QtNode*>(qtnode));
+  if (qtnode->scene())
+  {
+    assert(qtnode->scene() == GetScene());
+    this->scene()->removeItem(const_cast<QtNode*>(qtnode));
+  }
 }
 
 void ribi::cmap::QtConceptMap::DoCommand(const boost::shared_ptr<Command> command) noexcept
@@ -766,7 +775,6 @@ std::vector<ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes()
 
 QGraphicsScene* ribi::cmap::QtConceptMap::GetScene() const noexcept
 {
-
   return scene();
 }
 
@@ -813,7 +821,7 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
               {
                 const std::vector<QtNode*> node_concepts = Collect<QtNode>(scene());
                 assert(std::count(node_concepts.begin(),node_concepts.end(),qtnode) == 1);
-                DeleteNode(qtnode);
+                DeleteQtNode(qtnode);
               }
             }
             //Delete an Edge Concept

@@ -103,7 +103,7 @@ protected:
 
   ///Delete a Node
   //void DeleteNode(const boost::shared_ptr<QtNode>& node);
-  void DeleteNode(const QtNode * const node);
+  void DeleteQtNode(const QtNode * const node);
 
   ///Get all the edges connected to the concept
   std::vector<QtEdge*> GetQtEdges(const QtNode * const from) const noexcept;
