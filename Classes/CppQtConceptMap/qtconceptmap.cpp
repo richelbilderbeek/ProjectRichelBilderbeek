@@ -49,6 +49,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtarrowitem.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapbrushfactory.h"
+#include "conceptmapcommandcreatenewnode.h"
 #include "qtconceptmapcenternode.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapqtedge.h"
@@ -420,6 +421,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<N
   assert(!qtnode->scene());
   this->scene()->addItem(qtnode); //Adding qtnode to scene() twice gives a warning
   qtnode->setSelected(true);
+  qtnode->setFocus();
   return qtnode;
 }
 
@@ -840,7 +842,11 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
     case Qt::Key_N:
       if (event->modifiers() & Qt::ControlModifier)
       {
-        //this->DoCommand(ADDNDODE);
+        const boost::shared_ptr<CommandCreateNewNode> command {
+          new CommandCreateNewNode
+        };
+        this->DoCommand(command);
+        return;
       }
       break;
   }

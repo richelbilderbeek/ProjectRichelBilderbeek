@@ -42,8 +42,9 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
   Test();
   #endif
 
+  //Create an empty concept map
   m_concept_map->SetConceptMap(
-    ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(15)
+    ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(0)
   );
 
 
