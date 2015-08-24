@@ -1,6 +1,10 @@
 #!/bin/bash
 
-~/devkitPro/devkitARM/bin/grit data/*.*
+cd gfx
+~/devkitPro/devkitARM/bin/grit *.*
+mv *.h ../build
+mv *.s ../build
+cd ..
 
 cd source
 ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.cpp

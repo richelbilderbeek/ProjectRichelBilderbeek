@@ -180,7 +180,7 @@ struct ConceptMap
 
   ///Emitted when a Node is deleted
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(const ReadOnlyNodePtr&)> m_signal_delete_node;
+  boost::signals2::signal<void(const ReadOnlyNodePtr)> m_signal_delete_node;
 
   ///Emitted when a Node loses focus
   ///This has to be handled by QtConceptMapWidget

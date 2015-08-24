@@ -191,6 +191,9 @@ private:
   ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
   QtNode * AddNode(const boost::shared_ptr<Node> node);
 
+  ///Called when a Node gets deleted from the ConceptMap
+  void DeleteNode(const boost::shared_ptr<const Node> node);
+
   ///Remove all Qt and non-Qt items
   void CleanMe();
 

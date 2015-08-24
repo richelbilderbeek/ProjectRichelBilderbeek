@@ -49,6 +49,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtarrowitem.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapbrushfactory.h"
+#include "conceptmapcommandcreatenewedge.h"
 #include "conceptmapcommandcreatenewnode.h"
 #include "qtconceptmapcenternode.h"
 #include "qtconceptmapconcepteditdialog.h"
@@ -483,6 +484,18 @@ void ribi::cmap::QtConceptMap::CleanMe()
   }
 }
 
+
+void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> node)
+{
+  assert(node);
+
+  //Already deleted
+  if (!GetQtNodeConst(node.get())) { return; }
+
+  //Delete the QtNode
+  DeleteNode(GetQtNodeConst(node.get()));
+}
+
 void ribi::cmap::QtConceptMap::DeleteEdge(QtEdge * const qtedge)
 {
   #ifndef NDEBUG
@@ -849,6 +862,16 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         return;
       }
       break;
+    case Qt::Key_E:
+      if (event->modifiers() & Qt::ControlModifier)
+      {
+        const boost::shared_ptr<CommandCreateNewEdge> command {
+          new CommandCreateNewEdge
+        };
+        this->DoCommand(command);
+        return;
+      }
+      break;
   }
 
   QtKeyboardFriendlyGraphicsView::keyPressEvent(event);
@@ -1013,6 +1036,10 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
 
   m_concept_map->m_signal_add_node.connect(
     boost::bind(&ribi::cmap::QtConceptMap::AddNode,this,boost::lambda::_1)
+  );
+
+  m_concept_map->m_signal_delete_node.connect(
+    boost::bind(&ribi::cmap::QtConceptMap::DeleteNode,this,boost::lambda::_1)
   );
 
   assert(m_concept_map);
