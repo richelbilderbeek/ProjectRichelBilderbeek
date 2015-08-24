@@ -139,7 +139,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
       assert(widget);
       widget->SetConceptMap(concept_map);
       QtEdge* const qtedge = widget->GetQtEdges()[j];
-      widget->DeleteEdge(qtedge);
+      widget->DeleteQtEdge(qtedge);
       assert(widget->GetQtEdges().size() == n_edges - 1
         && "Edge must really be gone");
     }

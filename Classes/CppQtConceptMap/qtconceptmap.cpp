@@ -499,7 +499,7 @@ void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> no
   DeleteQtNode(GetQtNodeConst(node.get()));
 }
 
-void ribi::cmap::QtConceptMap::DeleteEdge(QtEdge * const qtedge)
+void ribi::cmap::QtConceptMap::DeleteQtEdge(QtEdge * const qtedge)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -535,12 +535,13 @@ void ribi::cmap::QtConceptMap::DeleteQtNode(const QtNode * const qtnode)
       assert(qtedge);
       if (*qtedge->GetFrom() == *qtnode || *qtedge->GetTo() == *qtnode)
       {
-        DeleteEdge(qtedge);
+        DeleteQtEdge(qtedge);
       }
     }
   }
 
   //Remove node from model
+  const_cast<QtNode*>(qtnode)->setSelected(false); //Remove const instead of using const-correct std::find on GetQtNodes
   GetConceptMap()->DeleteNode(qtnode->GetNode());
 
   //Remove node from view
@@ -830,7 +831,7 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
               const std::vector<QtEdge*> edge_concepts = Collect<QtEdge>(scene());
               assert(std::count(edge_concepts.begin(),edge_concepts.end(),edge) == 1);
               assert(scene()->items().contains(edge));
-              DeleteEdge(edge);
+              DeleteQtEdge(edge);
             }
           }
         );
@@ -876,6 +877,8 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         const boost::shared_ptr<CommandCreateNewEdge> command {
           new CommandCreateNewEdge
         };
+        command->SetVerbosity(true);
+        if (!CanDoCommand(command)) return;
         this->DoCommand(command);
         return;
       }

@@ -199,64 +199,42 @@ std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsRight
 
 std::string ribi::QtKeyboardFriendlyGraphicsView::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::QtKeyboardFriendlyGraphicsView::GetVersionHistory() noexcept
 {
   return {
     "2012-12-13: version 1.0: initial version",
-    "2012-12-31: version 1.1: improved moving focus"
+    "2012-12-31: version 1.1: improved moving focus",
+    "2015-08-24: version 1.2: move item with CTRL, add selected with SHIFT, can move multiple items"
   };
 }
 
 void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexcept
 {
-  if (event->modifiers() & Qt::ShiftModifier)
+  //Move items
+  if (event->modifiers() & Qt::ControlModifier)
   {
+    double delta_x{0.0};
+    double delta_y{0.0};
     switch (event->key())
     {
-      case Qt::Key_Up:
-      {
-        QGraphicsItem* const focus_item = scene()->focusItem();
-        if (!focus_item) { return; }
-        if (!(focus_item->flags() & QGraphicsItem::ItemIsMovable)) { return; }
-        focus_item->setPos(focus_item->pos() + QPointF(0.0,-10.0));
-        m_signal_update(focus_item);
-        scene()->update();
-        return;
-      }
-      case Qt::Key_Right:
-      {
-        QGraphicsItem* const focus_item = scene()->focusItem();
-        if (!focus_item) { return; }
-        if (!(focus_item->flags() & QGraphicsItem::ItemIsMovable)) { return; }
-        focus_item->setPos(focus_item->pos() + QPointF(10.0,0.0));
-        m_signal_update(focus_item);
-        scene()->update();
-        return;
-      }
-      case Qt::Key_Down:
-      {
-        QGraphicsItem* const focus_item = scene()->focusItem();
-        if (!focus_item) { return; }
-        if (!(focus_item->flags() & QGraphicsItem::ItemIsMovable)) { return; }
-        focus_item->setPos(focus_item->pos() + QPointF(0.0,10.0));
-        m_signal_update(focus_item);
-        scene()->update();
-        return;
-      }
-      case Qt::Key_Left:
-      {
-        QGraphicsItem* const focus_item = scene()->focusItem();
-        if (!focus_item) { return; }
-        if (!(focus_item->flags() & QGraphicsItem::ItemIsMovable)) { return; }
-        focus_item->setPos(focus_item->pos() + QPointF(-10.0,0.0));
-        m_signal_update(focus_item);
-        scene()->update();
-        return;
-      }
+      case Qt::Key_Up   : delta_y = -10.0; break;
+      case Qt::Key_Right: delta_x =  10.0; break;
+      case Qt::Key_Down : delta_y =  10.0; break;
+      case Qt::Key_Left : delta_x = -10.0; break;
     }
+    for (const auto item: scene()->selectedItems())
+    {
+      assert(item);
+      if (!(item->flags() & QGraphicsItem::ItemIsMovable)) { continue; }
+      item->setPos(item->pos() + QPointF(delta_x,delta_y));
+      m_signal_update(item);
+    }
+    scene()->update();
+    return;
+
   }
 
   switch (event->key())
@@ -272,6 +250,11 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
       focus_item->setEnabled(false);
       focus_item->clearFocus();
       focus_item->setEnabled(true);
+      if (event->modifiers() & Qt::ShiftModifier)
+      {
+        focus_item->setSelected(true);
+        new_focus_item->setSelected(true);
+      }
       new_focus_item->setFocus();
     }
     break;
@@ -287,6 +270,11 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
       focus_item->setEnabled(false);
       focus_item->clearFocus();
       focus_item->setEnabled(true);
+      if (event->modifiers() & Qt::ShiftModifier)
+      {
+        focus_item->setSelected(true);
+        new_focus_item->setSelected(true);
+      }
       new_focus_item->setFocus();
     }
     break;
@@ -301,6 +289,11 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
       focus_item->setEnabled(false);
       focus_item->clearFocus();
       focus_item->setEnabled(true);
+      if (event->modifiers() & Qt::ShiftModifier)
+      {
+        focus_item->setSelected(true);
+        new_focus_item->setSelected(true);
+      }
       new_focus_item->setFocus();
     }
     break;
@@ -316,6 +309,11 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
       focus_item->setEnabled(false);
       focus_item->clearFocus();
       focus_item->setEnabled(true);
+      if (event->modifiers() & Qt::ShiftModifier)
+      {
+        focus_item->setSelected(true);
+        new_focus_item->setSelected(true);
+      }
       new_focus_item->setFocus();
     }
     break;

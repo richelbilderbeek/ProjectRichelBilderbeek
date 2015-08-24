@@ -99,7 +99,7 @@ public slots:
 protected:
 
   ///Delete a QtEdge
-  void DeleteEdge(QtEdge * const edge);
+  void DeleteQtEdge(QtEdge * const edge);
 
   ///Delete a Node
   //void DeleteNode(const boost::shared_ptr<QtNode>& node);

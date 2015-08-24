@@ -21,15 +21,32 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcommandcreatenewedge.h"
 
 #include <cassert>
+#include <sstream>
 
 #include "conceptmap.h"
 
 #include "conceptmapedgefactory.h"
+#include "trace.h"
 
 bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const ConceptMap * const conceptmap) const noexcept
 {
   assert(conceptmap);
-  return conceptmap && conceptmap->GetSelectedNodes().size() == 2;
+  if (!conceptmap)
+  {
+    if (m_verbose) { TRACE("No concept map"); }
+    return false;
+  }
+  if (conceptmap->GetSelectedNodes().size() != 2)
+  {
+    if (m_verbose)
+    {
+      std::stringstream msg;
+      msg << "Number of selected nodes (" << conceptmap->GetSelectedNodes().size() << " is not equal to two";
+      TRACE(msg.str());
+    }
+    return false;
+  }
+  return true;
 }
 
 void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(ConceptMap * const concept_map) noexcept
