@@ -840,7 +840,7 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         assert(CanDoCommand(command));
         DoCommand(command);
       }
-      #ifndef COMMAND_DELETE_EDGE_CREATED
+      #ifdef COMMAND_DELETE_EDGE_CREATED
       while (1)
       {
         const auto edges = this->GetConceptMap()->GetSelectedEdges();
