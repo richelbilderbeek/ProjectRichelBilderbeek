@@ -596,7 +596,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
         && "Node must really be gone");
     }
   }
-  if (trace_verbose) { TRACE("Deletion of edges"); }
+  if (trace_verbose) { TRACE("Deletion of edge"); }
   {
     //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
     const int test_index{19};
@@ -612,6 +612,21 @@ void ribi::cmap::ConceptMap::Test() noexcept
       assert(concept_map->GetEdges().size() == n_edges - 1
         && "Edge must really be gone");
     }
+  }
+  if (trace_verbose) { TRACE("Deletion of edge, by deleting the from node"); }
+  {
+    const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    const auto node_from = NodeFactory().GetTest(0);
+    const auto node_to = NodeFactory().GetTest(0);
+    concept_map->AddNode(node_from);
+    concept_map->AddNode(node_to);
+    const auto edge = EdgeFactory().GetTest(0,node_from,node_to);
+    concept_map->AddEdge(edge);
+    assert(concept_map->GetNodes().size() == 2);
+    assert(concept_map->GetEdges().size() == 1);
+    concept_map->DeleteNode(node_from);
+    assert(concept_map->GetNodes().size() == 1);
+    assert(concept_map->GetEdges().size() == 0);
   }
   if (trace_verbose) { TRACE("Is GetNode()[0] a CenterNode?"); }
   {

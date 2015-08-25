@@ -46,6 +46,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmaphelper.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
+
+#ifdef COMMAND_DELETE_EDGE_CREATED
+#include "conceptmapcommanddeleteedge.h"
+#endif //COMMAND_DELETE_EDGE_CREATED
+
+
+#include "conceptmapcommanddeletenode.h"
 #include "qtarrowitem.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapbrushfactory.h"
@@ -822,44 +829,31 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
   switch (event->key())
   {
     case Qt::Key_Delete:
+    {
+      while (1)
       {
-        QList<QGraphicsItem *> v = this->scene()->selectedItems();
-        if (std::count(v.begin(),v.end(),scene()->focusItem()) == 0)
-        {
-          v.push_back(scene()->focusItem());
-        }
-        std::for_each(v.begin(),v.end(),
-          [this](QGraphicsItem* const item)
-          {
-            //Delete a Node Concept
-            if (QtNode * const qtnode = dynamic_cast<QtNode *>(item))
-            {
-              if (!IsQtCenterNode(qtnode)) //Cannot delete center node
-              {
-                const std::vector<QtNode*> node_concepts = Collect<QtNode>(scene());
-                assert(std::count(node_concepts.begin(),node_concepts.end(),qtnode) == 1);
-                DeleteQtNode(qtnode);
-              }
-            }
-            //Delete an Edge Concept
-            if (QtEdge* const edge = dynamic_cast<QtEdge*>(item))
-            {
-              const std::vector<QtEdge*> edge_concepts = Collect<QtEdge>(scene());
-              assert(std::count(edge_concepts.begin(),edge_concepts.end(),edge) == 1);
-              assert(scene()->items().contains(edge));
-              DeleteQtEdge(edge);
-            }
-          }
-        );
-        if (!v.empty())
-        {
-          //DeleteLeftovers();
-          GetExamplesItem()->hide();
-          this->OnItemRequestsUpdate(0);
-        }
-        this->scene()->update();
+        const auto nodes = this->GetConceptMap()->GetSelectedNodes();
+        if (nodes.empty()) break;
+        const boost::shared_ptr<CommandDeleteNode> command {
+          new CommandDeleteNode(nodes.back())
+        };
+        assert(CanDoCommand(command));
+        DoCommand(command);
       }
-      break;
+      #ifndef COMMAND_DELETE_EDGE_CREATED
+      while (1)
+      {
+        const auto edges = this->GetConceptMap()->GetSelectedEdges();
+        if (edges.empty()) break;
+        const boost::shared_ptr<CommandDeleteEdge> command {
+          new CommandDeleteEdge(edges.back())
+        };
+        assert(CanDoCommand(command));
+        DoCommand(command);
+      }
+      #endif // COMMAND_DELETE_EDGE_CREATED
+    }
+    break;
     case Qt::Key_Escape:
     {
       //Only remove the 'new arrow' if present

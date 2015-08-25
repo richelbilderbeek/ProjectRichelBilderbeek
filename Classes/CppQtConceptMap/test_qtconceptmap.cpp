@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapcollect.h"
 #include "conceptmapfactory.h"
 #include "conceptmapcommandcreatenewnode.h"
+#include "conceptmapcommanddeletenode.h"
 #include "conceptmap.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmapnode.h"
@@ -318,10 +319,62 @@ void ribi::cmap::QtConceptMap::Test() noexcept
   }
   if (verbose) { TRACE("DeleteNode: delete a Node from ConceptMap using a Command"); }
   {
-    //TODO
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+    const auto node1 = NodeFactory().GetTest(0);
+    const auto node2 = NodeFactory().GetTest(0);
+    const auto edge = EdgeFactory().GetTest(0,node1,node2);
+
+    qtconceptmap->AddNode(node1);
+    qtconceptmap->AddNode(node2);
+    qtconceptmap->AddEdge(edge);
+
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
+    assert(qtconceptmap->GetQtNodes().size() == 2);
+    assert(qtconceptmap->GetQtEdges().size() == 1);
+
+    const boost::shared_ptr<CommandDeleteNode> command {
+      new CommandDeleteNode(node1)
+    };
+    assert(qtconceptmap->CanDoCommand(command));
+    qtconceptmap->DoCommand(command);
+
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
+    assert(qtconceptmap->GetQtNodes().size() == 1);
+    assert(qtconceptmap->GetQtEdges().size() == 0);
   }
+  if (verbose) { TRACE("DeleteNode: create two Nodes and Edge, delete one Node from ConceptMap"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+    const auto node1 = NodeFactory().GetTest(0);
+    const auto node2 = NodeFactory().GetTest(0);
+    const auto edge = EdgeFactory().GetTest(0,node1,node2);
 
+    const auto qtnode1 = qtconceptmap->AddNode(node1);
+    const auto qtnode2 = qtconceptmap->AddNode(node2);
+    const auto qtedge = qtconceptmap->AddEdge(edge);
 
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
+    assert(qtconceptmap->GetQtNodes().size() == 2);
+    assert(qtconceptmap->GetQtEdges().size() == 1);
+
+    qtconceptmap->DeleteNode(node1);
+
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
+    assert(qtconceptmap->GetQtNodes().size() == 1);
+    assert(qtconceptmap->GetQtEdges().size() == 0);
+    assert(!qtnode1->scene());
+    assert( qtnode2->scene()); //node2 is left over
+    assert(!qtedge->scene());
+
+  }
   if (verbose) { TRACE("AddEdge: an Edge added has to end up in both ConceptMap and QtConceptMap, by adding in QtConceptMap"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
