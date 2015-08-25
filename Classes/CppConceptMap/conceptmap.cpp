@@ -196,6 +196,9 @@ void ribi::cmap::ConceptMap::AddNode(const NodePtr& node) noexcept
     TRACE("Warning: node already added");
     return;
   }
+
+  this->AddSelected( { node } );
+
   m_nodes.push_back(node);
   m_signal_add_node(node);
 
@@ -387,9 +390,21 @@ void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
     DeleteEdge(edge);
   }
 
+  //Unselect the node
+  this->Unselect( ConstNodes( { node } ) );
+
   //Delete the node itself
   //Copied from http://www.richelbilderbeek.nl/CppVector.htm
-  m_nodes.erase(std::remove(m_nodes.begin(),m_nodes.end(),node),m_nodes.end());
+  m_nodes.erase(
+    std::remove(
+      std::begin(m_nodes),
+      std::end(m_nodes),
+      node
+    ),
+    m_nodes.end()
+  );
+
+
   m_signal_delete_node(node);
 
   #ifndef NDEBUG
@@ -906,13 +921,25 @@ void ribi::cmap::ConceptMap::AddSelected(const std::vector<boost::shared_ptr<Edg
 {
   assert(std::count(edges.begin(),edges.end(),nullptr) == 0);
   std::copy(edges.begin(),edges.end(),std::back_inserter(m_selected.first));
+
+  //Remove duplicates
+  std::sort(std::begin(m_selected.first),std::end(m_selected.first));
+  const auto new_end = std::unique(std::begin(m_selected.first),std::end(m_selected.first));
+  m_selected.first.erase(new_end,std::end(m_selected.first));
+
   m_signal_set_selected(m_selected.first,m_selected.second);
 }
 
 void ribi::cmap::ConceptMap::AddSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
 {
   assert(std::count(nodes.begin(),nodes.end(),nullptr) == 0);
-  std::copy(nodes.begin(),nodes.end(),std::back_inserter(m_selected.second));
+  std::copy(std::begin(nodes),std::end(nodes),std::back_inserter(m_selected.second));
+
+  //Remove duplicates
+  std::sort(std::begin(m_selected.second),std::end(m_selected.second));
+  const auto new_end = std::unique(std::begin(m_selected.second),std::end(m_selected.second));
+  m_selected.second.erase(new_end,std::end(m_selected.second));
+
   m_signal_set_selected(m_selected.first,m_selected.second);
 }
 
@@ -1240,8 +1267,20 @@ void ribi::cmap::ConceptMap::Undo() noexcept
 }
 
 void ribi::cmap::ConceptMap::Unselect(
-  const Nodes& nodes
+  const ConstNodes& nodes
 ) noexcept
 {
+  for (const auto node: nodes)
+  {
+    m_selected.second.erase(
+      std::remove(
+        std::begin(m_selected.second),
+        std::end(m_selected.second),
+        node
+      ),
+      std::end(m_selected.second)
+    );
+  }
+
   m_signal_lose_selected(nodes);
 }

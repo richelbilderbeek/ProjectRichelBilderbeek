@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd data
+cd gfx
 ~/devkitPro/devkitARM/bin/grit *.*
 mv *.h ../build
 mv *.s ../build

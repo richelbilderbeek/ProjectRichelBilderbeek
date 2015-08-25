@@ -153,11 +153,6 @@ std::ostream& operator<<(std::ostream& os, const Edge& edge) noexcept;
 bool operator==(const Edge& lhs, const Edge& rhs);
 bool operator!=(const Edge& lhs, const Edge& rhs);
 
-bool operator<(const boost::shared_ptr<      Edge>& lhs, const boost::shared_ptr<      Edge>& rhs) = delete;
-bool operator<(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<      Edge>& rhs) = delete;
-bool operator<(const boost::shared_ptr<      Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) = delete;
-bool operator<(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) = delete;
-
 } //~namespace cmap
 } //~namespace ribi
 

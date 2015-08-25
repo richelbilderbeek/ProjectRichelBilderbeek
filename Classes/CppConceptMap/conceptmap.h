@@ -188,7 +188,7 @@ struct ConceptMap
 
   ///Emitted when one or more Nodes lose to be selected
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_lose_selected;
+  boost::signals2::signal<void(std::vector<boost::shared_ptr<const Node>>)> m_signal_lose_selected;
 
   ///Emitted when a Node receives focus
   ///This has to be handled by QtConceptMapWidget
@@ -288,8 +288,8 @@ private:
   #endif
 
   ///Unselect the node, assumes it is selected
-  void Unselect(const boost::shared_ptr<Node>& node) noexcept;
-  void Unselect(const Nodes& nodes) noexcept;
+  void Unselect(const boost::shared_ptr<const Node>& node) noexcept;
+  void Unselect(const ConstNodes& nodes) noexcept;
 
   ///Block constructor, except for the friend ConceptMapFactory
   ConceptMap(const std::string& question) noexcept;

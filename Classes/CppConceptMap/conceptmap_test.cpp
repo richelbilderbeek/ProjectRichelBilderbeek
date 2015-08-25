@@ -523,9 +523,43 @@ void ribi::cmap::ConceptMap::Test() noexcept
     concept_map->AddNode(node);
     assert(concept_map->IsValid());
   }
+  if (trace_verbose) { TRACE("Add two nodes, check selected"); }
+  {
+    const auto concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    assert(concept_map);
+    const int n_nodes_before{static_cast<int>(concept_map->GetNodes().size())};
+    const auto node_a = NodeFactory().GetTests().at(0);
+    const auto node_b = NodeFactory().GetTests().at(1);
+
+    assert(concept_map->GetSelectedNodes().size() == 0);
+
+    concept_map->AddNode(node_a);
+
+    assert(concept_map->GetSelectedNodes().size() == 1);
+
+    concept_map->AddNode(node_b);
+
+    assert(concept_map->GetSelectedNodes().size() == 2);
+
+    const int n_nodes_after{static_cast<int>(concept_map->GetNodes().size())};
+    assert(n_nodes_after == n_nodes_before + 2);
+  }
+  if (trace_verbose) { TRACE("Add two nodes and delete one, check selected"); }
+  {
+    const auto concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    assert(concept_map);
+    const auto node_a = NodeFactory().GetTests().at(0);
+    const auto node_b = NodeFactory().GetTests().at(1);
+    assert(concept_map->GetSelectedNodes().size() == 0);
+    concept_map->AddNode(node_a);
+    assert(concept_map->GetSelectedNodes().size() == 1);
+    concept_map->AddNode(node_b);
+    assert(concept_map->GetSelectedNodes().size() == 2);
+    concept_map->DeleteNode(node_a);
+    assert(concept_map->GetSelectedNodes().size() == 1);
+  }
   if (trace_verbose) { TRACE("Add nodes and edges"); }
   {
-    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
     const auto concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(19);
     assert(concept_map);
     const int n_nodes_before = concept_map->GetNodes().size();
@@ -590,7 +624,8 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
   }
 
-  const int n_depth = 1;
+  //Commands
+
   //Start a concept map, add a node using the concept map
   {
     const boost::shared_ptr<ConceptMap> concept_map(new ConceptMap);
@@ -626,7 +661,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
   }
   //Start a concept map, create two nodes, unselect both, then select both using AddSelected
   {
-    const boost::shared_ptr<ConceptMap> widget(new ConceptMap);
+    const boost::shared_ptr<ConceptMap> concept_map(new ConceptMap);
     const int n_nodes = 2;
     //Create nodes
     for (int i=0; i!=n_nodes; ++i)
@@ -634,53 +669,54 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const boost::shared_ptr<CommandCreateNewNode> command {
         new CommandCreateNewNode
       };
-      assert(widget->CanDoCommand(command));
-      widget->DoCommand(command);
+      assert(concept_map->CanDoCommand(command));
+      concept_map->DoCommand(command);
     }
-    assert(static_cast<int>(widget->GetNodes().size()) == n_nodes
+    assert(static_cast<int>(concept_map->GetNodes().size()) == n_nodes
       && "Concept map must have two nodes");
-    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 2
+    TRACE(concept_map->GetSelectedNodes().size());
+    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 2
       && "Freshly created nodes are selected");
 
     //Unselect both
     for (int i=0; i!=n_nodes; ++i)
     {
-      assert(static_cast<int>(widget->GetSelectedNodes().size()) == 2 - i);
+      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 2 - i);
       const boost::shared_ptr<CommandUnselectRandom> command {
         new CommandUnselectRandom
       };
-      assert(widget->CanDoCommand(command));
-      widget->DoCommand(command);
-      assert(static_cast<int>(widget->GetSelectedNodes().size()) == 1 - i);
+      assert(concept_map->CanDoCommand(command));
+      concept_map->DoCommand(command);
+      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 1 - i);
     }
-    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 0);
+    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 0);
 
     //Select both again
-    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 0);
+    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 0);
     for (int i=0; i!=n_nodes; ++i)
     {
-      assert(static_cast<int>(widget->GetSelectedNodes().size()) == i);
+      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == i);
       const boost::shared_ptr<CommandAddSelectedRandom> command {
         new CommandAddSelectedRandom
       };
-      assert(widget->CanDoCommand(command));
-      widget->DoCommand(command);
-      assert(static_cast<int>(widget->GetSelectedNodes().size()) == i + 1);
+      assert(concept_map->CanDoCommand(command));
+      concept_map->DoCommand(command);
+      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == i + 1);
     }
-    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 2);
+    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 2);
 
     //Undo selection
     for (int i=0; i!=n_nodes; ++i)
     {
-      assert(static_cast<int>(widget->GetSelectedNodes().size()) == 2 - i);
+      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 2 - i);
       const boost::shared_ptr<CommandUnselectRandom> command {
         new CommandUnselectRandom
       };
-      assert(widget->CanDoCommand(command));
-      widget->Undo();
-      assert(static_cast<int>(widget->GetSelectedNodes().size()) == 1 - i);
+      assert(concept_map->CanDoCommand(command));
+      concept_map->Undo();
+      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 1 - i);
     }
-    assert(static_cast<int>(widget->GetSelectedNodes().size()) == 0);
+    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 0);
   }
 
   //Do all do and undo of a single command
@@ -701,6 +737,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
   }
   //Do all combinations of two commands
+  const int n_depth = 1;
   if (n_depth >= 2)
   {
     for (int i=0; i!=n_commands; ++i)

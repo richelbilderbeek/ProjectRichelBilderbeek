@@ -244,8 +244,14 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
     boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
     qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(conceptmap->GetSelectedNodes().size() == 0);
+
     const auto node = NodeFactory().GetTest(0);
+
     assert(qtconceptmap->AddNode(node)->isSelected());
+
+    assert(conceptmap->GetSelectedNodes().size() == 1);
   }
   if (verbose) { TRACE("AddNode: adding two QtNode must select both"); }
   {
@@ -254,12 +260,21 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     qtconceptmap->SetConceptMap(conceptmap);
     const auto node1 = NodeFactory().GetTest(0);
     const auto node2 = NodeFactory().GetTest(0);
+
+    assert(conceptmap->GetSelectedNodes().size() == 0);
+
     const auto qtnode1 = qtconceptmap->AddNode(node1);
+
+    assert(conceptmap->GetSelectedNodes().size() == 1);
+    assert(qtnode1->isSelected());
+
     const auto qtnode2 = qtconceptmap->AddNode(node2);
+
+    assert(conceptmap->GetSelectedNodes().size() == 2);
     assert(qtnode1->isSelected());
     assert(qtnode2->isSelected());
   }
-  if (verbose) { TRACE("DeleteNode: delete a Node from QtConceptMap"); }
+  if (verbose) { TRACE("DeleteNode: create two Nodes, delete one Node from QtConceptMap"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
     boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
@@ -280,7 +295,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(n_items_before - n_items_after == 1);
 
   }
-  if (verbose) { TRACE("DeleteNode: delete a Node from ConceptMap"); }
+  if (verbose) { TRACE("DeleteNode: create two Nodes, delete one Node from ConceptMap"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
     boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);

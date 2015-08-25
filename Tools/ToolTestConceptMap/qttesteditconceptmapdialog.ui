@@ -16,22 +16,7 @@
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QWidget" name="widget" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_test">
-        <property name="text">
-         <string>ConceptMapFactory().GetHeteromorphousTestConceptMaps()[15]</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_conceptmap_type">
-        <property name="text">
-         <string>EditConceptMap</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <layout class="QVBoxLayout" name="verticalLayout_2"/>
     </widget>
    </item>
    <item>
@@ -41,9 +26,37 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="label_1">
         <property name="text">
          <string>CTRL-N: New node</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>CTRL-E: New edge</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>CTRL-arrows: move node</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>SHIFT-arrows: select more nodes</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_nodes_selected">
+        <property name="text">
+         <string>Nodes selected:</string>
         </property>
        </widget>
       </item>
