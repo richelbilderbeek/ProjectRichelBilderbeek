@@ -318,11 +318,47 @@ void ribi::cmap::QtConceptMap::Test() noexcept
   }
   if (verbose) { TRACE("DeleteNode: delete a Node from ConceptMap using a Command"); }
   {
-    //HIERO
+    //TODO
   }
 
 
-  if (verbose) { TRACE("AddEdge: an Edge added has to end up in both ConceptMap and QtConceptMap, by adding in both places"); }
+  if (verbose) { TRACE("AddEdge: an Edge added has to end up in both ConceptMap and QtConceptMap, by adding in QtConceptMap"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
+    const int n_edges_before{static_cast<int>(qtconceptmap->GetQtEdges().size())};
+
+    const auto from = NodeFactory().GetTest(0);
+    const auto to = NodeFactory().GetTest(0);
+    const auto edge = EdgeFactory().GetTest(0,from,to);
+    qtconceptmap->AddEdge(edge);
+
+    assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
+    const int n_edges_after{static_cast<int>(qtconceptmap->GetQtEdges().size())};
+    assert(n_edges_after == n_edges_before + 1);
+  }
+  if (verbose) { TRACE("AddEdge: an Edge added has to end up in both ConceptMap and QtConceptMap, by adding in ConceptMap"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
+    const int n_edges_before{static_cast<int>(qtconceptmap->GetQtEdges().size())};
+
+    const auto from = NodeFactory().GetTest(0);
+    const auto to = NodeFactory().GetTest(0);
+    const auto edge = EdgeFactory().GetTest(0,from,to);
+    conceptmap->AddEdge(edge);
+
+    assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
+    const int n_edges_after{static_cast<int>(qtconceptmap->GetQtEdges().size())};
+    assert(n_edges_after == n_edges_before + 1);
+  }
+  if (verbose) { TRACE("AddEdge: an Edge added has to end up in both ConceptMap and QtConceptMap, by adding in both places, ConceptMap first"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
     boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
@@ -341,7 +377,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     const int n_edges_after{static_cast<int>(qtconceptmap->GetQtEdges().size())};
     assert(n_edges_after == n_edges_before + 1);
   }
-  if (verbose) { TRACE("AddEdge: an Edge added has to end up in both ConceptMap and QtConceptMap, by adding in QtConceptMap"); }
+  if (verbose) { TRACE("AddEdge: an Edge added has to end up in both ConceptMap and QtConceptMap, by adding in both places, QtConceptMap first"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
     boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
@@ -354,6 +390,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     const auto to = NodeFactory().GetTest(0);
     const auto edge = EdgeFactory().GetTest(0,from,to);
     qtconceptmap->AddEdge(edge);
+    //conceptmap->AddEdge(edge); //Correctly gives a warning
 
     assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
     const int n_edges_after{static_cast<int>(qtconceptmap->GetQtEdges().size())};

@@ -35,6 +35,7 @@ protected:
 
 private slots:
 
+  void OnCheck();
 
 private:
 

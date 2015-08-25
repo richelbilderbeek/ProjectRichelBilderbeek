@@ -5,10 +5,12 @@
 #include "qttesteditconceptmapdialog.h"
 
 #include <cassert>
+#include <sstream>
 
 #include <boost/lexical_cast.hpp>
 
 #include <QKeyEvent>
+#include <QTimer>
 
 #include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
@@ -50,6 +52,13 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
 
   assert(ui->widget->layout());
   ui->widget->layout()->addWidget(m_concept_map.get());
+
+  {
+    QTimer * const timer{new QTimer(this)};
+    connect(timer,SIGNAL(timeout()),this,SLOT(OnCheck()));
+    timer->setInterval(100);
+    timer->start();
+  }
 }
 
 ribi::cmap::QtTestEditConceptMapDialog::~QtTestEditConceptMapDialog() noexcept
@@ -118,3 +127,13 @@ void ribi::cmap::QtTestEditConceptMapDialog::DoSomethingRandom()
 }
 
 
+void ribi::cmap::QtTestEditConceptMapDialog::OnCheck()
+{
+  std::stringstream s;
+  s << "m_concept_map->GetScene()->selectedItems().size(): "
+    <<  m_concept_map->GetScene()->selectedItems().size() << '\n'
+    <<  "m_concept_map->GetConceptMap()->GetSelectedNodes().size(): "
+    <<  m_concept_map->GetConceptMap()->GetSelectedNodes().size()
+  ;
+  ui->label_nodes_selected->setText(s.str().c_str());
+}

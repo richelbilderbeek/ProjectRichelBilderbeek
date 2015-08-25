@@ -173,6 +173,12 @@ ribi::cmap::ConceptMap::~ConceptMap() noexcept
 void ribi::cmap::ConceptMap::AddEdge(const EdgePtr& edge) noexcept
 {
   assert(edge);
+  if (std::find(std::begin(m_edges),std::end(m_edges),edge) != std::end(m_edges))
+  {
+    TRACE("Warning: edge already added");
+    return;
+  }
+
   assert(edge->GetFrom());
   assert(edge->GetTo());
   //Add Nodes if they are not present yet
@@ -186,6 +192,7 @@ void ribi::cmap::ConceptMap::AddEdge(const EdgePtr& edge) noexcept
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
     && "First enter the node this edge targets to");
   m_edges.push_back(edge);
+  m_signal_add_edge(edge);
 }
 
 void ribi::cmap::ConceptMap::AddNode(const NodePtr& node) noexcept

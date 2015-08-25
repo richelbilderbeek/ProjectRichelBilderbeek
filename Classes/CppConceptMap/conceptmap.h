@@ -107,6 +107,13 @@ struct ConceptMap
   ReadOnlyCenterNodePtr FindCenterNode() const noexcept;
   CenterNodePtr FindCenterNode() noexcept;
 
+  ///There is one item in focus at most
+  ///There can be multiple items selected
+  ///The node in focus is never in the collection of selected nodes
+  ///Use GetFocusAndSelected to get all
+  boost::shared_ptr<const Node> GetFocus() const noexcept;
+  boost::shared_ptr<      Node> GetFocus()       noexcept;
+
   ReadOnlyEdges GetEdges() const noexcept;
   Edges& GetEdges() noexcept { return m_edges; }
 
@@ -116,34 +123,6 @@ struct ConceptMap
 
   ReadOnlyNodes GetNodes() const noexcept;
   Nodes& GetNodes() noexcept { return m_nodes; }
-
-  ///Obtain the version
-  static std::string GetVersion() noexcept;
-
-  ///Obtain the version history
-  static std::vector<std::string> GetVersionHistory() noexcept;
-
-  bool HasNode(const ReadOnlyNodePtr& node) const noexcept;
-  //const std::vector<boost::shared_ptr<      Node>>& GetNodes() { return m_nodes; }
-
-  ///Similar to operator==, except that the GUI member variables aren't checked for equality
-  static bool HasSameContent(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;
-
-  #ifndef NDEBUG
-  ///Check if there are no nulls in the edges and nodes
-  bool IsValid() const noexcept;
-  #endif
-
-  ///Convert a ConceptMap from an XML std::string
-  static std::string ToXml(const ReadOnlyConceptMapPtr& c) noexcept;
-
-
-  ///There is one item in focus at most
-  ///There can be multiple items selected
-  ///The node in focus is never in the collection of selected nodes
-  ///Use GetFocusAndSelected to get all
-  boost::shared_ptr<const Node> GetFocus() const noexcept;
-  boost::shared_ptr<      Node> GetFocus()       noexcept;
 
   ///There can be multiple items selected
   ///There is one item in focus at most
@@ -158,8 +137,38 @@ struct ConceptMap
   ConstNodes GetSelectedNodes() const noexcept;
        Nodes GetSelectedNodes()       noexcept { return m_selected.second; }
 
+  ///Obtain the version
+  static std::string GetVersion() noexcept;
+
+  ///Obtain the version history
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  bool HasNode(const ReadOnlyNodePtr& node) const noexcept;
+  //const std::vector<boost::shared_ptr<      Node>>& GetNodes() { return m_nodes; }
+
+  ///Similar to operator==, except that the GUI member variables aren't checked for equality
+  static bool HasSameContent(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;
+
+
+  #ifndef NDEBUG
+  ///Check if there are no nulls in the edges and nodes
+  bool IsValid() const noexcept;
+  #endif
+
 
   void MouseMoveEvent(const QPointF& mouse_pos) noexcept;
+
+  ///Set the nodes to the only nodes selected
+  void SetSelected(const ConstNodes& nodes) noexcept;
+  void SetSelected(const ConstEdges& edges) noexcept;
+  void SetSelected(const Nodes& nodes) noexcept;
+  void SetSelected(const Edges& edges) noexcept;
+  void SetSelected(const Edges& edges,const Nodes& nodes) noexcept;
+  void SetSelected(const ConstEdges& edges,const ConstNodes& nodes) noexcept;
+  void SetSelected(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
+
+  ///Convert a ConceptMap from an XML std::string
+  static std::string ToXml(const ReadOnlyConceptMapPtr& c) noexcept;
 
   void Undo() noexcept;
 
@@ -271,17 +280,6 @@ private:
   ///by which the Command indicates that it must be removed from that m_undo vector
   void OnUndo(const Command * const command_to_remove) noexcept;
 
-  ///Set the node to the only node in focus
-  //void SetFocus(const boost::shared_ptr<Node>& node) noexcept;
-
-  ///Set the nodes to the only nodes selected
-  void SetSelected(const ConstNodes& nodes) noexcept;
-  void SetSelected(const ConstEdges& edges) noexcept;
-  void SetSelected(const Nodes& nodes) noexcept;
-  void SetSelected(const Edges& edges) noexcept;
-  void SetSelected(const Edges& edges,const Nodes& nodes) noexcept;
-  void SetSelected(const ConstEdges& edges,const ConstNodes& nodes) noexcept;
-  void SetSelected(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

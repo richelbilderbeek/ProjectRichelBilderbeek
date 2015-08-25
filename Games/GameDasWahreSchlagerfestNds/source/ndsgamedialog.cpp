@@ -54,7 +54,7 @@ void ribi::dws::NdsGameDialog::Display(const DasWahreSchlagerfestWidget& widget)
     assert(n_cols == static_cast<int>(line.size()));
     const int top = static_cast<int>(block_height * static_cast<double>(row  ));
 
-    //dmaCopy(GameDasWahreSchlagerfestBeer32x32Tiles, VRAM_A, 32*32);
+    dmaCopy(GameDasWahreSchlagerfestBeer32x32Tiles, VRAM_A, 32*32);
 
     for (int col=0; col!=n_cols; ++col)
     {

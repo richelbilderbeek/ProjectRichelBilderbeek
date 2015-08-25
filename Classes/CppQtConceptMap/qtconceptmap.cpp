@@ -180,6 +180,22 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
+
+  //Add Node to ConceptMap if this has not been done yet
+  {
+    assert(GetConceptMap());
+    const auto edges = GetConceptMap()->GetEdges();
+    const int cnt{std::count(std::begin(edges),std::end(edges),edge)};
+    assert(cnt == 0 || cnt == 1);
+    if (cnt == 0)
+    {
+      this->GetConceptMap()->AddEdge(edge);
+    }
+  }
+
+  //Already added
+  if (GetQtEdge(edge)) { return GetQtEdge(edge); }
+
   //Be helpful here
   if (!GetQtNode(edge->GetFrom().get())) { AddNode(edge->GetFrom()); }
   if (!GetQtNode(edge->GetTo().get()  )) { AddNode(edge->GetTo()  ); }
@@ -886,6 +902,15 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
   }
 
   QtKeyboardFriendlyGraphicsView::keyPressEvent(event);
+  //The QtKeyboardFriendlyGraphicsView may change the selected items
+  ConceptMap::ConstEdgesAndNodes edges_and_nodes;
+  for (const auto item: this->scene()->selectedItems())
+  {
+    if (QtEdge* qtedge = dynamic_cast<QtEdge*>(item)) { edges_and_nodes.first.push_back(qtedge->GetEdge()); continue; }
+    if (QtNode* qtnode = dynamic_cast<QtNode*>(item)) { edges_and_nodes.second.push_back(qtnode->GetNode()); continue; }
+  }
+  this->m_concept_map->SetSelected(edges_and_nodes);
+
   scene()->update();
 }
 
@@ -1045,10 +1070,12 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
   m_concept_map = concept_map;
   if (!m_concept_map) return;
 
+  m_concept_map->m_signal_add_edge.connect(
+    boost::bind(&ribi::cmap::QtConceptMap::AddEdge,this,boost::lambda::_1)
+  );
   m_concept_map->m_signal_add_node.connect(
     boost::bind(&ribi::cmap::QtConceptMap::AddNode,this,boost::lambda::_1)
   );
-
   m_concept_map->m_signal_delete_node.connect(
     boost::bind(&ribi::cmap::QtConceptMap::DeleteNode,this,boost::lambda::_1)
   );

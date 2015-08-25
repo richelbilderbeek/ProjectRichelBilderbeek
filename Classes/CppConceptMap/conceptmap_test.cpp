@@ -674,7 +674,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     assert(static_cast<int>(concept_map->GetNodes().size()) == n_nodes
       && "Concept map must have two nodes");
-    TRACE(concept_map->GetSelectedNodes().size());
     assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 2
       && "Freshly created nodes are selected");
 
