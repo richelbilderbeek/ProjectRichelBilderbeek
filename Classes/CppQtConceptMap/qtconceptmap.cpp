@@ -184,6 +184,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
+  if (m_verbose) { TRACE("Start of 'QtConceptMap::AddEdge(const boost::shared_ptr<Edge> edge)'"); }
 
   //Add Node to ConceptMap if this has not been done yet
   {
@@ -289,6 +290,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   qtto->setSelected(false);
   qtedge->setSelected(true);
   assert(qtedge->GetQtNode());
+  GetScene()->focusItem()->clearFocus();
   qtedge->GetQtNode()->setFocus();
 
   assert(qtedge->isSelected());
@@ -296,14 +298,17 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   return qtedge;
 }
 
+/*
 ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(QtNode * const qt_from, QtNode* const qt_to)
 {
+  if (m_verbose) { TRACE("Start of 'QtConceptMap::AddEdge(QtNode * const qt_from, QtNode* const qt_to)'"); }
   assert(qt_from);
   assert(qt_to);
   assert(qt_from != qt_to);
   assert(qt_from->GetNode() != qt_to->GetNode());
   assert(!dynamic_cast<const QtTool*>(qt_to  ) && "Cannot select a ToolsItem");
   assert(!dynamic_cast<const QtTool*>(qt_from) && "Cannot select a ToolsItem");
+
   //Does this edge already exists? If yes, modify it
   {
     const std::vector<QtEdge*> edges = Collect<QtEdge>(scene());
@@ -404,7 +409,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(QtNode * const qt_from, Q
 
   return qtedge;
 }
-
+*/
 ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<Node> node)
 {
   assert(node);
@@ -1329,8 +1334,15 @@ void ribi::cmap::QtConceptMap::mousePressEvent(QMouseEvent *event)
   {
     if (m_highlighter->GetItem() && m_arrow->GetFrom() != m_highlighter->GetItem())
     {
-      assert(!dynamic_cast<QtTool*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
-      AddEdge( m_arrow->GetFrom(),m_highlighter->GetItem());
+      //assert(!dynamic_cast<QtTool*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
+      //AddEdge( m_arrow->GetFrom(),m_highlighter->GetItem());
+      const boost::shared_ptr<CommandCreateNewEdge> command {
+        new CommandCreateNewEdge
+      };
+      command->SetVerbosity(true);
+      if (!CanDoCommand(command)) return;
+      this->DoCommand(command);
+      UpdateSelection();
     }
     this->scene()->removeItem(m_arrow);
     m_arrow = nullptr;

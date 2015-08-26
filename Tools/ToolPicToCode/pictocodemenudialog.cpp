@@ -22,10 +22,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <iostream>
+#include <cstdlib>
 
 #include <QFile>
 #include <QImage>
 
+#include "fileio.h"
 #include "richelbilderbeekprogram.h"
 #include "testtimer.h"
 #include "trace.h"
@@ -42,7 +44,72 @@ int ribi::p2c::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::strin
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
+
+  //Image file
+  std::string image_file;
+  if (std::count(std::begin(argv),std::end(argv),"-f")
+    + std::count(std::begin(argv),std::end(argv),"--image_file") == 0
+  )
+  {
+    std::cout << "Please add the name of an input image file" << '\n';
+    return 1;
+  }
+  if (std::count(std::begin(argv),std::end(argv),"-f")
+    + std::count(std::begin(argv),std::end(argv),"--image_file") == 2
+  )
+  {
+    std::cout << "Please give the name of one input image file" << '\n';
+    return 1;
+  }
+  for (int i=1; i!=argc-1; ++i)
+  {
+    if (argv[i] == "-f" || argv[i] == "--image_file") { image_file = argv[i + 1]; break; }
+  }
+  if (!fileio::FileIo().IsRegularFile(image_file))
+  {
+    std::cout << "Please give the name of an existing input image file" << '\n';
+    return 1;
+  }
+
+  assert(fileio::FileIo().IsRegularFile(image_file));
+  std::cout << "Input image file: " << image_file << '\n';
+
+  //GraphicsLibrary
+  GraphicsLibrary graphics_library;
+  if (std::count(std::begin(argv),std::end(argv),"-t")
+    + std::count(std::begin(argv),std::end(argv),"--type") == 0
+  )
+  {
+    std::cout << "Please add the name of a graphics library" << '\n';
+    return 1;
+  }
+  if (std::count(std::begin(argv),std::end(argv),"-t")
+    + std::count(std::begin(argv),std::end(argv),"--type") == 2
+  )
+  {
+    std::cout << "Please give the name of a graphics library once" << '\n';
+    return 1;
+  }
+  for (int i=1; i!=argc-1; ++i)
+  {
+    if (argv[i] == "-t" || argv[i] == "--type")
+    {
+      std::string s = argv[i + 1];
+      if (s == "nds") graphics_library = GraphicsLibrary::nds;
+      else if (s == "qt") graphics_library = GraphicsLibrary::qt;
+      else
+      {
+        std::cout << "Please give the correct name of graphics library, 'nds' or 'qt'" << '\n';
+      }
+    }
+  }
+
+  std::cout << "Graphics library: "
+    << (graphics_library == GraphicsLibrary::nds ? "NDS" : "Qt") << '\n';
+
+
+  //d.Execute( { "PicToCode", "-f", temp_png, "-t", "nds", "-c", temp_cpp, "-h", temp_h } );
+
   return 1;
 }
 
@@ -69,13 +136,14 @@ ribi::Help ribi::p2c::PicToCodeMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
+      Help::Option('c',"implementation_file","C++ implementation file name"),
       Help::Option('f',"image_file","input image filename"),
       Help::Option('h',"header_file","C++ header file name"),
-      Help::Option('c',"implementation_file","C++ implementation file name"),
+      Help::Option('s',"silent","show no output on screen"),
       Help::Option('t',"type","NDS or Qt"),
     },
     {
-      GetAbout().GetFileTitle() + " -f pic.png -t nds -c pic.cpp -h pic.h",
+      GetAbout().GetFileTitle() + " -f pic.png -t nds -c pic.cpp -h pic.h -v",
       GetAbout().GetFileTitle() + " -f pic.png -t qt",
     }
   );
@@ -116,17 +184,24 @@ void ribi::p2c::PicToCodeMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  PicToCodeMainDialog();
+  {
+    fileio::FileIo();
+    PicToCodeMainDialog();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+
   PicToCodeMenuDialog d;
   const std::string temp_png{"temp.png"};
   const std::string temp_h{"temp.h"};
   const std::string temp_cpp{"temp.cpp"};
   QImage image(":/p2c/images/R.png");
   image.save(temp_png.c_str());
-  assert(QFile::exists(temp_png));
+  assert(QFile::exists(temp_png.c_str()));
   d.Execute( { "PicToCode", "-f", temp_png, "-t", "nds", "-c", temp_cpp, "-h", temp_h } );
-  assert(QFile::exists(temp_cpp));
-  assert(QFile::exists(temp_h));
+  assert(QFile::exists(temp_cpp.c_str()));
+  assert(QFile::exists(temp_h.c_str()));
+  std::remove(temp_png.c_str());
+  std::remove(temp_cpp.c_str());
+  std::remove(temp_h.c_str());
 }
 #endif

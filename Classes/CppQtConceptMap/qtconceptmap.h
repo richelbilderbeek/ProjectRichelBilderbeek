@@ -183,7 +183,7 @@ private:
   QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
 
   ///Add a new edge
-  QtEdge * AddEdge(QtNode * const from, QtNode* const to);
+  //QtEdge * AddEdge(QtNode * const from, QtNode* const to);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene

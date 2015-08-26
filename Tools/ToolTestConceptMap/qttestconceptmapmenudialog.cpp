@@ -91,7 +91,7 @@ void ribi::cmap::QtTestMenuDialog::on_button_edit_conceptmap_clicked()
 {
   QtTestEditConceptMapDialog d;
   d.setStyleSheet(this->styleSheet());
-  d.setWindowState(Qt::WindowFullScreen);
+  //d.setWindowState(Qt::WindowFullScreen);
   this->ShowChild(&d);
 }
 

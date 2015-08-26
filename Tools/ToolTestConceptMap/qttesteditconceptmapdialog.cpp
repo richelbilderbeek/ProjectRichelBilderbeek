@@ -48,7 +48,7 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
   m_concept_map->SetConceptMap(
     ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(0)
   );
-
+  m_concept_map->SetVerbosity(true);
 
   assert(ui->widget->layout());
   ui->widget->layout()->addWidget(m_concept_map.get());
