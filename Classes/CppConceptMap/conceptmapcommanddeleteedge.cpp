@@ -18,43 +18,44 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-#include "conceptmapcommandfactory.h"
+#include "conceptmapcommanddeleteedge.h"
 
 #include <cassert>
 
-#include "conceptmapcommandaddselectedrandom.h"
-#include "conceptmapcommandcreatenewedge.h"
-#include "conceptmapcommandcreatenewnode.h"
-#include "conceptmapcommand.h"
-#include "conceptmapcommandlosefocus.h"
-#include "conceptmapcommanddeletefocusnode.h"
-#include "conceptmapcommandsetfocusrandom.h"
-#include "conceptmapcommandsetselectedwithcoordinat.h"
+#include "conceptmap.h"
 
-std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFactory::CreateTestCommands() noexcept
+
+ribi::cmap::CommandDeleteEdge::CommandDeleteEdge(const boost::shared_ptr<Edge> edge)
+  : m_edge{edge}, m_concept_map{}
 {
-  std::vector<boost::shared_ptr<Command> > v;
+  assert(m_edge);
+}
 
-  {
-    const boost::shared_ptr<Command> p {
-      new CommandAddSelectedRandom
-    };
-    assert(p);
-    v.push_back(p);
-  }
-  {
-    const boost::shared_ptr<Command> p {
-      new CommandCreateNewEdge
-    };
-    assert(p);
-    v.push_back(p);
-  }
-  {
-    const boost::shared_ptr<Command> p {
-      new CommandCreateNewNode
-    };
-    assert(p);
-    v.push_back(p);
-  }
-  return v;
+bool ribi::cmap::CommandDeleteEdge::CanDoCommandSpecific(const ConceptMap * const conceptmap) const noexcept
+{
+
+  assert(conceptmap);
+  return conceptmap->HasEdge(m_edge);
+}
+
+void ribi::cmap::CommandDeleteEdge::DoCommandSpecific(ConceptMap * const concept_map) noexcept
+{
+  assert(!m_concept_map);
+  assert(m_edge);
+  assert(concept_map);
+
+  m_concept_map = concept_map;
+  m_concept_map->DeleteEdge(m_edge);
+
+  assert(m_concept_map);
+  assert(m_edge);
+}
+
+void ribi::cmap::CommandDeleteEdge::UndoSpecific() noexcept
+{
+  assert(m_concept_map);
+
+  m_concept_map->AddEdge(m_edge);
+
+  m_concept_map = nullptr;
 }

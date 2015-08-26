@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include "conceptmapcenternodefactory.h"
 #include "conceptmapcenternode.h"
@@ -523,9 +524,14 @@ std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexcept
   };
 }
 
+bool ribi::cmap::ConceptMap::HasEdge(const boost::shared_ptr<const Edge>& edge) const noexcept
+{
+  return std::count(std::begin(m_edges),std::end(m_edges),edge);
+}
+
 bool ribi::cmap::ConceptMap::HasNode(const boost::shared_ptr<const Node>& node) const noexcept
 {
-  return std::count(m_nodes.begin(),m_nodes.end(),node);
+  return std::count(std::begin(m_nodes),std::end(m_nodes),node);
 }
 
 bool ribi::cmap::ConceptMap::HasSameContent(
@@ -975,63 +981,45 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMap::CreateEmptyCon
 
 boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::ConceptMap::CreateNewEdge() noexcept
 {
-  #ifndef NDEBUG
-  const auto before = GetEdges().size();
-
   assert(GetSelectedNodes().size() == 2);
-  #endif
+
   const boost::shared_ptr<Node> from { GetSelectedNodes()[0] };
   const boost::shared_ptr<Node> to   { GetSelectedNodes()[1] };
-  assert(from);
-  assert(to);
-  const boost::shared_ptr<Edge> edge {
-    EdgeFactory().Create(from,to)
-  };
+  const boost::shared_ptr<Edge> edge { EdgeFactory().Create(from,to) };
 
-  //ConceptMap does not signal the newly added edge (as it does no signalling at all)
+  //Add the Edge
   AddEdge(edge);
 
-  //But ConceptMapWidget does
+  //Signal the new Edge
   m_signal_add_edge(edge);
 
-  //Widget must keep track of what is selected
-  m_selected.first.push_back(edge);
-  //Remove selection away from 'from'
-  const auto from_iter = std::find(std::begin(m_selected.second),std::end(m_selected.second),from);
-  assert(from_iter != std::end(m_selected.second));
-  std::swap(*from_iter,m_selected.second.back());
-  m_selected.second.pop_back();
+  //Keep track of what is selected
+  this->AddSelected( { edge } );
+  this->Unselect( { edge->GetFrom() } );
+  this->Unselect( { edge->GetTo() } );
 
-  const auto to_iter = std::find(std::begin(m_selected.second),std::end(m_selected.second),to);
-  assert(to_iter != std::end(m_selected.second));
-  std::swap(*to_iter,m_selected.second.back());
-  m_selected.second.pop_back();
-
-  #ifndef NDEBUG
-  const auto after = GetEdges().size();
-  assert(after == before + 1);
-  #endif
   return edge;
 }
 
 boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::CreateNewNode() noexcept
 {
   #ifndef NDEBUG
-  const auto before = GetNodes().size();
-  #endif
+  static std::string my_string = "A";
+  const boost::shared_ptr<Node> node {
+    NodeFactory().CreateFromStrings(my_string)
+  };
+  ++my_string[0];
+  #else
   const boost::shared_ptr<Node> node {
     NodeFactory().CreateFromStrings("...")
   };
-
-  //ConceptMap does not signal the newly added node...
-  AddNode(node);
-  //But ConceptMapWidget does
-  m_signal_add_node(node);
-
-  #ifndef NDEBUG
-  const auto after = GetNodes().size();
-  assert(after == before + 1);
   #endif
+
+  //Add the Node
+  AddNode(node);
+
+  //Signal the new Node
+  m_signal_add_node(node);
 
   //Adding a Node should select it
   this->AddSelected( { node } ); //Must be after 'm_signal_add_node(node);'
@@ -1050,7 +1038,6 @@ void ribi::cmap::ConceptMap::DoCommand(const boost::shared_ptr<Command> command)
   }
 
   assert(CanDoCommand(command));
-  //TRACE(command->ToStr());
 
   command->m_signal_undo.connect(
     boost::bind(&ribi::cmap::ConceptMap::OnUndo,this,boost::lambda::_1)
@@ -1059,7 +1046,7 @@ void ribi::cmap::ConceptMap::DoCommand(const boost::shared_ptr<Command> command)
   //Undo
   m_undo.push_back(command);
 
-  //Actually do the move
+  //Actually do the Command
   command->DoCommand(this);
 
   assert(CanUndo());
@@ -1274,6 +1261,33 @@ void ribi::cmap::ConceptMap::Undo() noexcept
 }
 
 void ribi::cmap::ConceptMap::Unselect(
+  const ConstEdgesAndNodes& edges_and_nodes
+) noexcept
+{
+  Unselect(edges_and_nodes.first);
+  Unselect(edges_and_nodes.second);
+}
+
+void ribi::cmap::ConceptMap::Unselect(
+  const ConstEdges& edges
+) noexcept
+{
+  for (const auto edge: edges)
+  {
+    m_selected.first.erase(
+      std::remove(
+        std::begin(m_selected.first),
+        std::end(m_selected.first),
+        edge
+      ),
+      std::end(m_selected.first)
+    );
+  }
+
+  m_signal_lose_selected(edges, {} );
+}
+
+void ribi::cmap::ConceptMap::Unselect(
   const ConstNodes& nodes
 ) noexcept
 {
@@ -1289,5 +1303,5 @@ void ribi::cmap::ConceptMap::Unselect(
     );
   }
 
-  m_signal_lose_selected(nodes);
+  m_signal_lose_selected( {}, nodes);
 }

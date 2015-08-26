@@ -57,13 +57,11 @@ public:
   boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_concept_map; }
   boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_concept_map; }
 
-  ///Obtain the read-only Qt edge items
-  ///Read-and-write Qt edge items are only supported for QtConceptMap
   std::vector<const QtEdge *> GetQtEdges() const;
+  std::vector<      QtEdge *> GetQtEdges();
 
-  ///Obtain the read-only Qt node items
-  ///Read-and-write Qt node items are only supported for QtConceptMap
   std::vector<const QtNode *> GetQtNodes() const;
+  std::vector<      QtNode *> GetQtNodes();
 
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const noexcept;
@@ -75,6 +73,8 @@ public:
   void RemoveExamplesItem() noexcept { SetExamplesItem(nullptr); }
 
   void SetConceptMap(const boost::shared_ptr<ConceptMap> concept_map);
+
+  void SetVerbosity(const bool verbosity) noexcept { m_verbose = verbosity; }
 
   #ifndef NDEBUG
   ///Shuffle the concepts (used in debugging)
@@ -128,10 +128,6 @@ protected:
   const QtNode * GetCenterNode() const noexcept;
         QtNode * GetCenterNode()       noexcept;
 
-  ///Obtain the read-and-write Qt edge items
-  ///The read-only Qt edge items is already supplied by QtConceptMap
-  std::vector<QtEdge *> GetQtEdges();
-
   ///Obtain the rectangle with text showing the examples
   const QtExamplesItem * GetExamplesItem() const;
 
@@ -180,6 +176,8 @@ private:
   ///The item showing the tools
   QtTool * m_tools;
 
+  bool m_verbose;
+
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
   QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
@@ -197,10 +195,6 @@ private:
   ///Remove all Qt and non-Qt items
   void CleanMe();
 
-  ///Obtain the read-and-write Qt node items
-  ///The read-only Qt node items is already supplied by QtConceptMap
-  std::vector<QtNode *> GetQtNodes();
-
   ///Called when an item wants to be edited
   void OnEdgeKeyDownPressed(QtEdge * const item, const int key);
 
@@ -215,6 +209,8 @@ private:
 
   ///Called whenever the tools item is clicked
   void OnToolsClicked();
+
+  void UpdateSelection();
 
 public slots:
 

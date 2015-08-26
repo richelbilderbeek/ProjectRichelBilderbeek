@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PicToCode, tool to convert a picture to C++ code
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char* argv[])
 {
   const std::vector<std::string> args {
-    ribi::PicToCodeMenuDialog::ConvertArguments(argc,argv)
+    ribi::p2c::PicToCodeMenuDialog::ConvertArguments(argc,argv)
   };
-  ribi::PicToCodeMenuDialog d;
+  ribi::p2c::PicToCodeMenuDialog d;
   return d.Execute(args);
 }

@@ -26,27 +26,43 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+#include "pictocodegraphicslibrary.h"
+#include "pictocodeyximage.h"
+
+struct QImage;
+
 namespace ribi {
+namespace p2c {
 
 struct PicToCodeMainDialog
 {
-  struct Pixel
-  {
-    int r,g,b,a;
-  };
+  PicToCodeMainDialog();
 
-  struct YxImage
-  {
-    std::vector<std::vector<Pixel> > m_v;
-    int width() const { return m_v[0].size(); }
-    int height() const { return m_v.size(); }
-  };
+  void SetInputFile(const std::string& filename);
+  void SetInputImage(const QImage& image);
+  void SetGraphicsLibrary(const GraphicsLibrary graphics_library) noexcept { m_graphics_library = graphics_library; }
+
+  std::vector<std::string> ToHeaderFile() const;
+  std::vector<std::string> ToImplementationFile() const;
 
 
-  std::vector<std::string> PicToNdsCode(const YxImage& image) const;
-  std::vector<std::string> PicToQtCode(const YxImage& image) const;
+  private:
+  GraphicsLibrary m_graphics_library;
+  YxImage m_image;
+
+
+  std::vector<std::string> ToNdsHeaderFile() const;
+  std::vector<std::string> ToNdsImplementationFile() const;
+  std::vector<std::string> ToQtHeaderFile() const;
+  std::vector<std::string> ToQtImplementationFile() const;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
+
+} //~namespace p2c
 } //~namespace ribi
 
 #endif // PICTOCODEMAINDIALOG_H

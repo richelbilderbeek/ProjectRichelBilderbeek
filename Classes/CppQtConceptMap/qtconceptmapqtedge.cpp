@@ -80,7 +80,9 @@ ribi::cmap::QtEdge::QtEdge(
   );
 
   //QtEdge is just the glue between a collection of things
-  this->setFlags(QGraphicsItem::ItemIsSelectable);
+  //this->setFlags(QGraphicsItem::ItemIsSelectable);
+  this->setFlags(0);
+  this->m_arrow->setFlags(0);
 
   /*
   this->setFlags(
@@ -96,11 +98,11 @@ ribi::cmap::QtEdge::QtEdge(
     | QGraphicsItem::ItemIsSelectable
   );
 
-  GetFrom()->setFlags(
-      QGraphicsItem::ItemIsFocusable
-    | QGraphicsItem::ItemIsMovable
-    | QGraphicsItem::ItemIsSelectable
-  );
+  //GetFrom()->setFlags(
+  //    QGraphicsItem::ItemIsFocusable
+  //  | QGraphicsItem::ItemIsMovable
+  //  | QGraphicsItem::ItemIsSelectable
+  //);
 
   GetTo()->setFlags(
       QGraphicsItem::ItemIsFocusable
@@ -271,6 +273,11 @@ void ribi::cmap::QtEdge1::hoverMoveEvent(QGraphicsSceneHoverEvent*) noexcept
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 */
+
+bool ribi::cmap::QtEdge::isSelected() const
+{
+  return GetQtNode()->isSelected();
+}
 
 void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event) noexcept
 {
@@ -704,6 +711,10 @@ void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow) noexcept
   this->m_arrow->SetHasTail(has_tail_arrow);
 }
 
+void ribi::cmap::QtEdge::setSelected(bool selected)
+{
+  this->GetQtNode()->setSelected(selected);
+}
 
 void ribi::cmap::QtEdge::SetTo(const To& to) noexcept
 {

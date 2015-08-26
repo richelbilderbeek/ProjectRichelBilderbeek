@@ -46,12 +46,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmaphelper.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
-
-#ifdef COMMAND_DELETE_EDGE_CREATED
 #include "conceptmapcommanddeleteedge.h"
-#endif //COMMAND_DELETE_EDGE_CREATED
-
-
 #include "conceptmapcommanddeletenode.h"
 #include "qtarrowitem.h"
 #include "qtconceptmapdisplaystrategy.h"
@@ -133,7 +128,8 @@ ribi::cmap::QtConceptMap::QtConceptMap(QWidget* parent)
     m_concept_map{},
     m_examples_item(new QtExamplesItem),
     m_highlighter{new QtItemHighlighter},
-    m_tools{new QtTool}
+    m_tools{new QtTool},
+    m_verbose{false}
 {
   #ifndef NDEBUG
   Test();
@@ -183,6 +179,7 @@ ribi::cmap::QtConceptMap::~QtConceptMap()
 
 }
 
+//Note that there are two AddEdge
 ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
@@ -196,20 +193,38 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
     assert(cnt == 0 || cnt == 1);
     if (cnt == 0)
     {
+      if (m_verbose) { TRACE("Adding Edge to ConceptMap (as it was not yet in there)"); }
       this->GetConceptMap()->AddEdge(edge);
     }
   }
 
   //Already added
-  if (GetQtEdge(edge)) { return GetQtEdge(edge); }
+  if (GetQtEdge(edge))
+  {
+    if (m_verbose) { TRACE("QtEdge already present"); }
+    return GetQtEdge(edge);
+  }
 
   //Be helpful here
-  if (!GetQtNode(edge->GetFrom().get())) { AddNode(edge->GetFrom()); }
-  if (!GetQtNode(edge->GetTo().get()  )) { AddNode(edge->GetTo()  ); }
+  if (!GetQtNode(edge->GetFrom().get()))
+  {
+    if (m_verbose) { TRACE("Adding 'from' Node to QtConceptMap (as it was not yet in there)"); }
+    AddNode(edge->GetFrom());
+  }
+  if (!GetQtNode(edge->GetTo().get()))
+  {
+    if (m_verbose) { TRACE("Adding 'to' Node to QtConceptMap (as it was not yet in there)"); }
+    AddNode(edge->GetTo());
+  }
   {
     const auto edges = GetConceptMap()->GetEdges();
     const int cnt{std::count(std::begin(edges),std::end(edges),edge)};
-    if (cnt == 0) { GetConceptMap()->AddEdge(edge); }
+    if (cnt == 0)
+    {
+      assert(!"Should never happen???");
+      if (m_verbose) { TRACE("Adding Edge to ConceptMap (as it was not yet in there)"); }
+      GetConceptMap()->AddEdge(edge);
+    }
   }
 
   QtNode * const qtfrom = GetQtNode(edge->GetFrom().get());
@@ -265,12 +280,17 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
     )
   );
 
+  if (m_verbose) { TRACE("Adding QtEdge to QtConceptMap's QScene"); }
   assert(!qtedge->scene());
   this->scene()->addItem(qtedge);
 
+  if (m_verbose) { TRACE("Setting selection and focus correct"); }
   qtfrom->setSelected(false);
   qtto->setSelected(false);
   qtedge->setSelected(true);
+  assert(qtedge->GetQtNode());
+  qtedge->GetQtNode()->setFocus();
+
   assert(qtedge->isSelected());
 
   return qtedge;
@@ -376,7 +396,6 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(QtNode * const qt_from, Q
       boost::lambda::_1,boost::lambda::_2 //Do not forget the placeholders!
     )
   );
-
 
   assert(!qtedge->scene());
   this->scene()->addItem(qtedge);
@@ -840,7 +859,6 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         assert(CanDoCommand(command));
         DoCommand(command);
       }
-      #ifdef COMMAND_DELETE_EDGE_CREATED
       while (1)
       {
         const auto edges = this->GetConceptMap()->GetSelectedEdges();
@@ -851,7 +869,6 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         assert(CanDoCommand(command));
         DoCommand(command);
       }
-      #endif // COMMAND_DELETE_EDGE_CREATED
     }
     break;
     case Qt::Key_Escape:
@@ -878,6 +895,7 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
           new CommandCreateNewNode
         };
         this->DoCommand(command);
+        UpdateSelection();
         return;
       }
       break;
@@ -890,22 +908,14 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         command->SetVerbosity(true);
         if (!CanDoCommand(command)) return;
         this->DoCommand(command);
+        UpdateSelection();
         return;
       }
       break;
   }
 
   QtKeyboardFriendlyGraphicsView::keyPressEvent(event);
-  //The QtKeyboardFriendlyGraphicsView may change the selected items
-  ConceptMap::ConstEdgesAndNodes edges_and_nodes;
-  for (const auto item: this->scene()->selectedItems())
-  {
-    if (QtEdge* qtedge = dynamic_cast<QtEdge*>(item)) { edges_and_nodes.first.push_back(qtedge->GetEdge()); continue; }
-    if (QtNode* qtnode = dynamic_cast<QtNode*>(item)) { edges_and_nodes.second.push_back(qtnode->GetNode()); continue; }
-  }
-  this->m_concept_map->SetSelected(edges_and_nodes);
-
-  scene()->update();
+  UpdateSelection();
 }
 
 bool ribi::cmap::QtConceptMap::MustReposition(const std::vector<boost::shared_ptr<const cmap::Node> >& nodes) const
@@ -1349,14 +1359,7 @@ void ribi::cmap::QtConceptMap::OnEdgeKeyDownPressed(QtEdge* const edge, const in
 void ribi::cmap::QtConceptMap::OnNodeKeyDownPressed(QtNode* const item, const int key)
 {
   if (key != Qt::Key_F2) return;
-  //assert(item->GetConcept());
-  //const boost::shared_ptr<Concept> new_concept = ConceptFactory().DeepCopy(item->GetConcept());
-  //assert(new_concept);
-
-  assert(this);
   assert(item);
-  //TRACE("Try edit from EditWidget");
-  //m_signal_conceptmapitem_requests_edit(item);
 
   {
     QtScopedDisable<QtConceptMap> disable(this);
@@ -1393,4 +1396,21 @@ void ribi::cmap::QtConceptMap::OnToolsClicked()
   this->scene()->addItem(m_arrow);
   m_arrow->update();
   this->scene()->update();
+}
+
+void ribi::cmap::QtConceptMap::UpdateSelection()
+{
+  for (const auto item: this->scene()->items()) { item->update(); }
+
+  //The QtKeyboardFriendlyGraphicsView may change the selected items
+  ConceptMap::ConstEdgesAndNodes edges_and_nodes;
+  for (const auto item: this->scene()->selectedItems())
+  {
+    if (QtEdge* qtedge = dynamic_cast<QtEdge*>(item)) { edges_and_nodes.first.push_back(qtedge->GetEdge()); continue; }
+    if (QtNode* qtnode = dynamic_cast<QtNode*>(item)) { edges_and_nodes.second.push_back(qtnode->GetNode()); continue; }
+  }
+  this->m_concept_map->SetSelected(edges_and_nodes);
+
+  scene()->update();
+
 }

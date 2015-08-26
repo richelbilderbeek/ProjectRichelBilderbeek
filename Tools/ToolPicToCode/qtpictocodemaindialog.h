@@ -36,6 +36,7 @@ namespace Ui {
 struct QImage;
 
 namespace ribi {
+namespace p2c {
 
 class QtPicToCodeMainDialog : public QtHideAndShowDialog
 {
@@ -58,12 +59,13 @@ private slots:
   void on_button_select_file_clicked();
 
 public:
-  static const PicToCodeMainDialog::YxImage ImageToImage(const QImage& image);
+  static const YxImage ImageToImage(const QImage& image);
 
   std::vector<std::string> PicToNdsCode(const QImage& qimage) const;
   std::vector<std::string> PicToQtCode( const QImage& qimage) const;
 };
 
+} //~namespace p2c
 } //~namespace ribi
 
 #endif // QTPICTOCODEDIALOG_H

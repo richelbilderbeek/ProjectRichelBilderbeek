@@ -33,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtpictocodemenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtPicToCodeMenuDialog::QtPicToCodeMenuDialog(QWidget *parent) :
+ribi::p2c::QtPicToCodeMenuDialog::QtPicToCodeMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtPicToCodeMenuDialog)
 {
@@ -43,30 +43,30 @@ ribi::QtPicToCodeMenuDialog::QtPicToCodeMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog() noexcept
+ribi::p2c::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtPicToCodeMenuDialog::on_button_start_clicked()
+void ribi::p2c::QtPicToCodeMenuDialog::on_button_start_clicked()
 {
   QtPicToCodeMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtPicToCodeMenuDialog::on_button_about_clicked()
+void ribi::p2c::QtPicToCodeMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(PicToCodeMenuDialog().GetAbout());
   this->ShowChild(&d);
 }
 
-void ribi::QtPicToCodeMenuDialog::on_button_quit_clicked()
+void ribi::p2c::QtPicToCodeMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::QtPicToCodeMenuDialog::Test() noexcept
+void ribi::p2c::QtPicToCodeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

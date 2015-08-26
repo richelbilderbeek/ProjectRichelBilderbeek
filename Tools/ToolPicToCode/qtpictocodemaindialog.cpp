@@ -40,7 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtpictocodemaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent)
+ribi::p2c::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPicToCodeMainDialog)
 {
@@ -57,35 +57,14 @@ ribi::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent)
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtPicToCodeMainDialog::~QtPicToCodeMainDialog() noexcept
+ribi::p2c::QtPicToCodeMainDialog::~QtPicToCodeMainDialog() noexcept
 {
   delete ui;
 }
 
-const ribi::PicToCodeMainDialog::YxImage ribi::QtPicToCodeMainDialog::ImageToImage(const QImage& qt_image)
-{
-  const int width  = qt_image.width();
-  const int height = qt_image.height();
 
-  PicToCodeMainDialog::YxImage image;
-  image.m_v.resize(height,std::vector<PicToCodeMainDialog::Pixel>(width));
 
-  for (int y=0; y!=height; ++y)
-  {
-    const unsigned char * const line
-      = static_cast<const unsigned char *>(qt_image.scanLine(y));
-    for (int x=0; x!=width; ++x)
-    {
-      image.m_v[y][x].a = static_cast<int>(line[(x*4)+3]);
-      image.m_v[y][x].r = static_cast<int>(line[(x*4)+2]);
-      image.m_v[y][x].g = static_cast<int>(line[(x*4)+1]);
-      image.m_v[y][x].b = static_cast<int>(line[(x*4)+0]);
-    }
-  }
-  return image;
-}
-
-void ribi::QtPicToCodeMainDialog::on_button_select_file_clicked()
+void ribi::p2c::QtPicToCodeMainDialog::on_button_select_file_clicked()
 {
   QFileDialog d;
   //Select only picture files
@@ -104,7 +83,7 @@ void ribi::QtPicToCodeMainDialog::on_button_select_file_clicked()
   ui->label_picture->setPixmap(QPixmap(filename));
 }
 
-void ribi::QtPicToCodeMainDialog::on_button_convert_clicked()
+void ribi::p2c::QtPicToCodeMainDialog::on_button_convert_clicked()
 {
   const std::vector<std::string> v
     = (ui->radio_nds->isChecked()
@@ -120,18 +99,18 @@ void ribi::QtPicToCodeMainDialog::on_button_convert_clicked()
 
 }
 
-std::vector<std::string> ribi::QtPicToCodeMainDialog::PicToNdsCode(const QImage& qimage) const
+std::vector<std::string> ribi::p2c::QtPicToCodeMainDialog::PicToNdsCode(const QImage& qimage) const
 {
   return PicToCodeMainDialog().PicToNdsCode(ImageToImage(qimage));
 }
 
-std::vector<std::string> ribi::QtPicToCodeMainDialog::PicToQtCode(const QImage& qimage) const
+std::vector<std::string> ribi::p2c::QtPicToCodeMainDialog::PicToQtCode(const QImage& qimage) const
 {
   return PicToCodeMainDialog().PicToQtCode(ImageToImage(qimage));
 }
 
 #ifndef NDEBUG
-void ribi::QtPicToCodeMainDialog::Test() noexcept
+void ribi::p2c::QtPicToCodeMainDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

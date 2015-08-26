@@ -130,10 +130,38 @@ void ribi::cmap::QtTestEditConceptMapDialog::DoSomethingRandom()
 void ribi::cmap::QtTestEditConceptMapDialog::OnCheck()
 {
   std::stringstream s;
-  s << "m_concept_map->GetScene()->selectedItems().size(): "
-    <<  m_concept_map->GetScene()->selectedItems().size() << '\n'
-    <<  "m_concept_map->GetConceptMap()->GetSelectedNodes().size(): "
-    <<  m_concept_map->GetConceptMap()->GetSelectedNodes().size()
+  s
+    << "m_concept_map \n"
+    << "  ->GetScene()->selectedItems().size(): "
+    << m_concept_map->GetScene()->selectedItems().size() << '\n'
+    << "  ->GetConceptMap()->GetSelectedNodes().size(): "
+    << m_concept_map->GetConceptMap()->GetSelectedNodes().size() << '\n'
+    << "  ->GetConceptMap()->GetSelectedEdges().size(): "
+    << m_concept_map->GetConceptMap()->GetSelectedEdges().size() << '\n'
   ;
+  const auto qtnodes = m_concept_map->GetQtNodes();
+  const int n_qtnodes{static_cast<int>(qtnodes.size())};
+  s << "# QtNodes: " << n_qtnodes << '\n';
+  for (int i=0; i!=n_qtnodes; ++i)
+  {
+    const auto qtnode = qtnodes[i];
+    s << "[" << i << "] " << qtnode->GetNode()->GetConcept()->GetName() << ": "  << qtnode->isSelected() << '\n';
+  }
+  const auto qtedges = m_concept_map->GetQtEdges();
+  const int n_qtedges{static_cast<int>(qtedges.size())};
+  s << "# QtEdges: " << n_qtedges << '\n';
+  for (int i=0; i!=n_qtedges; ++i)
+  {
+    s << "[" << i << "] " << qtedges[i]->isSelected() << '\n';
+  }
+  s << "Focus item: ";
+  if (m_concept_map->GetScene()->focusItem())
+  {
+    if (QtNode* const qtnode = dynamic_cast<QtNode*>(m_concept_map->GetScene()->focusItem())) { s << qtnode->GetNode()->GetConcept()->GetName(); }
+    if (QtEdge* const qtedge = dynamic_cast<QtEdge*>(m_concept_map->GetScene()->focusItem())) { s << qtedge->GetQtNode()->GetNode()->GetConcept()->GetName(); }
+  }
+  else { s << "(none)";}
+  s << '\n';
+
   ui->label_nodes_selected->setText(s.str().c_str());
 }

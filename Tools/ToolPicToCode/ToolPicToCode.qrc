@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/images">
+    <qresource prefix="/p2c/images">
         <file>R.png</file>
         <file>PicNds14x14.png</file>
         <file>PicQt14x14.png</file>

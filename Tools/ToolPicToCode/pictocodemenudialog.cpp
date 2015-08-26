@@ -23,11 +23,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include <QFile>
+#include <QImage>
+
 #include "richelbilderbeekprogram.h"
 #include "testtimer.h"
 #include "trace.h"
+#include "pictocodemaindialog.h"
 
-int ribi::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::p2c::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -42,7 +46,7 @@ int ribi::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 1;
 }
 
-ribi::About ribi::PicToCodeMenuDialog::GetAbout() const noexcept
+ribi::About ribi::p2c::PicToCodeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -59,21 +63,25 @@ ribi::About ribi::PicToCodeMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-ribi::Help ribi::PicToCodeMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::p2c::PicToCodeMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-
+      Help::Option('f',"image_file","input image filename"),
+      Help::Option('h',"header_file","C++ header file name"),
+      Help::Option('c',"implementation_file","C++ implementation file name"),
+      Help::Option('t',"type","NDS or Qt"),
     },
     {
-
+      GetAbout().GetFileTitle() + " -f pic.png -t nds -c pic.cpp -h pic.h",
+      GetAbout().GetFileTitle() + " -f pic.png -t qt",
     }
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::PicToCodeMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::p2c::PicToCodeMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramPicToCode
@@ -82,12 +90,12 @@ boost::shared_ptr<const ribi::Program> ribi::PicToCodeMenuDialog::GetProgram() c
   return p;
 }
 
-std::string ribi::PicToCodeMenuDialog::GetVersion() const noexcept
+std::string ribi::p2c::PicToCodeMenuDialog::GetVersion() const noexcept
 {
-  return "1.5";
+  return "1.6";
 }
 
-std::vector<std::string> ribi::PicToCodeMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::p2c::PicToCodeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-10-10: version 1.0: initial version",
@@ -96,17 +104,29 @@ std::vector<std::string> ribi::PicToCodeMenuDialog::GetVersionHistory() const no
     "2011-04-18: version 1.3: added menu, added web application",
     "2013-11-04: version 1.4: conformized to ProjectRichelBilderbeekConsole",
     "2015-08-20: version 1.5: NDS code has seperate header and implementation file",
+    "2015-08-26: version 1.6: created command-line version",
   };
 }
 
 #ifndef NDEBUG
-void ribi::PicToCodeMenuDialog::Test() noexcept
+void ribi::p2c::PicToCodeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
+  PicToCodeMainDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  PicToCodeMenuDialog d;
+  const std::string temp_png{"temp.png"};
+  const std::string temp_h{"temp.h"};
+  const std::string temp_cpp{"temp.cpp"};
+  QImage image(":/p2c/images/R.png");
+  image.save(temp_png.c_str());
+  assert(QFile::exists(temp_png));
+  d.Execute( { "PicToCode", "-f", temp_png, "-t", "nds", "-c", temp_cpp, "-h", temp_h } );
+  assert(QFile::exists(temp_cpp));
+  assert(QFile::exists(temp_h));
 }
 #endif

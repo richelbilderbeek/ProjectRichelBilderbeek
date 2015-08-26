@@ -95,12 +95,16 @@ struct QtEdge : public QGraphicsItem
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  bool isSelected() const;
+
   void SetEdge(const EdgePtr& edge) noexcept;
 
   void SetFrom(const From& from) noexcept;
 
   void SetHasHeadArrow(const bool has_head_arrow) noexcept;
   void SetHasTailArrow(const bool has_tail_arrow) noexcept;
+
+  void setSelected(bool selected);
 
   void SetShowBoundingRect(const bool show_bounding_rect) const noexcept { m_show_bounding_rect = show_bounding_rect; }
 

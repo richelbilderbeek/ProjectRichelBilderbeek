@@ -143,6 +143,7 @@ struct ConceptMap
   ///Obtain the version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  bool HasEdge(const ReadOnlyEdgePtr& edge) const noexcept;
   bool HasNode(const ReadOnlyNodePtr& node) const noexcept;
   //const std::vector<boost::shared_ptr<      Node>>& GetNodes() { return m_nodes; }
 
@@ -197,7 +198,7 @@ struct ConceptMap
 
   ///Emitted when one or more Nodes lose to be selected
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(std::vector<boost::shared_ptr<const Node>>)> m_signal_lose_selected;
+  boost::signals2::signal<void(const ConstEdges&, const ConstNodes&)> m_signal_lose_selected;
 
   ///Emitted when a Node receives focus
   ///This has to be handled by QtConceptMapWidget
@@ -237,7 +238,7 @@ private:
   ///The Commands aren't const, because Command::Undo changes their state
   std::vector<boost::shared_ptr<Command>> m_undo;
 
-  ///Add the nodes to the current (can be zero) selecetd nodes
+  ///Add the nodes to the current (can be zero) selected nodes
   void AddSelected(const Edges& edges) noexcept;
   void AddSelected(const Nodes& nodes) noexcept;
   void AddSelected(const Edges& edges,const Nodes& nodes) noexcept;
@@ -286,7 +287,9 @@ private:
   #endif
 
   ///Unselect the node, assumes it is selected
-  void Unselect(const boost::shared_ptr<const Node>& node) noexcept;
+
+  void Unselect(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
+  void Unselect(const ConstEdges& edges) noexcept;
   void Unselect(const ConstNodes& nodes) noexcept;
 
   ///Block constructor, except for the friend ConceptMapFactory

@@ -24,6 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "menudialog.h"
 
 namespace ribi {
+namespace p2c {
 
 struct PicToCodeMenuDialog final : public MenuDialog
 {
@@ -41,6 +42,7 @@ struct PicToCodeMenuDialog final : public MenuDialog
   #endif
 };
 
+} //~namespace p2c
 } //~namespace ribi
 
 #endif // PICTOCODEMENUDIALOG_H

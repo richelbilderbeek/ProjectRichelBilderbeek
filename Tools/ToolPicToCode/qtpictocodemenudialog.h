@@ -12,6 +12,7 @@ namespace Ui {
 
 
 namespace ribi {
+namespace p2c {
 
 class QtPicToCodeMenuDialog : public QtHideAndShowDialog
 {
@@ -38,6 +39,7 @@ private slots:
   void on_button_start_clicked();
 };
 
+} //~namespace p2c
 } //~namespace ribi
 
 #endif // QTPICTOCODEMENUDIALOG_H
