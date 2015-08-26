@@ -34,14 +34,17 @@ namespace ribi {
 
 struct WtAboutDialog;
 
-struct WtPicToCodeMenuDialog : public Wt::WContainerWidget
+namespace p2c {
+
+struct WtMenuDialog : public Wt::WContainerWidget
 {
-  WtPicToCodeMenuDialog();
+  WtMenuDialog();
 
   private:
   WtAboutDialog * CreateNewAboutDialog() const;
 };
 
+} //~namespace p2c
 } //~namespace ribi
 
 #endif // WTPICTOCODEMENUDIALOG_H

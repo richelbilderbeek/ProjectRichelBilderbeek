@@ -43,12 +43,13 @@ namespace Wt
 }
 
 namespace ribi {
+namespace p2c {
 
-struct WtPicToCodeWidget;
+struct WtWidget;
 
-struct WtPicToCodeMainDialog : public Wt::WContainerWidget
+struct WtMainDialog : public Wt::WContainerWidget
 {
-  WtPicToCodeMainDialog();
+  WtMainDialog();
   private:
   Wt::WPushButton * const m_button_convert;
   Wt::WFileUpload * const m_fileupload;
@@ -59,11 +60,11 @@ struct WtPicToCodeMainDialog : public Wt::WContainerWidget
   void on_convert();
 
 
-  const PicToCodeMainDialog::YxImage QtImageToImage(const QImage& qt_image) const;
-  //const PicToCodeMainDialog::YxImage ImageToImage(const Wt::WImage& wt_image) const;
+  //PicToCodeMainDialog::YxImage QtImageToImage(const QImage& qt_image) const;
 
 };
 
+} //~namespace p2c
 } //~namespace ribi
 
 #endif // WTPICTOCODEDIALOG_H

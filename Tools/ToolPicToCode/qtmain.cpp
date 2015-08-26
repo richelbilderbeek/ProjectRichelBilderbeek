@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  ribi::p2c::QtPicToCodeMenuDialog w;
+  ribi::p2c::QtMenuDialog w;
   w.show();
   return a.exec();
 }

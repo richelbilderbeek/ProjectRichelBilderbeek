@@ -23,8 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char* argv[])
 {
   const std::vector<std::string> args {
-    ribi::p2c::PicToCodeMenuDialog::ConvertArguments(argc,argv)
+    ribi::p2c::MenuDialog::ConvertArguments(argc,argv)
   };
-  ribi::p2c::PicToCodeMenuDialog d;
+  ribi::p2c::MenuDialog d;
   return d.Execute(args);
 }

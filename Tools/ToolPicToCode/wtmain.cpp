@@ -40,7 +40,7 @@ struct WtPicToCodeApplication : public Wt::WApplication
     this->setTitle("PicToCode");
     const std::string css_filename = "wt.css";
     this->useStyleSheet(css_filename);
-    root()->addWidget(new ribi::WtPicToCodeMenuDialog);
+    root()->addWidget(new ribi::p2c::WtMenuDialog);
   }
 };
 
@@ -53,7 +53,7 @@ Wt::WApplication * createApplication(
 int main(int argc, char* argv[])
 {
   {
-    QFile f(":/images/RichelbilderbeekNlBackground.png");
+    QFile f(":/p2c/images/RichelbilderbeekNlBackground.png");
     f.copy("RichelbilderbeekNlBackground.png");
   }
   ribi::WtAutoConfig::SaveDefaultStylesheet();

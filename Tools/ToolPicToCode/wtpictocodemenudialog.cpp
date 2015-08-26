@@ -39,7 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #pragma GCC diagnostic pop
 
-ribi::WtPicToCodeMenuDialog::WtPicToCodeMenuDialog()
+ribi::p2c::WtMenuDialog::WtMenuDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   {
@@ -80,7 +80,7 @@ ribi::WtPicToCodeMenuDialog::WtPicToCodeMenuDialog()
     {
       Wt::WMenuItem * const item = new Wt::WMenuItem(
         "Start",
-        new WtPicToCodeMainDialog);
+        new WtMainDialog);
       menu->addItem(item);
     }
     {
@@ -97,9 +97,9 @@ ribi::WtPicToCodeMenuDialog::WtPicToCodeMenuDialog()
   }
 }
 
-ribi::WtAboutDialog * ribi::WtPicToCodeMenuDialog::CreateNewAboutDialog() const
+ribi::WtAboutDialog * ribi::p2c::WtMenuDialog::CreateNewAboutDialog() const
 {
-  About a = PicToCodeMenuDialog().GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   return d;

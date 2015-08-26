@@ -38,15 +38,15 @@ struct QImage;
 namespace ribi {
 namespace p2c {
 
-class QtPicToCodeMainDialog : public QtHideAndShowDialog
+class QtMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtPicToCodeMainDialog(QWidget *parent = 0);
-  QtPicToCodeMainDialog(const QtPicToCodeMainDialog&) = delete;
-  QtPicToCodeMainDialog& operator=(const QtPicToCodeMainDialog&) = delete;
-  ~QtPicToCodeMainDialog() noexcept;
+  explicit QtMainDialog(QWidget *parent = 0);
+  QtMainDialog(const QtMainDialog&) = delete;
+  QtMainDialog& operator=(const QtMainDialog&) = delete;
+  ~QtMainDialog() noexcept;
 
 private:
   Ui::QtPicToCodeMainDialog *ui;

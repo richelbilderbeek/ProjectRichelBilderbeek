@@ -34,9 +34,9 @@ struct QImage;
 namespace ribi {
 namespace p2c {
 
-struct PicToCodeMainDialog
+struct MainDialog
 {
-  PicToCodeMainDialog();
+  MainDialog();
 
   void SetInputFile(const std::string& filename);
   void SetInputImage(const QImage& image);

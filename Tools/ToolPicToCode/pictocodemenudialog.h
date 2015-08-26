@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 namespace p2c {
 
-struct PicToCodeMenuDialog final : public MenuDialog
+struct MenuDialog final : public ::ribi::MenuDialog
 {
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;

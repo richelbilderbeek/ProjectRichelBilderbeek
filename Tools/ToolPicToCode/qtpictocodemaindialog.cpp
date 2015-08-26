@@ -40,7 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtpictocodemaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::p2c::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent)
+ribi::p2c::QtMainDialog::QtMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPicToCodeMainDialog)
 {
@@ -57,14 +57,14 @@ ribi::p2c::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent)
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::p2c::QtPicToCodeMainDialog::~QtPicToCodeMainDialog() noexcept
+ribi::p2c::QtMainDialog::~QtMainDialog() noexcept
 {
   delete ui;
 }
 
 
 
-void ribi::p2c::QtPicToCodeMainDialog::on_button_select_file_clicked()
+void ribi::p2c::QtMainDialog::on_button_select_file_clicked()
 {
   QFileDialog d;
   //Select only picture files
@@ -83,7 +83,7 @@ void ribi::p2c::QtPicToCodeMainDialog::on_button_select_file_clicked()
   ui->label_picture->setPixmap(QPixmap(filename));
 }
 
-void ribi::p2c::QtPicToCodeMainDialog::on_button_convert_clicked()
+void ribi::p2c::QtMainDialog::on_button_convert_clicked()
 {
   const std::vector<std::string> v
     = (ui->radio_nds->isChecked()
@@ -99,9 +99,9 @@ void ribi::p2c::QtPicToCodeMainDialog::on_button_convert_clicked()
 
 }
 
-std::vector<std::string> ribi::p2c::QtPicToCodeMainDialog::PicToNdsCode(const QImage& qimage) const
+std::vector<std::string> ribi::p2c::QtMainDialog::PicToNdsCode(const QImage& qimage) const
 {
-  PicToCodeMainDialog d;
+  MainDialog d;
   d.SetInputImage(qimage);
   d.SetGraphicsLibrary(GraphicsLibrary::nds);
   std::vector<std::string> v = d.ToHeaderFile();
@@ -113,9 +113,9 @@ std::vector<std::string> ribi::p2c::QtPicToCodeMainDialog::PicToNdsCode(const QI
   return v;
 }
 
-std::vector<std::string> ribi::p2c::QtPicToCodeMainDialog::PicToQtCode(const QImage& qimage) const
+std::vector<std::string> ribi::p2c::QtMainDialog::PicToQtCode(const QImage& qimage) const
 {
-  PicToCodeMainDialog d;
+  MainDialog d;
   d.SetInputImage(qimage);
   d.SetGraphicsLibrary(GraphicsLibrary::qt);
   std::vector<std::string> v = d.ToHeaderFile();
@@ -128,7 +128,7 @@ std::vector<std::string> ribi::p2c::QtPicToCodeMainDialog::PicToQtCode(const QIm
 }
 
 #ifndef NDEBUG
-void ribi::p2c::QtPicToCodeMainDialog::Test() noexcept
+void ribi::p2c::QtMainDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
@@ -136,7 +136,7 @@ void ribi::p2c::QtPicToCodeMainDialog::Test() noexcept
     is_tested = true;
   }
   {
-    PicToCodeMainDialog();
+    MainDialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

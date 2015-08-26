@@ -14,15 +14,15 @@ namespace Ui {
 namespace ribi {
 namespace p2c {
 
-class QtPicToCodeMenuDialog : public QtHideAndShowDialog
+class QtMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtPicToCodeMenuDialog(QWidget *parent = 0);
-  QtPicToCodeMenuDialog(const QtPicToCodeMenuDialog&) = delete;
-  QtPicToCodeMenuDialog& operator=(const QtPicToCodeMenuDialog&) = delete;
-  ~QtPicToCodeMenuDialog() noexcept;
+  explicit QtMenuDialog(QWidget *parent = 0);
+  QtMenuDialog(const QtMenuDialog&) = delete;
+  QtMenuDialog& operator=(const QtMenuDialog&) = delete;
+  ~QtMenuDialog() noexcept;
 
 protected:
 

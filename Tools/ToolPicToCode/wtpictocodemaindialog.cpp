@@ -39,9 +39,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 #include <QImage>
+
+#include "pictocodemaindialog.h"
+
 #pragma GCC diagnostic pop
 
-ribi::WtPicToCodeMainDialog::WtPicToCodeMainDialog()
+ribi::p2c::WtMainDialog::WtMainDialog()
   : m_button_convert(new Wt::WPushButton("Convert")),
     m_fileupload(new Wt::WFileUpload),
     m_group(new Wt::WButtonGroup),
@@ -57,7 +60,7 @@ ribi::WtPicToCodeMainDialog::WtPicToCodeMainDialog()
     //this->addWidget(m_group);
     {
       {
-        QFile f(":/images/PicNds14x14.png");
+        QFile f(":/p2c/images/PicNds14x14.png");
         f.copy("PicNds14x14.png");
       }
       new Wt::WImage("PicNds14x14.png",container);
@@ -68,7 +71,7 @@ ribi::WtPicToCodeMainDialog::WtPicToCodeMainDialog()
     }
     {
       {
-        QFile f(":/images/PicQt14x14.png");
+        QFile f(":/p2c/images/PicQt14x14.png");
         f.copy("PicQt14x14.png");
       }
       new Wt::WImage("PicQt14x14.png",container);
@@ -83,7 +86,8 @@ ribi::WtPicToCodeMainDialog::WtPicToCodeMainDialog()
   {
     m_button_convert->clicked().connect(
       this,
-      &ribi::WtPicToCodeMainDialog::on_convert);
+      &ribi::p2c::WtMainDialog::on_convert
+    );
     m_button_convert->setEnabled(false);
     this->addWidget(m_button_convert);
   }
@@ -99,10 +103,11 @@ ribi::WtPicToCodeMainDialog::WtPicToCodeMainDialog()
 
   m_fileupload->uploaded().connect(
     this,
-    &ribi::WtPicToCodeMainDialog::on_upload_done);
+    &ribi::p2c::WtMainDialog::on_upload_done);
 }
 
-const ribi::PicToCodeMainDialog::YxImage ribi::WtPicToCodeMainDialog::QtImageToImage(const QImage& qt_image) const
+/*
+const ribi::PicToCodeMainDialog::YxImage ribi::p2c::WtPicToCodeMainDialog::QtImageToImage(const QImage& qt_image) const
 {
   const int width  = qt_image.width();
   const int height = qt_image.height();
@@ -124,14 +129,24 @@ const ribi::PicToCodeMainDialog::YxImage ribi::WtPicToCodeMainDialog::QtImageToI
   }
   return image;
 }
+*/
 
-void ribi::WtPicToCodeMainDialog::on_convert()
+void ribi::p2c::WtMainDialog::on_convert()
 {
   QImage image(m_fileupload->spoolFileName().c_str());
-  const std::vector<std::string> v =
-   PicToCodeMainDialog::PicToQtCode(
-    QtImageToImage(image));
+  MainDialog d;
+  d.SetInputImage(image);
+  d.SetGraphicsLibrary(this->m_group->checkedId() == 0 ? GraphicsLibrary::nds : GraphicsLibrary::qt);
 
+  //Concantenate texts
+  std::vector<std::string> v = d.ToHeaderFile();
+  v.push_back("");
+  {
+    const auto w = d.ToImplementationFile();
+    std::copy(std::begin(w),std::end(w),std::back_inserter(v));
+  }
+
+  //Convert text to string
   std::string text;
   for(const auto s:v)
   {
@@ -143,7 +158,7 @@ void ribi::WtPicToCodeMainDialog::on_convert()
   m_text->setText(text.c_str());
 }
 
-void ribi::WtPicToCodeMainDialog::on_upload_done()
+void ribi::p2c::WtMainDialog::on_upload_done()
 {
   m_button_convert->setEnabled(true);
 }

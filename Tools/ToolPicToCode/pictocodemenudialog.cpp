@@ -33,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "pictocodemaindialog.h"
 
-int ribi::p2c::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::p2c::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -177,7 +177,7 @@ int ribi::p2c::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::strin
     std::cout << "Header (.h) filename: " << h_file << '\n';
   }
 
-  PicToCodeMainDialog d;
+  MainDialog d;
   d.SetInputFile(image_file);
   d.SetGraphicsLibrary(graphics_library);
 
@@ -204,7 +204,7 @@ int ribi::p2c::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::strin
   return 0;
 }
 
-ribi::About ribi::p2c::PicToCodeMenuDialog::GetAbout() const noexcept
+ribi::About ribi::p2c::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -221,7 +221,7 @@ ribi::About ribi::p2c::PicToCodeMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-ribi::Help ribi::p2c::PicToCodeMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::p2c::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -240,7 +240,7 @@ ribi::Help ribi::p2c::PicToCodeMenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::p2c::PicToCodeMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::p2c::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramPicToCode
@@ -249,12 +249,12 @@ boost::shared_ptr<const ribi::Program> ribi::p2c::PicToCodeMenuDialog::GetProgra
   return p;
 }
 
-std::string ribi::p2c::PicToCodeMenuDialog::GetVersion() const noexcept
+std::string ribi::p2c::MenuDialog::GetVersion() const noexcept
 {
   return "1.6";
 }
 
-std::vector<std::string> ribi::p2c::PicToCodeMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::p2c::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-10-10: version 1.0: initial version",
@@ -268,7 +268,7 @@ std::vector<std::string> ribi::p2c::PicToCodeMenuDialog::GetVersionHistory() con
 }
 
 #ifndef NDEBUG
-void ribi::p2c::PicToCodeMenuDialog::Test() noexcept
+void ribi::p2c::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
@@ -277,11 +277,11 @@ void ribi::p2c::PicToCodeMenuDialog::Test() noexcept
   }
   {
     fileio::FileIo();
-    PicToCodeMainDialog();
+    MainDialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 
-  PicToCodeMenuDialog d;
+  MenuDialog d;
   const std::string temp_png{"temp.png"};
   const std::string temp_h{"temp.h"};
   const std::string temp_cpp{"temp.cpp"};
