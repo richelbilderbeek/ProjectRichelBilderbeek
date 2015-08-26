@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>151</width>
-    <height>210</height>
+    <width>154</width>
+    <height>231</height>
    </rect>
   </property>
   <property name="font">
@@ -19,7 +19,7 @@
    <string>PicToCode</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolPicToCode.qrc">
+   <iconset>
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -45,7 +45,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolPicToCode.qrc">:/images/PicNds14x14.png</pixmap>
+      <pixmap resource="ToolPicToCode.qrc">:/p2c/images/PicNds14x14.png</pixmap>
      </property>
     </widget>
    </item>
@@ -55,7 +55,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolPicToCode.qrc">:/images/PicQt14x14.png</pixmap>
+      <pixmap resource="ToolPicToCode.qrc">:/p2c/images/PicQt14x14.png</pixmap>
      </property>
     </widget>
    </item>
@@ -99,7 +99,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolPicToCode.qrc">:/images/PicTo14x14.png</pixmap>
+      <pixmap resource="ToolPicToCode.qrc">:/p2c/images/PicTo14x14.png</pixmap>
      </property>
     </widget>
    </item>
@@ -109,7 +109,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolPicToCode.qrc">:/images/PicStl14x14.png</pixmap>
+      <pixmap resource="ToolPicToCode.qrc">:/p2c/images/PicStl14x14.png</pixmap>
      </property>
     </widget>
    </item>

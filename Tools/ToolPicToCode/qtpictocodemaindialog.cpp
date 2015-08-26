@@ -101,12 +101,30 @@ void ribi::p2c::QtPicToCodeMainDialog::on_button_convert_clicked()
 
 std::vector<std::string> ribi::p2c::QtPicToCodeMainDialog::PicToNdsCode(const QImage& qimage) const
 {
-  return PicToCodeMainDialog().PicToNdsCode(ImageToImage(qimage));
+  PicToCodeMainDialog d;
+  d.SetInputImage(qimage);
+  d.SetGraphicsLibrary(GraphicsLibrary::nds);
+  std::vector<std::string> v = d.ToHeaderFile();
+  v.push_back("");
+  {
+    const auto w = d.ToImplementationFile();
+    std::copy(std::begin(w),std::end(w),std::back_inserter(v));
+  }
+  return v;
 }
 
 std::vector<std::string> ribi::p2c::QtPicToCodeMainDialog::PicToQtCode(const QImage& qimage) const
 {
-  return PicToCodeMainDialog().PicToQtCode(ImageToImage(qimage));
+  PicToCodeMainDialog d;
+  d.SetInputImage(qimage);
+  d.SetGraphicsLibrary(GraphicsLibrary::qt);
+  std::vector<std::string> v = d.ToHeaderFile();
+  v.push_back("");
+  {
+    const auto w = d.ToImplementationFile();
+    std::copy(std::begin(w),std::end(w),std::back_inserter(v));
+  }
+  return v;
 }
 
 #ifndef NDEBUG
@@ -116,6 +134,9 @@ void ribi::p2c::QtPicToCodeMainDialog::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    PicToCodeMainDialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

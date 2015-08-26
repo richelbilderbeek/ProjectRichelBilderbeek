@@ -36,7 +36,8 @@ bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const ConceptMap * c
     if (m_verbose) { TRACE("No concept map"); }
     return false;
   }
-  if (conceptmap->GetSelectedNodes().size() != 2)
+  const auto selected_nodes = conceptmap->GetSelectedNodes();
+  if (selected_nodes.size() != 2)
   {
     if (m_verbose)
     {
@@ -44,6 +45,16 @@ bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const ConceptMap * c
       msg << "Number of selected nodes (" << conceptmap->GetSelectedNodes().size() << " is not equal to two";
       TRACE(msg.str());
     }
+    return false;
+  }
+  if (!conceptmap->HasNode(selected_nodes[0]))
+  {
+    if (m_verbose) { TRACE("From node is member of an edge"); }
+    return false;
+  }
+  if (!conceptmap->HasNode(selected_nodes[1]))
+  {
+    if (m_verbose) { TRACE("'To' node is member of an edge"); }
     return false;
   }
   return true;
@@ -56,9 +67,10 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(ConceptMap * const conc
   assert(CanDoCommand(concept_map));
 
   m_concept_map = concept_map;
-  assert(m_concept_map->GetSelectedNodes().size() == 2);
-  m_nodes.push_back(m_concept_map->GetSelectedNodes()[0]);
-  m_nodes.push_back(m_concept_map->GetSelectedNodes()[1]);
+  const auto selected_nodes = m_concept_map->GetSelectedNodes();
+  assert(selected_nodes.size() == 2);
+  m_nodes.push_back(selected_nodes[0]);
+  m_nodes.push_back(selected_nodes[1]);
 
   assert(m_nodes.size() == 2);
   assert(m_nodes[0]);

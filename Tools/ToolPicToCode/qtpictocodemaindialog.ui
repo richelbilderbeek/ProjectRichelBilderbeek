@@ -20,7 +20,7 @@
    <string>PicToCode</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolPicToCode.qrc">
+   <iconset>
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="windowFilePath">
@@ -44,7 +44,7 @@
         <x>0</x>
         <y>0</y>
         <width>508</width>
-        <height>102</height>
+        <height>106</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -87,7 +87,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolPicToCode.qrc">:/images/PicNds14x14.png</pixmap>
+      <pixmap resource="ToolPicToCode.qrc">:/p2c/images/PicNds14x14.png</pixmap>
      </property>
     </widget>
    </item>
@@ -133,7 +133,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolPicToCode.qrc">:/images/PicQt14x14.png</pixmap>
+      <pixmap resource="ToolPicToCode.qrc">:/p2c/images/PicQt14x14.png</pixmap>
      </property>
     </widget>
    </item>
