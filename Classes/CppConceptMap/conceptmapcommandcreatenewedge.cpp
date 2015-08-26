@@ -56,6 +56,7 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(ConceptMap * const conc
   assert(CanDoCommand(concept_map));
 
   m_concept_map = concept_map;
+  assert(m_concept_map->GetSelectedNodes().size() == 2);
   m_nodes.push_back(m_concept_map->GetSelectedNodes()[0]);
   m_nodes.push_back(m_concept_map->GetSelectedNodes()[1]);
 

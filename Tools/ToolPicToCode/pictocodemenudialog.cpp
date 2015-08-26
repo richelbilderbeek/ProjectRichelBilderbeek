@@ -45,6 +45,14 @@ int ribi::p2c::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::strin
     return 1;
   }
 
+  bool verbose{true};
+  if (std::count(std::begin(argv),std::end(argv),"-s")
+    + std::count(std::begin(argv),std::end(argv),"--silent") >= 1
+  )
+  {
+    verbose = false;
+  }
+
   //Image file
   std::string image_file;
   if (std::count(std::begin(argv),std::end(argv),"-f")
@@ -72,7 +80,7 @@ int ribi::p2c::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::strin
   }
 
   assert(fileio::FileIo().IsRegularFile(image_file));
-  std::cout << "Input image file: " << image_file << '\n';
+  if (verbose) { std::cout << "Input image file: " << image_file << '\n'; }
 
   //GraphicsLibrary
   GraphicsLibrary graphics_library;
@@ -103,14 +111,97 @@ int ribi::p2c::PicToCodeMenuDialog::ExecuteSpecific(const std::vector<std::strin
       }
     }
   }
+  if (verbose)
+  {
+    std::cout << "Graphics library: "
+      << (graphics_library == GraphicsLibrary::nds ? "NDS" : "Qt")
+      << '\n'
+    ;
+  }
 
-  std::cout << "Graphics library: "
-    << (graphics_library == GraphicsLibrary::nds ? "NDS" : "Qt") << '\n';
+  //Implementation file
+  std::string cpp_file;
+  if (std::count(std::begin(argv),std::end(argv),"-c")
+    + std::count(std::begin(argv),std::end(argv),"--cpp_file") == 0
+  )
+  {
+    std::cout << "Please add the name of an implementation (.cpp) file" << '\n';
+    return 1;
+  }
+  if (std::count(std::begin(argv),std::end(argv),"-c")
+    + std::count(std::begin(argv),std::end(argv),"--cpp_file") == 2
+  )
+  {
+    std::cout << "Please add the name of an implementation (.cpp) file just once" << '\n';
+    return 1;
+  }
+  for (int i=1; i!=argc-1; ++i)
+  {
+    if (argv[i] == "-c" || argv[i] == "--cpp_file")
+    {
+      cpp_file = argv[i + 1];
+      break;
+    }
+  }
+  if (verbose)
+  {
+    std::cout << "Implementation (.cpp) filename: " << cpp_file << '\n';
+  }
 
+  //Header file
+  std::string h_file;
+  if (std::count(std::begin(argv),std::end(argv),"-e")
+    + std::count(std::begin(argv),std::end(argv),"--h_file") == 0
+  )
+  {
+    std::cout << "Please add the name of a header (.h) file" << '\n';
+    return 1;
+  }
+  if (std::count(std::begin(argv),std::end(argv),"-e")
+    + std::count(std::begin(argv),std::end(argv),"--h_file") == 2
+  )
+  {
+    std::cout << "Please add the name of a header (.h) file just once" << '\n';
+    return 1;
+  }
+  for (int i=1; i!=argc-1; ++i)
+  {
+    if (argv[i] == "-e" || argv[i] == "--h_file")
+    {
+      h_file = argv[i + 1];
+      break;
+    }
+  }
+  if (verbose)
+  {
+    std::cout << "Header (.h) filename: " << h_file << '\n';
+  }
 
-  //d.Execute( { "PicToCode", "-f", temp_png, "-t", "nds", "-c", temp_cpp, "-h", temp_h } );
+  PicToCodeMainDialog d;
+  d.SetInputFile(image_file);
+  d.SetGraphicsLibrary(graphics_library);
 
-  return 1;
+  //Create header file
+  {
+    std::ofstream f(h_file);
+    const auto text = d.ToHeaderFile();
+    std::copy(std::begin(text),std::end(text),std::ostream_iterator<std::string>(f,"\n"));
+  }
+
+  //Create implementation file
+  {
+    std::ofstream f(cpp_file);
+    const auto text = d.ToImplementationFile();
+    std::copy(std::begin(text),std::end(text),std::ostream_iterator<std::string>(f,"\n"));
+  }
+
+  if (verbose)
+  {
+    std::cout << "Creating header file: " << (fileio::FileIo().IsRegularFile(h_file) ? "OK" : "FAIL") << '\n';
+    std::cout << "Creating implementation file: " << (fileio::FileIo().IsRegularFile(cpp_file) ? "OK" : "FAIL") << '\n';
+  }
+
+  return 0;
 }
 
 ribi::About ribi::p2c::PicToCodeMenuDialog::GetAbout() const noexcept
@@ -136,15 +227,15 @@ ribi::Help ribi::p2c::PicToCodeMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-      Help::Option('c',"implementation_file","C++ implementation file name"),
+      Help::Option('c',"cpp_file","C++ implementation file name"),
       Help::Option('f',"image_file","input image filename"),
-      Help::Option('h',"header_file","C++ header file name"),
+      Help::Option('e',"h_file","C++ header file name"),
       Help::Option('s',"silent","show no output on screen"),
       Help::Option('t',"type","NDS or Qt"),
     },
     {
-      GetAbout().GetFileTitle() + " -f pic.png -t nds -c pic.cpp -h pic.h -v",
-      GetAbout().GetFileTitle() + " -f pic.png -t qt",
+      GetAbout().GetFileTitle() + " -f pic.png -t nds -c pic.cpp -h pic.h -s",
+      GetAbout().GetFileTitle() + " --image_file pic.png --type qt --cpp_file pic.cpp --h_file pic.h"
     }
   );
 }
@@ -197,7 +288,15 @@ void ribi::p2c::PicToCodeMenuDialog::Test() noexcept
   QImage image(":/p2c/images/R.png");
   image.save(temp_png.c_str());
   assert(QFile::exists(temp_png.c_str()));
-  d.Execute( { "PicToCode", "-f", temp_png, "-t", "nds", "-c", temp_cpp, "-h", temp_h } );
+  d.Execute(
+    { "PicToCode",
+      "-f", temp_png,
+      "-t", "nds",
+      "-c", temp_cpp,
+      "-e", temp_h,
+      "-s"  //Be silent
+    }
+  );
   assert(QFile::exists(temp_cpp.c_str()));
   assert(QFile::exists(temp_h.c_str()));
   std::remove(temp_png.c_str());

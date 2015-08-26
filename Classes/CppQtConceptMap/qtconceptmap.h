@@ -178,15 +178,10 @@ private:
 
   bool m_verbose;
 
-  ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
-  ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
+  ///Adds an Edge, returns the freshly created QtEdge
   QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
 
-  ///Add a new edge
-  //QtEdge * AddEdge(QtNode * const from, QtNode* const to);
-
-  ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
+  ///Adds a Node, returns the freshly created QtNode
   QtNode * AddNode(const boost::shared_ptr<Node> node);
 
   ///Called when a Node gets deleted from the ConceptMap
