@@ -47,6 +47,7 @@ void ribi::dws::NdsGameDialog::DoDisplay(const Widget& widget)
   const int block_width {256 / n_cols};
   const int block_height{192 / n_rows};
 
+
   for (int row=0; row!=n_rows; ++row)
   {
     assert(row < static_cast<int>(v.size()));

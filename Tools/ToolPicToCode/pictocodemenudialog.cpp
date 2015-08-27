@@ -293,7 +293,7 @@ std::vector<std::string> ribi::p2c::MenuDialog::GetVersionHistory() const noexce
     "2013-11-04: version 1.4: conformized to ProjectRichelBilderbeekConsole",
     "2015-08-20: version 1.5: NDS code has seperate header and implementation file",
     "2015-08-26: version 1.6: created command-line version",
-    "2015-08-27: version 1.7: added --class_name flag to command-line version",
+    "2015-08-27: version 1.7: added --class_name flag to command-line version, creates correct NDS images",
   };
 }
 

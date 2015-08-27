@@ -13,9 +13,10 @@ int main(/* int argc, char* argv[0] */)
 
   try
   {
-    ribi::dws::Widget w;
+    //Screen is 256x196 (w x h), thus 8x6 blocks of 32x32
     ribi::dws::NdsGameDialog d;
-    w.SetDisplay(&d);
+    ribi::dws::Widget w(&d,8,6);
+    //w.SetDisplay(&d);
     w.Execute();
   }
   catch (std::logic_error& e)

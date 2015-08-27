@@ -160,9 +160,10 @@ std::vector<std::string> ribi::p2c::MainDialog::ToNdsImplementationFile() const
     {
       const int a = m_image.m_v[y][x].a;
       if (!a) continue;
-      const int r = m_image.m_v[y][x].r;
-      const int g = m_image.m_v[y][x].g;
-      const int b = m_image.m_v[y][x].b;
+      //NDS uses 5 bit colors (32), where Pixel uses 8 bit (256)
+      const int r = m_image.m_v[y][x].r / 8;
+      const int g = m_image.m_v[y][x].g / 8;
+      const int b = m_image.m_v[y][x].b / 8;
       v.push_back(
           "  buffer[((y+"
         + boost::lexical_cast<std::string>(y)
