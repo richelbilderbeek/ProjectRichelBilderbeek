@@ -6,11 +6,11 @@
 namespace ribi {
 namespace dws {
 
-struct DasWahreSchlagerfestTerminal : public DasWahreSchlagerfestDisplay
+struct Terminal : public Display
 {
-  DasWahreSchlagerfestTerminal();
-  void Display(const DasWahreSchlagerfestWidget& widget) override;
-  void OnChanged(const DasWahreSchlagerfestWidget& widget) override;
+  Terminal();
+  void DoDisplay(const Widget& widget) override;
+  void OnChanged(const Widget& widget) override;
   ribi::dws::Key RequestKey() override;
   void SetAutoPlay(const bool auto_play) noexcept { m_auto_play = auto_play; }
   private:

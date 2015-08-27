@@ -29,10 +29,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "daswahreschlagerfestwidget.h"
 #pragma GCC diagnostic pop
 
-ribi::dws::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) noexcept
+ribi::dws::QtDwsWidget::QtDwsWidget(QWidget *parent) noexcept
   : QWidget(parent),
     m_keys{},
-    m_widget(new DasWahreSchlagerfestWidget(this)),
+    m_widget(new Widget(this)),
     m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
     m_bratwurst(":/images/GameDasWahreSchlagerfestBratwurst.png"),
     m_empty(":/images/GameDasWahreSchlagerfestSmiley.png"),
@@ -44,26 +44,26 @@ ribi::dws::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *p
   assert(m_richel.width() == 102);
 }
 
-void ribi::dws::QtDasWahreSchlagerfestWidget::Display(const DasWahreSchlagerfestWidget& /* widget */)
+void ribi::dws::QtDwsWidget::DoDisplay(const Widget& /* widget */)
 {
   this->repaint();
 }
 
-const QPixmap& ribi::dws::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept
+const QPixmap& ribi::dws::QtDwsWidget::GetPixmap(const Widget::Tile& tile) const noexcept
 {
   switch (tile)
   {
-    case DasWahreSchlagerfestWidget::Tile::beer     : return m_beer;
-    case DasWahreSchlagerfestWidget::Tile::bratwurst: return m_bratwurst;
-    case DasWahreSchlagerfestWidget::Tile::empty    : return m_empty;
-    case DasWahreSchlagerfestWidget::Tile::richel   : return m_richel;
+    case Widget::Tile::beer     : return m_beer;
+    case Widget::Tile::bratwurst: return m_bratwurst;
+    case Widget::Tile::empty    : return m_empty;
+    case Widget::Tile::richel   : return m_richel;
   }
   assert(!"Should not get here");
-  throw std::logic_error("ribi::dws::QtDasWahreSchlagerfestWidget::GetPixmap");
+  throw std::logic_error("ribi::dws::QtDwsWidget::GetPixmap");
 }
 
 
-void ribi::dws::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e) noexcept
+void ribi::dws::QtDwsWidget::keyPressEvent(QKeyEvent * e) noexcept
 {
   switch (e->key())
   {
@@ -77,15 +77,15 @@ void ribi::dws::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e) noexc
   }
 }
 
-void ribi::dws::QtDasWahreSchlagerfestWidget::OnChanged(const DasWahreSchlagerfestWidget& /* widget */)
+void ribi::dws::QtDwsWidget::OnChanged(const Widget& /* widget */)
 {
   this->repaint();
 }
 
-void ribi::dws::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
+void ribi::dws::QtDwsWidget::paintEvent(QPaintEvent *) noexcept
 {
   QPainter painter(this);
-  const std::vector<std::vector<DasWahreSchlagerfestWidget::Tile> > & v = m_widget->GetTiles();
+  const std::vector<std::vector<Widget::Tile> > & v = m_widget->GetTiles();
   assert(!v.empty());
   const int maxy = static_cast<int>(v.size()   );
   const int maxx = static_cast<int>(v[0].size());
@@ -95,7 +95,7 @@ void ribi::dws::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
   for (int y=0; y!=maxy; ++y)
   {
     assert(y < static_cast<int>(v.size()));
-    const std::vector<DasWahreSchlagerfestWidget::Tile>& line = v[y];
+    const std::vector<Widget::Tile>& line = v[y];
     assert(maxx == static_cast<int>(line.size()));
     const int y1 = static_cast<int>(block_height * static_cast<double>(y  ));
     //const int y2 = static_cast<int>(block_height * static_cast<double>(y+1));
@@ -112,7 +112,7 @@ void ribi::dws::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
   }
   //Draw cursor
   {
-    const DasWahreSchlagerfestWidget::Cursor cursor = m_widget->GetCursor();
+    const Widget::Cursor cursor = m_widget->GetCursor();
     const int x = cursor.x * block_width;
     const int y = cursor.y * block_height;
     const QPixmap& pixmap = GetPixmap(cursor.tile);
@@ -122,7 +122,7 @@ void ribi::dws::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
 }
 
 
-ribi::dws::Key ribi::dws::QtDasWahreSchlagerfestWidget::RequestKey()
+ribi::dws::Key ribi::dws::QtDwsWidget::RequestKey()
 {
   while (1)
   {

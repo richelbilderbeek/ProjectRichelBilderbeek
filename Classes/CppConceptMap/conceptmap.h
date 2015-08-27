@@ -92,6 +92,7 @@ struct ConceptMap
   SubConceptMaps CreateSubs() const noexcept;
 
   ///Delete an edge
+  void DeleteEdge(const ReadOnlyEdgePtr& edge) noexcept;
   void DeleteEdge(const EdgePtr& edge) noexcept;
 
   ///Delete a node and all the edges connected to it
@@ -186,7 +187,7 @@ struct ConceptMap
 
   ///Emitted when an Edge is deleted
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(boost::shared_ptr<Edge>)> m_signal_delete_edge;
+  boost::signals2::signal<void(const ReadOnlyEdgePtr)> m_signal_delete_edge;
 
   ///Emitted when a Node is deleted
   ///This has to be handled by QtConceptMapWidget

@@ -45,7 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "chesswidget.h"
 #include "codetohtmlmenudialog.h"
 #include "conceptmap.h"
-#include "conceptmapwidget.h"
+//#include "conceptmapwidget.h"
 #include "connectthree.h"
 #include "connectthreemenudialog.h"
 #include "testmultivectormenudialog.h"
@@ -352,7 +352,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("Copy_if version: " + Copy_if_version::GetVersion());
   a.AddLibrary("Counter version: " + Counter::GetVersion());
   a.AddLibrary("CreateQtProjectZipFile version: " + CreateQtProjectZipFile::MenuDialog().GetVersion());
-  a.AddLibrary("DasWahreSchlagerfest version: " + DasWahreSchlagerfestMenuDialog().GetVersion());
+  a.AddLibrary("DasWahreSchlagerfest version: " + dws::MenuDialog().GetVersion());
   a.AddLibrary("Dial version: " + Dial::GetVersion());
   a.AddLibrary("DialWidget version: " + DialWidget::GetVersion());
   a.AddLibrary("DnaR version: " + ribi::DnaR().GetVersion());
@@ -524,7 +524,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       case ProgramType::createGlossary: p.reset(new CreateGlossaryMenuDialog); break;
       case ProgramType::createQtProjectZipFile: p.reset(new CreateQtProjectZipFile::MenuDialog); break;
       case ProgramType::crossPoll: break;
-      case ProgramType::dasWahreSchlagerfest: p.reset(new DasWahreSchlagerfestMenuDialog); break;
+      case ProgramType::dasWahreSchlagerfest: p.reset(new dws::MenuDialog); break;
       case ProgramType::dasWahreSchlagerfestVcl: break;
       case ProgramType::dotMatrix: p.reset(new DotMatrixMenuDialog); break;
       case ProgramType::dotMatrixVcl: break;
@@ -578,7 +578,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       case ProgramType::paperRockScissorsWithTrait: p.reset(new ribi::prswt::MenuDialog); break;
       case ProgramType::pause: break;
       case ProgramType::perfectElasticCollision: p.reset(new PerfectElasticCollisionMenuDialog); break;
-      case ProgramType::picToCode: p.reset(new PicToCodeMenuDialog); break;
+      case ProgramType::picToCode: p.reset(new p2c::MenuDialog); break;
       case ProgramType::pixelator: p.reset(new PixelatorMenuDialog); break;
       case ProgramType::pixelatorVcl: break;
       case ProgramType::pokeVolleyVcl: break;

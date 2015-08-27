@@ -132,6 +132,10 @@ void ribi::cmap::QtTestEditConceptMapDialog::OnCheck()
   std::stringstream s;
   s
     << "m_concept_map \n"
+    << "  ->GetConceptMap()->GetNodes().size(): "
+    << m_concept_map->GetConceptMap()->GetNodes().size() << '\n'
+    << "  ->GetConceptMap()->GetEdges().size(): "
+    << m_concept_map->GetConceptMap()->GetEdges().size() << '\n'
     << "  ->GetScene()->selectedItems().size(): "
     << m_concept_map->GetScene()->selectedItems().size() << '\n'
     << "  ->GetConceptMap()->GetSelectedNodes().size(): "

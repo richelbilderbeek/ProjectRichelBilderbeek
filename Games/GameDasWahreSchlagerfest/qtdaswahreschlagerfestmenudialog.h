@@ -27,21 +27,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace Ui {
-class QtDasWahreSchlagerfestMenuDialog;
+  class QtDwsMenuDialog;
 }
 
 namespace ribi {
 namespace dws {
 
-class QtDasWahreSchlagerfestMenuDialog : public QtHideAndShowDialog
+class QtMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
     
 public:
-  explicit QtDasWahreSchlagerfestMenuDialog(QWidget *parent = 0) noexcept;
-  QtDasWahreSchlagerfestMenuDialog(const QtDasWahreSchlagerfestMenuDialog&) = delete;
-  QtDasWahreSchlagerfestMenuDialog& operator=(const QtDasWahreSchlagerfestMenuDialog&) = delete;
-  ~QtDasWahreSchlagerfestMenuDialog() noexcept;
+  explicit QtMenuDialog(QWidget *parent = 0) noexcept;
+  QtMenuDialog(const QtMenuDialog&) = delete;
+  QtMenuDialog& operator=(const QtMenuDialog&) = delete;
+  ~QtMenuDialog() noexcept;
     
 private slots:
   void on_button_start_clicked() noexcept;
@@ -52,7 +52,7 @@ protected:
   void keyPressEvent(QKeyEvent *);
 
 private:
-  Ui::QtDasWahreSchlagerfestMenuDialog *ui;
+  Ui::QtDwsMenuDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -35,9 +35,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::dws::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget *parent) noexcept
+ribi::dws::QtDwsMenuDialog::QtDwsMenuDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtDasWahreSchlagerfestMenuDialog)
+    ui(new Ui::QtDwsMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -45,44 +45,44 @@ ribi::dws::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QW
   ui->setupUi(this);
 }
 
-ribi::dws::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noexcept
+ribi::dws::QtDwsMenuDialog::~QtDwsMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::dws::QtDasWahreSchlagerfestMenuDialog::keyPressEvent(QKeyEvent * e)
+void ribi::dws::QtDwsMenuDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key() == Qt::Key_Escape) { close(); }
 }
 
-void ribi::dws::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked() noexcept
+void ribi::dws::QtDwsMenuDialog::on_button_start_clicked() noexcept
 {
-  QtDasWahreSchlagerfestMainDialog d;
+  QtDwsMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::dws::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked() noexcept
+void ribi::dws::QtDwsMenuDialog::on_button_about_clicked() noexcept
 {
-  QtAboutDialog d(DasWahreSchlagerfestMenuDialog().GetAbout());
+  QtAboutDialog d(MenuDialog().GetAbout());
   d.setWindowIcon(windowIcon());
   d.setStyleSheet(styleSheet());
   ShowChild(&d);
 }
 
-void ribi::dws::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked() noexcept
+void ribi::dws::QtDwsMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::dws::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
+void ribi::dws::QtDwsMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  QtDasWahreSchlagerfestMainDialog();
+  QtDwsMainDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

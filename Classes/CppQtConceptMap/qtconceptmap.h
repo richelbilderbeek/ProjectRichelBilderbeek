@@ -99,7 +99,7 @@ public slots:
 protected:
 
   ///Delete a QtEdge
-  void DeleteQtEdge(QtEdge * const edge);
+  void DeleteQtEdge(const QtEdge * const edge);
 
   ///Delete a Node
   //void DeleteNode(const boost::shared_ptr<QtNode>& node);
@@ -184,11 +184,15 @@ private:
   ///Adds a Node, returns the freshly created QtNode
   QtNode * AddNode(const boost::shared_ptr<Node> node);
 
+  ///Remove all Qt and non-Qt items
+  void CleanMe();
+
+  ///Called when an Edge gets deleted from the ConceptMap
+  void DeleteEdge(const boost::shared_ptr<const Edge> edge);
+
   ///Called when a Node gets deleted from the ConceptMap
   void DeleteNode(const boost::shared_ptr<const Node> node);
 
-  ///Remove all Qt and non-Qt items
-  void CleanMe();
 
   ///Called when an item wants to be edited
   void OnEdgeKeyDownPressed(QtEdge * const item, const int key);

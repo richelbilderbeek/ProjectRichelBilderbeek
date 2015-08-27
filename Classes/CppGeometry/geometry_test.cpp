@@ -1,3 +1,4 @@
+
 #include "geometry.h"
 
 #include <cassert>

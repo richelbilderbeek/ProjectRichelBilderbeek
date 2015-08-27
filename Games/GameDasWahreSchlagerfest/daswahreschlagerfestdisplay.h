@@ -6,13 +6,13 @@
 namespace ribi {
 namespace dws {
 
-struct DasWahreSchlagerfestWidget;
+struct Widget;
 
-struct DasWahreSchlagerfestDisplay
+struct Display
 {
-  virtual ~DasWahreSchlagerfestDisplay() {}
-  virtual void Display(const DasWahreSchlagerfestWidget& widget) = 0;
-  virtual void OnChanged(const DasWahreSchlagerfestWidget& widget) = 0;
+  virtual ~Display() {}
+  virtual void DoDisplay(const Widget& widget) = 0;
+  virtual void OnChanged(const Widget& widget) = 0;
   virtual ribi::dws::Key RequestKey() = 0;
 
 };

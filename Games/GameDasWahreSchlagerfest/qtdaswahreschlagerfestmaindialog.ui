@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtDasWahreSchlagerfestMainDialog</class>
- <widget class="QDialog" name="QtDasWahreSchlagerfestMainDialog">
+ <class>QtDwsMainDialog</class>
+ <widget class="QDialog" name="QtDwsMainDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,7 +19,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="ribi::dws::QtDasWahreSchlagerfestWidget" name="widget" native="true">
+    <widget class="ribi::dws::QtDwsWidget" name="widget" native="true">
      <property name="focusPolicy">
       <enum>Qt::StrongFocus</enum>
      </property>
@@ -29,7 +29,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ribi::dws::QtDasWahreSchlagerfestWidget</class>
+   <class>ribi::dws::QtDwsWidget</class>
    <extends>QWidget</extends>
    <header>qtdaswahreschlagerfestwidget.h</header>
    <container>1</container>

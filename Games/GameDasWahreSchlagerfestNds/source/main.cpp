@@ -13,7 +13,7 @@ int main(/* int argc, char* argv[0] */)
 
   try
   {
-    ribi::dws::DasWahreSchlagerfestWidget w;
+    ribi::dws::Widget w;
     ribi::dws::NdsGameDialog d;
     w.SetDisplay(&d);
     w.Execute();

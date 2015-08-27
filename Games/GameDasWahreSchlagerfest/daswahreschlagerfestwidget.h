@@ -31,10 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 namespace dws {
 
-struct DasWahreSchlagerfestDisplay;
+struct Display;
 
-///DasWahreSchlagerfestWidget contains the game logic of Das Wahre Schlagerfest
-struct DasWahreSchlagerfestWidget
+///Widget contains the game logic of Das Wahre Schlagerfest
+struct Widget
 {
   enum class Tile { empty, beer, bratwurst, richel };
   struct Cursor
@@ -44,15 +44,15 @@ struct DasWahreSchlagerfestWidget
     int x; int y; Tile tile;
   };
 
-  DasWahreSchlagerfestWidget(
-    DasWahreSchlagerfestDisplay * const display = nullptr,
+  Widget(
+    Display * const display = nullptr,
     const int width = 9,
     const int height = 5
   );
-  DasWahreSchlagerfestWidget(const DasWahreSchlagerfestWidget&) = delete;
-  DasWahreSchlagerfestWidget& operator=(const DasWahreSchlagerfestWidget&) = delete;
+  Widget(const Widget&) = delete;
+  Widget& operator=(const Widget&) = delete;
 
-  void Display() const;
+  void DoDisplay() const;
 
   ///Play the game
   void Execute();
@@ -66,14 +66,14 @@ struct DasWahreSchlagerfestWidget
   ///Respond to the user pressing a key
   void PressKey(const ribi::dws::Key key);
 
-  void SetDisplay(DasWahreSchlagerfestDisplay * const display);
+  void SetDisplay(Display * const display);
 
   private:
   ///The cursor
   Cursor m_cursor;
 
   ///The display of the game, can be console, GUI or NDS
-  mutable DasWahreSchlagerfestDisplay * m_display;
+  mutable Display * m_display;
 
   ///The Y-X ordered tiles
   std::vector<std::vector<Tile>> m_v;
@@ -86,7 +86,7 @@ struct DasWahreSchlagerfestWidget
   #endif
 };
 
-std::ostream& operator<<(std::ostream& os,const DasWahreSchlagerfestWidget& w);
+std::ostream& operator<<(std::ostream& os,const Widget& w);
 
 } //~namespace dws
 } //~namespace ribi

@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pictocodemenudialog.h"
 
 #include <cassert>
+#include <fstream>
 #include <iostream>
 #include <cstdlib>
 
@@ -177,9 +178,35 @@ int ribi::p2c::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv)
     std::cout << "Header (.h) filename: " << h_file << '\n';
   }
 
+  //Header file
+  std::string class_name = "Pic";
+  if (std::count(std::begin(argv),std::end(argv),"-n")
+    + std::count(std::begin(argv),std::end(argv),"--class_name") > 1
+  )
+  {
+    std::cout << "Please add the class name just once" << '\n';
+    return 1;
+  }
+  for (int i=1; i!=argc-1; ++i)
+  {
+    if (argv[i] == "-n" || argv[i] == "--class_name")
+    {
+      class_name = argv[i + 1];
+      break;
+    }
+  }
+  if (verbose)
+  {
+    std::cout << "Class name: " << class_name << '\n';
+  }
+
+
+
   MainDialog d;
   d.SetInputFile(image_file);
   d.SetGraphicsLibrary(graphics_library);
+  d.SetClassName(class_name);
+  d.SetHeaderFileName(h_file);
 
   //Create header file
   {
@@ -228,14 +255,16 @@ ribi::Help ribi::p2c::MenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileDescription(),
     {
       Help::Option('c',"cpp_file","C++ implementation file name"),
-      Help::Option('f',"image_file","input image filename"),
       Help::Option('e',"h_file","C++ header file name"),
+      Help::Option('f',"image_file","input image filename"),
+      Help::Option('n',"class_name","class name ('Pic' by default)"),
       Help::Option('s',"silent","show no output on screen"),
       Help::Option('t',"type","NDS or Qt"),
     },
     {
       GetAbout().GetFileTitle() + " -f pic.png -t nds -c pic.cpp -h pic.h -s",
-      GetAbout().GetFileTitle() + " --image_file pic.png --type qt --cpp_file pic.cpp --h_file pic.h"
+      GetAbout().GetFileTitle() + " -f pic.png -t nds -c pic.cpp -h pic.h -l MyPictureClass",
+      GetAbout().GetFileTitle() + " --image_file pic.png --type qt --cpp_file pic.cpp --h_file pic.h",
     }
   );
 }
@@ -251,7 +280,7 @@ boost::shared_ptr<const ribi::Program> ribi::p2c::MenuDialog::GetProgram() const
 
 std::string ribi::p2c::MenuDialog::GetVersion() const noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
 std::vector<std::string> ribi::p2c::MenuDialog::GetVersionHistory() const noexcept
@@ -264,6 +293,7 @@ std::vector<std::string> ribi::p2c::MenuDialog::GetVersionHistory() const noexce
     "2013-11-04: version 1.4: conformized to ProjectRichelBilderbeekConsole",
     "2015-08-20: version 1.5: NDS code has seperate header and implementation file",
     "2015-08-26: version 1.6: created command-line version",
+    "2015-08-27: version 1.7: added --class_name flag to command-line version",
   };
 }
 
@@ -280,27 +310,53 @@ void ribi::p2c::MenuDialog::Test() noexcept
     MainDialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-
-  MenuDialog d;
-  const std::string temp_png{"temp.png"};
-  const std::string temp_h{"temp.h"};
-  const std::string temp_cpp{"temp.cpp"};
-  QImage image(":/p2c/images/R.png");
-  image.save(temp_png.c_str());
-  assert(QFile::exists(temp_png.c_str()));
-  d.Execute(
-    { "PicToCode",
-      "-f", temp_png,
-      "-t", "nds",
-      "-c", temp_cpp,
-      "-e", temp_h,
-      "-s"  //Be silent
-    }
-  );
-  assert(QFile::exists(temp_cpp.c_str()));
-  assert(QFile::exists(temp_h.c_str()));
-  std::remove(temp_png.c_str());
-  std::remove(temp_cpp.c_str());
-  std::remove(temp_h.c_str());
+  {
+    MenuDialog d;
+    const std::string temp_png{"temp.png"};
+    const std::string temp_h{"temp.h"};
+    const std::string temp_cpp{"temp.cpp"};
+    QImage image(":/p2c/images/R.png");
+    image.save(temp_png.c_str());
+    assert(QFile::exists(temp_png.c_str()));
+    d.Execute(
+      { "PicToCode",
+        "-f", temp_png,
+        "-t", "nds",
+        "-c", temp_cpp,
+        "-e", temp_h,
+        "-s"  //Be silent
+      }
+    );
+    assert(QFile::exists(temp_cpp.c_str()));
+    assert(QFile::exists(temp_h.c_str()));
+    std::remove(temp_png.c_str());
+    std::remove(temp_cpp.c_str());
+    std::remove(temp_h.c_str());
+  }
+  //Add classname
+  {
+    MenuDialog d;
+    const std::string temp_png{"temp.png"};
+    const std::string temp_h{"temp.h"};
+    const std::string temp_cpp{"temp.cpp"};
+    QImage image(":/p2c/images/R.png");
+    image.save(temp_png.c_str());
+    assert(QFile::exists(temp_png.c_str()));
+    d.Execute(
+      { "PicToCode",
+        "-f", temp_png,
+        "-t", "nds",
+        "-c", temp_cpp,
+        "-e", temp_h,
+        "-l", "MyPicture",
+        //"-s"  //Be silent
+      }
+    );
+    assert(QFile::exists(temp_cpp.c_str()));
+    assert(QFile::exists(temp_h.c_str()));
+    std::remove(temp_png.c_str());
+    std::remove(temp_cpp.c_str());
+    std::remove(temp_h.c_str());
+  }
 }
 #endif

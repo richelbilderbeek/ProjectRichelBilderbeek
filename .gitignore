@@ -2473,3 +2473,8 @@ libsequence/
 *.qmlproject.user
 Urho/
 -mm
+Games/GameDasWahreSchlagerfestNds/source/picbeer.h
+Games/GameDasWahreSchlagerfestNds/source/picbeer.*
+Games/GameDasWahreSchlagerfestNds/source/picbratwurst.*
+Games/GameDasWahreSchlagerfestNds/source/picbratempty.*
+Games/GameDasWahreSchlagerfestNds/source/picempty.*

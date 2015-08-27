@@ -13,12 +13,12 @@ namespace dws {
 
 //Images are 32x32
 //Screen is 256x196 (w x h), thus 8x6 blocks
-struct NdsGameDialog final : public ribi::dws::DasWahreSchlagerfestDisplay
+struct NdsGameDialog final : public ribi::dws::Display
 {
   NdsGameDialog();
 
-  void Display(const DasWahreSchlagerfestWidget& widget) override;
-  void OnChanged(const DasWahreSchlagerfestWidget& widget) override;
+  void DoDisplay(const Widget& widget) override;
+  void OnChanged(const Widget& widget) override;
   ribi::dws::Key RequestKey() override;
 
 private:

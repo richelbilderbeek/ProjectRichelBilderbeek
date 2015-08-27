@@ -12,9 +12,9 @@ HEADERS  += \
     ndsgamedialog.h \
     ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.h \
     ../../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.h \
-    ../build/GameDasWahreSchlagerfestBeer32x32.h \
-    ../build/GameDasWahreSchlagerfestBratwurs32x32.h \
-    ../build/GameDasWahreSchlagerfestSimley32x32.h
+    picbeer.h \
+    picbratwurst.h \
+    picempty.h
 
 OTHER_FILES += \
     ../../../Games/GameDasWahreSchlagerfest/Licence.txt

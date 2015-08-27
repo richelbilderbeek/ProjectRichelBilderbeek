@@ -330,6 +330,11 @@ ribi::cmap::ConceptMap::SubConceptMaps ribi::cmap::ConceptMap::CreateSubs() cons
 
 void ribi::cmap::ConceptMap::DeleteEdge(const EdgePtr& edge) noexcept
 {
+  DeleteEdge(boost::dynamic_pointer_cast<const Edge>(edge));
+}
+
+void ribi::cmap::ConceptMap::DeleteEdge(const ReadOnlyEdgePtr& edge) noexcept
+{
   #ifndef NDEBUG
   assert(edge);
   //One cannot be sure if the edges are already deleted or not
@@ -352,6 +357,7 @@ void ribi::cmap::ConceptMap::DeleteEdge(const EdgePtr& edge) noexcept
   }
 
   m_edges.erase(std::remove(m_edges.begin(),m_edges.end(),edge),m_edges.end());
+
   m_signal_delete_edge(edge);
 
 
@@ -360,6 +366,7 @@ void ribi::cmap::ConceptMap::DeleteEdge(const EdgePtr& edge) noexcept
   assert(n_edges_before - 1 == n_edges_after);
   #endif
 }
+
 
 void ribi::cmap::ConceptMap::DeleteNode(const NodePtr& node) noexcept
 {
@@ -402,7 +409,6 @@ void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
   this->Unselect( ConstNodes( { node } ) );
 
   //Delete the node itself
-  //Copied from http://www.richelbilderbeek.nl/CppVector.htm
   m_nodes.erase(
     std::remove(
       std::begin(m_nodes),

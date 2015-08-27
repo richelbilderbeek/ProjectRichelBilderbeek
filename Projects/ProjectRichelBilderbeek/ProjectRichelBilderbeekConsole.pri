@@ -3,11 +3,11 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Projects/ProjectRichelBilderbeek/richelbilderbeekmenudialog.cpp \
-    richelbilderbeekplaceholdermenudialog.cpp
+    ../../Projects/ProjectRichelBilderbeek/richelbilderbeekplaceholdermenudialog.cpp
 
 HEADERS += \
     ../../Projects/ProjectRichelBilderbeek/richelbilderbeekmenudialog.h \
-    richelbilderbeekplaceholdermenudialog.h
+    ../../Projects/ProjectRichelBilderbeek/richelbilderbeekplaceholdermenudialog.h
 
 OTHER_FILES += \
     ../../Projects/ProjectRichelBilderbeek/Licence.txt

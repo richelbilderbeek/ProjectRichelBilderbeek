@@ -26,25 +26,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
-namespace Ui {
-class QtDasWahreSchlagerfestMainDialog;
-}
+namespace Ui { class QtDwsMainDialog; }
 
 namespace ribi {
 namespace dws {
 
-class QtDasWahreSchlagerfestMainDialog : public QtHideAndShowDialog
+class QtDwsMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
     
 public:
-  explicit QtDasWahreSchlagerfestMainDialog(QWidget *parent = 0) noexcept;
-  QtDasWahreSchlagerfestMainDialog(const QtDasWahreSchlagerfestMainDialog&) = delete;
-  QtDasWahreSchlagerfestMainDialog& operator=(const QtDasWahreSchlagerfestMainDialog&) = delete;
-  ~QtDasWahreSchlagerfestMainDialog() noexcept;
+  explicit QtDwsMainDialog(QWidget *parent = 0) noexcept;
+  QtDwsMainDialog(const QtDwsMainDialog&) = delete;
+  QtDwsMainDialog& operator=(const QtDwsMainDialog&) = delete;
+  ~QtDwsMainDialog() noexcept;
 
 private:
-  Ui::QtDasWahreSchlagerfestMainDialog *ui;
+  Ui::QtDwsMainDialog *ui;
   void closeEvent(QCloseEvent *);
   void keyPressEvent(QKeyEvent *event);
   #ifndef NDEBUG

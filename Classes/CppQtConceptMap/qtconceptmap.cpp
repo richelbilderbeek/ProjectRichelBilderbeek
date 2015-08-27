@@ -179,7 +179,6 @@ ribi::cmap::QtConceptMap::~QtConceptMap()
 
 }
 
-//Note that there are two AddEdge
 ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
@@ -216,16 +215,6 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   {
     if (m_verbose) { TRACE("Adding 'to' Node to QtConceptMap (as it was not yet in there)"); }
     AddNode(edge->GetTo());
-  }
-  {
-    const auto edges = GetConceptMap()->GetEdges();
-    const int cnt{std::count(std::begin(edges),std::end(edges),edge)};
-    if (cnt == 0)
-    {
-      assert(!"Should never happen???");
-      if (m_verbose) { TRACE("Adding Edge to ConceptMap (as it was not yet in there)"); }
-      GetConceptMap()->AddEdge(edge);
-    }
   }
 
   QtNode * const qtfrom = GetQtNode(edge->GetFrom().get());
@@ -392,18 +381,18 @@ void ribi::cmap::QtConceptMap::CleanMe()
   //Add the invisible examples item
   {
     assert(!GetExamplesItem());
-    QtExamplesItem * const item = new QtExamplesItem;
-    assert(item);
+    QtExamplesItem * const examples_item = new QtExamplesItem;
+    assert(examples_item);
     assert(!m_tools);
-    SetExamplesItem(item);
+    SetExamplesItem(examples_item);
     assert(!m_tools);
     //Signal #4
-    item->m_signal_request_scene_update.connect(
+    examples_item->m_signal_request_scene_update.connect(
       boost::bind(
         &ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this));
-    item->setVisible(false);
-    assert(!item->scene());
-    this->scene()->addItem(item);
+    examples_item->setVisible(false);
+    assert(!examples_item->scene());
+    this->scene()->addItem(examples_item);
   }
 
   //Add the tools item
@@ -421,6 +410,19 @@ void ribi::cmap::QtConceptMap::CleanMe()
 }
 
 
+void ribi::cmap::QtConceptMap::DeleteEdge(const boost::shared_ptr<const Edge> edge)
+{
+  assert(edge);
+
+  //Already deleted
+  if (!GetQtEdgeConst(edge)) { return; }
+
+  assert(GetQtEdgeConst(edge)->scene() == this->GetScene());
+
+  //Delete the QtNode
+  DeleteQtEdge(GetQtEdgeConst(edge));
+}
+
 void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> node)
 {
   assert(node);
@@ -434,27 +436,40 @@ void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> no
   DeleteQtNode(GetQtNodeConst(node.get()));
 }
 
-void ribi::cmap::QtConceptMap::DeleteQtEdge(QtEdge * const qtedge)
+void ribi::cmap::QtConceptMap::DeleteQtEdge(const QtEdge * const qtedge)
 {
-  #ifndef NDEBUG
-  const int n_items_before = this->scene()->items().count();
-  #endif
+  assert(qtedge);
+  if (m_verbose) { TRACE("Start of DeleteQtEdge"); }
 
-  assert(scene()->items().contains(qtedge));
-  //Remove non-GUI edges
-  GetConceptMap()->DeleteEdge(qtedge->GetEdge());
-  //Remove GUI edge
-  this->scene()->removeItem(qtedge);
-  //No left-overs when deleting an edge
-  //DeleteLeftovers();
+  if (m_verbose) { TRACE("Does the ConceptMap still have the Edge?"); }
+  if (GetConceptMap()->HasEdge(qtedge->GetEdge()))
+  {
+    if (m_verbose) { TRACE("Yes, delete the Edge from the ConceptMap"); }
+    GetConceptMap()->DeleteEdge(qtedge->GetEdge());
+    return;
+  }
+  else
+  {
+    if (m_verbose) { TRACE("No, the Edge is already absent int the ConceptMap"); }
+  }
 
-  #ifndef NDEBUG
-  const int n_items_after = this->scene()->items().count();
-  assert(n_items_after + 1 == n_items_before);
-  //Cannot do the check below: in DeleteNode multiple edges are deleted
-  //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
-  //  && "GUI and non-GUI concept map must match");
-  #endif
+  if (m_verbose) { TRACE("Set QtEdge to be not selected"); }
+  const_cast<QtEdge*>(qtedge)->setSelected(false); //Remove const instead of using const-correct std::find on GetQtNodes
+
+  if (m_verbose) { TRACE("Is the QtEdge still present in a QScene?"); }
+  if (qtedge->scene())
+  {
+    if (m_verbose) { TRACE("Yes, QtEdge is still present in a QScene"); }
+    assert(qtedge->scene() == GetScene());
+    assert(!qtedge->GetQtNode()->scene()); //Drawn by QtEdge
+    assert(!qtedge->GetArrow()->scene()); //Drawn by QtEdge
+    //if (m_verbose) { TRACE("Remove QtNode from QScene"); }
+    //this->scene()->removeItem(const_cast<QtEdge*>(qtedge)->GetQtNode().get());
+    //if (m_verbose) { TRACE("Remove QtQuadBezierArrow from QScene"); }
+    //this->scene()->removeItem(const_cast<QtEdge*>(qtedge)->GetArrow().get());
+    if (m_verbose) { TRACE("Remove QtEdge from QScene"); }
+    this->scene()->removeItem(const_cast<QtEdge*>(qtedge));
+  }
 }
 
 void ribi::cmap::QtConceptMap::DeleteQtNode(const QtNode * const qtnode)
@@ -744,17 +759,28 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
     {
       while (1)
       {
-        const auto nodes = this->GetConceptMap()->GetSelectedNodes();
-        if (nodes.empty()) break;
-        const boost::shared_ptr<CommandDeleteNode> command {
-          new CommandDeleteNode(nodes.back())
-        };
-        assert(CanDoCommand(command));
-        DoCommand(command);
+        bool done_command{false};
+        for (const auto node: this->GetConceptMap()->GetSelectedNodes())
+        {
+          const boost::shared_ptr<CommandDeleteNode> command {
+            new CommandDeleteNode(node)
+          };
+          if (CanDoCommand(command)) 
+          { 
+            DoCommand(command); 
+            done_command = true; 
+          }
+        }
+        if (!done_command) break;
       }
+
       while (1)
       {
         const auto edges = this->GetConceptMap()->GetSelectedEdges();
+        if (m_verbose)
+        {
+          std::stringstream s; s << "#selected edges: " << edges.size(); TRACE(s.str());
+        }
         if (edges.empty()) break;
         const boost::shared_ptr<CommandDeleteEdge> command {
           new CommandDeleteEdge(edges.back())
@@ -805,6 +831,10 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         return;
       }
       break;
+    case Qt::Key_Question:
+      UpdateSelection();
+      break;
+
   }
 
   QtKeyboardFriendlyGraphicsView::keyPressEvent(event);
@@ -973,6 +1003,9 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
   m_concept_map->m_signal_add_node.connect(
     boost::bind(&ribi::cmap::QtConceptMap::AddNode,this,boost::lambda::_1)
   );
+  m_concept_map->m_signal_delete_edge.connect(
+    boost::bind(&ribi::cmap::QtConceptMap::DeleteEdge,this,boost::lambda::_1)
+  );
   m_concept_map->m_signal_delete_node.connect(
     boost::bind(&ribi::cmap::QtConceptMap::DeleteNode,this,boost::lambda::_1)
   );
@@ -1032,7 +1065,7 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
       assert(node);
       assert( (IsCenterNode(node) || !IsCenterNode(node))
         && "focal node != center node");
-      QtNode * const qtnode = AddNode(node); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
+      QtNode * const qtnode = AddNode(node);
       qtnodes.push_back(qtnode);
       assert(Collect<QtNode>(scene()).size() == i + 1 && "Node is added to scene");
     }
@@ -1046,7 +1079,7 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
         assert(edge->GetFrom());
         assert(edge->GetTo());
         assert(edge->GetFrom() != edge->GetTo());
-        this->AddEdge(edge); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
+        this->AddEdge(edge);
       }
     );
   }

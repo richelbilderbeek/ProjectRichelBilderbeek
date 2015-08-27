@@ -38,6 +38,8 @@ struct MainDialog
 {
   MainDialog();
 
+  void SetClassName(const std::string& class_name) noexcept { m_class_name = class_name; }
+  void SetHeaderFileName(const std::string& header_filename) noexcept { m_header_filename = header_filename; }
   void SetInputFile(const std::string& filename);
   void SetInputImage(const QImage& image);
   void SetGraphicsLibrary(const GraphicsLibrary graphics_library) noexcept { m_graphics_library = graphics_library; }
@@ -47,7 +49,9 @@ struct MainDialog
 
 
   private:
+  std::string m_class_name;
   GraphicsLibrary m_graphics_library;
+  std::string m_header_filename;
   YxImage m_image;
 
 

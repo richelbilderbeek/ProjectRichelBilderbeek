@@ -29,23 +29,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "daswahreschlagerfestdisplay.h"
 #pragma GCC diagnostic pop
 
-struct DasWahreSchlagerfestWidget;
-namespace Ui {
-  class QtDasWahreSchlagerfestWidget;
-}
+namespace Ui { class QtDwsWidget; }
 
 namespace ribi {
 namespace dws {
 
-class QtDasWahreSchlagerfestWidget : public QWidget, public ribi::dws::DasWahreSchlagerfestDisplay
+struct Widget;
+
+class QtDwsWidget : public QWidget, public ribi::dws::Display
 {
   Q_OBJECT
     
 public:
-  explicit QtDasWahreSchlagerfestWidget(QWidget *parent = 0) noexcept;
+  explicit QtDwsWidget(QWidget *parent = 0) noexcept;
 
-  void Display(const DasWahreSchlagerfestWidget& widget) override;
-  void OnChanged(const DasWahreSchlagerfestWidget& widget) override;
+  void DoDisplay(const Widget& widget) override;
+  void OnChanged(const Widget& widget) override;
   ribi::dws::Key RequestKey() override;
 
 protected:
@@ -54,14 +53,14 @@ protected:
 
 private:
   std::vector<ribi::dws::Key> m_keys;
-  boost::shared_ptr<DasWahreSchlagerfestWidget> m_widget;
+  boost::shared_ptr<Widget> m_widget;
   const QPixmap m_beer;
   const QPixmap m_bratwurst;
   const QPixmap m_empty;
   const QPixmap m_richel;
 
   ///Obtain the pixmap for this tile
-  const QPixmap& GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept;
+  const QPixmap& GetPixmap(const Widget::Tile& tile) const noexcept;
 
 
 };

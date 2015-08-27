@@ -4,13 +4,13 @@
 #include "textcanvas.h"
 #include "daswahreschlagerfestwidget.h"
 
-ribi::dws::DasWahreSchlagerfestTerminal::DasWahreSchlagerfestTerminal()
+ribi::dws::Terminal::Terminal()
   : m_auto_play{false}
 {
 
 }
 
-void ribi::dws::DasWahreSchlagerfestTerminal::Display(const DasWahreSchlagerfestWidget& widget)
+void ribi::dws::Terminal::DoDisplay(const Widget& widget)
 {
 
   const int n_rows = static_cast<int>(widget.GetTiles().size());
@@ -24,16 +24,16 @@ void ribi::dws::DasWahreSchlagerfestTerminal::Display(const DasWahreSchlagerfest
   {
     for (int col=0; col!=n_cols; ++col)
     {
-      DasWahreSchlagerfestWidget::Tile tile = widget.GetTiles()[row][col];
+      Widget::Tile tile = widget.GetTiles()[row][col];
       const auto cursor = widget.GetCursor();
       if (col == cursor.x && row == cursor.y) { tile = cursor.tile; }
       char c = ' ';
       switch (tile)
       {
-        case DasWahreSchlagerfestWidget::Tile::beer     : c = 'V'; break;
-        case DasWahreSchlagerfestWidget::Tile::bratwurst: c = 'U'; break;
-        case DasWahreSchlagerfestWidget::Tile::empty    : c = '.'; break;
-        case DasWahreSchlagerfestWidget::Tile::richel   : c = 'R'; break;
+        case Widget::Tile::beer     : c = 'V'; break;
+        case Widget::Tile::bratwurst: c = 'U'; break;
+        case Widget::Tile::empty    : c = '.'; break;
+        case Widget::Tile::richel   : c = 'R'; break;
       }
       canvas.PutChar(col,row,c);
     }
@@ -41,12 +41,12 @@ void ribi::dws::DasWahreSchlagerfestTerminal::Display(const DasWahreSchlagerfest
   std::cout << canvas << std::endl;
 }
 
-void ribi::dws::DasWahreSchlagerfestTerminal::OnChanged(const DasWahreSchlagerfestWidget& /* widget */)
+void ribi::dws::Terminal::OnChanged(const Widget& /* widget */)
 {
   //Display(widget);
 }
 
-ribi::dws::Key ribi::dws::DasWahreSchlagerfestTerminal::RequestKey()
+ribi::dws::Key ribi::dws::Terminal::RequestKey()
 {
   if (m_auto_play)
   {

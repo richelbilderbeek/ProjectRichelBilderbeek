@@ -29,9 +29,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testtimer.h"
 #pragma GCC diagnostic pop
 
-ribi::dws::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget *parent) noexcept
+ribi::dws::QtDwsMainDialog::QtDwsMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtDasWahreSchlagerfestMainDialog)
+    ui(new Ui::QtDwsMainDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -40,33 +40,33 @@ ribi::dws::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QW
   QObject::connect(ui->widget,SIGNAL(destroyed()),this,SLOT(close()));
 }
 
-ribi::dws::QtDasWahreSchlagerfestMainDialog::~QtDasWahreSchlagerfestMainDialog() noexcept
+ribi::dws::QtDwsMainDialog::~QtDwsMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::dws::QtDasWahreSchlagerfestMainDialog::closeEvent(QCloseEvent * /*event*/ )
+void ribi::dws::QtDwsMainDialog::closeEvent(QCloseEvent * /*event*/ )
 {
   close_me();
 }
 
-void ribi::dws::QtDasWahreSchlagerfestMainDialog::keyPressEvent(QKeyEvent *event)
+void ribi::dws::QtDwsMainDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 
 #ifndef NDEBUG
-void ribi::dws::QtDasWahreSchlagerfestMainDialog::Test() noexcept
+void ribi::dws::QtDwsMainDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  QtDasWahreSchlagerfestWidget w;
+  QtDwsWidget w;
   w.show();
-  DasWahreSchlagerfestWidget g(&w);
+  Widget g(&w);
   g.Execute();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

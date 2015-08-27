@@ -30,8 +30,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "daswahreschlagerfestdisplay.h"
 #pragma GCC diagnostic pop
 
-ribi::dws::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(
-  DasWahreSchlagerfestDisplay * const display,
+ribi::dws::Widget::Widget(
+  Display * const display,
   const int width, const int height
 )
   : m_cursor{Cursor(width / 2,0,Tile::beer)},
@@ -45,7 +45,7 @@ ribi::dws::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(
   assert(width == static_cast<int>(m_v[0].size()));
 }
 
-void ribi::dws::DasWahreSchlagerfestWidget::CheckThree()
+void ribi::dws::Widget::CheckThree()
 {
   assert(!m_v.empty());
   assert(!m_v[0].empty());
@@ -123,24 +123,24 @@ void ribi::dws::DasWahreSchlagerfestWidget::CheckThree()
   CheckThree();
 }
 
-void ribi::dws::DasWahreSchlagerfestWidget::Display() const
+void ribi::dws::Widget::DoDisplay() const
 {
   assert(m_display);
-  m_display->Display(*this);
+  m_display->DoDisplay(*this);
 }
 
-void ribi::dws::DasWahreSchlagerfestWidget::Execute()
+void ribi::dws::Widget::Execute()
 {
 
   while (1)
   {
-    Display();
+    DoDisplay();
     ribi::dws::Key key = m_display->RequestKey();
     PressKey(key);
   }
 }
 
-void ribi::dws::DasWahreSchlagerfestWidget::PressKey(const ribi::dws::Key key)
+void ribi::dws::Widget::PressKey(const ribi::dws::Key key)
 {
   switch (key)
   {
@@ -247,17 +247,17 @@ void ribi::dws::DasWahreSchlagerfestWidget::PressKey(const ribi::dws::Key key)
   }
 }
 
-void ribi::dws::DasWahreSchlagerfestWidget::SetDisplay(DasWahreSchlagerfestDisplay * const display)
+void ribi::dws::Widget::SetDisplay(Display * const display)
 {
   assert(display);
   m_display = display;
-  m_display->Display(*this);
+  m_display->DoDisplay(*this);
 }
 
 #ifndef NDEBUG
 #include "testtimer.h"
 
-void ribi::dws::DasWahreSchlagerfestWidget::Test() noexcept
+void ribi::dws::Widget::Test() noexcept
 {
   {
     static bool is_tested{false};

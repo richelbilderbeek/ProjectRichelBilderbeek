@@ -174,7 +174,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::createGlossary: p = new QtCreateGlossaryMenuDialog; break;
     case ProgramType::createQtProjectZipFile: p = new QtCreateQtProjectZipFileMenuDialog; break;
     case ProgramType::crossPoll: break;
-    case ProgramType::dasWahreSchlagerfest: p = new QtDasWahreSchlagerfestMenuDialog; break;
+    case ProgramType::dasWahreSchlagerfest: p = new dws::QtMenuDialog; break;
     case ProgramType::dasWahreSchlagerfestVcl: break;
     case ProgramType::dotMatrix: p = new QtDotMatrixMenuDialog; break;
     case ProgramType::dotMatrixVcl: break;
@@ -234,7 +234,7 @@ std::unique_ptr<ribi::QtHideAndShowDialog> ribi::QtRichelBilderbeekProgram::Crea
     case ProgramType::pause: break;
     case ProgramType::perfectElasticCollision: p = new QtPerfectElasticCollisionMenuDialog; break;
     case ProgramType::preDickAdvocaTor: p = new QtPreDickAdvocaTorMenuDialog; break;
-    case ProgramType::picToCode: p = new QtPicToCodeMenuDialog; break;
+    case ProgramType::picToCode: p = new p2c::QtMenuDialog; break;
     case ProgramType::pixelator: p = new QtPixelatorMenuDialog; break;
     case ProgramType::pixelatorVcl: break;
     case ProgramType::pokeVolleyVcl: break;

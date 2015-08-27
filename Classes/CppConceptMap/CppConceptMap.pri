@@ -26,7 +26,6 @@ HEADERS += \
     ../../Classes/CppConceptMap/conceptmapcommand.h \
     ../../Classes/CppConceptMap/conceptmapelement.h \
     ../../Classes/CppConceptMap/conceptmapcommandfactory.h \
-    ../../Classes/CppConceptMap/conceptmapwidgetfactory.h \
     ../../Classes/CppConceptMap/conceptmapcommandcreatenewnode.h \
     ../../Classes/CppConceptMap/conceptmapcommandlosefocus.h \
     ../../Classes/CppConceptMap/conceptmapcommandsetfocusrandom.h \
