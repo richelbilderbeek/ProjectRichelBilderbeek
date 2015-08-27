@@ -1,7 +1,10 @@
 #ifndef MAZIAKDISPLAY_H
 #define MAZIAKDISPLAY_H
 
+#include <set>
+
 #include "maziakgamestate.h"
+#include "maziakkey.h"
 
 namespace ribi {
 namespace maziak {
@@ -24,6 +27,8 @@ struct Display
 
   int GetViewHeight();
   int GetViewWidth();
+
+  virtual std::set<Key> RequestKeys() = 0;
 
   void SetGameState(const GameState game_state) noexcept { m_game_state = game_state; }
 

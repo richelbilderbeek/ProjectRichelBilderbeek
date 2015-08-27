@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::dws::QtDwsMenuDialog::QtDwsMenuDialog(QWidget *parent) noexcept
+ribi::dws::QtMenuDialog::QtMenuDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtDwsMenuDialog)
 {
@@ -45,23 +45,23 @@ ribi::dws::QtDwsMenuDialog::QtDwsMenuDialog(QWidget *parent) noexcept
   ui->setupUi(this);
 }
 
-ribi::dws::QtDwsMenuDialog::~QtDwsMenuDialog() noexcept
+ribi::dws::QtMenuDialog::~QtMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::dws::QtDwsMenuDialog::keyPressEvent(QKeyEvent * e)
+void ribi::dws::QtMenuDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key() == Qt::Key_Escape) { close(); }
 }
 
-void ribi::dws::QtDwsMenuDialog::on_button_start_clicked() noexcept
+void ribi::dws::QtMenuDialog::on_button_start_clicked() noexcept
 {
-  QtDwsMainDialog d;
+  QtMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::dws::QtDwsMenuDialog::on_button_about_clicked() noexcept
+void ribi::dws::QtMenuDialog::on_button_about_clicked() noexcept
 {
   QtAboutDialog d(MenuDialog().GetAbout());
   d.setWindowIcon(windowIcon());
@@ -69,20 +69,20 @@ void ribi::dws::QtDwsMenuDialog::on_button_about_clicked() noexcept
   ShowChild(&d);
 }
 
-void ribi::dws::QtDwsMenuDialog::on_button_quit_clicked() noexcept
+void ribi::dws::QtMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::dws::QtDwsMenuDialog::Test() noexcept
+void ribi::dws::QtMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  QtDwsMainDialog();
+  QtMainDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -81,14 +81,8 @@ struct MainDialog
   int GetX() const noexcept { return m_x; }
   int GetY() const noexcept { return m_y; }
 
-  ///Add a key
-  void OnKeyPress(const Key key);
-
   ///Press all active keys
-  void OnTimerPressKeys();
-
-  ///Remove a key
-  void OnKeyRelease(const Key key);
+  void PressKeys(const std::set<Key>& keys);
 
   void RespondToCurrentSquare() noexcept;
 
@@ -99,14 +93,12 @@ struct MainDialog
 
   private:
 
-
   PlayerDirection m_direction;
   Display * m_display;
   DistancesMaze m_distances;
   bool m_do_show_solution;
   int m_fighting_frame;
   bool m_has_sword;
-  std::set<Key> m_keys;
   Maze m_maze;
   PlayerMove m_move_now;
   SolutionMaze m_solution;

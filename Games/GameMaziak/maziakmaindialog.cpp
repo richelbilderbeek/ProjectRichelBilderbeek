@@ -26,7 +26,6 @@ ribi::maziak::MainDialog::MainDialog(const int maze_size)
     m_do_show_solution(false),
     m_fighting_frame(0),
     m_has_sword(true),
-    m_keys{},
     m_maze(maze_size),
     m_move_now(PlayerMove::none),
     m_solution{},
@@ -101,41 +100,9 @@ void ribi::maziak::MainDialog::Execute() noexcept
     const int height = 20;
     m_display->DoDisplay(*this);
 
-    char c;
-    std::cin >> c;
+    const auto keys = m_display->RequestKeys();
 
-    if (!std::cin)
-    {
-      std::cout
-        << "Please enter one of the following characters:" << '\n'
-        << "a: move right" << '\n'
-        << "s: move down" << '\n'
-        << "d: move right" << '\n'
-        << "w: move up" << '\n'
-        << "q: quit" << '\n'
-        << "other: wait" << '\n'
-        << std::endl;
-      continue;
-    }
-
-    switch (c)
-    {
-      case 'w': this->OnKeyPress(Key::up); break;
-      case 'd': this->OnKeyPress(Key::right); break;
-      case 's': this->OnKeyPress(Key::down); break;
-      case 'a': this->OnKeyPress(Key::left); break;
-      case 'q': return;
-    }
-
-    OnTimerPressKeys();
-
-    switch (c)
-    {
-      case 'w': this->OnKeyRelease(Key::up); break;
-      case 'd': this->OnKeyRelease(Key::right); break;
-      case 's': this->OnKeyRelease(Key::down); break;
-      case 'a': this->OnKeyRelease(Key::left); break;
-    }
+    PressKeys(keys);
 
     RespondToCurrentSquare();
     AnimateEnemiesAndPrisoners(width,height);
@@ -278,31 +245,12 @@ ribi::maziak::Sprite ribi::maziak::MainDialog::GetSpritePlayer(
   //Unreachable
 }
 
-void ribi::maziak::MainDialog::OnKeyPress(const maziak::Key key)
-{
-  //if (m_fighting_frame > 0) repaint();
-  m_keys.insert(key);
-
-  switch (key)
-  {
-    case Key::left : m_keys.erase(Key::right); break;
-    case Key::right: m_keys.erase(Key::left ); break;
-    case Key::up   : m_keys.erase(Key::down ); break;
-    case Key::down : m_keys.erase(Key::up   ); break;
-  }
-}
-
-void ribi::maziak::MainDialog::OnKeyRelease(const maziak::Key key)
-{
-  m_keys.erase(key);
-}
-
-void ribi::maziak::MainDialog::OnTimerPressKeys()
+void ribi::maziak::MainDialog::PressKeys(const std::set<Key>& keys)
 {
   if (m_fighting_frame > 0) return;
-  if (m_keys.empty()) { m_move_now = PlayerMove::none; return; }
+  if (keys.empty()) { m_move_now = PlayerMove::none; return; }
 
-  for(const Key key: m_keys)
+  for(const Key key: keys)
   {
     //Check the keys pressed
     switch (key)
@@ -409,82 +357,3 @@ void ribi::maziak::MainDialog::Test() noexcept
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
-
-/*
-ribi::TextCanvas ribi::maziak::MainDialog::ToTextCanvas(
-  const int view_height,
-  const int view_width
-) const noexcept
-{
-  TextCanvas canvas(view_height,view_width);
-
-  if (GetState() == GameState::has_won)
-  {
-    canvas.PutText(1,1,"You");
-    canvas.PutText(1,2,"won");
-    canvas.PutText(1,3,"the");
-    canvas.PutText(1,4,"game");
-    return canvas;
-  }
-  else if (GetState() == GameState::game_over)
-  {
-    canvas.PutText(1,1,"GAME");
-    canvas.PutText(1,2,"OVER");
-    return canvas;
-  }
-
-  //Draw maze
-  {
-    for (int y=0; y!=view_height; ++y)
-    {
-      for (int x=0; x!=view_width; ++x)
-      {
-        //xVector and yVector are the indices in the non-visual maze 2D std::vector
-        const int xVector = GetX() - (view_width  / 2) + x;
-        const int yVector = GetY() - (view_height / 2) + y;
-        //Draw the floor tile
-        const char pixmap_floor {
-          Sprites::ToChar(
-            GetSpriteFloor(
-              GetMaze(),
-              xVector,
-              yVector,
-              GetDoShowSolution(),
-              GetSolution()
-            )
-          )
-        };
-        canvas.PutChar(x,y,pixmap_floor);
-        //Draw what's moving or standing on the floor
-        const Sprite sprite_above_floor {
-          GetSpriteAboveFloor(xVector,yVector,GetMaze())
-        };
-        if (sprite_above_floor != Sprite::transparent)
-        {
-          const char pixmap_above_floor {
-            Sprites::ToChar(sprite_above_floor)
-          };
-          canvas.PutChar(x,y,pixmap_above_floor);
-        }
-      }
-    }
-  }
-
-  //Draw player
-  {
-    const char player {
-      Sprites::ToChar(
-        GetSpritePlayer(
-          GetPlayerDirection(),
-          GetPlayerMove(),
-          GetPlayerHasSword(),
-          GetPlayerFightingFrame()
-        )
-      )
-    };
-    assert(player);
-    canvas.PutChar(view_width/2,view_height / 2,player);
-  }
-  return canvas;
-}
-*/

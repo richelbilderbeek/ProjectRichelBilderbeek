@@ -79,3 +79,42 @@ void ribi::maziak::Terminal::DoDisplay(const MainDialog& main_dialog)
   }
   std::cout << canvas << '\n';
 }
+
+std::set<ribi::maziak::Key> ribi::maziak::Terminal::RequestKeys()
+{
+  while (1)
+  {
+    std::string s;
+    std::getline(std::cin,s);
+
+    if (s == "")
+    {
+      std::cout
+        << "Please enter one of the following characters:" << '\n'
+        << "a: move right" << '\n'
+        << "s: move down" << '\n'
+        << "d: move right" << '\n'
+        << "w: move up" << '\n'
+        << "q: quit" << '\n'
+        << "other: wait" << '\n'
+        << std::endl;
+      continue;
+    }
+    std::set<ribi::maziak::Key> keys;
+    for (const auto c: s)
+    {
+
+      switch (c)
+      {
+        case 'w': keys.insert(Key::up); break;
+        case 'd': keys.insert(Key::right); break;
+        case 's': keys.insert(Key::down); break;
+        case 'a': keys.insert(Key::left); break;
+        case 'q': keys.insert(Key::quit); break;
+        default: keys.insert(Key::none); break;
+      }
+    }
+    return keys;
+  }
+
+}

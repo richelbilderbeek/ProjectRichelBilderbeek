@@ -256,13 +256,14 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   if (m_verbose) { TRACE("Setting selection and focus correct"); }
   qtfrom->setSelected(false);
   qtto->setSelected(false);
-  qtedge->setSelected(true);
+  qtedge->GetQtNode()->setSelected(true);
   assert(qtedge->GetQtNode());
   GetScene()->focusItem()->clearFocus();
   qtedge->GetQtNode()->setFocus();
 
-  assert(qtedge->isSelected());
+  //this->GetConceptMap()->SetSelected( ConceptMap::Edges( { qtedge->GetEdge() } ) );
 
+  assert(qtedge->isSelected());
   return qtedge;
 }
 
@@ -820,6 +821,17 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
     case Qt::Key_Minus:
       this->scale(0.9,0.9);
       break;
+    case Qt::Key_E:
+      if (event->modifiers() & Qt::ControlModifier)
+      {
+        const boost::shared_ptr<CommandCreateNewEdge> command {
+          new CommandCreateNewEdge
+        };
+        command->SetVerbosity(true);
+        if (!CanDoCommand(command)) return;
+        this->DoCommand(command);
+      }
+      break;
     case Qt::Key_N:
       if (event->modifiers() & Qt::ControlModifier)
       {
@@ -827,20 +839,12 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
           new CommandCreateNewNode
         };
         this->DoCommand(command);
-        UpdateSelection();
-        return;
       }
       break;
-    case Qt::Key_E:
+    case Qt::Key_Z:
       if (event->modifiers() & Qt::ControlModifier)
       {
-        const boost::shared_ptr<CommandCreateNewEdge> command {
-          new CommandCreateNewEdge
-        };
-        if (!CanDoCommand(command)) return;
-        this->DoCommand(command);
-        UpdateSelection();
-        return;
+        if (GetConceptMap()->CanUndo()) { GetConceptMap()->Undo(); }
       }
       break;
     case Qt::Key_Question:

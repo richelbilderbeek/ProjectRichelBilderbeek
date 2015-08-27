@@ -31,15 +31,15 @@ namespace Ui { class QtDwsMainDialog; }
 namespace ribi {
 namespace dws {
 
-class QtDwsMainDialog : public QtHideAndShowDialog
+class QtMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
     
 public:
-  explicit QtDwsMainDialog(QWidget *parent = 0) noexcept;
-  QtDwsMainDialog(const QtDwsMainDialog&) = delete;
-  QtDwsMainDialog& operator=(const QtDwsMainDialog&) = delete;
-  ~QtDwsMainDialog() noexcept;
+  explicit QtMainDialog(QWidget *parent = 0) noexcept;
+  QtMainDialog(const QtMainDialog&) = delete;
+  QtMainDialog& operator=(const QtMainDialog&) = delete;
+  ~QtMainDialog() noexcept;
 
 private:
   Ui::QtDwsMainDialog *ui;

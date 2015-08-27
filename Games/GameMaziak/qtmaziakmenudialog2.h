@@ -58,7 +58,6 @@ private:
   void mousePressEvent(QMouseEvent * event);
   void paintEvent(QPaintEvent*);
   void OnStart();
-  void OnStartRetro();
   void OnInstructions();
   void OnAbout();
 

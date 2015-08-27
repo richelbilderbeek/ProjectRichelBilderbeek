@@ -36,11 +36,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "maziakmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qtcanvas.h"
-#include "qtcanvasdialog.h"
 #include "testtimer.h"
 #include "qtmaziakcanvas.h"
 #include "qtmaziakinstructionsdialog.h"
+#include "maziakmaindialog.h"
 #include "qtmaziakmaindialog.h"
 #include "trace.h"
 #include "ui_qtmaziakmenudialog2.h"
@@ -94,11 +93,6 @@ void ribi::maziak::QtMaziakMenuDialog2::mousePressEvent(QMouseEvent * event)
     event->x(), event->y()))
   {
     OnStart(); return;
-  }
-  if (ui->widget_start_retro->geometry().contains(
-    event->x(), event->y()))
-  {
-    OnStartRetro(); return;
   }
   if (ui->widget_instructions->geometry().contains(
     event->x(), event->y()))
@@ -282,27 +276,12 @@ void ribi::maziak::QtMaziakMenuDialog2::OnInstructions()
 
 void ribi::maziak::QtMaziakMenuDialog2::OnStart()
 {
-  boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(GetMazeSize()));
-  this->ShowChild(d.get());
-}
-
-void ribi::maziak::QtMaziakMenuDialog2::OnStartRetro()
-{
-  QtCanvas * const qtcanvas {
-    new QtMaziakCanvas(GetMazeSize())
-  };
-  boost::scoped_ptr<QtCanvasDialog> d {
-    new QtCanvasDialog(qtcanvas)
-  };
-  {
-    //Put the dialog in the screen center
-    const QRect screen = QApplication::desktop()->screenGeometry();
-    d->setGeometry(
-      0,0,256,256);
-    d->move( screen.center() - this->rect().center() );
-  }
-  d->setWindowTitle("Maziak");
-  ShowChild(d.get());
+  MainDialog d(GetMazeSize());
+  boost::scoped_ptr<QtMaziakMainDialog> q(new QtMaziakMainDialog);
+  d.SetDisplay(q.get());
+  q->showFullScreen();
+  d.Execute();
+  //this->ShowChild(q.get());
 }
 
 #ifndef NDEBUG
@@ -315,7 +294,7 @@ void ribi::maziak::QtMaziakMenuDialog2::Test() noexcept
   }
   maziak::MenuDialog();
   {
-    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(7));
+    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog);
     assert(d);
   }
   {

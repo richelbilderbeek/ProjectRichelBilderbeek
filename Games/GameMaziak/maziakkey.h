@@ -10,7 +10,7 @@ namespace maziak {
 
 enum class Key
 {
-  up, right, down, left
+  up, right, down, left, quit, none
 };
 
 } //namespace maziak

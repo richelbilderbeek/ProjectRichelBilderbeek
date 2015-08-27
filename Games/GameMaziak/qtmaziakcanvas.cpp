@@ -1,5 +1,8 @@
 #include "qtmaziakcanvas.h"
 
+#ifdef USE_QTCANVAS
+
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <QKeyEvent>
@@ -160,3 +163,5 @@ void ribi::maziak::QtMaziakCanvas::OnGameWon()
   //m_text_canvas->PutText(1,2,"DONE");
   //SetCanvas(m_text_canvas);
 }
+
+#endif // USE_QTCANVAS

@@ -40,6 +40,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+QKeyEvent CreateDel() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Delete,Qt::NoModifier); }
+QKeyEvent CreateSpace() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Space,Qt::NoModifier); }
+QKeyEvent CreateControlE() { return QKeyEvent(QEvent::KeyPress,Qt::Key_E,Qt::ControlModifier); }
+QKeyEvent CreateControlN() { return QKeyEvent(QEvent::KeyPress,Qt::Key_N,Qt::ControlModifier); }
+
 #ifndef NDEBUG
 void ribi::cmap::QtConceptMap::Test() noexcept
 {
@@ -514,6 +519,135 @@ void ribi::cmap::QtConceptMap::Test() noexcept
   }
   //QWidget Events; direct GUI responses. Note: these are done by Commands anyways,
   //so it may be hard to create a test that breaks here)
+  if (verbose) { TRACE("CTRL-N creates a new QtNode"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(qtconceptmap->GetQtNodes().size() == 0);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+
+    auto ctrl_n = CreateControlN();
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+    assert(qtconceptmap->GetQtNodes().size() == 1);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetConceptMap()->GetSelectedEdges().size() == 0);
+    assert(qtconceptmap->GetConceptMap()->GetSelectedNodes().size() == 1);
+  }
+  if (verbose) { TRACE("CTRL-N, CTRL-N creates two QtNodes"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(qtconceptmap->GetQtNodes().size() == 0);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+
+    auto ctrl_n = CreateControlN();
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+    assert(qtconceptmap->GetQtNodes().size() == 1);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+    assert(qtconceptmap->GetQtNodes().size() == 2);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+
+    assert(qtconceptmap->GetConceptMap()->GetSelectedEdges().size() == 0);
+    assert(qtconceptmap->GetConceptMap()->GetSelectedNodes().size() == 2);
+  }
+  if (verbose) { TRACE("CTRL-N, CTRL-N, delete, creates two QtNodes and deletes two"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(qtconceptmap->GetQtNodes().size() == 0);
+
+    auto ctrl_n = CreateControlN();
+    qtconceptmap->keyPressEvent(&ctrl_n);
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+    TRACE(conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetQtNodes().size() == 2);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetConceptMap()->GetSelectedNodes().size() == 2);
+    assert(qtconceptmap->GetConceptMap()->GetSelectedEdges().size() == 0);
+
+    auto del = CreateDel();
+    qtconceptmap->keyPressEvent(&del);
+
+    assert(qtconceptmap->GetQtNodes().size() == 0);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetConceptMap()->GetSelectedNodes().size() == 0);
+    assert(qtconceptmap->GetConceptMap()->GetSelectedEdges().size() == 0);
+  }
+  if (verbose) { TRACE("CTRL-N, CTRL-N, space, delete, creates two QtNodes, selects one and deletes one"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(qtconceptmap->GetQtNodes().size() == 0);
+
+    auto ctrl_n = CreateControlN();
+    qtconceptmap->keyPressEvent(&ctrl_n);
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+    assert(qtconceptmap->GetQtNodes().size() == 2);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetConceptMap()->GetSelectedNodes().size() == 2);
+    assert(qtconceptmap->GetConceptMap()->GetSelectedEdges().size() == 0);
+
+    auto space = CreateSpace();
+    qtconceptmap->keyPressEvent(&space);
+
+    assert(qtconceptmap->GetQtNodes().size() == 2);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetConceptMap()->GetSelectedNodes().size() == 1);
+    assert(qtconceptmap->GetConceptMap()->GetSelectedEdges().size() == 0);
+
+    auto del = CreateDel();
+    qtconceptmap->keyPressEvent(&del);
+
+    assert(qtconceptmap->GetQtNodes().size() == 1);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetConceptMap()->GetSelectedNodes().size() == 1);
+    assert(qtconceptmap->GetConceptMap()->GetSelectedEdges().size() == 0);
+  }
+
+  if (verbose) { TRACE("CTRL-N, CTRL-N, CTRL-E: new Edge should be selected"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    assert(qtconceptmap->GetQtNodes().size() == 0);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+
+    auto ctrl_n = CreateControlN();
+    auto ctrl_e = CreateControlE();
+    qtconceptmap->keyPressEvent(&ctrl_n);
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+    TRACE("START");
+    qtconceptmap->SetVerbosity(true);
+    qtconceptmap->keyPressEvent(&ctrl_e);
+
+    assert(qtconceptmap->GetQtNodes().size() == 2);
+    assert(qtconceptmap->GetQtNodes().size() == conceptmap->GetNodes().size());
+    assert(qtconceptmap->GetQtEdges().size() == 1);
+    assert(qtconceptmap->GetQtEdges().size() == conceptmap->GetEdges().size());
+    assert(qtconceptmap->GetConceptMap()->GetSelectedNodes().size() == 0);
+    assert(qtconceptmap->GetConceptMap()->GetSelectedEdges().size() == 1);
+  }
+  assert(!"Green");
+
+
+
   if (verbose) { TRACE("MouseDoubleClick"); }
   for (int i=0; i!=5; ++i)
   {

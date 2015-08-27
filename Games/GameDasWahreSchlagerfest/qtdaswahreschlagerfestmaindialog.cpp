@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testtimer.h"
 #pragma GCC diagnostic pop
 
-ribi::dws::QtDwsMainDialog::QtDwsMainDialog(QWidget *parent) noexcept
+ribi::dws::QtMainDialog::QtMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtDwsMainDialog)
 {
@@ -40,24 +40,24 @@ ribi::dws::QtDwsMainDialog::QtDwsMainDialog(QWidget *parent) noexcept
   QObject::connect(ui->widget,SIGNAL(destroyed()),this,SLOT(close()));
 }
 
-ribi::dws::QtDwsMainDialog::~QtDwsMainDialog() noexcept
+ribi::dws::QtMainDialog::~QtMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::dws::QtDwsMainDialog::closeEvent(QCloseEvent * /*event*/ )
+void ribi::dws::QtMainDialog::closeEvent(QCloseEvent * /*event*/ )
 {
   close_me();
 }
 
-void ribi::dws::QtDwsMainDialog::keyPressEvent(QKeyEvent *event)
+void ribi::dws::QtMainDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 
 #ifndef NDEBUG
-void ribi::dws::QtDwsMainDialog::Test() noexcept
+void ribi::dws::QtMainDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

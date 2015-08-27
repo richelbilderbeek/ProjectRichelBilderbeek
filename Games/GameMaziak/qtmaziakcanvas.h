@@ -1,6 +1,8 @@
 #ifndef QTMAZIAKCANVAS_H
 #define QTMAZIAKCANVAS_H
 
+#ifdef USE_QTCANVAS
+
 #include "qtcanvas.h"
 
 #pragma GCC diagnostic push
@@ -57,5 +59,7 @@ private slots:
 } //~namespace maziak
 } //~namespace ribi
 
+
+#endif //~ USE_QTCANVAS
 
 #endif // QTMAZIAKCANVAS_H

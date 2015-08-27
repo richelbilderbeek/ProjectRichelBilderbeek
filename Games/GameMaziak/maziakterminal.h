@@ -15,6 +15,8 @@ struct Terminal : public Display
 
   //Put the MainDialog on screen
   void DoDisplay(const MainDialog& main_dialog) override;
+
+  std::set<Key> RequestKeys() override;
 };
 
 } //~namespace maziak

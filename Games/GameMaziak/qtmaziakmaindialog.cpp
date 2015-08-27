@@ -53,12 +53,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::maziak::QtMaziakMainDialog::QtMaziakMainDialog(
-  const int maze_size,
   QWidget *parent
 )
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtMaziakMainDialog),
-    m_dialog{new MainDialog(maze_size)},
+    //m_key_map{},
     m_keys{},
     m_sprites(new Sprites),
     m_timer_enemy(new QTimer),
@@ -71,19 +70,6 @@ ribi::maziak::QtMaziakMainDialog::QtMaziakMainDialog(
   Test();
   #endif
   ui->setupUi(this);
-
-  m_dialog->m_signal_game_over.connect(
-    boost::bind(&ribi::maziak::QtMaziakMainDialog::OnGameOver,this)
-  );
-  m_dialog->m_signal_game_won.connect(
-    boost::bind(&ribi::maziak::QtMaziakMainDialog::OnGameWon,this)
-  );
-  m_dialog->m_signal_start_showing_solution.connect(
-    boost::bind(&ribi::maziak::QtMaziakMainDialog::OnTimerStartShowingSolution,this)
-  );
-
-  assert(maze_size && "Maze size must be 7 + (4 * n) for n e [0,->>");
-  assert(m_dialog->GetMaze().IsSquare());
 
   m_timer_press_key->setInterval(100);
   m_timer_enemy->setInterval(1000);
@@ -110,7 +96,7 @@ ribi::maziak::QtMaziakMainDialog::~QtMaziakMainDialog() noexcept
   delete ui;
 }
 
-const std::map<ribi::maziak::QtMaziakMainDialog::WORD,ribi::maziak::Key> ribi::maziak::QtMaziakMainDialog::CreateDefaultKeys() noexcept
+std::map<ribi::maziak::QtMaziakMainDialog::WORD,ribi::maziak::Key> ribi::maziak::QtMaziakMainDialog::CreateDefaultKeys() noexcept
 {
   std::map<WORD,Key> m;
   m.insert(std::make_pair(Qt::Key_Up   ,Key::up   ));
@@ -120,6 +106,11 @@ const std::map<ribi::maziak::QtMaziakMainDialog::WORD,ribi::maziak::Key> ribi::m
   return m;
 }
 
+void ribi::maziak::QtMaziakMainDialog::DoDisplay(const MainDialog& main_dialog)
+{
+  this->repaint();
+}
+
 void ribi::maziak::QtMaziakMainDialog::resizeEvent(QResizeEvent*)
 {
   this->repaint();
@@ -127,27 +118,20 @@ void ribi::maziak::QtMaziakMainDialog::resizeEvent(QResizeEvent*)
 
 void ribi::maziak::QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
 {
-  switch (e->key())
+  m_key_map.insert(key);
+
+  switch (key)
   {
-    case Qt::Key_Left : m_dialog->OnKeyPress(Key::left); break;
-    case Qt::Key_Right: m_dialog->OnKeyPress(Key::right); break;
-    case Qt::Key_Up   : m_dialog->OnKeyPress(Key::up); break;
-    case Qt::Key_Down : m_dialog->OnKeyPress(Key::down); break;
-    case Qt::Key_F1   : OnGameOver(); close(); break;
-    case Qt::Key_F2   : OnGameWon(); close(); break;
-    case Qt::Key_Escape: close(); break;
+    case Key::left : m_key_map.erase(Key::right); break;
+    case Key::right: m_key_map.erase(Key::left ); break;
+    case Key::up   : m_key_map.erase(Key::down ); break;
+    case Key::down : m_key_map.erase(Key::up   ); break;
   }
 }
 
 void ribi::maziak::QtMaziakMainDialog::keyReleaseEvent(QKeyEvent * e)
 {
-  switch (e->key())
-  {
-    case Qt::Key_Left : m_dialog->OnKeyRelease(Key::left); break;
-    case Qt::Key_Right: m_dialog->OnKeyRelease(Key::right); break;
-    case Qt::Key_Up   : m_dialog->OnKeyRelease(Key::up); break;
-    case Qt::Key_Down : m_dialog->OnKeyRelease(Key::down); break;
-  }
+  m_key_map.erase(key);
 }
 
 void ribi::maziak::QtMaziakMainDialog::OnTimerPressKey()
@@ -241,8 +225,8 @@ void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
     };
     assert(player);
     painter.drawPixmap(
-      ((m_view_width  / 2) * block_width )+0,
-      ((m_view_height / 2) * block_height)+0,
+      ((m_view_width  / 2) * block_width ) + 0,
+      ((m_view_height / 2) * block_height) + 0,
        block_width,
        block_height,
        *player
@@ -273,8 +257,10 @@ void ribi::maziak::QtMaziakMainDialog::OnGameWon()
   close();
 }
 
-
-
+std::set<ribi::maziak::Key> ribi::maziak::QtMaziakMainDialog::RequestKeys()
+{
+  return m_keys;
+}
 
 #ifndef NDEBUG
 void ribi::maziak::QtMaziakMainDialog::Test() noexcept

@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <map>
+#include <set>
 #include <vector>
 
 #pragma GCC diagnostic push
@@ -31,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 #include "maziakmazesquare.h"
 #include "maziaksprite.h"
+#include "maziakdisplay.h"
 #include "maziakfwd.h"
 #include "maziakkey.h"
 #include "maziakplayerdirection.h"
@@ -49,24 +51,27 @@ namespace ribi {
 namespace maziak {
 
 
-class QtMaziakMainDialog : public QtHideAndShowDialog
+class QtMaziakMainDialog : public QtHideAndShowDialog, public Display
 {
   Q_OBJECT
 
 public:
 
-  explicit QtMaziakMainDialog(const int maze_size, QWidget *parent = 0);
+  explicit QtMaziakMainDialog(QWidget *parent = 0);
   QtMaziakMainDialog(const QtMaziakMainDialog&) = delete;
   QtMaziakMainDialog& operator=(const QtMaziakMainDialog&) = delete;
   ~QtMaziakMainDialog() noexcept;
+
+  void DoDisplay(const MainDialog& main_dialog) override;
+  std::set<Key> RequestKeys() override;
 
 private:
   Ui::QtMaziakMainDialog *ui;
 
   typedef unsigned int WORD;
 
-  boost::shared_ptr<MainDialog> m_dialog;
-  std::map<WORD,Key> m_keys;
+  //std::map<WORD,Key> m_key_map;
+  std::set<Key> m_keys;
 
   const boost::shared_ptr<const Sprites> m_sprites;
   const boost::shared_ptr<QTimer> m_timer_enemy;
@@ -75,7 +80,7 @@ private:
   const int m_view_height;
   const int m_view_width;
 
-  static const std::map<WORD,Key> CreateDefaultKeys() noexcept;
+  static std::map<WORD,Key> CreateDefaultKeys() noexcept;
   void OnGameOver();
   void OnGameWon();
   void OnTimerStartShowingSolution();
