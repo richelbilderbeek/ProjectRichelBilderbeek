@@ -1,11 +1,15 @@
 //Example code from http://www.sfml-dev.org/tutorials/2.3/start-linux.php
+
 #include <SFML/Graphics.hpp>
 
 int main()
 {
-  sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-  sf::CircleShape shape(100.f);
+  sf::RenderWindow window(sf::VideoMode(1000,600), "SFML example 2");
+  sf::RectangleShape shape(sf::Vector2f(500.0,250.0));
   shape.setFillColor(sf::Color::Green);
+  shape.setOrigin(250.0,125.0);
+  shape.setPosition(500,300);
+  double angle = 0.0;
 
   while (window.isOpen())
   {
@@ -18,6 +22,8 @@ int main()
 
     window.clear();
     window.draw(shape);
+    shape.setRotation(angle);
     window.display();
+    angle += 1.0;
   }
 }

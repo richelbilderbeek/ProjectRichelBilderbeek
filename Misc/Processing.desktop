@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=3.0 
+Name=Processing 
+Comment=graphics and animation language (3.0 beta 4) 
+Exec=/home/richel/Programs/processing-3.0b4/modes/java/bin/processing
+Icon=/home/richel/Programs/processing-3.0b4/lib/icons/pde-256.png
+Terminal=false
+Type=Application
+Categories=AudioVideo;Video;Graphics;
