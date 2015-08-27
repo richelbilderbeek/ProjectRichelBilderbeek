@@ -469,6 +469,16 @@ ribi::cmap::ConceptMap::CenterNodePtr ribi::cmap::ConceptMap::FindCenterNode() n
   );
 }
 
+ribi::cmap::ConceptMap::EdgePtr ribi::cmap::ConceptMap::GetEdge(const NodePtr& node) const noexcept
+{
+  const auto iter = std::find_if(
+    std::begin(m_edges),
+    std::end(m_edges),
+    [node](const EdgePtr& edge) { return edge->GetNode().get() == node.get(); }
+  );
+  if (iter == std::end(m_edges)) { return EdgePtr(); }
+  return *iter;
+}
 
 ribi::cmap::ConceptMap::ReadOnlyEdges ribi::cmap::ConceptMap::GetEdges() const noexcept
 {

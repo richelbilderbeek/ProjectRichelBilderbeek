@@ -55,6 +55,23 @@ std::vector<const T *> AddConst(
 }
 
 template <class T>
+std::vector<T*> RemoveConst(
+  std::vector<const T*> v) noexcept
+{
+  std::vector<T*> w;
+  std::transform(
+    std::begin(v),
+    std::end(v),
+    std::back_inserter(w),
+    [](const T* t)
+    {
+      return const_cast<T*>(t);
+    }
+  );
+  return w;
+}
+
+template <class T>
 std::vector<boost::shared_ptr<T> > RemoveConst(
   std::vector<boost::shared_ptr<const T> > v) noexcept
 {

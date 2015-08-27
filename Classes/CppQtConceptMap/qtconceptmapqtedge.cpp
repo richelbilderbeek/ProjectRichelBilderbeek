@@ -80,7 +80,7 @@ ribi::cmap::QtEdge::QtEdge(
   );
 
   //QtEdge is just the glue between a collection of things
-  //this->setFlags(QGraphicsItem::ItemIsSelectable);
+  //this->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);
   this->setFlags(0);
   this->m_arrow->setFlags(0);
 
@@ -460,19 +460,16 @@ void ribi::cmap::QtEdge::OnRequestSceneUpdate()
 
 void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
+  assert(this->scene());
   if (!this->m_arrow->scene())
   {
-    assert(this->scene());
-    this->scene()->addItem(m_arrow.get()); //Must be removed?
+    this->scene()->addItem(m_arrow.get()); //Must remain
 
   }
   if (!this->m_qtnode->scene())
   {
-    assert(this->scene());
-    this->scene()->addItem(m_qtnode.get()); //Must be removed?
-
+    this->scene()->addItem(m_qtnode.get()); //Must remain
   }
-  assert(this->scene());
   assert(this->m_arrow->scene());
   assert(this->m_qtnode->scene());
   assert(this->m_from->scene());

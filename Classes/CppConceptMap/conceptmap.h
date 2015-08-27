@@ -51,7 +51,7 @@ struct ConceptMap
   using ConstNodes = std::vector<boost::shared_ptr<const Node>>;
   using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
   using EdgePtr = boost::shared_ptr<Edge>;
-  using Edges = std::vector<boost::shared_ptr<Edge>>;
+  using Edges = std::vector<EdgePtr>;
   using NodePtr = boost::shared_ptr<Node>;
   using Nodes = std::vector<boost::shared_ptr<Node>>;
   using EdgesAndNodes = std::pair<Edges,Nodes>;
@@ -114,6 +114,10 @@ struct ConceptMap
   ///Use GetFocusAndSelected to get all
   boost::shared_ptr<const Node> GetFocus() const noexcept;
   boost::shared_ptr<      Node> GetFocus()       noexcept;
+
+  ///Find the Edge that has the node as its center Node
+  ///Returns nullptr if not present
+  EdgePtr GetEdge(const NodePtr& node) const noexcept;
 
   ReadOnlyEdges GetEdges() const noexcept;
   Edges& GetEdges() noexcept { return m_edges; }

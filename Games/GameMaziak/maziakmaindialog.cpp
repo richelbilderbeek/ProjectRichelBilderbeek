@@ -9,22 +9,19 @@
 
 #include "maziakkey.h"
 #include "maziakmaze.h"
+#include "maziakdisplay.h"
 #include "maziakintmaze.h"
 #include "maziakdistancesmaze.h"
 #include "maziakreceiver.h"
 #include "maziaksolutionmaze.h"
 #include "maziaksprites.h"
 #include "testtimer.h"
-#include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::maziak::MainDialog::MainDialog(const int maze_size)
-  : m_signal_game_over{},
-    m_signal_game_won{},
-    m_signal_start_showing_solution{},
-    m_signal_stop_showing_solution{},
-    m_direction(PlayerDirection::pdDown),
+  : m_direction(PlayerDirection::pdDown),
+    m_display{nullptr},
     m_distances{},
     m_do_show_solution(false),
     m_fighting_frame(0),
@@ -33,7 +30,7 @@ ribi::maziak::MainDialog::MainDialog(const int maze_size)
     m_maze(maze_size),
     m_move_now(PlayerMove::none),
     m_solution{},
-    m_state{State::playing},
+    m_state{GameState::playing},
     m_x(-1),
     m_y(-1)
 {
@@ -79,8 +76,8 @@ void ribi::maziak::MainDialog::AnimateFighting() noexcept
     {
       if (!m_has_sword)
       {
-        m_state = State::game_over;
-        m_signal_game_over();
+        m_state = GameState::game_over;
+        m_display->SetGameState(m_state);
         return;
       }
       m_fighting_frame = 0;
@@ -98,18 +95,11 @@ ribi::maziak::SolutionMaze ribi::maziak::MainDialog::CreateNewSolution() noexcep
 
 void ribi::maziak::MainDialog::Execute() noexcept
 {
-  Receiver r;
-  m_signal_game_over.connect(boost::bind(&Receiver::OnGameOver,r));
-  m_signal_game_won.connect(boost::bind(&Receiver::OnGameWon,r));
-  m_signal_start_showing_solution.connect(boost::bind(&Receiver::OnStartShowingSolution,r));
-  m_signal_stop_showing_solution.connect(boost::bind(&Receiver::OnStopShowingSolution,r));
-
-
   while (1)
   {
     const int width  = 20;
     const int height = 20;
-    std::cout << ToTextCanvas(width,height) << std::endl;
+    m_display->DoDisplay(*this);
 
     char c;
     std::cin >> c;
@@ -384,7 +374,7 @@ void ribi::maziak::MainDialog::RespondToCurrentSquare() noexcept
       m_solution = CreateNewSolution();
       assert(m_solution.IsSquare());
       m_do_show_solution = true;
-      m_signal_start_showing_solution();
+      m_display->SetShowSolution(true);
       break;
     case MazeSquare::msSword:
       m_maze.Set(m_x,m_y,MazeSquare::msEmpty);
@@ -392,8 +382,8 @@ void ribi::maziak::MainDialog::RespondToCurrentSquare() noexcept
       break;
     case MazeSquare::msExit:
     {
-      m_state = State::has_won;
-      m_signal_game_won();
+      m_state = GameState::has_won;
+      m_display->SetGameState(GameState::has_won);
       break;
     }
     default:
@@ -414,6 +404,7 @@ void ribi::maziak::MainDialog::Test() noexcept
 }
 #endif
 
+/*
 ribi::TextCanvas ribi::maziak::MainDialog::ToTextCanvas(
   const int view_height,
   const int view_width
@@ -421,7 +412,7 @@ ribi::TextCanvas ribi::maziak::MainDialog::ToTextCanvas(
 {
   TextCanvas canvas(view_height,view_width);
 
-  if (GetState() == State::has_won)
+  if (GetState() == GameState::has_won)
   {
     canvas.PutText(1,1,"You");
     canvas.PutText(1,2,"won");
@@ -429,7 +420,7 @@ ribi::TextCanvas ribi::maziak::MainDialog::ToTextCanvas(
     canvas.PutText(1,4,"game");
     return canvas;
   }
-  else if (GetState() == State::game_over)
+  else if (GetState() == GameState::game_over)
   {
     canvas.PutText(1,1,"GAME");
     canvas.PutText(1,2,"OVER");
@@ -490,3 +481,4 @@ ribi::TextCanvas ribi::maziak::MainDialog::ToTextCanvas(
   }
   return canvas;
 }
+*/

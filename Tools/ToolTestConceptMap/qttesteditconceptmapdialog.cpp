@@ -19,7 +19,8 @@
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapbrushfactory.h"
-
+#include "qtconceptmapexamplesitem.h"
+#include "qtconceptmaptoolsitem.h"
 #include "conceptmapexamplesfactory.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapqtedge.h"
@@ -132,6 +133,10 @@ void ribi::cmap::QtTestEditConceptMapDialog::OnCheck()
   std::stringstream s;
   s
     << "m_concept_map \n"
+    << "  ->GetScene()->items().size(): "
+    << m_concept_map->GetScene()->items().size() << '\n'
+    << "  (which includes m_concept_map->m_examples: " << (m_concept_map->GetQtExamplesItem()->scene() ? "yes" : "no") << ")\n"
+    << "  (which includes m_concept_map->m_tools: " << (m_concept_map->GetQtToolItem()->scene() ? "yes" : "no") << ")\n"
     << "  ->GetConceptMap()->GetNodes().size(): "
     << m_concept_map->GetConceptMap()->GetNodes().size() << '\n'
     << "  ->GetConceptMap()->GetEdges().size(): "

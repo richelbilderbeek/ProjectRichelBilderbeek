@@ -6,7 +6,7 @@
 #include <QTimer>
 
 #include "qtcanvas.h"
-#include "textcanvas.h"
+ 
 #include "maziakmaindialog.h"
 #pragma GCC diagnostic pop
 

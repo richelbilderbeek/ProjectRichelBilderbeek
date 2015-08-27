@@ -270,9 +270,9 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
     )
   );
 
-  if (m_verbose) { TRACE("Adding QtEdge to QtConceptMap's QScene"); }
+  if (m_verbose) { TRACE("Adding QtEdge (and its QtQuadBezierArrow and QtNode) to QtConceptMap's QScene"); }
   assert(!qtedge->scene());
-  this->scene()->addItem(qtedge);
+  this->scene()->addItem(qtedge); //QtEdge adds the QtQuadBezierArrow and QtNode to the QScene when QtEdge::paint is called
 
   if (m_verbose) { TRACE("Setting selection and focus correct"); }
   qtfrom->setSelected(false);
@@ -359,7 +359,7 @@ bool ribi::cmap::QtConceptMap::CanDoCommand(const boost::shared_ptr<const Comman
 void ribi::cmap::QtConceptMap::CleanMe()
 {
   //Prepare cleaning the scene
-  assert(GetExamplesItem());
+  assert(GetQtExamplesItem());
   SetExamplesItem(nullptr);
 
   assert(m_tools);
@@ -380,7 +380,7 @@ void ribi::cmap::QtConceptMap::CleanMe()
 
   //Add the invisible examples item
   {
-    assert(!GetExamplesItem());
+    assert(!GetQtExamplesItem());
     QtExamplesItem * const examples_item = new QtExamplesItem;
     assert(examples_item);
     assert(!m_tools);
@@ -461,14 +461,19 @@ void ribi::cmap::QtConceptMap::DeleteQtEdge(const QtEdge * const qtedge)
   {
     if (m_verbose) { TRACE("Yes, QtEdge is still present in a QScene"); }
     assert(qtedge->scene() == GetScene());
-    assert(!qtedge->GetQtNode()->scene()); //Drawn by QtEdge
-    assert(!qtedge->GetArrow()->scene()); //Drawn by QtEdge
-    //if (m_verbose) { TRACE("Remove QtNode from QScene"); }
-    //this->scene()->removeItem(const_cast<QtEdge*>(qtedge)->GetQtNode().get());
-    //if (m_verbose) { TRACE("Remove QtQuadBezierArrow from QScene"); }
-    //this->scene()->removeItem(const_cast<QtEdge*>(qtedge)->GetArrow().get());
     if (m_verbose) { TRACE("Remove QtEdge from QScene"); }
     this->scene()->removeItem(const_cast<QtEdge*>(qtedge));
+
+    if (qtedge->GetQtNode()->scene())
+    {
+      if (m_verbose) { TRACE("Remove QtEdge its QtNode from QScene"); }
+      this->scene()->removeItem(const_cast<QtEdge*>(qtedge)->GetQtNode().get());
+    }
+    if (qtedge->GetArrow()->scene())
+    {
+      if (m_verbose) { TRACE("Remove QtEdge its QtQuadBezierArrow from QScene"); }
+      this->scene()->removeItem(const_cast<QtEdge*>(qtedge)->GetArrow().get());
+    }
   }
 }
 
@@ -538,22 +543,6 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() noexcept
     )
   );
   return qtnode;
-}
-
-const ribi::cmap::QtExamplesItem * ribi::cmap::QtConceptMap::GetExamplesItem() const
-{
-  assert(m_examples_item || !m_examples_item);
-  return m_examples_item;
-}
-
-ribi::cmap::QtExamplesItem * ribi::cmap::QtConceptMap::GetExamplesItem()
-{
-  //Calls the const version of this member function
-  //To avoid duplication in const and non-const member functions [1]
-  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
-  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
-  return const_cast<QtExamplesItem*>(
-    const_cast<const QtConceptMap*>(this)->GetExamplesItem());
 }
 
 ribi::cmap::QtNode* ribi::cmap::QtConceptMap::GetItemBelowCursor(const QPointF& pos) const
@@ -715,14 +704,21 @@ const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetQtNodeConst(
 
 std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes() const
 {
-  return Collect<const QtNode>(this->scene());
+  const auto qtnodes_all = Collect<const QtNode>(this->scene());
+  std::vector<const ribi::cmap::QtNode *> qtnodes;
+  std::copy_if(
+    std::begin(qtnodes_all),
+    std::end(qtnodes_all),
+    std::back_inserter(qtnodes),
+    [this](const QtNode* const qtnode) { return this->GetConceptMap()->HasNode(qtnode->GetNode()); }
+  );
+  return qtnodes;
 }
 
 std::vector<ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes()
 {
-  return Collect<QtNode>(this->scene());
+  return RemoveConst(const_cast<const QtConceptMap*>(this)->GetQtNodes());
 }
-
 
 QGraphicsScene* ribi::cmap::QtConceptMap::GetScene() const noexcept
 {
@@ -776,17 +772,19 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
 
       while (1)
       {
-        const auto edges = this->GetConceptMap()->GetSelectedEdges();
-        if (m_verbose)
+        bool done_command{false};
+        for (const auto edge: this->GetConceptMap()->GetSelectedEdges())
         {
-          std::stringstream s; s << "#selected edges: " << edges.size(); TRACE(s.str());
+          const boost::shared_ptr<CommandDeleteEdge> command {
+            new CommandDeleteEdge(edge)
+          };
+          if (CanDoCommand(command))
+          {
+            DoCommand(command);
+            done_command = true;
+          }
         }
-        if (edges.empty()) break;
-        const boost::shared_ptr<CommandDeleteEdge> command {
-          new CommandDeleteEdge(edges.back())
-        };
-        assert(CanDoCommand(command));
-        DoCommand(command);
+        if (!done_command) break;
       }
     }
     break;
@@ -1311,7 +1309,7 @@ void ribi::cmap::QtConceptMap::OnNodeKeyDownPressed(QtNode* const item, const in
 void ribi::cmap::QtConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
-  GetExamplesItem()->SetBuddyItem(item);
+  GetQtExamplesItem()->SetBuddyItem(item);
   scene()->update();
 }
 
@@ -1339,8 +1337,26 @@ void ribi::cmap::QtConceptMap::UpdateSelection()
   ConceptMap::ConstEdgesAndNodes edges_and_nodes;
   for (const auto item: this->scene()->selectedItems())
   {
-    if (QtEdge* qtedge = dynamic_cast<QtEdge*>(item)) { edges_and_nodes.first.push_back(qtedge->GetEdge()); continue; }
-    if (QtNode* qtnode = dynamic_cast<QtNode*>(item)) { edges_and_nodes.second.push_back(qtnode->GetNode()); continue; }
+    if (QtEdge* qtedge = dynamic_cast<QtEdge*>(item))
+    {
+      assert(this->GetConceptMap()->HasEdge(qtedge->GetEdge()));
+      edges_and_nodes.first.push_back(qtedge->GetEdge()); continue;
+    }
+    if (QtNode* qtnode = dynamic_cast<QtNode*>(item))
+    {
+      if(this->GetConceptMap()->HasNode(qtnode->GetNode()))
+      {
+        edges_and_nodes.second.push_back(qtnode->GetNode());
+        continue;
+      }
+      else
+      {
+        const auto edge = GetConceptMap()->GetEdge(qtnode->GetNode());
+        assert(edge);
+        edges_and_nodes.first.push_back(edge);
+        continue;
+      }
+    }
   }
   this->m_concept_map->SetSelected(edges_and_nodes);
 

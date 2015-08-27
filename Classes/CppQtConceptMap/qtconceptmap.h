@@ -57,11 +57,19 @@ public:
   boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_concept_map; }
   boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_concept_map; }
 
+  ///The square showing the examples
+  const QtExamplesItem * GetQtExamplesItem() const noexcept { return m_examples_item; }
+  QtExamplesItem * GetQtExamplesItem() noexcept { return m_examples_item; }
+
   std::vector<const QtEdge *> GetQtEdges() const;
   std::vector<      QtEdge *> GetQtEdges();
 
   std::vector<const QtNode *> GetQtNodes() const;
   std::vector<      QtNode *> GetQtNodes();
+
+  ///The arrow that must be clicked to add a new edge
+  const QtTool * GetQtToolItem() const noexcept { return m_tools; }
+  QtTool * GetQtToolItem() noexcept { return m_tools; }
 
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const noexcept;
@@ -127,12 +135,6 @@ protected:
   ///Obtain the center node
   const QtNode * GetCenterNode() const noexcept;
         QtNode * GetCenterNode()       noexcept;
-
-  ///Obtain the rectangle with text showing the examples
-  const QtExamplesItem * GetExamplesItem() const;
-
-  ///Obtain the rectangle with text showing the examples
-  QtExamplesItem * GetExamplesItem();
 
   ///Obtain the first QtNode under the cursor
   ///Returns nullptr if none is present
