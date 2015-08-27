@@ -2,6 +2,12 @@
 
 #include "textcanvas.h"
 #include "maziakmaindialog.h"
+#include "maziaksprites.h"
+
+ribi::maziak::Terminal::Terminal()
+{
+
+}
 
 void ribi::maziak::Terminal::DoDisplay(const MainDialog& main_dialog)
 {
@@ -16,9 +22,9 @@ void ribi::maziak::Terminal::DoDisplay(const MainDialog& main_dialog)
     return;
   }
 
-  TextCanvas canvas(20,20);
-  const int view_height = main_dialog.GetViewHeight();
-  const int view_width = main_dialog.GetViewWidth();
+  TextCanvas canvas(11,11);
+  const int view_height = 11;
+  const int view_width = 11;
   //Draw maze
   {
     for (int y=0; y!=view_height; ++y)
@@ -31,19 +37,19 @@ void ribi::maziak::Terminal::DoDisplay(const MainDialog& main_dialog)
         //Draw the floor tile
         const char pixmap_floor {
           Sprites::ToChar(
-            GetSpriteFloor(
-              GetMaze(),
+            main_dialog.GetSpriteFloor(
+              main_dialog.GetMaze(),
               xVector,
               yVector,
-              GetDoShowSolution(),
-              GetSolution()
+              main_dialog.GetDoShowSolution(),
+              main_dialog.GetSolution()
             )
           )
         };
         canvas.PutChar(x,y,pixmap_floor);
         //Draw what's moving or standing on the floor
         const Sprite sprite_above_floor {
-          GetSpriteAboveFloor(xVector,yVector,GetMaze())
+          main_dialog.GetSpriteAboveFloor(xVector,yVector,main_dialog.GetMaze())
         };
         if (sprite_above_floor != Sprite::transparent)
         {
@@ -60,17 +66,16 @@ void ribi::maziak::Terminal::DoDisplay(const MainDialog& main_dialog)
   {
     const char player {
       Sprites::ToChar(
-        GetSpritePlayer(
-          GetPlayerDirection(),
-          GetPlayerMove(),
-          GetPlayerHasSword(),
-          GetPlayerFightingFrame()
+        main_dialog.GetSpritePlayer(
+          main_dialog.GetPlayerDirection(),
+          main_dialog.GetPlayerMove(),
+          main_dialog.GetPlayerHasSword(),
+          main_dialog.GetPlayerFightingFrame()
         )
       )
     };
     assert(player);
     canvas.PutChar(view_width/2,view_height / 2,player);
   }
-  return canvas;
-
+  std::cout << canvas << '\n';
 }

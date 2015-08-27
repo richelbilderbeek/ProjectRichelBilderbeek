@@ -57,6 +57,25 @@ struct MainDialog
   Sprite GetSpriteAboveFloor(const int x,const int y) const noexcept { return GetSpriteAboveFloor(x,y,m_maze); }
   Sprite GetSpritePlayer() const noexcept { return GetSpritePlayer(m_direction,m_move_now,m_has_sword,m_fighting_frame); }
 
+  static Sprite GetSpriteFloor(
+    const Maze& maze,
+    const int x,
+    const int y,
+    const bool show_solution,
+    const SolutionMaze& solution
+  ) noexcept;
+  static Sprite GetSpriteAboveFloor(
+    const int x,
+    const int y,
+    const Maze& m_maze
+  ) noexcept;
+  static Sprite GetSpritePlayer(
+    const PlayerDirection direction,
+    const PlayerMove moveNow,
+    const bool m_has_sword,
+    const int m_fighting_frame
+  ) noexcept;
+
   GameState GetState() const noexcept { return m_state; }
 
   int GetX() const noexcept { return m_x; }
@@ -96,25 +115,6 @@ struct MainDialog
   int m_y;
 
   SolutionMaze CreateNewSolution() noexcept;
-
-  static Sprite GetSpriteFloor(
-    const Maze& maze,
-    const int x,
-    const int y,
-    const bool show_solution,
-    const SolutionMaze& solution
-  ) noexcept;
-  static Sprite GetSpriteAboveFloor(
-    const int x,
-    const int y,
-    const Maze& m_maze
-  ) noexcept;
-  static Sprite GetSpritePlayer(
-    const PlayerDirection direction,
-    const PlayerMove moveNow,
-    const bool m_has_sword,
-    const int m_fighting_frame
-  ) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

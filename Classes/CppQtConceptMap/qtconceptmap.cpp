@@ -68,27 +68,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "xml.h"
 #pragma GCC diagnostic pop
 
-/*
-
-///Collect all QGraphicsItems with class T in an unorderly way
-template <class T>
-std::vector<T*> Collect(const QGraphicsScene* const scene)
-{
-  std::vector<T*> v;
-  const QList<QGraphicsItem *> items = scene->items();
-  std::transform(items.begin(),items.end(),std::back_inserter(v),
-    [](QGraphicsItem* const item)
-    {
-      return dynamic_cast<T*>(item);
-    }
-  );
-  v.erase(std::remove(v.begin(),v.end(),nullptr),v.end());
-  assert(std::count(v.begin(),v.end(),nullptr)==0);
-  return v;
-}
-
-*/
-
 ///Returns a sorted vector
 template <class T>
 const std::vector<T> Sort(const std::vector<T>& v)
@@ -146,12 +125,12 @@ ribi::cmap::QtConceptMap::QtConceptMap(QWidget* parent)
   this->setMouseTracking(true);
 
   {
-    //QLinearGradient linearGradient(-500,-500,500,500);
-    //linearGradient.setColorAt(0.0,QColor(214,214,214));
-    //linearGradient.setColorAt(1.0,QColor(255,255,255));
     assert(this->scene());
-    //this->scene()->setBackgroundBrush(linearGradient);
-    this->scene()->setBackgroundBrush(QBrush(QColor(255,255,255)));
+    QLinearGradient linearGradient(-500,-500,500,500);
+    linearGradient.setColorAt(0.0,QColor(214,214,214));
+    linearGradient.setColorAt(1.0,QColor(255,255,255));
+    this->scene()->setBackgroundBrush(linearGradient);
+    //this->scene()->setBackgroundBrush(QBrush(QColor(255,255,255)));
   }
 }
 
@@ -417,10 +396,36 @@ void ribi::cmap::QtConceptMap::DeleteEdge(const boost::shared_ptr<const Edge> ed
   //Already deleted
   if (!GetQtEdgeConst(edge)) { return; }
 
-  assert(GetQtEdgeConst(edge)->scene() == this->GetScene());
+  const auto qtedge = GetQtEdgeConst(edge);
+
+  assert(qtedge->scene() == this->GetScene());
+  const auto qtfrom = qtedge->GetFrom();
+  const auto qtto = qtedge->GetFrom();
+  const auto from = qtfrom->GetNode();
+  const auto to = qtto->GetNode();
 
   //Delete the QtNode
-  DeleteQtEdge(GetQtEdgeConst(edge));
+  DeleteQtEdge(qtedge);
+
+  if (this->GetConceptMap()->HasNode(from))
+  {
+    const_cast<QtNode*>(qtfrom)->setSelected(true);
+    const_cast<QtNode*>(qtfrom)->setFocus();
+  }
+  else if (this->GetConceptMap()->HasNode(to))
+  {
+    const_cast<QtNode*>(qtto)->setSelected(true);
+    const_cast<QtNode*>(qtto)->setFocus();
+  }
+  else if (!this->GetQtNodes().empty())
+  {
+    this->GetQtNodes().front()->setSelected(true);
+    this->GetQtNodes().front()->setFocus();
+  }
+  else
+  {
+    this->m_tools->hide();
+  }
 }
 
 void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> node)
@@ -434,6 +439,16 @@ void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> no
 
   //Delete the QtNode
   DeleteQtNode(GetQtNodeConst(node.get()));
+
+  if (!this->GetQtNodes().empty())
+  {
+    this->GetQtNodes().front()->setSelected(true);
+    this->GetQtNodes().front()->setFocus();
+  }
+  else
+  {
+    this->m_tools->hide();
+  }
 }
 
 void ribi::cmap::QtConceptMap::DeleteQtEdge(const QtEdge * const qtedge)
@@ -822,7 +837,6 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         const boost::shared_ptr<CommandCreateNewEdge> command {
           new CommandCreateNewEdge
         };
-        command->SetVerbosity(true);
         if (!CanDoCommand(command)) return;
         this->DoCommand(command);
         UpdateSelection();
@@ -1258,7 +1272,6 @@ void ribi::cmap::QtConceptMap::mousePressEvent(QMouseEvent *event)
       const boost::shared_ptr<CommandCreateNewEdge> command {
         new CommandCreateNewEdge
       };
-      command->SetVerbosity(true);
       if (!CanDoCommand(command)) return;
       this->DoCommand(command);
       UpdateSelection();

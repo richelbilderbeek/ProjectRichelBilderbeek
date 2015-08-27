@@ -354,6 +354,12 @@ void ribi::maziak::MainDialog::OnTimerPressKeys()
   }
 }
 
+void ribi::maziak::MainDialog::SetDisplay(Display * const display)
+{
+
+  m_display = display;
+}
+
 void ribi::maziak::MainDialog::RespondToCurrentSquare() noexcept
 {
   assert(m_maze.CanGet(m_x,m_y));

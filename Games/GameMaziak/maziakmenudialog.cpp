@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "maziakmaindialog.h"
+#include "maziakterminal.h"
 #include "testtimer.h"
  
 #include "richelbilderbeekprogram.h"
@@ -55,6 +56,8 @@ int ribi::maziak::MenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
   boost::shared_ptr<MainDialog> dialog {
     new MainDialog( 7 + (4 * 2) )
   };
+  Terminal terminal;
+  dialog->SetDisplay(&terminal);
   dialog->Execute();
   return 0;
 

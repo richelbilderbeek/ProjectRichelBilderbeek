@@ -40,17 +40,15 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
   m_concept_map(new QtConceptMap)
 
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 
   //Create an empty concept map
   m_concept_map->SetConceptMap(
     ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(0)
   );
-  m_concept_map->SetVerbosity(true);
-
   assert(ui->widget->layout());
   ui->widget->layout()->addWidget(m_concept_map.get());
 

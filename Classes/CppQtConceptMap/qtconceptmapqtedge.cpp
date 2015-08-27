@@ -203,21 +203,6 @@ void ribi::cmap::QtEdge::EnableAll() noexcept
   this->m_arrow->setVisible(true);
 }
 
-/*
-boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::QtEdge1::GetNode() const noexcept
-{
-  const auto p = m_edge->GetNode();
-  assert(p);
-  return p;
-}
-
-boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtEdge1::GetNode() noexcept
-{
-  const auto p = m_edge->GetNode();
-  assert(p);
-  return p;
-}
-*/
 std::string ribi::cmap::QtEdge::GetVersion() noexcept
 {
   return "1.1";
