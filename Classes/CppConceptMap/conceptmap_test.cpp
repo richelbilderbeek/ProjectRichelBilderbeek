@@ -543,6 +543,17 @@ void ribi::cmap::ConceptMap::Test() noexcept
     const int n_nodes_after{static_cast<int>(concept_map->GetNodes().size())};
     assert(n_nodes_after == n_nodes_before + 2);
   }
+  if (verbose) { TRACE("Add node twice, must give a warning"); }
+  {
+    const auto concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
+    assert(concept_map);
+    const auto node_a = NodeFactory().GetTests().at(0);
+    assert(concept_map->GetNodes().size() == 0);
+    concept_map->AddNode(node_a);
+    assert(concept_map->GetNodes().size() == 1);
+    concept_map->AddNode(node_a);
+    assert(concept_map->GetNodes().size() == 1);
+  }
   if (verbose) { TRACE("Add two nodes and delete one, check selected"); }
   {
     const auto concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
@@ -569,10 +580,10 @@ void ribi::cmap::ConceptMap::Test() noexcept
     concept_map->AddEdge(edge);
     assert(concept_map->GetEdges().size() == 1);
     assert(concept_map->GetNodes().size() == 2);
+    TRACE(concept_map->GetSelectedEdges().size());
     assert(concept_map->GetSelectedEdges().size() == 1);
     assert(concept_map->GetSelectedNodes().size() == 0);
   }
-  assert(!"Green");
   if (verbose) { TRACE("Deletion of nodes"); }
   {
     //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);

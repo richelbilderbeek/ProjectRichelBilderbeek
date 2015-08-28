@@ -46,7 +46,7 @@ struct CommandSetSelectedWithCoordinat : public Command
   using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
 
   CommandSetSelectedWithCoordinat(const int x, const int y)
-    : m_old_focus{}, m_widget{}, m_x(x), m_y(y) {}
+    : m_prev_selected{}, m_widget{}, m_x(x), m_y(y) {}
   CommandSetSelectedWithCoordinat(const CommandSetSelectedWithCoordinat&) = delete;
   CommandSetSelectedWithCoordinat& operator=(const CommandSetSelectedWithCoordinat&) = delete;
   ~CommandSetSelectedWithCoordinat() noexcept {}
@@ -54,7 +54,7 @@ struct CommandSetSelectedWithCoordinat : public Command
   std::string ToStr() const noexcept final { return "set focus with coordinat"; }
 
   private:
-  ConstEdgesAndNodes m_old_focus;
+  ConstEdgesAndNodes m_prev_selected;
   ConceptMap * m_widget;
 
   const int m_x;

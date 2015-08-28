@@ -24,9 +24,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
+#include <QImage>
 #include <QWidget>
-#include "daswahreschlagerfestwidget.h"
 #include "daswahreschlagerfestdisplay.h"
+#include "daswahreschlagerfestkey.h"
+#include "daswahreschlagerfesttile.h"
 #pragma GCC diagnostic pop
 
 namespace Ui { class QtDwsWidget; }
@@ -52,15 +54,16 @@ protected:
   void paintEvent(QPaintEvent *) noexcept;
 
 private:
-  std::vector<ribi::dws::Key> m_keys;
-  boost::shared_ptr<Widget> m_widget;
   const QPixmap m_beer;
   const QPixmap m_bratwurst;
   const QPixmap m_empty;
+  //Will be painted
+  QImage m_image;
+  std::vector<Key> m_keys;
   const QPixmap m_richel;
 
   ///Obtain the pixmap for this tile
-  const QPixmap& GetPixmap(const Widget::Tile& tile) const noexcept;
+  const QPixmap& GetPixmap(const Tile& tile) const noexcept;
 
 
 };

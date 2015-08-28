@@ -108,13 +108,6 @@ struct ConceptMap
   ReadOnlyCenterNodePtr FindCenterNode() const noexcept;
   CenterNodePtr FindCenterNode() noexcept;
 
-  ///There is one item in focus at most
-  ///There can be multiple items selected
-  ///The node in focus is never in the collection of selected nodes
-  ///Use GetFocusAndSelected to get all
-  boost::shared_ptr<const Node> GetFocus() const noexcept;
-  boost::shared_ptr<      Node> GetFocus()       noexcept;
-
   ///Find the Edge that has the node as its center Node
   ///Returns nullptr if not present
   EdgePtr GetEdge(const NodePtr& node) const noexcept;
@@ -130,9 +123,6 @@ struct ConceptMap
   Nodes& GetNodes() noexcept { return m_nodes; }
 
   ///There can be multiple items selected
-  ///There is one item in focus at most
-  ///The node in focus is never in the collection of selected nodes
-  ///Use GetFocusAndSelected to get all
   ConstEdgesAndNodes GetSelected() const noexcept;
        EdgesAndNodes GetSelected()       noexcept { return m_selected; }
 
@@ -197,21 +187,9 @@ struct ConceptMap
   ///This has to be handled by QtConceptMapWidget
   boost::signals2::signal<void(const ReadOnlyNodePtr)> m_signal_delete_node;
 
-  ///Emitted when a Node loses focus
-  ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_lose_focus;
-
-  ///Emitted when one or more Nodes lose to be selected
-  ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(const ConstEdges&, const ConstNodes&)> m_signal_lose_selected;
-
-  ///Emitted when a Node receives focus
-  ///This has to be handled by QtConceptMapWidget
-  //boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_set_focus;
-
   ///Emitted when multiple Nodes are selected
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(const Edges&, const Nodes&)> m_signal_set_selected;
+  boost::signals2::signal<void(const EdgesAndNodes&)> m_signal_selected_changed;
 
 private:
 
@@ -220,18 +198,6 @@ private:
 
   ///The nodes
   Nodes m_nodes;
-
-  ///The elements in focus, if any. These might be:
-  ///- a true Node
-  ///- the label in the middle of an edge
-  ///- the CenterNode
-  boost::shared_ptr<Node> m_focus;
-
-
-  const int m_font_height;
-  const int m_font_width;
-
-  QPointF m_mouse_pos;
 
   ///The elements selected
   ///- a true Node
@@ -264,10 +230,7 @@ private:
   boost::shared_ptr<      Node> FindNodeAt(const double x, const double y)       noexcept;
   boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
 
-  ///Lose the current focus, assumes something has focus
-  void LoseFocus() noexcept;
-
-  ///Used by CommandAddFocusRandom and CommandSetFocusRandom
+  ///Used by CommandAddSelectedRandom and CommandSetSelectedRandom
   ///Of all the concept maps its nodes, except for the uses supplied as the
   ///argument, return 1 to all the nodes, except when there is no node
   ///left (as all are excluded) or the concept map does not have any nodes
@@ -275,7 +238,7 @@ private:
   boost::shared_ptr<Edge> GetRandomEdge(std::vector<boost::shared_ptr<const Edge>> edges_to_exclude = {}) noexcept;
 
 
-  ///Used by CommandAddFocusRandom and CommandSetFocusRandom
+  ///Used by CommandAddSelectedRandom and CommandSetSelectedRandom
   ///Of all the concept maps its nodes, except for the uses supplied as the
   ///argument, return 1 to all the nodes, except when there is no node
   ///left (as all are excluded) or the concept map does not have any nodes
@@ -329,10 +292,7 @@ private:
   friend class CommandCreateNewEdge;
   friend class CommandCreateNewNode;
   friend class CommandDeleteConceptMap;
-  friend class CommandDeleteFocusNode;
   friend class CommandDeleteNode;
-  friend class CommandLoseFocus;
-  friend class CommandSetFocusRandom;
   friend class CommandSetSelectedWithCoordinat;
   friend class CommandUnselectRandom;
   friend bool operator==(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;

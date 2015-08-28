@@ -28,7 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "daswahreschlagerfestmenudialog.h"
 #include "qtaboutdialog.h"
+#include "qtdaswahreschlagerfestwidget.h"
 #include "qtcanvasdialog.h"
+#include "daswahreschlagerfestwidget.h"
 #include "testtimer.h"
 #include "qtdaswahreschlagerfestmaindialog.h"
 #include "ui_qtdaswahreschlagerfestmenudialog.h"
@@ -57,8 +59,11 @@ void ribi::dws::QtMenuDialog::keyPressEvent(QKeyEvent * e)
 
 void ribi::dws::QtMenuDialog::on_button_start_clicked() noexcept
 {
-  QtMainDialog d;
-  this->ShowChild(&d);
+  QtDwsWidget d;
+  d.show();
+  Widget w(&d);
+  w.Execute();
+  //d->ShowChild();
 }
 
 void ribi::dws::QtMenuDialog::on_button_about_clicked() noexcept
@@ -82,7 +87,7 @@ void ribi::dws::QtMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  QtMainDialog();
+  //QtMainDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

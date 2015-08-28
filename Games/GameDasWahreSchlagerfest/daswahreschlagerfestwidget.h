@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //Cannot use Boost, due to libnds
 
 #include "daswahreschlagerfestkey.h"
+#include "daswahreschlagerfestcursor.h"
 
 
 namespace ribi {
@@ -36,14 +37,6 @@ struct Display;
 ///Widget contains the game logic of Das Wahre Schlagerfest
 struct Widget
 {
-  enum class Tile { empty, beer, bratwurst, richel };
-  struct Cursor
-  {
-    Cursor(const int any_x, const int any_y, const Tile any_tile)
-      : x(any_x), y(any_y), tile(any_tile) {}
-    int x; int y; Tile tile;
-  };
-
   Widget(
     Display * const display = nullptr,
     const int width = 9,

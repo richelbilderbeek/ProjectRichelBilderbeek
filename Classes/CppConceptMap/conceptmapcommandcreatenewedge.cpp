@@ -86,6 +86,7 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(ConceptMap * const conc
 
   m_edge = m_concept_map->CreateNewEdge();
 
+  assert(m_concept_map->GetSelectedNodes().empty());
   assert(m_concept_map);
   assert(m_edge);
 }
@@ -97,7 +98,6 @@ void ribi::cmap::CommandCreateNewEdge::UndoSpecific() noexcept
   m_concept_map->DeleteEdge(m_edge);
 
   m_concept_map->SetSelected(m_prev_selected);
-
 
   m_concept_map = nullptr;
   m_nodes.clear();

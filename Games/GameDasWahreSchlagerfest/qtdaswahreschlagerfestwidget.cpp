@@ -26,16 +26,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 #include <QPixmap>
+
 #include "daswahreschlagerfestwidget.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::dws::QtDwsWidget::QtDwsWidget(QWidget *parent) noexcept
   : QWidget(parent),
-    m_keys{},
-    m_widget(new Widget(this)),
     m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
     m_bratwurst(":/images/GameDasWahreSchlagerfestBratwurst.png"),
     m_empty(":/images/GameDasWahreSchlagerfestSmiley.png"),
+    m_image{},
+    m_keys{},
     m_richel(":/images/GameDasWahreSchlagerfestRichel.png")
 {
   assert(m_beer.width() == 102);
@@ -46,17 +48,19 @@ ribi::dws::QtDwsWidget::QtDwsWidget(QWidget *parent) noexcept
 
 void ribi::dws::QtDwsWidget::DoDisplay(const Widget& /* widget */)
 {
+  qApp->processEvents();
   this->repaint();
+  this->show();
 }
 
-const QPixmap& ribi::dws::QtDwsWidget::GetPixmap(const Widget::Tile& tile) const noexcept
+const QPixmap& ribi::dws::QtDwsWidget::GetPixmap(const Tile& tile) const noexcept
 {
   switch (tile)
   {
-    case Widget::Tile::beer     : return m_beer;
-    case Widget::Tile::bratwurst: return m_bratwurst;
-    case Widget::Tile::empty    : return m_empty;
-    case Widget::Tile::richel   : return m_richel;
+    case Tile::beer     : return m_beer;
+    case Tile::bratwurst: return m_bratwurst;
+    case Tile::empty    : return m_empty;
+    case Tile::richel   : return m_richel;
   }
   assert(!"Should not get here");
   throw std::logic_error("ribi::dws::QtDwsWidget::GetPixmap");
@@ -77,15 +81,9 @@ void ribi::dws::QtDwsWidget::keyPressEvent(QKeyEvent * e) noexcept
   }
 }
 
-void ribi::dws::QtDwsWidget::OnChanged(const Widget& /* widget */)
+void ribi::dws::QtDwsWidget::OnChanged(const Widget& widget)
 {
-  this->repaint();
-}
-
-void ribi::dws::QtDwsWidget::paintEvent(QPaintEvent *) noexcept
-{
-  QPainter painter(this);
-  const std::vector<std::vector<Widget::Tile> > & v = m_widget->GetTiles();
+  const std::vector<std::vector<Tile> > & v = widget.GetTiles();
   assert(!v.empty());
   const int maxy = static_cast<int>(v.size()   );
   const int maxx = static_cast<int>(v[0].size());
@@ -95,7 +93,7 @@ void ribi::dws::QtDwsWidget::paintEvent(QPaintEvent *) noexcept
   for (int y=0; y!=maxy; ++y)
   {
     assert(y < static_cast<int>(v.size()));
-    const std::vector<Widget::Tile>& line = v[y];
+    const std::vector<Tile>& line = v[y];
     assert(maxx == static_cast<int>(line.size()));
     const int y1 = static_cast<int>(block_height * static_cast<double>(y  ));
     //const int y2 = static_cast<int>(block_height * static_cast<double>(y+1));
@@ -112,13 +110,21 @@ void ribi::dws::QtDwsWidget::paintEvent(QPaintEvent *) noexcept
   }
   //Draw cursor
   {
-    const Widget::Cursor cursor = m_widget->GetCursor();
+    const Cursor cursor = widget.GetCursor();
     const int x = cursor.x * block_width;
     const int y = cursor.y * block_height;
     const QPixmap& pixmap = GetPixmap(cursor.tile);
     painter.drawPixmap(x,y,block_width,block_height,pixmap);
 
   }
+
+  this->repaint();
+}
+
+void ribi::dws::QtDwsWidget::paintEvent(QPaintEvent *) noexcept
+{
+  QPainter painter(this);
+  painter.drawImage(0,0,m_image);
 }
 
 
@@ -129,6 +135,7 @@ ribi::dws::Key ribi::dws::QtDwsWidget::RequestKey()
     qApp->processEvents();
     if (m_keys.empty()) continue;
     const auto key = m_keys.back();
+    TRACE(static_cast<int>(key));
     m_keys.clear();
     return key;
   }

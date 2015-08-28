@@ -33,32 +33,30 @@ bool ribi::cmap::CommandSetSelectedWithCoordinat::CanDoCommandSpecific(const Con
     widget->FindNodeAt(m_x,m_y).get();
 }
 
-void ribi::cmap::CommandSetSelectedWithCoordinat::DoCommandSpecific(ConceptMap * const widget) noexcept
+void ribi::cmap::CommandSetSelectedWithCoordinat::DoCommandSpecific(ConceptMap * const concept_map) noexcept
 {
-  assert(CanDoCommandSpecific(widget));
-  assert(widget);
+  assert(CanDoCommandSpecific(concept_map));
+  assert(concept_map);
 
-  m_old_focus = const_cast<const ConceptMap*>(widget)->GetSelected();
-  m_widget = widget;
+  m_prev_selected = const_cast<const ConceptMap*>(concept_map)->GetSelected();
+  m_widget = concept_map;
 
   const boost::shared_ptr<Node> node {
-    widget->FindNodeAt(m_x,m_y)
+    concept_map->FindNodeAt(m_x,m_y)
   };
 
-  widget->m_focus = node;
-  //widget->m_signal_set_focus(node);
+  concept_map->SetSelected( Nodes( { node } ) );
 
   assert(m_widget);
-  assert(widget);
+  assert(concept_map);
 }
 
 void ribi::cmap::CommandSetSelectedWithCoordinat::UndoSpecific() noexcept
 {
   assert(m_widget);
-  assert(m_widget->m_focus);
 
   //Give back previous selection
-  m_widget->SetSelected(m_old_focus);
+  m_widget->SetSelected(m_prev_selected);
 
   m_widget->m_signal_concept_map_changed();
 

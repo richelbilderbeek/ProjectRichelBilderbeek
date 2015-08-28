@@ -24,17 +24,10 @@ void ribi::dws::Terminal::DoDisplay(const Widget& widget)
   {
     for (int col=0; col!=n_cols; ++col)
     {
-      Widget::Tile tile = widget.GetTiles()[row][col];
+      Tile tile = widget.GetTiles()[row][col];
       const auto cursor = widget.GetCursor();
       if (col == cursor.x && row == cursor.y) { tile = cursor.tile; }
-      char c = ' ';
-      switch (tile)
-      {
-        case Widget::Tile::beer     : c = 'V'; break;
-        case Widget::Tile::bratwurst: c = 'U'; break;
-        case Widget::Tile::empty    : c = '.'; break;
-        case Widget::Tile::richel   : c = 'R'; break;
-      }
+      const char c = ToChar(tile);
       canvas.PutChar(col,row,c);
     }
   }

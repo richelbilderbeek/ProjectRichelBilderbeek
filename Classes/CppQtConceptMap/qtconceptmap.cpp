@@ -188,11 +188,13 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   if (!GetQtNode(edge->GetFrom().get()))
   {
     if (m_verbose) { TRACE("Adding 'from' Node to QtConceptMap (as it was not yet in there)"); }
+    //Note: this cases ConceptMap::GetSelectedEdges() to be empty again, this has to be fixed later on
     AddNode(edge->GetFrom());
   }
   if (!GetQtNode(edge->GetTo().get()))
   {
     if (m_verbose) { TRACE("Adding 'to' Node to QtConceptMap (as it was not yet in there)"); }
+    //Note: this cases ConceptMap::GetSelectedEdges() to be empty again, this has to be fixed later on
     AddNode(edge->GetTo());
   }
 
@@ -253,17 +255,24 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   assert(!qtedge->scene());
   this->scene()->addItem(qtedge); //QtEdge adds the QtQuadBezierArrow and QtNode to the QScene when QtEdge::paint is called
 
+  //Edge may have lost its selectedness at AddNode, fix it here
+  if (GetConceptMap()->GetSelectedEdges().size() != 1 || GetConceptMap()->GetSelectedEdges()[0] != edge)
+  {
+    GetConceptMap()->SetSelected( ConceptMap::Edges( {edge} ) );
+  }
+
   if (m_verbose) { TRACE("Setting selection and focus correct"); }
   qtfrom->setSelected(false);
   qtto->setSelected(false);
   qtedge->GetQtNode()->setSelected(true);
-  assert(qtedge->GetQtNode());
-  GetScene()->focusItem()->clearFocus();
-  qtedge->GetQtNode()->setFocus();
+  if (GetScene()->focusItem() && GetScene()->focusItem() != qtedge->GetQtNode().get())
+  {
+    GetScene()->focusItem()->clearFocus();
+    qtedge->GetQtNode()->setFocus();
+  }
 
   //this->GetConceptMap()->SetSelected( ConceptMap::Edges( { qtedge->GetEdge() } ) );
-
-  assert(qtedge->isSelected());
+  //assert(qtedge->GetQtNode()->isSelected());
   return qtedge;
 }
 
@@ -441,12 +450,14 @@ void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> no
   //Delete the QtNode
   DeleteQtNode(GetQtNodeConst(node.get()));
 
-  if (!this->GetQtNodes().empty())
+  for (const auto new_selected_nodes: this->GetConceptMap()->GetSelectedNodes())
   {
-    this->GetQtNodes().front()->setSelected(true);
-    this->GetQtNodes().front()->setFocus();
+    assert(new_selected_nodes);
+    assert(GetQtNode(new_selected_nodes.get()));
+    this->GetQtNode(new_selected_nodes.get())->setSelected(true);
   }
-  else
+
+  if (this->GetQtNodes().empty())
   {
     this->m_tools->hide();
   }
@@ -803,7 +814,7 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         if (!done_command) break;
       }
     }
-    break;
+    return;
     case Qt::Key_Escape:
     {
       //Only remove the 'new arrow' if present
@@ -814,7 +825,7 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         m_arrow = nullptr;
       }
     }
-    break;
+    return;
     case Qt::Key_Equal:
       this->scale(1.1,1.1);
       break;
@@ -831,7 +842,7 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         if (!CanDoCommand(command)) return;
         this->DoCommand(command);
       }
-      break;
+      return;
     case Qt::Key_N:
       if (event->modifiers() & Qt::ControlModifier)
       {
@@ -840,13 +851,13 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         };
         this->DoCommand(command);
       }
-      break;
+      return;
     case Qt::Key_Z:
       if (event->modifiers() & Qt::ControlModifier)
       {
         if (GetConceptMap()->CanUndo()) { GetConceptMap()->Undo(); }
       }
-      break;
+      return;
     case Qt::Key_Question:
       UpdateSelection();
       break;

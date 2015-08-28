@@ -40,7 +40,7 @@ ribi::dws::NdsGameDialog::NdsGameDialog()
 
 void ribi::dws::NdsGameDialog::DoDisplay(const Widget& widget)
 {
-  const std::vector<std::vector<Widget::Tile>>& v = widget.GetTiles();
+  const std::vector<std::vector<Tile>>& v = widget.GetTiles();
   assert(!v.empty());
   const int n_rows{static_cast<int>(v.size()   )};
   const int n_cols{static_cast<int>(v[0].size())};
@@ -51,7 +51,7 @@ void ribi::dws::NdsGameDialog::DoDisplay(const Widget& widget)
   for (int row=0; row!=n_rows; ++row)
   {
     assert(row < static_cast<int>(v.size()));
-    const std::vector<Widget::Tile>& line = v[row];
+    const std::vector<Tile>& line = v[row];
     assert(n_cols == static_cast<int>(line.size()));
     const int top = static_cast<int>(block_height * static_cast<double>(row  ));
 
@@ -61,23 +61,23 @@ void ribi::dws::NdsGameDialog::DoDisplay(const Widget& widget)
       const int left = static_cast<int>(block_width * static_cast<double>(col  ));
       switch (line[col])
       {
-        case Widget::Tile::beer: PicBeer().Draw(VRAM_A,left,top); break;
-        case Widget::Tile::bratwurst: PicBratwurst().Draw(VRAM_A,left,top); break;
-        case Widget::Tile::empty: PicEmpty().Draw(VRAM_A,left,top); break;
+        case Tile::beer: PicBeer().Draw(VRAM_A,left,top); break;
+        case Tile::bratwurst: PicBratwurst().Draw(VRAM_A,left,top); break;
+        case Tile::empty: PicEmpty().Draw(VRAM_A,left,top); break;
         default: assert(!"Should not get here"); break;
       }
     }
   }
   //Draw cursor
   {
-    const Widget::Cursor cursor = widget.GetCursor();
+    const Cursor cursor = widget.GetCursor();
     const int x = cursor.x * block_width;
     const int y = cursor.y * block_height;
     switch (cursor.tile)
     {
-      case Widget::Tile::beer: PicBeer().Draw(VRAM_A,x,y); break;
-      case Widget::Tile::bratwurst: PicBratwurst().Draw(VRAM_A,x,y); break;
-      case Widget::Tile::empty: PicEmpty().Draw(VRAM_A,x,y); break;
+      case Tile::beer: PicBeer().Draw(VRAM_A,x,y); break;
+      case Tile::bratwurst: PicBratwurst().Draw(VRAM_A,x,y); break;
+      case Tile::empty: PicEmpty().Draw(VRAM_A,x,y); break;
       default: assert(!"Should not get here"); break;
     }
   }

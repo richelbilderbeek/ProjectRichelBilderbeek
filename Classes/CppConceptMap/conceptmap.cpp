@@ -59,15 +59,11 @@ ribi::cmap::ConceptMap::ConceptMap(const std::string& question) noexcept
     m_signal_concept_map_changed{},
     m_signal_delete_edge{},
     m_signal_delete_node{},
-    m_signal_lose_focus{},
-    m_signal_lose_selected{},
-    m_signal_set_selected{},
+    m_signal_selected_changed{},
     m_edges( {} ),
     m_nodes(CreateNodes(question, {} )),
-    m_focus{},
-    m_font_height(18),
-    m_font_width(12),
-    m_mouse_pos{0.0,0.0},
+    //m_font_height(18),
+    //m_font_width(12),
     m_selected{},
     m_undo{}
 {
@@ -83,8 +79,8 @@ ribi::cmap::ConceptMap::ConceptMap(const std::string& question) noexcept
   assert(FindCenterNode()->GetConcept()->GetName() == question
     && "The CenterNode must display the focus");
   #endif
-  assert(m_font_height > 0);
-  assert(m_font_width > 0);
+  //assert(m_font_height > 0);
+  //assert(m_font_width > 0);
 }
 
 ribi::cmap::ConceptMap::ConceptMap(
@@ -97,16 +93,12 @@ ribi::cmap::ConceptMap::ConceptMap(
     m_signal_concept_map_changed{},
     m_signal_delete_edge{},
     m_signal_delete_node{},
-    m_signal_lose_focus{},
-    m_signal_lose_selected{},
     //m_signal_set_focus{},
-    m_signal_set_selected{},
+    m_signal_selected_changed{},
     m_edges(edges),
     m_nodes(nodes),
-    m_focus{},
-    m_font_height(18),
-    m_font_width(12),
-    m_mouse_pos{0.0,0.0},
+    //m_font_height(18),
+    //m_font_width(12),
     m_selected{},
     m_undo{}
 {
@@ -193,6 +185,9 @@ void ribi::cmap::ConceptMap::AddEdge(const EdgePtr& edge) noexcept
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
     && "First enter the node this edge targets to");
   m_edges.push_back(edge);
+
+  this->SetSelected( Edges( { edge } ) );
+
   m_signal_add_edge(edge);
 }
 
@@ -375,7 +370,6 @@ void ribi::cmap::ConceptMap::DeleteNode(const NodePtr& node) noexcept
 
 void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
 {
-  #ifndef NDEBUG
   assert(node);
   if (std::count(m_nodes.begin(),m_nodes.end(),node) == 0)
   {
@@ -385,12 +379,6 @@ void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
     //Because the sequence
     return;
   }
-  assert(std::count(m_nodes.begin(),m_nodes.end(),node) > 0
-    && "Can only delete an existing node");
-  assert(std::count(m_nodes.begin(),m_nodes.end(),node) == 1
-    && "Every node is unique");
-  const std::size_t n_nodes_before = m_nodes.size();
-  #endif
 
   //Delete all edges going to this node
   std::vector<boost::shared_ptr<ribi::cmap::Edge>> to_be_deleted;
@@ -408,6 +396,12 @@ void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
   //Unselect the node
   this->Unselect( ConstNodes( { node } ) );
 
+  //If there is no node selected anymore, give focus to a possible first node
+  if (GetSelectedNodes().empty() && !GetNodes().empty())
+  {
+    this->SetSelected(Nodes( { GetNodes().front() } ) );
+  }
+
   //Delete the node itself
   m_nodes.erase(
     std::remove(
@@ -418,13 +412,7 @@ void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
     m_nodes.end()
   );
 
-
   m_signal_delete_node(node);
-
-  #ifndef NDEBUG
-  const std::size_t n_nodes_after = m_nodes.size();
-  assert(n_nodes_before - 1 == n_nodes_after);
-  #endif
 }
 
 bool ribi::cmap::ConceptMap::Empty() const noexcept
@@ -511,22 +499,9 @@ ribi::cmap::ConceptMap::ReadOnlyNodes ribi::cmap::ConceptMap::GetNodes() const n
   return AddConst(m_nodes);
 }
 
-/*
-std::string ribi::cmap::ConceptMap::GetQuestion() const noexcept
-{
-  const boost::shared_ptr<const CenterNode> center_node(FindCenterNode());
-  if (center_node)
-  {
-    assert(center_node->GetConcept());
-    return center_node->GetConcept()->GetName();
-  }
-  else return "";
-}
-*/
-
 std::string ribi::cmap::ConceptMap::GetVersion() noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
 std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexcept
@@ -536,7 +511,8 @@ std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexcept
     "2013-12-23: Version 1.1: started versioning",
     "2014-02-08: Version 1.2: support an empty concept map"
     "2014-03-24: Version 1.3: distinguished correctly between focus and selected"
-    "2015-08-13: Version 2.0: merge of ConceptMap and ConceptMapWidget"
+    "2015-08-13: Version 2.0: merge of ConceptMap and ConceptMapWidget",
+    "2015-08-28: Version 2.1: removed many useless member variables"
   };
 }
 
@@ -920,7 +896,6 @@ bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap:
   }
 
 
-  if (lhs.m_focus != rhs.m_focus) return false;
   if (lhs.GetSelected() != rhs.GetSelected()) return false;
   if (lhs.m_undo.size() != rhs.m_undo.size()) return false;
   return std::equal(
@@ -956,7 +931,7 @@ void ribi::cmap::ConceptMap::AddSelected(const std::vector<boost::shared_ptr<Edg
   const auto new_end = std::unique(std::begin(m_selected.first),std::end(m_selected.first));
   m_selected.first.erase(new_end,std::end(m_selected.first));
 
-  m_signal_set_selected(m_selected.first,m_selected.second);
+  m_signal_selected_changed(m_selected);
 }
 
 void ribi::cmap::ConceptMap::AddSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
@@ -969,7 +944,7 @@ void ribi::cmap::ConceptMap::AddSelected(const std::vector<boost::shared_ptr<Nod
   const auto new_end = std::unique(std::begin(m_selected.second),std::end(m_selected.second));
   m_selected.second.erase(new_end,std::end(m_selected.second));
 
-  m_signal_set_selected(m_selected.first,m_selected.second);
+  m_signal_selected_changed(m_selected);
 }
 
 void ribi::cmap::ConceptMap::AddSelected(
@@ -1073,10 +1048,14 @@ boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::ConceptMap::FindNodeAt(
   const double y
 ) const noexcept
 {
+  assert(!"Am I used??");
+  const int font_height{18};
+  const int font_width{12};
+
   for (const boost::shared_ptr<const Node> node: GetNodes())
   {
-    const double width  = (m_font_width * node->GetConcept()->GetName().size());
-    const double height = m_font_height;
+    const double width  = (font_width * node->GetConcept()->GetName().size());
+    const double height = font_height;
 
     const double left   = node->GetX() - (0.5 * width);
     const double top    = node->GetY() - (0.5 * height);
@@ -1094,16 +1073,6 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::FindNodeAt(const dou
   };
   assert(node);
   return boost::const_pointer_cast<Node>(node);
-}
-
-boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::ConceptMap::GetFocus() const noexcept
-{
-  return m_focus;
-}
-
-boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::GetFocus() noexcept
-{
-  return m_focus;
 }
 
 ribi::cmap::ConceptMap::ConstEdgesAndNodes ribi::cmap::ConceptMap::GetSelected() const noexcept
@@ -1198,16 +1167,6 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::GetRandomNode(
   return p;
 }
 
-
-void ribi::cmap::ConceptMap::LoseFocus() noexcept
-{
-  assert(m_focus);
-
-  m_focus = boost::shared_ptr<Node>() ;
-
-  assert(!m_focus);
-}
-
 void ribi::cmap::ConceptMap::OnUndo(const Command * const
   #ifndef NDEBUG
   command_to_remove
@@ -1221,15 +1180,6 @@ void ribi::cmap::ConceptMap::OnUndo(const Command * const
   m_undo.pop_back();
 }
 
-/*
-void ribi::cmap::ConceptMap::SetFocus(const boost::shared_ptr<Node>& node) noexcept
-{
-  assert(node);
-  m_focus = node;
-  //m_signal_set_focus(node);
-}
-*/
-
 void ribi::cmap::ConceptMap::SetSelected(
   const ConstEdges& edges,
   const ConstNodes& nodes
@@ -1239,7 +1189,7 @@ void ribi::cmap::ConceptMap::SetSelected(
   const Nodes non_const_nodes = RemoveConst(nodes);
   m_selected.first = non_const_edges;
   m_selected.second = non_const_nodes;
-  m_signal_set_selected(non_const_edges,non_const_nodes);
+  m_signal_selected_changed(m_selected);
 }
 
 void ribi::cmap::ConceptMap::SetSelected(const Edges& edges) noexcept
@@ -1300,7 +1250,7 @@ void ribi::cmap::ConceptMap::Unselect(
     );
   }
 
-  m_signal_lose_selected(edges, {} );
+  m_signal_selected_changed(m_selected);
 }
 
 void ribi::cmap::ConceptMap::Unselect(
@@ -1318,6 +1268,5 @@ void ribi::cmap::ConceptMap::Unselect(
       std::end(m_selected.second)
     );
   }
-
-  m_signal_lose_selected( {}, nodes);
+  m_signal_selected_changed(m_selected);
 }

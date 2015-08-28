@@ -137,6 +137,7 @@ void ribi::dws::Widget::Execute()
     DoDisplay();
     ribi::dws::Key key = m_display->RequestKey();
     PressKey(key);
+    if (key == ribi::dws::Key::quit) break;
   }
 }
 
