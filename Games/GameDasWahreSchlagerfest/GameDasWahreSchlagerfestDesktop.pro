@@ -9,7 +9,8 @@ include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
-include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
+include(../../Classes/CppQtGraphics/CppQtGraphics.pri)
+#include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
 
 include(GameDasWahreSchlagerfestDesktop.pri)
 

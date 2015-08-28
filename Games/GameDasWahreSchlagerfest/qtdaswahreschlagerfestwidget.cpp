@@ -28,6 +28,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPixmap>
 
 #include "daswahreschlagerfestwidget.h"
+#include "qtgraphics.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -36,14 +38,18 @@ ribi::dws::QtDwsWidget::QtDwsWidget(QWidget *parent) noexcept
     m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
     m_bratwurst(":/images/GameDasWahreSchlagerfestBratwurst.png"),
     m_empty(":/images/GameDasWahreSchlagerfestSmiley.png"),
-    m_image{},
+    m_image{QtGraphics().CreateImage(1000,600,0)},
     m_keys{},
     m_richel(":/images/GameDasWahreSchlagerfestRichel.png")
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(m_beer.width() == 102);
   assert(m_bratwurst.width() == 102);
   assert(m_empty.width() == 102);
   assert(m_richel.width() == 102);
+
 }
 
 void ribi::dws::QtDwsWidget::DoDisplay(const Widget& /* widget */)
@@ -85,27 +91,32 @@ void ribi::dws::QtDwsWidget::OnChanged(const Widget& widget)
 {
   const std::vector<std::vector<Tile> > & v = widget.GetTiles();
   assert(!v.empty());
-  const int maxy = static_cast<int>(v.size()   );
-  const int maxx = static_cast<int>(v[0].size());
-  const int block_width  = static_cast<double>(width() ) / static_cast<double>(maxx);
-  const int block_height = static_cast<double>(height()) / static_cast<double>(maxy);
-
-  for (int y=0; y!=maxy; ++y)
+  const int rows = static_cast<int>(v.size()   );
+  const int cols = static_cast<int>(v[0].size());
+  if (width() != cols * m_beer.width() || height() != rows * m_beer.height())
+  {
+    const int width {cols * m_beer.width() };
+    const int height{rows * m_beer.height()};
+    this->setGeometry(0,0,width,height);
+    m_image = QtGraphics().CreateImage(width,height,0);
+  }
+  const int block_width  = static_cast<double>(width() ) / static_cast<double>(cols);
+  const int block_height = static_cast<double>(height()) / static_cast<double>(rows);
+  for (int y=0; y!=rows; ++y)
   {
     assert(y < static_cast<int>(v.size()));
     const std::vector<Tile>& line = v[y];
-    assert(maxx == static_cast<int>(line.size()));
+    assert(cols == static_cast<int>(line.size()));
     const int y1 = static_cast<int>(block_height * static_cast<double>(y  ));
     //const int y2 = static_cast<int>(block_height * static_cast<double>(y+1));
-    for (int x=0; x!=maxx; ++x)
+    for (int x=0; x!=cols; ++x)
     {
       assert(x < static_cast<int>(line.size()));
       const QPixmap& pixmap = GetPixmap(line[x]);
       const int x1 = static_cast<int>(block_width * static_cast<double>(x  ));
       //const int x2 = static_cast<int>(block_width * static_cast<double>(x+1));
-      //painter.drawPixmap(x1,y1,x2,y2,*pixmap);
-      //painter.drawPixmap(x1,y1,x2,y2,*pixmap);
-      painter.drawPixmap(x1,y1,block_width,block_height,pixmap);
+      QtGraphics().DrawImage(m_image,pixmap.toImage(),x1,y1);
+      //painter.drawPixmap(x1,y1,block_width,block_height,pixmap);
     }
   }
   //Draw cursor
@@ -114,7 +125,8 @@ void ribi::dws::QtDwsWidget::OnChanged(const Widget& widget)
     const int x = cursor.x * block_width;
     const int y = cursor.y * block_height;
     const QPixmap& pixmap = GetPixmap(cursor.tile);
-    painter.drawPixmap(x,y,block_width,block_height,pixmap);
+    QtGraphics().DrawImage(m_image,pixmap.toImage(),x,y);
+    //painter.drawPixmap(x,y,block_width,block_height,pixmap);
 
   }
 
@@ -135,8 +147,22 @@ ribi::dws::Key ribi::dws::QtDwsWidget::RequestKey()
     qApp->processEvents();
     if (m_keys.empty()) continue;
     const auto key = m_keys.back();
-    TRACE(static_cast<int>(key));
     m_keys.clear();
     return key;
   }
 }
+
+#ifndef NDEBUG
+void ribi::dws::QtDwsWidget::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    QtGraphics();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif

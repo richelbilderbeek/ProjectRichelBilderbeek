@@ -163,6 +163,8 @@ struct ConceptMap
   void SetSelected(const ConstEdges& edges,const ConstNodes& nodes) noexcept;
   void SetSelected(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
 
+  void SetVerbosity(const bool verbose) noexcept { m_verbose = verbose; }
+
   ///Convert a ConceptMap from an XML std::string
   static std::string ToXml(const ReadOnlyConceptMapPtr& c) noexcept;
 
@@ -208,6 +210,8 @@ private:
   ///The undo stack (use std::vector because it is a true STL container)
   ///The Commands aren't const, because Command::Undo changes their state
   std::vector<boost::shared_ptr<Command>> m_undo;
+
+  bool m_verbose;
 
   ///Add the nodes to the current (can be zero) selected nodes
   void AddSelected(const Edges& edges) noexcept;

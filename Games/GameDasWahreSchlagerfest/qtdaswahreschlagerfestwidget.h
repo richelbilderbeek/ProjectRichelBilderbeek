@@ -65,7 +65,9 @@ private:
   ///Obtain the pixmap for this tile
   const QPixmap& GetPixmap(const Tile& tile) const noexcept;
 
-
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace dws

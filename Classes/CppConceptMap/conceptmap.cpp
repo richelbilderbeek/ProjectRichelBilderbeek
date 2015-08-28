@@ -62,10 +62,9 @@ ribi::cmap::ConceptMap::ConceptMap(const std::string& question) noexcept
     m_signal_selected_changed{},
     m_edges( {} ),
     m_nodes(CreateNodes(question, {} )),
-    //m_font_height(18),
-    //m_font_width(12),
     m_selected{},
-    m_undo{}
+    m_undo{},
+    m_verbose{false}
 {
   #ifndef NDEBUG
   Test();
@@ -79,8 +78,6 @@ ribi::cmap::ConceptMap::ConceptMap(const std::string& question) noexcept
   assert(FindCenterNode()->GetConcept()->GetName() == question
     && "The CenterNode must display the focus");
   #endif
-  //assert(m_font_height > 0);
-  //assert(m_font_width > 0);
 }
 
 ribi::cmap::ConceptMap::ConceptMap(
@@ -93,12 +90,9 @@ ribi::cmap::ConceptMap::ConceptMap(
     m_signal_concept_map_changed{},
     m_signal_delete_edge{},
     m_signal_delete_node{},
-    //m_signal_set_focus{},
     m_signal_selected_changed{},
     m_edges(edges),
     m_nodes(nodes),
-    //m_font_height(18),
-    //m_font_width(12),
     m_selected{},
     m_undo{}
 {
@@ -168,7 +162,7 @@ void ribi::cmap::ConceptMap::AddEdge(const EdgePtr& edge) noexcept
   assert(edge);
   if (std::find(std::begin(m_edges),std::end(m_edges),edge) != std::end(m_edges))
   {
-    TRACE("Warning: edge already added");
+    if (m_verbose) { TRACE("Warning: edge already added"); }
     return;
   }
 
@@ -196,7 +190,7 @@ void ribi::cmap::ConceptMap::AddNode(const NodePtr& node) noexcept
   assert(node);
   if (std::find(std::begin(m_nodes),std::end(m_nodes),node) != std::end(m_nodes))
   {
-    TRACE("Warning: node already added");
+    if (m_verbose) { TRACE("Warning: node already added"); }
     return;
   }
 
@@ -393,15 +387,6 @@ void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
     DeleteEdge(edge);
   }
 
-  //Unselect the node
-  this->Unselect( ConstNodes( { node } ) );
-
-  //If there is no node selected anymore, give focus to a possible first node
-  if (GetSelectedNodes().empty() && !GetNodes().empty())
-  {
-    this->SetSelected(Nodes( { GetNodes().front() } ) );
-  }
-
   //Delete the node itself
   m_nodes.erase(
     std::remove(
@@ -411,6 +396,15 @@ void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
     ),
     m_nodes.end()
   );
+
+  //Unselect the node
+  this->Unselect( ConstNodes( { node } ) );
+
+  //If there is no node selected anymore, give focus to a possible first node
+  if (GetSelectedNodes().empty() && !GetNodes().empty())
+  {
+    this->SetSelected(Nodes( { GetNodes().front() } ) );
+  }
 
   m_signal_delete_node(node);
 }

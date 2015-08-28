@@ -17,10 +17,14 @@ mv *.h ../source
 cd ..
 
 cd source
+ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfestcursor.h
+ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfestcursor.cpp
 ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.cpp
 ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfestdisplay.h
 ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfestkey.cpp
 ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfestkey.h
+ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfesttile.h
+ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfesttile.cpp
 ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfestwidget.cpp
 ln -s ../../GameDasWahreSchlagerfest/daswahreschlagerfestwidget.h
 cd ..

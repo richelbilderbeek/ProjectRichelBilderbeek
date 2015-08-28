@@ -752,6 +752,32 @@ QGraphicsScene* ribi::cmap::QtConceptMap::GetScene() const noexcept
   return scene();
 }
 
+std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetSelectedQtEdges() const noexcept
+{
+  std::vector<const ribi::cmap::QtEdge *> selected;
+  const auto qtedges = GetQtEdges();
+  std::copy_if(
+    std::begin(qtedges),
+    std::end(qtedges),
+    std::back_inserter(selected),
+    [](const QtEdge* const qtedge) { return qtedge->isSelected() || qtedge->GetQtNode()->isSelected(); }
+  );
+  return selected;
+}
+
+std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetSelectedQtNodes() const noexcept
+{
+  std::vector<const ribi::cmap::QtNode *> selected;
+  const auto qtnodes = GetQtNodes();
+  std::copy_if(
+    std::begin(qtnodes),
+    std::end(qtnodes),
+    std::back_inserter(selected),
+    [](const QtNode* const qtnode) { return qtnode->isSelected(); }
+  );
+  return selected;
+}
+
 std::string ribi::cmap::QtConceptMap::GetVersion() noexcept
 {
   return "2.0";
@@ -1227,15 +1253,6 @@ void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr<const ribi::cmap::
 
 }
 #endif
-
-
-
-
-
-
-
-
-
 
 void ribi::cmap::QtConceptMap::mouseDoubleClickEvent(QMouseEvent *event)
 {

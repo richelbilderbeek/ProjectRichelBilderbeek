@@ -39,15 +39,48 @@ ribi::QtGraphics::QtGraphics()
   #endif
 }
 
-std::string ribi::QtGraphics::GetVersion() noexcept
+QImage ribi::QtGraphics::CreateImage(const int width, const int height, const int z) const noexcept
 {
-  return "1.0";
+  QImage image(width,height,QImage::Format_ARGB32);
+  for (int y=0;y!=height;++y)
+  {
+    for (int x=0;x!=width;++x)
+    {
+      image.setPixel(
+        x,y,
+        qRgb((x+z+0)%256,(y+z+0)%256,(x+y+z)%256) //Color
+      );
+    }
+  }
+  return image;
 }
 
-std::vector<std::string> ribi::QtGraphics::GetVersionHistory() noexcept
+void ribi::QtGraphics::DrawImage(
+  QImage& target, const QImage& source,
+  const int left, const int top
+) const noexcept
+{
+  const int width = source.width();
+  const int height = source.height();
+  for (int y=0; y!=height; ++y)
+  {
+    for (int x=0; x!=width; ++x)
+    {
+      target.setPixel(left+x,top+y,source.pixel(x,y));
+    }
+  }
+}
+
+std::string ribi::QtGraphics::GetVersion() const noexcept
+{
+  return "1.1";
+}
+
+std::vector<std::string> ribi::QtGraphics::GetVersionHistory() const noexcept
 {
   return {
-    "2015-02-22: version 1.0: initial version"
+    "2015-02-22: version 1.0: initial version",
+    "2015-08-28: version 1.1: added CreateImage and DrawImage"
   };
 }
 
@@ -64,6 +97,18 @@ void ribi::QtGraphics::Test() noexcept
   if (verbose) { TRACE("Default-construction of QtGraphics"); }
   {
     const QtGraphics q;
+  }
+  //CreateImage
+  {
+    const QImage a = QtGraphics().CreateImage(256,256,64);
+    assert(!a.isNull());
+  }
+  {
+    QImage target = QtGraphics().CreateImage(256,256,64);
+    assert(!target.isNull());
+    const QImage source = QtGraphics().CreateImage(196,156,196);
+    assert(!source.isNull());
+    QtGraphics().DrawImage(target,source,32,64);
   }
 }
 #endif

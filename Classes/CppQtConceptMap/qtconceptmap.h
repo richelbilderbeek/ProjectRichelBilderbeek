@@ -74,6 +74,9 @@ public:
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const noexcept;
 
+  std::vector<const QtEdge *> GetSelectedQtEdges() const noexcept;
+  std::vector<const QtNode *> GetSelectedQtNodes() const noexcept;
+
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 

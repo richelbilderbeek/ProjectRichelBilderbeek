@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-
+#include <QImage>
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -37,8 +37,14 @@ struct QtGraphics
 {
   QtGraphics();
 
-  static std::string GetVersion() noexcept;
-  static std::vector<std::string> GetVersionHistory() noexcept;
+  ///Create a pretty QImage for testing purposes
+  QImage CreateImage(const int width, const int height, const int z) const noexcept;
+
+  ///Draw a QImage on another QImage
+  void DrawImage(QImage& target, const QImage& source,  const int left, const int top) const noexcept;
+
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
 private:
   #ifndef NDEBUG
