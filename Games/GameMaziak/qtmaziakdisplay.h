@@ -55,7 +55,7 @@ public:
   explicit QtDisplay(QWidget *parent = 0);
   QtDisplay(const QtDisplay&) = delete;
   QtDisplay& operator=(const QtDisplay&) = delete;
-  ~QtDisplay() {};
+  ~QtDisplay() {}
 
   void DoDisplay(const MainDialog& main_dialog) override;
   std::set<Key> RequestKeys() override;

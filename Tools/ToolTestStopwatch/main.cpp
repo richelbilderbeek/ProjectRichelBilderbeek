@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestStopwatch, tool to test the Stopwatch class
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2015 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,13 +28,34 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #pragma GCC diagnostic pop
 
+void WaitStl(const double n_secs) noexcept
+{
+  const std::chrono::system_clock::time_point t = std::chrono::system_clock::now();
+  while (1)
+  {
+    const std::chrono::system_clock::duration d = std::chrono::system_clock::now() - t;
+    const long long int n_msecs_passed{std::chrono::duration_cast<std::chrono::milliseconds>(d).count()};
+    const double secs_passed{static_cast<double>(n_msecs_passed) / 1000.0};
+    if (secs_passed > n_secs) return;
+  }
+}
+
+void WaitBoost(const double n_secs) noexcept
+{
+  boost::timer t;
+  while (t.elapsed() < n_secs) {}
+}
+
 int main()
 {
   ribi::Stopwatch s;
   boost::timer t;
-  std::system("./../ToolPause-build-desktop/Pause 5");
+
+  WaitStl(2.5);
+  WaitBoost(2.5);
+
   std::cout
     << "Elapsed time (should be 5 seconds):\n"
-    << "Stopwatch: " << s.elapsed() << " seconds\n"
+    << "Stopwatch: " << s.GetElapsedSecs() << " seconds\n"
     << "boost::timer: " << t.elapsed() << " milliseconds\n";
 }

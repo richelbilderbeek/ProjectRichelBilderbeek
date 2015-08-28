@@ -1,8 +1,8 @@
 INCLUDEPATH += \
     ../../Classes/CppStopwatch
 
-SOURCES +=
-#    ../../Classes/CppStopwatch/stopwatch.cpp
+SOURCES += \
+    ../../Classes/CppStopwatch/stopwatch.cpp
 
 HEADERS  += \
     ../../Classes/CppStopwatch/stopwatch.h

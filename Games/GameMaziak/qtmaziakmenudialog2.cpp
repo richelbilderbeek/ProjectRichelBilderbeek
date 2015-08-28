@@ -279,7 +279,7 @@ void ribi::maziak::QtMaziakMenuDialog2::OnStart()
   QtDisplay d;
   MainDialog w(GetMazeSize());
   w.SetDisplay(&d);
-  d.OnChanged(w);
+  d.DoDisplay(w);
   {
     QRect screen = QApplication::desktop()->screenGeometry();
     d.move( screen.center() - d.rect().center() );

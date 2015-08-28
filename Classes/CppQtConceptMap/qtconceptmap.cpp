@@ -827,7 +827,6 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
     case Qt::Key_Escape:
     {
       //Only remove the 'new arrow' if present
-      //Otherwise let the ESC be handled by the class this one derives from
       if (m_arrow)
       {
         this->scene()->removeItem(m_arrow);

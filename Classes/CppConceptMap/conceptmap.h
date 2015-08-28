@@ -72,6 +72,11 @@ struct ConceptMap
   //Add a node, always works
   void AddNode(const NodePtr& node) noexcept;
 
+  ///Add the nodes to the current (can be zero) selected nodes
+  void AddSelected(const Edges& edges) noexcept;
+  void AddSelected(const Nodes& nodes) noexcept;
+  void AddSelected(const Edges& edges,const Nodes& nodes) noexcept;
+
   ///Test if this ConceptMap can be constructed successfully
   static bool CanConstruct(
     const Nodes& nodes,
@@ -213,10 +218,6 @@ private:
 
   bool m_verbose;
 
-  ///Add the nodes to the current (can be zero) selected nodes
-  void AddSelected(const Edges& edges) noexcept;
-  void AddSelected(const Nodes& nodes) noexcept;
-  void AddSelected(const Edges& edges,const Nodes& nodes) noexcept;
 
   static boost::shared_ptr<ConceptMap> CreateEmptyConceptMap() noexcept;
 

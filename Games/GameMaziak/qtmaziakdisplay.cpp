@@ -97,9 +97,11 @@ std::map<ribi::maziak::QtDisplay::WORD,ribi::maziak::Key> ribi::maziak::QtDispla
   return m;
 }
 
-void ribi::maziak::QtDisplay::DoDisplay(const MainDialog& main_dialog)
+void ribi::maziak::QtDisplay::DoDisplay(const MainDialog& /* main_dialog */)
 {
+  qApp->processEvents();
   this->repaint();
+  this->show();
 }
 
 void ribi::maziak::QtDisplay::resizeEvent(QResizeEvent*)
@@ -109,20 +111,24 @@ void ribi::maziak::QtDisplay::resizeEvent(QResizeEvent*)
 
 void ribi::maziak::QtDisplay::keyPressEvent(QKeyEvent* e)
 {
-  m_key_map.insert(key);
-
-  switch (key)
+  switch (e->key())
   {
-    case Key::left : m_key_map.erase(Key::right); break;
-    case Key::right: m_key_map.erase(Key::left ); break;
-    case Key::up   : m_key_map.erase(Key::down ); break;
-    case Key::down : m_key_map.erase(Key::up   ); break;
+    case Qt::Key_Up   : m_keys.insert(Key::up   ); break;
+    case Qt::Key_Right: m_keys.insert(Key::right); break;
+    case Qt::Key_Down : m_keys.insert(Key::down ); break;
+    case Qt::Key_Left : m_keys.insert(Key::left ); break;
   }
 }
 
 void ribi::maziak::QtDisplay::keyReleaseEvent(QKeyEvent * e)
 {
-  m_key_map.erase(key);
+  switch (e->key())
+  {
+    case Qt::Key_Up   : m_keys.erase(Key::up   ); break;
+    case Qt::Key_Right: m_keys.erase(Key::right); break;
+    case Qt::Key_Down : m_keys.erase(Key::down ); break;
+    case Qt::Key_Left : m_keys.erase(Key::left ); break;
+  }
 }
 
 void ribi::maziak::QtDisplay::OnTimerPressKey()
