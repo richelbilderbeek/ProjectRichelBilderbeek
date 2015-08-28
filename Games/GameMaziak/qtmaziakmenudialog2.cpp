@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtmaziakcanvas.h"
 #include "qtmaziakinstructionsdialog.h"
 #include "maziakmaindialog.h"
-#include "qtmaziakmaindialog.h"
+#include "qtmaziakdisplay.h"
 #include "trace.h"
 #include "ui_qtmaziakmenudialog2.h"
 
@@ -276,12 +276,16 @@ void ribi::maziak::QtMaziakMenuDialog2::OnInstructions()
 
 void ribi::maziak::QtMaziakMenuDialog2::OnStart()
 {
-  MainDialog d(GetMazeSize());
-  boost::scoped_ptr<QtMaziakMainDialog> q(new QtMaziakMainDialog);
-  d.SetDisplay(q.get());
-  q->showFullScreen();
-  d.Execute();
-  //this->ShowChild(q.get());
+  QtDisplay d;
+  MainDialog w(GetMazeSize());
+  w.SetDisplay(&d);
+  d.OnChanged(w);
+  {
+    QRect screen = QApplication::desktop()->screenGeometry();
+    d.move( screen.center() - d.rect().center() );
+  }
+  d.show();
+  w.Execute();
 }
 
 #ifndef NDEBUG
@@ -292,14 +296,10 @@ void ribi::maziak::QtMaziakMenuDialog2::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  maziak::MenuDialog();
   {
-    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog);
-    assert(d);
-  }
-  {
-    const boost::scoped_ptr<QtMaziakInstructionsDialog> d(new QtMaziakInstructionsDialog);
-    assert(d);
+    MenuDialog();
+    QtDisplay();
+    QtMaziakInstructionsDialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

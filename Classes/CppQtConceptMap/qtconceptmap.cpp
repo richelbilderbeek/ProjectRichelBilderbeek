@@ -832,9 +832,10 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
       {
         this->scene()->removeItem(m_arrow);
         m_arrow = nullptr;
+        return;
       }
     }
-    return;
+    break;
     case Qt::Key_Equal:
       this->scale(1.1,1.1);
       break;

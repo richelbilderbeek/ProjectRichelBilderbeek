@@ -57,6 +57,7 @@ private:
   const QPixmap m_beer;
   const QPixmap m_bratwurst;
   const QPixmap m_empty;
+
   //Will be painted
   QImage m_image;
   std::vector<Key> m_keys;
