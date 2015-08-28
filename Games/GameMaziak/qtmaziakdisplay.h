@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
 //---------------------------------------------------------------------------
-#ifndef QTMAZIAKMAINDIALOG_H
-#define QTMAZIAKMAINDIALOG_H
+#ifndef QTMAZIAKDISPLAY_H
+#define QTMAZIAKDISPLAY_H
 
 #include <cassert>
 #include <map>
@@ -42,35 +42,30 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 struct QPixmap;
 struct QTimer;
 
-namespace Ui {
-  class QtMaziakMainDialog;
-}
-
-
 namespace ribi {
 namespace maziak {
 
 
-class QtMaziakMainDialog : public QtHideAndShowDialog, public Display
+class QtDisplay : public QWidget, public Display
 {
   Q_OBJECT
 
 public:
 
-  explicit QtMaziakMainDialog(QWidget *parent = 0);
-  QtMaziakMainDialog(const QtMaziakMainDialog&) = delete;
-  QtMaziakMainDialog& operator=(const QtMaziakMainDialog&) = delete;
-  ~QtMaziakMainDialog() noexcept;
+  explicit QtDisplay(QWidget *parent = 0);
+  QtDisplay(const QtDisplay&) = delete;
+  QtDisplay& operator=(const QtDisplay&) = delete;
+  ~QtDisplay() {};
 
   void DoDisplay(const MainDialog& main_dialog) override;
   std::set<Key> RequestKeys() override;
 
 private:
-  Ui::QtMaziakMainDialog *ui;
-
   typedef unsigned int WORD;
 
-  //std::map<WORD,Key> m_key_map;
+  //Will be painted
+  QImage m_image;
+
   std::set<Key> m_keys;
 
   const boost::shared_ptr<const Sprites> m_sprites;
@@ -103,4 +98,4 @@ private slots:
 } //~namespace maziak
 } //~namespace ribi
 
-#endif // QTMAZIAKMAINDIALOG_H
+#endif // QTMAZIAKDISPLAY_H

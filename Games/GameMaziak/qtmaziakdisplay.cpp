@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtmaziakmaindialog.h"
+#include "qtmaziakdisplay.h"
 
 #include <algorithm>
 #include <cassert>
@@ -52,12 +52,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::maziak::QtMaziakMainDialog::QtMaziakMainDialog(
-  QWidget *parent
-)
-  : QtHideAndShowDialog(parent),
-    ui(new Ui::QtMaziakMainDialog),
-    //m_key_map{},
+ribi::maziak::QtDisplay::QtDisplay(QWidget *parent)
+  : QWidget(parent),
+    m_image{},
     m_keys{},
     m_sprites(new Sprites),
     m_timer_enemy(new QTimer),
@@ -69,18 +66,17 @@ ribi::maziak::QtMaziakMainDialog::QtMaziakMainDialog(
   #ifndef NDEBUG
   Test();
   #endif
-  ui->setupUi(this);
 
   m_timer_press_key->setInterval(100);
   m_timer_enemy->setInterval(1000);
   m_timer_show_solution->setInterval(5000);
 
   QObject::connect(m_timer_press_key.get(),&QTimer::timeout,
-    this,&ribi::maziak::QtMaziakMainDialog::OnTimerPressKey);
+    this,&ribi::maziak::QtDisplay::OnTimerPressKey);
   QObject::connect(m_timer_enemy.get(),&QTimer::timeout,
-    this,&ribi::maziak::QtMaziakMainDialog::OnTimerEnemy);
+    this,&ribi::maziak::QtDisplay::OnTimerEnemy);
   QObject::connect(m_timer_show_solution.get(),&QTimer::timeout,
-    this,&ribi::maziak::QtMaziakMainDialog::OnTimerStopShowingSolution);
+    this,&ribi::maziak::QtDisplay::OnTimerStopShowingSolution);
 
   m_timer_press_key->start();
   m_timer_enemy->start();
@@ -91,12 +87,7 @@ ribi::maziak::QtMaziakMainDialog::QtMaziakMainDialog(
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::maziak::QtMaziakMainDialog::~QtMaziakMainDialog() noexcept
-{
-  delete ui;
-}
-
-std::map<ribi::maziak::QtMaziakMainDialog::WORD,ribi::maziak::Key> ribi::maziak::QtMaziakMainDialog::CreateDefaultKeys() noexcept
+std::map<ribi::maziak::QtDisplay::WORD,ribi::maziak::Key> ribi::maziak::QtDisplay::CreateDefaultKeys() noexcept
 {
   std::map<WORD,Key> m;
   m.insert(std::make_pair(Qt::Key_Up   ,Key::up   ));
@@ -106,17 +97,17 @@ std::map<ribi::maziak::QtMaziakMainDialog::WORD,ribi::maziak::Key> ribi::maziak:
   return m;
 }
 
-void ribi::maziak::QtMaziakMainDialog::DoDisplay(const MainDialog& main_dialog)
+void ribi::maziak::QtDisplay::DoDisplay(const MainDialog& main_dialog)
 {
   this->repaint();
 }
 
-void ribi::maziak::QtMaziakMainDialog::resizeEvent(QResizeEvent*)
+void ribi::maziak::QtDisplay::resizeEvent(QResizeEvent*)
 {
   this->repaint();
 }
 
-void ribi::maziak::QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
+void ribi::maziak::QtDisplay::keyPressEvent(QKeyEvent* e)
 {
   m_key_map.insert(key);
 
@@ -129,35 +120,35 @@ void ribi::maziak::QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
   }
 }
 
-void ribi::maziak::QtMaziakMainDialog::keyReleaseEvent(QKeyEvent * e)
+void ribi::maziak::QtDisplay::keyReleaseEvent(QKeyEvent * e)
 {
   m_key_map.erase(key);
 }
 
-void ribi::maziak::QtMaziakMainDialog::OnTimerPressKey()
+void ribi::maziak::QtDisplay::OnTimerPressKey()
 {
   m_dialog->OnTimerPressKeys();
   repaint();
 }
 
-void ribi::maziak::QtMaziakMainDialog::OnTimerEnemy()
+void ribi::maziak::QtDisplay::OnTimerEnemy()
 {
   m_dialog->AnimateEnemiesAndPrisoners(m_view_width,m_view_height);
   repaint();
 }
 
-void ribi::maziak::QtMaziakMainDialog::OnTimerStopShowingSolution()
+void ribi::maziak::QtDisplay::OnTimerStopShowingSolution()
 {
   m_dialog->SetShowSolution(false);
   m_timer_show_solution->stop();
 }
 
-void ribi::maziak::QtMaziakMainDialog::OnTimerStartShowingSolution()
+void ribi::maziak::QtDisplay::OnTimerStartShowingSolution()
 {
   m_timer_show_solution->start();
 }
 
-void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
+void ribi::maziak::QtDisplay::paintEvent(QPaintEvent *)
 {
   const int block_width  = width()  / m_view_width;
   const int block_height = height() / m_view_height;
@@ -234,7 +225,7 @@ void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
   }
 }
 
-void ribi::maziak::QtMaziakMainDialog::OnGameOver()
+void ribi::maziak::QtDisplay::OnGameOver()
 {
   m_timer_press_key->stop();
   m_timer_enemy->stop();
@@ -245,7 +236,7 @@ void ribi::maziak::QtMaziakMainDialog::OnGameOver()
   close();
 }
 
-void ribi::maziak::QtMaziakMainDialog::OnGameWon()
+void ribi::maziak::QtDisplay::OnGameWon()
 {
   m_timer_press_key->stop();
   m_timer_enemy->stop();
@@ -257,20 +248,20 @@ void ribi::maziak::QtMaziakMainDialog::OnGameWon()
   close();
 }
 
-std::set<ribi::maziak::Key> ribi::maziak::QtMaziakMainDialog::RequestKeys()
+std::set<ribi::maziak::Key> ribi::maziak::QtDisplay::RequestKeys()
 {
   return m_keys;
 }
 
 #ifndef NDEBUG
-void ribi::maziak::QtMaziakMainDialog::Test() noexcept
+void ribi::maziak::QtDisplay::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  QtMaziakMainDialog(19);
+  QtDisplay(19);
   maziak::MainDialog(7);
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }

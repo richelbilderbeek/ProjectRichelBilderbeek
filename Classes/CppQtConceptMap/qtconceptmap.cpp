@@ -806,38 +806,21 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
   {
     case Qt::Key_Delete:
     {
-      while (1)
+      const auto nodes = GetConceptMap()->GetSelectedNodes();
+      for (const auto node: nodes)
       {
-        bool done_command{false};
-        for (const auto node: this->GetConceptMap()->GetSelectedNodes())
-        {
-          const boost::shared_ptr<CommandDeleteNode> command {
-            new CommandDeleteNode(node)
-          };
-          if (CanDoCommand(command)) 
-          { 
-            DoCommand(command); 
-            done_command = true; 
-          }
-        }
-        if (!done_command) break;
+        const boost::shared_ptr<CommandDeleteNode> command {
+          new CommandDeleteNode(node)
+        };
+        if (CanDoCommand(command)) { DoCommand(command); }
       }
-
-      while (1)
+      const auto edges = GetConceptMap()->GetSelectedEdges();
+      for (const auto edge: edges)
       {
-        bool done_command{false};
-        for (const auto edge: this->GetConceptMap()->GetSelectedEdges())
-        {
-          const boost::shared_ptr<CommandDeleteEdge> command {
-            new CommandDeleteEdge(edge)
-          };
-          if (CanDoCommand(command))
-          {
-            DoCommand(command);
-            done_command = true;
-          }
-        }
-        if (!done_command) break;
+        const boost::shared_ptr<CommandDeleteEdge> command {
+          new CommandDeleteEdge(edge)
+        };
+        if (CanDoCommand(command)) { DoCommand(command); }
       }
     }
     return;
@@ -864,7 +847,6 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
         const boost::shared_ptr<CommandCreateNewEdge> command {
           new CommandCreateNewEdge
         };
-        command->SetVerbosity(true);
         if (!CanDoCommand(command)) return;
         this->DoCommand(command);
       }

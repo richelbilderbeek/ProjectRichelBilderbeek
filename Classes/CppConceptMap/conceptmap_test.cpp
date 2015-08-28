@@ -383,7 +383,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
             {
               std::stringstream s;
               s << "Testing simple concept maps #" << i << " and #" << j << " must be homomorphous";
-              TRACE(s.str());
             }
             assert(ConceptMap::HasSameContent(*a,*b));
           }
@@ -460,14 +459,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
         const boost::shared_ptr<ConceptMap>& map = maps[i];
 
         const std::vector<boost::shared_ptr<ConceptMap> > subs = map->CreateSubs();
-        #ifndef NDEBUG
-        if (static_cast<int>(subs.size()) != n_subs_expected[i])
-        {
-          TRACE(i);
-          TRACE(subs.size());
-          TRACE(n_subs_expected[i]);
-        }
-        #endif
         assert(static_cast<int>(subs.size()) == n_subs_expected[i]);
       }
     }
@@ -498,15 +489,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
         )
       };
       const int n_center_nodes_found = n_center_nodes_here;
-      if (n_center_nodes_expected != n_center_nodes_found)
-      {
-        TRACE("ERROR");
-        TRACE("Original map next:");
-        for (const std::string s: xml::XmlToPretty(ToXml(map))) { TRACE(s); }
-        TRACE(n_center_nodes_expected);
-        TRACE(n_center_nodes_found);
-        TRACE(subs.size());
-      }
       assert(n_center_nodes_expected == n_center_nodes_found);
 
     }
@@ -580,7 +562,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
     concept_map->AddEdge(edge);
     assert(concept_map->GetEdges().size() == 1);
     assert(concept_map->GetNodes().size() == 2);
-    TRACE(concept_map->GetSelectedEdges().size());
     assert(concept_map->GetSelectedEdges().size() == 1);
     assert(concept_map->GetSelectedNodes().size() == 0);
   }
@@ -678,12 +659,10 @@ void ribi::cmap::ConceptMap::Test() noexcept
     };
     assert(cmap->CanDoCommand(command));
     cmap->DoCommand(command);
-    assert(cmap->GetNodes().size() == 1
-      && "Concept map must have one node added now");
+    assert(cmap->GetNodes().size() == 1);
     assert(cmap->CanUndo());
     command->Undo();
-    assert(cmap->GetNodes().empty()
-      && "Concept map must be empty again now");
+    assert(cmap->GetNodes().size() == 0);
   }
   if (verbose) { TRACE("Start a concept map, create two nodes, unselect both, then select both using AddSelected"); }
   {
