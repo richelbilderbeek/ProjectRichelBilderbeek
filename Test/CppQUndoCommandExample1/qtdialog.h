@@ -15,6 +15,8 @@ class QtDialog : public QDialog
   
 public:
   explicit QtDialog(QWidget *parent = 0);
+  QtDialog(const QtDialog&) = delete;
+  QtDialog& operator=(const QtDialog&) = delete;
   ~QtDialog();
 
 
