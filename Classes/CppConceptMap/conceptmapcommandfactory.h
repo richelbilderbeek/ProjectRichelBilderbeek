@@ -37,7 +37,9 @@ namespace cmap {
 ///CommandFactory creates Commands
 struct CommandFactory
 {
-  static std::vector<boost::shared_ptr<Command> > CreateTestCommands() noexcept;
+  static std::vector<boost::shared_ptr<Command>> CreateTestCommands(
+    boost::shared_ptr<ConceptMap> concept_map
+  ) noexcept;
 };
 
 } //~namespace cmap

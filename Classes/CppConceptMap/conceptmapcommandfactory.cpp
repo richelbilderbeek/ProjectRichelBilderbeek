@@ -26,32 +26,33 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcommandcreatenewedge.h"
 #include "conceptmapcommandcreatenewnode.h"
 #include "conceptmapcommand.h"
-#include "conceptmapcommandlosefocus.h"
-#include "conceptmapcommanddeletefocusnode.h"
-#include "conceptmapcommandsetfocusrandom.h"
 #include "conceptmapcommandsetselectedwithcoordinat.h"
 
-std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFactory::CreateTestCommands() noexcept
+std::vector<boost::shared_ptr<ribi::cmap::Command> >
+ribi::cmap::CommandFactory::CreateTestCommands(
+  boost::shared_ptr<ConceptMap> concept_map
+
+) noexcept
 {
   std::vector<boost::shared_ptr<Command> > v;
 
   {
     const boost::shared_ptr<Command> p {
-      new CommandAddSelectedRandom
+      new CommandAddSelectedRandom(concept_map)
     };
     assert(p);
     v.push_back(p);
   }
   {
     const boost::shared_ptr<Command> p {
-      new CommandCreateNewEdge
+      new CommandCreateNewEdge(concept_map)
     };
     assert(p);
     v.push_back(p);
   }
   {
     const boost::shared_ptr<Command> p {
-      new CommandCreateNewNode
+      new CommandCreateNewNode(concept_map)
     };
     assert(p);
     v.push_back(p);

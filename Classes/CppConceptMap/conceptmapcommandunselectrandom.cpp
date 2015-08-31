@@ -9,6 +9,14 @@
 #include "conceptmaphelper.h"
 #include "trace.h"
 
+ribi::cmap::CommandUnselectRandom::CommandUnselectRandom(
+  const boost::shared_ptr<ConceptMap> concept_map
+) : m_old_selected{},
+    m_concept_map{concept_map}
+{
+  this->setText("unselect random");
+}
+
 bool ribi::cmap::CommandUnselectRandom::CanDoCommandSpecific(const ConceptMap * const concept_map) const noexcept
 {
   assert(concept_map);
@@ -21,11 +29,11 @@ bool ribi::cmap::CommandUnselectRandom::CanDoCommandSpecific(const ConceptMap * 
   return true;
 }
 
-void ribi::cmap::CommandUnselectRandom::DoCommandSpecific(ConceptMap * const widget) noexcept
+void ribi::cmap::CommandUnselectRandom::redo(ConceptMap * const widget) noexcept
 {
   assert(widget);
 
-  m_widget = widget;
+  m_concept_map = widget;
   m_old_selected = const_cast<const ConceptMap*>(widget)->GetSelected();
 
   //Get a random selected edge or node
@@ -46,20 +54,20 @@ void ribi::cmap::CommandUnselectRandom::DoCommandSpecific(ConceptMap * const wid
     std::swap(all_selected.second[i - n_edges],all_selected.second.back());
     all_selected.second.pop_back();
   }
-  m_widget->SetSelected(all_selected);
+  m_concept_map->SetSelected(all_selected);
 
   //m_widget->m_signal_set_focus_node();
   //m_widget->m_signal_concept_map_changed();
 
-  assert(m_widget);
+  assert(m_concept_map);
   assert(widget);
 }
 
-void ribi::cmap::CommandUnselectRandom::UndoSpecific() noexcept
+void ribi::cmap::CommandUnselectRandom::undo() noexcept
 {
-  assert(m_widget);
+  assert(m_concept_map);
 
   //Re-select the previously selected Node
-  m_widget->SetSelected(m_old_selected);
+  m_concept_map->SetSelected(m_old_selected);
 
 }

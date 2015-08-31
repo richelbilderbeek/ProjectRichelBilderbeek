@@ -103,13 +103,13 @@ ribi::cmap::QtEdge::QtEdge(
   //  | QGraphicsItem::ItemIsMovable
   //  | QGraphicsItem::ItemIsSelectable
   //);
-
+  /*
   GetTo()->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable
   );
-
+  */
   assert(m_from);
   assert(m_to);
   assert(from != to);

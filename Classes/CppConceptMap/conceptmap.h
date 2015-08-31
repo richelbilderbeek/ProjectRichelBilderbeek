@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include <QPointF>
+#include <QUndoStack>
 #include "conceptmapfwd.h"
 #pragma GCC diagnostic pop
 
@@ -83,8 +84,8 @@ struct ConceptMap
     const Edges& edges
   ) noexcept;
 
-  bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
-  bool CanUndo() const noexcept { return !m_undo.empty(); }
+  bool CanRedo() const noexcept { return m_undo.canRedo(); }
+  bool CanUndo() const noexcept { return m_undo.canUndo(); }
 
   ///Prepend the question as a first node, before adding the supplied nodes
   static std::vector<NodePtr> CreateNodes(
@@ -104,7 +105,7 @@ struct ConceptMap
   void DeleteNode(const ReadOnlyNodePtr& node) noexcept;
   void DeleteNode(const NodePtr& node) noexcept;
 
-  void DoCommand(const boost::shared_ptr<Command> command) noexcept;
+  void DoCommand(Command * const command) noexcept;
 
   ///Check if the ConceptMap is empty, that is: it has no nodes and (thus) no edges
   bool Empty() const noexcept;
@@ -214,7 +215,8 @@ private:
 
   ///The undo stack (use std::vector because it is a true STL container)
   ///The Commands aren't const, because Command::Undo changes their state
-  std::vector<boost::shared_ptr<Command>> m_undo;
+  //std::vector<boost::shared_ptr<Command>> m_undo;
+  QUndoStack m_undo;
 
   bool m_verbose;
 
@@ -250,9 +252,7 @@ private:
   std::vector<boost::shared_ptr<Node>> GetRandomNodes(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
   boost::shared_ptr<Node> GetRandomNode(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
 
-  ///Called by m_undo its top command when it calles Undo itself,
-  ///by which the Command indicates that it must be removed from that m_undo vector
-  void OnUndo(const Command * const command_to_remove) noexcept;
+  void OnUndo() noexcept;
 
 
   #ifndef NDEBUG

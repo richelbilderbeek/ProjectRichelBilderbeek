@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <chrono>
 
+#include <QApplication>
 #include <QMouseEvent>
 
 #include "qtconceptmapcollect.h"
@@ -33,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcommandcreatenewnode.h"
 #include "conceptmapcommanddeletenode.h"
 #include "conceptmap.h"
+#include "conceptmapedge.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
@@ -42,6 +44,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 QKeyEvent CreateDel() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Delete,Qt::NoModifier); }
 QKeyEvent CreateSpace() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Space,Qt::NoModifier); }
+QKeyEvent CreateControlDown() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Down,Qt::ControlModifier); }
 QKeyEvent CreateControlE() { return QKeyEvent(QEvent::KeyPress,Qt::Key_E,Qt::ControlModifier); }
 QKeyEvent CreateControlN() { return QKeyEvent(QEvent::KeyPress,Qt::Key_N,Qt::ControlModifier); }
 
@@ -474,13 +477,16 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     qtto->GetNode()->SetX(x2);
     qtto->GetNode()->SetY(y2);
 
-    const auto edge = EdgeFactory().GetTest(0,from,to);
+    const auto edge = EdgeFactory().Create(from,to);
+
+    assert(std::abs(edge->GetNode()->GetX() - x3) < 1.0);
+    assert(std::abs(edge->GetNode()->GetY() - y3) < 1.0);
+
     const auto qtedge = qtconceptmap->AddEdge(edge);
 
     assert(std::abs(qtedge->GetQtNode()->GetNode()->GetX() - x3) < 1.0);
     assert(std::abs(qtedge->GetQtNode()->GetNode()->GetY() - y3) < 1.0);
   }
-  assert(!"Green");
   if (verbose) { TRACE("DeleteEdge: delete of QtEdge from QtConceptMap"); }
   {
     boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
@@ -605,6 +611,31 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(conceptmap->GetSelectedNodes().size() == qtconceptmap->GetSelectedQtNodes().size());
     assert(conceptmap->GetSelectedEdges().size() == qtconceptmap->GetSelectedQtEdges().size());
   }
+  if (verbose) { TRACE("CTRL-N, CTRL-Down: QtNode must move down"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+    qtconceptmap->showFullScreen();
+    auto ctrl_n = CreateControlN();
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+    assert(conceptmap->GetNodes().size() == 1);
+    assert(conceptmap->GetNodes().size() == qtconceptmap->GetQtNodes().size());
+    assert(qtconceptmap->GetQtNodes()[0]->x() == qtconceptmap->GetConceptMap()->GetNodes()[0]->GetX());
+    assert(qtconceptmap->GetQtNodes()[0]->y() == qtconceptmap->GetConceptMap()->GetNodes()[0]->GetY());
+
+    const double x_before{qtconceptmap->GetQtNodes()[0]->x()};
+    const double y_before{qtconceptmap->GetQtNodes()[0]->y()};
+
+    auto ctrl_down = CreateControlDown();
+    qtconceptmap->keyPressEvent(&ctrl_down);
+
+    const double x_after{qtconceptmap->GetQtNodes()[0]->x()};
+    const double y_after{qtconceptmap->GetQtNodes()[0]->y()};
+    assert(x_after == x_before);
+    assert(y_after > y_before);
+  }
   if (verbose) { TRACE("CTRL-N, CTRL-N, delete, creates two QtNodes and deletes two"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();
@@ -674,7 +705,6 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(conceptmap->GetSelectedEdges().size() == qtconceptmap->GetSelectedQtEdges().size());
 
   }
-
   if (verbose) { TRACE("CTRL-N, CTRL-N, CTRL-E: new Edge should be selected"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();
@@ -701,6 +731,80 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(conceptmap->GetSelectedNodes().size() == qtconceptmap->GetSelectedQtNodes().size());
     assert(conceptmap->GetSelectedEdges().size() == 1);
     assert(conceptmap->GetSelectedEdges().size() == qtconceptmap->GetSelectedQtEdges().size());
+  }
+  if (verbose) { TRACE("CTRL-N, CTRL-N, CTRL-E: new Edge its QtNode must be between the two QtNodes"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+    auto ctrl_n = CreateControlN();
+    qtconceptmap->keyPressEvent(&ctrl_n);
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+
+    assert(conceptmap->GetNodes().size() == 2);
+    assert(conceptmap->GetNodes().size() == qtconceptmap->GetQtNodes().size());
+    const auto qtfrom = qtconceptmap->GetQtNodes()[0];
+    const auto qtto = qtconceptmap->GetQtNodes()[1];
+
+    const double x1{100.0};
+    const double y1{200.0};
+    const double x2{300.0};
+    const double y2{400.0};
+    const double x3{(x1+x2)/2.0};
+    const double y3{(y1+y2)/2.0};
+    qtfrom->GetNode()->SetPos(x1,y1);
+    qtto->GetNode()->SetPos(x2,y2);
+
+    auto ctrl_e = CreateControlE();
+    qtconceptmap->keyPressEvent(&ctrl_e);
+
+    assert(conceptmap->GetEdges().size() == 1);
+    assert(conceptmap->GetEdges().size() == qtconceptmap->GetQtEdges().size());
+    const auto qtedge = qtconceptmap->GetQtEdges()[0];
+
+    assert(std::abs(qtedge->GetQtNode()->x() - x3) < 1.0);
+    assert(std::abs(qtedge->GetQtNode()->y() - y3) < 1.0);
+    assert(std::abs(qtedge->GetQtNode()->GetNode()->GetX() - x3) < 1.0);
+    assert(std::abs(qtedge->GetQtNode()->GetNode()->GetY() - y3) < 1.0);
+  }
+  if (verbose) { TRACE("CTRL-N, CTRL-N, Down 10x, CTRL-E: new Edge its QtNode must be between the two QtNodes"); }
+  if (!"Not sure of the usefulness of this test")
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+    qtconceptmap->showFullScreen();
+    auto ctrl_n = CreateControlN();
+
+    qtconceptmap->keyPressEvent(&ctrl_n);
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+    const auto qtfrom = qtconceptmap->GetQtNodes()[0];
+    const auto qtto = qtconceptmap->GetQtNodes()[1];
+
+    for (int i=0; i!=100; ++i)
+    {
+      TRACE(qtfrom->GetNode()->GetY());
+      TRACE(qtto->GetNode()->GetY());
+
+      auto ctrl_down = CreateControlDown();
+      qtconceptmap->keyPressEvent(&ctrl_down);
+      //for (int j=0; j!=1000; ++j) { qApp->processEvents(); }
+      //qtconceptmap->showFullScreen();
+    }
+    assert(qtfrom->GetNode()->GetY() > 100.0);
+    assert(qtto->GetNode()->GetY() > 100.0);
+
+    auto ctrl_e = CreateControlE();
+    qtconceptmap->keyPressEvent(&ctrl_e);
+
+    assert(conceptmap->GetEdges().size() == 1);
+    assert(conceptmap->GetEdges().size() == qtconceptmap->GetQtEdges().size());
+    const auto qtedge = qtconceptmap->GetQtEdges()[0];
+
+    assert(std::abs(qtedge->GetQtNode()->y() > 1000.0));
+    assert(!"Green");
   }
   if (verbose) { TRACE("Delete Edge and Node-that-is-head-of-Edge: delete from QtConceptMap"); }
   {

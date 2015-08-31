@@ -1,7 +1,5 @@
 #include "conceptmapcommandaddselectedrandom.h"
 
-#include "conceptmapcommandsetfocusrandom.h"
-
 #include <cassert>
 
 #include "conceptmap.h"
@@ -9,48 +7,43 @@
 #include "conceptmaphelper.h"
 #include "trace.h"
 
-bool ribi::cmap::CommandAddSelectedRandom::CanDoCommandSpecific(const ConceptMap * const concept_map) const noexcept
+ribi::cmap::CommandAddSelectedRandom::CommandAddSelectedRandom(const boost::shared_ptr<ConceptMap> concept_map)
+  :
+    m_concept_map{concept_map},
+    m_new_selected{concept_map->GetSelected()},
+    m_old_selected{concept_map->GetSelected()}
 {
+  this->setText("add selected random");
+
   assert(concept_map);
-  const bool verbose{false};
   if (concept_map->GetNodes().empty())
   {
-    if (verbose) TRACE("AddSelected needs nodes to focus on");
-    return false;
+    throw std::logic_error("AddSelected needs nodes to focus on");
   }
-  if (const_cast<ConceptMap*>(concept_map)->GetRandomNodes(AddConst(concept_map->GetSelectedNodes())).empty())
+  const auto to_add = m_concept_map->GetRandomNodes(AddConst(concept_map->GetSelectedNodes()));
+  if (to_add.empty())
   {
-    if (verbose)
-    {
-      TRACE("AddSelected needs non-focused nodes to focus on");
-      TRACE(concept_map->GetSelectedNodes().size());
-    }
-    return false;
+    std::stringstream s;
+    s << "AddSelected needs non-focused nodes to focus on,"
+      << "currently has " << concept_map->GetSelectedNodes().size()
+      << " selected"
+    ;
+    throw std::logic_error(s.str());
   }
-  return true;
+  std::copy(
+    std::begin(to_add),
+    std::end(to_add),
+    std::back_inserter(m_new_selected.second)
+  );
+  assert(m_new_selected.second.size() > m_old_selected.second.size());
 }
 
-void ribi::cmap::CommandAddSelectedRandom::DoCommandSpecific(ConceptMap * const widget) noexcept
+void ribi::cmap::CommandAddSelectedRandom::redo()
 {
-  assert(widget);
-
-  //Transfer focus to this Node
-  m_widget = widget;
-  m_old_selected = const_cast<const ConceptMap*>(widget)->GetSelected();
-  const auto selected_edges(widget->GetRandomEdges(AddConst(m_old_selected.first)));
-  const auto selected_nodes(widget->GetRandomNodes(AddConst(m_old_selected.second)));
-  m_widget->AddSelected(selected_edges,selected_nodes);
-  //m_widget->m_signal_set_focus_node();
-  //m_widget->m_signal_concept_map_changed();
-
-  assert(m_widget);
-  assert(widget);
+  m_concept_map->SetSelected(m_new_selected);
 }
 
-void ribi::cmap::CommandAddSelectedRandom::UndoSpecific() noexcept
+void ribi::cmap::CommandAddSelectedRandom::undo()
 {
-  assert(m_widget);
-
-  //Lose focus to this Node
-  m_widget->SetSelected(m_old_selected);
+  m_concept_map->SetSelected(m_old_selected);
 }

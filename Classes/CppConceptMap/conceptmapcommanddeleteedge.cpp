@@ -26,9 +26,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 ribi::cmap::CommandDeleteEdge::CommandDeleteEdge(const boost::shared_ptr<Edge> edge)
-  : m_edge{edge}, m_concept_map{}
+  : m_edge{edge},
+    m_concept_map{concept_map}
 {
   assert(m_edge);
+  setText("delete edge");
 }
 
 bool ribi::cmap::CommandDeleteEdge::CanDoCommandSpecific(const ConceptMap * const conceptmap) const noexcept
@@ -38,7 +40,7 @@ bool ribi::cmap::CommandDeleteEdge::CanDoCommandSpecific(const ConceptMap * cons
   return conceptmap->HasEdge(m_edge);
 }
 
-void ribi::cmap::CommandDeleteEdge::DoCommandSpecific(ConceptMap * const concept_map) noexcept
+void ribi::cmap::CommandDeleteEdge::redo(ConceptMap * const concept_map) noexcept
 {
   assert(!m_concept_map);
   assert(m_edge);
@@ -51,7 +53,7 @@ void ribi::cmap::CommandDeleteEdge::DoCommandSpecific(ConceptMap * const concept
   assert(m_edge);
 }
 
-void ribi::cmap::CommandDeleteEdge::UndoSpecific() noexcept
+void ribi::cmap::CommandDeleteEdge::undo() noexcept
 {
   assert(m_concept_map);
 

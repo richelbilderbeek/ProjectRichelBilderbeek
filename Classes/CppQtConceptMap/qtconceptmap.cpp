@@ -1358,6 +1358,7 @@ void ribi::cmap::QtConceptMap::OnToolsClicked()
 
 void ribi::cmap::QtConceptMap::UpdateSelection()
 {
+
   for (const auto item: this->scene()->items()) { item->update(); }
 
   //The QtKeyboardFriendlyGraphicsView may change the selected items
@@ -1388,5 +1389,4 @@ void ribi::cmap::QtConceptMap::UpdateSelection()
   this->m_concept_map->SetSelected(edges_and_nodes);
 
   scene()->update();
-
 }

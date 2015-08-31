@@ -33,24 +33,21 @@ namespace cmap {
 
 ///Start a new node
 ///-Can be used only when there is an existing concept map
-struct CommandCreateNewNode : public Command
+struct CommandCreateNewNode final : public Command
 {
-  CommandCreateNewNode() : m_node{}, m_conceptmap{} {}
+  CommandCreateNewNode(const boost::shared_ptr<ConceptMap> concept_map);
   CommandCreateNewNode(const CommandCreateNewNode&) = delete;
   CommandCreateNewNode& operator=(const CommandCreateNewNode&) = delete;
   ~CommandCreateNewNode() noexcept {}
 
   const auto& GetAddedQtNode() const noexcept { return m_node; }
 
-  std::string ToStr() const noexcept final { return "create new node"; }
+  void redo() override;
+  void undo() override;
 
   private:
   boost::shared_ptr<Node> m_node;
-  ConceptMap * m_conceptmap;
-
-  bool CanDoCommandSpecific(const ConceptMap * const widget) const noexcept final;
-  void DoCommandSpecific(ConceptMap * const widget) noexcept final;
-  void UndoSpecific() noexcept final;
+  const boost::shared_ptr<ConceptMap> m_conceptmap;
 };
 
 } //~namespace cmap

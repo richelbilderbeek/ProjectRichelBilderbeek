@@ -33,29 +33,28 @@ namespace cmap {
 
 ///Start a new node
 ///-Can be used only when there is an existing concept map
-struct CommandCreateNewEdge : public Command
+struct CommandCreateNewEdge final : public Command
 {
-  CommandCreateNewEdge() : m_edge{}, m_nodes{}, m_prev_selected{}, m_concept_map{}, m_verbose{false} {}
+  CommandCreateNewEdge(const boost::shared_ptr<ConceptMap> concept_map);
   CommandCreateNewEdge(const CommandCreateNewEdge&) = delete;
   CommandCreateNewEdge& operator=(const CommandCreateNewEdge&) = delete;
   ~CommandCreateNewEdge() noexcept {}
 
+  void redo() override;
+  void undo() override;
+
   void SetVerbosity(const bool verbose) noexcept { m_verbose = verbose; }
-  std::string ToStr() const noexcept final { return "create new edge"; }
+
 
   private:
   boost::shared_ptr<Edge> m_edge;
-  std::vector<boost::shared_ptr<Node>> m_nodes;
-
+  std::vector<boost::shared_ptr<Node>> m_selected_nodes;
   std::vector<boost::shared_ptr<ribi::cmap::Node>> m_prev_selected; //Selected before Edge was added
 
-  ConceptMap * m_concept_map;
+  const boost::shared_ptr<ConceptMap> m_concept_map;
 
   bool m_verbose;
 
-  bool CanDoCommandSpecific(const ConceptMap * const widget) const noexcept final;
-  void DoCommandSpecific(ConceptMap * const widget) noexcept final;
-  void UndoSpecific() noexcept final;
 };
 
 } //~namespace cmap

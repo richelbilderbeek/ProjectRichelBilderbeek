@@ -7,22 +7,22 @@ namespace ribi {
 namespace cmap {
 
 ///Delete an existing edge
-struct CommandDeleteEdge : public Command
+struct CommandDeleteEdge final : public Command
 {
-  CommandDeleteEdge(const boost::shared_ptr<Edge> edge);
+  CommandDeleteEdge(
+    const boost::shared_ptr<ConceptMap> concept_map,
+    const boost::shared_ptr<Edge> edge
+  );
   CommandDeleteEdge(const CommandDeleteEdge&) = delete;
   CommandDeleteEdge& operator=(const CommandDeleteEdge&) = delete;
   ~CommandDeleteEdge() noexcept {}
 
-  std::string ToStr() const noexcept final { return "delete edge"; }
+  void undo() override;
+  void redo() override;
 
   private:
-  boost::shared_ptr<Edge> m_edge;
-  ConceptMap * m_concept_map;
-
-  bool CanDoCommandSpecific(const ConceptMap * const widget) const noexcept final;
-  void DoCommandSpecific(ConceptMap * const widget) noexcept final;
-  void UndoSpecific() noexcept final;
+  const boost::shared_ptr<Edge> m_edge;
+  const boost::shared_ptr<ConceptMap> m_concept_map;
 };
 
 } //~namespace cmap

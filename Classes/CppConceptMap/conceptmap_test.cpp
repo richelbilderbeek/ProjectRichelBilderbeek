@@ -746,12 +746,12 @@ void ribi::cmap::ConceptMap::Test() noexcept
 
   //Do all do and undo of a single command
   const int n_commands { static_cast<int>(CommandFactory::CreateTestCommands().size()) };
-  for (int i=0; i!=n_commands; ++i)
+  for (const boost::shared_ptr<ConceptMap> conceptmap: ConceptMapFactory().GetAllTests())
   {
-    for (const boost::shared_ptr<ConceptMap> conceptmap: ConceptMapFactory().GetAllTests())
+    for (int i=0; i!=n_commands; ++i)
     {
       if (!conceptmap) continue;
-      const boost::shared_ptr<Command> cmd(CommandFactory::CreateTestCommands()[i]);
+      const boost::shared_ptr<Command> cmd(CommandFactory::CreateTestCommands(concept_map)[i]);
       assert(cmd);
       //TRACE(cmd->ToStr());
       if (conceptmap->CanDoCommand(cmd))

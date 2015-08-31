@@ -36,7 +36,7 @@ namespace cmap {
 ///Set selected with a coordinat
 ///- opposite of LoseSelected
 ///- SetSelected does not care if there currently something else is selected
-struct CommandSetSelectedWithCoordinat : public Command
+struct CommandSetSelectedWithCoordinat final : public Command
 {
   using ConstEdges = std::vector<boost::shared_ptr<const Edge>>;
   using ConstNodes = std::vector<boost::shared_ptr<const Node>>;
@@ -45,24 +45,25 @@ struct CommandSetSelectedWithCoordinat : public Command
   using EdgesAndNodes = std::pair<Edges,Nodes>;
   using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
 
-  CommandSetSelectedWithCoordinat(const int x, const int y)
-    : m_prev_selected{}, m_widget{}, m_x(x), m_y(y) {}
+  CommandSetSelectedWithCoordinat(
+    const boost::shared_ptr<ConceptMap> concept_map,
+    const int x, const int y
+  );
+
   CommandSetSelectedWithCoordinat(const CommandSetSelectedWithCoordinat&) = delete;
   CommandSetSelectedWithCoordinat& operator=(const CommandSetSelectedWithCoordinat&) = delete;
   ~CommandSetSelectedWithCoordinat() noexcept {}
 
-  std::string ToStr() const noexcept final { return "set focus with coordinat"; }
+  void undo() override;
+  void redo() override;
 
   private:
   ConstEdgesAndNodes m_prev_selected;
-  ConceptMap * m_widget;
+  const boost::shared_ptr<ConceptMap> m_concept_map;
+  const boost::shared_ptr<Node> m_node;
 
   const int m_x;
   const int m_y;
-
-  bool CanDoCommandSpecific(const ConceptMap * const widget) const noexcept final;
-  void DoCommandSpecific(ConceptMap * const widget) noexcept final;
-  void UndoSpecific() noexcept final;
 };
 
 } //~namespace cmap

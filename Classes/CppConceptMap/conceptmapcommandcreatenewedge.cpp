@@ -28,79 +28,48 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapedgefactory.h"
 #include "trace.h"
 
-bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const ConceptMap * const conceptmap) const noexcept
+ribi::cmap::CommandCreateNewEdge::CommandCreateNewEdge(
+  const boost::shared_ptr<ConceptMap> concept_map
+)
+ : m_edge{},
+   m_selected_nodes{concept_map->GetSelectedNodes()},
+   m_prev_selected{},
+   m_concept_map{concept_map},
+   m_verbose{false}
 {
-  assert(conceptmap);
-  if (!conceptmap)
+  this->setText("create new edge");
+
+  if (m_selected_nodes.size() != 2)
   {
-    if (m_verbose) { TRACE("No concept map"); }
-    return false;
+    std::stringstream msg;
+    msg << "Number of selected nodes (" << m_concept_map->GetSelectedNodes().size() << " is not equal to two";
+    throw std::logic_error(msg.str());
   }
-  const auto selected_nodes = conceptmap->GetSelectedNodes();
-  if (selected_nodes.size() != 2)
+  if (!m_concept_map->HasNode(m_selected_nodes[0]))
   {
-    if (m_verbose)
-    {
-      std::stringstream msg;
-      msg << "Number of selected nodes (" << conceptmap->GetSelectedNodes().size() << " is not equal to two";
-      TRACE(msg.str());
-    }
-    return false;
+    throw std::logic_error("From node is member of an edge");
   }
-  if (!conceptmap->HasNode(selected_nodes[0]))
+  if (!m_concept_map->HasNode(m_selected_nodes[1]))
   {
-    if (m_verbose) { TRACE("From node is member of an edge"); }
-    return false;
+    throw std::logic_error("'To' node is member of an edge");
   }
-  if (!conceptmap->HasNode(selected_nodes[1]))
-  {
-    if (m_verbose) { TRACE("'To' node is member of an edge"); }
-    return false;
-  }
-  return true;
 }
 
-void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(ConceptMap * const concept_map) noexcept
+void ribi::cmap::CommandCreateNewEdge::redo()
 {
-  assert(!m_concept_map);
-  assert(concept_map);
-  assert(CanDoCommand(concept_map));
-
-  m_concept_map = concept_map;
-  const auto selected_nodes = m_concept_map->GetSelectedNodes();
-  assert(selected_nodes.size() == 2);
-  m_nodes.push_back(selected_nodes[0]);
-  m_nodes.push_back(selected_nodes[1]);
-
-  assert(m_nodes.size() == 2);
-  assert(m_nodes[0]);
-  assert(m_nodes[1]);
-  assert(m_nodes[0] != m_nodes[1]
-    && "An edge must be created from two different nodes");
-  assert(m_concept_map->HasNode(m_nodes[0])
-    && "An edge must be created from two existing nodes");
-  assert(m_concept_map->HasNode(m_nodes[1])
-    && "An edge must be created from two existing nodes");
-
-  m_prev_selected = m_concept_map->GetSelectedNodes();
-
-  m_edge = m_concept_map->CreateNewEdge();
-
-  assert(m_concept_map->GetSelectedNodes().empty());
-  assert(m_concept_map);
-  assert(m_edge);
+  m_concept_map->SetSelected(m_selected_nodes);
+  if (!m_edge)
+  {
+    m_edge = m_concept_map->CreateNewEdge();
+  }
+  else
+  {
+    m_concept_map->AddEdge(m_edge);
+  }
 }
 
-void ribi::cmap::CommandCreateNewEdge::UndoSpecific() noexcept
+void ribi::cmap::CommandCreateNewEdge::undo()
 {
-  assert(m_concept_map);
-
   m_concept_map->DeleteEdge(m_edge);
-
   m_concept_map->SetSelected(m_prev_selected);
-
-  m_concept_map = nullptr;
-  m_nodes.clear();
-  m_edge = boost::shared_ptr<Edge>();
-
 }

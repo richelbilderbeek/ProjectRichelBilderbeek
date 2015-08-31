@@ -25,37 +25,28 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmap.h"
 
 
-ribi::cmap::CommandDeleteNode::CommandDeleteNode(const boost::shared_ptr<Node> node)
-  : m_node{node}, m_concept_map{}
+ribi::cmap::CommandDeleteNode::CommandDeleteNode(
+  const boost::shared_ptr<ConceptMap> concept_map,
+  const boost::shared_ptr<Node> node
+) : m_node{node}, m_concept_map{concept_map}
 {
   assert(m_node);
+  assert(m_concept_map);
+
+  setText("delete node");
+
+  if (!m_concept_map->HasNode(m_node))
+  {
+    throw std::logic_error("Cannot delete Node that is not in ConceptMap");
+  }
 }
 
-bool ribi::cmap::CommandDeleteNode::CanDoCommandSpecific(const ConceptMap * const conceptmap) const noexcept
+void ribi::cmap::CommandDeleteNode::redo()
 {
-
-  assert(conceptmap);
-  return conceptmap->HasNode(m_node);
-}
-
-void ribi::cmap::CommandDeleteNode::DoCommandSpecific(ConceptMap * const concept_map) noexcept
-{
-  assert(!m_concept_map);
-  assert(m_node);
-  assert(concept_map);
-
-  m_concept_map = concept_map;
   m_concept_map->DeleteNode(m_node);
-
-  assert(m_concept_map);
-  assert(m_node);
 }
 
-void ribi::cmap::CommandDeleteNode::UndoSpecific() noexcept
+void ribi::cmap::CommandDeleteNode::undo()
 {
-  assert(m_concept_map);
-
   m_concept_map->AddNode(m_node);
-
-  m_concept_map = nullptr;
 }

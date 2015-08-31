@@ -891,18 +891,20 @@ bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap:
 
 
   if (lhs.GetSelected() != rhs.GetSelected()) return false;
-  if (lhs.m_undo.size() != rhs.m_undo.size()) return false;
-  return std::equal(
+  //if (lhs.m_undo != rhs.m_undo) return false; //Cannot do this :-(
+  if (lhs.m_undo.count() != rhs.m_undo.count()) return false; //Proxy
+  /*
+  return std::equal( //Does not work for QUndoStack :-(
     std::begin(lhs.m_undo),
     std::end(lhs.m_undo),
     std::begin(rhs.m_undo),
     [](boost::shared_ptr<const Command> p,
        boost::shared_ptr<const Command> q)
     {
-      return p->ToStr() == q->ToStr();
+      return p->text() == q->text();
     }
   );
-
+  */
   return true;
 
 }
@@ -948,11 +950,6 @@ void ribi::cmap::ConceptMap::AddSelected(
 {
   AddSelected(edges);
   AddSelected(nodes);
-}
-
-bool ribi::cmap::ConceptMap::CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept
-{
-  return command->CanDoCommand(this);
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMap::CreateEmptyConceptMap() noexcept
@@ -1012,27 +1009,15 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::CreateNewNode() noex
   return node;
 }
 
-void ribi::cmap::ConceptMap::DoCommand(const boost::shared_ptr<Command> command) noexcept
+void ribi::cmap::ConceptMap::DoCommand(Command * const command) noexcept
 {
   assert(command);
-  if (!CanDoCommand(command))
-  {
-    TRACE("ERROR");
-    TRACE(command->ToStr());
-    TRACE("BREAK");
-  }
-
-  assert(CanDoCommand(command));
-
-  command->m_signal_undo.connect(
-    boost::bind(&ribi::cmap::ConceptMap::OnUndo,this,boost::lambda::_1)
-  );
 
   //Undo
-  m_undo.push_back(command);
+  m_undo.push(command);
 
   //Actually do the Command
-  command->DoCommand(this);
+  command->redo();
 
   assert(CanUndo());
 }
@@ -1161,17 +1146,10 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::GetRandomNode(
   return p;
 }
 
-void ribi::cmap::ConceptMap::OnUndo(const Command * const
-  #ifndef NDEBUG
-  command_to_remove
-  #endif
-) noexcept
+void ribi::cmap::ConceptMap::OnUndo() noexcept
 {
-  assert(command_to_remove);
-  assert(!m_undo.empty());
-  assert(m_undo.back().get() == command_to_remove
-    && "Assume the last command signals to be removed from the undo stack");
-  m_undo.pop_back();
+  assert(m_undo.canUndo());
+  m_undo.undo();
 }
 
 void ribi::cmap::ConceptMap::SetSelected(
@@ -1203,21 +1181,8 @@ void ribi::cmap::ConceptMap::SetSelected(const ConstEdgesAndNodes& nodes_and_edg
 
 void ribi::cmap::ConceptMap::Undo() noexcept
 {
-  assert(CanUndo());
-  assert(!m_undo.empty());
-  assert(m_undo.back());
-  #ifndef NDEBUG
-  const std::size_t sz_before = m_undo.size();
-  #endif
-  m_undo.back()->Undo();
-  #ifndef NDEBUG
-  const std::size_t sz_after = m_undo.size();
-  assert(sz_after < sz_before
-    && "The undo Command calls DoUndo itself;"
-       "DoUndo shortens the m_undo stack"
-  );
-  //m_undo.pop_back(); //DON'T, DoUndo does this
-  #endif
+  assert(m_undo.canUndo());
+  m_undo.undo();
 }
 
 void ribi::cmap::ConceptMap::Unselect(

@@ -32,7 +32,7 @@ namespace ribi {
 namespace cmap {
 
 ///Add another item to the selected pool
-struct CommandAddSelectedRandom : public Command
+struct CommandAddSelectedRandom final : public Command
 {
   using ConstEdges = std::vector<boost::shared_ptr<const Edge>>;
   using ConstNodes = std::vector<boost::shared_ptr<const Node>>;
@@ -41,21 +41,18 @@ struct CommandAddSelectedRandom : public Command
   using EdgesAndNodes = std::pair<Edges,Nodes>;
   using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
 
-  CommandAddSelectedRandom() : m_old_selected{}, m_widget{} {}
+  CommandAddSelectedRandom(const boost::shared_ptr<ConceptMap> concept_map);
   CommandAddSelectedRandom(const CommandAddSelectedRandom&) = delete;
   CommandAddSelectedRandom& operator=(const CommandAddSelectedRandom&) = delete;
   ~CommandAddSelectedRandom() noexcept {}
 
-  std::string ToStr() const noexcept final { return "add selected random"; }
-  void Undo() noexcept;
+  void undo() override;
+  void redo() override;
 
   private:
-  ConstEdgesAndNodes m_old_selected;
-  ConceptMap * m_widget;
-
-  bool CanDoCommandSpecific(const ConceptMap * const widget) const noexcept final;
-  void DoCommandSpecific(ConceptMap * const widget) noexcept final;
-  void UndoSpecific() noexcept final;
+  const boost::shared_ptr<ConceptMap> m_concept_map;
+  ConstEdgesAndNodes m_new_selected; //Selected after redo
+  ConstEdgesAndNodes m_old_selected; //Selected before redo
 };
 
 } //~namespace cmap

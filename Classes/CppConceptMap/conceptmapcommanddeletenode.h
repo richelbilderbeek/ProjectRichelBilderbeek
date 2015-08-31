@@ -32,22 +32,22 @@ namespace ribi {
 namespace cmap {
 
 ///Delete an existing node
-struct CommandDeleteNode : public Command
+struct CommandDeleteNode final : public Command
 {
-  CommandDeleteNode(const boost::shared_ptr<Node> node);
+  CommandDeleteNode(
+    const boost::shared_ptr<ConceptMap> concept_map,
+    const boost::shared_ptr<Node> node
+  );
   CommandDeleteNode(const CommandDeleteNode&) = delete;
   CommandDeleteNode& operator=(const CommandDeleteNode&) = delete;
   ~CommandDeleteNode() noexcept {}
 
-  std::string ToStr() const noexcept final { return "delete node"; }
+  void undo() override;
+  void redo() override;
 
   private:
   boost::shared_ptr<Node> m_node;
-  ConceptMap * m_concept_map;
-
-  bool CanDoCommandSpecific(const ConceptMap * const widget) const noexcept final;
-  void DoCommandSpecific(ConceptMap * const widget) noexcept final;
-  void UndoSpecific() noexcept final;
+  const boost::shared_ptr<ConceptMap> m_concept_map;
 };
 
 } //~namespace cmap
