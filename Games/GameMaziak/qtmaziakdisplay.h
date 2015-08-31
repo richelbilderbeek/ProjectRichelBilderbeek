@@ -37,6 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "maziakkey.h"
 #include "maziakplayerdirection.h"
 #include "maziakplayermove.h"
+#include "stopwatch.h"
 #pragma GCC diagnostic pop
 
 struct QPixmap;
@@ -58,6 +59,9 @@ public:
   ~QtDisplay() {}
 
   void DoDisplay(const MainDialog& main_dialog) override;
+
+  bool MustAnimateEnemiesAndPrisoners() noexcept override;
+
   std::set<Key> RequestKeys() override;
 
 private:
@@ -84,6 +88,7 @@ private:
   void keyPressEvent(QKeyEvent * e);
   void keyReleaseEvent(QKeyEvent * e);
   void paintEvent(QPaintEvent * event);
+
 
   #ifndef NDEBUG
   static void Test() noexcept;

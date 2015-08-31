@@ -1,6 +1,7 @@
 #include "daswahreschlagerfestterminal.h"
 
 #include <cassert>
+#include <iostream>
 #include "textcanvas.h"
 #include "daswahreschlagerfestwidget.h"
 

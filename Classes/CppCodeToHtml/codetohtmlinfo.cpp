@@ -786,7 +786,6 @@ CygwinStatus.sh
 GameBeerWanter
 GameBoenken
 GameConnectThree
-GameDasWahreSchlagerfest
 GameEverythingToPiecesShooter
 GameK3OpEenRij
 GameMaziak
@@ -11009,12 +11008,16 @@ ToolTestNewickVector
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> is a <a href=\"Games.htm\">game</a> that was programmed on the 30th September 2003 during a 'Spass programmieren' session.",
-        "It is the one <a href=\"Games.htm\">game</a> that can be played on a theme party with theme 'Germany', or as a substitute for the Oktoberfest. ",
-        "If you want a beer or bratwurst, you can just go fetching one without fear of losing the <a href=\"Games.htm\">game</a>!</p>",
+        "<p>"
+        "  <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> is a <a href=\"Games.htm\">game</a> that was programmed on the 30th September 2003 during a 'Spass programmieren' session.",
+        "  It is the one <a href=\"Games.htm\">game</a> that can be played on a theme party with theme 'Germany', or as a substitute for the Oktoberfest. ",
+        "  If you want a beer or bratwurst, you can just go fetching one without fear of losing the <a href=\"Games.htm\">game</a>!"
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>Before version 2.0, <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> was called <a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre Schlagerfest (VCL)</a> and programmed",
-        "in <a href=\"Cpp.htm\">C++</a> using the <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0 <a href=\"CppIde.htm\">IDE</a>.</p>",
+        "<p>"
+        "  Before version 2.0, <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> was called <a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre Schlagerfest (VCL)</a> and programmed",
+        "  in <a href=\"Cpp.htm\">C++</a> using the <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0 <a href=\"CppIde.htm\">IDE</a>."
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -11026,20 +11029,9 @@ ToolTestNewickVector
         "  <li><img src=\"PicConsole.png\" alt=\"Console\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfest_2_5.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 2.5)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfest_2_2.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 2.2)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfest_2_2_menu.png\">View a screenshot of 'Das Wahre Schlagerfest' its menu screen (version 2.2)(png)</a></li>",
-        "  <li><img src=\"PicWeb.png\" alt=\"Web\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfestExe_2_2.zip\">Download a windows executable of 'Das Wahre Schlagerfest' (version 2.2)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameDasWahreSchlagerfest.zip\">Download a windows executable of 'Das Wahre Schlagerfest' (zip)</a></li>",
+        "  <li><img src=\"PicNds.png\" alt=\"NDS\"/> <a href=\"GameDasWahreSchlagerfest.zip\">Download an NDS executable of 'Das Wahre Schlagerfest' (zip)</a></li>",
         "</ul>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<h2>Older downloads</h2>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"GameDasWahreSchlagerfest_2_1.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 2.1)(png)</a></li>",
-        "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"GameDasWahreSchlagerfest_2_0.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 2.0)(png)</a></li>",
-        "  <li>Older: <a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre SchlagerfestVcl</a></li>",
-        "</ul>"
       }
     }
   );

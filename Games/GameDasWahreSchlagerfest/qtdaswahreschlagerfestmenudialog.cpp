@@ -66,7 +66,6 @@ void ribi::dws::QtMenuDialog::on_button_start_clicked() noexcept
   }
   d.show();
   w.Execute();
-  //d->ShowChild();
 }
 
 void ribi::dws::QtMenuDialog::on_button_about_clicked() noexcept

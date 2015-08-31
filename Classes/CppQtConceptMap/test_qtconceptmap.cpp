@@ -452,6 +452,35 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(conceptmap->GetSelectedNodes().size() == 0);
     assert(conceptmap->GetSelectedEdges().size() == 1);
   }
+  if (verbose) { TRACE("AddEdge: QtEdge its QtNode must be in between the QtNodes"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    const auto from = NodeFactory().GetTest(0);
+    const auto to = NodeFactory().GetTest(0);
+    const auto qtfrom = qtconceptmap->AddNode(from);
+    const auto qtto = qtconceptmap->AddNode(to);
+
+    const double x1{100.0};
+    const double y1{200.0};
+    const double x2{300.0};
+    const double y2{400.0};
+    const double x3{(x1+x2)/2.0};
+    const double y3{(y1+y2)/2.0};
+    qtfrom->GetNode()->SetX(x1);
+    qtfrom->GetNode()->SetY(y1);
+    qtto->GetNode()->SetX(x2);
+    qtto->GetNode()->SetY(y2);
+
+    const auto edge = EdgeFactory().GetTest(0,from,to);
+    const auto qtedge = qtconceptmap->AddEdge(edge);
+
+    assert(std::abs(qtedge->GetQtNode()->GetNode()->GetX() - x3) < 1.0);
+    assert(std::abs(qtedge->GetQtNode()->GetNode()->GetY() - y3) < 1.0);
+  }
+  assert(!"Green");
   if (verbose) { TRACE("DeleteEdge: delete of QtEdge from QtConceptMap"); }
   {
     boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
@@ -702,7 +731,6 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(conceptmap->GetEdges().size() == qtconceptmap->GetQtEdges().size());
     assert(conceptmap->GetSelectedNodes().size() == 1);
     assert(conceptmap->GetSelectedEdges().size() == 0);
-
   }
 
   if (verbose) { TRACE("MouseDoubleClick"); }

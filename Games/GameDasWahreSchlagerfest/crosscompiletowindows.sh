@@ -1,13 +1,9 @@
 #!/bin/sh
 #From http://richelbilderbeek.nl/CppQtCrosscompileToWindowsExample15.htm
+myqmake="i686-w64-mingw32.static-qmake-qt5"
 
-echo "Cross compiling to Windows"
-
-echo "1/2: Creating Windows makefile"
-i686-pc-mingw32-qmake GameDasWahreSchlagerfestDesktop.pro
-
-echo "2/2: making makefile"
-
+$myqmake GameDasWahreSchlagerfestConsole.pro
 make
 
-echo "Done"
+$myqmake GameDasWahreSchlagerfestDesktop.pro
+make

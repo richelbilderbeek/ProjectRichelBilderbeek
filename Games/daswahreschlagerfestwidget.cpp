@@ -1,1 +1,0 @@
-../../GameDasWahreSchlagerfest/daswahreschlagerfestwidget.cpp

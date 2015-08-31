@@ -16,6 +16,9 @@ struct Terminal : public Display
   //Put the MainDialog on screen
   void DoDisplay(const MainDialog& main_dialog) override;
 
+  ///Every turn, the animation must take place
+  bool MustAnimateEnemiesAndPrisoners() noexcept override { return true; }
+
   std::set<Key> RequestKeys() override;
 };
 

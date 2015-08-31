@@ -550,6 +550,27 @@ void ribi::cmap::ConceptMap::Test() noexcept
     concept_map->DeleteNode(node_a);
     assert(concept_map->GetSelectedNodes().size() == 1);
   }
+  if (verbose) { TRACE("Add nodes and edge, edge its node must be in between the nodes"); }
+  {
+    const auto concept_map = ConceptMapFactory().GetEmptyConceptMap();
+    assert(concept_map);
+    const double x1{100.0};
+    const double y1{200.0};
+    const double x2{300.0};
+    const double y2{400.0};
+    const double x3{(x1+x2)/2.0};
+    const double y3{(y1+y2)/2.0};
+    const auto node_a = NodeFactory().GetTests().at(0);
+    const auto node_b = NodeFactory().GetTests().at(0);
+    node_a->SetX(x1);
+    node_a->SetY(y1);
+    node_b->SetX(x2);
+    node_b->SetY(y2);
+    const auto edge = EdgeFactory().Create(node_a,node_b);
+    concept_map->AddEdge(edge);
+    assert(std::abs(edge->GetNode()->GetX() - x3) < 1.0);
+    assert(std::abs(edge->GetNode()->GetY() - y3) < 1.0);
+  }
   if (verbose) { TRACE("Add nodes and edge, check selected"); }
   {
     const auto concept_map = ConceptMapFactory().GetEmptyConceptMap();

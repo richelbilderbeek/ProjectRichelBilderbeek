@@ -96,8 +96,9 @@ void ribi::maziak::MainDialog::Execute() noexcept
 {
   while (1)
   {
-    const int width  = 20;
-    const int height = 20;
+    const int view_width  = 20;
+    const int view_height = 20;
+
     m_display->DoDisplay(*this);
 
     const auto keys = m_display->RequestKeys();
@@ -105,7 +106,10 @@ void ribi::maziak::MainDialog::Execute() noexcept
     PressKeys(keys);
 
     RespondToCurrentSquare();
-    AnimateEnemiesAndPrisoners(width,height);
+    if (m_display->MustAnimateEnemiesAndPrisoners())
+    {
+      AnimateEnemiesAndPrisoners(view_width,view_height);
+    }
     if(m_fighting_frame > 0)
     {
       AnimateFighting();

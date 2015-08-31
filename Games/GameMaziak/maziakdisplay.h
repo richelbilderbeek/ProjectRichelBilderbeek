@@ -28,6 +28,11 @@ struct Display
   int GetViewHeight();
   int GetViewWidth();
 
+  ///Must the enemies and prisoners be animated?
+  ///In a terminal version: every turn
+  ///In a graphical version: every so many seconds
+  virtual bool MustAnimateEnemiesAndPrisoners() noexcept = 0;
+
   virtual std::set<Key> RequestKeys() = 0;
 
   void SetGameState(const GameState game_state) noexcept { m_game_state = game_state; }
