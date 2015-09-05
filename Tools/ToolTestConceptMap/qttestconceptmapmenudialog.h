@@ -40,7 +40,7 @@ private slots:
   void on_button_qtedge_clicked();
   void on_button_qtnode_clicked();
   void on_button_quit_clicked();
-  void on_button_view_concept_maps_clicked();
+  void on_button_view_conceptmaps_clicked();
 
 private:
   Ui::QtTestMenuDialog *ui;

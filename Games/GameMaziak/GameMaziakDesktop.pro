@@ -18,7 +18,7 @@ include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 include(../../Classes/CppWidget/CppWidget.pri)
 
 #Specific, desktop
-#include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
+include(../../Classes/CppQtGraphics/CppQtGraphics.pri)
 include(GameMaziakDesktop.pri)
 
 SOURCES += qtmain.cpp

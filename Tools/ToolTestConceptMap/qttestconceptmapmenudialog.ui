@@ -117,7 +117,7 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_view_concept_maps">
+    <widget class="QPushButton" name="button_view_conceptmaps">
      <property name="text">
       <string>&amp;A. Used in testing</string>
      </property>
@@ -159,7 +159,7 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
   <tabstop>button_qtnode</tabstop>
   <tabstop>button_qtedge</tabstop>
   <tabstop>button_edit_conceptmap</tabstop>
-  <tabstop>button_view_concept_maps</tabstop>
+  <tabstop>button_view_conceptmaps</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>

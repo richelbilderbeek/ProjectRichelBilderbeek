@@ -49,13 +49,12 @@ public:
   QtConceptMap& operator=(const QtConceptMap&) = delete;
   ~QtConceptMap();
 
-  bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
-
-  void DoCommand(const boost::shared_ptr<Command> command) noexcept;
+  ///Raw pointer, because ConceptMap its QUndoStack will take over ownership of pointer
+  void DoCommand(Command * const command) noexcept;
 
   ///Obtain the concept map
-  boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_concept_map; }
-  boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_concept_map; }
+  boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_conceptmap; }
+  boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_conceptmap; }
 
   ///The square showing the examples
   const QtExamplesItem * GetQtExamplesItem() const noexcept { return m_examples_item; }
@@ -83,7 +82,7 @@ public:
 
   void RemoveExamplesItem() noexcept { SetExamplesItem(nullptr); }
 
-  void SetConceptMap(const boost::shared_ptr<ConceptMap> concept_map);
+  void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap);
 
   void SetVerbosity(const bool verbosity) noexcept { m_verbose = verbosity; }
 
@@ -98,7 +97,7 @@ public:
   ///Signal emitted when a concept map item requests to be edited
   boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_conceptmapitem_requests_edit;
 
-  boost::signals2::signal<void(const boost::shared_ptr<ConceptMap> sub_concept_map)> m_signal_request_rate_concept;
+  boost::signals2::signal<void(const boost::shared_ptr<ConceptMap> sub_conceptmap)> m_signal_request_rate_concept;
 
 public slots:
 
@@ -169,7 +168,7 @@ private:
   QtNewArrow * m_arrow;
 
   ///The concept map to work on, the Model
-  boost::shared_ptr<ConceptMap> m_concept_map;
+  boost::shared_ptr<ConceptMap> m_conceptmap;
 
   ///The item showing the examples
   QtExamplesItem * m_examples_item;

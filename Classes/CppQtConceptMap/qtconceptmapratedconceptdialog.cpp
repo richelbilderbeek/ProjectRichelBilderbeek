@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtconceptmapratedconceptdialog.h"
 
 ribi::cmap::QtConceptMapRatedConceptDialog::QtConceptMapRatedConceptDialog(
-  const boost::shared_ptr<const ribi::cmap::ConceptMap> concept_map,
+  const boost::shared_ptr<const ribi::cmap::ConceptMap> conceptmap,
   const boost::shared_ptr<const cmap::Node> node,
   QWidget *parent)
   : QDialog(parent),
@@ -79,7 +79,7 @@ ribi::cmap::QtConceptMapRatedConceptDialog::QtConceptMapRatedConceptDialog(
   }
 
 
-  for (const boost::shared_ptr<const cmap::Edge> edge: concept_map->GetEdges())
+  for (const boost::shared_ptr<const cmap::Edge> edge: conceptmap->GetEdges())
   {
     if (edge->GetFrom() == node || edge->GetTo() == node)
     {

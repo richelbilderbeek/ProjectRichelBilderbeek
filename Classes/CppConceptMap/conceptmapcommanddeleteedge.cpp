@@ -25,39 +25,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmap.h"
 
 
-ribi::cmap::CommandDeleteEdge::CommandDeleteEdge(const boost::shared_ptr<Edge> edge)
-  : m_edge{edge},
-    m_concept_map{concept_map}
+ribi::cmap::CommandDeleteEdge::CommandDeleteEdge(
+  const boost::shared_ptr<ConceptMap> conceptmap,
+  const boost::shared_ptr<Edge> edge
+)
+  :
+    m_conceptmap{conceptmap},
+    m_edge{edge}
 {
   assert(m_edge);
+
+  if (!m_conceptmap->HasEdge(m_edge))
+  {
+    throw std::logic_error("CommandDeleteEdge cannot delete an Edge that is not present in the ConceptMap");
+  }
+
   setText("delete edge");
+
 }
 
-bool ribi::cmap::CommandDeleteEdge::CanDoCommandSpecific(const ConceptMap * const conceptmap) const noexcept
+void ribi::cmap::CommandDeleteEdge::redo()
 {
-
-  assert(conceptmap);
-  return conceptmap->HasEdge(m_edge);
+  m_conceptmap->DeleteEdge(m_edge);
 }
 
-void ribi::cmap::CommandDeleteEdge::redo(ConceptMap * const concept_map) noexcept
+void ribi::cmap::CommandDeleteEdge::undo()
 {
-  assert(!m_concept_map);
-  assert(m_edge);
-  assert(concept_map);
-
-  m_concept_map = concept_map;
-  m_concept_map->DeleteEdge(m_edge);
-
-  assert(m_concept_map);
-  assert(m_edge);
-}
-
-void ribi::cmap::CommandDeleteEdge::undo() noexcept
-{
-  assert(m_concept_map);
-
-  m_concept_map->AddEdge(m_edge);
-
-  m_concept_map = nullptr;
+  m_conceptmap->AddEdge(m_edge);
 }

@@ -10,7 +10,7 @@ namespace cmap {
 struct CommandDeleteEdge final : public Command
 {
   CommandDeleteEdge(
-    const boost::shared_ptr<ConceptMap> concept_map,
+    const boost::shared_ptr<ConceptMap> conceptmap,
     const boost::shared_ptr<Edge> edge
   );
   CommandDeleteEdge(const CommandDeleteEdge&) = delete;
@@ -21,8 +21,8 @@ struct CommandDeleteEdge final : public Command
   void redo() override;
 
   private:
+  const boost::shared_ptr<ConceptMap> m_conceptmap;
   const boost::shared_ptr<Edge> m_edge;
-  const boost::shared_ptr<ConceptMap> m_concept_map;
 };
 
 } //~namespace cmap

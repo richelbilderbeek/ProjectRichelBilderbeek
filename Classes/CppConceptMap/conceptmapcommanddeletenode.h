@@ -35,7 +35,7 @@ namespace cmap {
 struct CommandDeleteNode final : public Command
 {
   CommandDeleteNode(
-    const boost::shared_ptr<ConceptMap> concept_map,
+    const boost::shared_ptr<ConceptMap> conceptmap,
     const boost::shared_ptr<Node> node
   );
   CommandDeleteNode(const CommandDeleteNode&) = delete;
@@ -47,7 +47,7 @@ struct CommandDeleteNode final : public Command
 
   private:
   boost::shared_ptr<Node> m_node;
-  const boost::shared_ptr<ConceptMap> m_concept_map;
+  const boost::shared_ptr<ConceptMap> m_conceptmap;
 };
 
 } //~namespace cmap

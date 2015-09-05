@@ -50,4 +50,4 @@ struct TestTimer
 
 } //~namespace ribi
 
-#endif // STOPWATCH_H
+#endif // RIBI_TESTTIMER_H

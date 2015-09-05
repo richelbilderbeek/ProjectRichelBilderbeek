@@ -39,12 +39,12 @@ struct MainDialog
 
   void AnimateFighting() noexcept;
 
-  bool GetDoShowSolution() const noexcept { return m_do_show_solution; }
 
   ///Play the game
   void Execute() noexcept;
 
   const Maze& GetMaze() const noexcept { return m_maze; }
+  bool GetDoShowSolution() const noexcept { return m_do_show_solution; }
 
   PlayerDirection GetPlayerDirection() const noexcept { return m_direction; }
   int GetPlayerFightingFrame() const noexcept { return m_fighting_frame; }
@@ -89,18 +89,22 @@ struct MainDialog
   ///Set how the game is displayed
   void SetDisplay(Display * const display);
 
-  void SetShowSolution(const bool do_show_solution) noexcept { m_do_show_solution = do_show_solution; }
-
   private:
 
   PlayerDirection m_direction;
   Display * m_display;
   DistancesMaze m_distances;
+
+  ///Shows the solution. This really is a member variable of this class,
+  ///as it determines if a player can or cannot walk upon a prisoner square
   bool m_do_show_solution;
+
   int m_fighting_frame;
   bool m_has_sword;
   Maze m_maze;
   PlayerMove m_move_now;
+
+
   SolutionMaze m_solution;
   GameState m_state;
   int m_x;

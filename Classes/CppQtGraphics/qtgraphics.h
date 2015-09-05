@@ -38,10 +38,16 @@ struct QtGraphics
   QtGraphics();
 
   ///Create a pretty QImage for testing purposes
-  QImage CreateImage(const int width, const int height, const int z) const noexcept;
+  QImage CreateImage(const int width, const int height, const int z = 0) const noexcept;
 
   ///Draw a QImage on another QImage
   void DrawImage(QImage& target, const QImage& source,  const int left, const int top) const noexcept;
+
+  ///Draw a QImage on another QImage
+  void DrawImageSlow(QImage& target, const QImage& source,  const int left, const int top) const noexcept;
+
+  ///Draw a QImage on another QImage
+  void DrawImageSlowest(QImage& target, const QImage& source,  const int left, const int top) const noexcept;
 
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;

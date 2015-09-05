@@ -142,18 +142,18 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
   assert(s.substr(s.size() - 14,14) == "</concept_map>");
 
 
-  //Obtain the <concept_map> ... </concept_map> string
+  //Obtain the <conceptmap> ... </conceptmap> string
   const std::vector<std::string> v
     = Regex().GetRegexMatches(s,("(<concept_map>.*</concept_map>)"));
   assert(v.size() == 1);
-  //Strip the <concept_map> tags
-  const std::string concept_map_str = ribi::xml::StripXmlTag(v[0]);
+  //Strip the <conceptmap> tags
+  const std::string conceptmap_str = ribi::xml::StripXmlTag(v[0]);
 
   std::vector<boost::shared_ptr<Node>> nodes;
   {
     //Obtain the <nodes> ... </nodes> strings
     const std::vector<std::string> w
-      = Regex().GetRegexMatches(concept_map_str,Regex().GetRegexNodes());
+      = Regex().GetRegexMatches(conceptmap_str,Regex().GetRegexNodes());
     assert(w.size() == 1);
     //Strip the <nodes> tags
     const std::string nodes_str = ribi::xml::StripXmlTag(w[0]);
@@ -208,7 +208,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
   {
     //Obtain the <edges> ... </edges> strings
     const std::vector<std::string> w
-      = Regex().GetRegexMatches(concept_map_str,Regex().GetRegexEdges());
+      = Regex().GetRegexMatches(conceptmap_str,Regex().GetRegexEdges());
     assert(w.size() == 1);
     //Strip the <edges> tags
     const std::string nodes_str = ribi::xml::StripXmlTag(w[0]);
@@ -225,10 +225,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
     }
   }
 
-  const boost::shared_ptr<ConceptMap> concept_map(new ConceptMap(nodes,edges));
-  assert(concept_map);
-  assert(concept_map->IsValid());
-  return concept_map;
+  const boost::shared_ptr<ConceptMap> conceptmap(new ConceptMap(nodes,edges));
+  assert(conceptmap);
+  assert(conceptmap->IsValid());
+  return conceptmap;
 }
 
 std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFactory::GetAllTests() const noexcept
@@ -249,26 +249,26 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
     }
   }
   #ifndef NDEBUG
-  for (const auto& concept_map: v)
+  for (const auto& conceptmap: v)
   {
-    assert(concept_map);
-    assert(concept_map->IsValid());
-    for (const auto& node: concept_map->GetNodes())
+    assert(conceptmap);
+    assert(conceptmap->IsValid());
+    for (const auto& node: conceptmap->GetNodes())
     {
       assert(node);
     }
-    for (const auto& edge: concept_map->GetEdges())
+    for (const auto& edge: conceptmap->GetEdges())
     {
       assert(edge);
       assert(edge->GetTo());
       assert(edge->GetFrom());
       assert(std::count(
-        concept_map->GetNodes().begin(),
-        concept_map->GetNodes().end(),
+        conceptmap->GetNodes().begin(),
+        conceptmap->GetNodes().end(),
         edge->GetTo()) == 1);
       assert(std::count(
-        concept_map->GetNodes().begin(),
-        concept_map->GetNodes().end(),
+        conceptmap->GetNodes().begin(),
+        conceptmap->GetNodes().end(),
         edge->GetFrom()) == 1);
     }
   }
@@ -328,11 +328,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
 
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map{
+  const boost::shared_ptr<ConceptMap> conceptmap{
     ConceptMapFactory::Create(nodes,edges)
   };
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap1() const noexcept
@@ -351,11 +351,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
 
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges)
   );
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap2() const noexcept
@@ -374,10 +374,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
     {
 
     };
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap3() const noexcept
@@ -401,11 +401,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_d,nodes.at(1),false,nodes.at(2),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
     = ConceptMapFactory::Create(nodes,edges);
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap4() const noexcept
@@ -429,11 +429,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_d,nodes.at(2),false,nodes.at(1),true)
     };
 
-  const auto concept_map
+  const auto conceptmap
     = ConceptMapFactory::Create(nodes,edges);
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap5() const noexcept
@@ -456,11 +456,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_d,nodes.at(1),false,nodes.at(2),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
     = ConceptMapFactory::Create(nodes,edges);
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap6() const noexcept
@@ -482,11 +482,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_d,nodes.at(2),false,nodes.at(1),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
     = ConceptMapFactory::Create(nodes,edges);
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap7() const noexcept
@@ -507,11 +507,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
 
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
     = ConceptMapFactory::Create(nodes,edges);
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap8() const noexcept
@@ -537,11 +537,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       edge_a
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
     = ConceptMapFactory::Create(nodes,edges);
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap9() const noexcept
@@ -566,11 +566,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       edge_a
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
     = ConceptMapFactory::Create(nodes,edges);
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap10() const noexcept
@@ -597,11 +597,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_f,nodes.at(2),false,nodes.at(3),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
     = ConceptMapFactory::Create(nodes,edges);
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap11() const noexcept
@@ -632,11 +632,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_g,nodes.at(3),false,nodes.at(1),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
     = ConceptMapFactory::Create(nodes,edges);
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap12() const noexcept
@@ -667,11 +667,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_g,nodes.at(1),false,nodes.at(3),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap13() const noexcept
@@ -702,11 +702,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_g,nodes.at(3),false,nodes.at(1),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap14() const noexcept
@@ -736,11 +736,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_g,nodes.at(1),false,nodes.at(3),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap15() const noexcept
@@ -784,11 +784,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_j,nodes.at(0),false,nodes.at(1),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
 
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap16() const noexcept
@@ -833,10 +833,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_j,nodes.at(0),false,nodes.at(1),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap17() const noexcept
@@ -905,9 +905,9 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_j,nodes.at(0),false,nodes.at(1),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  return concept_map;
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap18() const noexcept
@@ -1018,9 +1018,9 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_j,nodes.at(0),false,nodes.at(1),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  return concept_map;
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap19() const noexcept
@@ -1077,9 +1077,9 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHete
       EdgeFactory().Create(node_m,nodes.at(0),true ,nodes.at(4),false)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  return concept_map;
+  return conceptmap;
 }
 
 std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps() const noexcept
@@ -1160,10 +1160,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(3),false,nodes.at(1),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap1() const noexcept
@@ -1193,10 +1193,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(2),false,nodes.at(1),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap2() const noexcept
@@ -1226,10 +1226,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(3),false,nodes.at(2),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap3() const noexcept
@@ -1259,10 +1259,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(2),false,nodes.at(3),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap4() const noexcept
@@ -1292,11 +1292,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(1),false,nodes.at(2),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
+  assert(conceptmap);
 
-  return concept_map;
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap5() const noexcept
@@ -1326,11 +1326,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(1),false,nodes.at(3),true)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
+  assert(conceptmap);
 
-  return concept_map;
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap6() const noexcept
@@ -1360,10 +1360,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(1),true,nodes.at(3),false)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap7() const noexcept
@@ -1393,10 +1393,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(1),true,nodes.at(2),false)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap8() const noexcept
@@ -1434,10 +1434,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(2),true,nodes.at(3),false)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap9() const noexcept
@@ -1475,11 +1475,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(3),true,nodes.at(2),false)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
+  assert(conceptmap);
 
-  return concept_map;
+  return conceptmap;
 }
 
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMap10() const noexcept
@@ -1508,11 +1508,11 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(2),true,nodes.at(1),false)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
+  assert(conceptmap);
 
-  return concept_map;
+  return conceptmap;
 }
 
 
@@ -1543,10 +1543,10 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetComp
       EdgeFactory().Create(node_g,nodes.at(3),true,nodes.at(1),false)
     };
 
-  const boost::shared_ptr<ConceptMap> concept_map(
+  const boost::shared_ptr<ConceptMap> conceptmap(
     ConceptMapFactory::Create(nodes,edges));
-  assert(concept_map);
-  return concept_map;
+  assert(conceptmap);
+  return conceptmap;
 }
 
 std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps() const noexcept
@@ -1576,10 +1576,10 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
 
       };
 
-    const boost::shared_ptr<ConceptMap> concept_map(
+    const boost::shared_ptr<ConceptMap> conceptmap(
       ConceptMapFactory::Create(nodes,edges));
-    assert(concept_map);
-    v[0] = concept_map;
+    assert(conceptmap);
+    v[0] = conceptmap;
   }
 
   //[1]
@@ -1597,10 +1597,10 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
       {
 
       };
-    const boost::shared_ptr<ConceptMap> concept_map(
+    const boost::shared_ptr<ConceptMap> conceptmap(
       ConceptMapFactory::Create(nodes,edges));
-    assert(concept_map);
-    v[1] = concept_map;
+    assert(conceptmap);
+    v[1] = conceptmap;
   }
   //[2]
   {
@@ -1619,10 +1619,10 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
 
       };
 
-    const boost::shared_ptr<ConceptMap> concept_map(
+    const boost::shared_ptr<ConceptMap> conceptmap(
       ConceptMapFactory::Create(nodes,edges));
-    assert(concept_map);
-    v[2] = concept_map;
+    assert(conceptmap);
+    v[2] = conceptmap;
   }
   //[3]
   {
@@ -1640,10 +1640,10 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
       {
 
       };
-    const boost::shared_ptr<ConceptMap> concept_map(
+    const boost::shared_ptr<ConceptMap> conceptmap(
       ConceptMapFactory::Create(nodes,edges));
-    assert(concept_map);
-    v[3] = concept_map;
+    assert(conceptmap);
+    v[3] = conceptmap;
   }
 
   //[4]
@@ -1663,10 +1663,10 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
 
       };
 
-    const boost::shared_ptr<ConceptMap> concept_map(
+    const boost::shared_ptr<ConceptMap> conceptmap(
       ConceptMapFactory::Create(nodes,edges));
-    assert(concept_map);
-    v[4] = concept_map;
+    assert(conceptmap);
+    v[4] = conceptmap;
   }
 
   //[5]
@@ -1686,10 +1686,10 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
 
       };
 
-    const boost::shared_ptr<ConceptMap> concept_map(
+    const boost::shared_ptr<ConceptMap> conceptmap(
       ConceptMapFactory::Create(nodes,edges));
-    assert(concept_map);
-    v[5] = concept_map;
+    assert(conceptmap);
+    v[5] = conceptmap;
   }
   return v;
 }
@@ -1709,26 +1709,26 @@ void ribi::cmap::ConceptMapFactory::Test() noexcept
   const TestTimer test_timer(__func__,__FILE__,1.0);
   if (verbose) { TRACE("All testing concept maps must be valid"); }
   {
-    for (const auto& concept_map: ConceptMapFactory().GetAllTests())
+    for (const auto& conceptmap: ConceptMapFactory().GetAllTests())
     {
-      if (!concept_map) continue;
-      assert(concept_map);
-      for (const auto& node: concept_map->GetNodes())
+      if (!conceptmap) continue;
+      assert(conceptmap);
+      for (const auto& node: conceptmap->GetNodes())
       {
         assert(node);
       }
-      for (const auto& edge: concept_map->GetEdges())
+      for (const auto& edge: conceptmap->GetEdges())
       {
         assert(edge);
         assert(edge->GetTo());
         assert(edge->GetFrom());
         assert(std::count(
-          concept_map->GetNodes().begin(),
-          concept_map->GetNodes().end(),
+          conceptmap->GetNodes().begin(),
+          conceptmap->GetNodes().end(),
           edge->GetTo()) == 1);
         assert(std::count(
-          concept_map->GetNodes().begin(),
-          concept_map->GetNodes().end(),
+          conceptmap->GetNodes().begin(),
+          conceptmap->GetNodes().end(),
           edge->GetFrom()) == 1);
       }
     }

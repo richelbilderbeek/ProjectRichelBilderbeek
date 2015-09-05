@@ -28,34 +28,66 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcommand.h"
 #include "conceptmapcommandsetselectedwithcoordinat.h"
 
-std::vector<boost::shared_ptr<ribi::cmap::Command> >
-ribi::cmap::CommandFactory::CreateTestCommands(
-  boost::shared_ptr<ConceptMap> concept_map
 
-) noexcept
+ribi::cmap::Command* ribi::cmap::CommandFactory::CreateTestCommand(
+  const int index,
+  boost::shared_ptr<ConceptMap> conceptmap
+) const noexcept
 {
-  std::vector<boost::shared_ptr<Command> > v;
+  try
+  {
+    switch (index)
+    {
+      case 0:
+      {
+        Command * const p {
+          new CommandAddSelectedRandom(conceptmap)
+        };
+        assert(p);
+        return p;
+      }
+      case 1:
+      {
+        Command * const p {
+          new CommandCreateNewEdge(conceptmap)
+        };
+        assert(p);
+        return p;
+      }
+      case 2:
+      {
+        Command * const p {
+          new CommandCreateNewNode(conceptmap)
+        };
+        assert(p);
+        return p;
+      }
+      default:
+        assert(index >= GetSize());
+    }
+  }
+  catch (std::logic_error& )
+  {
+    //Cannot do command, no problem, just return nullptr
+  }
+  return nullptr;
+}
 
+
+std::vector<ribi::cmap::Command*>
+ribi::cmap::CommandFactory::CreateTestCommands(
+  boost::shared_ptr<ConceptMap> conceptmap
+) const noexcept
+{
+  std::vector<Command*> v;
+  const int n{GetSize()};
+  for (int i=0; i!=n; ++i)
   {
-    const boost::shared_ptr<Command> p {
-      new CommandAddSelectedRandom(concept_map)
+
+    Command * const p {
+      CreateTestCommand(i,conceptmap)
     };
-    assert(p);
-    v.push_back(p);
-  }
-  {
-    const boost::shared_ptr<Command> p {
-      new CommandCreateNewEdge(concept_map)
-    };
-    assert(p);
-    v.push_back(p);
-  }
-  {
-    const boost::shared_ptr<Command> p {
-      new CommandCreateNewNode(concept_map)
-    };
-    assert(p);
-    v.push_back(p);
+    if (p) v.push_back(p);
   }
   return v;
 }

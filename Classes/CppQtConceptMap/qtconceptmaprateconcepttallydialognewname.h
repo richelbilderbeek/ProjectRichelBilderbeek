@@ -42,7 +42,7 @@ class QtRateConceptTallyDialogNewName : public ribi::QtHideAndShowDialog
 public:
   ///Sub concept map is modified by this dialog
   explicit QtRateConceptTallyDialogNewName(
-    const boost::shared_ptr</* const */ ConceptMap> sub_concept_map,
+    const boost::shared_ptr</* const */ ConceptMap> sub_conceptmap,
     QWidget *parent = 0);
   QtRateConceptTallyDialogNewName(const QtRateConceptTallyDialogNewName&) = delete;
   QtRateConceptTallyDialogNewName& operator=(const QtRateConceptTallyDialogNewName&) = delete;
@@ -87,7 +87,7 @@ private:
     CreateData(const boost::shared_ptr</* const */ ConceptMap> map);
 
   static std::string
-    GetFocusName(const boost::shared_ptr<const ConceptMap> sub_concept_map) noexcept;
+    GetFocusName(const boost::shared_ptr<const ConceptMap> sub_conceptmap) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

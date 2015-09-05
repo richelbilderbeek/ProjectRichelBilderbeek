@@ -51,40 +51,40 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtRateConceptDialogNewName::QtRateConceptDialogNewName(
-  const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map,
+  const boost::shared_ptr<ribi::cmap::ConceptMap> sub_conceptmap,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtRateConceptDialogNewName),
     m_button_ok_clicked(false),
-    m_concept(sub_concept_map
-      ? sub_concept_map->GetFocalNode()->GetConcept()
+    m_concept(sub_conceptmap
+      ? sub_conceptmap->GetFocalNode()->GetConcept()
       : boost::shared_ptr<Concept>() ),
-    m_initial_complexity(sub_concept_map
-      ? sub_concept_map->GetFocalNode()->GetConcept()->GetRatingComplexity()
+    m_initial_complexity(sub_conceptmap
+      ? sub_conceptmap->GetFocalNode()->GetConcept()->GetRatingComplexity()
       : -1 ),
-    m_initial_concreteness(sub_concept_map
-      ? sub_concept_map->GetFocalNode()->GetConcept()->GetRatingConcreteness()
+    m_initial_concreteness(sub_conceptmap
+      ? sub_conceptmap->GetFocalNode()->GetConcept()->GetRatingConcreteness()
       : -1),
-    m_initial_specificity(sub_concept_map
-      ? sub_concept_map->GetFocalNode()->GetConcept()->GetRatingSpecificity()
+    m_initial_specificity(sub_conceptmap
+      ? sub_conceptmap->GetFocalNode()->GetConcept()->GetRatingSpecificity()
       : -1),
 
-    m_sub_concept_map(sub_concept_map),
+    m_sub_conceptmap(sub_conceptmap),
     m_widget(new QtConceptMap)
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
-  if (!m_sub_concept_map) return;
-  m_widget->SetConceptMap(sub_concept_map);
-  assert(m_sub_concept_map);
-  assert(!m_sub_concept_map->GetNodes().empty());
+  if (!m_sub_conceptmap) return;
+  m_widget->SetConceptMap(sub_conceptmap);
+  assert(m_sub_conceptmap);
+  assert(!m_sub_conceptmap->GetNodes().empty());
 
   assert(m_widget);
-  assert(ui->concept_map_layout);
+  assert(ui->conceptmap_layout);
 
-  ui->concept_map_layout->addWidget(m_widget.get());
+  ui->conceptmap_layout->addWidget(m_widget.get());
 
   assert(m_concept);
 
@@ -96,17 +96,17 @@ ribi::cmap::QtRateConceptDialogNewName::QtRateConceptDialogNewName(
   //Set suggestions
   {
     const std::string s = "Formeel uitgangspunt: "
-      + boost::lexical_cast<std::string>(cmap::Rating::SuggestComplexity(m_sub_concept_map));
+      + boost::lexical_cast<std::string>(cmap::Rating::SuggestComplexity(m_sub_conceptmap));
     ui->box_complexity->setToolTip(s.c_str());
   }
   {
     const std::string s = "Formeel uitgangspunt: "
-      + boost::lexical_cast<std::string>(cmap::Rating::SuggestConcreteness(m_sub_concept_map));
+      + boost::lexical_cast<std::string>(cmap::Rating::SuggestConcreteness(m_sub_conceptmap));
     ui->box_concreteness->setToolTip(s.c_str());
   }
   {
     const std::string s = "Formeel uitgangspunt: "
-      + boost::lexical_cast<std::string>(cmap::Rating::SuggestSpecificity(m_sub_concept_map));
+      + boost::lexical_cast<std::string>(cmap::Rating::SuggestSpecificity(m_sub_conceptmap));
     ui->box_specificity->setToolTip(s.c_str());
   }
 
@@ -223,26 +223,26 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
   const TestTimer test_timer{__func__,__FILE__,0.1};
   #ifdef RJCB_TODO //TODO RJCB: Put back in
   {
-    const std::vector<boost::shared_ptr<ConceptMap> > concept_maps
+    const std::vector<boost::shared_ptr<ConceptMap> > conceptmaps
       = ConceptMapFactory().GetAllTests();
-    const std::size_t n_concept_maps = concept_maps.size();
-    for (std::size_t i=0; i!=n_concept_maps; ++i)
+    const std::size_t n_conceptmaps = conceptmaps.size();
+    for (std::size_t i=0; i!=n_conceptmaps; ++i)
     {
-      const boost::shared_ptr<ConceptMap> concept_map = concept_maps[i];
-      if (!concept_map)
+      const boost::shared_ptr<ConceptMap> conceptmap = conceptmaps[i];
+      if (!conceptmap)
       {
-        QtRateConceptDialogNewName d(concept_map);
+        QtRateConceptDialogNewName d(conceptmap);
         continue;
       }
-      assert(concept_map);
-      const boost::shared_ptr<Concept> concept = concept_map->GetFocalNode()->GetConcept();
+      assert(conceptmap);
+      const boost::shared_ptr<Concept> concept = conceptmap->GetFocalNode()->GetConcept();
       assert(concept);
       const boost::shared_ptr<Concept> old_concept = ConceptFactory().DeepCopy(concept);
       assert(old_concept);
       assert(concept != old_concept);
       assert(*concept == *old_concept);
       {
-        QtRateConceptDialogNewName d(concept_map);
+        QtRateConceptDialogNewName d(conceptmap);
         assert(concept->GetRatingComplexity() == d.ui->box_complexity->currentIndex());
         assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
         assert(concept->GetRatingSpecificity() == d.ui->box_specificity->currentIndex());
@@ -258,26 +258,26 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
     }
   }
   {
-    const std::vector<boost::shared_ptr<ConceptMap> > concept_maps
+    const std::vector<boost::shared_ptr<ConceptMap> > conceptmaps
       = ConceptMapFactory().GetAllTests();
-    const std::size_t n_concept_maps = concept_maps.size();
-    for (std::size_t i=0; i!=n_concept_maps; ++i)
+    const std::size_t n_conceptmaps = conceptmaps.size();
+    for (std::size_t i=0; i!=n_conceptmaps; ++i)
     {
-      const boost::shared_ptr<ConceptMap> concept_map = concept_maps[i];
-      if (!concept_map)
+      const boost::shared_ptr<ConceptMap> conceptmap = conceptmaps[i];
+      if (!conceptmap)
       {
-        QtRateConceptDialogNewName d(concept_map);
+        QtRateConceptDialogNewName d(conceptmap);
         continue;
       }
-      assert(concept_map);
-      const boost::shared_ptr<Concept> concept = concept_map->GetFocalNode()->GetConcept();
+      assert(conceptmap);
+      const boost::shared_ptr<Concept> concept = conceptmap->GetFocalNode()->GetConcept();
       assert(concept);
       const boost::shared_ptr<const Concept> old_concept = ConceptFactory().DeepCopy(concept);
 
       assert(old_concept);
       assert(concept != old_concept);
       assert(*concept == *old_concept);
-      QtRateConceptDialogNewName d(concept_map);
+      QtRateConceptDialogNewName d(conceptmap);
       assert(concept->GetRatingComplexity()   == d.ui->box_complexity->currentIndex());
       assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
       assert(concept->GetRatingSpecificity()  == d.ui->box_specificity->currentIndex());
@@ -297,11 +297,11 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
 void ribi::cmap::QtRateConceptDialogNewName::on_button_tally_relevancies_clicked()
 {
   #ifndef NDEBUG
-  const bool has_concept_map = m_sub_concept_map.get(); //.get() needed for crosscompiler
+  const bool has_conceptmap = m_sub_conceptmap.get(); //.get() needed for crosscompiler
   #endif
-   QtRateConceptTallyDialogNewName d(m_sub_concept_map);
+   QtRateConceptTallyDialogNewName d(m_sub_conceptmap);
   d.exec(); //Keep this dialog visible, as of 2013-08-30
-  assert(has_concept_map == static_cast<bool>(m_sub_concept_map.get()));
+  assert(has_conceptmap == static_cast<bool>(m_sub_conceptmap.get()));
   ui->box_complexity->setCurrentIndex(d.GetSuggestedComplexity());
   ui->box_concreteness->setCurrentIndex(d.GetSuggestedConcreteness());
   ui->box_specificity->setCurrentIndex(d.GetSuggestedSpecificity());

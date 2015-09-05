@@ -25,8 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-
-
+#include "stopwatch.h"
 #include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -56,6 +55,54 @@ QImage ribi::QtGraphics::CreateImage(const int width, const int height, const in
 }
 
 void ribi::QtGraphics::DrawImage(
+  QImage& target, const QImage& source,
+  const int left, const int top
+) const noexcept
+{
+  const auto n_channels = source.pixelFormat().channelCount();
+  const int width = source.width();
+  const int height = source.height();
+  for (int y=0; y!=height; ++y)
+  {
+    const auto line_to = target.scanLine(y + top);
+    const auto line_from = source.constScanLine(y);
+    std::copy(
+      &line_from[0],
+      &line_from[width * n_channels],
+      &line_to[left * n_channels]
+    );
+  }
+}
+
+
+
+void ribi::QtGraphics::DrawImageSlow(
+  QImage& target, const QImage& source,
+  const int left, const int top
+) const noexcept
+{
+  const auto n_channels = source.pixelFormat().channelCount();
+  const int width = source.width();
+  const int height = source.height();
+  for (int y=0; y!=height; ++y)
+  {
+    const auto line_to = target.scanLine(y + top);
+    const auto line_from = source.constScanLine(y);
+    for (int x=0; x!=width; ++x)
+    {
+      for (int c=0; c!=n_channels; ++c)
+      {
+        line_to[ ((left + x) * n_channels) + c]
+          = line_from[ (x * n_channels) + c]
+        ;
+      }
+      //target.setPixel(left+x,top+y,source.pixel(x,y));
+    }
+  }
+}
+
+
+void ribi::QtGraphics::DrawImageSlowest(
   QImage& target, const QImage& source,
   const int left, const int top
 ) const noexcept
@@ -92,6 +139,9 @@ void ribi::QtGraphics::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    Stopwatch();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   if (verbose) { TRACE("Default-construction of QtGraphics"); }
@@ -109,6 +159,32 @@ void ribi::QtGraphics::Test() noexcept
     const QImage source = QtGraphics().CreateImage(196,156,196);
     assert(!source.isNull());
     QtGraphics().DrawImage(target,source,32,64);
+  }
+  {
+    QImage target_slow = QtGraphics().CreateImage(256,256,64);
+    QImage target_fast = QtGraphics().CreateImage(256,256,64);
+    const QImage source = QtGraphics().CreateImage(196,156,196);
+    QtGraphics().DrawImage(    target_fast,source,     32,64);
+    QtGraphics().DrawImageSlowest(target_slow,source,32,64);
+    assert(target_fast == target_slow);
+  }
+  const bool do_timing{true};
+  if (do_timing)
+  {
+    QImage target_slow = QtGraphics().CreateImage(2560,2560);
+    QImage target_fast = QtGraphics().CreateImage(2560,2560);
+    const QImage source = QtGraphics().CreateImage(1960,1560);
+    Stopwatch s_fast;
+    QtGraphics().DrawImage(target_fast,source,32,64);
+    const double t_fast{s_fast.GetElapsedSecs()};
+    Stopwatch s_slow;
+    QtGraphics().DrawImageSlow(target_slow,source,32,64);
+    const double t_slow{s_slow.GetElapsedSecs()};
+    TRACE(t_fast);
+    TRACE(t_slow);
+    TRACE(t_fast / t_slow);
+    TRACE((t_fast - t_slow) / t_slow);
+    assert(t_fast * 10.0 < t_slow);
   }
 }
 #endif

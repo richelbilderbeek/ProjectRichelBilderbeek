@@ -104,7 +104,7 @@ ribi::cmap::QtConceptMap::QtConceptMap(QWidget* parent)
     m_signal_conceptmapitem_requests_edit{},
     m_signal_request_rate_concept{},
     m_arrow(nullptr),
-    m_concept_map{},
+    m_conceptmap{},
     m_examples_item(new QtExamplesItem),
     m_highlighter{new QtItemHighlighter},
     m_tools{new QtTool},
@@ -340,11 +340,6 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<N
   return qtnode;
 }
 
-bool ribi::cmap::QtConceptMap::CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept
-{
-  return GetConceptMap()->CanDoCommand(command);
-}
-
 void ribi::cmap::QtConceptMap::CleanMe()
 {
   //Prepare cleaning the scene
@@ -534,9 +529,9 @@ void ribi::cmap::QtConceptMap::DeleteQtNode(const QtNode * const qtnode)
   }
 }
 
-void ribi::cmap::QtConceptMap::DoCommand(const boost::shared_ptr<Command> command) noexcept
+void ribi::cmap::QtConceptMap::DoCommand(Command * const command) noexcept
 {
-  GetConceptMap()->DoCommand(command);
+  command->redo();
 }
 
 const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const noexcept
@@ -809,18 +804,20 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
       const auto nodes = GetConceptMap()->GetSelectedNodes();
       for (const auto node: nodes)
       {
-        const boost::shared_ptr<CommandDeleteNode> command {
-          new CommandDeleteNode(node)
-        };
-        if (CanDoCommand(command)) { DoCommand(command); }
+        try
+        {
+          DoCommand(new CommandDeleteNode(this->GetConceptMap(),node));
+        }
+        catch (std::logic_error& ) {}
       }
       const auto edges = GetConceptMap()->GetSelectedEdges();
       for (const auto edge: edges)
       {
-        const boost::shared_ptr<CommandDeleteEdge> command {
-          new CommandDeleteEdge(edge)
-        };
-        if (CanDoCommand(command)) { DoCommand(command); }
+        try
+        {
+          DoCommand(new CommandDeleteEdge(this->GetConceptMap(),edge));
+        }
+        catch (std::logic_error& ) {}
       }
     }
     return;
@@ -844,20 +841,15 @@ void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
     case Qt::Key_E:
       if (event->modifiers() & Qt::ControlModifier)
       {
-        const boost::shared_ptr<CommandCreateNewEdge> command {
-          new CommandCreateNewEdge
-        };
-        if (!CanDoCommand(command)) return;
-        this->DoCommand(command);
+        try { this->DoCommand(new CommandCreateNewEdge(GetConceptMap())); }
+        catch (std::logic_error& ) {}
       }
       return;
     case Qt::Key_N:
       if (event->modifiers() & Qt::ControlModifier)
       {
-        const boost::shared_ptr<CommandCreateNewNode> command {
-          new CommandCreateNewNode
-        };
-        this->DoCommand(command);
+        try { this->DoCommand(new CommandCreateNewNode(GetConceptMap())); }
+        catch (std::logic_error& ) {}
       }
       return;
     case Qt::Key_Z:
@@ -1026,27 +1018,27 @@ void ribi::cmap::QtConceptMap::RepositionItems()
   }
 }
 
-void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap> concept_map)
+void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap)
 {
   CleanMe();
-  m_concept_map = concept_map;
-  if (!m_concept_map) return;
+  m_conceptmap = conceptmap;
+  if (!m_conceptmap) return;
 
-  m_concept_map->m_signal_add_edge.connect(
+  m_conceptmap->m_signal_add_edge.connect(
     boost::bind(&ribi::cmap::QtConceptMap::AddEdge,this,boost::lambda::_1)
   );
-  m_concept_map->m_signal_add_node.connect(
+  m_conceptmap->m_signal_add_node.connect(
     boost::bind(&ribi::cmap::QtConceptMap::AddNode,this,boost::lambda::_1)
   );
-  m_concept_map->m_signal_delete_edge.connect(
+  m_conceptmap->m_signal_delete_edge.connect(
     boost::bind(&ribi::cmap::QtConceptMap::DeleteEdge,this,boost::lambda::_1)
   );
-  m_concept_map->m_signal_delete_node.connect(
+  m_conceptmap->m_signal_delete_node.connect(
     boost::bind(&ribi::cmap::QtConceptMap::DeleteNode,this,boost::lambda::_1)
   );
 
-  assert(m_concept_map);
-  assert(m_concept_map->IsValid());
+  assert(m_conceptmap);
+  assert(m_conceptmap->IsValid());
   assert(this->scene());
 
   //This std::vector keeps the QtNodes in the same order as the nodes in the concept map
@@ -1056,10 +1048,10 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
   assert(Collect<QtNode>(scene()).empty());
 
   //Add the nodes to the scene, if there are any
-  if (!m_concept_map->GetNodes().empty())
+  if (!m_conceptmap->GetNodes().empty())
   {
     //Add the main question as the first node
-    const boost::shared_ptr<Node> node = m_concept_map->GetFocalNode();
+    const boost::shared_ptr<Node> node = m_conceptmap->GetFocalNode();
 
     QtNode * qtnode = nullptr;
     if (IsCenterNode(node))
@@ -1089,7 +1081,7 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
     assert(Collect<QtNode>(scene()).size() == 1);
 
     //Add the regular nodes to the scene
-    const std::vector<boost::shared_ptr<Node>> nodes = m_concept_map->GetNodes();
+    const std::vector<boost::shared_ptr<Node>> nodes = m_conceptmap->GetNodes();
     const std::size_t n_nodes = nodes.size();
     assert(n_nodes >= 1);
     for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip focal node
@@ -1107,7 +1099,7 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
   }
   //Add the Concepts on the Edges
   {
-    const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = m_concept_map->GetEdges();
+    const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = m_conceptmap->GetEdges();
     std::for_each(edges.begin(),edges.end(),
       [this,qtnodes](const boost::shared_ptr<Edge> edge)
       {
@@ -1120,17 +1112,17 @@ void ribi::cmap::QtConceptMap::SetConceptMap(const boost::shared_ptr<ConceptMap>
   }
 
   //Put the nodes around the focal question in an initial position
-  if (MustReposition(AddConst(m_concept_map->GetNodes())))
+  if (MustReposition(AddConst(m_conceptmap->GetNodes())))
   {
     RepositionItems();
   }
 
   #ifndef NDEBUG
-  TestMe(m_concept_map);
+  TestMe(m_conceptmap);
   #endif
 
-  assert(GetConceptMap() == concept_map);
-  assert( (!concept_map || concept_map->IsValid())
+  assert(GetConceptMap() == conceptmap);
+  assert( (!conceptmap || conceptmap->IsValid())
     && "Expect no or a valid concept map");
 
 }
@@ -1283,12 +1275,13 @@ void ribi::cmap::QtConceptMap::mousePressEvent(QMouseEvent *event)
     {
       //assert(!dynamic_cast<QtTool*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
       //AddEdge( m_arrow->GetFrom(),m_highlighter->GetItem());
-      const boost::shared_ptr<CommandCreateNewEdge> command {
-        new CommandCreateNewEdge
-      };
-      if (!CanDoCommand(command)) return;
-      this->DoCommand(command);
-      UpdateSelection();
+      try
+      {
+        const auto command = new CommandCreateNewEdge(GetConceptMap());
+        DoCommand(command);
+        UpdateSelection();
+      }
+      catch (std::logic_error&) { return; }
     }
     this->scene()->removeItem(m_arrow);
     m_arrow = nullptr;
@@ -1386,7 +1379,7 @@ void ribi::cmap::QtConceptMap::UpdateSelection()
       }
     }
   }
-  this->m_concept_map->SetSelected(edges_and_nodes);
+  this->m_conceptmap->SetSelected(edges_and_nodes);
 
   scene()->update();
 }

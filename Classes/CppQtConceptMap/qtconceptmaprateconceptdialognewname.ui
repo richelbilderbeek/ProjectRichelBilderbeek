@@ -20,7 +20,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="concept_map_layout"/>
+    <layout class="QHBoxLayout" name="conceptmap_layout"/>
    </item>
    <item>
     <widget class="QWidget" name="widget_bottom" native="true">

@@ -35,7 +35,7 @@ namespace cmap {
 ///-Can be used only when there is an existing concept map
 struct CommandCreateNewNode final : public Command
 {
-  CommandCreateNewNode(const boost::shared_ptr<ConceptMap> concept_map);
+  CommandCreateNewNode(const boost::shared_ptr<ConceptMap> conceptmap);
   CommandCreateNewNode(const CommandCreateNewNode&) = delete;
   CommandCreateNewNode& operator=(const CommandCreateNewNode&) = delete;
   ~CommandCreateNewNode() noexcept {}
