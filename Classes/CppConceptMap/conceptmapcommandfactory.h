@@ -44,15 +44,17 @@ struct CommandFactory
     boost::shared_ptr<ConceptMap> conceptmap
   ) const noexcept;
 
+  ///The number of Commands
+  int GetSize() const noexcept { return 3; }
+
+  private:
+
   ///Create all Commands that can be done on the ConceptMap
   ///These are raw pointers! This is because QUndoStack takes up ownership of
   ///the pointer.
   std::vector<Command*> CreateTestCommands(
     boost::shared_ptr<ConceptMap> conceptmap
   ) const noexcept;
-
-  ///The number of Commands
-  int GetSize() const noexcept { return 3; }
 };
 
 } //~namespace cmap

@@ -161,6 +161,8 @@ struct ConceptMap
 
   void MouseMoveEvent(const QPointF& mouse_pos) noexcept;
 
+  void Redo() noexcept;
+
   ///Set the nodes to the only nodes selected
   void SetSelected(const ConstNodes& nodes) noexcept;
   void SetSelected(const ConstEdges& edges) noexcept;

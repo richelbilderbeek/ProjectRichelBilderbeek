@@ -1161,6 +1161,12 @@ void ribi::cmap::ConceptMap::SetSelected(
   SetSelected(RemoveConst(edges),RemoveConst(nodes));
 }
 
+void ribi::cmap::ConceptMap::Redo() noexcept
+{
+  assert(m_undo.canRedo());
+  m_undo.redo();
+}
+
 void ribi::cmap::ConceptMap::SetSelected(
   const Edges& edges,
   const Nodes& nodes
