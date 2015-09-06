@@ -1007,20 +1007,22 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::CreateNewNode() noex
 
 void ribi::cmap::ConceptMap::DoCommand(Command * const command) noexcept
 {
-  if (!command)
-  {
-    TRACE("ERROR");
-  }
-  assert(command);
+  const int before{m_undo.count()};
 
-  //Undo
-  TRACE(m_undo.count());
-  m_undo.push(command);
+  assert(command);
 
   //Actually do the Command
   command->redo();
 
+  TRACE(m_undo.count());
+  //Push and, by this, do the command
+  m_undo.push(command);
+
+
   assert(CanUndo());
+
+  const int after{m_undo.count()};
+  assert(after == before + 1);
 }
 
 boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::ConceptMap::FindNodeAt(

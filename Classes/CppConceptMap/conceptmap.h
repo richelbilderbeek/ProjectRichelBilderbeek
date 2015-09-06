@@ -139,6 +139,9 @@ struct ConceptMap
   ConstNodes GetSelectedNodes() const noexcept;
        Nodes GetSelectedNodes()       noexcept { return m_selected.second; }
 
+  const QUndoStack& GetUndo() const noexcept { return m_undo; }
+        QUndoStack& GetUndo()       noexcept { return m_undo; }
+
   ///Obtain the version
   static std::string GetVersion() noexcept;
 

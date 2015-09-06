@@ -173,7 +173,6 @@ private:
   ///The item showing the examples
   QtExamplesItem * m_examples_item;
 
-
   ///The item highlighter, used when creating a new relation
   QtItemHighlighter * const m_highlighter;
 

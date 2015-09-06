@@ -11,6 +11,7 @@
 
 #include <QKeyEvent>
 #include <QTimer>
+#include <QUndoView>
 
 #include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
@@ -45,6 +46,8 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
   #endif
   ui->setupUi(this);
 
+
+
   //Create an empty concept map
   m_conceptmap->SetConceptMap(
     ribi::cmap::ConceptMapFactory().GetHeteromorphousTestConceptMaps().at(0)
@@ -52,6 +55,12 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
   assert(ui->widget->layout());
   ui->widget->layout()->addWidget(m_conceptmap.get());
 
+  {
+    QUndoView * const view{new QUndoView};
+    view->setStack(&m_conceptmap->GetConceptMap()->GetUndo());
+    assert(ui->widget_menu->layout());
+    ui->widget_menu->layout()->addWidget(view);
+  }
   {
     QTimer * const timer{new QTimer(this)};
     connect(timer,SIGNAL(timeout()),this,SLOT(OnCheck()));

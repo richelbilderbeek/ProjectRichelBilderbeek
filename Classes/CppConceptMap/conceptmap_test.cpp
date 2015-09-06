@@ -666,18 +666,19 @@ void ribi::cmap::ConceptMap::Test() noexcept
   }
 
   //Commands
-
-  if (verbose) { TRACE("Start a concept map, add a node using the concept map"); }
+  if (verbose) { TRACE("A new command must be put in QUndoStack"); }
   {
     const boost::shared_ptr<ConceptMap> conceptmap(new ConceptMap);
-    assert(conceptmap->GetNodes().size() == 0);
-    const boost::shared_ptr<Node> node { NodeFactory().GetTest(0) };
-    assert(node);
-    conceptmap->AddNode(node);
-    assert(conceptmap->GetNodes().size() == 1);
-    conceptmap->DeleteNode(node);
-    assert(conceptmap->GetNodes().size() == 0);
+    CommandCreateNewNode * const command {new CommandCreateNewNode(conceptmap)};
+    assert(conceptmap->GetUndo().count() == 0);
 
+    conceptmap->DoCommand(command);
+
+    assert(conceptmap->GetUndo().count() == 1);
+
+    command->undo();
+
+    assert(conceptmap->GetUndo().count() == 0);
   }
   if (verbose) { TRACE("Start a concept map, create a node using a command"); }
   {
