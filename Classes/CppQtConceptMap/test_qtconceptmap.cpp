@@ -558,6 +558,18 @@ void ribi::cmap::QtConceptMap::Test() noexcept
   //QWidget Events; direct GUI responses. Note: these are done by Commands anyways,
   //so it may be hard to create a test that breaks here)
   //
+  if (verbose) { TRACE("CTRL-N creates a new command in ConceptMap its QUndoStack"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    auto ctrl_n = CreateControlN();
+    qtconceptmap->keyPressEvent(&ctrl_n);
+
+    assert(conceptmap->GetUndo().count() == 1);
+  }
+
   if (verbose) { TRACE("CTRL-N creates a new QtNode"); }
   {
     boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();

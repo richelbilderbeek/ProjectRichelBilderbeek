@@ -531,7 +531,7 @@ void ribi::cmap::QtConceptMap::DeleteQtNode(const QtNode * const qtnode)
 
 void ribi::cmap::QtConceptMap::DoCommand(Command * const command) noexcept
 {
-  command->redo();
+  this->GetConceptMap()->DoCommand(command);
 }
 
 const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const noexcept

@@ -1011,15 +1011,8 @@ void ribi::cmap::ConceptMap::DoCommand(Command * const command) noexcept
 
   assert(command);
 
-  //Actually do the Command
-  command->redo();
-
-  TRACE(m_undo.count());
   //Push and, by this, do the command
   m_undo.push(command);
-
-
-  assert(CanUndo());
 
   const int after{m_undo.count()};
   assert(after == before + 1);

@@ -675,10 +675,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
     conceptmap->DoCommand(command);
 
     assert(conceptmap->GetUndo().count() == 1);
-
-    command->undo();
-
-    assert(conceptmap->GetUndo().count() == 0);
   }
   if (verbose) { TRACE("Start a concept map, create a node using a command"); }
   {
@@ -749,29 +745,27 @@ void ribi::cmap::ConceptMap::Test() noexcept
 
   //Do all do and undo of a single command
   {
-    const auto conceptmap = ConceptMapFactory().GetHeteromorphousTestConceptMap(17);
-    const int n_commands { static_cast<int>(CommandFactory().GetSize()) };
-    for (const boost::shared_ptr<ConceptMap> conceptmap: ConceptMapFactory().GetAllTests())
+    const int n_commands {CommandFactory().GetSize()};
+    for (int i=0; i!=n_commands; ++i)
     {
-      for (int i=0; i!=n_commands; ++i)
+      const auto conceptmap = ConceptMapFactory().GetHeteromorphousTestConceptMap(17);
+      assert(conceptmap);
+      try
       {
-        if (!conceptmap) continue;
-        try
+        assert(conceptmap);
+        const auto cmd = CommandFactory().CreateTestCommand(i,conceptmap);
+        if (cmd)
         {
+          TRACE(cmd->text().toStdString());
           assert(conceptmap);
-          const auto cmd = CommandFactory().CreateTestCommand(i,conceptmap);
-          if (cmd)
-          {
-            TRACE(cmd->text().toStdString());
-            assert(conceptmap);
-            conceptmap->DoCommand(cmd);
-            conceptmap->Undo();
-          }
+          conceptmap->DoCommand(cmd);
+          conceptmap->Undo();
         }
-        catch (std::logic_error& )
-        {
-          //No problem: cannot do command
-        }
+      }
+      catch (std::logic_error& e)
+      {
+        if (verbose) TRACE(e.what());
+        //No problem: cannot do command
       }
     }
   }
