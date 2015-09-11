@@ -46,7 +46,7 @@ struct CommandSetSelectedWithCoordinat final : public Command
   using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
 
   CommandSetSelectedWithCoordinat(
-    const boost::shared_ptr<ConceptMap> concept_map,
+    const boost::shared_ptr<ConceptMap> conceptmap,
     const int x, const int y
   );
 
@@ -58,8 +58,8 @@ struct CommandSetSelectedWithCoordinat final : public Command
   void redo() override;
 
   private:
-  ConstEdgesAndNodes m_prev_selected;
-  const boost::shared_ptr<ConceptMap> m_concept_map;
+  EdgesAndNodes m_prev_selected;
+  const boost::shared_ptr<ConceptMap> m_conceptmap;
   const boost::shared_ptr<Node> m_node;
 
   const int m_x;

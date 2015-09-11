@@ -29,12 +29,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 
 ribi::cmap::CommandCreateNewEdge::CommandCreateNewEdge(
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
 )
  : m_edge{},
-   m_selected_nodes{concept_map->GetSelectedNodes()},
+   m_selected_nodes{conceptmap->GetSelectedNodes()},
    m_prev_selected{},
-   m_concept_map{concept_map},
+   m_conceptmap{conceptmap},
    m_verbose{false}
 {
   this->setText("create new edge");
@@ -42,14 +42,14 @@ ribi::cmap::CommandCreateNewEdge::CommandCreateNewEdge(
   if (m_selected_nodes.size() != 2)
   {
     std::stringstream msg;
-    msg << "Number of selected nodes (" << m_concept_map->GetSelectedNodes().size() << " is not equal to two";
+    msg << "Number of selected nodes (" << m_conceptmap->GetSelectedNodes().size() << " is not equal to two";
     throw std::logic_error(msg.str());
   }
-  if (!m_concept_map->HasNode(m_selected_nodes[0]))
+  if (!m_conceptmap->HasNode(m_selected_nodes[0]))
   {
     throw std::logic_error("From node is member of an edge");
   }
-  if (!m_concept_map->HasNode(m_selected_nodes[1]))
+  if (!m_conceptmap->HasNode(m_selected_nodes[1]))
   {
     throw std::logic_error("'To' node is member of an edge");
   }
@@ -57,19 +57,19 @@ ribi::cmap::CommandCreateNewEdge::CommandCreateNewEdge(
 
 void ribi::cmap::CommandCreateNewEdge::redo()
 {
-  m_concept_map->SetSelected(m_selected_nodes);
+  m_conceptmap->SetSelected(m_selected_nodes);
   if (!m_edge)
   {
-    m_edge = m_concept_map->CreateNewEdge();
+    m_edge = m_conceptmap->CreateNewEdge();
   }
   else
   {
-    m_concept_map->AddEdge(m_edge);
+    m_conceptmap->AddEdge(m_edge);
   }
 }
 
 void ribi::cmap::CommandCreateNewEdge::undo()
 {
-  m_concept_map->DeleteEdge(m_edge);
-  m_concept_map->SetSelected(m_prev_selected);
+  m_conceptmap->DeleteEdge(m_edge);
+  m_conceptmap->SetSelected(m_prev_selected);
 }

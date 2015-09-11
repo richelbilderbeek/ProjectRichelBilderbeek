@@ -21,22 +21,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcommandsetselectedwithcoordinat.h"
 
 #include <cassert>
-
+#include <sstream>
 
 #include "conceptmap.h"
 #include "conceptmapnode.h"
 
 ribi::cmap::CommandSetSelectedWithCoordinat::CommandSetSelectedWithCoordinat(
-  const boost::shared_ptr<ConceptMap> concept_map,
+  const boost::shared_ptr<ConceptMap> conceptmap,
   const int x, const int y)
   : m_prev_selected{},
-    m_concept_map{concept_map},
-    m_node{concept_map->FindNodeAt(m_x,m_y)},
+    m_conceptmap{conceptmap},
+    m_node{conceptmap->FindNodeAt(m_x,m_y)},
     m_x{x},
     m_y{y}
 {
   setText("set focus with coordinat");
-  if (!widget->FindNodeAt(m_x,m_y))
+  if (!m_conceptmap->FindNodeAt(m_x,m_y))
   {
     std::stringstream msg;
     msg
@@ -49,12 +49,12 @@ ribi::cmap::CommandSetSelectedWithCoordinat::CommandSetSelectedWithCoordinat(
 
 void ribi::cmap::CommandSetSelectedWithCoordinat::redo()
 {
-  m_prev_selected = m_concept_map->GetSelected();
-  concept_map->SetSelected( Nodes( { m_node } ) );
+  m_prev_selected = m_conceptmap->GetSelected();
+  m_conceptmap->SetSelected( Nodes( { m_node } ) );
 }
 
-void ribi::cmap::CommandSetSelectedWithCoordinat::undo() noexcept
+void ribi::cmap::CommandSetSelectedWithCoordinat::undo()
 {
   //Give back previous selection
-  m_concept_map->SetSelected(m_prev_selected);
+  m_conceptmap->SetSelected(m_prev_selected);
 }

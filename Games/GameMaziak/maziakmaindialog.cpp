@@ -23,7 +23,7 @@ ribi::maziak::MainDialog::MainDialog(const int maze_size)
   : m_direction(PlayerDirection::pdDown),
     m_display{nullptr},
     m_distances{},
-    m_do_show_solution(false),
+    m_do_show_solution{false},
     m_fighting_frame(0),
     m_has_sword(true),
     m_maze(maze_size),
@@ -96,16 +96,20 @@ void ribi::maziak::MainDialog::Execute() noexcept
 {
   while (1)
   {
-    const int view_width  = 20;
-    const int view_height = 20;
-
     m_display->DoDisplay(*this);
+    if (this->GetState() == GameState::game_over) break;
+    if (this->GetState() == GameState::has_won) break;
 
     const auto keys = m_display->RequestKeys();
 
     PressKeys(keys);
 
+    m_do_show_solution = m_display->GetDoShowSolution();
+
     RespondToCurrentSquare();
+
+    const int view_width  = m_display->GetViewWidth(); //Was 20
+    const int view_height = m_display->GetViewHeight(); //Was 20
     if (m_display->MustAnimateEnemiesAndPrisoners())
     {
       AnimateEnemiesAndPrisoners(view_width,view_height);
@@ -331,8 +335,9 @@ void ribi::maziak::MainDialog::RespondToCurrentSquare() noexcept
       m_maze.Set(m_x,m_y,MazeSquare::msEmpty);
       m_solution = CreateNewSolution();
       assert(m_solution.IsSquare());
+      this->m_display->StartShowSolution();
       m_do_show_solution = true;
-      m_display->SetShowSolution(true);
+      m_display->StartShowSolution();
       break;
     case MazeSquare::msSword:
       m_maze.Set(m_x,m_y,MazeSquare::msEmpty);

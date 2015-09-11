@@ -26,16 +26,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 ribi::cmap::CommandDeleteNode::CommandDeleteNode(
-  const boost::shared_ptr<ConceptMap> concept_map,
+  const boost::shared_ptr<ConceptMap> conceptmap,
   const boost::shared_ptr<Node> node
-) : m_node{node}, m_concept_map{concept_map}
+) : m_node{node}, m_conceptmap{conceptmap}
 {
   assert(m_node);
-  assert(m_concept_map);
+  assert(m_conceptmap);
 
   setText("delete node");
 
-  if (!m_concept_map->HasNode(m_node))
+  if (!m_conceptmap->HasNode(m_node))
   {
     throw std::logic_error("Cannot delete Node that is not in ConceptMap");
   }
@@ -43,10 +43,10 @@ ribi::cmap::CommandDeleteNode::CommandDeleteNode(
 
 void ribi::cmap::CommandDeleteNode::redo()
 {
-  m_concept_map->DeleteNode(m_node);
+  m_conceptmap->DeleteNode(m_node);
 }
 
 void ribi::cmap::CommandDeleteNode::undo()
 {
-  m_concept_map->AddNode(m_node);
+  m_conceptmap->AddNode(m_node);
 }

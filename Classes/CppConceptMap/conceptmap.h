@@ -105,6 +105,7 @@ struct ConceptMap
   void DeleteNode(const ReadOnlyNodePtr& node) noexcept;
   void DeleteNode(const NodePtr& node) noexcept;
 
+  ///ConceptMap takes over ownership of the Command
   void DoCommand(Command * const command) noexcept;
 
   ///Check if the ConceptMap is empty, that is: it has no nodes and (thus) no edges
@@ -138,6 +139,9 @@ struct ConceptMap
   ConstNodes GetSelectedNodes() const noexcept;
        Nodes GetSelectedNodes()       noexcept { return m_selected.second; }
 
+  const QUndoStack& GetUndo() const noexcept { return m_undo; }
+        QUndoStack& GetUndo()       noexcept { return m_undo; }
+
   ///Obtain the version
   static std::string GetVersion() noexcept;
 
@@ -160,6 +164,8 @@ struct ConceptMap
 
   void MouseMoveEvent(const QPointF& mouse_pos) noexcept;
 
+  void Redo() noexcept;
+
   ///Set the nodes to the only nodes selected
   void SetSelected(const ConstNodes& nodes) noexcept;
   void SetSelected(const ConstEdges& edges) noexcept;
@@ -167,8 +173,8 @@ struct ConceptMap
   void SetSelected(const Edges& edges) noexcept;
   void SetSelected(const Edges& edges,const Nodes& nodes) noexcept;
   void SetSelected(const ConstEdges& edges,const ConstNodes& nodes) noexcept;
-  void SetSelected(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
   void SetSelected(const EdgesAndNodes& edges_and_nodes) noexcept;
+  void SetSelected(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
 
   void SetVerbosity(const bool verbose) noexcept { m_verbose = verbose; }
 
@@ -186,7 +192,7 @@ struct ConceptMap
   boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_add_node;
 
   ///Emitted when the ConceptMap is modified as a whole: deleted, created or overwritten
-  boost::signals2::signal<void()> m_signal_concept_map_changed;
+  boost::signals2::signal<void()> m_signal_conceptmap_changed;
 
   ///Emitted when an Edge is deleted
   ///This has to be handled by QtConceptMapWidget

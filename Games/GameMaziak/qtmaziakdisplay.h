@@ -60,6 +60,9 @@ public:
 
   void DoDisplay(const MainDialog& main_dialog) override;
 
+  int GetViewHeight() const noexcept override { return 9; }
+  int GetViewWidth() const noexcept override { return 9; }
+
   bool MustAnimateEnemiesAndPrisoners() noexcept override;
 
   std::set<Key> RequestKeys() override;
@@ -73,16 +76,16 @@ private:
   std::set<Key> m_keys;
 
   const boost::shared_ptr<const Sprites> m_sprites;
-  const boost::shared_ptr<QTimer> m_timer_enemy;
-  const boost::shared_ptr<QTimer> m_timer_press_key;
-  const boost::shared_ptr<QTimer> m_timer_show_solution;
-  const int m_view_height;
-  const int m_view_width;
+  Stopwatch m_timer_animate_enemies_and_prisoners;
+  Stopwatch m_timer_show_solution;
 
   static std::map<WORD,Key> CreateDefaultKeys() noexcept;
+  bool GetDoShowSolution() override;
+
   void OnGameOver();
   void OnGameWon();
   void OnTimerStartShowingSolution();
+  void StartShowSolution();
 
   void resizeEvent(QResizeEvent*);
   void keyPressEvent(QKeyEvent * e);
@@ -94,10 +97,6 @@ private:
   static void Test() noexcept;
   #endif
 
-private slots:
-  void OnTimerPressKey();
-  void OnTimerEnemy();
-  void OnTimerStopShowingSolution();
 };
 
 } //~namespace maziak

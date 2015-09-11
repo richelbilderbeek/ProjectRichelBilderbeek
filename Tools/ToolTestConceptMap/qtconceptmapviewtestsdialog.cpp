@@ -73,9 +73,9 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
         mylayout->addWidget(label);
         assert(i < static_cast<int>(m_h.size()));
         assert(m_h[i]);
-        const boost::shared_ptr<ConceptMap> concept_map(m_h[i]);
-        assert(concept_map);
-        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(concept_map));
+        const boost::shared_ptr<ConceptMap> conceptmap(m_h[i]);
+        assert(conceptmap);
+        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(conceptmap));
         assert(widget);
         assert(extra_height > 0);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
@@ -99,9 +99,9 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
         //widget->setMinimumHeight(minheight);
         assert(i < static_cast<int>(m_s.size()));
         assert(m_s[i]);
-        const boost::shared_ptr<ConceptMap> concept_map = m_s[i];
-        assert(concept_map);
-        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(concept_map));
+        const boost::shared_ptr<ConceptMap> conceptmap = m_s[i];
+        assert(conceptmap);
+        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(conceptmap));
         assert(widget);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
         mylayout->addWidget(widget.get());
@@ -123,9 +123,9 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
         mylayout->addWidget(label);
         assert(i < static_cast<int>(m_c.size()));
         assert(m_c[i]);
-        const boost::shared_ptr<ConceptMap> concept_map = m_c[i];
-        assert(concept_map);
-        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(concept_map));
+        const boost::shared_ptr<ConceptMap> conceptmap = m_c[i];
+        assert(conceptmap);
+        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(conceptmap));
         assert(widget);
         //widget->setMinimumHeight(minheight);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
@@ -142,12 +142,12 @@ ribi::cmap::QtConceptMapViewTestsDialog::~QtConceptMapViewTestsDialog() noexcept
 }
 
 boost::shared_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapViewTestsDialog::CreateWidget(
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
 )
 {
   boost::shared_ptr<QtConceptMap> p(new QtConceptMap);
   assert(p);
-  p->SetConceptMap(concept_map);
+  p->SetConceptMap(conceptmap);
   return p;
 }
 

@@ -44,16 +44,16 @@ int ribi::cmap::Rating::SuggestComplexity(const int n_edges, const int n_example
   return complexity;
 }
 
-int ribi::cmap::Rating::SuggestComplexity(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map)
+int ribi::cmap::Rating::SuggestComplexity(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_conceptmap)
 {
-  assert(sub_concept_map);
-  const int n_edges = boost::numeric_cast<int>(sub_concept_map->GetEdges().size());
-  assert(!sub_concept_map->GetNodes().empty());
-  assert(sub_concept_map->GetFocalNode()->GetConcept());
-  assert(sub_concept_map->GetFocalNode()->GetConcept()->GetExamples());
+  assert(sub_conceptmap);
+  const int n_edges = boost::numeric_cast<int>(sub_conceptmap->GetEdges().size());
+  assert(!sub_conceptmap->GetNodes().empty());
+  assert(sub_conceptmap->GetFocalNode()->GetConcept());
+  assert(sub_conceptmap->GetFocalNode()->GetConcept()->GetExamples());
   const int n_examples
     = boost::numeric_cast<int>(
-      sub_concept_map->GetFocalNode()->GetConcept()->GetExamples()->Get().size()
+      sub_conceptmap->GetFocalNode()->GetConcept()->GetExamples()->Get().size()
     );
   return SuggestComplexity(n_edges,n_examples);
 }
@@ -69,15 +69,15 @@ int ribi::cmap::Rating::SuggestConcreteness(const int n_examples)
   return concreteness;
 }
 
-int ribi::cmap::Rating::SuggestConcreteness(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map)
+int ribi::cmap::Rating::SuggestConcreteness(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_conceptmap)
 {
-  assert(sub_concept_map);
-  assert(!sub_concept_map->GetNodes().empty());
-  assert(sub_concept_map->GetFocalNode()->GetConcept());
-  assert(sub_concept_map->GetFocalNode()->GetConcept()->GetExamples());
+  assert(sub_conceptmap);
+  assert(!sub_conceptmap->GetNodes().empty());
+  assert(sub_conceptmap->GetFocalNode()->GetConcept());
+  assert(sub_conceptmap->GetFocalNode()->GetConcept()->GetExamples());
   const int n_examples
     = boost::numeric_cast<int>(
-      sub_concept_map->GetFocalNode()->GetConcept()->GetExamples()->Get().size()
+      sub_conceptmap->GetFocalNode()->GetConcept()->GetExamples()->Get().size()
     );
   return SuggestConcreteness(n_examples);
 }
@@ -88,15 +88,15 @@ int ribi::cmap::Rating::SuggestSpecificity(const int n_examples)
   return specificity;
 }
 
-int ribi::cmap::Rating::SuggestSpecificity(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map)
+int ribi::cmap::Rating::SuggestSpecificity(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_conceptmap)
 {
-  assert(sub_concept_map);
-  assert(!sub_concept_map->GetNodes().empty());
-  assert(sub_concept_map->GetFocalNode()->GetConcept());
-  assert(sub_concept_map->GetFocalNode()->GetConcept()->GetExamples());
+  assert(sub_conceptmap);
+  assert(!sub_conceptmap->GetNodes().empty());
+  assert(sub_conceptmap->GetFocalNode()->GetConcept());
+  assert(sub_conceptmap->GetFocalNode()->GetConcept()->GetExamples());
   const int n_examples
     = boost::numeric_cast<int>(
-      sub_concept_map->GetFocalNode()->GetConcept()->GetExamples()->Get().size()
+      sub_conceptmap->GetFocalNode()->GetConcept()->GetExamples()->Get().size()
     );
   return SuggestSpecificity(n_examples);
 }

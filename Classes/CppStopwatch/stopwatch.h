@@ -34,7 +34,7 @@ struct Stopwatch
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
   private:
-  const std::chrono::system_clock::time_point m_time_start;
+  std::chrono::system_clock::time_point m_time_start;
 };
 
 } //~namespace ribi

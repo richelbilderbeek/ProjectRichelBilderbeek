@@ -19,14 +19,17 @@ struct Display
 
   virtual ~Display() {}
 
-  //Put the MainDialog on screen
+  //Put the MainDialog on screen, where the screen may be a terminal, QWidget or NDS screen
   virtual void DoDisplay(const MainDialog& main_dialog) = 0;
 
-  bool GetShowSolution() const noexcept { return m_show_solution; }
+  ///Still showing the solution? Can be no after a certain amount
+  ///of ticks or seconds after StartShowSolution
+  virtual bool GetDoShowSolution() = 0;
+
   GameState GetGameState() const noexcept { return m_game_state; }
 
-  int GetViewHeight();
-  int GetViewWidth();
+  virtual int GetViewHeight() const noexcept = 0;
+  virtual int GetViewWidth() const noexcept = 0;
 
   ///Must the enemies and prisoners be animated?
   ///In a terminal version: every turn
@@ -37,10 +40,10 @@ struct Display
 
   void SetGameState(const GameState game_state) noexcept { m_game_state = game_state; }
 
-  void SetShowSolution(const bool show_solution) noexcept { m_show_solution = show_solution; }
+  ///Make a clock or other mechanism start
+  virtual void StartShowSolution() = 0;
 
   private:
-  bool m_show_solution;
   GameState m_game_state;
 };
 

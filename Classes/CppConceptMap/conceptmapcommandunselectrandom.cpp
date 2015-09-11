@@ -1,21 +1,21 @@
 #include "conceptmapcommandunselectrandom.h"
 
 #include <cassert>
+#include <sstream>
 #include <stdexcept>
 
 #include "conceptmap.h"
-
 #include "conceptmaphelper.h"
 #include "trace.h"
 
 ribi::cmap::CommandUnselectRandom::CommandUnselectRandom(
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
 ) :
-    m_new_selected{concept_map->GetSelected()},
-    m_old_selected{concept_map->GetSelected()},
-    m_concept_map{concept_map}
+    m_conceptmap{conceptmap},
+    m_new_selected{conceptmap->GetSelected()},
+    m_old_selected{conceptmap->GetSelected()}
 {
-  if (concept_map->GetSelectedEdges().empty() && concept_map->GetSelectedNodes().empty())
+  if (conceptmap->GetSelectedEdges().empty() && conceptmap->GetSelectedNodes().empty())
   {
     throw std::logic_error("Unselect needs nodes to unselect on");
   }
@@ -43,10 +43,10 @@ ribi::cmap::CommandUnselectRandom::CommandUnselectRandom(
 
 void ribi::cmap::CommandUnselectRandom::redo()
 {
-  m_concept_map->SetSelected(m_new_selected);
+  m_conceptmap->SetSelected(m_new_selected);
 }
 
 void ribi::cmap::CommandUnselectRandom::undo()
 {
-  m_concept_map->SetSelected(m_old_selected);
+  m_conceptmap->SetSelected(m_old_selected);
 }

@@ -27,10 +27,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnode.h"
 
 ribi::cmap::CommandCreateNewNode::CommandCreateNewNode(
-  const boost::shared_ptr<ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> conceptmap
 )
   : m_node{},
-    m_conceptmap{concept_map}
+    m_conceptmap{conceptmap}
 {
   this->setText("create new node");
 }

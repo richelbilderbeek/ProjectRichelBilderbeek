@@ -51,12 +51,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
-  const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> sub_concept_map,
+  const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> sub_conceptmap,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtRateConceptTallyDialogNewName),
-    m_data(CreateData(sub_concept_map)),
-    m_focus_name(GetFocusName(sub_concept_map))
+    m_data(CreateData(sub_conceptmap)),
+    m_focus_name(GetFocusName(sub_conceptmap))
 {
   #ifndef NDEBUG
   Test();  
@@ -118,7 +118,7 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
         const boost::shared_ptr<const Edge> edge { std::get<0>(row) };
         assert(edge);
         const bool center_is_from {
-          edge->GetFrom()->GetConcept() == sub_concept_map->GetFocalNode()->GetConcept()
+          edge->GetFrom()->GetConcept() == sub_conceptmap->GetFocalNode()->GetConcept()
         };
         const boost::shared_ptr<const Node> other {
           center_is_from ? edge->GetTo() : edge->GetFrom()
@@ -271,7 +271,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   const boost::shared_ptr<Node> node_focal(NodeFactory().Create(concept_node_focal));
   const boost::shared_ptr<Node> node_other(NodeFactory().Create(concept_node_other));
 
-  const boost::shared_ptr<ConceptMap> sub_concept_map(
+  const boost::shared_ptr<ConceptMap> sub_conceptmap(
     ConceptMapFactory().Create(
       {
         node_focal,
@@ -284,18 +284,18 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
       }
     )
   );
-  assert(sub_concept_map);
-  return sub_concept_map;
+  assert(sub_conceptmap);
+  return sub_conceptmap;
 }
 
 std::string ribi::cmap::QtRateConceptTallyDialogNewName::GetFocusName(
-  const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map) noexcept
+  const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_conceptmap) noexcept
 {
-  if (sub_concept_map)
+  if (sub_conceptmap)
   {
-    assert(sub_concept_map->GetFocalNode());
+    assert(sub_conceptmap->GetFocalNode());
     const boost::shared_ptr<const Concept> focal_concept {
-      sub_concept_map->GetFocalNode()->GetConcept()
+      sub_conceptmap->GetFocalNode()->GetConcept()
     };
     assert(focal_concept);
     return focal_concept->GetName();
@@ -478,16 +478,16 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
   const TestTimer test_timer{__func__,__FILE__,0.1};
   //Empty table
   {
-    const boost::shared_ptr<ConceptMap> concept_map;
-    assert(!concept_map);
-    QtRateConceptTallyDialogNewName d(concept_map);
+    const boost::shared_ptr<ConceptMap> conceptmap;
+    assert(!conceptmap);
+    QtRateConceptTallyDialogNewName d(conceptmap);
   }
 
-  const boost::shared_ptr<ConceptMap> concept_map = CreateTestConceptMap();
-  assert(concept_map);
+  const boost::shared_ptr<ConceptMap> conceptmap = CreateTestConceptMap();
+  assert(conceptmap);
 
 
-  QtRateConceptTallyDialogNewName d(concept_map);
+  QtRateConceptTallyDialogNewName d(conceptmap);
 
   #ifndef NDEBUG
   {
@@ -498,11 +498,11 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
 
   assert(d.ui->table->columnCount() == 4);
   assert(d.ui->table->rowCount() == 3);
-  assert(concept_map->GetNodes().size() == 2);
-  assert(concept_map->GetEdges().size() == 1);
-  const boost::shared_ptr<Node> focal_node = concept_map->GetFocalNode();
-  //const boost::shared_ptr<Node> other_node = concept_map->GetNodes()[1]; //Don't care
-  const boost::shared_ptr<Edge> edge = concept_map->GetEdges()[0];
+  assert(conceptmap->GetNodes().size() == 2);
+  assert(conceptmap->GetEdges().size() == 1);
+  const boost::shared_ptr<Node> focal_node = conceptmap->GetFocalNode();
+  //const boost::shared_ptr<Node> other_node = conceptmap->GetNodes()[1]; //Don't care
+  const boost::shared_ptr<Edge> edge = conceptmap->GetEdges()[0];
 
   assert(d.ui->table->item(0,0)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
   assert(d.ui->table->item(0,1)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));

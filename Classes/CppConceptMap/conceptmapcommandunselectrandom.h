@@ -41,7 +41,7 @@ struct CommandUnselectRandom final : public Command
   using EdgesAndNodes = std::pair<Edges,Nodes>;
   using ConstEdgesAndNodes = std::pair<ConstEdges,ConstNodes>;
 
-  CommandUnselectRandom(const boost::shared_ptr<ConceptMap> concept_map);
+  CommandUnselectRandom(const boost::shared_ptr<ConceptMap> conceptmap);
 
   CommandUnselectRandom(const CommandUnselectRandom&) = delete;
   CommandUnselectRandom& operator=(const CommandUnselectRandom&) = delete;
@@ -51,9 +51,9 @@ struct CommandUnselectRandom final : public Command
   void undo() override;
 
   private:
+  const boost::shared_ptr<ConceptMap> m_conceptmap;
   EdgesAndNodes m_new_selected;
   const EdgesAndNodes m_old_selected;
-  const boost::shared_ptr<ConceptMap> m_concept_map;
 };
 
 } //~namespace cmap

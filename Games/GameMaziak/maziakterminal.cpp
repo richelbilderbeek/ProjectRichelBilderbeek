@@ -5,6 +5,7 @@
 #include "maziaksprites.h"
 
 ribi::maziak::Terminal::Terminal()
+  : m_do_show_solution_cnt{0}
 {
 
 }
@@ -118,3 +119,4 @@ std::set<ribi::maziak::Key> ribi::maziak::Terminal::RequestKeys()
   }
 
 }
+

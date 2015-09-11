@@ -42,16 +42,16 @@ class QtRateConceptDialogNewName : public ribi::QtHideAndShowDialog
     
   public:
   ///concept is the center node
-  ///sub_concept_map[0] is the same as concept and might be changed
-  ///sub_concept_map is non-const, as GetRatedConcept will produce a new concept
-  explicit QtRateConceptDialogNewName(const boost::shared_ptr<ConceptMap> sub_concept_map,
+  ///sub_conceptmap[0] is the same as concept and might be changed
+  ///sub_conceptmap is non-const, as GetRatedConcept will produce a new concept
+  explicit QtRateConceptDialogNewName(const boost::shared_ptr<ConceptMap> sub_conceptmap,
     QWidget* parent = 0);
   QtRateConceptDialogNewName(const QtRateConceptDialogNewName&) = delete;
   QtRateConceptDialogNewName& operator=(const QtRateConceptDialogNewName&) = delete;
   ~QtRateConceptDialogNewName() noexcept;
 
   ///Set suggested values for this concept
-  //void MakeSuggestions(const boost::shared_ptr<const ConceptMap> sub_concept_map);
+  //void MakeSuggestions(const boost::shared_ptr<const ConceptMap> sub_conceptmap);
 
 protected:
   void keyPressEvent(QKeyEvent *);
@@ -80,7 +80,7 @@ private:
   const int m_initial_specificity;
 
   ///Cannot be const, only used in calculating the suggestions
-  const boost::shared_ptr<ConceptMap> m_sub_concept_map;
+  const boost::shared_ptr<ConceptMap> m_sub_conceptmap;
 
   const boost::shared_ptr<QtConceptMap> m_widget;
   //const boost::shared_ptr<QtRateConceptMap> m_widget;

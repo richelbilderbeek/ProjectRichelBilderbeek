@@ -89,6 +89,15 @@ void ribi::cmap::ConceptMap::Test() noexcept
     const boost::shared_ptr<ConceptMap> c{ConceptMapFactory().DeepCopy(m)};
     assert(*c == *m);
   }
+
+  if (verbose) { TRACE("ConceptMap->XML std::string has to be between <concept_map> tags"); }
+  {
+    const auto conceptmap = ConceptMapFactory().GetEmptyConceptMap();
+    const auto s = ConceptMap::ToXml(conceptmap);
+    assert(s.size() >= 27);
+    assert(s.substr(0,13) == "<concept_map>");
+    assert(s.substr(s.size() - 14,14) == "</concept_map>");
+  }
   if (verbose) { TRACE("ConceptMap->XML->ConceptMap must result in two identical concept maps"); }
   {
     //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.2);
@@ -437,11 +446,11 @@ void ribi::cmap::ConceptMap::Test() noexcept
     {
       const std::vector<boost::shared_ptr<ConceptMap> > maps
         = ConceptMapFactory().GetHeteromorphousTestConceptMaps();
-      const int n_heteromorphous_concept_maps = 20;
-      assert(n_heteromorphous_concept_maps == static_cast<int>(maps.size())
+      const int n_heteromorphous_conceptmaps = 20;
+      assert(n_heteromorphous_conceptmaps == static_cast<int>(maps.size())
         && "To warn you if you change the number of testing concept maps");
       const std::vector<int> n_subs_expected = { 0,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5 } ;
-      assert(n_heteromorphous_concept_maps == static_cast<int>(n_subs_expected.size()));
+      assert(n_heteromorphous_conceptmaps == static_cast<int>(n_subs_expected.size()));
       assert(n_subs_expected[ 0] == 0);
       assert(n_subs_expected[ 1] == 2);
       assert(n_subs_expected[ 2] == 3);
@@ -496,64 +505,64 @@ void ribi::cmap::ConceptMap::Test() noexcept
   if (verbose) { TRACE("IsValid"); }
   {
     boost::shared_ptr<Node> node_a = CenterNodeFactory().CreateFromStrings("...");
-    boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory().Create(
+    boost::shared_ptr<ConceptMap> conceptmap = ConceptMapFactory().Create(
       { node_a } );
-    assert(concept_map);
-    assert(concept_map->IsValid());
+    assert(conceptmap);
+    assert(conceptmap->IsValid());
     const boost::shared_ptr<Node> node = NodeFactory().CreateFromStrings("...");
-    concept_map->AddNode(node);
-    assert(concept_map->IsValid());
+    conceptmap->AddNode(node);
+    assert(conceptmap->IsValid());
   }
   if (verbose) { TRACE("Add two nodes, check selected"); }
   {
-    const auto concept_map = ConceptMapFactory().GetEmptyConceptMap();
-    assert(concept_map);
-    const int n_nodes_before{static_cast<int>(concept_map->GetNodes().size())};
+    const auto conceptmap = ConceptMapFactory().GetEmptyConceptMap();
+    assert(conceptmap);
+    const int n_nodes_before{static_cast<int>(conceptmap->GetNodes().size())};
     const auto node_a = NodeFactory().GetTests().at(0);
     const auto node_b = NodeFactory().GetTests().at(1);
 
-    assert(concept_map->GetSelectedNodes().size() == 0);
+    assert(conceptmap->GetSelectedNodes().size() == 0);
 
-    concept_map->AddNode(node_a);
+    conceptmap->AddNode(node_a);
 
-    assert(concept_map->GetSelectedNodes().size() == 1);
+    assert(conceptmap->GetSelectedNodes().size() == 1);
 
-    concept_map->AddNode(node_b);
+    conceptmap->AddNode(node_b);
 
-    assert(concept_map->GetSelectedNodes().size() == 2);
+    assert(conceptmap->GetSelectedNodes().size() == 2);
 
-    const int n_nodes_after{static_cast<int>(concept_map->GetNodes().size())};
+    const int n_nodes_after{static_cast<int>(conceptmap->GetNodes().size())};
     assert(n_nodes_after == n_nodes_before + 2);
   }
   if (verbose) { TRACE("Add node twice, must give a warning"); }
   {
-    const auto concept_map = ConceptMapFactory().GetEmptyConceptMap();
-    assert(concept_map);
+    const auto conceptmap = ConceptMapFactory().GetEmptyConceptMap();
+    assert(conceptmap);
     const auto node_a = NodeFactory().GetTests().at(0);
-    assert(concept_map->GetNodes().size() == 0);
-    concept_map->AddNode(node_a);
-    assert(concept_map->GetNodes().size() == 1);
-    concept_map->AddNode(node_a);
-    assert(concept_map->GetNodes().size() == 1);
+    assert(conceptmap->GetNodes().size() == 0);
+    conceptmap->AddNode(node_a);
+    assert(conceptmap->GetNodes().size() == 1);
+    conceptmap->AddNode(node_a);
+    assert(conceptmap->GetNodes().size() == 1);
   }
   if (verbose) { TRACE("Add two nodes and delete one, check selected"); }
   {
-    const auto concept_map = ConceptMapFactory().GetEmptyConceptMap();
-    assert(concept_map);
+    const auto conceptmap = ConceptMapFactory().GetEmptyConceptMap();
+    assert(conceptmap);
     const auto node_a = NodeFactory().GetTests().at(0);
     const auto node_b = NodeFactory().GetTests().at(1);
-    assert(concept_map->GetSelectedNodes().size() == 0);
-    concept_map->AddNode(node_a);
-    assert(concept_map->GetSelectedNodes().size() == 1);
-    concept_map->AddNode(node_b);
-    assert(concept_map->GetSelectedNodes().size() == 2);
-    concept_map->DeleteNode(node_a);
-    assert(concept_map->GetSelectedNodes().size() == 1);
+    assert(conceptmap->GetSelectedNodes().size() == 0);
+    conceptmap->AddNode(node_a);
+    assert(conceptmap->GetSelectedNodes().size() == 1);
+    conceptmap->AddNode(node_b);
+    assert(conceptmap->GetSelectedNodes().size() == 2);
+    conceptmap->DeleteNode(node_a);
+    assert(conceptmap->GetSelectedNodes().size() == 1);
   }
   if (verbose) { TRACE("Add nodes and edge, edge its node must be in between the nodes"); }
   {
-    const auto concept_map = ConceptMapFactory().GetEmptyConceptMap();
-    assert(concept_map);
+    const auto conceptmap = ConceptMapFactory().GetEmptyConceptMap();
+    assert(conceptmap);
     const double x1{100.0};
     const double y1{200.0};
     const double x2{300.0};
@@ -567,51 +576,51 @@ void ribi::cmap::ConceptMap::Test() noexcept
     node_b->SetX(x2);
     node_b->SetY(y2);
     const auto edge = EdgeFactory().Create(node_a,node_b);
-    concept_map->AddEdge(edge);
+    conceptmap->AddEdge(edge);
     assert(std::abs(edge->GetNode()->GetX() - x3) < 1.0);
     assert(std::abs(edge->GetNode()->GetY() - y3) < 1.0);
   }
   if (verbose) { TRACE("Add nodes and edge, check selected"); }
   {
-    const auto concept_map = ConceptMapFactory().GetEmptyConceptMap();
-    assert(concept_map);
+    const auto conceptmap = ConceptMapFactory().GetEmptyConceptMap();
+    assert(conceptmap);
     const auto node_a = NodeFactory().GetTests().at(0);
     const auto node_b = NodeFactory().GetTests().at(1);
     const auto edge = EdgeFactory().Create(node_a,node_b);
-    concept_map->AddNode(node_a);
-    concept_map->AddNode(node_b);
-    concept_map->AddEdge(edge);
-    assert(concept_map->GetEdges().size() == 1);
-    assert(concept_map->GetNodes().size() == 2);
-    assert(concept_map->GetSelectedEdges().size() == 1);
-    assert(concept_map->GetSelectedNodes().size() == 0);
+    conceptmap->AddNode(node_a);
+    conceptmap->AddNode(node_b);
+    conceptmap->AddEdge(edge);
+    assert(conceptmap->GetEdges().size() == 1);
+    assert(conceptmap->GetNodes().size() == 2);
+    assert(conceptmap->GetSelectedEdges().size() == 1);
+    assert(conceptmap->GetSelectedNodes().size() == 0);
   }
   if (verbose) { TRACE("DeleteNode: delete all two nodes of a concept map"); }
   {
-    const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
-    assert(concept_map);
-    assert(concept_map->GetNodes().size() == 2);
+    const boost::shared_ptr<ConceptMap> conceptmap = ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    assert(conceptmap);
+    assert(conceptmap->GetNodes().size() == 2);
     {
-      const auto node = concept_map->GetNodes().back();
-      concept_map->DeleteNode(node);
-      assert(concept_map->GetNodes().size() == 1);
+      const auto node = conceptmap->GetNodes().back();
+      conceptmap->DeleteNode(node);
+      assert(conceptmap->GetNodes().size() == 1);
     }
     {
-      const auto node = concept_map->GetNodes().back();
-      concept_map->DeleteNode(node);
-      assert(concept_map->GetNodes().size() == 0);
+      const auto node = conceptmap->GetNodes().back();
+      conceptmap->DeleteNode(node);
+      assert(conceptmap->GetNodes().size() == 0);
     }
   }
   if (verbose) { TRACE("DeleteNode: delete node of a concept map twice"); }
   {
-    const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
-    assert(concept_map);
-    assert(concept_map->GetNodes().size() == 2);
-    const auto node = concept_map->GetNodes().back();
-    concept_map->DeleteNode(node);
-    assert(concept_map->GetNodes().size() == 1);
-    concept_map->DeleteNode(node);
-    assert(concept_map->GetNodes().size() == 1);
+    const boost::shared_ptr<ConceptMap> conceptmap = ConceptMapFactory().GetHeteromorphousTestConceptMap(1);
+    assert(conceptmap);
+    assert(conceptmap->GetNodes().size() == 2);
+    const auto node = conceptmap->GetNodes().back();
+    conceptmap->DeleteNode(node);
+    assert(conceptmap->GetNodes().size() == 1);
+    conceptmap->DeleteNode(node);
+    assert(conceptmap->GetNodes().size() == 1);
   }
   if (verbose) { TRACE("Deletion of edge"); }
   {
@@ -620,55 +629,52 @@ void ribi::cmap::ConceptMap::Test() noexcept
     const std::size_t n_edges = ConceptMapFactory().GetHeteromorphousTestConceptMap(test_index)->GetEdges().size();
     for (std::size_t j=0; j!=n_edges; ++j)
     {
-      const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(test_index);
-      assert(concept_map);
-      assert(concept_map->GetEdges().size() == n_edges);
-      assert(j < concept_map->GetEdges().size());
-      const boost::shared_ptr<Edge> edge = concept_map->GetEdges()[j];
-      concept_map->DeleteEdge(edge);
-      assert(concept_map->GetEdges().size() == n_edges - 1
+      const boost::shared_ptr<ConceptMap> conceptmap = ConceptMapFactory().GetHeteromorphousTestConceptMap(test_index);
+      assert(conceptmap);
+      assert(conceptmap->GetEdges().size() == n_edges);
+      assert(j < conceptmap->GetEdges().size());
+      const boost::shared_ptr<Edge> edge = conceptmap->GetEdges()[j];
+      conceptmap->DeleteEdge(edge);
+      assert(conceptmap->GetEdges().size() == n_edges - 1
         && "Edge must really be gone");
     }
   }
   if (verbose) { TRACE("Deletion of edge, by deleting the from node"); }
   {
-    const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory().GetEmptyConceptMap();
+    const boost::shared_ptr<ConceptMap> conceptmap = ConceptMapFactory().GetEmptyConceptMap();
     const auto node_from = NodeFactory().GetTest(0);
     const auto node_to = NodeFactory().GetTest(0);
-    concept_map->AddNode(node_from);
-    concept_map->AddNode(node_to);
+    conceptmap->AddNode(node_from);
+    conceptmap->AddNode(node_to);
     const auto edge = EdgeFactory().GetTest(0,node_from,node_to);
-    concept_map->AddEdge(edge);
-    assert(concept_map->GetNodes().size() == 2);
-    assert(concept_map->GetEdges().size() == 1);
-    concept_map->DeleteNode(node_from);
-    assert(concept_map->GetNodes().size() == 1);
-    assert(concept_map->GetEdges().size() == 0);
+    conceptmap->AddEdge(edge);
+    assert(conceptmap->GetNodes().size() == 2);
+    assert(conceptmap->GetEdges().size() == 1);
+    conceptmap->DeleteNode(node_from);
+    assert(conceptmap->GetNodes().size() == 1);
+    assert(conceptmap->GetEdges().size() == 0);
   }
   if (verbose) { TRACE("Is GetNode()[0] a CenterNode?"); }
   {
     ////const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
-    const auto concept_maps = ConceptMapFactory().GetHeteromorphousTestConceptMaps();
-    for (const auto& concept_map: concept_maps)
+    const auto conceptmaps = ConceptMapFactory().GetHeteromorphousTestConceptMaps();
+    for (const auto& conceptmap: conceptmaps)
     {
-      if (concept_map->GetNodes().empty()) continue;
-      assert(concept_map->FindCenterNode() && "Assume a CenterNode at the center of ConceptMap");
+      if (conceptmap->GetNodes().empty()) continue;
+      assert(conceptmap->FindCenterNode() && "Assume a CenterNode at the center of ConceptMap");
     }
   }
 
   //Commands
-
-  if (verbose) { TRACE("Start a concept map, add a node using the concept map"); }
+  if (verbose) { TRACE("A new command must be put in QUndoStack"); }
   {
-    const boost::shared_ptr<ConceptMap> concept_map(new ConceptMap);
-    assert(concept_map->GetNodes().size() == 0);
-    const boost::shared_ptr<Node> node { NodeFactory().GetTest(0) };
-    assert(node);
-    concept_map->AddNode(node);
-    assert(concept_map->GetNodes().size() == 1);
-    concept_map->DeleteNode(node);
-    assert(concept_map->GetNodes().size() == 0);
+    const boost::shared_ptr<ConceptMap> conceptmap(new ConceptMap);
+    CommandCreateNewNode * const command {new CommandCreateNewNode(conceptmap)};
+    assert(conceptmap->GetUndo().count() == 0);
 
+    conceptmap->DoCommand(command);
+
+    assert(conceptmap->GetUndo().count() == 1);
   }
   if (verbose) { TRACE("Start a concept map, create a node using a command"); }
   {
@@ -699,8 +705,8 @@ void ribi::cmap::ConceptMap::Test() noexcept
     for (int i=0; i!=n_nodes; ++i)
     {
       assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 2 - i);
-      const auto command = new CommandUnselectRandom;
-      assert(conceptmap->CanDoCommand(command));
+      const auto command = new CommandUnselectRandom(conceptmap);
+      conceptmap->DoCommand(command);
       assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 1 - i);
     }
     assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 0);
@@ -720,29 +726,36 @@ void ribi::cmap::ConceptMap::Test() noexcept
     for (int i=0; i!=n_nodes; ++i)
     {
       assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 2 - i);
-      const boost::shared_ptr<CommandUnselectRandom> command {
-        new CommandUnselectRandom(conceptmap)
-      };
-      conceptmap->Undo();
+      const auto command = new CommandUnselectRandom(conceptmap);
+      conceptmap->DoCommand(command);
       assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 1 - i);
     }
     assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 0);
   }
 
   //Do all do and undo of a single command
-  const int n_commands { static_cast<int>(CommandFactory::CreateTestCommands().size()) };
-  for (const boost::shared_ptr<ConceptMap> conceptmap: ConceptMapFactory().GetAllTests())
   {
+    const int n_commands {CommandFactory().GetSize()};
     for (int i=0; i!=n_commands; ++i)
     {
-      if (!conceptmap) continue;
-      const boost::shared_ptr<Command> cmd(CommandFactory::CreateTestCommands(concept_map)[i]);
-      assert(cmd);
-      //TRACE(cmd->ToStr());
-      if (conceptmap->CanDoCommand(cmd))
+      const auto conceptmap = ConceptMapFactory().GetHeteromorphousTestConceptMap(17);
+      assert(conceptmap);
+      try
       {
-        conceptmap->DoCommand(cmd);
-        conceptmap->Undo();
+        assert(conceptmap);
+        const auto cmd = CommandFactory().CreateTestCommand(i,conceptmap);
+        if (cmd)
+        {
+          TRACE(cmd->text().toStdString());
+          assert(conceptmap);
+          conceptmap->DoCommand(cmd);
+          conceptmap->Undo();
+        }
+      }
+      catch (std::logic_error& e)
+      {
+        if (verbose) TRACE(e.what());
+        //No problem: cannot do command
       }
     }
   }
@@ -750,21 +763,21 @@ void ribi::cmap::ConceptMap::Test() noexcept
   const int n_depth = 1;
   if (n_depth >= 2)
   {
+    const int n_commands { static_cast<int>(CommandFactory().GetSize()) };
     for (int i=0; i!=n_commands; ++i)
     {
       for (int j=0; j!=n_commands; ++j)
       {
         for (const boost::shared_ptr<ConceptMap> conceptmap: ConceptMapFactory().GetAllTests())
         {
-          for (const boost::shared_ptr<Command> cmd:
+          for (const auto cmd:
             {
-              CommandFactory::CreateTestCommands()[i],
-              CommandFactory::CreateTestCommands()[j]
+              CommandFactory().CreateTestCommand(i,conceptmap),
+              CommandFactory().CreateTestCommand(j,conceptmap)
             }
           )
           {
-            assert(cmd);
-            if (conceptmap->CanDoCommand(cmd))
+            if (cmd)
             {
               conceptmap->DoCommand(cmd);
               conceptmap->Undo();
