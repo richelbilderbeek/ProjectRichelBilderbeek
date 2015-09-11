@@ -43,10 +43,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 QKeyEvent CreateDel() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Delete,Qt::NoModifier); }
+QKeyEvent CreateLeft() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Left,Qt::NoModifier); }
 QKeyEvent CreateSpace() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Space,Qt::NoModifier); }
 QKeyEvent CreateControlDown() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Down,Qt::ControlModifier); }
 QKeyEvent CreateControlE() { return QKeyEvent(QEvent::KeyPress,Qt::Key_E,Qt::ControlModifier); }
 QKeyEvent CreateControlN() { return QKeyEvent(QEvent::KeyPress,Qt::Key_N,Qt::ControlModifier); }
+QKeyEvent CreateControlZ() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Z,Qt::ControlModifier); }
 
 #ifndef NDEBUG
 void ribi::cmap::QtConceptMap::Test() noexcept
@@ -839,6 +841,57 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(conceptmap->GetSelectedNodes().size() == 1);
     assert(conceptmap->GetSelectedEdges().size() == 0);
   }
+
+
+  if (verbose) { TRACE("Delete Node-that-is-head-of-Edge, then Undo"); }
+  {
+    boost::shared_ptr<QtConceptMap> qtconceptmap(new QtConceptMap);
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();
+    qtconceptmap->SetConceptMap(conceptmap);
+
+    //Create two nodes
+    auto ctrln = CreateControlN();
+    qtconceptmap->keyPressEvent(&ctrln);
+    qtconceptmap->keyPressEvent(&ctrln);
+
+    //Create an edge
+    auto ctrle = CreateControlE();
+    qtconceptmap->keyPressEvent(&ctrle);
+
+    //Select a node
+    auto left = CreateLeft();
+    qtconceptmap->keyPressEvent(&left);
+
+    TRACE(conceptmap->GetSelectedNodes().size());
+    TRACE(conceptmap->GetSelectedEdges().size());
+    assert(conceptmap->GetNodes().size() == 2);
+    assert(conceptmap->GetNodes().size() == qtconceptmap->GetQtNodes().size());
+    assert(conceptmap->GetEdges().size() == 1);
+    assert(conceptmap->GetEdges().size() == qtconceptmap->GetQtEdges().size());
+    assert(conceptmap->GetSelectedNodes().size() == qtconceptmap->GetSelectedQtNodes().size());
+    assert(conceptmap->GetSelectedEdges().size() == qtconceptmap->GetSelectedQtEdges().size());
+    assert(conceptmap->GetSelectedNodes().size() == 1);
+    assert(conceptmap->GetSelectedEdges().size() == 0);
+
+    //Delete the node, edge will be deleted as well
+    auto del = CreateDel();
+    qtconceptmap->keyPressEvent(&del);
+
+    //Undo the deletion, should bring back node and edge
+    auto cntrlz = CreateControlZ();
+    qtconceptmap->keyPressEvent(&cntrlz);
+
+    assert(conceptmap->GetNodes().size() == 2);
+    assert(conceptmap->GetNodes().size() == qtconceptmap->GetQtNodes().size());
+    assert(conceptmap->GetEdges().size() == 1);
+    assert(conceptmap->GetEdges().size() == qtconceptmap->GetQtEdges().size());
+    assert(conceptmap->GetSelectedNodes().size() == 1);
+    assert(conceptmap->GetSelectedNodes().size() == qtconceptmap->GetSelectedQtNodes().size());
+    assert(conceptmap->GetSelectedEdges().size() == 0);
+    assert(conceptmap->GetSelectedEdges().size() == qtconceptmap->GetSelectedQtEdges().size());
+
+  }
+  assert(!"Green");
 
   if (verbose) { TRACE("MouseDoubleClick"); }
   for (int i=0; i!=5; ++i)
