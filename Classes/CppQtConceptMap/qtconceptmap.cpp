@@ -307,13 +307,10 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<N
   qtnode->m_signal_node_changed.connect(
     boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1))
   ;
-  //qtnode->m_signal_item_has_updated.connect(
-  // boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
-
   //Signal #2
   //General: inform an Observer that a QGraphicsScene needs to be updated
 
-  qtnode->m_signal_focus_in_event.connect(
+  qtnode->m_signal_change_selected.connect(
     boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1))
   ;
 
@@ -888,9 +885,12 @@ bool ribi::cmap::QtConceptMap::MustReposition(const std::vector<boost::shared_pt
   ) == static_cast<int>(nodes.size());
 }
 
+
 void ribi::cmap::QtConceptMap::OnItemRequestsUpdate(const QGraphicsItem* const item)
 {
-  OnItemRequestUpdateImpl(item);
+  m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
+  GetQtExamplesItem()->SetBuddyItem(item);
+  scene()->update();
 }
 
 void ribi::cmap::QtConceptMap::OnRequestSceneUpdate()
@@ -1335,13 +1335,6 @@ void ribi::cmap::QtConceptMap::OnNodeKeyDownPressed(QtNode* const item, const in
   this->OnItemRequestsUpdate(item);
 }
 
-void ribi::cmap::QtConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
-{
-  m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
-  GetQtExamplesItem()->SetBuddyItem(item);
-  scene()->update();
-}
-
 void ribi::cmap::QtConceptMap::OnToolsClicked()
 {
   const QPointF cursor_pos_approx(
@@ -1381,7 +1374,7 @@ void ribi::cmap::QtConceptMap::UpdateSelection()
       }
       else
       {
-        const auto edge = GetConceptMap()->GetEdge(qtnode->GetNode());
+        const auto edge = GetConceptMap()->GetEdgeHaving(qtnode->GetNode());
         assert(edge);
         edges_and_nodes.first.push_back(edge);
         continue;

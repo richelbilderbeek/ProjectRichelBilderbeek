@@ -117,10 +117,14 @@ struct ConceptMap
 
   ///Find the Edge that has the node as its center Node
   ///Returns nullptr if not present
-  EdgePtr GetEdge(const NodePtr& node) const noexcept;
+  EdgePtr GetEdgeHaving(const NodePtr& node) const noexcept;
+
 
   ReadOnlyEdges GetEdges() const noexcept;
   Edges& GetEdges() noexcept { return m_edges; }
+
+  ///Find the Edges that start or end at the node
+  Edges GetEdgesConnectedTo(const ReadOnlyNodePtr& node) const noexcept;
 
   ///Get the focal node (always at index zero)
   ReadOnlyNodePtr GetFocalNode() const noexcept;

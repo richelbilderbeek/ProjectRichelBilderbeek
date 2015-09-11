@@ -374,14 +374,8 @@ void ribi::cmap::ConceptMap::DeleteNode(const ReadOnlyNodePtr& node) noexcept
     return;
   }
 
-  //Delete all edges going to this node
-  std::vector<boost::shared_ptr<ribi::cmap::Edge>> to_be_deleted;
-  std::copy_if(m_edges.begin(),m_edges.end(),std::back_inserter(to_be_deleted),
-    [node](boost::shared_ptr<Edge> edge)
-    {
-      return edge->GetFrom() == node || edge->GetTo() == node;
-    }
-  );
+  const auto to_be_deleted = GetEdgesConnectedTo(node);
+
   for (boost::shared_ptr<Edge> edge: to_be_deleted)
   {
     DeleteEdge(edge);
@@ -451,7 +445,7 @@ ribi::cmap::ConceptMap::CenterNodePtr ribi::cmap::ConceptMap::FindCenterNode() n
   );
 }
 
-ribi::cmap::ConceptMap::EdgePtr ribi::cmap::ConceptMap::GetEdge(const NodePtr& node) const noexcept
+ribi::cmap::ConceptMap::EdgePtr ribi::cmap::ConceptMap::GetEdgeHaving(const NodePtr& node) const noexcept
 {
   const auto iter = std::find_if(
     std::begin(m_edges),
@@ -466,6 +460,22 @@ ribi::cmap::ConceptMap::ReadOnlyEdges ribi::cmap::ConceptMap::GetEdges() const n
 {
   return AddConst(m_edges);
 }
+
+ribi::cmap::ConceptMap::Edges ribi::cmap::ConceptMap::GetEdgesConnectedTo(const ReadOnlyNodePtr& node) const noexcept
+{
+  Edges edges;
+  std::copy_if(
+    std::begin(m_edges),
+    std::end(m_edges),
+    std::back_inserter(edges),
+    [node](boost::shared_ptr<Edge> edge)
+    {
+      return edge->GetFrom() == node || edge->GetTo() == node;
+    }
+  );
+  return edges;
+}
+
 
 ribi::cmap::ConceptMap::ReadOnlyNodePtr ribi::cmap::ConceptMap::GetFocalNode() const noexcept
 {

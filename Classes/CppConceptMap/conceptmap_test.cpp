@@ -46,6 +46,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcommandfactory.h"
 #include "conceptmapcommandcreatenewnode.h"
 #include "conceptmapcommandcreatenewedge.h"
+#include "conceptmapcommanddeleteedge.h"
+#include "conceptmapcommanddeletenode.h"
 #include "conceptmapcommandunselectrandom.h"
 #include "conceptmapcommandaddselectedrandom.h"
 #include "conceptmaphelper.h"
@@ -542,6 +544,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     assert(conceptmap->GetNodes().size() == 0);
     conceptmap->AddNode(node_a);
     assert(conceptmap->GetNodes().size() == 1);
+    TRACE("Next trace should be a warning:");
     conceptmap->AddNode(node_a);
     assert(conceptmap->GetNodes().size() == 1);
   }
@@ -732,7 +735,55 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 0);
   }
+  if (verbose) { TRACE("Delete Node-that-is-head-of-Edge, then Undo"); }
+  {
+    boost::shared_ptr<ConceptMap> conceptmap = ribi::cmap::ConceptMapFactory().GetEmptyConceptMap();
 
+    //Create two nodes
+    for (int i=0; i!=2; ++i)
+    {
+      const auto command = new CommandCreateNewNode(conceptmap);
+      conceptmap->DoCommand(command);
+    }
+
+    //Create an edge
+    {
+      const auto command = new CommandCreateNewEdge(conceptmap);
+      conceptmap->DoCommand(command);
+    }
+
+    //Select a node
+    {
+      conceptmap->SetSelected( Nodes( { conceptmap->GetNodes().front() } ) );
+    }
+
+    assert(conceptmap->GetNodes().size() == 2);
+    assert(conceptmap->GetEdges().size() == 1);
+    assert(conceptmap->GetSelectedNodes().size() == 1);
+    assert(conceptmap->GetSelectedEdges().size() == 0);
+    assert(!conceptmap->GetSelectedNodes().empty());
+
+    const auto node = conceptmap->GetSelectedNodes().front();
+    assert(conceptmap->GetEdgesConnectedTo(node).size() == 1);
+
+    //Delete the node, edge will be deleted as well
+    {
+      const auto command = new CommandDeleteNode(
+        conceptmap, node
+      );
+      command->SetVerbosity(true);
+      conceptmap->DoCommand(command);
+    }
+
+    //Undo the deletion, should bring back node and edge
+    conceptmap->Undo();
+
+    assert(conceptmap->GetNodes().size() == 2);
+    assert(conceptmap->GetEdges().size() == 1);
+    assert(conceptmap->GetSelectedNodes().size() == 1);
+    assert(conceptmap->GetSelectedEdges().size() == 0);
+
+  }
   //Do all do and undo of a single command
   {
     const int n_commands {CommandFactory().GetSize()};

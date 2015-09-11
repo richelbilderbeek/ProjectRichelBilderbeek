@@ -34,6 +34,12 @@ namespace cmap {
 ///Delete an existing node
 struct CommandDeleteNode final : public Command
 {
+  using EdgePtr = boost::shared_ptr<Edge>;
+  using Edges = std::vector<EdgePtr>;
+  using NodePtr = boost::shared_ptr<Node>;
+  using Nodes = std::vector<boost::shared_ptr<Node>>;
+  using EdgesAndNodes = std::pair<Edges,Nodes>;
+
   CommandDeleteNode(
     const boost::shared_ptr<ConceptMap> conceptmap,
     const boost::shared_ptr<Node> node
@@ -44,10 +50,14 @@ struct CommandDeleteNode final : public Command
 
   void undo() override;
   void redo() override;
+  void SetVerbosity(const bool verbose) noexcept { m_verbose = verbose; }
 
   private:
-  boost::shared_ptr<Node> m_node;
   const boost::shared_ptr<ConceptMap> m_conceptmap;
+  const Edges m_deleted_edges;
+  const boost::shared_ptr<Node> m_node;
+  const EdgesAndNodes m_old_selected; //Selected before command
+  bool m_verbose;
 };
 
 } //~namespace cmap

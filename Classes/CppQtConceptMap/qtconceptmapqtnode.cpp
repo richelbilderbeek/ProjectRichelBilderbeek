@@ -55,7 +55,7 @@ ribi::cmap::QtNode::QtNode(
   : QtRoundedEditRectItem(),
     //m_signal_display_changed{},
     m_signal_base_changed{},
-    m_signal_focus_in_event{},
+    m_signal_change_selected{},
     m_signal_key_down_pressed{},
     m_signal_node_changed{},
     //m_signal_node_requests_rate_concept{},
@@ -92,54 +92,11 @@ ribi::cmap::QtNode::QtNode(
   this->m_signal_text_changed.connect(
     boost::bind(&ribi::cmap::QtNode::OnTextChanged,this,boost::lambda::_1)
   );
-
-  /*
-
-  m_display_strategy->m_signal_item_has_updated.connect(
-    boost::bind(
-      &ribi::cmap::QtNode::OnItemHasUpdated,this)
-  );
-
-  m_display_strategy->m_signal_request_scene_update.connect(
-    boost::bind(
-      &ribi::cmap::QtNode::OnRequestsSceneUpdate,
-      this
-    )
-  );
-
-  */
 }
 
 ribi::cmap::QtNode::~QtNode() noexcept
 {
-  /*
-  m_display_strategy->m_signal_position_changed.disconnect(
-    boost::bind(&ribi::cmap::QtNode::SetPos,this,boost::lambda::_1,boost::lambda::_2)
-  );
 
-  m_node->m_signal_concept_changed.disconnect(
-    boost::bind(&ribi::cmap::QtNode::OnNodeChanged,this,boost::lambda::_1)
-  );
-  m_node->m_signal_x_changed.disconnect(
-    boost::bind(&ribi::cmap::QtNode::OnXchanged,this,boost::lambda::_1)
-  );
-  m_node->m_signal_y_changed.disconnect(
-    boost::bind(&ribi::cmap::QtNode::OnYchanged,this,boost::lambda::_1)
-  );
-
-  m_display_strategy->m_signal_item_has_updated.disconnect(
-    boost::bind(
-      &ribi::cmap::QtNode::OnItemHasUpdated,this)
-  );
-
-  m_display_strategy->m_signal_request_scene_update.disconnect(
-    boost::bind(
-      &ribi::cmap::QtNode::OnRequestsSceneUpdate,
-      this
-    )
-  );
-
-  */
 }
 
 void ribi::cmap::QtNode::DisableAll()
@@ -157,7 +114,7 @@ void ribi::cmap::QtNode::EnableAll()
 void ribi::cmap::QtNode::focusInEvent(QFocusEvent* e) noexcept
 {
   QtRoundedEditRectItem::focusInEvent(e);
-  m_signal_focus_in_event(this);
+  m_signal_change_selected(this);
   assert(hasFocus());
 }
 
@@ -198,7 +155,7 @@ void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event) noexcept
   m_signal_key_down_pressed(this,event->key());
   Base::keyPressEvent(event);
 }
-
+/*
 void ribi::cmap::QtNode::OnItemHasUpdated()
 {
   //this->setRect(m_display_strategy->boundingRect());
@@ -209,18 +166,8 @@ void ribi::cmap::QtNode::OnItemHasUpdated()
   this->update();
   //this->m_signal_item_has_updated(this);
 }
-
-/*
-void ribi::cmap::QtNode::OnItemRequestsRateConcept()
-{
-  m_signal_node_requests_rate_concept(this);
-}
-
-void ribi::cmap::QtNode::OnItemRequestsRateExamples()
-{
-  m_signal_node_requests_rate_examples(this);
-}
 */
+
 
 void ribi::cmap::QtNode::OnConceptChanged(Node * const node) noexcept
 {
@@ -288,33 +235,22 @@ void ribi::cmap::QtNode::paint(
   QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget
 ) noexcept
 {
-  //this->m_display_strategy->SetName(this->GetNode()->GetConcept()->GetName());
-
-
-  //Only QtEditStrategy actually modifies the position of the concept items
-  /*
-  if (dynamic_cast<QtEditStrategy*>(m_display_strategy.get()))
-  {
-    //Notifies the GUI-independent collaborators
-    this->m_display_strategy->SetPos(x(),y());
-  }
-  */
-
   Base::paint(painter,item,widget);
-  /*
+
   if (!GetNode()->GetConcept()->GetExamples()->Get().empty())
   {
-    painter->setBrush(m_display_strategy->GetIndicatorBrush());
-    painter->setPen(m_display_strategy->GetIndicatorPen());
+    //painter->setBrush(m_display_strategy->GetIndicatorBrush());
+    //painter->setPen(m_display_strategy->GetIndicatorPen());
+    painter->setBrush(Qt::transparent);
+    painter->setPen(Qt::black);
     //Draw indicator that a concept has examples in it
     painter->drawRect(
-      GetRect().right() - 5.0,
-      GetRect().top() + 3.0,
+      GetInnerRect().right() - 5.0,
+      GetInnerRect().top() + 3.0,
       3.0,
       3.0
       );
   }
-  */
 
   //Check if item can move (as the center node cannot)
   #define BRAINWEAVER_MOVE_ITEMS_ON_COLLISION
@@ -465,16 +401,6 @@ void ribi::cmap::QtNode::SetNode(const boost::shared_ptr<Node>& node) noexcept
   assert(*node == *m_node);
 }
 
-/*
-void ribi::cmap::QtNode::SetName(const std::string& name) noexcept
-{
-  m_node->GetConcept()->SetName(name);
-}
-*/
-
-
-
-
 #ifndef NDEBUG
 void ribi::cmap::QtNode::Test() noexcept
 {
@@ -623,7 +549,6 @@ std::ostream& ribi::cmap::operator<<(std::ostream& os, const QtNode& qtnode) noe
 {
   os
     << (*qtnode.GetNode())
-    //<< " (" << (*qtnode.GetDisplayStrategy()) << ")"
   ;
   return os;
 }
