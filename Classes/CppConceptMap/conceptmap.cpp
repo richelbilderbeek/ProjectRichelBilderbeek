@@ -834,11 +834,13 @@ int ribi::cmap::CountCenterNodeEdges(
   if (n_center_nodes == 0) return 0;
   const auto v = conceptmap->GetEdges();
   const int cnt{
-    std::count_if(v.begin(),v.end(),
-      [](const boost::shared_ptr<const Edge> edge)
-      {
-        return IsConnectedToCenterNode(edge);
-      }
+    static_cast<int>(
+      std::count_if(v.begin(),v.end(),
+        [](const boost::shared_ptr<const Edge> edge)
+        {
+          return IsConnectedToCenterNode(edge);
+        }
+      )
     )
   };
   return cnt;
@@ -1175,6 +1177,11 @@ void ribi::cmap::ConceptMap::SetSelected(const Nodes& nodes) noexcept
 }
 
 void ribi::cmap::ConceptMap::SetSelected(const ConstEdgesAndNodes& nodes_and_edges) noexcept
+{
+  SetSelected(nodes_and_edges.first, nodes_and_edges.second);
+}
+
+void ribi::cmap::ConceptMap::SetSelected(const EdgesAndNodes& nodes_and_edges) noexcept
 {
   SetSelected(nodes_and_edges.first, nodes_and_edges.second);
 }

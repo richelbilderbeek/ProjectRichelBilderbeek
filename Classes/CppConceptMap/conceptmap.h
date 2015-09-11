@@ -168,6 +168,7 @@ struct ConceptMap
   void SetSelected(const Edges& edges,const Nodes& nodes) noexcept;
   void SetSelected(const ConstEdges& edges,const ConstNodes& nodes) noexcept;
   void SetSelected(const ConstEdgesAndNodes& edges_and_nodes) noexcept;
+  void SetSelected(const EdgesAndNodes& edges_and_nodes) noexcept;
 
   void SetVerbosity(const bool verbose) noexcept { m_verbose = verbose; }
 

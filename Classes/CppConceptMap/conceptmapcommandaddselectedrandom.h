@@ -51,8 +51,8 @@ struct CommandAddSelectedRandom final : public Command
 
   private:
   const boost::shared_ptr<ConceptMap> m_concept_map;
-  ConstEdgesAndNodes m_new_selected; //Selected after redo
-  ConstEdgesAndNodes m_old_selected; //Selected before redo
+  EdgesAndNodes m_new_selected; //Selected after redo
+  EdgesAndNodes m_old_selected; //Selected before redo
 };
 
 } //~namespace cmap

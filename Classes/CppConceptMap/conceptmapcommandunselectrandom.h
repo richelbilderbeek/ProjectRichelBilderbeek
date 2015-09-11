@@ -51,7 +51,8 @@ struct CommandUnselectRandom final : public Command
   void undo() override;
 
   private:
-  ConstEdgesAndNodes m_old_selected;
+  EdgesAndNodes m_new_selected;
+  const EdgesAndNodes m_old_selected;
   const boost::shared_ptr<ConceptMap> m_concept_map;
 };
 

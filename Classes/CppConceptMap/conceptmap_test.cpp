@@ -672,76 +672,61 @@ void ribi::cmap::ConceptMap::Test() noexcept
   }
   if (verbose) { TRACE("Start a concept map, create a node using a command"); }
   {
-    const boost::shared_ptr<ConceptMap> cmap(new ConceptMap);
-    assert(cmap->GetNodes().empty()
-      && "Concept map starts empty");
-    const boost::shared_ptr<CommandCreateNewNode> command {
-      new CommandCreateNewNode
-    };
-    assert(cmap->CanDoCommand(command));
-    cmap->DoCommand(command);
-    assert(cmap->GetNodes().size() == 1);
-    assert(cmap->CanUndo());
-    command->Undo();
-    assert(cmap->GetNodes().size() == 0);
+    const boost::shared_ptr<ConceptMap> conceptmap(new ConceptMap);
+    assert(conceptmap->GetNodes().empty());
+    const auto command = new CommandCreateNewNode(conceptmap);
+    conceptmap->DoCommand(command);
+    assert(conceptmap->GetNodes().size() == 1);
+    command->undo();
+    assert(conceptmap->GetNodes().size() == 0);
   }
   if (verbose) { TRACE("Start a concept map, create two nodes, unselect both, then select both using AddSelected"); }
   {
-    const boost::shared_ptr<ConceptMap> concept_map(new ConceptMap);
+    const boost::shared_ptr<ConceptMap> conceptmap(new ConceptMap);
     const int n_nodes = 2;
     //Create nodes
     for (int i=0; i!=n_nodes; ++i)
     {
-      const boost::shared_ptr<CommandCreateNewNode> command {
-        new CommandCreateNewNode
-      };
-      assert(concept_map->CanDoCommand(command));
-      concept_map->DoCommand(command);
+      const auto command = new CommandCreateNewNode(conceptmap);
+      conceptmap->DoCommand(command);
     }
-    assert(static_cast<int>(concept_map->GetNodes().size()) == n_nodes
+    assert(static_cast<int>(conceptmap->GetNodes().size()) == n_nodes
       && "Concept map must have two nodes");
-    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 2
+    assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 2
       && "Freshly created nodes are selected");
 
     //Unselect both
     for (int i=0; i!=n_nodes; ++i)
     {
-      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 2 - i);
-      const boost::shared_ptr<CommandUnselectRandom> command {
-        new CommandUnselectRandom
-      };
-      assert(concept_map->CanDoCommand(command));
-      concept_map->DoCommand(command);
-      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 1 - i);
+      assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 2 - i);
+      const auto command = new CommandUnselectRandom;
+      assert(conceptmap->CanDoCommand(command));
+      assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 1 - i);
     }
-    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 0);
+    assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 0);
 
     //Select both again
-    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 0);
+    assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 0);
     for (int i=0; i!=n_nodes; ++i)
     {
-      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == i);
-      const boost::shared_ptr<CommandAddSelectedRandom> command {
-        new CommandAddSelectedRandom
-      };
-      assert(concept_map->CanDoCommand(command));
-      concept_map->DoCommand(command);
-      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == i + 1);
+      assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == i);
+      const auto command = new CommandAddSelectedRandom(conceptmap);
+      conceptmap->DoCommand(command);
+      assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == i + 1);
     }
-    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 2);
+    assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 2);
 
     //Undo selection
     for (int i=0; i!=n_nodes; ++i)
     {
-      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 2 - i);
+      assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 2 - i);
       const boost::shared_ptr<CommandUnselectRandom> command {
-        new CommandUnselectRandom
+        new CommandUnselectRandom(conceptmap)
       };
-      assert(concept_map->CanDoCommand(command));
-      concept_map->Undo();
-      assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 1 - i);
+      conceptmap->Undo();
+      assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 1 - i);
     }
-    assert(static_cast<int>(concept_map->GetSelectedNodes().size()) == 0);
+    assert(static_cast<int>(conceptmap->GetSelectedNodes().size()) == 0);
   }
 
   //Do all do and undo of a single command
