@@ -204,12 +204,6 @@ private:
   ///Called when an item wants to be edited
   void OnNodeKeyDownPressed(QtNode* const item, const int key);
 
-  ///Called whenever a concept is clicked or moved
-  ///If item is nullptr, the last item might be deleted
-  ///Use QGraphicsItem* due to QtKeyboardFriendlyGraphicsView working on QGraphicsItems
-  ///Is implemented by OnItemUpdateRequestImpl
-  void OnItemRequestUpdateImpl(const QGraphicsItem* const item);
-
   ///Called whenever the tools item is clicked
   void OnToolsClicked();
 
@@ -217,11 +211,13 @@ private:
 
 public slots:
 
+  void OnItemChangeSelected(const QGraphicsItem* const item);
+
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted
   ///Use QGraphicsItem* due to QtKeyboardFriendlyGraphicsView working on QGraphicsItems
-  ///Is implemented by OnItemUpdateRequestImpl
   void OnItemRequestsUpdate(const QGraphicsItem* const item);
+
 
   ///Called when an item requests a scene update
   void OnRequestSceneUpdate();

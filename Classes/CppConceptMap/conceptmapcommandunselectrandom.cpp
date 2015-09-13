@@ -15,36 +15,31 @@ ribi::cmap::CommandUnselectRandom::CommandUnselectRandom(
     m_new_selected{conceptmap->GetSelected()},
     m_old_selected{conceptmap->GetSelected()}
 {
-  assert(m_conceptmap);
-  if (m_conceptmap->GetSelectedEdges().empty() && m_conceptmap->GetSelectedNodes().empty())
+  if (conceptmap->GetSelectedEdges().empty() && conceptmap->GetSelectedNodes().empty())
   {
-    throw std::logic_error("CommandUnselectRandom needs nodes to unselect on");
+    throw std::logic_error("Unselect needs nodes to unselect on");
   }
   this->setText("unselect random");
 
-
-  //Already create new selected
+  //Unselect a random selected edge or node
+  const int n_edges{static_cast<int>(m_new_selected.first.size())};
+  const int n_nodes{static_cast<int>(m_new_selected.second.size())};
+  assert(n_edges + n_nodes > 0);
+  const int i{std::rand() % (n_edges + n_nodes)};
+  if (i < n_edges)
   {
-    //Get a random selected edge or node
-    auto all_selected = m_conceptmap->GetSelected();
-    const int n_edges{static_cast<int>(all_selected.first.size())};
-    const int n_nodes{static_cast<int>(all_selected.second.size())};
-    assert(n_edges + n_nodes > 0);
-    const int i{std::rand() % (n_edges + n_nodes)};
-    if (i < n_edges)
-    {
-      //Unselect edge
-      std::swap(all_selected.first[i],all_selected.first.back());
-      m_new_selected.first.pop_back();
-    }
-    else
-    {
-      //Unselect node
-      std::swap(all_selected.second[i - n_edges],all_selected.second.back());
-      m_new_selected.second.pop_back();
-    }
+    //Unselect edge
+    std::swap(m_new_selected.first[i],m_new_selected.first.back());
+    m_new_selected.first.pop_back();
+  }
+  else
+  {
+    //Unselect node
+    std::swap(m_new_selected.second[i - n_edges],m_new_selected.second.back());
+    m_new_selected.second.pop_back();
   }
 }
+
 
 void ribi::cmap::CommandUnselectRandom::redo()
 {
