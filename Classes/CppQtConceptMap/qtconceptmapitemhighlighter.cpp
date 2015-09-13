@@ -40,12 +40,22 @@ ribi::cmap::QtItemHighlighter::QtItemHighlighter(QObject *parent)
     m_timer(new QTimer(this))
 {
   m_timer->setInterval(10); //ms
+
+  #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
   QObject::connect(
     m_timer,
     &QTimer::timeout,
     this,
     &ribi::cmap::QtItemHighlighter::OnTimer
   );
+  #else
+  QObject::connect(
+    m_timer,
+    SIGNAL(timeout()),
+    this,
+    SLOT(OnTimer())
+  );
+  #endif
 }
 
 void ribi::cmap::QtItemHighlighter::SetItem(QtNode* const item)

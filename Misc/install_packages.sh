@@ -15,7 +15,7 @@ apt-get install \
   cmake \
   flex \
   intltool \
-  libtool \
+  libtool* \
   pkg-config \
   scons \
   tidy \

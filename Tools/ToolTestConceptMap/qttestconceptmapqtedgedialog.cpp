@@ -185,7 +185,7 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
   {
     QtImage();
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const TestTimer test_timer(__func__,__FILE__,2.0);
   const bool verbose{false};
   QtTestQtEdgeDialog dialog;
   const boost::shared_ptr<QtEdge> qtedge{dialog.GetQtEdge()};

@@ -36,7 +36,8 @@ namespace cmap {
 ///QtConceptMap displays a ConceptMap
 ///It does not offer UI interaction with the user
 ///QtConceptMap does offer UI interaction
-class QtConceptMap final: public ribi::QtKeyboardFriendlyGraphicsView
+//Cannot mark it as a final class, because that would break Qt4 compatibility
+class QtConceptMap : public ribi::QtKeyboardFriendlyGraphicsView
 {
   Q_OBJECT
 

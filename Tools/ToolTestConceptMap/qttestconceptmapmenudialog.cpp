@@ -36,7 +36,11 @@ ribi::cmap::QtTestMenuDialog::QtTestMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 
   //Show current screen I am most interested in
+  #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
   QTimer::singleShot(100,Qt::CoarseTimer,this,SLOT(on_button_edit_conceptmap_clicked()));
+  #else
+  QTimer::singleShot(100,this,SLOT(on_button_edit_conceptmap_clicked()));
+  #endif
 }
 
 ribi::cmap::QtTestMenuDialog::~QtTestMenuDialog() noexcept

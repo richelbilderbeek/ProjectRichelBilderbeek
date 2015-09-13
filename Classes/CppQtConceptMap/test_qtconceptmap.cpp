@@ -840,6 +840,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(conceptmap->GetSelectedEdges().size() == 0);
   }
 
+  #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
   if (verbose) { TRACE("MouseDoubleClick"); }
   for (int i=0; i!=5; ++i)
   {
@@ -857,6 +858,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     const int n_nodes_in_conceptmap{static_cast<int>(m.GetConceptMap()->GetNodes().size())};
     assert(n_nodes_in_scene == n_nodes_in_conceptmap);
   }
+  #endif
   TestTimer::SetMaxCnt(1); //Because the base class has been tested now
 }
 #endif

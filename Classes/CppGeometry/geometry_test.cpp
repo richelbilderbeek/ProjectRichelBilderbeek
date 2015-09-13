@@ -29,7 +29,7 @@ void ribi::Geometry::Test() noexcept
     };
   }
   ::ribi::Regex();
-  const TestTimer test_timer(__func__,__FILE__,1.1);
+  const TestTimer test_timer(__func__,__FILE__,3.0);
   const bool verbose{false};
   const double pi = boost::math::constants::pi<double>();
   const Geometry g;

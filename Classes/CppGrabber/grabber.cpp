@@ -29,7 +29,7 @@ ribi::Grabber::~Grabber() noexcept
 
 std::string ribi::Grabber::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::Grabber::GetVersionHistory() noexcept
@@ -37,11 +37,13 @@ std::vector<std::string> ribi::Grabber::GetVersionHistory() noexcept
   return {
     "2014-08-04: Version 1.0: initial version",
     "2015-08-21: Version 1.1: replaced deprecated construct",
+    "2015-09-13: Version 1.2: support both Qt4 and Qt5",
   };
 }
 
 void ribi::Grabber::Grab() const noexcept
 {
+  #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
   const auto screens = QApplication::screens();
   const int n_screens = screens.size();
   if (n_screens == 0)
@@ -58,6 +60,9 @@ void ribi::Grabber::Grab() const noexcept
     TRACE(s.str());
   }
   const QImage screenshot{screens[0]->grabWindow(m_win_id).toImage()};
+  #else
+  const QImage screenshot{QPixmap::grabWindow(m_win_id).toImage()};
+  #endif
 
   screenshot.save(m_filename.c_str());
 }

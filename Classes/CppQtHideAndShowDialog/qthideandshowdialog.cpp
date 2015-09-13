@@ -86,7 +86,22 @@ void ribi::QtHideAndShowDialog::ShowChild(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->hide();
-  QObject::connect(dialog,&ribi::QtHideAndShowDialog::close_me,this,&ribi::QtHideAndShowDialog::close_child);
+  #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+  QObject::connect(
+    dialog,
+    &ribi::QtHideAndShowDialog::close_me,
+    this,
+    &ribi::QtHideAndShowDialog::close_child
+  );
+  #else
+  QObject::connect(
+    dialog,
+    SIGNAL(close_me()),
+    this,
+    SLOT(close_child())
+  );
+  #endif
+
   m_show_child = true;
   while (m_show_child)
   {
@@ -99,7 +114,21 @@ void ribi::QtHideAndShowDialog::ShowModal(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->setEnabled(false);
-  QObject::connect(dialog,&ribi::QtHideAndShowDialog::close_me,this,&ribi::QtHideAndShowDialog::close_child);
+  #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+  QObject::connect(
+    dialog,
+    &ribi::QtHideAndShowDialog::close_me,
+    this,
+    &ribi::QtHideAndShowDialog::close_child
+  );
+  #else
+  QObject::connect(
+    dialog,
+    SIGNAL(close_me()),
+    this,
+    SLOT(close_child())
+  );
+  #endif
   m_show_child = true;
   while (m_show_child)
   {
