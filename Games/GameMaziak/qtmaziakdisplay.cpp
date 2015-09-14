@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include <QDesktopWidget>
+#include <QApplication>
 #include <QKeyEvent>
 #include <QPainter>
 #include <QTimer>
@@ -48,7 +49,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtgraphics.h"
 #include "maziaksolutionmaze.h"
 #include "maziakmaindialog.h"
-#include "ui_qtmaziakmaindialog.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop

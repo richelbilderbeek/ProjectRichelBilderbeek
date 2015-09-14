@@ -211,8 +211,6 @@ private:
 
 public slots:
 
-  void OnItemChangeSelected(const QGraphicsItem* const item);
-
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted
   ///Use QGraphicsItem* due to QtKeyboardFriendlyGraphicsView working on QGraphicsItems
