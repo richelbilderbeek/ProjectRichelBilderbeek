@@ -170,6 +170,11 @@ struct ConceptMap
 
   void Redo() noexcept;
 
+  ///Add the nodes to the current (can be zero) selected nodes
+  void RemoveSelected(const Edges& edges) noexcept;
+  void RemoveSelected(const Nodes& nodes) noexcept;
+  void RemoveSelected(const Edges& edges,const Nodes& nodes) noexcept;
+
   ///Set the nodes to the only nodes selected
   void SetSelected(const ConstNodes& nodes) noexcept;
   void SetSelected(const ConstEdges& edges) noexcept;

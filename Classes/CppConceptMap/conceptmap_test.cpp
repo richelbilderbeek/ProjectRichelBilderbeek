@@ -536,6 +536,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     const int n_nodes_after{static_cast<int>(conceptmap->GetNodes().size())};
     assert(n_nodes_after == n_nodes_before + 2);
   }
+
   if (verbose) { TRACE("Add node twice, must give a warning"); }
   {
     const auto conceptmap = ConceptMapFactory().GetEmptyConceptMap();
@@ -560,6 +561,30 @@ void ribi::cmap::ConceptMap::Test() noexcept
     conceptmap->AddNode(node_b);
     assert(conceptmap->GetSelectedNodes().size() == 2);
     conceptmap->DeleteNode(node_a);
+    assert(conceptmap->GetSelectedNodes().size() == 1);
+  }
+  if (verbose) { TRACE("Add two nodes, unselect node_a"); }
+  {
+    const auto conceptmap = ConceptMapFactory().GetEmptyConceptMap();
+    assert(conceptmap);
+    const auto node_a = NodeFactory().GetTests().at(0);
+    const auto node_b = NodeFactory().GetTests().at(1);
+    conceptmap->AddNode(node_a);
+    conceptmap->AddNode(node_b);
+    assert(conceptmap->GetSelectedNodes().size() == 2);
+    conceptmap->RemoveSelected( Nodes( { node_a } ) );
+    assert(conceptmap->GetSelectedNodes().size() == 1);
+  }
+  if (verbose) { TRACE("Add two nodes, unselect node_b"); }
+  {
+    const auto conceptmap = ConceptMapFactory().GetEmptyConceptMap();
+    assert(conceptmap);
+    const auto node_a = NodeFactory().GetTests().at(0);
+    const auto node_b = NodeFactory().GetTests().at(1);
+    conceptmap->AddNode(node_a);
+    conceptmap->AddNode(node_b);
+    assert(conceptmap->GetSelectedNodes().size() == 2);
+    conceptmap->RemoveSelected( Nodes( { node_b } ) );
     assert(conceptmap->GetSelectedNodes().size() == 1);
   }
   if (verbose) { TRACE("Add nodes and edge, edge its node must be in between the nodes"); }

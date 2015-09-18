@@ -51,7 +51,7 @@ ribi::cmap::QtEdge::QtEdge(
 )
   : m_signal_base_changed{},
     m_signal_edge_changed{},
-    m_signal_focus_in_event{},
+    m_signal_selection_changed{},
     m_signal_key_down_pressed{},
     m_arrow{nullptr}, //Will be initialized below
     m_edge{}, //Will be initialized by setEdge
@@ -239,7 +239,7 @@ void ribi::cmap::QtEdge1::dragMoveEvent(QGraphicsSceneDragDropEvent *) noexcept
 
 void ribi::cmap::QtEdge::focusInEvent(QFocusEvent*) noexcept
 {
-  m_signal_focus_in_event(this);
+  m_signal_selection_changed(this);
   //Lose focus of arrow
   //m_arrow->SetPen(QPen(QColor(0,0,0)));
   //m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen()); //Updates itself
@@ -693,9 +693,10 @@ void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow) noexcept
   this->m_arrow->SetHasTail(has_tail_arrow);
 }
 
-void ribi::cmap::QtEdge::setSelected(bool selected)
+void ribi::cmap::QtEdge::SetSelected(bool selected)
 {
-  this->GetQtNode()->setSelected(selected);
+  this->GetQtNode()->SetSelected(selected);
+  m_signal_selection_changed(this);
 }
 
 void ribi::cmap::QtEdge::SetTo(const To& to) noexcept

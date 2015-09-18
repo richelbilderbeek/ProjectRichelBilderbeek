@@ -161,6 +161,16 @@ void ribi::QtRoundedRectItem::Test() noexcept
     i.SetCenterY(i.GetCenterY() + 10.0);
     assert(i.GetInnerRect().contains(i.GetCenterPos()));
   }
+  if (verbose) { TRACE("If item changes its selection, m_signal_selected_changed must be emitted"); }
+  {
+    Counter c{0}; //For receiving the signal
+    i.m_signal_selected_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    i.SetSelected(true);
+    i.SetSelected(false);
+    assert(c.Get() > 0);
+  }
   if (verbose) { TRACE("After a drag event, m_signal_pos_changed must be emitted"); }
   {
     //Cannot be tested
@@ -176,7 +186,7 @@ void ribi::QtRoundedRectItem::Test() noexcept
   {
     QGraphicsScene scene;
     scene.addItem(&i);
-    i.setSelected(false);
+    i.SetSelected(false);
     i.clearFocus();
     assert(!i.hasFocus() && !i.isSelected()
       && "Assume no focus, otherwise this test has no use");
@@ -193,7 +203,7 @@ void ribi::QtRoundedRectItem::Test() noexcept
   {
     QGraphicsScene scene;
     scene.addItem(&i);
-    i.setSelected(false);
+    i.SetSelected(false);
     i.clearFocus();
     assert(!i.hasFocus() && !i.isSelected()
       && "Assume no focus, otherwise this test has no use");

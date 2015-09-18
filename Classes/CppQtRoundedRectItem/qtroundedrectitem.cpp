@@ -40,6 +40,7 @@ ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
    m_signal_pos_changed{},
    m_signal_radius_x_changed{},
    m_signal_radius_y_changed{},
+   m_signal_selected_changed{},
    m_signal_width_changed{},
    m_contour_pen(QPen(QColor(0,0,0),0.0)),
    m_focus_pen(QPen(QColor(0,0,0),0.0,Qt::DashLine)),
@@ -351,6 +352,12 @@ void ribi::QtRoundedRectItem::SetRadiusY(const double radius_y) noexcept
     m_signal_radius_y_changed(this);
   }
   assert(radius_y == GetRadiusY());
+}
+
+void ribi::QtRoundedRectItem::SetSelected(bool selected) noexcept
+{
+  QGraphicsRectItem::setSelected(selected);
+  m_signal_selected_changed(this);
 }
 
 bool ribi::operator==(const QtRoundedRectItem& lhs, const QtRoundedRectItem& rhs) noexcept

@@ -27,6 +27,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 ///Counter is a counter
+///It may appear to be a rather trival class, but I use it mostly to test signals:
+///  MyClass my_class;
+///  Counter c{0}; //For receiving the signal
+///  my_class.m_signal.connect(
+///    boost::bind(&MyClass::AnyMemberFunction,&c)
+///  );
+///  my_class.DoSomethingThatEmitsAsignal();
+///  assert(c.Get() == 1);
 struct Counter
 {
   ///Counter is constructed with an initial count, which is initialized to

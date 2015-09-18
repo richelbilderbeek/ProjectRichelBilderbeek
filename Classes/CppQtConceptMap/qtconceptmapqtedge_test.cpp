@@ -295,8 +295,16 @@ void ribi::cmap::QtEdge::Test() noexcept
     assert(qtedge->GetQtNode()->GetCenterY() == new_y);
   }
   assert(qtedge->GetArrow()->GetMidItem() == qtedge->GetQtNode().get());
-  //assert(!"Red phase done");
-
+  if (verbose) { TRACE("If a QtEdge its Edge's tail arrow is changed, a signal must be emitted by Edge"); }
+  {
+    Counter c{0}; //For receiving the signal
+    qtedge->m_signal_selection_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    qtedge->SetSelected(true);
+    qtedge->SetSelected(false);
+    assert(c.Get() > 0);
+  }
 }
 #endif
 

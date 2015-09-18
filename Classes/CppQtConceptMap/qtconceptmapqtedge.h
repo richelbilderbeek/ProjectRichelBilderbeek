@@ -104,7 +104,7 @@ struct QtEdge : public QGraphicsItem
   void SetHasHeadArrow(const bool has_head_arrow) noexcept;
   void SetHasTailArrow(const bool has_tail_arrow) noexcept;
 
-  void setSelected(bool selected);
+  void SetSelected(bool selected);
 
   void SetShowBoundingRect(const bool show_bounding_rect) const noexcept { m_show_bounding_rect = show_bounding_rect; }
 
@@ -114,7 +114,7 @@ struct QtEdge : public QGraphicsItem
 
   mutable boost::signals2::signal<void (QtEdge *)> m_signal_base_changed;
   mutable boost::signals2::signal<void (QtEdge *)> m_signal_edge_changed;
-  mutable boost::signals2::signal<void (QtEdge *)> m_signal_focus_in_event;
+  mutable boost::signals2::signal<void (QtEdge *)> m_signal_selection_changed;
   mutable boost::signals2::signal<void (QtEdge *,const int key)> m_signal_key_down_pressed;
 
 protected:
@@ -167,6 +167,8 @@ private:
 
   void OnMustUpdateScene();
   void OnRequestSceneUpdate();
+
+  void setSelected(bool selected) = delete;
 
   #ifndef NDEBUG
   static void Test() noexcept;

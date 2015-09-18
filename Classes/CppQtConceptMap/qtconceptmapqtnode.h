@@ -83,7 +83,6 @@ struct QtNode : public QtRoundedEditRectItem
   mutable boost::signals2::signal<void (QtNode *)> m_signal_base_changed;
 
   ///The QtNode is selected or unselected
-  mutable boost::signals2::signal<void (QtNode *)> m_signal_change_selected;
   mutable boost::signals2::signal<void (QtNode *,const int key)> m_signal_key_down_pressed;
   mutable boost::signals2::signal<void (QtNode *)> m_signal_node_changed;
   //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;

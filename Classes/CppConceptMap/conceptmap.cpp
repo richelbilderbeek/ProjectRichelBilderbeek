@@ -1174,6 +1174,45 @@ void ribi::cmap::ConceptMap::Redo() noexcept
   m_undo.redo();
 }
 
+void ribi::cmap::ConceptMap::RemoveSelected(const std::vector<boost::shared_ptr<Edge>>& edges) noexcept
+{
+  assert(std::count(edges.begin(),edges.end(),nullptr) == 0);
+  for (const auto edge: edges)
+  {
+    const auto new_end = std::remove(
+      std::begin(m_selected.first),
+      std::end(m_selected.first),
+      edge
+    );
+    m_selected.first.erase(new_end,std::end(m_selected.first));
+  }
+  m_signal_selected_changed(m_selected);
+}
+
+void ribi::cmap::ConceptMap::RemoveSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
+{
+  assert(std::count(nodes.begin(),nodes.end(),nullptr) == 0);
+  for (const auto node: nodes)
+  {
+    const auto new_end = std::remove(
+      std::begin(m_selected.second),
+      std::end(m_selected.second),
+      node
+    );
+    m_selected.second.erase(new_end,std::end(m_selected.second));
+  }
+  m_signal_selected_changed(m_selected);
+}
+
+void ribi::cmap::ConceptMap::RemoveSelected(
+  const std::vector<boost::shared_ptr<Edge>>& edges,
+  const std::vector<boost::shared_ptr<Node>>& nodes
+) noexcept
+{
+  RemoveSelected(edges);
+  RemoveSelected(nodes);
+}
+
 void ribi::cmap::ConceptMap::SetSelected(
   const Edges& edges,
   const Nodes& nodes

@@ -141,12 +141,16 @@ class QtRoundedRectItem : public QGraphicsRectItem
   void SetRadiusX(const double radius_x) noexcept;
   void SetRadiusY(const double radius_y) noexcept;
 
+  ///Call setSelected and emits m_signal_selected_changed
+  void SetSelected(bool selected) noexcept;
+
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_height_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_pos_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_x_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_y_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_selected_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_width_changed;
 
   ///Signal emitted when this item has moved
@@ -185,6 +189,10 @@ protected:
   ///To make it private, use SetRoundedRect instead
   void setRect(const double,const double,const double,const double) = delete;
   void setRect(const QRectF&) = delete;
+
+  ///To make it private, use SetSelected instead
+  void setSelected(bool selected) = delete;
+
 
   #ifndef NDEBUG
   static void Test() noexcept;

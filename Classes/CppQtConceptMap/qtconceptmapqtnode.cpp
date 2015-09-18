@@ -53,15 +53,9 @@ ribi::cmap::QtNode::QtNode(
   const boost::shared_ptr<Node> node
 )
   : QtRoundedEditRectItem(),
-    //m_signal_display_changed{},
     m_signal_base_changed{},
-    m_signal_change_selected{},
     m_signal_key_down_pressed{},
     m_signal_node_changed{},
-    //m_signal_node_requests_rate_concept{},
-    //m_signal_node_requests_rate_examples{},
-    //m_contour_pen(concept_item->GetContourPen()),
-    //m_focus_pen(concept_item->GetFocusPen()),
     m_node{},
     m_show_bounding_rect{false}
 {
@@ -114,7 +108,7 @@ void ribi::cmap::QtNode::EnableAll()
 void ribi::cmap::QtNode::focusInEvent(QFocusEvent* e) noexcept
 {
   QtRoundedEditRectItem::focusInEvent(e);
-  m_signal_change_selected(this);
+  //m_signal_change_selected(this);
   assert(hasFocus());
 }
 

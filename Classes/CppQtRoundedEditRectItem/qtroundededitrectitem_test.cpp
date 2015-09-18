@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include "counter.h"
 #include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -114,6 +115,16 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
   {
     assert(GetTextRectAtOrigin("X",QFont()).width() > 0.0);
     assert(GetPaddedTextRectAtOrigin("X",QFont()).width() >= GetTextRectAtOrigin("X",QFont()).width());
+  }
+  if (verbose) { TRACE("If item changes its selection, m_signal_selected_changed must be emitted"); }
+  {
+    Counter c{0}; //For receiving the signal
+    item.m_signal_selected_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    item.SetSelected(true);
+    item.SetSelected(false);
+    assert(c.Get() > 0);
   }
 }
 #endif

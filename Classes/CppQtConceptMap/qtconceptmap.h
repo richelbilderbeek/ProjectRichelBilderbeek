@@ -216,6 +216,8 @@ public slots:
   ///Use QGraphicsItem* due to QtKeyboardFriendlyGraphicsView working on QGraphicsItems
   void OnItemRequestsUpdate(const QGraphicsItem* const item);
 
+  void OnItemSelectedChanged(QGraphicsItem* const item);
+
 
   ///Called when an item requests a scene update
   void OnRequestSceneUpdate();

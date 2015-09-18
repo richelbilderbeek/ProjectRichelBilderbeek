@@ -226,10 +226,9 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
     )
   );
 
-  //Focus
-  qtedge->m_signal_focus_in_event.connect(
+  qtedge->m_signal_selection_changed.connect(
     boost::bind(
-      &QtConceptMap::OnItemRequestsUpdate,
+      &QtConceptMap::OnItemSelectedChanged,
       this,
       boost::lambda::_1
     )
@@ -262,9 +261,10 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   }
 
   if (m_verbose) { TRACE("Setting selection and focus correct"); }
-  qtfrom->setSelected(false);
-  qtto->setSelected(false);
-  qtedge->GetQtNode()->setSelected(true);
+
+  qtfrom->SetSelected(false);
+  qtto->SetSelected(false);
+  qtedge->GetQtNode()->SetSelected(true);
   if (GetScene()->focusItem() && GetScene()->focusItem() != qtedge->GetQtNode().get())
   {
     GetScene()->focusItem()->clearFocus();
@@ -310,9 +310,9 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<N
   //Signal #2
   //General: inform an Observer that a QGraphicsScene needs to be updated
 
-  qtnode->m_signal_change_selected.connect(
-    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1))
-  ;
+  qtnode->m_signal_selected_changed.connect(
+    boost::bind(&QtConceptMap::OnItemSelectedChanged,this,boost::lambda::_1)
+  );
 
   qtnode->m_signal_focus_pen_changed.connect(
     boost::bind(&QtConceptMap::OnRequestSceneUpdate,this)
@@ -332,7 +332,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<N
   assert(!qtnode->scene());
   this->scene()->addItem(qtnode); //Adding qtnode to scene() twice gives a warning
   assert(qtnode->scene() == GetScene());
-  qtnode->setSelected(true);
+  qtnode->SetSelected(true);
   qtnode->setFocus();
   return qtnode;
 }
@@ -411,17 +411,17 @@ void ribi::cmap::QtConceptMap::DeleteEdge(const boost::shared_ptr<const Edge> ed
 
   if (this->GetConceptMap()->HasNode(from))
   {
-    const_cast<QtNode*>(qtfrom)->setSelected(true);
+    const_cast<QtNode*>(qtfrom)->SetSelected(true);
     const_cast<QtNode*>(qtfrom)->setFocus();
   }
   else if (this->GetConceptMap()->HasNode(to))
   {
-    const_cast<QtNode*>(qtto)->setSelected(true);
+    const_cast<QtNode*>(qtto)->SetSelected(true);
     const_cast<QtNode*>(qtto)->setFocus();
   }
   else if (!this->GetQtNodes().empty())
   {
-    this->GetQtNodes().front()->setSelected(true);
+    this->GetQtNodes().front()->SetSelected(true);
     this->GetQtNodes().front()->setFocus();
   }
   else
@@ -446,7 +446,7 @@ void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> no
   {
     assert(new_selected_nodes);
     assert(GetQtNode(new_selected_nodes.get()));
-    this->GetQtNode(new_selected_nodes.get())->setSelected(true);
+    this->GetQtNode(new_selected_nodes.get())->SetSelected(true);
   }
 
   if (this->GetQtNodes().empty())
@@ -473,7 +473,7 @@ void ribi::cmap::QtConceptMap::DeleteQtEdge(const QtEdge * const qtedge)
   }
 
   if (m_verbose) { TRACE("Set QtEdge to be not selected"); }
-  const_cast<QtEdge*>(qtedge)->setSelected(false); //Remove const instead of using const-correct std::find on GetQtNodes
+  const_cast<QtEdge*>(qtedge)->SetSelected(false); //Remove const instead of using const-correct std::find on GetQtNodes
 
   if (m_verbose) { TRACE("Is the QtEdge still present in a QScene?"); }
   if (qtedge->scene())
@@ -515,7 +515,7 @@ void ribi::cmap::QtConceptMap::DeleteQtNode(const QtNode * const qtnode)
   }
 
   //Remove node from model
-  const_cast<QtNode*>(qtnode)->setSelected(false); //Remove const instead of using const-correct std::find on GetQtNodes
+  const_cast<QtNode*>(qtnode)->SetSelected(false); //Remove const instead of using const-correct std::find on GetQtNodes
   GetConceptMap()->DeleteNode(qtnode->GetNode());
 
   //Remove node from view
@@ -891,6 +891,32 @@ void ribi::cmap::QtConceptMap::OnItemRequestsUpdate(const QGraphicsItem* const i
   m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
   GetQtExamplesItem()->SetBuddyItem(item);
   scene()->update();
+}
+
+void ribi::cmap::QtConceptMap::OnItemSelectedChanged(QGraphicsItem* const item)
+{
+  if (QtNode * const qtnode = dynamic_cast<QtNode*>(item))
+  {
+    if (qtnode->isSelected())
+    {
+      m_conceptmap->AddSelected( ConceptMap::Nodes( { qtnode->GetNode() } ) );
+    }
+    else
+    {
+      m_conceptmap->RemoveSelected( ConceptMap::Nodes( { qtnode->GetNode() } ) );
+    }
+  }
+  else if (QtEdge * const qtedge = dynamic_cast<QtEdge*>(item))
+  {
+    if (qtedge->isSelected())
+    {
+      m_conceptmap->AddSelected( ConceptMap::Edges( { qtedge->GetEdge() } ) );
+    }
+    else
+    {
+      m_conceptmap->RemoveSelected( ConceptMap::Edges( { qtedge->GetEdge() } ) );
+    }
+  }
 }
 
 void ribi::cmap::QtConceptMap::OnRequestSceneUpdate()
@@ -1329,7 +1355,7 @@ void ribi::cmap::QtConceptMap::OnNodeKeyDownPressed(QtNode* const item, const in
   this->show();
   this->setFocus();
   this->scene()->setFocusItem(item);
-  item->setSelected(true);
+  item->SetSelected(true);
   item->m_signal_node_changed(item);
   this->scene()->update();
   this->OnItemRequestsUpdate(item);
