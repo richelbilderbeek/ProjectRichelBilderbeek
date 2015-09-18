@@ -1176,7 +1176,7 @@ void ribi::cmap::ConceptMap::Redo() noexcept
 
 void ribi::cmap::ConceptMap::RemoveSelected(const std::vector<boost::shared_ptr<Edge>>& edges) noexcept
 {
-  assert(std::count(edges.begin(),edges.end(),nullptr) == 0);
+  assert(std::count(std::begin(edges),std::end(edges),nullptr) == 0);
   for (const auto edge: edges)
   {
     const auto new_end = std::remove(
@@ -1184,6 +1184,10 @@ void ribi::cmap::ConceptMap::RemoveSelected(const std::vector<boost::shared_ptr<
       std::end(m_selected.first),
       edge
     );
+    if (new_end == std::end(m_selected.first) && m_verbose)
+    {
+      std::clog << "Warning: edge to be removed not found" << std::endl;
+    }
     m_selected.first.erase(new_end,std::end(m_selected.first));
   }
   m_signal_selected_changed(m_selected);
@@ -1191,6 +1195,7 @@ void ribi::cmap::ConceptMap::RemoveSelected(const std::vector<boost::shared_ptr<
 
 void ribi::cmap::ConceptMap::RemoveSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
 {
+  //Take care: it may be node at the center of an edge
   assert(std::count(nodes.begin(),nodes.end(),nullptr) == 0);
   for (const auto node: nodes)
   {
@@ -1199,7 +1204,24 @@ void ribi::cmap::ConceptMap::RemoveSelected(const std::vector<boost::shared_ptr<
       std::end(m_selected.second),
       node
     );
-    m_selected.second.erase(new_end,std::end(m_selected.second));
+    if (new_end == std::end(m_selected.second))
+    {
+      const auto edge = this->GetEdgeHaving(node);
+      if (!edge)
+      {
+        if (m_verbose) { std::clog << "Warning: cannot find node to unselect" << std::endl; }
+      }
+      else
+      {
+        if (m_verbose) { std::clog << "Removing selectedness of edge containing node" << std::endl; }
+        this->RemoveSelected( Edges( { edge } ) );
+      }
+    }
+    else
+    {
+      if (m_verbose) { std::clog << "Removing selectedness of node" << std::endl; }
+      m_selected.second.erase(new_end,std::end(m_selected.second));
+    }
   }
   m_signal_selected_changed(m_selected);
 }

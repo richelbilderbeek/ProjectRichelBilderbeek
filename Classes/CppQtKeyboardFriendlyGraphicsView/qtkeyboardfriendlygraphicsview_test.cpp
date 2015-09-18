@@ -97,17 +97,15 @@ void ribi::QtKeyboardFriendlyGraphicsView::Test() noexcept
     item2->clearFocus();
     item1->setSelected(true);
     item2->setSelected(true);
-
     assert(view.scene()->selectedItems().size() == 2);
-
     auto space = CreateSpace();
-    view.keyPressEvent(&space);
 
-    TRACE(view.scene()->selectedItems().size());
-    assert(view.scene()->selectedItems().size() == 1);
+    for (int i=0; i!=100; ++i) //Very often
+    {
+      view.keyPressEvent(&space);
+      assert(view.scene()->selectedItems().size() == 1);
+    }
   }
-  assert(!"Green");
-
 }
 #endif
 

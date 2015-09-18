@@ -252,7 +252,7 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
     return;
   }
 
-
+  //Can be nullptr
   QGraphicsItem* const focus_item = scene()->focusItem();
 
   std::vector<QGraphicsItem *> items;
@@ -361,7 +361,6 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
 
 void ribi::QtKeyboardFriendlyGraphicsView::SetRandomFocus()
 {
-  //Let existing item lose focus
   if (QGraphicsItem* const item = scene()->focusItem())
   {
     if (m_verbose) { std::clog << "Removing current focus" << std::endl; }
@@ -372,6 +371,19 @@ void ribi::QtKeyboardFriendlyGraphicsView::SetRandomFocus()
     item->setEnabled(true);
     m_signal_update(item);
   }
+  else
+  {
+    if (m_verbose) { std::clog << "No focussed item to remove focus of" << std::endl; }
+  }
+
+  if (m_verbose) { std::clog << "Remove selectedness of all " << scene()->selectedItems().size() << " selected items" << std::endl; }
+  for (auto selected_item: scene()->selectedItems())
+  {
+    selected_item->setSelected(false);
+    m_signal_update(selected_item);
+  }
+
+
   //Let a random item receive focus
   const QList<QGraphicsItem *> all_items = this->items();
   QList<QGraphicsItem *> items;
@@ -382,6 +394,7 @@ void ribi::QtKeyboardFriendlyGraphicsView::SetRandomFocus()
         && item->isVisible();
     }
   );
+  if (m_verbose) { std::clog << "Obtained " << all_items.size() << " focusable items" << std::endl; }
 
   if (!items.empty())
   {
