@@ -2,7 +2,8 @@ INCLUDEPATH += \
     ../../Classes/CppQtKeyboardFriendlyGraphicsView
 
 SOURCES += \
-    ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview.cpp
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview.cpp \
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview_test.cpp
 
 HEADERS  += \
     ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview.h

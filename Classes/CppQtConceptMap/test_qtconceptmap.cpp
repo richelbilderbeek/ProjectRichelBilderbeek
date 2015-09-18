@@ -44,13 +44,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-QKeyEvent CreateDel() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Delete,Qt::NoModifier); }
-QKeyEvent CreateLeft() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Left,Qt::NoModifier); }
-QKeyEvent CreateSpace() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Space,Qt::NoModifier); }
-QKeyEvent CreateControlDown() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Down,Qt::ControlModifier); }
-QKeyEvent CreateControlE() { return QKeyEvent(QEvent::KeyPress,Qt::Key_E,Qt::ControlModifier); }
-QKeyEvent CreateControlN() { return QKeyEvent(QEvent::KeyPress,Qt::Key_N,Qt::ControlModifier); }
-QKeyEvent CreateControlZ() { return QKeyEvent(QEvent::KeyPress,Qt::Key_Z,Qt::ControlModifier); }
+QKeyEvent CreateControlDown() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Down,Qt::ControlModifier); }
+QKeyEvent CreateControlE() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_E,Qt::ControlModifier); }
+QKeyEvent CreateControlN() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_N,Qt::ControlModifier); }
+QKeyEvent CreateControlZ() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Z,Qt::ControlModifier); }
+QKeyEvent CreateDel() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Delete,Qt::NoModifier); }
+QKeyEvent CreateDown() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Down,Qt::NoModifier); }
+QKeyEvent CreateLeft() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Left,Qt::NoModifier); }
+QKeyEvent CreateRight() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Right,Qt::NoModifier); }
+QKeyEvent CreateSpace() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Space,Qt::NoModifier); }
+QKeyEvent CreateUp() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Up,Qt::NoModifier); }
 
 #ifndef NDEBUG
 void ribi::cmap::QtConceptMap::Test() noexcept
@@ -959,8 +962,10 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(conceptmap->GetSelectedEdges().size() == 1);
 
     //Select a node
-    auto left = CreateLeft();
-    qtconceptmap->keyPressEvent(&left);
+    auto up = CreateUp();
+    TRACE("START");
+    qtconceptmap->SetVerbosity(true);
+    qtconceptmap->keyPressEvent(&up);
 
     TRACE(conceptmap->GetSelectedNodes().size());
     TRACE(qtconceptmap->GetSelectedQtNodes().size());
@@ -991,6 +996,16 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     //Create an edge
     auto ctrle = CreateControlE();
     qtconceptmap->keyPressEvent(&ctrle);
+
+    assert(conceptmap->GetNodes().size() == 2);
+    assert(conceptmap->GetNodes().size() == qtconceptmap->GetQtNodes().size());
+    assert(conceptmap->GetEdges().size() == 1);
+    assert(conceptmap->GetEdges().size() == qtconceptmap->GetQtEdges().size());
+    assert(conceptmap->GetSelectedNodes().size() == qtconceptmap->GetSelectedQtNodes().size());
+    assert(conceptmap->GetSelectedEdges().size() == qtconceptmap->GetSelectedQtEdges().size());
+    assert(conceptmap->GetSelectedNodes().size() == 0);
+    assert(conceptmap->GetSelectedEdges().size() == 1);
+
 
     //Select a node
     auto left = CreateLeft();

@@ -51,10 +51,14 @@ struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
   ///Respond to a key press
   virtual void keyPressEvent(QKeyEvent *event) noexcept;
 
-  ///Signals which QGraphicsItem has been moved by setpos
+  void SetVerbosity(const bool verbosity) noexcept { m_verbose = verbosity; }
+
+  ///Signals which QGraphicsItem has been moved by setPos
   boost::signals2::signal<void (QGraphicsItem*)> m_signal_update;
 
   private:
+
+  bool m_verbose;
 
   ///Obtain the closest item in the collection
   ///Returns nullptr if there is no focusable item in the items
@@ -79,6 +83,10 @@ struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
 
   ///Give focus to a random item
   void SetRandomFocus();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

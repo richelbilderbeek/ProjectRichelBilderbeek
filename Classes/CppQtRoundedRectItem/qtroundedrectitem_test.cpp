@@ -43,6 +43,9 @@ void ribi::QtRoundedRectItem::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    Counter();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   if (verbose) { TRACE("Construction"); }
@@ -171,6 +174,7 @@ void ribi::QtRoundedRectItem::Test() noexcept
     i.SetSelected(false);
     assert(c.Get() > 0);
   }
+
   if (verbose) { TRACE("After a drag event, m_signal_pos_changed must be emitted"); }
   {
     //Cannot be tested

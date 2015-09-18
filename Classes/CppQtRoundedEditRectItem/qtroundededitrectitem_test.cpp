@@ -40,6 +40,7 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
     is_tested = true;
   }
   {
+    Counter();
     QtRoundedRectItem();
   }
   const bool verbose{false};

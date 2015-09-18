@@ -85,8 +85,6 @@ public:
 
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap);
 
-  void SetVerbosity(const bool verbosity) noexcept { m_verbose = verbosity; }
-
   #ifndef NDEBUG
   ///Shuffle the concepts (used in debugging)
   void Shuffle() noexcept;
@@ -179,8 +177,6 @@ private:
 
   ///The item showing the tools
   QtTool * m_tools;
-
-  bool m_verbose;
 
   ///Adds an Edge, returns the freshly created QtEdge
   QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
