@@ -31,7 +31,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 
 #include "testtimer.h"
-#include "textcanvas.h"
 #include "tictactoehelper.h"
 #include "trace.h"
 
@@ -42,7 +41,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ribi::tictactoe::Board::Board() noexcept
   : m_signal_changed{},
     m_board(boost::extents[3][3])
-    //m_current_player(TicTacToePlayer::player1)
 {
   #ifndef NDEBUG
   Test();
@@ -360,19 +358,21 @@ void ribi::tictactoe::Board::Test() noexcept
 }
 #endif
 
-boost::shared_ptr<ribi::TextCanvas> ribi::tictactoe::Board::ToTextCanvas() const noexcept
+std::string ribi::tictactoe::Board::ToTextCanvas() const noexcept
 {
-  boost::shared_ptr<TextCanvas> c {
-    new TextCanvas(3,3)
-  };
+  std::stringstream s;
   for (int y=0; y!=3; ++y)
   {
     for (int x=0; x!=3; ++x)
     {
-      c->PutText(x,y,SquareToStr(GetSquare(x,y)));
+      s << SquareToStr(GetSquare(x,y));
     }
+    s << '\n';
   }
-  return c;
+  std::string t{s.str()};
+  assert(!t.empty());
+  t.pop_back();
+  return t;
 }
 
 

@@ -31,8 +31,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 
 #include "qtaboutdialog.h"
-#include "qtcanvas.h"
-#include "qtcanvasdialog.h"
+//#include "qtcanvas.h"
+//#include "qtcanvasdialog.h"
 #include "testtimer.h"
 #include "qttictactoecanvas.h"
 #include "qttictactoegamedialog.h"
@@ -96,6 +96,7 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
     QtTicTacToeGameDialog d(player1,player2);
     assert(!d.GetVersion().empty());
   }
+  #ifdef SUPPORT_RETRO_VERSION_OF_TICTACTOE_AGAIN_20150918
   {
     QtCanvas * const qtcanvas {
       new QtTicTacToeCanvas
@@ -109,9 +110,11 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
   const auto player2 = boost::make_shared<AiPlayRandom>();
   QtTicTacToeWidget(player1,player2);
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  #endif // SUPPORT_RETRO_VERSION_OF_TICTACTOE_AGAIN_20150918
 }
 #endif
 
+#ifdef SUPPORT_RETRO_VERSION_OF_TICTACTOE_AGAIN_20150918
 void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_start_old_school_clicked()
 {
   QtCanvas * const qtcanvas {
@@ -131,3 +134,4 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_start_old_school_clicked(
   ShowChild(d.get());
   //canvas will be deleted by QtCanvasDialog
 }
+#endif // SUPPORT_RETRO_VERSION_OF_TICTACTOE_AGAIN_20150918

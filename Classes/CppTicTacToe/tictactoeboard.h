@@ -100,7 +100,8 @@ struct Board
   ///SetSummarizedState sets the board its state
   void SetSummarizedState(const int state) noexcept;
 
-  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+  ///Display it as a multi-line string
+  std::string ToTextCanvas() const noexcept;
 
   boost::signals2::signal<void(Board*)> m_signal_changed;
 

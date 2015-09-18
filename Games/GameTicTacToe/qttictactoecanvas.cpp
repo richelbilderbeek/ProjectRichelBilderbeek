@@ -4,6 +4,8 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttictactoecanvas.h"
 
+#ifdef SUPPORT_RETRO_VERSION_OF_TICTACTOE_AGAIN_20150918
+
 #include <QKeyEvent>
 
 #include "qtcanvas.h"
@@ -66,3 +68,5 @@ void ribi::tictactoe::QtTicTacToeCanvas::OnChanged()
 {
   SetCanvas(m_widget->ToTextCanvas());
 }
+
+#endif //SUPPORT_RETRO_VERSION_OF_TICTACTOE_AGAIN_20150918

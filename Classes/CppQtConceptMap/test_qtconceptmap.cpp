@@ -788,6 +788,9 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     auto space = CreateSpace();
     qtconceptmap->keyPressEvent(&space);
 
+    TRACE(qtconceptmap->GetSelectedQtNodes().size());
+    TRACE(conceptmap->GetSelectedNodes().size());
+
     assert(conceptmap->GetNodes().size() == 2);
     assert(conceptmap->GetNodes().size() == qtconceptmap->GetQtNodes().size());
     assert(conceptmap->GetSelectedNodes().size() == 1);
@@ -960,6 +963,9 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     assert(conceptmap->GetSelectedEdges().size() == qtconceptmap->GetSelectedQtEdges().size());
     assert(conceptmap->GetSelectedNodes().size() == 0);
     assert(conceptmap->GetSelectedEdges().size() == 1);
+
+    qtconceptmap->GetQtNodes()[0]->SetCenterPos(-100.0,0.0);
+    qtconceptmap->GetQtNodes()[1]->SetCenterPos( 100.0,0.0);
 
     //Select a node
     auto up = CreateUp();

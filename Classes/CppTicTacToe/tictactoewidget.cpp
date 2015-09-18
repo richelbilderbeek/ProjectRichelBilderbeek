@@ -5,7 +5,7 @@
 #include "tictactoewidget.h"
 
 #include <cassert>
-#include "textcanvas.h"
+//#include "textcanvas.h"
 #include "tictactoegame.h"
 #include "testtimer.h"
 #include "trace.h"
@@ -113,25 +113,32 @@ void ribi::tictactoe::Widget::Test() noexcept
 }
 #endif
 
-boost::shared_ptr<ribi::TextCanvas> ribi::tictactoe::Widget::ToTextCanvas() const noexcept
+std::string ribi::tictactoe::Widget::ToTextCanvas() const noexcept
 {
-  const boost::shared_ptr<TextCanvas> canvas {
-    m_game->ToTextCanvas()
-  };
-  assert(canvas);
+  std::string canvas {m_game->ToTextCanvas()};
 
   if (m_game->GetWinner() == Winner::player1
    || m_game->GetWinner() == Winner::player2)
   {
+    std::stringstream s;
     for (int i=0; i!=3; ++i)
     {
       for (int j=0; j!=3; ++j)
       {
-        canvas->PutChar(i,j, m_game->GetWinner() == Winner::player1 ? 'X': 'O');
+        s << (m_game->GetWinner() == Winner::player1 ? 'X': 'O');
       }
+      s << '\n';
     }
+    canvas = s.str();
+    assert(!canvas.empty());
+    canvas.pop_back();
   }
-  const char c = canvas->GetChar(m_x,m_y);
+
+  //Add selectdeness
+  const int cursor_pos = (m_y * 4) + m_x;
+  assert(cursor_pos >= 0);
+  assert(cursor_pos < static_cast<int>(canvas.size()));
+  const char c =  canvas[cursor_pos];
   char d = ' ';
   switch (c)
   {
@@ -142,6 +149,7 @@ boost::shared_ptr<ribi::TextCanvas> ribi::tictactoe::Widget::ToTextCanvas() cons
     case 'o': d = 'O'; break;
     case 'x': d = 'X'; break;
   }
-  canvas->PutChar(m_x,m_y,d);
+
+  canvas[cursor_pos] = d;
   return canvas;
 }

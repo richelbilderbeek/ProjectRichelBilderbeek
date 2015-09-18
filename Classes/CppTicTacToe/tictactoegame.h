@@ -59,7 +59,8 @@ struct Game
   ///SetSummarizedState sets the game its state
   void SetSummarizedState(const int state) noexcept;
 
-  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+  ///Just display it as a string
+  std::string ToTextCanvas() const noexcept;
 
   boost::signals2::signal<void(Game*)> m_signal_changed;
 

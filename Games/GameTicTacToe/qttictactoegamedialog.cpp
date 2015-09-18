@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lambda/bind.hpp>
 
+#include <QKeyEvent>
 #include <QDesktopWidget>
 
 #include "tictactoegame.h"
@@ -78,6 +79,11 @@ ribi::tictactoe::QtTicTacToeGameDialog::~QtTicTacToeGameDialog() noexcept
   delete ui;
 }
 
+std::string ribi::tictactoe::QtTicTacToeGameDialog::GetVersion() noexcept
+{
+  return "1.2";
+}
+
 void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner(const QtTicTacToeWidget* const)
 {
 
@@ -93,6 +99,15 @@ void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner(const QtTicTacToeWidget* 
   }
   d.exec();
   m_tictactoe->Restart();
+}
+
+void ribi::tictactoe::QtTicTacToeGameDialog::keyPressEvent(QKeyEvent *event)
+{
+  if (event->key() == Qt::Key_Escape)
+  {
+    close();
+    return;
+  }
 }
 
 #ifndef NDEBUG

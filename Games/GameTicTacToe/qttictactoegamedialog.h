@@ -53,7 +53,10 @@ public:
   QtTicTacToeGameDialog(const QtTicTacToeGameDialog&) = delete;
   QtTicTacToeGameDialog& operator=(const QtTicTacToeGameDialog&) = delete;
   ~QtTicTacToeGameDialog() noexcept;
-  static std::string GetVersion() { return "1.2"; }
+  static std::string GetVersion() noexcept;
+
+protected:
+  void keyPressEvent(QKeyEvent *event);
 
 private:
   Ui::QtTicTacToeGameDialog *ui;

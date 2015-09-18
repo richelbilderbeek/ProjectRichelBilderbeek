@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>309</width>
-    <height>548</height>
+    <height>445</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -34,38 +34,9 @@ QLabel { color: rgb(0,0,0); }
 QLabel { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
   <layout class="QFormLayout" name="formLayout">
-   <item row="7" column="1">
-    <widget class="QPushButton" name="button_about">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>&amp;About</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="1">
-    <widget class="QPushButton" name="button_quit">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>&amp;Quit</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
+   <property name="fieldGrowthPolicy">
+    <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+   </property>
    <item row="1" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
@@ -76,55 +47,26 @@ QLabel { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="minimumSize">
-      <size>
-       <width>102</width>
-       <height>102</height>
-      </size>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_start">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
      <property name="text">
-      <string/>
+      <string>&amp;Start</string>
      </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/GameTicTacToeX.png</pixmap>
+     <property name="default">
+      <bool>true</bool>
      </property>
-     <property name="scaledContents">
+     <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="7" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="minimumSize">
-      <size>
-       <width>102</width>
-       <height>102</height>
-      </size>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/R.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/GameTicTacToeRetro.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="2">
+   <item row="3" column="0" colspan="2">
     <widget class="QWidget" name="widget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -209,8 +151,27 @@ QLabel { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
      </layout>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="button_start">
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="minimumSize">
+      <size>
+       <width>102</width>
+       <height>102</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="GameTicTacToe.qrc">:/images/R.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QPushButton" name="button_about">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -218,18 +179,34 @@ QLabel { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
       </sizepolicy>
      </property>
      <property name="text">
-      <string>&amp;Start</string>
-     </property>
-     <property name="default">
-      <bool>true</bool>
+      <string>&amp;About</string>
      </property>
      <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QPushButton" name="button_start_old_school">
+   <item row="8" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="minimumSize">
+      <size>
+       <width>102</width>
+       <height>102</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="GameTicTacToe.qrc">:/images/GameTicTacToeX.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QPushButton" name="button_quit">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -237,10 +214,7 @@ QLabel { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
       </sizepolicy>
      </property>
      <property name="text">
-      <string>S&amp;tart</string>
-     </property>
-     <property name="default">
-      <bool>false</bool>
+      <string>&amp;Quit</string>
      </property>
      <property name="flat">
       <bool>true</bool>

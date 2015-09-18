@@ -26,7 +26,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "dotmatrixchar.h"
-#include "textcanvas.h"
 #include "tictactoeai.h"
 #include "tictactoeais.h"
 #include "tictactoeboard.h"
@@ -72,7 +71,7 @@ int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std:
 
   while (1)
   {
-    if (!silent) { std::cout << (*t.ToTextCanvas()) << std::endl; }
+    if (!silent) { std::cout << t.ToTextCanvas() << std::endl; }
 
     if (t.GetWinner() != tictactoe::Winner::no_winner) break;
 
@@ -101,15 +100,13 @@ ribi::About ribi::tictactoe::TicTacToeMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TicTacToe",
     "tic-tac-toe game",
-    "the 5th of June 2014",
+    "September 18th of 2015",
     "2010-2015",
     "http://www.richelbilderbeek.nl/GameTicTacToe.htm",
     GetVersion(),
     GetVersionHistory()
   );
-  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("DotMatrix version: " + DotMatrixChar::GetVersion());
-  a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("tictactoe::Board version: " + tictactoe::Board::GetVersion());
   a.AddLibrary("tictactoe::Game version: " + tictactoe::Game::GetVersion());
   a.AddLibrary("tictactoe::Widget version: " + tictactoe::Widget::GetVersion());
@@ -152,7 +149,7 @@ boost::shared_ptr<const ribi::Program> ribi::tictactoe::TicTacToeMenuDialog::Get
 
 std::string ribi::tictactoe::TicTacToeMenuDialog::GetVersion() const noexcept
 {
-  return "1.8";
+  return "1.9";
 }
 
 std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory() const noexcept
@@ -166,7 +163,8 @@ std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory
     "2011-04-16: version 1.5: added use of WtAutoConfig (for web application)"
     "2014-02-10: version 1.6: added retro version",
     "2014-06-05: version 1.7: first step in adding AI",
-    "2014-08-07: version 1.8: added silent flag in console version"
+    "2014-08-07: version 1.8: added silent flag in console version",
+    "2015-09-18: version 1.9: removed retro version"
   };
 }
 
@@ -179,10 +177,11 @@ void ribi::tictactoe::TicTacToeMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  tictactoe::Game();
-  tictactoe::Board();
-  tictactoe::Widget();
-  TextCanvas();
+  {
+    tictactoe::Game();
+    tictactoe::Board();
+    tictactoe::Widget();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog","--1h","--2h", "--silent" } );

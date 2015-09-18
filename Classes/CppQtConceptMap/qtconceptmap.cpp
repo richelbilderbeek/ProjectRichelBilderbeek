@@ -117,7 +117,7 @@ ribi::cmap::QtConceptMap::QtConceptMap(QWidget* parent)
 
   this->m_signal_update.connect(
     boost::bind(
-      &QtConceptMap::OnItemRequestsUpdate,
+      &QtConceptMap::OnItemSelectedChanged,
       this,
       boost::lambda::_1
     )
@@ -902,14 +902,17 @@ void ribi::cmap::QtConceptMap::OnItemRequestsUpdate(const QGraphicsItem* const i
 
 void ribi::cmap::QtConceptMap::OnItemSelectedChanged(QGraphicsItem* const item)
 {
+  if (GetVerbosity()) { std::clog << "An item has its selectedness changed" << std::endl; }
   if (QtNode * const qtnode = dynamic_cast<QtNode*>(item))
   {
     if (qtnode->isSelected())
     {
+      if (GetVerbosity()) { std::clog << "A node got selected" << std::endl; }
       m_conceptmap->AddSelected( ConceptMap::Nodes( { qtnode->GetNode() } ) );
     }
     else
     {
+      if (GetVerbosity()) { std::clog << "A node got unselected" << std::endl; }
       m_conceptmap->RemoveSelected( ConceptMap::Nodes( { qtnode->GetNode() } ) );
     }
   }
@@ -917,10 +920,12 @@ void ribi::cmap::QtConceptMap::OnItemSelectedChanged(QGraphicsItem* const item)
   {
     if (qtedge->isSelected())
     {
+      if (GetVerbosity()) { std::clog << "An edge got selected" << std::endl; }
       m_conceptmap->AddSelected( ConceptMap::Edges( { qtedge->GetEdge() } ) );
     }
     else
     {
+      if (GetVerbosity()) { std::clog << "An edge got unselected" << std::endl; }
       m_conceptmap->RemoveSelected( ConceptMap::Edges( { qtedge->GetEdge() } ) );
     }
   }

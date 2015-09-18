@@ -44,7 +44,7 @@ struct Widget
 
   void Select(const int x, const int y) noexcept;
 
-  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+  std::string ToTextCanvas() const noexcept;
 
   ///Signal emitted when the widget is changed
   boost::signals2::signal<void ()> m_signal_changed;

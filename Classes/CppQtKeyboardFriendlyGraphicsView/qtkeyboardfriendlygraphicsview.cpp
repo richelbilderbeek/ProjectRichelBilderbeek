@@ -324,6 +324,9 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
     }
   }
 
+  assert(focus_item);
+  focus_item->clearFocus();
+  focus_item->setSelected(false);
   m_signal_update(focus_item);
 
   if (items.empty())

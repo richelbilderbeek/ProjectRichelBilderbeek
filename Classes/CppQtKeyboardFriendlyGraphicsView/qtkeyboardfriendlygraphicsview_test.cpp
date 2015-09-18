@@ -68,6 +68,45 @@ void ribi::QtKeyboardFriendlyGraphicsView::Test() noexcept
 
     assert(c.Get() > 0);
   }
+  if (verbose) { TRACE("When focus/selectedness changes, two signals are emitted "); }
+  {
+    //item1 unselected and unfocused at right
+    item1->setSelected(false);
+    item1->setPos( 100.0,0.0);
+    //item1 selected and focused at left
+    item2->setSelected(true);
+    item2->setFocus();
+    item2->setPos(-100.0,0.0);
+    assert(view.scene()->selectedItems().size() == 1);
+
+    Counter c{0}; //For receiving the signal
+    view.m_signal_update.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+
+    auto right = CreateRight();
+    view.keyPressEvent(&right);
+
+    assert(c.Get() == 2);
+  }
+
+
+  if (verbose) { TRACE("Pressing space selects one item, when two items were selected"); }
+  {
+    item1->clearFocus();
+    item2->clearFocus();
+    item1->setSelected(true);
+    item2->setSelected(true);
+
+    assert(view.scene()->selectedItems().size() == 2);
+
+    auto space = CreateSpace();
+    view.keyPressEvent(&space);
+
+    TRACE(view.scene()->selectedItems().size());
+    assert(view.scene()->selectedItems().size() == 1);
+  }
+  assert(!"Green");
 
 }
 #endif

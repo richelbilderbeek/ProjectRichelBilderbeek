@@ -3,7 +3,6 @@
 #include <cassert>
 
 #include "testtimer.h"
-#include "textcanvas.h"
 #include "tictactoeai.h"
 #include "tictactoeboard.h"
 #include "tictactoehelper.h"
@@ -266,7 +265,7 @@ void ribi::tictactoe::Game::Test() noexcept
 }
 #endif
 
-boost::shared_ptr<ribi::TextCanvas> ribi::tictactoe::Game::ToTextCanvas() const noexcept
+std::string ribi::tictactoe::Game::ToTextCanvas() const noexcept
 {
   return GetBoard()->ToTextCanvas();
 }

@@ -1,7 +1,8 @@
 #ifndef QTTICTACTOECANVAS_H
 #define QTTICTACTOECANVAS_H
 
-#include "qtcanvas.h"
+#ifdef SUPPORT_RETRO_VERSION_OF_TICTACTOE_AGAIN_20150918
+//#include "qtcanvas.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -33,5 +34,7 @@ struct QtTicTacToeCanvas : public QtCanvas
 
 } //~namespace tictactoe
 } //~namespace ribi
+
+#endif // SUPPORT_RETRO_VERSION_OF_TICTACTOE_AGAIN_20150918
 
 #endif // QTTICTACTOECANVAS_H
