@@ -212,7 +212,14 @@ public slots:
   ///Use QGraphicsItem* due to QtKeyboardFriendlyGraphicsView working on QGraphicsItems
   void OnItemRequestsUpdate(const QGraphicsItem* const item);
 
+  ///Called if QtKeyboardFriendlyGraphicsView updates an item.
+  ///Is called, for example, after user input changes the selected item
+  //void OnItemUpdate(const QGraphicsItem* const item);
+
+  ///Called if QtKeyboardFriendlyGraphicsView updates an item.
+  ///Is called, for example, after user input changes the selected item
   void OnItemSelectedChanged(QGraphicsItem* const item);
+
 
 
   ///Called when an item requests a scene update

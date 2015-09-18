@@ -32,6 +32,7 @@ void ribi::QtKeyboardFriendlyGraphicsView::Test() noexcept
   }
   using namespace ribi::qtkeyboardfriendlygraphicsview;
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{true};
   QtKeyboardFriendlyGraphicsView view;
   QGraphicsRectItem * const item1{new QGraphicsRectItem};
   QGraphicsRectItem * const item2{new QGraphicsRectItem};
@@ -42,16 +43,32 @@ void ribi::QtKeyboardFriendlyGraphicsView::Test() noexcept
   view.scene()->addItem(item1);
   view.scene()->addItem(item2);
 
-
+  if (verbose) { TRACE("Space selects one random item"); }
   {
     item1->setSelected(false);
     item2->setSelected(false);
     assert(view.scene()->selectedItems().empty());
-    view.SetVerbosity(true);
     auto space = CreateSpace();
     view.keyPressEvent(&space);
     assert(view.scene()->selectedItems().size() == 1);
   }
+  if (verbose) { TRACE("Space causes m_signal_update to be emitted"); }
+  {
+    item1->setSelected(false);
+    item2->setSelected(false);
+    assert(view.scene()->selectedItems().empty());
+
+    Counter c{0}; //For receiving the signal
+    view.m_signal_update.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+
+    auto space = CreateSpace();
+    view.keyPressEvent(&space);
+
+    assert(c.Get() > 0);
+  }
+
 }
 #endif
 

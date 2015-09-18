@@ -107,14 +107,21 @@ ribi::cmap::QtConceptMap::QtConceptMap(QWidget* parent)
     m_conceptmap{},
     m_examples_item(new QtExamplesItem),
     m_highlighter{new QtItemHighlighter},
-    m_tools{new QtTool},
-    m_verbose{false}
+    m_tools{new QtTool}
 {
   #ifndef NDEBUG
   Test();
   #endif
 
   this->setScene(new QGraphicsScene(this));
+
+  this->m_signal_update.connect(
+    boost::bind(
+      &QtConceptMap::OnItemRequestsUpdate,
+      this,
+      boost::lambda::_1
+    )
+  );
 
   assert(!m_examples_item->scene());
   scene()->addItem(m_examples_item); //Add the examples so it has a parent
@@ -162,7 +169,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
-  if (m_verbose) { TRACE("Start of 'QtConceptMap::AddEdge(const boost::shared_ptr<Edge> edge)'"); }
+  if (GetVerbosity()) { TRACE("Start of 'QtConceptMap::AddEdge(const boost::shared_ptr<Edge> edge)'"); }
 
   //Add Node to ConceptMap if this has not been done yet
   {
@@ -172,7 +179,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
     assert(cnt == 0 || cnt == 1);
     if (cnt == 0)
     {
-      if (m_verbose) { TRACE("Adding Edge to ConceptMap (as it was not yet in there)"); }
+      if (GetVerbosity()) { TRACE("Adding Edge to ConceptMap (as it was not yet in there)"); }
       this->GetConceptMap()->AddEdge(edge);
     }
   }
@@ -180,20 +187,20 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
   //Already added
   if (GetQtEdge(edge))
   {
-    if (m_verbose) { TRACE("QtEdge already present"); }
+    if (GetVerbosity()) { TRACE("QtEdge already present"); }
     return GetQtEdge(edge);
   }
 
   //Be helpful here
   if (!GetQtNode(edge->GetFrom().get()))
   {
-    if (m_verbose) { TRACE("Adding 'from' Node to QtConceptMap (as it was not yet in there)"); }
+    if (GetVerbosity()) { TRACE("Adding 'from' Node to QtConceptMap (as it was not yet in there)"); }
     //Note: this cases ConceptMap::GetSelectedEdges() to be empty again, this has to be fixed later on
     AddNode(edge->GetFrom());
   }
   if (!GetQtNode(edge->GetTo().get()))
   {
-    if (m_verbose) { TRACE("Adding 'to' Node to QtConceptMap (as it was not yet in there)"); }
+    if (GetVerbosity()) { TRACE("Adding 'to' Node to QtConceptMap (as it was not yet in there)"); }
     //Note: this cases ConceptMap::GetSelectedEdges() to be empty again, this has to be fixed later on
     AddNode(edge->GetTo());
   }
@@ -250,7 +257,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
     )
   );
 
-  if (m_verbose) { TRACE("Adding QtEdge (and its QtQuadBezierArrow and QtNode) to QtConceptMap's QScene"); }
+  if (GetVerbosity()) { TRACE("Adding QtEdge (and its QtQuadBezierArrow and QtNode) to QtConceptMap's QScene"); }
   assert(!qtedge->scene());
   this->scene()->addItem(qtedge); //QtEdge adds the QtQuadBezierArrow and QtNode to the QScene when QtEdge::paint is called
 
@@ -260,7 +267,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
     GetConceptMap()->SetSelected( ConceptMap::Edges( {edge} ) );
   }
 
-  if (m_verbose) { TRACE("Setting selection and focus correct"); }
+  if (GetVerbosity()) { TRACE("Setting selection and focus correct"); }
 
   qtfrom->SetSelected(false);
   qtto->SetSelected(false);
@@ -458,39 +465,39 @@ void ribi::cmap::QtConceptMap::DeleteNode(const boost::shared_ptr<const Node> no
 void ribi::cmap::QtConceptMap::DeleteQtEdge(const QtEdge * const qtedge)
 {
   assert(qtedge);
-  if (m_verbose) { TRACE("Start of DeleteQtEdge"); }
+  if (GetVerbosity()) { TRACE("Start of DeleteQtEdge"); }
 
-  if (m_verbose) { TRACE("Does the ConceptMap still have the Edge?"); }
+  if (GetVerbosity()) { TRACE("Does the ConceptMap still have the Edge?"); }
   if (GetConceptMap()->HasEdge(qtedge->GetEdge()))
   {
-    if (m_verbose) { TRACE("Yes, delete the Edge from the ConceptMap"); }
+    if (GetVerbosity()) { TRACE("Yes, delete the Edge from the ConceptMap"); }
     GetConceptMap()->DeleteEdge(qtedge->GetEdge());
     return;
   }
   else
   {
-    if (m_verbose) { TRACE("No, the Edge is already absent int the ConceptMap"); }
+    if (GetVerbosity()) { TRACE("No, the Edge is already absent int the ConceptMap"); }
   }
 
-  if (m_verbose) { TRACE("Set QtEdge to be not selected"); }
+  if (GetVerbosity()) { TRACE("Set QtEdge to be not selected"); }
   const_cast<QtEdge*>(qtedge)->SetSelected(false); //Remove const instead of using const-correct std::find on GetQtNodes
 
-  if (m_verbose) { TRACE("Is the QtEdge still present in a QScene?"); }
+  if (GetVerbosity()) { TRACE("Is the QtEdge still present in a QScene?"); }
   if (qtedge->scene())
   {
-    if (m_verbose) { TRACE("Yes, QtEdge is still present in a QScene"); }
+    if (GetVerbosity()) { TRACE("Yes, QtEdge is still present in a QScene"); }
     assert(qtedge->scene() == GetScene());
-    if (m_verbose) { TRACE("Remove QtEdge from QScene"); }
+    if (GetVerbosity()) { TRACE("Remove QtEdge from QScene"); }
     this->scene()->removeItem(const_cast<QtEdge*>(qtedge));
 
     if (qtedge->GetQtNode()->scene())
     {
-      if (m_verbose) { TRACE("Remove QtEdge its QtNode from QScene"); }
+      if (GetVerbosity()) { TRACE("Remove QtEdge its QtNode from QScene"); }
       this->scene()->removeItem(const_cast<QtEdge*>(qtedge)->GetQtNode().get());
     }
     if (qtedge->GetArrow()->scene())
     {
-      if (m_verbose) { TRACE("Remove QtEdge its QtQuadBezierArrow from QScene"); }
+      if (GetVerbosity()) { TRACE("Remove QtEdge its QtQuadBezierArrow from QScene"); }
       this->scene()->removeItem(const_cast<QtEdge*>(qtedge)->GetArrow().get());
     }
   }

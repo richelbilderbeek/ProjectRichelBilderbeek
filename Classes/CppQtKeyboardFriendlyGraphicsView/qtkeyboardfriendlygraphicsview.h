@@ -42,6 +42,8 @@ struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
 
   virtual ~QtKeyboardFriendlyGraphicsView() noexcept {}
 
+  bool GetVerbosity() const noexcept { return m_verbose; }
+
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
 
