@@ -253,7 +253,9 @@ void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexc
   }
 
   //Can be nullptr
+
   QGraphicsItem* const focus_item = scene()->focusItem();
+  const auto selected = scene()->selectedItems();
 
   std::vector<QGraphicsItem *> items;
   switch (event->key())
