@@ -1,6 +1,10 @@
 #ProjectRichelBilderbeek
 
-Richel Bilderbeek's C++ work
+Richel Bilderbeek's C++ work, before splitting it up.
+
+```
+This repository is transitioning to multiple small ones.
+```
 
 ## What ProjectRichelBilderbeek is
 
