@@ -1,9 +1,4 @@
-#include <iostream>
-#include <gsl/gsl_sf_bessel.h>
+//Does not work yet: need GCC 5.1, I have 4.9.2 :-(
+#include <gsl.h>
 
-int main ()
-{
-  const double x = 5.0;
-  const double y = gsl_sf_bessel_J0(x);
-  std::cout << "J0(" << x << ") = " << y << '\n"
-}
+int main () { }

@@ -912,8 +912,11 @@ void ribi::cmap::QtConceptMap::OnItemSelectedChanged(QGraphicsItem* const item)
     }
     else
     {
-      if (GetVerbosity()) { std::clog << "A node got unselected" << std::endl; }
-      m_conceptmap->RemoveSelected( ConceptMap::Nodes( { qtnode->GetNode() } ) );
+      if (m_conceptmap->IsSelected(qtnode->GetNode()))
+      {
+        if (GetVerbosity()) { std::clog << "A node got unselected" << std::endl; }
+        m_conceptmap->RemoveSelected( ConceptMap::Nodes( { qtnode->GetNode() } ) );
+      }
     }
   }
   else if (QtEdge * const qtedge = dynamic_cast<QtEdge*>(item))

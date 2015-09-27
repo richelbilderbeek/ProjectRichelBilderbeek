@@ -118,6 +118,7 @@ struct ConceptMap
   ///Find the Edge that has the node as its center Node
   ///Returns nullptr if not present
   EdgePtr GetEdgeHaving(const NodePtr& node) const noexcept;
+  EdgePtr GetEdgeHaving(const ReadOnlyNodePtr& node) const noexcept;
 
 
   ReadOnlyEdges GetEdges() const noexcept;
@@ -154,7 +155,8 @@ struct ConceptMap
 
   bool HasEdge(const ReadOnlyEdgePtr& edge) const noexcept;
   bool HasNode(const ReadOnlyNodePtr& node) const noexcept;
-  //const std::vector<boost::shared_ptr<      Node>>& GetNodes() { return m_nodes; }
+
+  bool IsSelected(const ReadOnlyNodePtr& node) const noexcept;
 
   ///Similar to operator==, except that the GUI member variables aren't checked for equality
   static bool HasSameContent(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;

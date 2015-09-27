@@ -445,7 +445,7 @@ ribi::cmap::ConceptMap::CenterNodePtr ribi::cmap::ConceptMap::FindCenterNode() n
   );
 }
 
-ribi::cmap::ConceptMap::EdgePtr ribi::cmap::ConceptMap::GetEdgeHaving(const NodePtr& node) const noexcept
+ribi::cmap::ConceptMap::EdgePtr ribi::cmap::ConceptMap::GetEdgeHaving(const ReadOnlyNodePtr& node) const noexcept
 {
   const auto iter = std::find_if(
     std::begin(m_edges),
@@ -454,6 +454,11 @@ ribi::cmap::ConceptMap::EdgePtr ribi::cmap::ConceptMap::GetEdgeHaving(const Node
   );
   if (iter == std::end(m_edges)) { return EdgePtr(); }
   return *iter;
+}
+
+ribi::cmap::ConceptMap::EdgePtr ribi::cmap::ConceptMap::GetEdgeHaving(const NodePtr& node) const noexcept
+{
+  return GetEdgeHaving(boost::const_pointer_cast<const Node>(node));
 }
 
 ribi::cmap::ConceptMap::ReadOnlyEdges ribi::cmap::ConceptMap::GetEdges() const noexcept
@@ -1152,6 +1157,18 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::GetRandomNode(
   boost::shared_ptr<Node> p;
   if (!v.empty()) p = v[0];
   return p;
+}
+
+bool ribi::cmap::ConceptMap::IsSelected(const ReadOnlyNodePtr& node) const noexcept
+{
+  const auto iter = std::find(
+    std::begin(m_selected.second),
+    std::end(m_selected.second),
+    node
+  );
+  if (iter != std::end(m_selected.second)) return true;
+  const auto edge = this->GetEdgeHaving(node);
+  return edge ? true : false;
 }
 
 void ribi::cmap::ConceptMap::OnUndo() noexcept
