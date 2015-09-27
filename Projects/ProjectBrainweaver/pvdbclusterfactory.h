@@ -30,23 +30,33 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pvdbfwd.h"
 #pragma GCC diagnostic pop
 
+namespace ribi { namespace cmap { struct Concept; } }
+
 namespace ribi {
 namespace pvdb {
 
 ///Factory for creating Cluster instances
 struct ClusterFactory
 {
-  static const boost::shared_ptr<pvdb::Cluster> Create(const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& v);
+  ClusterFactory();
+
+  boost::shared_ptr<Cluster> Create(const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& v) const noexcept;
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
-  static const boost::shared_ptr<pvdb::Cluster> DeepCopy(const boost::shared_ptr<const pvdb::Cluster> cluster);
+  boost::shared_ptr<Cluster> DeepCopy(const boost::shared_ptr<const pvdb::Cluster> cluster) const noexcept;
   #endif
 
   ///Obtain a single test, a combination of testing node indices
-  static const boost::shared_ptr<pvdb::Cluster> GetTest(const std::vector<int>& test_node_indices);
+  boost::shared_ptr<Cluster> GetTest(const std::vector<int>& test_node_indices) const noexcept;
 
-  static const std::vector<boost::shared_ptr<pvdb::Cluster> > GetTests();
+  std::vector<boost::shared_ptr<Cluster> > GetTests() const noexcept;
+
+  private:
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace pvdb

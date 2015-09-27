@@ -114,7 +114,7 @@ struct QtEdge : public QGraphicsItem
 
   mutable boost::signals2::signal<void (QtEdge *)> m_signal_base_changed;
   mutable boost::signals2::signal<void (QtEdge *)> m_signal_edge_changed;
-  mutable boost::signals2::signal<void (QtEdge *)> m_signal_selection_changed;
+  mutable boost::signals2::signal<void (QtEdge *)> m_signal_selected_changed;
   mutable boost::signals2::signal<void (QtEdge *,const int key)> m_signal_key_down_pressed;
 
 protected:
@@ -124,6 +124,7 @@ protected:
   void dragMoveEvent(QGraphicsSceneDragDropEvent *event) noexcept override final;
   */
   void focusInEvent(QFocusEvent *event) noexcept override final;
+  void focusOutEvent(QFocusEvent *event) noexcept override final;
   /*
   void hoverMoveEvent(QGraphicsSceneHoverEvent *event) noexcept override final;
   */

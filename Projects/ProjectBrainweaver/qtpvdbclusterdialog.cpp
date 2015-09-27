@@ -118,7 +118,7 @@ ribi::pvdb::QtPvdbClusterWidget * ribi::pvdb::QtPvdbClusterDialog::BuildWidget(c
   //Create a cluster a new cluster
   if (!file->GetCluster() && !file->GetConceptMap())
   {
-    const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory::Create( {} );
+    const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory().Create( {} );
     assert(cluster);
     file->SetCluster(cluster);
   }
@@ -141,7 +141,7 @@ void ribi::pvdb::QtPvdbClusterDialog::DoRandomStuff()
   assert(GetWidget());
   assert(m_file->GetCluster());
   assert(m_file->GetCluster() == this->GetWidget()->GetCluster());
-  const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(m_file->GetCluster());
+  const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory().DeepCopy(m_file->GetCluster());
   assert(before != m_file->GetCluster());
   assert(operator==(*before,*GetWidget()->GetCluster()));
   #endif
@@ -157,7 +157,7 @@ void ribi::pvdb::QtPvdbClusterDialog::DoRandomStuff()
   #ifndef NDEBUG
   {
     //Check that writing to pvdb::File works
-    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::DeepCopy(m_file));
+    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory().DeepCopy(m_file));
     assert(file);
     const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
     file->SetCluster(cluster);
@@ -236,7 +236,7 @@ void ribi::pvdb::QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
   #ifndef NDEBUG
   {
     //Check that writing to pvdb::File works
-    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::DeepCopy(m_file));
+    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory().DeepCopy(m_file));
     assert(file);
     const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
     file->SetCluster(cluster);
@@ -261,7 +261,7 @@ void ribi::pvdb::QtPvdbClusterDialog::on_button_add_clicked()
   #ifndef NDEBUG
   {
     //Check that writing to pvdb::File works
-    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::DeepCopy(m_file));
+    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory().DeepCopy(m_file));
     assert(file);
     assert(file != m_file);
     const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
@@ -364,7 +364,7 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
         {
           assert(file->GetCluster() && "the cluster dialog used an existing or created a cluster");
           assert(file->GetCluster() == d->GetWidget()->GetCluster());
-          const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
+          const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory().DeepCopy(file->GetCluster());
           assert(before);
           assert(before != file->GetCluster());
           assert(operator==(*file->GetCluster(),*before));
@@ -412,7 +412,7 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
         if (file->GetCluster())
         {
 
-          const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
+          const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory().DeepCopy(file->GetCluster());
           assert(before);
           assert(before != file->GetCluster());
           assert(operator==(*file->GetCluster(),*before));
@@ -433,7 +433,7 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
     file->SetQuestion(question);
     assert(file->GetQuestion() == question);
 
-    const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory::GetTest( {0,1,2} );
+    const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory().GetTest( {0,1,2} );
 
     file->SetCluster(cluster);
 
@@ -452,7 +452,7 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
     file->SetQuestion(question);
 
-    const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory::GetTest( { 0,1,2 } );
+    const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory().GetTest( { 0,1,2 } );
 
     file->SetCluster(cluster);
 

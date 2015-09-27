@@ -37,14 +37,23 @@ struct File;
 ///Factory of pvdb::File
 struct FileFactory
 {
-  static const boost::shared_ptr<pvdb::File> Create();
+  FileFactory();
+
+  boost::shared_ptr<pvdb::File> Create() const noexcept;
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
-  static const boost::shared_ptr<pvdb::File> DeepCopy(const boost::shared_ptr<const pvdb::File>& file);
+  boost::shared_ptr<pvdb::File> DeepCopy(const boost::shared_ptr<const pvdb::File>& file) const noexcept;
   #endif
 
-  static const std::vector<boost::shared_ptr<pvdb::File> > GetTests();
+  std::vector<boost::shared_ptr<pvdb::File>> GetTests() const noexcept;
+
+  int GetNumberOfTests() const noexcept { return 6; }
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace pvdb

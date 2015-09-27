@@ -132,7 +132,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     if (verbose) { TRACE("HasSameContent 1"); }
     {
       //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
-      assert(NodeFactory().GetTests().size() >= 3);
+      assert(NodeFactory().GetNumberOfTests() >= 3);
       const boost::shared_ptr<CenterNode> node_a(CenterNodeFactory().CreateFromStrings("FOCAL QUESTION"));
       assert(node_a);
       const boost::shared_ptr<Node> node_b(NodeFactory().GetTests().at(1));

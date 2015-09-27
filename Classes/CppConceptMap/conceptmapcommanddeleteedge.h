@@ -7,8 +7,10 @@ namespace ribi {
 namespace cmap {
 
 ///Delete an existing edge
-struct CommandDeleteEdge final : public Command
+class CommandDeleteEdge final : public Command
 {
+  public:
+
   CommandDeleteEdge(
     const boost::shared_ptr<ConceptMap> conceptmap,
     const boost::shared_ptr<Edge> edge

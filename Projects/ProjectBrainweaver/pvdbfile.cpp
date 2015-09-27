@@ -274,7 +274,7 @@ std::string ribi::pvdb::File::GetTestFileName()
 std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTests()
 {
   std::vector<boost::shared_ptr<pvdb::File> > v;
-  const int n_clusters = static_cast<int>(pvdb::ClusterFactory::GetTests().size());
+  const int n_clusters = static_cast<int>(pvdb::ClusterFactory().GetTests().size());
   const int n_concept_maps = static_cast<int>(cmap::ConceptMapFactory().GetAllTests().size());
   for (int cluster_index=0; cluster_index!=n_clusters; ++cluster_index)
   {
@@ -285,7 +285,7 @@ std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTests()
       std::string question = "question";
       const std::string student_name = "student_name";
       const std::string version = "version";
-      const auto cluster = pvdb::ClusterFactory::GetTests()[cluster_index];
+      const auto cluster = pvdb::ClusterFactory().GetTests()[cluster_index];
       const auto concept_map = ribi::cmap::ConceptMapFactory().GetAllTests()[concept_map_index];
       if (concept_map)
       {
@@ -470,7 +470,7 @@ void ribi::pvdb::File::Test() noexcept
     const boost::shared_ptr<pvdb::File> f(new File);
     f->SetAssessorName("debug assessor name");
     f->SetStudentName("debug student name");
-    const boost::shared_ptr<pvdb::File> g = pvdb::FileFactory::DeepCopy(f);
+    const boost::shared_ptr<pvdb::File> g = pvdb::FileFactory().DeepCopy(f);
     assert(f != g);
     assert(operator==(*f,*g));
     //Modify g, to test operator!=

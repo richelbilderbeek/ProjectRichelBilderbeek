@@ -36,8 +36,10 @@ namespace cmap {
 ///Set selected with a coordinat
 ///- opposite of LoseSelected
 ///- SetSelected does not care if there currently something else is selected
-struct CommandSetSelectedWithCoordinat final : public Command
+class CommandSetSelectedWithCoordinat final : public Command
 {
+  public:
+
   using ConstEdges = std::vector<boost::shared_ptr<const Edge>>;
   using ConstNodes = std::vector<boost::shared_ptr<const Node>>;
   using Edges = std::vector<boost::shared_ptr<Edge>>;

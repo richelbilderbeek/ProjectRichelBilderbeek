@@ -108,16 +108,14 @@ void ribi::cmap::QtNode::EnableAll()
 void ribi::cmap::QtNode::focusInEvent(QFocusEvent* e) noexcept
 {
   QtRoundedEditRectItem::focusInEvent(e);
-  //m_signal_change_selected(this);
+  this->m_signal_selected_changed(this);
   assert(hasFocus());
 }
 
 void ribi::cmap::QtNode::focusOutEvent(QFocusEvent* e) noexcept
 {
   QtRoundedEditRectItem::focusOutEvent(e);
-  //m_display_strategy->SetContourPen(m_display_strategy->GetContourPen()); //Updates itself
-  //m_signal_item_has_updated(0); //causes Examples to get hidden
-  ///?maybe update?
+  this->m_signal_selected_changed(this);
   assert(!hasFocus());
 }
 

@@ -45,12 +45,9 @@ struct QtNode : public QtRoundedEditRectItem
   ///concept_item contains the Stategy to display (and respond to the concept)
   explicit QtNode(
     const boost::shared_ptr<Node> node
-    //const boost::shared_ptr<QtItemDisplayStrategy> concept_item
   );
 
   virtual QRectF boundingRect() const { return Base::boundingRect(); }
-
-  //QBrush brush() const;
 
   void DisableAll();
   void EnableAll();
@@ -58,22 +55,7 @@ struct QtNode : public QtRoundedEditRectItem
   boost::shared_ptr<const Node>  GetNode() const noexcept;
   boost::shared_ptr<      Node>  GetNode()       noexcept;
 
-  //boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
-  //boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
-
-  //      boost::shared_ptr<const cmap::Node>  GetNode() const noexcept { return m_node; }
-  //const boost::shared_ptr<      cmap::Node>& GetNode()       noexcept { return m_node; }
-
   void SetNode(const boost::shared_ptr<Node>& node) noexcept;
-  //void SetDisplay(const boost::shared_ptr<QtItemDisplayStrategy>& display_strategy);
-
-  //void SetName(const std::string& name) noexcept;
-
-  ///Set the X coordinat of the central concept
-  //void SetX(const double x) noexcept;
-
-  ///Set the Y coordinat of the central concept
-  //void SetY(const double y) noexcept;
 
   std::string ToStr() const noexcept;
 
@@ -85,8 +67,6 @@ struct QtNode : public QtRoundedEditRectItem
   ///The QtNode is selected or unselected
   mutable boost::signals2::signal<void (QtNode *,const int key)> m_signal_key_down_pressed;
   mutable boost::signals2::signal<void (QtNode *)> m_signal_node_changed;
-  //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;
-  //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_examples;
   ///No other signals, these are present in the ConceptItems
 
   virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept final;

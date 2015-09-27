@@ -33,7 +33,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::Create(const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& v)
+ribi::pvdb::ClusterFactory::ClusterFactory()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::Create(const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& v) const noexcept
 {
   assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<ribi::cmap::Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
   //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<ribi::cmap::Concept>& p) { return p; } ));
@@ -43,7 +50,7 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::Create(
 }
 
 #ifndef NDEBUG
-const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::DeepCopy(const boost::shared_ptr<const pvdb::Cluster> cluster)
+boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::DeepCopy(const boost::shared_ptr<const pvdb::Cluster> cluster) const noexcept
 {
   const std::vector<boost::shared_ptr<const ribi::cmap::Concept> > v = cluster->Get();
   std::vector<boost::shared_ptr<ribi::cmap::Concept> > w;
@@ -67,7 +74,7 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::DeepCop
 }
 #endif
 
-const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::GetTest(const std::vector<int>& test_node_indices)
+boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::GetTest(const std::vector<int>& test_node_indices) const noexcept
 {
   std::vector<boost::shared_ptr<ribi::cmap::Concept> > concepts;
   std::transform(test_node_indices.begin(),test_node_indices.end(),std::back_inserter(concepts),
@@ -86,7 +93,7 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::GetTest
   return cluster;
 }
 
-const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > ribi::pvdb::ClusterFactory::GetTests()
+std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > ribi::pvdb::ClusterFactory::GetTests() const noexcept
 {
   std::vector<boost::shared_ptr<pvdb::Cluster> > v(6);
   {

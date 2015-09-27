@@ -36,8 +36,10 @@ namespace ribi {
 namespace pvdb {
 
 ///The File used, also the main director of the program's flow
-struct File
+class File
 {
+  public:
+
   //Start an empty file
   File();
 

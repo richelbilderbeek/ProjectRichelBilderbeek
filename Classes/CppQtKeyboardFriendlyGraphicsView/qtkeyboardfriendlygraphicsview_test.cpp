@@ -32,7 +32,7 @@ void ribi::QtKeyboardFriendlyGraphicsView::Test() noexcept
   }
   using namespace ribi::qtkeyboardfriendlygraphicsview;
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  const bool verbose{true};
+  const bool verbose{false};
   QtKeyboardFriendlyGraphicsView view;
   QGraphicsRectItem * const item1{new QGraphicsRectItem};
   QGraphicsRectItem * const item2{new QGraphicsRectItem};

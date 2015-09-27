@@ -55,15 +55,15 @@ void ribi::pvdb::Cluster::Test() noexcept
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test operator== and operator!=
   {
-    const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_1 = ribi::pvdb::ClusterFactory::GetTests();
+    const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_1 = ribi::pvdb::ClusterFactory().GetTests();
     const int sz = static_cast<int>(tmp_tests_1.size());
     for (int i=0; i!=sz; ++i)
     {
-      const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_a = ribi::pvdb::ClusterFactory::GetTests(); //For crosscompiler
+      const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_a = ribi::pvdb::ClusterFactory().GetTests(); //For crosscompiler
       const boost::shared_ptr<const ribi::pvdb::Cluster> a = tmp_tests_a.at(i);
       if (!a) continue;
       assert(a);
-      const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_b = ribi::pvdb::ClusterFactory::GetTests(); //For crosscompiler
+      const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_b = ribi::pvdb::ClusterFactory().GetTests(); //For crosscompiler
       const boost::shared_ptr<ribi::pvdb::Cluster> b = tmp_tests_b.at(i);
       if (!b) continue;
       assert(a); assert(b);
@@ -73,8 +73,8 @@ void ribi::pvdb::Cluster::Test() noexcept
       assert(operator==(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
-        const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_c = ribi::pvdb::ClusterFactory::GetTests(); //For crosscompiler
-        const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_d = ribi::pvdb::ClusterFactory::GetTests(); //For crosscompiler
+        const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_c = ribi::pvdb::ClusterFactory().GetTests(); //For crosscompiler
+        const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_d = ribi::pvdb::ClusterFactory().GetTests(); //For crosscompiler
         const boost::shared_ptr<const ribi::pvdb::Cluster> c = tmp_tests_c.at(j);
         if (!c) continue;
         assert(c);

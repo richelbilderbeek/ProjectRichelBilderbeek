@@ -32,8 +32,10 @@ namespace ribi {
 namespace cmap {
 
 ///Add another item to the selected pool
-struct CommandAddSelectedRandom final : public Command
+class CommandAddSelectedRandom final : public Command
 {
+  public:
+
   using ConstEdges = std::vector<boost::shared_ptr<const Edge>>;
   using ConstNodes = std::vector<boost::shared_ptr<const Node>>;
   using Edges = std::vector<boost::shared_ptr<Edge>>;

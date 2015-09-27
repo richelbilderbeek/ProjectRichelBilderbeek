@@ -32,7 +32,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::Create()
+ribi::pvdb::FileFactory::FileFactory()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::Create() const noexcept
 {
   boost::shared_ptr<pvdb::File> file(new pvdb::File);
   assert(file);
@@ -40,14 +47,14 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::Create()
 }
 
 #ifndef NDEBUG
-const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::DeepCopy(const boost::shared_ptr<const pvdb::File>& file)
+boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::DeepCopy(const boost::shared_ptr<const pvdb::File>& file) const noexcept
 {
   assert(file);
 
   boost::shared_ptr<pvdb::Cluster> cluster;
   if (file->GetCluster())
   {
-    cluster = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
+    cluster = pvdb::ClusterFactory().DeepCopy(file->GetCluster());
     assert(cluster);
     assert(operator==(*cluster,*file->GetCluster()));
   }
@@ -76,7 +83,9 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::DeepCopy(cons
   return p;
 }
 #endif
-const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory::GetTests()
+
+
+std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory::GetTests() const noexcept
 {
   std::vector<boost::shared_ptr<pvdb::File> > v;
   //[0]: empty file
@@ -116,7 +125,7 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory:
     assert(concept_map);
     f->SetConceptMap(concept_map);
     const boost::shared_ptr<pvdb::Cluster> cluster
-      = ClusterFactory::GetTests().at(3);
+      = ClusterFactory().GetTests().at(3);
     assert(cluster);
     f->SetCluster(cluster);
     v.push_back(f);
@@ -131,7 +140,7 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory:
     assert(concept_map);
     f->SetConceptMap(concept_map);
     const boost::shared_ptr<pvdb::Cluster> cluster
-      = ClusterFactory::GetTests().at(3);
+      = ClusterFactory().GetTests().at(3);
     assert(cluster);
     f->SetCluster(cluster);
     v.push_back(f);
@@ -146,7 +155,7 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory:
     assert(concept_map);
     f->SetConceptMap(concept_map);
     const boost::shared_ptr<pvdb::Cluster> cluster
-      = ClusterFactory::GetTests().at(3);
+      = ClusterFactory().GetTests().at(3);
     assert(cluster);
     f->SetCluster(cluster);
     v.push_back(f);
@@ -157,8 +166,16 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory:
   return v;
 }
 
-
-
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-} //~namespace pvdb
+#ifndef NDEBUG
+void ribi::pvdb::FileFactory::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  FileFactory f;
+  assert(f.GetNumberOfTests() == static_cast<int>(f.GetTests().size()));
+  assert(!"Green");
+}
 #endif

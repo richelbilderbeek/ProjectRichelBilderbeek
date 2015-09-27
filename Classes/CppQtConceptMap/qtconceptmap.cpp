@@ -233,7 +233,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
     )
   );
 
-  qtedge->m_signal_selection_changed.connect(
+  qtedge->m_signal_selected_changed.connect(
     boost::bind(
       &QtConceptMap::OnItemSelectedChanged,
       this,
@@ -256,6 +256,8 @@ ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::AddEdge(
       boost::lambda::_2  //Do not forget the placeholder!
     )
   );
+
+
 
   if (GetVerbosity()) { TRACE("Adding QtEdge (and its QtQuadBezierArrow and QtNode) to QtConceptMap's QScene"); }
   assert(!qtedge->scene());
@@ -334,7 +336,6 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::AddNode(const boost::shared_ptr<N
       &ribi::cmap::QtConceptMap::OnNodeKeyDownPressed,
       this, boost::lambda::_1, boost::lambda::_2)
   ); //Do not forget these placeholders!
-
 
   assert(!qtnode->scene());
   this->scene()->addItem(qtnode); //Adding qtnode to scene() twice gives a warning
@@ -902,34 +903,67 @@ void ribi::cmap::QtConceptMap::OnItemRequestsUpdate(const QGraphicsItem* const i
 
 void ribi::cmap::QtConceptMap::OnItemSelectedChanged(QGraphicsItem* const item)
 {
-  if (GetVerbosity()) { std::clog << "An item has its selectedness changed" << std::endl; }
+  if (GetVerbosity()) { std::clog << "A QGraphicsItem has its selectedness changed" << std::endl; }
+  //What changes its selection
   if (QtNode * const qtnode = dynamic_cast<QtNode*>(item))
   {
+    assert(!dynamic_cast<QtEdge*>(item));
+    assert(!GetConceptMap()->GetEdgeHaving(qtnode->GetNode()));
+    //Does the QtNode gain or lose selection?
     if (qtnode->isSelected())
     {
-      if (GetVerbosity()) { std::clog << "A node got selected" << std::endl; }
+      //QtNode gains selection
+      if (GetVerbosity()) { std::clog << "A QtNode got selected" << std::endl; }
+      if (m_conceptmap->IsSelected(qtnode->GetNode()))
+      {
+        if (GetVerbosity()) { std::clog << "Warning: QtNode its node already was selected" << std::endl; }
+      }
       m_conceptmap->AddSelected( ConceptMap::Nodes( { qtnode->GetNode() } ) );
     }
     else
     {
+      //QtNode loses selection
       if (m_conceptmap->IsSelected(qtnode->GetNode()))
       {
-        if (GetVerbosity()) { std::clog << "A node got unselected" << std::endl; }
+        if (GetVerbosity()) { std::clog << "A QtNode got unselected" << std::endl; }
         m_conceptmap->RemoveSelected( ConceptMap::Nodes( { qtnode->GetNode() } ) );
+      }
+      else
+      {
+        if (GetVerbosity())
+        {
+          std::clog << "Warning: a QtNode got unselected, the Node already was unselected" << std::endl;
+        }
       }
     }
   }
   else if (QtEdge * const qtedge = dynamic_cast<QtEdge*>(item))
   {
+    //Does the QtEdge gain or lose selection?
     if (qtedge->isSelected())
     {
-      if (GetVerbosity()) { std::clog << "An edge got selected" << std::endl; }
+      if (GetVerbosity()) { std::clog << "A QtEdge got selected" << std::endl; }
+      if (m_conceptmap->IsSelected(qtedge->GetEdge()))
+      {
+        std::clog << "Warning: a QtEdge got selected, the Edge already was selected" << std::endl;
+      }
       m_conceptmap->AddSelected( ConceptMap::Edges( { qtedge->GetEdge() } ) );
     }
     else
     {
-      if (GetVerbosity()) { std::clog << "An edge got unselected" << std::endl; }
+      if (GetVerbosity()) { std::clog << "A QtEdge got unselected" << std::endl; }
+      if (!m_conceptmap->IsSelected(qtedge->GetEdge()))
+      {
+        std::clog << "Warning: a QtEdge got unselected, the Edge already was unselected" << std::endl;
+      }
       m_conceptmap->RemoveSelected( ConceptMap::Edges( { qtedge->GetEdge() } ) );
+    }
+  }
+  else
+  {
+    if (GetVerbosity())
+    {
+      std::clog << "Warning: something unknown changed its selectionness" << std::endl;
     }
   }
 }

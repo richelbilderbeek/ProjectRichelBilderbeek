@@ -94,7 +94,8 @@ ribi::cmap::ConceptMap::ConceptMap(
     m_edges(edges),
     m_nodes(nodes),
     m_selected{},
-    m_undo{}
+    m_undo{},
+    m_verbose{false}
 {
   #ifndef NDEBUG
   Test();
@@ -1159,6 +1160,17 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::GetRandomNode(
   return p;
 }
 
+bool ribi::cmap::ConceptMap::IsSelected(const ReadOnlyEdgePtr& edge) const noexcept
+{
+  const auto iter = std::find(
+    std::begin(m_selected.first),
+    std::end(m_selected.first),
+    edge
+  );
+  if (iter != std::end(m_selected.first)) return true;
+  return false;
+}
+
 bool ribi::cmap::ConceptMap::IsSelected(const ReadOnlyNodePtr& node) const noexcept
 {
   const auto iter = std::find(
@@ -1236,7 +1248,10 @@ void ribi::cmap::ConceptMap::RemoveSelected(const std::vector<boost::shared_ptr<
     }
     else
     {
-      if (m_verbose) { std::clog << "Removing selectedness of node" << std::endl; }
+      if (m_verbose)
+      {
+        std::clog << "Removing selectedness of node" << std::endl;
+      }
       m_selected.second.erase(new_end,std::end(m_selected.second));
     }
   }

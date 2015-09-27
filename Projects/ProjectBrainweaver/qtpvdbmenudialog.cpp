@@ -111,7 +111,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_assessor_clicked() noexcept
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
 {
   //Obtain an empty file
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory().Create();
   //Use HeteromorphousTestConceptMap[17] to check for subconcept maps with many examples
   //Use HeteromorphousTestConceptMap[18] to check for subconcept maps with large texts
   //Use HeteromorphousTestConceptMap[19] to check for connection to focus with ...
@@ -137,7 +137,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 {
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory().Create();
   //Use HeteromorphousTestConceptMap[17] to check for subconcept maps with many examples
   //Use HeteromorphousTestConceptMap[18] to check for subconcept maps with large texts
   //Use HeteromorphousTestConceptMap[19] to check for connection to focus with ...
@@ -161,8 +161,8 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked() noexcept
 {
   const int test = 4;
-  assert(test < static_cast<int>(pvdb::FileFactory::GetTests().size()));
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(test);
+  assert(test < static_cast<int>(pvdb::FileFactory().GetTests().size()));
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory().GetTests().at(test);
   assert(file);
   QtPvdbRatingDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
@@ -198,7 +198,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked() noexcept
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked() noexcept
 {
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory().Create();
   assert(!file->GetCluster());
   assert(!file->GetConceptMap());
   {
@@ -516,7 +516,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked() noexcep
     }
   }
   //Obtain the artificial concept maps
-  const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::FileFactory::GetTests();
+  const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::FileFactory().GetTests();
   const int sz = boost::numeric_cast<int>(v.size());
   for(int i=0; i!=sz; ++i)
   {
@@ -583,8 +583,8 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmaps_clicked()
 void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
 {
   const int test = 4;
-  assert(test < static_cast<int>(pvdb::FileFactory::GetTests().size()));
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(test);
+  assert(test < static_cast<int>(pvdb::FileFactory().GetNumberOfTests()));
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory().GetTests().at(test);
   assert(file);
   QtPvdbConceptMapDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }

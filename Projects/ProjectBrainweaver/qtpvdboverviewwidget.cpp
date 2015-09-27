@@ -107,8 +107,8 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
   }
   {
     const int index = 3;
-    assert(index < static_cast<int>(FileFactory::GetTests().size()));
-    const boost::shared_ptr<pvdb::File> file(FileFactory::GetTests().at(index));
+    assert(index < static_cast<int>(FileFactory().GetNumberOfTests()));
+    const boost::shared_ptr<pvdb::File> file(FileFactory().GetTests().at(index));
     assert(file);
     assert(file->GetCluster());
     QtHideAndShowDialog* p(new QtPvdbClusterDialog(file));

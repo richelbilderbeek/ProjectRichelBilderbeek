@@ -951,7 +951,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     qtconceptmap->keyPressEvent(&ctrln);
     qtconceptmap->keyPressEvent(&ctrln);
 
-    //Create an edge
+    //Create an edge, edge is selected
     auto ctrle = CreateControlE();
     qtconceptmap->keyPressEvent(&ctrle);
 
@@ -967,7 +967,7 @@ void ribi::cmap::QtConceptMap::Test() noexcept
     qtconceptmap->GetQtNodes()[0]->SetCenterPos(-100.0,0.0);
     qtconceptmap->GetQtNodes()[1]->SetCenterPos( 100.0,0.0);
 
-    //Select a node
+    //Unselect the edge, select the node by pressing an arrow key
     auto up = CreateUp();
     TRACE("START");
     qtconceptmap->SetVerbosity(true);

@@ -43,8 +43,10 @@ struct ConceptMapFactory;
 ///A concept map
 ///Its interface is based on nodes and edges
 ///Use ConceptMapWidget to work with commands
-struct ConceptMap
+class ConceptMap
 {
+  public:
+
   using CenterNodePtr = boost::shared_ptr<CenterNode> ;
   using ConceptMapPtr = boost::shared_ptr<ConceptMap>;
   using ConceptMaps = std::vector<ConceptMapPtr>;
@@ -147,6 +149,7 @@ struct ConceptMap
   const QUndoStack& GetUndo() const noexcept { return m_undo; }
         QUndoStack& GetUndo()       noexcept { return m_undo; }
 
+  bool GetVerbosity() const noexcept { return m_verbose; }
   ///Obtain the version
   static std::string GetVersion() noexcept;
 
@@ -156,6 +159,7 @@ struct ConceptMap
   bool HasEdge(const ReadOnlyEdgePtr& edge) const noexcept;
   bool HasNode(const ReadOnlyNodePtr& node) const noexcept;
 
+  bool IsSelected(const ReadOnlyEdgePtr& node) const noexcept;
   bool IsSelected(const ReadOnlyNodePtr& node) const noexcept;
 
   ///Similar to operator==, except that the GUI member variables aren't checked for equality

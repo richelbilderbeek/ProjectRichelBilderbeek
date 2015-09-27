@@ -59,6 +59,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::Create(
   boost::shared_ptr<ConceptMap> p(new ConceptMap(nodes,edges));
   assert(p);
   assert(p->IsValid());
+  assert(!p->GetVerbosity());
   return p;
 }
 

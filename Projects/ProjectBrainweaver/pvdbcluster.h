@@ -38,8 +38,10 @@ namespace pvdb {
 struct ClusterFactory;
 
 ///The data behind a QtPvdbClusterWidget
-struct Cluster
+class Cluster
 {
+  public:
+
   ///Add a Concept to the Cluster
   void Add(const boost::shared_ptr<ribi::cmap::Concept>& concept);
 

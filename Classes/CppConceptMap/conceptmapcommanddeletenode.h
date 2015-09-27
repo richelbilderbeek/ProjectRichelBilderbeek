@@ -32,8 +32,10 @@ namespace ribi {
 namespace cmap {
 
 ///Delete an existing node
-struct CommandDeleteNode final : public Command
+class CommandDeleteNode final : public Command
 {
+  public:
+
   using EdgePtr = boost::shared_ptr<Edge>;
   using Edges = std::vector<EdgePtr>;
   using NodePtr = boost::shared_ptr<Node>;

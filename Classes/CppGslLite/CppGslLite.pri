@@ -6,3 +6,5 @@ HEADERS += \
     ../../Classes/CppGslLite/fail_fast_lite.h \
     ../../Classes/CppGslLite/gsl_lite.h \
     ../../Classes/CppGslLite/string_view_lite.h
+
+DEFINES += GSL_ARRAY_VIEW_H GSL_STRING_VIEW_H
