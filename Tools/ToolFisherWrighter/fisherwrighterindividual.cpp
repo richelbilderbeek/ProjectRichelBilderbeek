@@ -11,7 +11,7 @@ ribi::fw::Individual::Individual(
   const std::shared_ptr<Pedigree>& pedigree,
   ribi::Counter& counter
   )
-  : m_counter{counter},
+  : m_counter(counter),
     m_dna{dna},
     m_index{counter.Get()}, //Use the previous value
     m_pedigree{pedigree}

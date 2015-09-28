@@ -12,7 +12,7 @@ ribi::fw::Dna::Dna(
   const std::string& sequence
 )
   : m_mutation_rate{mutation_rate},
-    m_rnd_engine{rnd_engine},
+    m_rnd_engine(rnd_engine),
     m_sequence{sequence}
 {
   #ifndef NDEBUG

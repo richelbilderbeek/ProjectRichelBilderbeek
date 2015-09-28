@@ -45,8 +45,8 @@ ribi::fw::Simulation::Simulation(
   std::vector<Individual> v;
   const int dna_length{parameters.GetDnaLength()};
   const double mutation_rate{parameters.GetMutationRate()};
-  std::mt19937& rnd_engine{m_rnd_engine};
-  ribi::Counter& counter{m_counter};
+  std::mt19937& rnd_engine(m_rnd_engine);
+  ribi::Counter& counter(m_counter);
   std::generate_n(
     std::back_inserter(v),
     parameters.GetPopSize(),
@@ -79,7 +79,7 @@ ribi::fw::Generation ribi::fw::Simulation::CreateNextGeneration(
     const int index{d(m_rnd_engine)};
     assert(index >= 0);
     assert(index < static_cast<int>(current_generation.size()));
-    Individual& parent{current_generation[index]};
+    Individual& parent(current_generation[index]);
     const Individual kid{parent.CreateOffspring()};
     individuals.push_back(kid);
   }

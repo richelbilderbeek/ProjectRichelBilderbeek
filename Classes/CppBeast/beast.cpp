@@ -6,7 +6,10 @@
 #include <sstream>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wextra"
 #include "RInside.h"
+#pragma GCC diagnostic push
 
 #include "fileio.h"
 #include "ribi_rinside.h"

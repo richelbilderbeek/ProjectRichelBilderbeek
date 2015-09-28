@@ -5,7 +5,10 @@
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wextra"
 #include "RInside.h"
+#pragma GCC diagnostic push
 
 struct RInside;
 

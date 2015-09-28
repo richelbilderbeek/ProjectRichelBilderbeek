@@ -1,5 +1,4 @@
-include(../../DesktopApplicationNoWeffcpp.pri)
-
+include(../../DesktopApplicationSloppy.pri) # RInside goes bad with -Wextra
 include(../../Libraries/BoostAll.pri)
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)

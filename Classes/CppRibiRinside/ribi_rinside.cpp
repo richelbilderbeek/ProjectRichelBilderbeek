@@ -1,7 +1,11 @@
 #include "ribi_rinside.h"
 
 #include <cassert>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wextra"
 #include "RInside.h"
+#pragma GCC diagnostic push
 
 ribi::Rinside::Rinside()
 {

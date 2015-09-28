@@ -6,7 +6,10 @@
 #include <iostream>
 #include <future>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wextra"
 #include "RInside.h"
+#pragma GCC diagnostic push
 
 #include "dnasequence.h"
 #include "fileio.h"

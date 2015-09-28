@@ -5,7 +5,10 @@
 
 #include <QFile>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wextra"
 #include "RInside.h"
+#pragma GCC diagnostic push
 
 #include "fileio.h"
 #include "testtimer.h"

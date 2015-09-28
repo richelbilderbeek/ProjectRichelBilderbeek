@@ -57,11 +57,12 @@ std::vector<std::pair<std::string,int>> ribi::fw::Helper::CreateTally(
   const std::vector<std::string>& v
 ) const noexcept
 {
-  std::vector<std::pair<std::string,int>> w;
+  using Pair = std::pair<std::string,int>;
+  std::vector<Pair> w;
   for (const std::string& s: v)
   {
     const auto iter = std::find_if(std::begin(w),std::end(w),
-      [s](const auto& p) { return p.first == s; }
+      [s](const Pair& p) { return p.first == s; }
     );
 
     if (iter == std::end(w))
