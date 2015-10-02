@@ -1,2 +1,0 @@
-#include "maziakmazesquare.h"
-
