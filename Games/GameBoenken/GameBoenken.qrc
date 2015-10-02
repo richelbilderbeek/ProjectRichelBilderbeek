@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/images">
-        <file>R.png</file>
-        <file>PlayerBlue.png</file>
-        <file>PlayerRed.png</file>
-        <file>Computer.png</file>
-        <file>Human.png</file>
-    </qresource>
-</RCC>
