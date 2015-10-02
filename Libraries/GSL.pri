@@ -1,1 +1,0 @@
-INCLUDEPATH += ../../Libraries/GSL/include

@@ -1,2 +1,0 @@
-#include "connectthreewinner.h"
-
