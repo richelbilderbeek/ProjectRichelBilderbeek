@@ -1,7 +1,0 @@
--rw-r--r--    1 343692     345110       47607652 Jan 12 14:15 ProjectBrainweaverExe.zip
-
-
-960120dfedaf29a77c17209ce59f393ccd38b9c2
-
-#i686-pc-mingw32.static-qmake-qt4
-#i686-pc-mingw32.static-qmake-qt5
