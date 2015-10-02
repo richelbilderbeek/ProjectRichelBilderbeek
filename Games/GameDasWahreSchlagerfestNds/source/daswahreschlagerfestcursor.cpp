@@ -1,1 +1,0 @@
-../../GameDasWahreSchlagerfest/daswahreschlagerfestcursor.cpp
