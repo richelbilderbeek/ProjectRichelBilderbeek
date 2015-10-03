@@ -6,8 +6,14 @@ require "open-uri"
 require "shellwords"
 # your github username
 username = "richelbilderbeek"
-backupDirectory = Shellwords.escape("/home/richel/Backup")
+backupDirectory = Shellwords.escape("/home/richel/GitHubs")
+
 YAML.load(open("https://api.github.com/users/#{username}/repos?per_page=100000")).map{|repository|
-puts "Discovered repository: #{repository['name']}"
-system "git clone #{Shellwords.escape(repository['clone_url'])} #{backupDirectory}/#{Shellwords.escape(repository['name'])}"
+  puts "Discovered repository: #{repository['name']}"
+  system "git clone #{Shellwords.escape(repository['clone_url'])} #{backupDirectory}/#{Shellwords.escape(repository['name'])}"
+}
+
+YAML.load(open("https://api.github.com/users/#{username}/repos?direction=desc&per_page=100000")).map{|repository|
+  puts "Discovered repository: #{repository['name']}"
+  system "git clone #{Shellwords.escape(repository['clone_url'])} #{backupDirectory}/#{Shellwords.escape(repository['name'])}"
 }
