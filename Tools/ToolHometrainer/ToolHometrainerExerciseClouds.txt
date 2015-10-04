@@ -1,8 +1,0 @@
-Hometrainer (C) 2009 Richel Bilderbeek
--,Which genus goes from 5 to 12 kilometres (in temperate latitudes)?,cirrus and cirrocumulus and cirrostratus,altocumulus and altostratus,stratocumulus and stratus,nimbostratus and cumulus,cumulonimbus and cumulus,nacreous,noctilucent
--,Which genus goes from 2 to 7 kilometres (in temperate latitudes)?,altocumulus and altostratus,cirrus and cirrocumulus and cirrostratus,stratocumulus and stratus,nimbostratus and cumulus,cumulonimbus and cumulus,nacreous,noctilucent
--,Which genus goes from 0 to 2 kilometres (in temperate latitudes)?,stratocumulus and stratus,cirrus and cirrocumulus and cirrostratus,altocumulus and altostratus,nimbostratus and cumulus,cumulonimbus and cumulus,nacreous,noctilucent
--,Which genus goes from 0 to 3 kilometres (in temperate latitudes) where the tops are mostly at the middle level?,nimbostratus and cumulus,cirrus and cirrocumulus and cirrostratus,altocumulus and altostratus,stratocumulus and stratus,cumulonimbus and cumulus,nacreous,noctilucent
--,Which genus goes from 0 to 3 kilometres (in temperate latitudes) where the tops are mostly at the high level?,cumulonimbus and cumulus,cirrus and cirrocumulus and cirrostratus,altocumulus and altostratus,stratocumulus and stratus,nimbostratus and cumulus,nacreous,noctilucent
--,Which genus goes from 19 to 29 kilometres (in temperate latitudes)?,nacreous,cirrus and cirrocumulus and cirrostratus,altocumulus and altostratus,stratocumulus and stratus,nimbostratus and cumulus,cumulonimbus and cumulus,noctilucent
--,Which genus goes from 51 to 56 kilometres (in temperate latitudes)?,noctilucent,cirrus and cirrocumulus and cirrostratus,altocumulus and altostratus,stratocumulus and stratus,nimbostratus and cumulus,cumulonimbus and cumulus,nacreous
