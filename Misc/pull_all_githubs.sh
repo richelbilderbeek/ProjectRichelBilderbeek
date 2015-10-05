@@ -1,5 +1,4 @@
 #!/bin/bash
-cd ~/GitHubs
 
 for folder in `ls`
 do
