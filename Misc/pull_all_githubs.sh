@@ -9,6 +9,7 @@ do
     continue
   fi
 
+  cd $folder
   git pull
   cd ..
 done

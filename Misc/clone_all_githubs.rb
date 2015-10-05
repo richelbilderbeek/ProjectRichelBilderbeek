@@ -6,7 +6,7 @@ require "open-uri"
 require "shellwords"
 # your github username
 username = "richelbilderbeek"
-backupDirectory = Shellwords.escape("/home/richel/GitHubs")
+backupDirectory = Shellwords.escape("/home/maakplek/GitHubs")
 
 YAML.load(open("https://api.github.com/users/#{username}/repos?per_page=100000")).map{|repository|
   puts "Discovered repository: #{repository['name']}"
