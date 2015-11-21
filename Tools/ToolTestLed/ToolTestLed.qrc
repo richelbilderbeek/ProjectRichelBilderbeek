@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/ToolTestLed/images">
-        <file>ToolTestLedWelcome.png</file>
-        <file>ToolTestLedModify.png</file>
-        <file>ToolTestLedCompare.png</file>
-    </qresource>
-</RCC>
