@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/images">
-        <file>ToolRandomCodeWelcome.png</file>
-        <file>ToolRandomCodeIcon14x14.png</file>
-        <file>ToolRandomCode.png</file>
-    </qresource>
-</RCC>
