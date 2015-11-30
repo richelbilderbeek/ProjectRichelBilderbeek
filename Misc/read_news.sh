@@ -1,1 +1,0 @@
-newsbeuter -u newssites.url
