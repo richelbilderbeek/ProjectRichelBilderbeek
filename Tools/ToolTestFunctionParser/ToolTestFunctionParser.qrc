@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/ToolTestFunctionParser/images">
-        <file>ToolTestFunctionParserWelcome.png</file>
-        <file>ToolTestFunctionParserSimple.png</file>
-    </qresource>
-</RCC>
