@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/ToolTestGroupWidget/images">
-        <file>ToolTestGroupWidgetWelcome.png</file>
-    </qresource>
-</RCC>
