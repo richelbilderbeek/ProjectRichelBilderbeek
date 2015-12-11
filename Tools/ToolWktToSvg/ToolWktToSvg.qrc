@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/ToolWktToSvg">
-        <file>ToolWktToSvgIcon.png</file>
-        <file>ToolWktToSvgWelcome.png</file>
-    </qresource>
-</RCC>

@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/images">
-        <file>R.png</file>
-        <file>ToolTestQrcFileWelcome.png</file>
-        <file>ToolTestQrcFileIcon.png</file>
-    </qresource>
-</RCC>
