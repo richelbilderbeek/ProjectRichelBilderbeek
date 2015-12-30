@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/ToolTestSelectFileDialog/images">
-        <file>ToolTestSelectFileDialogWelcome.png</file>
-    </qresource>
-</RCC>
