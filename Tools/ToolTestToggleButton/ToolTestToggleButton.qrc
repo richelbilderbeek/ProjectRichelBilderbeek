@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/ToolTestToggleButton/images">
-        <file>ToolTestToggleButtonWelcome.png</file>
-        <file>R.png</file>
-    </qresource>
-</RCC>
