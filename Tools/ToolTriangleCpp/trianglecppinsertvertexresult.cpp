@@ -1,1 +1,0 @@
-#include "trianglecppinsertvertexresult.h"
